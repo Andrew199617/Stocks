@@ -1,0 +1,163 @@
+{
+ "ticker": "ALNY",
+ "name": "ALNYLAM PHARMACEUTICALS, INC.",
+ "cik": 1178670,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 224.41,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 134684000,
+ "market_cap_est": 30224436440.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.4977779857034381,
+ "rev_cagr_3y": 0.5296244046007565,
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": 117148000,
+ "base_oe_per_share": 3.4954610883261363,
+ "base_oe_latest_per_share": 0.8697989367705147,
+ "base_oe_normalized_per_share": -1.438962099498823,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.4977779857034381,
+  "rev_cagr_3y": 0.5296244046007565,
+  "rev_yoy_latest": 0.6519286393864008,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.5296244046007565,
+ "share_cagr": 0.03439134379143782,
+ "share_count_adj": -0.03439134379143782,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.35,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.4954610883261363,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.23,
+   "oe_mult": 0.75,
+   "iv_at_10": 106.52887531239168,
+   "iv_at_12": 80.02714373263632,
+   "iv_at_15": 56.85949007015917,
+   "irr": 0.06432057697375637
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.3,
+   "oe_mult": 0.9,
+   "iv_at_10": 183.3210221813447,
+   "iv_at_12": 135.98859915455992,
+   "iv_at_15": 94.89857208663472,
+   "irr": 0.08861147628176214
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.35,
+   "oe_mult": 1.0,
+   "iv_at_10": 262.2838934869702,
+   "iv_at_12": 193.0306392641718,
+   "iv_at_15": 133.17184125038398,
+   "irr": 0.10967982161533504
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.4,
+   "oe_mult": 1.1,
+   "iv_at_10": 369.9782506463625,
+   "iv_at_12": 270.3616061347667,
+   "iv_at_15": 184.59442281639352,
+   "irr": 0.13380715475707305
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.47,
+   "oe_mult": 1.25,
+   "iv_at_10": 591.3052617246452,
+   "iv_at_12": 428.32413908897456,
+   "iv_at_15": 288.68094030977085,
+   "irr": 0.17277730420070425
+  }
+ },
+ "weighted": {
+  "iv_at_10": 286.79339995672154,
+  "iv_at_12": 210.33187138374427,
+  "iv_at_15": 144.37884413886525,
+  "irr": 0.11549306114560423
+ },
+ "implied_irr_weighted": 0.11549306114560423,
+ "implied_irr_base": 0.10967982161533504,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.35662918702880775,
+ "upside_at_12": -0.06273396290831834,
+ "iv_at_15": 144.37884413886525,
+ "iv_at_12": 210.33187138374427,
+ "diagnostics": {
+  "oe_yield": 0.015576226943211695,
+  "tv_share_at_15": 0.2931130474010118,
+  "scenario_spread_iv15": 5.0770933744493,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.6% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "59b83327883b2479dcc4b612d662cc2d5eb3a3a4fb5426186ca02ad25a61d6fa"
+}

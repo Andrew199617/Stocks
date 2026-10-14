@@ -1,0 +1,73 @@
+{
+ "ticker": "RPRX",
+ "name": "Royalty Pharma plc",
+ "cik": 1802768,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 57.5388,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 564455000,
+ "market_cap_est": 32478063354.0,
+ "net_debt_latest": 8332221000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.02302736040861264,
+ "rev_cagr_3y": 0.020573858953121915,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2199929000,
+ "base_oe_per_share": 4.656799773778505,
+ "base_oe_latest_per_share": 3.8974391226935716,
+ "base_oe_normalized_per_share": 4.656799773778505,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.02302736040861264,
+  "rev_cagr_3y": 0.020573858953121915,
+  "rev_yoy_latest": 0.05063536634069288,
+  "oe_ps_cagr_2y": -0.11275545652348529
+ },
+ "g_blend": 0.021800609680867278,
+ "share_cagr": 0.08822646042183457,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": null,
+  "equity": null,
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [
+  "capex"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 8.8%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
+ "content_hash": "aec18e300faa4a382992a7faf29b4d7c2c4db0694739530219361351834bbf32"
+}

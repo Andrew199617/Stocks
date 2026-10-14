@@ -1,0 +1,160 @@
+{
+ "ticker": "HPQ",
+ "name": "HP INC.",
+ "cik": 47217,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 30.2323,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 953000000,
+ "market_cap_est": 28811381900.0,
+ "net_debt_latest": 5976000000,
+ "latest_period_end": "2025-10-31",
+ "rev_cagr_5y": -0.0047886845242260945,
+ "rev_cagr_3y": -0.04208644336062173,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2278000000,
+ "base_oe_per_share": 3.6699029126213594,
+ "base_oe_latest_per_share": 2.3903462749213014,
+ "base_oe_normalized_per_share": 2.54,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": -0.0047886845242260945,
+  "rev_cagr_3y": -0.04208644336062173,
+  "rev_yoy_latest": 0.0324128531152561,
+  "oe_ps_cagr_2y": -0.029886449793511294
+ },
+ "g_blend": -0.017337567158868694,
+ "share_cagr": -0.03178664681606558,
+ "share_count_adj": 0.03178664681606558,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.014449079657196884,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.2,
+   0.05
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.6699029126213594,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 21.882020618297894,
+   "iv_at_12": 17.673810840958584,
+   "iv_at_15": 13.842668881246,
+   "irr": 0.07776251721982863
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0356,
+   "oe_mult": 0.9,
+   "iv_at_10": 34.83486620315701,
+   "iv_at_12": 27.788420150501445,
+   "iv_at_15": 21.414148494331336,
+   "irr": 0.11196726747882335
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0144,
+   "oe_mult": 1.0,
+   "iv_at_10": 47.96267204670738,
+   "iv_at_12": 37.930677459456874,
+   "iv_at_15": 28.894330781135768,
+   "irr": 0.14441902062832074
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0644,
+   "oe_mult": 1.1,
+   "iv_at_10": 65.09577668961136,
+   "iv_at_12": 51.076095230744095,
+   "iv_at_15": 38.49550229983167,
+   "irr": 0.18288529686419952
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "g_start": 0.1344,
+   "oe_mult": 1.25,
+   "iv_at_10": 98.54875996850714,
+   "iv_at_12": 76.56723059860862,
+   "iv_at_15": 56.93288536770831,
+   "irr": 0.24739292885201858
+  }
+ },
+ "weighted": {
+  "iv_at_10": 46.06815790405163,
+  "iv_at_12": 36.41038148521053,
+  "iv_at_15": 27.714688843178777,
+  "irr": 0.13953075919471314
+ },
+ "implied_irr_weighted": 0.13953075919471314,
+ "implied_irr_base": 0.14441902062832074,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.08327554161678807,
+ "upside_at_12": 0.2043536709152307,
+ "iv_at_15": 27.714688843178777,
+ "iv_at_12": 36.41038148521053,
+ "diagnostics": {
+  "oe_yield": 0.12139013282553295,
+  "tv_share_at_15": 0.1766289435457662,
+  "scenario_spread_iv15": 4.112854671026682,
+  "net_debt_to_normalized_oe": 1.7086893519212512,
+  "months_since_fy_end": 11.432325886990801,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 11 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.2%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "8c34477d91a5013cba581c346e01caace728574dbafff26d6feeac485bdf474f"
+}

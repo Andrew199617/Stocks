@@ -1,53 +1,69 @@
 {
  "ticker": "PAYX",
  "name": "Paychex, Inc.",
- "sector": "Industrials",
- "price": 104.64,
- "market_cap_b": 37.67,
- "engine_version": 4,
- "base_oe_per_share": 6.1825,
- "base_year": "FY2026",
- "base_source": "Latest FY2026 (first full Paycor year) OE from EDGAR 10-K: OCF $2,556.7M - capex $234.9M - SBC $96.1M = $2,225.7M / 360.0M diluted shares = $6.1825; engine 3-yr median $4.626 rejected (pre-Paycor basis break); TTM cross-check $5.41/sh (TTM OE $1,928.1M) gives Tier D at 9.1%",
- "moat_score": 6,
- "moat_justification": "Payroll tax-compliance complexity and bundled HCM/PEO switching costs give durable recurring revenue and 40%+ margins, but ADP is larger upmarket, SMB rivals attack on price/UX, seat-based pricing is exposed to AI automation (Morningstar cut wide->narrow), and Paycor cross-sell is unproven.",
- "cap_years": 9.8,
+ "sector": "Business Services (HCM / payroll)",
+ "price": 106.25,
+ "market_cap_b": 38.25,
+ "engine_version": 5,
+ "base_oe_per_share": 5.406898485698261,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Payroll is mission-critical and compliance-laden, making switching painful and retention durable; the PEO co-employment model deepens lock-in. Scale, direct distribution, and a bundled HR/benefits/retirement stack give proven pricing power (~44% adjusted operating margins held through cycles). Not wide: ADP is larger with greater enterprise reach, cloud-native rivals innovate faster at the product layer, per-employee pricing is exposed to SMB employment levels and AI automation, client-funds income is rate-sensitive, and Paycor synergies are not yet proven organically. Prior run scored 6/10 on the same facts; the range does not change the tier.",
+ "cap_years": 11.1,
  "fragility_flags": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "iv_at_15": 34.02,
-   "irr": 0.0645
+   "iv_at_15": 29.54,
+   "irr": 0.0585
   },
   "bear": {
    "prob": 0.25,
-   "iv_at_15": 46.66,
-   "irr": 0.081
+   "iv_at_15": 40.82,
+   "irr": 0.0733
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 59.25,
-   "irr": 0.0973
+   "iv_at_15": 52.27,
+   "irr": 0.0883
   },
   "bull": {
    "prob": 0.25,
-   "iv_at_15": 74.48,
-   "irr": 0.1161
+   "iv_at_15": 66.29,
+   "irr": 0.1059
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 96.69,
-   "irr": 0.1414
+   "iv_at_15": 86.87,
+   "irr": 0.1295
   }
  },
- "iv_at_15": 61.13,
- "iv_at_12": 81.56,
- "implied_irr": 0.0998,
- "implied_irr_base_case": 0.0973,
- "upside_at_15_pct": -41.6,
+ "iv_at_15": 54.1,
+ "iv_at_12": 72.36,
+ "implied_irr": 0.0909,
+ "implied_irr_base_case": 0.0883,
+ "upside_at_15_pct": -49.1,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "medium",
- "one_liner": "High-quality narrow-moat (6/10) payroll/HCM compounder, but at $104.64 it prices in growth it is not guiding to - weighted IRR 10.0%, IV@15% $61 vs $105 price; clears the 15% hurdle only at ~$61 (~$49 with a margin of safety).",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "Strong payroll/HCM franchise, moat 7/10 \u2014 but at $106.25 it clears only a 9.1% weighted IRR (IV@15 $54.10) on guided 5-6% organic growth; Tier D, needs ~$54 to clear 15%.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "High switching costs \u2014 payroll/tax compliance is mission-critical and embedded in client workflows",
+  "Recurring revenue with durable retention through cycles",
+  "PEO co-employment model raises lock-in and lifetime value (ASO-to-PEO conversions ~2x plan in Q1 FY2027)",
+  "Scale + direct distribution + bundled HCM/benefits/retirement/insurance stack",
+  "Proven pricing power with ~44% adjusted operating margins",
+  "Client-funds float is a structural earnings kicker while rates stay higher"
+ ],
+ "moat_against": [
+  "ADP has greater scale and enterprise reach",
+  "Cloud-native competitors innovate faster at the UI layer at both SMB and mid-market ends",
+  "Growth capped by SMB employment growth; a soft labor market hits client counts directly",
+  "Interest on client funds is rate-sensitive \u2014 Fed cuts shrink that earnings stream",
+  "Paycor integration/synergy execution ($80M+ targeted) not yet proven on an organic basis",
+  "Acquisition debt (net debt $3,467,900,000) replaced a previously near-unlevered balance sheet"
+ ]
 }

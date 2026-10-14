@@ -1,1 +1,70 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":5.27,"base_source":"TTM through Q2 2026 from 10-Q YTD figures: OCF $1,394.102M (FY25 $1,370.133M - H1'25 $622.366M + H1'26 $646.335M) - capex $279.332M ($415.034M - $275.313M + $139.611M) - SBC ~$12.854M (not broken out in 10-Q; held at FY25 level) = $1,101.916M / 209.014M diluted shares = $5.27/share","base_year":"TTM Q2 2026","cap_years":11.1,"confidence":"medium","engine_version":4,"fragility_flags":["STALE_FY: latest fiscal year ended 9 months ago — check TTM/quarterly OE and consider --base-oe-ps override","WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV — uncertainty is huge; confidence should not be high","BUYBACK_TAILWIND: share count shrinking 2.2%/yr — already credited via the growth adjustment"],"implied_irr":0.0603,"implied_irr_base_case":0.0563,"in_scope_under_40b":true,"iv_at_12":65.22,"iv_at_15":48.95,"market_cap_b":38.36,"moat_justification":"Structural cost advantage (OR 70.1% Q2 2026 vs industry mid-80s) from network density, owned service centers and a non-union low-turnover workforce; service quality (99% on-time, 0.1% claims) converts to pricing power (4.9% GRI Oct 2026, rev/cwt +5.5% ex-fuel with volumes down); ~35% spare capacity and a net-cash balance sheet let it take share through cycles — against low switching costs/annual bids, no network effects, capable rivals (XPO, Saia, FedEx Freight, Estes) investing to close the service gap, and freight cyclicality (revenue -5.5% in 2025, tons/day still -4.1% in Q2 2026).","moat_score":7,"name":"Old Dominion Freight Line, Inc.","one_liner":"Strong-moat (7/10) best-in-class LTL carrier with real pricing power and a net-cash balance sheet, but at $181.30 (34x TTM owner's earnings of $5.27/share, 2.9% yield) it yields a 6.0% weighted IRR — clears the 15% hurdle only at ~$49 (~$39 with a margin of safety); even the super-bull case ($99.20) is far below today's price.","price":181.3,"scenarios":{"base":{"irr":0.0563,"iv_at_15":44.9,"prob":0.3},"bear":{"irr":0.0455,"iv_at_15":31.95,"prob":0.25},"bull":{"irr":0.071,"iv_at_15":62.59,"prob":0.25},"super_bear":{"irr":0.0354,"iv_at_15":19.25,"prob":0.1},"super_bull":{"irr":0.0991,"iv_at_15":99.2,"prob":0.1}},"sector":"Industrials / Trucking Freight (LTL)","ticker":"ODFL","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-73.0}
+{
+ "ticker": "ODFL",
+ "name": "Old Dominion Freight Line, Inc.",
+ "sector": "Industrials / Trucking Freight (LTL)",
+ "price": 183.17,
+ "market_cap_b": 38.76,
+ "engine_version": 5,
+ "base_oe_per_share": 4.049315195048155,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Structural cost advantage (operating ratio 70.1% in Q2 2026 vs industry mid-80s) from network density, owned service centers and a non-union low-turnover workforce; service quality (99% on-time, 0.1% claims) converts to pricing power (rev/cwt +5.5% ex-fuel in Q2 2026 with volumes down, 4.9% general rate increase effective Oct 2026); spare capacity and a net-cash balance sheet let it take share through cycles \u2014 against low switching costs/annual bids, no network effects, capable rivals (XPO, Saia, FedEx Freight, Estes) investing to close the service gap, and freight cyclicality (revenue -5.5% in FY2025, tons/day still -4.1% in Q2 2026 and -0.9% in Aug 2026).",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 14.79,
+   "irr": 0.0328
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 24.55,
+   "irr": 0.0405
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 34.5,
+   "irr": 0.0489
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 48.09,
+   "irr": 0.0604
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 76.22,
+   "irr": 0.083
+  }
+ },
+ "iv_at_15": 37.61,
+ "iv_at_12": 50.11,
+ "implied_irr": 0.052,
+ "implied_irr_base_case": 0.0489,
+ "upside_at_15_pct": -79.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong-moat (7/10) best-in-class LTL carrier with real pricing power and a net-cash balance sheet, but at $183.17 on a normalized base of $4.05/share (2.2% OE yield) it yields a 5.2% weighted IRR \u2014 clears the 15% hurdle only at ~$38 (~$30 with a margin of safety); even the super-bull case ($76.22) is far below today's price.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Structural cost advantage \u2014 operating ratio 70.1% in Q2 2026 vs industry mid-80s",
+  "Service quality converts to pricing power \u2014 99% on-time, 0.1% claims, rev/cwt +5.5% ex-fuel in Q2 2026",
+  "Network density and owned service centers with spare capacity to take share through cycles",
+  "Non-union, low-turnover workforce and through-cycle investment discipline",
+  "Net-cash balance sheet funds investment without dilution"
+ ],
+ "moat_against": [
+  "Low switching costs \u2014 LTL sold on annual bids, shippers multi-source, no network effects",
+  "Capable rivals XPO, Saia, FedEx Freight and Estes investing to close the service gap",
+  "Freight cyclicality \u2014 revenue -5.5% in FY2025, tons/day still negative in 2026",
+  "Structural cost inflation (driver wages, equipment, real estate) passed through only with a lag"
+ ]
+}

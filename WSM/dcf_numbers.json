@@ -1,0 +1,161 @@
+{
+ "ticker": "WSM",
+ "name": "WILLIAMS-SONOMA, INC.",
+ "cik": 719955,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 239.835,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 123153000,
+ "market_cap_est": 29536399755.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-02-01",
+ "rev_cagr_5y": 0.02849691561066292,
+ "rev_cagr_3y": -0.03441688403573018,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 948929000,
+ "base_oe_per_share": 10.240134031413612,
+ "base_oe_latest_per_share": 7.705285295526703,
+ "base_oe_normalized_per_share": 8.11983661483431,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.02849691561066292,
+  "rev_cagr_3y": -0.03441688403573018,
+  "rev_yoy_latest": 0.012354858775956767,
+  "oe_ps_cagr_2y": -0.15362869666571322
+ },
+ "g_blend": -0.011031012629886705,
+ "share_cagr": -0.03758427284681898,
+ "share_count_adj": 0.03758427284681898,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.026553260216932273,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.11,
+   -0.05,
+   0.015,
+   0.045,
+   0.075
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 10.240134031413612,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0834,
+   "oe_mult": 0.75,
+   "iv_at_10": 62.986749249741585,
+   "iv_at_12": 50.958584054310506,
+   "iv_at_15": 39.98363352790159,
+   "irr": 0.043019292616593124
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0234,
+   "oe_mult": 0.9,
+   "iv_at_10": 100.43702468077379,
+   "iv_at_12": 80.11740340737873,
+   "iv_at_15": 61.72634379938392,
+   "irr": 0.05555561120991592
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0416,
+   "oe_mult": 1.0,
+   "iv_at_10": 151.09453856285543,
+   "iv_at_12": 118.8888930359872,
+   "iv_at_15": 89.9550577935683,
+   "irr": 0.07249296846003109
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0716,
+   "oe_mult": 1.1,
+   "iv_at_10": 190.77724362064384,
+   "iv_at_12": 149.2497638919528,
+   "iv_at_15": 112.0537959694839,
+   "irr": 0.08509861992827086
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1016,
+   "oe_mult": 1.25,
+   "iv_at_10": 248.5154168887228,
+   "iv_at_12": 193.36431677771554,
+   "iv_at_15": 144.1043425468237,
+   "irr": 0.10256419899013147
+  }
+ },
+ "weighted": {
+  "iv_at_10": 137.2208461271573,
+  "iv_at_12": 108.18728174500558,
+  "iv_at_15": 82.07945822562907,
+  "irr": 0.06801860750395922
+ },
+ "implied_irr_weighted": 0.06801860750395922,
+ "implied_irr_base": 0.07249296846003109,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6577669721865905,
+ "upside_at_12": -0.548909534700917,
+ "iv_at_15": 82.07945822562907,
+ "iv_at_12": 108.18728174500558,
+ "diagnostics": {
+  "oe_yield": 0.04269657902897247,
+  "tv_share_at_15": 0.17974866607768925,
+  "scenario_spread_iv15": 3.604083216855818,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 8.377135348226018,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "content_hash": "c3fdbc0e500d8a4553eb1d5b8ee0249e26082fda0e51f7f75ed8513f6e45ac4c"
+}

@@ -3,7 +3,7 @@
  "name": "JD.com, Inc.",
  "cik": 1549802,
  "engine_version": 5,
- "as_of": "2026-10-13",
+ "as_of": "2026-10-14",
  "price": 26.78,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 2978037127,
@@ -46,6 +46,9 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "20-F",
+ "ads_ratio": null,
+ "override_checks": {},
  "tier_by_numbers": null,
  "implied_irr_weighted": null,
  "implied_irr_base": null,
@@ -60,11 +63,13 @@
  ],
  "overrides_applied": [],
  "fragility_flags": [
-  "DATA_GAP:currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts); USD translations and ADS ratios are unverified \u2014 no tier emitted",
+  "DATA_GAP:currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts in the last 3 FY); USD translations and ADS ratios are unverified \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero."
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
+ "content_hash": "4b542caad87e2f1e85da4e264c5e768b267ee22a074ebf2845ac14d14b4d01ef"
 }

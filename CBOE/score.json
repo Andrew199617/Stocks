@@ -1,1 +1,71 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":12.22,"base_source":"FY2025 audited cash flow statement: OCF $1,752.6M - Cboe Clear Europe clearing-member margin/default/interoperability fund line $528.5M + Section 31 fees payable paydown $181.8M removed = clean OCF $1,405.9M; - capex $71.0M - SBC $50.4M = $1,284.5M / 105.1M diluted shares = $12.22. Raw engine base was $15.52 (float-inflated); float-cleaned TTM through Q2 2026 is $9.41 (June-timing-depressed). See analysis.md.","base_year":"FY2025 (float-cleaned)","cap_years":11.1,"confidence":"low","engine_version":4,"fragility_flags":["STALE_FY","BASE_DIVERGENCE","WIDE_SCENARIO_SPREAD","OE_VOLATILE","SECTOR_MODEL_MISMATCH"],"implied_irr":0.1017,"implied_irr_base_case":0.0945,"in_scope_under_40b":true,"iv_at_12":229.18,"iv_at_15":166.96,"market_cap_b":30.7,"method_range_note":"Defensible bases span weighted IRR 8.6% (Tier D, float-cleaned TTM $9.41) to 12.0% (Tier C, float-inflated raw FY2025 $15.52); final uses float-cleaned FY2025 $12.22 at 10.2% (Tier C). No defensible base clears 15% at $292.25. See analysis.md.","moat_justification":"Exclusive SPX/VIX index options franchise (highest-RPC flow in US options), liquidity network effects at ~30% options share, recurring Data Vantage revenue, 72% adj. EBITDA margin and net cash — against fungible multi-listed flow across 16 exchanges, volatility-cyclical volumes, 0DTE RPC dilution, and contractual (not statutory) index exclusivity.","moat_score":7,"name":"Cboe Global Markets, Inc.","one_liner":"Top-tier exchange franchise, moat 7/10, with real (float-cleaned) owner's earnings of $12.22/share — but at $292 (23.9x that base) the weighted IRR is 10.2%, well short of the 15% hurdle; it clears 15% only at <= ~$167, and with a margin of safety nearer $130-150.","price":292.25,"scenarios":{"base":{"irr":0.0945,"iv_at_15":152.5,"prob":0.3},"bear":{"irr":0.0681,"iv_at_15":98.47,"prob":0.26},"bull":{"irr":0.1289,"iv_at_15":233.99,"prob":0.22},"super_bear":{"irr":0.0481,"iv_at_15":59.06,"prob":0.12},"super_bull":{"irr":0.175,"iv_at_15":370.44,"prob":0.1}},"sector":"Finance / Exchanges & Clearing","ticker":"CBOE","tier_by_numbers":"C","tier_final":"C","upside_at_15_pct":-42.87}
+{
+ "ticker": "CBOE",
+ "name": "Cboe Global Markets, Inc.",
+ "sector": "Finance",
+ "price": 292.25,
+ "market_cap_b": 30.72,
+ "engine_version": 5,
+ "base_oe_per_share": 17.345714285714287,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Exclusive SPX/VIX index licenses and liquidity network effects (~30% US options market share) give a real, regulation-backed moat with proven pricing power, and Data Vantage adds recurring high-margin data revenue. Held back from 8+ because earnings are concentrated in SPX/index options, geared to trading volumes and volatility regimes the company does not control, and multi-listed options/equities remain fiercely competitive.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 15.52 vs 3-yr median 9.46 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 92.05,
+   "irr": 0.0627
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 153.66,
+   "irr": 0.0927
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 216.47,
+   "irr": 0.1205
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 302.02,
+   "irr": 0.1535
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 478.4,
+   "irr": 0.2081
+  }
+ },
+ "iv_at_15": 225.41,
+ "iv_at_12": 308.23,
+ "implied_irr": 0.1246,
+ "implied_irr_base_case": 0.1205,
+ "upside_at_15_pct": -22.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Strong-moat exchange franchise (7/10) priced past its earnings power \u2014 even on a current TTM base it returns 12.5% weighted at $292.25; it clears Andrew's 15% hurdle only at or below $225.41.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive SPX and VIX index licenses",
+  "Liquidity network effects \u2014 ~30% US options market share",
+  "Proprietary market data (Data Vantage) \u2014 recurring, high-margin, pricing power",
+  "Regulatory licensing barriers and consolidated multi-asset platform"
+ ],
+ "moat_against": [
+  "Product concentration in SPX/index options",
+  "Volume/volatility cyclicality \u2014 low-vol regime cuts transaction revenue",
+  "0DTE regulatory risk on the fastest-growing product",
+  "Competition from CME, ICE, Nasdaq, MIAX in multi-listed options and equities"
+ ]
+}

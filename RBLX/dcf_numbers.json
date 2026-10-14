@@ -2,27 +2,27 @@
  "ticker": "RBLX",
  "name": "Roblox Corporation",
  "cik": 1315098,
- "engine_version": 4,
+ "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 49.51,
+ "price": 49.38,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 689612000,
- "market_cap_est": 34142690120.0,
+ "market_cap_est": 34053040560.0,
  "net_debt_latest": -212221000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.3956219549954276,
  "rev_cagr_3y": 0.3001093174512701,
  "oe_positive_years_of_last_5": "2/5",
  "base_oe_total_latest_fy": 226376000,
- "base_oe_per_share": 0.7027,
+ "base_oe_per_share": 0.703365507122196,
  "base_oe_latest_per_share": 0.3282657494359147,
  "base_oe_normalized_per_share": -0.5762693016948733,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.3956219549954276,
   "rev_cagr_3y": 0.3001093174512701,
   "rev_yoy_latest": 0.35774000903392267,
-  "oe_ps_cagr_3y": null
+  "oe_ps_cagr_2y": null
  },
  "g_blend": 0.35774000903392267,
  "share_cagr": 0.05007865546018331,
@@ -46,83 +46,118 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.3077400090339227,
  "moat_score": 6.0,
  "cap_years": 9.8,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.308,
+   -0.228,
+   -0.158,
+   -0.088,
+   -0.008
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 0.703365507122196,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
    "g_start": -0.0003,
    "oe_mult": 0.75,
-   "iv_at_10": 6.342255684975296,
-   "iv_at_12": 5.039245628384269,
-   "iv_at_15": 3.8620958753184835,
-   "irr": 0.03434894858153349
+   "iv_at_10": 6.34826225439203,
+   "iv_at_12": 5.044018154150861,
+   "iv_at_15": 3.8657535561376495,
+   "irr": 0.03438259862705757
   },
   "bear": {
    "prob": 0.25,
    "g_start": 0.0797,
    "oe_mult": 0.9,
-   "iv_at_10": 11.3638439800657,
-   "iv_at_12": 8.856462562944987,
-   "iv_at_15": 6.616360307785797,
-   "irr": 0.04300280845426441
+   "iv_at_10": 11.374606352492421,
+   "iv_at_12": 8.864850265966336,
+   "iv_at_15": 6.622626473870679,
+   "irr": 0.04306625769212802
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.1497,
    "oe_mult": 1.0,
-   "iv_at_10": 17.827284273590916,
-   "iv_at_12": 13.692312399111744,
-   "iv_at_15": 10.027593256593176,
-   "irr": 0.05405719988051494
+   "iv_at_10": 17.844167985919768,
+   "iv_at_12": 13.705279997547692,
+   "iv_at_15": 10.037090104082498,
+   "irr": 0.05415619729367466
   },
   "bull": {
    "prob": 0.2,
    "g_start": 0.2197,
    "oe_mult": 1.1,
-   "iv_at_10": 27.502270436934555,
-   "iv_at_12": 20.857314345010554,
-   "iv_at_15": 15.007711913894322,
-   "irr": 0.06957177575310969
+   "iv_at_10": 27.528317052634485,
+   "iv_at_12": 20.87706771237427,
+   "iv_at_15": 15.021925289682796,
+   "irr": 0.06971622900785143
   },
   "super_bull": {
    "prob": 0.1,
    "g_start": 0.2997,
    "oe_mult": 1.25,
-   "iv_at_10": 45.58016307344907,
-   "iv_at_12": 34.141256489661124,
-   "iv_at_15": 24.136862074117012,
-   "irr": 0.09500102825276707
+   "iv_at_10": 45.62333074550862,
+   "iv_at_12": 34.17359069964347,
+   "iv_at_15": 24.159721407570533,
+   "irr": 0.09521096912082572
   }
  },
  "weighted": {
-  "iv_at_10": 19.198955024571816,
-  "iv_at_12": 14.663284722695634,
-  "iv_at_15": 10.65691102541274,
-  "irr": 0.05658601614771974
+  "iv_at_10": 19.2171378071356,
+  "iv_at_12": 14.677171901317722,
+  "iv_at_15": 10.66700388180668,
+  "irr": 0.05669214422196289
  },
- "implied_irr_weighted": 0.05658601614771974,
- "implied_irr_base": 0.05405719988051494,
+ "implied_irr_weighted": 0.05669214422196289,
+ "implied_irr_base": 0.05415619729367466,
  "tier_by_numbers": "D",
- "upside_at_15": -0.7847523525467028,
- "upside_at_12": -0.7038318577520575,
- "iv_at_15": 10.65691102541274,
- "iv_at_12": 14.663284722695634,
+ "upside_at_15": -0.7839812903643848,
+ "upside_at_12": -0.7027709213989931,
+ "iv_at_15": 10.66700388180668,
+ "iv_at_12": 14.677171901317722,
  "diagnostics": {
-  "oe_yield": 0.014193092304584933,
+  "oe_yield": 0.01424393493564593,
   "tv_share_at_15": 0.22426483936977643,
-  "scenario_spread_iv15": 6.249679669624098,
-  "net_debt_to_normalized_oe": -0.43793897040860696,
-  "months_since_fy_end": 9.42838370565046
+  "scenario_spread_iv15": 6.2496796696241,
+  "net_debt_to_normalized_oe": -0.43752460333921994,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "LOW_OE_YIELD: base OE yield 1.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
   "DILUTION: share count growing 5.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
- ]
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "9ee450497134102d12b2499e089b07ea045efd4b48501e329208827ead58163c"
 }

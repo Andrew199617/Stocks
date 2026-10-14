@@ -1,0 +1,69 @@
+{
+ "ticker": "CTSH",
+ "name": "Cognizant Technology Solutions Corporation",
+ "sector": "Information Technology / IT Services & Consulting",
+ "price": 62.85,
+ "market_cap_b": 30.73,
+ "engine_version": 5,
+ "base_oe_per_share": 4.790356394129979,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: embeddedness in client estates (running a payer's claims platform or a bank's core operations, plus proprietary TriZetto healthcare software) creates real switching costs, and scale/global India delivery plus vertical expertise sustain ~16% operating margins and OE positive 5 of 5 years. Capped at 5 because most work is labour services competitors (Accenture, TCS, Infosys, Wipro) can replicate, many contracts are short-term/terminable on short notice, there is no owned consumer/product lock-in beyond pockets like TriZetto, returns have been pressured, and AI automation threatens the headcount-arbitrage model itself.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASE_DIVERGENCE: latest FY OE/share 4.94 vs 3-yr median 3.64 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 19.68,
+   "irr": 0.0604
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 31.68,
+   "irr": 0.087
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 43.35,
+   "irr": 0.1119
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 58.63,
+   "irr": 0.1422
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 81.76,
+   "irr": 0.1829
+  }
+ },
+ "iv_at_15": 44.38,
+ "iv_at_12": 58.97,
+ "implied_irr": 0.1143,
+ "implied_irr_base_case": 0.1119,
+ "upside_at_15_pct": -29.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Solid, cash-generative IT-services franchise, moat 5/10 \u2014 but slow guided growth (4.0-5.5% CC for 2026) does not clear 15% at $62.85 (weighted IRR 11.43%, IV@15% $44.38); clears 15% only at or below $44.38, ~$35 with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Embeddedness in client estates \u2014 institutional knowledge of a payer's claims platform or a bank's core operations is expensive to rebuild",
+  "Proprietary TriZetto healthcare software inside client revenue cycles, not just services",
+  "Scale and global delivery \u2014 predominantly India-based workforce billed at Western rates, vertical expertise in Financial Services and Health Sciences",
+  "Proven cash generation through a cycle \u2014 OE positive 5 of last 5 FY, ~16% operating margin, net cash on the FY2025 balance sheet"
+ ],
+ "moat_against": [
+  "Labour-arbitrage model is replicable \u2014 Accenture, TCS, Infosys and Wipro match scale and delivery; no structural cost moat",
+  "Weak contractual lock-in \u2014 many contracts are short-term and terminable on short notice; visibility comes from bookings, not lock-in",
+  "AI automation threat \u2014 AI-led productivity deflates the headcount pyramid the model is built on; Project Leap restructuring is the admission",
+  "Wage inflation, attrition (13.0% voluntary Tech Services TTM at Q2 2026) and pricing pressure cap pricing power"
+ ]
+}

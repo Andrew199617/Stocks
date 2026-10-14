@@ -3,21 +3,21 @@
  "name": "COMPASS PATHWAYS PLC",
  "cik": 1816590,
  "engine_version": 5,
- "as_of": "2026-10-13",
- "price": 11.14,
+ "as_of": "2026-10-14",
+ "price": 11.42,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 93504836,
- "market_cap_est": 1041643873.0400001,
+ "market_cap_est": 1067825227.12,
  "net_debt_latest": -117975000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": null,
  "rev_cagr_3y": null,
  "oe_positive_years_of_last_5": "0/5",
- "base_oe_total_latest_fy": -170830000,
- "base_oe_per_share": -2.0553798945990795,
+ "base_oe_total_latest_fy": -170830000.0,
+ "base_oe_per_share": -1.4192960932725285,
  "base_oe_latest_per_share": -1.8269643294171438,
  "base_oe_normalized_per_share": -2.0553798945990795,
- "base_source": "median_of_last_3_fy_oe_per_share",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": null,
   "rev_cagr_3y": null,
@@ -46,24 +46,78 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
- "tier_by_numbers": null,
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "capex": {
+   "value": 0.0,
+   "last_filed_value": 0,
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "tier_by_numbers": "F",
  "implied_irr_weighted": null,
  "implied_irr_base": null,
- "moat_score": 5.0,
- "cap_years": 8.5,
- "g_terminal": 0.025,
+ "moat_score": 3.0,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -1.4192960932725285,
+  "base_pin_source": "ttm_json"
+ },
  "data_gap": [
   "capex"
  ],
- "data_gap_uncovered": [
-  "capex"
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-03-24, Consolidated Statements of Cash Flows (p. F-7) and MD&A cash-flow summary: the statement presents no investing-activities section and no purchases of property and equipment line; net cash used in operating activities -$157,240 thousand plus net cash provided by financing activities $140,712 thousand plus FX effect $1,045 thousand equals the reported net decrease in cash -$15,483 thousand, confirming investing cash flow / capex was $0 for FY2025",
+   "reason": "Capex is missing in EDGAR companyfacts for FY2025 because the filer reported no investing cash flows at all in FY2025; the filing's cash-flow reconciliation proves the amount is $0, not an undisclosed purchase. Same presentation in the FY2024 comparative column, where the engine's last filed capex value is also $0, so a $0 override is in-band.",
+   "periods_filled": [
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 0
+  }
  ],
- "overrides_applied": [],
  "fragility_flags": [
-  "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2025 of the last 3 \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "DILUTION: share count growing 30.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, filed 2026-03-24, Consolidated Statements of Cash Flows (p. F-7) and MD&A cash-flow summary: the statement presents no investing-activities section and no purchases of property and equipment line; net cash used in operating activities -$157,240 thousand plus net cash provided by financing activities $140,712 thousand plus FX effect $1,045 thousand equals the reported net decrease in cash -$15,483 thousand, confirming investing cash flow / capex was $0 for FY2025); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero."
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -2.0553798945990795,
+  "base_oe_per_share_final": -1.4192960932725285,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "9ecfc2f81860f5979e60150d793b153ef45294f3cd77c68bcdb7f29650977185"
 }

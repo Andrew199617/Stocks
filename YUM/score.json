@@ -1,1 +1,69 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":5.795,"base_source":"TTM override from EDGAR 10-Q YTD: OCF $2,010M - $850M + $923M = $2,083M; capex $371M - $142M + $175M = $404M; SBC $70M - $37M + $35M = $68M; OE TTM $1,611M / 278M H1'26 diluted shares = $5.80. 3-yr median ($4.78) rejected as trough-anchored and 9+ months stale; verdict is D on either base.","base_year":"TTM Q2 2026","cap_years":11.1,"confidence":"medium","engine_version":4,"fragility_flags":["STALE_FY: latest fiscal year ended 9 months ago — check TTM/quarterly OE and consider --base-oe-ps override"],"implied_irr":0.081,"implied_irr_base_case":0.079,"in_scope_under_40b":true,"iv_at_12":83.61,"iv_at_15":62.15,"market_cap_b":41.24,"moat_justification":"Two global category leaders (KFC, Taco Bell) across 64,000 units in 157 countries, 97% franchised royalty toll with 40%+ returns on capital, scale purchasing/advertising leverage, Byte by Yum! tech platform and >60% digital mix raising franchisee switching friction, proven pricing power — against zero consumer switching costs and a QSR value war, franchisee-health dependence (Turkey termination closed 537 units at once), demonstrated brand decay (Pizza Hut being sold after years of negative comps), GLP-1 and food-safety headline risk, and 7.2x net leverage limiting downturn flexibility.","moat_score":7,"name":"Yum! Brands Inc.","one_liner":"Strong 7/10-moat franchisor (KFC + Taco Bell royalty toll, 40%+ ROIC) — but at $146.75 (25.3x TTM OE, 3.9% yield) the weighted IRR is only 8.1% with IV@15% of $62, even the super-bull case (12.1%) fails to clear 15%, and the real balance sheet carries ~$11.6B net debt (7.2x OE, BB+/Ba2) that the engine missed; it clears the 15% hurdle only at ~$62, or ~$47 with a margin of safety.","price":146.75,"scenarios":{"base":{"irr":0.079,"iv_at_15":60.29,"prob":0.3},"bear":{"irr":0.0626,"iv_at_15":43.85,"prob":0.25},"bull":{"irr":0.0958,"iv_at_15":78.31,"prob":0.25},"super_bear":{"irr":0.0463,"iv_at_15":27.58,"prob":0.1},"super_bull":{"irr":0.1207,"iv_at_15":107.63,"prob":0.1}},"sector":"Consumer Discretionary / Restaurants","ticker":"YUM","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-57.65}
+{
+ "ticker": "YUM",
+ "name": "Yum! Brands, Inc.",
+ "sector": "Consumer Discretionary / Restaurants",
+ "price": 147.06,
+ "market_cap_b": 41.32,
+ "engine_version": 5,
+ "base_oe_per_share": 5.794964028776978,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Two global category leaders (KFC, Taco Bell) run as a mostly-franchised royalty toll with scale purchasing/advertising leverage, the Byte by Yum! tech platform and >60% digital mix raising franchisee switching friction, and proven pricing power with OE positive through cycles \u2014 against zero consumer switching costs and a QSR value war, franchisee-health dependence, demonstrated brand decay (Pizza Hut being sold after negative comps), GLP-1 and food-safety headline risk, and high real leverage (~$12.28B total borrowings at Q2 2026 per search results; the engine's net-debt figure misses the long-term debt series) limiting downturn flexibility.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 27.54,
+   "irr": 0.0462
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 43.79,
+   "irr": 0.0625
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 60.2,
+   "irr": 0.0788
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 78.2,
+   "irr": 0.0955
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 107.48,
+   "irr": 0.1204
+  }
+ },
+ "iv_at_15": 62.06,
+ "iv_at_12": 83.48,
+ "implied_irr": 0.0808,
+ "implied_irr_base_case": 0.0788,
+ "upside_at_15_pct": -57.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong 7/10-moat franchisor (KFC + Taco Bell royalty toll) \u2014 but at $147.06 the weighted IRR is only 8.08% with IV@15% of $62.06, even the super-bull case (12.04%) fails to clear 15%, and the real balance sheet is levered (engine missed the long-term debt series); it clears the 15% hurdle only at ~$62.06.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "KFC + Taco Bell global category leadership and brand mindshare",
+  "Mostly-franchised royalty toll \u2014 growth funded by franchisee capex, OE positive 5/5 years",
+  "Scale in purchasing, advertising funds, and development across ~64k units",
+  "Byte by Yum! platform and >60% digital mix raise franchisee switching friction",
+  "Proven pricing power \u2014 system sales still compounding ~5% ex-FX"
+ ],
+ "moat_against": [
+  "Zero consumer switching costs; QSR value war",
+  "Brand decay demonstrated in-portfolio \u2014 Pizza Hut sold after negative comps",
+  "Franchisee health is the real balance sheet; master-franchisee failures close units en masse",
+  "GLP-1, labor/commodity inflation, and food-safety headline risk",
+  "High leverage limits buyback flexibility in a downturn"
+ ]
+}

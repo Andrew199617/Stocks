@@ -1,0 +1,72 @@
+{
+ "ticker": "DXCM",
+ "name": "Dexcom, Inc.",
+ "sector": "Healthcare \u2014 Medical Devices (Continuous Glucose Monitoring)",
+ "price": 83.985,
+ "market_cap_b": 34.06,
+ "engine_version": 5,
+ "base_oe_per_share": 3.1715160796324655,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Duopoly CGM franchise with recurring disposable sensor revenue, pump/app integration switching costs, US leadership, and broad reimbursement coverage, held back by Abbott FreeStyle Libre as a close, larger, cheaper substitute, payer/CMS pricing power that can reset reimbursement, and product-quality/regulatory and leadership-transition exposure. Pricing power is real but contested, not structural \u2014 moderate-strong, not wide. CAP = 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 2.26 vs 3-yr median 1.12 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.6x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 19.87,
+   "irr": 0.0547
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 31.14,
+   "irr": 0.0741
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 43.19,
+   "irr": 0.0938
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 59.23,
+   "irr": 0.1178
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 91.41,
+   "irr": 0.1587
+  }
+ },
+ "iv_at_15": 46.68,
+ "iv_at_12": 63.96,
+ "implied_irr": 0.0996,
+ "implied_irr_base_case": 0.0938,
+ "upside_at_15_pct": -44.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality CGM duopolist, moat 6/10 \u2014 but at $83.985 it does not clear 15% on any defensible base (weighted IRR 9.96%, weighted IV@15% $46.68); it clears 15% only at or below $46.68.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Recurring disposable sensor revenue \u2014 sensor replaced every 10\u201315 days, installed base re-buys continuously",
+  "Integration switching costs \u2014 iCGM pump, smartphone/watch, and clinician/caregiver data-sharing integrations",
+  "US CGM leadership and clinician/patient brand, with Medicare/Medicaid/commercial reimbursement coverage",
+  "Scale manufacturing and margin proof \u2014 G7 15-day efficiencies expanded Q2 2026 margins; H1 2026 FCF more than doubled",
+  "Expansion runway \u2014 Type 2 non-insulin (CONNECT trial), Stelo OTC, international growth up 19% in Q2 2026"
+ ],
+ "moat_against": [
+  "Abbott FreeStyle Libre \u2014 close substitute, larger global scale, aggressive lower-price strategy",
+  "Payer power \u2014 potential CMS competitive bidding / pricing pressure can reset reimbursement",
+  "Product quality and regulatory exposure \u2014 sensor recalls/adverse-event scrutiny; leadership transition",
+  "No owned distribution or payer channel \u2014 rents access through distributors, pharmacies, and payers"
+ ]
+}

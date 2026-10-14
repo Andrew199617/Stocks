@@ -1,0 +1,167 @@
+{
+ "ticker": "ESLT",
+ "name": "ELBIT SYSTEMS LTD",
+ "cik": 1027664,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 698.72,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 46918000,
+ "market_cap_est": 32782544960.0,
+ "net_debt_latest": -533689000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.11232141278316488,
+ "rev_cagr_3y": 0.12930658045105692,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 526419000,
+ "base_oe_per_share": 6.795030083428393,
+ "base_oe_latest_per_share": 11.219979538769769,
+ "base_oe_normalized_per_share": 6.795030083428393,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.11232141278316488,
+  "rev_cagr_3y": 0.12930658045105692,
+  "rev_yoy_latest": 0.16267969913315583,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.12930658045105692,
+ "share_cagr": 0.01717311900502705,
+ "share_count_adj": -0.01717311900502705,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Elbit Systems Form 20-F for the fiscal year ended December 31, 2025 (filed with the SEC on March 17, 2026): the security registered under Section 12 is the ordinary shares (NIS 1 par), described in Exhibit 2.1 to that 20-F; the company's share-capital description states it has one class of Section 12 securities \u2014 ordinary shares \u2014 registered for trading on the Nasdaq Global Select Market and the Tel Aviv Stock Exchange under the symbol ESLT. Elbit has no ADS program: the Nasdaq-traded security IS the ordinary share.",
+  "reason": "The traded Nasdaq price is per ordinary share, the same unit as the EDGAR per-share figures, so the ordinary-shares-per-traded-share ratio is 1.0 and no scaling applies. Declared under step 8(d) bounded authority: the 1:1 relationship is established by the filer's own annual filing (20-F cover + Exhibit 2.1 share description), not by an outside source."
+ },
+ "override_checks": {},
+ "g_base": 0.11213346144602987,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0079,
+   "oe_mult": 0.75,
+   "iv_at_10": 59.01819835842082,
+   "iv_at_12": 46.98627482501162,
+   "iv_at_15": 36.10358576755558,
+   "irr": 0.03109817067990371
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0621,
+   "oe_mult": 0.9,
+   "iv_at_10": 100.66206282494124,
+   "iv_at_12": 78.7661215381106,
+   "iv_at_15": 59.16014030925048,
+   "irr": 0.036195335729079084
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1121,
+   "oe_mult": 1.0,
+   "iv_at_10": 143.33797041138064,
+   "iv_at_12": 110.93029433342936,
+   "iv_at_15": 82.08938427928368,
+   "irr": 0.04150769342147473
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1621,
+   "oe_mult": 1.1,
+   "iv_at_10": 201.43268939669858,
+   "iv_at_12": 154.34370859548005,
+   "iv_at_15": 112.66330964746577,
+   "irr": 0.04865151606253913
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2321,
+   "oe_mult": 1.25,
+   "iv_at_10": 320.6145705715438,
+   "iv_at_12": 242.6493787513561,
+   "iv_at_15": 174.09054515570136,
+   "irr": 0.06259176382243992
+  }
+ },
+ "weighted": {
+  "iv_at_10": 156.4883560718206,
+  "iv_at_12": 120.52011119106325,
+  "iv_at_15": 88.60209086528985,
+  "irr": 0.04327260732889612
+ },
+ "implied_irr_weighted": 0.04327260732889612,
+ "implied_irr_base": 0.04150769342147473,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.8731937101195187,
+ "upside_at_12": -0.8275130077984554,
+ "iv_at_15": 88.60209086528985,
+ "iv_at_12": 120.52011119106325,
+ "diagnostics": {
+  "oe_yield": 0.009724968633255657,
+  "tv_share_at_15": 0.21192241882676824,
+  "scenario_spread_iv15": 4.821973813807367,
+  "net_debt_to_normalized_oe": -1.6740074128518059,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Elbit Systems Form 20-F for the fiscal year ended December 31, 2025 (filed with the SEC on March 17, 2026): the security registered under Section 12 is the ordinary shares (NIS 1 par), described in Exhibit 2.1 to that 20-F; the company's share-capital description states it has one class of Section 12 securities \u2014 ordinary shares \u2014 registered for trading on the Nasdaq Global Select Market and the Tel Aviv Stock Exchange under the symbol ESLT. Elbit has no ADS program: the Nasdaq-traded security IS the ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 11.22 vs 3-yr median 6.80 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.0% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "06b704854ea36bfe612097279e32ad5b5aa5001d314b58cb10e6bc85c6365085"
+}

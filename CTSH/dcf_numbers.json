@@ -1,0 +1,161 @@
+{
+ "ticker": "CTSH",
+ "name": "COGNIZANT TECHNOLOGY SOLUTIONS CORPORATION",
+ "cik": 1058290,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 62.85,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 489000000,
+ "market_cap_est": 30733650000.0,
+ "net_debt_latest": -1358000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.048573689923588015,
+ "rev_cagr_3y": 0.02802479973595773,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2414000000,
+ "base_oe_per_share": 4.790356394129979,
+ "base_oe_latest_per_share": 4.936605316973415,
+ "base_oe_normalized_per_share": 3.6376237623762377,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.048573689923588015,
+  "rev_cagr_3y": 0.02802479973595773,
+  "rev_yoy_latest": 0.0695176327523308,
+  "oe_ps_cagr_2y": 0.1648230652892042
+ },
+ "g_blend": 0.05904566133795941,
+ "share_cagr": -0.019647035255886847,
+ "share_count_adj": 0.019647035255886847,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.07869269659384626,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.15,
+   -0.08,
+   -0.03,
+   0.02,
+   0.07
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 4.790356394129979,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0713,
+   "oe_mult": 0.75,
+   "iv_at_10": 31.219643978467836,
+   "iv_at_12": 25.182761953495422,
+   "iv_at_15": 19.68409677954067,
+   "irr": 0.060404072220787766
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0013,
+   "oe_mult": 0.9,
+   "iv_at_10": 52.125386772529666,
+   "iv_at_12": 41.37882198573481,
+   "iv_at_15": 31.67812274914897,
+   "irr": 0.08695940348669018
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0487,
+   "oe_mult": 1.0,
+   "iv_at_10": 73.04885434384579,
+   "iv_at_12": 57.39797039416126,
+   "iv_at_15": 43.347487896084125,
+   "irr": 0.11192037756807272
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0987,
+   "oe_mult": 1.1,
+   "iv_at_10": 100.98766741310297,
+   "iv_at_12": 78.61598075920051,
+   "iv_at_15": 58.62881055242894,
+   "irr": 0.1421557846306719
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1487,
+   "oe_mult": 1.25,
+   "iv_at_10": 143.68057628152275,
+   "iv_at_12": 110.9114054884484,
+   "iv_at_15": 81.76027305431842,
+   "irr": 0.18287288151473502
+  }
+ },
+ "weighted": {
+  "iv_at_10": 75.23982784353228,
+  "iv_at_12": 58.96565061000331,
+  "iv_at_15": 44.37788228744163,
+  "irr": 0.11430855872095261
+ },
+ "implied_irr_weighted": 0.11430855872095261,
+ "implied_irr_base": 0.11192037756807272,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.2939079986087251,
+ "upside_at_12": -0.06180349069207147,
+ "iv_at_15": 44.37788228744163,
+ "iv_at_12": 58.96565061000331,
+ "diagnostics": {
+  "oe_yield": 0.0762188765971357,
+  "tv_share_at_15": 0.18753296030874067,
+  "scenario_spread_iv15": 4.153620761471703,
+  "net_debt_to_normalized_oe": -0.5797264099018673,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASE_DIVERGENCE: latest FY OE/share 4.94 vs 3-yr median 3.64 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "4b7eb32271182d0b9a655c0f602b75f651e92a168ab647ba5dcc6f81572a50a1"
+}

@@ -1,0 +1,137 @@
+{
+ "ticker": "EME",
+ "cik": 105634,
+ "entity": "EMCOR Group, Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1302063000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 302158000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 289913000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1289818000
+  },
+  "capex": {
+   "fy": 112750000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 54174000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 59860000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 118436000
+  },
+  "sbc": {
+   "fy": 20595000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 10212863.01369863,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 10212863.01369863,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 20595000.0
+  },
+  "shares_diluted": {
+   "fy": 45145767,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 45380744,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 44619442,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1289818000,
+ "ttm_capex": 118436000,
+ "ttm_sbc": 20595000.0,
+ "ttm_shares_diluted": 44619442,
+ "ttm_oe_total": 1150787000.0,
+ "ttm_oe_per_share": 25.791156240815383,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 20595000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0000105634-26-000025), Consolidated Statements of Cash Flows: 'Non-cash share-based compensation expense' $20,595 thousand for FY2025 and $19,978 thousand for FY2024 (same line in the FY2025 earnings release cash-flow statement); Q2 2026 Form 10-Q cash-flow statement shows the same line at $15,007 thousand for H1 2026 and $13,092 thousand for H1 2025. EDGAR companyfacts carries this expense under AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue ($20,595,000 FY2025 / $19,978,000 FY2024 / $13,739,000 FY2023), a tag the engine does not read; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no values after 2011.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 20595000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 10212863.01369863,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 10212863.01369863,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

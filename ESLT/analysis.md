@@ -1,0 +1,59 @@
+# ESLT — Elbit Systems Ltd
+v5 run, 2026-10-14. Price $698.72 (nasdaq_quote_api), market cap $32,782,544,960 — in scope under $40B. 20-F filer (Israel); ADS ratio 1.0 declared under bounded authority — see FLAGS.
+
+All DCF figures below are copied from dcf_numbers.json / key_numbers.md / financials_history.csv — none are recomputed. Quarterly and backlog figures are from the company's Q2 2026 release and press coverage of it, cited as research.
+
+## What it is
+Israel's largest defense contractor: airborne systems, C4I and cyber, ISTAR and electronic warfare, land systems, and Elbit Systems of America. Controlling shareholder Federmann Enterprises (~41%, per S&P research furnished in a May 2026 6-K). Demand is in a structural upswing: Q2 2026 (release dated Aug 11, 2026) revenue $2,287 million, +15.9% YoY; GAAP net income $173.6 million; GAAP EPS $3.61, non-GAAP EPS $4.14; order backlog a record $32.0 billion at quarter-end, up ~34% YoY, with 73% of it from outside Israel (Globes coverage of the release).
+
+## Owner's earnings
+**FY2025 (20-F via EDGAR, from financials_history.csv):** revenue $7,938,627,000; operating cash flow $778,378,000; capex $225,568,000 (tag PaymentsToAcquirePropertyPlantAndEquipment); SBC $26,391,000 (tag ShareBasedCompensation — a real cost, but small for this business); net income $534,339,000.
+- **Conservative owner's earnings FY2025: $526,419,000 = $11.22/share** (base_oe_latest_per_share 11.219979538769769).
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): $180,554,000 — far below the conservative figure because ΔNWC was $353,785,000 in FY2025: a working-capital build to feed backlog growth, not a maintenance shortfall. The OCF-based conservative figure is the cleaner base series; the gap is a growth investment that reverses only if growth stops.
+- OE positive 4 of the last 5 fiscal years: FY2023 conservative OE was -$85,469,000 (OCF only $113,709,000 that year — a working-capital trough), then $303,799,000 in FY2024 and $526,419,000 in FY2025. This is a genuinely cyclical cash-conversion profile under smooth revenue growth.
+- Balance sheet: net debt -$533,689,000, i.e. a net cash position (dcf_numbers.json); net debt is -1.67x normalized OE in diagnostics. The May 2025 equity offering (1,365,450 shares plus a fully exercised 204,817-share underwriter option at $375 per ordinary share, per the company's May 2025 6-K) helped fund it — and diluted: diluted shares rose from 44,709,000 (FY2024) to 46,918,000 (FY2025) in financials_history.csv.
+
+**Base used = the engine's normalized base, $6.80/share** (base_oe_normalized_per_share 6.795030083428393, median of the last 3 FY OE/share, base_source: median_of_last_3_fy_oe_per_share). No TTM pin: ttm.py cannot run for ESLT — it exits 3 reporting no annual (FY) facts for OCF/SBC/shares in the form it reads and no capex facts under any candidate tag, because Elbit reports interims via 6-K releases rather than EDGAR-tagged 10-Q YTD facts. Per the v5 workflow, the engine's median base is used instead, with the reason stated here. The Q2 2026 prints above (revenue +15.9%, EPS growth) say the current run-rate is above the median base — the method range under Thoughts covers what that changes (nothing for the tier).
+
+## ADS RATIO — declared 1.0 under step 8(d) bounded authority
+Elbit has no ADS program. Its Form 20-F for FY2025 (filed March 17, 2026) registers the ordinary shares themselves under Section 12, and the share description in Exhibit 2.1 to that 20-F (carried in the company's prospectus description of share capital) states its one class of Section 12 securities is ordinary shares of NIS 1 par, registered for trading on the Nasdaq Global Select Market and the Tel Aviv Stock Exchange under ESLT. The Nasdaq price is therefore per ordinary share — the same unit as the EDGAR per-share figures — so ads_ratio = {ratio: 1.0} in judgment.json, source and reason quoted there. The engine applied it as ADS_RATIO_APPLIED (scaling x1.0, i.e. no change to any figure) and make_score's DATA_GAP:ads_ratio gate is satisfied with a filing-sourced ratio, following the same treatment as GFI's 1:1 ratio earlier today.
+
+## Moat: 6/10 — moderate-strong, not wide
+Justification: Israel's largest defense contractor with a broad integrated portfolio and combat-proven systems, earning a record backlog through a demand supercycle — but pricing power is capped by government contracting, and the moat has not been tested through a defense downturn.
+- FOR: Record $32.0 billion order backlog at Q2 2026 (+34% YoY, 73% from outside Israel) — multi-year contracted visibility; broad integrated portfolio across aerospace, C4I/cyber, ISTAR/EW and land, with systems-integration switching costs for armed-force customers; combat-proven differentiated technology (Iron Beam directed energy, Hermes UAVs, electro-optics and electronic warfare); incumbent supplier to the Israeli MoD plus localized manufacturing and partnerships inside NATO markets (e.g. the Serbia UAV joint venture, European programs).
+- AGAINST: Revenue ultimately rests on government defense budgets and procurement cycles — no commercial pricing power; fixed-price program execution and capacity-ramp risk as the backlog converts, with cost overruns landing on Elbit; competition from far larger US and European primes (Lockheed Martin, RTX, Northrop Grumman, Rheinmetall) chasing the same rearmament budgets; export-license and political risk — scrutiny of Israeli arms exports and Middle East operations can block or delay programs; controlling shareholder Federmann Enterprises (~41%) and FY2025 offering dilution.
+- A 6 gives CAP = 9.8 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 9.8 years, 15-year projection.
+
+## DCF — v5 final run (2026-10-14)
+Growth inputs: engine blended growth 12.93% (rev CAGR 5y 11.23%, 3y 12.93%, latest revenue YoY +16.27%), share-count adjustment -1.72pp (share CAGR +1.72%/yr), g_base 11.21%. Default offsets and multipliers kept; probabilities 10/25/30/25/10 kept — the record backlog justifies not skewing bearish on the business, and the valuation problem is the price, not the scenario weights.
+Sanity check vs actual prints: the base start (11.2%) sits BELOW recent revenue prints (+16.27% FY2025, +15.9% Q2 2026) — written reason: these scenario starts are OE/share growth, not revenue growth, and Elbit's OE/share conversion is volatile (negative OE in FY2023 on smooth revenue growth; a $353,785,000 working-capital build in FY2025), while the share count is rising (offering dilution on top of the +1.72%/yr trend already in the blend). The bull start (16.2%) matches the current revenue prints; the super-bull start (23.2%) exceeds them and is defensible only as an OE/share figure — FY2025 OE/share printed far above the median-year level on margin expansion (Q2 2026 GAAP operating margin expanded year over year in the release), so an OE path above revenue growth is the bull case, not the base case.
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 10% | -0.8% | 0.75 | Rearmament budgets stall; backlog conversion slips, WC traps cash | $36.10 | 3.11% |
+| Bear | 25% | 6.2% | 0.90 | Growth halves from current prints; margins give back the expansion | $59.16 | 3.62% |
+| Base | 30% | 11.2% | 1.00 | Blended historical growth, normal OE conversion | $82.09 | 4.15% |
+| Bull | 25% | 16.2% | 1.10 | Current revenue prints hold; margin expansion continues | $112.66 | 4.87% |
+| Super bull | 10% | 23.2% | 1.25 | Backlog supercycle compounds OE/share well above revenue growth | $174.09 | 6.26% |
+
+- **Probability-weighted: IV@15% $88.60, IV@12% $120.52, IV@10% $156.49, weighted IRR 4.33%, base-case IRR 4.15%**
+- **Tier by numbers: D.** Diagnostics: OE yield 0.97%, terminal value 21.2% of IV@15%, scenario spread 4.8x, net debt -1.67x normalized OE, 9.4 months since FY end. Upside at 15%: -87.3% — the price is roughly eight times the weighted IV@15% (stated in words; the exact upside figure is from dcf_numbers.json).
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (FY ended 9.4 months ago): ttm.py was run and failed (exit 3 — no EDGAR-tagged interim YTD facts for this 20-F/6-K filer; message paraphrased under Owner's earnings). No TTM base exists in code outputs, so the engine's median base is used, per the workflow. Current-quarter evidence (Q2 2026 release, above) was checked qualitatively instead: momentum is real, and it does not change the tier (see Thoughts).
+- **BASE_DIVERGENCE** (latest FY $11.22 vs 3-yr median $6.80): neither is a one-off distortion — the latest year is a genuine demand/margin upswing (revenue +16.27%, net income $534,339,000 vs $321,138,000 in FY2024, both from financials_history.csv), and the median is dragged by FY2023's negative-OE working-capital trough. The median is kept as the normalized base because OE conversion is demonstrably cyclical (OE_VOLATILE); the divergence is handled by documenting the method range rather than by cherry-picking the higher base.
+- **OE_VOLATILE** (OE/share range >3x over 5 years, including a negative year): real and structural to the OE definition here — working capital swings with program ramps. Handled by the normalized median base and by keeping 35% of probability on bear-or-worse.
+- **ADS_RATIO_APPLIED** (x1.0): resolved in the ADS RATIO section above — filing-sourced 1:1, no figure changes.
+- **LOW_OE_YIELD** (base OE yield 1.0%): confirmed and decisive — at $698.72 the valuation rests almost entirely on growth and multiple, not on current owner's earnings. This is the verdict, not a flag to explain away.
+- **WIDE_SCENARIO_SPREAD** (4.8x): real — even the scenario IVs span $36.10 to $174.09. Confidence is capped at medium, and the verdict is sized to the conservative end; note the spread does not straddle the price — every scenario IV@15% is far below $698.72.
+
+## My thoughts / overlay
+- The honest headline is the gap, not the growth story. The business is genuinely strong right now — record $32.0 billion backlog, +15.9% Q2 revenue growth, expanding margins, net cash balance sheet. None of that is in dispute. What the DCF says is that at $698.72 the market has already paid for far more than a 15-year, moat-6 fade of owner's earnings can deliver: the weighted IV@15% is $88.60 and even the super-bull IV@15% is $174.09.
+- Method range: the one defensible input change that moves the answer most is the base — the latest-FY base ($11.22/share) instead of the median ($6.80/share). That base is less than double the median, and the weighted IV scales with the base, so on any base the filings support the weighted IV@15% remains a small fraction of the $698.72 price. The tier is D under every defensible base; there is no C-to-A style range here.
+- Price that clears 15%: the weighted IV@15% itself, $88.60 — and a buyer wanting a margin of safety against the bear cases ($59.16 and below) would need to pay materially less than that. Nothing in the current prints suggests the market will offer that soon; this is a price problem, not a business problem.
+- Watch item, in words only: share count. The FY2025 offering and a +1.72%/yr share CAGR mean per-share compounding lags the company's aggregate growth; the blend already charges -1.72pp for it.
+
+## Final verdict
+- **Final tier: D** (weighted IRR 4.33% on the v5 final inputs; Tier D under every defensible base choice)
+- Confidence: **Medium** (high on the direction — price vs any filing-based IV — medium on any single IV figure given OE volatility and the 4.8x scenario spread)
+- One-liner: Quality defense franchise, moat 6/10, record $32.0B backlog — but at $698.72 the price is far beyond any owner's-earnings DCF: weighted IRR 4.3%, weighted IV@15% $88.60 on the normalized base of $6.80/share (latest FY $11.22/share still leaves IV far below price); clears the 15% hurdle only below ~$89.

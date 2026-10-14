@@ -1,0 +1,71 @@
+{
+ "ticker": "EXR",
+ "name": "Extra Space Storage Inc.",
+ "sector": "Real Estate",
+ "price": 133.955,
+ "market_cap_b": 28.38,
+ "engine_version": 5,
+ "base_oe_per_share": 6.729592939954152,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Largest U.S. self-storage operator by store count after the 2023 Life Storage merger, with density, a data/revenue-management platform across owned plus 1,964 third-party managed stores, and ancillaries (tenant reinsurance, bridge loans) \u2014 but the product is a commodity box on a month-to-month lease with near-zero switching costs, local fragmented competition, and demand hostage to housing turnover and new supply. Moderate/narrow moat: 5/10, CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 14.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 33.37,
+   "irr": 0.0544
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 45.39,
+   "irr": 0.0666
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 57.16,
+   "irr": 0.0787
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 71.21,
+   "irr": 0.0928
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 91.59,
+   "irr": 0.1124
+  }
+ },
+ "iv_at_15": 56.9,
+ "iv_at_12": 75.14,
+ "implied_irr": 0.0786,
+ "implied_irr_base_case": 0.0787,
+ "upside_at_15_pct": -57.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "High-quality self-storage REIT, moat 5/10 \u2014 does not clear 15% on any scenario (weighted IRR 7.86%, weighted IV@15% $56.90 vs $133.96 price; hurdle-clearing price $56.90, even super-bull only $91.59).",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest U.S. operator by store count \u2014 local density lowers marketing cost per rental",
+  "Data / revenue-management platform across owned + 1,964 third-party managed stores",
+  "Ancillaries at scale: tenant reinsurance and bridge loans",
+  "Geographic diversification across the U.S."
+ ],
+ "moat_against": [
+  "Commodity product, month-to-month leases, near-zero switching costs",
+  "Local fragmented competition \u2014 a new facility nearby erodes pricing directly",
+  "Demand hostage to housing turnover / mobility",
+  "New supply waves pressure rents and occupancy (94.2% in Q2 2026, flat YoY)"
+ ]
+}

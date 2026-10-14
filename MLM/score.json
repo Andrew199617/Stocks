@@ -1,15 +1,15 @@
 {
  "ticker": "MLM",
  "name": "Martin Marietta Materials, Inc.",
- "sector": "Materials / Aggregates & construction materials",
- "price": 472.4,
+ "sector": "Materials \u2014 Aggregates & Building Materials",
+ "price": 472.39,
  "market_cap_b": 28.63,
- "engine_version": 4,
- "base_oe_per_share": 12.6,
- "base_year": "TTM Q2 2026",
- "base_source": "TTM through Q2 2026 from EDGAR 10-Q YTD (OCF $1,519M - capex $709M - SBC $50M = $760M / 60.3M diluted shares)",
+ "engine_version": 5,
+ "base_oe_per_share": 12.603648424543946,
+ "base_year": "2025",
+ "base_source": "ttm_json",
  "moat_score": 7,
- "moat_justification": "Local quarry monopolies: permitting scarcity, 30-50 mile transport economics, proven aggregates pricing power (+6.9% FY25); against: commodity product, cyclical construction volumes, depleting reserves replaced via increasingly expensive M&A.",
+ "moat_justification": "Permitted aggregate reserves near growing metros are scarce and effectively irreplaceable, transport economics make each deposit a local oligopoly, and pricing power is proven through cycles (FY2025 aggregates pricing +6.9%; Q2 2026 mix-adjusted organic pricing +3.7%). The ceiling: the product is an undifferentiated commodity \u2014 the moat is location and reserves, not brand, network, or switching costs \u2014 volumes are hostage to construction cycles, and growth is increasingly bought via M&A at rising prices.",
  "cap_years": 11.1,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
@@ -19,39 +19,52 @@
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "iv_at_15": 55.62,
+   "iv_at_15": 55.63,
    "irr": 0.0378
   },
   "bear": {
    "prob": 0.3,
-   "iv_at_15": 92.62,
+   "iv_at_15": 92.65,
    "irr": 0.0495
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 130.37,
-   "irr": 0.0617
+   "iv_at_15": 130.41,
+   "irr": 0.0618
   },
   "bull": {
    "prob": 0.2,
-   "iv_at_15": 181.85,
+   "iv_at_15": 181.91,
    "irr": 0.0779
   },
   "super_bull": {
    "prob": 0.05,
-   "iv_at_15": 288.23,
-   "irr": 0.1078
+   "iv_at_15": 288.32,
+   "irr": 0.1079
   }
  },
- "iv_at_15": 126.02,
- "iv_at_12": 169.29,
+ "iv_at_15": 126.06,
+ "iv_at_12": 169.34,
  "implied_irr": 0.0609,
- "implied_irr_base_case": 0.0617,
+ "implied_irr_base_case": 0.0618,
  "upside_at_15_pct": -73.3,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "medium",
- "one_liner": "High-quality local-monopoly aggregates franchise, moat 7/10, but at $472 (37.5x TTM owner's earnings) it doesn't clear the 15% hurdle \u2014 weighted IRR 6.1%, IV@15% $126; clears 15% only at ~$126, ~$95 with a margin of safety.",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "High-quality local-monopoly aggregates franchise, moat 7/10, but at $472.39 (~37.5x TTM owner's earnings, 2.67% OE yield) it doesn't come close to the 15% hurdle \u2014 weighted IRR 6.1%, IV@15% $126.06; clears 15% only at ~$126, ~$95 with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Permitting scarcity \u2014 new greenfield quarries take years-to-decades of approvals; permitted reserves near growing metros are irreplaceable",
+  "Transport economics \u2014 aggregates uncompetitive beyond ~30\u201350 truck miles, so each deposit is a local oligopoly",
+  "Proven pricing power \u2014 FY2025 aggregates pricing +6.9%, Q2 2026 mix-adjusted organic pricing +3.7%, through-cycle increases",
+  "Public infrastructure is the largest end market and is funded multi-year; data-center/power demand adds support",
+  "Specialties (magnesia, lime via Lhoist) adds niche, higher-margin, less-cyclical revenue"
+ ],
+ "moat_against": [
+  "Undifferentiated commodity product \u2014 moat is location/reserves, no brand, network effects, or switching costs",
+  "Volumes hostage to construction cycles; revenue CAGR ~5.4% over 5y and ~0% over 3y on continuing basis",
+  "Reserves deplete; growth bought via M&A at rising per-ton prices (Premier, New Frontier, Lhoist $13.5B)",
+  "Q2 2026: record revenue but flat gross profit, operating earnings \u221210%, aggregates gross profit/ton \u221217% YoY"
+ ]
 }

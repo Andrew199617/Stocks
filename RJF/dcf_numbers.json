@@ -1,0 +1,162 @@
+{
+ "ticker": "RJF",
+ "name": "RAYMOND JAMES FINANCIAL, INC.",
+ "cik": 720005,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 155.04,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 206600000,
+ "market_cap_est": 32031264000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-09-30",
+ "rev_cagr_5y": 0.1426934509881539,
+ "rev_cagr_3y": 0.12055981674472083,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": 1992000000,
+ "base_oe_per_share": 6.047212456052235,
+ "base_oe_latest_per_share": 9.641819941916747,
+ "base_oe_normalized_per_share": 7.988695242581253,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.1426934509881539,
+  "rev_cagr_3y": 0.12055981674472083,
+  "rev_yoy_latest": 0.06627353749246123,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.12055981674472083,
+ "share_cagr": -0.013652099471233803,
+ "share_count_adj": 0.013652099471233803,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.13421191621595463,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 6.047212456052235,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0142,
+   "oe_mult": 0.75,
+   "iv_at_10": 58.70975910289785,
+   "iv_at_12": 46.4752223960593,
+   "iv_at_15": 35.446705064503114,
+   "irr": 0.053183718951430925
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0842,
+   "oe_mult": 0.9,
+   "iv_at_10": 99.99051031421425,
+   "iv_at_12": 77.85053976485489,
+   "iv_at_15": 58.08160563030561,
+   "irr": 0.0743449398107916
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1342,
+   "oe_mult": 1.0,
+   "iv_at_10": 142.19233522285953,
+   "iv_at_12": 109.54661400247,
+   "iv_at_15": 80.56553379465096,
+   "irr": 0.09429481959105501
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.1842,
+   "oe_mult": 1.1,
+   "iv_at_10": 199.52100787150502,
+   "iv_at_12": 152.25507093528037,
+   "iv_at_15": 110.50942995485825,
+   "irr": 0.11851958190250456
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2542,
+   "oe_mult": 1.25,
+   "iv_at_10": 316.8333559236389,
+   "iv_at_12": 238.94069495719236,
+   "iv_at_15": 170.57299366104007,
+   "irr": 0.1599067527266992
+  }
+ },
+ "weighted": {
+  "iv_at_10": 143.07280429964646,
+  "iv_at_12": 109.92275962561766,
+  "iv_at_15": 80.54486144649519,
+  "irr": 0.09473680252109762
+ },
+ "implied_irr_weighted": 0.09473680252109762,
+ "implied_irr_base": 0.09429481959105501,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.480489799751708,
+ "upside_at_12": -0.291003872383787,
+ "iv_at_15": 80.54486144649519,
+ "iv_at_12": 109.92275962561766,
+ "diagnostics": {
+  "oe_yield": 0.03900420830787046,
+  "tv_share_at_15": 0.2154366392763028,
+  "scenario_spread_iv15": 4.812097297919364,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 12.450722733245728,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "37317f88fec8c2dc4292ddd334dea8136d6c06b60b1885b09b3cbc11b23e1932"
+}

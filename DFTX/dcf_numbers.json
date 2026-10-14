@@ -4,20 +4,20 @@
  "cik": 1813814,
  "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 34.38,
+ "price": 34.56,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 89327608,
- "market_cap_est": 3071083163.0400004,
+ "market_cap_est": 3087162132.48,
  "net_debt_latest": -217258000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": null,
  "rev_cagr_3y": null,
  "oe_positive_years_of_last_5": "0/5",
- "base_oe_total_latest_fy": -151656000,
- "base_oe_per_share": -1.6977505991204869,
+ "base_oe_total_latest_fy": -151656000.0,
+ "base_oe_per_share": -1.787256491895588,
  "base_oe_latest_per_share": -1.6977505991204869,
  "base_oe_normalized_per_share": -1.6977505991204869,
- "base_source": "median_of_last_3_fy_oe_per_share",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": null,
   "rev_cagr_3y": null,
@@ -46,24 +46,83 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
- "tier_by_numbers": null,
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "capex": {
+   "value": 0.0,
+   "last_filed_value": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
  "implied_irr_weighted": null,
  "implied_irr_base": null,
- "moat_score": 5.0,
- "cap_years": 8.5,
- "g_terminal": 0.025,
+ "moat_score": 4.0,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -1.787256491895588,
+  "base_pin_source": "ttm_json"
+ },
  "data_gap": [
   "capex"
  ],
- "data_gap_uncovered": [
-  "capex"
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-26, Consolidated Statements of Cash Flows: the investing-activities section lists ONLY Purchases of investments $(268,356) thousand and Maturity of investments $116,750 thousand (net $(151,606) thousand) for 2025, with both lines shown as zero for 2024 and no purchases-of-property-and-equipment line anywhere; the balance sheet carries no property and equipment asset line. Form 10-K for fiscal year ended December 31, 2024, filed 2025-03-06, Consolidated Statements of Cash Flows (2024/2023 comparative): the statement has NO investing-activities section at all \u2014 for 2023, operating $(64,365) thousand + financing $21,848 thousand + FX $79 thousand equals the reported net decrease in cash $(42,438) thousand, proving investing cash flow (and therefore capex) was $0 in FY2023; same reconciliation for 2024 (operating $(79,129) + financing $253,196 + FX $(30) = reported $174,037 increase).",
+   "reason": "Definium has never reported capex or a PPE balance in any filing \u2014 EDGAR companyfacts contains no capex fact under any candidate tag in any year \u2014 because this asset-light, outsourced clinical-stage model buys no property or equipment. The filings' own cash-flow statements fully account for investing activities (investment purchases/maturities only in 2025; zero investing activity in 2023 and 2024), so capex for the missing FY2023-2025 periods is $0 as a filing fact, not an estimate. Measured impact is nil: the engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+   "periods_filled": [
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
  ],
- "overrides_applied": [],
  "fragility_flags": [
-  "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "DILUTION: share count growing 42.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-26, Consolidated Statements of Cash Flows: the investing-activities section lists ONLY Purchases of investments $(268,356) thousand and Maturity of investments $116,750 thousand (net $(151,606) thousand) for 2025, with both lines shown as zero for 2024 and no purchases-of-property-and-equipment line anywhere; the balance sheet carries no property and equipment asset line. Form 10-K for fiscal year ended December 31, 2024, filed 2025-03-06, Consolidated Statements of Cash Flows (2024/2023 comparative): the statement has NO investing-activities section at all \u2014 for 2023, operating $(64,365) thousand + financing $21,848 thousand + FX $79 thousand equals the reported net decrease in cash $(42,438) thousand, proving investing cash flow (and therefore capex) was $0 in FY2023; same reconciliation for 2024 (operating $(79,129) + financing $253,196 + FX $(30) = reported $174,037 increase).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero."
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -1.6977505991204869,
+  "base_oe_per_share_final": -1.787256491895588,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "bc2bd30856688db32f52532be42cce534cdca102d7b888cb9122078607591319"
 }

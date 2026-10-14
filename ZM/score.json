@@ -1,0 +1,69 @@
+{
+ "ticker": "ZM",
+ "name": "Zoom Communications, Inc.",
+ "sector": "Technology \u2014 Application Software (UCaaS/collaboration)",
+ "price": 95.21,
+ "market_cap_b": 29.26,
+ "engine_version": 5,
+ "base_oe_per_share": 3.9877570420528192,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Default-brand enterprise installed base and a broadening platform (Phone 10M+ paid seats, Contact Center, Workvivo) give real enterprise retention, but the core meeting product faces Microsoft Teams bundled at near-zero marginal price, enterprise net dollar expansion is 99%, the Online segment is flat with ~2.9% monthly churn, and AI features are bundled free by rivals \u2014 moderate moat, no proven platform-level pricing power yet.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 3.79 vs 3-yr median 2.78 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 16.69,
+   "irr": 0.0445
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.52,
+   "irr": 0.059
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 36.29,
+   "irr": 0.0736
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 49.08,
+   "irr": 0.092
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 68.44,
+   "irr": 0.1179
+  }
+ },
+ "iv_at_15": 38.3,
+ "iv_at_12": 50.96,
+ "implied_irr": 0.0768,
+ "implied_irr_base_case": 0.0736,
+ "upside_at_15_pct": -59.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Debt-free cash machine, moat 5/10 \u2014 TTM owner's earnings $3.99/sh growing mid-single-digits, but at $95.21 the weighted IRR is only 7.7% (IV@15% $38.30); clears 15% only below ~$38.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Default brand and large enterprise installed base; meetings embedded in daily workflows",
+  "Platform breadth beyond meetings \u2014 Zoom Phone 10M+ paid seats, Contact Center high-double-digit growth, Workvivo \u2014 raises switching costs",
+  "~79% non-GAAP gross margin and debt-free, cash-rich balance sheet fund R&D and buybacks"
+ ],
+ "moat_against": [
+  "Microsoft Teams / Google Meet bundled into suites at effectively zero incremental price",
+  "Enterprise net dollar expansion 99% \u2014 installed base not expanding spend",
+  "Online segment flat with ~2.9% monthly churn \u2014 low switching costs",
+  "AI features bundled free by rivals; monetization unproven, currently a retention cost"
+ ]
+}

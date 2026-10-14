@@ -1,1 +1,73 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":0.72,"base_source":"median_of_last_3_fy_oe_per_share from EDGAR 10-K (OCF - capex - SBC): FY24 $0.72, FY25 $0.95, FY26 $0.19 -> median $0.72/share. Latest FY is distorted down by a pulled-forward capex spike ($277.3M, 8.3% of revenue; at FY25 capex FY26 OE would be ~$0.90/share). FY ended only ~2.4 months before the run (no STALE_FY) and Q1 FY27 has not reported, so no TTM override applies.","base_year":"FY2026 (ended Jul 31, 2026), normalized","cap_years":9.8,"confidence":"low","engine_version":4,"fragility_flags":["BASE_DIVERGENCE","LOW_OE_YIELD","WIDE_SCENARIO_SPREAD","DILUTION","BASIS_BREAK_SUSPECT","OE_VOLATILE","NI_OCF_DIVERGENCE"],"implied_irr":0.0327,"implied_irr_base_case":0.0326,"in_scope_under_40b":true,"iv_at_12":15.34,"iv_at_15":11.14,"market_cap_b":35.97,"moat_justification":"Zero Trust Exchange architecture with real enterprise switching costs (#1 ZTNA-as-a-service, #2 SASE; 785 customers >$1M ARR, ~115% net retention, telemetry scale) and working land-and-expand into data security / AI security / SecOps — against platformization and bundling by Palo Alto, CrowdStrike, Fortinet and Microsoft, no endpoint/firewall base, unproven pricing power (growth guided down to ~17%, RPO decelerating three straight quarters), and rising data-center capex intensity.","moat_score":6,"name":"Zscaler Inc.","one_liner":"Category-defining zero-trust platform, moat 6/10 — but SBC is $822M (25% of revenue, $5.13/share), so normalized owner's earnings are $0.72/share (a 0.3% yield) against a $224.50 price; weighted IRR 3.3% with IV@15% of $11.14, it clears 15% only below ~$11 (~$8 with a margin of safety), and even treating SBC as free leaves IV@15% at ~$82.","price":224.5,"scenarios":{"base":{"irr":0.0326,"iv_at_15":11.21,"prob":0.3},"bear":{"irr":0.0286,"iv_at_15":7.73,"prob":0.3},"bull":{"irr":0.0366,"iv_at_15":16.11,"prob":0.17},"super_bear":{"irr":-0.0086,"iv_at_15":4.94,"prob":0.15},"super_bull":{"irr":0.0435,"iv_at_15":24.69,"prob":0.08}},"sector":"Technology / Cybersecurity (zero trust / SASE)","ticker":"ZS","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-95.0}
+{
+ "ticker": "ZS",
+ "name": "Zscaler Inc",
+ "sector": "Technology / Cybersecurity (zero trust / SASE)",
+ "price": 228.66,
+ "market_cap_b": 36.64,
+ "engine_version": 5,
+ "base_oe_per_share": 0.7191983206984611,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Zero Trust Exchange architecture with real enterprise switching costs (#1 ZTNA-as-a-service, #2 SASE; 785 customers >$1M ARR, ~115% net retention, telemetry scale) and working land-and-expand into data security / AI security / SecOps \u2014 against platformization and bundling by Palo Alto, CrowdStrike, Fortinet and Microsoft, no endpoint/firewall base, unproven pricing power (growth guided down to ~17%, RPO decelerating three straight quarters), and rising data-center capex intensity.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "DILUTION: share count growing 3.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.19 vs 3-yr median 0.72 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 4.94,
+   "irr": -0.0097
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.74,
+   "irr": 0.0275
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 11.22,
+   "irr": 0.0325
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 16.06,
+   "irr": 0.0363
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 24.73,
+   "irr": 0.0432
+  }
+ },
+ "iv_at_15": 11.14,
+ "iv_at_12": 15.34,
+ "implied_irr": 0.0326,
+ "implied_irr_base_case": 0.0325,
+ "upside_at_15_pct": -95.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Category-defining zero-trust platform, moat 6/10 \u2014 but SBC is $821.9M against OCF of $1,129.7M, so normalized owner's earnings are $0.72/share (a 0.31% yield) against a $228.66 price; weighted IRR 3.26% with IV@15% of $11.14, it clears 15% only below ~$11 (~$8 with a margin of safety).",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Architectural switching costs \u2014 Zero Trust Exchange re-architecture to rip out; #1 ZTNA-as-a-service, #2 SASE",
+  "Scale and telemetry from the exchange's transaction volume feeding threat/data models",
+  "Installed-base compounding: 785 customers >$1M ARR (+18%), ~115% net retention",
+  "Land-and-expand into data security, Security-for-AI (+50% sequential bookings) and SecOps via Red Canary"
+ ],
+ "moat_against": [
+  "Platformization/bundling by Palo Alto, CrowdStrike, Fortinet, Microsoft Entra; peers' ARR momentum stronger",
+  "No endpoint, firewall base, or owned user surface \u2014 expensive enterprise sales motion",
+  "Pricing power unproven: growth guided down to ~17% for FY27, RPO decelerating three straight quarters",
+  "Rising infrastructure intensity \u2014 FY26 capex $277.3M building own data centers"
+ ]
+}

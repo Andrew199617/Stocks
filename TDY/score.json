@@ -1,0 +1,89 @@
+{
+ "ticker": "TDY",
+ "name": "Teledyne Technologies Incorporated",
+ "sector": "Industrials / Aerospace & Defense electronics and instrumentation",
+ "price": 607.91,
+ "market_cap_b": 28.81,
+ "engine_version": 5,
+ "base_oe_per_share": 23.524701346496478,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Leading, vertically integrated positions in thermal imaging (FLIR) and other sensor niches, proprietary IP and defense-program qualification incumbency that is hard to displace, diversified end markets and proven pricing in Digital Imaging - but much of the portfolio is competitive industrial product, rivals contest the same defense programs, growth is partly acquired, and returns on capital are solid rather than exceptional; moderate moat, CAP 9.8y.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 28, 2025 (filed 2026-02-20, accession 0001094285-26-000017), Consolidated Statements of Cash Flows: 'Stock-based compensation' $39.6 million for FY2025, $37.7 million for FY2024 and $32.3 million for FY2023. EDGAR companyfacts carries the same expense only as quarterly/segment AllocatedShareBasedCompensationExpense facts (9M 2025 $30.7M in the Q3 2025 10-Q cash-flow statement matches), with no annual-duration fact under the engine's SBC tags, so the engine found no FY SBC for 2023-2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 132.32,
+   "irr": 0.0515
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 189.73,
+   "irr": 0.0648
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 251.87,
+   "irr": 0.0794
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 330.88,
+   "irr": 0.097
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 468.98,
+   "irr": 0.125
+  }
+ },
+ "iv_at_15": 265.84,
+ "iv_at_12": 358.06,
+ "implied_irr": 0.0829,
+ "implied_irr_base_case": 0.0794,
+ "upside_at_15_pct": -56.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality diversified sensor/imaging compounder, moat 6/10 - but at $607.91 (~25.8x TTM owner's earnings of $23.52/share) it does not clear 15%: weighted IRR 8.29%, weighted IV@15% $265.84; it clears the 15% hurdle only at ~$266, and nearer ~$190 (the bear-case IV@15%) with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Leading niche positions in sensors and imaging - FLIR is the thermal-imaging leader, vertically integrated from detectors/ROICs to full camera systems",
+  "Proprietary sensor IP and decades of qualification incumbency on defense and space programs - hard to displace once designed in",
+  "Diversified end markets (defense, industrial, environmental, marine, medical) smooth single-program cycles",
+  "Proven pricing power in Digital Imaging - Q2 2026 segment margin expanded on pricing and mix",
+  "Disciplined capital allocation: consistent OE, buybacks, and debt paydown (net debt down to ~$1.69B by Q2 2026 per the Q2 release)"
+ ],
+ "moat_against": [
+  "Much of the portfolio sells competitive industrial/instrumentation products with limited pricing power",
+  "Capable defense-electronics rivals (L3Harris, Leonardo DRS and primes' in-house units) contest the same programs",
+  "US government / defense-budget exposure and program concentration in funded backlog",
+  "Growth is partly bought, not organic - serial M&A carries goodwill and integration risk (FLIR is the big one)",
+  "Short-cycle commercial markets are cyclical, and tariffs / supply chain hit 2025-26 prints and guidance commentary"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 39600000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 28, 2025 (filed 2026-02-20, accession 0001094285-26-000017), Consolidated Statements of Cash Flows: 'Stock-based compensation' $39.6 million for FY2025, $37.7 million for FY2024 and $32.3 million for FY2023. EDGAR companyfacts carries the same expense only as quarterly/segment AllocatedShareBasedCompensationExpense facts (9M 2025 $30.7M in the Q3 2025 10-Q cash-flow statement matches), with no annual-duration fact under the engine's SBC tags, so the engine found no FY SBC for 2023-2025."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 24.194,
+  "base_oe_with_override": 23.5247,
+  "base_oe_impact_pct": -2.767,
+  "weighted_irr_without_override": 0.0844,
+  "weighted_irr_with_override": 0.0829,
+  "weighted_irr_impact_pp": -0.155,
+  "unblocks_tier": true
+ }
+}

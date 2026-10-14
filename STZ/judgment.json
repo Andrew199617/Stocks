@@ -1,0 +1,37 @@
+{
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Single category (beer ~94% of sales post-wine-exit), single supply country (Mexico \u2014 tariffs/peso), single demand country (U.S.)",
+  "Disproportionate exposure to the Hispanic consumer pullback: flagship depletions negative (Modelo ~-2%, Corona ~-5% in Q2 FY27)",
+  "U.S. beer category in secular volume decline; high-end buy rates decelerating for over a year",
+  "Net debt $10,194.1M (FY26 end) limits flexibility if the demand downturn persists"
+ ],
+ "moat_for": [
+  "Modelo Especial is the #1 U.S. beer by dollars; portfolio took price/mix for a decade while gaining share (+0.8 beer share points in Q2 FY27 tracked channels)",
+  "Exclusive, perpetual U.S. rights to the Modelo/Corona family plus owned Mexican breweries \u2014 no competitor can sell the same brands into its market",
+  "Structural margin position: ~39% beer operating margins, premium-only portfolio after the wine exit",
+  "Smaller brands compounding off the same distribution (Pacifico top-10 U.S. brand, depletions ~+19%; Victoria ~+15%)"
+ ],
+ "moat_justification": "Moderate-strong brands, concentrated and category-capped: Modelo Especial (#1 U.S. beer by dollars) and Corona with exclusive perpetual U.S. rights, owned Mexican breweries, ~39% beer operating margins and a decade of pricing/share gains \u2014 against single-category, single-supply-country (Mexico tariffs/peso) and single-demand-country concentration, disproportionate exposure to the Hispanic consumer pullback driving negative depletions, and a U.S. beer category in secular volume decline.",
+ "moat_score": 6,
+ "name": "Constellation Brands, Inc.",
+ "one_liner": "Premier import-beer franchise, moat 6/10 \u2014 but flagship depletions are negative (Modelo ~-2%, Corona ~-5% in Q2 FY27), FY27 organic sales and comparable EPS are guided flat, and net debt is 5.9x normalized OE, so at $126.37 (median base OE $9.83/share) the weighted IRR is only 9.80% (IV@15% $74.13); it clears the 15% hurdle only below ~$74.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.2,
+  0.05
+ ],
+ "sector": "Consumer Staples",
+ "shares_override": {
+  "ack_reason": "Out-of-band by construction: the engine has NO filed share value to band against (last_filed_value is null) because companyfacts carries no weighted-share series for this filer at all. The value is not an estimate \u2014 it is the diluted weighted average share count printed in the FY2026 10-K EPS note, verified directly in the filing document.",
+  "kind": "filing",
+  "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2024/2025/2026 (in fact all years) in companyfacts. The filer's own reported FY2026 diluted weighted average count fills the gap; the engine applies this single value to every missing period, which leaves the 3-yr median base unchanged (the median of FY24-26 OE/share is the FY2026 figure itself) and is used unprorated by ttm.py as the TTM denominator (vs the H1 FY27 10-Q count of 171.503M \u2014 the override denominator is the higher, more conservative one).",
+  "source": "Form 10-K for fiscal year ended February 28, 2026 (filed 2026-04-22), EPS note and consolidated statements of operations: 'Weighted average common shares outstanding \u2013 diluted' 175.568M for FY2026 (FY2025 181.476M, FY2024 183.959M in the same table). EDGAR companyfacts carries no weighted-share series for CIK 16918 (the filer tags share counts with class dimensions the aggregated facts drop), so the engine filed no share value for any period.",
+  "value": 175568000
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

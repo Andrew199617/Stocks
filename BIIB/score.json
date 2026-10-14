@@ -1,0 +1,70 @@
+{
+ "ticker": "BIIB",
+ "name": "Biogen Inc.",
+ "sector": "Healthcare \u2014 Biotechnology",
+ "price": 228.9103,
+ "market_cap_b": 33.67,
+ "engine_version": 5,
+ "base_oe_per_share": 14.347035040431267,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Historical moat was patent-protected MS blockbusters and has already been breached (Tecfidera generics globally, Tysabri biosimilars in Europe with US entry following). What remains is narrower: orphan-drug exclusivity in rare diseases, a first-mover Alzheimer's position shared with Eisai, and an anti-CD20 royalty stream Biogen does not control \u2014 against binary pipeline risk, Leqembi's slow uptake and ARIA burden, Spinraza competition, and payer pressure. CAP = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 58.56,
+   "irr": 0.0541
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 85.52,
+   "irr": 0.07
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 119.89,
+   "irr": 0.0906
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 153.65,
+   "irr": 0.11
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 210.82,
+   "irr": 0.1408
+  }
+ },
+ "iv_at_15": 113.39,
+ "iv_at_12": 149.3,
+ "implied_irr": 0.087,
+ "implied_irr_base_case": 0.0906,
+ "upside_at_15_pct": -50.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Transitioning biotech, moat 4/10 \u2014 real growth portfolio but a shrinking legacy base; at $228.91 it does not clear 15% (weighted IRR 8.70%, IV@15% $113.39 vs $228.91); clears 15% only at or below $113.39.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Orphan/rare-disease franchises (Spinraza, Skyclarys, Qalsody) with regulatory exclusivity",
+  "Leqembi first-mover Alzheimer's position with Eisai, strengthened by at-home Iqlik formulation",
+  "Anti-CD20 royalty/profit-share stream (Ocrevus, Rituxan, Gazyva)",
+  "Neuroscience R&D, manufacturing and specialist commercial infrastructure"
+ ],
+ "moat_against": [
+  "MS patent cliff: Tecfidera generics globally, Tysabri biosimilars in EU and entering US",
+  "Leqembi slow uptake, ARIA safety burden, Lilly competition",
+  "Spinraza competition from Zolgensma and Evrysdi",
+  "Binary pipeline risk; growth depends on registrational readouts and M&A (Apellis, RayThera)",
+  "Payer/pricing pressure on high-cost neurology drugs"
+ ]
+}

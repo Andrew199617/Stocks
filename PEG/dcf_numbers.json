@@ -2,29 +2,29 @@
  "ticker": "PEG",
  "name": "Public Service Enterprise Group Incorporated",
  "cik": 788784,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 70.345,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 70.47,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 501000000,
- "market_cap_est": 35242845000.0,
+ "market_cap_est": 35305470000.0,
  "net_debt_latest": 22413000000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.048492358572009175,
  "rev_cagr_3y": 0.07479068814927192,
- "oe_positive_years_of_last_5": "2/5",
- "base_oe_total_latest_fy": 26000000,
- "base_oe_per_share": 4.26,
- "base_oe_latest_per_share": 0.05189620758483034,
- "base_oe_normalized_per_share": 0.05189620758483034,
- "base_source": "agent_supplied_ttm_override",
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": -17000000,
+ "base_oe_per_share": -0.033932135728542916,
+ "base_oe_latest_per_share": -0.033932135728542916,
+ "base_oe_normalized_per_share": -0.033932135728542916,
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.048492358572009175,
   "rev_cagr_3y": 0.07479068814927192,
   "rev_yoy_latest": 0.18250728862973764,
-  "oe_ps_cagr_3y": -0.7675048267661212
+  "oe_ps_cagr_2y": null
  },
- "g_blend": 0.06164152336064055,
+ "g_blend": 0.07479068814927192,
  "share_cagr": 0.0,
  "share_count_adj": -0.0,
  "used_tags": {
@@ -34,7 +34,7 @@
   "ocf": "NetCashProvidedByUsedInOperatingActivities",
   "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
   "da": "DepreciationDepletionAndAmortization",
-  "sbc": null,
+  "sbc": "AllocatedShareBasedCompensationExpense",
   "tax": "IncomeTaxExpenseBenefit",
   "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
   "cash": "CashAndCashEquivalentsAtCarryingValue",
@@ -46,79 +46,47 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
- "g_base": 0.06164152336064055,
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
  "moat_score": 6.0,
- "cap_years": 9.8,
- "g_terminal": 0.025,
- "scenarios": {
-  "super_bear": {
-   "prob": 0.1,
-   "g_start": 0.0,
-   "oe_mult": 0.85,
-   "iv_at_10": 43.64171667285643,
-   "iv_at_12": 34.672856723005545,
-   "iv_at_15": 26.57069487324963,
-   "irr": 0.07104060058838543
-  },
-  "bear": {
-   "prob": 0.3,
-   "g_start": 0.035,
-   "oe_mult": 0.95,
-   "iv_at_10": 58.16929488509152,
-   "iv_at_12": 45.809954763890325,
-   "iv_at_15": 34.702459317376494,
-   "irr": 0.08712620703212243
-  },
-  "base": {
-   "prob": 0.35,
-   "g_start": 0.07,
-   "oe_mult": 1.0,
-   "iv_at_10": 72.93970497177601,
-   "iv_at_12": 56.97041624789888,
-   "iv_at_15": 42.685887953673905,
-   "irr": 0.10265121951160638
-  },
-  "bull": {
-   "prob": 0.2,
-   "g_start": 0.09,
-   "oe_mult": 1.05,
-   "iv_at_10": 84.5906564286939,
-   "iv_at_12": 65.77600633586302,
-   "iv_at_15": 48.98827331949116,
-   "irr": 0.11420772372567481
-  },
-  "super_bull": {
-   "prob": 0.05,
-   "g_start": 0.11,
-   "oe_mult": 1.12,
-   "iv_at_10": 99.61296121969312,
-   "iv_at_12": 77.12507850577776,
-   "iv_at_15": 57.107368537822325,
-   "irr": 0.12836510201092322
-  }
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
  },
- "weighted": {
-  "iv_at_10": 69.24263621965814,
-  "iv_at_12": 54.16137298069375,
-  "iv_at_15": 40.66089115711313,
-  "irr": 0.09886561210047018
- },
- "implied_irr_weighted": 0.09886561210047018,
- "implied_irr_base": 0.10265121951160638,
- "tier_by_numbers": "D",
- "upside_at_15": -0.4219789443867634,
- "upside_at_12": -0.23006080061562661,
- "iv_at_15": 40.66089115711313,
- "iv_at_12": 54.16137298069375,
- "diagnostics": {
-  "oe_yield": 0.06055867510128651,
-  "tv_share_at_15": 0.19022276705725624,
-  "scenario_spread_iv15": 2.149261387789894,
-  "net_debt_to_normalized_oe": 10.501532146973659,
-  "months_since_fy_end": 9.395532194480946
- },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "HIGH_NET_DEBT: net debt is 10.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
- ]
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "content_hash": "ca3571ee6055a7318726e03333ee479c443fbfe9a1a13c74ca3f1492b7850af8"
 }

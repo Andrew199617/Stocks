@@ -2,27 +2,27 @@
  "ticker": "WCN",
  "name": "Waste Connections, Inc.",
  "cik": 1318220,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 153.71,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 153.67,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 257976741,
- "market_cap_est": 39653604859.11,
+ "market_cap_est": 39643285789.46999,
  "net_debt_latest": null,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.11694786670341917,
  "rev_cagr_3y": 0.09490918561040851,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 1155393000,
- "base_oe_per_share": 4.527,
+ "base_oe_per_share": 4.5270646620492085,
  "base_oe_latest_per_share": 4.478671199276837,
  "base_oe_normalized_per_share": 4.347798903490107,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.11694786670341917,
   "rev_cagr_3y": 0.09490918561040851,
   "rev_yoy_latest": 0.06136200639693001,
-  "oe_ps_cagr_3y": 0.014928529916728772
+  "oe_ps_cagr_2y": 0.014928529916728772
  },
  "g_blend": 0.07813559600366926,
  "share_cagr": -8.015696232754888e-05,
@@ -46,80 +46,116 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.07821575296599681,
  "moat_score": 7.0,
  "cap_years": 11.1,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 4.5270646620492085,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
    "g_start": -0.0418,
    "oe_mult": 0.75,
-   "iv_at_10": 32.36910089516899,
-   "iv_at_12": 26.090612670100512,
-   "iv_at_15": 20.36243855281883,
-   "irr": 0.03951957428398391
+   "iv_at_10": 32.369563243831436,
+   "iv_at_12": 26.090985339082252,
+   "iv_at_15": 20.362729402609794,
+   "irr": 0.039523664449287135
   },
   "bear": {
    "prob": 0.25,
    "g_start": 0.0282,
    "oe_mult": 0.9,
-   "iv_at_10": 56.65567862630828,
-   "iv_at_12": 44.6860379894064,
-   "iv_at_15": 33.91973610993535,
-   "irr": 0.052719865124240706
+   "iv_at_10": 56.65648787576252,
+   "iv_at_12": 44.68667626879396,
+   "iv_at_15": 33.920220607316736,
+   "irr": 0.05272746249908465
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.0782,
    "oe_mult": 1.0,
-   "iv_at_10": 82.37807223923386,
-   "iv_at_12": 64.07328617573182,
-   "iv_at_15": 47.74884380452585,
-   "irr": 0.0663771955545854
+   "iv_at_10": 82.37924889816048,
+   "iv_at_12": 64.07420137563986,
+   "iv_at_15": 47.74952583193643,
+   "irr": 0.06638812951519787
   },
   "bull": {
    "prob": 0.25,
    "g_start": 0.1282,
    "oe_mult": 1.1,
-   "iv_at_10": 118.38582394530275,
-   "iv_at_12": 90.92019206488185,
-   "iv_at_15": 66.60788655855256,
-   "irr": 0.08415780646430948
+   "iv_at_10": 118.38751492607886,
+   "iv_at_12": 90.92149073639351,
+   "iv_at_15": 66.60883796178612,
+   "irr": 0.08417267409542503
   },
   "super_bull": {
    "prob": 0.1,
    "g_start": 0.1982,
    "oe_mult": 1.25,
-   "iv_at_10": 194.7704693663748,
-   "iv_at_12": 147.25445674771322,
-   "iv_at_15": 105.56772379552616,
-   "irr": 0.11664893744163443
+   "iv_at_10": 194.77325139811208,
+   "iv_at_12": 147.25656007771732,
+   "iv_at_15": 105.56923168714334,
+   "irr": 0.11667003708801438
   }
  },
  "weighted": {
-  "iv_at_10": 91.1877543408273,
-  "iv_at_12": 70.45805030807298,
-  "iv_at_15": 52.049575043314235,
-  "irr": 0.07109737302758606
+  "iv_at_10": 91.18905683410284,
+  "iv_at_12": 70.45905670566879,
+  "iv_at_15": 52.050318500831956,
+  "irr": 0.07110930281087435
  },
- "implied_irr_weighted": 0.07109737302758606,
- "implied_irr_base": 0.0663771955545854,
+ "implied_irr_weighted": 0.07110930281087435,
+ "implied_irr_base": 0.06638812951519787,
  "tier_by_numbers": "D",
- "upside_at_15": -0.661378081820869,
- "upside_at_12": -0.5416170040461064,
- "iv_at_15": 52.049575043314235,
- "iv_at_12": 70.45805030807298,
+ "upside_at_15": -0.6612851011854496,
+ "upside_at_12": -0.5414911387670411,
+ "iv_at_15": 52.050318500831956,
+ "iv_at_12": 70.45905670566879,
  "diagnostics": {
-  "oe_yield": 0.02945156463470171,
+  "oe_yield": 0.029459651604406903,
   "tv_share_at_15": 0.20778181846318527,
-  "scenario_spread_iv15": 5.184434247484181,
+  "scenario_spread_iv15": 5.184434247484182,
   "net_debt_to_normalized_oe": null,
-  "months_since_fy_end": 9.395532194480946
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
- ]
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "468a127a4cc1b3ab526b51b6162bab8e015255fec4e5f147461e9650df1e1693"
 }

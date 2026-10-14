@@ -1,0 +1,137 @@
+{
+ "ticker": "WRB",
+ "cik": 11544,
+ "entity": "W. R. BERKLEY CORP",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 3582616000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1447624000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1467904000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 3602896000
+  },
+  "capex": {
+   "fy": 90000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 44630136.98630137,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 44630136.98630137,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 90000000.0
+  },
+  "sbc": {
+   "fy": 54524000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 27487000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 29000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 56037000
+  },
+  "shares_diluted": {
+   "fy": 399861000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 400098000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 393316000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 3602896000,
+ "ttm_capex": 90000000.0,
+ "ttm_sbc": 56037000,
+ "ttm_shares_diluted": 393316000,
+ "ttm_oe_total": 3456859000.0,
+ "ttm_oe_per_share": 8.7890118886595,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 90000000.0,
+   "kind": "estimate",
+   "source": "Anchor: last engine-filed capex $60,457,000 in FY2019 (10-K, PaymentsToAcquirePropertyPlantAndEquipment, financials_history.csv); the filer's own cash-flow statements now report the same line as net purchases of property, furniture and equipment \u2014 $53,737,000 for the nine months ended 2025-09-30 and $91,670,000 for the nine months ended 2024-09-30 (10-Q consolidated statements of cash flows, investing activities) \u2014 confirming the same order of magnitude under a tag the engine does not read.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 90000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 44630136.98630137,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 44630136.98630137,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "ticker": "ON",
+ "name": "ON Semiconductor Corporation",
+ "sector": "Semiconductors / Power & sensing",
+ "price": 72.1,
+ "market_cap_b": 29.69,
+ "engine_version": 5,
+ "base_oe_per_share": 3.361643835616438,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Genuine leadership positions (SiC, auto image sensing) with long automotive qualification cycles and vertical integration, but semiconductors sell into cyclical end markets with aggressive scaled rivals and Chinese SiC entrants, and FY2023-25 proved onsemi has no pricing power strong enough to hold margins through a downturn \u2014 it took $667M of restructuring/impairment charges and cut ~2,400 jobs instead.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 13.32,
+   "irr": 0.0451
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 20.55,
+   "irr": 0.0591
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.87,
+   "irr": 0.0816
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 43.09,
+   "irr": 0.1024
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 60.07,
+   "irr": 0.1313
+  }
+ },
+ "iv_at_15": 32.81,
+ "iv_at_12": 43.73,
+ "implied_irr": 0.0837,
+ "implied_irr_base_case": 0.0816,
+ "upside_at_15_pct": -54.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality cyclical power/sensing franchise, moat 5/10 \u2014 the recovery is real but already paid for: weighted IRR 8.4%, IV@15 $32.81 vs $72.10 price; it clears 15% only near $33.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Vertically integrated SiC chain (boule to module), ~24% global SiC share, 200mm transition under way",
+  "Leading automotive image-sensor franchise",
+  "Long auto design-win/qualification cycles create switching friction",
+  "$7.1B long-term supply-agreement backlog",
+  "AI data-center power revenue ramping (guided to more than double in 2026)"
+ ],
+ "moat_against": [
+  "Deeply cyclical: revenue fell from $8,326M (FY2022) to $5,995M (FY2025), margins collapsed with utilization",
+  "SiC price competition from STMicroelectronics, Infineon, and Chinese entrants",
+  "Auto + industrial ~75% of sales \u2014 two end markets drive everything",
+  "~30% of revenue from China (geopolitical/tariff exposure)",
+  "Fab-heavy cost structure: downturns become impairments, not just lower margins"
+ ]
+}

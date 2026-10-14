@@ -1,1 +1,63 @@
-{"analysis_date":"2026-10-12","base_oe_per_share":-1.4194,"base_source":"TTM through Q2 2026 from EDGAR 10-Q YTD (OCF -$161.136M = FY25 -$157.240M - H1'25 -$84.346M + H1'26 -$88.242M; minus SBC TTM $12.982M and capex ~$0 = -$174.118M / 122.679M H1'26 diluted shares); normalized 3-yr median was -$2.06 and latest FY -$1.83 — all bases negative, Tier F under every base — see analysis.md","base_year":"TTM Q2 2026","cap_years":5.9,"confidence":"low","engine_version":4,"fragility_flags":[],"implied_irr":null,"implied_irr_base_case":null,"in_scope_under_40b":true,"iv_at_12":null,"iv_at_15":null,"market_cap_b":1.57,"moat_justification":"Weak and approval-contingent: first-mover lead in psilocybin therapy (two positive Phase 3 TRD trials, Breakthrough Therapy designation, priority-review voucher, rolling NDA underway) plus formulation/use patents and site-network know-how, but the active molecule is a known natural compound competitors can route around (Definium DT120, Lilly/AtaiBeckley BPL-003 with a ~2h session vs COMP360's ~6-8h supervised session, AbbVie/Gilgamesh), no pricing power or payer coverage is proven, functional unblinding is a live criticism, and Schedule I rescheduling sits between approval and revenue.","moat_score":3,"name":"COMPASS Pathways plc","one_liner":"Pre-revenue single-asset psychedelic biotech, moat 3/10 contingent on approval — owner's earnings are negative in all 7 years of history (-$1.42/share TTM) despite two positive Phase 3 TRD trials and $382.6M net cash, so it cannot clear the 15% hurdle at any price on an OE DCF; the $11.60 price is an FDA-approval option, not an earnings stream.","price":11.6,"scenarios":{"base":{"irr":null,"iv_at_15":null,"prob":0.3},"bear":{"irr":null,"iv_at_15":null,"prob":0.25},"bull":{"irr":null,"iv_at_15":null,"prob":0.25},"super_bear":{"irr":null,"iv_at_15":null,"prob":0.1},"super_bull":{"irr":null,"iv_at_15":null,"prob":0.1}},"sector":"Health Care","ticker":"CMPS","tier_by_numbers":"F","tier_final":"F","upside_at_15_pct":null}
+{
+ "ticker": "CMPS",
+ "name": "COMPASS Pathways plc",
+ "sector": "Health Care",
+ "price": 11.42,
+ "market_cap_b": 1.07,
+ "engine_version": 5,
+ "base_oe_per_share": -1.4192960932725285,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 3,
+ "moat_justification": "Weak and approval-contingent: first-mover lead in psilocybin therapy (two positive Phase 3 TRD trials, Breakthrough Therapy designation, Commissioner's National Priority Review voucher, rolling NDA underway) plus formulation/use patents and site-network know-how, but the active molecule is a known natural compound competitors can route around (shorter-session compounds from Lilly/AtaiBeckley, AbbVie/Gilgamesh, Definium), no pricing power or payer coverage is proven, functional unblinding is a live criticism, and Schedule I rescheduling sits between approval and revenue.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 30.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, filed 2026-03-24, Consolidated Statements of Cash Flows (p. F-7) and MD&A cash-flow summary: the statement presents no investing-activities section and no purchases of property and equipment line; net cash used in operating activities -$157,240 thousand plus net cash provided by financing activities $140,712 thousand plus FX effect $1,045 thousand equals the reported net decrease in cash -$15,483 thousand, confirming investing cash flow / capex was $0 for FY2025); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Pre-revenue single-asset psychedelic biotech, moat 3/10 contingent on approval \u2014 owner's earnings are negative in all 7 years of history (TTM -$1.42/share) despite two positive Phase 3 TRD trials and a rolling NDA, so it cannot clear the 15% hurdle at any price on an OE DCF; the $11.42 price is an FDA-approval option, not an earnings stream.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "First-mover / only late-stage psilocybin program \u2014 two positive Phase 3 TRD trials",
+  "Breakthrough Therapy designation + Commissioner's National Priority Review voucher; rolling NDA already in review",
+  "Patent estate on synthetic COMP360 formulation, manufacture and use, plus regulatory exclusivity if approved",
+  "Trained-site / delivery-network know-how overlapping interventional-psychiatry infrastructure"
+ ],
+ "moat_against": [
+  "Active molecule is a known natural compound \u2014 moat covers formulation/protocol, not the molecule",
+  "Differentiated rivals can route around it (shorter-session compounds, e.g. Lilly/AtaiBeckley and AbbVie/Gilgamesh programs)",
+  "No pricing power demonstrated \u2014 no approved product, no payer contracts; supervised multi-hour session reimbursement unproven",
+  "Delivery model is a structural cost disadvantage vs daily oral drugs \u2014 certified site + monitored session per dose",
+  "Schedule I status \u2014 DEA and state rescheduling sit between FDA approval and revenue"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-03-24, Consolidated Statements of Cash Flows (p. F-7) and MD&A cash-flow summary: the statement presents no investing-activities section and no purchases of property and equipment line; net cash used in operating activities -$157,240 thousand plus net cash provided by financing activities $140,712 thousand plus FX effect $1,045 thousand equals the reported net decrease in cash -$15,483 thousand, confirming investing cash flow / capex was $0 for FY2025"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": -1.4193,
+  "base_oe_with_override": -1.4193,
+  "base_oe_impact_pct": -0.0,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

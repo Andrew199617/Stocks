@@ -1,0 +1,71 @@
+{
+ "ticker": "FFIV",
+ "name": "F5, Inc.",
+ "sector": "Technology \u2014 application delivery and security",
+ "price": 462.9,
+ "market_cap_b": 27.16,
+ "engine_version": 5,
+ "base_oe_per_share": 12.463363040538198,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong, not wide. F5 is the incumbent in application delivery controllers (BIG-IP) sitting in mission-critical traffic paths, with high switching costs, a Leader position in WAAP, and one of only two Market Shaper spots in Gartner's Sept 2026 AI Application Security quadrant. Recurring revenue is real (services ~46% of Q3 FY26 revenue; subscriptions 90% of software revenue) and gross margins above 82% plus OE positive 5 of the last 5 years show pricing power held through a cycle. But the core is mature \u2014 5-yr revenue CAGR is only 5.61% and Q3 FY26 software revenue grew just 7% \u2014 and hyperscalers bundle competing delivery/security, Cloudflare and 40+ AI-security vendors contest the growth layer, and the secular shift from on-prem ADC to cloud/SaaS delivery erodes the installed-base advantage over time. That is a 6, not a 7-8.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 59.93,
+   "irr": 0.0398
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 98.18,
+   "irr": 0.052
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 136.27,
+   "irr": 0.0643
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 187.11,
+   "irr": 0.0802
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 289.43,
+   "irr": 0.1091
+  }
+ },
+ "iv_at_15": 147.14,
+ "iv_at_12": 198.9,
+ "implied_irr": 0.0682,
+ "implied_irr_base_case": 0.0643,
+ "upside_at_15_pct": -68.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality app-delivery/security incumbent, moat 6/10 \u2014 but at $462.90 it does not come close to the 15% hurdle: weighted IRR 6.82%, weighted IV@15% $147.14; it would need to fall to roughly $147.14 to clear 15%.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "BIG-IP installed base in mission-critical traffic paths \u2014 high switching costs",
+  "Leader in application delivery / WAAP; one of only two Gartner Market Shapers in AI application security (Sept 2026)",
+  "Recurring base: services ~46% of Q3 FY26 revenue, subscriptions 90% of software revenue",
+  "Gross margins above 82% and owner's earnings positive 5 of the last 5 years \u2014 pricing power held through a cycle",
+  "Hybrid multicloud, on-prem and air-gapped reach that hyperscaler-native tools do not match"
+ ],
+ "moat_against": [
+  "Hyperscaler-bundled load balancing and security (AWS / Azure / Google) plus Cloudflare at the edge",
+  "Secular shift from on-prem ADC hardware toward cloud / SaaS delivery",
+  "Mature core: 5-yr revenue CAGR 5.61%, Q3 FY26 software revenue only +7% YoY",
+  "40+ vendors contesting AI application security \u2014 the growth-layer lead must be re-earned",
+  "Systems / component-cost cyclicality (FY2022 operating cash flow dipped to $442,631,000)"
+ ]
+}

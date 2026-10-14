@@ -1,0 +1,193 @@
+{
+ "ticker": "MTB",
+ "name": "M&T BANK CORP",
+ "cik": 36270,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 215.425,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 158791000,
+ "market_cap_est": 34207551175.0,
+ "net_debt_latest": 10911000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.22575854195339773,
+ "rev_cagr_3y": 0.028051364116181032,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2724000000.0,
+ "base_oe_per_share": 20.02761192691804,
+ "base_oe_latest_per_share": 17.15462463237841,
+ "base_oe_normalized_per_share": 20.02761192691804,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.22575854195339773,
+  "rev_cagr_3y": 0.028051364116181032,
+  "rev_yoy_latest": 0.07527579493835179,
+  "oe_ps_cagr_2y": -0.09918908737105503
+ },
+ "g_blend": -0.035568861627437,
+ "share_cagr": -0.010759386397141801,
+ "share_count_adj": 0.010759386397141801,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "AllocatedShareBasedCompensationExpense",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "capex": {
+   "value": 143000000.0,
+   "last_filed_value": 256000000,
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": -0.024809475230295197,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.06,
+   0.04,
+   0.09,
+   0.14
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 143000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $143M for FY2025, with $216M for FY2024 in the same statement (corroborated by the filer's 10-Q cash-flow statements: $87M for the nine months ended Sep 30, 2025 and $131M for the nine months ended Sep 30, 2024, with Q4 adding the remainder in each year)",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2024 and FY2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads (the filed values through FY2023 came via PaymentsToAcquireProductiveAssets, $256M in FY2023). The engine applies this single FY2025 filing value to both missing periods; for FY2024 it understates true capex by $73M (~2% of that year's conservative OE, raising that year's OE \u2014 noted, not hidden), and capex at this level is immaterial to the verdict either way: FY2025 capex is ~4.8% of OCF and ~5% of conservative OE. ttm.py could not use the override to build a TTM base (it exits on a missing post-FY SBC YTD fact), so the override's effect is on the FY median base only.",
+   "periods_filled": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 256000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 113.82116744234709,
+   "iv_at_12": 92.46898260221705,
+   "iv_at_15": 72.93804675261836,
+   "irr": 0.06212685615454443
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0848,
+   "oe_mult": 0.9,
+   "iv_at_10": 146.86910914370745,
+   "iv_at_12": 118.86263949462466,
+   "iv_at_15": 93.30337503767349,
+   "irr": 0.07429278840496834
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0152,
+   "oe_mult": 1.0,
+   "iv_at_10": 261.5125930952638,
+   "iv_at_12": 206.8750879168941,
+   "iv_at_15": 157.64796854768906,
+   "irr": 0.11619590720576467
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0652,
+   "oe_mult": 1.1,
+   "iv_at_10": 362.40677379609474,
+   "iv_at_12": 283.85905302672603,
+   "iv_at_15": 213.46039625859322,
+   "irr": 0.14890493296939844
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1152,
+   "oe_mult": 1.25,
+   "iv_at_10": 516.9414925859293,
+   "iv_at_12": 401.2681855502598,
+   "iv_at_15": 298.0759906038426,
+   "irr": 0.19312776320710878
+  }
+ },
+ "weighted": {
+  "iv_at_10": 268.84901466635733,
+  "iv_at_12": 212.11666632065362,
+  "iv_at_15": 161.0867371240195,
+  "irr": 0.11854498376607892
+ },
+ "implied_irr_weighted": 0.11854498376607892,
+ "implied_irr_base": 0.11619590720576467,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.25223749739343393,
+ "upside_at_12": -0.015357241171388591,
+ "iv_at_15": 161.0867371240195,
+ "iv_at_12": 212.11666632065362,
+ "diagnostics": {
+  "oe_yield": 0.09296790960621117,
+  "tv_share_at_15": 0.17887079414875845,
+  "scenario_spread_iv15": 4.086701027446175,
+  "net_debt_to_normalized_oe": 3.4309114123181477,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $143M for FY2025, with $216M for FY2024 in the same statement (corroborated by the filer's 10-Q cash-flow statements: $87M for the nine months ended Sep 30, 2025 and $131M for the nine months ended Sep 30, 2024, with Q4 adding the remainder in each year)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 20.882266807714604,
+  "base_oe_per_share_final": 20.02761192691804,
+  "weighted_irr_zero_fill": 0.1273575297209576,
+  "weighted_irr_final": 0.11854498376607892,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "fe108ad58c6be26a170859d27c16f2a684b749323ec611243e60afd789cc85e9"
+}

@@ -1,0 +1,73 @@
+{
+ "ticker": "WSM",
+ "name": "Williams-Sonoma, Inc.",
+ "sector": "Consumer Cyclical \u2014 Specialty Retail (Home Furnishings)",
+ "price": 239.835,
+ "market_cap_b": 29.54,
+ "engine_version": 5,
+ "base_oe_per_share": 10.240134031413612,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat (5/10): a portfolio of strong premium home brands (Pottery Barn, West Elm, Williams Sonoma, Pottery Barn Kids/Teen, Rejuvenation) with in-house design, an omnichannel digital-first model, an affluent customer base, and proven full-price selling that expanded operating margins sharply since pre-pandemic and is gaining share in a flat, fragmented industry (no player >5%). But there are no network effects and low switching costs, competition is fragmented and relentless (Wayfair, RH, Amazon, mass retailers), demand is housing-cycle driven, and imported sourcing leaves margins exposed to tariffs \u2014 Q2 FY2026 gross margin fell 160 bps on tariff costs. Durable brand/operational edge, not a wide structural moat; CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 39.98,
+   "irr": 0.043
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 61.73,
+   "irr": 0.0556
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 89.96,
+   "irr": 0.0725
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 112.05,
+   "irr": 0.0851
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 144.1,
+   "irr": 0.1026
+  }
+ },
+ "iv_at_15": 82.08,
+ "iv_at_12": 108.19,
+ "implied_irr": 0.068,
+ "implied_irr_base_case": 0.0725,
+ "upside_at_15_pct": -65.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality premium home retailer, moat 5/10, but at $239.84 it does not clear 15% \u2014 weighted IRR 6.8%, weighted IV@15 $82.08; it would need to fall to ~$82 (the weighted IV@15) to clear the 15% hurdle.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Premium brand portfolio (Pottery Barn, West Elm, Williams Sonoma) with in-house design",
+  "Largest omnichannel specialty home-furnishings player in a fragmented market; gaining share in a flat industry",
+  "Affluent (~$150k income) customer base, relatively resilient through cycles",
+  "Proven pricing power / full-price selling; operating margin up sharply vs pre-pandemic",
+  "Debt-free balance sheet, strong cash generation funding buybacks + rising dividend",
+  "B2B segment growing double digits (14.5% in Q2 FY2026), diversifying beyond housing turnover"
+ ],
+ "moat_against": [
+  "No network effects, low switching costs; fragmented competition (Wayfair, RH, Amazon, IKEA/mass)",
+  "Housing-cycle and big-ticket discretionary exposure \u2014 revenue fell in FY2023-24 when housing froze",
+  "Tariff/sourcing exposure on imported goods: Q2 FY2026 gross margin -160 bps on tariff costs",
+  "Premium multiple leaves no cushion: priced for growth the recent record (5-yr rev CAGR 2.8%) does not show",
+  "OE is working-capital volatile: FY2024 OCF flattered by a large inventory/WC release"
+ ]
+}

@@ -2,19 +2,20 @@
  "ticker": "WCN",
  "name": "Waste Connections, Inc.",
  "sector": "Waste Services / Environmental Services",
- "price": 153.71,
- "market_cap_b": 39.65,
- "engine_version": 4,
- "base_oe_per_share": 4.527,
- "base_year": "TTM Q2 2026",
- "base_source": "TTM through Q2 2026 from 10-Q YTD figures in Q2 2026 release: OCF $2,513.214M (FY25 $2,414.069M - H1'25 $1,179.741M + H1'26 $1,278.886M) - capex $1,280.412M - SBC $79.031M = $1,153.771M / 254.861M diluted shares = $4.53/share",
+ "price": 153.67,
+ "market_cap_b": 39.64,
+ "engine_version": 5,
+ "base_oe_per_share": 4.5270646620492085,
+ "base_year": "2025",
+ "base_source": "ttm_json",
  "moat_score": 7,
- "moat_justification": "Permitted landfill airspace is scarce/irreplaceable, route density in exclusive/secondary markets, internalization 59% and rising, proven pricing power (core price +6.5% FY25, +5.8% H1'26) and industry-leading ~33% adj. EBITDA margin, long municipal/franchise contracts \u2014 against larger WM/Republic bidders, rebid risk, no network effects, negative unit volumes, commodity/E&P cyclicality, and landfill closure/environmental liabilities (Chiquita Canyon).",
+ "moat_justification": "Permitted landfill airspace is scarce/irreplaceable, route density in exclusive/secondary markets, internalization rising, proven pricing power (core price +5.6% Q2 2026, +6.5% FY2025) and industry-leading ~33% adj. EBITDA margin, long municipal/franchise contracts \u2014 against larger WM/Republic bidders, rebid risk, no network effects, negative unit volumes, commodity/E&P cyclicality, and landfill closure/environmental liabilities (Chiquita Canyon). Sector flag fires on the screener's Utilities bucket; the business is contracted waste services, not a rate-regulated utility, but confidence is graded low per the sweep rule.",
  "cap_years": 11.1,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
  ],
  "scenarios": {
   "super_bear": {
@@ -40,7 +41,7 @@
   "super_bull": {
    "prob": 0.1,
    "iv_at_15": 105.57,
-   "irr": 0.1166
+   "irr": 0.1167
   }
  },
  "iv_at_15": 52.05,
@@ -50,8 +51,22 @@
  "upside_at_15_pct": -66.1,
  "tier_by_numbers": "D",
  "tier_final": "D",
- "confidence": "medium",
- "one_liner": "Strong-moat (7/10) waste compounder with real pricing power, but at $153.71 (34x TTM owner's earnings of $4.53/share, 2.9% yield) it yields a 7.1% weighted IRR \u2014 clears the 15% hurdle only at ~$52 (~$42 with a margin of safety); even the super-bull case ($105.57) is below today's price.",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "confidence": "low",
+ "one_liner": "Strong-moat (7/10) waste compounder with real pricing power, but at $153.67 (TTM owner's earnings of $4.53/share, 2.95% yield) it yields a 7.11% weighted IRR \u2014 clears the 15% hurdle only at ~$52 (~$42 with a margin of safety); even the super-bull case ($105.57) is below today's price.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Permitted landfill airspace is scarce and effectively irreplaceable; internalization captures the disposal margin",
+  "Route density in exclusive/secondary markets feeding owned transfer/disposal",
+  "Proven pricing power through cycles (core price +5.6% Q2 2026) with industry-leading ~33% adj. EBITDA margin",
+  "Long-duration municipal/franchise contracts give revenue visibility",
+  "Disciplined M&A machine in a fragmented industry"
+ ],
+ "moat_against": [
+  "No network effects; contracts rebid against larger WM and Republic",
+  "Landfill closure/post-closure and environmental liabilities (Chiquita Canyon)",
+  "Unit volumes negative; growth is price + M&A only",
+  "Recycled commodity prices and E&P waste volumes are cyclical",
+  "Capital intensity real and rising (RNG build-out, land purchases)"
+ ]
 }

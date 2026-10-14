@@ -1,1 +1,70 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":3.6095,"base_source":"TTM through Q2 FY2026 from EDGAR 10-Q YTD: OCF $7,311M - $3,688M + $3,085M = $6,708M; capex $3,855M - $1,968M + $2,437M = $4,324M; SBC $157M - $83M + $101M = $175M; OE TTM $2,209M / 612M H1 FY2026 diluted shares = $3.61. Latest FY $5.04 rejected as distorted (decade-high OCF in the $2.5B Ocado impairment year; maintenance OE only $3.15/sh and falling); 3-yr median $3.74 is close to the TTM and gives the same Tier D.","base_year":"TTM Q2 FY2026","cap_years":7.2,"confidence":"medium","engine_version":4,"fragility_flags":["STALE_FY","HIGH_NET_DEBT","BUYBACK_TAILWIND","NI_OCF_DIVERGENCE"],"implied_irr":0.0876,"implied_irr_base_case":0.0899,"in_scope_under_40b":true,"iv_at_12":41.02,"iv_at_15":31.04,"market_cap_b":40.98,"moat_justification":"Local #1/#2 market density, procurement/logistics scale, Our Brands private label, loyalty data feeding Kroger Precision Marketing (profit +24% in Q2 FY2026), and pharmacy/fuel frequency — against zero consumer switching costs and Walmart's larger price leadership, Costco/Aldi/Amazon pressure (identical sales +0.2% in Q2, FY guidance cut to +0.2-0.8%), 1-3% margins, the blocked Albertsons merger that denied the scale step-change, and the failed Ocado automation bet ($2.5B impairment, pivot to third-party fulfillment).","moat_score":4,"name":"The Kroger Co.","one_liner":"Durable defensive grocer with only a weak 4/10 moat (local scale and retail media vs Walmart's price leadership and zero switching costs) — at $62.56 (17.3x TTM owner's earnings, net debt 5.3x OE) the weighted IRR is just 8.8% with IV@15% of $31.04, even the super-bull case (13.2%) fails to clear 15%, and it clears the hurdle only at ~$31, or ~$23 with a margin of safety.","price":62.56,"scenarios":{"base":{"irr":0.0899,"iv_at_15":32.18,"prob":0.35},"bear":{"irr":0.0725,"iv_at_15":24.17,"prob":0.3},"bull":{"irr":0.1066,"iv_at_15":40.13,"prob":0.18},"super_bear":{"irr":0.0545,"iv_at_15":15.93,"prob":0.1},"super_bull":{"irr":0.1321,"iv_at_15":53.01,"prob":0.07}},"sector":"Consumer Staples / Food Chains","ticker":"KR","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-50.4}
+{
+ "ticker": "KR",
+ "name": "The Kroger Co.",
+ "sector": "Consumer Staples \u2014 Grocery Retail",
+ "price": 60.75,
+ "market_cap_b": 39.79,
+ "engine_version": 5,
+ "base_oe_per_share": 3.6094771241830066,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: genuine scale (#2 US grocer, ~$147.6B revenue), loyalty-data and retail-media profits (Precision Marketing profit +24% in Q2 FY2026; alternative profit businesses $1.5B operating profit in fiscal 2025), high-margin Our Brands private label, and >$16B e-commerce \u2014 but the product is a commodity, switching costs are near zero, pricing power is inflation pass-through only, and Kroger is currently losing share to Walmart, Costco and Amazon (Numerator, 12m ended Jun 30 2026), with structurally thin 1-2% net margins. CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 14.71,
+   "irr": 0.052
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 23.68,
+   "irr": 0.0726
+  },
+  "base": {
+   "prob": 0.35,
+   "iv_at_15": 32.4,
+   "irr": 0.0925
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 42.06,
+   "irr": 0.1133
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 58.68,
+   "irr": 0.1462
+  }
+ },
+ "iv_at_15": 31.26,
+ "iv_at_12": 41.38,
+ "implied_irr": 0.0902,
+ "implied_irr_base_case": 0.0925,
+ "upside_at_15_pct": -48.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Durable #2 US grocer, narrow moat 5/10, tiny SBC and heavy buybacks \u2014 but at $60.75 the weighted IRR is 9.0% and even the super-bull case misses 15%; it only clears the hurdle near $31.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "#2 US grocer scale \u2014 ~$147.6B revenue, dense local store/pharmacy/fuel networks",
+  "Loyalty data + Kroger Precision Marketing retail media (profit +24% Q2 FY26); alternative profits $1.5B op profit FY25",
+  "Our Brands private label \u2014 high margin, 900+ new items in fiscal 2025, tailwind from value-seeking shoppers",
+  "E-commerce scale >$16B sales FY25, +20% growth, pivoting to store-based fulfillment"
+ ],
+ "moat_against": [
+  "Walmart structural cost/scale advantage (~23.6% share); Kroger losing share to Walmart/Costco/Amazon",
+  "Near-zero switching costs \u2014 shoppers multi-home; Aldi/Lidl discount expansion",
+  "Structurally thin 1-2% net margins \u2014 no buffer vs shrink, union labor, price investment",
+  "Food-at-home disinflation removes the inflation pass-through that flattered nominal growth"
+ ]
+}

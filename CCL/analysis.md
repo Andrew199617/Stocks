@@ -1,62 +1,71 @@
-# CCL — Carnival Corporation Ltd.
-Run 2026-10-13, engine v4. In scope (market cap ~$35–37B < $40B). Fiscal year ends Nov 30.
+# CCL — Carnival Corp Ltd.
+
+v5 run, 2026-10-14. In scope under $40B (market cap $37.602B at $26.82, nasdaq_quote_api). Supersedes the v4 analysis of 2026-10-13 — conclusion unchanged (Tier C, ~12.2% weighted IRR).
+
+All figures below are copied from dcf_numbers.json, ttm.json, or financials_history.csv — none are recomputed.
 
 ## What it is
-The world's largest cruise operator — nine brands (Carnival Cruise Line, Princess, Holland America, Seabourn, Cunard, P&O, AIDA, Costa) selling a discretionary, capital-intensive vacation product. Revenue mix is ticket + onboard spend; the economics are occupancy × net yield per ALBD minus cruise costs, fuel, and the heavy capex/depreciation of a ship fleet. Current state is a real post-Covid repair story: record revenue, yields and deposits, debt paid down from a $36B peak (2023) to below $24B, investment-grade rating restored at a second agency, no secured debt left, buybacks and dividends restarted (~$2B of capital return expected in FY2026).
+The world's largest cruise operator — more than 90 ships across nine brands (Carnival Cruise Line, Princess, Holland America, Seabourn, Cunard, P&O, AIDA, Costa) spanning value to ultra-luxury. Revenue is ticket plus onboard spend. Capacity is broadly flat over the next 12 months per Q3 FY2026 reporting, so earnings growth must come from yields/pricing and onboard spend, not new berths. Q3 FY2026 was a record quarter in search summaries: revenue $8.435B, net yields up nearly 2.5% YoY, record customer deposits of about $7.6B, and full-year FY2026 adjusted EPS guidance raised to about $2.24 — essentially flat versus FY2025, with fuel as the offset. 2027 is already about half booked at record occupancy and pricing in management commentary.
 
 ## Owner's earnings
-Conservative definition (OCF − total capex − SBC), SEC EDGAR filing-direct:
-- FY2025: OCF $6,218M − capex $3,611M − SBC $98M = **$2,509M = $1.79/share**
-- Maintenance version FY2025 (NI + D&A − min(capex, D&A) − ΔNWC): $3,047M — higher than conservative because actual capex ($3,611M) exceeded D&A ($2,790M); the fleet is still being renewed, so the conservative all-capex figure is the honest base-case treatment, not a distortion.
-- OE positive only 3 of the last 5 fiscal years — FY2020–22 were deeply negative (Covid shutdown: FY2021 OE −$7.8B). This is a cyclical with a genuine ruin tail, not a compounder with a bad year.
+**FY2025 (10-K via EDGAR, from financials_history.csv):** operating cash flow $6,218,000,000; capex $3,611,000,000 (tag PaymentsToAcquirePropertyPlantAndEquipment); SBC $98,000,000 (tag ShareBasedCompensation, always a real cost); D&A $2,790,000,000.
+- **Conservative owner's earnings FY2025: $2,509,000,000 = $1.79/share** (base_oe_latest_per_share $1.789586305278174 in dcf_numbers.json)
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): $3,047,000,000 in financials_history.csv — above the conservative figure because capex exceeds D&A in a fleet-renewal year; the conservative OCF-based figure is the one used for the base.
+- OE positive 3 of the last 5 fiscal years — the negative years are the COVID shutdown years, not normal cyclicality.
+- Net debt latest: $24,712,000,000 (dcf_numbers.json). This is the central fact of the equity case — see HIGH_NET_DEBT below.
 
-**Base used = TTM owner's earnings through Q3 FY2026 (period ended 2026-08-31), from EDGAR 10-Q YTD figures:**
-- OCF TTM = FY25 $6,218M − YTD Q3'25 $4,700M + YTD Q3'26 $5,303M = $6,821M
-- Capex TTM = $3,611M − $2,105M + $2,139M = $3,645M
-- SBC TTM = $98M − $70M + $73M = $101M
-- **TTM OE = $6,821M − $3,645M − $101M = $3,075M ÷ 1,368M diluted shares (Q3 FY26) = $2.248/share**
-- Cross-checks: TTM revenue $27,593M ($26,622M − $20,292M + $21,263M), TTM net income $3,137M. OE yield on the TTM base at $26.70 is 8.4% — the valuation question here is growth durability and leverage, not a thin starting yield.
-- Sanity vs reported results: Q3 FY26 (reported 2026-09-29) was a record quarter — revenue $8,435M (+3.5% YoY), GAAP net income $1,920M, adj. EPS $1.43; FY26 adj. EPS guidance raised to ~$2.24, adj. net income ~$3.08B, net yields guided +2.3% constant-currency. Q4 guide is softer (~$0.20 adj. EPS vs ~$0.25 consensus, plus a loyalty-program accounting headwind), and a ~$150M fuel-price hit absorbed most of the Q3 operating beat in the full-year raise.
+**Base used = TTM owner's earnings through Q3 FY2026 (2026-08-31), from ttm.py (filing-direct, no hand math):**
+- OCF: FY $6,218,000,000 − prior YTD $4,700,000,000 + current YTD $5,303,000,000 = **TTM $6,821,000,000**
+- Capex: FY $3,611,000,000 − prior YTD $2,105,000,000 + current YTD $2,139,000,000 = **TTM $3,645,000,000**
+- SBC: FY $98,000,000 − prior YTD $70,000,000 + current YTD $73,000,000 = **TTM $101,000,000**
+- Shares (current-YTD weighted diluted): **1,382,000,000**
+- **TTM OE total $3,075,000,000 → base OE/share $2.2250361794500724** (base_source: ttm_json)
+- The engine's normalized base (3-yr median) is $0.8834048640915594/share — rejected as the base: it is dragged by FY2023, the first full post-COVID recovery year. Latest FY ($1.79) and TTM ($2.23) both show the median is the distorted figure (see BASE_DIVERGENCE).
 
-## Moat score: 4/10 — weak-moderate
-FOR — genuine scale as the largest operator: purchasing power, port/berth access, and fleet deployment flexibility no sub-scale rival matches; owned private destinations (Celebration Key took 2.5M guests in year one, ~3.5M expected next year; Half Moon Cay) that rivals cannot replicate quickly and that lift onboard/destination yield; fuel consumption per ALBD down 26% since 2019 (a real, compounding cost edge, worth ~$750M/yr at current fuel prices per management); a large past-guest base and a record forward book — 2027 ~50% booked at record occupancy and pricing, customer deposits a record $7.6B (+7% YoY).
-AGAINST — guests switch cruise lines on price and itinerary with almost no friction; Royal Caribbean, Norwegian and the fast-growing MSC sell a near-substitute product and are adding newer ships; there are no network effects and no locked-in recurring revenue; the asset base must be continuously rebuilt (~$3.6B/yr capex) just to stay competitive; demand is discretionary and shock-exposed (pandemic, fuel — unhedged by policy, +36% YoY fuel cost in Q3 FY26 — geopolitics, weather, onboard incidents); pricing power is recent and unproven through a downturn — net yields only regained 2019 levels in 2024–25, i.e. five lost years.
-A 4 gives CAP = 2 + 1.3 × 4 = **7.2 years** (growth holds 2 years, then fades linearly to the 2.5% terminal rate over the CAP, 15-yr projection).
+## Moat: 5/10 — moderate / narrow
+Justification: Carnival has real scale — roughly 37-42% global share in search summaries, nine brands, purchasing leverage, private destinations, and a large forward deposit float — but no durable pricing power that survives a downturn, no switching costs for passengers, intense rivalry from Royal Caribbean, Norwegian, Viking and MSC, and a levered, fuel-exposed, capital-intensive fleet. Returns have only just recovered after a near-death dilutive recapitalisation. This is one notch above the v4 score of 4 on the strength of the private-destination build-out and the record forward book; the CAP difference (8.5y vs 7.2y) does not change the tier.
+- FOR: Largest global fleet and share (about 40% in multiple summaries) across nine brands from value to luxury
+- FOR: Scale purchasing, deployment flexibility, and home-port network rivals cannot match at the low end
+- FOR: Private destinations (Celebration Key, opened July 2025) capture the full shore-side spend and differentiate the itinerary
+- FOR: Record forward bookings and customer deposits (about $7.6B) give demand visibility and an interest-free float
+- FOR: Brand breadth lets Carnival shift ships and pricing tiers to follow demand by region and segment
+- AGAINST: No passenger switching costs — cruises are a discretionary, price-compared purchase, with resorts, hotels and theme parks as substitutes
+- AGAINST: Royal Caribbean's premium position and MSC's aggressive North America/Caribbean expansion pressure pricing; Caribbean industry capacity growth was flagged at about 37% over three years
+- AGAINST: Fuel is unhedged in the Q3 FY2026 summaries — a small fuel move swings quarterly profit by a material double-digit percentage
+- AGAINST: High leverage and heavy recurring capex claim cash before equity holders
+- AGAINST: Emissions and environmental regulation raise compliance capex on older tonnage
+- A 5 gives CAP = 8.5 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 8.5 years, 15-year projection.
 
-## DCF — final v4 run
-**Growth recalibration (written reason, required by the standing rule):** the engine's blended growth is 28.2% and its default scenario starts are 16–40% — every one of those numbers is a Covid basis artifact (see BASIS_BREAK below), not a run rate. Actual recent prints: revenue +6.4% in FY2025, +4.8% YTD FY26, +3.5% in Q3 FY26; FY26 net-yield guidance +2.3%; capacity roughly flat over the next 12 months. TTM OE/share +25.6% vs FY2025 is capex-timing and recovery, not a trend. Scenario starts were therefore set from current evidence — yield/pricing +2–3%, modest capacity, ~2.5%/yr buyback shrink, interest savings from deleveraging (management's PROPEL frame targets >50% adj. EPS growth by 2029, ~14%/yr, which anchors the bull case after a haircut for capex normalization):
-- Super bear start −5% (recession/fuel/incident year; OE level ×0.75)
-- Bear 0%, base 7%, bull 12%, super bull 17% (super bull sits below the TTM OE/share print for the capex-timing reason above, and above revenue prints only via operating leverage + buybacks + a capex trough — hence just 5% weight)
-Probabilities skewed bearish vs defaults (15/30/30/20/5, sum 100%) for the leverage and shock exposure below. Price: **$26.70** (Nasdaq quote at run time).
+## DCF — v5 final run (2026-10-14)
+Growth recalibration (written reason, required): the engine's blended growth is 33.21% and g_base is 28.21% because its components straddle COVID — rev CAGR 5y 36.62%, rev CAGR 3y 29.81%, OE/share CAGR 2y 54.63% are all recovery arithmetic off a collapsed base. The signals that describe the business today are latest revenue YoY +6.40%, Q3 FY2026 net yields up nearly 2.5%, broadly flat capacity, and FY2026 EPS guidance of about $2.24, flat versus FY2025. Scenario starts were therefore set via offsets −0.3021 / −0.2621 / −0.2321 / −0.1921 / −0.1421 vs g_base to −2 / +2 / **+5** / +9 / +14%. The super-bear −2% is a deliberate downturn case (fuel spike / consumer pullback / Caribbean pricing war), not a forecast; the base +5% sits between the +6.40% revenue print and the flat EPS guide, reflecting yield growth partly eaten by fuel and capex. Probabilities were skewed slightly bearish (15/25/30/20/10 vs the 10/25/30/25/10 default) for leverage and unhedged fuel. OE multipliers are the defaults 0.75/0.90/1.00/1.10/1.25. Price $26.82.
 
-| Scenario | Prob | Growth start | OE mult | IV@15% | IRR |
-|---|---|---|---|---|---|
-| Super bear | 15% | −5% | 0.75 | $10.33 | 7.1% |
-| Bear | 30% | 0% | 0.90 | $15.07 | 9.5% |
-| Base | 30% | 7% | 1.00 | $21.90 | 12.8% |
-| Bull | 20% | 12% | 1.10 | $29.08 | 16.0% |
-| Super bull | 5% | 17% | 1.25 | $39.79 | 20.3% |
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 15% | -2.0% | 0.75 | Fuel spike + consumer downturn + Caribbean pricing war; levered OE compresses | $11.34 | 7.60% |
+| Bear | 25% | 2.0% | 0.90 | Yields stall, fuel stays high, deleveraging slows | $16.09 | 9.98% |
+| Base | 30% | 5.0% | 1.00 | Mid-single-digit yield-led growth on flat capacity, normal fuel | $20.25 | 12.00% |
+| Bull | 20% | 9.0% | 1.10 | Record 2027 pricing holds, fuel eases, destinations lift onboard spend | $26.28 | 14.76% |
+| Super bull | 10% | 14.0% | 1.25 | Sustained pricing power + rapid deleveraging re-rates the equity | $36.66 | 19.03% |
 
-- **Probability-weighted: IV@15% $20.45 (−23% vs price), IV@12% $27.14, weighted IRR 12.2%**
-- **Tier by numbers: C.** Diagnostics: OE yield 8.4%, terminal value only 19% of IV@15%, scenario spread 3.9×, net debt 7.8× normalized OE (engine basis; 7.4× on Aug-31 actuals, see HIGH_NET_DEBT).
+- **Probability-weighted: IV@15% $20.72 (−22.7% vs price), IV@12% $27.54, IV@10% $35.14, weighted IRR 12.25%, base-case IRR 12.00%**
+- **Tier by numbers: C.** Diagnostics (dcf_numbers.json): OE yield 8.30%, terminal value 18.78% of IV@15%, scenario spread 3.23x, net debt 7.92x normalized OE (on the TTM base; 19.95x on the rejected median base in the preliminary run), 10.45 months since FY end.
 
 ## Flags — every fragility flag resolved
-- **STALE_FY (FY ended 10 months ago):** resolved with the TTM base above, built from Q3 FY26 10-Q YTD figures filed 2026-09-29. The TTM base ($2.25) is the base used.
-- **BASE_DIVERGENCE (latest FY $1.79 vs 3-yr median $0.88):** the median is the distorted figure, not the latest year. The last-3 set is FY23 $0.75 / FY24 $0.88 / FY25 $1.79 — a monotonic post-Covid recovery path in which FY23–24 still carried depressed yields and peak newbuild capex (FY24 capex $4,626M). A median of a recovery ramp is a stale mid-ramp snapshot. The filing-derived TTM ($2.25) supersedes both, and its components are visible above.
-- **HIGH_NET_DEBT (7.8× normalized OE):** real and central. Engine basis: FY25 net debt $24,712M. Current actuals at 2026-08-31: debt $21,876M LT + $2,036M current = $23,912M, cash $1,220M, net debt $22,692M = **7.4× TTM OE**. Direction is good ($36B peak debt in 2023 → <$24B total; investment grade restored; $500M of 7% notes redeemed in Q3; no secured debt), but 7×+ levered owner's earnings on a discretionary cyclical can still vanish fast — this is why bear + super bear carry 45% combined weight and why the verdict sizes to the conservative end.
-- **DILUTION (share count +5.9%/yr):** historical, and now reversed. The growth in the count (692M diluted in FY2019 → 1,123M FY2021 → 1,402M FY2025) was Covid rescue financing — equity and convertible issuance to survive the shutdown — not compensation: SBC is trivial ($98M FY25, $101M TTM). Since the buyback restarted, ~45M shares / $1.2B were repurchased in the first nine months of FY26 and Q3 FY26 diluted shares are 1,368M, −2.4% vs the FY25 average. The engine's −5pp share-count adjustment is a legacy of the rescue era; the current ~2.5%/yr shrink is credited inside my scenario growth starts instead.
-- **BASIS_BREAK_SUSPECT (>60% revenue move in last 5 yrs):** identified — it is the Covid collapse and recovery, not a divestiture or restatement: revenue $20,825M (FY19) → $5,595M → $1,908M → $12,168M → $21,593M (FY23). Every CAGR that straddles 2020–22 (rev CAGR 5y 36.6%, 3y 29.8%, OE/share CAGR 54.6%) is meaningless as a forward run rate, which is exactly why the scenario starts were recalibrated to current prints (see DCF section) rather than taken from the blend.
-- **NI_OCF_DIVERGENCE (NI vs OCF >40% apart in 2023, 2024, 2025):** explained, and it is structural-plus-float, not a one-off item. Ships throw off large non-cash D&A ($2,370M / $2,557M / $2,790M in FY23/24/25) while net income in FY23 was also crushed by interest on the rescue-era debt stack (NI −$74M vs OCF $4,281M). The remainder of the gap is advance customer deposits / deferred revenue rebuilding as the forward book recovered. Note the gap net of D&A is narrowing each year (~$2.0B → ~$1.5B → ~$0.7B): as deposit growth slows to the pace of booking growth, that OCF tailwind fades — one more reason the TTM OE level is usable but its recent growth rate is not extrapolated.
-- Final-run flags no longer include WIDE_SCENARIO_SPREAD (spread narrowed to 3.9× after recalibration) or OE_VOLATILE, but the history behind them stands: OE/share spanned negative-to-$1.79 within five years.
+- **STALE_FY** (latest FY ended 10.45 months ago): resolved by construction — the base is the TTM figure from ttm.py through 2026-08-31, quoted in full above.
+- **DILUTION** (share count growing 5.9%/yr): that trend is the COVID recapitalisation — diluted shares rose from 692,000,000 in FY2019 to 1,402,000,000 in FY2025 in financials_history.csv. It has reversed at the margin: TTM shares are 1,382,000,000 and Q3 FY2026 summaries report about $1.2B of repurchases. SBC itself is small ($98M FY2025, $101M TTM). The −5pp share-count adjustment in the engine blend is a legacy of the rescue era — one more reason the recalibrated scenario starts, not the blend, carry the verdict. No credit was taken back for this in the offsets; the conservatism is retained.
+- **BASIS_BREAK_SUSPECT** (>60% revenue jump/drop in last 5 yrs): identified — it is COVID, not M&A/divestiture. Revenue in financials_history.csv: $20,825,000,000 (2019) → $5,595,000,000 (2020) → $1,908,000,000 (2021) → $12,168,000,000 (2022) → $21,593,000,000 (2023). Every CAGR that straddles 2020-2022 is recovery arithmetic. Growth inputs were chosen on post-recovery signals only (latest YoY, yields, guidance).
+- **NI_OCF_DIVERGENCE** (NI vs OCF differ by >40% in 2023, 2024, 2025): structural, not a one-off. OCF exceeds net income in each year because D&A is $2,370,000,000 / $2,557,000,000 / $2,790,000,000 respectively (non-cash fleet depreciation added back in OCF) and advance customer deposits inflate operating cash timing. FY2025: net income $2,760,000,000 vs OCF $6,218,000,000; FY2023: net income −$74,000,000 vs OCF $4,281,000,000. The OCF-based conservative OE is the series used throughout, so the divergence does not contaminate the base.
+- **BASE_DIVERGENCE** (latest FY OE/share $1.79 vs 3-yr median $0.88): the median is the distorted one — FY2023 was still a recovery year. Latest FY and the filing-derived TTM ($2.23) agree on direction and are the run-rate; the TTM base was used.
+- **WIDE_SCENARIO_SPREAD** (preliminary run 4.29x; final recalibrated run 3.23x): still wide — a levered cruise equity genuinely has a wide outcome range. Confidence is set to low, probabilities were skewed bearish, and the verdict is sized to the conservative end.
+- **HIGH_NET_DEBT** (net debt $24,712,000,000; 7.92x normalized OE on the TTM base, 19.95x on the median base): folded explicitly into the verdict. Search summaries report total debt down from a $36B peak in 2023 to below $24B, a $19B refinancing completed in FY2025, and net debt/EBITDA of 3.4x at FY2025-end with a target below 3.0x. That is real repair, not safety: with unhedged fuel and $3,645,000,000 of TTM capex, a single bad year pushes deleveraging back years and the bear/super-bear IVs ($16.09 / $11.34) sit far below the price. The equity is a levered stub on a good operating recovery.
 
 ## My thoughts / overlay
-- The method range is the honest headline alongside the point estimate: on the FY25-only base ($1.79) the same scenarios give a weighted IV@15% near ~$16 (Tier C/D border); on the rejected 3-yr-median base ($0.88) the DCF collapses to single digits (Tier D) — that base is documented above as a mid-recovery artifact, not a defensible current run rate. The TTM base is the only one that reflects the business as it operates today, and even it produces only 12.2%.
-- What the bull case actually is: not revenue — it's per-share math. Flat-ish capacity + 2–3% yields + buybacks + falling interest as debt is refinanced cheaper can compound EPS at low-teens rates (PROPEL's >50% by 2029) while revenue grows at GDP. The DCF credits that in the bull/super-bull cases; they still only reach 16–20% IRR because the starting price already capitalizes a good part of it.
-- The tail the model cannot price: FY2020–21 showed OE of −$10.0B and −$7.8B in consecutive years. No scenario above (floor: −5% growth on 0.75× OE, IRR 7.1%) represents a pandemic/incident/ban event. With 7.4× leverage that tail is an equity-impairment risk, not a bad year. Anyone buying this is short that tail and should size accordingly.
-- Fuel is the near-term swing factor and it is deliberately unhedged: Q3 FY26 fuel cost +36% YoY ate most of the operating beat. A sustained fuel spike moves this toward the bear cases without any demand failure at all.
-- Hurdle math: the stock clears Andrew's 15% hurdle at the weighted IV@15% of **~$20.45**; with a margin of safety against the leverage and the unmodeled tail, **~$16–17** (≈20% below IV, roughly the bear/base midpoint zone) is the price where the 15% case stops depending on everything going right.
+- The honest headline is the method range: on the preliminary engine defaults (median base $0.88, 28% growth) the weighted IRR was 13.13% — a similar Tier C by coincidence, via two offsetting errors (base too low, growth absurdly high). On the corrected inputs (TTM base $2.23, realistic 5% base growth) it is 12.25%, Tier C, matching the independent v4 result of 12.2% / $20.45 almost exactly. Defensible variations span roughly Tier C to the bottom of Tier B, never A on any input set that respects the flat EPS guide and the debt load.
+- Quality is middling: a real, cash-generative recovery (TTM OCF $6,821,000,000, TTM OE $3,075,000,000) attached to a balance sheet that still claims most of it. Dividend reinstatement and buybacks signal management confidence, but they compete directly with deleveraging.
+- Risks: unhedged fuel (the largest near-term swing factor), Caribbean capacity growth and pricing, consumer discretionary exposure, dry-dock and newbuild capex creep, emissions regulation, and the tail risk of a shutdown-type event for a levered cruise operator — FY2020-21 OE was deeply negative and no scenario here models a repeat.
+- Price that clears 15%: the weighted IV@15% is $20.72 — at or below that price the weighted case clears Andrew's 15% hurdle on these inputs. With a margin of safety against the bear case (IV@15% $16.09), a conservative entry is in the mid-teens. At $26.82 the buyer is paying for the bull case and getting the base case.
 
 ## Final verdict
-- **Final tier: C** (same as tier by numbers — no override; weighted IRR 12.2% on the TTM base, and every more-conservative defensible base is lower)
-- Confidence: **Medium** (high on the TTM base — it is filing arithmetic, cross-checked against guidance; medium-low on any growth path for a 7×-levered discretionary cyclical, and the catastrophic tail is explicitly outside the model)
-- One-liner: Largest cruise operator, weak-moderate moat 4/10, genuinely repaired operations — but at $26.70 it does not clear the 15% hurdle on TTM owner's earnings of $2.25/share (weighted IRR 12.2%, IV@15% $20.45); it clears 15% only below ~$20.45, or ~$16–17 with a margin of safety.
+- **Final tier: C** (weighted IRR 12.25% on the v5 final inputs; method range C to low-B)
+- Confidence: **Low** (wide scenario spread, high leverage, unhedged fuel — a single-variable swing moves the tier)
+- One-liner: Largest cruise operator, moat 5/10, with a genuine TTM cash recovery ($2.23/share OE) — but at $26.82 it does not clear 15% (12.2% weighted, IV@15 $20.72); it clears at $20.72, and with a margin of safety only in the mid-teens given $24.71B of net debt.

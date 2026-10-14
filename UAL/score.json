@@ -1,1 +1,71 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":7.33,"base_source":"TTM owner's earnings from EDGAR 10-Q YTD (filed 2026-07-16): TTM OCF = FY2025 $8,431M - H1 2025 $5,927M + H1 2026 $6,409M = $8,913M; TTM capex = FY $5,874M - H1'25 $2,520M + H1'26 $3,015M = $6,369M; TTM OE pre-SBC $2,544M, less $148M FY2025 AllocatedShareBasedCompensationExpense (the engine's ShareBasedCompensation tag is stale since 2013 and reads $0) = $2,396M / 326.7M H1 2026 diluted shares = $7.33/share. Engine median base was $7.78 pre-SBC.","base_year":"TTM Q2 2026","cap_years":7.2,"confidence":"low","engine_version":4,"fragility_flags":["STALE_FY: latest fiscal year ended 9 months ago — check TTM/quarterly OE and consider --base-oe-ps override","HIGH_NET_DEBT: net debt is 6.4x normalized OE — levered OE can vanish fast; stress the bear cases","BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs — check for divestitures, big M&A, or restatements before trusting any CAGR","OE_VOLATILE: OE/share range over the last 5 yrs spans >3x — normalized base helps but the business is cyclical; widen bear weight","NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 — find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"],"implied_irr":0.1009,"implied_irr_base_case":0.1023,"in_scope_under_40b":true,"iv_at_12":82.43,"iv_at_15":62.35,"market_cap_b":34.88,"moat_justification":"Irreplicable hub geography (Newark, San Francisco, Denver, Houston, O'Hare fortresses; largest U.S. carrier across Atlantic and Pacific), MileagePlus loyalty economics with cash-up-front co-brand sales, scale/upgauging unit-cost advantage and a premium mix compounding at +14-16% — against a price-transparent commodity seat product, union labor and fuel capturing the economics each cycle, negative OE in 2 of the last 5 years, and 6.4x net debt / normalized OE.","moat_score":4,"name":"United Airlines Holdings, Inc.","one_liner":"Best-network U.S. airline, moat 4/10 — executing well (record revenue, premium/loyalty compounding, guidance raised into a fuel shock), but on TTM SBC-adjusted owner's earnings of $7.33/share the $103.45 price yields only a 10.1% weighted IRR (IV@15% $62.35) because cyclical OE levered 6.4x must carry a heavy fleet-capex cycle; it clears 15% only at ~$62, ~$50 with a margin of safety.","price":103.45,"scenarios":{"base":{"irr":0.1023,"iv_at_15":63.64,"prob":0.3},"bear":{"irr":0.0835,"iv_at_15":49.1,"prob":0.3},"bull":{"irr":0.1283,"iv_at_15":84.67,"prob":0.17},"super_bear":{"irr":0.0615,"iv_at_15":32.37,"prob":0.15},"super_bull":{"irr":0.1639,"iv_at_15":116.04,"prob":0.08}},"sector":"Consumer Discretionary / Airlines (passenger)","ticker":"UAL","tier_by_numbers":"C","tier_final":"C","upside_at_15_pct":-39.7}
+{
+ "ticker": "UAL",
+ "name": "United Airlines Holdings, Inc.",
+ "sector": "Consumer Discretionary / Airlines (passenger)",
+ "price": 103.5,
+ "market_cap_b": 34.0,
+ "engine_version": 5,
+ "base_oe_per_share": 7.333333333333333,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Irreplicable hub geography (Newark, San Francisco, Denver, Houston, O'Hare fortresses; largest U.S. carrier across Atlantic and Pacific), MileagePlus loyalty economics with cash-up-front co-brand sales, scale/upgauging unit-cost advantage and a premium mix compounding at double digits \u2014 against a price-transparent commodity seat product, union labor and fuel capturing the economics each cycle, negative OE in 2 of the last 5 years, and 6.4x net debt / normalized OE.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 6.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 32.38,
+   "irr": 0.0615
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 49.12,
+   "irr": 0.0835
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 63.67,
+   "irr": 0.1023
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 84.71,
+   "irr": 0.1283
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 116.09,
+   "irr": 0.1638
+  }
+ },
+ "iv_at_15": 62.38,
+ "iv_at_12": 82.47,
+ "implied_irr": 0.1009,
+ "implied_irr_base_case": 0.1023,
+ "upside_at_15_pct": -39.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Best-network U.S. airline, moat 4/10 \u2014 executing well (record revenue, premium/loyalty compounding, guidance raised into a fuel shock), but on normalized SBC-adjusted owner's earnings of $7.33/share the $103.50 price yields only a 10.1% weighted IRR (IV@15% $62.38) because cyclical OE levered 6.4x must carry a heavy fleet-capex cycle; it clears 15% only at ~$62.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Irreplicable fortress hubs (Newark, San Francisco, Denver, Houston, O'Hare) with slot/gate constraints; largest U.S. carrier on Atlantic and Pacific",
+  "MileagePlus loyalty economy \u2014 high-margin, cash-up-front co-brand sales; loyalty revenue +11% in Q2 2026",
+  "Scale and premium mix \u2014 largest mainline fleet, upgauging lowers unit cost; premium revenue +16.4% in Q2 2026",
+  "Star Alliance feed and corporate contracts filling the international network"
+ ],
+ "moat_against": [
+  "Price-transparent commodity seat product \u2014 fare premium re-won daily vs Delta, American, ULCCs",
+  "Economics leak to inputs \u2014 union labor captures gains each contract cycle; unhedged fuel (Q2 2026 fuel +84% YoY erased a +16% revenue quarter's profit growth)",
+  "Poor through-cycle returns \u2014 OE negative in 2 of the last 5 years; net debt 6.36x normalized OE",
+  "Regulators, not United, set the capacity ceilings binding at Newark and O'Hare"
+ ]
+}

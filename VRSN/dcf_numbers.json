@@ -1,0 +1,159 @@
+{
+ "ticker": "VRSN",
+ "name": "VERISIGN INC/CA",
+ "cik": 1014473,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 295.38,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 93800000,
+ "market_cap_est": 27706644000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.05541136509122779,
+ "rev_cagr_3y": 0.05149234430541738,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 998600000,
+ "base_oe_per_share": 10.845733041575492,
+ "base_oe_latest_per_share": 10.646055437100213,
+ "base_oe_normalized_per_share": 8.283095723014256,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.05541136509122779,
+  "rev_cagr_3y": 0.05149234430541738,
+  "rev_yoy_latest": 0.06369590342879161,
+  "oe_ps_cagr_2y": 0.21330277299516465
+ },
+ "g_blend": 0.0595536342600097,
+ "share_cagr": -0.04589168107077124,
+ "share_count_adj": 0.04589168107077124,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.10544531533078094,
+ "moat_score": 9.0,
+ "cap_years": 13.7,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 9.0,
+  "probs": [
+   0.1,
+   0.2,
+   0.4,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.1,
+   -0.05,
+   -0.02,
+   0.0,
+   0.03
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 10.845733041575492,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0054,
+   "oe_mult": 0.75,
+   "iv_at_10": 98.76266005675734,
+   "iv_at_12": 78.5766527782672,
+   "iv_at_15": 60.306282811771524,
+   "irr": 0.04944354884480895
+  },
+  "bear": {
+   "prob": 0.2,
+   "g_start": 0.0554,
+   "oe_mult": 0.9,
+   "iv_at_10": 160.55020636056645,
+   "iv_at_12": 125.28840999866061,
+   "iv_at_15": 93.81058071180766,
+   "irr": 0.06671392586718389
+  },
+  "base": {
+   "prob": 0.4,
+   "g_start": 0.0854,
+   "oe_mult": 1.0,
+   "iv_at_10": 214.28853310893578,
+   "iv_at_12": 165.4193253342443,
+   "iv_at_15": 122.11334719214756,
+   "irr": 0.08075046070534475
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.1054,
+   "oe_mult": 1.1,
+   "iv_at_10": 266.43730401010873,
+   "iv_at_12": 204.2603391482926,
+   "iv_at_15": 149.41138419463087,
+   "irr": 0.09336593136540658
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1354,
+   "oe_mult": 1.25,
+   "iv_at_10": 363.89797569962803,
+   "iv_at_12": 276.241739411072,
+   "iv_at_15": 199.40526820129384,
+   "irr": 0.11473079690395338
+  }
+ },
+ "weighted": {
+  "iv_at_10": 217.3789788933479,
+  "iv_at_12": 167.55931918202228,
+  "iv_at_15": 123.46088695945326,
+  "irr": 0.08157807978857623
+ },
+ "implied_irr_weighted": 0.08157807978857623,
+ "implied_irr_base": 0.08075046070534475,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5820269247767172,
+ "upside_at_12": -0.432733024639372,
+ "iv_at_15": 123.46088695945326,
+ "iv_at_12": 167.55931918202228,
+ "diagnostics": {
+  "oe_yield": 0.03671789911834076,
+  "tv_share_at_15": 0.2123236604811194,
+  "scenario_spread_iv15": 3.3065421860551285,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.6%/yr \u2014 already credited via the growth adjustment"
+ ],
+ "content_hash": "4bbe398e7374fee847132a5ba976f602a8b6356f62c98212c9432938c7313590"
+}

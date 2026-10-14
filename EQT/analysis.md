@@ -1,0 +1,63 @@
+# EQT — EQT Corporation
+v5 run, 2026-10-14. In scope (market cap $33.741B at $54.80, nasdaq_quote_api).
+
+All figures below are copied from key_numbers.md, dcf_numbers.json, ttm.py output, or financials_history.csv — none are recomputed.
+
+## What it is
+The largest US natural gas producer: Appalachian Basin (Marcellus/Utica) upstream, vertically integrated since reacquiring Equitrans Midstream in an all-stock deal in 2024 — which brought back its gathering/transmission midstream and the Mountain Valley Pipeline — plus marketing. Revenue is overwhelmingly commodity gas sales at Henry Hub / regional indices; the midstream arm earns volume-linked fees. This is a cost-curve business, not a pricing-power business: whoever produces cheapest survives the price cycle.
+
+## Owner's earnings
+**FY2025 (10-K via EDGAR, from financials_history.csv):** operating cash flow $5,125,952,000; capex $2,288,425,000 (tag: PaymentsToAcquirePropertyPlantAndEquipment); SBC $60,781,000 (always a real cost).
+- **Conservative owner's earnings FY2025: $2,776,746,000 = $4.51/share** (key_numbers.md: latest FY OE/share $4.51)
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): $1,916,415,000 — below the conservative figure, mainly because ΔNWC and the min(capex, D&A) cap bite in a heavy-drilling year; the OCF-based conservative figure is the cleaner series for an E&P (net income carries huge non-cash DD&A and derivative marks — see NI_OCF_DIVERGENCE below).
+- OE positive 5 of the last 5 fiscal years, but wildly uneven in size: conservative OE totals ran $579,151,000 (2021) → $2,019,916,000 (2022) → $1,109,979,000 (2023) → $414,920,000 (2024) → $2,776,746,000 (2025) in financials_history.csv. That is the gas price cycle, not execution variance.
+- Balance sheet: net debt $7.690B (key_numbers.md). Management commentary through 2026 has deleveraging toward a ~$5B net-debt target as the first call on free cash flow, with buybacks framed as a down-cycle tool after that.
+
+**Base used = TTM owner's earnings through Q2 2026, from ttm.py (filing-direct, no hand math):**
+- OCF: FY $5,125,952,000 − prior YTD $2,982,866,000 + current YTD $4,103,059,000 = **TTM $6,246,145,000**
+- Capex: FY $2,288,425,000 − prior YTD $1,049,289,000 + current YTD $1,248,676,000 = **TTM $2,487,812,000**
+- SBC: FY $60,781,000 − prior YTD $28,535,000 + current YTD $42,381,000 = **TTM $74,627,000**
+- Shares (current-YTD weighted diluted): **629,070,000**
+- **TTM OE total $3,683,706,000 → base OE/share $5.86** (base_source: ttm_json)
+- The engine's normalized base (3-yr median) is $2.69/share. Neither is a clean mid-cycle number — see BASE_DIVERGENCE in Flags. The TTM base was used because STALE_FY requires a current base and the median is distorted by the 2024 trough and the pre-Equitrans share count; the price-spike embedded in the TTM base is then handled by recalibrating growth to ~zero (below), not by pretending the spike is a growth rate.
+
+## Moat: 4/10 — weak-to-narrow, cost advantage only
+Justification: a real structural cost advantage — largest US gas producer, core Marcellus/Utica acreage, owned midstream after the Equitrans reacquisition, combo-development and compression synergies that kept free cash flow positive in a $2.89/MMBtu quarter — but the product is a pure commodity: no pricing power, depleting reserves, and earnings set by the gas market.
+- FOR: Lowest-cost Appalachian scale: largest US gas producer, core Marcellus/Utica position; Owned midstream (Equitrans + Mountain Valley Pipeline) cuts gathering/transport cost and basis exposure; Combo-development + compression synergies: FCF-positive at $2.89/MMBtu in Q2 2026; Large proved reserve base and long drilling inventory in the core of the basin.
+- AGAINST: Pure commodity product — no pricing power; OE is set by gas prices, not the company; Reserves deplete: ~$2B+/yr maintenance capex just to hold production flat; Appalachian basis/takeaway constraints and pipeline permitting/regulatory risk; Hedging is light — earnings fully exposed to price swings.
+- A 4 gives CAP = 7.2 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 7.2 years, 15-year projection.
+
+## DCF — v5 final run (2026-10-14)
+Growth recalibration (written reason): the engine's blended growth is 28.11% and g_base 23.11%, but every component is a commodity-price or M&A artifact, not organic per-share growth: latest rev YoY +63.92% is the 2025-26 gas-price recovery plus a full year of Equitrans/Olympus consolidation; rev CAGR 3y is −10.64%; OE/share CAGR 2y 29.55% runs off the 2024 trough. Actual volume guidance is low-single-digit (2026 production outlook initiated at 2.275–2.375 Tcfe and raised modestly during the year; Q2 2026 production was 634 Bcfe). Meanwhile the TTM base itself embeds the Q1 2026 winter price spike (H1 2026 OCF of $4,103,059,000 vs $2,982,866,000 in H1 2025, per ttm.py inputs; Q2 2026 then printed free cash flow of only $330M at $2.89/MMBtu average gas). Scenario starts were therefore set via offsets (−0.3311 / −0.2811 / −0.2311 / −0.1811 / −0.1311 vs g_base) to **−10 / −5 / 0 / +5 / +10%**: the base case holds OE/share flat from a peak-price base, which already assumes strong prices persist. A base start at the engine's 23.11% would double-count the price spike. OE multipliers were widened to 0.45/0.70/1.00/1.12/1.30 (from the 0.75/0.90/1.00/1.10/1.25 defaults) because the filed record shows trough OE is a fraction of peak OE — FY2024 conservative OE was $414,920,000 against FY2025's $2,776,746,000. Probabilities 15/30/30/15/10 widen the bear weight per the OE_VOLATILE flag. Price $54.80.
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 15% | −10.0% | 0.45 | Gas collapses back to 2024-style trough; OE/share halves from the spiked base | $13.25 | 5.18% |
+| Bear | 30% | −5.0% | 0.70 | Prices normalize lower; TTM spike unwinds, volumes grow slowly | $25.12 | 7.98% |
+| Base | 30% | 0.0% | 1.00 | Flat OE/share from the TTM base: volume growth offsets price normalization | $43.61 | 12.40% |
+| Bull | 15% | 5.0% | 1.12 | LNG + power/data-center demand tightens the basin; differentials improve | $59.20 | 15.98% |
+| Super bull | 10% | 10.0% | 1.30 | Sustained high prices + contracted demand growth (LNG offtake, PJM-linked supply deals) | $83.06 | 20.96% |
+
+- **Probability-weighted: IV@15% $39.79 (−27.4% vs price), IV@12% $52.24 (−4.7%), IV@10% $66.07, weighted IRR 11.55%, base-case IRR 12.40%**
+- **Tier by numbers: C.** Diagnostics (key_numbers.md): OE yield 10.69%, terminal value 17.6% of IV@15%, scenario spread 6.27x, net debt 2.13x normalized OE, 9.4 months since FY end.
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (FY ended 9.4 months ago): resolved by construction — the base is the TTM figure from ttm.py through Q2 2026, quoted above.
+- **DILUTION** (share count +14.84%/yr, growth adjustment −5.00pp already applied): this is M&A consideration, not comp drip. Diluted shares went 413,224,000 (2023) → 514,593,000 (2024) → 615,717,000 (2025) in financials_history.csv — the 2024 step is the all-stock Equitrans reacquisition (0.3504 EQT shares per Equitrans share, ~$5.5B equity value at announcement), and the 2025 step coincides with further stock-funded consolidation (Olympus Energy). SBC itself is small: $49,834,000 (2023) → $158,344,000 (2024, the deal year) → $60,781,000 (2025), TTM $74,627,000 — roughly 1% of TTM OCF. The risk is not ongoing SBC dilution; it is that per-share OE now has to cover a much larger share count than in 2023 (615,717,000 vs 413,224,000 diluted shares), which the TTM base (629,070,000 current shares) already reflects.
+- **BASIS_BREAK_SUSPECT**: confirmed, two breaks. (1) Price: revenue swung from $12,114,168,000 (2022 price spike) to $5,044,768,000 (2023) to $8,644,211,000 (2025) — every revenue CAGR straddles the cycle and is unusable as an organic growth signal. (2) Perimeter: Equitrans consolidated from mid-2024 (plus Olympus in 2025), so pre-2024 figures are a smaller, upstream-only company. Growth inputs were therefore set from volume guidance and price normalization (see the recalibration note), not from any filed CAGR.
+- **OE_VOLATILE** (OE/share range >3x over 5 years): real and structural — it is the gas price cycle (OE totals in the history above). Handled by widening bear weight to 45% combined (15% super bear + 30% bear), widening the OE multipliers, and capping confidence at low.
+- **NI_OCF_DIVERGENCE** (2024, 2025): explained, and it does not contaminate the OE base. FY2024 net income was $230,577,000 vs OCF $2,826,973,000; FY2025 net income was $2,039,247,000 vs OCF $5,125,952,000 (financials_history.csv). The dominant reconciling item is non-cash depreciation, depletion & amortization — $2,162,350,000 in 2024 and $2,600,390,000 in 2025 — with derivative mark-to-market swings (large gains/losses by quarter in the earnings releases) and small impairments/lease expirations making up most of the rest. Owner's earnings here are built on OCF, so the divergence is a net-income-quality note, not an OE defect.
+- **BASE_DIVERGENCE** (latest FY $4.51 vs 3-yr median $2.69): both are distorted, in opposite directions. The median is dragged down by FY2024 — a trough-price year whose OE also landed on a share count already enlarged by the Equitrans deal before a full year of midstream contribution — and by FY2023's pre-deal perimeter. The TTM base ($5.86) is distorted upward by the Q1 2026 winter price spike. Resolution: use the TTM base (current perimeter, current share count) and neutralize the spike through a 0% base growth start and widened bear scenarios, rather than using a stale median with a fictional 23.11% growth rate. The preliminary median-base run is documented under Thoughts as the other end of the method range.
+- **WIDE_SCENARIO_SPREAD** (6.27x): real — a commodity producer's outcome range IS this wide. Confidence is low, and the verdict is sized to the conservative end.
+- **HIGH_NET_DEBT** (preliminary run: net debt 4.6x normalized OE on the median base): on the final TTM base the diagnostic is 2.13x normalized OE, with net debt of $7.690B in absolute terms. Leverage amplifies the bear cases (a trough year like 2024 produced only $414,920,000 of OE against this debt load), but the trajectory is deleveraging — free cash flow is being directed at the ~$5B net-debt target management has described — and even the bear scenario's OE covers interest comfortably at recent prints. It is a reason the super-bear IV is $13.25, not a separate tier override.
+
+## My thoughts / overlay
+- Method range: the preliminary run (median base $2.69/share, default scenarios at the engine's 23.11% g_base) produced weighted IRR 14.95% and weighted IV@15% $54.51 — also Tier C, just under the B boundary. The final TTM-base run gives 11.55% / $39.79. Two very different input philosophies land in the same tier: at $54.80 the market is already paying for something close to peak-cycle earnings power, whichever base you choose. That agreement is the finding; the point estimate is not.
+- Quality is genuinely good for an E&P: FCF-positive at $2.89 gas, maintenance capex guided down ($2.040–2.190B range for 2026 per company guidance summaries) while production guidance rose, midstream compression synergies beating the deal model, and demand tailwinds are real (LNG offtake from 2028, PJM power-linked supply deals, Appalachian data-center demand). None of that creates pricing power — it lowers the cost floor, which is worth a premium multiple on mid-cycle OE, not a growth multiple on peak OE.
+- The honest mid-cycle question: if gas averages nearer Q2's $2.89 than Q1's spike, OE/share lands closer to the bear/base IVs ($25.12–$43.61) than to the price. The stock at $54.80 needs the bull case (15.98% IRR) to merely clear the 15% hurdle.
+- Margin of safety: the price that clears 15% on the weighted path is the weighted IV@15% itself, **$39.79**. Against the bear IV@15% of $25.12, a buyer wanting protection from a normal price downcycle needs to pay materially less than that.
+
+## Final verdict
+- **Final tier: C** (weighted IRR 11.55% on the final v5 inputs; the defensible method range tops out at 14.95%, still C)
+- Confidence: **Low** (commodity-price-driven base, 6.27x scenario spread, OE range >3x across the cycle — the tier is stable across methods, the IV is not)
+- One-liner: Low-cost integrated gas producer, moat 4/10 — does not clear 15% at $54.80 (weighted IRR 11.6%, weighted IV@15% $39.79) because the TTM base embeds a winter price spike and mid-cycle OE is far lower; clears 15% at ~$39.79.

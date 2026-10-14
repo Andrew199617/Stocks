@@ -1,57 +1,43 @@
 {
  "ticker": "ED",
  "name": "Consolidated Edison, Inc.",
- "sector": "Utilities / Regulated Electric & Gas",
- "price": 107.2,
- "market_cap_b": 38.45,
- "engine_version": 4,
- "base_oe_per_share": 5.79,
- "base_year": "TTM Q2 2026",
- "base_source": "TTM adjusted (maintenance-proxy) OE: reported adjusted EPS FY2025 $5.70 - H1 2025 $2.91 + H1 2026 $3.00 = $5.79; cross-checked as TTM GAAP NI $2,217M - $134M after-tax MVP gain = $2,083M / ~360M shares. Engine base rejected: post-2022 capex is tagged PaymentsForConstructionInProcess, engine read capex=$0 for 2023-25; with real capex (~$5.25B/yr incl. removal) conservative OE is negative every year (FY25 -$445M, TTM ~-$1,300M). See analysis.md.",
+ "sector": "Utilities",
+ "price": 107.82,
+ "market_cap_b": 38.68,
+ "engine_version": 5,
+ "base_oe_per_share": -3.4293118341491504,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "moat_score": 6,
- "moat_justification": "Legal monopoly delivery franchise in NYC metro with zero customer switching, multi-year rate plans and ~8.6-8.8% guided rate-base CAGR, 52 straight years of dividend increases \u2014 against a regulator that caps authorized ROE at ~9-10% (earned ~8.4%), rising NY political/affordability pressure (Chapter 58, 2026), long-run gas-network electrification/stranded-asset risk, and perpetual debt + equity issuance (shares 347M end-2024 to 370M mid-2026) diluting rate-base growth to mid-single-digit EPS growth.",
- "cap_years": 9.8,
+ "moat_justification": "Exclusive regulated electric/gas/steam delivery franchise in NYC and Westchester \u2014 no competitor can replicate the network, demand is essential and inelastic, rate base guided to compound ~8.7%/yr on a ~$38B capital program with costs recovered through rates. But the regulator caps the economics: 9.4% allowed ROE at CECONY is a ceiling, NY's affordability law caps rate-case bill increases below inflation, and perpetual debt/equity funding (up to $1.1B new equity in 2026, ~$1.2B in 2027, ~$3.3B in 2028-30) dilutes rate-base growth down to 6-7% guided EPS growth. Durable, but capped \u2014 6/10.",
+ "cap_years": null,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "HIGH_NET_DEBT: net debt is 11.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
  ],
- "scenarios": {
-  "super_bear": {
-   "prob": 0.1,
-   "iv_at_15": 36.11,
-   "irr": 0.066
-  },
-  "bear": {
-   "prob": 0.3,
-   "iv_at_15": 47.16,
-   "irr": 0.0805
-  },
-  "base": {
-   "prob": 0.35,
-   "iv_at_15": 56.73,
-   "irr": 0.0929
-  },
-  "bull": {
-   "prob": 0.2,
-   "iv_at_15": 65.11,
-   "irr": 0.1033
-  },
-  "super_bull": {
-   "prob": 0.05,
-   "iv_at_15": 74.24,
-   "irr": 0.114
-  }
- },
- "iv_at_15": 54.35,
- "iv_at_12": 72.31,
- "implied_irr": 0.0899,
- "implied_irr_base_case": 0.0929,
- "upside_at_15_pct": -49.3,
- "tier_by_numbers": "D",
- "tier_final": "D",
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
  "confidence": "low",
- "one_liner": "Regulated NYC monopoly utility, moat 6/10 \u2014 but the engine's Tier B is a capex-tag artifact (real capex ~$5.25B/yr makes conservative OE negative); on TTM adjusted earnings of $5.79/share the $107.20 price (18.5x) yields only a 9.0% weighted IRR with IV@15% of $54.35 \u2014 it clears the 15% hurdle only at ~$54, or ~$43 with a margin of safety.",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "Durable regulated NYC franchise, moat 6/10, but conservative owner's earnings are negative 0 of the last 5 years (capex consumes ~all of OCF) \u2014 Tier F on this screen; a bond-like ~6-7% guided EPS compounder that does not clear 15% on any reading.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive franchise monopoly for electric/gas/steam delivery in NYC and Westchester \u2014 network cannot be replicated",
+  "Essential service, inelastic demand",
+  "Rate base guided to compound ~8.7%/yr on a ~$38B capital program, capex recovered through rates plus allowed return",
+  "52 consecutive years of dividend increases through multiple cycles and regulators"
+ ],
+ "moat_against": [
+  "Regulator caps returns: 9.4% allowed ROE is a ceiling, no pricing power",
+  "NY affordability law caps rate-case bill increases below inflation; 2026-28 plan settled far below request",
+  "Perpetual external funding dilutes per-share growth (guided EPS CAGR 6-7% vs ~8.7% rate-base growth)",
+  "Heavy leverage (net debt $24,172M) and constant refinancing; gas/steam transition risk set by PSC policy"
+ ]
 }

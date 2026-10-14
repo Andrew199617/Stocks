@@ -1,0 +1,59 @@
+# NVT — nVent Electric plc
+v5 run, 2026-10-14. In scope (market cap $25.138B at $152.72, nasdaq_quote_api — under the $40B cutoff).
+
+All figures below are copied from dcf_numbers.json, ttm.py output, or financials_history.csv — none are recomputed.
+
+## What it is
+Electrical connection and protection equipment, spun out of Pentair in 2018: enclosures (HOFFMAN), electrical & fastening solutions (ERICO, CADDY), thermal/liquid cooling and systems protection (SCHROFF) — sold into infrastructure (data centers, power utilities), industrial and commercial verticals. The portfolio was transformed in early 2025: the Thermal Management business was sold to Brookfield for $1.7B (closed January 30, 2025; ~$1.4B expected net after-tax proceeds) and the Avail Electrical Products Group was acquired, tilting the mix toward electrical infrastructure. Infrastructure was nearly 60% of first-half 2026 sales per company reporting, and management expects 2026 data-center sales to exceed $2B, more than double the prior year.
+
+## Owner's earnings
+**FY2025 (10-K via EDGAR, from financials_history.csv):** revenue $3,893,100,000; operating cash flow $465,200,000; capex $93,300,000 (tag: PaymentsToAcquirePropertyPlantAndEquipment); SBC $37,500,000 (tag: ShareBasedCompensation — always a real cost).
+- **Conservative owner's earnings FY2025: $334,400,000 = $2.0316/share** (the engine's latest-FY figure).
+- Maintenance version FY2025: $685,500,000 (net income + D&A − min(capex, D&A) − ΔNWC, from financials_history.csv) — materially above the conservative figure because FY2025 net income includes the discontinued-operations gain on the Thermal sale (see FLAGS); the OCF-based conservative figure is the cleaner series and is what the engine uses.
+- OE positive 5 of the last 5 fiscal years. Net debt latest $1,559,800,000. Share count is drifting down (share CAGR −0.74%/yr, credited in the blend as a +0.74pp adjustment); a new $500M buyback authorization was announced in 2026 per company filings.
+
+**Base used = TTM owner's earnings through Q2 2026, from ttm.py (filing-direct, no hand math):**
+- OCF: FY $465,200,000 − prior YTD (H1 2025) $43,300,000 + current YTD (H1 2026) $268,700,000 = **TTM $690,600,000**
+- Capex: FY $93,300,000 − prior YTD $38,000,000 + current YTD $57,600,000 = **TTM $112,900,000**
+- SBC: FY $37,500,000 − prior YTD $20,100,000 + current YTD $23,100,000 = **TTM $40,500,000**
+- Shares (current-YTD weighted diluted): **164,100,000**
+- **TTM OE total $537,200,000 → base OE/share $3.2736** (base_source: ttm_json)
+- The engine's normalized base (median of last 3 FY OE/share) is $2.6201/share and the latest FY alone is $2.0316/share — both rejected as the base: FY2025 OCF was depressed by the portfolio transition (see NI_OCF_DIVERGENCE below) and Q2 2026 printed record results (sales $1.471B, +53% reported / +47% organic; adjusted EPS $1.45) that the FY-only figures cannot see. The TTM base is the most current filing-derived figure.
+
+## Moat: 6/10 — moderate-strong, narrow-to-solid
+Justification: Spec-in brands (HOFFMAN, ERICO, CADDY, SCHROFF) embedded in electrical codes and engineer specifications, a global distribution network, and early liquid-cooling scale with hyperscalers give real switching friction and pricing power; but Vertiv, Eaton, ABB, Schneider and Legrand are larger rivals selling into the same data-center budgets, enclosures/fastening are partly commoditized, and the current growth surge rides a single AI capex cycle.
+- FOR: Brands specified into electrical codes and engineer designs (HOFFMAN, ERICO, CADDY, SCHROFF) — spec-in creates switching friction; Global distribution and channel reach across infrastructure, industrial and commercial verticals; Liquid-cooling scale and hyperscaler relationships in data centers, with capacity being added ahead of demand; Broad, code-driven portfolio (enclosures, connection, fastening, protection) sold as systems, not parts.
+- AGAINST: Vertiv, Eaton, ABB, Schneider Electric and Legrand are larger and sell into the same data-center budgets; Enclosures and fastening are partly commoditized — limited pricing power outside specified niches; Hyperscaler customers have strong bargaining power and can dual-source; Growth is concentrated in one AI data-center capex cycle that can pause or reverse; Acquisition-led growth (Avail) adds integration and amortization load.
+- A 6 gives CAP = 9.8 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 9.8 years, 15-year projection.
+
+## DCF — v5 final run (2026-10-14)
+Growth calibration (written reasons): the engine's blended growth is 16.76% and g_base 17.50% — built from rev CAGR 5y 14.27%, rev CAGR 3y 19.26%, latest rev YoY +29.51%, and an OE/share CAGR 2y of −11.94% that reflects the depressed FY2025 base, not the run-rate. Actual recent prints are far hotter: Q2 2026 sales +53% reported / +47% organic, and management raised FY2026 guidance to reported sales growth of 37% to 39% (organic 32% to 34%) and adjusted EPS of $5.00 to $5.10. Scenario offsets were therefore recalibrated (−0.15 / −0.07 / 0.00 / +0.08 / +0.18 vs g_base) so the super-bull start (35.5%) is not below what the company is actually printing and guiding — the default +12pp super-bull start (29.5%) would have sat under the guided organic range with no valid reason. The base start stays at the engine blend (17.50%): a 17.5% OE growth rate *held for 2 years and then faded over a 9.8-year CAP* is a very different claim from one year of +32-34% guided organic sales growth off a step-change (new liquid-cooling capacity, Avail annualization, new products contributed more than 30 points of Q2 growth), and OE must also absorb rising capex (TTM capex $112,900,000 and growing with capacity additions). Probabilities were skewed one notch bullish (10/20/30/25/15 vs the default 10/25/30/25/10) on the guidance raise, the $2.6B entering-2026 backlog reported by the company, and the Q2 print. OE multipliers are the defaults 0.75/0.90/1.00/1.10/1.25. Price $152.72.
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 10% | 2.5% | 0.75 | AI capex pauses; the step-change unwinds to low-single-digit growth | $20.13 | 4.15% |
+| Bear | 20% | 10.5% | 0.90 | Boom normalizes fast; growth settles near the pre-2025 trend | $34.48 | 5.59% |
+| Base | 30% | 17.5% | 1.00 | Engine blend holds 2 years, fades over the 9.8-yr CAP | $52.22 | 7.34% |
+| Bull | 25% | 25.5% | 1.10 | Data-center demand stays hot; liquid cooling keeps share | $81.54 | 9.95% |
+| Super bull | 15% | 35.5% | 1.25 | Guided 2026 growth rates persist and compound | $142.43 | 14.36% |
+
+- **Probability-weighted: IV@15% $66.33 (−56.6% vs price), IV@12% $92.59, IV@10% $122.49, weighted IRR 8.70%, base-case IRR 7.34%**
+- **Tier by numbers: D.** Diagnostics (dcf_numbers.json): OE yield 2.14%, terminal value 24.0% of IV@15%, scenario spread 7.07x, net debt 2.89x normalized OE, 9.4 months since FY end.
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (latest FY ended 9.4 months ago): resolved by construction — the base is the TTM figure from ttm.py through Q2 2026, with all four legs quoted above.
+- **NI_OCF_DIVERGENCE** (2024, 2025): identified, two different one-offs. **2025:** reported net income of $710,200,000 includes $281,700,000 of income from discontinued operations (the gain on the Thermal Management sale, per the FY2025 earnings release reconciliation) — continuing-operations net income was $428,500,000, in line with OCF of $465,200,000; the sale gain is non-operating and its proceeds are investing cash flow, so NI overstates run-rate earnings while OCF does not contain the gain. **2024:** continuing net income of $240,800,000 (total $331,800,000 with $91,000,000 discontinued) was depressed by a $92.8M non-cash income-tax valuation allowance recorded in Q4 2024 against the tax benefit of statutory losses at a foreign holding company, plus an $8,800,000 impairment of equity investments (both per the Q4 2024 release reconciliation, Appendix) — while OCF of $643,100,000 also carried large non-cash add-backs (amortization $94,700,000, deferred income taxes $85,300,000 per the FY2025 release cash-flow statement). In both years the OCF-based conservative OE is the clean series; the divergence does not contaminate the base, but it does explain why FY2025 OE/share ($2.0316) dipped even as revenue grew +29.51% — cash taxes and working capital around the divestiture/acquisition transition — which is exactly why the TTM base was used over the FY or median bases.
+- **WIDE_SCENARIO_SPREAD** (super-bull IV 7.07x super-bear IV): real — the outcome genuinely hinges on how long the AI data-center capex boom lasts. Confidence is capped at medium; the verdict does not depend on resolving the spread, because even the super-bull case fails the hurdle (below).
+- **LOW_OE_YIELD** (preliminary run, 1.72% on the median base): improved to 2.14% on the TTM base but still low — the valuation rests almost entirely on growth, which is precisely what the scenario table stresses. It no longer fires as a flag on the final run, but the fragility it names is unchanged.
+- **HIGH_NET_DEBT** (preliminary run, 3.62x normalized OE): 2.89x normalized OE on the final run's diagnostics, net debt $1,559,800,000 — down after the Thermal proceeds were applied to the balance sheet (long-term debt $1,546,000,000 at FY2025 vs $2,117,500,000 at FY2024, per the FY2025 release balance sheet). Leverage is manageable for an investment-grade-style industrial but leaves no cushion in the bear cases, where IV@15% falls to $34.48 (bear) / $20.13 (super bear).
+
+## My thoughts / overlay
+- The method range here is unusually one-sided. On the preliminary run's median base ($2.6201/share) with default scenarios the weighted IRR was 6.46% (IV@15% $42.49); on the TTM base with bullishly recalibrated scenarios it is 8.70% (IV@15% $66.33). Every defensible input set lands in Tier D — the range spans D to D.
+- The decisive fact: **even the super-bull scenario — 35.5% starting OE growth, 1.25x OE multiplier, 15% probability — produces only a 14.36% IRR and an IV@15% of $142.43, below the $152.72 price.** The market is pricing nVent as if the super-bull path were the base case. That may prove right on earnings momentum (guidance was just raised sharply), but on owner's-earnings math there is no margin of safety at all: the price that clears a 15% weighted return is the weighted IV@15% itself, **$66.33**, and a buyer wanting a margin of safety below the weighted case would need to pay less than that.
+- Quality is not the problem: OE positive 5/5 years, SBC is small ($40,500,000 TTM against OCF of $690,600,000), share count shrinking, net debt falling. The problem is purely the entry price after a ~50% one-year run (per market data around the Q2 print).
+- Risks to this verdict (i.e., what would make it wrong): the data-center supercycle lasting long enough that "super bull" becomes base — liquid-cooling capacity additions (Blaine, Blaine 2 in H1 2027) and a >$2B 2026 data-center sales target say demand visibility is real; further accretive M&A funded by the remaining Thermal proceeds; or sustained operating leverage pushing OE growth above the 35.5% super-bull start for years. Those are momentum arguments, not owner's-earnings-at-this-price arguments.
+
+## Final verdict
+- **Final tier: D** (weighted IRR 8.70% on the v5 final inputs; no tier override — the numbers and the overlay agree, and even the super-bull case at 14.36% does not clear 15%)
+- Confidence: **Medium** (capped by the 7.07x scenario spread; the D conclusion itself is robust across the median-base and TTM-base methods)
+- One-liner: Good business, moat 6/10, riding the AI data-center boom — but at $152.72 even the super-bull case returns only 14.4%; weighted IRR 8.7%, IV@15% $66.33. It clears 15% only at or below $66.33.

@@ -1,0 +1,44 @@
+{
+ "ticker": "SMCI",
+ "name": "Super Micro Computer, Inc.",
+ "sector": "Technology Hardware, Storage and Peripherals",
+ "price": 35.83,
+ "market_cap_b": 24.99,
+ "engine_version": 5,
+ "base_oe_per_share": -4.719383671069807,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Speed-to-market and rack-scale/liquid-cooling integration are real but replicable; economics prove a weak moat \u2014 TTM gross margin ~10.8% (down from ~18% three years ago) against hyperscaler customers with overwhelming bargaining power, single-source Nvidia GPU dependence, and Dell/HPE selling the same capability. No proprietary silicon, software, or switching costs.",
+ "cap_years": null,
+ "fragility_flags": [
+  "DILUTION: share count growing 7.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "AI rack assembler, weak 3/10 moat, whose hypergrowth consumes cash \u2014 FY2026 net income $2.23B but owner's earnings \u2212$7.38B (working-capital build); Tier F, no hurdle-clearing price exists on filed numbers until cash conversion is proven.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "First-mover in direct liquid cooling and rack-scale integration",
+  "Building-block architecture: fast customization, time-to-first-deployment",
+  "Scale and early Nvidia allocation relationship",
+  "DCBBS push into higher-margin full data-center solutions"
+ ],
+ "moat_against": [
+  "Commodity assembly economics; Dell/HPE compete for the same racks",
+  "Extreme customer concentration (one customer 63% of revenue in Q2 FY2026 per press)",
+  "Total dependence on Nvidia GPU supply",
+  "No switching costs; customers multi-source",
+  "Thin, falling gross margin through the strongest demand cycle in industry history"
+ ]
+}

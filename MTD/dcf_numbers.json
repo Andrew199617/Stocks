@@ -1,0 +1,160 @@
+{
+ "ticker": "MTD",
+ "name": "Mettler-Toledo International Inc.",
+ "cik": 1037646,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 1613.91,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 20671708,
+ "market_cap_est": 33362276258.280003,
+ "net_debt_latest": 2152172000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.05470380135159503,
+ "rev_cagr_3y": 0.008989796359085922,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 826136000,
+ "base_oe_per_share": 41.53453674517068,
+ "base_oe_latest_per_share": 39.96457380299683,
+ "base_oe_normalized_per_share": 39.60804930771078,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.05470380135159503,
+  "rev_cagr_3y": 0.008989796359085922,
+  "rev_yoy_latest": 0.03977883260367521,
+  "oe_ps_cagr_2y": 0.020810071366839766
+ },
+ "g_blend": 0.030294451985257487,
+ "share_cagr": -0.03097118464957438,
+ "share_count_adj": 0.03097118464957438,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.061265636634831866,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 41.53453674517068,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0587,
+   "oe_mult": 0.75,
+   "iv_at_10": 271.0805799729638,
+   "iv_at_12": 219.73080443531938,
+   "iv_at_15": 172.69836256041768,
+   "irr": 0.036221119336240434
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0113,
+   "oe_mult": 0.9,
+   "iv_at_10": 474.40793930026257,
+   "iv_at_12": 376.0656404010773,
+   "iv_at_15": 287.3280095673176,
+   "irr": 0.04674523784678146
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0613,
+   "oe_mult": 1.0,
+   "iv_at_10": 690.0371457856447,
+   "iv_at_12": 539.175359669905,
+   "iv_at_15": 404.262375293058,
+   "irr": 0.057907937599800285
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1113,
+   "oe_mult": 1.1,
+   "iv_at_10": 992.3035556231054,
+   "iv_at_12": 765.2614838814404,
+   "iv_at_15": 563.799916068932,
+   "irr": 0.07279931899333572
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1813,
+   "oe_mult": 1.25,
+   "iv_at_10": 1634.6965274231366,
+   "iv_at_12": 1240.3425770777915,
+   "iv_at_15": 893.6685214996314,
+   "irr": 0.10083485180883278
+  }
+ },
+ "weighted": {
+  "iv_at_10": 764.2667282061454,
+  "iv_at_12": 593.0917271229121,
+  "iv_at_15": 440.6973824029848,
+  "irr": 0.06190986660033382
+ },
+ "implied_irr_weighted": 0.06190986660033382,
+ "implied_irr_base": 0.057907937599800285,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.726938068167999,
+ "upside_at_12": -0.6325125148720114,
+ "iv_at_15": 440.6973824029848,
+ "iv_at_12": 593.0917271229121,
+ "diagnostics": {
+  "oe_yield": 0.025735348777299032,
+  "tv_share_at_15": 0.20158236498312665,
+  "scenario_spread_iv15": 5.174736507342308,
+  "net_debt_to_normalized_oe": 2.5066358360167706,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.1%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "6fcacf6d2f4cae245d24f295640a89ec5e49a61aefe172e99456dfd84b631246"
+}

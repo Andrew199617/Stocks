@@ -1,0 +1,101 @@
+{
+ "ticker": "HSY",
+ "cik": 47111,
+ "entity": "HERSHEY CO",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-28",
+ "inputs": {
+  "ocf": {
+   "fy": 2277367000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 508898000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 888122000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2656591000
+  },
+  "capex": {
+   "fy": 454622000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 230615000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 204427000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 428434000
+  },
+  "sbc": {
+   "fy": 65460000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 31003000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 34847000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 69304000
+  },
+  "shares_diluted": {
+   "fy": 224837000,
+   "fy_period": [
+    "2014-01-01",
+    "2014-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 225293000,
+   "ytd_prior_period": [
+    "2014-01-01",
+    "2014-09-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 221322000,
+   "ytd_current_period": [
+    "2015-01-01",
+    "2015-10-04"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2656591000,
+ "ttm_capex": 428434000,
+ "ttm_sbc": 69304000,
+ "ttm_shares_diluted": 221322000,
+ "ttm_oe_total": 2158853000,
+ "ttm_oe_per_share": 9.754353385564924,
+ "warnings": [],
+ "overrides_used": []
+}

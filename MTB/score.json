@@ -1,0 +1,92 @@
+{
+ "ticker": "MTB",
+ "name": "M&T Bank Corporation",
+ "sector": "Finance / Regional banking",
+ "price": 215.425,
+ "market_cap_b": 34.21,
+ "engine_version": 5,
+ "base_oe_per_share": 20.02761192691804,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate regional-bank moat: a sticky low-cost core deposit franchise in the Northeast/Mid-Atlantic, disciplined conservative underwriting (nonaccruals 0.84% of loans at Q2 2026, falling charge-offs), and through-cycle returns (FY2025 ROA 1.35%, common ROE 10.27%) \u2014 against a commodity banking product with no structural pricing power, full exposure to the credit and rate cycle (CRE book in deliberate runoff), regulatory capital limits on capital return (CET1 down to 10.19% at Q2 2026 from 10.99% a year earlier as buybacks and loan growth consume capital), and national-scale competitors.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $143M for FY2025, with $216M for FY2024 in the same statement (corroborated by the filer's 10-Q cash-flow statements: $87M for the nine months ended Sep 30, 2025 and $131M for the nine months ended Sep 30, 2024, with Q4 adding the remainder in each year)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 72.94,
+   "irr": 0.0621
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 93.3,
+   "irr": 0.0743
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 157.65,
+   "irr": 0.1162
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 213.46,
+   "irr": 0.1489
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 298.08,
+   "irr": 0.1931
+  }
+ },
+ "iv_at_15": 161.09,
+ "iv_at_12": 212.12,
+ "implied_irr": 0.1185,
+ "implied_irr_base_case": 0.1162,
+ "upside_at_15_pct": -25.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Disciplined regional bank, moat 5/10 \u2014 normalized OE $20.03/sh is a 9.3% yield at $215.43, but weighted IRR is only 11.85% (IV@15% $161.09), so it clears 15% only below ~$161; bank-model mismatch, confidence low.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Sticky low-cost core deposit base \u2014 $163.5B deposits funding a Northeast/Mid-Atlantic relationship franchise",
+  "Disciplined underwriting culture \u2014 nonaccruals 0.84% of loans and net charge-offs 0.23% annualized at Q2 2026, improving",
+  "Through-cycle profitability \u2014 OE positive 5 of last 5 FY, FY2025 net income $2,851M, ROA 1.35%",
+  "Scale in its footprint \u2014 ~$216B assets, largest regional headquartered in Buffalo; Wilmington Trust wealth arm adds fee income",
+  "Consistent capital return \u2014 diluted shares down from 167.3M (FY2024) to 158.8M (FY2025), buybacks continuing in 2026"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 deposits and loans are fungible; no network effect or structural pricing power (NIM 3.70% is earned, not owned)",
+  "Credit-cycle exposure \u2014 commercial real estate book in deliberate runoff ($24.0B at Sep 2025 vs $28.7B a year earlier); a recession hits provisions first",
+  "Capital-constrained growth \u2014 CET1 fell to 10.19% at Q2 2026 from 10.99% a year earlier; buybacks compete with loan growth for capital",
+  "Rate sensitivity \u2014 earnings ride NIM and the yield curve; deposit repricing pressure is outside management control",
+  "Scale disadvantage vs national banks' technology and compliance budgets"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 143000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $143M for FY2025, with $216M for FY2024 in the same statement (corroborated by the filer's 10-Q cash-flow statements: $87M for the nine months ended Sep 30, 2025 and $131M for the nine months ended Sep 30, 2024, with Q4 adding the remainder in each year)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 20.8823,
+  "base_oe_with_override": 20.0276,
+  "base_oe_impact_pct": -4.093,
+  "weighted_irr_without_override": 0.1274,
+  "weighted_irr_with_override": 0.1185,
+  "weighted_irr_impact_pp": -0.881,
+  "unblocks_tier": true
+ }
+}

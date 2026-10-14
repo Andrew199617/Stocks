@@ -1,1 +1,42 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":-6.0624,"base_source":"TTM through Q2 2026 from EDGAR 10-Q YTD (OCF $265.809M = FY25 $211.339M - H1'25 -$65.910M + H1'26 -$11.440M; minus SBC TTM $633.445M and capex TTM $132.617M = -$500.253M / 82.518M H1'26 diluted shares); normalized 3-yr median was -$0.68 and latest FY -$6.79 — all bases negative, Tier F under every base — see analysis.md","base_year":"TTM Q2 2026","cap_years":11.1,"confidence":"medium","engine_version":4,"fragility_flags":[],"implied_irr":null,"implied_irr_base_case":null,"in_scope_under_40b":true,"iv_at_12":null,"iv_at_15":null,"market_cap_b":34.05,"moat_justification":"Strong: >90% U.S. TASER share and 60-80% body-camera share, bundled Officer Safety Plan contracts up to 10 years with evidence-archive switching costs, NRR 126% and $15.1B future contracted bookings (+40%), ARR +39% — but Motorola Solutions contests every renewal, customers are political municipal budgets, and GAAP returns on capital are still low-single-digit once SBC is counted, so the moat shows in retention, not yet in owner's earnings.","moat_score":7,"name":"Axon Enterprise, Inc.","one_liner":"Elite public-safety franchise, moat 7/10 — but SBC of $633M TTM is ~2.4x its pre-SBC free cash flow, so owner's earnings are negative in 4 of the last 5 years (-$6.06/share TTM) and it cannot clear the 15% hurdle at any price on an OE DCF; at $413.35 you pay ~$34B for a 2028 SBC-discipline promise, not for current owner's earnings.","price":413.35,"scenarios":{"base":{"irr":null,"iv_at_15":null,"prob":0.3},"bear":{"irr":null,"iv_at_15":null,"prob":0.25},"bull":{"irr":null,"iv_at_15":null,"prob":0.25},"super_bear":{"irr":null,"iv_at_15":null,"prob":0.1},"super_bull":{"irr":null,"iv_at_15":null,"prob":0.1}},"sector":"Industrials / Public safety technology","ticker":"AXON","tier_by_numbers":"F","tier_final":"F","upside_at_15_pct":null}
+{
+ "ticker": "AXON",
+ "name": "AXON ENTERPRISE, INC.",
+ "sector": "Industrials \u2014 public-safety technology",
+ "price": 417.9997,
+ "market_cap_b": 34.43,
+ "engine_version": 5,
+ "base_oe_per_share": -0.6756409277221925,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 8,
+ "moat_justification": "Dominant integrated public-safety ecosystem (TASER + body cameras + Evidence.com cloud) with high switching costs once an agency's evidence workflow and training are built around it; ARR ~$1.6B growing +39% at 126% net revenue retention and $15.1B future contracted bookings evidence the lock-in. Not 9-10: public-sector customers buy through budget cycles and competitive bidding, capping pricing power, and Motorola Solutions contests the same agencies.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 4.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "medium",
+ "one_liner": "Elite public-safety franchise, moat 8/10, growing ~33%/yr \u2014 but SBC ($634M in FY2025) exceeds OCF after capex, so conservative owner's earnings are negative on every basis (median -$0.68/sh, TTM -$6.06/sh) and it cannot clear 15% at $418; Tier F until SBC normalizes.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant TASER + body-camera installed base bundled with Evidence.com cloud \u2014 integrated ecosystem, not point products",
+  "High switching costs: evidence storage, chain-of-custody workflow, officer training, multi-year bundled contracts",
+  "Recurring-revenue engine compounding: ARR ~$1.6B (+39%), net revenue retention 126%, future contracted bookings $15.1B (+41%)",
+  "Brand/trust position in law enforcement; proven wallet-share expansion per agency (cameras to software to drones/AI)"
+ ],
+ "moat_against": [
+  "Public-sector customers: budget cycles, political scrutiny, open competitive bidding cap pricing power",
+  "Motorola Solutions and others contest the same agencies; no consumer-style network effect",
+  "Growth increasingly carried by newer lines (Dedrone, Platform Solutions, AI) with thinner, unproven moats"
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "ticker": "RJF",
+ "name": "Raymond James Financial, Inc.",
+ "sector": "Finance",
+ "price": 155.04,
+ "market_cap_b": 32.03,
+ "engine_version": 5,
+ "base_oe_per_share": 6.047212456052235,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate, durable wealth franchise: recurring fee-based revenue on a record $1.15T of Private Client Group fee-based assets, a decades-old advisor platform with consistent net new asset growth, diversification across wealth/capital markets/asset management/banking, ~19% returns on common equity and steady buybacks \u2014 against the structural portability of advisors (clients follow the advisor, and Morgan Stanley/Schwab/Fidelity/large RIAs recruit aggressively), revenue geared to equity-market levels via AUM-based fees, rate-sensitive bank/sweep income exposed to cash sorting, and cyclical capital-markets revenue. No network effect or hard switching-cost lock-in.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 35.45,
+   "irr": 0.0532
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 58.08,
+   "irr": 0.0743
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 80.57,
+   "irr": 0.0943
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 110.51,
+   "irr": 0.1185
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 170.57,
+   "irr": 0.1599
+  }
+ },
+ "iv_at_15": 80.54,
+ "iv_at_12": 109.92,
+ "implied_irr": 0.0947,
+ "implied_irr_base_case": 0.0943,
+ "upside_at_15_pct": -48.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified wealth/capital-markets franchise, moat 6/10 \u2014 earnings power is real and current (record fiscal Q3 2026, ROE 18.8%), but the OCF-based OE model fits a broker-dealer/bank poorly and even generous growth only gets a 9.47% weighted IRR at $155.04 (IV@15% $80.54); it clears the 15% hurdle only below ~$81.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Recurring fee-based revenue: record $1.15T PCG fee-based assets at Jun 30, 2026 \u2014 market appreciation converts to revenue without new sales",
+  "Advisor platform and brand trust since 1962; consistent net new assets ($21.7B domestic PCG in fiscal Q3 2026 alone)",
+  "Diversified across wealth, capital markets, asset management and banking \u2014 no single line carries the P&L",
+  "Disciplined capital return: share count CAGR \u22121.37%/yr, buybacks continuing ($400M in fiscal Q3 2026); strong regulatory capital (22.5% total capital ratio)"
+ ],
+ "moat_against": [
+  "Advisors can leave and take clients with them; rivals (MS, Schwab, Fidelity, large RIAs) recruit aggressively",
+  "Revenue geared to equity-market levels via AUM-based fees \u2014 a drawdown cuts the top line mechanically",
+  "Bank/sweep earnings are rate-sensitive; cash sorting already showed clients move balances for yield",
+  "Capital markets revenue is deal-cycle cyclical; no network effect or switching-cost lock-in"
+ ]
+}

@@ -1,0 +1,160 @@
+{
+ "ticker": "VMC",
+ "name": "VULCAN MATERIALS COMPANY",
+ "cik": 1396009,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 239.33,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 132700000,
+ "market_cap_est": 31759091000.0,
+ "net_debt_latest": 4178800000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.10334653627724788,
+ "rev_cagr_3y": 0.02773727740285281,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1072200000,
+ "base_oe_per_share": 8.016006097560975,
+ "base_oe_latest_per_share": 8.079879427279579,
+ "base_oe_normalized_per_share": 5.655146506386176,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.10334653627724788,
+  "rev_cagr_3y": 0.02773727740285281,
+  "rev_yoy_latest": 0.07056095555226016,
+  "oe_ps_cagr_2y": 0.34042899639118973
+ },
+ "g_blend": 0.08695374591475402,
+ "share_cagr": -0.0022500574666941553,
+ "share_count_adj": 0.0022500574666941553,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.08920380338144818,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.11,
+   -0.07,
+   -0.03,
+   0.0,
+   0.04
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 8.016006097560975,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0208,
+   "oe_mult": 0.75,
+   "iv_at_10": 64.18192708537268,
+   "iv_at_12": 51.38409083059449,
+   "iv_at_15": 39.76127932066217,
+   "irr": 0.04411715392816237
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0192,
+   "oe_mult": 0.9,
+   "iv_at_10": 95.56345996021194,
+   "iv_at_12": 75.57411179223227,
+   "iv_at_15": 57.564245056952664,
+   "irr": 0.05480562297882641
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0592,
+   "oe_mult": 1.0,
+   "iv_at_10": 131.7063599969309,
+   "iv_at_12": 102.97008227573815,
+   "iv_at_15": 77.26287156997883,
+   "irr": 0.06705043244943162
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0892,
+   "oe_mult": 1.1,
+   "iv_at_10": 170.1920734550293,
+   "iv_at_12": 131.99201485602,
+   "iv_at_15": 97.9834298781217,
+   "irr": 0.07943129865546694
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1292,
+   "oe_mult": 1.25,
+   "iv_at_10": 239.46890155695607,
+   "iv_at_12": 183.8681391074447,
+   "iv_at_15": 134.65766356553348,
+   "irr": 0.10003923227146544
+  }
+ },
+ "weighted": {
+  "iv_at_10": 136.31587421712246,
+  "iv_at_12": 106.30777933858843,
+  "iv_at_15": 79.5076744933818,
+  "irr": 0.06867640303294287
+ },
+ "implied_irr_weighted": 0.06867640303294287,
+ "implied_irr_base": 0.06705043244943162,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6677906050500071,
+ "upside_at_12": -0.5558108914946374,
+ "iv_at_15": 79.5076744933818,
+ "iv_at_12": 106.30777933858843,
+ "diagnostics": {
+  "oe_yield": 0.03349352817265272,
+  "tv_share_at_15": 0.19457972889513656,
+  "scenario_spread_iv15": 3.3866531929106687,
+  "net_debt_to_normalized_oe": 3.928462612546995,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASE_DIVERGENCE: latest FY OE/share 8.08 vs 3-yr median 5.66 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 3.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "0565a5e774919a32db7ecb94395a92b0ac59d8c5964908e335620593a36c1b1c"
+}

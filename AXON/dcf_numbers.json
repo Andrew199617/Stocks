@@ -2,27 +2,27 @@
  "ticker": "AXON",
  "name": "AXON ENTERPRISE, INC.",
  "cik": 1069183,
- "engine_version": 4,
+ "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 413.35,
+ "price": 417.9997,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 82370000,
- "market_cap_est": 34047639500.0,
+ "market_cap_est": 34430635289.0,
  "net_debt_latest": 609575000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.3248947566805145,
  "rev_cagr_3y": 0.3277867490000079,
  "oe_positive_years_of_last_5": "1/5",
  "base_oe_total_latest_fy": -559150000,
- "base_oe_per_share": -6.0624,
+ "base_oe_per_share": -0.6756409277221925,
  "base_oe_latest_per_share": -6.788272429282506,
  "base_oe_normalized_per_share": -0.6756409277221925,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.3248947566805145,
   "rev_cagr_3y": 0.3277867490000079,
   "rev_yoy_latest": 0.33469450081295493,
-  "oe_ps_cagr_3y": null
+  "oe_ps_cagr_2y": null
  },
  "g_blend": 0.3277867490000079,
  "share_cagr": 0.04328976500428361,
@@ -46,9 +46,44 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "tier_by_numbers": "F",
  "implied_irr_weighted": null,
  "implied_irr_base": null,
- "moat_score": 7.0,
- "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass."
+ "moat_score": 8.0,
+ "inputs": {
+  "moat": 8.0,
+  "probs": [
+   1.0
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 4.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "content_hash": "6779c24ec6b0e427d98f75ef02657fd9772ac1af90f61dccccb174e17fd5f37e"
 }

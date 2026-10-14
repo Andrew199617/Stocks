@@ -2,43 +2,22 @@
  "ticker": "DFTX",
  "name": "Definium Therapeutics, Inc.",
  "sector": "Health Care",
- "price": 35.2,
- "market_cap_b": 4.73,
- "engine_version": 4,
- "base_oe_per_share": -1.7873,
- "base_year": "TTM Q2 2026",
- "base_source": "TTM through Q2 2026 from EDGAR 10-Q YTD (OCF -$167.951M = FY25 -$131.560M - H1'25 -$59.018M + H1'26 -$95.409M; minus SBC TTM $28.188M from AllocatedShareBasedCompensationExpense \u2014 a tag the engine misses \u2014 and capex ~$0 = -$196.139M / 109.743M H1'26 diluted shares); engine normalized 3-yr median was -$1.47 and latest FY -$1.47 (-$1.70 SBC-corrected) \u2014 all bases negative, Tier F under every base \u2014 see analysis.md",
+ "price": 34.56,
+ "market_cap_b": 3.09,
+ "engine_version": 5,
+ "base_oe_per_share": -1.787256491895588,
+ "base_year": "2025",
+ "base_source": "ttm_json",
  "moat_score": 4,
- "moat_justification": "Weak-to-moderate and approval-contingent: most advanced LSD program (three positive Phase 3 trials across GAD and MDD, Breakthrough Therapy designation in both, pre-NDA meeting set for late 2026) plus ODT formulation/dosing IP and a ~6h supervised-session model, but the active molecule is a long-known off-patent Schedule I compound competitors can route around (COMPASS COMP360, Lilly/AtaiBeckley, AbbVie/Gilgamesh), no pricing power or payer coverage is proven, functional unblinding is a live criticism, DEA/state rescheduling sits between approval and revenue, and the pipeline is single-asset (DT402 only Phase 2a).",
- "cap_years": 7.2,
- "fragility_flags": [],
- "scenarios": {
-  "super_bear": {
-   "prob": 0.1,
-   "iv_at_15": null,
-   "irr": null
-  },
-  "bear": {
-   "prob": 0.25,
-   "iv_at_15": null,
-   "irr": null
-  },
-  "base": {
-   "prob": 0.3,
-   "iv_at_15": null,
-   "irr": null
-  },
-  "bull": {
-   "prob": 0.25,
-   "iv_at_15": null,
-   "irr": null
-  },
-  "super_bull": {
-   "prob": 0.1,
-   "iv_at_15": null,
-   "irr": null
-  }
- },
+ "moat_justification": "Weak-to-moderate and entirely contingent on approval: the most advanced LSD program in existence (three positive Phase 3 readouts across GAD and MDD, Breakthrough Therapy designation in both, pre-NDA meeting scheduled) plus ODT formulation/dosing IP, regulatory exclusivity if approved, supervised-delivery know-how, and a ~$1.1B cash pile that funds the path to an FDA decision \u2014 but the active molecule is lysergide, a long-known off-patent Schedule I compound, so the moat covers a formulation and a protocol, not the molecule; big-pharma-backed rivals (COMPASS, Lilly/AtaiBeckley, AbbVie/Gilgamesh) can route around it, no pricing power or payer coverage is demonstrated, functional unblinding is a live criticism, DEA/state rescheduling sits between approval and revenue, and the pipeline behind DT120 is a single Phase 2a asset.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 42.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-26, Consolidated Statements of Cash Flows: the investing-activities section lists ONLY Purchases of investments $(268,356) thousand and Maturity of investments $116,750 thousand (net $(151,606) thousand) for 2025, with both lines shown as zero for 2024 and no purchases-of-property-and-equipment line anywhere; the balance sheet carries no property and equipment asset line. Form 10-K for fiscal year ended December 31, 2024, filed 2025-03-06, Consolidated Statements of Cash Flows (2024/2023 comparative): the statement has NO investing-activities section at all \u2014 for 2023, operating $(64,365) thousand + financing $21,848 thousand + FX $79 thousand equals the reported net decrease in cash $(42,438) thousand, proving investing cash flow (and therefore capex) was $0 in FY2023; same reconciliation for 2024 (operating $(79,129) + financing $253,196 + FX $(30) = reported $174,037 increase).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
  "iv_at_15": null,
  "iv_at_12": null,
  "implied_irr": null,
@@ -47,7 +26,38 @@
  "tier_by_numbers": "F",
  "tier_final": "F",
  "confidence": "low",
- "one_liner": "Pre-revenue single-asset psychedelic biotech, moat 4/10 contingent on approval \u2014 owner's earnings are negative in all 6 years of history (-$1.79/share TTM) despite three positive Phase 3 DT120 trials in GAD/MDD and ~$1.05B net cash, so it cannot clear the 15% hurdle at any price on an OE DCF; the $35.20 price is an FDA-approval option, not an earnings stream.",
- "analysis_date": "2026-10-12",
- "in_scope_under_40b": true
+ "one_liner": "Pre-revenue single-asset psychedelic biotech, moat 4/10 contingent on approval \u2014 owner's earnings are negative in all 6 years of history (TTM -$1.79/share) despite three positive Phase 3 DT120 trials in GAD/MDD and ~$1.1B cash and investments, so it cannot clear the 15% hurdle at any price on an OE DCF; the $34.56 price is an FDA-approval option, not an earnings stream.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Execution/data lead in psychedelic psychiatry \u2014 three positive Phase 3 trials across GAD and MDD, Breakthrough Therapy designation in both",
+  "Formulation and dosing IP around the ODT lysergide product (Zydis fast-dissolve) plus regulatory exclusivity if approved",
+  "Delivery know-how: supervised single-dose model with ~6-hour discharge aimed at the existing interventional-psychiatry site base",
+  "Balance-sheet staying power \u2014 ~$1.1B cash and investments at Q2 2026 funds operations into 2030, so the lead does not die for lack of cash before the FDA decides"
+ ],
+ "moat_against": [
+  "Active molecule is lysergide \u2014 a long-known, off-patent Schedule I compound; the moat covers formulation and protocol, not the molecule",
+  "Big-pharma-backed rivals can route around it with differentiated compounds (COMPASS psilocybin, Lilly/AtaiBeckley, AbbVie/Gilgamesh)",
+  "Zero pricing power demonstrated \u2014 no approved product, no payer contracts; reimbursement for a supervised multi-hour session is unproven",
+  "Functional unblinding is a live scientific criticism of every psychedelic trial, pressable by payers and FDA reviewers",
+  "Single-asset concentration \u2014 DT402 is only Phase 2a; if DT120 stumbles at FDA there is no second leg"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-26, Consolidated Statements of Cash Flows: the investing-activities section lists ONLY Purchases of investments $(268,356) thousand and Maturity of investments $116,750 thousand (net $(151,606) thousand) for 2025, with both lines shown as zero for 2024 and no purchases-of-property-and-equipment line anywhere; the balance sheet carries no property and equipment asset line. Form 10-K for fiscal year ended December 31, 2024, filed 2025-03-06, Consolidated Statements of Cash Flows (2024/2023 comparative): the statement has NO investing-activities section at all \u2014 for 2023, operating $(64,365) thousand + financing $21,848 thousand + FX $79 thousand equals the reported net decrease in cash $(42,438) thousand, proving investing cash flow (and therefore capex) was $0 in FY2023; same reconciliation for 2024 (operating $(79,129) + financing $253,196 + FX $(30) = reported $174,037 increase)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": -1.7873,
+  "base_oe_with_override": -1.7873,
+  "base_oe_impact_pct": -0.0,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
 }

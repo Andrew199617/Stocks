@@ -1,0 +1,164 @@
+{
+ "ticker": "GFI",
+ "name": "Gold Fields Limited",
+ "cik": 1172724,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 35.285,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 771416491,
+ "market_cap_est": 27219430884.934998,
+ "net_debt_latest": 1380300000,
+ "latest_period_end": "2015-12-31",
+ "rev_cagr_5y": null,
+ "rev_cagr_3y": null,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 134600000,
+ "base_oe_per_share": 0.17448421387195884,
+ "base_oe_latest_per_share": 0.17448421387195884,
+ "base_oe_normalized_per_share": 0.17448421387195884,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": null,
+  "rev_cagr_3y": null,
+  "rev_yoy_latest": null,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.03,
+ "share_cagr": 0.018240966172629935,
+ "share_count_adj": -0.018240966172629935,
+ "used_tags": {
+  "revenue": null,
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAndAmortization",
+  "sbc": "AllocatedShareBasedCompensationExpense",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.011759033827370063,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 0.9916308042934348,
+   "iv_at_12": 0.8056066692206236,
+   "iv_at_15": 0.6354495880700451,
+   "irr": -0.038469171457187146
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0382,
+   "oe_mult": 0.9,
+   "iv_at_10": 1.5961212700123868,
+   "iv_at_12": 1.2774755445628156,
+   "iv_at_15": 0.9885325842835809,
+   "irr": -0.001478826746203421
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0118,
+   "oe_mult": 1.0,
+   "iv_at_10": 2.2422305881197917,
+   "iv_at_12": 1.7750345076767593,
+   "iv_at_15": 1.3539392241665704,
+   "irr": 0.025736532996000316
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0618,
+   "oe_mult": 1.1,
+   "iv_at_10": 3.108052020192535,
+   "iv_at_12": 2.4360010959511675,
+   "iv_at_15": 1.8334683926939281,
+   "irr": 0.031812045356904184
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1318,
+   "oe_mult": 1.25,
+   "iv_at_10": 4.851963442938831,
+   "iv_at_12": 3.7557482042225967,
+   "iv_at_15": 2.7792027843894664,
+   "irr": 0.03612146893817522
+  }
+ },
+ "weighted": {
+  "iv_at_10": 2.4330719237103944,
+  "iv_at_12": 1.9170149997758457,
+  "iv_at_15": 1.4531472487402994,
+  "irr": 0.030219249494869385
+ },
+ "implied_irr_weighted": 0.030219249494869385,
+ "implied_irr_base": 0.025736532996000316,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.9588168556400652,
+ "upside_at_12": -0.9456705398958242,
+ "iv_at_15": 1.4531472487402994,
+ "iv_at_12": 1.9170149997758457,
+ "diagnostics": {
+  "oe_yield": 0.004944996850558562,
+  "tv_share_at_15": 0.18061010950690062,
+  "scenario_spread_iv15": 4.3736007333489955,
+  "net_debt_to_normalized_oe": 10.254829123328381,
+  "months_since_fy_end": 129.43495400788436,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 129 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2013, 2014, 2015 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}",
+  "LOW_OE_YIELD: base OE yield 0.5% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 10.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "3afd9a9c1733a418fb1b290acdff2ff3f120c2fd7111e90078165c020ba6be0b"
+}

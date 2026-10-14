@@ -1,0 +1,40 @@
+{
+ "ticker": "RKT",
+ "name": "Rocket Companies, Inc.",
+ "sector": "Finance",
+ "price": 10.375,
+ "market_cap_b": 13.72,
+ "engine_version": 5,
+ "base_oe_per_share": -0.42264466114003496,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate brand scale, but finance sector and cyclical competition.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 12.5%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Finance name with negative TTM owner's earnings, no DCF support; F tier.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Brand scale",
+  "Tech platform"
+ ],
+ "moat_against": [
+  "Cyclical mortgage market",
+  "Competition"
+ ]
+}

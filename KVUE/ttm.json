@@ -1,0 +1,101 @@
+{
+ "ticker": "KVUE",
+ "cik": 1944048,
+ "entity": "Kenvue Inc.",
+ "fy_end": "2025-12-28",
+ "ytd_end": "2026-06-28",
+ "inputs": {
+  "ocf": {
+   "fy": 2197000000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1049000000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1177000000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2325000000
+  },
+  "capex": {
+   "fy": 475000000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 267000000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 203000000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 411000000
+  },
+  "sbc": {
+   "fy": 136000000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 81000000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 61000000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 116000000
+  },
+  "shares_diluted": {
+   "fy": 1924000000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 1927000000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 1922000000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2325000000,
+ "ttm_capex": 411000000,
+ "ttm_sbc": 116000000,
+ "ttm_shares_diluted": 1922000000,
+ "ttm_oe_total": 1798000000,
+ "ttm_oe_per_share": 0.9354838709677419,
+ "warnings": [],
+ "overrides_used": []
+}
