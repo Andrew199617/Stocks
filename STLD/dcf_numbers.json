@@ -1,0 +1,128 @@
+{
+ "ticker": "STLD",
+ "name": "Steel Dynamics, Inc.",
+ "cik": 1022671,
+ "engine_version": 4,
+ "as_of": "2026-10-14",
+ "price": 240.63,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 148404000,
+ "market_cap_est": 35710454520.0,
+ "net_debt_latest": 3441285000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.13649424324978532,
+ "rev_cagr_3y": -0.06531772921552725,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 432526000,
+ "base_oe_per_share": 6.11,
+ "base_oe_latest_per_share": 2.914517128918358,
+ "base_oe_normalized_per_share": 2.914517128918358,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.13649424324978532,
+  "rev_cagr_3y": -0.06531772921552725,
+  "rev_yoy_latest": 0.03627006012979184,
+  "oe_ps_cagr_3y": -0.479134940946524
+ },
+ "g_blend": -0.014523834542867708,
+ "share_cagr": -0.07018917912991862,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.035476165457132294,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0795,
+   "oe_mult": 0.75,
+   "iv_at_10": 38.292025385587934,
+   "iv_at_12": 30.949659767492918,
+   "iv_at_15": 24.254033617848624,
+   "irr": 0.03581401309058503
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0005,
+   "oe_mult": 0.9,
+   "iv_at_10": 67.0414563504976,
+   "iv_at_12": 53.1993648349235,
+   "iv_at_15": 40.706997301366656,
+   "irr": 0.0455423074674603
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0405,
+   "oe_mult": 1.0,
+   "iv_at_10": 89.70649154708441,
+   "iv_at_12": 70.60070646405839,
+   "iv_at_15": 53.43396322140131,
+   "irr": 0.05320152419566282
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0905,
+   "oe_mult": 1.1,
+   "iv_at_10": 124.09115151441122,
+   "iv_at_12": 96.74324695694223,
+   "iv_at_15": 72.29181229256936,
+   "irr": 0.06466283592956892
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1505,
+   "oe_mult": 1.25,
+   "iv_at_10": 184.72333219456988,
+   "iv_at_12": 142.5528014054907,
+   "iv_at_15": 105.04371239721061,
+   "irr": 0.0837337726388544
+  }
+ },
+ "weighted": {
+  "iv_at_10": 88.64155051012828,
+  "iv_at_12": 69.63304644993794,
+  "iv_at_15": 52.57349828102132,
+  "irr": 0.05301559199167692
+ },
+ "implied_irr_weighted": 0.05301559199167692,
+ "implied_irr_base": 0.05320152419566282,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.7815172743173282,
+ "upside_at_12": -0.7106219239083326,
+ "iv_at_15": 52.57349828102132,
+ "iv_at_12": 69.63304644993794,
+ "diagnostics": {
+  "oe_yield": 0.025391680172879526,
+  "tv_share_at_15": 0.1844498650934019,
+  "scenario_spread_iv15": 4.33097908794472,
+  "net_debt_to_normalized_oe": 3.795192633582033,
+  "months_since_fy_end": 9.42838370565046
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "BUYBACK_TAILWIND: share count shrinking 7.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight"
+ ]
+}

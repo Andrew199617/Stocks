@@ -1,0 +1,69 @@
+{
+ "ticker": "CMPS",
+ "name": "COMPASS PATHWAYS PLC",
+ "cik": 1816590,
+ "engine_version": 5,
+ "as_of": "2026-10-13",
+ "price": 11.14,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 93504836,
+ "market_cap_est": 1041643873.0400001,
+ "net_debt_latest": -117975000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": null,
+ "rev_cagr_3y": null,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -170830000,
+ "base_oe_per_share": -2.0553798945990795,
+ "base_oe_latest_per_share": -1.8269643294171438,
+ "base_oe_normalized_per_share": -2.0553798945990795,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": null,
+  "rev_cagr_3y": null,
+  "rev_yoy_latest": null,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.03,
+ "share_cagr": 0.3011862367057585,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": null,
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [
+  "capex"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2025 of the last 3 \u2014 no tier emitted",
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 30.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero."
+}

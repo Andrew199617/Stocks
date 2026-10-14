@@ -1,0 +1,70 @@
+{
+ "ticker": "JD",
+ "name": "JD.com, Inc.",
+ "cik": 1549802,
+ "engine_version": 5,
+ "as_of": "2026-10-13",
+ "price": 26.78,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 2978037127,
+ "market_cap_est": 79751834261.06,
+ "net_debt_latest": 25212000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.10371527017708337,
+ "rev_cagr_3y": 0.07260635550661942,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 922000000,
+ "base_oe_per_share": 2.2154952828487167,
+ "base_oe_latest_per_share": 0.3095999011029119,
+ "base_oe_normalized_per_share": 2.2154952828487167,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.10371527017708337,
+  "rev_cagr_3y": 0.07260635550661942,
+  "rev_yoy_latest": 0.17913427984731478,
+  "oe_ps_cagr_2y": -0.6289408049003458
+ },
+ "g_blend": 0.0881608128418514,
+ "share_cagr": -0.021720760079341095,
+ "share_count_adj": 0.021720760079341095,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "currency"
+ ],
+ "data_gap_uncovered": [
+  "currency"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts); USD translations and ADS ratios are unverified \u2014 no tier emitted",
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero."
+}

@@ -1,0 +1,72 @@
+{
+ "ticker": "CMG",
+ "name": "Chipotle Mexican Grill, Inc.",
+ "sector": "Restaurants / Fast-casual dining",
+ "price": 30.35,
+ "market_cap_b": 40.75,
+ "engine_version": 5,
+ "base_oe_per_share": 1.1391842611405838,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Best-in-class unit economics and proven pricing power, but no switching costs or network effects and a demonstrated food-safety/traffic tail risk.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 6.55,
+   "irr": 0.0514
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 10.73,
+   "irr": 0.0715
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 14.88,
+   "irr": 0.0905
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 20.41,
+   "irr": 0.1138
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 31.52,
+   "irr": 0.1538
+  }
+ },
+ "iv_at_15": 16.06,
+ "iv_at_12": 21.94,
+ "implied_irr": 0.0961,
+ "implied_irr_base_case": 0.0905,
+ "upside_at_15_pct": -47.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Elite fast-casual operator, moat 6/10, net cash \u2014 but at $30.35 the price already pays for a full margin recovery: weighted IRR 9.6% (Tier D), weighted IV@15% $16.06; clears 15% only below ~$16.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "Brand and pricing power proven over two decades of through-cycle compounding",
+  "Best-in-class unit economics (~$3.1M AUV, ~60% second-year cash-on-cash returns, ~2-year payback)",
+  "Digital + loyalty scale (38.3% of Q2 2026 sales digital, ~21M active Rewards members)",
+  "Chipotlane format advantage \u2014 ~80% of new stores, higher volumes and margins",
+  "Company-owned model: full control of quality/throughput, no franchisee friction"
+ ],
+ "moat_against": [
+  "No switching costs or network effects \u2014 every lunch is a fresh choice",
+  "Intense fast-casual/QSR competition (CAVA, Sweetgreen, QSR value wars)",
+  "Food-safety tail risk (2015 E. coli precedent; 2026 Cyclospora scare cost ~200bp of comp traffic)",
+  "Value-perception ceiling (2025 comps -1.7%, transactions -3.2%)",
+  "Wage/beef inflation with deliberately limited pricing power near term",
+  "Path from ~4,200 to 7,000 North American stores at historical returns is unproven"
+ ]
+}

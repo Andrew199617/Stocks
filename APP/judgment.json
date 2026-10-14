@@ -1,0 +1,37 @@
+{
+ "capex_override": {
+  "kind": "estimate",
+  "reason": "AppLovin tags no capex from FY2025 onward under any candidate tag. Tagged capex ran $0.7\u20134.8M/yr FY19\u201324 vs OCF in the billions \u2014 structurally immaterial; $19M is ~4x the last filed figure and still moves base OE by <0.5%.",
+  "source": "Higher of the last tagged FY2024 capex ($4.8M, FY24 10-K) and the v4 TTM estimate (~$19M), per Andrew's conservative rule (2026-10-13)",
+  "value": 19000000
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": false,
+ "moat_against": [
+  "Raw inputs (publisher supply, training data) are bought, not owned",
+  "Model lead must be re-earned every quarter (Q2 2026 showed a model-timing slip)",
+  "Unity Vector is growing fast off the same supply",
+  "No owned consumer surface",
+  "Hostage to Apple/Google privacy rules"
+ ],
+ "moat_for": [
+  "AXON model plus the data flywheel from MAX mediation's installed publisher base",
+  "Deep integrations and real switching friction for publishers and advertisers",
+  "Proven pricing power \u2014 net revenue per install compounding",
+  "Asset-light cost structure rivals can't easily undercut"
+ ],
+ "moat_justification": "AXON + MAX data flywheel and integration switching costs, but inputs are bought not owned, the model lead is re-earned quarterly, Unity Vector is closing, and platform privacy rules are a hostage risk.",
+ "moat_score": 6,
+ "name": "AppLovin Corporation",
+ "one_liner": "Elite owner's-earnings machine, moat 6/10 \u2014 clears 15% on current TTM numbers (18.4% weighted, IV $376 vs $272) but the verdict is assumption-dominated (methods span C to A); size it like a B, not an A.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.35,
+  0.2,
+  0.1
+ ],
+ "sector": "Technology / Advertising software",
+ "tier_override": null,
+ "tier_override_reason": null
+}

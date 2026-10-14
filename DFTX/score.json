@@ -1,0 +1,53 @@
+{
+ "ticker": "DFTX",
+ "name": "Definium Therapeutics, Inc.",
+ "sector": "Health Care",
+ "price": 35.2,
+ "market_cap_b": 4.73,
+ "engine_version": 4,
+ "base_oe_per_share": -1.7873,
+ "base_year": "TTM Q2 2026",
+ "base_source": "TTM through Q2 2026 from EDGAR 10-Q YTD (OCF -$167.951M = FY25 -$131.560M - H1'25 -$59.018M + H1'26 -$95.409M; minus SBC TTM $28.188M from AllocatedShareBasedCompensationExpense \u2014 a tag the engine misses \u2014 and capex ~$0 = -$196.139M / 109.743M H1'26 diluted shares); engine normalized 3-yr median was -$1.47 and latest FY -$1.47 (-$1.70 SBC-corrected) \u2014 all bases negative, Tier F under every base \u2014 see analysis.md",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate and approval-contingent: most advanced LSD program (three positive Phase 3 trials across GAD and MDD, Breakthrough Therapy designation in both, pre-NDA meeting set for late 2026) plus ODT formulation/dosing IP and a ~6h supervised-session model, but the active molecule is a long-known off-patent Schedule I compound competitors can route around (COMPASS COMP360, Lilly/AtaiBeckley, AbbVie/Gilgamesh), no pricing power or payer coverage is proven, functional unblinding is a live criticism, DEA/state rescheduling sits between approval and revenue, and the pipeline is single-asset (DT402 only Phase 2a).",
+ "cap_years": 7.2,
+ "fragility_flags": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": null,
+   "irr": null
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": null,
+   "irr": null
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": null,
+   "irr": null
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": null,
+   "irr": null
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": null,
+   "irr": null
+  }
+ },
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Pre-revenue single-asset psychedelic biotech, moat 4/10 contingent on approval \u2014 owner's earnings are negative in all 6 years of history (-$1.79/share TTM) despite three positive Phase 3 DT120 trials in GAD/MDD and ~$1.05B net cash, so it cannot clear the 15% hurdle at any price on an OE DCF; the $35.20 price is an FDA-approval option, not an earnings stream.",
+ "analysis_date": "2026-10-12",
+ "in_scope_under_40b": true
+}

@@ -1,0 +1,125 @@
+{
+ "ticker": "ED",
+ "name": "CONSOLIDATED EDISON INC",
+ "cik": 1047862,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 107.2,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 358700000,
+ "market_cap_est": 38452640000.0,
+ "net_debt_latest": 24172000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.07230836225704462,
+ "rev_cagr_3y": 0.033253121071579184,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": 4800000000,
+ "base_oe_per_share": 5.79,
+ "base_oe_latest_per_share": 13.381655979927515,
+ "base_oe_normalized_per_share": 10.405989058450906,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.07230836225704462,
+  "rev_cagr_3y": 0.033253121071579184,
+  "rev_yoy_latest": 0.1021397633977632,
+  "oe_ps_cagr_3y": 0.47202407655018086
+ },
+ "g_blend": 0.08722406282740391,
+ "share_cagr": 0.0027089150516206306,
+ "share_count_adj": -0.0027089150516206306,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.08451514777578328,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0,
+   "oe_mult": 0.85,
+   "iv_at_10": 59.30796040613963,
+   "iv_at_12": 47.11983492937334,
+   "iv_at_15": 36.109453569427174,
+   "irr": 0.06597289536737269
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.035,
+   "oe_mult": 0.95,
+   "iv_at_10": 79.05062318455612,
+   "iv_at_12": 62.25498748094091,
+   "iv_at_15": 47.16048104130039,
+   "irr": 0.08045406688457779
+  },
+  "base": {
+   "prob": 0.35,
+   "g_start": 0.065,
+   "oe_mult": 1.0,
+   "iv_at_10": 96.68370486896478,
+   "iv_at_12": 75.60287144912236,
+   "iv_at_15": 56.73383840467562,
+   "irr": 0.09288916421928095
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.085,
+   "oe_mult": 1.05,
+   "iv_at_10": 112.14007593829587,
+   "iv_at_12": 87.2944154930668,
+   "iv_at_15": 65.11175011840348,
+   "irr": 0.10326855876042954
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "g_start": 0.1,
+   "oe_mult": 1.12,
+   "iv_at_10": 128.8463646839018,
+   "iv_at_12": 99.97186917214663,
+   "iv_at_15": 74.23888983069034,
+   "irr": 0.11403848532296268
+  }
+ },
+ "weighted": {
+  "iv_at_10": 92.35561312197274,
+  "iv_at_12": 72.30696130163312,
+  "iv_at_15": 54.35022762618452,
+  "irr": 0.08990885000310922
+ },
+ "implied_irr_weighted": 0.08990885000310922,
+ "implied_irr_base": 0.09288916421928095,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.4930016079646966,
+ "upside_at_12": -0.3254947639773029,
+ "iv_at_15": 54.35022762618452,
+ "iv_at_12": 72.30696130163312,
+ "diagnostics": {
+  "oe_yield": 0.054011194029850745,
+  "tv_share_at_15": 0.1889795788365981,
+  "scenario_spread_iv15": 2.0559405499712753,
+  "net_debt_to_normalized_oe": 11.638650991177602,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 11.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "ticker": "ZS",
+ "name": "Zscaler Inc",
+ "cik": 1713683,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 224.5,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 160219000,
+ "market_cap_est": 35969165500.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-07-31",
+ "rev_cagr_5y": 0.3787246124858563,
+ "rev_cagr_3y": 0.27507031392820847,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": 30427000,
+ "base_oe_per_share": 0.7191983206984611,
+ "base_oe_latest_per_share": 0.18990881231314638,
+ "base_oe_normalized_per_share": 0.7191983206984611,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.3787246124858563,
+  "rev_cagr_3y": 0.27507031392820847,
+  "rev_yoy_latest": 0.25416340112565305,
+  "oe_ps_cagr_3y": -0.4863702420039788
+ },
+ "g_blend": 0.26461685752693076,
+ "share_cagr": 0.033958910013117904,
+ "share_count_adj": -0.033958910013117904,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.23065794751381286,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0497,
+   "oe_mult": 0.75,
+   "iv_at_10": 8.342031837370126,
+   "iv_at_12": 6.5465662175364,
+   "iv_at_15": 4.936207462692183,
+   "irr": -0.008603843365099728
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.1097,
+   "oe_mult": 0.9,
+   "iv_at_10": 13.488305553960263,
+   "iv_at_12": 10.444129435926769,
+   "iv_at_15": 7.734219437921919,
+   "irr": 0.028629488535656722
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1697,
+   "oe_mult": 1.0,
+   "iv_at_10": 20.103624734025324,
+   "iv_at_12": 15.382221592715851,
+   "iv_at_15": 11.206280496152987,
+   "irr": 0.03263034527169599
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.2307,
+   "oe_mult": 1.1,
+   "iv_at_10": 29.65321121461266,
+   "iv_at_12": 22.44775353169463,
+   "iv_at_15": 16.110812114825183,
+   "irr": 0.03658908365009621
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.2997,
+   "oe_mult": 1.25,
+   "iv_at_10": 46.63250567391509,
+   "iv_at_12": 34.9299093575359,
+   "iv_at_15": 24.69483098323821,
+   "irr": 0.043466659765528326
+  }
+ },
+ "weighted": {
+  "iv_at_10": 20.100530222398554,
+  "iv_at_12": 15.340401090214206,
+  "iv_at_15": 11.137005637805636,
+  "irr": 0.03270688894202531
+ },
+ "implied_irr_weighted": 0.03270688894202531,
+ "implied_irr_base": 0.03263034527169599,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.9503919570699081,
+ "upside_at_12": -0.9316685920257719,
+ "iv_at_15": 11.137005637805636,
+ "iv_at_12": 15.340401090214206,
+ "diagnostics": {
+  "oe_yield": 0.0032035559942024993,
+  "tv_share_at_15": 0.22534120686202708,
+  "scenario_spread_iv15": 5.00279438615203,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 2.431011826544021
+ },
+ "fragility_flags": [
+  "BASE_DIVERGENCE: latest FY OE/share 0.19 vs 3-yr median 0.72 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "DILUTION: share count growing 3.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ]
+}

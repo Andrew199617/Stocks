@@ -1,0 +1,125 @@
+{
+ "ticker": "ROP",
+ "name": "ROPER TECHNOLOGIES, INC.",
+ "cik": 882835,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 371.1601,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 108200000,
+ "market_cap_est": 40159522820.0,
+ "net_debt_latest": 9003600000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.14462672145130018,
+ "rev_cagr_3y": 0.13728368724503692,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2374000000,
+ "base_oe_per_share": 24.63,
+ "base_oe_latest_per_share": 21.940850277264325,
+ "base_oe_normalized_per_share": 20.808333333333334,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.14462672145130018,
+  "rev_cagr_3y": 0.13728368724503692,
+  "rev_yoy_latest": 0.12264177747471305,
+  "oe_ps_cagr_3y": 0.11019503963218291
+ },
+ "g_blend": 0.129962732359875,
+ "share_cagr": 0.004349588523202108,
+ "share_count_adj": -0.004349588523202108,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.12561314383667288,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0004,
+   "oe_mult": 0.75,
+   "iv_at_10": 220.15538208949306,
+   "iv_at_12": 175.1375086696792,
+   "iv_at_15": 134.42363215596868,
+   "irr": 0.06886951271841538
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0496,
+   "oe_mult": 0.9,
+   "iv_at_10": 345.89877817009005,
+   "iv_at_12": 271.152553996764,
+   "iv_at_15": 204.17603322820895,
+   "irr": 0.0950274533511383
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0996,
+   "oe_mult": 1.0,
+   "iv_at_10": 502.6401839541195,
+   "iv_at_12": 388.7760238147711,
+   "iv_at_15": 287.56631900480494,
+   "irr": 0.12411530716954944
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1396,
+   "oe_mult": 1.1,
+   "iv_at_10": 684.3539092143146,
+   "iv_at_12": 524.1585113089595,
+   "iv_at_15": 382.57691565689055,
+   "irr": 0.15331370855848714
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1796,
+   "oe_mult": 1.25,
+   "iv_at_10": 960.9756847539502,
+   "iv_at_12": 729.4103960976871,
+   "iv_at_15": 525.8017922960705,
+   "irr": 0.19134337299351845
+  }
+ },
+ "weighted": {
+  "iv_at_10": 526.4683337166814,
+  "iv_at_12": 405.91536394759885,
+  "iv_at_15": 298.9806753679203,
+  "irr": 0.12798557025923063
+ },
+ "implied_irr_weighted": 0.12798557025923063,
+ "implied_irr_base": 0.12411530716954944,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.19446978441939122,
+ "upside_at_12": 0.09363954785980177,
+ "iv_at_15": 298.9806753679203,
+ "iv_at_12": 405.91536394759885,
+ "diagnostics": {
+  "oe_yield": 0.0663595036212136,
+  "tv_share_at_15": 0.210832012236373,
+  "scenario_spread_iv15": 3.911527934954136,
+  "net_debt_to_normalized_oe": 3.3785046413350113,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight"
+ ]
+}

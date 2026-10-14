@@ -1,0 +1,121 @@
+{
+ "ticker": "SYY",
+ "name": "Sysco Corporation",
+ "cik": 96021,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 78.2633,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 480612203,
+ "market_cap_est": 37614297027.049904,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-06-27",
+ "rev_cagr_5y": 0.10549057031405784,
+ "rev_cagr_3y": 0.034836245171338875,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1820000000,
+ "base_oe_per_share": 3.7868368481688344,
+ "base_oe_latest_per_share": 3.7868368481688344,
+ "base_oe_normalized_per_share": 3.7868368481688344,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.10549057031405784,
+  "rev_cagr_3y": 0.034836245171338875,
+  "rev_yoy_latest": 0.03911761091311283,
+  "oe_ps_cagr_3y": -0.03680647480263144
+ },
+ "g_blend": 0.036976928042225854,
+ "share_cagr": -0.019475286766713062,
+ "share_count_adj": 0.019475286766713062,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "g_base": 0.056452214808938916,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.02,
+   "oe_mult": 0.75,
+   "iv_at_10": 30.926101306448327,
+   "iv_at_12": 24.701125976797513,
+   "iv_at_15": 19.059680521149524,
+   "irr": 0.0536727324244442
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.02,
+   "oe_mult": 0.9,
+   "iv_at_10": 45.41079654451151,
+   "iv_at_12": 35.895747075463234,
+   "iv_at_15": 27.325910718452743,
+   "irr": 0.06841759421588459
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0565,
+   "oe_mult": 1.0,
+   "iv_at_10": 60.588432255913716,
+   "iv_at_12": 47.4719510689082,
+   "iv_at_15": 35.71844332099265,
+   "irr": 0.08346312307368636
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.1,
+   "oe_mult": 1.1,
+   "iv_at_10": 82.73888507511407,
+   "iv_at_12": 64.19795245937938,
+   "iv_at_15": 47.674131405066,
+   "irr": 0.10400387295809976
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.14,
+   "oe_mult": 1.15,
+   "iv_at_10": 105.31953560603463,
+   "iv_at_12": 81.04658408119711,
+   "iv_at_15": 59.51175319860031,
+   "irr": 0.12301822432312914
+  }
+ },
+ "weighted": {
+  "iv_at_10": 58.92985714734698,
+  "iv_at_12": 46.11285698442132,
+  "iv_at_15": 34.637800884755286,
+  "irr": 0.08197389175889469
+ },
+ "implied_irr_weighted": 0.08197389175889469,
+ "implied_irr_base": 0.08346312307368636,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5574196221631942,
+ "upside_at_12": -0.41079845873581466,
+ "iv_at_15": 34.637800884755286,
+ "iv_at_12": 46.11285698442132,
+ "diagnostics": {
+  "oe_yield": 0.04838585707692922,
+  "tv_share_at_15": 0.18973129327672997,
+  "scenario_spread_iv15": 3.122389860237335,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 3.54796320630749
+ },
+ "fragility_flags": []
+}

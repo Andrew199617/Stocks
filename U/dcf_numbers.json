@@ -1,0 +1,128 @@
+{
+ "ticker": "U",
+ "name": "UNITY SOFTWARE INC.",
+ "cik": 1810806,
+ "engine_version": 5,
+ "as_of": "2026-10-13",
+ "price": 46.63,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 420914000,
+ "market_cap_est": 19627219820.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.19084349348109209,
+ "rev_cagr_3y": 0.09961860294135683,
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": 18717000,
+ "base_oe_per_share": 0.45051585872877914,
+ "base_oe_latest_per_share": 0.044467515929619825,
+ "base_oe_normalized_per_share": -0.7835439233642547,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.19084349348109209,
+  "rev_cagr_3y": 0.09961860294135683,
+  "rev_yoy_latest": 0.020070536135292638,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.09961860294135683,
+ "share_cagr": 0.10670535450335694,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.049618602941356824,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0004,
+   "oe_mult": 0.75,
+   "iv_at_10": 4.102893870072377,
+   "iv_at_12": 3.2563640947412047,
+   "iv_at_15": 2.492301987141475,
+   "irr": 0.03144782870059701
+  },
+  "bear": {
+   "prob": 0.2,
+   "g_start": 0.0796,
+   "oe_mult": 0.9,
+   "iv_at_10": 7.124975742735677,
+   "iv_at_12": 5.56571892553266,
+   "iv_at_15": 4.170182793975269,
+   "irr": 0.03693505129210074
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1596,
+   "oe_mult": 1.0,
+   "iv_at_10": 11.34835954510562,
+   "iv_at_12": 8.744953995816019,
+   "iv_at_15": 6.431010817297658,
+   "irr": 0.044735338988794324
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.2396,
+   "oe_mult": 1.1,
+   "iv_at_10": 17.7128912056232,
+   "iv_at_12": 13.491657388890925,
+   "iv_at_15": 9.761416152502505,
+   "irr": 0.05611925642170268
+  },
+  "super_bull": {
+   "prob": 0.15,
+   "g_start": 0.3196,
+   "oe_mult": 1.25,
+   "iv_at_10": 28.262467538252,
+   "iv_at_12": 21.314430296678985,
+   "iv_at_15": 15.204517020599077,
+   "irr": 0.0735258666394229
+  }
+ },
+ "weighted": {
+  "iv_at_10": 13.907385331229658,
+  "iv_at_12": 10.632345285050038,
+  "iv_at_15": 7.733601593913987,
+  "irr": 0.04954584898073365
+ },
+ "implied_irr_weighted": 0.04954584898073365,
+ "implied_irr_base": 0.044735338988794324,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.8341496548592325,
+ "upside_at_12": -0.7719848748648931,
+ "iv_at_15": 7.733601593913987,
+ "iv_at_12": 10.632345285050038,
+ "diagnostics": {
+  "oe_yield": 0.009661502438961593,
+  "tv_share_at_15": 0.2220323700160326,
+  "scenario_spread_iv15": 6.100591781832093,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.0% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ]
+}

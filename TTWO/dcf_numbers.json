@@ -1,0 +1,87 @@
+{
+ "ticker": "TTWO",
+ "name": "TAKE-TWO INTERACTIVE SOFTWARE,\u00a0INC.",
+ "cik": 946581,
+ "engine_version": 5,
+ "as_of": "2026-10-13",
+ "price": 200.32,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 183900000,
+ "market_cap_est": 36838848000.0,
+ "net_debt_latest": 942500000,
+ "latest_period_end": "2026-03-31",
+ "rev_cagr_5y": 0.14566553683343364,
+ "rev_cagr_3y": 0.0755337278522652,
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": 156200000,
+ "base_oe_per_share": -0.07035445757250268,
+ "base_oe_latest_per_share": 0.8493746601413812,
+ "base_oe_normalized_per_share": -2.9006466784244562,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.14566553683343364,
+  "rev_cagr_3y": 0.0755337278522652,
+  "rev_yoy_latest": 0.18155353592729329,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.14566553683343364,
+ "share_cagr": 0.04770689983573018,
+ "share_count_adj": -0.04770689983573018,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 6.0,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -0.07035445757250268
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DILUTION: share count growing 4.8%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass."
+}

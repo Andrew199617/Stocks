@@ -1,0 +1,59 @@
+{
+ "ticker": "HIG",
+ "name": "The Hartford Insurance Group, Inc.",
+ "sector": "Finance / Property & Casualty Insurance",
+ "price": 131.14,
+ "market_cap_b": 34.97,
+ "engine_version": 4,
+ "base_oe_per_share": 14.49,
+ "base_year": "TTM Q2 2026",
+ "base_source": "TTM core earnings per share: FY2025 $13.42 - H1 2025 $5.44 (Q1 $2.20 + Q2 $3.24) + H1 2026 $6.51 (Q1 $3.09 + Q2 $3.42) = $14.49. Engine OCF base rejected for an insurer: 3-yr median $19.30/share, TTM OCF ~$20.61/share (FY OCF $5,922M - H1'25 $2,276M + H1'26 $2,234M = $5,880M, capex TTM $7M, SBC ~$141M, / 278.1M shares) capitalizes float/reserve growth, not distributable earnings. See analysis.md.",
+ "moat_score": 5,
+ "moat_justification": "Leading small-commercial/workers' comp specialization, exclusive decades-long AARP personal-lines distribution, top-tier Employee Benefits scale, high-80s underlying combined ratios and 18.7-20.3% core ROE \u2014 against price-competed commodity P&C products with no structural pricing power, rising CAT exposure, recurring legacy long-tail reserve charges (A&E, sexual-abuse), and earnings partly hostage to investment/LP marks.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BUYBACK_TAILWIND: share count shrinking 4.6%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits banks/insurers poorly; grade confidence low"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 65.75,
+   "irr": 0.0846
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 105.74,
+   "irr": 0.1257
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 144.59,
+   "irr": 0.1622
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 195.39,
+   "irr": 0.2044
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 295.12,
+   "irr": 0.2732
+  }
+ },
+ "iv_at_15": 154.75,
+ "iv_at_12": 207.29,
+ "implied_irr": 0.1709,
+ "implied_irr_base_case": 0.1622,
+ "upside_at_15_pct": 18.0,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "High-quality P&C / employee-benefits insurer, moat 5/10 \u2014 engine OCF base is an insurer float artifact (preliminary Tier A rejected); on TTM core earnings of $14.49/share the $131.14 price (9.0x core, 1.66x BV ex-AOCI) yields a 17.1% weighted IRR, IV@15% $154.75 \u2014 clears 15% at ~$155, ~$124 with a margin of safety, confidence low (sector mismatch).",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

@@ -1,0 +1,125 @@
+{
+ "ticker": "MLM",
+ "name": "MARTIN MARIETTA MATERIALS INC",
+ "cik": 916076,
+ "engine_version": 4,
+ "as_of": "2026-10-14",
+ "price": 472.4,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 60600000,
+ "market_cap_est": 28627440000.0,
+ "net_debt_latest": 5256000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.053920260828775435,
+ "rev_cagr_3y": -0.0005953602329835661,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 932000000,
+ "base_oe_per_share": 12.6,
+ "base_oe_latest_per_share": 15.37953795379538,
+ "base_oe_normalized_per_share": 13.333333333333334,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.053920260828775435,
+  "rev_cagr_3y": -0.0005953602329835661,
+  "rev_yoy_latest": 0.0861886259272342,
+  "oe_ps_cagr_3y": 0.07394260137572006
+ },
+ "g_blend": 0.06393143110224775,
+ "share_cagr": -0.01023546468385661,
+ "share_count_adj": 0.01023546468385661,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.07416689578610436,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0458,
+   "oe_mult": 0.75,
+   "iv_at_10": 88.14932235377644,
+   "iv_at_12": 71.14590576032353,
+   "iv_at_15": 55.618637529123546,
+   "irr": 0.03775116225666304
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0242,
+   "oe_mult": 0.9,
+   "iv_at_10": 154.28554144527604,
+   "iv_at_12": 121.83422129960942,
+   "iv_at_15": 92.62352814942928,
+   "irr": 0.04947609842813512
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0742,
+   "oe_mult": 1.0,
+   "iv_at_10": 224.35422351639494,
+   "iv_at_12": 174.69063639078118,
+   "iv_at_15": 130.37126945629194,
+   "irr": 0.06174229990432434
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.1242,
+   "oe_mult": 1.1,
+   "iv_at_10": 322.47331618091835,
+   "iv_at_12": 247.90190244466157,
+   "iv_at_15": 181.8545625035364,
+   "irr": 0.07789448456883677
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "g_start": 0.1942,
+   "oe_mult": 1.25,
+   "iv_at_10": 530.7095909977866,
+   "iv_at_12": 401.57771338884265,
+   "iv_at_15": 288.23396836335166,
+   "irr": 0.10783277067633412
+  }
+ },
+ "weighted": {
+  "iv_at_10": 217.84447062764076,
+  "iv_at_12": 169.28860932954015,
+  "iv_at_15": 126.02384582995977,
+  "irr": 0.06087227069149581
+ },
+ "implied_irr_weighted": 0.06087227069149581,
+ "implied_irr_base": 0.06174229990432434,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.733226405948434,
+ "upside_at_12": -0.641641385839246,
+ "iv_at_15": 126.02384582995977,
+ "iv_at_12": 169.28860932954015,
+ "diagnostics": {
+  "oe_yield": 0.026672311600338696,
+  "tv_share_at_15": 0.19961122184771846,
+  "scenario_spread_iv15": 5.182327025044867,
+  "net_debt_to_normalized_oe": 6.8835454974068835,
+  "months_since_fy_end": 9.42838370565046
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 6.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ]
+}

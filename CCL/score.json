@@ -1,0 +1,60 @@
+{
+ "ticker": "CCL",
+ "name": "Carnival Corp Ltd.",
+ "sector": "Consumer Discretionary / Cruise lines (Marine Transportation)",
+ "price": 26.704,
+ "market_cap_b": 37.44,
+ "engine_version": 4,
+ "base_oe_per_share": 2.248,
+ "base_year": "TTM Q3 FY2026 (through 2026-08-31)",
+ "base_source": "TTM through Q3 FY2026 from EDGAR 10-Q YTD: OCF $6,218M FY25 - $4,700M YTD Q3'25 + $5,303M YTD Q3'26 = $6,821M; capex $3,611M - $2,105M + $2,139M = $3,645M; SBC $98M - $70M + $73M = $101M; OE = $6,821M - $3,645M - $101M = $3,075M / 1,368M Q3 FY26 diluted shares = $2.248/share",
+ "moat_score": 4,
+ "moat_justification": "World's largest cruise operator (nine brands incl. Carnival, Princess, Holland America, Cunard, AIDA, Costa) with scale purchasing, private destinations (Celebration Key, Half Moon Cay), fuel-consumption per ALBD down 26% since 2019 and a record forward book (2027 ~50% booked at record occupancy/pricing, $7.6B deposits) \u2014 but low guest switching costs, three scaled rivals (Royal Caribbean, Norwegian, MSC) selling a near-substitute product, no network effects, ~$3.6B/yr capital intensity, and demand that is discretionary and shock-exposed (pandemic, unhedged fuel, geopolitics); pricing only regained 2019 levels in 2024-25 after five lost years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY",
+  "BASE_DIVERGENCE",
+  "HIGH_NET_DEBT",
+  "DILUTION",
+  "BASIS_BREAK_SUSPECT",
+  "NI_OCF_DIVERGENCE"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 10.33,
+   "irr": 0.0709
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 15.07,
+   "irr": 0.0948
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 21.9,
+   "irr": 0.1282
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 29.08,
+   "irr": 0.1603
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 39.79,
+   "irr": 0.2033
+  }
+ },
+ "iv_at_15": 20.45,
+ "iv_at_12": 27.14,
+ "implied_irr": 0.1215,
+ "implied_irr_base_case": 0.1282,
+ "upside_at_15_pct": -23.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Largest cruise operator, weak-moderate moat 4/10, genuinely repaired operations (record yields, debt <$24B, buybacks back) \u2014 but at $26.70 it does not clear the 15% hurdle on current TTM owner's earnings of $2.25/share: weighted IRR 12.2% (Tier C), weighted IV@15% $20.45; it clears 15% only below ~$20.45, or ~$16-17 with a margin of safety against its leverage and shock tail.",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

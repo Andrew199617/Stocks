@@ -1,0 +1,130 @@
+{
+ "ticker": "RDDT",
+ "name": "Reddit, Inc.",
+ "cik": 1713445,
+ "engine_version": 5,
+ "as_of": "2026-10-13",
+ "price": 159.93,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 202107978,
+ "market_cap_est": 32323128921.54,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.4892097488924392,
+ "rev_cagr_3y": 0.4892097488924392,
+ "oe_positive_years_of_last_5": "1/4",
+ "base_oe_total_latest_fy": 340989000,
+ "base_oe_per_share": 3.3641849952263385,
+ "base_oe_latest_per_share": 1.6871624929125757,
+ "base_oe_normalized_per_share": -2.239436697359465,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.4892097488924392,
+  "rev_cagr_3y": 0.4892097488924392,
+  "rev_yoy_latest": 0.6939682588514888,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.4892097488924392,
+ "share_cagr": 0.5225031229857433,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "g_base": 0.35,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.23,
+   "oe_mult": 0.75,
+   "iv_at_10": 94.27799886133502,
+   "iv_at_12": 71.37704020627349,
+   "iv_at_15": 51.23531952359423,
+   "irr": 0.07213561362680843
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.3,
+   "oe_mult": 0.9,
+   "iv_at_10": 157.3054097500643,
+   "iv_at_12": 117.82330233293663,
+   "iv_at_15": 83.29317309085003,
+   "irr": 0.09897563619927452
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.35,
+   "oe_mult": 1.0,
+   "iv_at_10": 220.11202484162428,
+   "iv_at_12": 163.75352832701213,
+   "iv_at_15": 114.63774964765034,
+   "irr": 0.12177713126439749
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.4,
+   "oe_mult": 1.1,
+   "iv_at_10": 303.65753250408477,
+   "iv_at_12": 224.5301679019646,
+   "iv_at_15": 155.79172025075883,
+   "irr": 0.14761371899737374
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.47,
+   "oe_mult": 1.25,
+   "iv_at_10": 470.4961689194615,
+   "iv_at_12": 345.2598300643137,
+   "iv_at_15": 236.89953965387437,
+   "irr": 0.18908278852233196
+  }
+ },
+ "weighted": {
+  "iv_at_10": 237.7517597941042,
+  "iv_at_12": 176.37811308388768,
+  "iv_at_15": 122.97603414744418,
+  "irr": 0.12746698237767384
+ },
+ "implied_irr_weighted": 0.12746698237767384,
+ "implied_irr_base": 0.12177713126439749,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.23106337680582645,
+ "upside_at_12": 0.1028457017688218,
+ "iv_at_15": 122.97603414744418,
+ "iv_at_12": 176.37811308388768,
+ "diagnostics": {
+  "oe_yield": 0.021035359189810157,
+  "tv_share_at_15": 0.27094079239529756,
+  "scenario_spread_iv15": 4.623754508738458,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 52.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.6x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ]
+}

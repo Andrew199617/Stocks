@@ -1,0 +1,57 @@
+# CMPS — COMPASS Pathways plc
+Run date: 2026-10-12 (engine v4). In scope: market cap ~$1.57B (see balance-sheet note on share count) < $40B.
+
+## What it is
+Pre-revenue, single-asset biotechnology company (London HQ, Nasdaq-listed ADSs) developing COMP360, a proprietary synthetic psilocybin formulation, as a supervised, in-clinic treatment for treatment-resistant depression (TRD). Two Phase 3 TRD trials (COMP005, COMP006) met their primary endpoints — 39% of COMP006 participants achieved a ≥25% MADRS reduction at Week 6, with benefit maintained on average through Week 26. A rolling NDA submission is underway, final modules expected Q4 2026, with a targeted U.S. launch in H1 2027 — subject to FDA approval and DEA/state rescheduling of a Schedule I substance. A late-stage PTSD program is the only other material pipeline leg. FDA Breakthrough Therapy designation (TRD) and a Commissioner's National Priority Review voucher shorten the review clock but do not guarantee approval. There has never been any product revenue: revenue is $0 in every fiscal year in the EDGAR history.
+
+## Owner's earnings (SEC EDGAR, filing-direct)
+- FY2025: operating cash flow −$157.2M; capex — no PPE purchase line reported (engine flags capex as assumed-zero; real capex is negligible for this business); SBC $13.6M.
+- **Conservative owner's earnings FY2025: −$170.8M = −$1.83/share** (latest year). **Normalized base (median of last 3 FY OE/share): −$2.06/share.** OE has been negative in **0 of the last 5 fiscal years** (and in all 7 years of history, 2019–2025: −$21M → −$171M, worsening as Phase 3 and launch preparation spend scaled).
+- Maintenance version FY2025: −$91.5M — also deeply negative, and the gap vs the conservative figure is an artifact, not quality: net income includes a $122.6M non-cash warrant fair-value loss (below), and the maintenance formula's −$196.1M ΔNWC swing is driven by warrant-liability / working-capital presentation, not by operations. For a company with no operations revenue, neither definition is close to positive; the OCF-based conservative figure is the cleaner one.
+- **STALE_FY resolution — TTM base through Q2 2026, from EDGAR 10-Q YTD figures:**
+  - TTM OCF = FY25 −$157.240M − H1'25 −$84.346M + H1'26 −$88.242M = **−$161.136M**
+  - TTM SBC = FY25 $13.590M − H1'25 $7.531M + H1'26 $6.923M = **$12.982M**; capex ~$0 (no tagged PPE purchases)
+  - **TTM conservative OE = −$161.136M − $12.982M = −$174.118M = −$1.42/share** on H1'26 weighted diluted shares of 122.679M (−$1.29/share on the Q2'26 count of 135.040M)
+  - The final engine pass used `--base-oe-ps -1.4194`. The TTM base is less negative per share than the FY bases only because the share count ballooned (see DILUTION below) — total burn actually rose slightly. **Every defensible base — latest FY, 3-yr median, TTM — is negative. Tier F is not a base-choice artifact.**
+
+## Moat score: 3/10 — weak, and entirely contingent on approval
+FOR — (1) First-mover / only late-stage psilocybin program: two positive Phase 3 TRD trials, Breakthrough Therapy designation, priority-review voucher, rolling NDA already in FDA's hands — a real time lead over Usona (Phase 3, MDD) and earlier-stage rivals. (2) Patent estate around the synthetic COMP360 formulation, its manufacture and therapeutic use, plus regulatory exclusivity if approved — some barrier to a copycat selling the identical product. (3) Delivery-model know-how: trained-site network and a treatment infrastructure that overlaps the ~8,000 interventional-psychiatry / Spravato-certified sites, with a commercial team hired ahead of launch.
+AGAINST — (1) The active molecule is a naturally occurring, long-known compound; the moat covers a formulation and a protocol, not the molecule itself — determined competitors (Definium's LSD-based DT120, Lilly's AtaiBeckley BPL-003 with a ~2-hour session vs COMP360's ~6–8-hour supervised session, AbbVie's Gilgamesh program) can route around it with differentiated compounds. (2) Zero pricing power demonstrated: no approved product, no payer contracts; reimbursement for a multi-hour supervised psychedelic session is unproven, and functional unblinding in the trials is a live scientific criticism payers and the FDA can press. (3) The delivery model is a structural cost disadvantage vs daily oral drugs — every dose needs a certified site and monitored session — capping scalability and margin. (4) Regulatory moat cuts both ways: Schedule I status means DEA and state rescheduling sit between approval and revenue.
+CAP from moat 3: clamp(2 + 1.3×3) = **5.9 years** — moot for the DCF (no positive OE to fade), but it records how short the protected window looks even in an approval world.
+
+## DCF — FINAL v4 run (2026-10-12)
+Price: **$11.60** (Nasdaq quote API, engine run). The engine cannot project scenarios on a negative base, and forcing one would be inventing numbers — so there are no scenario IVs or IRRs, by design (the v4 rule: no positive normalized OE = Tier F, flagged not forced). The five scenario slots were assigned the default likelihoods for the record, each with its story:
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15% | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 10% | n/a — no OE base | n/a | NDA refused/delayed or DEA rescheduling stalls; cash burns into 2028 with no revenue; equity is a wasting option | n/a (OE < 0) | n/a |
+| Bear | 25% | n/a | n/a | Approval slips past 2027 or label/reimbursement is narrow; launch burn extends losses; further dilutive raises | n/a (OE < 0) | n/a |
+| Base | 30% | n/a | n/a | Approval and H1-2027-ish launch occur, but OE stays negative for years on launch/commercial spend — still no OE-DCF support today | n/a (OE < 0) | n/a |
+| Bull | 25% | n/a | n/a | Clean approval, broad payer coverage, rapid site uptake; first positive OE late this decade — value sits entirely beyond the OE screen's window | n/a (OE < 0) | n/a |
+| Super bull | 10% | n/a | n/a | COMP360 becomes the standard of care in TRD, PTSD follows, blockbuster trajectory — a pipeline-valuation story, not an owner's-earnings story | n/a (OE < 0) | n/a |
+
+- **Probability-weighted IV@15% / IV@12% / IRR: not computable — no positive owner's earnings in any base period.**
+- **Tier by numbers: F.** Sanity check per the standing rule: there are no revenue or OE prints to compare scenario growth starts against — the company has never printed revenue, so no growth start (engine blend defaults to 3% off null components) means anything, and none was used.
+- Diagnostics: TTM OE yield on price = −12.2% (−$1.42 / $11.60). Terminal-value share, scenario spread: not computable. Balance sheet (below) is the only hard asset in the story.
+
+## FLAGS — resolving every flag
+The engine's Tier-F branch emits no `fragility_flags` list (dcf_numbers.json carries the F note instead), so each v4 flag was checked manually:
+- **STALE_FY** — FY2025 ended ~9 months before this run. Resolved with the filing-derived TTM base above: TTM OE −$1.42/share. Verdict unchanged.
+- **BASE_DIVERGENCE** — Checked, does not fire in substance: latest FY −$1.83 vs 3-yr median −$2.06 is an ~11% gap, and both are deeply negative; the median is not hiding an inflection, and the TTM override was used anyway.
+- **NI_OCF_DIVERGENCE** — Fires in substance and is resolved: FY2025 net loss −$287.9M vs OCF −$157.2M (an ~83% gap) is the **$122.6M non-cash fair-value loss on warrant liabilities** disclosed in the FY2025 results (vs $0 in 2024), plus a drop in the R&D tax-credit benefit ($21.1M → $3.7M). The same distortion dominates 2026: Q2'26 net loss −$253.8M includes a $205.6M warrant fair-value loss, while Q1'26 posted a ~+$91M net profit on a warrant gain — GAAP net income is unusable here; the OCF-based OE is clean of it because the warrant marks are non-cash and non-operating.
+- **DILUTION** — Fires, hard: engine share-count CAGR +30.1%/yr. This is financing dilution, not SBC (SBC is only ~$13M/yr): a February 2026 equity raise took weighted diluted shares from 93.5M (FY2025) to 122.7M (H1'26 YTD) and 135.0M in Q2'26 alone — +44% in two quarters. That raise is also why the cash balance jumped. Expect more: at a ~$161M/yr OCF burn rising into launch, the current runway implies another raise before OE breakeven in any scenario.
+- **BIG_NET_CASH / balance sheet** — Engine (FY25): net cash $118.0M (cash $149.6M − debt $31.6M), shareholders' equity turned negative (−$52.8M) on the warrant liabilities. Updated to Q2'26: **cash $433.3M, debt $50.7M → net cash $382.6M ≈ $2.83/share on the Q2 count — ~24% of the $11.60 price is net cash**, and the company guides that cash funds operations into 2028. This cushions downside; it does not create owner's earnings.
+- **LOW_OE_YIELD / HIGH_TV_SHARE / WIDE_SCENARIO_SPREAD** — Not computable, in the worst way: OE yield is negative and 100% of any equity value here is future/terminal option value. These are the substance of the low confidence grade.
+- **BASIS_BREAK_SUSPECT** — No revenue in any year, so no CAGR exists to be broken; no divestiture/M&A/restatement distorts the OE series. The operating-loss line is actually stable (−$179.0M in both FY2024 and FY2025); the FY2025 net-loss "break" is the warrant mark, resolved above.
+- **OE_VOLATILE / THIN_HISTORY** — 7 fiscal years of history (not thin), OE negative in all of them, monotonically worsening as spend scaled — a consistent burn story, not volatility.
+- **SECTOR_MODEL_MISMATCH** — Not Finance, but the same caution applies in biotech form: an OE/capex DCF cannot value a binary, pre-revenue regulatory asset. The F tier is a correct statement about owner's earnings and a deliberately incomplete statement about the equity, which is an approval option.
+
+## My thoughts / overlay
+- This is the screen working as intended: CMPS is not an owner's-earnings investment at any price — with negative OE in every period, there is **no price at which the OE DCF clears a 15% hurdle**, and no margin-of-safety price to quote. Anyone buying at $11.60 is buying the probability-weighted pipeline: FDA decision on a rolling NDA completing Q4 2026, DEA rescheduling, payer coverage for a supervised multi-hour session, and uptake against Spravato's installed base and incoming Lilly/AbbVie-backed rivals.
+- What would change the tier: approval plus 2–3 years of post-launch filings showing revenue covering the ~$180M/yr operating spend. Until the first positive-OE year exists, CMPS stays F in this sweep regardless of trial headlines.
+- Method range: unusually, there is none — latest-FY, 3-yr-median, and filing-derived TTM bases all give Tier F. The spread in this stock's value lives entirely outside the OE method (approval probability × peak sales), which is the finding.
+
+## Final verdict
+- **Final tier: F** (= tier by numbers; no override — there is no positive owner's earnings to underwrite any hurdle)
+- Confidence: **Low** — high confidence in the arithmetic (OE is negative under every base and both definitions), low confidence that Tier F captures the equity's binary option value; the OE model is a documented poor fit for pre-revenue biotech.
+- One-liner: Pre-revenue single-asset psychedelic biotech, moat 3/10 contingent on approval — owner's earnings are negative in all 7 years of history (−$1.42/share TTM) despite two positive Phase 3 TRD trials and $382.6M net cash, so it cannot clear the 15% hurdle at any price on an OE DCF; the $11.60 price is an FDA-approval option, not an earnings stream.

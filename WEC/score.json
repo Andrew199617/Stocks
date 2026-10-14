@@ -1,0 +1,58 @@
+{
+ "ticker": "WEC",
+ "name": "WEC ENERGY GROUP, INC.",
+ "sector": "Utilities / Regulated Electric & Gas",
+ "price": 104.91,
+ "market_cap_b": 33.97,
+ "engine_version": 4,
+ "base_oe_per_share": 5.61,
+ "base_year": "TTM Q2 2026",
+ "base_source": "TTM adjusted EPS: FY2025 adjusted $5.27 - H1 2025 $3.02 + H1 2026 $3.36 = $5.61/share; cross-checked TTM GAAP EPS $5.15 (NI to common $1,557.5M - $969.6M + $1,103.6M = $1,691.5M), gap is exactly the $0.46 Q4 2025 QIP/UEA settlement charge. Engine normalized base rejected: conservative OE (OCF - total capex) is negative in FY2025 (-$3.15/sh) and TTM (-$1,373.3M: OCF $3,574.2M - capex $4,947.5M from EDGAR 10-Q YTD) \u2014 structural for a rate-base-growing utility, not earning power. See analysis.md.",
+ "moat_score": 6,
+ "moat_justification": "Legal monopoly electric/gas franchises in WI/IL/MI/MN with an all-regulated $37.5B 2026-2030 capital plan, PSCW-approved very-large-customer tariff shifting data-center credit risk to those customers, 22 straight years of meeting/beating guidance and 23 straight dividend increases, plus I-94 corridor data-center load growth \u2014 against regulator-capped allowed ROE (Illinois disallowances and the $205M QIP/UEA settlement), $5.3-5.7B of planned equity issuance diluting per-share growth, debt-funded expansion, and long-run gas-network electrification risk.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASE_DIVERGENCE: latest FY OE/share -3.15 vs 3-yr median 1.36 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 11.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 34.99,
+   "irr": 0.0656
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 45.7,
+   "irr": 0.0799
+  },
+  "base": {
+   "prob": 0.35,
+   "iv_at_15": 56.21,
+   "irr": 0.0939
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 64.51,
+   "irr": 0.1044
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 75.2,
+   "irr": 0.1172
+  }
+ },
+ "iv_at_15": 55.02,
+ "iv_at_12": 73.38,
+ "implied_irr": 0.0924,
+ "implied_irr_base_case": 0.0939,
+ "upside_at_15_pct": -47.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Regulated Midwest monopoly with a real data-center growth runway, moat 6/10 \u2014 but at $104.91 (18.7x TTM adjusted earnings of $5.61/share) it yields only a 9.2% weighted IRR with IV@15% of $55.02; it clears the 15% hurdle only at ~$55, or ~$44 with a margin of safety, and even the super-bull case ($75.20) sits below today's price.",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

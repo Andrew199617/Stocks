@@ -1,0 +1,126 @@
+{
+ "ticker": "EME",
+ "name": "EMCOR Group, Inc.",
+ "cik": 105634,
+ "engine_version": 4,
+ "as_of": "2026-10-14",
+ "price": 776.05,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 45145767,
+ "market_cap_est": 35035372480.35,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.140671750346951,
+ "rev_cagr_3y": 0.15316282046674323,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1189313000,
+ "base_oe_per_share": 26.25,
+ "base_oe_latest_per_share": 26.34384304512979,
+ "base_oe_normalized_per_share": 26.34384304512979,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.140671750346951,
+  "rev_cagr_3y": 0.15316282046674323,
+  "rev_yoy_latest": 0.1661600113578665,
+  "oe_ps_cagr_3y": 0.23503487522999245
+ },
+ "g_blend": 0.15966141591230487,
+ "share_cagr": -0.034337965842355045,
+ "share_count_adj": 0.034337965842355045,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.19399938175465992,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.054,
+   "oe_mult": 0.75,
+   "iv_at_10": 307.6427131860765,
+   "iv_at_12": 241.48055557249035,
+   "iv_at_15": 182.1160746493476,
+   "irr": 0.05518423990681963
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.124,
+   "oe_mult": 0.9,
+   "iv_at_10": 507.5700600844843,
+   "iv_at_12": 393.40398467481634,
+   "iv_at_15": 291.6339992882002,
+   "irr": 0.0752956556275878
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.174,
+   "oe_mult": 1.0,
+   "iv_at_10": 704.6956388826027,
+   "iv_at_12": 541.8243621135864,
+   "iv_at_15": 397.2236539387675,
+   "irr": 0.09370342051183322
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.224,
+   "oe_mult": 1.1,
+   "iv_at_10": 964.7070527870732,
+   "iv_at_12": 736.3685227959218,
+   "iv_at_15": 534.3766536272924,
+   "irr": 0.11576896433015615
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.294,
+   "oe_mult": 1.25,
+   "iv_at_10": 1478.8482864314437,
+   "iv_at_12": 1118.6533891277322,
+   "iv_at_15": 801.4381871123646,
+   "irr": 0.15329877386808544
+  }
+ },
+ "weighted": {
+  "iv_at_10": 735.2702202092928,
+  "iv_at_12": 563.8556030657275,
+  "iv_at_15": 411.88805286972,
+  "irr": 0.09644404213369154
+ },
+ "implied_irr_weighted": 0.09644404213369154,
+ "implied_irr_base": 0.09370342051183322,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.46925062448331933,
+ "upside_at_12": -0.27342876996878107,
+ "iv_at_15": 411.88805286972,
+ "iv_at_12": 563.8556030657275,
+ "diagnostics": {
+  "oe_yield": 0.03382514013272341,
+  "tv_share_at_15": 0.21749202311356827,
+  "scenario_spread_iv15": 4.400699875919688,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.42838370565046
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight"
+ ]
+}

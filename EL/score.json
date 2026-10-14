@@ -1,0 +1,56 @@
+{
+ "ticker": "EL",
+ "name": "Estee Lauder Companies Inc. (The)",
+ "sector": "Consumer Discretionary",
+ "price": 99.13,
+ "market_cap_b": 36.16,
+ "engine_version": 4,
+ "base_oe_per_share": 2.76,
+ "base_year": "FY2026",
+ "base_source": "median_of_last_3_fy_oe_per_share (FY2024 $3.09, FY2025 $1.02, FY2026 $2.76; latest FY ended 2026-06-30 is also the TTM \u2014 Q1 FY2027 not yet filed, so no TTM override)",
+ "moat_score": 5,
+ "moat_justification": "Prestige brand portfolio (La Mer, MAC, Le Labo, Est\u00e9e Lauder) with 75.5% gross margin and China share gains in FY2026, but eroding: three years of revenue decline FY23-25, repeated acquired-brand impairments (Dr.Jart+, Too Faced, Tom Ford), L'Or\u00e9al/local-brand pressure, department-store and travel-retail channel decay.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 10.92,
+   "irr": 0.037
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 16.16,
+   "irr": 0.044
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 24.05,
+   "irr": 0.056
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 31.22,
+   "irr": 0.066
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 43.58,
+   "irr": 0.084
+  }
+ },
+ "iv_at_15": 23.5,
+ "iv_at_12": 31.08,
+ "implied_irr": 0.0552,
+ "implied_irr_base_case": 0.0558,
+ "upside_at_15_pct": -76.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real prestige-brand moat (5/10) in a genuine early turnaround, but at $99.13 the price is 36x trough-normalized owner's earnings of $2.76/share \u2014 weighted IV@15% is $23.50 (IRR 5.5%, Tier D); it only clears the 15% hurdle at ~$23.50, or ~$19 with a margin of safety.",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

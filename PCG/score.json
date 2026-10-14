@@ -1,0 +1,57 @@
+{
+ "ticker": "PCG",
+ "name": "PG&E Corporation",
+ "sector": "Utilities / Regulated Electric & Gas",
+ "price": 13.33,
+ "market_cap_b": 29.35,
+ "engine_version": 4,
+ "base_oe_per_share": 1.69,
+ "base_year": "TTM Q2 2026",
+ "base_source": "TTM non-GAAP core EPS: FY2025 $1.50 - H1 2025 $0.64 + H1 2026 $0.83 = $1.69; cross-checked TTM GAAP EPS $1.44 ($1.23 - $0.51 + $0.72). Engine base rejected: conservative OE (OCF - total capex) is negative all 5 FYs and TTM (OCF $8,147M = $8,716M - $3,905M + $3,336M, minus capex $12,410M = $11,787M - $5,700M + $6,323M = -$4,263M) - structural for a rate-base-growing utility mid-undergrounding program, not earning power. See analysis.md.",
+ "moat_score": 5,
+ "moat_justification": "Legal-monopoly CA franchise with guided ~9-10% rate-base CAGR, >=9% core EPS growth through 2030, no new equity needed, and scarce Diablo Canyon nuclear - against CPUC-capped allowed ROE, inverse-condemnation wildfire liability that already bankrupted the equity once (2019-20), an original Wildfire Fund expected to be consumed by the Eaton fire with SB 254's $18B Continuation Account unfunded until 2029, AB 2700 restitution (~$6B unpaid FVT losses; dividends/equity named as mechanisms), and $57.5B net debt funding the growth.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 15.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.12,
+   "iv_at_15": 9.98,
+   "irr": 0.1179
+  },
+  "bear": {
+   "prob": 0.28,
+   "iv_at_15": 13.56,
+   "irr": 0.1522
+  },
+  "base": {
+   "prob": 0.35,
+   "iv_at_15": 18.13,
+   "irr": 0.1917
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 21.26,
+   "irr": 0.2167
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 25.22,
+   "irr": 0.2463
+  }
+ },
+ "iv_at_15": 16.98,
+ "iv_at_12": 22.66,
+ "implied_irr": 0.1821,
+ "implied_irr_base_case": 0.1917,
+ "upside_at_15_pct": 27.3,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Regulated California monopoly, moat 5/10 - on TTM core earnings of $1.69/share the $13.33 price (7.9x, half the peer multiple) yields an 18.2% weighted IRR with IV@15% of $16.98, clearing the 15% hurdle with the margin-of-safety price (~$14) right at today's quote; the discount is wildfire-tail compensation, not an operational discount.",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

@@ -1,0 +1,58 @@
+{
+ "ticker": "EME",
+ "name": "EMCOR Group, Inc.",
+ "sector": "Industrials / Engineering & Construction",
+ "price": 776.05,
+ "market_cap_b": 35.04,
+ "engine_version": 4,
+ "base_oe_per_share": 26.25,
+ "base_year": "TTM Q2 2026",
+ "base_source": "TTM through Q2 2026 from EDGAR 10-Q YTD (OCF $1,289.8M - capex $118.4M - SBC ~$0 = $1,171.4M / 44.62M diluted shares); corroborates normalized median $26.34",
+ "moat_score": 5,
+ "moat_justification": "US scale/breadth across electrical + mechanical trades, hyperscaler qualification and execution record (10% op margin vs ~7% peer median), skilled-labor pipeline and debt-free balance sheet \u2014 but work is re-won bid-by-bid, backlog burns in ~12 months, labor walks, and data-center concentration (34% of revenue) is rising; narrow moat, CAP 8.5y.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY",
+  "WIDE_SCENARIO_SPREAD",
+  "BUYBACK_TAILWIND",
+  "OE_VOLATILE"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 182,
+   "irr": 0.0552
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 292,
+   "irr": 0.0753
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 397,
+   "irr": 0.0937
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 534,
+   "irr": 0.1158
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 801,
+   "irr": 0.1533
+  }
+ },
+ "iv_at_15": 412,
+ "iv_at_12": 564,
+ "implied_irr": 0.0964,
+ "implied_irr_base_case": 0.0937,
+ "upside_at_15_pct": -46.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Best-in-class specialty contractor, moat 5/10, no debt \u2014 but at $776 (~30x TTM owner's earnings) even the super-bull case only returns ~15%; clears the 15% hurdle only at ~$412 (~$330 with a margin of safety).",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

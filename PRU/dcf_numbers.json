@@ -1,0 +1,126 @@
+{
+ "ticker": "PRU",
+ "name": "PRUDENTIAL FINANCIAL INC",
+ "cik": 1137774,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 113.39,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 353700000,
+ "market_cap_est": 40106043000.0,
+ "net_debt_latest": 587000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.012789234897900847,
+ "rev_cagr_3y": 0.022307028968171272,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 6271000000,
+ "base_oe_per_share": 15.25,
+ "base_oe_latest_per_share": 17.7297144472717,
+ "base_oe_normalized_per_share": 17.855183763027977,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.012789234897900847,
+  "rev_cagr_3y": 0.022307028968171272,
+  "rev_yoy_latest": -0.13679426177118104,
+  "oe_ps_cagr_3y": -0.0035173172931797225
+ },
+ "g_blend": 0.0046359588023605625,
+ "share_cagr": -0.016934699671826925,
+ "share_count_adj": 0.016934699671826925,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "g_base": 0.021570658474187487,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0984,
+   "oe_mult": 0.75,
+   "iv_at_10": 91.56496021597297,
+   "iv_at_12": 73.93210172032792,
+   "iv_at_15": 57.881908655034444,
+   "irr": 0.08440703042050024
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0284,
+   "oe_mult": 0.9,
+   "iv_at_10": 149.2820597579038,
+   "iv_at_12": 118.93225240025528,
+   "iv_at_15": 91.4951785639191,
+   "irr": 0.12485110973757829
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0216,
+   "oe_mult": 1.0,
+   "iv_at_10": 205.41473903747413,
+   "iv_at_12": 162.2599154952722,
+   "iv_at_15": 123.41010948686896,
+   "irr": 0.16108064687872548
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0716,
+   "oe_mult": 1.1,
+   "iv_at_10": 278.6199171924833,
+   "iv_at_12": 218.38139816753412,
+   "iv_at_15": 164.35343870809345,
+   "irr": 0.20350826143512057
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1416,
+   "oe_mult": 1.25,
+   "iv_at_10": 421.43752079756746,
+   "iv_at_12": 327.1308502385165,
+   "iv_at_15": 242.9305169141329,
+   "irr": 0.27382203118970916
+  }
+ },
+ "weighted": {
+  "iv_at_10": 219.9001640501931,
+  "iv_at_12": 173.11268248641346,
+  "iv_at_15": 131.06642972098058,
+  "irr": 0.16917227983478267
+ },
+ "implied_irr_weighted": 0.16917227983478267,
+ "implied_irr_base": 0.16108064687872548,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.15589055226193294,
+ "upside_at_12": 0.5267014947209936,
+ "iv_at_15": 131.06642972098058,
+ "iv_at_12": 173.11268248641346,
+ "diagnostics": {
+  "oe_yield": 0.1344915777405415,
+  "tv_share_at_15": 0.18160926282737222,
+  "scenario_spread_iv15": 4.197002527369203,
+  "net_debt_to_normalized_oe": 0.10882613310344508,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits banks/insurers poorly; grade confidence low"
+ ]
+}

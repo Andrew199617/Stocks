@@ -1,0 +1,194 @@
+{
+ "ticker": "APP",
+ "name": "AppLovin Corporation",
+ "cik": 1751008,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 272.28,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 341970000,
+ "market_cap_est": 93111591599.99998,
+ "net_debt_latest": 1025891000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.3045016976446442,
+ "rev_cagr_3y": 0.2483179611059525,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 3741673000.0,
+ "base_oe_per_share": 12.508214576396597,
+ "base_oe_latest_per_share": 10.941524110302073,
+ "base_oe_normalized_per_share": 4.959253381175821,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.3045016976446442,
+  "rev_cagr_3y": 0.2483179611059525,
+  "rev_yoy_latest": 0.6999436734698941,
+  "oe_ps_cagr_2y": 1.3892327854415916
+ },
+ "g_blend": 0.5022226855572691,
+ "share_cagr": -0.02728419770673096,
+ "share_count_adj": 0.02728419770673096,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "capex": {
+   "value": 19000000.0,
+   "last_filed_value": 4776000,
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.35,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.35,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.2,
+   -0.13,
+   -0.05,
+   0.03,
+   0.1
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 12.508214576396597,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 19000000.0,
+   "kind": "estimate",
+   "source": "Higher of the last tagged FY2024 capex ($4.8M, FY24 10-K) and the v4 TTM estimate (~$19M), per Andrew's conservative rule (2026-10-13)",
+   "reason": "AppLovin tags no capex from FY2025 onward under any candidate tag. Tagged capex ran $0.7\u20134.8M/yr FY19\u201324 vs OCF in the billions \u2014 structurally immaterial; $19M is ~4x the last filed figure and still moves base OE by <0.5%.",
+   "periods_filled": [
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 4776000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.15,
+   "oe_mult": 0.75,
+   "iv_at_10": 238.2994507692666,
+   "iv_at_12": 183.01754224017049,
+   "iv_at_15": 134.0239438263824,
+   "irr": 0.09146653297482463
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.22,
+   "oe_mult": 0.9,
+   "iv_at_10": 401.03606206728386,
+   "iv_at_12": 304.12650863555876,
+   "iv_at_15": 218.8183048908234,
+   "irr": 0.1292613859110031
+  },
+  "base": {
+   "prob": 0.35,
+   "g_start": 0.3,
+   "oe_mult": 1.0,
+   "iv_at_10": 649.8552058006334,
+   "iv_at_12": 486.74795423333796,
+   "iv_at_15": 344.09816055750736,
+   "irr": 0.17464872592001013
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.38,
+   "oe_mult": 1.1,
+   "iv_at_10": 1031.7558182682121,
+   "iv_at_12": 764.7122331432571,
+   "iv_at_15": 532.4416287775185,
+   "irr": 0.2269981062498213
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.45,
+   "oe_mult": 1.25,
+   "iv_at_10": 1602.3567826119418,
+   "iv_at_12": 1178.274127488002,
+   "iv_at_15": 810.9388097081594,
+   "irr": 0.2858036999930146
+  }
+ },
+ "weighted": {
+  "iv_at_10": 718.125124538806,
+  "iv_at_12": 535.4650247420267,
+  "iv_at_15": 376.12353352679133,
+  "irr": 0.18426820483745066
+ },
+ "implied_irr_weighted": 0.18426820483745066,
+ "implied_irr_base": 0.17464872592001013,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.38138509448652624,
+ "upside_at_12": 0.9665969764287745,
+ "iv_at_15": 376.12353352679133,
+ "iv_at_12": 535.4650247420267,
+ "diagnostics": {
+  "oe_yield": 0.04593879306741809,
+  "tv_share_at_15": 0.2623284708126715,
+  "scenario_spread_iv15": 6.05070099085181,
+  "net_debt_to_normalized_oe": 0.2398379417980016,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.7%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Higher of the last tagged FY2024 capex ($4.8M, FY24 10-K) and the v4 TTM estimate (~$19M), per Andrew's conservative rule (2026-10-13)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 10.94 vs 3-yr median 4.96 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 4.959253381175821,
+  "base_oe_per_share_final": 12.508214576396597,
+  "weighted_irr_zero_fill": 0.10278724410127504,
+  "weighted_irr_final": 0.18426820483745066,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "ff704820b3465643cca4566216d343516579cbccba331030ce78bcc87cd9c227"
+}

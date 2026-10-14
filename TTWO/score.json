@@ -1,0 +1,43 @@
+{
+ "ticker": "TTWO",
+ "name": "Take-Two Interactive Software, Inc.",
+ "sector": "Technology",
+ "price": 200.32,
+ "market_cap_b": 36.84,
+ "engine_version": 5,
+ "base_oe_per_share": -0.07035445757250268,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong at franchise level, diluted at company level: GTA is a durable owned franchise with proven pricing power ($79.99, unprecedented pre-orders) and NBA 2K is entrenched with recurrent spending at 84% of Q1 FY27 bookings, but roughly half the company is Zynga mobile (bought traffic, low switching costs, goodwill impairments of $2,342M in FY2024 and $3,545M in FY2025), NBA 2K is licensed not owned, there is no owned platform, and one title drives the FY2027 step-up after two delays.",
+ "cap_years": null,
+ "fragility_flags": [
+  "DILUTION: share count growing 4.8%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "medium",
+ "one_liner": "Elite franchise portfolio, moat 6/10, priced entirely on a launch that hasn't filed yet \u2014 owner's earnings are negative on normalized (-$2.90/share) and TTM (-$0.07/share) bases with only 1 positive year in 5, so it cannot clear the 15% hurdle at $200.32 on an OE DCF today; even capitalising that single positive year gives IV@15% of just $10.40.",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "GTA: durable owned franchise, 13-year tail on prior entry, premium $79.99 pricing with unprecedented pre-orders",
+  "NBA 2K: entrenched annual franchise, habitual recurrent spending",
+  "Recurrent consumer spending 84% of Q1 FY27 net bookings \u2014 live-services base",
+  "Rockstar development capability rivals cannot simply buy"
+ ],
+ "moat_against": [
+  "Concentration: one title drives FY2027; mainline GTA gaps run over a decade and GTA VI already slipped twice",
+  "Zynga mobile ~half the company: low switching costs, bought traffic, mobile bookings -7% in Q1 FY27, $2,342M + $3,545M goodwill impairments FY24/25",
+  "NBA 2K is licensed, not owned \u2014 league cut and renewal risk",
+  "No owned platform: Sony/Microsoft storefront economics sit between TTWO and console players",
+  "AAA cost inflation raises capital at risk per release; capitalised development costs excluded from engine capex make OE generous, not harsh"
+ ]
+}

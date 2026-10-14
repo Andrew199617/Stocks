@@ -1,0 +1,61 @@
+{
+ "ticker": "CBRE",
+ "name": "CBRE Group, Inc.",
+ "sector": "Real Estate / Commercial real estate services",
+ "price": 131.35,
+ "market_cap_b": 39.5,
+ "engine_version": 4,
+ "base_oe_per_share": 3.57,
+ "base_year": "FY2025 (median of FY2023-FY2025)",
+ "base_source": "median_of_last_3_fy_oe_per_share from EDGAR 10-K (OCF - capex - SBC): FY23 $0.25, FY24 $4.07, FY25 $3.57 -> median $3.57/share (equals FY2025). TTM override computed but rejected: FY25 OCF $1,559M - H1'25 -$489M + H1'26 -$687M = $1,361M; capex $366M - $138M + $195M = $423M; SBC $120M - $63M + $107M = $164M; TTM OE $774M = $2.62/share on 295.4M H1'26 diluted shares - distorted down by H1 bonus/WC timing on acquisition-assisted growth while TTM net income rose and FY26 core EPS guidance was raised; verdict is D on either base.",
+ "moat_score": 6,
+ "moat_justification": "Global #1 CRE services scale and breadth, recurring facilities/outsourcing + PM + IM mix with real switching costs, unmatched data/talent density - against a people-based advisory core whose producers can walk, un-moated transaction cyclicality (OE/share $0.25 in 2023), hard-negotiating institutional clients, and growth increasingly bought via M&A (Pearce, Industrious).",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY",
+  "WIDE_SCENARIO_SPREAD",
+  "HIGH_NET_DEBT",
+  "BUYBACK_TAILWIND",
+  "OE_VOLATILE",
+  "NI_OCF_DIVERGENCE",
+  "SECTOR_MODEL_MISMATCH"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 16.43,
+   "irr": 0.039
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.92,
+   "irr": 0.0508
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 37.36,
+   "irr": 0.0627
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 51.31,
+   "irr": 0.0781
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 72.72,
+   "irr": 0.0999
+  }
+ },
+ "iv_at_15": 37.94,
+ "iv_at_12": 50.99,
+ "implied_irr": 0.0638,
+ "implied_irr_base_case": 0.0627,
+ "upside_at_15_pct": -71.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "#1 global CRE services franchise, moat 6/10 - but at $131.35 (36.8x normalized OE of $3.57/sh, 2.7% yield) the weighted IRR is just 6.4% with IV@15% of $37.94; even the super-bull case only reaches 10.0%, so it clears the 15% hurdle only at ~$38 (~$30 with a margin of safety).",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

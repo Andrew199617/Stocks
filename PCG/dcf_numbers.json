@@ -1,0 +1,125 @@
+{
+ "ticker": "PCG",
+ "name": "PG&E CORP",
+ "cik": 1004980,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 13.33,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 2202000000,
+ "market_cap_est": 29352660000.0,
+ "net_debt_latest": 57495000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.061883244163305484,
+ "rev_cagr_3y": 0.047720429946145115,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -3071000000,
+ "base_oe_per_share": 1.69,
+ "base_oe_latest_per_share": -1.3946412352406903,
+ "base_oe_normalized_per_share": -1.3946412352406903,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.061883244163305484,
+  "rev_cagr_3y": 0.047720429946145115,
+  "rev_yoy_latest": 0.021131086449076575,
+  "oe_ps_cagr_3y": null
+ },
+ "g_blend": 0.047720429946145115,
+ "share_cagr": 0.01082421684733359,
+ "share_count_adj": -0.01082421684733359,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": null,
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.036896213098811526,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.12,
+   "g_start": -0.0001,
+   "oe_mult": 0.8,
+   "iv_at_10": 16.438386977230902,
+   "iv_at_12": 13.04596084267817,
+   "iv_at_15": 9.984118899051348,
+   "irr": 0.11792743168202527
+  },
+  "bear": {
+   "prob": 0.28,
+   "g_start": 0.0399,
+   "oe_mult": 0.92,
+   "iv_at_10": 22.766360917641755,
+   "iv_at_12": 17.91961858913787,
+   "iv_at_15": 13.56450577838491,
+   "irr": 0.15216493277987564
+  },
+  "base": {
+   "prob": 0.35,
+   "g_start": 0.0899,
+   "oe_mult": 1.0,
+   "iv_at_10": 31.1206335210073,
+   "iv_at_12": 24.26462858896124,
+   "iv_at_15": 18.134426545822258,
+   "irr": 0.19167641450326156
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.1099,
+   "oe_mult": 1.08,
+   "iv_at_10": 36.79906570643196,
+   "iv_at_12": 28.59081907212316,
+   "iv_at_15": 21.264827766718106,
+   "irr": 0.2166762850084324
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1299,
+   "oe_mult": 1.18,
+   "iv_at_10": 43.99388371084792,
+   "iv_at_12": 34.06479782345704,
+   "iv_at_15": 25.218245013159816,
+   "irr": 0.2463355661483167
+  }
+ },
+ "weighted": {
+  "iv_at_10": 29.01476109352122,
+  "iv_at_12": 22.66125158035392,
+  "iv_at_15": 16.97568549826659,
+  "irr": 0.18205366877382712
+ },
+ "implied_irr_weighted": 0.18205366877382712,
+ "implied_irr_base": 0.19167641450326156,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.2734947860665109,
+ "upside_at_12": 0.7000188732448551,
+ "iv_at_15": 16.97568549826659,
+ "iv_at_12": 22.66125158035392,
+ "diagnostics": {
+  "oe_yield": 0.12678169542385595,
+  "tv_share_at_15": 0.19202635302985704,
+  "scenario_spread_iv15": 2.5258358066585083,
+  "net_debt_to_normalized_oe": 15.449913741676475,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 15.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ]
+}

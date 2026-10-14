@@ -1,0 +1,124 @@
+{
+ "ticker": "UI",
+ "name": "UBIQUITI INC.",
+ "cik": 1511737,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 619.56,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 60570000,
+ "market_cap_est": 37526749200.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": 0.11522622406253435,
+ "rev_cagr_3y": 0.1904486585354841,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 901500000,
+ "base_oe_per_share": 14.8836,
+ "base_oe_latest_per_share": 14.883605745418524,
+ "base_oe_normalized_per_share": 10.246027026134074,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.11522622406253435,
+  "rev_cagr_3y": 0.1904486585354841,
+  "rev_yoy_latest": 0.27223809958636824,
+  "oe_ps_cagr_3y": 0.31170087557940285
+ },
+ "g_blend": 0.23134337906092617,
+ "share_cagr": 0.0006555991064096656,
+ "share_count_adj": -0.0006555991064096656,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": 0.2306877799545165,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.1107,
+   "oe_mult": 0.75,
+   "iv_at_10": 233.79877776337003,
+   "iv_at_12": 180.99349221561624,
+   "iv_at_15": 133.9920915818183,
+   "irr": 0.05480693394616014
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.1807,
+   "oe_mult": 0.9,
+   "iv_at_10": 394.9937584896654,
+   "iv_at_12": 301.6139675326049,
+   "iv_at_15": 219.11205197781933,
+   "irr": 0.07505075700378028
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.2307,
+   "oe_mult": 1.0,
+   "iv_at_10": 557.9561658364944,
+   "iv_at_12": 422.3758753755816,
+   "iv_at_15": 303.13818442359474,
+   "irr": 0.09351699006476999
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.2807,
+   "oe_mult": 1.1,
+   "iv_at_10": 777.2623408719735,
+   "iv_at_12": 583.8137889297088,
+   "iv_at_15": 414.3795511932735,
+   "irr": 0.11549983971094757
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.3507,
+   "oe_mult": 1.25,
+   "iv_at_10": 1221.0879704069202,
+   "iv_at_12": 908.3546812418166,
+   "iv_at_15": 635.8238163640005,
+   "irr": 0.15246233991018265
+  }
+ },
+ "weighted": {
+  "iv_at_10": 605.9395494083872,
+  "iv_at_12": 457.00451907399616,
+  "iv_at_15": 326.29594691443356,
+  "irr": 0.09859643964383935
+ },
+ "implied_irr_weighted": 0.09859643964383935,
+ "implied_irr_base": 0.09351699006476999,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.47334245768862804,
+ "upside_at_12": -0.2623724593679446,
+ "iv_at_15": 326.29594691443356,
+ "iv_at_12": 457.00451907399616,
+ "diagnostics": {
+  "oe_yield": 0.024022854929304668,
+  "tv_share_at_15": 0.24361028030386409,
+  "scenario_spread_iv15": 4.745233907896375,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 3.4494086727989486
+ },
+ "fragility_flags": [
+  "BASE_DIVERGENCE: latest FY OE/share 14.88 vs 3-yr median 10.25 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ]
+}

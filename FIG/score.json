@@ -1,0 +1,45 @@
+{
+ "ticker": "FIG",
+ "name": "Figma, Inc.",
+ "sector": "Technology",
+ "price": 21.76,
+ "market_cap_b": 7.33,
+ "engine_version": 5,
+ "base_oe_per_share": -2.741672406772437,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 7,
+ "moat_justification": "Strong: estimated 80-90% share of professional UI/UX design, customer-built design-system switching costs, multiplayer collaboration across whole organizations (95% of Fortune 500), 136% net dollar retention and successful expansion into paid AI credits, 10,000+ plugin ecosystem. Against: generative AI threatens seat counts and raises compute costs, Adobe's Creative Cloud bundle and distribution, Canva's free Affinity suite pushing upmarket, premium seat pricing inviting counter-positioning, and no owned distribution channel.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 34.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Category-defining design platform, moat 7/10, growing 41-48% with 136% NDR and ~$1.7B cash and marketable securities \u2014 but owner's earnings are negative under every filed base (TTM -$2.74/share as reported; -$0.89/share even excluding the $975.7M one-time IPO RSU catch-up) because recurring SBC runs ~$700M/yr against ~$249M of TTM operating cash flow; it cannot clear the 15% hurdle at any price on an OE DCF until SBC falls below ~$232M/yr or cash generation roughly triples.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "80-90% share of professional UI/UX design; Adobe's abandoned $20B acquisition is market testimony",
+  "Customer-built design systems and component libraries \u2014 switching costs accumulate inside Figma files",
+  "Multiplayer collaboration across designers, developers and PMs; 95% of Fortune 500 use it",
+  "136% net dollar retention and expansion into paid AI credits (>80% of $10K+ customers consuming weekly)",
+  "10,000+ plugin ecosystem; Dev Mode, Make and Sites widen the surface competitors must match"
+ ],
+ "moat_against": [
+  "Generative AI commoditizes parts of design work, threatens seat counts and raises compute costs",
+  "Adobe retains Creative Cloud bundle, distribution and a far larger revenue base to subsidize Express/Firefly",
+  "Canva owns the non-designer segment (265M MAU), made Affinity free and is pushing upmarket",
+  "Premium seat pricing ($45/editor Organization tier) invites counter-positioning; no owned OS/browser/distribution channel"
+ ]
+}

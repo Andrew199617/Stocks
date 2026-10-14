@@ -1,0 +1,124 @@
+{
+ "ticker": "EL",
+ "name": "THE ESTEE LAUDER COMPANIES INC.",
+ "cik": 1001250,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 99.13,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 364800000,
+ "market_cap_est": 36162624000.0,
+ "net_debt_latest": 503000000,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": -0.014816225973858344,
+ "rev_cagr_3y": -0.01837037192899582,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1006000000,
+ "base_oe_per_share": 2.7576754385964914,
+ "base_oe_latest_per_share": 2.7576754385964914,
+ "base_oe_normalized_per_share": 2.7576754385964914,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.014816225973858344,
+  "rev_cagr_3y": -0.01837037192899582,
+  "rev_yoy_latest": 0.05046768113918754,
+  "oe_ps_cagr_3y": -0.05581810333204662
+ },
+ "g_blend": -0.016593298951427082,
+ "share_cagr": 0.0035883878463587315,
+ "share_count_adj": -0.0035883878463587315,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "g_base": -0.020181686797785814,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0802,
+   "oe_mult": 0.75,
+   "iv_at_10": 17.22853935431742,
+   "iv_at_12": 13.9272812189562,
+   "iv_at_15": 10.916521684781305,
+   "irr": 0.03682483758649359
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0302,
+   "oe_mult": 0.9,
+   "iv_at_10": 26.20362849192836,
+   "iv_at_12": 20.933964274537736,
+   "iv_at_15": 16.160429306451885,
+   "irr": 0.04402391939486264
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0398,
+   "oe_mult": 1.0,
+   "iv_at_10": 40.36509016487159,
+   "iv_at_12": 31.77223662561053,
+   "iv_at_15": 24.05093632980374,
+   "irr": 0.05577678858949023
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0798,
+   "oe_mult": 1.1,
+   "iv_at_10": 53.35343057364014,
+   "iv_at_12": 41.675832400556345,
+   "iv_at_15": 31.224571155673555,
+   "irr": 0.0661954493225122
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1298,
+   "oe_mult": 1.25,
+   "iv_at_10": 76.0194977584182,
+   "iv_at_12": 58.86323783784253,
+   "iv_at_15": 43.577363588692265,
+   "irr": 0.08351572733053436
+  }
+ },
+ "weighted": {
+  "iv_at_10": 39.51735096616102,
+  "iv_at_12": 31.075744503056548,
+  "iv_at_15": 23.495517068275227,
+  "irr": 0.055212730937304944
+ },
+ "implied_irr_weighted": 0.055212730937304944,
+ "implied_irr_base": 0.05577678858949023,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.762982779498888,
+ "upside_at_12": -0.6865152375359977,
+ "iv_at_15": 23.495517068275227,
+ "iv_at_12": 31.075744503056548,
+ "diagnostics": {
+  "oe_yield": 0.02781877775241089,
+  "tv_share_at_15": 0.18309070331548777,
+  "scenario_spread_iv15": 3.9918725805714614,
+  "net_debt_to_normalized_oe": 0.49999999999999994,
+  "months_since_fy_end": 3.4494086727989486
+ },
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ]
+}

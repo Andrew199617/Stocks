@@ -1,0 +1,53 @@
+{
+ "ticker": "PAYX",
+ "name": "Paychex, Inc.",
+ "sector": "Industrials",
+ "price": 104.64,
+ "market_cap_b": 37.67,
+ "engine_version": 4,
+ "base_oe_per_share": 6.1825,
+ "base_year": "FY2026",
+ "base_source": "Latest FY2026 (first full Paycor year) OE from EDGAR 10-K: OCF $2,556.7M - capex $234.9M - SBC $96.1M = $2,225.7M / 360.0M diluted shares = $6.1825; engine 3-yr median $4.626 rejected (pre-Paycor basis break); TTM cross-check $5.41/sh (TTM OE $1,928.1M) gives Tier D at 9.1%",
+ "moat_score": 6,
+ "moat_justification": "Payroll tax-compliance complexity and bundled HCM/PEO switching costs give durable recurring revenue and 40%+ margins, but ADP is larger upmarket, SMB rivals attack on price/UX, seat-based pricing is exposed to AI automation (Morningstar cut wide->narrow), and Paycor cross-sell is unproven.",
+ "cap_years": 9.8,
+ "fragility_flags": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 34.02,
+   "irr": 0.0645
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 46.66,
+   "irr": 0.081
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.25,
+   "irr": 0.0973
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 74.48,
+   "irr": 0.1161
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 96.69,
+   "irr": 0.1414
+  }
+ },
+ "iv_at_15": 61.13,
+ "iv_at_12": 81.56,
+ "implied_irr": 0.0998,
+ "implied_irr_base_case": 0.0973,
+ "upside_at_15_pct": -41.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality narrow-moat (6/10) payroll/HCM compounder, but at $104.64 it prices in growth it is not guiding to - weighted IRR 10.0%, IV@15% $61 vs $105 price; clears the 15% hurdle only at ~$61 (~$49 with a margin of safety).",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true
+}

@@ -1,0 +1,127 @@
+{
+ "ticker": "HIG",
+ "name": "The Hartford Insurance Group, Inc.",
+ "cik": 874766,
+ "engine_version": 4,
+ "as_of": "2026-10-13",
+ "price": 131.1446,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 286500000,
+ "market_cap_est": 37572927900.0,
+ "net_debt_latest": 4371000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.020606724258945386,
+ "rev_cagr_3y": 0.01907188159900919,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 5753000000,
+ "base_oe_per_share": 14.49,
+ "base_oe_latest_per_share": 20.080279232111693,
+ "base_oe_normalized_per_share": 19.303415941058272,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.020606724258945386,
+  "rev_cagr_3y": 0.01907188159900919,
+  "rev_yoy_latest": 0.03292181069958855,
+  "oe_ps_cagr_3y": 0.24952922966465096
+ },
+ "g_blend": 0.026764267479266968,
+ "share_cagr": -0.04553277474849726,
+ "share_count_adj": 0.04553277474849726,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": null,
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "g_base": 0.07229704222776423,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0477,
+   "oe_mult": 0.75,
+   "iv_at_10": 105.626537222888,
+   "iv_at_12": 84.72462826691658,
+   "iv_at_15": 65.74763991460783,
+   "irr": 0.08459585320626359
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0223,
+   "oe_mult": 0.9,
+   "iv_at_10": 176.004422792919,
+   "iv_at_12": 139.02776388765153,
+   "iv_at_15": 105.73891438407637,
+   "irr": 0.12572547273569235
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0723,
+   "oe_mult": 1.0,
+   "iv_at_10": 246.24880198479264,
+   "iv_at_12": 192.61979408540302,
+   "iv_at_15": 144.5880111099508,
+   "irr": 0.1621826083333534
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1223,
+   "oe_mult": 1.1,
+   "iv_at_10": 339.82954442665357,
+   "iv_at_12": 263.4685245903023,
+   "iv_at_15": 195.38879753666473,
+   "irr": 0.2043707607286228
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1923,
+   "oe_mult": 1.25,
+   "iv_at_10": 527.0131970612787,
+   "iv_at_12": 404.0979221592163,
+   "iv_at_15": 295.1204357225472,
+   "irr": 0.2732352326138535
+  }
+ },
+ "weighted": {
+  "iv_at_10": 266.0971058287476,
+  "iv_at_12": 207.29226538772267,
+  "iv_at_15": 154.74513887688602,
+  "irr": 0.1708590431414888
+ },
+ "implied_irr_weighted": 0.1708590431414888,
+ "implied_irr_base": 0.1621826083333534,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.17995814449764636,
+ "upside_at_12": 0.5806389694102745,
+ "iv_at_15": 154.74513887688602,
+ "iv_at_12": 207.29226538772267,
+ "diagnostics": {
+  "oe_yield": 0.11048872770971889,
+  "tv_share_at_15": 0.1955336690029843,
+  "scenario_spread_iv15": 4.4886848578267715,
+  "net_debt_to_normalized_oe": 1.052901621988806,
+  "months_since_fy_end": 9.395532194480946
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BUYBACK_TAILWIND: share count shrinking 4.6%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits banks/insurers poorly; grade confidence low"
+ ]
+}

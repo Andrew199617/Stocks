@@ -1,0 +1,125 @@
+{
+ "ticker": "CCI",
+ "name": "CROWN CASTLE INC.",
+ "cik": 1051470,
+ "engine_version": 4,
+ "as_of": "2026-10-14",
+ "price": 79.56,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 437000000,
+ "market_cap_est": 34767720000.0,
+ "net_debt_latest": 27021000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.16193728336389823,
+ "rev_cagr_3y": -0.3242686548039363,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2802000000,
+ "base_oe_per_share": 3.6927,
+ "base_oe_latest_per_share": 6.411899313501144,
+ "base_oe_normalized_per_share": 6.407834101382488,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": -0.16193728336389823,
+  "rev_cagr_3y": -0.3242686548039363,
+  "rev_yoy_latest": 0.11979166666666674,
+  "oe_ps_cagr_3y": 0.00031693914984853855
+ },
+ "g_blend": -0.08081017210702485,
+ "share_cagr": 0.002298333687817511,
+ "share_count_adj": -0.002298333687817511,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "g_base": -0.05,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.03,
+   "oe_mult": 0.75,
+   "iv_at_10": 28.67551780586331,
+   "iv_at_12": 22.9653939781863,
+   "iv_at_15": 17.781976796212856,
+   "irr": 0.050873951384633895
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0,
+   "oe_mult": 0.9,
+   "iv_at_10": 40.046894110338286,
+   "iv_at_12": 31.817153098546328,
+   "iv_at_15": 24.38263827722117,
+   "irr": 0.06221964617590642
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.03,
+   "oe_mult": 1.0,
+   "iv_at_10": 51.75058896878201,
+   "iv_at_12": 40.805328912902475,
+   "iv_at_15": 30.961661343387046,
+   "irr": 0.07387379205647637
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.05,
+   "oe_mult": 1.1,
+   "iv_at_10": 62.92768440005416,
+   "iv_at_12": 49.37968342323248,
+   "iv_at_15": 37.22900050710859,
+   "irr": 0.08462469096658964
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.08,
+   "oe_mult": 1.25,
+   "iv_at_10": 83.04778378581582,
+   "iv_at_12": 64.71990121341435,
+   "iv_at_15": 48.34624630699581,
+   "irr": 0.10312300431843846
+  }
+ },
+ "weighted": {
+  "iv_at_10": 52.44115147740062,
+  "iv_at_12": 41.30933732347551,
+  "iv_at_15": 31.30423040941942,
+  "irr": 0.0745940345378718
+ },
+ "implied_irr_weighted": 0.0745940345378718,
+ "implied_irr_base": 0.07387379205647637,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6065330516664226,
+ "upside_at_12": -0.4807775600367583,
+ "iv_at_15": 31.30423040941942,
+ "iv_at_12": 41.30933732347551,
+ "diagnostics": {
+  "oe_yield": 0.04641402714932127,
+  "tv_share_at_15": 0.18088848826844292,
+  "scenario_spread_iv15": 2.718834180308481,
+  "net_debt_to_normalized_oe": 16.744645366555662,
+  "months_since_fy_end": 9.42838370565046
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 16.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ]
+}

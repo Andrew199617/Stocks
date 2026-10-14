@@ -1,0 +1,72 @@
+{
+ "ticker": "U",
+ "name": "Unity Software Inc.",
+ "sector": "Technology \u2014 game engine & mobile advertising software",
+ "price": 46.63,
+ "market_cap_b": 19.63,
+ "engine_version": 5,
+ "base_oe_per_share": 0.45051585872877914,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat (5/10, CAP 8.5 yrs): the mobile/indie engine installed base carries real switching costs and feeds a unique engine-to-ads data flywheel (Vector >$1B run rate, Strategic Grow +63% YoY in Q2'26), but pricing power failed its one real test (2023 Runtime Fee reversed), Unreal owns the high end, Create grows only ~2%, and in ads Unity is the challenger to AppLovin with supply that is bought, not owned.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.0% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 2.49,
+   "irr": 0.0314
+  },
+  "bear": {
+   "prob": 0.2,
+   "iv_at_15": 4.17,
+   "irr": 0.0369
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 6.43,
+   "irr": 0.0447
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 9.76,
+   "irr": 0.0561
+  },
+  "super_bull": {
+   "prob": 0.15,
+   "iv_at_15": 15.2,
+   "irr": 0.0735
+  }
+ },
+ "iv_at_15": 7.73,
+ "iv_at_12": 10.63,
+ "implied_irr": 0.0495,
+ "implied_irr_base_case": 0.0447,
+ "upside_at_15_pct": -83.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real Vector-led turnaround, moat 5/10 \u2014 but TTM owner's earnings are just $0.45/share after a $342M SBC bill, so at $46.63 the weighted IRR is 5.0% (IV@15% $7.73); clears the 15% hurdle only below ~$7.73, and even the super-bull case alone clears only below $15.20.",
+ "analysis_date": "2026-10-13",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant mobile/indie engine installed base with real switching costs",
+  "Engine-to-ads flywheel: Create supply and runtime data feed Vector",
+  "Create revenue ~80% recurring subscription/seat-based"
+ ],
+ "moat_against": [
+  "Pricing power failed: 2023 Runtime Fee reversed after developer revolt; Godot is the free Plan B",
+  "Unreal owns AAA/AA high end (GDC 2026: 42% vs Unity 30% primary engine)",
+  "Create grows only ~2% YoY \u2014 the moat business is not the growth business",
+  "Ads challenger, not leader: AppLovin AXON ahead; publisher supply is bought, not owned",
+  "No owned consumer surface; hostage to Apple/Google platform rules",
+  "GAAP returns on capital still negative"
+ ]
+}
