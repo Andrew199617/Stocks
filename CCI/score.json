@@ -1,1 +1,71 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":3.6927,"base_source":"Continuing-ops TTM through Q2 2026 from EDGAR 10-Q YTD: consolidated OCF TTM $2,624M (FY25 $3,057M - H1'25 $1,473M + H1'26 $1,040M) minus discontinued-ops OCF TTM $712M (FY25 $1,185M - H1'25 $581M + H1'26 $108M) = continuing OCF $1,912M; minus continuing capex TTM $218M and total SBC TTM $84M = OE $1,610M / 436M H1'26 diluted shares = $3.6927. Engine normalized median base $6.41 rejected: it capitalises the Fiber Business sold 2026-05-01 (its $1,185M FY25 OCF is in consolidated OCF) while the capex tag is continuing-basis and never charges fiber's ~$1B/yr build capex.","base_year":"TTM Q2 2026 (continuing operations)","cap_years":9.8,"confidence":"low","engine_version":4,"fragility_flags":["STALE_FY","HIGH_NET_DEBT","NI_OCF_DIVERGENCE"],"implied_irr":0.0746,"implied_irr_base_case":0.0739,"in_scope_under_40b":true,"iv_at_12":41.31,"iv_at_15":31.3,"market_cap_b":34.77,"method_range_note":"Basis break (Fiber/Small Cell sold 2026-05-01 for ~$8.4B net; >$7B debt repaid, $1B buyback) makes every filed base straddle a sold business. Preliminary engine run on the distorted $6.41 mixed-basis base: weighted IRR 8.9%, IV@15% $41.79 (Tier D). Headline continuing TTM base $3.69: 7.5%, $31.30 (D). Interest-adjusted continuing sensitivity ($4.24/sh, adding ~$240M/yr run-rate interest savings): 8.2%, $35.97 (D). All defensible bases are Tier D. Engine net debt ($27.0B) is pre-sale; Q2 2026 post-sale net debt is $17,197M = 10.7x continuing OE / ~6.4x guided EBITDA. Confidence low per SECTOR_MODEL_MISMATCH (REIT) rule; AFFO cross-check (17.3x guided AFFO, 5.3% dividend yield + ~2-3% growth) independently agrees with Tier D.","moat_justification":"Scarce permitted tower sites with real relocation switching costs, ~6-yr weighted-average contract term, $23.7B contracted amounts and ~3% escalators, plus pure-play US scale — against extreme tenant concentration (AT&T ~28% of site rental revenue; Sprint cancellations and DISH terminations still shrinking reported revenue), no pricing power beyond escalators, US carrier capex ex-growth, a ~93% AFFO dividend payout that retains nothing, and a fiber decade that ended in a ~$5B impairment.","moat_score":6,"name":"Crown Castle Inc.","one_liner":"Pure-play US tower REIT after the fiber exit, moat 6/10 — contracted escalator rents are real, but at $79.56 you pay 17.3x guided AFFO and 21.6x continuing TTM owner's earnings ($3.69/share) for ~3% underlying growth, a ~93% dividend payout and still ~6.4x leverage; weighted IRR 7.5% (IV@15% $31.30), so it clears the 15% hurdle only below ~$31 — roughly $36 on the most generous interest-adjusted base.","price":79.56,"scenarios":{"base":{"irr":0.0739,"iv_at_15":30.96,"prob":0.3},"bear":{"irr":0.0622,"iv_at_15":24.38,"prob":0.25},"bull":{"irr":0.0846,"iv_at_15":37.23,"prob":0.25},"super_bear":{"irr":0.0509,"iv_at_15":17.78,"prob":0.1},"super_bull":{"irr":0.1031,"iv_at_15":48.35,"prob":0.1}},"sector":"Real Estate / REIT — Wireless towers","ticker":"CCI","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-60.65}
+{
+ "ticker": "CCI",
+ "name": "Crown Castle Inc.",
+ "sector": "Real Estate / REIT \u2014 Wireless towers",
+ "price": 79.94,
+ "market_cap_b": 34.93,
+ "engine_version": 5,
+ "base_oe_per_share": 3.6927,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "Scarce permitted tower sites with real relocation switching costs, ~6-yr weighted-average contract term, $23.7B contracted amounts and ~3% escalators, plus pure-play US scale \u2014 against extreme tenant concentration (AT&T ~28% of site rental revenue; Sprint cancellations and DISH terminations still shrinking reported revenue), no pricing power beyond escalators, US carrier capex ex-growth, a ~93% AFFO dividend payout that retains nothing, and a fiber decade that ended in a ~$5B impairment.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 16.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 17.78,
+   "irr": 0.0507
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 24.38,
+   "irr": 0.062
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 30.96,
+   "irr": 0.0736
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 37.23,
+   "irr": 0.0843
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 48.35,
+   "irr": 0.1028
+  }
+ },
+ "iv_at_15": 31.3,
+ "iv_at_12": 41.31,
+ "implied_irr": 0.0744,
+ "implied_irr_base_case": 0.0736,
+ "upside_at_15_pct": -60.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Pure-play US tower REIT after the fiber exit, moat 6/10 \u2014 contracted escalator rents are real, but at $79.94 the stock prices continuing TTM owner's earnings of $3.69/share for ~3% underlying growth, a ~93% dividend payout and still-high leverage; weighted IRR 7.4% (IV@15% $31.30), so it clears the 15% hurdle only below ~$31.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Scarce permitted tower sites (~40,000 US towers); carrier networks are built around specific sites \u2014 real relocation switching costs",
+  "Contract structure: ~6-yr weighted-average remaining term, $23.7B contracted amounts, ~3% fixed escalators",
+  "High incremental margins on added tenants/equipment; Q2 2026 organic billings +3.9% ex DISH/Sprint",
+  "Only large US-listed pure-play tower company after the fiber exit; investment-grade, 100% fixed-rate debt"
+ ],
+ "moat_against": [
+  "Extreme tenant concentration \u2014 AT&T ~28% of site rental revenue; top-3 carriers dominate",
+  "Tenants can merge or fail: Sprint cancellations and DISH terminations still shrinking reported revenue",
+  "No pricing power beyond contractual ~3% escalators; US carrier capex is ex-growth",
+  "Dividend consumes ~93% of guided AFFO \u2014 almost nothing retained to compound",
+  "Fiber decade ended in a ~$5B impairment and a sale \u2014 capital allocation drag on top of the tower moat"
+ ]
+}

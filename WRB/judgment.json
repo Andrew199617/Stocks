@@ -1,0 +1,38 @@
+{
+ "capex_override": {
+  "kind": "estimate",
+  "reason": "Capex tag missing for FY2023-2025 (and all post-2019 periods) because WRB reports capex as net purchases of property, furniture and equipment. $90M is 1.49x the last filed FY2019 value (inside the 0.1x-10x band) and in line with the 9M filed net-purchase figures; it is ~2.5% of FY2025 OCF, so the choice is immaterial to the verdict.",
+  "source": "Anchor: last engine-filed capex $60,457,000 in FY2019 (10-K, PaymentsToAcquirePropertyPlantAndEquipment, financials_history.csv); the filer's own cash-flow statements now report the same line as net purchases of property, furniture and equipment — $53,737,000 for the nine months ended 2025-09-30 and $91,670,000 for the nine months ended 2024-09-30 (10-Q consolidated statements of cash flows, investing activities) — confirming the same order of magnitude under a tag the engine does not read.",
+  "value": 90000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity product — fungible risk capital repriced annually via brokers; no structural pricing power or lock-in",
+  "Softening pricing cycle — H1 2026 net premiums written barely grew YoY as rate momentum moderates",
+  "Catastrophe and social-inflation tail — Q2 2026 cat losses $62.4M; casualty loss-cost inflation can hit reserves",
+  "Reserve risk — earnings lean on loss-reserve growth and prior-year development that can reverse",
+  "Leadership transition — founder/executive chairman died in 2026; the underwriting culture must survive succession"
+ ],
+ "moat_for": [
+  "Decentralized specialty model — autonomous operating units with local niche expertise, shared group capital/analytics",
+  "Underwriting discipline through the cycle — combined ratio 90.0% in Q2 2026, 88.1% accident-year ex-cat, vs US P&C industry near 98.5%",
+  "Proven high returns held through a cycle — operating ROE 20.5% in Q2 2026, 20.9% in H1 2026",
+  "Cycle management — leans into hard pricing, willing to pull back and protect margin instead of chasing volume",
+  "Record investment engine — net investment income $418.7M in Q2 2026 on $34.17B net invested assets, new-money yields above book yield"
+ ],
+ "moat_justification": "Best-in-class specialty P&C underwriting culture: decentralized operating units with local specialty expertise, combined ratios around 90% vs an industry near 98.5%, operating ROE around 20% held through the cycle, and a proven willingness to shrink premiums when pricing is inadequate — capped at moderate because the product is still fungible risk capital repriced annually, with no customer lock-in or structural pricing power, and returns remain hostage to the pricing cycle, catastrophe luck and reserve development.",
+ "moat_score": 6,
+ "name": "W. R. Berkley Corporation",
+ "one_liner": "Best-in-class specialty P&C insurer, moat 6/10 — engine prints Tier B (weighted IRR 16.68%, IV@15% $84.37 vs $73.80) on a float-capitalizing OCF base, so the final tier is softened to C at low confidence; it clears 15% at ~$84 on engine numbers, ~$61 (bear IV) with a margin of safety.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.15,
+  0.1
+ ],
+ "sector": "Finance / Property & Casualty Insurance",
+ "tier_override": "C",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (FY2025 OCF $3,582,616,000 vs net income $1,779,403,000; NI_OCF_DIVERGENCE is structural in 2023/2024/2025), so tier-by-numbers B overstates distributable owner's earnings — and 16.68% only just clears 15% even on that flattering base, while the maintenance (net-income) definition of OE is roughly half the conservative figure. Softened one notch to C, confidence low — same treatment as HIG (A to B) and ACGL (B to C)."
+}

@@ -1,0 +1,71 @@
+{
+ "ticker": "ACGL",
+ "name": "Arch Capital Group Ltd.",
+ "sector": "Finance / Property & Casualty Insurance, Reinsurance & Mortgage Insurance",
+ "price": 96.035,
+ "market_cap_b": 36.1,
+ "engine_version": 5,
+ "base_oe_per_share": 16.68266516092603,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Top-tier underwriting franchise \u2014 disciplined cycle management (shrinking premiums into the softening market), three diversified segments, leadership in specialty lines and U.S. mortgage insurance, mid-to-high-teens operating ROE through the cycle (Q2 2026 annualized operating ROE 15.3%) and aggressive buybacks \u2014 capped at moderate because the product is commodity risk capital repriced annually: no structural pricing power, no customer lock-in, returns set by the industry cycle, catastrophe luck and reserve development as much as by the franchise.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 60.76,
+   "irr": 0.0989
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 93.8,
+   "irr": 0.1469
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 133.95,
+   "irr": 0.1997
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 174.0,
+   "irr": 0.2464
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 233.23,
+   "irr": 0.3079
+  }
+ },
+ "iv_at_15": 126.86,
+ "iv_at_12": 166.65,
+ "implied_irr": 0.1905,
+ "implied_irr_base_case": 0.1997,
+ "upside_at_15_pct": 32.1,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality diversified P&C/reinsurance/mortgage insurer, moat 5/10 \u2014 engine prints Tier B (weighted IRR 19.05%, IV@15% $126.86 vs $96.04) on a float-capitalizing OCF base, so the final tier is softened to C at low confidence; on engine numbers it clears 15% at ~$127, ~$94 (bear IV) with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (FY2025 OCF $6,172M vs net income $4,399M), so tier-by-numbers B overstates distributable owner's earnings; softened one notch, confidence low \u2014 same treatment as HIG.",
+ "moat_for": [
+  "Disciplined cycle management \u2014 shrinking net written premiums (-6.9% YoY Q2 2026) into the soft market instead of chasing share",
+  "Diversified three-segment platform \u2014 reinsurance and mortgage carried a weak insurance segment in Q2 2026",
+  "Leadership in specialty insurance and U.S. mortgage insurance; underwriting expertise and claims capability, not just capacity",
+  "Proven returns through a cycle \u2014 Q2 2026 annualized operating ROE 15.3% in a deteriorating quarter; OE positive 5 of last 5 FY",
+  "Capital return engine \u2014 $1.95B buybacks in H1 2026, diluted shares down to 354.2M from 375.9M in FY2025"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 fungible risk capital repriced annually, brokers can move business; no structural pricing power",
+  "Price-taker in a softening cycle \u2014 property reinsurance rates falling at renewals; competition and third-party capital set price",
+  "Catastrophe/geopolitical tail \u2014 $201M pre-tax cat losses in Q2 2026 alone; one large event year can erase a year of underwriting profit",
+  "Reserve risk \u2014 earnings lean on favorable prior-year development ($165M in Q2 2026), which can reverse",
+  "Mortgage insurance concentration in U.S. housing credit and GSE/housing-policy risk"
+ ]
+}

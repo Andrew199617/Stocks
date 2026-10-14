@@ -1,0 +1,144 @@
+{
+ "ticker": "ARES",
+ "cik": 1176948,
+ "entity": "ARES MANAGEMENT CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 3266959000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 2409904000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 55070000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 912125000
+  },
+  "capex": {
+   "fy": 72178000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 35792378.08219178,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 35792378.08219178,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 72178000.0
+  },
+  "sbc": {
+   "fy": 740549000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 422953000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 386411000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 704007000
+  },
+  "shares_diluted": {
+   "fy": null,
+   "fy_period": null,
+   "fy_tag": null,
+   "ytd_prior": null,
+   "ytd_prior_period": null,
+   "ytd_prior_tag": null,
+   "ytd_current": 327035461.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 912125000,
+ "ttm_capex": 72178000.0,
+ "ttm_sbc": 704007000,
+ "ttm_shares_diluted": 327035461.0,
+ "ttm_oe_total": 135940000.0,
+ "ttm_oe_per_share": 0.41567357736780725,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "shares",
+   "value": 327035461.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Balance Sheets (p. F-4), Stockholders' Equity section: Class A common stock 218,465,429 shares, non-voting common stock 3,489,911 shares, Class B common stock 1,000 shares, and Class C common stock 105,079,121 shares, each stated as issued and outstanding as of December 31, 2025 - total 327,035,461 shares",
+   "legs_filled": {
+    "ytd_current": {
+     "amount": 327035461.0,
+     "prorated": false,
+     "note": "share counts are weighted averages, not flows \u2014 used unprorated as the TTM denominator"
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 72178000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows (p. F-8): 'Purchase of furniture, equipment and leasehold improvements, net of disposals' $(72,178) thousand for FY2025, with $(91,509) thousand for FY2024 and $(67,183) thousand for FY2023 in the same statement",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 72178000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 35792378.08219178,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 35792378.08219178,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

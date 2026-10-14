@@ -1,0 +1,73 @@
+{
+ "ticker": "CPNG",
+ "name": "Coupang, Inc.",
+ "sector": "Consumer Discretionary \u2014 Internet Retail (e-commerce)",
+ "price": 14.295,
+ "market_cap_b": 26.52,
+ "engine_version": 5,
+ "base_oe_per_share": 0.3143483023001095,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Owned dawn-delivery logistics network and Wow membership habit in Korea are real and stress-tested (customers stayed through the 33M-account data breach; active customers rose to 24.7M in Q2 2026), but scale has not converted into durable margins or pricing power, Korean regulatory costs are recurring, and the moat does not yet travel \u2014 Taiwan/Farfetch consume the core's cash at a guided $950M-$1.0B FY2026 EBITDA loss.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.03 vs 3-yr median 0.31 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 9.7x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 1.96,
+   "irr": 0.0422
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.21,
+   "irr": 0.0555
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 4.45,
+   "irr": 0.0685
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 6.1,
+   "irr": 0.0849
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 9.41,
+   "irr": 0.1141
+  }
+ },
+ "iv_at_15": 4.45,
+ "iv_at_12": 6.09,
+ "implied_irr": 0.0689,
+ "implied_irr_base_case": 0.0685,
+ "upside_at_15_pct": -68.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real Korean logistics moat (6/10) but owner's earnings have collapsed for three years \u2014 at $14.30 it clears nothing (weighted IRR 6.9%, IV@15% $4.45); it would need ~$4.45 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Owned Rocket Delivery dawn/next-day logistics network rivals have not replicated in Korea",
+  "Rocket Wow membership habit \u2014 active customers rose to 24.7M through the data breach",
+  "Scale and data flywheel in a dense, high-penetration e-commerce market",
+  "Net-cash balance sheet funds expansion without dilution stress"
+ ],
+ "moat_against": [
+  "Naver's search-distribution share and AliExpress/Temu price attack",
+  "Structurally thin retail margins; no demonstrated pricing power",
+  "Recurring Korean regulatory fines, FTC actions and tax assessments",
+  "Developing Offerings (Taiwan, Farfetch) burn ~$1B/yr of core cash",
+  "Founder super-voting control"
+ ]
+}

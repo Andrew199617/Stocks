@@ -2,12 +2,12 @@
  "ticker": "ADM",
  "name": "Archer-Daniels-Midland Co",
  "cik": 7084,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 80.42,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 83.2,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 484000000,
- "market_cap_est": 38923280000.0,
+ "market_cap_est": 40268800000.0,
  "net_debt_latest": 6597000000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": -0.17261570856684927,
@@ -22,7 +22,7 @@
   "rev_cagr_5y": -0.17261570856684927,
   "rev_cagr_3y": -0.0330726820657643,
   "rev_yoy_latest": 0.02391991137734384,
-  "oe_ps_cagr_3y": 0.2713932741220444
+  "oe_ps_cagr_2y": 0.2713932741220444
  },
  "g_blend": -0.004576385344210232,
  "share_cagr": -0.049138387142399376,
@@ -46,83 +46,118 @@
   "equity": null,
   "shares_out_inst": null
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.044562001798189144,
  "moat_score": 4.0,
  "cap_years": 7.2,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.0946,
+   -0.0446,
+   -0.0146,
+   0.0154,
+   0.0554
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "g_start": -0.0504,
+   "g_start": -0.05,
    "oe_mult": 0.75,
-   "iv_at_10": 39.043314975730496,
-   "iv_at_12": 31.231028249068153,
-   "iv_at_15": 24.15421677277362,
-   "irr": 0.06032373363644371
+   "iv_at_10": 39.11140816400805,
+   "iv_at_12": 31.28316246429019,
+   "iv_at_15": 24.192162179242118,
+   "irr": 0.05917581265681561
   },
   "bear": {
    "prob": 0.3,
-   "g_start": -0.0004,
+   "g_start": -0.0,
    "oe_mult": 0.9,
-   "iv_at_10": 58.13149917745656,
-   "iv_at_12": 46.08740022845683,
-   "iv_at_15": 35.22543715978763,
-   "irr": 0.0789494235332483
+   "iv_at_10": 58.23090149620704,
+   "iv_at_12": 46.16307060752925,
+   "iv_at_15": 35.280067050331034,
+   "irr": 0.07721829558098958
   },
   "base": {
    "prob": 0.3,
-   "g_start": 0.0296,
+   "g_start": 0.03,
    "oe_mult": 1.0,
-   "iv_at_10": 73.36441840510807,
-   "iv_at_12": 57.8766872299967,
-   "iv_at_15": 43.94267605963041,
-   "irr": 0.09343744291659106
+   "iv_at_10": 73.48834407977154,
+   "iv_at_12": 57.97072979636099,
+   "iv_at_15": 44.01026529677563,
+   "irr": 0.09127013647996907
   },
   "bull": {
    "prob": 0.17,
-   "g_start": 0.0596,
+   "g_start": 0.06,
    "oe_mult": 1.1,
-   "iv_at_10": 91.52013232550955,
-   "iv_at_12": 71.8624132072743,
-   "iv_at_15": 54.21633281710857,
-   "irr": 0.11011373031161387
+   "iv_at_10": 91.67281241284687,
+   "iv_at_12": 71.97793544495359,
+   "iv_at_15": 54.299009322476145,
+   "irr": 0.10746454871824274
   },
   "super_bull": {
    "prob": 0.08,
-   "g_start": 0.0996,
+   "g_start": 0.1,
    "oe_mult": 1.25,
-   "iv_at_10": 122.69463166585862,
-   "iv_at_12": 95.78011452871269,
-   "iv_at_15": 71.68633514297561,
-   "irr": 0.13713505931059772
+   "iv_at_10": 122.89588878528701,
+   "iv_at_12": 95.93183700463243,
+   "iv_at_15": 71.79434961432216,
+   "irr": 0.13374367867674375
   }
  },
  "weighted": {
-  "iv_at_10": 70.67926554973428,
-  "iv_at_12": 55.75289988242993,
-  "iv_at_15": 42.32524987208796,
-  "irr": 0.09094251504207784
+  "iv_at_10": 70.7985341104017,
+  "iv_at_12": 55.8434104768233,
+  "iv_at_15": 42.390303584985034,
+  "irr": 0.08885528105246465
  },
- "implied_irr_weighted": 0.09094251504207784,
- "implied_irr_base": 0.09343744291659106,
+ "implied_irr_weighted": 0.08885528105246465,
+ "implied_irr_base": 0.09127013647996907,
  "tier_by_numbers": "D",
- "upside_at_15": -0.4736974649081328,
- "upside_at_12": -0.3067284272266858,
- "iv_at_15": 42.32524987208796,
- "iv_at_12": 55.75289988242993,
+ "upside_at_15": -0.49050115883431455,
+ "upside_at_12": -0.3288051625381815,
+ "iv_at_15": 42.390303584985034,
+ "iv_at_12": 55.8434104768233,
  "diagnostics": {
-  "oe_yield": 0.06547727750343904,
-  "tv_share_at_15": 0.17905133270613813,
-  "scenario_spread_iv15": 2.9678600559625554,
+  "oe_yield": 0.06328945500993471,
+  "tv_share_at_15": 0.17913164853021663,
+  "scenario_spread_iv15": 2.967669821423597,
   "net_debt_to_normalized_oe": 2.58848969403534,
-  "months_since_fy_end": 9.395532194480946
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "BASE_DIVERGENCE: latest FY OE/share 8.51 vs 3-yr median 5.27 \u2014 one of them is distorted; find out which and why",
   "BUYBACK_TAILWIND: share count shrinking 4.9%/yr \u2014 already credited via the growth adjustment",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
- ]
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 8.51 vs 3-yr median 5.27 \u2014 one of them is distorted; find out which and why"
+ ],
+ "content_hash": "07c9202b43b8b1d1a3a4fa3fa67a166e71e5ee63ea0e2c6657eca96de4c8f600"
 }

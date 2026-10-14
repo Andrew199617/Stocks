@@ -1,0 +1,198 @@
+{
+ "ticker": "TDY",
+ "name": "TELEDYNE TECHNOLOGIES INC",
+ "cik": 1094285,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 607.91,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 47400000,
+ "market_cap_est": 28814934000.0,
+ "net_debt_latest": 2123000000,
+ "latest_period_end": "2025-12-28",
+ "rev_cagr_5y": 0.14710756654922008,
+ "rev_cagr_3y": 0.038734004365320374,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1034400000.0,
+ "base_oe_per_share": 23.524701346496478,
+ "base_oe_latest_per_share": 21.82278481012658,
+ "base_oe_normalized_per_share": 21.82278481012658,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.14710756654922008,
+  "rev_cagr_3y": 0.038734004365320374,
+  "rev_yoy_latest": 0.0785537918871253,
+  "oe_ps_cagr_2y": 0.2393013751482258
+ },
+ "g_blend": 0.11283067921817269,
+ "share_cagr": -0.002108053360006523,
+ "share_count_adj": 0.002108053360006523,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAndAmortization",
+  "sbc": "AllocatedShareBasedCompensationExpense",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "sbc": {
+   "value": 39600000.0,
+   "last_filed_value": 5800000,
+   "out_of_band": false,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.11493873257817921,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.11,
+   -0.07,
+   -0.03,
+   0.01,
+   0.06
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 23.524701346496478,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 39600000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 28, 2025 (filed 2026-02-20, accession 0001094285-26-000017), Consolidated Statements of Cash Flows: 'Stock-based compensation' $39.6 million for FY2025, $37.7 million for FY2024 and $32.3 million for FY2023. EDGAR companyfacts carries the same expense only as quarterly/segment AllocatedShareBasedCompensationExpense facts (9M 2025 $30.7M in the Q3 2025 10-Q cash-flow statement matches), with no annual-duration fact under the engine's SBC tags, so the engine found no FY SBC for 2023-2025.",
+   "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags. The filer's own reported FY2025 stock-based compensation from its 10-K cash-flow statement fills the gap; the engine applies this single value to every missing period. The true per-year series in the same statement is $32.3M (FY2023) / $37.7M (FY2024) / $39.6M (FY2025), so applying $39.6M to all three years overstates SBC in the two earlier years and makes the 3-yr median base slightly conservative (median year FY2024 true SBC $37.7M vs $39.6M applied, ~$0.04/share).",
+   "periods_filled": [
+    "2017-01-01",
+    "2017-12-31",
+    "2018-12-30",
+    "2019-12-29",
+    "2021-01-03",
+    "2022-01-02",
+    "2023-01-01",
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 5800000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0049,
+   "oe_mult": 0.75,
+   "iv_at_10": 217.96503550230884,
+   "iv_at_12": 172.95185970874303,
+   "iv_at_15": 132.31909567575565,
+   "irr": 0.05148993980317308
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0449,
+   "oe_mult": 0.9,
+   "iv_at_10": 319.7942675568446,
+   "iv_at_12": 251.24647921157333,
+   "iv_at_15": 189.7262612328171,
+   "irr": 0.0648463666988307
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0849,
+   "oe_mult": 1.0,
+   "iv_at_10": 433.7628448155788,
+   "iv_at_12": 337.66442373399894,
+   "iv_at_15": 251.8651672046852,
+   "irr": 0.07937883051688999
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1249,
+   "oe_mult": 1.1,
+   "iv_at_10": 581.3895966460082,
+   "iv_at_12": 448.7507556206376,
+   "iv_at_15": 330.8809911014408,
+   "irr": 0.09698555085005467
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1749,
+   "oe_mult": 1.25,
+   "iv_at_10": 843.3028706210304,
+   "iv_at_12": 644.6185342016918,
+   "iv_at_15": 468.9801976074353,
+   "irr": 0.12497233699428845
+  }
+ },
+ "weighted": {
+  "iv_at_10": 461.55161010772076,
+  "iv_at_12": 358.05567521929584,
+  "iv_at_15": 265.84129257328914,
+  "irr": 0.08288492115048621
+ },
+ "implied_irr_weighted": 0.08288492115048621,
+ "implied_irr_base": 0.07937883051688999,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5626962994961604,
+ "upside_at_12": -0.41100545274909794,
+ "iv_at_15": 265.84129257328914,
+ "iv_at_12": 358.05567521929584,
+ "diagnostics": {
+  "oe_yield": 0.03869767127781494,
+  "tv_share_at_15": 0.20157813062020574,
+  "scenario_spread_iv15": 3.544312294550883,
+  "net_debt_to_normalized_oe": 1.9039149052804185,
+  "months_since_fy_end": 9.526938239159001,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 28, 2025 (filed 2026-02-20, accession 0001094285-26-000017), Consolidated Statements of Cash Flows: 'Stock-based compensation' $39.6 million for FY2025, $37.7 million for FY2024 and $32.3 million for FY2023. EDGAR companyfacts carries the same expense only as quarterly/segment AllocatedShareBasedCompensationExpense facts (9M 2025 $30.7M in the Q3 2025 10-Q cash-flow statement matches), with no annual-duration fact under the engine's SBC tags, so the engine found no FY SBC for 2023-2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 22.658227848101266,
+  "base_oe_per_share_final": 23.524701346496478,
+  "weighted_irr_zero_fill": 0.08086602905132931,
+  "weighted_irr_final": 0.08288492115048621,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "20b81bf0b58375a33ed4d7e51ae27638538b00a8ba4bf1c3be2ffd763f2608e8"
+}

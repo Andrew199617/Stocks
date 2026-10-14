@@ -1,1 +1,44 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":-2.1039,"base_source":"TTM through Q2 2026 from EDGAR 10-Q YTD (OCF $1,655.387M = FY25 $1,339.999M - H1'25 $572.425M + H1'26 $887.813M; minus SBC TTM $138.876M and capex TTM $2,146.311M = -$629.800M / 299.342M H1'26 diluted shares); normalized 3-yr median was -$2.41 and latest FY -$3.60 — all conservative bases negative, Tier F under every conservative base — see analysis.md","base_year":"TTM Q2 2026","cap_years":9.8,"confidence":"low","engine_version":4,"fragility_flags":[],"implied_irr":null,"implied_irr_base_case":null,"in_scope_under_40b":true,"iv_at_12":null,"iv_at_15":null,"market_cap_b":34.28,"moat_justification":"Moderate-strong: records storage has ~93-94% retention, ~14.5-year average storage duration, compliance/chain-of-custody switching costs, global scale (1,300+ facilities, 240,000+ customers) and proven pricing power, with cross-sell into Digital/ALM/data centres — but legacy volumes face secular digital substitution and growth leans on price, the data-centre moat is thinner against Digital Realty/Equinix/hyperscaler self-builds, most facility square footage is leased, and GAAP returns/book equity do not yet corroborate a wide moat through the build cycle.","moat_score":6,"name":"Iron Mountain Incorporated","one_liner":"Durable records franchise pivoting to data centres, moat 6/10 — but conservative owner's earnings are negative in 4 of the last 5 years (-$2.10/share TTM) because ~$2.1B/yr of growth capex exceeds operating cash flow on a $16.3B net-debt balance sheet, so it cannot clear the 15% hurdle at any price on an OE DCF; even charging only recurring capex gives just 7.7% weighted IRR (IV@15% $44 vs $115.10), so at $115 you pay 19.5x guided AFFO for a build wave, not for current owner's earnings.","price":115.1,"scenarios":{"base":{"irr":null,"iv_at_15":null,"prob":0.3},"bear":{"irr":null,"iv_at_15":null,"prob":0.25},"bull":{"irr":null,"iv_at_15":null,"prob":0.25},"super_bear":{"irr":null,"iv_at_15":null,"prob":0.1},"super_bull":{"irr":null,"iv_at_15":null,"prob":0.1}},"sector":"Real Estate / REIT — Records management & data centers","ticker":"IRM","tier_by_numbers":"F","tier_final":"F","upside_at_15_pct":null}
+{
+ "ticker": "IRM",
+ "name": "Iron Mountain Incorporated",
+ "sector": "Real Estate / REIT \u2014 Records management & data centers",
+ "price": 115.0,
+ "market_cap_b": 34.25,
+ "engine_version": 5,
+ "base_oe_per_share": -2.1039479925970963,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong: records storage has ~93-94% retention, ~14.5-year average storage duration, compliance/chain-of-custody switching costs, global scale (1,300+ facilities, 240,000+ customers) and proven pricing power, with cross-sell into Digital/ALM/data centers \u2014 but legacy volumes face secular digital substitution and growth leans on price, the data-center moat is thinner against Digital Realty/Equinix/hyperscaler self-builds, most facility square footage is leased, and GAAP returns/book equity do not yet corroborate a wide moat through the build cycle.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Durable records franchise pivoting to data centers, moat 6/10 \u2014 but conservative owner's earnings are negative in 4 of the last 5 years (-$2.10/share TTM through Q2 2026) because ~$2.1B/yr of growth capex exceeds operating cash flow on a $16.3B net-debt balance sheet, so it cannot clear the 15% hurdle at any price on an OE DCF; at $115.00 you are paying for FY2026 guided AFFO of $5.87-5.93/share and a data-center build wave, not for current owner's earnings.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Records storage switching costs: ~93-94% retention, ~14.5-yr average storage duration, compliance/chain-of-custody requirements",
+  "Proven pricing power: decades of annual revenue-management increases on the stored base",
+  "Global scale: 1,300+ facilities, 240,000+ customers, logistics network sub-scale rivals cannot replicate",
+  "Cross-sell: regulated-enterprise relationships seed Digital, ALM and data-center sales",
+  "Data-center demand contracted ahead: ~97% leased capacity and signed backlog before new capacity energizes"
+ ],
+ "moat_against": [
+  "Legacy paper volumes face secular digital substitution; RIM growth leans on price, increasingly contested by customers",
+  "Data-center moat is thinner: scale-and-power game vs Digital Realty, Equinix and hyperscaler self-builds \u2014 IRM is the challenger",
+  "Most facility square footage is leased \u2014 lease obligations stack on top of $16.3B net debt",
+  "Returns do not yet corroborate a wide moat: FY2025 net income only $152M on $6.9B revenue, book equity negative"
+ ]
+}

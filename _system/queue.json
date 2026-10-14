@@ -24,13 +24,13 @@
   {
    "ticker": "CMPS",
    "queue_pos": 3,
-   "status": "blocked_data_gap",
+   "status": "done",
    "started": "2026-10-12",
-   "completed": "2026-10-12",
+   "completed": "2026-10-14",
    "v5_rerun": true,
-   "claimed_at": "2026-10-13T23:28:09-04:00",
    "blocked_date": "2026-10-13",
-   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2025 of the last 3 \u2014 no tier emitted"
+   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2025 of the last 3 \u2014 no tier emitted",
+   "claimed_at": "2026-10-14T10:43:24-04:00"
   },
   {
    "ticker": "LFTO",
@@ -70,24 +70,24 @@
   {
    "ticker": "STZ",
    "queue_pos": 8,
-   "status": "blocked_data_gap",
+   "status": "done",
    "started": "2026-10-12",
-   "completed": "2026-10-12",
+   "completed": "2026-10-14",
    "v5_rerun": true,
-   "claimed_at": "2026-10-13T23:58:12-04:00",
-   "blocked_date": "2026-10-13",
-   "note": "DATA_GAP: shares \u2014 shares missing for fiscal year(s) 2024, 2025, 2026 of the last 3 \u2014 no tier emitted"
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: shares \u2014 shares missing for fiscal year(s) 2024, 2025, 2026 of the last 3 \u2014 no tier emitted | NEEDS_MAIN_AGENT: shares \u2014 STZ diluted shares missing for ALL periods in companyfacts (filer tags by share class; aggregated facts drop them). Filing figure verified in FY2026 10-K EPS note (filed 2026-04-22): FY26 diluted weighted avg 175.568M. With a filing-kind shares_override the engine completes (median base $9.83/sh, TTM $10.07/sh, Tier D ~9.8-10.0% weighted IRR) but make_score.py refuses on BOTH bases: its override-impact counterfactual has no base/denominator at all without the override (median branch fails on base None; TTM branch fails 'no zero-fill TTM denominator'). Tooling decision needed \u2014 judgment.json with the verified override is in place so it can score immediately once resolved.",
+   "claimed_at": "2026-10-14T11:05:54-04:00"
   },
   {
    "ticker": "DFTX",
    "queue_pos": 9,
-   "status": "blocked_data_gap",
+   "status": "done",
    "started": "2026-10-12",
-   "completed": "2026-10-12",
+   "completed": "2026-10-14",
    "v5_rerun": true,
-   "claimed_at": "2026-10-14T00:05:54-04:00",
    "blocked_date": "2026-10-14",
-   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted"
+   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
+   "claimed_at": "2026-10-14T10:58:42-04:00"
   },
   {
    "ticker": "FIG",
@@ -110,51 +110,60 @@
   {
    "ticker": "IBKR",
    "queue_pos": 12,
-   "status": "in_progress",
+   "status": "blocked_no_data",
    "started": "2026-10-13",
    "completed": "2026-10-13",
    "v5_rerun": true,
-   "claimed_at": "2026-10-14T00:28:15-04:00"
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted | NEEDS_MAIN_AGENT: base_override \u2014 IBKR engine OCF base is invalid for a broker-dealer (consolidated OCF is client-balance plumbing and consolidated NI is ~77pct noncontrolling interest); honest base is TTM attributable NI (prior v4 run: 2.51/sh) built from the attributable-NI tag, which this run's dcf_numbers/ttm/financials_history outputs do not print, so it is outside worker bounded authority (c). Capex gap is separately filing-resolvable: 10-K FY2025 Consolidated Statements of Cash Flows, Purchase of property, equipment and intangible assets 67M FY2025 / 49M FY2024 / 49M FY2023 (in millions).",
+   "claimed_at": "2026-10-14T11:13:33-04:00"
   },
   {
    "ticker": "UI",
    "queue_pos": 13,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T00:35:58-04:00"
   },
   {
    "ticker": "YUM",
    "queue_pos": 14,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T00:50:52-04:00"
   },
   {
    "ticker": "ED",
    "queue_pos": 15,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T01:05:52-04:00"
   },
   {
    "ticker": "PRU",
    "queue_pos": 16,
-   "status": "pending",
+   "status": "blocked_no_data",
    "started": "2026-10-13",
    "completed": "2026-10-13",
-   "v5_rerun": true
+   "v5_rerun": true,
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted | NEEDS_MAIN_AGENT: capex \u2014 PRU (insurer) files no capex under any tag in 10 yrs of companyfacts and no filed value exists to anchor an in-band estimate; gap covers FY2023-2025",
+   "claimed_at": "2026-10-14T11:20:50-04:00"
   },
   {
    "ticker": "WCN",
    "queue_pos": 17,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T01:35:55-04:00"
   },
   {
    "ticker": "CBRS",
@@ -167,31 +176,36 @@
   {
    "ticker": "ARES",
    "queue_pos": 19,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: capex, shares \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3; shares missing for fiscal year(s) 2025 of the last 3 \u2014 no tier emitted",
+   "claimed_at": "2026-10-14T11:28:15-04:00"
   },
   {
    "ticker": "ADM",
    "queue_pos": 20,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T02:05:53-04:00"
   },
   {
    "ticker": "SYY",
    "queue_pos": 21,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T02:20:50-04:00"
   },
   {
    "ticker": "CCJ",
    "queue_pos": 22,
-   "status": "blocked_no_data",
+   "status": "pending",
    "started": "2026-10-13",
    "blocked_date": "2026-10-13",
    "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1009001. CIK hunt done: issuer CIK 1009001 IS the operating company (Cameco Corporation, Saskatoon uranium miner, NYSE: CCJ / TSX: CCO, SEC file 001-14228); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Cameco is a Canadian foreign private issuer filing annual reports on Form 40-F (latest filed 2026-03-19 for FY2025 ended 2025-12-31) with IFRS financials \u2014 EDGAR companyfacts for CIK 1009001 contains only dei + ifrs-full namespaces (250 IFRS concepts, CAD units, 40-F FY data through 2025), no us-gaap facts. Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/40-F support; do NOT score F."
@@ -199,42 +213,47 @@
   {
    "ticker": "ZS",
    "queue_pos": 23,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T02:35:44-04:00"
   },
   {
    "ticker": "CBRE",
    "queue_pos": 24,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T02:50:54-04:00"
   },
   {
    "ticker": "ODFL",
    "queue_pos": 25,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T03:05:51-04:00"
   },
   {
    "ticker": "DHI",
    "queue_pos": 26,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T03:20:53-04:00"
   },
   {
    "ticker": "PAYX",
    "queue_pos": 27,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T03:35:48-04:00"
   },
   {
    "ticker": "JD",
@@ -242,20 +261,23 @@
    "status": "pending",
    "started": "2026-10-13",
    "completed": "2026-10-13",
-   "v5_rerun": true
+   "v5_rerun": true,
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts in the last 3 FY); USD translations and ADS ratios are unverified \u2014 no tier emitted"
   },
   {
    "ticker": "KR",
    "queue_pos": 29,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T04:05:49-04:00"
   },
   {
    "ticker": "VIK",
    "queue_pos": 30,
-   "status": "blocked_no_data",
+   "status": "pending",
    "started": "2026-10-13",
    "blocked_date": "2026-10-13",
    "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1745201. CIK hunt done: issuer CIK 1745201 IS the operating company (Viking Holdings Ltd, Bermuda foreign private issuer, NYSE: VIK, SEC file 001-42039, IPO May 2024); no separate operating-parent CIK exists (operating subsidiary Viking Cruises Ltd is a note issuer only, consolidated financials are filed by Viking Holdings Ltd itself). Root cause is filing format, not entity change: Viking files annual reports on Form 20-F (FY2025 filed 2026-03-03, FY2024 filed 2025-03-11) with financial statements under IFRS Accounting Standards \u2014 EDGAR companyfacts for CIK 1745201 therefore contains ifrs-full facts, no us-gaap facts. Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F."
@@ -263,7 +285,7 @@
   {
    "ticker": "FER",
    "queue_pos": 31,
-   "status": "blocked_no_data",
+   "status": "pending",
    "started": "2026-10-13",
    "blocked_date": "2026-10-13",
    "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1468522. CIK hunt done: issuer CIK 1468522 IS the operating company (Ferrovial N.V., formerly Ferrovial SE, Amsterdam, Netherlands, Nasdaq: FER, SEC file 001-41912; SE to N.V. conversion effective 2026-04-30 under same CIK); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Ferrovial is a foreign private issuer filing annual reports on Form 20-F (FY2025 filed 2026-02-25 for FY ended 2025-12-31) with IFRS financials \u2014 EDGAR companyfacts for CIK 1468522 contains only dei + ifrs-full namespaces (156 IFRS concepts, EUR units), no us-gaap facts (verified directly 2026-10-13). Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F."
@@ -271,15 +293,16 @@
   {
    "ticker": "PEG",
    "queue_pos": 32,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T04:21:03-04:00"
   },
   {
    "ticker": "VOD",
    "queue_pos": 33,
-   "status": "blocked_no_data",
+   "status": "pending",
    "started": "2026-10-13",
    "blocked_date": "2026-10-13",
    "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 839923. CIK hunt done: issuer CIK 839923 IS the operating company (Vodafone Group Plc, England, Nasdaq: VOD, SEC file 001-10086); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Vodafone is a foreign private issuer filing annual reports on Form 20-F (FY2026 for year ended 2026-03-31 filed 2026-05-22; FY2025 20-F dated 2025-06-03) with IFRS financials \u2014 EDGAR companyfacts for CIK 839923 contains dei + ifrs-full (383 IFRS concepts, EUR units) + ffd, and only 1 stray us-gaap concept (NoncurrentAssets), no us-gaap operating facts (verified directly 2026-10-13). Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F."
@@ -287,15 +310,16 @@
   {
    "ticker": "ROP",
    "queue_pos": 34,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T04:35:55-04:00"
   },
   {
    "ticker": "SHG",
    "queue_pos": 35,
-   "status": "blocked_no_data",
+   "status": "pending",
    "started": "2026-10-13",
    "blocked_date": "2026-10-13",
    "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1263043. CIK hunt done: issuer CIK 1263043 IS the operating company (Shinhan Financial Group Co., Ltd., Seoul, South Korea \u2014 major bank / financial holding company, NYSE: SHG / KRX: 055550); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Shinhan is a foreign private issuer filing annual reports on Form 20-F (FY2025 for year ended 2025-12-31 filed 2026-04-22) with IFRS financials \u2014 EDGAR companyfacts for CIK 1263043 contains dei + ifrs-full (445 IFRS concepts, KRW units, 20-F FY data through 2025) plus legacy us-gaap facts only from 20-F/A filings for FY2007-2010 (forms/units the engine does not use). Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F. Note: bank \u2014 SECTOR_MODEL_MISMATCH would also apply."
@@ -303,7 +327,7 @@
   {
    "ticker": "CHT",
    "queue_pos": 36,
-   "status": "blocked_no_data",
+   "status": "pending",
    "started": "2026-10-13",
    "blocked_date": "2026-10-13",
    "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1132924. CIK hunt done: issuer CIK 1132924 IS the operating company (Chunghwa Telecom Co., Ltd., Taipei, Taiwan \u2014 Taiwan's largest integrated telecom, NYSE: CHT / TWSE: 2412, SEC file via 20-F); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Chunghwa is a foreign private issuer filing annual reports on Form 20-F (FY2025 for year ended 2025-12-31 filed 2026-04-15) with IFRS financials \u2014 EDGAR companyfacts for CIK 1132924 contains only dei + ifrs-full namespaces (344 IFRS concepts, TWD units, 20-F forms), no us-gaap facts (verified directly 2026-10-13). Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F."
@@ -311,468 +335,623 @@
   {
    "ticker": "EL",
    "queue_pos": 37,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T04:50:55-04:00"
   },
   {
    "ticker": "CCL",
    "queue_pos": 38,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T05:05:47-04:00"
   },
   {
    "ticker": "PCG",
    "queue_pos": 39,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T05:20:48-04:00"
   },
   {
    "ticker": "HIG",
    "queue_pos": 40,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T05:35:42-04:00"
   },
   {
    "ticker": "UAL",
    "queue_pos": 41,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T07:13:15-04:00"
   },
   {
    "ticker": "EC",
    "queue_pos": 42,
-   "status": "blocked_no_data",
+   "status": "blocked_data_gap",
    "started": "2026-10-13",
-   "blocked_date": "2026-10-13",
-   "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1444406. CIK hunt done: issuer CIK 1444406 IS the operating company (Ecopetrol S.A., Bogota, Colombia \u2014 largest company in Colombia, integrated energy, >60% of Colombian hydrocarbon production, NYSE: EC / BVC: ECOPETROL); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Ecopetrol is a foreign private issuer filing annual reports on Form 20-F (FY2025 for year ended 2025-12-31 filed 2026-04-30) with IFRS financials \u2014 EDGAR companyfacts for CIK 1444406 contains dei + ifrs-full (350 IFRS concepts, COP units) plus only 3 stray us-gaap concepts, no us-gaap operating facts (verified directly 2026-10-13). Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F."
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1444406. CIK hunt done: issuer CIK 1444406 IS the operating company (Ecopetrol S.A., Bogota, Colombia \u2014 largest company in Colombia, integrated energy, >60% of Colombian hydrocarbon production, NYSE: EC / BVC: ECOPETROL); no separate operating-parent CIK exists. Root cause is filing format, not entity change: Ecopetrol is a foreign private issuer filing annual reports on Form 20-F (FY2025 for year ended 2025-12-31 filed 2026-04-30) with IFRS financials \u2014 EDGAR companyfacts for CIK 1444406 contains dei + ifrs-full (350 IFRS concepts, COP units) plus only 3 stray us-gaap concepts, no us-gaap operating facts (verified directly 2026-10-13). Engine v4 period_series() reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/20-F support; do NOT score F. | DATA_GAP: currency, sbc \u2014 engine v5.3 (IFRS) recheck 2026-10-14: Ecopetrol files mixed COP/USD units across core facts, so no single-currency conversion is possible, and the SBC addback concept is absent. Stays blocked until a mixed-currency rule exists; not cured by the IFRS build."
   },
   {
    "ticker": "EME",
    "queue_pos": 43,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: sbc \u2014 sbc missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
+   "claimed_at": "2026-10-14T11:36:19-04:00"
   },
   {
    "ticker": "AXON",
    "queue_pos": 44,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T06:29:29-04:00"
   },
   {
    "ticker": "RBLX",
    "queue_pos": 45,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T06:43:13-04:00"
   },
   {
    "ticker": "STLD",
    "queue_pos": 46,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T06:58:12-04:00"
   },
   {
    "ticker": "IRM",
    "queue_pos": 47,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T07:28:16-04:00"
   },
   {
    "ticker": "CBOE",
    "queue_pos": 48,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T07:43:18-04:00"
   },
   {
    "ticker": "KVUE",
    "queue_pos": 49,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T07:58:36-04:00"
   },
   {
    "ticker": "MLM",
    "queue_pos": 50,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T08:13:14-04:00"
   },
   {
    "ticker": "CCI",
    "queue_pos": 51,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T08:28:16-04:00"
   },
   {
    "ticker": "WEC",
    "queue_pos": 52,
-   "status": "pending",
+   "status": "done",
    "started": "2026-10-13",
-   "completed": "2026-10-13",
-   "v5_rerun": true
+   "completed": "2026-10-14",
+   "v5_rerun": true,
+   "claimed_at": "2026-10-14T08:43:14-04:00"
   },
   {
    "ticker": "TKO",
    "queue_pos": 53,
-   "status": "blocked_data_gap",
-   "claimed_at": "2026-10-13T23:06:21-04:00",
+   "status": "done",
    "blocked_date": "2026-10-13",
-   "note": "DATA_GAP (engine v5 exit 4): capex missing for FY2023, 2024, 2025 of the last 3 \u2014 no tier emitted. CIK hunt n/a: issuer CIK 1973266 IS the operating company (TKO Group Holdings, UFC+WWE, NYSE: TKO). Root cause is engine coverage, not disclosure: EDGAR companyfacts for CIK 1973266 contains NO standard us-gaap capex tag (none of PaymentsToAcquirePropertyPlantAndEquipment / PaymentsForConstructionInProcess / other candidates), and period_series() reads only facts[us-gaap]. Capex IS disclosed in the filings on the line 'Purchases of property, buildings and equipment and other assets' under TKO's custom extension tag tko:PaymentsToAcquirePropertyPlantAndEquipmentAndOther \u2014 verified in the FY2025 10-K (filed 2026-02-25): FY2023 3.753M, FY2024 18.818M, FY2025 26.953M; and Q2 2026 10-Q: H1 2026 4.444M. Corrected FY2025 conservative OE = OCF ,285.7M - capex 27.0M - SBC 17.6M = ,041.2M (~.37/sh) \u2014 positive; do NOT score F. Revisit when the engine merges extension-taxonomy capex tags. Full writeup in ~/workspace/stocks/TKO/analysis.md. | CORRECTION to the figures in the preceding note (shell expansion stripped the leading digits after each dollar sign in that entry): capex FY2023 USD 93.753M, FY2024 USD 118.818M, FY2025 USD 126.953M; H1 2026 USD 44.444M. Corrected FY2025 conservative OE = OCF USD 1,285.7M minus capex USD 127.0M minus SBC USD 117.6M = USD 1,041.2M (about USD 5.37 per share)."
+   "note": "DATA_GAP (engine v5 exit 4): capex missing for FY2023, 2024, 2025 of the last 3 \u2014 no tier emitted. CIK hunt n/a: issuer CIK 1973266 IS the operating company (TKO Group Holdings, UFC+WWE, NYSE: TKO). Root cause is engine coverage, not disclosure: EDGAR companyfacts for CIK 1973266 contains NO standard us-gaap capex tag (none of PaymentsToAcquirePropertyPlantAndEquipment / PaymentsForConstructionInProcess / other candidates), and period_series() reads only facts[us-gaap]. Capex IS disclosed in the filings on the line 'Purchases of property, buildings and equipment and other assets' under TKO's custom extension tag tko:PaymentsToAcquirePropertyPlantAndEquipmentAndOther \u2014 verified in the FY2025 10-K (filed 2026-02-25): FY2023 3.753M, FY2024 18.818M, FY2025 26.953M; and Q2 2026 10-Q: H1 2026 4.444M. Corrected FY2025 conservative OE = OCF ,285.7M - capex 27.0M - SBC 17.6M = ,041.2M (~.37/sh) \u2014 positive; do NOT score F. Revisit when the engine merges extension-taxonomy capex tags. Full writeup in ~/workspace/stocks/TKO/analysis.md. | CORRECTION to the figures in the preceding note (shell expansion stripped the leading digits after each dollar sign in that entry): capex FY2023 USD 93.753M, FY2024 USD 118.818M, FY2025 USD 126.953M; H1 2026 USD 44.444M. Corrected FY2025 conservative OE = OCF USD 1,285.7M minus capex USD 127.0M minus SBC USD 117.6M = USD 1,041.2M (about USD 5.37 per share).",
+   "claimed_at": "2026-10-14T11:43:20-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "BIIB",
    "queue_pos": 54,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T08:50:51-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "TECK",
    "queue_pos": 55,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: Teck Resources Ltd (CIK 886986) is itself the operating filer \u2014 no separate operating-parent CIK exists. It files Form 40-F as a Canadian foreign private issuer reporting in CAD under IFRS; the engine finds 0 usable fiscal years under CIK 886986 (verified on rerun with --cik 886986). No USD/10-K filing history for the engine to build owner's earnings from."
   },
   {
    "ticker": "EQT",
    "queue_pos": 56,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T09:05:56-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "GFI",
    "queue_pos": 57,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP:ads_ratio \u2014 20-F filer Gold Fields Limited; engine per-share figures are per ordinary share while the Nasdaq price ($35.89) is per ADS, and judgment.json carries no ads_ratio (main-agent decision). Engine history also ends 2015-12-31 (STALE_FY, 129 months), so no tier was scored. | NEEDS_MAIN_AGENT: base_override \u2014 IFRS 20-F filer; engine US-GAAP history ends 2015-12-31 (STALE_FY 129mo, ttm.py fails: no annual FY fact) so a current base cannot be built exclusively from this run's code outputs; ads_ratio 1:1 sourced from FY2025 20-F cover but scoring on the 2015 base (0.17/sh vs 35.285 price) would be false \u2014 see GFI/analysis.md"
   },
   {
    "ticker": "VG",
    "queue_pos": 58,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T09:21:00-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "RPRX",
    "queue_pos": 59,
-   "status": "pending"
+   "status": "blocked_data_gap",
+   "claimed_at": "2026-10-14T09:29:14-04:00",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted"
   },
   {
    "ticker": "HSY",
    "queue_pos": 60,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T09:35:52-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ACGL",
    "queue_pos": 61,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T09:44:22-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "NTR",
    "queue_pos": 62,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: Nutrien Ltd (NTR) is a Canadian foreign private issuer filing Form 40-F under CIK 1725964 \u2014 that CIK is the operating parent itself (confirmed via SEC 40-F, file 001-38336); no separate operating-parent CIK exists. Engine found 0 usable fiscal years: 40-F/IFRS financials are not in the us-gaap companyfacts the engine reads."
   },
   {
    "ticker": "RKT",
    "queue_pos": 63,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T09:58:21-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "KMB",
    "queue_pos": 64,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T10:01:08-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "RMD",
    "queue_pos": 65,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T10:06:15-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "CNC",
    "queue_pos": 66,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T10:13:16-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "QSR",
    "queue_pos": 67,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T10:20:52-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ERIC",
    "queue_pos": 68,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: ERIC (Telefonaktiebolaget LM Ericsson) \u2014 0 usable fiscal years under CIK 717826, which web search confirms IS the operating parent itself (Swedish 20-F filer, Commission File 000-12033, ADS = 1 B share); no alternate parent CIK exists. Filings are IFRS in SEK, so EDGAR companyfacts carries no us-gaap OCF/capex/SBC/shares history the engine can use. Awaits the parked IFRS go/no-go decision."
   },
   {
    "ticker": "JBL",
    "queue_pos": 69,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T10:35:51-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ALC",
    "queue_pos": 70,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: ifrs \u2014 engine reads only us-gaap tags; modern Alcon (same CIK 1167379, post-2019 spin-off) files IFRS (ifrs-full namespace), engine pulled only stale 2007-2010 US-GAAP history (STALE_FY 189 months) and emitted a spurious Tier B; ttm.py fails on all legs. Needs IFRS tag support / main-agent IFRS decision \u2014 not resolvable by bounded override."
   },
   {
    "ticker": "DXCM",
    "queue_pos": 71,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:05:55-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "VMC",
    "queue_pos": 72,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:13:28-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "MTB",
    "queue_pos": 73,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:20:54-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "EXPE",
    "queue_pos": 74,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:28:14-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ALNY",
    "queue_pos": 75,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:35:54-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "MDB",
    "queue_pos": 76,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:43:18-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "MTD",
    "queue_pos": 77,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:50:49-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "HBAN",
    "queue_pos": 78,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T12:58:11-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ZTS",
    "queue_pos": 79,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T13:05:50-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "SUNB",
    "queue_pos": 80,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-14T13:13:14-04:00",
+   "blocked_date": "2026-10-14",
+   "note": "NEEDS_MAIN_AGENT: capex \u2014 SUNB (ex-Ashtead, FY ends Apr 30) files capex only as split rental/non-rental equipment purchases, absent from companyfacts under every engine tag for FY2024-2026; filing gross capex differs materially per year (FY2024 4418M, FY2025 2692M, FY2026 2194M per the FY2026 10-K cash-flow/FCF reconciliation) and is 60-120% of OCF, so the single-value capex_override would flip FY2024 OE sign and materially distort the median base \u2014 no faithful bounded filing override; also engine revenue series (2.4-2.8B) does not match filing total revenue (10.8-11.2B), so the growth blend is unreliable even if capex is resolved."
   },
   {
    "ticker": "NTRS",
    "queue_pos": 81,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T13:21:41-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "IR",
    "queue_pos": 82,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T13:28:12-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ESLT",
    "queue_pos": 83,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T13:36:58-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "RJF",
    "queue_pos": 84,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T13:43:21-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "TS",
    "queue_pos": 85,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: Tenaris SA (CIK 1190723) is an IFRS 20-F filer \u2014 EDGAR companyfacts has only dei/ifrs-full namespaces, engine reads us-gaap only, 0 usable FY; no alternate operating-parent CIK exists"
   },
   {
    "ticker": "BAP",
    "queue_pos": 86,
-   "status": "pending"
+   "status": "blocked_data_gap",
+   "claimed_at": "2026-10-14T13:58:14-04:00",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: only 0 usable fiscal years under CIK 1001290 (Credicorp Ltd) \u2014 foreign private issuer filing 20-F; no separate operating-parent CIK exists, Credicorp Ltd itself is the listed parent | DATA_GAP: currency \u2014 engine v5.3 (IFRS) recheck 2026-10-14: Credicorp files mixed PEN/USD units across core facts, so no single-currency conversion is possible. Stays blocked until a mixed-currency rule exists; not cured by the IFRS build."
   },
   {
    "ticker": "ON",
    "queue_pos": 87,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T14:06:15-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "PUK",
    "queue_pos": 88,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: Prudential plc CIK 1116578 is its own operating parent and 20-F filer (verified via web search); rerun with --cik 1116578 still yields 0 usable fiscal years \u2014 IFRS filer whose companyfacts are not under the us-gaap tags the engine reads, and no separate operating-parent CIK exists"
   },
   {
    "ticker": "GEHC",
    "queue_pos": 89,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T14:20:49-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "BIDU",
    "queue_pos": 90,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: shares, currency \u2014 diluted shares missing for FY2023, 2024, 2025 and filer reports in non-USD (CNY) currency on 20-F; non-USD reporting is not curable by override (JD precedent), ADS ratio also missing"
   },
   {
    "ticker": "RYAAY",
    "queue_pos": 91,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: Ryanair Holdings plc is its own operating parent (CIK 1038683 confirmed via SEC filings, no separate parent CIK); IFRS 20-F filer reporting in EUR \u2014 EDGAR companyfacts yield 0 usable fiscal years for the us-gaap engine, rerun with --cik 1038683 identical. Awaiting IFRS go/no-go decision (same class as JD)."
   },
   {
    "ticker": "ZM",
    "queue_pos": 92,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T14:43:12-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "WSM",
    "queue_pos": 93,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T14:51:13-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "EXR",
    "queue_pos": 94,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T14:58:14-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "TDY",
    "queue_pos": 95,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T15:06:04-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "CPNG",
    "queue_pos": 96,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T15:13:14-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "KGC",
    "queue_pos": 97,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: KGC CIK 701818 confirmed as operating parent (Kinross Gold Corp, 40-F filer) \u2014 EDGAR companyfacts contain only ifrs-full tags, no us-gaap facts, so engine finds 0 usable fiscal years; IFRS filer not readable by us-gaap engine"
   },
   {
    "ticker": "AEE",
    "queue_pos": 98,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T15:28:04-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "DG",
    "queue_pos": 99,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T15:35:48-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "NMR",
    "queue_pos": 100,
-   "status": "pending"
+   "status": "blocked_data_gap",
+   "claimed_at": "2026-10-14T15:43:16-04:00",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: sbc, capex, ocf, currency \u2014 sbc/capex/ocf missing for FY2024, 2025, 2026 and filer reports in non-USD currency (20-F, JPY); no tier emitted | DATA_GAP: sbc, capex, ocf \u2014 engine v5.3 (IFRS) recheck 2026-10-14: Nomura (JPY 20-F financial filer) files IFRS, but its bank-style cash-flow presentation does not expose the OE template's OCF/capex/SBC concepts in companyfacts. Sector-presentation problem, not a currency problem; parked with the Finance not-modeled decision."
   },
   {
    "ticker": "ECHO",
    "queue_pos": 101,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T15:50:52-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "WTW",
    "queue_pos": 102,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T15:58:16-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "PBA",
    "queue_pos": 103,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA (engine exit 3): 0 usable fiscal years under CIK 1546066. CIK hunt done: issuer CIK 1546066 IS the operating company (Pembina Pipeline Corporation, Calgary energy midstream, NYSE: PBA / TSX: PPL, SEC file 001-35563); no separate operating-parent CIK exists (rerun with --cik 1546066 identical). Root cause is filing format, not entity change: Pembina is a Canadian foreign private issuer filing annual reports on Form 40-F (latest filed 2026-02-27 for FY2025 ended 2025-12-31) with IFRS financials in CAD \u2014 EDGAR companyfacts for CIK 1546066 contains only dei + ifrs-full namespaces (307 IFRS concepts, CAD units, 40-F FY data through 2025), no us-gaap facts. Engine reads only facts[us-gaap], so it extracts 0 periods. Revisit if/when engine adds IFRS/40-F support; do NOT score F."
   },
   {
    "ticker": "SMCI",
    "queue_pos": 104,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T16:13:35-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "VRSN",
    "queue_pos": 105,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T16:20:49-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "ATO",
    "queue_pos": 106,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T16:28:14-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "FTI",
    "queue_pos": 107,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T16:35:56-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "FTS",
    "queue_pos": 108,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: sbc, currency \u2014 sbc missing for FY2023, 2024, 2025; Fortis Inc. (40-F filer) reports in non-USD currency (CAD) on revenue/NI/OCF facts in last 3 FY \u2014 no tier emitted, currency gap not resolvable by bounded override"
   },
   {
    "ticker": "HPQ",
    "queue_pos": 109,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T16:50:55-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "AFRM",
    "queue_pos": 110,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T16:58:16-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "FFIV",
    "queue_pos": 111,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T17:05:57-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "HAL",
    "queue_pos": 112,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T17:13:14-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "NVT",
    "queue_pos": 113,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T17:21:07-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "SYF",
    "queue_pos": 114,
-   "status": "pending"
+   "status": "blocked_data_gap",
+   "claimed_at": "2026-10-14T17:28:29-04:00",
+   "blocked_date": "2026-10-14",
+   "note": "DATA_GAP: sbc, capex \u2014 sbc and capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 (in fact all 10 years in companyfacts) \u2014 no tier emitted | NEEDS_MAIN_AGENT: sbc, capex \u2014 SYF (Finance, consumer lender) files no SBC or capex under any engine tag in 10 yrs of companyfacts and no filed value exists to anchor an in-band estimate; its FY2025 10-K Consolidated Statements of Cash Flows do not state either figure separately (operating adjustments fold SBC into All other operating activities; investing folds capex into All other investing activities), so no filing-sourced override exists within bounded authority; SECTOR_MODEL_MISMATCH (Finance) also applies"
   },
   {
    "ticker": "GFS",
    "queue_pos": 115,
-   "status": "pending"
+   "status": "pending",
+   "blocked_date": "2026-10-14",
+   "note": "NO_DATA: GFS (GLOBALFOUNDRIES Inc., CIK 1709048) is the operating company itself and files Form 20-F under IFRS - EDGAR companyfacts contains only ifrs-full/dei/srt/ffd taxonomies, no us-gaap, so engine (us-gaap only) finds 0 usable FYs. No alternate operating-parent CIK exists. IFRS filers are outside v5 engine scope pending IFRS go/no-go."
   },
   {
    "ticker": "CFG",
    "queue_pos": 116,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T17:43:24-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "WRB",
    "queue_pos": 117,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T17:50:55-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "CTSH",
    "queue_pos": 118,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T17:58:14-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "Q",
    "queue_pos": 119,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-14T18:06:01-04:00",
+   "completed": "2026-10-14"
   },
   {
    "ticker": "KHC",

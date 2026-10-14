@@ -1,0 +1,90 @@
+{
+ "ticker": "RKT",
+ "name": "Rocket Companies, Inc.",
+ "cik": 1805284,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 10.375,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1322362708,
+ "market_cap_est": 13719513095.5,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": null,
+ "rev_cagr_3y": null,
+ "oe_positive_years_of_last_5": "2/5",
+ "base_oe_total_latest_fy": -4361000000,
+ "base_oe_per_share": -0.42264466114003496,
+ "base_oe_latest_per_share": -3.297884894678987,
+ "base_oe_normalized_per_share": -3.297884894678987,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": null,
+  "rev_cagr_3y": null,
+  "rev_yoy_latest": null,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.03,
+ "share_cagr": -0.12463547887347526,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": null,
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": null,
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   1.0
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -0.42264466114003496,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 12.5%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "content_hash": "1ffc9a334ba06124c4db7feb9e955eab09d9fd941a6327251ae7dd8e64e80c23"
+}

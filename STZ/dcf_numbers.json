@@ -3,29 +3,29 @@
  "name": "CONSTELLATION BRANDS, INC.",
  "cik": 16918,
  "engine_version": 5,
- "as_of": "2026-10-13",
- "price": 127.06,
+ "as_of": "2026-10-14",
+ "price": 126.37,
  "price_source": "nasdaq_quote_api",
- "shares_diluted_latest": null,
- "market_cap_est": 20750502446.0,
+ "shares_diluted_latest": 175568000.0,
+ "market_cap_est": 22186528160.0,
  "net_debt_latest": 10194100000,
  "latest_period_end": "2026-02-28",
  "rev_cagr_5y": 0.011883209669892203,
  "rev_cagr_3y": -0.0111807488335961,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 1726300000,
- "base_oe_per_share": null,
- "base_oe_latest_per_share": null,
- "base_oe_normalized_per_share": null,
- "base_source": "none",
+ "base_oe_per_share": 9.832657431878246,
+ "base_oe_latest_per_share": 9.832657431878246,
+ "base_oe_normalized_per_share": 9.832657431878246,
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.011883209669892203,
   "rev_cagr_3y": -0.0111807488335961,
   "rev_yoy_latest": -0.10478317513493396,
-  "oe_ps_cagr_2y": null
+  "oe_ps_cagr_2y": 0.09220729421119933
  },
- "g_blend": -0.0111807488335961,
- "share_cagr": null,
+ "g_blend": 0.0003512304181480519,
+ "share_cagr": 0.0,
  "share_count_adj": -0.0,
  "used_tags": {
   "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
@@ -46,23 +46,154 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": null
  },
- "tier_by_numbers": null,
- "implied_irr_weighted": null,
- "implied_irr_base": null,
- "moat_score": 5.0,
- "cap_years": 8.5,
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "shares": {
+   "value": 175568000.0,
+   "last_filed_value": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.0003512304181480519,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.2,
+   0.05
+  ],
+  "offsets": [
+   -0.060351,
+   -0.020351,
+   0.019649,
+   0.049649,
+   0.085649
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
  "data_gap": [
   "shares"
  ],
- "data_gap_uncovered": [
-  "shares"
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 175568000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended February 28, 2026 (filed 2026-04-22), EPS note and consolidated statements of operations: 'Weighted average common shares outstanding \u2013 diluted' 175.568M for FY2026 (FY2025 181.476M, FY2024 183.959M in the same table). EDGAR companyfacts carries no weighted-share series for CIK 16918 (the filer tags share counts with class dimensions the aggregated facts drop), so the engine filed no share value for any period.",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2024/2025/2026 (in fact all years) in companyfacts. The filer's own reported FY2026 diluted weighted average count fills the gap; the engine applies this single value to every missing period, which leaves the 3-yr median base unchanged (the median of FY24-26 OE/share is the FY2026 figure itself) and is used unprorated by ttm.py as the TTM denominator (vs the H1 FY27 10-Q count of 171.503M \u2014 the override denominator is the higher, more conservative one).",
+   "periods_filled": [
+    "2017-02-28",
+    "2018-02-28",
+    "2019-02-28",
+    "2020-02-29",
+    "2021-02-28",
+    "2022-02-28",
+    "2023-02-28",
+    "2024-02-29",
+    "2025-02-28",
+    "2026-02-28"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
  ],
- "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.06,
+   "oe_mult": 0.75,
+   "iv_at_10": 65.57652704543578,
+   "iv_at_12": 52.96138615050387,
+   "iv_at_15": 41.449275037504876,
+   "irr": 0.06193257554804825
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.02,
+   "oe_mult": 0.9,
+   "iv_at_10": 96.3842876099554,
+   "iv_at_12": 76.98253640299764,
+   "iv_at_15": 59.39964573764691,
+   "irr": 0.0815189354960627
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.02,
+   "oe_mult": 1.0,
+   "iv_at_10": 131.04360098768032,
+   "iv_at_12": 103.58442884480354,
+   "iv_at_15": 78.85319047684409,
+   "irr": 0.10278790786401049
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.05,
+   "oe_mult": 1.1,
+   "iv_at_10": 167.55953011810277,
+   "iv_at_12": 131.4848334150421,
+   "iv_at_15": 99.13082133309518,
+   "irr": 0.12373984843629438
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "g_start": 0.086,
+   "oe_mult": 1.25,
+   "iv_at_10": 227.82296795820508,
+   "iv_at_12": 177.30809955853593,
+   "iv_at_15": 132.21295806703657,
+   "irr": 0.1553701071439178
+  }
+ },
+ "weighted": {
+  "iv_at_10": 122.96790005763688,
+  "iv_at_12": 97.27666915785115,
+  "iv_at_15": 74.1300542899439,
+  "irr": 0.09796501064899832
+ },
+ "implied_irr_weighted": 0.09796501064899832,
+ "implied_irr_base": 0.10278790786401049,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.4133888241675723,
+ "upside_at_12": -0.23022339829191152,
+ "iv_at_15": 74.1300542899439,
+ "iv_at_12": 97.27666915785115,
+ "diagnostics": {
+  "oe_yield": 0.07780847853033351,
+  "tv_share_at_15": 0.17543078020471925,
+  "scenario_spread_iv15": 3.1897532091310468,
+  "net_debt_to_normalized_oe": 5.905172913166889,
+  "months_since_fy_end": 7.490144546649145,
+  "irr_capped": false
+ },
  "fragility_flags": [
-  "DATA_GAP:shares \u2014 shares missing for fiscal year(s) 2024, 2025, 2026 of the last 3 \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 7 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended February 28, 2026 (filed 2026-04-22), EPS note and consolidated statements of operations: 'Weighted average common shares outstanding \u2013 diluted' 175.568M for FY2026 (FY2025 181.476M, FY2024 183.959M in the same table). EDGAR companyfacts carries no weighted-share series for CIK 16918 (the filer tags share counts with class dimensions the aggregated facts drop), so the engine filed no share value for any period.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 5.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero."
+ "override_impact": {
+  "base_oe_per_share_zero_fill": null,
+  "base_oe_per_share_final": 9.832657431878246,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": 0.09796501064899832,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "eb6db4686fadbf72168692e80051705df48d3f75b950b2348fcefad2d8e0888f"
 }

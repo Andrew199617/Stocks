@@ -1,0 +1,160 @@
+{
+ "ticker": "KMB",
+ "name": "KIMBERLY-CLARK CORPORATION",
+ "cik": 55785,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 98.36,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 333200000,
+ "market_cap_est": 32773552000.0,
+ "net_debt_latest": 6000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.02987622392504341,
+ "rev_cagr_3y": -0.06581878661066776,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1499000000,
+ "base_oe_per_share": 5.067506750675068,
+ "base_oe_latest_per_share": 4.498799519807923,
+ "base_oe_normalized_per_share": 7.068249258160237,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": -0.02987622392504341,
+  "rev_cagr_3y": -0.06581878661066776,
+  "rev_yoy_latest": -0.021303183576316553,
+  "oe_ps_cagr_2y": -0.23523284942244216
+ },
+ "g_blend": -0.04784750526785558,
+ "share_cagr": -0.00504944201748192,
+ "share_count_adj": 0.00504944201748192,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": -0.042798063250373664,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.017,
+   0.023,
+   0.058,
+   0.093,
+   0.133
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 5.067506750675068,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0598,
+   "oe_mult": 0.75,
+   "iv_at_10": 33.83114826431835,
+   "iv_at_12": 27.321374996597736,
+   "iv_at_15": 21.381016672362673,
+   "irr": 0.0489691532844162
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0198,
+   "oe_mult": 0.9,
+   "iv_at_10": 49.72478138328082,
+   "iv_at_12": 39.71324068340504,
+   "iv_at_15": 30.640553805308812,
+   "irr": 0.061931949078441226
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0152,
+   "oe_mult": 1.0,
+   "iv_at_10": 65.92540675607292,
+   "iv_at_12": 52.17414480569457,
+   "iv_at_15": 39.78023724400954,
+   "irr": 0.07509469142759195
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0502,
+   "oe_mult": 1.1,
+   "iv_at_10": 86.44318363405901,
+   "iv_at_12": 67.82917737881891,
+   "iv_at_15": 51.13544373634442,
+   "irr": 0.09110651156421326
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.0902,
+   "oe_mult": 1.25,
+   "iv_at_10": 119.8873285464435,
+   "iv_at_12": 93.21871930436001,
+   "iv_at_15": 69.42360459169383,
+   "irr": 0.11534225266233233
+  }
+ },
+ "weighted": {
+  "iv_at_10": 69.19146096223302,
+  "iv_at_12": 54.59185738736013,
+  "iv_at_15": 41.45853268502182,
+  "irr": 0.07780032540590598
+ },
+ "implied_irr_weighted": 0.07780032540590598,
+ "implied_irr_base": 0.07509469142759195,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5785021077163296,
+ "upside_at_12": -0.4449790830890593,
+ "iv_at_15": 41.45853268502182,
+ "iv_at_12": 54.59185738736013,
+ "diagnostics": {
+  "oe_yield": 0.051519995431832735,
+  "tv_share_at_15": 0.17881915397502213,
+  "scenario_spread_iv15": 3.246973970205613,
+  "net_debt_to_normalized_oe": 0.0035534640143801747,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 4.50 vs 3-yr median 7.07 \u2014 one of them is distorted; find out which and why"
+ ],
+ "content_hash": "cda6fd97af3ca0ba6184c9bef50b6a1fffd3b1dc5c7df00240543d83b9ee1f73"
+}

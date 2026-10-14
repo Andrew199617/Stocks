@@ -2,7 +2,7 @@
  "ticker": "CBOE",
  "name": "Cboe Global Markets, Inc.",
  "cik": 1374310,
- "engine_version": 4,
+ "engine_version": 5,
  "as_of": "2026-10-14",
  "price": 292.25,
  "price_source": "nasdaq_quote_api",
@@ -14,15 +14,15 @@
  "rev_cagr_3y": 0.05995318004457317,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 1631200000,
- "base_oe_per_share": 12.22,
+ "base_oe_per_share": 17.345714285714287,
  "base_oe_latest_per_share": 15.52045670789724,
  "base_oe_normalized_per_share": 9.458767772511848,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.06585968854043345,
   "rev_cagr_3y": 0.05995318004457317,
   "rev_yoy_latest": 0.15134937110758329,
-  "oe_ps_cagr_3y": 0.2905495421255464
+  "oe_ps_cagr_2y": 0.2905495421255464
  },
  "g_blend": 0.10860452982400837,
  "share_cagr": -0.00502248959334517,
@@ -46,82 +46,117 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.11362701941735354,
  "moat_score": 7.0,
  "cap_years": 11.1,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 17.345714285714287,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
-   "prob": 0.12,
-   "g_start": -0.0264,
+   "prob": 0.15,
+   "g_start": -0.0064,
    "oe_mult": 0.75,
-   "iv_at_10": 94.94357426869807,
-   "iv_at_12": 76.14703607646062,
-   "iv_at_15": 59.05600241922594,
-   "irr": 0.04811957284169485
+   "iv_at_10": 150.1181628236476,
+   "iv_at_12": 119.64235765245373,
+   "iv_at_15": 92.04710088662814,
+   "irr": 0.06271388423430502
   },
   "bear": {
-   "prob": 0.26,
-   "g_start": 0.0436,
+   "prob": 0.25,
+   "g_start": 0.0636,
    "oe_mult": 0.9,
-   "iv_at_10": 166.17323220853845,
-   "iv_at_12": 130.48498029075856,
-   "iv_at_15": 98.47312874903562,
-   "irr": 0.06807344595418521
+   "iv_at_10": 262.6699568608832,
+   "iv_at_12": 205.10986709473565,
+   "iv_at_15": 153.6551384693841,
+   "irr": 0.09270014537459581
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.1136,
    "oe_mult": 1.0,
-   "iv_at_10": 268.77518038112504,
-   "iv_at_12": 207.15685929751754,
-   "iv_at_15": 152.49974351580335,
-   "irr": 0.09446569179679887
+   "iv_at_10": 381.5137058905332,
+   "iv_at_12": 294.0494021031633,
+   "iv_at_15": 216.46620128231055,
+   "irr": 0.12052743867160254
   },
   "bull": {
-   "prob": 0.22,
-   "g_start": 0.1836,
+   "prob": 0.2,
+   "g_start": 0.1636,
    "oe_mult": 1.1,
-   "iv_at_10": 428.5291388757354,
-   "iv_at_12": 324.98571064789803,
-   "iv_at_15": 233.98741778369867,
-   "irr": 0.12888577927576994
+   "iv_at_10": 547.3736740210152,
+   "iv_at_12": 416.9381395965456,
+   "iv_at_15": 302.02113950868,
+   "irr": 0.15350837157493535
   },
   "super_bull": {
    "prob": 0.1,
-   "g_start": 0.2536,
+   "g_start": 0.2336,
    "oe_mult": 1.25,
-   "iv_at_10": 701.5874258707786,
-   "iv_at_12": 524.6969580265848,
-   "iv_at_15": 370.443813028244,
-   "irr": 0.1749517387053735
+   "iv_at_10": 897.8276947728766,
+   "iv_at_12": 673.9973299070786,
+   "iv_at_15": 478.4025121343382,
+   "irr": 0.20807094912249358
   }
  },
  "weighted": {
-  "iv_at_10": 299.66597654054095,
-  "iv_at_12": 229.17734913922382,
-  "iv_at_15": 166.9612700350355,
-  "irr": 0.10168786787207595
+  "iv_at_10": 401.89682968741863,
+  "iv_at_12": 308.2260019625179,
+  "iv_at_15": 225.40518925020322,
+  "irr": 0.12457078098227478
  },
- "implied_irr_weighted": 0.10168786787207595,
- "implied_irr_base": 0.09446569179679887,
+ "implied_irr_weighted": 0.12457078098227478,
+ "implied_irr_base": 0.12052743867160254,
  "tier_by_numbers": "C",
- "upside_at_15": -0.42870395197592637,
- "upside_at_12": -0.21581745375800232,
- "iv_at_15": 166.9612700350355,
- "iv_at_12": 229.17734913922382,
+ "upside_at_15": -0.22872475876748255,
+ "upside_at_12": 0.05466553280587827,
+ "iv_at_15": 225.40518925020322,
+ "iv_at_12": 308.2260019625179,
  "diagnostics": {
-  "oe_yield": 0.04181351582549188,
-  "tv_share_at_15": 0.22304507785410302,
-  "scenario_spread_iv15": 6.272754637175448,
-  "net_debt_to_normalized_oe": -0.6023411574355964,
-  "months_since_fy_end": 9.42838370565046
+  "oe_yield": 0.05935231577661005,
+  "tv_share_at_15": 0.21875875141528134,
+  "scenario_spread_iv15": 5.197366430079892,
+  "net_debt_to_normalized_oe": -0.4243474106987392,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "BASE_DIVERGENCE: latest FY OE/share 15.52 vs 3-yr median 9.46 \u2014 one of them is distorted; find out which and why",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
-  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits banks/insurers poorly; grade confidence low"
- ]
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 15.52 vs 3-yr median 9.46 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "570c7be3f57904ebd65f1687594d7efd149c0555999ecabfcbb2b0efd17f8572"
 }

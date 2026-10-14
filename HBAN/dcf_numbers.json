@@ -1,0 +1,161 @@
+{
+ "ticker": "HBAN",
+ "name": "Huntington Bancshares Incorporated",
+ "cik": 49196,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 15.01,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1504836000,
+ "market_cap_est": 22587588360.0,
+ "net_debt_latest": 17221000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.1206049140331884,
+ "rev_cagr_3y": 0.05823697321848842,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2102000000,
+ "base_oe_per_share": 1.3968299535630462,
+ "base_oe_latest_per_share": 1.3968299535630462,
+ "base_oe_normalized_per_share": 1.3968299535630462,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.1206049140331884,
+  "rev_cagr_3y": 0.05823697321848842,
+  "rev_yoy_latest": 0.06403269754768393,
+  "oe_ps_cagr_2y": -0.0794357928874797
+ },
+ "g_blend": 0.06113483538308617,
+ "share_cagr": 0.008930452288367308,
+ "share_count_adj": -0.008930452288367308,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.052204383094718865,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.1122,
+   -0.0322,
+   0.0578,
+   0.1178,
+   0.1878
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.06,
+   "oe_mult": 0.75,
+   "iv_at_10": 9.933874629836879,
+   "iv_at_12": 7.960486424706013,
+   "iv_at_15": 6.171245237472331,
+   "irr": 0.07354459872495456
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.02,
+   "oe_mult": 0.9,
+   "iv_at_10": 16.82159196485772,
+   "iv_at_12": 13.29100387931674,
+   "iv_at_15": 10.112224988877514,
+   "irr": 0.1090837134655479
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.11,
+   "oe_mult": 1.0,
+   "iv_at_10": 27.173572818364093,
+   "iv_at_12": 21.18195483541296,
+   "iv_at_15": 15.821922739962368,
+   "irr": 0.15631407729878577
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.17,
+   "oe_mult": 1.1,
+   "iv_at_10": 38.061339247826766,
+   "iv_at_12": 29.43845961516052,
+   "iv_at_15": 21.752390306809247,
+   "irr": 0.19902479175063748
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.24,
+   "oe_mult": 1.25,
+   "iv_at_10": 56.88968656609603,
+   "iv_at_12": 43.648632274673226,
+   "iv_at_15": 31.889556070041216,
+   "irr": 0.26114977754350466
+  }
+ },
+ "weighted": {
+  "iv_at_10": 27.493173404125187,
+  "iv_at_12": 21.39049140738894,
+  "iv_at_15": 15.936802510765169,
+  "irr": 0.15713526150381463
+ },
+ "implied_irr_weighted": 0.15713526150381463,
+ "implied_irr_base": 0.15631407729878577,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.06174567027083078,
+ "upside_at_12": 0.42508270535569226,
+ "iv_at_15": 15.936802510765169,
+ "iv_at_12": 21.39049140738894,
+ "diagnostics": {
+  "oe_yield": 0.09305995693291447,
+  "tv_share_at_15": 0.19692691902233292,
+  "scenario_spread_iv15": 5.167442686672877,
+  "net_debt_to_normalized_oe": 8.19267364414843,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 8.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "8765b6de09fbc3d2624140d29b2c2434ee08d385c6a26cc5996e46aeb1f4dc23"
+}

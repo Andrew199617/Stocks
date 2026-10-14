@@ -1,0 +1,73 @@
+{
+ "ticker": "AFRM",
+ "name": "Affirm Holdings, Inc.",
+ "sector": "Finance / Consumer lending (BNPL)",
+ "price": 70.1,
+ "market_cap_b": 24.45,
+ "engine_version": 5,
+ "base_oe_per_share": 0.8218992115049316,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "A real two-sided network with rented distribution \u2014 merchants and consumers both multi-home, the biggest partners are non-exclusive and have switched before (Walmart to Klarna), funding is wholesale rather than deposits, and the credit book has never been through a deep recession.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "DILUTION: share count growing 5.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 1.97 vs 3-yr median 0.82 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 28.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.68,
+   "irr": 0.0403
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 12.24,
+   "irr": 0.0505
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 16.62,
+   "irr": 0.0601
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 22.27,
+   "irr": 0.072
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 33.22,
+   "irr": 0.0931
+  }
+ },
+ "iv_at_15": 17.7,
+ "iv_at_12": 24.6,
+ "implied_irr": 0.0626,
+ "implied_irr_base_case": 0.0601,
+ "upside_at_15_pct": -74.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Fast-growing BNPL lender, moat 5/10, real profitability inflection \u2014 but at $70.10 the price assumes the inflection is permanent: weighted IRR 6.3% on the normalized base (10.7% even on the latest-FY base), IV@15% $17.70 vs $70.10; clears 15% only in the low $40s at best.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Two-sided network at scale \u2014 571K merchants, $50.2B FY2026 GMV, merchant net expansion ~120%",
+  "Checkout distribution rivals must displace \u2014 Amazon through Jan 2031, Shopify, Apple Pay",
+  "Underwriting data advantage at >$50B/yr GMV; interest-bearing mix monetizes better than Klarna's",
+  "Affirm Card: 5.2M cardholders, doubled YoY, raises consumer switching friction"
+ ],
+ "moat_against": [
+  "Distribution is rented and non-exclusive \u2014 Walmart shifted primary BNPL to Klarna",
+  "Klarna, PayPal, Block/Afterpay and card issuers all compete; consumers multi-home",
+  "No deposit funding \u2014 warehouse/securitization at ~5.8% cost of funds, can reprice or close",
+  "Credit book untested through a deep recession; delinquencies and provisions rising"
+ ]
+}

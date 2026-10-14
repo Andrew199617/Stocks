@@ -2,27 +2,27 @@
  "ticker": "PAYX",
  "name": "Paychex, Inc.",
  "cik": 723531,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 104.64,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 106.25,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 360000000,
- "market_cap_est": 37670400000.0,
+ "market_cap_est": 38250000000.0,
  "net_debt_latest": 3467900000,
  "latest_period_end": "2026-05-31",
  "rev_cagr_5y": 0.09529471322698857,
  "rev_cagr_3y": 0.08688350843101178,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 2225700000,
- "base_oe_per_share": 6.1825,
+ "base_oe_per_share": 5.406898485698261,
  "base_oe_latest_per_share": 6.1825,
  "base_oe_normalized_per_share": 4.626346313173157,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.09529471322698857,
   "rev_cagr_3y": 0.08688350843101178,
   "rev_yoy_latest": 0.16471349353049902,
-  "oe_ps_cagr_3y": 0.15612852896291018
+  "oe_ps_cagr_2y": 0.15612852896291018
  },
  "g_blend": 0.12571162109494938,
  "share_cagr": -0.002120120618278487,
@@ -46,76 +46,111 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.12783174171322786,
- "moat_score": 6.0,
- "cap_years": 9.8,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.128,
+   -0.098,
+   -0.068,
+   -0.038,
+   -0.008
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 5.406898485698261,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "g_start": 0.0,
+   "g_start": -0.0002,
    "oe_mult": 0.75,
-   "iv_at_10": 55.88268351501046,
-   "iv_at_12": 44.39828090584571,
-   "iv_at_15": 34.02364799987902,
-   "irr": 0.06452786189063031
+   "iv_at_10": 48.38661285148834,
+   "iv_at_12": 38.48982618612732,
+   "iv_at_15": 29.539624826538994,
+   "irr": 0.058508326206932915
   },
   "bear": {
    "prob": 0.25,
-   "g_start": 0.03,
+   "g_start": 0.0298,
    "oe_mult": 0.9,
-   "iv_at_10": 77.99147354013598,
-   "iv_at_12": 61.49578142695505,
-   "iv_at_15": 46.660375601221695,
-   "irr": 0.08097332513368871
+   "iv_at_10": 68.25957901724723,
+   "iv_at_12": 53.81300322214574,
+   "iv_at_15": 40.8226169386883,
+   "irr": 0.07328790673910623
   },
   "base": {
    "prob": 0.3,
-   "g_start": 0.06,
+   "g_start": 0.0598,
    "oe_mult": 1.0,
-   "iv_at_10": 100.7025690623288,
-   "iv_at_12": 78.8362038052051,
-   "iv_at_15": 59.251306666452756,
-   "irr": 0.0972658237883347
+   "iv_at_10": 89.13807846906177,
+   "iv_at_12": 69.67746334628947,
+   "iv_at_15": 52.27000949002716,
+   "irr": 0.08832014931040225
   },
   "bull": {
    "prob": 0.25,
-   "g_start": 0.09,
+   "g_start": 0.0898,
    "oe_mult": 1.1,
-   "iv_at_10": 128.6054113190614,
-   "iv_at_12": 100.00121563058981,
-   "iv_at_15": 74.47854210739453,
-   "irr": 0.11605066573296396
+   "iv_at_10": 115.1835950786982,
+   "iv_at_12": 89.31572647370977,
+   "iv_at_15": 66.28842542893389,
+   "irr": 0.10586330897047314
   },
   "super_bull": {
    "prob": 0.1,
-   "g_start": 0.12,
+   "g_start": 0.1198,
    "oe_mult": 1.25,
-   "iv_at_10": 169.48962319806054,
-   "iv_at_12": 130.9539525255426,
-   "iv_at_15": 96.6903191154779,
-   "irr": 0.14141694797876797
+   "iv_at_10": 153.657242842934,
+   "iv_at_12": 118.24929044281055,
+   "iv_at_15": 86.86946527951523,
+   "irr": 0.12953776749463863
   }
  },
  "weighted": {
-  "iv_at_10": 104.39722260480508,
-  "iv_at_12": 81.56033374908657,
-  "iv_at_15": 61.13151813862558,
-  "irr": 0.09983287982196931
+  "iv_at_10": 92.80660263414713,
+  "iv_at_12": 72.3593330907445,
+  "iv_at_15": 54.09967244951911,
+  "irr": 0.09091429203572343
  },
- "implied_irr_weighted": 0.09983287982196931,
- "implied_irr_base": 0.0972658237883347,
+ "implied_irr_weighted": 0.09091429203572343,
+ "implied_irr_base": 0.08832014931040225,
  "tier_by_numbers": "D",
- "upside_at_15": -0.4157920667180277,
- "upside_at_12": -0.22056255973732253,
- "iv_at_15": 61.13151813862558,
- "iv_at_12": 81.56033374908657,
+ "upside_at_15": -0.49082661223982016,
+ "upside_at_12": -0.31897098267534585,
+ "iv_at_15": 54.09967244951911,
+ "iv_at_12": 72.3593330907445,
  "diagnostics": {
-  "oe_yield": 0.0590835244648318,
-  "tv_share_at_15": 0.19186573031305304,
-  "scenario_spread_iv15": 2.8418563205162988,
-  "net_debt_to_normalized_oe": 1.5581165476030012,
-  "months_since_fy_end": 4.434954007884363
+  "oe_yield": 0.050888456335983635,
+  "tv_share_at_15": 0.19488731791477862,
+  "scenario_spread_iv15": 2.940777541679201,
+  "net_debt_to_normalized_oe": 1.78162315808885,
+  "months_since_fy_end": 4.467805519053877,
+  "irr_capped": false
  },
- "fragility_flags": []
+ "fragility_flags": [],
+ "content_hash": "b9d10846f870a8bcca83c5569aebf9df05ba6f6ec0a247188e7fa392dbd4f9aa"
 }

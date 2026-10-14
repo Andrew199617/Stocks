@@ -1,0 +1,161 @@
+{
+ "ticker": "ZM",
+ "name": "Zoom Communications, Inc.",
+ "cik": 1585521,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 95.21,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 307333185,
+ "market_cap_est": 29261192543.85,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-01-31",
+ "rev_cagr_5y": 0.12926809796421912,
+ "rev_cagr_3y": 0.03486550559543966,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 1163311000,
+ "base_oe_per_share": 3.9877570420528192,
+ "base_oe_latest_per_share": 3.785178616490764,
+ "base_oe_normalized_per_share": 2.784905462565409,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.12926809796421912,
+  "rev_cagr_3y": 0.03486550559543966,
+  "rev_yoy_latest": 0.04358352161524981,
+  "oe_ps_cagr_2y": 0.6774611645971149
+ },
+ "g_blend": 0.08642580978973446,
+ "share_cagr": 0.003386289452192104,
+ "share_count_adj": -0.003386289452192104,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.08303952033754236,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.15,
+   -0.083,
+   -0.033,
+   0.017,
+   0.067
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.9877570420528192,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.067,
+   "oe_mult": 0.75,
+   "iv_at_10": 26.531783194957,
+   "iv_at_12": 21.378898137532126,
+   "iv_at_15": 16.68828463215678,
+   "irr": 0.04445612491509732
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0,
+   "oe_mult": 0.9,
+   "iv_at_10": 43.666121333145654,
+   "iv_at_12": 34.653585208705486,
+   "iv_at_15": 26.519436004344143,
+   "irr": 0.05896691296062001
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.05,
+   "oe_mult": 1.0,
+   "iv_at_10": 61.18836439820509,
+   "iv_at_12": 48.06599554056127,
+   "iv_at_15": 36.28709974342751,
+   "irr": 0.0735571582063409
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1,
+   "oe_mult": 1.1,
+   "iv_at_10": 84.58250705893198,
+   "iv_at_12": 65.8293475730157,
+   "iv_at_15": 49.07706740921451,
+   "irr": 0.09203233556213719
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.15,
+   "oe_mult": 1.25,
+   "iv_at_10": 120.32744678374299,
+   "iv_at_12": 92.86435735927,
+   "iv_at_15": 68.43612031375318,
+   "irr": 0.11787515228055934
+  }
+ },
+ "weighted": {
+  "iv_at_10": 65.10458941535094,
+  "iv_at_12": 50.96485740727889,
+  "iv_at_15": 38.29769627100891,
+  "irr": 0.07684611347390924
+ },
+ "implied_irr_weighted": 0.07684611347390924,
+ "implied_irr_base": 0.0735571582063409,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5977555270348818,
+ "upside_at_12": -0.4647110869942349,
+ "iv_at_15": 38.29769627100891,
+ "iv_at_12": 50.96485740727889,
+ "diagnostics": {
+  "oe_yield": 0.04188380466393046,
+  "tv_share_at_15": 0.18902122990149503,
+  "scenario_spread_iv15": 4.100848099263786,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 8.409986859395532,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 3.79 vs 3-yr median 2.78 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "156de8f4576ef83be817e3a32837e192514ccfb8e67d0bd5b0ec4bb09ecb7631"
+}

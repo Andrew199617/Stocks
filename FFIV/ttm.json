@@ -1,0 +1,101 @@
+{
+ "ticker": "FFIV",
+ "cik": 1048695,
+ "entity": "F5, INC.",
+ "fy_end": "2025-09-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 949666000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 741598000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 841373000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1049441000
+  },
+  "capex": {
+   "fy": 43260000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 27119000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 63705000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 79846000
+  },
+  "sbc": {
+   "fy": 231491000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 174243000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 193535000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 250783000
+  },
+  "shares_diluted": {
+   "fy": 58684000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 58773000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 57674000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1049441000,
+ "ttm_capex": 79846000,
+ "ttm_sbc": 250783000,
+ "ttm_shares_diluted": 57674000,
+ "ttm_oe_total": 718812000,
+ "ttm_oe_per_share": 12.463363040538198,
+ "warnings": [],
+ "overrides_used": []
+}

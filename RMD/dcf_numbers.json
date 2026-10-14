@@ -1,0 +1,159 @@
+{
+ "ticker": "RMD",
+ "name": "ResMed Inc.",
+ "cik": 943819,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 234.25,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 146054000,
+ "market_cap_est": 34213149500.0,
+ "net_debt_latest": -1069819000,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": 0.12079351824267381,
+ "rev_cagr_3y": 0.10210063461605645,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1545196000,
+ "base_oe_per_share": 10.579621235981213,
+ "base_oe_latest_per_share": 10.579621235981213,
+ "base_oe_normalized_per_share": 10.579621235981213,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.12079351824267381,
+  "rev_cagr_3y": 0.10210063461605645,
+  "rev_yoy_latest": 0.09853940489984403,
+  "oe_ps_cagr_2y": 0.13050835037117436
+ },
+ "g_blend": 0.11144707642936513,
+ "share_cagr": -0.0031764279574496568,
+ "share_count_adj": 0.0031764279574496568,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.11462350438681479,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0054,
+   "oe_mult": 0.75,
+   "iv_at_10": 92.05463470063869,
+   "iv_at_12": 73.34379055531556,
+   "iv_at_15": 56.404892995830686,
+   "irr": 0.05370618289382326
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0646,
+   "oe_mult": 0.9,
+   "iv_at_10": 161.0698316885291,
+   "iv_at_12": 125.73957179951105,
+   "iv_at_15": 94.16198246201722,
+   "irr": 0.07731482392655387
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1146,
+   "oe_mult": 1.0,
+   "iv_at_10": 233.93652440889906,
+   "iv_at_12": 180.26062893331485,
+   "iv_at_15": 132.65552221055924,
+   "irr": 0.09990838119392176
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1646,
+   "oe_mult": 1.1,
+   "iv_at_10": 335.6213035264037,
+   "iv_at_12": 255.58800386269428,
+   "iv_at_15": 185.0855729735717,
+   "irr": 0.12736874270340032
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2346,
+   "oe_mult": 1.25,
+   "iv_at_10": 550.4519426697357,
+   "iv_at_12": 413.1438239636297,
+   "iv_at_15": 293.16951512942404,
+   "irr": 0.17393585590299232
+  }
+ },
+ "weighted": {
+  "iv_at_10": 258.60439886344034,
+  "iv_at_12": 198.05884404744035,
+  "iv_at_15": 144.5659863345905,
+  "irr": 0.10690693534437556
+ },
+ "implied_irr_weighted": 0.10690693534437556,
+ "implied_irr_base": 0.09990838119392176,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.3828559814958784,
+ "upside_at_12": -0.1544979976630081,
+ "iv_at_15": 144.5659863345905,
+ "iv_at_12": 198.05884404744035,
+ "diagnostics": {
+  "oe_yield": 0.04516380463599237,
+  "tv_share_at_15": 0.2207960551604101,
+  "scenario_spread_iv15": 5.19759013018772,
+  "net_debt_to_normalized_oe": -0.6923516498877812,
+  "months_since_fy_end": 3.4822601839684624,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "24bb90eef5a8ff3daac7f90818e9dd1e746afad7427fdc5e75ecbd5933ab3eb3"
+}

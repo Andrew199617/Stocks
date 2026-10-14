@@ -2,27 +2,27 @@
  "ticker": "ODFL",
  "name": "OLD DOMINION FREIGHT LINE, INC.",
  "cik": 878927,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 181.3,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 183.17,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 211598000,
- "market_cap_est": 38362717400.0,
+ "market_cap_est": 38758405660.0,
  "net_debt_latest": -100091000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.06482766544086327,
  "rev_cagr_3y": -0.042430675783849736,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 942245000,
- "base_oe_per_share": 5.27,
+ "base_oe_per_share": 4.049315195048155,
  "base_oe_latest_per_share": 4.4529957750073255,
  "base_oe_normalized_per_share": 4.049315195048155,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.06482766544086327,
   "rev_cagr_3y": -0.042430675783849736,
   "rev_yoy_latest": -0.05476034470601787,
-  "oe_ps_cagr_3y": 0.10646482641717725
+  "oe_ps_cagr_2y": 0.10646482641717725
  },
  "g_blend": 0.011198494828506766,
  "share_cagr": -0.0219298339586651,
@@ -46,80 +46,115 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.03312832878717187,
  "moat_score": 7.0,
  "cap_years": 11.1,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
    "g_start": -0.0869,
    "oe_mult": 0.75,
-   "iv_at_10": 29.571612252638687,
-   "iv_at_12": 24.201324131218115,
-   "iv_at_15": 19.24824891940925,
-   "irr": 0.03538187953923154
+   "iv_at_10": 22.72196941872525,
+   "iv_at_12": 18.59559573905638,
+   "iv_at_15": 14.789796361941772,
+   "irr": 0.032827999627365545
   },
   "bear": {
    "prob": 0.25,
    "g_start": -0.0169,
    "oe_mult": 0.9,
-   "iv_at_10": 51.717656267147554,
-   "iv_at_12": 41.353839285021,
-   "iv_at_15": 31.949323282280773,
-   "irr": 0.045456412659114265
+   "iv_at_10": 39.738347509456936,
+   "iv_at_12": 31.77509104182446,
+   "iv_at_15": 24.54893363158356,
+   "irr": 0.0404796137590918
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.0331,
    "oe_mult": 1.0,
-   "iv_at_10": 75.24862019733261,
-   "iv_at_12": 59.26608556044901,
-   "iv_at_15": 44.90316037173168,
-   "irr": 0.05632471319601129
+   "iv_at_10": 57.81885790729916,
+   "iv_at_12": 45.53834170985775,
+   "iv_at_15": 34.50228645141126,
+   "irr": 0.048853187875412526
   },
   "bull": {
    "prob": 0.25,
    "g_start": 0.0831,
    "oe_mult": 1.1,
-   "iv_at_10": 108.30505099545854,
-   "iv_at_12": 84.12958537292242,
-   "iv_at_15": 62.58635457720449,
-   "irr": 0.07101956286119926
+   "iv_at_10": 83.21846085320217,
+   "iv_at_12": 64.64273404244321,
+   "iv_at_15": 48.08954015031229,
+   "irr": 0.06038426441450995
   },
   "super_bull": {
    "prob": 0.1,
    "g_start": 0.1531,
    "oe_mult": 1.25,
-   "iv_at_10": 178.76705033050473,
-   "iv_at_12": 136.49198592672695,
-   "iv_at_15": 99.19613308332285,
-   "irr": 0.09907257588298923
+   "iv_at_10": 137.3594180791748,
+   "iv_at_12": 104.87648436724751,
+   "iv_at_15": 76.21943244484217,
+   "irr": 0.08301069985883228
   }
  },
  "weighted": {
-  "iv_at_10": 83.41412913316566,
-  "iv_at_12": 65.22001283841507,
-  "iv_at_15": 48.94930577666403,
-  "irr": 0.06031010194391459
+  "iv_at_10": 64.09299821264455,
+  "iv_at_12": 50.11316679465463,
+  "iv_at_15": 37.611227261575735,
+  "irr": 0.05200458601213748
  },
- "implied_irr_weighted": 0.06031010194391459,
- "implied_irr_base": 0.05632471319601129,
+ "implied_irr_weighted": 0.05200458601213748,
+ "implied_irr_base": 0.048853187875412526,
  "tier_by_numbers": "D",
- "upside_at_15": -0.7300093448612023,
- "upside_at_12": -0.6402646837373687,
- "iv_at_15": 48.94930577666403,
- "iv_at_12": 65.22001283841507,
+ "upside_at_15": -0.7946649164078412,
+ "upside_at_12": -0.7264117115539955,
+ "iv_at_15": 37.611227261575735,
+ "iv_at_12": 50.11316679465463,
  "diagnostics": {
-  "oe_yield": 0.029067843353557634,
-  "tv_share_at_15": 0.19111648055037633,
-  "scenario_spread_iv15": 5.153514665081923,
-  "net_debt_to_normalized_oe": -0.08975793542705204,
-  "months_since_fy_end": 9.395532194480946
+  "oe_yield": 0.02210686900173694,
+  "tv_share_at_15": 0.19111648055037628,
+  "scenario_spread_iv15": 5.1535146650819215,
+  "net_debt_to_normalized_oe": -0.11681588044294956,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment"
- ]
+  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "9744c365ad44eaac323caf705ae8c9828153df4cac582d0ff1cb1fbaf1039a52"
 }

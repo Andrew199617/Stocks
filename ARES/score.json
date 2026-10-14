@@ -1,1 +1,99 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":5.17,"base_source":"TTM after-tax realized income per share: FY2025 $4.76 - H1 2025 $2.12 (Q1 $1.09 + Q2 $1.03) + H1 2026 $2.53 (Q1 $1.24 + Q2 $1.29) = $5.17. Engine OCF base rejected for an alternative manager: consolidated-fund OCF gives latest-FY OE/share $8.91 and a 3-yr median of -$0.76/share (preliminary Tier F artifact). See analysis.md.","base_year":"TTM Q2 2026","cap_years":9.8,"confidence":"low","engine_version":4,"fragility_flags":["STALE_FY: latest fiscal year ended 9 months ago — check TTM/quarterly OE and consider --base-oe-ps override","WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV — uncertainty is huge; confidence should not be high","BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs — check for divestitures, big M&A, or restatements before trusting any CAGR","NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 — find the one-off (tax deposits, impairments, WC swings) before trusting the OE base","SECTOR_MODEL_MISMATCH: Finance sector — OE/capex DCF fits banks/insurers poorly; grade confidence low"],"implied_irr":0.1185,"implied_irr_base_case":0.1146,"in_scope_under_40b":true,"iv_at_12":116.01,"iv_at_15":84.17,"market_cap_b":38.72,"moat_justification":"Scale and origination in private credit, $671B AUM / $410B fee-paying AUM, long-dated/perpetual capital, $79B of not-yet-fee-paying AUM and diversified Credit/Real Assets/PE/Secondaries distribution — against no structural pricing power (LPs reallocate each vintage among Blackstone/Apollo/KKR/Brookfield/Blue Owl, direct-lending spreads compressing), earnings geared to the private-credit cycle, growth partly bought (GCP International, $3.91B, closed Mar 2025), and private-credit/insurance regulatory overhang.","moat_score":6,"name":"Ares Management Corporation","one_liner":"Scaled private-credit-led alt manager, moat 6/10 — the engine's Tier F is a consolidated-fund OCF artifact (median OE -$0.76/sh rejected); on TTM after-tax realized earnings of $5.17/share the $118.15 price (22.9x) yields an 11.9% weighted IRR with IV@15% of $84.17, and it clears 15% only at ~$84 (~$67 with a margin of safety).","price":118.15,"scenarios":{"base":{"irr":0.1146,"iv_at_15":80.53,"prob":0.3},"bear":{"irr":0.0844,"iv_at_15":53.17,"prob":0.25},"bull":{"irr":0.1431,"iv_at_15":110.34,"prob":0.25},"super_bear":{"irr":0.0635,"iv_at_15":35.47,"prob":0.1},"super_bull":{"irr":0.1803,"iv_at_15":155.9,"prob":0.1}},"sector":"Finance / Investment Managers","ticker":"ARES","tier_by_numbers":"C","tier_final":"C","upside_at_15_pct":-28.8}
+{
+ "ticker": "ARES",
+ "name": "Ares Management Corporation",
+ "sector": "Finance / Alternative Asset Management",
+ "price": 111.985,
+ "market_cap_b": 36.62,
+ "engine_version": 5,
+ "base_oe_per_share": 7.504482824264736,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Scaled private-credit-led alternative manager with a durable, diversified fee base (FRE +20% YoY in Q2 2026 on $671.3B AUM / $409.9B fee-paying AUM, record $36.4B raised in the quarter) and through-cycle fundraising - capped at moderate-strong because the product is competitively allocated risk capital: LPs re-bid every vintage among Blackstone/Apollo/KKR/Brookfield/Blue Owl, direct-lending spreads have compressed, earnings are geared to the private-credit cycle, growth has been partly acquired (GCP, BlueCove), and the share count creeps ~3.5%/yr. A 6 gives CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows (p. F-8): 'Purchase of furniture, equipment and leasehold improvements, net of disposals' $(72,178) thousand for FY2025, with $(91,509) thousand for FY2024 and $(67,183) thousand for FY2023 in the same statement); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Balance Sheets (p. F-4), Stockholders' Equity section: Class A common stock 218,465,429 shares, non-voting common stock 3,489,911 shares, Class B common stock 1,000 shares, and Class C common stock 105,079,121 shares, each stated as issued and outstanding as of December 31, 2025 - total 327,035,461 shares); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 51.49,
+   "irr": 0.0836
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 77.18,
+   "irr": 0.1136
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 116.9,
+   "irr": 0.1547
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 160.18,
+   "irr": 0.1922
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 226.3,
+   "irr": 0.2401
+  }
+ },
+ "iv_at_15": 122.19,
+ "iv_at_12": 168.41,
+ "implied_irr": 0.1595,
+ "implied_irr_base_case": 0.1547,
+ "upside_at_15_pct": 9.1,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Scaled private-credit-led alt manager, moat 6/10 - engine-standardized Tier B (15.95% weighted IRR, IV@15% $122.19) softened to C because the OCF base capitalizes consolidated-fund flows; on TTM after-tax realized earnings of $5.17/share it clears 15% only at ~$84 (~$67 with a margin of safety).",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH: the standardized engine base capitalizes consolidated-fund OCF (NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025, and ttm.py's consolidated-OCF TTM base collapses to $0.4157/share on fund timing), so tier-by-numbers B overstates the manager's distributable owner's earnings; on the manager's realized-earnings definition the weighted IRR is in the low teens (2026-10-13 v4 run: 11.9%, IV@15% $84.17 at $118.15). Softened one notch to C, confidence low - same treatment as ACGL/HIG.",
+ "moat_for": [
+  "Scale and origination in private credit - one of the largest direct-lending platforms globally, inside a $671.3B AUM / $409.9B fee-paying platform",
+  "Durability of the fee base - long-dated/perpetual capital share, AUM not yet paying fees as a visible pipeline, FRE +20% YoY in Q2 2026",
+  "Diversification and distribution - Credit, Real Assets, Private Equity and Secondaries across institutional, wealth and insurance channels",
+  "Through-cycle fundraising record - record $36.4B raised in Q2 2026, $170.0B available capital"
+ ],
+ "moat_against": [
+  "No structural pricing power - LPs allocate each vintage competitively among Blackstone, Apollo, KKR, Brookfield, Blue Owl and Ares, and direct-lending spreads have compressed",
+  "Earnings geared to the private-credit cycle - a default/non-accrual wave hits carried interest, marks, fundraising and the insurance book at once",
+  "Growth partly bought, not only earned - GCP International (2025, roughly doubled Real Assets AUM) and BlueCove (Feb 2026); integration and contingent-consideration risk",
+  "Regulatory/reputational overhang on private credit and affiliated insurance (Aspida), plus partner-economics dilution - share count growing 3.5%/yr"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 72178000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows (p. F-8): 'Purchase of furniture, equipment and leasehold improvements, net of disposals' $(72,178) thousand for FY2025, with $(91,509) thousand for FY2024 and $(67,183) thousand for FY2023 in the same statement"
+  },
+  {
+   "field": "shares",
+   "value": 327035461.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Balance Sheets (p. F-4), Stockholders' Equity section: Class A common stock 218,465,429 shares, non-voting common stock 3,489,911 shares, Class B common stock 1,000 shares, and Class C common stock 105,079,121 shares, each stated as issued and outstanding as of December 31, 2025 - total 327,035,461 shares"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": -1.5905,
+  "base_oe_with_override": 7.5045,
+  "base_oe_impact_pct": -571.821,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.1595,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

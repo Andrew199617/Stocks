@@ -2,57 +2,72 @@
  "ticker": "WEC",
  "name": "WEC ENERGY GROUP, INC.",
  "sector": "Utilities / Regulated Electric & Gas",
- "price": 104.91,
- "market_cap_b": 33.97,
- "engine_version": 4,
- "base_oe_per_share": 5.61,
- "base_year": "TTM Q2 2026",
- "base_source": "TTM adjusted EPS: FY2025 adjusted $5.27 - H1 2025 $3.02 + H1 2026 $3.36 = $5.61/share; cross-checked TTM GAAP EPS $5.15 (NI to common $1,557.5M - $969.6M + $1,103.6M = $1,691.5M), gap is exactly the $0.46 Q4 2025 QIP/UEA settlement charge. Engine normalized base rejected: conservative OE (OCF - total capex) is negative in FY2025 (-$3.15/sh) and TTM (-$1,373.3M: OCF $3,574.2M - capex $4,947.5M from EDGAR 10-Q YTD) \u2014 structural for a rate-base-growing utility, not earning power. See analysis.md.",
+ "price": 106.08,
+ "market_cap_b": 34.35,
+ "engine_version": 5,
+ "base_oe_per_share": 1.236650868878357,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "moat_score": 6,
- "moat_justification": "Legal monopoly electric/gas franchises in WI/IL/MI/MN with an all-regulated $37.5B 2026-2030 capital plan, PSCW-approved very-large-customer tariff shifting data-center credit risk to those customers, 22 straight years of meeting/beating guidance and 23 straight dividend increases, plus I-94 corridor data-center load growth \u2014 against regulator-capped allowed ROE (Illinois disallowances and the $205M QIP/UEA settlement), $5.3-5.7B of planned equity issuance diluting per-share growth, debt-funded expansion, and long-run gas-network electrification risk.",
+ "moat_justification": "Exclusive regulated electric/gas franchises in WI/IL/MI/MN with captive essential-service customers, constructive Wisconsin regulation on most of the rate base, and a $37.5B all-regulated 2026-2030 capital plan (plus a very-large-customer tariff for data-center load) giving visible rate-base compounding \u2014 against regulator-capped allowed returns with no pricing power beyond rate cases, proven Illinois disallowance/settlement costs, a debt-plus-equity funded plan that dilutes per-share growth (share count +0.81%/yr), and long-run gas-network electrification and affordability risk.",
  "cap_years": 9.8,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "BASE_DIVERGENCE: latest FY OE/share -3.15 vs 3-yr median 1.36 \u2014 one of them is distorted; find out which and why",
-  "HIGH_NET_DEBT: net debt is 11.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share -3.29 vs 3-yr median 1.24 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 49.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "iv_at_15": 34.99,
-   "irr": 0.0656
+   "iv_at_15": 5.08,
+   "irr": 0.03
   },
   "bear": {
    "prob": 0.25,
-   "iv_at_15": 45.7,
-   "irr": 0.0799
+   "iv_at_15": 8.32,
+   "irr": 0.0345
   },
   "base": {
-   "prob": 0.35,
-   "iv_at_15": 56.21,
-   "irr": 0.0939
+   "prob": 0.3,
+   "iv_at_15": 11.55,
+   "irr": 0.0392
   },
   "bull": {
-   "prob": 0.2,
-   "iv_at_15": 64.51,
-   "irr": 0.1044
+   "prob": 0.25,
+   "iv_at_15": 15.87,
+   "irr": 0.0457
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 75.2,
-   "irr": 0.1172
+   "iv_at_15": 24.59,
+   "irr": 0.0587
   }
  },
- "iv_at_15": 55.02,
- "iv_at_12": 73.38,
- "implied_irr": 0.0924,
- "implied_irr_base_case": 0.0939,
- "upside_at_15_pct": -47.6,
+ "iv_at_15": 12.48,
+ "iv_at_12": 16.7,
+ "implied_irr": 0.0409,
+ "implied_irr_base_case": 0.0392,
+ "upside_at_15_pct": -88.2,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "low",
- "one_liner": "Regulated Midwest monopoly with a real data-center growth runway, moat 6/10 \u2014 but at $104.91 (18.7x TTM adjusted earnings of $5.61/share) it yields only a 9.2% weighted IRR with IV@15% of $55.02; it clears the 15% hurdle only at ~$55, or ~$44 with a margin of safety, and even the super-bull case ($75.20) sits below today's price.",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "High-quality regulated Midwest monopoly, moat 6/10 \u2014 but at $106.08 its $1.24/share normalized OE yields only a 4.1% weighted IRR (IV@15% $12.48), and even an EPS-based method lands in Tier D; it clears 15% only at ~$12.48 on the OE screen (~$55 on the friendlier EPS basis).",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated electric/gas territories in WI/IL/MI/MN \u2014 captive essential-service customers",
+  "Constructive Wisconsin PSC regulation on most of the rate base, historically high allowed ROE",
+  "$37.5B all-regulated 2026-2030 capital plan converts spend into rate base; VLC tariff for data-center load",
+  "Execution record: guidance met and 23 consecutive annual dividend increases"
+ ],
+ "moat_against": [
+  "Returns capped at regulator-set ROE \u2014 no pricing power beyond filed rate cases",
+  "Illinois regulatory risk is proven: disallowances and rider settlements already realized",
+  "Debt-funded plan plus planned equity issuance dilutes per-share growth",
+  "Gas network electrification/decarbonization risk and rate-affordability politics"
+ ]
 }

@@ -1,0 +1,70 @@
+{
+ "ticker": "HPQ",
+ "name": "HP INC.",
+ "sector": "Technology / PCs and printing",
+ "price": 30.2323,
+ "market_cap_b": 28.81,
+ "engine_version": 5,
+ "base_oe_per_share": 3.6699029126213594,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate moat: scale as the #2 global PC vendor and the #1 print vendor with a high-margin supplies annuity and commercial channel/service relationships, but PC hardware is commoditized (no OS or chip control, thin Personal Systems margins), switching costs are low outside managed commercial fleets, and printing is in secular decline against Lenovo/Dell/Apple competition and digitization.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 11 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.2%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 13.84,
+   "irr": 0.0778
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 21.41,
+   "irr": 0.112
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 28.89,
+   "irr": 0.1444
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 38.5,
+   "irr": 0.1829
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 56.93,
+   "irr": 0.2474
+  }
+ },
+ "iv_at_15": 27.71,
+ "iv_at_12": 36.41,
+ "implied_irr": 0.1395,
+ "implied_irr_base_case": 0.1444,
+ "upside_at_15_pct": -8.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Mature cash generator, moat 4/10 \u2014 on a TTM base it comes close but does not clear 15% (13.95% weighted IRR, IV@15% $27.71 vs $30.23 price); it clears 15% at or below $27.71.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "#2 global PC vendor at scale \u2014 global distribution and channel strength",
+  "#1 in print with a high-margin supplies/cartridge annuity on the installed base",
+  "Commercial fleet and managed-print relationships with service attach",
+  "Printing operating margin far above Personal Systems (18.1% vs 4.6% in Q3 FY26)"
+ ],
+ "moat_against": [
+  "PC hardware commoditized \u2014 no OS/chip control, thin Personal Systems margins",
+  "Printing in secular decline \u2014 revenue, supplies and hardware units all fell in Q3 FY26",
+  "Low switching costs outside managed commercial fleets; Lenovo, Dell and Apple compete on price and premium",
+  "Memory/component cost inflation and tariff exposure squeeze gross margin",
+  "Recent growth is ASP/pull-forward driven while unit shipments fall sharply"
+ ]
+}

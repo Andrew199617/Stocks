@@ -1,0 +1,159 @@
+{
+ "ticker": "GEHC",
+ "name": "GE HEALTHCARE TECHNOLOGIES INC.",
+ "cik": 1932393,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 68.125,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 458000000,
+ "market_cap_est": 31201250000.0,
+ "net_debt_latest": 5505000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.04066966706760278,
+ "rev_cagr_3y": 0.039887696669109074,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1375000000,
+ "base_oe_per_share": 3.010940919037199,
+ "base_oe_latest_per_share": 3.002183406113537,
+ "base_oe_normalized_per_share": 3.113289760348584,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.04066966706760278,
+  "rev_cagr_3y": 0.039887696669109074,
+  "rev_yoy_latest": 0.048444489629930976,
+  "oe_ps_cagr_2y": -0.07292714049590765
+ },
+ "g_blend": 0.040278681868355926,
+ "share_cagr": 0.0029276054790652317,
+ "share_count_adj": -0.0029276054790652317,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.037351076389290694,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.35,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.11,
+   -0.05,
+   0.0,
+   0.03,
+   0.06
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.010940919037199,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0726,
+   "oe_mult": 0.75,
+   "iv_at_10": 18.830804300137174,
+   "iv_at_12": 15.264077022716462,
+   "iv_at_15": 12.001499351576907,
+   "irr": 0.043820574097116816
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0126,
+   "oe_mult": 0.9,
+   "iv_at_10": 30.63250694634537,
+   "iv_at_12": 24.418348079571345,
+   "iv_at_15": 18.793453688683165,
+   "irr": 0.05790684491100327
+  },
+  "base": {
+   "prob": 0.35,
+   "g_start": 0.0374,
+   "oe_mult": 1.0,
+   "iv_at_10": 43.781808334679454,
+   "iv_at_12": 34.46006610877224,
+   "iv_at_15": 26.085210206902065,
+   "irr": 0.07342059282235247
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0674,
+   "oe_mult": 1.1,
+   "iv_at_10": 55.95350271448206,
+   "iv_at_12": 43.73000157875498,
+   "iv_at_15": 32.792297137568916,
+   "irr": 0.08703973703727158
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.0974,
+   "oe_mult": 1.25,
+   "iv_at_10": 73.8010938152411,
+   "iv_at_12": 57.295111747810424,
+   "iv_at_15": 42.58030028763441,
+   "irr": 0.10583869205121232
+  }
+ },
+ "weighted": {
+  "iv_at_10": 43.43565000815839,
+  "iv_at_12": 34.1675293507668,
+  "iv_at_15": 25.84482638602143,
+  "irr": 0.07308611091200146
+ },
+ "implied_irr_weighted": 0.07308611091200146,
+ "implied_irr_base": 0.07342059282235247,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6206264016730799,
+ "upside_at_12": -0.49845828475938647,
+ "iv_at_15": 25.84482638602143,
+ "iv_at_12": 34.1675293507668,
+ "diagnostics": {
+  "oe_yield": 0.04419729789412402,
+  "tv_share_at_15": 0.1827519126747908,
+  "scenario_spread_iv15": 3.547915059632918,
+  "net_debt_to_normalized_oe": 3.9919915329541995,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 4.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "de4d4ce31d2c33ba3a68bae73605fc068b3f146fe636f8248054fbd14abd12cc"
+}

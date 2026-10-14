@@ -1,0 +1,101 @@
+{
+ "ticker": "HPQ",
+ "cik": 47217,
+ "entity": "HP INC.",
+ "fy_end": "2025-10-31",
+ "ytd_end": "2026-07-31",
+ "inputs": {
+  "ocf": {
+   "fy": 3697000000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 2073000000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 3044000000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 4668000000
+  },
+  "capex": {
+   "fy": 897000000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 700000000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 590000000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 787000000
+  },
+  "sbc": {
+   "fy": 522000000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 432000000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 389000000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 479000000
+  },
+  "shares_diluted": {
+   "fy": 953000000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 955000000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 927000000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 4668000000,
+ "ttm_capex": 787000000,
+ "ttm_sbc": 479000000,
+ "ttm_shares_diluted": 927000000,
+ "ttm_oe_total": 3402000000,
+ "ttm_oe_per_share": 3.6699029126213594,
+ "warnings": [],
+ "overrides_used": []
+}

@@ -1,0 +1,69 @@
+{
+ "ticker": "VRSN",
+ "name": "VeriSign, Inc.",
+ "sector": "Technology / Internet infrastructure (domain registry)",
+ "price": 295.38,
+ "market_cap_b": 27.71,
+ "engine_version": 5,
+ "base_oe_per_share": 10.845733041575492,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 9,
+ "moat_justification": "Textbook wide moat: exclusive ICANN registry rights for .com/.net with presumptive renewal, .com's default-TLD network status and registrant switching costs, contractual 7% pricing power repeatedly exercised, and ~68% operating margins on minimal capex. Scored 9 not 10 because the moat is granted by contract and politics \u2014 NTIA/antitrust pressure on .com pricing is a live, binary erosion force at each renewal.",
+ "cap_years": 13.7,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.6%/yr \u2014 already credited via the growth adjustment"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 60.31,
+   "irr": 0.0494
+  },
+  "bear": {
+   "prob": 0.2,
+   "iv_at_15": 93.81,
+   "irr": 0.0667
+  },
+  "base": {
+   "prob": 0.4,
+   "iv_at_15": 122.11,
+   "irr": 0.0808
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 149.41,
+   "irr": 0.0934
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 199.41,
+   "irr": 0.1147
+  }
+ },
+ "iv_at_15": 123.46,
+ "iv_at_12": 167.56,
+ "implied_irr": 0.0816,
+ "implied_irr_base_case": 0.0808,
+ "upside_at_15_pct": -58.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Elite wide-moat registry monopoly (9/10) with contractual pricing power \u2014 but at $295.38 the price assumes far more than the model gives: weighted IRR 8.16%, weighted IV@15% $123.46; it clears 15% only below ~$123.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive .com/.net registry operator under ICANN agreements with presumptive renewal \u2014 no competitor can legally take the registry without a contract change",
+  ".com is the default commercial TLD: brand identity, email, and links are embedded in 179.1M registrations \u2014 switching costs are borne by registrants, not Verisign, and renewal rates run ~76% despite repeated price hikes",
+  "Proven contractual pricing power: wholesale .com price taken from $7.85 to $10.26 since 2021, next +7% to $10.97 effective Nov 1, 2026, with up to three more 7% steps to 2030; .net allows up to 10%/yr",
+  "Structural cost advantage: ~68% operating margins, capex of only $22.8M on $1,656.6M FY2025 revenue \u2014 registry scale economics no entrant can replicate",
+  "29 years of 100% .com/.net DNS availability \u2014 operational record is itself a barrier to any re-bid argument"
+ ],
+ "moat_against": [
+  "Moat is granted by ICANN/NTIA contracts, not owned \u2014 .com agreement runs to Nov 2030 and pricing terms are a political/antitrust target (NTIA publicly wanted lower .com prices at the 2024 renewal; antitrust suit filed over .com pricing)",
+  "Mature .com base \u2014 long-run volume growth depends on new-business formation; alternative TLDs (.ai, ccTLDs), brand TLDs from ICANN's 2026 round, and platform/social presence substitute at the margin",
+  "Wholesale price hikes are capped (7% in only 4 of each 6 years for .com) and each hike risks registrar/registrant pushback and volume elasticity",
+  "Single-product concentration \u2014 essentially all economics are .com/.net registry fees; a DNS security/availability failure would be existential for the contract"
+ ]
+}

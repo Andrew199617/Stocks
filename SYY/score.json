@@ -1,1 +1,66 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":3.79,"base_source":"median_of_last_3_fy_oe_per_share: median of FY2024 $4.08, FY2025 $3.08, FY2026 $3.79 = $3.79/share (median equals FY2026). FY2026 conservative OE: OCF $2.638B - capex $0.700B - SBC $0.118B = $1.820B on 480.6M diluted shares. No TTM override: FY ended 2026-06-27 (3.5 months ago, not stale) and Q1 FY2027 had not been reported. Standalone Sysco only — Jetro Restaurant Depot (pending, $29.1B EV) excluded from the base and carried only in the super-bull scenario.","base_year":"FY2026","cap_years":9.8,"confidence":"medium","engine_version":4,"fragility_flags":[],"implied_irr":0.082,"implied_irr_base_case":0.0835,"in_scope_under_40b":true,"iv_at_12":46.11,"iv_at_15":34.64,"market_cap_b":37.61,"moat_justification":"Scale cost advantage as the largest US foodservice distributor (~17% share vs US Foods ~10%): purchasing terms, 333-center route density, Sysco Brand private label, 50+ years of dividend growth and historically double-digit ROIC (Morningstar: narrow moat) — against low customer switching costs and multi-sourcing, locally fragmented competition from 15,000 distributors plus scaled USFD/PFG, decade-flat ~18-19% gross margins (limited pricing power), labor/fuel intensity, and structural share loss of price-sensitive independents to cash-and-carry (the gap the $29.1B Jetro deal is buying into).","moat_score":6,"name":"Sysco Corporation","one_liner":"Durable scale distributor, moat 6/10, with clean owner's earnings ($3.79/share, both definitions agree) — but at $78.26 (20.7x OE, 4.8% yield) it yields an 8.2% weighted IRR with IV@15% of $34.64, and even the Jetro-success super-bull case (12.3%) stays below the hurdle; it clears 15% only at ~$35 (~$28 with a margin of safety), with ~$11.7B of net debt rising pro forma for the $29.1B Jetro deal as the key risk to watch.","price":78.26,"scenarios":{"base":{"irr":0.0835,"iv_at_15":35.72,"prob":0.3},"bear":{"irr":0.0684,"iv_at_15":27.33,"prob":0.3},"bull":{"irr":0.104,"iv_at_15":47.67,"prob":0.17},"super_bear":{"irr":0.0537,"iv_at_15":19.06,"prob":0.15},"super_bull":{"irr":0.123,"iv_at_15":59.51,"prob":0.08}},"sector":"Consumer Discretionary / Food Distributors","ticker":"SYY","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-55.7}
+{
+ "ticker": "SYY",
+ "name": "Sysco Corporation",
+ "sector": "Consumer Discretionary / Food Distributors",
+ "price": 79.03,
+ "market_cap_b": 37.98,
+ "engine_version": 5,
+ "base_oe_per_share": 3.7868368481688344,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Scale cost advantage as the largest US foodservice distributor (~17% share vs US Foods ~10%): purchasing terms, route/warehouse density, Sysco Brand private label, 50+ years of dividend growth and historically double-digit ROIC (Morningstar: narrow moat) \u2014 against low customer switching costs and multi-sourcing, locally fragmented competition from ~15,000 distributors plus scaled USFD/PFG, decade-flat ~18-19% gross margins (limited pricing power), labor/fuel intensity, and structural share loss of price-sensitive independents to cash-and-carry (the gap the $29.1B Jetro deal is buying into).",
+ "cap_years": 9.8,
+ "fragility_flags": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 19.06,
+   "irr": 0.0534
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 27.33,
+   "irr": 0.068
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 35.72,
+   "irr": 0.0829
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 47.67,
+   "irr": 0.1033
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 59.51,
+   "irr": 0.1222
+  }
+ },
+ "iv_at_15": 34.64,
+ "iv_at_12": 46.11,
+ "implied_irr": 0.0814,
+ "implied_irr_base_case": 0.0829,
+ "upside_at_15_pct": -56.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Durable scale distributor, moat 6/10, with clean owner's earnings ($3.79/share, both definitions agree) \u2014 but at $79.03 (4.79% OE yield) it yields an 8.14% weighted IRR with IV@15% of $34.64, and even the Jetro-success super-bull case (12.22%) stays below the hurdle; it clears 15% only at ~$35, with ~$11.7B of net debt rising pro forma for the $29.1B Jetro deal as the key risk to watch.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest US foodservice distributor (~17% share) \u2014 purchasing scale and supplier terms",
+  "Route/warehouse density lowers per-case delivery cost vs regionals",
+  "Sysco Brand private label and broadline one-stop breadth",
+  "Through-cycle compounding, 50+ years of dividend growth, historically double-digit ROIC"
+ ],
+ "moat_against": [
+  "Low customer switching costs; customers multi-source locally",
+  "Scaled rivals US Foods and Performance Food Group plus ~15,000 regional distributors",
+  "Gross margin stuck ~18-19% for a decade \u2014 limited pricing power",
+  "Labor- and fuel-intensive thin-margin model",
+  "Cash-and-carry formats taking price-sensitive independents \u2014 the gap the Jetro deal buys into"
+ ]
+}

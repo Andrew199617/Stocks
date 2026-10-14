@@ -1,0 +1,71 @@
+{
+ "ticker": "WTW",
+ "name": "Willis Towers Watson Public Limited Company",
+ "sector": "Finance / Insurance brokerage & advisory",
+ "price": 297.15,
+ "market_cap_b": 29.42,
+ "engine_version": 5,
+ "base_oe_per_share": 15.736842105263158,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Scale global broker/adviser with high client retention, embedded relationships and data/analytics, but it is the #3 player behind Marsh McLennan and Aon, the assets walk out the door (brokers/consultants), and a softening insurance pricing cycle plus AI-enabled challengers pressure the model.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.0%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 68.04,
+   "irr": 0.0505
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 111.43,
+   "irr": 0.0714
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 154.68,
+   "irr": 0.0918
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 212.47,
+   "irr": 0.1171
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 328.96,
+   "irr": 0.1612
+  }
+ },
+ "iv_at_15": 167.08,
+ "iv_at_12": 224.29,
+ "implied_irr": 0.0979,
+ "implied_irr_base_case": 0.0918,
+ "upside_at_15_pct": -43.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Good asset-light broker/adviser, moat 6/10 \u2014 but at $297.15 it does not clear 15% (9.8% weighted IRR, IV@15 $167.08); it would need to fall to about $167 to clear the hurdle.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Global scale and network for multinational clients",
+  "High retention and switching friction in embedded benefits/retirement and broking relationships",
+  "Data, analytics and specialty expertise (climate, cyber, M&A, specialty lines)",
+  "Asset-light recurring fee model with buyback-funded per-share compounding"
+ ],
+ "moat_against": [
+  "#3 scale position behind Marsh McLennan and Aon; Gallagher consolidating the middle market",
+  "People are the asset \u2014 producer/consultant poaching is a permanent erosion force",
+  "Softening insurance pricing cycle is a direct headwind to brokerage commissions",
+  "AI/automation and tech-native brokers can compress middle-market broking economics"
+ ]
+}

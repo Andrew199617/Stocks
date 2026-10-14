@@ -1,0 +1,101 @@
+{
+ "ticker": "VMC",
+ "cik": 1396009,
+ "entity": "VULCAN MATERIALS COMPANY",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 1813000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 251500000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 241100000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1802600000
+  },
+  "capex": {
+   "fy": 677700000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 168000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 176500000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 686200000
+  },
+  "sbc": {
+   "fy": 63100000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 13900000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 15500000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 64700000
+  },
+  "shares_diluted": {
+   "fy": 132700000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 133000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 131200000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1802600000,
+ "ttm_capex": 686200000,
+ "ttm_sbc": 64700000,
+ "ttm_shares_diluted": 131200000,
+ "ttm_oe_total": 1051700000,
+ "ttm_oe_per_share": 8.016006097560975,
+ "warnings": [],
+ "overrides_used": []
+}

@@ -1,0 +1,198 @@
+{
+ "ticker": "WRB",
+ "name": "W. R. BERKLEY CORP",
+ "cik": 11544,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 73.8,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 399861000,
+ "market_cap_est": 29509741800.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.1267601883927263,
+ "rev_cagr_3y": 0.09614586474248532,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 3438092000.0,
+ "base_oe_per_share": 8.7890118886595,
+ "base_oe_latest_per_share": 8.598217880713548,
+ "base_oe_normalized_per_share": 8.598217880713548,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.1267601883927263,
+  "rev_cagr_3y": 0.09614586474248532,
+  "rev_yoy_latest": 0.07838723073782705,
+  "oe_ps_cagr_2y": 0.12426546499355062
+ },
+ "g_blend": 0.11020566486801797,
+ "share_cagr": 8.83872474884222,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "capex": {
+   "value": 90000000.0,
+   "last_filed_value": 60457000,
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.06020566486801797,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 8.7890118886595,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 90000000.0,
+   "kind": "estimate",
+   "source": "Anchor: last engine-filed capex $60,457,000 in FY2019 (10-K, PaymentsToAcquirePropertyPlantAndEquipment, financials_history.csv); the filer's own cash-flow statements now report the same line as net purchases of property, furniture and equipment \u2014 $53,737,000 for the nine months ended 2025-09-30 and $91,670,000 for the nine months ended 2024-09-30 (10-Q consolidated statements of cash flows, investing activities) \u2014 confirming the same order of magnitude under a tag the engine does not read.",
+   "reason": "Capex tag missing for FY2023-2025 (and all post-2019 periods) because WRB reports capex as net purchases of property, furniture and equipment. $90M is 1.49x the last filed FY2019 value (inside the 0.1x-10x band) and in line with the 9M filed net-purchase figures; it is ~2.5% of FY2025 OCF, so the choice is immaterial to the verdict.",
+   "periods_filled": [
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 60457000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0598,
+   "oe_mult": 0.75,
+   "iv_at_10": 58.67737506545004,
+   "iv_at_12": 47.38665214850711,
+   "iv_at_15": 37.08354462055739,
+   "irr": 0.08338206601199427
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0102,
+   "oe_mult": 0.9,
+   "iv_at_10": 100.34903280578322,
+   "iv_at_12": 79.51811125501997,
+   "iv_at_15": 60.72933620441653,
+   "irr": 0.1274930592916227
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0602,
+   "oe_mult": 1.0,
+   "iv_at_10": 143.2826267567106,
+   "iv_at_12": 112.16597918472388,
+   "iv_at_15": 84.29658269761893,
+   "irr": 0.16697325943621377
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.1102,
+   "oe_mult": 1.1,
+   "iv_at_10": 202.00992095156823,
+   "iv_at_12": 156.4002572758295,
+   "iv_at_15": 115.80133964715209,
+   "irr": 0.21259548094032266
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1802,
+   "oe_mult": 1.25,
+   "iv_at_10": 323.2039844461287,
+   "iv_at_12": 246.8175983160779,
+   "iv_at_15": 179.3263471774065,
+   "irr": 0.2865759377886511
+  }
+ },
+ "weighted": {
+  "iv_at_10": 144.51299071591376,
+  "iv_at_12": 112.75502337718143,
+  "iv_at_15": 84.37314302850771,
+  "irr": 0.16680671741226483
+ },
+ "implied_irr_weighted": 0.16680671741226483,
+ "implied_irr_base": 0.16697325943621377,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.14326752071148663,
+ "upside_at_12": 0.5278458452192607,
+ "iv_at_15": 84.37314302850771,
+ "iv_at_12": 112.75502337718143,
+ "diagnostics": {
+  "oe_yield": 0.11909230201435637,
+  "tv_share_at_15": 0.1937158973297783,
+  "scenario_spread_iv15": 4.835739113191361,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 883.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Anchor: last engine-filed capex $60,457,000 in FY2019 (10-K, PaymentsToAcquirePropertyPlantAndEquipment, financials_history.csv); the filer's own cash-flow statements now report the same line as net purchases of property, furniture and equipment \u2014 $53,737,000 for the nine months ended 2025-09-30 and $91,670,000 for the nine months ended 2024-09-30 (10-Q consolidated statements of cash flows, investing activities) \u2014 confirming the same order of magnitude under a tag the engine does not read.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 8.823296095393149,
+  "base_oe_per_share_final": 8.7890118886595,
+  "weighted_irr_zero_fill": 0.16637568294067961,
+  "weighted_irr_final": 0.16680671741226483,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "691c89dc9e09f49f2267a98a6ec9b0d9e6c619915554b05a28351a2a43f3abb2"
+}

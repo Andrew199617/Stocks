@@ -1,0 +1,74 @@
+{
+ "ticker": "ALNY",
+ "name": "Alnylam Pharmaceuticals, Inc.",
+ "sector": "Biotechnology",
+ "price": 224.41,
+ "market_cap_b": 30.22,
+ "engine_version": 5,
+ "base_oe_per_share": 3.4954610883261363,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "RNAi platform leader with patent-protected GalNAc delivery, first-mover Amvuttra in ATTR cardiomyopathy backed by HELIOS-B mortality data, and quarterly subcutaneous dosing versus daily oral rivals; offset by three-front competition (Pfizer, BridgeBio, Ionis), heavy TTR franchise concentration, high SBC load, and payer/pricing pressure \u2014 strong moat, not wide.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.6% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 56.86,
+   "irr": 0.0643
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 94.9,
+   "irr": 0.0886
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 133.17,
+   "irr": 0.1097
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 184.59,
+   "irr": 0.1338
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 288.68,
+   "irr": 0.1728
+  }
+ },
+ "iv_at_15": 144.38,
+ "iv_at_12": 210.33,
+ "implied_irr": 0.1155,
+ "implied_irr_base_case": 0.1097,
+ "upside_at_15_pct": -35.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Strong RNAi platform, moat 7/10, at an inflection to positive owner's earnings \u2014 but at $224.41 it does not clear 15% (weighted IRR 11.55%, weighted IV@15 $144.38); the price that clears 15% on these inputs is $144.38.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Patent-protected RNAi/GalNAc delivery platform, repeatable across targets",
+  "Amvuttra first-mover in ATTR-CM with HELIOS-B mortality/CV-event data",
+  "Quarterly subcutaneous dosing vs daily oral competitors",
+  "Proven pricing power in rare disease (Givlaari, Oxlumo) plus TTR scale",
+  "Deep pipeline and Roche zilebesiran partnership extending the platform"
+ ],
+ "moat_against": [
+  "TTR franchise concentration \u2014 most growth rides on Amvuttra",
+  "Three-front competition: Pfizer Vyndaqel, BridgeBio acoramidis, Ionis",
+  "Patent expiry and payer pricing pressure on high-cost rare-disease drugs",
+  "Heavy SBC load and 3.4%/yr share dilution",
+  "Pipeline/binary trial risk beyond the liver franchise"
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "ticker": "NVT",
+ "name": "nVent Electric plc",
+ "sector": "Industrials / Electrical connection & protection equipment",
+ "price": 152.72,
+ "market_cap_b": 25.14,
+ "engine_version": 5,
+ "base_oe_per_share": 3.2736136502132847,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Spec-in brands (HOFFMAN, ERICO, CADDY, SCHROFF) embedded in electrical codes and engineer specifications, a global distribution network, and early liquid-cooling scale with hyperscalers give real switching friction and pricing power; but Vertiv, Eaton, ABB, Schneider and Legrand are larger rivals selling into the same data-center budgets, enclosures/fastening are partly commoditized, and the current growth surge rides a single AI capex cycle.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 7.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 20.13,
+   "irr": 0.0415
+  },
+  "bear": {
+   "prob": 0.2,
+   "iv_at_15": 34.48,
+   "irr": 0.0559
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 52.22,
+   "irr": 0.0734
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 81.54,
+   "irr": 0.0995
+  },
+  "super_bull": {
+   "prob": 0.15,
+   "iv_at_15": 142.43,
+   "irr": 0.1436
+  }
+ },
+ "iv_at_15": 66.33,
+ "iv_at_12": 92.59,
+ "implied_irr": 0.087,
+ "implied_irr_base_case": 0.0734,
+ "upside_at_15_pct": -56.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Good business, moat 6/10, riding the AI data-center boom \u2014 but at $152.72 even the super-bull case returns only 14.4%; weighted IRR 8.7%, IV@15% $66.33. It clears 15% only at or below $66.33.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Brands specified into electrical codes and engineer designs (HOFFMAN, ERICO, CADDY, SCHROFF) \u2014 spec-in creates switching friction",
+  "Global distribution and channel reach across infrastructure, industrial and commercial verticals",
+  "Liquid-cooling scale and hyperscaler relationships in data centers, with capacity being added ahead of demand",
+  "Broad, code-driven portfolio (enclosures, connection, fastening, protection) sold as systems, not parts"
+ ],
+ "moat_against": [
+  "Vertiv, Eaton, ABB, Schneider Electric and Legrand are larger and sell into the same data-center budgets",
+  "Enclosures and fastening are partly commoditized \u2014 limited pricing power outside specified niches",
+  "Hyperscaler customers have strong bargaining power and can dual-source",
+  "Growth is concentrated in one AI data-center capex cycle that can pause or reverse",
+  "Acquisition-led growth (Avail) adds integration and amortization load"
+ ]
+}

@@ -1,0 +1,94 @@
+{
+ "ticker": "WRB",
+ "name": "W. R. Berkley Corporation",
+ "sector": "Finance / Property & Casualty Insurance",
+ "price": 73.8,
+ "market_cap_b": 29.51,
+ "engine_version": 5,
+ "base_oe_per_share": 8.7890118886595,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Best-in-class specialty P&C underwriting culture: decentralized operating units with local specialty expertise, combined ratios around 90% vs an industry near 98.5%, operating ROE around 20% held through the cycle, and a proven willingness to shrink premiums when pricing is inadequate \u2014 capped at moderate because the product is still fungible risk capital repriced annually, with no customer lock-in or structural pricing power, and returns remain hostage to the pricing cycle, catastrophe luck and reserve development.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 883.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Anchor: last engine-filed capex $60,457,000 in FY2019 (10-K, PaymentsToAcquirePropertyPlantAndEquipment, financials_history.csv); the filer's own cash-flow statements now report the same line as net purchases of property, furniture and equipment \u2014 $53,737,000 for the nine months ended 2025-09-30 and $91,670,000 for the nine months ended 2024-09-30 (10-Q consolidated statements of cash flows, investing activities) \u2014 confirming the same order of magnitude under a tag the engine does not read.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 37.08,
+   "irr": 0.0834
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 60.73,
+   "irr": 0.1275
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 84.3,
+   "irr": 0.167
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 115.8,
+   "irr": 0.2126
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 179.33,
+   "irr": 0.2866
+  }
+ },
+ "iv_at_15": 84.37,
+ "iv_at_12": 112.76,
+ "implied_irr": 0.1668,
+ "implied_irr_base_case": 0.167,
+ "upside_at_15_pct": 14.3,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Best-in-class specialty P&C insurer, moat 6/10 \u2014 engine prints Tier B (weighted IRR 16.68%, IV@15% $84.37 vs $73.80) on a float-capitalizing OCF base, so the final tier is softened to C at low confidence; it clears 15% at ~$84 on engine numbers, ~$61 (bear IV) with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (FY2025 OCF $3,582,616,000 vs net income $1,779,403,000; NI_OCF_DIVERGENCE is structural in 2023/2024/2025), so tier-by-numbers B overstates distributable owner's earnings \u2014 and 16.68% only just clears 15% even on that flattering base, while the maintenance (net-income) definition of OE is roughly half the conservative figure. Softened one notch to C, confidence low \u2014 same treatment as HIG (A to B) and ACGL (B to C).",
+ "moat_for": [
+  "Decentralized specialty model \u2014 autonomous operating units with local niche expertise, shared group capital/analytics",
+  "Underwriting discipline through the cycle \u2014 combined ratio 90.0% in Q2 2026, 88.1% accident-year ex-cat, vs US P&C industry near 98.5%",
+  "Proven high returns held through a cycle \u2014 operating ROE 20.5% in Q2 2026, 20.9% in H1 2026",
+  "Cycle management \u2014 leans into hard pricing, willing to pull back and protect margin instead of chasing volume",
+  "Record investment engine \u2014 net investment income $418.7M in Q2 2026 on $34.17B net invested assets, new-money yields above book yield"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 fungible risk capital repriced annually via brokers; no structural pricing power or lock-in",
+  "Softening pricing cycle \u2014 H1 2026 net premiums written barely grew YoY as rate momentum moderates",
+  "Catastrophe and social-inflation tail \u2014 Q2 2026 cat losses $62.4M; casualty loss-cost inflation can hit reserves",
+  "Reserve risk \u2014 earnings lean on loss-reserve growth and prior-year development that can reverse",
+  "Leadership transition \u2014 founder/executive chairman died in 2026; the underwriting culture must survive succession"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 90000000.0,
+   "kind": "estimate",
+   "source": "Anchor: last engine-filed capex $60,457,000 in FY2019 (10-K, PaymentsToAcquirePropertyPlantAndEquipment, financials_history.csv); the filer's own cash-flow statements now report the same line as net purchases of property, furniture and equipment \u2014 $53,737,000 for the nine months ended 2025-09-30 and $91,670,000 for the nine months ended 2024-09-30 (10-Q consolidated statements of cash flows, investing activities) \u2014 confirming the same order of magnitude under a tag the engine does not read."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 9.0178,
+  "base_oe_with_override": 8.789,
+  "base_oe_impact_pct": -2.537,
+  "weighted_irr_without_override": 0.1693,
+  "weighted_irr_with_override": 0.1668,
+  "weighted_irr_impact_pp": -0.251,
+  "unblocks_tier": true
+ }
+}

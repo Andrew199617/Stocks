@@ -1,0 +1,73 @@
+{
+ "ticker": "ESLT",
+ "name": "Elbit Systems Ltd",
+ "sector": "Industrials \u2014 Aerospace & Defense",
+ "price": 698.72,
+ "market_cap_b": 32.78,
+ "engine_version": 5,
+ "base_oe_per_share": 6.795030083428393,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Israel's largest defense contractor with a broad, integrated portfolio (aerospace, C4I/cyber, ISTAR & electronic warfare, land systems, US subsidiary), combat-proven systems (Iron Beam laser, Hermes UAVs, electro-optics) and a record $32.0B backlog at Q2 2026 giving multi-year revenue visibility \u2014 against government-budget dependence, fixed-price execution and capacity-ramp risk, competition from far larger US/European primes, export-license and political scrutiny of Israeli arms sales, and a controlling shareholder (Federmann Enterprises, ~41% per S&P via a May 2026 6-K). Pricing power is real but capped by government contracting; returns have been earned through a demand supercycle, not yet proven through a downturn.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Elbit Systems Form 20-F for the fiscal year ended December 31, 2025 (filed with the SEC on March 17, 2026): the security registered under Section 12 is the ordinary shares (NIS 1 par), described in Exhibit 2.1 to that 20-F; the company's share-capital description states it has one class of Section 12 securities \u2014 ordinary shares \u2014 registered for trading on the Nasdaq Global Select Market and the Tel Aviv Stock Exchange under the symbol ESLT. Elbit has no ADS program: the Nasdaq-traded security IS the ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 11.22 vs 3-yr median 6.80 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.0% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 36.1,
+   "irr": 0.0311
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 59.16,
+   "irr": 0.0362
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 82.09,
+   "irr": 0.0415
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 112.66,
+   "irr": 0.0487
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 174.09,
+   "irr": 0.0626
+  }
+ },
+ "iv_at_15": 88.6,
+ "iv_at_12": 120.52,
+ "implied_irr": 0.0433,
+ "implied_irr_base_case": 0.0415,
+ "upside_at_15_pct": -87.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality defense franchise, moat 6/10, record $32.0B backlog \u2014 but at $698.72 the price is far beyond any owner's-earnings DCF: weighted IRR 4.3%, weighted IV@15% $88.60 on the normalized base of $6.80/share (latest FY $11.22/share still leaves IV far below price); clears the 15% hurdle only below ~$89.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Record $32.0B order backlog at Q2 2026 (+34% YoY, ~73% from outside Israel) \u2014 multi-year contracted visibility",
+  "Broad integrated portfolio across aerospace, C4I/cyber, ISTAR/EW and land \u2014 systems-integration switching costs for armed-force customers",
+  "Combat-proven differentiated tech: Iron Beam directed energy, Hermes UAVs, electro-optics/electronic warfare",
+  "Incumbent supplier to the Israeli MoD and localized manufacturing/partnerships inside NATO markets (e.g. Serbia JV, European programs)"
+ ],
+ "moat_against": [
+  "Revenue ultimately rests on government defense budgets and procurement cycles \u2014 no consumer/commercial pricing power",
+  "Fixed-price program execution and capacity-ramp risk as backlog converts; cost overruns land on Elbit",
+  "Competes with far larger US and European primes (Lockheed Martin, RTX, Northrop, Rheinmetall) for the same rearmament budgets",
+  "Export-license and political risk: scrutiny of Israeli arms exports and Middle East operations can block or delay programs",
+  "Controlling shareholder Federmann Enterprises (~41%) \u2014 governance concentration; FY2025 equity offering diluted the count"
+ ]
+}

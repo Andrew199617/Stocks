@@ -1,0 +1,43 @@
+{
+ "ticker": "ECHO",
+ "name": "EchoStar Corporation",
+ "sector": "Telecommunications / Pay-TV, wireless and satellite broadband",
+ "price": 87.94,
+ "market_cap_b": 25.29,
+ "engine_version": 5,
+ "base_oe_per_share": -2.1873164652052175,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 3,
+ "moat_justification": "The scarce licensed spectrum was the one genuinely defensible asset, and it is being sold; what remains is a melting pay-TV base, a subscale wireless brand that no longer owns its network path, and a satellite-broadband business losing subscribers to Starlink. Subscriber inertia and a spectrum-sale payday are real, but there is no durable pricing power or switching-cost moat in the operating businesses \u2014 weak, 3/10.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Melting pay-TV/wireless operator, moat 3/10, whose value sits in spectrum-sale proceeds rather than owner's earnings \u2014 conservative OE is negative on the median (-$2.66/share), latest-FY (-$3.83/share) and TTM (-$2.19/share) bases, so Tier F on this screen and no 15%-clearing price is computable from an OE DCF.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Remaining licensed spectrum is a scarce regulator-created asset strategics paid tens of billions to acquire",
+  "Installed subscriber inertia: 6.39M pay-TV and 7.38M wireless subscribers at Q2 2026",
+  "Boost survives as a hybrid MVNO on AT&T with a Starlink Direct-to-Cell agreement attached to the SpaceX deal"
+ ],
+ "moat_against": [
+  "Pay-TV in secular decline with no pricing power against streaming",
+  "Retail wireless subscale vs the three national carriers and now dependent on AT&T wholesale network after the 5G build was abandoned",
+  "Hughes broadband losing subscribers against Starlink scale",
+  "Distressed capital structure: going-concern warning and DISH DBS Chapter 11 hand bargaining power to creditors"
+ ]
+}

@@ -2,27 +2,27 @@
  "ticker": "EME",
  "name": "EMCOR Group, Inc.",
  "cik": 105634,
- "engine_version": 4,
+ "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 776.05,
+ "price": 750.255,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 45145767,
- "market_cap_est": 35035372480.35,
+ "market_cap_est": 33870837420.585,
  "net_debt_latest": null,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.140671750346951,
  "rev_cagr_3y": 0.15316282046674323,
  "oe_positive_years_of_last_5": "5/5",
- "base_oe_total_latest_fy": 1189313000,
- "base_oe_per_share": 26.25,
- "base_oe_latest_per_share": 26.34384304512979,
- "base_oe_normalized_per_share": 26.34384304512979,
- "base_source": "agent_supplied_ttm_override",
+ "base_oe_total_latest_fy": 1168718000.0,
+ "base_oe_per_share": 25.791156240815383,
+ "base_oe_latest_per_share": 25.887654096119356,
+ "base_oe_normalized_per_share": 25.887654096119356,
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.140671750346951,
   "rev_cagr_3y": 0.15316282046674323,
   "rev_yoy_latest": 0.1661600113578665,
-  "oe_ps_cagr_3y": 0.23503487522999245
+  "oe_ps_cagr_2y": 0.23993751966540522
  },
  "g_blend": 0.15966141591230487,
  "share_cagr": -0.034337965842355045,
@@ -34,7 +34,7 @@
   "ocf": "NetCashProvidedByUsedInOperatingActivities",
   "capex": "PaymentsToAcquireProductiveAssets",
   "da": "DepreciationDepletionAndAmortization",
-  "sbc": null,
+  "sbc": "AllocatedShareBasedCompensationExpense",
   "tax": "IncomeTaxExpenseBenefit",
   "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
   "cash": "CashAndCashEquivalentsAtCarryingValue",
@@ -46,81 +46,155 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "sbc": {
+   "value": 20595000.0,
+   "last_filed_value": 200000,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
  "g_base": 0.19399938175465992,
  "moat_score": 5.0,
  "cap_years": 8.5,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.14,
+   -0.07,
+   -0.02,
+   0.03,
+   0.1
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 25.791156240815383,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 20595000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0000105634-26-000025), Consolidated Statements of Cash Flows: 'Non-cash share-based compensation expense' $20,595 thousand for FY2025 and $19,978 thousand for FY2024 (same line in the FY2025 earnings release cash-flow statement); Q2 2026 Form 10-Q cash-flow statement shows the same line at $15,007 thousand for H1 2026 and $13,092 thousand for H1 2025. EDGAR companyfacts carries this expense under AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue ($20,595,000 FY2025 / $19,978,000 FY2024 / $13,739,000 FY2023), a tag the engine does not read; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no values after 2011.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 (in fact all years 2012-2025 under the engine's tags). The filer's own reported FY2025 non-cash share-based compensation expense fills the gap; the engine applies this single value to every missing period, which leaves the 3-yr median base essentially unchanged (the median year is FY2025 itself under either the single value or the true per-year series $13,739k/$19,978k/$20,595k) and ttm.py prorates the same value across its legs, leaving TTM SBC at the FY2025 figure vs a true filed-leg TTM of $22,510k \u2014 a ~$0.04/share difference, immaterial to the verdict.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": 200000
+  }
+ ],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
    "g_start": 0.054,
    "oe_mult": 0.75,
-   "iv_at_10": 307.6427131860765,
-   "iv_at_12": 241.48055557249035,
-   "iv_at_15": 182.1160746493476,
-   "irr": 0.05518423990681963
+   "iv_at_10": 302.26519170020777,
+   "iv_at_12": 237.25953287196188,
+   "iv_at_15": 178.93272896172655,
+   "irr": 0.05567066725632308
   },
   "bear": {
    "prob": 0.3,
    "g_start": 0.124,
    "oe_mult": 0.9,
-   "iv_at_10": 507.5700600844843,
-   "iv_at_12": 393.40398467481634,
-   "iv_at_15": 291.6339992882002,
-   "irr": 0.0752956556275878
+   "iv_at_10": 498.6978561066281,
+   "iv_at_12": 386.5273765526678,
+   "iv_at_15": 286.53630631526914,
+   "irr": 0.07607318427649112
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.174,
    "oe_mult": 1.0,
-   "iv_at_10": 704.6956388826027,
-   "iv_at_12": 541.8243621135864,
-   "iv_at_15": 397.2236539387675,
-   "irr": 0.09370342051183322
+   "iv_at_10": 692.3777266530449,
+   "iv_at_12": 532.3534010800626,
+   "iv_at_15": 390.28027890599367,
+   "irr": 0.09472329164735982
   },
   "bull": {
    "prob": 0.2,
    "g_start": 0.224,
    "oe_mult": 1.1,
-   "iv_at_10": 964.7070527870732,
-   "iv_at_12": 736.3685227959218,
-   "iv_at_15": 534.3766536272924,
-   "irr": 0.11576896433015615
+   "iv_at_10": 947.8442028589691,
+   "iv_at_12": 723.4969760856396,
+   "iv_at_15": 525.0358767674508,
+   "irr": 0.11705371815298346
   },
   "super_bull": {
    "prob": 0.1,
    "g_start": 0.294,
    "oe_mult": 1.25,
-   "iv_at_10": 1478.8482864314437,
-   "iv_at_12": 1118.6533891277322,
-   "iv_at_15": 801.4381871123646,
-   "irr": 0.15329877386808544
+   "iv_at_10": 1452.9983699739225,
+   "iv_at_12": 1099.099593840419,
+   "iv_at_15": 787.4292381398411,
+   "irr": 0.15498474776174753
   }
  },
  "weighted": {
-  "iv_at_10": 735.2702202092928,
-  "iv_at_12": 563.8556030657275,
-  "iv_at_15": 411.88805286972,
-  "irr": 0.09644404213369154
+  "iv_at_10": 722.4178715671087,
+  "iv_at_12": 553.9995411781852,
+  "iv_at_15": 404.68834763002576,
+  "irr": 0.09749245812350091
  },
- "implied_irr_weighted": 0.09644404213369154,
- "implied_irr_base": 0.09370342051183322,
+ "implied_irr_weighted": 0.09749245812350091,
+ "implied_irr_base": 0.09472329164735982,
  "tier_by_numbers": "D",
- "upside_at_15": -0.46925062448331933,
- "upside_at_12": -0.27342876996878107,
- "iv_at_15": 411.88805286972,
- "iv_at_12": 563.8556030657275,
+ "upside_at_15": -0.46059893285612785,
+ "upside_at_12": -0.26158500619364733,
+ "iv_at_15": 404.68834763002576,
+ "iv_at_12": 553.9995411781852,
  "diagnostics": {
-  "oe_yield": 0.03382514013272341,
+  "oe_yield": 0.034376520304183755,
   "tv_share_at_15": 0.21749202311356827,
-  "scenario_spread_iv15": 4.400699875919688,
+  "scenario_spread_iv15": 4.400699875919687,
   "net_debt_to_normalized_oe": null,
-  "months_since_fy_end": 9.42838370565046
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
   "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
-  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight"
- ]
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0000105634-26-000025), Consolidated Statements of Cash Flows: 'Non-cash share-based compensation expense' $20,595 thousand for FY2025 and $19,978 thousand for FY2024 (same line in the FY2025 earnings release cash-flow statement); Q2 2026 Form 10-Q cash-flow statement shows the same line at $15,007 thousand for H1 2026 and $13,092 thousand for H1 2025. EDGAR companyfacts carries this expense under AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue ($20,595,000 FY2025 / $19,978,000 FY2024 / $13,739,000 FY2023), a tag the engine does not read; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no values after 2011.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 26.34384304512979,
+  "base_oe_per_share_final": 25.791156240815383,
+  "weighted_irr_zero_fill": 0.0988888954839458,
+  "weighted_irr_final": 0.09749245812350091,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "93d3e1f361f57c27f6006352de56888efbc037250a4bf6365259bce8766b345b"
 }

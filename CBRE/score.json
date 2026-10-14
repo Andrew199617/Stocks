@@ -1,61 +1,74 @@
 {
  "ticker": "CBRE",
  "name": "CBRE Group, Inc.",
- "sector": "Real Estate / Commercial real estate services",
- "price": 131.35,
- "market_cap_b": 39.5,
- "engine_version": 4,
- "base_oe_per_share": 3.57,
- "base_year": "FY2025 (median of FY2023-FY2025)",
- "base_source": "median_of_last_3_fy_oe_per_share from EDGAR 10-K (OCF - capex - SBC): FY23 $0.25, FY24 $4.07, FY25 $3.57 -> median $3.57/share (equals FY2025). TTM override computed but rejected: FY25 OCF $1,559M - H1'25 -$489M + H1'26 -$687M = $1,361M; capex $366M - $138M + $195M = $423M; SBC $120M - $63M + $107M = $164M; TTM OE $774M = $2.62/share on 295.4M H1'26 diluted shares - distorted down by H1 bonus/WC timing on acquisition-assisted growth while TTM net income rose and FY26 core EPS guidance was raised; verdict is D on either base.",
+ "sector": "Real Estate",
+ "price": 129.67,
+ "market_cap_b": 39.0,
+ "engine_version": 5,
+ "base_oe_per_share": 3.5677290178872267,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "moat_score": 6,
- "moat_justification": "Global #1 CRE services scale and breadth, recurring facilities/outsourcing + PM + IM mix with real switching costs, unmatched data/talent density - against a people-based advisory core whose producers can walk, un-moated transaction cyclicality (OE/share $0.25 in 2023), hard-negotiating institutional clients, and growth increasingly bought via M&A (Pearce, Industrious).",
+ "moat_justification": "Global #1 CRE services scale and breadth, recurring facilities/outsourcing + project management + investment management mix with real switching costs, unmatched data/talent density \u2014 against a people-based advisory core whose producers can walk, un-moated transaction cyclicality (conservative OE total fell to $79M in 2023), hard-negotiating institutional clients, and growth increasingly bought via M&A (Pearce, Industrious).",
  "cap_years": 9.8,
  "fragility_flags": [
-  "STALE_FY",
-  "WIDE_SCENARIO_SPREAD",
-  "HIGH_NET_DEBT",
-  "BUYBACK_TAILWIND",
-  "OE_VOLATILE",
-  "NI_OCF_DIVERGENCE",
-  "SECTOR_MODEL_MISMATCH"
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
    "iv_at_15": 16.43,
-   "irr": 0.039
+   "irr": 0.0392
   },
   "bear": {
    "prob": 0.25,
    "iv_at_15": 26.92,
-   "irr": 0.0508
+   "irr": 0.0511
   },
   "base": {
    "prob": 0.3,
    "iv_at_15": 37.36,
-   "irr": 0.0627
+   "irr": 0.0632
   },
   "bull": {
    "prob": 0.2,
    "iv_at_15": 51.31,
-   "irr": 0.0781
+   "irr": 0.0787
   },
   "super_bull": {
    "prob": 0.1,
    "iv_at_15": 72.72,
-   "irr": 0.0999
+   "irr": 0.1007
   }
  },
  "iv_at_15": 37.94,
  "iv_at_12": 50.99,
- "implied_irr": 0.0638,
- "implied_irr_base_case": 0.0627,
- "upside_at_15_pct": -71.1,
+ "implied_irr": 0.0642,
+ "implied_irr_base_case": 0.0632,
+ "upside_at_15_pct": -70.7,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "low",
- "one_liner": "#1 global CRE services franchise, moat 6/10 - but at $131.35 (36.8x normalized OE of $3.57/sh, 2.7% yield) the weighted IRR is just 6.4% with IV@15% of $37.94; even the super-bull case only reaches 10.0%, so it clears the 15% hurdle only at ~$38 (~$30 with a margin of safety).",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "No. 1 global CRE services franchise, moat 6/10 \u2014 but at $129.67 (OE yield 2.75% on normalized OE of $3.57/sh) the weighted IRR is just 6.42% with IV@15% of $37.94; even the super-bull case only reaches 10.07%, so it clears the 15% hurdle only at ~$37.94.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Global #1 at scale across leasing, sales, outsourcing and investment management simultaneously \u2014 no rival matches the breadth",
+  "Recurring facilities-management/outsourcing contracts embedded in client operations, plus project-management and IM fees \u2014 real switching costs",
+  "Largest managed portfolio and transaction dataset in the industry; scale funds tech/AI spend smaller rivals cannot match",
+  "Diversification across property types and geographies softened the 2023 trough vs a pure brokerage"
+ ],
+ "moat_against": [
+  "People business at the profit core: producers own client relationships and can walk to rivals; no owned asset or network effect locks in the fee pool",
+  "Cyclicality is un-moated: conservative OE collapsed in the 2023 rate-shock transaction freeze",
+  "Sophisticated institutional clients negotiate fees hard; pricing power unproven through a full cycle",
+  "Growth increasingly bought via M&A (Pearce ~$1.2B, Industrious) \u2014 goodwill/integration risk, flatters reported growth",
+  "AI/automation threatens standardized valuation, brokerage and reporting tasks with no proven durable tech edge"
+ ]
 }

@@ -1,0 +1,73 @@
+{
+ "ticker": "SUNB",
+ "name": "Sunbelt Rentals Holdings, Inc.",
+ "cik": 2083785,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 75.65,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 421007068,
+ "market_cap_est": 31849184694.2,
+ "net_debt_latest": 7554000000,
+ "latest_period_end": "2026-04-30",
+ "rev_cagr_5y": -0.05308660341190563,
+ "rev_cagr_3y": -0.05308660341190563,
+ "oe_positive_years_of_last_5": "3/3",
+ "base_oe_total_latest_fy": 3704000000,
+ "base_oe_per_share": 8.79795205718494,
+ "base_oe_latest_per_share": 8.79795205718494,
+ "base_oe_normalized_per_share": 8.79795205718494,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.05308660341190563,
+  "rev_cagr_3y": -0.05308660341190563,
+  "rev_yoy_latest": 0.04367720465890179,
+  "oe_ps_cagr_2y": 0.04026994253041449
+ },
+ "g_blend": -0.006408330440745569,
+ "share_cagr": -0.021098236725906938,
+ "share_count_adj": 0.021098236725906938,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [
+  "capex"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2024, 2025, 2026 of the last 3 \u2014 no tier emitted",
+  "BUYBACK_TAILWIND: share count shrinking 2.1%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
+ "content_hash": "c5d5a08bf56ea7b9e0222684526c1ba386da20b0d75e6caaa2aa37e4a3fca656"
+}

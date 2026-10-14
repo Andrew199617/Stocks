@@ -1,0 +1,92 @@
+{
+ "ticker": "TKO",
+ "name": "TKO Group Holdings, Inc.",
+ "sector": "Communication Services / Entertainment",
+ "price": 172.85,
+ "market_cap_b": 33.53,
+ "engine_version": 5,
+ "base_oe_per_share": 7.934270793349593,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "UFC and WWE are irreplaceable category-defining sports IP with multi-year contracted media-rights step-ups already signed for 2026 onward (Paramount, ESPN, Netflix), an asset-light cost base, and brand-over-athlete fan loyalty - a strong moat. It is not a 9-10: rights pricing power is only re-proven at renewal, litigation (fighter pay, shareholder suits) is a recurring tax, the IMG/On Location segment is lower-margin and event-cyclical, and leverage plus the noncontrolling-interest structure sit ahead of Class A economics.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 53.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001193125-26-071651), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property, buildings and equipment and other assets': $(126,953) thousand for FY2025, with $(118,818) thousand for FY2024 and $(93,753) thousand for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under TKO's extension tag tko:PaymentsToAcquirePropertyPlantAndEquipmentAndOther, which EDGAR companyfacts does not carry (CIK 1973266 facts contain only us-gaap/dei/ecd namespaces and no standard capex tag), so the engine filed no capex value for any period. Corroborated in the Q2 2026 Form 10-Q (accession 0001193125-26-330592), same line: $(44,444) thousand for H1 2026 vs $(48,631) thousand for H1 2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 5.37 vs 3-yr median 2.07 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 43.38,
+   "irr": 0.0552
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 59.95,
+   "irr": 0.0686
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 84.4,
+   "irr": 0.0888
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 117.74,
+   "irr": 0.1141
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 169.69,
+   "irr": 0.1481
+  }
+ },
+ "iv_at_15": 91.05,
+ "iv_at_12": 123.15,
+ "implied_irr": 0.0945,
+ "implied_irr_base_case": 0.0888,
+ "upside_at_15_pct": -47.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Elite sports-IP owner, moat 7/10 - but at $172.85 the price already pays for the new rights deals: weighted IRR 9.45% (Tier D), weighted IV@15% $91.05 vs $172.85; it clears 15% only at or below $91.05, and even the super-bull case (14.81% IRR) does not clear at today's price.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "UFC and WWE are the category-defining properties in MMA and sports entertainment - no substitute supplier at scale",
+  "Long-term contracted media rights with step-ups: UFC on Paramount (7 years from 2026), WWE premium live events on ESPN (5 years from 2026), Raw on Netflix",
+  "Asset-light model: venues are rented, capex is ~2.7% of revenue, and ticketing/hospitality/sponsorship carry premium pricing",
+  "Fans follow the promotion brand over individual fighters/talent, and promoter-favorable talent economics hold through cycles"
+ ],
+ "moat_against": [
+  "Media-rights pricing power is only proven at renewal; current deals are long but back-end weighted",
+  "Litigation overhang: fighter-pay/antitrust history and WWE shareholder litigation (settlement costs hit Q2 2026 SG&A)",
+  "IMG/On Location is lower-margin and event-cyclical (World Cup/Olympics years), diluting the core moat",
+  "Net debt $2.931B and a large noncontrolling-interest share of OpCo economics",
+  "Ticketing/hospitality demand is consumer-discretionary and cyclical"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 126953000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001193125-26-071651), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property, buildings and equipment and other assets': $(126,953) thousand for FY2025, with $(118,818) thousand for FY2024 and $(93,753) thousand for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under TKO's extension tag tko:PaymentsToAcquirePropertyPlantAndEquipmentAndOther, which EDGAR companyfacts does not carry (CIK 1973266 facts contain only us-gaap/dei/ecd namespaces and no standard capex tag), so the engine filed no capex value for any period. Corroborated in the Q2 2026 Form 10-Q (accession 0001193125-26-330592), same line: $(44,444) thousand for H1 2026 vs $(48,631) thousand for H1 2025."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 8.591,
+  "base_oe_with_override": 7.9343,
+  "base_oe_impact_pct": -7.644,
+  "weighted_irr_without_override": 0.0998,
+  "weighted_irr_with_override": 0.0945,
+  "weighted_irr_impact_pp": -0.531,
+  "unblocks_tier": true
+ }
+}

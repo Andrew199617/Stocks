@@ -1,0 +1,109 @@
+{
+ "ticker": "STZ",
+ "cik": 16918,
+ "entity": "CONSTELLATION BRANDS, INC.",
+ "fy_end": "2026-02-28",
+ "ytd_end": "2026-08-31",
+ "inputs": {
+  "ocf": {
+   "fy": 2669000000,
+   "fy_period": [
+    "2025-03-01",
+    "2026-02-28"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1489300000,
+   "ytd_prior_period": [
+    "2025-03-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1478600000,
+   "ytd_current_period": [
+    "2026-03-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2658300000
+  },
+  "capex": {
+   "fy": 875000000,
+   "fy_period": [
+    "2025-03-01",
+    "2026-02-28"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 410100000,
+   "ytd_prior_period": [
+    "2025-03-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 354100000,
+   "ytd_current_period": [
+    "2026-03-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 819000000
+  },
+  "sbc": {
+   "fy": 67700000,
+   "fy_period": [
+    "2025-03-01",
+    "2026-02-28"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 32100000,
+   "ytd_prior_period": [
+    "2025-03-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 34900000,
+   "ytd_current_period": [
+    "2026-03-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 70500000
+  },
+  "shares_diluted": {
+   "fy": null,
+   "fy_period": null,
+   "fy_tag": null,
+   "ytd_prior": null,
+   "ytd_prior_period": null,
+   "ytd_prior_tag": null,
+   "ytd_current": 175568000.0,
+   "ytd_current_period": [
+    "2026-03-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2658300000,
+ "ttm_capex": 819000000,
+ "ttm_sbc": 70500000,
+ "ttm_shares_diluted": 175568000.0,
+ "ttm_oe_total": 1768800000,
+ "ttm_oe_per_share": 10.074728879978128,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "shares",
+   "value": 175568000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended February 28, 2026 (filed 2026-04-22), EPS note and consolidated statements of operations: 'Weighted average common shares outstanding \u2013 diluted' 175.568M for FY2026 (FY2025 181.476M, FY2024 183.959M in the same table). EDGAR companyfacts carries no weighted-share series for CIK 16918 (the filer tags share counts with class dimensions the aggregated facts drop), so the engine filed no share value for any period.",
+   "legs_filled": {
+    "ytd_current": {
+     "amount": 175568000.0,
+     "prorated": false,
+     "note": "share counts are weighted averages, not flows \u2014 used unprorated as the TTM denominator"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,137 @@
+{
+ "ticker": "DFTX",
+ "cik": 1813814,
+ "entity": "Definium Therapeutics, Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": -131560000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -59018000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -95409000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": -167951000
+  },
+  "capex": {
+   "fy": 0.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 0.0,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 0.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 0.0
+  },
+  "sbc": {
+   "fy": 20096000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 8679000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 16771000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 28188000
+  },
+  "shares_diluted": {
+   "fy": 89327608,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 87099006,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 109743062,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": -167951000,
+ "ttm_capex": 0.0,
+ "ttm_sbc": 28188000,
+ "ttm_shares_diluted": 109743062,
+ "ttm_oe_total": -196139000.0,
+ "ttm_oe_per_share": -1.787256491895588,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-26, Consolidated Statements of Cash Flows: the investing-activities section lists ONLY Purchases of investments $(268,356) thousand and Maturity of investments $116,750 thousand (net $(151,606) thousand) for 2025, with both lines shown as zero for 2024 and no purchases-of-property-and-equipment line anywhere; the balance sheet carries no property and equipment asset line. Form 10-K for fiscal year ended December 31, 2024, filed 2025-03-06, Consolidated Statements of Cash Flows (2024/2023 comparative): the statement has NO investing-activities section at all \u2014 for 2023, operating $(64,365) thousand + financing $21,848 thousand + FX $79 thousand equals the reported net decrease in cash $(42,438) thousand, proving investing cash flow (and therefore capex) was $0 in FY2023; same reconciliation for 2024 (operating $(79,129) + financing $253,196 + FX $(30) = reported $174,037 increase).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 0.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

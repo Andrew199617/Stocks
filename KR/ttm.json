@@ -1,0 +1,101 @@
+{
+ "ticker": "KR",
+ "cik": 56873,
+ "entity": "KROGER CO",
+ "fy_end": "2026-01-31",
+ "ytd_end": "2026-08-15",
+ "inputs": {
+  "ocf": {
+   "fy": 7311000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 3688000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-16"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 3085000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-15"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 6708000000
+  },
+  "capex": {
+   "fy": 3855000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 1968000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-16"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 2437000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-15"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 4324000000
+  },
+  "sbc": {
+   "fy": 157000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 83000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-16"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 101000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-15"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 175000000
+  },
+  "shares_diluted": {
+   "fy": 655000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 664000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-16"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 612000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-15"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 6708000000,
+ "ttm_capex": 4324000000,
+ "ttm_sbc": 175000000,
+ "ttm_shares_diluted": 612000000,
+ "ttm_oe_total": 2209000000,
+ "ttm_oe_per_share": 3.6094771241830066,
+ "warnings": [],
+ "overrides_used": []
+}

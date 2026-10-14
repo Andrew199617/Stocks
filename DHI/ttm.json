@@ -1,0 +1,101 @@
+{
+ "ticker": "DHI",
+ "cik": 882184,
+ "entity": "D.R. Horton, Inc.",
+ "fy_end": "2025-09-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 3420900000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 949100000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 880800000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 3352600000
+  },
+  "capex": {
+   "fy": 137400000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 93600000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 106600000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 150400000
+  },
+  "sbc": {
+   "fy": 131000000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 101100000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 107500000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 137400000
+  },
+  "shares_diluted": {
+   "fy": 309900000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 314100000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 288400000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 3352600000,
+ "ttm_capex": 150400000,
+ "ttm_sbc": 137400000,
+ "ttm_shares_diluted": 288400000,
+ "ttm_oe_total": 3064800000,
+ "ttm_oe_per_share": 10.626907073509015,
+ "warnings": [],
+ "overrides_used": []
+}

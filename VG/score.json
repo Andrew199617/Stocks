@@ -1,0 +1,48 @@
+{
+ "ticker": "VG",
+ "name": "Venture Global, Inc.",
+ "sector": "Utilities",
+ "price": 13.95,
+ "market_cap_b": 36.76,
+ "engine_version": 5,
+ "base_oe_per_share": -2.6676771504357712,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Modular 'design one, build many' liquefaction trains are a genuine structural cost/speed advantage \u2014 plants built and commissioned faster than stick-built rivals, 1,000th cargo ~4 years after the first export \u2014 and near-term volumes are largely contracted (91% of 2026 cargoes at a $5.05/MMBtu weighted-average fee, new 20-year SPAs still being signed). But the product is a commodity spread (U.S. feedgas vs global LNG prices) with no owned upstream gas and no pricing power, unsold-cargo fee expectations swung by ~$3/MMBtu within 2026, customer trust was damaged by the Calcasieu Pass commissioning-cargo arbitrations (BP and Galp won, Orlen pending), and the balance sheet carries $31,850M of net debt. Durable asset position, cyclical economics \u2014 moderate moat, 5/10.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Fast-growing LNG exporter with a real modular-construction edge, moat 5/10, but conservative owner's earnings are negative in every filed year and on TTM (-$2.67/share) because ~$13.8B/yr of build-out capex swallows operating cash flow \u2014 Tier F on this screen; no price clears 15% on owner's earnings until construction capex rolls off.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Modular 'design one, build many' trains \u2014 faster, cheaper construction; Calcasieu Pass beat SPA obligations in Q2 2026 despite turbine maintenance",
+  "91% of 2026 cargoes contracted at $5.05/MMBtu weighted-average liquefaction fee; growing long-term SPA book (ConocoPhillips 20-yr, 1 MTPA from 2030)",
+  "Scale and speed: 1,000th cargo ~4 years after first export; Calcasieu Pass and Plaquemines operating, CP2 in construction",
+  "Gulf Coast location with U.S. feedgas access and Atlantic-basin shipping"
+ ],
+ "moat_against": [
+  "No owned feedgas or pricing power \u2014 earnings are the Henry Hub vs global LNG spread; unsold-cargo fee guide swung $9.50-10.50 to $12.50-13.50/MMBtu within 2026",
+  "Arbitration overhang: BP and Galp tribunals won (Galp capped at $170M, hearing 2027/28; BP damages pending), Orlen outstanding \u2014 trust cost with the largest LNG buyers",
+  "Heavy leverage: net debt $31,850M; Q2 2026 interest expense $489M, up 58% YoY",
+  "Concentration: two operating sites, both Louisiana Gulf Coast; CP2 execution still ahead",
+  "Dual-class governance: VG Partners held ~97.6% of combined voting power (Feb 2026) \u2014 Class A holders have no say",
+  "Cheniere is larger, investment-grade, and buyers' trusted default counterparty"
+ ]
+}

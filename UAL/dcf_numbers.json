@@ -2,27 +2,27 @@
  "ticker": "UAL",
  "name": "United Airlines Holdings, Inc.",
  "cik": 100517,
- "engine_version": 4,
+ "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 103.45,
+ "price": 103.5,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 328500000,
- "market_cap_est": 33983325000.0,
+ "market_cap_est": 33999750000.0,
  "net_debt_latest": 15324000000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.30930085609326197,
  "rev_cagr_3y": 0.09526860586015062,
  "oe_positive_years_of_last_5": "3/5",
- "base_oe_total_latest_fy": 2557000000,
- "base_oe_per_share": 7.33,
- "base_oe_latest_per_share": 7.783866057838661,
- "base_oe_normalized_per_share": 7.783866057838661,
- "base_source": "agent_supplied_ttm_override",
+ "base_oe_total_latest_fy": 2409000000,
+ "base_oe_per_share": 7.333333333333333,
+ "base_oe_latest_per_share": 7.333333333333333,
+ "base_oe_normalized_per_share": 7.333333333333333,
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.30930085609326197,
   "rev_cagr_3y": 0.09526860586015062,
   "rev_yoy_latest": 0.03517165238420694,
-  "oe_ps_cagr_3y": null
+  "oe_ps_cagr_2y": null
  },
  "g_blend": 0.09526860586015062,
  "share_cagr": -0.0016179206300925841,
@@ -46,82 +46,117 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.09688652649024321,
  "moat_score": 4.0,
  "cap_years": 7.2,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.157,
+   -0.097,
+   -0.057,
+   -0.007,
+   0.043
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
    "g_start": -0.0601,
    "oe_mult": 0.75,
-   "iv_at_10": 52.102107901146674,
-   "iv_at_12": 41.75283275974969,
-   "iv_at_15": 32.36919469991692,
-   "irr": 0.06153001984755402
+   "iv_at_10": 52.12580144725905,
+   "iv_at_12": 41.77181995063633,
+   "iv_at_15": 32.38391466112651,
+   "irr": 0.06152893853842557
   },
   "bear": {
    "prob": 0.3,
    "g_start": -0.0001,
    "oe_mult": 0.9,
-   "iv_at_10": 81.03316656322932,
-   "iv_at_12": 64.24059465188937,
-   "iv_at_15": 49.0966331114721,
-   "irr": 0.08352925241137543
+   "iv_at_10": 81.07001657076145,
+   "iv_at_12": 64.26980820107167,
+   "iv_at_15": 49.11895991143184,
+   "irr": 0.08352755749802021
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.0399,
    "oe_mult": 1.0,
-   "iv_at_10": 106.66338796923826,
-   "iv_at_12": 84.00801318035778,
-   "iv_at_15": 63.64149164032054,
-   "irr": 0.10230764359227484
+   "iv_at_10": 106.71189337531794,
+   "iv_at_12": 84.04621600581497,
+   "iv_at_15": 63.67043274611422,
+   "irr": 0.10230545650422929
   },
   "bull": {
    "prob": 0.17,
    "g_start": 0.0899,
    "oe_mult": 1.1,
-   "iv_at_10": 144.44524303210906,
-   "iv_at_12": 112.91421053513781,
-   "iv_at_15": 84.669564841765,
-   "irr": 0.12829048023735667
+   "iv_at_10": 144.51092981839008,
+   "iv_at_12": 112.96555851628153,
+   "iv_at_15": 84.70806850926917,
+   "irr": 0.12828766396854963
   },
   "super_bull": {
    "prob": 0.08,
    "g_start": 0.1399,
    "oe_mult": 1.25,
-   "iv_at_10": 201.19751155872734,
-   "iv_at_12": 156.208919140709,
-   "iv_at_15": 116.03744253635739,
-   "irr": 0.1638510568831254
+   "iv_at_10": 201.2890065617099,
+   "iv_at_12": 156.27995548411084,
+   "iv_at_15": 116.0902108140001,
+   "irr": 0.16384743610009822
   }
  },
  "weighted": {
-  "iv_at_10": 104.775774785069,
-  "iv_at_12": 82.42963658586675,
-  "iv_at_15": 62.353638056533974,
-  "irr": 0.10094806033777512
+  "iv_at_10": 104.82342179497579,
+  "iv_at_12": 82.46712164115816,
+  "iv_at_15": 62.38199350812856,
+  "irr": 0.1009459208324176
  },
- "implied_irr_weighted": 0.10094806033777512,
- "implied_irr_base": 0.10230764359227484,
+ "implied_irr_weighted": 0.1009459208324176,
+ "implied_irr_base": 0.10230545650422929,
  "tier_by_numbers": "C",
- "upside_at_15": -0.3972582111499857,
- "upside_at_12": -0.20319345977895853,
- "iv_at_15": 62.353638056533974,
- "iv_at_12": 82.42963658586675,
+ "upside_at_15": -0.3972754250422361,
+ "upside_at_12": -0.20321621602745743,
+ "iv_at_15": 62.38199350812856,
+ "iv_at_12": 82.46712164115816,
  "diagnostics": {
-  "oe_yield": 0.0708554857419043,
+  "oe_yield": 0.07085346215780998,
   "tv_share_at_15": 0.18242081656257703,
-  "scenario_spread_iv15": 3.584810917049327,
-  "net_debt_to_normalized_oe": 6.364038448360712,
-  "months_since_fy_end": 9.42838370565046
+  "scenario_spread_iv15": 3.584810917049328,
+  "net_debt_to_normalized_oe": 6.361145703611457,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "HIGH_NET_DEBT: net debt is 6.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
- ]
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 6.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "de6d1beda6022d39bff770e6a4c38b7703b3684a693d678062ad0ea551b7db5a"
 }

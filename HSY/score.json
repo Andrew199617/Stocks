@@ -1,0 +1,71 @@
+{
+ "ticker": "HSY",
+ "name": "The Hershey Company",
+ "sector": "Consumer Staples \u2014 Confectionery & Salty Snacks",
+ "price": 164.28,
+ "market_cap_b": 33.32,
+ "engine_version": 5,
+ "base_oe_per_share": 8.663419346362922,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Strong but not wide-open moat: dominant US chocolate position (~36% share of the US chocolate aisle vs Mars ~29%, per Morningstar), flagship brands (Reese's, Hershey's, Kisses) with proven pricing power \u2014 FY2026 revenue growth is being carried by price while volumes fall \u2014 entrenched retail relationships and scale cost advantages, and high through-cycle returns on capital. Held to 7, not 8-9, because pricing is now visibly costing volume (Q2 2026 total volume ~-8%, North America Confectionery ~-10%), cocoa is structurally more expensive, and GLP-1 / health trends are a slow demand erosion force with no network-effect or switching-cost protection.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 36.28,
+   "irr": 0.0489
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 60.36,
+   "irr": 0.0703
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 84.93,
+   "irr": 0.0916
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 118.45,
+   "irr": 0.1182
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 187.76,
+   "irr": 0.1645
+  }
+ },
+ "iv_at_15": 92.59,
+ "iv_at_12": 124.67,
+ "implied_irr": 0.0985,
+ "implied_irr_base_case": 0.0916,
+ "upside_at_15_pct": -43.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality wide-brand moat (7/10) but slow-growing and priced for perfection \u2014 weighted IRR 9.8% at $164.28 vs weighted IV@15% $92.59; only clears Andrew's 15% hurdle below ~$93.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "~36% US chocolate share, #1 position ahead of Mars",
+  "Flagship brands (Reese's, Hershey's, Kisses) with proven pricing power",
+  "Entrenched retail shelf relationships; critical partner for retailers",
+  "Scale cost advantage and high through-cycle returns on capital",
+  "Salty-snacks diversification (SkinnyPop, Dot's, LesserEvil)"
+ ],
+ "moat_against": [
+  "Pricing now costing volume: Q2 2026 volume ~-8%, NA Confectionery ~-10%",
+  "Structurally elevated cocoa costs; hedge book not positioned to capture relief in 2026",
+  "GLP-1 appetite suppression and health/sugar trends erode category demand slowly",
+  "Mars and Mondelez competition; private label at the value end",
+  "Salty-snacks supply/execution issues (Dot's multipacks, logistics costs)"
+ ]
+}

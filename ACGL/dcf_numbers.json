@@ -1,0 +1,159 @@
+{
+ "ticker": "ACGL",
+ "name": "ARCH CAPITAL GROUP LTD.",
+ "cik": 947484,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 96.035,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 375900000,
+ "market_cap_est": 36099556500.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.18559546732100318,
+ "rev_cagr_3y": 0.2750232784583788,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 5980000000,
+ "base_oe_per_share": 16.68266516092603,
+ "base_oe_latest_per_share": 15.908486299547752,
+ "base_oe_normalized_per_share": 15.908486299547752,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.18559546732100318,
+  "rev_cagr_3y": 0.2750232784583788,
+  "rev_yoy_latest": 0.14271788990825685,
+  "oe_ps_cagr_2y": 0.03695417418308056
+ },
+ "g_blend": 0.16415667861463,
+ "share_cagr": -0.0015026214120682502,
+ "share_count_adj": 0.0015026214120682502,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": null,
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.16565930002669826,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.2657,
+   -0.2057,
+   -0.1457,
+   -0.1057,
+   -0.0657
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 16.68266516092603,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 94.81112534012316,
+   "iv_at_12": 77.02511313647517,
+   "iv_at_15": 60.75617082586183,
+   "irr": 0.09892261828586013
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.04,
+   "oe_mult": 0.9,
+   "iv_at_10": 151.31573464824282,
+   "iv_at_12": 121.15748947146459,
+   "iv_at_15": 93.8040954136787,
+   "irr": 0.14687647286950634
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.02,
+   "oe_mult": 1.0,
+   "iv_at_10": 222.72096471647936,
+   "iv_at_12": 176.01426736774442,
+   "iv_at_15": 133.95494860910486,
+   "irr": 0.19968859187143712
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.06,
+   "oe_mult": 1.1,
+   "iv_at_10": 294.7201325825585,
+   "iv_at_12": 231.0723882227664,
+   "iv_at_15": 173.99824457545412,
+   "irr": 0.24636506734278119
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1,
+   "oe_mult": 1.25,
+   "iv_at_10": 401.9543532318248,
+   "iv_at_12": 312.83972158411825,
+   "iv_at_15": 233.23264880191704,
+   "irr": 0.3078548996726588
+  }
+ },
+ "weighted": {
+  "iv_at_10": 210.83613382100137,
+  "iv_at_12": 166.65012441406077,
+  "iv_at_15": 126.86414039722416,
+  "irr": 0.19045621833230364
+ },
+ "implied_irr_weighted": 0.19045621833230364,
+ "implied_irr_base": 0.19968859187143712,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.32101984065418,
+ "upside_at_12": 0.7353061322857373,
+ "iv_at_15": 126.86414039722416,
+ "iv_at_12": 166.65012441406077,
+ "diagnostics": {
+  "oe_yield": 0.17371442870751322,
+  "tv_share_at_15": 0.17652487126948568,
+  "scenario_spread_iv15": 3.838830618052016,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "content_hash": "4bac631fb1ee567b2ef4ef003d10af7ff9b4cc8fd8b650861762c198734712b7"
+}

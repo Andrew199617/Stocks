@@ -2,27 +2,27 @@
  "ticker": "CCL",
  "name": "Carnival Corp Ltd.",
  "cik": 815097,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 26.704,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 26.82,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 1402000000,
- "market_cap_est": 37439008000.0,
+ "market_cap_est": 37601640000.0,
  "net_debt_latest": 24712000000,
  "latest_period_end": "2025-11-30",
  "rev_cagr_5y": 0.3661760497250217,
  "rev_cagr_3y": 0.29811939732348947,
  "oe_positive_years_of_last_5": "3/5",
  "base_oe_total_latest_fy": 2509000000,
- "base_oe_per_share": 2.248,
+ "base_oe_per_share": 2.2250361794500724,
  "base_oe_latest_per_share": 1.789586305278174,
  "base_oe_normalized_per_share": 0.8834048640915594,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.3661760497250217,
   "rev_cagr_3y": 0.29811939732348947,
   "rev_yoy_latest": 0.06398625154869908,
-  "oe_ps_cagr_3y": 0.5462882006433396
+  "oe_ps_cagr_2y": 0.5462882006433396
  },
  "g_blend": 0.3321477235242556,
  "share_cagr": 0.059130910657551494,
@@ -46,83 +46,118 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": null
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.2821477235242556,
- "moat_score": 4.0,
- "cap_years": 7.2,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.3021,
+   -0.2621,
+   -0.2321,
+   -0.1921,
+   -0.1421
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 2.2250361794500724,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "g_start": -0.05,
+   "g_start": -0.02,
    "oe_mult": 0.75,
-   "iv_at_10": 16.703490741994443,
-   "iv_at_12": 13.36003197888008,
-   "iv_at_15": 10.331476636876364,
-   "irr": 0.07091675674922243
+   "iv_at_10": 18.487542040302074,
+   "iv_at_12": 14.735823999053776,
+   "iv_at_15": 11.341650642938706,
+   "irr": 0.07603549067915172
   },
   "bear": {
-   "prob": 0.3,
-   "g_start": 0.0,
+   "prob": 0.25,
+   "g_start": 0.02,
    "oe_mult": 0.9,
-   "iv_at_10": 24.86876019230204,
-   "iv_at_12": 19.714646221193206,
-   "iv_at_15": 15.066599572361625,
-   "irr": 0.09476551964111551
+   "iv_at_10": 26.74568523069768,
+   "iv_at_12": 21.136476313376082,
+   "iv_at_15": 16.085440547949368,
+   "irr": 0.09979135154262947
   },
   "base": {
    "prob": 0.3,
-   "g_start": 0.07,
+   "g_start": 0.05,
    "oe_mult": 1.0,
-   "iv_at_10": 37.10244132156822,
-   "iv_at_12": 29.087346844595533,
-   "iv_at_15": 21.89783523181793,
-   "irr": 0.1281993001905969
+   "iv_at_10": 34.142368027809844,
+   "iv_at_12": 26.820201920390737,
+   "iv_at_15": 20.24768745758106,
+   "irr": 0.12000069940040492
   },
   "bull": {
    "prob": 0.2,
-   "g_start": 0.12,
+   "g_start": 0.09,
    "oe_mult": 1.1,
-   "iv_at_10": 50.11273362258654,
-   "iv_at_12": 39.00971487361428,
-   "iv_at_15": 29.08342580868346,
-   "irr": 0.160307472558184
+   "iv_at_10": 45.101468849363,
+   "iv_at_12": 35.16446756902016,
+   "iv_at_15": 26.279560233808496,
+   "irr": 0.14763419955669443
   },
   "super_bull": {
-   "prob": 0.05,
-   "g_start": 0.17,
+   "prob": 0.1,
+   "g_start": 0.14,
    "oe_mult": 1.25,
-   "iv_at_10": 69.61919345137065,
-   "iv_at_12": 53.84652655534779,
-   "iv_at_15": 39.78747446466757,
-   "irr": 0.20334045191508177
+   "iv_at_10": 64.21133017339241,
+   "iv_at_12": 49.63612004479287,
+   "iv_at_15": 36.66099518766404,
+   "irr": 0.1902544536693075
   }
  },
  "weighted": {
-  "iv_at_10": 34.60039046254609,
-  "iv_at_12": 27.13887201905888,
-  "iv_at_15": 20.445110821755392,
-  "irr": 0.12150201734362509
+  "iv_at_10": 35.14368980927453,
+  "iv_at_12": 27.537058772602627,
+  "iv_at_15": 20.718925536230568,
+  "irr": 0.12245456858056969
  },
- "implied_irr_weighted": 0.12150201734362509,
- "implied_irr_base": 0.1281993001905969,
+ "implied_irr_weighted": 0.12245456858056969,
+ "implied_irr_base": 0.12000069940040492,
  "tier_by_numbers": "C",
- "upside_at_15": -0.23438021188753022,
- "upside_at_12": 0.016284901852114952,
- "iv_at_15": 20.445110821755392,
- "iv_at_12": 27.13887201905888,
+ "upside_at_15": -0.2274822693426336,
+ "upside_at_12": 0.02673597213283463,
+ "iv_at_15": 20.718925536230568,
+ "iv_at_12": 27.537058772602627,
  "diagnostics": {
-  "oe_yield": 0.0841821449970042,
-  "tv_share_at_15": 0.18629168604532864,
-  "scenario_spread_iv15": 3.851092720149342,
-  "net_debt_to_normalized_oe": 7.840857747701554,
-  "months_since_fy_end": 10.413929040735873
+  "oe_yield": 0.08296182622856348,
+  "tv_share_at_15": 0.18775601219843158,
+  "scenario_spread_iv15": 3.2324214827132876,
+  "net_debt_to_normalized_oe": 7.921780499402711,
+  "months_since_fy_end": 10.446780551905388,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "BASE_DIVERGENCE: latest FY OE/share 1.79 vs 3-yr median 0.88 \u2014 one of them is distorted; find out which and why",
-  "HIGH_NET_DEBT: net debt is 7.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
   "DILUTION: share count growing 5.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
- ]
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 1.79 vs 3-yr median 0.88 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 7.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "75c38e54ca6b5adde14db170ca3c3476b50ad6cbbbc8ae70c03b4d3b658fac24"
 }

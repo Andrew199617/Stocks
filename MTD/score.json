@@ -1,0 +1,72 @@
+{
+ "ticker": "MTD",
+ "name": "Mettler-Toledo International Inc.",
+ "sector": "Life Sciences Tools & Services",
+ "price": 1613.91,
+ "market_cap_b": 33.36,
+ "engine_version": 5,
+ "base_oe_per_share": 41.53453674517068,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Strong moat: global leader in lab balances with >50% share and ~25% average share across most other product lines, instruments embedded in validated QC/research workflows with high re-validation switching costs, proven pricing power, large direct service network and recurring service revenue, and high returns on capital held through cycles. Not 9-10: most lines beyond balances are competitive at ~25% share vs Thermo Fisher, Agilent, Waters and Sartorius, end markets grow slowly, and lower-cost/Chinese rivals pressure the low end.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.1%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 172.7,
+   "irr": 0.0362
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 287.33,
+   "irr": 0.0467
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 404.26,
+   "irr": 0.0579
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 563.8,
+   "irr": 0.0728
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 893.67,
+   "irr": 0.1008
+  }
+ },
+ "iv_at_15": 440.7,
+ "iv_at_12": 593.09,
+ "implied_irr": 0.0619,
+ "implied_irr_base_case": 0.0579,
+ "upside_at_15_pct": -72.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Elite precision-instruments franchise, moat 7/10, but priced far beyond its owner's earnings \u2014 weighted IRR 6.19% (Tier D) at $1613.91, weighted IV@15% $440.70; clears 15% only near $441.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  ">50% share in laboratory balances, ~25% average share in most other lines",
+  "High switching costs \u2014 instruments in validated workflows, costly to re-validate",
+  "Proven pricing power and premium brand in precision instruments",
+  "Large direct service network; service is a recurring, sticky revenue stream",
+  "Integrated software/automation ecosystem deepening installed-base stickiness",
+  "High returns on capital and ~30% operating margins held through cycles"
+ ],
+ "moat_against": [
+  "Beyond balances, competitive markets vs Thermo Fisher, Agilent, Waters, Sartorius",
+  "Slow-growing end markets limit organic growth to mid-single digits",
+  "Lower-cost and Chinese local competitors at the low end",
+  "Biopharma/lab capex cyclicality and China/tariff exposure",
+  "Growth increasingly reliant on buybacks rather than organic acceleration"
+ ]
+}

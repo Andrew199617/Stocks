@@ -1,0 +1,101 @@
+{
+ "ticker": "JBL",
+ "cik": 898293,
+ "entity": "JABIL INC",
+ "fy_end": "2025-08-31",
+ "ytd_end": "2026-05-31",
+ "inputs": {
+  "ocf": {
+   "fy": 1640000000,
+   "fy_period": [
+    "2024-09-01",
+    "2025-08-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1052000000,
+   "ytd_prior_period": [
+    "2024-09-01",
+    "2025-05-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1269000000,
+   "ytd_current_period": [
+    "2025-09-01",
+    "2026-05-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1857000000
+  },
+  "capex": {
+   "fy": 468000000,
+   "fy_period": [
+    "2024-09-01",
+    "2025-08-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 299000000,
+   "ytd_prior_period": [
+    "2024-09-01",
+    "2025-05-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 382000000,
+   "ytd_current_period": [
+    "2025-09-01",
+    "2026-05-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 551000000
+  },
+  "sbc": {
+   "fy": 107000000,
+   "fy_period": [
+    "2024-09-01",
+    "2025-08-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 84000000,
+   "ytd_prior_period": [
+    "2024-09-01",
+    "2025-05-31"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 115000000,
+   "ytd_current_period": [
+    "2025-09-01",
+    "2026-05-31"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 138000000
+  },
+  "shares_diluted": {
+   "fy": 110900000,
+   "fy_period": [
+    "2024-09-01",
+    "2025-08-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 111500000,
+   "ytd_prior_period": [
+    "2024-09-01",
+    "2025-05-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 107200000,
+   "ytd_current_period": [
+    "2025-09-01",
+    "2026-05-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1857000000,
+ "ttm_capex": 551000000,
+ "ttm_sbc": 138000000,
+ "ttm_shares_diluted": 107200000,
+ "ttm_oe_total": 1168000000,
+ "ttm_oe_per_share": 10.895522388059701,
+ "warnings": [],
+ "overrides_used": []
+}

@@ -1,0 +1,160 @@
+{
+ "ticker": "NVT",
+ "name": "nVent Electric plc",
+ "cik": 1720635,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 152.72,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 164600000,
+ "market_cap_est": 25137712000.0,
+ "net_debt_latest": 1559800000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.14267273343170128,
+ "rev_cagr_3y": 0.1925608081789021,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 334400000,
+ "base_oe_per_share": 3.2736136502132847,
+ "base_oe_latest_per_share": 2.031591737545565,
+ "base_oe_normalized_per_share": 2.6200951248513675,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.14267273343170128,
+  "rev_cagr_3y": 0.1925608081789021,
+  "rev_yoy_latest": 0.2950666977146468,
+  "oe_ps_cagr_2y": -0.11936189470969905
+ },
+ "g_blend": 0.16761677080530168,
+ "share_cagr": -0.007380874001363447,
+ "share_count_adj": 0.007380874001363447,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": null,
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.17499764480666513,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.2,
+   0.3,
+   0.25,
+   0.15
+  ],
+  "offsets": [
+   -0.15,
+   -0.07,
+   0.0,
+   0.08,
+   0.18
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.2736136502132847,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.025,
+   "oe_mult": 0.75,
+   "iv_at_10": 33.55414273747884,
+   "iv_at_12": 26.49012816067988,
+   "iv_at_15": 20.132512877885116,
+   "irr": 0.04147823024653374
+  },
+  "bear": {
+   "prob": 0.2,
+   "g_start": 0.105,
+   "oe_mult": 0.9,
+   "iv_at_10": 59.99882125496683,
+   "iv_at_12": 46.503532812695184,
+   "iv_at_15": 34.48357737144748,
+   "irr": 0.05589533775285217
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.175,
+   "oe_mult": 1.0,
+   "iv_at_10": 93.9076273615633,
+   "iv_at_12": 71.78196732400019,
+   "iv_at_15": 52.22284344094968,
+   "irr": 0.0733597357397967
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.255,
+   "oe_mult": 1.1,
+   "iv_at_10": 151.49500524820556,
+   "iv_at_12": 114.2363019668683,
+   "iv_at_15": 81.53582145475943,
+   "irr": 0.09948906250095418
+  },
+  "super_bull": {
+   "prob": 0.15,
+   "g_start": 0.355,
+   "oe_mult": 1.25,
+   "iv_at_10": 273.91291990696135,
+   "iv_at_12": 203.6487120859253,
+   "iv_at_15": 142.43471925404242,
+   "irr": 0.14359011206898264
+  }
+ },
+ "weighted": {
+  "iv_at_10": 122.48815603130583,
+  "iv_at_12": 92.59069188041295,
+  "iv_at_15": 66.32598304615914,
+  "irr": 0.08699276831591651
+ },
+ "implied_irr_weighted": 0.08699276831591651,
+ "implied_irr_base": 0.0733597357397967,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5657020492001104,
+ "upside_at_12": -0.3937225518569084,
+ "iv_at_15": 66.32598304615914,
+ "iv_at_12": 92.59069188041295,
+ "diagnostics": {
+  "oe_yield": 0.021435395823816688,
+  "tv_share_at_15": 0.2401248304930828,
+  "scenario_spread_iv15": 7.074860456714379,
+  "net_debt_to_normalized_oe": 2.8947539964660827,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 7.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "d80645698ec98ab0468c9212aa409332c89061c6d98badb15fbedf7007858faf"
+}

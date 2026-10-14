@@ -1,1 +1,70 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":14.8836,"base_source":"TTM override = FY2026 filing-direct: OCF $928.7M - capex $19.7M - SBC $7.4M = $901.5M / 60.57M diluted shares = $14.88. 3-yr median ($10.25) rejected as anchored on the FY2024 flat-revenue trough; see analysis.md BASE_DIVERGENCE resolution.","base_year":"FY2026 (TTM = FY2026; no post-FY 10-Q filed yet)","cap_years":9.8,"confidence":"medium","engine_version":4,"fragility_flags":["BASE_DIVERGENCE: latest FY OE/share 14.88 vs 3-yr median 10.25 — one of them is distorted; find out which and why","WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV — uncertainty is huge; confidence should not be high"],"implied_irr":0.0986,"implied_irr_base_case":0.0935,"in_scope_under_40b":true,"iv_at_12":457.0,"iv_at_15":326.3,"market_cap_b":37.53,"moat_justification":"UniFi single-pane ecosystem switching costs across networking/Protect/Access/NAS and a structural lean cost advantage (no sales force, no licensing model, R&D ~7% of sales, near-zero SBC; 46% gross / 36% operating margin while undercutting Cisco/Fortinet TCO) with proven pricing power — against no recurring revenue, no white-glove enterprise support, copycat license-free rivals (TP-Link Omada), ~93% founder ownership/key-man risk with a tiny float, and East-Asia supply/tariff exposure with management-flagged component cost pressure.","moat_score":6,"name":"Ubiquiti Inc.","one_liner":"Elite lean hardware franchise, moat 6/10 — but at $620 (41.6x latest OE) the weighted IRR is only 9.9% with IV@15% of $326, and even the super-bull case barely clears 15%; it clears the 15% hurdle only at ~$326, or ~$235 with a margin of safety.","price":619.56,"scenarios":{"base":{"irr":0.0935,"iv_at_15":303.14,"prob":0.3},"bear":{"irr":0.0751,"iv_at_15":219.11,"prob":0.25},"bull":{"irr":0.1155,"iv_at_15":414.38,"prob":0.25},"super_bear":{"irr":0.0548,"iv_at_15":133.99,"prob":0.1},"super_bull":{"irr":0.1525,"iv_at_15":635.82,"prob":0.1}},"sector":"Technology / Communications Equipment","ticker":"UI","tier_by_numbers":"D","tier_final":"D","upside_at_15_pct":-47.33}
+{
+ "ticker": "UI",
+ "name": "Ubiquiti Inc.",
+ "sector": "Technology / Communications Equipment",
+ "price": 620.24,
+ "market_cap_b": 37.57,
+ "engine_version": 5,
+ "base_oe_per_share": 14.883605745418524,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "UniFi single-pane ecosystem switching costs across networking/Protect/Access/NAS and a structural lean cost advantage (no direct sales force, no licensing model, SBC of $7,444,000 against OCF of $928,682,000; operating income $1,185,442,000 in FY2026) with proven pricing power \u2014 against no recurring revenue, no white-glove enterprise support, copycat license-free rivals (TP-Link Omada), ~93% founder ownership/key-man risk with a tiny float, and East-Asia supply/tariff exposure with flagged component cost pressure.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "BASE_DIVERGENCE: latest FY OE/share 14.88 vs 3-yr median 10.25 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 133.99,
+   "irr": 0.0548
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 219.11,
+   "irr": 0.075
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 303.14,
+   "irr": 0.0935
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 414.38,
+   "irr": 0.1154
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 635.82,
+   "irr": 0.1524
+  }
+ },
+ "iv_at_15": 326.3,
+ "iv_at_12": 457.0,
+ "implied_irr": 0.0985,
+ "implied_irr_base_case": 0.0935,
+ "upside_at_15_pct": -47.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Elite lean hardware franchise, moat 6/10 \u2014 but at $620.24 the weighted IRR is only 9.85% with IV@15% of $326.30, and even the super-bull case barely clears 15%; it clears the 15% hurdle only at ~$326, or ~$235 with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "UniFi ecosystem switching costs: single pane of glass across networking, Protect, Access and NAS; rip-out means replacing the whole stack",
+  "Structural cost advantage: no direct sales force, no licensing-fee model, near-zero SBC supports high margins while undercutting Cisco/Fortinet TCO",
+  "Proven pricing power: operating income rose from $836,280,000 (FY2025) to $1,185,442,000 (FY2026)",
+  "Capital discipline: long-term debt eliminated by FY2025, $1.00/quarter dividend initiated, buybacks executed when the stock was cheap"
+ ],
+ "moat_against": [
+  "No recurring revenue: one-off hardware re-won every refresh cycle, no subscription/licensing annuity",
+  "No white-glove enterprise support: hard ceiling on Fortune 500 penetration",
+  "License-free model is copyable at the low end: TP-Link Omada and others mimic the playbook",
+  "Key-man/governance concentration: founder owns ~93%, no earnings calls or guidance, tiny float manufactures volatility",
+  "East-Asia contract manufacturing: tariff, supply and component-cost exposure (flagged in Q4 FY2026 coverage)",
+  "Service Provider Technology in decline: growth is single-engine (Enterprise Technology)"
+ ]
+}

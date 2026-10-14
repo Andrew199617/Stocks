@@ -1,60 +1,74 @@
 {
  "ticker": "STLD",
  "name": "Steel Dynamics, Inc.",
- "sector": "Industrials / Steel",
- "price": 240.63,
- "market_cap_b": 35.71,
- "engine_version": 4,
- "base_oe_per_share": 6.11,
- "base_year": "TTM Q2 2026",
- "base_source": "agent_supplied_ttm_override: TTM OE through Q2 2026 from EDGAR 10-Q YTD \u2014 OCF FY25 $1,449.5M - H1'25 $454.2M + H1'26 $576.3M = $1,571.6M; capex FY25 $948.0M - H1'25 $593.8M + H1'26 $261.8M = $616.0M; SBC FY25 $69.0M - H1'25 $31.1M + H1'26 $31.6M = $69.5M; TTM OE $886.1M / 145.0M diluted shares (H1 2026) = $6.11/share. Engine normalized median $2.91 rejected: it equals the latest FY by arithmetic (median of 2023 $10.75, 2024 -$0.58, 2025 $2.91) and inherits the 2023-25 growth-capex distortion (Sinton + Aluminum Dynamics); TTM uses post-construction capex (2026 guided ~$600M).",
+ "sector": "Materials / Steel",
+ "price": 251.4915,
+ "market_cap_b": 37.32,
+ "engine_version": 5,
+ "base_oe_per_share": 6.112682469163056,
+ "base_year": "2025",
+ "base_source": "ttm_json",
  "moat_score": 5,
- "moat_justification": "EAF mini-mill structural cost advantage (variable scrap-based costs, lower capex/ton, 90% utilization vs ~81% industry), OmniSource vertical integration into scrap, diversified value-added/fabrication mix, best-in-class 13% 3-yr after-tax ROIC and a decade of buybacks \u2014 against commodity price-taking on steel and scrap spreads, the same EAF model at larger scale at Nucor, no switching costs or pricing power (net income fell 69% from 2022 to 2025), current spreads partly underwritten by trade policy, and an unproven, loss-making aluminum platform.",
+ "moat_justification": "A genuine lowest-quartile EAF cost structure, OmniSource scrap integration, a diversified value-added mix, and best-in-class through-cycle returns (13% three-year after-tax ROIC per the Q2 2026 release) \u2014 against commodity price-taking, the same EAF model at larger scale at Nucor, no switching costs or pricing power, spreads partly underwritten by tariffs, and an unproven aluminum platform.",
  "cap_years": 8.5,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "HIGH_NET_DEBT: net debt is 3.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
   "BUYBACK_TAILWIND: share count shrinking 7.0%/yr \u2014 already credited via the growth adjustment",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
-  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight"
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "iv_at_15": 24.25,
-   "irr": 0.0358
+   "iv_at_15": 23.76,
+   "irr": 0.035
   },
   "bear": {
    "prob": 0.3,
-   "iv_at_15": 40.71,
-   "irr": 0.0455
+   "iv_at_15": 38.25,
+   "irr": 0.0431
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 53.43,
-   "irr": 0.0532
+   "iv_at_15": 52.36,
+   "irr": 0.0513
   },
   "bull": {
-   "prob": 0.17,
-   "iv_at_15": 72.29,
-   "irr": 0.0647
+   "prob": 0.2,
+   "iv_at_15": 70.85,
+   "irr": 0.0621
   },
   "super_bull": {
-   "prob": 0.08,
-   "iv_at_15": 105.04,
-   "irr": 0.0837
+   "prob": 0.05,
+   "iv_at_15": 107.25,
+   "irr": 0.0826
   }
  },
- "iv_at_15": 52.57,
- "iv_at_12": 69.63,
- "implied_irr": 0.053,
- "implied_irr_base_case": 0.0532,
- "upside_at_15_pct": -78.2,
+ "iv_at_15": 50.28,
+ "iv_at_12": 66.42,
+ "implied_irr": 0.0504,
+ "implied_irr_base_case": 0.0513,
+ "upside_at_15_pct": -80.0,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "medium",
- "one_liner": "Best-in-class EAF steelmaker with a real cost advantage but no pricing power, moat 5/10 \u2014 at $240.63 (39.4x TTM owner's earnings of $6.11/share, into a guided record quarter) it yields a 5.3% weighted IRR with IV@15% of $52.57; it clears the 15% hurdle only at ~$53 (~$42 with a margin of safety), and even the super-bull case ($105.04) stays below half today's price.",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "Best-in-class EAF steelmaker with a real cost advantage but no pricing power, moat 5/10 \u2014 at $251.49 (TTM owner's earnings $6.11/share, a 2.43% OE yield, into a guided record quarter) it yields a 5.04% weighted IRR with IV@15% of $50.28; it clears the 15% hurdle only at ~$50, and even the super-bull case ($107.25) stays below half today's price.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Lowest-quartile EAF cost structure \u2014 variable scrap-based costs, flexes with demand",
+  "OmniSource vertical integration secures scrap supply and captures the recycling spread",
+  "13% three-year after-tax ROIC (Q2 2026 release) \u2014 best-in-class through-cycle returns",
+  "Diversified value-added mix: flat-rolled, long/rail, fabrication, ramping aluminum",
+  "Decade of buybacks \u2014 diluted shares 245,298,000 (2016) to 148,404,000 (2025) in the filed history"
+ ],
+ "moat_against": [
+  "Commodity price-taker on the steel price and the scrap spread \u2014 no pricing power or switching costs",
+  "Nucor runs the same EAF model at larger scale \u2014 the cost edge is shared, not proprietary",
+  "Earnings fell three straight years 2022\u20132025 as spreads compressed",
+  "Current spreads partly underwritten by Section 232 tariffs \u2014 policy, not a company asset",
+  "Aluminum platform still loss-making in ramp (Q2 2026 operating loss $33 million per company-results coverage)"
+ ]
 }

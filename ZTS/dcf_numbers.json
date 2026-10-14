@@ -1,0 +1,160 @@
+{
+ "ticker": "ZTS",
+ "name": "Zoetis Inc.",
+ "cik": 1555280,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 75.675,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 443835000,
+ "market_cap_est": 33587213625.0,
+ "net_debt_latest": 9042000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.07239894232077004,
+ "rev_cagr_3y": 0.05421317839183559,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2200000000,
+ "base_oe_per_share": 5.286836467507737,
+ "base_oe_latest_per_share": 4.9567970078970784,
+ "base_oe_normalized_per_share": 4.889545518502884,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.07239894232077004,
+  "rev_cagr_3y": 0.05421317839183559,
+  "rev_yoy_latest": 0.022796024200518517,
+  "oe_ps_cagr_2y": 0.2114053632458175
+ },
+ "g_blend": 0.06330606035630282,
+ "share_cagr": -0.019175559059171565,
+ "share_count_adj": 0.019175559059171565,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.08248161941547438,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.1325,
+   -0.0825,
+   -0.0425,
+   0.0075,
+   0.0575
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 5.286836467507737,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.05,
+   "oe_mult": 0.75,
+   "iv_at_10": 36.162344826998336,
+   "iv_at_12": 29.22723796198258,
+   "iv_at_15": 22.888128314124195,
+   "irr": 0.05874212458072858
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0,
+   "oe_mult": 0.9,
+   "iv_at_10": 56.82052579962524,
+   "iv_at_12": 45.19662527669763,
+   "iv_at_15": 34.6848143005365,
+   "irr": 0.0808577931777602
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.04,
+   "oe_mult": 1.0,
+   "iv_at_10": 78.32810360685944,
+   "iv_at_12": 61.56990764885174,
+   "iv_at_15": 46.52838126047388,
+   "irr": 0.10258368520740013
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.09,
+   "oe_mult": 1.1,
+   "iv_at_10": 112.71637571957854,
+   "iv_at_12": 87.3991849278605,
+   "iv_at_15": 64.86261280845996,
+   "irr": 0.13350197688288234
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.14,
+   "oe_mult": 1.25,
+   "iv_at_10": 167.25524314201044,
+   "iv_at_12": 128.0925827782525,
+   "iv_at_15": 93.48212762106056,
+   "irr": 0.1748997598869818
+  }
+ },
+ "weighted": {
+  "iv_at_10": 79.60192121813297,
+  "iv_at_12": 62.333181588966525,
+  "iv_at_15": 46.87478259879679,
+  "irr": 0.10376492664883175
+ },
+ "implied_irr_weighted": 0.10376492664883175,
+ "implied_irr_base": 0.10258368520740013,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.3805776993882155,
+ "upside_at_12": -0.17630417457592962,
+ "iv_at_15": 46.87478259879679,
+ "iv_at_12": 62.333181588966525,
+ "diagnostics": {
+  "oe_yield": 0.06986239137770382,
+  "tv_share_at_15": 0.18902882254133654,
+  "scenario_spread_iv15": 4.084306341614356,
+  "net_debt_to_normalized_oe": 3.85342649194155,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "8c9a383fb238a2365ab487918e980fa3a751dc3c3e78e913855a082c61a16f6f"
+}

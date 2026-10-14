@@ -1,1 +1,71 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":24.63,"base_source":"TTM through Q2 2026 from EDGAR 10-Q YTD (OCF $2,669.1M = FY25 $2,540.3M - H1'25 $932.8M + H1'26 $1,061.6M; SBC $191.8M; capex $0 on engine tag basis; OE $2,477.3M / 100.6M Q2'26 diluted shares)","base_year":"TTM Q2 2026","cap_years":11.1,"confidence":"medium","engine_version":4,"fragility_flags":["STALE_FY","HIGH_NET_DEBT","OE_VOLATILE"],"implied_irr":0.128,"implied_irr_base_case":0.1241,"in_scope_under_40b":true,"iv_at_12":405.92,"iv_at_15":298.98,"market_cap_b":36.71,"moat_justification":"Portfolio of ~29 niche category leaders (Deltek, Vertafore, DAT, Neptune) selling mission-critical systems of record with >95% retention, proprietary vertical data, and a proven decentralized M&A model that lifts acquired margins toward 40%+; capped at 7 because the moats are narrow and per-business, organic growth is only ~5-6% so compounding depends on perpetual fairly-priced acquisitions, AI-native tools could erode switching costs, and leverage is 4.4x TTM OE.","moat_score":7,"name":"Roper Technologies, Inc.","one_liner":"Elite vertical-software compounder, moat 7/10 — but at $371 it is priced for the bull case: weighted IRR 12.8% (Tier C) on TTM OE of $24.63/share; clears the 15% hurdle only below ~$299, and with a real margin of safety nearer ~$240-250.","price":371.16,"scenarios":{"base":{"irr":0.1241,"iv_at_15":287.57,"prob":0.3},"bear":{"irr":0.095,"iv_at_15":204.18,"prob":0.25},"bull":{"irr":0.1533,"iv_at_15":382.58,"prob":0.25},"super_bear":{"irr":0.0689,"iv_at_15":134.42,"prob":0.1},"super_bull":{"irr":0.1913,"iv_at_15":525.8,"prob":0.1}},"sector":"Technology / Vertical market software & technology-enabled products (universe: Industrials)","ticker":"ROP","tier_by_numbers":"C","tier_final":"C","upside_at_15_pct":-19.4}
+{
+ "ticker": "ROP",
+ "name": "Roper Technologies, Inc.",
+ "sector": "Technology \u2014 vertical market software & technology-enabled products",
+ "price": 374.0642,
+ "market_cap_b": 40.47,
+ "engine_version": 5,
+ "base_oe_per_share": 23.690058479532162,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Portfolio of ~29 niche category leaders (Deltek, Vertafore, DAT, Neptune) selling mission-critical systems of record with very high retention, proprietary vertical data, and a proven decentralized M&A model that lifts acquired margins; capped at 7 because the moats are narrow and per-business, organic growth is only ~5-6% so compounding depends on perpetual fairly-priced acquisitions, AI-native tools could erode switching costs, and leverage is structural at 3.5x normalized OE.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "HIGH_NET_DEBT: net debt is 3.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 129.54,
+   "irr": 0.0669
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 196.76,
+   "irr": 0.0921
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 277.12,
+   "irr": 0.1201
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 368.68,
+   "irr": 0.1484
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 506.7,
+   "irr": 0.1854
+  }
+ },
+ "iv_at_15": 288.12,
+ "iv_at_12": 391.22,
+ "implied_irr": 0.1239,
+ "implied_irr_base_case": 0.1201,
+ "upside_at_15_pct": -23.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Elite vertical-software compounder, moat 7/10 \u2014 but at $374 it is priced for the bull case: weighted IRR 12.4% (Tier C) on TTM OE of $23.69/share; clears the 15% hurdle only below ~$288, and with a real margin of safety nearer the bear case.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "Mission-critical systems of record across ~29 niche vertical leaders (Deltek, Vertafore, Aderant, CentralReach) with very high retention and sticky pricing",
+  "DAT freight marketplace \u2014 genuine two-sided network effects",
+  "Proprietary vertical data assets (DAT load-board data, Neptune installed metering base) feeding vertical AI features",
+  "Disciplined decentralized M&A model lifting acquired margins over three decades",
+  "Diversified across uncorrelated verticals \u2014 no single customer or product drives results"
+ ],
+ "moat_against": [
+  "Moats are narrow and per-business, not one wide portfolio moat \u2014 attackable one unit at a time",
+  "Organic growth only ~5-6%; compounding depends on perpetual fairly-priced M&A at rising deal multiples",
+  "AI-native tools could lower switching costs or let customers insource owned workflows",
+  "Technology Enabled Products is cyclical hardware, unlike the software core",
+  "Leverage is structural to the model (net debt 3.5x normalized OE, engine basis)"
+ ]
+}

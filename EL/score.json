@@ -1,15 +1,15 @@
 {
  "ticker": "EL",
- "name": "Estee Lauder Companies Inc. (The)",
- "sector": "Consumer Discretionary",
- "price": 99.13,
- "market_cap_b": 36.16,
- "engine_version": 4,
- "base_oe_per_share": 2.76,
- "base_year": "FY2026",
- "base_source": "median_of_last_3_fy_oe_per_share (FY2024 $3.09, FY2025 $1.02, FY2026 $2.76; latest FY ended 2026-06-30 is also the TTM \u2014 Q1 FY2027 not yet filed, so no TTM override)",
+ "name": "The Est\u00e9e Lauder Companies Inc.",
+ "sector": "Consumer / Prestige beauty",
+ "price": 102.2912,
+ "market_cap_b": 37.32,
+ "engine_version": 5,
+ "base_oe_per_share": 2.7576754385964914,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "moat_score": 5,
- "moat_justification": "Prestige brand portfolio (La Mer, MAC, Le Labo, Est\u00e9e Lauder) with 75.5% gross margin and China share gains in FY2026, but eroding: three years of revenue decline FY23-25, repeated acquired-brand impairments (Dr.Jart+, Too Faced, Tom Ford), L'Or\u00e9al/local-brand pressure, department-store and travel-retail channel decay.",
+ "moat_justification": "Prestige brand portfolio built over decades (La Mer, Est\u00e9e Lauder, MAC, Le Labo, Jo Malone London) with genuine premium pricing power, global distribution and FY2026 China share gains, but eroding: three years of revenue decline FY23-25 while L'Or\u00e9al kept growing, repeated acquired-brand impairments (Dr.Jart+, Too Faced, Tom Ford), department-store and Asia travel-retail channel decay, and faster local/digital-native rivals.",
  "cap_years": 8.5,
  "fragility_flags": [
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
@@ -18,39 +18,52 @@
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "iv_at_15": 10.92,
-   "irr": 0.037
+   "iv_at_15": 10.93,
+   "irr": 0.0365
   },
   "bear": {
    "prob": 0.25,
-   "iv_at_15": 16.16,
-   "irr": 0.044
+   "iv_at_15": 16.17,
+   "irr": 0.0434
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 24.05,
-   "irr": 0.056
+   "iv_at_15": 24.07,
+   "irr": 0.0549
   },
   "bull": {
    "prob": 0.2,
-   "iv_at_15": 31.22,
-   "irr": 0.066
+   "iv_at_15": 31.25,
+   "irr": 0.065
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 43.58,
-   "irr": 0.084
+   "iv_at_15": 43.61,
+   "irr": 0.0819
   }
  },
- "iv_at_15": 23.5,
- "iv_at_12": 31.08,
- "implied_irr": 0.0552,
- "implied_irr_base_case": 0.0558,
- "upside_at_15_pct": -76.3,
+ "iv_at_15": 23.52,
+ "iv_at_12": 31.1,
+ "implied_irr": 0.0543,
+ "implied_irr_base_case": 0.0549,
+ "upside_at_15_pct": -77.0,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "medium",
- "one_liner": "Real prestige-brand moat (5/10) in a genuine early turnaround, but at $99.13 the price is 36x trough-normalized owner's earnings of $2.76/share \u2014 weighted IV@15% is $23.50 (IRR 5.5%, Tier D); it only clears the 15% hurdle at ~$23.50, or ~$19 with a margin of safety.",
- "analysis_date": "2026-10-13",
- "in_scope_under_40b": true
+ "one_liner": "Real prestige-brand moat (5/10) in a genuine early turnaround, but at $102.29 the price capitalizes the recovery in advance against trough-normalized owner's earnings of $2.76/share \u2014 weighted IV@15% is $23.52 (IRR 5.43%, Tier D); it only clears the 15% hurdle at ~$23.52, or ~$19 with a margin of safety.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Prestige brand portfolio built over decades (La Mer, Est\u00e9e Lauder, MAC, Le Labo, Jo Malone London) with genuine premium pricing power",
+  "Global prestige distribution plus a record 34% of sales online in FY2026",
+  "Mainland China prestige share gains in FY2026 (China sales +9%) and fragrance +10%",
+  "Scale in R&D and marketing that sub-scale rivals cannot match"
+ ],
+ "moat_against": [
+  "Three straight years of revenue decline (FY2023-25) while L'Or\u00e9al kept growing",
+  "Repeated nine-figure impairments on acquired brands (Dr.Jart+, Too Faced, Tom Ford)",
+  "Structural channel decay in US department stores and Asia travel retail",
+  "Rising local Chinese brands and digital-native indies move at TikTok speed",
+  "Lauder-family dual-class control limits outside discipline on capital allocation"
+ ]
 }

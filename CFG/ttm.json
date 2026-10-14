@@ -1,0 +1,137 @@
+{
+ "ticker": "CFG",
+ "cik": 759944,
+ "entity": "CITIZENS FINANCIAL GROUP INC/RI",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 2211000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 673000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 963000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2501000000
+  },
+  "capex": {
+   "fy": 174000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 86284931.50684932,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 86284931.50684932,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 174000000.0
+  },
+  "sbc": {
+   "fy": 120000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 74000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 82000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 128000000
+  },
+  "shares_diluted": {
+   "fy": 436890731,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 439342703,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 428274078,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2501000000,
+ "ttm_capex": 174000000.0,
+ "ttm_sbc": 128000000,
+ "ttm_shares_diluted": 428274078,
+ "ttm_oe_total": 2199000000.0,
+ "ttm_oe_per_share": 5.1345624518512185,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 174000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $174M for FY2025, with $122M for FY2024 and $172M for FY2023 in the same statement (all in $ millions; corroborated in EDGAR companyfacts under the tag PaymentsForProceedsFromProductiveAssets, which the engine does not read, with identical values $174M/$122M/$172M)",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 174000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 86284931.50684932,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 86284931.50684932,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

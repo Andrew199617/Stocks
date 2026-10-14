@@ -1,0 +1,101 @@
+{
+ "ticker": "ON",
+ "cik": 1097864,
+ "entity": "ON SEMICONDUCTOR CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-07-03",
+ "inputs": {
+  "ocf": {
+   "fy": 1759800000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 786600000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 698800000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1672000000
+  },
+  "capex": {
+   "fy": 341200000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 225800000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 56200000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 171600000
+  },
+  "sbc": {
+   "fy": 144300000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 68300000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 74700000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 150700000
+  },
+  "shares_diluted": {
+   "fy": 411800000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 418000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 401500000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1672000000,
+ "ttm_capex": 171600000,
+ "ttm_sbc": 150700000,
+ "ttm_shares_diluted": 401500000,
+ "ttm_oe_total": 1349700000,
+ "ttm_oe_per_share": 3.361643835616438,
+ "warnings": [],
+ "overrides_used": []
+}

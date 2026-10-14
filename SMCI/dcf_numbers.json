@@ -1,0 +1,93 @@
+{
+ "ticker": "SMCI",
+ "name": "Super Micro Computer, Inc.",
+ "cik": 1375365,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 35.83,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 697348000,
+ "market_cap_est": 24985978840.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": 0.6149336961730965,
+ "rev_cagr_3y": 0.7632010108319822,
+ "oe_positive_years_of_last_5": "2/5",
+ "base_oe_total_latest_fy": -7384000000,
+ "base_oe_per_share": -4.719383671069807,
+ "base_oe_latest_per_share": -10.588687427224285,
+ "base_oe_normalized_per_share": -4.719383671069807,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.6149336961730965,
+  "rev_cagr_3y": 0.7632010108319822,
+  "rev_yoy_latest": 0.7778535103837869,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.7632010108319822,
+ "share_cagr": 0.07602688481052988,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 3.0,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DILUTION: share count growing 7.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "content_hash": "6e18a5cc52a8e86fcd74883aa640e05ad420f378018cc9f3776a4f5fa2f04301"
+}

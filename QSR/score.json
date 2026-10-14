@@ -1,0 +1,70 @@
+{
+ "ticker": "QSR",
+ "name": "Restaurant Brands International Inc.",
+ "sector": "Consumer Discretionary / Restaurants (franchisor)",
+ "price": 71.06,
+ "market_cap_b": 32.47,
+ "engine_version": 5,
+ "base_oe_per_share": 3.2505446623093683,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Durable, scaled restaurant brands on an asset-light royalty model with proven through-cycle cash generation, but the brands are mostly #2 in their categories, Tim Hortons is concentrated in a slow Canadian market, Popeyes US has declined in seven of the last eight quarters, and the equity sits behind heavy leverage \u2014 a step below a wide-moat franchisor.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 8.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 18.69,
+   "irr": 0.0573
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.8,
+   "irr": 0.0733
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 35.58,
+   "irr": 0.0904
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 44.71,
+   "irr": 0.1071
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 58.03,
+   "irr": 0.1296
+  }
+ },
+ "iv_at_15": 36.22,
+ "iv_at_12": 48.73,
+ "implied_irr": 0.0917,
+ "implied_irr_base_case": 0.0904,
+ "upside_at_15_pct": -49.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality franchisor, moat 6/10, but priced for far more than its OE delivers \u2014 weighted IRR 9.2%, IV@15% $36.22 vs $71.06 price; clears 15% only near $36, and with a margin of safety in the high-$20s to mid-$30s.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Four scaled brands, >33,000 restaurants, >95% franchised \u2014 royalties on system sales",
+  "Tim Hortons' entrenched Canada position (~41% of operating income)",
+  "International segment compounding \u2014 system-wide sales +10.7% in Q2 2026",
+  "Burger King US turnaround proving out \u2014 comparable sales +8.5% in Q2 2026",
+  "OE positive 5 of the last 5 fiscal years, including the 2020 COVID year"
+ ],
+ "moat_against": [
+  "No clear #1 brand position in the US \u2014 trails McDonald's / Chick-fil-A scale",
+  "Popeyes US comparable sales \u22125.1% in Q2 2026, negative in 7 of last 8 quarters",
+  "Tim Hortons Canada comparable sales only +0.1% in Q2 2026; beef/commodity cost pressure",
+  "Franchisee economics constrain royalties \u2014 units must earn enough to remodel and grow",
+  "High financial leverage \u2014 net debt $13.282B leaves a thin equity claim"
+ ]
+}

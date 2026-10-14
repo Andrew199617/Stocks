@@ -1,0 +1,70 @@
+{
+ "ticker": "RMD",
+ "name": "ResMed Inc.",
+ "sector": "Healthcare / Sleep & respiratory devices",
+ "price": 234.25,
+ "market_cap_b": 34.21,
+ "engine_version": 5,
+ "base_oe_per_share": 10.579621235981213,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Dominant global CPAP franchise (~48% global share; US share estimated far higher while Philips Respironics has been out of the US market since its 2021 recall) with a large installed base that throws off recurring mask/resupply revenue, a cloud ecosystem (AirView/myAir) embedded in provider workflows, a deep patent portfolio, and proven pricing/margin power (FY2026 gross margin expanded 290bp, non-GAAP EPS +17% on +10% revenue). Capped at 7, not higher: Philips is expected to re-enter the US (analysts point to FY2028), Fisher & Paykel and low-cost BMC compete on masks/devices, GLP-1 therapy is a long-run narrative headwind even though current claims data shows it aiding PAP starts/adherence, and the core is concentrated in one therapy category \u2014 plus a live Astral ventilator Class I recall/sales suspension.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 56.4,
+   "irr": 0.0537
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 94.16,
+   "irr": 0.0773
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 132.66,
+   "irr": 0.0999
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 185.09,
+   "irr": 0.1274
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 293.17,
+   "irr": 0.1739
+  }
+ },
+ "iv_at_15": 144.57,
+ "iv_at_12": 198.06,
+ "implied_irr": 0.1069,
+ "implied_irr_base_case": 0.0999,
+ "upside_at_15_pct": -38.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "High-quality dominant CPAP franchise, moat 7/10, net cash \u2014 but at $234.25 it does not clear 15% (weighted IRR 10.7%, IV@15% $144.57); it clears 15% only at or below ~$145.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant CPAP share (~48% global; US share est. much higher with Philips out since 2021 recall)",
+  "Installed base drives recurring masks/resupply revenue",
+  "AirView/myAir cloud ecosystem embedded in provider and patient workflows",
+  "Deep patent portfolio and regulatory/reimbursement know-how",
+  "Proven pricing and margin power \u2014 FY26 gross margin +290bp, EPS growing faster than revenue"
+ ],
+ "moat_against": [
+  "Philips Respironics US re-entry expected (analysts point to FY2028) caps share gains",
+  "Fisher & Paykel and low-cost BMC/React compete in masks and devices",
+  "GLP-1 drugs are a long-run OSA-treatment narrative headwind",
+  "Single-category concentration in sleep/respiratory therapy",
+  "Astral ventilator Class I recall \u2014 FY27 sales suspended, $42M Q4 charge"
+ ]
+}

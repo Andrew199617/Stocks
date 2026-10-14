@@ -55,6 +55,11 @@ as override_impact (the HTML and the registry read THIS block) and into
 each registry entry, together with unblocks_tier: true when the final
 dcf_numbers.json recorded data_gap entries the overrides fully covered —
 without them the engine would have exited 4 and there would be no tier.
+When the overridden field is shares (a denominator, not a subtractive
+leg) no zero-fill counterfactual exists at all: the impact fields are
+recorded as null with unblocks_tier: true rather than refusing the score
+(first hit: STZ, 2026-10-14, whose FY24-26 diluted shares live only in
+the 10-K — both the median and TTM counterfactuals have no denominator).
 
 Also generates <TICKER>/key_numbers.md — every headline figure from the
 final dcf_numbers.json in one formatted file. It is the single source
@@ -248,7 +253,10 @@ def _ttm_base_without_overrides(ticker, n):
         fail("cannot compute the no-override TTM base for the override impact (ttm.py failed with and without overrides)")
     used = {u.get("field"): u for u in d.get("overrides_used") or []}
     if "shares" in used:
-        fail("shares override on a TTM base: no zero-fill TTM denominator exists — cannot measure override impact")
+        # No zero-fill denominator exists for shares: without the override
+        # there is no TTM base at all. Signal "no counterfactual" (None);
+        # the caller records a null impact with unblocks_tier set.
+        return None
     oe_total = d["ttm_oe_total"]
     for field in ("capex", "sbc"):
         legs = (used.get(field) or {}).get("legs_filled") or {}
@@ -275,17 +283,36 @@ def compute_override_impact(ticker, n):
     args = _final_run_args(n)
     if base_used == "ttm":
         base_without = _ttm_base_without_overrides(ticker, n)
-        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
-                      + ["--base-oe-ps", repr(float(base_without))], {"DCF_NO_OVERRIDES": "1"})
-        if m is None:
-            fail("counterfactual engine --measure run failed — cannot measure override impact on the TTM base")
-        irr_without = m.get("implied_irr_weighted")
+        if base_without is None:
+            if not unblocks:
+                fail("no no-override TTM base exists but the override covers no data gap — cannot measure override impact")
+            irr_without = None
+        else:
+            m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
+                          + ["--base-oe-ps", repr(float(base_without))], {"DCF_NO_OVERRIDES": "1"})
+            if m is None:
+                fail("counterfactual engine --measure run failed — cannot measure override impact on the TTM base")
+            irr_without = m.get("implied_irr_weighted")
     else:
         m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args, {"DCF_NO_OVERRIDES": "1"})
-        if m is None or m.get("base_oe_per_share") is None:
+        if m is None:
+            # v5.3.1 (Codex review of Stocks PR #1): a FAILED replay (timeout,
+            # non-zero exit, malformed output) is not evidence that no
+            # counterfactual exists — v5.3 recorded null impact and scored
+            # anyway whenever the override unblocked a gap. Fail hard, like
+            # the TTM branch above.
             fail("counterfactual engine --measure run failed — cannot measure override impact on the median base")
-        base_without = m["base_oe_per_share"]
-        irr_without = m.get("implied_irr_weighted")
+        if m.get("base_oe_per_share") is None:
+            if not (unblocks and (m.get("data_gap") or [])):
+                fail("counterfactual run produced no base and no data gap — cannot measure override impact on the median base")
+            # The replay ran and the gate fired: without the override there
+            # is no base at all, so the impact is honestly unmeasurable —
+            # record nulls; unblocks_tier carries the information.
+            base_without = None
+            irr_without = None
+        else:
+            base_without = m["base_oe_per_share"]
+            irr_without = m.get("implied_irr_weighted")
     base_pct = round((base_with - base_without) / base_without * 100, 3) \
         if isinstance(base_with, (int, float)) and base_without else None
     irr_pp = round((irr_with - irr_without) * 100, 3) \

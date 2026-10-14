@@ -1,1 +1,71 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":10.83,"base_source":"TTM through Q3 FY2026 from EDGAR 10-Q YTD figures: OCF $3,352.6M (FY25 $3,420.9M - 9M FY25 $949.1M + 9M FY26 $880.8M) - capex $150.4M ($137.4M - $93.6M + $106.6M) - SBC $137.4M ($131.0M - $101.1M + $107.5M) = $3,064.8M / 283.0M current diluted shares (Q3 FY2026) = $10.83/share. Corroborated by TTM net income $3,052.9M = $10.79/share; 3-yr median OE/share was $10.17.","base_year":"TTM Q3 FY2026","cap_years":8.5,"confidence":"medium","engine_version":4,"fragility_flags":["STALE_FY","WIDE_SCENARIO_SPREAD","BUYBACK_TAILWIND","OE_VOLATILE","NI_OCF_DIVERGENCE"],"implied_irr":0.1028,"implied_irr_base_case":0.1025,"in_scope_under_40b":true,"iv_at_12":111.0,"iv_at_15":84.33,"market_cap_b":38.4,"moat_justification":"Largest U.S. builder since 2002 (~15% share, doubled in 10 yrs) with procurement scale, a 570k-lot position only 22% owned / 78% optioned plus captive Forestar supply, and a balance sheet ($6.0B liquidity, 21.7% debt/capital) that gains share through downturns - against a commodity product with zero switching costs or network effects, no pricing power (incentives ~10% of revenue, gross margin 21.8% -> 20.7%), open-market land competition, and capable rivals (Lennar, Pulte, NVR).","moat_score":5,"name":"D.R. Horton, Inc.","one_liner":"America's largest builder, narrow scale moat 5/10, real buyback - but at $135.57 (12.5x TTM OE $10.83) the weighted IRR is only 10.3% with IV@15% $84.33; clears the 15% hurdle only at ~$84 (~$63 with a margin of safety), and even the bull case ($114.50) is below today's price.","price":135.57,"scenarios":{"base":{"irr":0.1025,"iv_at_15":84.56,"prob":0.3},"bear":{"irr":0.0793,"iv_at_15":61.74,"prob":0.3},"bull":{"irr":0.1312,"iv_at_15":114.5,"prob":0.15},"super_bear":{"irr":0.0566,"iv_at_15":39.44,"prob":0.15},"super_bull":{"irr":0.1811,"iv_at_15":173.55,"prob":0.1}},"sector":"Consumer Discretionary / Homebuilding","ticker":"DHI","tier_by_numbers":"C","tier_final":"C","upside_at_15_pct":-37.8}
+{
+ "ticker": "DHI",
+ "name": "D.R. Horton, Inc.",
+ "sector": "Consumer Discretionary / Homebuilding",
+ "price": 135.45,
+ "market_cap_b": 41.98,
+ "engine_version": 5,
+ "base_oe_per_share": 10.626907073509015,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Largest U.S. builder since 2002 (~15% share, doubled in 10 yrs) with procurement scale, a 570k-lot position only 22% owned / 78% optioned plus captive Forestar supply, and a balance sheet that gains share through downturns \u2014 against a commodity product with zero switching costs or network effects, no pricing power (incentives ~10% of revenue, gross margin 21.8% -> 20.7%), open-market land competition, and capable rivals (Lennar, PulteGroup, NVR).",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 38.7,
+   "irr": 0.0559
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 60.58,
+   "irr": 0.0783
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 82.97,
+   "irr": 0.1011
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 112.35,
+   "irr": 0.1294
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 170.29,
+   "irr": 0.1786
+  }
+ },
+ "iv_at_15": 82.75,
+ "iv_at_12": 108.92,
+ "implied_irr": 0.1014,
+ "implied_irr_base_case": 0.1011,
+ "upside_at_15_pct": -38.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "America's largest builder with a narrow scale moat (5/10) and a real buyback, but at $135.45 (12.7x TTM OE of $10.63) it returns only 10.1% weighted \u2014 it clears the 15% hurdle only at ~$83 (~$62 with a 25% margin of safety); even the bull case is worth less than today's price.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "#1 U.S. builder by volume since 2002, ~15% national share \u2014 procurement and subcontractor scale",
+  "Lot discipline: 570,000 lots, only 22% owned / 78% controlled via purchase contracts, plus captive Forestar supply",
+  "Balance sheet strength lets it keep building and buying back stock through troughs while small builders starve",
+  "Affordability positioning ($362k average closing price) targets the deepest, most undersupplied buyer pool"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 no switching costs, no network effects, no lock-in; buyers choose on price, location, rate buydown",
+  "No visible pricing power: incentives ~10% of revenue, home-sales gross margin fell 21.8% -> 20.7%",
+  "Land/lots bought in a competitive open market (lot costs +5% YoY in Q3 FY2026)",
+  "Capable, well-capitalized rivals (Lennar, PulteGroup, NVR \u2014 NVR's asset-light model earns structurally higher ROE)"
+ ]
+}

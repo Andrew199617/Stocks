@@ -1,0 +1,101 @@
+{
+ "ticker": "GEHC",
+ "cik": 1932393,
+ "entity": "GE HEALTHCARE TECHNOLOGIES INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 1987000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+   "ytd_prior": 250000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 290000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2027000000
+  },
+  "capex": {
+   "fy": 482000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 152000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 178000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 508000000
+  },
+  "sbc": {
+   "fy": 130000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 22000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 35000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 143000000
+  },
+  "shares_diluted": {
+   "fy": 458000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 459000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 457000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2027000000,
+ "ttm_capex": 508000000,
+ "ttm_sbc": 143000000,
+ "ttm_shares_diluted": 457000000,
+ "ttm_oe_total": 1376000000,
+ "ttm_oe_per_share": 3.010940919037199,
+ "warnings": [],
+ "overrides_used": []
+}

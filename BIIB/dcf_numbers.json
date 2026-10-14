@@ -1,0 +1,160 @@
+{
+ "ticker": "BIIB",
+ "name": "BIOGEN INC.",
+ "cik": 875045,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 228.9103,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 147100000,
+ "market_cap_est": 33672705130.0,
+ "net_debt_latest": 6286800000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.05955955186654538,
+ "rev_cagr_3y": -0.00935108052333522,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1760000000,
+ "base_oe_per_share": 14.347035040431267,
+ "base_oe_latest_per_share": 11.964649898028552,
+ "base_oe_normalized_per_share": 11.964649898028552,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": -0.05955955186654538,
+  "rev_cagr_3y": -0.00935108052333522,
+  "rev_yoy_latest": 0.022189150363273624,
+  "oe_ps_cagr_2y": 0.31567959989876204
+ },
+ "g_blend": 0.006419034919969202,
+ "share_cagr": 0.0025045624436583758,
+ "share_count_adj": -0.0025045624436583758,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.003914472476310826,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.084,
+   -0.034,
+   0.026,
+   0.066,
+   0.116
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 14.347035040431267,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0801,
+   "oe_mult": 0.75,
+   "iv_at_10": 93.42022908582933,
+   "iv_at_12": 75.15353142474184,
+   "iv_at_15": 58.55827884247881,
+   "irr": 0.054067084206193855
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0301,
+   "oe_mult": 0.9,
+   "iv_at_10": 139.4415014281587,
+   "iv_at_12": 111.12534193969388,
+   "iv_at_15": 85.5229500542282,
+   "irr": 0.06996305116091758
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0299,
+   "oe_mult": 1.0,
+   "iv_at_10": 200.18837265195975,
+   "iv_at_12": 157.918302516656,
+   "iv_at_15": 119.88977756393055,
+   "irr": 0.09061557667004377
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0699,
+   "oe_mult": 1.1,
+   "iv_at_10": 260.32801031960787,
+   "iv_at_12": 204.09441579956894,
+   "iv_at_15": 153.65260580939076,
+   "irr": 0.10999106425801786
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1199,
+   "oe_mult": 1.25,
+   "iv_at_10": 363.2421145437115,
+   "iv_at_12": 282.7669787892657,
+   "iv_at_15": 210.82022493725543,
+   "irr": 0.14077616309987595
+  }
+ },
+ "weighted": {
+  "iv_at_10": 189.21712750474018,
+  "iv_at_12": 149.3035320396842,
+  "iv_at_15": 113.39412109439631,
+  "irr": 0.08701839166826109
+ },
+ "implied_irr_weighted": 0.08701839166826109,
+ "implied_irr_base": 0.09061557667004377,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5046351295926994,
+ "upside_at_12": -0.3477640279197389,
+ "iv_at_15": 113.39412109439631,
+ "iv_at_12": 149.3035320396842,
+ "diagnostics": {
+  "oe_yield": 0.06267535816619552,
+  "tv_share_at_15": 0.1786819393930649,
+  "scenario_spread_iv15": 3.6001779612471148,
+  "net_debt_to_normalized_oe": 2.978892374838441,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "content_hash": "14d9f212ee74448470024afc51163b62898071cda40b47f76bbf77bf5de4c729"
+}

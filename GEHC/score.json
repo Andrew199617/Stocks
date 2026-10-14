@@ -1,0 +1,72 @@
+{
+ "ticker": "GEHC",
+ "name": "GE HealthCare Technologies Inc.",
+ "sector": "Healthcare",
+ "price": 68.125,
+ "market_cap_b": 31.2,
+ "engine_version": 5,
+ "base_oe_per_share": 3.010940919037199,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate moat (6/10): huge installed imaging base, service attach, broadest modality portfolio and Pharmaceutical Diagnostics consumables give real switching costs and recurring revenue, and the regulatory/FDA barrier is high. But Siemens Healthineers, Philips, Canon and United Imaging contest every modality, hospital capex is cyclical, pricing power is unproven (revenue CAGR ~4%, OE/share CAGR 2y negative), and tariffs/China and PCS weakness erode returns. CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "HIGH_NET_DEBT: net debt is 4.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 12.0,
+   "irr": 0.0438
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 18.79,
+   "irr": 0.0579
+  },
+  "base": {
+   "prob": 0.35,
+   "iv_at_15": 26.09,
+   "irr": 0.0734
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 32.79,
+   "irr": 0.087
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 42.58,
+   "irr": 0.1058
+  }
+ },
+ "iv_at_15": 25.84,
+ "iv_at_12": 34.17,
+ "implied_irr": 0.0731,
+ "implied_irr_base_case": 0.0734,
+ "upside_at_15_pct": -62.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid, moderate-moat (6/10) imaging franchise with recurring service/PDx revenue, but slow ~4% growth and 4.0x net debt leave it well short of 15% at $68.13 \u2014 weighted IRR 7.31%, IV@15% $25.84; it would need to fall toward $25.84 to clear 15%.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Large installed imaging base with service and upgrade attach",
+  "Broadest modality portfolio (CT, MRI, ultrasound, molecular imaging)",
+  "Pharmaceutical Diagnostics consumables \u2014 recurring contrast/radiopharmaceutical revenue, +15.6% in Q2 2026",
+  "Record backlog $23.9B and book-to-bill 1.15x in Q2 2026",
+  "High FDA/regulatory barriers and hospital workflow integration / switching costs",
+  "Leading AI clearance portfolio and Edison/CareIntellect software layer on the installed base"
+ ],
+ "moat_against": [
+  "Siemens Healthineers (photon-counting CT lead), Philips, Canon and low-cost United Imaging contest every sale",
+  "No proven pricing power \u2014 revenue CAGR ~4% and OE/share down over the last 2 years",
+  "Hospital capital budgets are cyclical and budget-constrained",
+  "US-China tariff exposure and choppy China demand",
+  "Patient Care Solutions declining (-13.3% in Q2 2026) and under strategic review",
+  "Leverage and acquisition load (Intelerad, pending SOFIE) limit flexibility"
+ ]
+}

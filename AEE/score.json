@@ -1,0 +1,43 @@
+{
+ "ticker": "AEE",
+ "name": "Ameren Corporation",
+ "sector": "Utilities",
+ "price": 104.48,
+ "market_cap_b": 28.44,
+ "engine_version": 5,
+ "base_oe_per_share": -4.020501138952164,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Exclusive regulated electric and natural-gas franchises in Missouri and Illinois (Ameren Missouri, Ameren Illinois) plus FERC-regulated transmission, with essential inelastic demand and a $31.8B infrastructure plan guided to ~10.6% rate-base CAGR through 2030 and 2.8 GW of signed large-load agreements \u2014 a durable, visible compounding machine. Capped at 6 because regulators (MoPSC, ICC, FERC) set the allowed return so there is no pricing power beyond rate cases, Illinois recovery is capped / more restrictive, the plan is funded with debt (net debt $19,174M) plus recurring equity issuance (share count +1.61%/yr), and coal-retirement and gas-transition costs sit with the equity if recovery is denied.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Durable MO/IL regulated monopoly, moat 6/10, but conservative owner's earnings are negative in all of the last 5 years and on TTM (capex exceeds OCF; normalized base -$4.02/share, TTM -$5.13/share) \u2014 Tier F on this screen; guided 6-8% EPS growth does not clear 15% and no hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated electric and gas franchises in Missouri and Illinois \u2014 captive, essential-service customers",
+  "$31.8B regulated infrastructure plan guided to ~10.6% rate-base CAGR 2025-2030, largely recovered through rates / riders",
+  "FERC-regulated transmission (Ameren Transmission / ATXI, MISO long-range projects) earns formula-rate returns",
+  "2.8 GW of signed large-load electric service agreements by 2030 under an approved Missouri large-load rate plan"
+ ],
+ "moat_against": [
+  "Regulators cap returns \u2014 MoPSC, ICC and FERC set allowed ROE and recovery; no pricing power beyond rate cases",
+  "Illinois is the tougher jurisdiction: MYRP reconciliation cap and ICC restrictiveness create disallowance / lag risk",
+  "Growth is debt- plus equity-funded: net debt $19,174M and share count +1.61%/yr dilutes rate-base growth per share",
+  "Coal retirement / Rush Island remediation and gas-network transition risk; large-load data-center demand could face recovery pushback"
+ ]
+}

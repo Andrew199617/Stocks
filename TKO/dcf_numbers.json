@@ -3,28 +3,28 @@
  "name": "TKO GROUP HOLDINGS, INC.",
  "cik": 1973266,
  "engine_version": 5,
- "as_of": "2026-10-13",
- "price": 173.86,
+ "as_of": "2026-10-14",
+ "price": 172.85,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 194011072,
- "market_cap_est": 33730764977.920002,
+ "market_cap_est": 33534813795.2,
  "net_debt_latest": 2931024000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.4635899735094502,
  "rev_cagr_3y": 0.6072273368429835,
  "oe_positive_years_of_last_5": "5/5",
- "base_oe_total_latest_fy": 1168137000,
- "base_oe_per_share": 2.807966787867476,
- "base_oe_latest_per_share": 6.020981111840875,
- "base_oe_normalized_per_share": 2.807966787867476,
- "base_source": "median_of_last_3_fy_oe_per_share",
+ "base_oe_total_latest_fy": 1041184000.0,
+ "base_oe_per_share": 7.934270793349593,
+ "base_oe_latest_per_share": 5.366621550341209,
+ "base_oe_normalized_per_share": 2.069329174640991,
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.4635899735094502,
   "rev_cagr_3y": 0.6072273368429835,
   "rev_yoy_latest": -0.030524701790923148,
-  "oe_ps_cagr_2y": 0.5719527648748637
+  "oe_ps_cagr_2y": 1.4376926700237362
  },
- "g_blend": 0.5177713691921569,
+ "g_blend": 0.5354086551762168,
  "share_cagr": 0.5302084827767766,
  "share_count_adj": -0.05,
  "used_tags": {
@@ -46,21 +46,152 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": null
  },
- "tier_by_numbers": null,
- "implied_irr_weighted": null,
- "implied_irr_base": null,
- "moat_score": 5.0,
- "cap_years": 8.5,
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {
+  "capex": {
+   "value": 126953000.0,
+   "last_filed_value": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.35,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.35,
+   -0.32,
+   -0.27,
+   -0.22,
+   -0.17
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 7.934270793349593,
+  "base_pin_source": "ttm_json"
+ },
  "data_gap": [
   "capex"
  ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 126953000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001193125-26-071651), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property, buildings and equipment and other assets': $(126,953) thousand for FY2025, with $(118,818) thousand for FY2024 and $(93,753) thousand for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under TKO's extension tag tko:PaymentsToAcquirePropertyPlantAndEquipmentAndOther, which EDGAR companyfacts does not carry (CIK 1973266 facts contain only us-gaap/dei/ecd namespaces and no standard capex tag), so the engine filed no capex value for any period. Corroborated in the Q2 2026 Form 10-Q (accession 0001193125-26-330592), same line: $(44,444) thousand for H1 2026 vs $(48,631) thousand for H1 2025.",
+   "reason": "DATA_GAP:capex - capex missing for FY2023, FY2024, FY2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads; the filer's own cash-flow statement reports this capex line for all three years. The engine applies this single FY2025 filing value to every missing period; the FY2023/FY2024 filing values in the same statement ($93.753M / $118.818M) are the same magnitude, capex is only ~2.7% of FY2025 revenue and ~10% of OCF, and the median year of the last-3 base is FY2024, where the single value overstates true capex by $8.135M (~$0.05/share on that year's share count) - immaterial to the verdict and conservative (it lowers OE). ttm.py prorates the same value across its legs, giving TTM capex of exactly the FY2025 figure vs a true filed-leg TTM of $122.766M (FY2025 $126.953M - H1 2025 $48.631M + H1 2026 $44.444M, both H1 legs from the Q2 2026 10-Q) - a $4.187M difference, ~0.3% of TTM OE.",
+   "periods_filled": [
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0,
+   "oe_mult": 0.75,
+   "iv_at_10": 71.06867263585005,
+   "iv_at_12": 56.52967852332466,
+   "iv_at_15": 43.38171675990185,
+   "irr": 0.055203829099679136
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.03,
+   "oe_mult": 0.9,
+   "iv_at_10": 100.2573498224971,
+   "iv_at_12": 79.03483608034635,
+   "iv_at_15": 59.9520999945274,
+   "irr": 0.06861848749391097
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.08,
+   "oe_mult": 1.0,
+   "iv_at_10": 145.76912097127516,
+   "iv_at_12": 113.3247981572851,
+   "iv_at_15": 84.39874160915821,
+   "irr": 0.08884177266340187
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.13,
+   "oe_mult": 1.1,
+   "iv_at_10": 209.46980123151715,
+   "iv_at_12": 160.80357575143256,
+   "iv_at_15": 117.73540212620446,
+   "irr": 0.11408889273490533
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.18,
+   "oe_mult": 1.25,
+   "iv_at_10": 310.1987192376711,
+   "iv_at_12": 235.43076096506775,
+   "iv_at_15": 169.69258250914118,
+   "irr": 0.14810371325306437
+  }
+ },
+ "weighted": {
+  "iv_at_10": 159.28926324223823,
+  "iv_at_12": 123.15308635396951,
+  "iv_at_15": 91.04892793983474,
+  "irr": 0.09453883536834418
+ },
+ "implied_irr_weighted": 0.09453883536834418,
+ "implied_irr_base": 0.08884177266340187,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.47324889823642036,
+ "upside_at_12": -0.28751468698889493,
+ "iv_at_15": 91.04892793983474,
+ "iv_at_12": 123.15308635396951,
+ "diagnostics": {
+  "oe_yield": 0.04590263692999475,
+  "tv_share_at_15": 0.20686147861290616,
+  "scenario_spread_iv15": 3.911615196058578,
+  "net_debt_to_normalized_oe": 1.9040828463332438,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
  "fragility_flags": [
-  "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "DILUTION: share count growing 53.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001193125-26-071651), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property, buildings and equipment and other assets': $(126,953) thousand for FY2025, with $(118,818) thousand for FY2024 and $(93,753) thousand for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under TKO's extension tag tko:PaymentsToAcquirePropertyPlantAndEquipmentAndOther, which EDGAR companyfacts does not carry (CIK 1973266 facts contain only us-gaap/dei/ecd namespaces and no standard capex tag), so the engine filed no capex value for any period. Corroborated in the Q2 2026 Form 10-Q (accession 0001193125-26-330592), same line: $(44,444) thousand for H1 2026 vs $(48,631) thousand for H1 2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 5.37 vs 3-yr median 2.07 \u2014 one of them is distorted; find out which and why"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap list). v5 never emits a tier on a data gap \u2014 a missing value is not a zero."
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 2.807966787867476,
+  "base_oe_per_share_final": 7.934270793349593,
+  "weighted_irr_zero_fill": 0.05101636504847164,
+  "weighted_irr_final": 0.09453883536834418,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "644f37ce110039b84477c443b322f5e52dfe8daff90df545910b17dba620b028"
 }

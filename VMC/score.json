@@ -1,0 +1,71 @@
+{
+ "ticker": "VMC",
+ "name": "Vulcan Materials Company",
+ "sector": "Materials - Construction Aggregates",
+ "price": 239.33,
+ "market_cap_b": 31.76,
+ "engine_version": 5,
+ "base_oe_per_share": 8.016006097560975,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Permitted quarry reserves are close to irreplicable (permitting barriers create local monopolies), transport economics protect each quarry's local radius, and pricing power is proven through the cycle (mix-adjusted price +6% FY2025, +4-5% Q2 2026, cash gross profit per ton rising through an energy shock). Not wide (9-10) because the product is an undifferentiated commodity, volumes are hostage to the construction cycle and public budgets, and returns carry a heavy continuous capex load.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASE_DIVERGENCE: latest FY OE/share 8.08 vs 3-yr median 5.66 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 3.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 39.76,
+   "irr": 0.0441
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 57.56,
+   "irr": 0.0548
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 77.26,
+   "irr": 0.0671
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 97.98,
+   "irr": 0.0794
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 134.66,
+   "irr": 0.1
+  }
+ },
+ "iv_at_15": 79.51,
+ "iv_at_12": 106.31,
+ "implied_irr": 0.0687,
+ "implied_irr_base_case": 0.0671,
+ "upside_at_15_pct": -66.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong-moat aggregates compounder (moat 7/10) with proven pricing power, but at $239.33 it prices in far more than even the super-bull case delivers - weighted IRR 6.87%, weighted IV@15% $79.51; clears the 15% hurdle only at or below $79.51.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Permitted reserves scarce and effectively irreplicable - permitting barriers create local quarry monopolies",
+  "Transport-cost economics: proximity to job site decides the sale; network sits near high-growth metros",
+  "Proven pricing power: mix-adjusted price +6% FY2025, +4-5% Q2 2026, cash gross profit per ton rising despite diesel headwind",
+  "Scale/density as No. 1 US aggregates producer; public infrastructure demand cushions private downturns",
+  "Long reserve life; aggregates-led portfolio after California ready-mix divestiture (June 2026)"
+ ],
+ "moat_against": [
+  "Undifferentiated commodity product - moat is location/permits, not the product",
+  "Cyclical volumes: housing weakness already cut same-store shipments in FY2025; private construction is rate-sensitive",
+  "Energy/diesel and labor cost exposure compressed Q2 2026 operating earnings despite price gains",
+  "Heavy continuous capex and acquisition dependence to sustain volume growth",
+  "Regulatory/environmental regime also constrains Vulcan's own expansions and operations"
+ ]
+}

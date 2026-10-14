@@ -1,0 +1,92 @@
+{
+ "ticker": "HAL",
+ "name": "Halliburton Company",
+ "sector": "Energy / Oilfield Services & Equipment",
+ "price": 32.85,
+ "market_cap_b": 28.02,
+ "engine_version": 5,
+ "base_oe_per_share": 1.8042959427207637,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Big-3 oligopoly scale as the #2 global oilfield servicer and North American completions leader, proprietary drilling/fracturing/digital technology and integrated well delivery that creates real switching friction, plus a global footprint that diversifies shale exposure - but demand is set by the commodity cycle (net losses in 2016, 2019, 2020), pricing power erodes when pressure pumping is oversupplied, consolidated E&P customers bargain hard, work is re-won project by project, and SLB/Baker Hughes contest every program; moderate moat, CAP 8.5y.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.1%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0000045012-26-000015), Note 14 Stock-based Compensation table: stock-based compensation cost $213 million for 2025, $223 million for 2024 and $219 million for 2023. EDGAR companyfacts carries ShareBasedCompensation only through 2014, so the engine found no FY SBC for 2023-2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 6.57,
+   "irr": 0.0462
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 10.54,
+   "irr": 0.063
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 14.43,
+   "irr": 0.0797
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 19.54,
+   "irr": 0.1009
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 29.61,
+   "irr": 0.1388
+  }
+ },
+ "iv_at_15": 15.47,
+ "iv_at_12": 20.45,
+ "implied_irr": 0.0845,
+ "implied_irr_base_case": 0.0797,
+ "upside_at_15_pct": -52.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Cyclical Big-3 oilfield servicer, moat 5/10 - at $32.85 on TTM owner's earnings of $1.80/share (OE yield 5.49%) it does not clear 15%: weighted IRR 8.45%, weighted IV@15% $15.47; it clears the 15% hurdle only at ~$15.47, and even the super-bull case only returns 13.88%.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Big-3 oligopoly scale - #2 global oilfield servicer, leader in North American completions and pressure pumping",
+  "Proprietary technology: LOGIX autonomous drilling, Zeus electric fracturing, Landmark / DecisionSpace digital platform",
+  "Integrated well delivery across drilling, evaluation, completion and production creates switching friction once embedded",
+  "Global footprint diversifies North America shale exposure with longer-cycle international and offshore work",
+  "Through-cycle cash generation: owner's earnings positive 5 of the last 5 fiscal years, with buybacks shrinking the count 2.1%/yr"
+ ],
+ "moat_against": [
+  "Commodity cycle rules demand - customers cut capex fast when oil falls, and HAL printed net losses in 2016, 2019 and 2020",
+  "Pricing power erodes in oversupplied North American pressure pumping; E&P consolidation strengthens customer bargaining power",
+  "SLB and Baker Hughes contest the same programs with comparable technology - no program is uncontested",
+  "Work is re-won project by project - no long-term lock-in beyond current integrated contracts",
+  "Long-term energy-transition / oil-demand risk caps the terminal story"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 213000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0000045012-26-000015), Note 14 Stock-based Compensation table: stock-based compensation cost $213 million for 2025, $223 million for 2024 and $219 million for 2023. EDGAR companyfacts carries ShareBasedCompensation only through 2014, so the engine found no FY SBC for 2023-2025."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 2.0585,
+  "base_oe_with_override": 1.8043,
+  "base_oe_impact_pct": -12.348,
+  "weighted_irr_without_override": 0.0928,
+  "weighted_irr_with_override": 0.0845,
+  "weighted_irr_impact_pp": -0.828,
+  "unblocks_tier": true
+ }
+}

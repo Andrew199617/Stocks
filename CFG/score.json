@@ -1,0 +1,93 @@
+{
+ "ticker": "CFG",
+ "name": "Citizens Financial Group, Inc.",
+ "sector": "Finance / Regional banking",
+ "price": 61.46,
+ "market_cap_b": 26.85,
+ "engine_version": 5,
+ "base_oe_per_share": 5.1345624518512185,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate large-regional moat: a scaled deposit franchise ($185.6B deposits, consumer deposits 64% of the total) with improving returns (ROTCE 13.9% in Q2 2026, guided path to 16-18% by end-2027) and a real Private Bank growth engine ($17.8B spot deposits) \u2014 against a commodity banking product with no structural pricing power (NIM 3.17% is earned, not owned), full exposure to the credit cycle (provisions are the swing factor) and the rate cycle (current NIM expansion leans on fading swap-termination and repricing tailwinds), regulatory capital limits on growth and capital return (CET1 10.4% at Q2 2026), and money-center scale competitors (efficiency ratio still 61.1%).",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.9%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $174M for FY2025, with $122M for FY2024 and $172M for FY2023 in the same statement (all in $ millions; corroborated in EDGAR companyfacts under the tag PaymentsForProceedsFromProductiveAssets, which the engine does not read, with identical values $174M/$122M/$172M)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 20.56,
+   "irr": 0.0627
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 31.73,
+   "irr": 0.0878
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 47.2,
+   "irr": 0.1217
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 63.83,
+   "irr": 0.1545
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 92.7,
+   "irr": 0.2041
+  }
+ },
+ "iv_at_15": 49.38,
+ "iv_at_12": 65.74,
+ "implied_irr": 0.1263,
+ "implied_irr_base_case": 0.1217,
+ "upside_at_15_pct": -19.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Large regional bank in a genuine earnings recovery, moat 5/10 \u2014 TTM OE $5.13/sh is an 8.35% yield at $61.46, but on through-cycle growth starts the weighted IRR is 12.63% (IV@15% $49.38), so it clears 15% only below ~$49; bank-model mismatch, confidence low.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Deposit franchise at scale \u2014 $185.6B period-end deposits at Q2 2026 funding $147.5B of loans (spot loan-to-deposit 79.5%); consumer deposits 64% of total vs ~56% peer average per management",
+  "Improving returns \u2014 ROTCE 13.9% in Q2 2026 vs 11.0% a year earlier, guided path to 16-18% by end-2027; NIM 3.17% in Q2 2026, guided toward 3.25% in Q4 2026",
+  "Private Bank build-out \u2014 spot deposits $17.8B at Q2 2026, contributing $0.15 of Q2 EPS, a fee-rich growth engine inside a commodity business",
+  "Credit discipline \u2014 net charge-offs 0.37% of average loans in Q2 2026, down from 0.48% a year earlier; allowance coverage 1.48% of loans and 152% of nonaccruals (0.97% of loans)",
+  "Consistent buybacks \u2014 diluted shares shrinking 2.9%/yr; $700-850M of repurchases guided for 2026; treasury stock purchased $600M in FY2025 per the 10-K"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 deposits and loans are fungible; NIM 3.17% is earned through the cycle, not structural pricing power",
+  "Credit-cycle exposure \u2014 provisions are the swing factor (FY2025 provision for credit losses $608M, added back inside OCF); a recession turns the bear cases fast",
+  "Capital-constrained growth \u2014 CET1 10.4% at Q2 2026, managed to ~10.5%; loan growth, dividends and buybacks compete for the same capital, and Basel III endgame requirements are still evolving",
+  "Rate sensitivity \u2014 the current NIM expansion leans on terminated-swap benefits and fixed-rate asset repricing, tailwinds that fade; deposit repricing pressure is outside management control",
+  "Efficiency / scale disadvantage \u2014 Q2 2026 efficiency ratio 61.1%, still well behind the money-center banks' technology and compliance scale"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 174000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures, net': $174M for FY2025, with $122M for FY2024 and $172M for FY2023 in the same statement (all in $ millions; corroborated in EDGAR companyfacts under the tag PaymentsForProceedsFromProductiveAssets, which the engine does not read, with identical values $174M/$122M/$172M)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 5.5408,
+  "base_oe_with_override": 5.1346,
+  "base_oe_impact_pct": -7.332,
+  "weighted_irr_without_override": 0.134,
+  "weighted_irr_with_override": 0.1263,
+  "weighted_irr_impact_pp": -0.768,
+  "unblocks_tier": true
+ }
+}

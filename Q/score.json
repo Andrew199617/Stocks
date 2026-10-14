@@ -1,0 +1,72 @@
+{
+ "ticker": "Q",
+ "name": "QNITY ELECTRONICS, INC.",
+ "sector": "Technology / Semiconductor materials",
+ "price": 121.8685,
+ "market_cap_b": 25.57,
+ "engine_version": 5,
+ "base_oe_per_share": 3.747028055159296,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate moat 6/10: qualified, mission-critical semiconductor materials with long qualification cycles, portfolio breadth and co-development ties give real switching costs, but the business is cyclical, concentrated, levered from the spin, and has no standalone track record to prove pricing power through a downturn.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 20.62,
+   "irr": 0.0454
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 35.33,
+   "irr": 0.0634
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 55.97,
+   "irr": 0.0877
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 76.71,
+   "irr": 0.1096
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 113.22,
+   "irr": 0.1429
+  }
+ },
+ "iv_at_15": 58.18,
+ "iv_at_12": 80.01,
+ "implied_irr": 0.0905,
+ "implied_irr_base_case": 0.0877,
+ "upside_at_15_pct": -52.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Good semiconductor-materials franchise, moat 6/10 \u2014 does not clear 15% at $121.87 (weighted IRR 9.05%, IV@15 $58.18); even the super-bull case is 14.29%; hurdle-clearing price is $58.18 on weighted numbers.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Mission-critical qualified materials \u2014 long fab qualification cycles create switching costs",
+  "Portfolio breadth across semiconductor fabrication and interconnect / advanced packaging",
+  "Deep co-development relationships and local-for-local footprint near major fabs",
+  "AI / advanced-node content growth \u2014 advanced-node sales grew >20% in Q2 2026"
+ ],
+ "moat_against": [
+  "Semiconductor cyclicality \u2014 consumables demand tracks fab utilization",
+  "Customer and China concentration \u2014 China >30% of sales per research",
+  "Levered spin balance sheet \u2014 $4.0B debt, ~$250M expected 2026 interest",
+  "Elevated growth capex \u2014 TTM capex $344M and rising for Delaware/Taiwan builds",
+  "No long standalone history \u2014 only 3 carve-out fiscal years, spin completed Nov 1 2025"
+ ]
+}

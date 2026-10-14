@@ -1,0 +1,162 @@
+{
+ "ticker": "EXR",
+ "name": "EXTRA SPACE STORAGE INC.",
+ "cik": 1289490,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 133.955,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 211850521,
+ "market_cap_est": 28378436540.555004,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.19958988474484185,
+ "rev_cagr_3y": 0.15554769988434702,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1252933000,
+ "base_oe_per_share": 6.729592939954152,
+ "base_oe_latest_per_share": 5.914231383929426,
+ "base_oe_normalized_per_share": 6.519496763552753,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.19958988474484185,
+  "rev_cagr_3y": 0.15554769988434702,
+  "rev_yoy_latest": 0.0713334160771173,
+  "oe_ps_cagr_2y": -0.1016928482070294
+ },
+ "g_blend": 0.11344055798073216,
+ "share_cagr": 0.1434722427201185,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsForConstructionInProcess",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
+ "g_base": 0.06344055798073216,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.09,
+   -0.06,
+   -0.03,
+   0.0,
+   0.03
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 6.729592939954152,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0266,
+   "oe_mult": 0.75,
+   "iv_at_10": 54.20441265140258,
+   "iv_at_12": 43.26835046118809,
+   "iv_at_15": 33.36640674529279,
+   "irr": 0.054444517069124995
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0034,
+   "oe_mult": 0.9,
+   "iv_at_10": 74.86956467912823,
+   "iv_at_12": 59.37366999186851,
+   "iv_at_15": 45.39356396934035,
+   "irr": 0.06655807020660237
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0334,
+   "oe_mult": 1.0,
+   "iv_at_10": 95.64051053261943,
+   "iv_at_12": 75.376679003687,
+   "iv_at_15": 57.15584897360337,
+   "irr": 0.07865638867219016
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0634,
+   "oe_mult": 1.1,
+   "iv_at_10": 120.80118697969505,
+   "iv_at_12": 94.65021597600077,
+   "iv_at_15": 71.20826529105538,
+   "irr": 0.09283100569747704
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.0934,
+   "oe_mult": 1.25,
+   "iv_at_10": 157.41853910457672,
+   "iv_at_12": 122.6604620112038,
+   "iv_at_15": 91.59219325495138,
+   "irr": 0.11241159593441752
+  }
+ },
+ "weighted": {
+  "iv_at_10": 95.44229753367496,
+  "iv_at_12": 75.14276316457197,
+  "iv_at_15": 56.900979079916226,
+  "irr": 0.07861164220465333
+ },
+ "implied_irr_weighted": 0.07861164220465333,
+ "implied_irr_base": 0.07865638867219016,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5752231788293365,
+ "upside_at_12": -0.439044730211101,
+ "iv_at_15": 56.900979079916226,
+ "iv_at_12": 75.14276316457197,
+ "diagnostics": {
+  "oe_yield": 0.05023771370948566,
+  "tv_share_at_15": 0.18152167288017856,
+  "scenario_spread_iv15": 2.745042160342089,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 14.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low"
+ ],
+ "content_hash": "e97ba861f67ccbb11a651fabcbfdefde06fead6574071010bbb680c804df19ac"
+}

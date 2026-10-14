@@ -2,27 +2,27 @@
  "ticker": "KR",
  "name": "KROGER CO",
  "cik": 56873,
- "engine_version": 4,
- "as_of": "2026-10-13",
- "price": 62.56,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 60.75,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 655000000,
- "market_cap_est": 40976800000.0,
+ "market_cap_est": 39791250000.0,
  "net_debt_latest": 12541000000,
  "latest_period_end": "2026-01-31",
  "rev_cagr_5y": 0.021871438072318394,
  "rev_cagr_3y": -0.0013827970950476276,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 3299000000,
- "base_oe_per_share": 3.6095,
+ "base_oe_per_share": 3.6094771241830066,
  "base_oe_latest_per_share": 5.036641221374046,
  "base_oe_normalized_per_share": 3.740689655172414,
- "base_source": "agent_supplied_ttm_override",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.021871438072318394,
   "rev_cagr_3y": -0.0013827970950476276,
   "rev_yoy_latest": 0.0035276605289451535,
-  "oe_ps_cagr_3y": 0.1609579526103957
+  "oe_ps_cagr_2y": 0.1609579526103957
  },
  "g_blend": 0.012699549300631774,
  "share_cagr": -0.03406713273476525,
@@ -46,81 +46,116 @@
   "equity": "StockholdersEquity",
   "shares_out_inst": null
  },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "override_checks": {},
  "g_base": 0.04676668203539702,
- "moat_score": 4.0,
- "cap_years": 7.2,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.35,
+   0.2,
+   0.05
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.04,
+   0.09
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.6094771241830066,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "g_start": -0.0602,
+   "g_start": -0.0732,
    "oe_mult": 0.75,
-   "iv_at_10": 25.643114065878017,
-   "iv_at_12": 20.549975236804606,
-   "iv_at_15": 15.931997117261398,
-   "irr": 0.05452462526275302
+   "iv_at_10": 23.309009880266622,
+   "iv_at_12": 18.810597779248784,
+   "iv_at_15": 14.71212121640441,
+   "irr": 0.051965380445244
   },
   "bear": {
    "prob": 0.3,
-   "g_start": -0.0002,
+   "g_start": -0.0032,
    "oe_mult": 0.9,
-   "iv_at_10": 39.88261067532963,
-   "iv_at_12": 31.618347055615178,
-   "iv_at_15": 24.16535303889288,
-   "irr": 0.07250687259596797
+   "iv_at_10": 38.9236533046286,
+   "iv_at_12": 30.91164514897033,
+   "iv_at_15": 23.677740141355557,
+   "irr": 0.07261466469459477
   },
   "base": {
    "prob": 0.35,
    "g_start": 0.0468,
    "oe_mult": 1.0,
-   "iv_at_10": 54.06243501165856,
-   "iv_at_12": 42.533747121894024,
-   "iv_at_15": 32.17513180543974,
-   "irr": 0.08993295176543784
+   "iv_at_10": 54.55500231399873,
+   "iv_at_12": 42.88261723218895,
+   "iv_at_15": 32.401727036618226,
+   "irr": 0.09246983267907527
   },
   "bull": {
-   "prob": 0.18,
-   "g_start": 0.0798,
+   "prob": 0.2,
+   "g_start": 0.0868,
    "oe_mult": 1.1,
-   "iv_at_10": 68.22188080554906,
-   "iv_at_12": 53.407703292426355,
-   "iv_at_15": 40.12842327315173,
-   "irr": 0.10655607498791825
+   "iv_at_10": 72.08007397250239,
+   "iv_at_12": 56.23234271850986,
+   "iv_at_15": 42.05817793537805,
+   "irr": 0.11327733814976929
   },
   "super_bull": {
-   "prob": 0.07,
-   "g_start": 0.1198,
+   "prob": 0.05,
+   "g_start": 0.1368,
    "oe_mult": 1.25,
-   "iv_at_10": 91.33144687702665,
-   "iv_at_12": 71.0986744140149,
-   "iv_at_15": 53.0099091578835,
-   "irr": 0.1321070814915638
+   "iv_at_10": 102.64697499972999,
+   "iv_at_12": 79.39000111293183,
+   "iv_at_15": 58.6805804273415,
+   "irr": 0.1461513664146411
   }
  },
  "weighted": {
-  "iv_at_10": 52.12408668965789,
-  "iv_at_12": 41.01760693464571,
-  "iv_at_15": 31.03791158551707,
-  "irr": 0.08762363651744554
+  "iv_at_10": 52.65061133380178,
+  "iv_at_12": 41.37943795323068,
+  "iv_at_15": 31.26080323530617,
+  "irr": 0.09015625553611295
  },
- "implied_irr_weighted": 0.08762363651744554,
- "implied_irr_base": 0.08993295176543784,
+ "implied_irr_weighted": 0.09015625553611295,
+ "implied_irr_base": 0.09246983267907527,
  "tier_by_numbers": "D",
- "upside_at_15": -0.5038696997199957,
- "upside_at_12": -0.3443477152390392,
- "iv_at_15": 31.03791158551707,
- "iv_at_12": 41.01760693464571,
+ "upside_at_15": -0.48541887678508366,
+ "upside_at_12": -0.3188569884241864,
+ "iv_at_15": 31.26080323530617,
+ "iv_at_12": 41.37943795323068,
  "diagnostics": {
-  "oe_yield": 0.05769661125319693,
-  "tv_share_at_15": 0.1820895937461175,
-  "scenario_spread_iv15": 3.327260780159841,
-  "net_debt_to_normalized_oe": 5.304492280231662,
-  "months_since_fy_end": 8.377135348226018
+  "oe_yield": 0.05941526130342398,
+  "tv_share_at_15": 0.18381959216612578,
+  "scenario_spread_iv15": 3.9885873399351195,
+  "net_debt_to_normalized_oe": 5.304525898562093,
+  "months_since_fy_end": 8.409986859395532,
+  "irr_capped": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
   "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
-  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
- ]
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "4e2bd20863637faf3493e13d96af139e98c6889549a7e0a9015b070c47f985d9"
 }
