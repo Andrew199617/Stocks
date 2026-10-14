@@ -83,6 +83,22 @@ capped 2.0 with an IRR_CAPPED flag instead of a blank that tiered D.
 (diluted) — no silent swap. (7) Provenance: dcf_numbers.json carries a
 content_hash (sha256 over the canonical payload); make_score recomputes
 and refuses on mismatch or absence.
+
+v5.3 (2026-10-14, Andrew's IFRS go decision): period_series merges across
+TAXONOMIES (us-gaap candidates first, then ifrs-full) the same way v4 merged
+across tags, with an ifrs-full concept map for every field (Revenue,
+ProfitLoss, CashFlowsFromUsedInOperatingActivities,
+PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities,
+AdjustmentsForSharebasedPayments, AdjustedWeightedAverageShares = the
+diluted denominator, etc.). Currency: values keep their filed unit per
+period. A filer whose monetary facts are filed in USD — including the
+issuer's own USD convenience translations (JD files CNY + USD) — is no
+longer a currency gap. A single non-USD reporting currency is converted to
+USD at period-end ECB reference rates (frankfurter.app); the rates used
+are recorded in dcf_numbers.json (fx_conversion) and flagged FX_CONVERTED.
+Flow facts use the period-end rate too — a screening simplification the
+agent must note. Mixed reporting currencies, or a currency with no ECB
+rate, remain DATA_GAP:currency. ADS handling is unchanged (v5.2).
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib
 from zoneinfo import ZoneInfo
@@ -203,6 +219,22 @@ def get_json(url, headers=UA, timeout=90):
             if attempt < 2: time.sleep(2 ** attempt)
     raise last
 
+_fx_cache = {}
+def fx_rate(ccy, date_str):
+    """ccy->USD rate on date_str from frankfurter.app (ECB reference rates;
+    returns the closest available business day). None when the currency is
+    not ECB-covered or the fetch fails — the caller keeps the currency gap."""
+    key = (ccy, date_str)
+    if key in _fx_cache: return _fx_cache[key]
+    rate = None
+    try:
+        d = get_json(f"https://api.frankfurter.app/{date_str}?from={ccy}&to=USD", timeout=30)
+        rate = float(d["rates"]["USD"])
+    except Exception:
+        rate = None
+    _fx_cache[key] = rate
+    return rate
+
 def nasdaq_price(ticker):
     try:
         d = get_json(f"https://api.nasdaq.com/api/quote/{ticker}/info?assetclass=stocks", headers={"User-Agent": "Mozilla/5.0"}, timeout=25)
@@ -212,16 +244,21 @@ def nasdaq_price(ticker):
         return None
 
 def period_series(facts, tags, duration=True):
-    """({period_end: value}, first_used_tag, {period_end: tag}) — annual periods only,
-    latest filing wins. v4: MERGES across candidate tags per period (in priority order).
-    v3 returned only the first tag that had any data, silently truncating history when a
-    filer switched tags. v5: also returns which tag supplied each period (provenance —
-    the audit found used_tags hiding years that were silently zero-filled)."""
-    us = facts.get("facts", {}).get("us-gaap", {})
-    merged, used, tag_by_period = {}, None, {}
-    for tag in tags:
-        if tag not in us: continue
-        units = us[tag].get("units", {})
+    """({period_end: value}, first_used_tag, {period_end: tag}, {period_end: unit}) —
+    annual periods only, latest filing wins. v4: MERGES across candidate tags per
+    period (in priority order). v3 returned only the first tag that had any data,
+    silently truncating history when a filer switched tags. v5: also returns which
+    tag supplied each period (provenance — the audit found used_tags hiding years
+    that were silently zero-filled). v5.3: `tags` items are either "Tag" (us-gaap)
+    or ("taxonomy", "Tag") pairs, merged across taxonomies in priority order;
+    values stay in their filed unit and the unit used per period is returned so
+    the caller can FX-convert non-USD periods."""
+    merged, used, tag_by_period, unit_by_period = {}, None, {}, {}
+    pairs = [(t if isinstance(t, tuple) else ("us-gaap", t)) for t in tags]
+    for taxonomy, tag in pairs:
+        tax_facts = facts.get("facts", {}).get(taxonomy, {})
+        if tag not in tax_facts: continue
+        units = tax_facts[tag].get("units", {})
         unit_key = "USD" if "USD" in units else ("shares" if "shares" in units else ("USD/shares" if "USD/shares" in units else (list(units)[0] if units else None)))
         if not unit_key: continue
         best = {}
@@ -243,8 +280,9 @@ def period_series(facts, tags, duration=True):
             if k not in merged:
                 merged[k] = v["val"]
                 tag_by_period[k] = tag
+                unit_by_period[k] = unit_key
                 if used is None: used = tag
-    return merged, used, tag_by_period
+    return merged, used, tag_by_period, unit_by_period
 
 def main():
     ticker = sys.argv[1].upper()
@@ -273,7 +311,7 @@ def main():
     # while all history sits under CIK 34088). If the primary CIK yields <3 years of net income,
     # probe the older company_tickers.json mapping and use whichever CIK has more history.
     def _ni_periods(f):
-        s, _, _ = period_series(f, ["NetIncomeLoss", "ProfitLoss"], True)
+        s, _, _, _ = period_series(f, ["NetIncomeLoss", "ProfitLoss", ("ifrs-full", "ProfitLoss")], True)
         return len(s)
     if _ni_periods(facts) < 3:
         try:
@@ -290,43 +328,60 @@ def main():
         except Exception:
             pass
 
+    # v5.3: each field's candidates are us-gaap tags first, then ("ifrs-full", tag)
+    # pairs — period_series merges across both in this priority order. IFRS picks
+    # verified against real companyfacts pulls (CCJ / TECK / GFI) 2026-10-14:
+    # AdjustedWeightedAverageShares is the DILUTED denominator (one value per
+    # period, consistently just above basic WeightedAverageShares);
+    # AdjustmentsFor* are the cash-flow-statement addbacks, the same role the
+    # us-gaap ShareBasedCompensation / DDA tags play.
+    IF = "ifrs-full"
     dur_defs = {
-        "revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "Revenues", "RevenueFromContractWithCustomerIncludingAssessedTax"],
-        "net_income": ["NetIncomeLoss", "ProfitLoss"],
-        "operating_income": ["OperatingIncomeLoss"],
+        "revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "Revenues", "RevenueFromContractWithCustomerIncludingAssessedTax",
+                    (IF, "Revenue"), (IF, "RevenueFromContractsWithCustomers")],
+        "net_income": ["NetIncomeLoss", "ProfitLoss", (IF, "ProfitLoss")],
+        "operating_income": ["OperatingIncomeLoss", (IF, "ProfitLossFromOperatingActivities")],
         # v5.2: continuing-operations OCF as fallback — a filer tagging OCF only
         # there previously produced oe_cons = None and a fake Tier F (round-2).
-        "ocf": ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"],
+        "ocf": ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+                (IF, "CashFlowsFromUsedInOperatingActivities"), (IF, "CashFlowsFromUsedInOperatingActivitiesContinuingOperations")],
         # v5: construction-in-process (ED files capex there FY23+) and other-productive-assets
         # (ROP) added as fallbacks — both verified against real companyfacts pulls 2026-10-13.
-        "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsForConstructionInProcess", "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets", "PaymentsToAcquireOtherProductiveAssets"],
-        "da": ["DepreciationDepletionAndAmortization", "DepreciationAmortizationAndAccretionNet", "DepreciationAndAmortization", "Depreciation"],
+        "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsForConstructionInProcess", "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets", "PaymentsToAcquireOtherProductiveAssets",
+                  (IF, "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"), (IF, "PurchaseOfPropertyPlantAndEquipment"),
+                  (IF, "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets")],
+        "da": ["DepreciationDepletionAndAmortization", "DepreciationAmortizationAndAccretionNet", "DepreciationAndAmortization", "Depreciation",
+               (IF, "AdjustmentsForDepreciationAndAmortisationExpense"), (IF, "DepreciationAndAmortisationExpense")],
         # v5: DFTX and many others file SBC only under the allocated tag.
-        "sbc": ["ShareBasedCompensation", "AllocatedShareBasedCompensationExpense"],
-        "tax": ["IncomeTaxExpenseBenefit"],
-        "shares_diluted": ["WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted", "WeightedAverageNumberOfSharesOutstandingBasic"],
+        "sbc": ["ShareBasedCompensation", "AllocatedShareBasedCompensationExpense",
+                (IF, "AdjustmentsForSharebasedPayments"), (IF, "ExpenseFromSharebasedPaymentTransactionsWithEmployees")],
+        "tax": ["IncomeTaxExpenseBenefit", (IF, "IncomeTaxExpenseContinuingOperations"), (IF, "IncomeTaxExpense")],
+        "shares_diluted": ["WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted", "WeightedAverageNumberOfSharesOutstandingBasic",
+                           (IF, "AdjustedWeightedAverageShares"), (IF, "WeightedAverageShares")],
     }
     inst_defs = {
-        "cash": ["CashAndCashEquivalentsAtCarryingValue"],
-        "assets_current": ["AssetsCurrent"],
-        "liab_current": ["LiabilitiesCurrent"],
-        "debt_current": ["DebtCurrent", "LongTermDebtCurrent"],
-        "debt_lt": ["LongTermDebtNoncurrent", "LongTermDebt"],
-        "ppe_net": ["PropertyPlantAndEquipmentNet"],
-        "equity": ["StockholdersEquity"],
-        "shares_out_inst": ["CommonStockSharesOutstanding"],
+        "cash": ["CashAndCashEquivalentsAtCarryingValue", (IF, "CashAndCashEquivalents")],
+        "assets_current": ["AssetsCurrent", (IF, "CurrentAssets")],
+        "liab_current": ["LiabilitiesCurrent", (IF, "CurrentLiabilities")],
+        "debt_current": ["DebtCurrent", "LongTermDebtCurrent", (IF, "CurrentPortionOfLongtermBorrowings"), (IF, "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings")],
+        "debt_lt": ["LongTermDebtNoncurrent", "LongTermDebt", (IF, "LongtermBorrowings")],
+        "ppe_net": ["PropertyPlantAndEquipmentNet", (IF, "PropertyPlantAndEquipment")],
+        "equity": ["StockholdersEquity", (IF, "Equity")],
+        "shares_out_inst": ["CommonStockSharesOutstanding", (IF, "NumberOfSharesOutstanding")],
     }
-    series, used, series_tags = {}, {}, {}
-    for k, tags in dur_defs.items(): series[k], used[k], series_tags[k] = period_series(facts, tags, True)
-    for k, tags in inst_defs.items(): series[k], used[k], series_tags[k] = period_series(facts, tags, False)
+    # Tags that carry only a BASIC share count — a period sourced from one is a
+    # shares (diluted) gap, never a silent swap (v5.2 rule, extended to IFRS).
+    BASIC_SHARE_TAGS = {"WeightedAverageNumberOfSharesOutstandingBasic", "WeightedAverageShares"}
+    series, used, series_tags, series_units = {}, {}, {}, {}
+    for k, tags in dur_defs.items(): series[k], used[k], series_tags[k], series_units[k] = period_series(facts, tags, True)
+    for k, tags in inst_defs.items(): series[k], used[k], series_tags[k], series_units[k] = period_series(facts, tags, False)
     annual_form = filer_annual_form(cik)
     ads_ratio = load_ads_ratio(ticker)
-    # v5 currency check (v5.2: scoped to the last 3 fiscal years, computed at
-    # the gate below): a USD-reporting filer never files non-USD units on its
-    # core monetary facts. Any non-USD unit on revenue / net income / OCF facts
-    # in the last 3 FY means the filer reports in a foreign currency (JD files
-    # CNY with USD convenience translations) — unverifiable, so a data gap.
-    # The all-years version false-positived on one stray 2016 EUR fact.
+    # Currency handling is v5.3 (see the FX conversion pass below and the gate):
+    # filed units are tracked per period in series_units; the issuer's own USD
+    # translations are used as filed, and a single foreign reporting currency
+    # is converted at period-end ECB rates. The pre-v5.3 rule (any non-USD unit
+    # on core facts in the last 3 FY = gap) is gone.
     # v4.2 share-count fallback: some filers (XOM) stopped tagging weighted diluted shares in
     # XBRL years ago. Fill missing years from dei EntityCommonStockSharesOutstanding (instant).
     dei_shares = {}
@@ -340,6 +395,47 @@ def main():
         dei_shares = {k: v[1] for k, v in dei_shares.items()}
     except Exception:
         dei_shares = {}
+
+    # ---- v5.3 FX conversion: monetary series are in filed units (series_units).
+    # A single non-USD reporting currency is converted to USD at period-end ECB
+    # rates; flow facts use the period-end rate too (screening simplification,
+    # flagged FX_CONVERTED). Dates with no available rate stay unconverted and
+    # the currency gate below decides whether they matter (last-3-FY core facts).
+    monetary_keys = [k for k in list(dur_defs) + list(inst_defs) if k not in ("shares_diluted", "shares_out_inst")]
+    filed_currencies = set()
+    for k in monetary_keys:
+        for u in series_units.get(k, {}).values():
+            if u not in ("USD", "shares", "USD/shares"): filed_currencies.add(u)
+    fx_info, fx_unconverted_dates = None, set()
+    if len(filed_currencies) == 1:
+        ccy = next(iter(filed_currencies))
+        need_dates = sorted({p for k in monetary_keys for p, u in series_units.get(k, {}).items() if u == ccy})
+        rates = {}
+        for d in need_dates:
+            r = fx_rate(ccy, d)
+            if r is None: fx_unconverted_dates.add(d)
+            else: rates[d] = r
+        if rates:
+            converted_fields = []
+            for k in monetary_keys:
+                for p, u in list(series_units.get(k, {}).items()):
+                    if u == ccy and p in rates and series[k].get(p) is not None:
+                        series[k][p] = series[k][p] * rates[p]
+                        if k not in converted_fields: converted_fields.append(k)
+            fx_info = {"from_currency": ccy, "to_currency": "USD",
+                       "source": "frankfurter.app — ECB reference rates (closest business day to each period end)",
+                       "converted_fields": converted_fields,
+                       "rates": rates}
+    # Did the engine rely on the issuer's own USD convenience translations?
+    # (A core tag whose filed units include both USD and a foreign currency,
+    # with USD the unit actually used — e.g. JD's CNY + USD.)
+    usd_translation_used = False
+    for k in ("revenue", "net_income", "ocf"):
+        for t in dur_defs[k]:
+            tax, tag = t if isinstance(t, tuple) else ("us-gaap", t)
+            unit_keys = list((facts.get("facts", {}).get(tax, {}).get(tag) or {}).get("units", {}).keys())
+            if "USD" in unit_keys and any(u not in ("USD", "shares", "USD/shares") for u in unit_keys):
+                usd_translation_used = True
 
     periods = sorted(set(series["revenue"]) | set(series["net_income"]) | set(series["ocf"]))[-10:]
     overrides = load_overrides(ticker)
@@ -401,7 +497,7 @@ def main():
         # the basic tag sat in the diluted candidate list and tiers shipped on
         # it unflagged). A basic-only period counts as a shares (diluted) gap;
         # the basic figure stays in the CSV for reference.
-        sh_diluted = sh_merged if sh_tag_p != "WeightedAverageNumberOfSharesOutstandingBasic" else None
+        sh_diluted = sh_merged if sh_tag_p not in BASIC_SHARE_TAGS else None
         shares_val = sh_diluted or g("shares_out_inst") or dei_shares.get(p)
         if shares_val is None:
             raw_missing["shares"].add(p)
@@ -543,7 +639,7 @@ def main():
               "base_oe_latest_per_share": oe_ps_latest, "base_oe_normalized_per_share": oe_ps_norm,
               "base_source": base_source, "growth_components": growth_components,
               "g_blend": g_blend, "share_cagr": share_cagr, "share_count_adj": share_adj, "used_tags": used,
-              "filer_annual_form": annual_form, "ads_ratio": ads_ratio,
+              "filer_annual_form": annual_form, "ads_ratio": ads_ratio, "fx_conversion": fx_info,
               "override_checks": override_checks}
 
     # ---- v3 scenario / moat inputs ----
@@ -581,6 +677,10 @@ def main():
                         and abs(h["net_income"] - h["ocf"]) > (h.get("da") or 0)]
     if ni_ocf_gap_years: flags_pre.append(f"NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in {', '.join(ni_ocf_gap_years)} — find the one-off (tax deposits, impairments, WC swings) before trusting the OE base")
     if cik_fallback_note: flags_pre.append(cik_fallback_note)
+    if fx_info:
+        flags_pre.append(f"FX_CONVERTED: reporting currency {fx_info['from_currency']} converted to USD at period-end ECB reference rates (frankfurter.app) — flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion")
+    if usd_translation_used:
+        flags_pre.append("USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures")
     if annual_form in ("20-F", "40-F"):
         if ads_ratio:
             flags_pre.append(f"ADS_RATIO_APPLIED: {annual_form} filer — per-share figures scaled x{ads_ratio['ratio']} ordinary shares per ADS "
@@ -602,16 +702,20 @@ def main():
     # ---- v5 DATA GATE: missing data must never silently become zero again. ----
     # Gaps are judged on the FILED values (raw_missing), before any override fill.
     last3_periods = [h["period_end"] for h in hist[-3:]]
-    # v5.2: currency check scoped to the last 3 FY (period ends in last3_periods).
-    _us = facts.get("facts", {}).get("us-gaap", {})
-    _last3_set = set(last3_periods)
-    currency_gap = False
-    for _t in dur_defs["revenue"] + dur_defs["net_income"] + dur_defs["ocf"]:
-        for _unit, _entries in (_us.get(_t) or {}).get("units", {}).items():
-            if _unit in ("USD", "shares", "USD/shares"):
-                continue
-            if any(e.get("end") in _last3_set for e in _entries):
-                currency_gap = True
+    # v5.3: the currency gap is judged on the periods actually used. Not a gap:
+    # facts filed in USD (including the issuer's own USD convenience
+    # translations) or FX-converted above. Still a gap: mixed reporting
+    # currencies in the last 3 FY, or a last-3-FY core fact whose period-end
+    # rate was unavailable and so stayed unconverted.
+    if len(filed_currencies) > 1:
+        currency_gap = any(series_units.get(k, {}).get(p) not in (None, "USD")
+                            for k in ("revenue", "net_income", "ocf") for p in last3_periods)
+    elif len(filed_currencies) == 1:
+        _ccy = next(iter(filed_currencies))
+        currency_gap = any(series_units.get(k, {}).get(p) == _ccy and p in fx_unconverted_dates
+                           for k in ("revenue", "net_income", "ocf") for p in last3_periods)
+    else:
+        currency_gap = False
     gap_fields, gap_years = [], {}
     for field in ("sbc", "capex", "shares", "ocf"):
         missing = [p[:4] for p in last3_periods if p in raw_missing[field]]
@@ -628,7 +732,7 @@ def main():
     if uncovered and not MEASURE:
         gap_flags = []
         for f in uncovered:
-            if f == "currency": gap_flags.append("DATA_GAP:currency — filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts in the last 3 FY); USD translations and ADS ratios are unverified — no tier emitted")
+            if f == "currency": gap_flags.append("DATA_GAP:currency — last-3-FY core facts are filed in a non-USD currency that could not be converted to USD (mixed reporting currencies, or no ECB reference rate for the currency) — no tier emitted")
             elif f == "price": gap_flags.append("DATA_GAP:price — no price available from Nasdaq, --price, or the universe file — no tier emitted")
             elif f == "shares" and any(p[:4] in gap_years[f] for p in basic_only): gap_flags.append(f"DATA_GAP:shares — DILUTED shares missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3 (only basic shares filed — no silent swap) — no tier emitted")
             else: gap_flags.append(f"DATA_GAP:{f} — {f} missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3 — no tier emitted")
