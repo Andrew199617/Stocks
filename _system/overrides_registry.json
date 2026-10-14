@@ -1,0 +1,21 @@
+{
+ "entries": [
+  {
+   "ticker": "APP",
+   "field": "capex",
+   "value": 19000000.0,
+   "kind": "estimate",
+   "source": "Higher of the last tagged FY2024 capex ($4.8M, FY24 10-K) and the v4 TTM estimate (~$19M), per Andrew's conservative rule (2026-10-13)",
+   "reason": "AppLovin tags no capex from FY2025 onward under any candidate tag. Tagged capex ran $0.7\u20134.8M/yr FY19\u201324 vs OCF in the billions \u2014 structurally immaterial; $19M is ~4x the last filed figure and still moves base OE by <0.5%.",
+   "date": "2026-10-14",
+   "base_used": "ttm",
+   "base_oe_without_override": 12.5644,
+   "base_oe_with_override": 12.5082,
+   "base_oe_impact_pct": -0.448,
+   "weighted_irr_without_override": 0.1848,
+   "weighted_irr_with_override": 0.1843,
+   "weighted_irr_impact_pp": -0.053,
+   "unblocks_tier": true
+  }
+ ]
+}
