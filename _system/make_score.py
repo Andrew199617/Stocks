@@ -295,12 +295,19 @@ def compute_override_impact(ticker, n):
             irr_without = m.get("implied_irr_weighted")
     else:
         m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args, {"DCF_NO_OVERRIDES": "1"})
-        if m is None or m.get("base_oe_per_share") is None:
-            if not unblocks:
-                fail("counterfactual engine --measure run failed — cannot measure override impact on the median base")
-            # The override covers a data gap: without it the gate emits no
-            # base at all, so the impact is honestly unmeasurable — record
-            # nulls; unblocks_tier carries the information.
+        if m is None:
+            # v5.3.1 (Codex review of Stocks PR #1): a FAILED replay (timeout,
+            # non-zero exit, malformed output) is not evidence that no
+            # counterfactual exists — v5.3 recorded null impact and scored
+            # anyway whenever the override unblocked a gap. Fail hard, like
+            # the TTM branch above.
+            fail("counterfactual engine --measure run failed — cannot measure override impact on the median base")
+        if m.get("base_oe_per_share") is None:
+            if not (unblocks and (m.get("data_gap") or [])):
+                fail("counterfactual run produced no base and no data gap — cannot measure override impact on the median base")
+            # The replay ran and the gate fired: without the override there
+            # is no base at all, so the impact is honestly unmeasurable —
+            # record nulls; unblocks_tier carries the information.
             base_without = None
             irr_without = None
         else:
