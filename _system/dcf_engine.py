@@ -99,6 +99,14 @@ are recorded in dcf_numbers.json (fx_conversion) and flagged FX_CONVERTED.
 Flow facts use the period-end rate too — a screening simplification the
 agent must note. Mixed reporting currencies, or a currency with no ECB
 rate, remain DATA_GAP:currency. ADS handling is unchanged (v5.2).
+v5.3.1 (same day, Codex review of Stocks PR #1 — four fixes): units merge
+per period within a tag (v5.3 picked one unit per tag and dropped
+local-currency-only years); conversion eligibility is judged on the
+last-3-FY core facts, not all history (one stray historical currency
+disabled conversion entirely); monetary judgment overrides are declared
+in the reporting currency and are FX-converted at the period-end rate
+before being applied (v5.3 inserted them verbatim into USD series); the
+override sanity band anchors on the last filed value in its filed unit.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib
 from zoneinfo import ZoneInfo
@@ -259,29 +267,35 @@ def period_series(facts, tags, duration=True):
         tax_facts = facts.get("facts", {}).get(taxonomy, {})
         if tag not in tax_facts: continue
         units = tax_facts[tag].get("units", {})
-        unit_key = "USD" if "USD" in units else ("shares" if "shares" in units else ("USD/shares" if "USD/shares" in units else (list(units)[0] if units else None)))
-        if not unit_key: continue
-        best = {}
-        for e in units[unit_key]:
-            if e.get("fp") != "FY": continue
-            if e.get("form", "") not in ("10-K", "10-K/A", "20-F", "40-F"): continue
-            end = e.get("end"); start = e.get("start")
-            if not end: continue
-            if duration:
-                if not start: continue
-                days = (datetime.date.fromisoformat(end) - datetime.date.fromisoformat(start)).days
-                if not (330 <= days <= 380): continue
-            else:
-                if start and start != end: continue
-            prev = best.get(end)
-            if prev is None or e.get("filed", "") > prev.get("filed", ""):
-                best[end] = e
-        for k, v in best.items():
-            if k not in merged:
-                merged[k] = v["val"]
-                tag_by_period[k] = tag
-                unit_by_period[k] = unit_key
-                if used is None: used = tag
+        # v5.3.1 (Codex review of Stocks PR #1): units merge PER PERIOD, in
+        # preference order — v5.3 picked ONE unit per tag, so a tag with USD
+        # facts for some years and local-currency facts for others silently
+        # dropped the local-only years. USD wins a period when it has one;
+        # other units fill the periods USD lacks, with the unit recorded.
+        pref = [u for u in ("USD", "shares", "USD/shares") if u in units]
+        pref += [u for u in units if u not in pref]
+        for unit_key in pref:
+            best = {}
+            for e in units[unit_key]:
+                if e.get("fp") != "FY": continue
+                if e.get("form", "") not in ("10-K", "10-K/A", "20-F", "40-F"): continue
+                end = e.get("end"); start = e.get("start")
+                if not end: continue
+                if duration:
+                    if not start: continue
+                    days = (datetime.date.fromisoformat(end) - datetime.date.fromisoformat(start)).days
+                    if not (330 <= days <= 380): continue
+                else:
+                    if start and start != end: continue
+                prev = best.get(end)
+                if prev is None or e.get("filed", "") > prev.get("filed", ""):
+                    best[end] = e
+            for k, v in best.items():
+                if k not in merged:
+                    merged[k] = v["val"]
+                    tag_by_period[k] = tag
+                    unit_by_period[k] = unit_key
+                    if used is None: used = tag
     return merged, used, tag_by_period, unit_by_period
 
 def main():
@@ -396,6 +410,18 @@ def main():
     except Exception:
         dei_shares = {}
 
+    # v5.3.1 (Codex review of Stocks PR #1): the override sanity band anchors
+    # on the last FILED value in its FILED unit, captured here before the FX
+    # pass converts the series — override values are declared in the filer's
+    # reporting currency, so a post-conversion (USD) anchor compares unlike
+    # units and misjudges the band on every converted name.
+    last_filed_raw, last_filed_unit = {}, {}
+    for _k in ("capex", "sbc", "shares_diluted"):
+        _ps = [p for p in sorted(series[_k]) if series[_k][p] is not None]
+        if _ps:
+            last_filed_raw[_k] = series[_k][_ps[-1]]
+            last_filed_unit[_k] = series_units.get(_k, {}).get(_ps[-1])
+
     # ---- v5.3 FX conversion: monetary series are in filed units (series_units).
     # A single non-USD reporting currency is converted to USD at period-end ECB
     # rates; flow facts use the period-end rate too (screening simplification,
@@ -406,26 +432,51 @@ def main():
     for k in monetary_keys:
         for u in series_units.get(k, {}).values():
             if u not in ("USD", "shares", "USD/shares"): filed_currencies.add(u)
-    fx_info, fx_unconverted_dates = None, set()
-    if len(filed_currencies) == 1:
-        ccy = next(iter(filed_currencies))
-        need_dates = sorted({p for k in monetary_keys for p, u in series_units.get(k, {}).items() if u == ccy})
-        rates = {}
-        for d in need_dates:
-            r = fx_rate(ccy, d)
-            if r is None: fx_unconverted_dates.add(d)
-            else: rates[d] = r
-        if rates:
+    # v5.3.1 (Codex review of Stocks PR #1): conversion eligibility is decided
+    # by the last-3-FY CORE facts (revenue / net income / OCF), not by every
+    # currency anywhere in history — one stray historical second-currency fact
+    # used to disable conversion for a filer that is single-currency today.
+    # Exactly one recent core currency: convert it, plus any stray-currency
+    # periods elsewhere, each at its own period-end rate. Two or more: a
+    # genuinely mixed filer — convert nothing and let the gate fire. No recent
+    # core currency (core filed as USD translations): fall back to the
+    # all-history set (the JD shape — USD core, one CNY-only debt series).
+    _core_periods = sorted({p for k in ("revenue", "net_income", "ocf") for p in series.get(k, {})})[-3:]
+    recent_core_ccys = {series_units[k][p] for k in ("revenue", "net_income", "ocf")
+                        for p in _core_periods
+                        if series_units.get(k, {}).get(p) not in (None, "USD", "shares", "USD/shares")}
+    if len(recent_core_ccys) == 1:
+        conv_ccys = set(filed_currencies)
+    elif len(recent_core_ccys) == 0 and len(filed_currencies) == 1:
+        conv_ccys = set(filed_currencies)
+    else:
+        conv_ccys = set()
+    fx_info, fx_unconverted_dates, fx_converted_periods = None, set(), set()
+    if conv_ccys:
+        rates_by_ccy = {}
+        for ccy in sorted(conv_ccys):
+            need_dates = sorted({p for k in monetary_keys for p, u in series_units.get(k, {}).items() if u == ccy})
+            rates = {}
+            for d in need_dates:
+                r = fx_rate(ccy, d)
+                if r is None: fx_unconverted_dates.add(d)
+                else: rates[d] = r
+            if rates: rates_by_ccy[ccy] = rates
+        if rates_by_ccy:
             converted_fields = []
             for k in monetary_keys:
                 for p, u in list(series_units.get(k, {}).items()):
-                    if u == ccy and p in rates and series[k].get(p) is not None:
-                        series[k][p] = series[k][p] * rates[p]
+                    r = (rates_by_ccy.get(u) or {}).get(p)
+                    if r is not None and series[k].get(p) is not None:
+                        series[k][p] = series[k][p] * r
+                        fx_converted_periods.add((k, p))
                         if k not in converted_fields: converted_fields.append(k)
-            fx_info = {"from_currency": ccy, "to_currency": "USD",
+            primary = next(iter(recent_core_ccys)) if recent_core_ccys else next(iter(conv_ccys))
+            fx_info = {"from_currency": primary, "to_currency": "USD",
                        "source": "frankfurter.app — ECB reference rates (closest business day to each period end)",
                        "converted_fields": converted_fields,
-                       "rates": rates}
+                       "rates": rates_by_ccy.get(primary, {}),
+                       "rates_by_currency": rates_by_ccy}
     # Did the engine rely on the issuer's own USD convenience translations?
     # (A core tag whose filed units include both USD and a foreign currency,
     # with USD the unit actually used — e.g. JD's CNY + USD.)
@@ -451,10 +502,28 @@ def main():
             print(f"dcf_engine.py: REFUSED — judgment.json {field}_override value {o['value']} is negative; "
                   "an override can never be negative (capex / SBC / share counts are >= 0). Fix judgment.json.", file=sys.stderr)
             sys.exit(1)
+    ov_fx_fields = set()
+    def _override_usd(field, p):
+        """The judgment override for `field` expressed in USD for period p.
+        v5.3.1 (Codex review of Stocks PR #1): override values are declared
+        in the filer's reporting currency (they are read from the filing),
+        but v5.3 inserted them verbatim into the USD-converted series —
+        silently corrupting owner's earnings on every FX-converted name.
+        Monetary overrides convert at the same period-end rate as the filed
+        series; share counts are never converted. None when there is no
+        override, or when that period's rate is unavailable (the fill does
+        not happen and the gap stands)."""
+        o = overrides.get(field)
+        if o is None: return None
+        if field == "shares" or not fx_info: return o["value"]
+        r = (fx_info.get("rates_by_currency", {}).get(fx_info["from_currency"]) or {}).get(p)
+        if r is None: return None
+        ov_fx_fields.add(field)
+        return o["value"] * r
+
     override_checks = {}
     for field, key in (("capex", "capex"), ("sbc", "sbc"), ("shares", "shares_diluted")):
-        _vals = [series[key][p] for p in sorted(series[key]) if series[key][p] is not None]
-        _lf = _vals[-1] if _vals else None
+        _lf = last_filed_raw.get(key)
         _o = overrides.get(field)
         if _o is None:
             continue
@@ -465,6 +534,7 @@ def main():
         else:
             _oob = not (0.1 <= abs(_o["value"] / _lf) <= 10)
         override_checks[field] = {"value": _o["value"], "last_filed_value": _lf,
+                                  "last_filed_unit": last_filed_unit.get(key),
                                   "out_of_band": bool(_oob),
                                   "ack_reason_present": bool(_o.get("ack_reason"))}
     filled = {"capex": [], "sbc": [], "shares": []}        # period ends an override filled
@@ -477,8 +547,9 @@ def main():
         if capex_raw is None:
             raw_missing["capex"].add(p)
         capex_tag_p = series_tags["capex"].get(p)
-        if capex_raw is None and "capex" in overrides:
-            capex = overrides["capex"]["value"]; capex_tag_p = "OVERRIDE"
+        capex_ov = _override_usd("capex", p)
+        if capex_raw is None and capex_ov is not None:
+            capex = capex_ov; capex_tag_p = "OVERRIDE"
             capex_assumed_zero = False; filled["capex"].append(p)
         else:
             capex_assumed_zero = capex_raw is None and g("ocf") is not None
@@ -487,8 +558,9 @@ def main():
         if sbc_raw is None:
             raw_missing["sbc"].add(p)
         sbc_tag_p = series_tags["sbc"].get(p)
-        if sbc_raw is None and "sbc" in overrides:
-            sbc = overrides["sbc"]["value"]; sbc_tag_p = "OVERRIDE"; filled["sbc"].append(p)
+        sbc_ov = _override_usd("sbc", p)
+        if sbc_raw is None and sbc_ov is not None:
+            sbc = sbc_ov; sbc_tag_p = "OVERRIDE"; filled["sbc"].append(p)
         else:
             sbc = sbc_raw
         sh_tag_p = series_tags["shares_diluted"].get(p)
@@ -531,6 +603,10 @@ def main():
                      "debt_current": g("debt_current"), "debt_lt": g("debt_lt"),
                      "ppe_net": g("ppe_net"), "equity": g("equity"), "tax": g("tax")})
 
+    if fx_info and ov_fx_fields:
+        # v5.3.1: monetary override values were converted from the reporting
+        # currency at period-end rates before being applied (see _override_usd).
+        fx_info["overrides_converted"] = sorted(ov_fx_fields)
     overrides_applied = []
     for field in ("capex", "sbc", "shares"):
         if filled[field]:
@@ -707,15 +783,12 @@ def main():
     # translations) or FX-converted above. Still a gap: mixed reporting
     # currencies in the last 3 FY, or a last-3-FY core fact whose period-end
     # rate was unavailable and so stayed unconverted.
-    if len(filed_currencies) > 1:
-        currency_gap = any(series_units.get(k, {}).get(p) not in (None, "USD")
-                            for k in ("revenue", "net_income", "ocf") for p in last3_periods)
-    elif len(filed_currencies) == 1:
-        _ccy = next(iter(filed_currencies))
-        currency_gap = any(series_units.get(k, {}).get(p) == _ccy and p in fx_unconverted_dates
-                           for k in ("revenue", "net_income", "ocf") for p in last3_periods)
-    else:
-        currency_gap = False
+    # v5.3.1: a last-3-FY core period is a currency gap iff it was filed in a
+    # non-USD unit and the FX pass did not convert it (mixed filer, or no ECB
+    # rate for its currency) — one rule for every filer shape.
+    currency_gap = any(series_units.get(k, {}).get(p) not in (None, "USD", "shares", "USD/shares")
+                       and (k, p) not in fx_converted_periods
+                       for k in ("revenue", "net_income", "ocf") for p in last3_periods)
     gap_fields, gap_years = [], {}
     for field in ("sbc", "capex", "shares", "ocf"):
         missing = [p[:4] for p in last3_periods if p in raw_missing[field]]
