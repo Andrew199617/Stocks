@@ -1,0 +1,840 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DCF Ranking — 2026-10-14</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"><style>
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#0f1115;color:#e6e6e6;margin:16px}
+h1{font-size:20px;margin:0 0 4px} .sub{color:#9aa;font-size:12px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+button,select,input{background:#1c1f26;color:#e6e6e6;border:1px solid #333;border-radius:8px;padding:7px 10px;font-size:14px}
+button.on{background:#2563eb;border-color:#2563eb}
+.twrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:1120px;table-layout:fixed;font-size:14px} th,td{padding:8px;border-bottom:1px solid #262a33;text-align:left;vertical-align:top;overflow-wrap:normal}
+td:last-child{overflow-wrap:break-word}
+td.num{text-align:right;white-space:nowrap} th.num{text-align:right}
+a.co{color:#e6e6e6;text-decoration:none} a.co:hover{color:#7dd3fc} .more{color:#7dd3fc}
+.mono{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+.detail{display:none;max-width:760px;margin:0 auto;font-family:'IBM Plex Sans',-apple-system,Segoe UI,Roboto,sans-serif;color:#ECEEF2}
+.detail.open{display:block}
+.dnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.dback{color:#C9D4FF;text-decoration:none;font-size:14px;font-weight:500}
+.dnavr{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#A0A8B6}
+.dcard{background:#14171D;border:1px solid #272C36;border-radius:16px;padding:18px;margin:14px 0}
+.dsec{margin:26px 0} .dh2{font-size:19px;font-weight:600;margin:0 0 6px}
+.dnote{font-size:13.5px;color:#A0A8B6;line-height:1.5;margin:4px 0} .dnote b{color:#ECEEF2;font-weight:500}
+.dk{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#A0A8B6}
+.verdict{border-radius:20px;padding:22px 20px;margin-top:0}
+.vhead{display:flex;align-items:center;gap:14px}
+.vtile{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:13px;color:#0C0E12;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:24px;font-weight:600;flex:0 0 auto}
+.vname{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.vtick{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:28px;font-weight:600}
+.vco{font-size:18px;font-weight:500}
+.vmain{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 36px;margin-top:20px}
+.virr{display:flex;flex-direction:column;gap:6px}
+.virr-v{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:56px;font-weight:500;line-height:1;letter-spacing:-.02em}
+.vgauge{flex:1 1 240px;display:flex;flex-direction:column;gap:8px;padding-bottom:4px}
+.vgauge-lbl{font-size:14px;font-weight:500}
+.gauge{position:relative;height:10px;border-radius:5px;background:#272C36}
+.gaugefill{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+.gaugetick{position:absolute;top:-5px;width:2px;height:20px;margin-left:-1px;border-radius:1px;background:#ECEEF2}
+.gaugescale{position:relative;height:16px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:#A0A8B6}
+.gaugescale span{position:absolute;top:0} .gs-mid{transform:translateX(-50%);color:#ECEEF2;white-space:nowrap}
+.vchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.dchip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#1B1F27;border:1px solid #2C323D;font-size:13px;color:#D4D8E0}
+.vtake{margin:20px 0 0;padding-top:20px;border-top:1px solid #272C36;font-size:16px;line-height:1.6;color:#D9DDE4}
+.p2box{background:#0E1B2E;border:1px solid #274b73;border-radius:16px;padding:14px 18px;margin:14px 0} .p2box p{margin:6px 0 0;line-height:1.55;font-size:14px;color:#D9DDE4}
+.pv{padding:18px 16px 14px}
+.pvplot{position:relative;height:128px}
+.pv-range-lbl{position:absolute;top:0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#A0A8B6;white-space:nowrap}
+.pv-range-val{position:absolute;top:17px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px;color:#C9D4FF;white-space:nowrap}
+.pv-track{position:absolute;left:0;right:0;top:58px;height:4px;border-radius:2px;background:#272C36}
+.pv-band{position:absolute;top:50px;height:20px;box-sizing:border-box;border-radius:5px;background:rgba(122,162,255,.18);border:1px solid rgba(122,162,255,.6)}
+.pv-ivmark{position:absolute;top:44px;width:2px;height:32px;margin-left:-1px;border-radius:1px;background:#ECEEF2}
+.pv-pricedot{position:absolute;top:53px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#FF8A8A;box-shadow:0 0 0 4px rgba(255,138,138,.18)}
+.pv-ivlbl{position:absolute;top:86px;margin-left:-1px;display:flex;flex-direction:column;gap:2px;white-space:nowrap}
+.pv-ivlbl span,.pv-pricelbl span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#A0A8B6}
+.pv-ivlbl b{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:15px;font-weight:500}
+.pv-pricelbl{position:absolute;right:0;top:86px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;white-space:nowrap}
+.pv-pricelbl b{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:15px;font-weight:500;color:#FF8A8A}
+.pv-axis{display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid #272C36;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;color:#A0A8B6}
+.dtiles{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.dtile{flex:1 1 160px;box-sizing:border-box;background:#14171D;border:1px solid #272C36;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.dv{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:20px;font-weight:500} .dv.pos{color:#4ade80} .dv.neg{color:#FF8A8A}
+.baseoe{display:flex;flex-direction:column;gap:8px}
+.baseoe-v{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:26px;font-weight:500;line-height:1.1}
+.baseoe-u{font-size:15px;color:#A0A8B6}
+.scncard{padding:6px 0 0;overflow:hidden}
+.scnrow{padding:14px 16px;border-bottom:1px solid #272C36;display:flex;flex-direction:column;gap:10px}
+.scnhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.scnname{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+.scndot{width:10px;height:10px;border-radius:3px}
+.prob{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;padding:2px 7px;border-radius:999px;background:#1B1F27;border:1px solid #2C323D;color:#C3C9D4;font-weight:400}
+.scnirr{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:18px;font-weight:500}
+.scnbar{position:relative;height:6px;border-radius:3px;background:#272C36}
+.scnfill{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.scntick{position:absolute;top:-4px;width:2px;height:14px;margin-left:-1px;border-radius:1px;background:#ECEEF2}
+.scnsub{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px;color:#A0A8B6}
+.scnsub b{font-family:'IBM Plex Mono',ui-monospace,monospace;color:#ECEEF2;font-weight:500}
+.scnfoot{padding:14px 16px;background:#1B1F27;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:14px;font-weight:600}
+.scnfoot span:last-child{font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:500;color:#D4D8E0}
+.moathead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px}
+.moattitle{display:flex;align-items:center;gap:12px} .moattitle .dh2{margin:0}
+.moatscore{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:17px;font-weight:500}
+.mdots{display:inline-flex;gap:3px} .mdot{width:7px;height:7px;border-radius:50%;background:#333A46} .mdot.on{background:#ECEEF2}
+.mcols{display:flex;flex-wrap:wrap;gap:16px 28px;margin-top:16px}
+.mcol{flex:1 1 260px;display:flex;flex-direction:column;gap:10px}
+.mk{font-size:11px;letter-spacing:.08em;text-transform:uppercase} .mk.pos{color:#5BD69C} .mk.neg{color:#FF8A8A}
+.mcol ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5;color:#D9DDE4}
+.mcol li{display:flex;gap:10px} .sign{font-family:'IBM Plex Mono',ui-monospace,monospace} .sign.pos{color:#5BD69C} .sign.neg{color:#FF8A8A}
+.dimp{color:#D9DDE4;font-size:14.5px;line-height:1.6;margin:14px 0 0}
+.histcard{padding:16px}
+.hlegend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:#A0A8B6;margin-bottom:12px}
+.hlegend .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px} .sw.cons{background:#7484A0} .sw.maint{background:#C9D4FF}
+.hunit{margin-left:auto;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px}
+.hchart{position:relative;height:160px;display:flex;gap:8px}
+.hzero{position:absolute;left:0;right:0;top:80px;height:1px;background:#3A4252}
+.hcol{flex:1 1 0;position:relative;min-width:0}
+.hbar{position:absolute;width:32%;border-radius:3px} .hbar.cons{left:16%;background:#7484A0} .hbar.maint{left:52%;background:#C9D4FF}
+.hlbl{position:absolute;left:50%;top:0;transform:translateX(-30%);font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;color:#ECEEF2;white-space:nowrap}
+.hyears{display:flex;gap:8px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:#A0A8B6;margin-top:6px}
+.hyears span{flex:1 1 0;text-align:center}
+table.mini{min-width:560px;table-layout:auto;font-size:13px} table.mini th,table.mini td{padding:6px 8px} table.mini td.num{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.histcard .twrap{overflow-x:auto;margin-top:12px}
+.fchips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.fchip{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;padding:5px 9px;border-radius:6px;background:#1B1F27;border:1px solid #2C323D;color:#D4D8E0}
+.fcount{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:15px;font-weight:500;color:#A0A8B6}
+.dfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding-top:16px;border-top:1px solid #272C36;font-size:13px;color:#A0A8B6;margin-top:8px}
+@media (max-width:760px){
+#t{min-width:0;table-layout:auto}
+#t thead{display:none}
+#t,#t tbody{display:block}
+#t tr{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-items:start;border:1px solid #262a33;border-radius:12px;padding:10px 12px;margin-bottom:10px;background:#14161c}
+#t tr[data-p2="changed"]{background:#0d1f2c;border-color:#155e75}
+#t td{display:block;border-bottom:none;padding:2px 0;text-align:left!important;white-space:normal!important}
+#t td:nth-child(1),#t td:nth-child(9),#t td:nth-child(11){grid-column:1/-1}
+#t td::before{display:block;font-size:11px;color:#9aa;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1px}
+#t td:nth-child(2)::before{content:"Tier"} #t td:nth-child(3)::before{content:"Moat"} #t td:nth-child(4)::before{content:"Wtd IRR"} #t td:nth-child(5)::before{content:"Price"} #t td:nth-child(6)::before{content:"IV @15%"} #t td:nth-child(7)::before{content:"Upside @15%"} #t td:nth-child(8)::before{content:"Mkt Cap"} #t td:nth-child(9)::before{content:"Sector"} #t td:nth-child(10)::before{content:"Conf."} #t td:nth-child(11)::before{content:"Take"}
+.detail .twrap{overflow-x:auto}
+} .pos{color:#4ade80} .neg{color:#f87171}
+.badge{color:#fff;border-radius:6px;padding:2px 9px;font-weight:700}
+.p2chg{display:inline-block;background:#0b3b52;color:#7dd3fc;border:1px solid #155e75;border-radius:6px;padding:1px 7px;font-size:12.5px;margin:0 0 2px}
+.ovbadge{display:inline-block;background:#3a2b0b;color:#fbbf24;border:1px solid #8a6d1f;border-radius:6px;padding:1px 7px;font-size:12.5px;margin:0 4px 2px 0}
+.tobadge{display:inline-block;background:#2e1065;color:#c4b5fd;border:1px solid #6d28d9;border-radius:6px;padding:1px 7px;font-size:12.5px;margin:0 4px 2px 0}
+.ovcard{padding:16px 18px} .ovcard .mini{min-width:0} .ovcard td{white-space:normal}
+tr[data-p2="changed"] td:first-child{box-shadow:inset 3px 0 0 #38bdf8}
+details.howto{margin:2px 0 6px} details.howto summary{color:#9aa;font-size:12.5px;cursor:pointer} details.howto p{color:#9aa;font-size:12.5px;line-height:1.5;margin:6px 0 0}
+details.stalebox{margin:18px 0 6px;border:1px dashed #4b5563;border-radius:10px;padding:10px 12px;background:#14161c}
+details.stalebox summary{color:#fbbf24;font-size:14px;font-weight:600;cursor:pointer}
+details.stalebox p{margin:8px 0}
+table.stalet{min-width:0;table-layout:auto;font-size:13px} table.stalet th,table.stalet td{padding:5px 8px}
+.stalebadge{background:#4b5563!important;opacity:.75}
+td:last-child{line-height:1.45}
+</style></head><body>
+<h1>Owner's-Earnings DCF Ranking — 2026-10-14</h1>
+<div class="sub">Sweep progress: 7 analyzed of 2617 companies under $40B + pilot exceptions. Ranked by probability-weighted implied IRR at current price. Tap a company name for its detail page.</div>
+<details class="howto"><summary>How to read this</summary><p>Each company gets a five-scenario owner's-earnings DCF (super bear / bear / base / bull / super bull, each with an assigned likelihood); growth fades over a moat-driven competitive advantage period. <b>Wtd IRR</b> = probability-weighted expected annual return at the current price. <b>IV</b> = probability-weighted intrinsic value per share at a 15% discount rate; <b>Upside</b> = IV vs price. Tiers: S ≥25% · A 20-25% · B 15-20% (clears the 15% hurdle) · C 10-15% · D &lt;10% · F no positive owner's earnings. Screening-grade standardized DCF — read the company folder's analysis.md before acting.</p></details>
+<div id="listView">
+<div class="controls">
+<button data-f="all" class="on">All</button><button data-f="S">S ≥25%</button><button data-f="A">A 20%+</button><button data-f="B">B 15%+</button><button data-f="C">C</button><button data-f="D">D</button><button data-f="F">F</button>
+<input id="q" placeholder="Search ticker / name…" size="24"><span class="sub" id="count"></span>
+</div>
+<div class="twrap"><table id="t"><colgroup><col style="width:11%"><col style="width:4.5%"><col style="width:5%"><col style="width:6%"><col style="width:7%"><col style="width:8%"><col style="width:7%"><col style="width:7%"><col style="width:9%"><col style="width:5.5%"><col style="width:30%"></colgroup><thead><tr><th>Company</th><th>Tier</th><th class="num">Moat</th><th class="num">Wtd IRR</th><th class="num">Price</th><th class="num">Wtd IV @15%</th><th class="num">Upside @15%</th><th class="num">Mkt Cap</th><th>Sector</th><th>Conf.</th><th>Take</th></tr></thead>
+<tbody><tr data-tier="B" data-sector="Technology / Advertising software" data-conf="medium" data-search="app applovin corporation">
+<td><a class="co" href="#d-APP" onclick="return showDetail('APP')"><b>APP</b></a><br><span class="sub">AppLovin Corporation · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#16a34a">B</span></td>
+<td class="num">6/10</td>
+<td class="num">18.4%</td>
+<td class="num">$272.28</td>
+<td class="num">$376.12</td>
+<td class="num pos">+38%</td>
+<td class="num">$93.11B</td>
+<td>Technology / Advertising software</td>
+<td>medium</td>
+<td><span class="ovbadge">capex: AI estimate</span><br>Elite owner&#x27;s-earnings machine, moat 6/10 — clears 15% on current TTM numbers (18.4% weighted, IV $376 vs $272) but the verdict is assumption-dominated (methods span C to A); size it like a B, not an A.<br><span class="sub">Scenarios: SB 10% · B 25% · Base 35% · Bull 20% · SBu 10%</span><br><span class="sub">⚠ 8 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-14 · folder: stocks/APP/</span></td></tr>
+<tr data-tier="C" data-sector="Communication Services / Social media &amp; advertising" data-conf="medium" data-search="rddt reddit, inc.">
+<td><a class="co" href="#d-RDDT" onclick="return showDetail('RDDT')"><b>RDDT</b></a><br><span class="sub">Reddit, Inc. · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#d97706">C</span></td>
+<td class="num">6/10</td>
+<td class="num">12.8%</td>
+<td class="num">$159.93</td>
+<td class="num">$122.98</td>
+<td class="num neg">-23%</td>
+<td class="num">$32.32B</td>
+<td>Communication Services / Social media &amp; advertising</td>
+<td>medium</td>
+<td>Genuinely inflected, high-quality community platform, moat 6/10 — TTM owner&#x27;s earnings of $3.36/share are real, but at $159.93 (47.5× TTM OE) the weighted IRR is 12.7% (IV@15% $123); it clears the 15% hurdle only below ~$123, and with a margin of safety below ~$100.<br><span class="sub">Scenarios: SB 10% · B 25% · Base 30% · Bull 25% · SBu 10%</span><br><span class="sub">⚠ 5 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-13 · folder: stocks/RDDT/</span></td></tr>
+<tr data-tier="D" data-sector="Restaurants / Fast-casual dining" data-conf="medium" data-search="cmg chipotle mexican grill, inc.">
+<td><a class="co" href="#d-CMG" onclick="return showDetail('CMG')"><b>CMG</b></a><br><span class="sub">Chipotle Mexican Grill, Inc. · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#b45309">D</span></td>
+<td class="num">6/10</td>
+<td class="num">9.6%</td>
+<td class="num">$30.35</td>
+<td class="num">$16.06</td>
+<td class="num neg">-47%</td>
+<td class="num">$40.75B</td>
+<td>Restaurants / Fast-casual dining</td>
+<td>medium</td>
+<td>Elite fast-casual operator, moat 6/10, net cash — but at $30.35 the price already pays for a full margin recovery: weighted IRR 9.6% (Tier D), weighted IV@15% $16.06; clears 15% only below ~$16.<br><span class="sub">Scenarios: SB 10% · B 25% · Base 30% · Bull 25% · SBu 10%</span><br><span class="sub">⚠ 3 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-14 · folder: stocks/CMG/</span></td></tr>
+<tr data-tier="D" data-sector="Technology" data-conf="medium" data-search="duol duolingo, inc.">
+<td><a class="co" href="#d-DUOL" onclick="return showDetail('DUOL')"><b>DUOL</b></a><br><span class="sub">Duolingo, Inc. · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#b45309">D</span></td>
+<td class="num">5/10</td>
+<td class="num">9.4%</td>
+<td class="num">$140.10</td>
+<td class="num">$72.54</td>
+<td class="num neg">-48%</td>
+<td class="num">$6.77B</td>
+<td>Technology</td>
+<td>medium</td>
+<td>High-quality learning platform, moat 5/10 — but growth has decelerated to guided ~16% revenue / ~11% bookings with SBC eating a third of operating cash flow, so at $140.10 (26.6x TTM OE of $5.26/share) the weighted IRR is only 9.4% (IV@15% $72.54); it clears the 15% hurdle only at ~$73, nearer ~$54 with a margin of safety.<br><span class="sub">Scenarios: SB 15% · B 30% · Base 30% · Bull 17% · SBu 8%</span><br><span class="sub">⚠ 6 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-13 · folder: stocks/DUOL/</span></td></tr>
+<tr data-tier="D" data-sector="Technology — game engine &amp; mobile advertising software" data-conf="low" data-search="u unity software inc.">
+<td><a class="co" href="#d-U" onclick="return showDetail('U')"><b>U</b></a><br><span class="sub">Unity Software Inc. · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#b45309">D</span></td>
+<td class="num">5/10</td>
+<td class="num">5.0%</td>
+<td class="num">$46.63</td>
+<td class="num">$7.73</td>
+<td class="num neg">-83%</td>
+<td class="num">$19.63B</td>
+<td>Technology — game engine &amp; mobile advertising software</td>
+<td>low</td>
+<td>Real Vector-led turnaround, moat 5/10 — but TTM owner&#x27;s earnings are just $0.45/share after a $342M SBC bill, so at $46.63 the weighted IRR is 5.0% (IV@15% $7.73); clears the 15% hurdle only below ~$7.73, and even the super-bull case alone clears only below $15.20.<br><span class="sub">Scenarios: SB 10% · B 20% · Base 30% · Bull 25% · SBu 15%</span><br><span class="sub">⚠ 5 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-13 · folder: stocks/U/</span></td></tr>
+<tr data-tier="F" data-sector="Technology" data-conf="medium" data-search="snap snap inc">
+<td><a class="co" href="#d-SNAP" onclick="return showDetail('SNAP')"><b>SNAP</b></a><br><span class="sub">Snap Inc · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#6b7280">F</span></td>
+<td class="num">4/10</td>
+<td class="num">—</td>
+<td class="num">$6.49</td>
+<td class="num">—</td>
+<td class="num neg">—</td>
+<td class="num">$11.00B</td>
+<td>Technology</td>
+<td>medium</td>
+<td>Real, improving social platform, moat 4/10 — but SBC of ~$1.03B TTM exceeds all of its $919M TTM operating cash flow, so owner&#x27;s earnings are negative in all 10 years of history (-$0.19/share TTM) and it cannot clear the 15% hurdle at any price on an OE DCF; at $6.49 you pay for SBC discipline that has not yet shown up in a filing.<br><span class="sub">⚠ 3 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-13 · folder: stocks/SNAP/</span></td></tr>
+<tr data-tier="F" data-sector="Technology" data-conf="medium" data-search="ttwo take-two interactive software, inc.">
+<td><a class="co" href="#d-TTWO" onclick="return showDetail('TTWO')"><b>TTWO</b></a><br><span class="sub">Take-Two Interactive Software, Inc. · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#6b7280">F</span></td>
+<td class="num">6/10</td>
+<td class="num">—</td>
+<td class="num">$200.32</td>
+<td class="num">—</td>
+<td class="num neg">—</td>
+<td class="num">$36.84B</td>
+<td>Technology</td>
+<td>medium</td>
+<td>Elite franchise portfolio, moat 6/10, priced entirely on a launch that hasn&#x27;t filed yet — owner&#x27;s earnings are negative on normalized (-$2.90/share) and TTM (-$0.07/share) bases with only 1 positive year in 5, so it cannot clear the 15% hurdle at $200.32 on an OE DCF today; even capitalising that single positive year gives IV@15% of just $10.40.<br><span class="sub">⚠ 2 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-13 · folder: stocks/TTWO/</span></td></tr>
+<tr data-tier="F" data-sector="Technology" data-conf="low" data-search="fig figma, inc.">
+<td><a class="co" href="#d-FIG" onclick="return showDetail('FIG')"><b>FIG</b></a><br><span class="sub">Figma, Inc. · <span class="more">details ›</span></span></td>
+<td><span class="badge" style="background:#6b7280">F</span></td>
+<td class="num">7/10</td>
+<td class="num">—</td>
+<td class="num">$21.76</td>
+<td class="num">—</td>
+<td class="num neg">—</td>
+<td class="num">$7.33B</td>
+<td>Technology</td>
+<td>low</td>
+<td>Category-defining design platform, moat 7/10, growing 41-48% with 136% NDR and ~$1.7B cash and marketable securities — but owner&#x27;s earnings are negative under every filed base (TTM -$2.74/share as reported; -$0.89/share even excluding the $975.7M one-time IPO RSU catch-up) because recurring SBC runs ~$700M/yr against ~$249M of TTM operating cash flow; it cannot clear the 15% hurdle at any price on an OE DCF until SBC falls below ~$232M/yr or cash generation roughly triples.<br><span class="sub">⚠ 4 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-14 · folder: stocks/FIG/</span></td></tr>
+</tbody></table></div>
+</div>
+<details class="stalebox"><summary>Pre-v5 results — re-run pending (32)</summary>
+<p class="sub">These scores were produced by the pre-v5 engine, before the data gate existed. They are shown for reference only and are <b>not current results</b> — every one is queued for a v5 re-run and leaves this list when its v5 score lands.</p>
+<div class="twrap"><table class="stalet"><thead><tr><th>Ticker</th><th>Company</th><th>Old tier</th><th class="num">Old Wtd IRR</th><th>Scored</th></tr></thead><tbody><tr><td><b>PCG</b></td><td>PG&amp;E Corporation</td><td><span class="badge stalebadge">B</span></td><td class="num">18.2%</td><td>2026-10-13</td></tr>
+<tr><td><b>HIG</b></td><td>The Hartford Insurance Group, Inc.</td><td><span class="badge stalebadge">B</span></td><td class="num">17.1%</td><td>2026-10-13</td></tr>
+<tr><td><b>PRU</b></td><td>Prudential Financial, Inc.</td><td><span class="badge stalebadge">B</span></td><td class="num">16.9%</td><td>2026-10-13</td></tr>
+<tr><td><b>ROP</b></td><td>Roper Technologies, Inc.</td><td><span class="badge stalebadge">C</span></td><td class="num">12.8%</td><td>2026-10-13</td></tr>
+<tr><td><b>CCL</b></td><td>Carnival Corp Ltd.</td><td><span class="badge stalebadge">C</span></td><td class="num">12.2%</td><td>2026-10-13</td></tr>
+<tr><td><b>ARES</b></td><td>Ares Management Corporation</td><td><span class="badge stalebadge">C</span></td><td class="num">11.8%</td><td>2026-10-13</td></tr>
+<tr><td><b>DHI</b></td><td>D.R. Horton, Inc.</td><td><span class="badge stalebadge">C</span></td><td class="num">10.3%</td><td>2026-10-13</td></tr>
+<tr><td><b>CBOE</b></td><td>Cboe Global Markets, Inc.</td><td><span class="badge stalebadge">C</span></td><td class="num">10.2%</td><td>2026-10-13</td></tr>
+<tr><td><b>UAL</b></td><td>United Airlines Holdings, Inc.</td><td><span class="badge stalebadge">C</span></td><td class="num">10.1%</td><td>2026-10-13</td></tr>
+<tr><td><b>PAYX</b></td><td>Paychex, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">10.0%</td><td>2026-10-13</td></tr>
+<tr><td><b>PEG</b></td><td>Public Service Enterprise Group Incorporated</td><td><span class="badge stalebadge">D</span></td><td class="num">9.9%</td><td>2026-10-13</td></tr>
+<tr><td><b>UI</b></td><td>Ubiquiti Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">9.9%</td><td>2026-10-13</td></tr>
+<tr><td><b>IBKR</b></td><td>Interactive Brokers Group, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">9.8%</td><td>2026-10-13</td></tr>
+<tr><td><b>EME</b></td><td>EMCOR Group, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">9.6%</td><td>2026-10-13</td></tr>
+<tr><td><b>WEC</b></td><td>WEC ENERGY GROUP, INC.</td><td><span class="badge stalebadge">D</span></td><td class="num">9.2%</td><td>2026-10-13</td></tr>
+<tr><td><b>ADM</b></td><td>Archer-Daniels-Midland Company</td><td><span class="badge stalebadge">D</span></td><td class="num">9.1%</td><td>2026-10-13</td></tr>
+<tr><td><b>ED</b></td><td>Consolidated Edison, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">9.0%</td><td>2026-10-13</td></tr>
+<tr><td><b>KR</b></td><td>The Kroger Co.</td><td><span class="badge stalebadge">D</span></td><td class="num">8.8%</td><td>2026-10-13</td></tr>
+<tr><td><b>SYY</b></td><td>Sysco Corporation</td><td><span class="badge stalebadge">D</span></td><td class="num">8.2%</td><td>2026-10-13</td></tr>
+<tr><td><b>YUM</b></td><td>Yum! Brands Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">8.1%</td><td>2026-10-13</td></tr>
+<tr><td><b>KVUE</b></td><td>Kenvue Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">7.7%</td><td>2026-10-13</td></tr>
+<tr><td><b>CCI</b></td><td>Crown Castle Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">7.5%</td><td>2026-10-13</td></tr>
+<tr><td><b>WCN</b></td><td>Waste Connections, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">7.1%</td><td>2026-10-13</td></tr>
+<tr><td><b>CBRE</b></td><td>CBRE Group, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">6.4%</td><td>2026-10-13</td></tr>
+<tr><td><b>MLM</b></td><td>Martin Marietta Materials, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">6.1%</td><td>2026-10-13</td></tr>
+<tr><td><b>ODFL</b></td><td>Old Dominion Freight Line, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">6.0%</td><td>2026-10-13</td></tr>
+<tr><td><b>RBLX</b></td><td>Roblox Corporation</td><td><span class="badge stalebadge">D</span></td><td class="num">5.7%</td><td>2026-10-13</td></tr>
+<tr><td><b>EL</b></td><td>Estee Lauder Companies Inc. (The)</td><td><span class="badge stalebadge">D</span></td><td class="num">5.5%</td><td>2026-10-13</td></tr>
+<tr><td><b>STLD</b></td><td>Steel Dynamics, Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">5.3%</td><td>2026-10-13</td></tr>
+<tr><td><b>ZS</b></td><td>Zscaler Inc.</td><td><span class="badge stalebadge">D</span></td><td class="num">3.3%</td><td>2026-10-13</td></tr>
+<tr><td><b>AXON</b></td><td>Axon Enterprise, Inc.</td><td><span class="badge stalebadge">F</span></td><td class="num">—</td><td>2026-10-13</td></tr>
+<tr><td><b>IRM</b></td><td>Iron Mountain Incorporated</td><td><span class="badge stalebadge">F</span></td><td class="num">—</td><td>2026-10-13</td></tr>
+</tbody></table></div>
+</details>
+<div class="detail" id="d-APP">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-14</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#5BD69C">B</span>
+<div class="vtitle"><div class="vname"><span class="vtick">APP</span><span class="vco">AppLovin Corporation</span></div>
+<span class="dnote">Technology / Advertising software · $93.11B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">18.4%</span><span class="dnote">Probability-weighted IRR at $272.28</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#5BD69C">3.4 pts above the hurdle</span>
+<div class="gauge"><div class="gaugefill" style="width:61.4%;background:#5BD69C"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier B</span><span class="dchip">Moat 6/10</span><span class="dchip">Advantage period 9.8 yrs</span><span class="dchip">Confidence medium</span><span class="dchip">capex: AI estimate</span></div>
+<p class="vtake">Elite owner&#x27;s-earnings machine, moat 6/10 — clears 15% on current TTM numbers (18.4% weighted, IV $376 vs $272) but the verdict is assumption-dominated (methods span C to A); size it like a B, not an A.</p>
+</section>
+
+<section class="dsec"><h2 class="dh2">Price vs. value</h2>
+<p class="dnote">Every scenario's value at a 15% discount rate, against today's price.</p>
+<div class="dcard pv">
+<div class="pvplot">
+<span class="pv-range-lbl" style="left:13.40%">Scenario range</span>
+<span class="pv-range-val" style="left:13.40%">$134.02 – $810.94</span>
+<div class="pv-track"></div>
+<div class="pv-band" style="left:13.40%;width:67.69%"></div>
+<div class="pv-ivmark" style="left:37.61%"></div>
+<div class="pv-pricedot" style="left:27.23%"></div>
+<div class="pv-ivlbl" style="left:37.61%"><span>Weighted IV</span><b>$376.12</b></div>
+<div class="pv-pricelbl"><span>Price</span><b>$272.28</b></div>
+</div>
+<div class="pv-axis"><span>$0</span><span>$200</span><span>$400</span><span>$600</span><span>$800</span><span>$1,000</span></div>
+</div>
+<p class="dnote">Today's price is 0.7× the weighted value and 0.3× the super-bull case. At a 12% discount rate, value is $535.47.</p></section>
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$272.28</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">$376.12</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">$535.47</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv pos">+38%</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">17.5%</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">4.6%</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">26.2%</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">6.1×</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$12.51<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: ttm_json. Market cap $93.11B.</p></div></section>
+<section class="dsec"><h2 class="dh2">Overrides</h2>
+<p class="dnote">Filing gaps filled by a main-agent judgment override — an override never replaces a filed value.</p>
+<div class="dcard ovcard"><div class="twrap"><table class="mini"><thead><tr><th>Field</th><th class="num">Value</th><th>Kind</th><th>Source</th><th>Periods filled</th></tr></thead><tbody><tr><td>capex</td><td class='num'>$19M</td><td>estimate</td><td>Higher of the last tagged FY2024 capex ($4.8M, FY24 10-K) and the v4 TTM estimate (~$19M), per Andrew&#x27;s conservative rule (2026-10-13)</td><td>2025-12-31</td></tr></tbody></table></div>
+<p class="dnote">Measured impact on the TTM base actually used (no override → with override): base OE/share $12.56 → $12.51 (-0.45%) · weighted IRR 18.5% → 18.4% (-0.05pp)</p><p class="dnote"><b>This override is the only reason this company has a tier.</b> Without it, the filing gap blocks scoring entirely — the judgment call is the whole verdict.</p><p class="dnote"><b>capex:</b> AppLovin tags no capex from FY2025 onward under any candidate tag. Tagged capex ran $0.7–4.8M/yr FY19–24 vs OCF in the billions — structurally immaterial; $19M is ~4x the last filed figure and still moves base OE by &lt;0.5%.</p></div></section>
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">10%</span></span><span class="scnirr">9.1%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:30.5%;background:#5BD69C"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>15.0%</b></span><span>OE multiple <b>0.75×</b></span><span>IV @15% <b>$134.02</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">25%</span></span><span class="scnirr">12.9%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:43.1%;background:#5BD69C"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>22.0%</b></span><span>OE multiple <b>0.9×</b></span><span>IV @15% <b>$218.82</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">35%</span></span><span class="scnirr">17.5%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:58.2%;background:#5BD69C"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>30.0%</b></span><span>OE multiple <b>1.0×</b></span><span>IV @15% <b>$344.10</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">20%</span></span><span class="scnirr">22.7%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:75.7%;background:#5BD69C"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>38.0%</b></span><span>OE multiple <b>1.1×</b></span><span>IV @15% <b>$532.44</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">10%</span></span><span class="scnirr">28.6%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:95.3%;background:#5BD69C"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>45.0%</b></span><span>OE multiple <b>1.25×</b></span><span>IV @15% <b>$810.94</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV $376.12 · IRR 18.4%</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">6/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">9.8 yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>AXON model plus the data flywheel from MAX mediation&#x27;s installed publisher base</span></li><li><span class="sign pos">+</span><span>Deep integrations and real switching friction for publishers and advertisers</span></li><li><span class="sign pos">+</span><span>Proven pricing power — net revenue per install compounding</span></li><li><span class="sign pos">+</span><span>Asset-light cost structure rivals can&#x27;t easily undercut</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Raw inputs (publisher supply, training data) are bought, not owned</span></li><li><span class="sign neg">−</span><span>Model lead must be re-earned every quarter (Q2 2026 showed a model-timing slip)</span></li><li><span class="sign neg">−</span><span>Unity Vector is growing fast off the same supply</span></li><li><span class="sign neg">−</span><span>No owned consumer surface</span></li><li><span class="sign neg">−</span><span>Hostage to Apple/Google privacy rules</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:77px;height:3px"></div><div class="hbar maint" style="top:78px;height:2px"></div></div><div class="hcol"><div class="hbar cons" style="top:76px;height:4px"></div><div class="hbar maint" style="top:80px;height:17px"></div></div><div class="hcol"><div class="hbar cons" style="top:76px;height:4px"></div><div class="hbar maint" style="top:58px;height:22px"></div></div><div class="hcol"><div class="hbar cons" style="top:67px;height:13px"></div><div class="hbar maint" style="top:65px;height:15px"></div></div><div class="hcol"><div class="hbar cons" style="top:47px;height:33px"></div><div class="hbar maint" style="top:44px;height:36px"></div></div><div class="hcol"><div class="hbar cons" style="top:8px;height:72px"></div><div class="hbar maint" style="top:13px;height:67px"></div><span class="hlbl">+3.46</span></div></div>
+<div class="hyears"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2019</td><td class='num'>$994M</td><td class='num'>$198M</td><td class='num'>$3M</td><td class='num'>$10M</td><td class='num'>$185M</td><td class='num'>$208M</td></tr><tr><td>2020</td><td class='num'>$1.45B</td><td class='num'>$223M</td><td class='num'>$3M</td><td class='num'>$62M</td><td class='num'>$157M</td><td class='num'>$127M</td></tr><tr><td>2021</td><td class='num'>$2.79B</td><td class='num'>$362M</td><td class='num'>$1M</td><td class='num'>$133M</td><td class='num'>$227M</td><td class='num'>$-887M</td></tr><tr><td>2022</td><td class='num'>$2.82B</td><td class='num'>$413M</td><td class='num'>$662,000</td><td class='num'>$192M</td><td class='num'>$220M</td><td class='num'>$1.14B</td></tr><tr><td>2023</td><td class='num'>$1.84B</td><td class='num'>$1.06B</td><td class='num'>$4M</td><td class='num'>$363M</td><td class='num'>$694M</td><td class='num'>$770M</td></tr><tr><td>2024</td><td class='num'>$3.22B</td><td class='num'>$2.10B</td><td class='num'>$5M</td><td class='num'>$369M</td><td class='num'>$1.72B</td><td class='num'>$1.85B</td></tr><tr><td>2025</td><td class='num'>$5.48B</td><td class='num'>$3.97B</td><td class='num'>$19M</td><td class='num'>$210M</td><td class='num'>$3.74B</td><td class='num'>$3.46B</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">8</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">BUYBACK_TAILWIND</span><span class="fchip">BASIS_BREAK_SUSPECT</span><span class="fchip">OE_VOLATILE</span><span class="fchip">NI_OCF_DIVERGENCE</span><span class="fchip">OVERRIDE_APPLIED</span><span class="fchip">BASE_DIVERGENCE</span><span class="fchip">WIDE_SCENARIO_SPREAD</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/APP/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/APP/analysis.md</span></footer>
+</div><div class="detail" id="d-RDDT">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-13</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#F2B84B">C</span>
+<div class="vtitle"><div class="vname"><span class="vtick">RDDT</span><span class="vco">Reddit, Inc.</span></div>
+<span class="dnote">Communication Services / Social media &amp; advertising · $32.32B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">12.8%</span><span class="dnote">Probability-weighted IRR at $159.93</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#F2B84B">2.2 pts below the hurdle</span>
+<div class="gauge"><div class="gaugefill" style="width:42.5%;background:#F2B84B"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier C</span><span class="dchip">Moat 6/10</span><span class="dchip">Advantage period 9.8 yrs</span><span class="dchip">Confidence medium</span></div>
+<p class="vtake">Genuinely inflected, high-quality community platform, moat 6/10 — TTM owner&#x27;s earnings of $3.36/share are real, but at $159.93 (47.5× TTM OE) the weighted IRR is 12.7% (IV@15% $123); it clears the 15% hurdle only below ~$123, and with a margin of safety below ~$100.</p>
+</section>
+
+<section class="dsec"><h2 class="dh2">Price vs. value</h2>
+<p class="dnote">Every scenario's value at a 15% discount rate, against today's price.</p>
+<div class="dcard pv">
+<div class="pvplot">
+<span class="pv-range-lbl" style="left:17.08%">Scenario range</span>
+<span class="pv-range-val" style="left:17.08%">$51.24 – $236.90</span>
+<div class="pv-track"></div>
+<div class="pv-band" style="left:17.08%;width:61.89%"></div>
+<div class="pv-ivmark" style="left:40.99%"></div>
+<div class="pv-pricedot" style="left:53.31%"></div>
+<div class="pv-ivlbl" style="left:40.99%"><span>Weighted IV</span><b>$122.98</b></div>
+<div class="pv-pricelbl"><span>Price</span><b>$159.93</b></div>
+</div>
+<div class="pv-axis"><span>$0</span><span>$60</span><span>$120</span><span>$180</span><span>$240</span><span>$300</span></div>
+</div>
+<p class="dnote">Today's price is 1.3× the weighted value and 0.7× the super-bull case. At a 12% discount rate, value is $176.38.</p></section>
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$159.93</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">$122.98</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">$176.38</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv neg">-23%</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">12.2%</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">2.1%</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">27.1%</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">4.6×</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$3.36<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: agent_supplied_ttm_override. Market cap $32.32B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">10%</span></span><span class="scnirr">7.2%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:24.0%;background:#F2B84B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>23.0%</b></span><span>OE multiple <b>0.75×</b></span><span>IV @15% <b>$51.24</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">25%</span></span><span class="scnirr">9.9%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:33.0%;background:#F2B84B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>30.0%</b></span><span>OE multiple <b>0.9×</b></span><span>IV @15% <b>$83.29</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">30%</span></span><span class="scnirr">12.2%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:40.6%;background:#F2B84B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>35.0%</b></span><span>OE multiple <b>1.0×</b></span><span>IV @15% <b>$114.64</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">25%</span></span><span class="scnirr">14.8%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:49.2%;background:#F2B84B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>40.0%</b></span><span>OE multiple <b>1.1×</b></span><span>IV @15% <b>$155.79</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">10%</span></span><span class="scnirr">18.9%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:63.0%;background:#F2B84B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>47.0%</b></span><span>OE multiple <b>1.25×</b></span><span>IV @15% <b>$236.90</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV $122.98 · IRR 12.8%</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">6/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">9.8 yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>Unique human-conversation corpus across 100k+ self-moderated communities — AI labs pay to license it</span></li><li><span class="sign pos">+</span><span>Community network effects with volunteer moderation — expensive to replicate, archive compounds</span></li><li><span class="sign pos">+</span><span>Emerging pricing power — global ARPU +36% YoY, U.S. +51% (Q2 2026)</span></li><li><span class="sign pos">+</span><span>Asset-light economics — ~91% gross margin, near-zero capex</span></li><li><span class="sign pos">+</span><span>International runway — machine translation, intl revenue +84% YoY</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Distribution rented from Google — logged-out/search traffic at risk from AI Overviews; U.S. logged-in DAUq nearly flat</span></li><li><span class="sign neg">−</span><span>No user lock-in — multi-homing across TikTok/YouTube/Discord/X, zero switching costs</span></li><li><span class="sign neg">−</span><span>Ad business subscale vs Meta/Google; intl ARPU $2.26 vs U.S. $11.85 unproven to converge</span></li><li><span class="sign neg">−</span><span>Data-licensing revenue concentrated in a few AI counterparties, renewals uncertain</span></li><li><span class="sign neg">−</span><span>SBC load — $338M TTM, ~33% of operating cash flow</span></li><li><span class="sign neg">−</span><span>Dependence on volunteer moderators — community can revolt (2023 API protests)</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:80px;height:11px"></div><div class="hbar maint" style="top:80px;height:11px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:9px"></div><div class="hbar maint" style="top:80px;height:6px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:42px"></div><div class="hbar maint" style="top:80px;height:72px"></div></div><div class="hcol"><div class="hbar cons" style="top:56px;height:24px"></div><div class="hbar maint" style="top:72px;height:8px"></div><span class="hlbl">+0.11</span></div></div>
+<div class="hyears"><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2022</td><td class='num'>$667M</td><td class='num'>$-94M</td><td class='num'>$6M</td><td class='num'>$55M</td><td class='num'>$-156M</td><td class='num'>$-157M</td></tr><tr><td>2023</td><td class='num'>$804M</td><td class='num'>$-75M</td><td class='num'>$10M</td><td class='num'>$48M</td><td class='num'>$-132M</td><td class='num'>$-87M</td></tr><tr><td>2024</td><td class='num'>$1.30B</td><td class='num'>$222M</td><td class='num'>$6M</td><td class='num'>$802M</td><td class='num'>$-586M</td><td class='num'>$-1.02B</td></tr><tr><td>2025</td><td class='num'>$2.20B</td><td class='num'>$691M</td><td class='num'>$7M</td><td class='num'>$343M</td><td class='num'>$341M</td><td class='num'>$113M</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">5</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">DILUTION</span><span class="fchip">BASIS_BREAK_SUSPECT</span><span class="fchip">NI_OCF_DIVERGENCE</span><span class="fchip">WIDE_SCENARIO_SPREAD</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/RDDT/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/RDDT/analysis.md · second_pass.md</span></footer>
+</div><div class="detail" id="d-CMG">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-14</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#F08A4B">D</span>
+<div class="vtitle"><div class="vname"><span class="vtick">CMG</span><span class="vco">Chipotle Mexican Grill, Inc.</span></div>
+<span class="dnote">Restaurants / Fast-casual dining · $40.75B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">9.6%</span><span class="dnote">Probability-weighted IRR at $30.35</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#F08A4B">5.4 pts below the hurdle</span>
+<div class="gauge"><div class="gaugefill" style="width:32.0%;background:#F08A4B"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier D</span><span class="dchip">Moat 6/10</span><span class="dchip">Advantage period 9.8 yrs</span><span class="dchip">Confidence medium</span></div>
+<p class="vtake">Elite fast-casual operator, moat 6/10, net cash — but at $30.35 the price already pays for a full margin recovery: weighted IRR 9.6% (Tier D), weighted IV@15% $16.06; clears 15% only below ~$16.</p>
+</section>
+
+<section class="dsec"><h2 class="dh2">Price vs. value</h2>
+<p class="dnote">Every scenario's value at a 15% discount rate, against today's price.</p>
+<div class="dcard pv">
+<div class="pvplot">
+<span class="pv-range-lbl" style="left:13.09%">Scenario range</span>
+<span class="pv-range-val" style="left:13.09%">$6.55 – $31.52</span>
+<div class="pv-track"></div>
+<div class="pv-band" style="left:13.09%;width:49.94%"></div>
+<div class="pv-ivmark" style="left:32.12%"></div>
+<div class="pv-pricedot" style="left:60.70%"></div>
+<div class="pv-ivlbl" style="left:32.12%"><span>Weighted IV</span><b>$16.06</b></div>
+<div class="pv-pricelbl"><span>Price</span><b>$30.35</b></div>
+</div>
+<div class="pv-axis"><span>$0</span><span>$10</span><span>$20</span><span>$30</span><span>$40</span><span>$50</span></div>
+</div>
+<p class="dnote">Today's price is 1.9× the weighted value and 1.0× the super-bull case. At a 12% discount rate, value is $21.94.</p></section>
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$30.35</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">$16.06</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">$21.94</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv neg">-47%</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">9.0%</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">3.8%</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">21.7%</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">4.8×</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$1.14<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: ttm_json. Market cap $40.75B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">10%</span></span><span class="scnirr">5.1%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:17.1%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>1.0%</b></span><span>OE multiple <b>0.75×</b></span><span>IV @15% <b>$6.55</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">25%</span></span><span class="scnirr">7.1%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:23.8%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>8.0%</b></span><span>OE multiple <b>0.9×</b></span><span>IV @15% <b>$10.73</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">30%</span></span><span class="scnirr">9.1%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:30.2%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>13.0%</b></span><span>OE multiple <b>1.0×</b></span><span>IV @15% <b>$14.88</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">25%</span></span><span class="scnirr">11.4%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:37.9%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>18.0%</b></span><span>OE multiple <b>1.1×</b></span><span>IV @15% <b>$20.41</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">10%</span></span><span class="scnirr">15.4%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:51.3%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>25.0%</b></span><span>OE multiple <b>1.25×</b></span><span>IV @15% <b>$31.52</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV $16.06 · IRR 9.6%</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">6/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">9.8 yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>Brand and pricing power proven over two decades of through-cycle compounding</span></li><li><span class="sign pos">+</span><span>Best-in-class unit economics (~$3.1M AUV, ~60% second-year cash-on-cash returns, ~2-year payback)</span></li><li><span class="sign pos">+</span><span>Digital + loyalty scale (38.3% of Q2 2026 sales digital, ~21M active Rewards members)</span></li><li><span class="sign pos">+</span><span>Chipotlane format advantage — ~80% of new stores, higher volumes and margins</span></li><li><span class="sign pos">+</span><span>Company-owned model: full control of quality/throughput, no franchisee friction</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>No switching costs or network effects — every lunch is a fresh choice</span></li><li><span class="sign neg">−</span><span>Intense fast-casual/QSR competition (CAVA, Sweetgreen, QSR value wars)</span></li><li><span class="sign neg">−</span><span>Food-safety tail risk (2015 E. coli precedent; 2026 Cyclospora scare cost ~200bp of comp traffic)</span></li><li><span class="sign neg">−</span><span>Value-perception ceiling (2025 comps -1.7%, transactions -3.2%)</span></li><li><span class="sign neg">−</span><span>Wage/beef inflation with deliberately limited pricing power near term</span></li><li><span class="sign neg">−</span><span>Path from ~4,200 to 7,000 North American stores at historical returns is unproven</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:71px;height:9px"></div><div class="hbar maint" style="top:68px;height:12px"></div></div><div class="hcol"><div class="hbar cons" style="top:52px;height:28px"></div><div class="hbar maint" style="top:40px;height:40px"></div></div><div class="hcol"><div class="hbar cons" style="top:48px;height:32px"></div><div class="hbar maint" style="top:49px;height:31px"></div></div><div class="hcol"><div class="hbar cons" style="top:33px;height:47px"></div><div class="hbar maint" style="top:35px;height:45px"></div></div><div class="hcol"><div class="hbar cons" style="top:22px;height:58px"></div><div class="hbar maint" style="top:8px;height:72px"></div></div><div class="hcol"><div class="hbar cons" style="top:24px;height:56px"></div><div class="hbar maint" style="top:18px;height:62px"></div><span class="hlbl">+1.47</span></div></div>
+<div class="hyears"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2016</td><td class='num'>$3.90B</td><td class='num'>$355M</td><td class='num'>$259M</td><td class='num'>$64M</td><td class='num'>$32M</td><td class='num'>$23M</td></tr><tr><td>2017</td><td class='num'>$4.48B</td><td class='num'>$468M</td><td class='num'>$217M</td><td class='num'>$65M</td><td class='num'>$186M</td><td class='num'>$208M</td></tr><tr><td>2018</td><td class='num'>$4.86B</td><td class='num'>$622M</td><td class='num'>$287M</td><td class='num'>$69M</td><td class='num'>$265M</td><td class='num'>$183M</td></tr><tr><td>2019</td><td class='num'>$5.59B</td><td class='num'>$722M</td><td class='num'>$334M</td><td class='num'>$91M</td><td class='num'>$296M</td><td class='num'>$540M</td></tr><tr><td>2020</td><td class='num'>$5.98B</td><td class='num'>$664M</td><td class='num'>$373M</td><td class='num'>$83M</td><td class='num'>$208M</td><td class='num'>$291M</td></tr><tr><td>2021</td><td class='num'>$7.55B</td><td class='num'>$1.28B</td><td class='num'>$442M</td><td class='num'>$176M</td><td class='num'>$663M</td><td class='num'>$951M</td></tr><tr><td>2022</td><td class='num'>$8.63B</td><td class='num'>$1.32B</td><td class='num'>$479M</td><td class='num'>$98M</td><td class='num'>$746M</td><td class='num'>$722M</td></tr><tr><td>2023</td><td class='num'>$9.87B</td><td class='num'>$1.78B</td><td class='num'>$561M</td><td class='num'>$124M</td><td class='num'>$1.10B</td><td class='num'>$1.07B</td></tr><tr><td>2024</td><td class='num'>$11.31B</td><td class='num'>$2.11B</td><td class='num'>$594M</td><td class='num'>$132M</td><td class='num'>$1.38B</td><td class='num'>$1.70B</td></tr><tr><td>2025</td><td class='num'>$11.93B</td><td class='num'>$2.11B</td><td class='num'>$666M</td><td class='num'>$120M</td><td class='num'>$1.33B</td><td class='num'>$1.47B</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">3</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">OE_VOLATILE</span><span class="fchip">WIDE_SCENARIO_SPREAD</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/CMG/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/CMG/analysis.md</span></footer>
+</div><div class="detail" id="d-DUOL">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-13</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#F08A4B">D</span>
+<div class="vtitle"><div class="vname"><span class="vtick">DUOL</span><span class="vco">Duolingo, Inc.</span></div>
+<span class="dnote">Technology · $6.77B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">9.4%</span><span class="dnote">Probability-weighted IRR at $140.10</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#F08A4B">5.6 pts below the hurdle</span>
+<div class="gauge"><div class="gaugefill" style="width:31.5%;background:#F08A4B"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier D</span><span class="dchip">Moat 5/10</span><span class="dchip">Advantage period 8.5 yrs</span><span class="dchip">Confidence medium</span></div>
+<p class="vtake">High-quality learning platform, moat 5/10 — but growth has decelerated to guided ~16% revenue / ~11% bookings with SBC eating a third of operating cash flow, so at $140.10 (26.6x TTM OE of $5.26/share) the weighted IRR is only 9.4% (IV@15% $72.54); it clears the 15% hurdle only at ~$73, nearer ~$54 with a margin of safety.</p>
+</section>
+
+<section class="dsec"><h2 class="dh2">Price vs. value</h2>
+<p class="dnote">Every scenario's value at a 15% discount rate, against today's price.</p>
+<div class="dcard pv">
+<div class="pvplot">
+<span class="pv-range-lbl" style="left:13.39%">Scenario range</span>
+<span class="pv-range-val" style="left:13.39%">$26.79 – $177.67</span>
+<div class="pv-track"></div>
+<div class="pv-band" style="left:13.39%;width:75.44%"></div>
+<div class="pv-ivmark" style="left:36.27%"></div>
+<div class="pv-pricedot" style="left:70.05%"></div>
+<div class="pv-ivlbl" style="left:36.27%"><span>Weighted IV</span><b>$72.54</b></div>
+<div class="pv-pricelbl"><span>Price</span><b>$140.10</b></div>
+</div>
+<div class="pv-axis"><span>$0</span><span>$40</span><span>$80</span><span>$120</span><span>$160</span><span>$200</span></div>
+</div>
+<p class="dnote">Today's price is 1.9× the weighted value and 0.8× the super-bull case. At a 12% discount rate, value is $98.90.</p></section>
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$140.10</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">$72.54</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">$98.90</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv neg">-48%</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">9.3%</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">3.8%</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">21.3%</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">6.6×</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$5.26<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: agent_supplied_ttm_override. Market cap $6.77B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">15%</span></span><span class="scnirr">4.8%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:15.9%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>-2.0%</b></span><span>OE multiple <b>0.75×</b></span><span>IV @15% <b>$26.79</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">30%</span></span><span class="scnirr">6.8%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:22.8%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>7.0%</b></span><span>OE multiple <b>0.9×</b></span><span>IV @15% <b>$46.76</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">30%</span></span><span class="scnirr">9.3%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:31.2%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>15.0%</b></span><span>OE multiple <b>1.0×</b></span><span>IV @15% <b>$72.16</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">17%</span></span><span class="scnirr">12.6%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:42.2%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>23.0%</b></span><span>OE multiple <b>1.1×</b></span><span>IV @15% <b>$109.61</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">8%</span></span><span class="scnirr">17.6%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:58.6%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>32.0%</b></span><span>OE multiple <b>1.25×</b></span><span>IV @15% <b>$177.67</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV $72.54 · IRR 9.4%</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">5/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">8.5 yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>Brand and mindshare — the default language-learning app globally, organic word-of-mouth acquisition</span></li><li><span class="sign pos">+</span><span>Habit mechanics — streaks, leagues, and a decade of A/B-tested behavioral design create psychological switching costs</span></li><li><span class="sign pos">+</span><span>Learner-data scale — billions of exercises from 58.7M DAUs feed personalization and AI content generation</span></li><li><span class="sign pos">+</span><span>Recurring subscription revenue with lower-churn family plans; ~70%+ gross margins held through the AI transition</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Weak pricing power — the 2025 monetization push slowed DAU growth and management had to reverse it</span></li><li><span class="sign neg">−</span><span>AI lowers the entry barrier — free ChatGPT/Gemini/Translate offer conversational tutoring; Duolingo owns no foundation model</span></li><li><span class="sign neg">−</span><span>No hard switching costs — month-to-month subscriptions, users multi-home, no enterprise lock-in</span></li><li><span class="sign neg">−</span><span>Platform dependence on Apple/Google app stores for distribution and billing</span></li><li><span class="sign neg">−</span><span>Monetization stalling at scale — Q2 2026 bookings +8% vs DAU +23%; paid penetration ~9% of MAU after 14 years</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:80px;height:2px"></div><div class="hbar maint" style="top:80px;height:2px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:6px"></div><div class="hbar maint" style="top:80px;height:5px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:4px"></div><div class="hbar maint" style="top:80px;height:3px"></div></div><div class="hcol"><div class="hbar cons" style="top:71px;height:9px"></div><div class="hbar maint" style="top:71px;height:9px"></div></div><div class="hcol"><div class="hbar cons" style="top:54px;height:26px"></div><div class="hbar maint" style="top:69px;height:11px"></div></div><div class="hcol"><div class="hbar cons" style="top:44px;height:36px"></div><div class="hbar maint" style="top:8px;height:72px"></div><span class="hlbl">+0.46</span></div></div>
+<div class="hyears"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2020</td><td class='num'>$162M</td><td class='num'>$18M</td><td class='num'>$3M</td><td class='num'>$17M</td><td class='num'>$-3M</td><td class='num'>$-16M</td></tr><tr><td>2021</td><td class='num'>$251M</td><td class='num'>$9M</td><td class='num'>$4M</td><td class='num'>$41M</td><td class='num'>$-35M</td><td class='num'>$-34M</td></tr><tr><td>2022</td><td class='num'>$369M</td><td class='num'>$54M</td><td class='num'>$6M</td><td class='num'>$74M</td><td class='num'>$-26M</td><td class='num'>$-21M</td></tr><tr><td>2023</td><td class='num'>$531M</td><td class='num'>$154M</td><td class='num'>$3M</td><td class='num'>$95M</td><td class='num'>$55M</td><td class='num'>$54M</td></tr><tr><td>2024</td><td class='num'>$748M</td><td class='num'>$286M</td><td class='num'>$12M</td><td class='num'>$110M</td><td class='num'>$163M</td><td class='num'>$68M</td></tr><tr><td>2025</td><td class='num'>$1.04B</td><td class='num'>$388M</td><td class='num'>$18M</td><td class='num'>$137M</td><td class='num'>$232M</td><td class='num'>$459M</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">6</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">DILUTION</span><span class="fchip">OE_VOLATILE</span><span class="fchip">NI_OCF_DIVERGENCE</span><span class="fchip">BASE_DIVERGENCE</span><span class="fchip">WIDE_SCENARIO_SPREAD</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/DUOL/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/DUOL/analysis.md · second_pass.md</span></footer>
+</div><div class="detail" id="d-U">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-13</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#F08A4B">D</span>
+<div class="vtitle"><div class="vname"><span class="vtick">U</span><span class="vco">Unity Software Inc.</span></div>
+<span class="dnote">Technology — game engine &amp; mobile advertising software · $19.63B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">5.0%</span><span class="dnote">Probability-weighted IRR at $46.63</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#F08A4B">10.1 pts below the hurdle</span>
+<div class="gauge"><div class="gaugefill" style="width:16.5%;background:#F08A4B"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier D</span><span class="dchip">Moat 5/10</span><span class="dchip">Advantage period 8.5 yrs</span><span class="dchip">Confidence low</span></div>
+<p class="vtake">Real Vector-led turnaround, moat 5/10 — but TTM owner&#x27;s earnings are just $0.45/share after a $342M SBC bill, so at $46.63 the weighted IRR is 5.0% (IV@15% $7.73); clears the 15% hurdle only below ~$7.73, and even the super-bull case alone clears only below $15.20.</p>
+</section>
+
+<section class="dsec"><h2 class="dh2">Price vs. value</h2>
+<p class="dnote">Every scenario's value at a 15% discount rate, against today's price.</p>
+<div class="dcard pv">
+<div class="pvplot">
+<span class="pv-range-lbl" style="left:4.98%">Scenario range</span>
+<span class="pv-range-val" style="left:4.98%">$2.49 – $15.20</span>
+<div class="pv-track"></div>
+<div class="pv-band" style="left:4.98%;width:25.42%"></div>
+<div class="pv-ivmark" style="left:15.46%"></div>
+<div class="pv-pricedot" style="left:93.26%"></div>
+<div class="pv-ivlbl" style="left:15.46%"><span>Weighted IV</span><b>$7.73</b></div>
+<div class="pv-pricelbl"><span>Price</span><b>$46.63</b></div>
+</div>
+<div class="pv-axis"><span>$0</span><span>$10</span><span>$20</span><span>$30</span><span>$40</span><span>$50</span></div>
+</div>
+<p class="dnote">Today's price is 6.0× the weighted value and 3.1× the super-bull case. At a 12% discount rate, value is $10.63.</p></section>
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$46.63</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">$7.73</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">$10.63</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv neg">-83%</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">4.5%</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">1.0%</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">22.2%</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">6.1×</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$0.45<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: agent_supplied_ttm_override. Market cap $19.63B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">10%</span></span><span class="scnirr">3.1%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:10.5%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>-0.0%</b></span><span>OE multiple <b>0.75×</b></span><span>IV @15% <b>$2.49</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">20%</span></span><span class="scnirr">3.7%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:12.3%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>8.0%</b></span><span>OE multiple <b>0.9×</b></span><span>IV @15% <b>$4.17</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">30%</span></span><span class="scnirr">4.5%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:14.9%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>16.0%</b></span><span>OE multiple <b>1.0×</b></span><span>IV @15% <b>$6.43</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">25%</span></span><span class="scnirr">5.6%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:18.7%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>24.0%</b></span><span>OE multiple <b>1.1×</b></span><span>IV @15% <b>$9.76</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">15%</span></span><span class="scnirr">7.4%</span></div>
+<div class="scnbar"><div class="scnfill" style="width:24.5%;background:#F08A4B"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>32.0%</b></span><span>OE multiple <b>1.25×</b></span><span>IV @15% <b>$15.20</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV $7.73 · IRR 5.0%</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">5/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">8.5 yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>Dominant mobile/indie engine installed base with real switching costs</span></li><li><span class="sign pos">+</span><span>Engine-to-ads flywheel: Create supply and runtime data feed Vector</span></li><li><span class="sign pos">+</span><span>Create revenue ~80% recurring subscription/seat-based</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Pricing power failed: 2023 Runtime Fee reversed after developer revolt; Godot is the free Plan B</span></li><li><span class="sign neg">−</span><span>Unreal owns AAA/AA high end (GDC 2026: 42% vs Unity 30% primary engine)</span></li><li><span class="sign neg">−</span><span>Create grows only ~2% YoY — the moat business is not the growth business</span></li><li><span class="sign neg">−</span><span>Ads challenger, not leader: AppLovin AXON ahead; publisher supply is bought, not owned</span></li><li><span class="sign neg">−</span><span>No owned consumer surface; hostage to Apple/Google platform rules</span></li><li><span class="sign neg">−</span><span>GAAP returns on capital still negative</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:80px;height:16px"></div><div class="hbar maint" style="top:80px;height:72px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:53px"></div><div class="hbar maint" style="top:80px;height:71px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:70px"></div><div class="hbar maint" style="top:80px;height:18px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:50px"></div><div class="hbar maint" style="top:80px;height:30px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:33px"></div><div class="hbar maint" style="top:80px;height:28px"></div></div><div class="hcol"><div class="hbar cons" style="top:78px;height:2px"></div><div class="hbar maint" style="top:14px;height:66px"></div><span class="hlbl">+0.63</span></div></div>
+<div class="hyears"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2018</td><td class='num'>$381M</td><td class='num'>$-81M</td><td class='num'>$38M</td><td class='num'>$21M</td><td class='num'>$-140M</td><td class='num'>$-132M</td></tr><tr><td>2019</td><td class='num'>$542M</td><td class='num'>$-68M</td><td class='num'>$27M</td><td class='num'>$31M</td><td class='num'>$-126M</td><td class='num'>$-159M</td></tr><tr><td>2020</td><td class='num'>$772M</td><td class='num'>$20M</td><td class='num'>$40M</td><td class='num'>$135M</td><td class='num'>$-155M</td><td class='num'>$-683M</td></tr><tr><td>2021</td><td class='num'>$1.11B</td><td class='num'>$-111M</td><td class='num'>$42M</td><td class='num'>$347M</td><td class='num'>$-501M</td><td class='num'>$-674M</td></tr><tr><td>2022</td><td class='num'>$1.39B</td><td class='num'>$-59M</td><td class='num'>$57M</td><td class='num'>$550M</td><td class='num'>$-667M</td><td class='num'>$-167M</td></tr><tr><td>2023</td><td class='num'>$2.19B</td><td class='num'>$235M</td><td class='num'>$56M</td><td class='num'>$649M</td><td class='num'>$-470M</td><td class='num'>$-285M</td></tr><tr><td>2024</td><td class='num'>$1.81B</td><td class='num'>$316M</td><td class='num'>$30M</td><td class='num'>$596M</td><td class='num'>$-310M</td><td class='num'>$-262M</td></tr><tr><td>2025</td><td class='num'>$1.85B</td><td class='num'>$423M</td><td class='num'>$19M</td><td class='num'>$385M</td><td class='num'>$19M</td><td class='num'>$627M</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">5</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">DILUTION</span><span class="fchip">NI_OCF_DIVERGENCE</span><span class="fchip">LOW_OE_YIELD</span><span class="fchip">WIDE_SCENARIO_SPREAD</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/U/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/U/analysis.md · second_pass.md</span></footer>
+</div><div class="detail" id="d-SNAP">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-13</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#9AA3B2">F</span>
+<div class="vtitle"><div class="vname"><span class="vtick">SNAP</span><span class="vco">Snap Inc</span></div>
+<span class="dnote">Technology · $11.00B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">—</span><span class="dnote">Probability-weighted IRR at $6.49</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#9AA3B2">No positive owner's earnings</span>
+<div class="gauge"><div class="gaugefill" style="width:0.0%;background:#9AA3B2"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier F</span><span class="dchip">Moat 4/10</span><span class="dchip">Confidence medium</span></div>
+<p class="vtake">Real, improving social platform, moat 4/10 — but SBC of ~$1.03B TTM exceeds all of its $919M TTM operating cash flow, so owner&#x27;s earnings are negative in all 10 years of history (-$0.19/share TTM) and it cannot clear the 15% hurdle at any price on an OE DCF; at $6.49 you pay for SBC discipline that has not yet shown up in a filing.</p>
+</section>
+
+
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$6.49</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv pos">—</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">—</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$-0.19<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: agent_supplied_ttm_override. Market cap $11.00B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV — · IRR —</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">4/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">None yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>Differentiated close-friends ephemeral-messaging graph with a loyal younger North America/Europe cohort</span></li><li><span class="sign pos">+</span><span>AR/camera platform depth (Lenses, creator AR ecosystem, Specs optionality)</span></li><li><span class="sign pos">+</span><span>Emerging direct-revenue leg with demonstrated willingness to pay (other revenue +85% YoY in Q2 2026) and &lt;3% of monthly users paying — conversion headroom</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Scale and ad-targeting disadvantage vs Meta/Google/TikTok — ad revenue only +9% in Q2 2026</span></li><li><span class="sign neg">−</span><span>Growth concentrated in low-ARPU Rest of World ($1.00) while North America DAU fell 7% and Europe 2%</span></li><li><span class="sign neg">−</span><span>No real switching costs — users multi-home, features copied within quarters, no GAAP profitability in ~15 years</span></li><li><span class="sign neg">−</span><span>Platform dependence on Apple/Google privacy and app-store rules</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:80px;height:36px"></div><div class="hbar maint" style="top:80px;height:52px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:32px"></div><div class="hbar maint" style="top:80px;height:12px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:49px"></div><div class="hbar maint" style="top:80px;height:72px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:47px"></div><div class="hbar maint" style="top:80px;height:28px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:30px"></div><div class="hbar maint" style="top:80px;height:46px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:21px"></div><div class="hbar maint" style="top:80px;height:4px"></div><span class="hlbl">-0.11</span></div></div>
+<div class="hyears"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2016</td><td class='num'>$404M</td><td class='num'>$-611M</td><td class='num'>$66M</td><td class='num'>$32M</td><td class='num'>$-710M</td><td class='num'>$-515M</td></tr><tr><td>2017</td><td class='num'>$825M</td><td class='num'>$-735M</td><td class='num'>$85M</td><td class='num'>$2.64B</td><td class='num'>$-3.46B</td><td class='num'>$-4.26B</td></tr><tr><td>2018</td><td class='num'>$1.18B</td><td class='num'>$-690M</td><td class='num'>$120M</td><td class='num'>$538M</td><td class='num'>$-1.35B</td><td class='num'>$-566M</td></tr><tr><td>2019</td><td class='num'>$1.72B</td><td class='num'>$-305M</td><td class='num'>$36M</td><td class='num'>$686M</td><td class='num'>$-1.03B</td><td class='num'>$-1.61B</td></tr><tr><td>2020</td><td class='num'>$2.51B</td><td class='num'>$-168M</td><td class='num'>$58M</td><td class='num'>$770M</td><td class='num'>$-996M</td><td class='num'>$-1.42B</td></tr><tr><td>2021</td><td class='num'>$4.12B</td><td class='num'>$293M</td><td class='num'>$70M</td><td class='num'>$1.09B</td><td class='num'>$-869M</td><td class='num'>$-322M</td></tr><tr><td>2022</td><td class='num'>$4.60B</td><td class='num'>$185M</td><td class='num'>$129M</td><td class='num'>$1.39B</td><td class='num'>$-1.33B</td><td class='num'>$-1.97B</td></tr><tr><td>2023</td><td class='num'>$4.61B</td><td class='num'>$247M</td><td class='num'>$212M</td><td class='num'>$1.32B</td><td class='num'>$-1.29B</td><td class='num'>$-766M</td></tr><tr><td>2024</td><td class='num'>$5.36B</td><td class='num'>$413M</td><td class='num'>$195M</td><td class='num'>$1.04B</td><td class='num'>$-822M</td><td class='num'>$-1.25B</td></tr><tr><td>2025</td><td class='num'>$5.93B</td><td class='num'>$656M</td><td class='num'>$219M</td><td class='num'>$1.02B</td><td class='num'>$-580M</td><td class='num'>$-111M</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">3</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">BASIS_BREAK_SUSPECT</span><span class="fchip">NI_OCF_DIVERGENCE</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/SNAP/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/SNAP/analysis.md · second_pass.md</span></footer>
+</div><div class="detail" id="d-TTWO">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-13</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#9AA3B2">F</span>
+<div class="vtitle"><div class="vname"><span class="vtick">TTWO</span><span class="vco">Take-Two Interactive Software, Inc.</span></div>
+<span class="dnote">Technology · $36.84B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">—</span><span class="dnote">Probability-weighted IRR at $200.32</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#9AA3B2">No positive owner's earnings</span>
+<div class="gauge"><div class="gaugefill" style="width:0.0%;background:#9AA3B2"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier F</span><span class="dchip">Moat 6/10</span><span class="dchip">Confidence medium</span></div>
+<p class="vtake">Elite franchise portfolio, moat 6/10, priced entirely on a launch that hasn&#x27;t filed yet — owner&#x27;s earnings are negative on normalized (-$2.90/share) and TTM (-$0.07/share) bases with only 1 positive year in 5, so it cannot clear the 15% hurdle at $200.32 on an OE DCF today; even capitalising that single positive year gives IV@15% of just $10.40.</p>
+</section>
+
+
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$200.32</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv pos">—</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">—</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$-0.07<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: agent_supplied_ttm_override. Market cap $36.84B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV — · IRR —</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">6/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">None yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>GTA: durable owned franchise, 13-year tail on prior entry, premium $79.99 pricing with unprecedented pre-orders</span></li><li><span class="sign pos">+</span><span>NBA 2K: entrenched annual franchise, habitual recurrent spending</span></li><li><span class="sign pos">+</span><span>Recurrent consumer spending 84% of Q1 FY27 net bookings — live-services base</span></li><li><span class="sign pos">+</span><span>Rockstar development capability rivals cannot simply buy</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Concentration: one title drives FY2027; mainline GTA gaps run over a decade and GTA VI already slipped twice</span></li><li><span class="sign neg">−</span><span>Zynga mobile ~half the company: low switching costs, bought traffic, mobile bookings -7% in Q1 FY27, $2,342M + $3,545M goodwill impairments FY24/25</span></li><li><span class="sign neg">−</span><span>NBA 2K is licensed, not owned — league cut and renewal risk</span></li><li><span class="sign neg">−</span><span>No owned platform: Sony/Microsoft storefront economics sit between TTWO and console players</span></li><li><span class="sign neg">−</span><span>AAA cost inflation raises capital at risk per release; capitalised development costs excluded from engine capex make OE generous, not harsh</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:69px;height:11px"></div><div class="hbar maint" style="top:78px;height:2px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:2px"></div><div class="hbar maint" style="top:66px;height:14px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:8px"></div><div class="hbar maint" style="top:64px;height:16px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:7px"></div><div class="hbar maint" style="top:80px;height:72px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:8px"></div><div class="hbar maint" style="top:80px;height:44px"></div></div><div class="hcol"><div class="hbar cons" style="top:78px;height:2px"></div><div class="hbar maint" style="top:80px;height:23px"></div><span class="hlbl">-1.58</span></div></div>
+<div class="hyears"><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2017</td><td class='num'>$1.78B</td><td class='num'>$408M</td><td class='num'>$21M</td><td class='num'>$82M</td><td class='num'>$305M</td><td class='num'>$77M</td></tr><tr><td>2018</td><td class='num'>$1.79B</td><td class='num'>$494M</td><td class='num'>$62M</td><td class='num'>$116M</td><td class='num'>$316M</td><td class='num'>$-134M</td></tr><tr><td>2019</td><td class='num'>$2.67B</td><td class='num'>$844M</td><td class='num'>$67M</td><td class='num'>$248M</td><td class='num'>$529M</td><td class='num'>$158M</td></tr><tr><td>2020</td><td class='num'>$3.09B</td><td class='num'>$686M</td><td class='num'>$53M</td><td class='num'>$258M</td><td class='num'>$374M</td><td class='num'>$357M</td></tr><tr><td>2021</td><td class='num'>$3.37B</td><td class='num'>$912M</td><td class='num'>$69M</td><td class='num'>$110M</td><td class='num'>$733M</td><td class='num'>$123M</td></tr><tr><td>2022</td><td class='num'>$3.50B</td><td class='num'>$258M</td><td class='num'>$159M</td><td class='num'>$183M</td><td class='num'>$-84M</td><td class='num'>$947M</td></tr><tr><td>2023</td><td class='num'>$5.35B</td><td class='num'>$1M</td><td class='num'>$204M</td><td class='num'>$318M</td><td class='num'>$-521M</td><td class='num'>$1.08B</td></tr><tr><td>2024</td><td class='num'>$5.35B</td><td class='num'>$-16M</td><td class='num'>$142M</td><td class='num'>$336M</td><td class='num'>$-493M</td><td class='num'>$-4.98B</td></tr><tr><td>2025</td><td class='num'>$5.63B</td><td class='num'>$-45M</td><td class='num'>$169M</td><td class='num'>$324M</td><td class='num'>$-539M</td><td class='num'>$-3.06B</td></tr><tr><td>2026</td><td class='num'>$6.66B</td><td class='num'>$624M</td><td class='num'>$163M</td><td class='num'>$305M</td><td class='num'>$156M</td><td class='num'>$-1.58B</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">2</span></h2>
+<div class="fchips"><span class="fchip">DILUTION</span><span class="fchip">NI_OCF_DIVERGENCE</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/TTWO/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/TTWO/analysis.md · second_pass.md</span></footer>
+</div><div class="detail" id="d-FIG">
+<nav class="dnav"><a class="dback" href="#" onclick="return backToList()">← Ranking</a><span class="dnavr">Pass 1 · 2026-10-14</span></nav>
+<section class="dcard verdict">
+<div class="vhead"><span class="vtile" style="background:#9AA3B2">F</span>
+<div class="vtitle"><div class="vname"><span class="vtick">FIG</span><span class="vco">Figma, Inc.</span></div>
+<span class="dnote">Technology · $7.33B</span></div></div>
+<div class="vmain">
+<div class="virr"><span class="dk">Expected return / yr</span><span class="virr-v">—</span><span class="dnote">Probability-weighted IRR at $21.76</span></div>
+<div class="vgauge"><span class="vgauge-lbl" style="color:#9AA3B2">No positive owner's earnings</span>
+<div class="gauge"><div class="gaugefill" style="width:0.0%;background:#9AA3B2"></div><div class="gaugetick" style="left:50.0%"></div></div>
+<div class="gaugescale"><span style="left:0">0%</span><span class="gs-mid" style="left:50.0%">15% hurdle</span><span style="right:0">30%</span></div></div>
+</div>
+<div class="vchips"><span class="dchip">Tier F</span><span class="dchip">Moat 7/10</span><span class="dchip">Confidence low</span></div>
+<p class="vtake">Category-defining design platform, moat 7/10, growing 41-48% with 136% NDR and ~$1.7B cash and marketable securities — but owner&#x27;s earnings are negative under every filed base (TTM -$2.74/share as reported; -$0.89/share even excluding the $975.7M one-time IPO RSU catch-up) because recurring SBC runs ~$700M/yr against ~$249M of TTM operating cash flow; it cannot clear the 15% hurdle at any price on an OE DCF until SBC falls below ~$232M/yr or cash generation roughly triples.</p>
+</section>
+
+
+<section class="dsec"><h2 class="dh2">Key numbers</h2>
+<div class="dtiles"><div class="dtile"><span class="dk">Price</span><span class="dv ">$21.76</span></div><div class="dtile"><span class="dk">IV @15%</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">IV @12%</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Upside @15%</span><span class="dv pos">—</span></div><div class="dtile"><span class="dk">Base-case IRR</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">OE yield</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Terminal value share</span><span class="dv ">—</span></div><div class="dtile"><span class="dk">Scenario spread</span><span class="dv ">—</span></div></div>
+<div class="dcard baseoe"><span class="dk">Base owner's earnings</span>
+<span class="baseoe-v">$-2.74<span class="baseoe-u"> / share</span></span>
+<p class="dnote">Source: agent_supplied_ttm_override. Market cap $7.33B.</p></div></section>
+
+<section class="dsec"><h2 class="dh2">Scenarios</h2>
+<p class="dnote">IRR at today's price for each case, against the 15% hurdle.</p>
+<div class="dcard scncard"><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#3A4252"></span>Super bear<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#55617A"></span>Bear<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#7484A0"></span>Base<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#97A6C2"></span>Bull<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div><div class="scnrow">
+<div class="scnhead"><span class="scnname"><span class="scndot" style="background:#BFCBE0"></span>Super bull<span class="prob">—</span></span><span class="scnirr">—</span></div>
+<div class="scnbar"><div class="scnfill" style="width:0.0%;background:#9AA3B2"></div><div class="scntick" style="left:50.0%"></div></div>
+<div class="scnsub"><span>Growth start <b>—</b></span><span>OE multiple <b>—</b></span><span>IV @15% <b>—</b></span></div>
+</div>
+<div class="scnfoot"><span>Probability-weighted</span><span>IV — · IRR —</span></div></div></section>
+<section class="dsec"><div class="dcard moatcard">
+<div class="moathead"><span class="moattitle"><h2 class="dh2">Moat</h2><span class="moatscore">7/10</span><span class="mdots"><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot on"></span><span class="mdot "></span><span class="mdot "></span><span class="mdot "></span></span></span>
+<span class="dnote">Competitive advantage period <b class="mono">None yrs</b></span></div>
+<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul><li><span class="sign pos">+</span><span>80-90% share of professional UI/UX design; Adobe&#x27;s abandoned $20B acquisition is market testimony</span></li><li><span class="sign pos">+</span><span>Customer-built design systems and component libraries — switching costs accumulate inside Figma files</span></li><li><span class="sign pos">+</span><span>Multiplayer collaboration across designers, developers and PMs; 95% of Fortune 500 use it</span></li><li><span class="sign pos">+</span><span>136% net dollar retention and expansion into paid AI credits (&gt;80% of $10K+ customers consuming weekly)</span></li><li><span class="sign pos">+</span><span>10,000+ plugin ecosystem; Dev Mode, Make and Sites widen the surface competitors must match</span></li></ul></div><div class="mcol"><span class="mk neg">Pressures</span><ul><li><span class="sign neg">−</span><span>Generative AI commoditizes parts of design work, threatens seat counts and raises compute costs</span></li><li><span class="sign neg">−</span><span>Adobe retains Creative Cloud bundle, distribution and a far larger revenue base to subsidize Express/Firefly</span></li><li><span class="sign neg">−</span><span>Canva owns the non-designer segment (265M MAU), made Affinity free and is pushing upmarket</span></li><li><span class="sign neg">−</span><span>Premium seat pricing ($45/editor Organization tier) invites counter-positioning; no owned OS/browser/distribution channel</span></li></ul></div></div></div></section>
+<section class="dsec"><h2 class="dh2">Financial history</h2>
+<div class="dcard histcard"><div class="hlegend"><span><i class="sw cons"></i>OE (cons)</span><span><i class="sw maint"></i>OE (maint)</span><span class="hunit">$B, FY</span></div>
+<div class="hchart"><div class="hzero"></div><div class="hcol"><div class="hbar cons" style="top:25px;height:55px"></div><div class="hbar maint" style="top:41px;height:39px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:54px"></div><div class="hbar maint" style="top:80px;height:38px"></div></div><div class="hcol"><div class="hbar cons" style="top:80px;height:59px"></div><div class="hbar maint" style="top:80px;height:72px"></div><span class="hlbl">-1.36</span></div></div>
+<div class="hyears"><span>2023</span><span>2024</span><span>2025</span></div>
+<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th></tr></thead><tbody><tr><td>2023</td><td class='num'>$505M</td><td class='num'>$1.05B</td><td class='num'>$4M</td><td class='num'>$3M</td><td class='num'>$1.04B</td><td class='num'>$743M</td></tr><tr><td>2024</td><td class='num'>$749M</td><td class='num'>$-62M</td><td class='num'>$2M</td><td class='num'>$948M</td><td class='num'>$-1.01B</td><td class='num'>$-726M</td></tr><tr><td>2025</td><td class='num'>$1.06B</td><td class='num'>$251M</td><td class='num'>$4M</td><td class='num'>$1.36B</td><td class='num'>$-1.12B</td><td class='num'>$-1.36B</td></tr></tbody></table></div></div></section>
+<section class="dsec"><h2 class="dh2">⚠ Fragility flags <span class="fcount">4</span></h2>
+<div class="fchips"><span class="fchip">STALE_FY</span><span class="fchip">DILUTION</span><span class="fchip">NI_OCF_DIVERGENCE</span><span class="fchip">THIN_HISTORY</span></div>
+<p class="dnote">Each flag is resolved in the write-up (stocks/FIG/analysis.md).</p></section>
+<footer class="dfoot"><span>Screening-grade standardized DCF — not a buy or sell call.</span><span class="mono">stocks/FIG/analysis.md</span></footer>
+</div>
+<script>
+let tier='all';const q=document.getElementById('q');
+function apply(){let n=0;document.querySelectorAll('#t tbody tr').forEach(tr=>{const okT=tier==='all'||tr.dataset.tier===tier;const okQ=!q.value||tr.dataset.search.includes(q.value.toLowerCase());tr.style.display=(okT&&okQ)?'':'none';if(okT&&okQ)n++});document.getElementById('count').textContent=n+' shown'}
+document.querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{tier=b.dataset.f;document.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');apply()});
+q.oninput=apply;apply();
+function showDetail(id){document.getElementById('listView').style.display='none';document.querySelectorAll('.detail').forEach(d=>d.classList.remove('open'));const el=document.getElementById('d-'+id);if(el){el.classList.add('open')}window.scrollTo(0,0);return false}
+function backToList(){document.querySelectorAll('.detail').forEach(d=>d.classList.remove('open'));document.getElementById('listView').style.display='';window.scrollTo(0,0);return false}
+if(location.hash&&location.hash.startsWith('#d-')){showDetail(location.hash.slice(3))}
+</script></body></html>

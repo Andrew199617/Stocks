@@ -1,0 +1,73 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DCF Ranking — 2026-10-12</title><style>
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#0f1115;color:#e6e6e6;margin:16px}
+h1{font-size:20px;margin:0 0 4px} .sub{color:#9aa;font-size:12px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+button,select,input{background:#1c1f26;color:#e6e6e6;border:1px solid #333;border-radius:8px;padding:7px 10px;font-size:14px}
+button.on{background:#2563eb;border-color:#2563eb}
+table{border-collapse:collapse;width:100%;font-size:14px} th,td{padding:8px;border-bottom:1px solid #262a33;text-align:left;vertical-align:top}
+td.num,th.num{text-align:right;white-space:nowrap} .pos{color:#4ade80} .neg{color:#f87171}
+.badge{color:#fff;border-radius:6px;padding:2px 9px;font-weight:700}
+</style></head><body>
+<h1>Owner's-Earnings DCF Ranking — 2026-10-12</h1>
+<div class="sub">Sweep progress: 3 analyzed of 2617 companies under $40B (Russell 3000 equivalent) + pilot exceptions. Ranked by probability-weighted implied IRR at current price (five scenarios: super bear / bear / base / bull / super bull, each with an assigned likelihood; growth fades over a moat-driven competitive advantage period). Tiers: S ≥25% · A 20-25% · B 15-20% (clears the 15% hurdle) · C 10-15% · D &lt;10% · F no positive owner's earnings. Upside = probability-weighted IV at a 15% discount rate vs price. Screening-grade standardized DCF — read the company folder's analysis.md before acting.</div>
+<div class="controls">
+<button data-f="all" class="on">All</button><button data-f="S">S ≥25%</button><button data-f="A">A 20%+</button><button data-f="B">B 15%+</button><button data-f="C">C</button><button data-f="D">D</button><button data-f="F">F</button>
+<input id="q" placeholder="Search ticker / name…" size="24"><span class="sub" id="count"></span>
+</div>
+<table id="t"><thead><tr><th>Company</th><th>Tier</th><th class="num">Moat</th><th class="num">Wtd IRR</th><th class="num">Price</th><th class="num">Wtd IV @15%</th><th class="num">Upside @15%</th><th class="num">Mkt Cap</th><th>Sector</th><th>Conf.</th><th>Take</th></tr></thead>
+<tbody><tr data-tier="B" data-sector="Technology / Advertising software" data-conf="medium" data-search="app applovin corporation">
+<td><b>APP</b><br><span class="sub">AppLovin Corporation</span></td>
+<td><span class="badge" style="background:#16a34a">B</span></td>
+<td class="num">6/10</td>
+<td class="num">18.6%</td>
+<td class="num">$271.14</td>
+<td class="num">$378</td>
+<td class="num pos">+40%</td>
+<td class="num">$92.7B</td>
+<td>Technology / Advertising software</td>
+<td>medium</td>
+<td>Elite owner&#x27;s-earnings machine, moat 6/10 — clears 15% on current TTM numbers (18.6% weighted, IV $378 vs $271) but the verdict is assumption-dominated (methods span C to A); size it like a B, not an A.<br><span class="sub">Scenarios: SB 10% · B 25% · Base 35% · Bull 20% · SBu 10%</span><br><span class="sub">⚠ 7 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-12 · folder: stocks/APP/</span></td></tr>
+<tr data-tier="C" data-sector="Technology" data-conf="medium" data-search="rddt reddit, inc.">
+<td><b>RDDT</b><br><span class="sub">Reddit, Inc.</span></td>
+<td><span class="badge" style="background:#d97706">C</span></td>
+<td class="num">6/10</td>
+<td class="num">13.0%</td>
+<td class="num">$155.66</td>
+<td class="num">$123</td>
+<td class="num neg">-21%</td>
+<td class="num">$31.46B</td>
+<td>Technology</td>
+<td>medium</td>
+<td>Genuinely inflected, high-quality community platform, moat 6/10 - TTM owner&#x27;s earnings of $3.36/share are real, but at $155.66 (46x TTM OE) the weighted IRR is 13.0% (IV@15% $123); clears the 15% hurdle only below ~$123, and with a margin of safety below ~$100.<br><span class="sub">Scenarios: SB 10% · B 25% · Base 30% · Bull 25% · SBu 10%</span><br><span class="sub">⚠ 5 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-12 · folder: stocks/RDDT/</span></td></tr>
+<tr data-tier="D" data-sector="Technology" data-conf="low" data-search="u unity software inc.">
+<td><b>U</b><br><span class="sub">Unity Software Inc.</span></td>
+<td><span class="badge" style="background:#b45309">D</span></td>
+<td class="num">5/10</td>
+<td class="num">5.0%</td>
+<td class="num">$46.6452</td>
+<td class="num">$7.73</td>
+<td class="num neg">-83%</td>
+<td class="num">$19.63B</td>
+<td>Technology</td>
+<td>low</td>
+<td>Real Vector-led turnaround, moat 5/10 - but TTM owner&#x27;s earnings are just $0.45/share after a $342M SBC bill, so at $46.65 the weighted IRR is 5.0% (IV@15% $7.73); clears the 15% hurdle only below ~$7.73, and even the super-bull case alone clears only below $15.20.<br><span class="sub">Scenarios: SB 10% · B 20% · Base 30% · Bull 25% · SBu 15%</span><br><span class="sub">⚠ 5 fragility flag(s) — see analysis.md</span><br><span class="sub">2026-10-12 · folder: stocks/U/</span></td></tr>
+<tr data-tier="F" data-sector="Health Care" data-conf="low" data-search="cmps compass pathways plc">
+<td><b>CMPS</b><br><span class="sub">COMPASS Pathways plc</span></td>
+<td><span class="badge" style="background:#6b7280">F</span></td>
+<td class="num">3/10</td>
+<td class="num">—</td>
+<td class="num">$11.6</td>
+<td class="num">$None</td>
+<td class="num neg">—</td>
+<td class="num">$1.57B</td>
+<td>Health Care</td>
+<td>low</td>
+<td>Pre-revenue single-asset psychedelic biotech, moat 3/10 contingent on approval — owner&#x27;s earnings are negative in all 7 years of history (-$1.42/share TTM) despite two positive Phase 3 TRD trials and $382.6M net cash, so it cannot clear the 15% hurdle at any price on an OE DCF; the $11.60 price is an FDA-approval option, not an earnings stream.<br><span class="sub">Scenarios: SB 10% · B 25% · Base 30% · Bull 25% · SBu 10%</span><br><span class="sub">2026-10-12 · folder: stocks/CMPS/</span></td></tr>
+</tbody></table>
+<script>
+let tier='all';const q=document.getElementById('q');
+function apply(){let n=0;document.querySelectorAll('#t tbody tr').forEach(tr=>{const okT=tier==='all'||tr.dataset.tier===tier;const okQ=!q.value||tr.dataset.search.includes(q.value.toLowerCase());tr.style.display=(okT&&okQ)?'':'none';if(okT&&okQ)n++});document.getElementById('count').textContent=n+' shown'}
+document.querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{tier=b.dataset.f;document.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');apply()});
+q.oninput=apply;apply();
+</script></body></html>
