@@ -69,10 +69,13 @@ If judgment.json is absent but score.json exists, judgment.json is seeded
 from the existing score.json first (the v5 re-run path), then score.json is
 rebuilt from the current dcf_numbers.json.
 """
-import json, sys, os, datetime, fcntl, subprocess, hashlib
+import json, sys, os, datetime, subprocess, hashlib
 from zoneinfo import ZoneInfo
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
 
-BASE = "/home/hatch/workspace/stocks"
+# v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYS_DIR = f"{BASE}/_system"
 ENGINE = f"{SYS_DIR}/dcf_engine.py"
 TTM_PY = f"{SYS_DIR}/ttm.py"
@@ -179,6 +182,33 @@ def validate_ads_ratio(j):
     if not str(a.get("reason") or "").strip():
         fail("judgment.json: ads_ratio.reason must be a non-empty string")
     return a
+
+
+def validate_second_pass(j):
+    """v5.4: pass 2 goes through make_score like everything else — the old
+    pass-2 spec told workers to hand-edit score.json, which the v5 mechanics
+    forbid. judgment.json may carry second_pass {date, verdict
+    "changed"|"no_change", prior_tier, prior_weighted_irr, prior_iv_at_15,
+    summary}; it is shape-checked and copied into score.json verbatim."""
+    sp = j.get("second_pass")
+    if sp is None:
+        return None
+    if not isinstance(sp, dict):
+        fail("judgment.json: second_pass must be an object {date, verdict, prior_tier, prior_weighted_irr, prior_iv_at_15, summary}")
+    if sp.get("verdict") not in ("changed", "no_change"):
+        fail("judgment.json: second_pass.verdict must be \"changed\" or \"no_change\"")
+    if not str(sp.get("date") or "").strip():
+        fail("judgment.json: second_pass.date is required (YYYY-MM-DD)")
+    if not str(sp.get("summary") or "").strip():
+        fail("judgment.json: second_pass.summary is required (evidence + sources, 2-4 sentences)")
+    if sp["verdict"] == "changed":
+        if sp.get("prior_tier") not in TIERS:
+            fail("judgment.json: second_pass.prior_tier must be a tier when verdict is \"changed\"")
+        for k in ("prior_weighted_irr", "prior_iv_at_15"):
+            v = sp.get(k)
+            if v is not None and (not isinstance(v, (int, float)) or isinstance(v, bool)):
+                fail(f"judgment.json: second_pass.{k} must be a number or null")
+    return {k: sp.get(k) for k in ("date", "verdict", "prior_tier", "prior_weighted_irr", "prior_iv_at_15", "summary")}
 
 
 def _run_json(cmd, env_extra=None, timeout=600):
@@ -354,9 +384,7 @@ def update_registry(ticker, applied, j_over, impact, j, n):
     (non-default / fallback), ads_ratio. make_score.py is the single
     writer; the write is atomic under an fcntl lock."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
-    lock_fd = os.open(REGISTRY + ".lock", os.O_CREAT | os.O_RDWR)
-    try:
-        fcntl.flock(lock_fd, fcntl.LOCK_EX)
+    with locked(REGISTRY + ".lock"):
         try:
             reg = json.load(open(REGISTRY))
         except Exception:
@@ -406,10 +434,7 @@ def update_registry(ticker, applied, j_over, impact, j, n):
         tmp = REGISTRY + ".tmp"
         with open(tmp, "w") as f:
             json.dump(reg, f, indent=1)
-        os.rename(tmp, REGISTRY)
-    finally:
-        fcntl.flock(lock_fd, fcntl.LOCK_UN)
-        os.close(lock_fd)
+        os.replace(tmp, REGISTRY)
 
 
 def _usd(v):
@@ -455,6 +480,15 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
         L.append(f"- Weighted IRR: {_pct(n['implied_irr_weighted'])} · base-case IRR: {_pct(n.get('implied_irr_base'))}")
         L.append(f"- Weighted IV: @15% {_money(w.get('iv_at_15'))} · @12% {_money(w.get('iv_at_12'))} · @10% {_money(w.get('iv_at_10'))}")
         L.append(f"- Upside vs price: @15% {_pct(n.get('upside_at_15'), 1)} · @12% {_pct(n.get('upside_at_12'), 1)}")
+        if n.get("irr_bear") is not None:
+            L.append(f"- IRR band: bear {_pct(n.get('irr_bear'))} (tier {n.get('tier_bear')}) → bull {_pct(n.get('irr_bull'))} (tier {n.get('tier_bull')}); scenario range {_pct(n.get('irr_low'))} – {_pct(n.get('irr_high'))}")
+        if n.get("hurdle_prices"):
+            hp = n["hurdle_prices"]
+            L.append(f"- Hurdle-clearing prices (weighted path): 15% at {_money(hp.get('15'))} · 20% at {_money(hp.get('20'))} · 25% at {_money(hp.get('25'))}")
+        if (n.get("diagnostics") or {}).get("irr_at_floor"):
+            L.append("- IRR AT FLOOR: the solver converged onto terminal growth — read the weighted IRR as '<= g_terminal', not as a solution")
+    if n.get("f_subtype"):
+        L.append(f"- Tier F sub-type: {n['f_subtype']}")
     if n.get("note"):
         L.append(f"- Note: {n['note']}")
     L += ["", "## Base owner's earnings",
@@ -633,6 +667,7 @@ def main():
 
     j_base_override = validate_base_override(j)
     j_ads = validate_ads_ratio(j)
+    j_second_pass = validate_second_pass(j)
 
     # ADS gate (round-2): a 20-F/40-F filer's per-share figures are per
     # ordinary share; the traded price is per ADS. Without an applied
@@ -717,6 +752,37 @@ def main():
              "tier_final": override or n["tier_by_numbers"],
              "confidence": conf, "one_liner": j["one_liner"],
              "analysis_date": n.get("as_of"), "in_scope_under_40b": scope_val}
+    # v5.4 additions — every one copied from the engine or derived by rule here.
+    flags_all = n.get("fragility_flags") or []
+    diag = n.get("diagnostics") or {}
+    model_fit = "misfit" if any(str(f).startswith("SECTOR_MODEL_MISMATCH") for f in flags_all) else "modeled"
+    score.update({
+        "engine_release": n.get("engine_release"),
+        "irr_bear": round(n["irr_bear"], 4) if isinstance(n.get("irr_bear"), (int, float)) else None,
+        "irr_bull": round(n["irr_bull"], 4) if isinstance(n.get("irr_bull"), (int, float)) else None,
+        "tier_bear": n.get("tier_bear"), "tier_bull": n.get("tier_bull"),
+        "iv_at_20": round(n["iv_at_20"], 2) if isinstance(n.get("iv_at_20"), (int, float)) else None,
+        "iv_at_25": round(n["iv_at_25"], 2) if isinstance(n.get("iv_at_25"), (int, float)) else None,
+        "f_subtype": n.get("f_subtype"),
+        "irr_at_floor": bool(diag.get("irr_at_floor")),
+        "net_debt_latest": n.get("net_debt_latest"),
+        "shares_diluted_latest": n.get("shares_diluted_latest"),
+        "model_fit": model_fit,
+    })
+    # Alert eligibility (audit round-1: "alert only at medium+ confidence with
+    # no data-gap flags" — S/A alerts had been firing on misfits and gaps).
+    tier_final = override or n["tier_by_numbers"]
+    reasons = []
+    if tier_final in ("S", "A"):
+        if conf == "low": reasons.append("confidence low")
+        if model_fit == "misfit": reasons.append("sector model misfit")
+        if applied and impact and impact.get("unblocks_tier"): reasons.append("tier exists only because of a judgment override")
+        if diag.get("irr_at_floor"): reasons.append("IRR at solver floor")
+    score["alert_eligible"] = tier_final in ("S", "A") and not reasons
+    if reasons:
+        score["alert_suppressed_reason"] = "; ".join(reasons)
+    if j_second_pass:
+        score["second_pass"] = j_second_pass
     if conf_capped:
         score["confidence_capped"] = True
     if override:

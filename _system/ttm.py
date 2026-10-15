@@ -40,7 +40,7 @@ denominator. DCF_NO_OVERRIDES=1 disables override loading.
 import json, sys, os, csv, time, urllib.request, urllib.error, datetime
 
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
-BASE = "/home/hatch/workspace/stocks"
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # v5.4: runs anywhere
 SYS = f"{BASE}/_system"
 
 OCF_TAGS = ["NetCashProvidedByUsedInOperatingActivities",

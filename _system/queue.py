@@ -9,6 +9,9 @@ Usage:
   python3 queue.py [--file PATH] reap            -> print reaped tickers
   python3 queue.py [--file PATH] requeue <TICKER>   (blocked/expired -> pending)
   python3 queue.py [--file PATH] migrate-data-gap   (one-off status migration)
+  python3 queue.py pass2-claim                      -> print the second-pass ticker (v5.4)
+  python3 queue.py pass2-done <TICKER> <done_no_change|done_changed>
+  python3 queue.py pass2-reset <TICKER>             (-> pending)
 
 All read-modify-write cycles run under an fcntl lock on <queue>.lock and are
 saved atomically (tmp file + rename), so parallel workers can never claim the
@@ -22,11 +25,15 @@ arrive via --stdin: a quoted shell argument mangles dollar amounts and quotes
 The queue.json schema is unchanged: {built, cutoff_market_cap_b, universe_size,
 queue: [{ticker, queue_pos, status, ...}]}.
 """
-import json, os, sys, fcntl, datetime
+import json, os, sys, datetime
 from zoneinfo import ZoneInfo
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
 
 ET = ZoneInfo("America/New_York")
-DEFAULT_FILE = "/home/hatch/workspace/stocks/_system/queue.json"
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # v5.4
+DEFAULT_FILE = f"{BASE}/_system/queue.json"
+PASS2_FILE = f"{BASE}/_system/second_pass_queue.json"
 LEASE_MINUTES = 90
 
 
@@ -47,16 +54,55 @@ def save(path, data):
 
 
 def with_lock(path, fn):
-    lock_fd = os.open(f"{path}.lock", os.O_CREAT | os.O_RDWR)
-    try:
-        fcntl.flock(lock_fd, fcntl.LOCK_EX)
+    with locked(f"{path}.lock"):
         data = load(path)
         result = fn(data)
         save(path, data)
         return result
-    finally:
-        fcntl.flock(lock_fd, fcntl.LOCK_UN)
-        os.close(lock_fd)
+
+
+# ---- v5.4: the second-pass queue goes through the same lock (the pass-2
+# spec had workers hand-rewriting second_pass_queue.json as their "lock").
+def _pass2_load(path):
+    try:
+        return load(path)
+    except Exception:
+        return {"entries": {}}
+
+
+def cmd_pass2_claim(path, queue_path):
+    """First candidate in queue order whose folder has a score.json and whose
+    second-pass entry is absent or pending; marks it in_progress under the lock."""
+    with locked(f"{path}.lock"):
+        data = _pass2_load(path)
+        entries = data.setdefault("entries", {})
+        q = load(queue_path)
+        cands = [e["ticker"] for e in q["queue"] if e.get("status") == "done"]
+        if "APP" not in cands:
+            cands.append("APP")  # the pilot sits outside the queue
+        for t in cands:
+            if not os.path.exists(f"{BASE}/{t}/score.json"):
+                continue
+            st = (entries.get(t) or {}).get("status")
+            if st in (None, "pending"):
+                entries[t] = {"status": "in_progress", "date": now_et().date().isoformat(),
+                              "claimed_at": now_et().isoformat(timespec="seconds")}
+                save(path, data)
+                print(t)
+                return
+    print("queue.py: no pending second-pass candidates", file=sys.stderr)
+    sys.exit(1)
+
+
+def cmd_pass2_done(path, ticker, status):
+    if status not in ("done_no_change", "done_changed", "pending"):
+        print("queue.py: pass2-done status must be done_no_change | done_changed | pending", file=sys.stderr)
+        sys.exit(2)
+    with locked(f"{path}.lock"):
+        data = _pass2_load(path)
+        data.setdefault("entries", {})[ticker] = {"status": status, "date": now_et().date().isoformat()}
+        save(path, data)
+    print(f"{ticker} {status}")
 
 
 def find(data, ticker):
@@ -196,6 +242,12 @@ def main():
         cmd_migrate_data_gap(path)
     elif cmd == "reap":
         cmd_reap(path)
+    elif cmd == "pass2-claim":
+        cmd_pass2_claim(PASS2_FILE, path)
+    elif cmd == "pass2-done" and len(rest) == 2:
+        cmd_pass2_done(PASS2_FILE, rest[0].upper(), rest[1])
+    elif cmd == "pass2-reset" and len(rest) == 1:
+        cmd_pass2_done(PASS2_FILE, rest[0].upper(), "pending")
     else:
         print(__doc__)
         sys.exit(2)

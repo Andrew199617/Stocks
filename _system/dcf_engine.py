@@ -107,15 +107,138 @@ disabled conversion entirely); monetary judgment overrides are declared
 in the reporting currency and are FX-converted at the period-end rate
 before being applied (v5.3 inserted them verbatim into USD series); the
 override sanity band anchors on the last filed value in its filed unit.
+
+v5.4 (2026-10-14, formula audit of the whole engine — every item below is a
+behaviour change and is recorded as engine_release "5.4.0"; engine_version
+stays 5 for the data-gate check):
+(1) Share-count adjustment was DOUBLE-COUNTED (audit round-1 "Model design",
+    never fixed): the ±5pp buyback/dilution adjustment was added on top of a
+    blend that already contains OE/share CAGR, which embeds the share-count
+    trend. Now the adjustment is applied to the three REVENUE components only;
+    the OE/share CAGR enters the median unadjusted.
+(2) The v5.2 "basic-only shares = DATA_GAP" rule was DEAD CODE for almost every
+    filer: a basic-only period fell through to CommonStockSharesOutstanding /
+    dei cover-page counts and shipped a tier with no flag. Now any non-diluted
+    share source in the last 3 FY is DATA_GAP:shares (the fallback count is
+    named in the flag so a filing override is one lookup away); older periods
+    may use a fallback for history, with the source recorded per period in a
+    new shares_tag CSV column and a SHARES_FALLBACK flag. dei counts match a
+    period only within 90 days after its end (they are cover-page dates).
+(3) Debt: LongTermDebt (a TOTAL including current maturities) sat in the
+    noncurrent candidate list and stacked on DebtCurrent. Total-debt tags are
+    now a separate debt_total series used only when no noncurrent tag exists;
+    short-term borrowings / commercial paper / lease-inclusive tags added;
+    the basis is recorded per period (debt_tag column) and a period with no
+    debt tag at all raises DEBT_TAGS_BLANK instead of a silent net-cash read.
+(4) IRR floor: the terminal value used max(r - g, 0.005), so no IRR could be
+    solved below terminal growth + 0.5% and names at that floor ranked on a
+    fake ~3.0%. The Gordon value does not converge at r <= g; present_value
+    now returns +inf there, the solver converges onto g, and the run is
+    flagged IRR_AT_FLOOR (diagnostics.irr_at_floor) — the true IRR is at or
+    below terminal growth.
+(5) IRR band + hurdle prices: irr_bear / irr_bull / tier_bear / tier_bull are
+    emitted next to the weighted headline (audit P2: rank on a band, not a
+    point), plus weighted iv_at_20 / iv_at_25 — the prices at which the A and
+    S hurdles clear — and the full 15-year per-share paths (paths) and growth
+    schedules (growth_paths) for every scenario and the weighted case.
+(6) Tier F is split: f_subtype "sbc_exceeds_cash" (OCF - capex > 0 but SBC
+    eats it) vs "no_cash_generation" (OCF - capex <= 0) — different stories.
+(7) Portability: BASE comes from $STOCKS_BASE or the script's parent folder,
+    so the engine runs anywhere; the math is in module-level functions
+    (project_path / present_value / solve_irr / tier_for_irr) that the HTML
+    builder and the test-suite import — one implementation, no drift.
 """
-import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib
+import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics
 from zoneinfo import ZoneInfo
 
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
-BASE = "/home/hatch/workspace/stocks"
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYS = f"{BASE}/_system"
+ENGINE_RELEASE = "5.4.0"
 ET_TODAY = datetime.datetime.now(ZoneInfo("America/New_York")).date()
 MEASURE = "--measure" in sys.argv   # compute + print JSON only: no file writes, no gate exit
+HOLD_YEARS = 2          # v4: growth holds at g0 for 2 years before the fade starts
+PROJECTION_YEARS = 15
+DEFAULT_GTERM = 0.025
+GROWTH_CAP_BASE = 0.35  # g_base cap (20% until 2026-10-12 — see README Fixes & lessons)
+GROWTH_CAP_START = 0.50 # scenario start cap
+GROWTH_FLOOR_BASE, GROWTH_FLOOR_START = -0.05, -0.10
+
+
+# ---------------------------------------------------------------------------
+# Valuation math (module-level so make_score / build_daily_html / tests import
+# the SAME functions the engine runs — v5.4).
+# ---------------------------------------------------------------------------
+def growth_path(g0, cap_years, gterm=DEFAULT_GTERM, n=PROJECTION_YEARS, hold=HOLD_YEARS):
+    """Per-year growth rate: holds at g0 for `hold` years, then converges
+    linearly to gterm over cap_years — in either direction, never overshooting."""
+    step = (g0 - gterm) / cap_years if cap_years > 0 else (g0 - gterm)
+    out = []
+    for t in range(1, n + 1):
+        g = g0 - step * max(0, t - hold)
+        g = min(g, g0) if g0 > gterm else max(g, g0)      # never overshoot past g0
+        g = max(g, gterm) if g0 > gterm else min(g, gterm)  # never cross past terminal
+        out.append(g)
+    return out
+
+
+def project_path(oe0, g0, cap_years, gterm=DEFAULT_GTERM, n=PROJECTION_YEARS, hold=HOLD_YEARS):
+    """15 per-share owner's-earnings flows from base oe0 along growth_path()."""
+    flows, cur = [], oe0
+    for g in growth_path(g0, cap_years, gterm, n, hold):
+        cur *= (1 + g); flows.append(cur)
+    return flows
+
+
+def present_value(flows, r, gterm=DEFAULT_GTERM):
+    """PV of the explicit flows plus a Gordon terminal value on the last flow.
+    v5.4: the terminal value does not converge at r <= gterm — the old
+    max(r - g, 0.005) floor manufactured a finite value there and no IRR
+    could be solved below g + 0.5%. +inf is the honest answer."""
+    if r <= gterm:
+        return float("inf")
+    v = sum(f / (1 + r) ** (t + 1) for t, f in enumerate(flows))
+    tv = flows[-1] * (1 + gterm) / (r - gterm)
+    return v + tv / (1 + r) ** len(flows)
+
+
+def terminal_share(flows, r, gterm=DEFAULT_GTERM):
+    total = present_value(flows, r, gterm)
+    if not total or total == float("inf"):
+        return None
+    tv = flows[-1] * (1 + gterm) / (r - gterm) / (1 + r) ** len(flows)
+    return tv / total
+
+
+def solve_irr(flows, px, gterm=DEFAULT_GTERM):
+    """(irr, capped, at_floor). capped: value at a 200% rate still exceeds
+    the price (round-2 fix — recorded as 2.0, not blank). at_floor (v5.4):
+    the bisection converged onto the Gordon boundary, i.e. the true IRR is at
+    or below terminal growth; the returned value is the floor, not a solution."""
+    if present_value(flows, 2.0, gterm) > px:
+        return 2.0, True, False
+    lo, hi = -0.5, 2.0
+    for _ in range(100):
+        mid = (lo + hi) / 2
+        if present_value(flows, mid, gterm) > px: lo = mid
+        else: hi = mid
+    irr = (lo + hi) / 2
+    # A perpetuity growing at g has an IRR above g at ANY finite price, so the
+    # model cannot express a return below g_terminal: anything within 0.5pp of
+    # it (the region the old 0.005 denominator floor distorted) is "at floor".
+    return irr, False, (irr - gterm) <= 0.005 + 1e-12
+
+
+def tier_for_irr(irr):
+    if irr is None:
+        return None
+    return "S" if irr >= 0.25 else "A" if irr >= 0.20 else "B" if irr >= 0.15 else "C" if irr >= 0.10 else "D"
+
+
+def cap_years_for_moat(moat):
+    """Competitive advantage period: clamp(2 + 1.3 * moat, 2, 15) years."""
+    moat = max(0.0, min(10.0, float(moat)))
+    return max(2.0, min(15.0, 2 + 1.3 * moat))
 
 def load_overrides(ticker):
     """Structured judgment overrides from {ticker}/judgment.json. A malformed or
@@ -374,15 +497,30 @@ def main():
                            (IF, "AdjustedWeightedAverageShares"), (IF, "WeightedAverageShares")],
     }
     inst_defs = {
-        "cash": ["CashAndCashEquivalentsAtCarryingValue", (IF, "CashAndCashEquivalents")],
+        "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", (IF, "CashAndCashEquivalents")],
         "assets_current": ["AssetsCurrent", (IF, "CurrentAssets")],
         "liab_current": ["LiabilitiesCurrent", (IF, "CurrentLiabilities")],
-        "debt_current": ["DebtCurrent", "LongTermDebtCurrent", (IF, "CurrentPortionOfLongtermBorrowings"), (IF, "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings")],
-        "debt_lt": ["LongTermDebtNoncurrent", "LongTermDebt", (IF, "LongtermBorrowings")],
+        # v5.4 debt: CURRENT and NONCURRENT candidate lists hold only tags of
+        # that classification; TOTAL tags (LongTermDebt includes current
+        # maturities; the audit found it stacking on DebtCurrent) live in
+        # debt_total and are used only when no noncurrent tag reports.
+        "debt_current": ["DebtCurrent", "LongTermDebtCurrent", "LongTermDebtAndCapitalLeaseObligationsCurrent",
+                         "ShortTermBorrowings", "CommercialPaper", "NotesPayableCurrent",
+                         (IF, "CurrentPortionOfLongtermBorrowings"), (IF, "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings"), (IF, "ShorttermBorrowings")],
+        "debt_lt": ["LongTermDebtNoncurrent", "LongTermDebtAndCapitalLeaseObligations", "LongTermNotesPayable",
+                    (IF, "LongtermBorrowings"), (IF, "NoncurrentPortionOfNoncurrentBorrowings")],
+        "debt_total": ["LongTermDebt", "DebtLongtermAndShorttermCombinedAmount", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
+                       (IF, "Borrowings")],
+        "lease_liab_current": ["OperatingLeaseLiabilityCurrent", (IF, "CurrentLeaseLiabilities")],
+        "lease_liab_lt": ["OperatingLeaseLiabilityNoncurrent", (IF, "NoncurrentLeaseLiabilities")],
+        "assets": ["Assets", (IF, "Assets")],
+        "liabilities": ["Liabilities", (IF, "Liabilities")],
         "ppe_net": ["PropertyPlantAndEquipmentNet", (IF, "PropertyPlantAndEquipment")],
-        "equity": ["StockholdersEquity", (IF, "Equity")],
+        "equity": ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", (IF, "Equity")],
         "shares_out_inst": ["CommonStockSharesOutstanding", (IF, "NumberOfSharesOutstanding")],
     }
+    DILUTED_SHARE_TAGS = {"WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted",
+                          "AdjustedWeightedAverageShares", "OVERRIDE"}
     # Tags that carry only a BASIC share count — a period sourced from one is a
     # shares (diluted) gap, never a silent swap (v5.2 rule, extended to IFRS).
     BASIC_SHARE_TAGS = {"WeightedAverageNumberOfSharesOutstandingBasic", "WeightedAverageShares"}
@@ -409,6 +547,26 @@ def main():
         dei_shares = {k: v[1] for k, v in dei_shares.items()}
     except Exception:
         dei_shares = {}
+
+    def dei_for_period(p):
+        """v5.4: dei EntityCommonStockSharesOutstanding is dated by the COVER
+        PAGE, not the period end (audit: it rarely matched a period). Accept
+        the earliest cover-page count within 90 days AFTER the period end."""
+        try:
+            pe = datetime.date.fromisoformat(p)
+        except Exception:
+            return None, None
+        best = None
+        for d, v in dei_shares.items():
+            try:
+                dd = datetime.date.fromisoformat(d)
+            except Exception:
+                continue
+            lag = (dd - pe).days
+            if 0 <= lag <= 90 and (best is None or lag < best[0]):
+                best = (lag, v, d)
+        return (best[1], best[2]) if best else (None, None)
+    latest_dei = max(dei_shares.items(), key=lambda kv: kv[0]) if dei_shares else None
 
     # v5.3.1 (Codex review of Stocks PR #1): the override sanity band anchors
     # on the last FILED value in its FILED unit, captured here before the FX
@@ -540,6 +698,8 @@ def main():
     filled = {"capex": [], "sbc": [], "shares": []}        # period ends an override filled
     raw_missing = {"capex": set(), "sbc": set(), "shares": set(), "ocf": set()}  # periods with NO filed value
     basic_only = set()  # periods where only BASIC shares are filed (no diluted figure)
+    share_fallback = {}  # v5.4: period -> (fallback count, source tag) when no diluted figure is filed
+    debt_blank = []      # v5.4: periods with no debt tag at all (net debt unknown, not zero)
     hist, prev_nwc = [], None
     for p in periods:
         g = lambda k: series[k].get(p)
@@ -567,20 +727,55 @@ def main():
         sh_merged = g("shares_diluted")
         # v5.2: BASIC shares are not a silent substitute for diluted (round-2:
         # the basic tag sat in the diluted candidate list and tiers shipped on
-        # it unflagged). A basic-only period counts as a shares (diluted) gap;
-        # the basic figure stays in the CSV for reference.
-        sh_diluted = sh_merged if sh_tag_p not in BASIC_SHARE_TAGS else None
-        shares_val = sh_diluted or g("shares_out_inst") or dei_shares.get(p)
-        if shares_val is None:
+        # it unflagged). v5.4: that rule was dead code — a basic-only period
+        # fell straight through to CommonStockSharesOutstanding / dei counts
+        # and shipped unflagged. Now ANY non-diluted source is a shares gap
+        # for the gated years; the fallback count is kept (and named in the
+        # flag) so the worker can declare a filing override in one step, and
+        # older periods use it for history with the source recorded.
+        sh_diluted = sh_merged if sh_tag_p in DILUTED_SHARE_TAGS else None
+        shares_src = None
+        if sh_diluted is not None:
+            shares_val, shares_src = sh_diluted, sh_tag_p
+        else:
             raw_missing["shares"].add(p)
+            fb = None
             if sh_merged is not None:
-                basic_only.add(p)
-            if "shares" in overrides:
-                shares_val = overrides["shares"]["value"]; filled["shares"].append(p)
+                basic_only.add(p); fb = (sh_merged, sh_tag_p)
+            elif g("shares_out_inst") is not None:
+                fb = (g("shares_out_inst"), series_tags["shares_out_inst"].get(p))
             else:
-                shares_val = sh_merged
+                dv, dd = dei_for_period(p)
+                if dv is not None: fb = (dv, f"dei:EntityCommonStockSharesOutstanding@{dd}")
+            if fb: share_fallback[p] = fb
+            if "shares" in overrides:
+                shares_val = overrides["shares"]["value"]; shares_src = "OVERRIDE"; filled["shares"].append(p)
+            elif fb:
+                shares_val, shares_src = fb[0], f"FALLBACK:{fb[1]}"
+            else:
+                shares_val = None
         if g("ocf") is None:
             raw_missing["ocf"].add(p)
+        # v5.4 debt basis per period: noncurrent + current when a noncurrent
+        # tag reports; else a TOTAL tag alone (never stacked on current); else
+        # unknown — recorded, flagged, never read as zero debt.
+        d_cur, d_lt, d_tot = g("debt_current"), g("debt_lt"), g("debt_total")
+        if d_lt is not None:
+            total_debt = d_lt + (d_cur or 0)
+            debt_tag_p = f"{series_tags['debt_lt'].get(p)}+{series_tags['debt_current'].get(p) or 'none'}"
+        elif d_tot is not None:
+            total_debt = d_tot
+            debt_tag_p = f"TOTAL:{series_tags['debt_total'].get(p)}"
+        elif d_cur is not None:
+            total_debt = d_cur
+            debt_tag_p = f"CURRENT_ONLY:{series_tags['debt_current'].get(p)}"
+        else:
+            total_debt, debt_tag_p = None, None
+            debt_blank.append(p)
+        net_debt_p = (total_debt - (g("cash") or 0)) if total_debt is not None else None
+        lease_liab = None
+        if g("lease_liab_lt") is not None or g("lease_liab_current") is not None:
+            lease_liab = (g("lease_liab_lt") or 0) + (g("lease_liab_current") or 0)
         rev, ni, ocf, da = g("revenue"), g("net_income"), g("ocf"), g("da")
         fcf = (ocf - capex) if (ocf is not None and capex is not None) else None
         oe_cons = (fcf - sbc) if (fcf is not None and sbc is not None) else fcf
@@ -599,9 +794,13 @@ def main():
                      "capex_tag": capex_tag_p, "sbc_tag": sbc_tag_p,
                      "da": da, "sbc": sbc, "fcf": fcf,
                      "oe_conservative": oe_cons, "oe_maintenance": oe_maint, "delta_nwc": d_nwc,
-                     "shares_diluted": shares_val, "cash": g("cash"),
-                     "debt_current": g("debt_current"), "debt_lt": g("debt_lt"),
-                     "ppe_net": g("ppe_net"), "equity": g("equity"), "tax": g("tax")})
+                     "shares_diluted": shares_val, "shares_tag": shares_src, "cash": g("cash"),
+                     "debt_current": d_cur, "debt_lt": d_lt, "debt_total": total_debt, "debt_tag": debt_tag_p,
+                     "net_debt": net_debt_p, "lease_liabilities": lease_liab,
+                     "assets": g("assets"), "liabilities": g("liabilities"),
+                     "ppe_net": g("ppe_net"), "equity": g("equity"), "tax": g("tax"),
+                     "oe_per_share": (oe_cons / shares_val) if (oe_cons is not None and shares_val) else None,
+                     "fcf_per_share": (fcf / shares_val) if (fcf is not None and shares_val) else None})
 
     if fx_info and ov_fx_fields:
         # v5.3.1: monetary override values were converted from the reporting
@@ -623,9 +822,7 @@ def main():
         sys.exit(3)
     latest = hist[-1] if hist else {}
     shares = latest.get("shares_diluted")
-    net_debt = None
-    if latest and (latest.get("debt_lt") is not None or latest.get("debt_current") is not None):
-        net_debt = (latest.get("debt_current") or 0) + (latest.get("debt_lt") or 0) - (latest.get("cash") or 0)
+    net_debt = latest.get("net_debt")  # v5.4: per-period basis (see debt_tag); None = unknown, never zero
 
     price = price_arg or nasdaq_price(ticker)
     if price_arg is not None: price_source = "manual"  # v5: a hand-passed price was labelled nasdaq_quote_api (audit)
@@ -649,7 +846,7 @@ def main():
     # ---- v4: per-share OE history + NORMALIZED base (median of last 3 years) ----
     # v3 used the single latest fiscal year as the DCF base — the most fragile choice in the
     # model: one cyclical peak/trough, one-off, or SBC/WC spike year became the foundation.
-    import statistics
+    # (statistics is imported at module level — v5.4)
     oe_ps_hist = [(h["period_end"], h["oe_conservative"] / h["shares_diluted"])
                   for h in hist if h.get("oe_conservative") is not None and h.get("shares_diluted")]
     if ads_ratio:
@@ -702,19 +899,35 @@ def main():
         if s0 and s0 > 0 and s1 > 0 and yrs > 0.5: share_cagr = (s1 / s0) ** (1 / yrs) - 1
     growth_components = {"rev_cagr_5y": rev_cagr5, "rev_cagr_3y": rev_cagr3,
                          "rev_yoy_latest": rev_yoy_latest, "oe_ps_cagr_2y": oe_ps_cagr}  # v5: was mislabelled oe_ps_cagr_3y — the span from t-3 to t-1 endpoints is 2 years
-    comp_vals = [v for v in growth_components.values() if v is not None]
-    g_blend = statistics.median(comp_vals) if comp_vals else 0.03
     share_adj = max(-0.05, min(0.05, -(share_cagr or 0.0)))  # buybacks lift OE/share growth; dilution drags it
+    # v5.4: the share-count adjustment is applied to the REVENUE components
+    # only. v4 added it to the median of all four signals, but the OE/share
+    # CAGR already embeds the share-count trend — the audit's "double-counted
+    # dilution" finding. The per-share CAGR enters the median unadjusted.
+    growth_components_adjusted = {"rev_cagr_5y": None if rev_cagr5 is None else rev_cagr5 + share_adj,
+                                  "rev_cagr_3y": None if rev_cagr3 is None else rev_cagr3 + share_adj,
+                                  "rev_yoy_latest": None if rev_yoy_latest is None else rev_yoy_latest + share_adj,
+                                  "oe_ps_cagr_2y": oe_ps_cagr}
+    comp_vals = [v for v in growth_components_adjusted.values() if v is not None]
+    g_blend = statistics.median(comp_vals) if comp_vals else 0.03
 
-    result = {"ticker": ticker, "name": name, "cik": cik, "engine_version": 5, "as_of": ET_TODAY.isoformat(),
+    result = {"ticker": ticker, "name": name, "cik": cik, "engine_version": 5, "engine_release": ENGINE_RELEASE,
+              "as_of": ET_TODAY.isoformat(),
               "price": price, "price_source": price_source, "shares_diluted_latest": shares,
-              "market_cap_est": mktcap, "net_debt_latest": net_debt, "latest_period_end": latest.get("period_end"),
+              "shares_outstanding_dei_latest": (latest_dei[1] if latest_dei else None),
+              "shares_outstanding_dei_asof": (latest_dei[0] if latest_dei else None),
+              "market_cap_est": mktcap, "net_debt_latest": net_debt, "net_debt_basis": latest.get("debt_tag"),
+              "lease_liabilities_latest": latest.get("lease_liabilities"),
+              "latest_period_end": latest.get("period_end"),
               "rev_cagr_5y": rev_cagr5, "rev_cagr_3y": rev_cagr3,
               "oe_positive_years_of_last_5": f"{sum(1 for v in oe_vals[-5:] if v>0)}/{len(oe_vals[-5:])}",
               "base_oe_total_latest_fy": base_oe, "base_oe_per_share": oe_ps,
               "base_oe_latest_per_share": oe_ps_latest, "base_oe_normalized_per_share": oe_ps_norm,
               "base_source": base_source, "growth_components": growth_components,
-              "g_blend": g_blend, "share_cagr": share_cagr, "share_count_adj": share_adj, "used_tags": used,
+              "growth_components_adjusted": growth_components_adjusted,
+              "g_blend": g_blend, "share_cagr": share_cagr, "share_count_adj": share_adj,
+              "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+              "used_tags": used,
               "filer_annual_form": annual_form, "ads_ratio": ads_ratio, "fx_conversion": fx_info,
               "override_checks": override_checks}
 
@@ -725,14 +938,14 @@ def main():
         return default
     moat = float(sys.argv[sys.argv.index("--moat") + 1]) if "--moat" in sys.argv else 5.0
     moat = max(0.0, min(10.0, moat))
-    cap_years = max(2.0, min(15.0, 2 + 1.3 * moat))
+    cap_years = cap_years_for_moat(moat)
     probs = arglist("--probs", [0.10, 0.25, 0.30, 0.25, 0.10])
     offsets = arglist("--offsets", [-0.12, -0.05, 0.0, 0.05, 0.12])
     mults = arglist("--mults", [0.75, 0.90, 1.00, 1.10, 1.25])
     psum = sum(probs)
     probs = [p / psum for p in probs] if psum > 0 else [0.2] * 5
 
-    gterm = float(sys.argv[sys.argv.index("--gterm") + 1]) if "--gterm" in sys.argv else 0.025
+    gterm = float(sys.argv[sys.argv.index("--gterm") + 1]) if "--gterm" in sys.argv else DEFAULT_GTERM
 
     # ---- v5: fragility flags that do NOT depend on the scenario math are computed HERE,
     # before the Tier F branch — v4 computed flags only inside the positive-OE branch, so
@@ -771,6 +984,11 @@ def main():
             flags_pre.append(f"OVERRIDE_OUT_OF_BAND:{field} — override value {chk['value']:,.0f} is outside 0.1x-10x of the last filed value "
                              f"({lf_s}) and judgment.json carries no ack_reason — make_score will refuse until the out-of-band value is explicitly acknowledged")
     if len(hist) < 4: flags_pre.append(f"THIN_HISTORY: only {len(hist)} fiscal years of data")
+    _fb_hist = sorted(p[:4] for p in share_fallback if p not in [h["period_end"] for h in hist[-3:]] and p in [h["period_end"] for h in hist])
+    if _fb_hist:
+        flags_pre.append(f"SHARES_FALLBACK: no diluted share count filed for {', '.join(_fb_hist)} — those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate")
+    if debt_blank and latest.get("period_end") in debt_blank:
+        flags_pre.append("DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year — net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md")
     sector_u = (uni.get(ticker) or {}).get("sector", "")
     if sector_u in ("Finance", "Real Estate", "Utilities"):  # v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged
         flags_pre.append(f"SECTOR_MODEL_MISMATCH: {sector_u} sector — OE/capex DCF fits {sector_u.lower()} names poorly; grade confidence low")
@@ -807,7 +1025,9 @@ def main():
         for f in uncovered:
             if f == "currency": gap_flags.append("DATA_GAP:currency — last-3-FY core facts are filed in a non-USD currency that could not be converted to USD (mixed reporting currencies, or no ECB reference rate for the currency) — no tier emitted")
             elif f == "price": gap_flags.append("DATA_GAP:price — no price available from Nasdaq, --price, or the universe file — no tier emitted")
-            elif f == "shares" and any(p[:4] in gap_years[f] for p in basic_only): gap_flags.append(f"DATA_GAP:shares — DILUTED shares missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3 (only basic shares filed — no silent swap) — no tier emitted")
+            elif f == "shares" and any(p in share_fallback for p in last3_periods if p[:4] in gap_years[f]):
+                _fbs = "; ".join(f"{p[:4]}: {share_fallback[p][0]:,.0f} ({share_fallback[p][1]})" for p in last3_periods if p in share_fallback)
+                gap_flags.append(f"DATA_GAP:shares — DILUTED shares missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3; only a non-diluted count is filed ({_fbs}) — no silent swap (v5.4). Declare shares_override kind \"filing\" from the 10-K EPS note — no tier emitted")
             else: gap_flags.append(f"DATA_GAP:{f} — {f} missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3 — no tier emitted")
         result.update({"tier_by_numbers": None, "implied_irr_weighted": None, "implied_irr_base": None,
                        "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
@@ -825,78 +1045,55 @@ def main():
         print(json.dumps(result, indent=1))
         sys.exit(3 if uncovered == ["price"] else 4)  # price-only failure exits like NO_DATA, never Tier F
 
-    def project(oe0, g0, n=15, gt=None):
-        """v4 fade: growth HOLDS at g0 for 2 years (near-term prints have visibility; v3 faded
-        from year 1, double-penalizing current growers), then converges LINEARLY to the terminal
-        rate over cap_years — in EITHER direction (v3 left below-terminal growers depressed
-        forever; a trough cyclical now recovers toward terminal over its CAP)."""
-        gt = gterm if gt is None else gt
-        flows, cur = [], oe0
-        step = (g0 - gt) / cap_years if cap_years > 0 else (g0 - gt)
-        for t in range(1, n + 1):
-            fade_years_in = max(0, t - 2)
-            g = g0 - step * fade_years_in
-            g = min(g, g0) if g0 > gt else max(g, g0)      # never overshoot past g0
-            g = max(g, gt) if g0 > gt else min(g, gt)      # never cross past terminal
-            cur *= (1 + g); flows.append(cur)
-        return flows
-    def pv(flows, r, gt=None):
-        gt = gterm if gt is None else gt
-        v = sum(f / (1 + r) ** (t + 1) for t, f in enumerate(flows))
-        tv = flows[-1] * (1 + gt) / max(r - gt, 0.005)
-        return v + tv / (1 + r) ** len(flows)
-    def tv_share(flows, r, gt=None):
-        gt = gterm if gt is None else gt
-        total = pv(flows, r, gt)
-        tv = flows[-1] * (1 + gt) / max(r - gt, 0.005) / (1 + r) ** len(flows)
-        return tv / total if total else None
-    def irr_of_flows(flows, px):
-        """(irr, capped). Round-2 bug fix: when the value at a 200% discount
-        rate still exceeds the price, the true IRR is above the solver's
-        range. v5 returned None and the tier fell through to D — the cheapest
-        stocks ranked as the worst. Now the IRR is recorded as the 2.0 cap
-        with an IRR_CAPPED flag (see the flags below)."""
-        if pv(flows, 2.0) > px: return 2.0, True
-        lo, hi = -0.5, 2.0
-        for _ in range(100):
-            mid = (lo + hi) / 2
-            if pv(flows, mid) > px: lo = mid
-            else: hi = mid
-        return (lo + hi) / 2, False
-
+    # v5.4: the valuation math lives in module-level functions (project_path /
+    # present_value / solve_irr / tier_for_irr) shared with the HTML builder
+    # and the test-suite. The fade: growth HOLDS at g0 for 2 years (near-term
+    # prints have visibility; v3 faded from year 1), then converges LINEARLY
+    # to the terminal rate over cap_years — in EITHER direction.
+    labels = ["super_bear", "bear", "base", "bull", "super_bull"]
     if oe_ps and oe_ps > 0 and price:
-        # Blended growth (median of rev CAGRs, latest YoY, OE/ps CAGR) + share-count adjustment,
+        # Blended growth (median of share-adjusted rev CAGRs / latest YoY and the raw OE/ps CAGR),
         # capped [-5%, 35%] (cap history: 20% until 2026-10-12 — see README Fixes & lessons).
-        g_base = max(-0.05, min(0.35, g_blend + share_adj))
-        labels = ["super_bear", "bear", "base", "bull", "super_bull"]
-        scenarios, all_flows, capped_labels = {}, [], []
+        g_base = max(GROWTH_FLOOR_BASE, min(GROWTH_CAP_BASE, g_blend))
+        scenarios, all_flows, capped_labels, floor_labels = {}, [], [], []
+        paths, gpaths = {}, {}
         for i, label in enumerate(labels):
-            g0 = max(-0.10, min(0.50, g_base + offsets[i]))
-            flows = project(oe_ps * mults[i], g0)
+            g0 = max(GROWTH_FLOOR_START, min(GROWTH_CAP_START, g_base + offsets[i]))
+            flows = project_path(oe_ps * mults[i], g0, cap_years, gterm)
             all_flows.append(flows)
-            _irr, _capped = irr_of_flows(flows, price)
+            paths[label] = [round(f, 6) for f in flows]
+            gpaths[label] = [round(g, 6) for g in growth_path(g0, cap_years, gterm)]
+            _irr, _capped, _floor = solve_irr(flows, price, gterm)
             if _capped: capped_labels.append(label)
+            if _floor: floor_labels.append(label)
             scenarios[label] = {"prob": round(probs[i], 4), "g_start": round(g0, 4), "oe_mult": mults[i],
-                                "iv_at_10": pv(flows, 0.10), "iv_at_12": pv(flows, 0.12),
-                                "iv_at_15": pv(flows, 0.15), "irr": _irr}
-        wflows = [sum(probs[i] * all_flows[i][t] for i in range(5)) for t in range(15)]
-        _wirr, _wcapped = irr_of_flows(wflows, price)
+                                "iv_at_10": present_value(flows, 0.10, gterm), "iv_at_12": present_value(flows, 0.12, gterm),
+                                "iv_at_15": present_value(flows, 0.15, gterm), "iv_at_20": present_value(flows, 0.20, gterm),
+                                "iv_at_25": present_value(flows, 0.25, gterm), "irr": _irr, "irr_at_floor": _floor}
+        wflows = [sum(probs[i] * all_flows[i][t] for i in range(5)) for t in range(PROJECTION_YEARS)]
+        paths["weighted"] = [round(f, 6) for f in wflows]
+        _wirr, _wcapped, _wfloor = solve_irr(wflows, price, gterm)
         if _wcapped: capped_labels.append("weighted")
-        weighted = {"iv_at_10": pv(wflows, 0.10), "iv_at_12": pv(wflows, 0.12), "iv_at_15": pv(wflows, 0.15),
-                    "irr": _wirr}
+        if _wfloor: floor_labels.append("weighted")
+        weighted = {"iv_at_10": present_value(wflows, 0.10, gterm), "iv_at_12": present_value(wflows, 0.12, gterm),
+                    "iv_at_15": present_value(wflows, 0.15, gterm), "iv_at_20": present_value(wflows, 0.20, gterm),
+                    "iv_at_25": present_value(wflows, 0.25, gterm), "irr": _wirr, "irr_at_floor": _wfloor}
         irr = weighted["irr"]
-        tier = "S" if irr and irr >= 0.25 else "A" if irr and irr >= 0.20 else "B" if irr and irr >= 0.15 else "C" if irr and irr >= 0.10 else "D"
+        tier = tier_for_irr(irr)
+        irr_bear, irr_bull = scenarios["bear"]["irr"], scenarios["bull"]["irr"]
 
         # ---- diagnostics & scenario-dependent fragility flags (flags_pre, computed before
         # this branch, carries the rest — the agent MUST address every flag in analysis.md) ----
         flags = list(flags_pre)
         if capped_labels:
             flags.append(f"IRR_CAPPED: implied IRR exceeds the 200% solver cap at the current price ({', '.join(capped_labels)}) — recorded as 2.0 (capped); the stock is cheaper than the solver's range, not a D")
+        if floor_labels:
+            flags.append(f"IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth {gterm*100:.1f}% ({', '.join(floor_labels)}) — a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~{gterm*100:.1f}%; this price is beyond the model's range and the expected return is 'at most ~{(gterm+0.005)*100:.1f}%', not the recorded figure")
         if oe_ps_latest and oe_ps_norm and oe_ps_norm > 0 and abs(oe_ps_latest / oe_ps_norm - 1) > 0.35:
             flags.append(f"BASE_DIVERGENCE: latest FY OE/share {oe_ps_latest:.2f} vs 3-yr median {oe_ps_norm:.2f} — one of them is distorted; find out which and why")
         oe_yield = oe_ps / price
         if oe_yield < 0.02: flags.append(f"LOW_OE_YIELD: base OE yield {oe_yield*100:.1f}% — valuation rests almost entirely on growth; tier is fragile")
-        tvs = tv_share(wflows, 0.15)
+        tvs = terminal_share(wflows, 0.15, gterm)
         if tvs and tvs > 0.70: flags.append(f"HIGH_TV_SHARE: terminal value is {tvs*100:.0f}% of IV@15% — result is mostly a terminal assumption")
         ivsb, ivsbu = scenarios["super_bear"]["iv_at_15"], scenarios["super_bull"]["iv_at_15"]
         spread = (ivsbu / ivsb) if ivsb and ivsb > 0 else None
@@ -905,28 +1102,49 @@ def main():
         nd_ratio = (net_debt / base_oe_total_norm) if (net_debt is not None and base_oe_total_norm) else None
         if nd_ratio is not None and nd_ratio > 3: flags.append(f"HIGH_NET_DEBT: net debt is {nd_ratio:.1f}x normalized OE — levered OE can vanish fast; stress the bear cases")
         if nd_ratio is not None and nd_ratio < -2: flags.append(f"BIG_NET_CASH: net cash is {-nd_ratio:.1f}x normalized OE — part of the price is a cash pile, not the operating business; note it in the verdict")
+        tier_bear, tier_bull = tier_for_irr(irr_bear), tier_for_irr(irr_bull)
+        if tier_bear != tier_bull:
+            flags.append(f"TIER_BAND: bear-case tier {tier_bear} ({irr_bear*100:.1f}%) vs bull-case tier {tier_bull} ({irr_bull*100:.1f}%) — the verdict spans tiers; size any position to the bear end")
         result.update({"g_base": g_base, "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
                                   "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "scenarios": scenarios, "weighted": weighted,
+                       "paths": paths, "growth_paths": gpaths,
                        "implied_irr_weighted": irr, "implied_irr_base": scenarios["base"]["irr"],
-                       "tier_by_numbers": tier,
+                       "irr_bear": irr_bear, "irr_bull": irr_bull,
+                       "irr_low": min(s["irr"] for s in scenarios.values()), "irr_high": max(s["irr"] for s in scenarios.values()),
+                       "tier_by_numbers": tier, "tier_bear": tier_bear, "tier_bull": tier_bull,
+                       "hurdle_prices": {"15": weighted["iv_at_15"], "20": weighted["iv_at_20"], "25": weighted["iv_at_25"]},
                        "upside_at_15": weighted["iv_at_15"] / price - 1, "upside_at_12": weighted["iv_at_12"] / price - 1,
                        "iv_at_15": weighted["iv_at_15"], "iv_at_12": weighted["iv_at_12"],
+                       "iv_at_20": weighted["iv_at_20"], "iv_at_25": weighted["iv_at_25"],
                        "diagnostics": {"oe_yield": oe_yield, "tv_share_at_15": tvs, "scenario_spread_iv15": spread,
                                        "net_debt_to_normalized_oe": nd_ratio, "months_since_fy_end": months_stale,
-                                       "irr_capped": bool(capped_labels)},
+                                       "irr_capped": bool(capped_labels), "irr_at_floor": bool(_wfloor)},
                        "fragility_flags": flags})
     else:
-        result.update({"tier_by_numbers": "F", "implied_irr_weighted": None, "implied_irr_base": None, "moat_score": moat,
+        # v5.4: Tier F is split — "SBC exceeds cash generation" and "no cash
+        # generation" are different stories (audit round-1, Model design).
+        _fcf_latest = latest.get("fcf")
+        if oe_ps is not None and oe_ps <= 0 and isinstance(_fcf_latest, (int, float)) and _fcf_latest > 0:
+            f_subtype = "sbc_exceeds_cash"
+        elif oe_ps is not None and oe_ps <= 0:
+            f_subtype = "no_cash_generation"
+        else:
+            f_subtype = "no_base"
+        result.update({"tier_by_numbers": "F", "f_subtype": f_subtype,
+                       "implied_irr_weighted": None, "implied_irr_base": None, "moat_score": moat,
+                       "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
                                   "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "fragility_flags": flags_pre,  # v5: F names carry their flags too
-                       "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings — OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass."})
+                       "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings — OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass."
+                               + (" F sub-type: SBC exceeds cash generation (OCF - capex is positive; SBC consumes it)." if f_subtype == "sbc_exceeds_cash"
+                                  else " F sub-type: no cash generation (OCF - capex is not positive)." if f_subtype == "no_cash_generation" else "")})
 
     if overrides_applied and not MEASURE:
         result["override_impact"] = _override_impact(ticker, price,
