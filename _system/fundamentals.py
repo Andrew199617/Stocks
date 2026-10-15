@@ -42,16 +42,55 @@ growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
   buybacks − issuance over the market cap, where a leg that is filed for only
   some of the four quarters is summed as a lower bound and a tag the filer
   never filed in any period counts as zero — `legs`, `shareholder_yield_basis`
-  and `shareholder_yield_complete` say exactly which. Market cap = price × the
-  latest filed instant share count (cover-page dei count, else the balance
-  sheet's), the weighted-average diluted count only as a fallback; both are
-  recorded. Quarterly rows carry dividends_paid, buybacks, share_issuance (with
+  and `shareholder_yield_complete` say exactly which. 5.4.3 (re-verification
+  fixes): every flow yield (buyback, net buyback, shareholder) is built the
+  same way from the filed legs and `yield_basis` states per yield which legs
+  went in, which were taken as zero (never-filed line), which were left out,
+  and whether the figure is exact, a lower bound, an upper bound or neither —
+  no headline carries a partial numerator without that flag; a DPS CAGR
+  window that contains a year with no dividend (no annual row, or a filed
+  zero — a suspension) is null and `notes` names the gap; an FY DPS fact two
+  filings agree on beats a later filing's power-of-ten unit slip
+  (dps_fy_facts); the unfiled-split guard requires the diluted EPS to have
+  restated by the same factor (a real share issuance with a coincident cut
+  stays a cut, `basis_breaks_rejected`); a label collision between two fiscal
+  years ending in one calendar year is named (`fy_label_basis`, join on
+  period_end). Market cap = price × the latest filed instant share count
+  (cover-page dei count, else the balance sheet's); when none exists in
+  companyfacts (a dual-class filer's counts are class-dimensioned and dropped
+  by the API — TKO) the most inclusive recent filed diluted weighted-average
+  count is used and `shares_source` / `shares_basis` / `market_cap_basis` say
+  so (fallback_share_count). Quarterly rows carry dividends_paid, buybacks, share_issuance (with
   the contributing tags) and DPS. DPS is a per-share rate: only direct
   quarterly facts are used, never YTD subtraction; the cash flows derive like
   the other cash-flow lines. Price = <T>/prices.json stats.last, else
   score.json price. A filing in the submissions feed that companyfacts has not
   ingested yet is named in `notes` and `warnings`. Anything not computable
-  from filed values is null and `notes` says why.
+  from filed values is null and `notes` says why. 5.4.5 (re-verification
+  fixes): a dividends / buyback / issuance value filed below zero is a sign
+  error read as its absolute amount (`legs[*].sign_corrected`,
+  `yield_basis[*].sign_corrected`); the primary DPS basis is chosen by coverage
+  of the last eight quarters; a fiscal year the primary tag never filed takes
+  the other tag's FY fact; an FY DPS fact below its own quarters is not used;
+  a power-of-ten disagreement prefers the value consistent with the year's
+  quarters and neighbouring years; a cash payer whose per-share tags lapsed
+  reads its frequency from dividends paid, not "suspended"; a split evidenced
+  only by re-filed DPS and share counts restates the quarterly facts too.
+  5.4.6 (second re-verification): the primary DPS basis is a stopped tag's
+  other tag, else the tag with quarterly facts, else declared — the same at
+  every filing date (choose_dps_basis); an FY DPS fact below its own quarters
+  is set aside only when the other tag files a full-year total that replaces
+  it, else kept with a note; a quarterly DPS fact re-filed later at another
+  value is read from the filing that first reported it; the FY-count
+  frequency rule needs the FY total and the quarters from the same tag and a
+  remainder of at least half a quarterly payment; payer status / cadence from
+  cash only off a common-stock dividends tag and never over filed zero DPS;
+  issuance below zero is kept as filed unless its own fiscal year carries the
+  opposite sign (`legs[*].kept_as_filed`), a quarter whose year-to-date facts
+  decrease is left out as such (`legs[*].left_out`); an issuance "total" tag
+  smaller than its components is summed with them; a split read from
+  re-filed values takes a whole-number ratio, and the unfiled-split guard
+  reads split-adjusted share counts.
 Units are the filer's own (USD for almost every name; `currency` records
 anything else). No FX conversion is applied here — the engine handles that
 for the valuation; this file is for reading the filings as filed.
@@ -180,10 +219,17 @@ DUR = {
 }
 # A tag that is by definition the total of other issuance tags: when it is
 # filed in the same filing as one of its components, the total alone counts.
+# ProceedsFromStockOptionsExercised doubles as the ASC 718 note disclosure
+# ("cash received from option exercises"), the same cash a filer's statement
+# line already carries as issuance of common stock / sale of treasury stock
+# (KR, ESLT) — so those lines rank above it; a filer whose statement has an
+# option line AND an ESPP line (ZS) still gets both summed.
+_PLAN_TAGS = {"ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans", "ProceedsFromStockOptionsExercised", "ProceedsFromStockPlans"}
 ISSUANCE_SUPERSETS = {
     "ProceedsFromIssuanceOrSaleOfEquity": "*",
-    "ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlansIncludingStockOptions": {
-        "ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans", "ProceedsFromStockOptionsExercised", "ProceedsFromStockPlans"},
+    "ProceedsFromIssuanceOfCommonStock": _PLAN_TAGS | {"ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlansIncludingStockOptions"},
+    "ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlansIncludingStockOptions": _PLAN_TAGS,
+    "ProceedsFromSaleOfTreasuryStock": {"ProceedsFromStockOptionsExercised"},
 }
 INST = {
     "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", (IF, "CashAndCashEquivalents")],
@@ -312,7 +358,13 @@ def combined_duration_facts(facts, tags, supersets=None):
     that books option exercises and ESPP proceeds on two lines). The filing is
     the latest one that reports the period, so a renamed tag in a later 10-K
     never double-counts an older one; a tag that is by definition the total of
-    other tags present in the filing (`supersets`) counts alone."""
+    other tags present in the filing (`supersets`) counts alone.
+    5.4.6 review blocker (FIG FY2025: ProceedsFromIssuanceOfCommonStock 0
+    beside ProceedsFromStockOptionsExercised 131.7M and ProceedsFromStockPlans
+    26.4M; DHI FY2025 common 0 beside its plan line 18.5M): a "total" is only a
+    total when it is at least the sum of the present parts it would drop
+    (within 0.5% rounding) — a smaller one is a separate statement line, and
+    every line is summed."""
     supersets = supersets or {}
     per_period = {}
     for taxonomy, tag in _pairs(tags):
@@ -334,7 +386,11 @@ def combined_duration_facts(facts, tags, supersets=None):
         present = set(tagvals)
         for total, parts in supersets.items():
             if total in present and (present - {total}) and (parts == "*" or (present & set(parts))):
-                present = {total} if parts == "*" else present - set(parts)
+                drop = (present - {total}) if parts == "*" else (present & set(parts))
+                tv = tagvals[total][0]
+                dv = sum(tagvals[t][0] for t in drop if _num(tagvals[t][0]))
+                if _num(tv) and tv >= dv - max(1.0, 0.005 * abs(dv)):
+                    present = present - drop
         unit = next(iter(tagvals.values()))[1]
         keep = sorted(t for t in present if tagvals[t][1] == unit and _num(tagvals[t][0]))
         if not keep:
@@ -686,7 +742,7 @@ def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=No
 
 
 # ---------------------------------------------------------------------------
-# Dividends block (5.4.1; 5.4.2 review fixes). Pure functions first — tested
+# Dividends block (5.4.1; 5.4.2 / 5.4.3 / 5.4.4 / 5.4.5 review fixes). Pure functions first — tested
 # in tests/test_fundamentals_dividends.py against inline fixtures — then the
 # assembly that reads the filed series and the price files.
 # ---------------------------------------------------------------------------
@@ -754,7 +810,7 @@ def frequency_from_spacing(ends):
     ends = sorted(ends)[-4:]
     if len(ends) < 2:
         return None
-    g = statistics.median(_days(a, b) for a, b in zip(ends, ends[1:]))
+    g = statistics.median_low([_days(a, b) for a, b in zip(ends, ends[1:])])  # low median: a run with one hole still reads as its usual gap
     if g <= 130:
         return "quarterly"
     if g <= 240:
@@ -764,19 +820,35 @@ def frequency_from_spacing(ends):
     return "irregular"
 
 
-def infer_frequency(n_quarterly_in_fy, fy_dps, sum_quarterly_in_fy, any_quarterly_facts, any_facts, dividends_paid=False):
+def fy_remainder_is_a_payment(fy_dps, sum_quarterly_in_fy, min_quarterly=None):
+    """True when the FY DPS total exceeds the sum of the quarterly facts inside
+    that fiscal year by enough to be a payment the quarterly facts do not carry.
+    5.4.6 review fix (IRM: quarterly facts 0.785 ×3 + 0.864 = 3.219 against the
+    rounded FY fact 3.22 — the 0.001 is rounding, not a fifth payment): the
+    remainder must be at least half the smallest positive quarterly fact of the
+    year (any positive remainder when no quarterly fact is given)."""
+    if not (_num(fy_dps) and _num(sum_quarterly_in_fy)):
+        return False
+    rem = fy_dps - sum_quarterly_in_fy
+    floor = 0.5 * min_quarterly if _num(min_quarterly) and min_quarterly > 0 else 0.0
+    return rem > 1e-9 and rem >= floor
+
+
+def infer_frequency(n_quarterly_in_fy, fy_dps, sum_quarterly_in_fy, any_quarterly_facts, any_facts, dividends_paid=False, min_quarterly=None):
     """Payment frequency from how many DPS facts fall inside the latest
     fiscal year (the fallback when the FY total carries a payment the
     quarterly facts do not — the 10-K files the year, not the Q4). None (not
     inferable) when the filer files only full-year DPS facts (20-F). A filer
     with no per-share facts at all is "none" only when it also pays no cash
-    dividends; with `dividends_paid` the rate is simply not tagged → None."""
+    dividends; with `dividends_paid` the rate is simply not tagged → None.
+    `min_quarterly` (the smallest positive quarterly fact of the year) sets the
+    rounding floor of fy_remainder_is_a_payment."""
     if not any_facts:
         return None if dividends_paid else "none"
     if not any_quarterly_facts:
         return None
     n = n_quarterly_in_fy
-    if _num(fy_dps) and _num(sum_quarterly_in_fy) and fy_dps > sum_quarterly_in_fy + 1e-9:
+    if fy_remainder_is_a_payment(fy_dps, sum_quarterly_in_fy, min_quarterly):
         n += 1
     return {4: "quarterly", 2: "semiannual", 1: "annual"}.get(n, "irregular")
 
@@ -808,41 +880,81 @@ def last_cut_fy(annual):
     return None
 
 
-def dps_cagr(annual, years):
-    """CAGR of annual DPS between the latest row and the row whose period end
-    is `years` years earlier (±45 days, so 52/53-week drift is fine; a
-    missing endpoint is None, a missing year in between does not matter)."""
+def dps_cagr_window(annual, years):
+    """(cagr, reason). CAGR of annual DPS between the latest row and the row
+    whose period end is `years` years earlier (±45 days, so 52/53-week drift
+    is fine). The window must be an unbroken run of consecutive fiscal years
+    (one fiscal year apart by period end) each with a DPS > 0: a year with no
+    annual DPS row (dividend suspended, or simply not filed) or a filed zero
+    inside the window makes the figure null and `reason` names the gap —
+    EXPE's FY2020 0.34 → FY2025 1.60 is a suspension and a reinstatement, not
+    36%/yr of growth (5.4.3 review fix). reason is None when the CAGR is
+    computed, and names the missing endpoint otherwise."""
     rows = _dps_rows(annual)
     if len(rows) < 2:
-        return None
+        return None, "fewer than two annual DPS rows"
     last = rows[-1]
     target = datetime.date.fromisoformat(last["period_end"]) - datetime.timedelta(days=round(years * 365.25))
     base = min(rows[:-1], key=lambda r: abs((datetime.date.fromisoformat(r["period_end"]) - target).days))
     if abs((datetime.date.fromisoformat(base["period_end"]) - target).days) > 45:
-        return None
+        return None, f"no annual DPS row {years} years before FY{last['fy']} (period ended {last['period_end']})"
+    window = [r for r in rows if base["period_end"] <= r["period_end"] <= last["period_end"]]
+    label = f"the {years}-year window FY{base['fy']}→FY{last['fy']}"
+    for prev, cur in zip(window, window[1:]):
+        if not fy_consecutive(prev["period_end"], cur["period_end"]):
+            return None, (f"{label} has no annual DPS between FY{prev['fy']} (period ended {prev['period_end']}) and FY{cur['fy']} "
+                          f"(period ended {cur['period_end']}) — a dividend suspension or unfiled years, not a growth path")
+    zeros = [r for r in window if not r["dps"] > 0]
+    if zeros:
+        return None, f"{label} contains a fiscal year with no dividend ({', '.join('FY' + r['fy'] for r in zeros)}: DPS {zeros[0]['dps']:g}) — a suspension, not a growth path"
     a, b = base["dps"], last["dps"]
-    if a <= 0 or b <= 0:
-        return None
-    return (b / a) ** (1.0 / years) - 1
+    return (b / a) ** (1.0 / years) - 1, None
+
+
+def dps_cagr(annual, years):
+    """CAGR of annual DPS over an unbroken `years`-year window (see dps_cagr_window); None otherwise."""
+    return dps_cagr_window(annual, years)[0]
 
 
 def dps_outliers(annual):
     """Labels of rows whose annual DPS is more than 10x both neighbours (a unit
-    slip in the filed XBRL, e.g. cents tagged as dollars). Reported, never altered."""
+    slip in the filed XBRL, e.g. cents tagged as dollars). Reported, never altered.
+    5.4.5 review fix (CCI FY2014 1870 against FY2015 3.35, FY2016 3.61): the
+    first and the last positive rows are compared with their single neighbour
+    when that neighbour is itself corroborated by the next row (within 3x), at
+    EDGE_OUTLIER_FACTOR (100x: a cents / thousands slip) — one-sided, a real
+    cut can be 10x-plus (HBAN FY2008 0.6625 → FY2009 0.04 is 16.6x). With only
+    two rows there is no telling which one is off."""
     rows = [r for r in annual if _num(r.get("dps")) and r["dps"] > 0]
     out = []
-    for i in range(1, len(rows) - 1):
-        a, b, c = rows[i - 1]["dps"], rows[i]["dps"], rows[i + 1]["dps"]
-        if b > 10 * a and b > 10 * c:
-            out.append(rows[i]["fy"])
+    for i in range(len(rows)):
+        b = rows[i]["dps"]
+        if 0 < i < len(rows) - 1:
+            if b > 10 * rows[i - 1]["dps"] and b > 10 * rows[i + 1]["dps"]:
+                out.append(rows[i]["fy"])
+        elif len(rows) >= 3:
+            n1, n2 = (rows[1]["dps"], rows[2]["dps"]) if i == 0 else (rows[-2]["dps"], rows[-3]["dps"])
+            if b > EDGE_OUTLIER_FACTOR * n1 and max(n1, n2) <= 3 * min(n1, n2):
+                out.append(rows[i]["fy"])
     return out
 
 
-def basis_breaks(annual, shares_by_end):
+EDGE_OUTLIER_FACTOR = 100
+
+
+def basis_breaks(annual, shares_by_end, eps_by_end=None, rejected=None):
     """Fiscal years where annual DPS moved ~1/k while the diluted share count
     moved ~k (k ≥ 1.4): a share-basis change (an unfiled split) — never a
-    cut. Returns [(period_end, dps_ratio, share_ratio)] ascending."""
+    cut. Returns [(period_end, dps_ratio, share_ratio)] ascending.
+    5.4.3 review fix (false positives on real share moves): a split restates
+    the prior year's diluted EPS by the same factor, a share issuance with a
+    coincident dividend cut does not — so when both years' diluted EPS are
+    filed and positive, the EPS move must also be ~1/k (EPS ratio × share
+    ratio within 0.6–1.6; earnings move year to year, hence the wider band).
+    A candidate the EPS contradicts is appended to `rejected` as
+    (period_end, dps_ratio, share_ratio, eps_ratio) and stays a cut."""
     rows = _dps_rows(annual)
+    eps_by_end = eps_by_end or {}
     out = []
     for prev, cur in zip(rows, rows[1:]):
         if not fy_consecutive(prev["period_end"], cur["period_end"]):
@@ -852,13 +964,22 @@ def basis_breaks(annual, shares_by_end):
             continue
         rs, rd = s1 / s0, cur["dps"] / prev["dps"]
         if (rs >= 1.4 or rs <= 1 / 1.4) and 0.8 <= rs * rd <= 1.25:
+            e0, e1 = eps_by_end.get(prev["period_end"]), eps_by_end.get(cur["period_end"])
+            if _num(e0) and _num(e1) and e0 > 0 and e1 > 0:
+                re = e1 / e0
+                if not 0.6 <= rs * re <= 1.6:
+                    if rejected is not None:
+                        rejected.append((cur["period_end"], rd, rs, re))
+                    continue
             out.append((cur["period_end"], rd, rs))
     return out
 
 
 def payout_ratio(numerator, denominator):
-    """numerator / denominator, None unless both are numbers and the denominator is > 0."""
-    if not _num(numerator) or not _num(denominator) or denominator <= 0:
+    """numerator / denominator, None unless both are numbers, the denominator is
+    > 0 and the numerator is ≥ 0 (a payment filed below zero is a sign error the
+    caller corrects first — never a negative payout)."""
+    if not _num(numerator) or not _num(denominator) or denominator <= 0 or numerator < 0:
         return None
     return numerator / denominator
 
@@ -910,11 +1031,24 @@ def _fy_label(fy_start):
 
 
 # ---- stock splits (filed ratios) ------------------------------------------
-def split_events(facts):
+SPLIT_DUPLICATE_DAYS = 180   # one split is tagged at several context dates (approval, record date, distribution, fiscal year end)
+SPLIT_RATIO_TOL = 1.1        # a re-filed value within 10% of the ratio is the split's restatement
+SHARE_REFILE_MIN = 1.4       # a diluted share count re-filed ≥1.4x apart is a basis change, not rounding
+
+
+def split_events(facts, duplicates=None):
     """[(effective_date, ratio)] from StockholdersEquityNoteStockSplitConversionRatio1
-    facts on any form, one entry per date; ratio = new shares per old share
-    as filed (2 for a 2-for-1 split, 0.6667 for a 2-for-3 reverse split)."""
-    out = {}
+    facts on any form; ratio = new shares per old share as filed (2 for a
+    2-for-1 split, 0.6667 for a 2-for-3 reverse split). A filer tags ONE split
+    at several context dates — the board approval, the record date, the
+    distribution, the fiscal year end (TSCO's 5-for-1 sits at 2024-12-05,
+    2024-12-20 and 2024-12-28; NVDA's 4-for-1 at 2021-06-03 and 2021-07-19,
+    its 10-for-1 at 2024-05-31 and 2024-06-30) — so facts with the same ratio
+    within SPLIT_DUPLICATE_DAYS of the event's first date are ONE event at
+    that first date (5.4.4 blocker fix: before this each date compounded and
+    TSCO's pre-split DPS was divided by 125 instead of 5). `duplicates`
+    (optional list) receives (date, ratio, [folded dates])."""
+    seen = {}
     for taxonomy, tag in _pairs(DUR["split_ratio"]):
         tf = facts.get("facts", {}).get(taxonomy, {}).get(tag)
         if not tf:
@@ -922,54 +1056,170 @@ def split_events(facts):
         for unit_key, es in tf.get("units", {}).items():
             for e in es:
                 d, v = e.get("end"), e.get("val")
-                if d and _num(v) and v > 0 and v != 1 and d not in out:
-                    out[d] = v
-    return sorted(out.items())
+                if d and _num(v) and v > 0 and v != 1 and d not in seen:
+                    seen[d] = v
+    groups = []
+    for d, v in sorted(seen.items()):
+        if groups and groups[-1][1] == v and _days(groups[-1][0], d) <= SPLIT_DUPLICATE_DAYS:
+            groups[-1][2].append(d)
+            continue
+        groups.append([d, v, []])
+    if duplicates is not None:
+        duplicates.extend((d, v, folded) for d, v, folded in groups if folded)
+    return [(d, v) for d, v, _ in groups]
 
 
-def split_direction(splits, shares_with_filed):
+def split_direction(splits, shares_with_filed, dropped=None):
     """Check each filed ratio against the filed diluted share counts: the
     last fiscal year filed BEFORE the split vs the first filed AFTER it. The
     us-gaap element does not fix which way the ratio reads, so when the counts
     move by ~1/ratio instead of ~ratio (a 1-for-10 reverse split filed as 10)
-    the inverse is used. Returns [(date, ratio_filed, ratio_used, evidence)]."""
+    the inverse is used. Returns [(date, ratio_filed, ratio_used, evidence)].
+    5.4.4: two events that rest on the SAME pair of filed counts are one split
+    when their compounded ratio overshoots the observed move by more than
+    1.5x — the later one is a duplicate ratio fact (tagged again months later),
+    not a second split; it is left out and `dropped` (optional list) receives
+    (date, ratio, evidence)."""
     out = []
     for d, r in splits:
         pre = [(e, v) for e, (v, f) in shares_with_filed.items() if f and f < d and _num(v) and v > 0]
         post = [(e, v) for e, (v, f) in shares_with_filed.items() if f and f >= d and _num(v) and v > 0]
-        used, ev = r, None
+        used, ev, obs, pair = r, None, None, None
         if pre:
             post = [(e, v) for e, v in post if e > max(pre)[0]]
         if pre and post:
             e0, s0 = max(pre)
             e1, s1 = min(post)
-            obs = s1 / s0
+            obs, pair = s1 / s0, (e0, e1)
             ev = f"diluted shares {s0:,.0f} (FY ending {e0}) → {s1:,.0f} (FY ending {e1}), ×{obs:.2f}"
+            # 5.4.6: one of the two counts filed in thousands, the other in
+            # shares (WRB 2019: 193,527 vs 129,017,613) — the move is read
+            # after taking out the factor of 1,000
+            k3 = round(-math.log10(obs) / 3) if obs > 0 else 0
+            if k3 and abs(math.log10(obs)) >= 2.5:
+                obs = obs * 1000.0 ** k3
+                ev += f" — one count is filed in thousands, ×{obs:.2f} once the factor of 1,000 is taken out"
             if abs(math.log(obs)) > math.log(1.25) and abs(math.log(obs) - math.log(1 / r)) < abs(math.log(obs) - math.log(r)):
                 used = 1 / r
-        out.append((d, r, used, ev))
+                sn = snap_ratio(used, tol=0.001)  # a ratio filed rounded (0.6667) inverts to 1.49993: the split is 3-for-2
+                used = sn[0] if sn else used
+        out.append((d, r, used, ev, obs, pair))
+    kept, product = [], {}
+    for d, r, used, ev, obs, pair in out:
+        if pair is not None and abs(math.log(obs)) > math.log(1.25):
+            prod = product.get(pair, 1.0) * used
+            if abs(math.log(prod)) > abs(math.log(obs)) + math.log(1.5):
+                if dropped is not None:
+                    dropped.append((d, r, f"{ev}; compounding it with the split already read from the same counts would give ×{prod:.2f}"))
+                continue
+            product[pair] = prod
+        kept.append((d, r, used, ev))
+    return kept
+
+
+def share_refilings(facts):
+    """Periods whose diluted weighted-average share count was re-filed at a
+    different value — the comparatives a filer restates after a split:
+    [(period_end, k, last_filed_old, first_filed_new)] ascending by the
+    re-filing date, k = new / old (|log k| ≥ log 1.4). Every filing of every
+    period on 10-Q / 10-K forms is read, not just the latest."""
+    by_period = {}
+    for taxonomy, tag in _pairs(DUR["shares_diluted"]):
+        tf = facts.get("facts", {}).get(taxonomy, {}).get(tag)
+        if not tf:
+            continue
+        for unit_key, es in tf.get("units", {}).items():
+            if unit_key != "shares":
+                continue
+            for e in es:
+                if e.get("form", "") not in DURATION_FORMS or not e.get("start") or not e.get("end") or not e.get("filed"):
+                    continue
+                if not _num(e.get("val")) or e["val"] <= 0:
+                    continue
+                by_period.setdefault((e["start"], e["end"]), []).append((e["filed"], e["val"]))
+    out = []
+    for (s, e), fv in by_period.items():
+        fv.sort()
+        old_filed, old_val = fv[0]
+        for filed, val in fv[1:]:
+            k = val / old_val
+            if abs(math.log(k)) >= math.log(SHARE_REFILE_MIN):
+                out.append((e, k, old_filed, filed))
+            old_filed, old_val = filed, val
+    return sorted(out, key=lambda x: (x[3], x[0]))
+
+
+def split_filing_cutoffs(splits, refilings):
+    """{split_date: (first_post_split_filing, evidence)}. A ratio fact's
+    context date is the approval / record date, not the day the filer's
+    numbers changed basis: CTAS tagged 4 at 2024-05-02 and its 10-K filed
+    2024-07-25 still carried pre-split comparatives; KR tagged 2 at 2015-06-25
+    and the 10-Q filed 2015-06-30 was pre-split. The filings themselves say
+    when the basis changed — the first filing that re-files a period's diluted
+    share count ×≈ratio (share_refilings) within −200..+400 days of the ratio
+    date. splits: [(date, ratio_used)]."""
+    out = {}
+    for d, used in splits:
+        cands = []
+        for e, k, old_filed, new_filed in refilings:
+            if abs(math.log(k) - math.log(used)) <= math.log(SPLIT_RATIO_TOL) and -200 <= _days(d, new_filed) <= 400:
+                cands.append((new_filed, e, k, old_filed))
+        if cands:
+            new_filed, e, k, old_filed = min(cands)
+            out[d] = (new_filed, f"the diluted share count for the period ended {e} was re-filed ×{k:.2f} on {new_filed} (last filed on the old basis {old_filed})")
     return out
 
 
+def _split_cutoff(s):
+    """(date, ratio, cutoff) for a split tuple of two or three elements — the
+    cutoff is the first filing on the post-split basis, the date itself when
+    the filings gave no evidence."""
+    d, r = s[0], s[1]
+    return d, r, (s[2] if len(s) > 2 and s[2] else d)
+
+
 def split_factor(filed, splits):
-    """Product of the ratios of every split effected after `filed` (the date
-    the fact was last filed). A fact filed before a split is on the pre-split
-    share basis; dividing its per-share value by this factor restates it to
-    today's basis — plain arithmetic on two filed values."""
+    """Product of the ratios of every split whose first post-split filing
+    (the split's date when the filings carry no evidence) is after `filed`,
+    the date the fact was last filed. A fact filed before that is on the
+    pre-split share basis; dividing its per-share value by this factor
+    restates it to today's basis — plain arithmetic on two filed values.
+    splits: [(date, ratio)] or [(date, ratio, first_post_split_filing)]."""
     f = 1.0
-    for d, r in splits:
-        if filed and filed < d:
+    for s in splits:
+        d, r, cutoff = _split_cutoff(s)
+        if filed and filed < cutoff:
             f *= r
     return f
 
 
+def snap_ratio(x, tol=0.01, max_n=10):
+    """(p/q, (p, q)) — the simplest ratio of two whole numbers ≤ max_n within
+    `tol` (1%) of x, else None. A split is p-for-q in whole shares; a ratio read
+    off two rounded per-share values (WRB: 0.89 / 0.59 = 1.50847) is that split
+    plus rounding (5.4.6 review fix)."""
+    if not _num(x) or x <= 0:
+        return None
+    for q in range(1, max_n + 1):
+        p = round(x * q)
+        if 1 <= p <= max_n and abs(p / q / x - 1) <= tol:
+            return p / q, (p, q)
+    return None
+
+
+def _split_desc(d, r, cutoff=None):
+    desc = f"{r:g}-for-1 split effective {d}" if r >= 1 else f"1-for-{1 / r:g} reverse split effective {d}"
+    return desc + (f" (first filed on the new basis {cutoff})" if cutoff and cutoff != d else "")
+
+
 def apply_splits(dps_q, dps_fy, fy_filed, splits):
-    """Restate every DPS fact whose latest filing precedes a split. dps_q:
-    {basis: {end: {val, filed, ...}}} (quarterly dicts get 'split_factor');
-    dps_fy: {basis: {end: dps}}; fy_filed: {basis: {end: filed}}; splits:
-    [(date, ratio)]. Returns (dps_q, dps_fy, notes)."""
+    """Restate every DPS fact whose latest filing precedes a split's first
+    post-split filing. dps_q: {basis: {end: {val, filed, ...}}} (quarterly
+    dicts get 'split_factor'); dps_fy: {basis: {end: dps}}; fy_filed: {basis:
+    {end: filed}}; splits: [(date, ratio[, first_post_split_filing])].
+    Returns (dps_q, dps_fy, notes)."""
     notes = []
-    splits = [(d, r) for d, r in (splits or []) if _num(r) and r > 0 and r != 1]
+    splits = [s for s in (splits or []) if _num(s[1]) and s[1] > 0 and s[1] != 1]
     if not splits:
         return dps_q, dps_fy, notes
     touched = {}
@@ -985,10 +1235,13 @@ def apply_splits(dps_q, dps_fy, fy_filed, splits):
             if f != 1 and _num(v):
                 dps_fy[basis][e] = v / f
                 touched.setdefault(basis, []).append(e)
-    desc = "; ".join(f"{r:g}-for-1 split effective {d}" if r >= 1 else f"1-for-{1 / r:g} reverse split effective {d}" for d, r in splits)
+    desc = "; ".join(_split_desc(*_split_cutoff(s)) + (" (no ratio fact: the factor the filer re-filed its FY DPS and diluted share counts by)" if len(s) > 3 and s[3] == "re_filed_counts" else "")
+                     for s in splits)
+    src = ("the filed ratio (StockholdersEquityNoteStockSplitConversionRatio1)" if all(not (len(s) > 3 and s[3] == "re_filed_counts") for s in splits)
+           else "the split ratio (filed, or evidenced by the re-filed values)")
     for basis, ends in touched.items():
         ends = sorted(set(ends))
-        notes.append(f"split adjustment ({basis} DPS): {len(ends)} facts for periods ending {ends[0]}..{ends[-1]} were last filed before the {desc} and are divided by the filed ratio (StockholdersEquityNoteStockSplitConversionRatio1) to today's share basis")
+        notes.append(f"split adjustment ({basis} DPS): {len(ends)} facts for periods ending {ends[0]}..{ends[-1]} were last filed before the {desc} and are divided by {src} to today's share basis")
     return dps_q, dps_fy, notes
 
 
@@ -1048,12 +1301,241 @@ def _fmt_big(v):
     return f"{v:,.0f}"
 
 
+def ytd_cover(last4, flow_facts):
+    """(value, [covered quarter ends], description) — the longest filed
+    year-to-date fact that spans whole quarters INSIDE the four-quarter
+    window: its end is a window quarter's end, its length is that quarter's
+    fiscal rank (fq 2 → a six-month fact, fq 3 → nine months, fq 4 → the
+    fiscal year), and the quarters it spans (the fiscal year's first through
+    that quarter) are all window rows. flow_facts: duration_facts output
+    {(start, end): (val, tag, unit, filed, accn)}. None when no such fact
+    exists (a one-quarter fact adds nothing the row does not carry).
+    5.4.5: a fourth element is the fact's (start, end) key, so the caller can
+    tell whether the fact it used was filed with a flipped sign."""
+    if not last4 or not flow_facts:
+        return None
+    best = None
+    for i, row in enumerate(last4):
+        n = row.get("fq")
+        if not _num(n) or n < 2 or i - n + 1 < 0:
+            continue
+        span = last4[i - n + 1:i + 1]
+        if any(_num(r.get("fq")) and r["fq"] != j + 1 for j, r in enumerate(span)):
+            continue
+        for (s, e), fact in flow_facts.items():
+            if e != row["period_end"] or not _num(fact[0]):
+                continue
+            d = _days(s, e)
+            if round(d / 91.25) != n or abs(d - n * 91.25) > 35:
+                continue
+            if best is None or n > best[0]:
+                label = {2: "six-month", 3: "nine-month", 4: "full-year"}[n]
+                best = (n, fact[0], [r["period_end"] for r in span],
+                        f"the {label} year-to-date fact {s}..{e} = {_fmt_big(fact[0])} ({fact[1]}, filed {fact[3]})", (s, e))
+    return best[1:] if best else None
+
+
+# ---- 5.4.5 / 5.4.6 review fixes: primary DPS basis, flow-leg signs, cash payer status
+BASIS_WINDOW_QUARTERS = 8   # "files quarterly facts" = a quarterly fact in the latest eight quarters (ending at the newest fact of either tag)
+BASIS_STOP_DAYS = 330       # a tag whose newest fact is this much older than the other tag's newest has stopped (≈ four quarters)
+
+
+def choose_dps_basis(dps_q, dps_fy):
+    """(basis, rule) — the PRIMARY per-share basis. 5.4.6 review fix: the 5.4.5
+    rule (coverage of the last eight quarter slots, an FY fact covering every
+    slot of its year) was seasonal for a tag that files only full-year facts —
+    each 10-K gave that tag four new slots and each later 10-Q took them away
+    (ZTS: CashPaid FY-only, Declared Q1-Q3; ATO), and one newer fact could move
+    the slot difference by two (the window slides). The rule now reads only
+    things that do not change between a 10-K and the next 10-Q:
+    1. a tag whose newest fact is ≥ BASIS_STOP_DAYS older than the other tag's
+       newest has stopped — the other tag is primary (AVGO: declared ends FY2020);
+    2. otherwise a tag with quarterly facts in the latest eight quarters beats
+       a tag with only full-year facts there (the quarterly tag gives the TTM and
+       the cadence; ZTS → declared, a CashPaid Q1-Q3 + FY filer with a
+       declared FY-only tag → paid);
+    3. otherwise declared.
+    Once a filer's tagging pattern is set, the answer is the same at every
+    filing date. rule is None when only one tag (or none) is filed."""
+    ends = {b: ([e for e, d in (dps_q.get(b) or {}).items() if _num(d.get("val"))],
+                [p for p, v in (dps_fy.get(b) or {}).items() if _num(v)]) for b in ("declared", "paid")}
+    has = {b: bool(ends[b][0] or ends[b][1]) for b in ends}
+    if not (has["declared"] and has["paid"]):
+        return ("declared" if has["declared"] else ("paid" if has["paid"] else None)), None
+    newest = {b: max(ends[b][0] + ends[b][1]) for b in ends}
+    anchor = max(newest.values())
+    floor = _add_days(anchor, -round(BASIS_WINDOW_QUARTERS * 91.31))
+    quarterly = {b: any(e > floor for e in ends[b][0]) for b in ends}
+    lag = _days(newest["declared"], newest["paid"])  # > 0: declared's newest fact is older
+    n = BASIS_WINDOW_QUARTERS
+    if lag >= BASIS_STOP_DAYS:
+        return "paid", (f"the declared tag stopped: its newest fact ({newest['declared']}) is {lag} days older than the paid tag's ({newest['paid']}) — paid is primary")
+    if -lag >= BASIS_STOP_DAYS:
+        return "declared", (f"the paid tag stopped: its newest fact ({newest['paid']}) is {-lag} days older than the declared tag's ({newest['declared']}) — declared is primary")
+    if quarterly["declared"] != quarterly["paid"]:
+        b = "declared" if quarterly["declared"] else "paid"
+        o = "paid" if b == "declared" else "declared"
+        return b, (f"the {b} tag files quarterly facts in the last {n} quarters ending {anchor}, the {o} tag only full-year facts — the quarterly tag is primary "
+                   f"(the {o} tag's full-year facts fill only fiscal years the {b} tag does not cover)")
+    kind = "quarterly" if quarterly["declared"] else "only full-year"
+    return "declared", (f"both tags file {kind} facts in the last {n} quarters ending {anchor} and neither has stopped — declared is primary "
+                        f"(paid becomes primary only when the declared tag has had no fact for {BASIS_STOP_DAYS} days while paid continues)")
+
+
+def _flow_quarter_from_facts(end, ff):
+    """(value, used) — one fiscal quarter of a flow line rebuilt from the filed
+    facts ending at `end`, every fact taken as an absolute amount: a direct
+    three-month fact, else the year-to-date fact minus the one a quarter shorter
+    with the same start. used: [(start, end, value as filed)]; (None, []) when
+    the facts do not support the quarter."""
+    direct = [k for k in ff if k[1] == end and DPS_DIRECT_WINDOW[0] <= _days(k[0], k[1]) <= DPS_DIRECT_WINDOW[1] and _num(ff[k][0])]
+    if direct:
+        k = max(direct, key=lambda x: ff[x][3] or "")
+        return abs(ff[k][0]), [(k[0], k[1], ff[k][0])]
+    for (s, e), fact in sorted(ff.items()):
+        if e != end or not _num(fact[0]):
+            continue
+        d = _days(s, e)
+        n = round(d / 91.25)
+        if not 2 <= n <= 4 or abs(d - n * 91.25) > 35:
+            continue
+        for (s2, e2), f2 in sorted(ff.items()):
+            d2 = _days(s2, e2)
+            if s2 == s and _num(f2[0]) and round(d2 / 91.25) == n - 1 and abs(d2 - (n - 1) * 91.25) <= 35:
+                return abs(fact[0]) - abs(f2[0]), [(s, e, fact[0]), (s2, e2, f2[0])]
+    return None, []
+
+
+COMMON_DIVIDEND_TAGS = {"PaymentsOfDividendsCommonStock", "PaymentsOfOrdinaryDividends", "DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities"}
+# the kinds of a flow-leg sign entry (sign_fixed_flows): only SIGN_ABS changes a
+# filed sign; SIGN_KEPT is a negative issuance line kept as filed; the
+# SIGN_LEFT_OUT kinds are quarters no consistent figure exists for
+SIGN_ABS, SIGN_KEPT, SIGN_LEFT_OUT_SIGN, SIGN_LEFT_OUT_DECREASE = "abs", "kept", "left_out_sign", "left_out_decrease"
+
+
+def _sign_error(k, key, ff):
+    """Is the fact `key` of flow `k`, filed below zero, a sign-convention error?
+    Dividends paid and repurchases are payments — always. Issuance proceeds can
+    be a net line (net of offering costs, or stock-award proceeds net of the tax
+    withheld — IRM's ProceedsFromStockPlans −4.8M / −8.8M, LRCX's −43,000), so
+    for share_issuance only when the same fiscal year's other filed facts (the
+    same start date) carry the opposite sign — CCI's pattern of an FY fact below
+    zero beside positive year-to-date facts (5.4.6 review fix)."""
+    if k != "share_issuance":
+        return True
+    s = key[0]
+    return any(k2 != key and k2[0] == s and _num(f2[0]) and f2[0] > 0 for k2, f2 in (ff or {}).items())
+
+
+def signed_flow_facts(k, ff):
+    """(facts, flipped keys): the flow facts with every sign-convention error
+    (_sign_error) read as its absolute amount; a consistently negative
+    issuance fact stays as filed."""
+    out, flipped = {}, []
+    for key, f in (ff or {}).items():
+        if _num(f[0]) and f[0] < 0 and _sign_error(k, key, ff):
+            out[key] = (abs(f[0]),) + tuple(f[1:])
+            flipped.append(key)
+        else:
+            out[key] = f
+    return out, flipped
+
+
+_NET_LINE = ("issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) "
+             "and no other fact of that fiscal year carries the opposite sign")
+
+
+def sign_fixed_flows(annual, qrows, flow_facts=None):
+    """Dividends paid and repurchases are cash payments, non-negative by
+    definition; a value filed below zero is a sign-convention error in the
+    filing, not a negative payment (5.4.5 review blocker: CCI's FY2025 10-K tags
+    PaymentsOfDividendsCommonStock −2,080,000,000 and
+    PaymentsForRepurchaseOfCommonStock −23,000,000 while every 10-Q year-to-date
+    fact is positive, so the quarterly table's Q4 = FY − nine months read
+    −3,695,000,000 and −46,000,000). Issuance proceeds below zero are a sign
+    error only when the same fiscal year's other facts carry the opposite sign
+    (_sign_error); otherwise a net issuance line is kept as filed (5.4.6).
+    Returns (qv, av, fixes):
+    qv {flow: {quarter end: value}} — the row value, or, when the row is below
+    zero or was built from a fact that is a sign error, the quarter rebuilt from
+    the facts read as absolute amounts (|FY| − |nine months| = 2,080M − 1,615M =
+    465M); None when no consistent figure exists (left out, a missing quarter);
+    av {flow: {FY period end: value}} — the annual value, sign errors absolute;
+    fixes {flow: [(key, text, kind)]} — key is the quarter end, or "FY:<period
+    end>" for an annual row; kind SIGN_ABS (read as the absolute amount),
+    SIGN_KEPT (a negative issuance line kept as filed), SIGN_LEFT_OUT_SIGN
+    (facts of opposite signs, no consistent figure) or SIGN_LEFT_OUT_DECREASE
+    (every fact positive but the year-to-date total decreases: no quarter can
+    be derived — 5.4.6 review fix, DHI / CMPS: this is not a sign error)."""
+    flow_facts = flow_facts or {}
+    qv, av, fixes = {k: {} for k in FLOW_KEYS}, {k: {} for k in FLOW_KEYS}, {k: [] for k in FLOW_KEYS}
+    for r in annual or []:
+        pe = r.get("period_end")
+        for k in FLOW_KEYS:
+            v = r.get(k)
+            if not (_num(v) and v < 0):
+                av[k][pe] = v
+                continue
+            ff = flow_facts.get(k) or {}
+            fy_key = next((key for key in ff if key[1] == pe and 330 <= _days(key[0], key[1]) <= 380), None)
+            if k != "share_issuance" or (fy_key and _sign_error(k, fy_key, ff)):
+                av[k][pe] = -v
+                why = " while the same fiscal year's year-to-date facts are positive" if k == "share_issuance" else ""
+                fixes[k].append(("FY:" + str(pe), f"FY{r.get('fy')} (period ended {pe}) filed as {_fmt_big(v)}, read as {_fmt_big(-v)}{why}", SIGN_ABS))
+            else:
+                av[k][pe] = v
+                fixes[k].append(("FY:" + str(pe), f"FY{r.get('fy')} (period ended {pe}) filed as {_fmt_big(v)} and kept as filed — {_NET_LINE}", SIGN_KEPT))
+    for r in qrows or []:
+        e = r.get("period_end")
+        for k in FLOW_KEYS:
+            v = r.get(k)
+            ff = flow_facts.get(k) or {}
+            val, used = _flow_quarter_from_facts(e, ff) if ff else (None, [])
+            neg = [x for x in used if _num(x[2]) and x[2] < 0]
+            row_txt = f"the quarterly row read {_fmt_big(v)}" if _num(v) else "the quarterly row was empty"
+            if not neg and not (_num(v) and v < 0):
+                qv[k][e] = v
+                continue
+            facts_txt = " and ".join(f"{s}..{en} = {x:,.0f}" for s, en, x in used)
+            if neg:
+                if not any(_sign_error(k, (x[0], x[1]), ff) for x in neg):
+                    raw = used[0][2] - (used[1][2] if len(used) == 2 else 0.0)
+                    qv[k][e] = raw
+                    fixes[k].append((e, f"quarter ended {e}: {facts_txt} filed below zero and kept as filed ({_fmt_big(raw)}) — {_NET_LINE}", SIGN_KEPT))
+                elif _num(val) and val >= 0:
+                    qv[k][e] = val
+                    arith = (f"|{used[0][2]:,.0f}| − |{used[1][2]:,.0f}| = {val:,.0f}" if len(used) == 2 else f"|{used[0][2]:,.0f}| = {val:,.0f}")
+                    fixes[k].append((e, f"quarter ended {e}: the filed facts {facts_txt} carry a sign below zero — {arith} used ({row_txt})", SIGN_ABS))
+                else:
+                    qv[k][e] = None
+                    fixes[k].append((e, f"quarter ended {e}: {row_txt} from facts filed with opposite signs ({facts_txt}) and no consistent figure can be rebuilt — left out (a missing quarter)",
+                                     SIGN_LEFT_OUT_SIGN))
+            elif len(used) == 2:
+                # every fact positive, the year-to-date total smaller than the one before it: no quarter, and no sign error either
+                (s1, e1, x1), (s2, e2, x2) = used
+                qv[k][e] = None
+                fixes[k].append((e, f"quarter ended {e}: the year-to-date facts decrease ({s2}..{e2} = {x2:,.0f} > {s1}..{e1} = {x1:,.0f}) — no quarter can be derived from them "
+                                    f"({row_txt}; typically a line tagged in one filing and not in the next); left out (a missing quarter)", SIGN_LEFT_OUT_DECREASE))
+            elif not used and not r.get(f"{k}_derived"):
+                if k == "share_issuance":
+                    qv[k][e] = v
+                    fixes[k].append((e, f"quarter ended {e}: filed as {_fmt_big(v)} and kept as filed — issuance proceeds can be a net line (net of offering costs or of the tax withheld on stock awards)", SIGN_KEPT))
+                else:
+                    qv[k][e] = -v
+                    fixes[k].append((e, f"quarter ended {e}: filed as {_fmt_big(v)}, read as {_fmt_big(-v)}", SIGN_ABS))
+            else:
+                qv[k][e] = None
+                fixes[k].append((e, f"quarter ended {e}: {row_txt}, derived from year-to-date facts that are not available to check — left out (a missing quarter)", SIGN_LEFT_OUT_SIGN))
+    return qv, av, fixes
+
+
 def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_source, ctx=None):
     """The `dividends` block. annual / qrows: build_annual / build_quarterly
     output; dps_q: {"declared": {end: {val, fq, fy_start, filed, ...}}, "paid":
     {...}} quarterly DPS facts (split-adjusted by dividends_inputs); dps_fy:
     {"declared": {period_end: dps}, "paid": {...}} FY-duration DPS facts.
     ctx (optional): filed_any {flow: bool — any fact in any period},
+    flow_facts {flow: duration_facts output — the filed year-to-date legs},
     shares_instant (count, as_of, source), latest_filed_period {form: period}
     from the submissions feed, split_notes, splits, warnings (list to append
     to). Every figure is a filed value or arithmetic on filed values; anything
@@ -1061,10 +1543,124 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     ctx = ctx or {}
     notes = list(ctx.get("split_notes") or [])
     filed_any = ctx.get("filed_any") or {}
-    has = {b: bool(dps_q.get(b)) or bool(dps_fy.get(b)) for b in ("declared", "paid")}
-    basis = "declared" if has["declared"] else ("paid" if has["paid"] else None)
-    q = {e: d for e, d in (dps_q.get(basis) or {}).items() if _num(d.get("val"))} if basis else {}
+    # 5.4.4 blocker fix (AVGO): the basis is no longer one tag for the whole
+    # history. The PRIMARY basis is the tag with the newest fact (declared on
+    # a tie); the other tag extends the series only OUTSIDE the primary's
+    # span — before its oldest or after its newest fact — never interleaved
+    # inside it (a declared Q4 and a paid Q1 can be the same dividend). AVGO's
+    # declared facts end FY2020 while CommonStockDividendsPerShareCashPaid runs
+    # FY2016..FY2025 with quarters to 2026-08-02: primary = paid. Every history
+    # row and annual row carries its `kind`.
+    # 5.4.5 review fixes: (a) the primary basis is chosen by coverage of the
+    # last eight quarters (choose_dps_basis), not by the single newest fact;
+    # (b) the no-interleave rule applies to QUARTERLY facts only — a fiscal year
+    # with no primary FY fact and no four primary quarterly facts takes the other
+    # tag's FY fact (NVDA: declared FY facts skip FY2017-FY2021, CashPaid files
+    # every one of them); (c) an FY fact below the sum of its own tag's quarterly
+    # facts inside that fiscal year is impossible as a total and is not used
+    # (NVDA's FY2016 declared fact is one quarter's rate tagged with the FY context).
+    # 5.4.6 review fixes: (a) choose_dps_basis no longer slides with each filing
+    # (stopped tag → the other; quarterly beats full-year-only; else declared);
+    # (c) is narrowed — the quarterly facts can be the faulty ones (FTI's 10-K
+    # re-tags Q1 2019 at 0.52, HPQ tags YTD values as quarters), so an FY fact
+    # below its own quarters is set aside ONLY when the other tag files a
+    # full-year total for that year that is consistent with those quarters
+    # (NVDA FY2016: declared 0.115, CashPaid 0.395); otherwise it is kept as
+    # filed and the note names the disagreement.
+    def _ends(b):
+        return [e for e, d in (dps_q.get(b) or {}).items() if _num(d.get("val"))] + [p for p, v in (dps_fy.get(b) or {}).items() if _num(v)]
+
+    has = {b: bool(_ends(b)) for b in ("declared", "paid")}
+    basis, basis_rule = choose_dps_basis(dps_q, dps_fy)
+    secondary = {"declared": "paid", "paid": "declared"}.get(basis)
+    q = {e: dict(d, kind=basis) for e, d in (dps_q.get(basis) or {}).items() if _num(d.get("val"))} if basis else {}
     fy_facts = {p: v for p, v in (dps_fy.get(basis) or {}).items() if _num(v)} if basis else {}
+    fy_kind = {p: basis for p in fy_facts}
+
+    def _fy_below_quarters(p, v, kind_):
+        """(quarters, sum, confirmed) when the FY fact `v` (period ended p) is
+        below 90% of the same tag's positive quarterly facts inside that fiscal
+        year, else None; confirmed: every positive quarter is borne out by the
+        tag's year-to-date facts (original_quarterly_dps' ytd_confirmed)."""
+        qd = {e: d for e, d in (dps_q.get(kind_) or {}).items() if _num(d.get("val")) and 0 <= _days(e, p) < 350}
+        qs = sorted((e, d["val"]) for e, d in qd.items())
+        if any(_days(a[0], b[0]) < 45 for a, b in zip(qs, qs[1:])):
+            return None  # two fiscal calendars inside one year (YUM: 2016-03-19 and 2016-03-31 quarters) — the sum double-counts, no comparison
+        tot = sum(x for _, x in qs)
+        positive = [x for _, x in qs if x > 0]
+        confirmed = all(qd[e].get("ytd_confirmed") for e, x in qs if x > 0)
+        # IBKR tags the quarterly rate in every context (quarters, 6M, 9M, FY all
+        # 0.025): an FY fact equal to each of two or more positive quarterly facts
+        # is one quarter's rate, not a total
+        # — and only when at least two of those quarters were filed in their own
+        # quarter's report (FTI's Q2 / Q3 2020 at 0.13, equal to its FY 0.13, exist
+        # only as comparatives filed a year later: there the FY total is right)
+        rate = (len(positive) >= 2 and all(abs(x - v) <= 1e-9 * max(1.0, abs(v)) for x in positive)
+                and sum(1 for e, x in qs if x > 0 and _days(e, qd[e].get("first_filed") or qd[e].get("filed") or "9999-12-31") <= 150) >= 2)
+        return (qs, tot, confirmed or rate) if tot > 0 and v < 0.9 * tot else None
+
+    for p in sorted(fy_facts):
+        bad = _fy_below_quarters(p, fy_facts[p], basis)
+        if not bad:
+            continue
+        qtxt = f"{bad[1]:g}: {', '.join(f'{e}: {x:g}' for e, x in bad[0])}"
+        other = next(((p2, v2) for p2, v2 in sorted((dps_fy.get(secondary) or {}).items()) if _num(v2) and abs(_days(p, p2)) <= 7), None) if secondary else None
+        if other and other[1] >= 0.9 * bad[1]:
+            notes.append(f"annual_dps: the {basis} FY DPS fact for the period ended {p} ({fy_facts[p]:g}) is below the sum of the same tag's quarterly facts inside that fiscal year "
+                         f"({qtxt}) while the {secondary} tag's full-year fact for that year ({other[1]:g}) is consistent with them — a full-year total cannot be smaller than "
+                         f"its quarters, so the {secondary} fact is used for that year")
+            del fy_facts[p], fy_kind[p]
+        elif bad[2]:
+            # one quarter's rate tagged with the full-year context (IBKR), the quarters borne out by the 6M / 9M facts or equal to the FY value
+            notes.append(f"annual_dps: the {basis} FY DPS fact for the period ended {p} ({fy_facts[p]:g}) is below the sum of the same tag's quarterly facts inside that fiscal year "
+                         f"({qtxt}), and those quarters are borne out by the tag's year-to-date facts or each equal the FY value (one quarter's rate tagged with the full-year "
+                         "context) — the full-year fact is not a total and is not used (the year has an annual row only if its four quarterly facts are filed)")
+            del fy_facts[p], fy_kind[p]
+        else:
+            notes.append(f"annual_dps: the {basis} FY DPS fact for the period ended {p} ({fy_facts[p]:g}) is below the sum of the same tag's quarterly facts inside that fiscal year "
+                         f"({qtxt}) — the quarters are not borne out by year-to-date facts (one of those filings is mis-tagged) and no other filed full-year total replaces it, "
+                         "so the FY fact is kept as filed")
+    extended, filled = [], []
+    if basis and has.get(secondary):
+        span = _ends(basis)
+        lo, hi = min(span), max(span)
+        for e, d in (dps_q.get(secondary) or {}).items():
+            if _num(d.get("val")) and (e < lo or e > hi) and e not in q:
+                q[e] = dict(d, kind=secondary)
+                extended.append(e)
+        primary_years = {}
+        for e, d in q.items():
+            if d["kind"] == basis and d.get("fy_start") and d.get("fq"):
+                primary_years.setdefault(d["fy_start"], {})[d["fq"]] = e
+        qsum_ends = [max(qs.values()) for qs in primary_years.values() if all(fq in qs for fq in (1, 2, 3, 4))]
+        for p, v in sorted((dps_fy.get(secondary) or {}).items()):
+            if not _num(v) or any(abs(_days(p, x)) <= 7 for x in list(fy_facts) + qsum_ends):
+                continue
+            bad = _fy_below_quarters(p, v, secondary)
+            if bad and bad[2]:
+                notes.append(f"annual_dps: the {secondary} FY DPS fact for the period ended {p} ({v:g}) is below the sum of the same tag's quarterly facts inside that fiscal year ({bad[1]:g}), "
+                             "which the tag's year-to-date facts bear out or which each equal it (one quarter's rate tagged with the full-year context) — not used")
+                continue
+            if bad:
+                notes.append(f"annual_dps: the {secondary} FY DPS fact for the period ended {p} ({v:g}) is below the sum of the same tag's quarterly facts inside that fiscal year ({bad[1]:g}) "
+                             "— the quarters are not borne out by year-to-date facts and no other filed full-year total replaces it, so the FY fact is kept as filed")
+            fy_facts[p], fy_kind[p] = v, secondary
+            (extended if (p < lo or p > hi) else filled).append(p)
+    dps_basis_detail = None
+    if basis:
+        dps_basis_detail = f"{basis} facts for periods ending {min(_ends(basis))}..{max(_ends(basis))}"
+        if extended:
+            extended = sorted(set(extended))
+            dps_basis_detail += f"; {secondary} facts for the periods the {basis} tag does not cover ({extended[0]}..{extended[-1]}, {len(extended)} facts)"
+        if filled:
+            dps_basis_detail += (f"; {secondary} FY facts for {len(filled)} fiscal year(s) inside that span that carry no {basis} FY fact and no four {basis} quarterly facts "
+                                 f"({', '.join(filled)})")
+        if extended or filled:
+            notes.append(f"dps_basis: {dps_basis_detail} — the series switches basis where one tag stops; the switch year can double-count or skip one payment (a dividend declared in one quarter and paid in the next)")
+        elif has["declared"] and has["paid"]:
+            dps_basis_detail += f"; {secondary} facts exist only inside that span and are not used"
+        if basis_rule:
+            dps_basis_detail += f"; {basis_rule}"
     any_facts = bool(q or fy_facts)
     latest_fy_row = annual[-1] if annual else None
     latest_end = latest_fy_row["period_end"] if latest_fy_row else None
@@ -1075,8 +1671,78 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     def stale(e):
         return reference is not None and _days(e, reference) > STALE_DAYS
 
-    paid_rows = [r for r in list(annual) + list(qrows) if _num(r.get("dividends_paid")) and r["dividends_paid"] > 0]
+    # flow legs with the filing's sign errors corrected (sign_fixed_flows); every
+    # use of dividends paid / buybacks / issuance below reads these, not the rows
+    flow_facts = ctx.get("flow_facts") or {}
+    q_flow, a_flow, sign_fixes = sign_fixed_flows(annual, qrows, flow_facts)
+    for k in FLOW_KEYS:
+        by_kind = {}
+        for _, t, kind in sign_fixes[k]:
+            by_kind.setdefault(kind, []).append(t)
+        if by_kind.get(SIGN_ABS):
+            what = ("a payment line is non-negative by definition" if k != "share_issuance"
+                    else "issuance proceeds filed below zero beside positive facts of the same fiscal year")
+            notes.append(f"sign convention ({k}): {what}, so the value filed below zero is a sign-convention error in the filing — " + "; ".join(by_kind[SIGN_ABS]))
+        if by_kind.get(SIGN_KEPT):
+            notes.append(f"{k}: filed below zero and kept as filed (a net line, not a sign error) — " + "; ".join(by_kind[SIGN_KEPT]))
+        if by_kind.get(SIGN_LEFT_OUT_SIGN):
+            notes.append(f"{k}: quarters left out — " + "; ".join(by_kind[SIGN_LEFT_OUT_SIGN]))
+        if by_kind.get(SIGN_LEFT_OUT_DECREASE):
+            notes.append(f"{k}: quarters left out (not a sign error) — " + "; ".join(by_kind[SIGN_LEFT_OUT_DECREASE]))
+    paid_rows = [{"period_end": r["period_end"], "dividends_paid": a_flow["dividends_paid"].get(r["period_end"])} for r in annual
+                 if _num(a_flow["dividends_paid"].get(r.get("period_end"))) and a_flow["dividends_paid"][r["period_end"]] > 0]
+    paid_rows += [{"period_end": r["period_end"], "dividends_paid": q_flow["dividends_paid"].get(r["period_end"])} for r in qrows
+                  if _num(q_flow["dividends_paid"].get(r.get("period_end"))) and q_flow["dividends_paid"][r["period_end"]] > 0]
     paid_any = bool(paid_rows)
+    last4 = qrows[-4:] if len(qrows) >= 4 and consecutive_quarters([r["period_end"] for r in qrows[-4:]]) else []
+
+    # 5.4.5 review fix (HSY: per-share tags stopped in 2010, $1.1B of cash
+    # dividends a year since): payer status and, when the per-share facts cannot
+    # give it, the frequency come from the filed dividends paid. cash_recent:
+    # (frequency or None, description) when the latest four consecutive quarters
+    # (else, for a filer without 10-Qs, the latest fiscal year) carry a positive
+    # dividends-paid figure; None otherwise.
+    cash_recent = None
+    if last4 and not stale(last4[-1]["period_end"]):
+        cq = [(r["period_end"], q_flow["dividends_paid"].get(r["period_end"])) for r in last4]
+        posq = [i for i, (_, v) in enumerate(cq) if _num(v) and v > 0]
+        if posq:
+            cfreq = None
+            if all(_num(v) for _, v in cq):
+                if len(posq) == 4:
+                    cfreq = "quarterly"
+                elif len(posq) == 2 and posq[1] - posq[0] == 2:
+                    cfreq = "semiannual"
+                elif len(posq) == 1:
+                    cfreq = "annual"
+            cash_recent = (cfreq, f"cash dividends paid are filed for {len(posq)} of the last four quarters ("
+                           + ", ".join(f"{cq[i][0]}: {_fmt_big(cq[i][1])}" for i in posq) + ")", {cq[i][0] for i in posq})
+    elif not qrows and latest_fy_row and not stale(latest_end):
+        v = a_flow["dividends_paid"].get(latest_end)
+        if _num(v) and v > 0:
+            cash_recent = (None, f"cash dividends paid are filed for FY{payout_fy} ({_fmt_big(v)})", {latest_end})
+    # 5.4.6 review fix (reviewer S1 / S2: a suspended common dividend beside
+    # preferred dividends): cash establishes payer status only when the leg is
+    # the COMMON dividends line (PaymentsOfDividendsCommonStock, ordinary / parent
+    # dividends) — PaymentsOfDividends and the IFRS totals include preferred and
+    # noncontrolling-interest dividends — and never over per-share facts filed as
+    # ZERO (an explicit suspension; zero_since below)
+    cash_tags = sorted({f[1] for (s_, e_), f in (flow_facts.get("dividends_paid") or {}).items() if cash_recent and e_ in cash_recent[2] and _num(f[0])})
+    cash_common = bool(cash_recent and cash_tags and set(cash_tags) <= COMMON_DIVIDEND_TAGS)
+    cash_desc = cash_recent[1] if cash_recent else None  # without the total-line caveat
+    if cash_recent and not cash_common:
+        cash_recent = (cash_recent[0], cash_recent[1] + (f" on the total dividends line ({', '.join(cash_tags)}) — it can include preferred / noncontrolling-interest dividends"
+                                                         if cash_tags else " (the dividends tag is not known — it can be a total that includes preferred dividends)"), cash_recent[2])
+    q_pos = sorted(e for e, d in q.items() if d["val"] > 0)
+    # (zeros after the last positive fact, while that fact is itself stale — a
+    # declarer that files Q2-Q4 as zero after a Q1 declaration (WMT) is not suspended)
+    zero_since = [e for e in sorted(q) if q[e]["val"] == 0 and (not q_pos or (e > q_pos[-1] and stale(q_pos[-1]))) and not stale(e)]
+    cash_payer = bool(cash_recent and cash_common and not zero_since)
+
+    def cash_every_year_since(end):
+        """True when common cash dividends are paid now and every fiscal year in the annual table after `end` files a positive dividends-paid figure."""
+        later = [r for r in annual if r.get("period_end") and r["period_end"] > end]
+        return cash_payer and all(_num(a_flow["dividends_paid"].get(r["period_end"])) and a_flow["dividends_paid"][r["period_end"]] > 0 for r in later)
 
     # annual series (FY facts, else the sum of a fiscal year's four quarterly facts)
     quarters_by_fy = {}
@@ -1086,38 +1752,91 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     annual_dps = annual_dps_rows(fy_facts, quarters_by_fy)
     if any(r["basis"] == "sum_of_quarters" for r in annual_dps):
         notes.append("annual_dps: " + ", ".join(f"FY{r['fy']}" for r in annual_dps if r["basis"] == "sum_of_quarters") + " = sum of the four filed quarterly DPS facts (no FY fact)")
-    annual_out = [{"fy": r["fy"], "period_end": r["period_end"], "dps": r["dps"]} for r in annual_dps]
+    annual_out = [{"fy": r["fy"], "period_end": r["period_end"], "dps": r["dps"],
+                   "kind": fy_kind.get(r["period_end"]) or next((q[e]["kind"] for e in sorted(q, reverse=True) if e <= r["period_end"]), basis)} for r in annual_dps]
     by_end = {r["period_end"]: r["dps"] for r in annual_dps}
     by_label = {r["fy"]: r["dps"] for r in annual_dps}
+    pos_labels = [r["fy"] for r in annual_dps if _num(r.get("dps")) and r["dps"] > 0]
     for fy in dps_outliers(annual_dps):
-        notes.append(f"annual_dps: FY{fy} DPS {by_label[fy]} is more than 10x both neighbouring years — shown as filed; check the filing's XBRL unit before relying on it")
+        where = (f"more than {EDGE_OUTLIER_FACTOR}x the adjacent fiscal year (the {'first' if fy == pos_labels[0] else 'latest'} dividend year, compared with its one neighbour)"
+                 if fy in (pos_labels[0], pos_labels[-1]) else "more than 10x both neighbouring years")
+        notes.append(f"annual_dps: FY{fy} DPS {by_label[fy]} is {where} — shown as filed; check the filing's XBRL unit before relying on it")
     latest_dps_row = annual_dps[-1] if annual_dps else None
     dps_stale = bool(latest_dps_row and stale(latest_dps_row["period_end"]))
+    if latest_dps_row and latest_dps_row["dps"] == 0 and not dps_stale and (not q_pos or q_pos[-1] <= latest_dps_row["period_end"]):
+        zero_since = sorted(set(zero_since) | {latest_dps_row["period_end"]})  # a full-year DPS filed as zero is an explicit suspension too
+        cash_payer = False
+
+    # labels: the Financials tab's convention (calendar year of the period end)
+    # unless two fiscal years end in one calendar year; then the annual /
+    # quarterly tables repeat a label and this series does not — say so, the
+    # join key is period_end (5.4.3 review: 53-week / FYE-change filers)
+    fy_label_basis = "calendar year of the fiscal period end (the annual table's convention)"
+    table_labels = {r["period_end"]: r.get("fy") for r in annual if r.get("period_end")}
+    relabelled = [(r["fy"], r["period_end"], table_labels[r["period_end"]]) for r in annual_dps
+                  if r["period_end"] in table_labels and table_labels[r["period_end"]] and r["fy"] != str(table_labels[r["period_end"]])]
+    if relabelled:
+        fy_label_basis = "the year most of each fiscal year falls in — two fiscal years end in the same calendar year; join on period_end, not the label"
+        notes.append("annual_dps labels: " + "; ".join(f"FY{lab} here (period ended {end}) is labelled FY{tl} in the annual / quarterly tables" for lab, end, tl in relabelled)
+                     + " — two fiscal years end in the same calendar year (a 53-week year or a fiscal-year-end change); join on period_end")
 
     # share-basis breaks the filed split ratios did not cover (unfiled split):
     # growth statistics only over the consistently-based years after the break
-    shares_by_end = ctx.get("shares_by_end") or {r["period_end"]: r.get("shares_diluted") for r in annual}
-    breaks = basis_breaks(annual_dps, shares_by_end)
+    # (5.4.6: ctx shares_by_end — dividends_inputs' split-adjusted diluted
+    # counts — replace the table's as-filed counts for the fiscal years the
+    # table carries; no years are added, so the guard sees the same years)
+    shares_by_end = {r["period_end"]: r.get("shares_diluted") for r in annual}
+    adj_shares = ctx.get("shares_by_end") or {}
+    for e in shares_by_end:
+        if _num(adj_shares.get(e)):
+            shares_by_end[e] = adj_shares[e]
+    eps_by_end = ctx.get("eps_by_end") or {r["period_end"]: r.get("eps_diluted") for r in annual}
+    rejected = []
+    breaks = basis_breaks(annual_dps, shares_by_end, eps_by_end, rejected)
     comparable = annual_dps
     if breaks:
         cut_end, rd, rs = breaks[-1]
         cut_label = next(r["fy"] for r in annual_dps if r["period_end"] == cut_end)
         comparable = [r for r in annual_dps if r["period_end"] >= cut_end]
         notes.append(f"annual_dps: FY{cut_label} DPS moved ×{rd:.2f} while diluted shares moved ×{rs:.2f} — a share-basis change (split) with no StockholdersEquityNoteStockSplitConversionRatio1 fact filed, not a cut; growth years, last cut, YoY and CAGR are computed from FY{cut_label} on")
+    for cut_end, rd, rs, re in rejected:
+        cut_label = next(r["fy"] for r in annual_dps if r["period_end"] == cut_end)
+        notes.append(f"annual_dps: FY{cut_label} DPS moved ×{rd:.2f} while diluted shares moved ×{rs:.2f}, but diluted EPS moved ×{re:.2f} — not the restatement a split would show, so the share move is read as a real issuance / reduction and the DPS move as a real cut; check the filing")
 
     # TTM DPS
     qf = sorted((e, d["val"]) for e, d in q.items())
     dps_ttm, ok = dps_ttm_from_quarters(qf)
     dps_ttm_basis = None
-    if ok:
-        last4 = qf[-4:]
-        if stale(last4[-1][0]):
+    latest_kind = annual_out[-1]["kind"] if annual_out else basis
+    # 5.4.4 review fix: four consecutive quarterly facts that END before the
+    # latest FY fact (a filer that stopped tagging the Q4 fact: prior Q4 +
+    # Q1..Q3) are older than the fiscal year itself — the FY fact is rolled
+    # forward instead of summing the four
+    fy_newer = bool(ok and latest_dps_row and latest_dps_row["basis"] == "fy_fact" and not dps_stale and latest_dps_row["period_end"] > qf[-1][0])
+    since_txt = qf[-1][0] if qf else (latest_dps_row["period_end"] if latest_dps_row else "the filed history")
+    if zero_since:
+        untagged = None
+    elif cash_payer:
+        untagged = f"the per-share rate is not tagged since {since_txt} although {cash_recent[1]} — not a suspension"
+    elif cash_recent:
+        untagged = f"the per-share rate is not tagged since {since_txt}; {cash_recent[1]} — whether the common dividend continues is not filed"
+    else:
+        untagged = None
+    if ok and not fy_newer:
+        last4q = qf[-4:]
+        if stale(last4q[-1][0]):
             dps_ttm = None
-            notes.append(f"dps_ttm: the latest quarterly DPS fact ({last4[-1][0]}) is more than 15 months older than the newest filed period ({reference}) — dividend suspended or no longer tagged; dps_ttm and dividend_yield null")
+            if untagged:
+                notes.append(f"dps_ttm: the latest quarterly DPS fact ({last4q[-1][0]}) is more than 15 months older than the newest filed period ({reference}) — {untagged}; dps_ttm and dividend_yield null")
+            else:
+                notes.append(f"dps_ttm: the latest quarterly DPS fact ({last4q[-1][0]}) is more than 15 months older than the newest filed period ({reference}) — dividend suspended or no longer tagged; dps_ttm and dividend_yield null")
         else:
-            dps_ttm_basis = f"sum of the four quarterly DPS facts {last4[0][0]}..{last4[-1][0]}"
+            dps_ttm_basis = f"sum of the four quarterly DPS facts {last4q[0][0]}..{last4q[-1][0]}"
     elif any_facts:
-        why = "fewer than four quarterly DPS facts" if len(qf) < 4 else f"the latest four quarterly DPS facts are not consecutive quarters ({_gap_text(qf[-4:])})"
+        if fy_newer:
+            why = f"the FY DPS fact (period ended {latest_dps_row['period_end']}) is newer than the latest quarterly DPS fact ({qf[-1][0]}) — the four-quarter sum would stop a quarter short"
+        else:
+            why = "fewer than four quarterly DPS facts" if len(qf) < 4 else f"the latest four quarterly DPS facts are not consecutive quarters ({_gap_text(qf[-4:])})"
         if latest_dps_row and not dps_stale:
             fy_end, fy_lab = latest_dps_row["period_end"], latest_dps_row["fy"]
             after = [(e, v) for e, v in qf if e > fy_end]
@@ -1129,25 +1848,50 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
                 for e, v in after:
                     tgt = _add_days(e, -364)
                     matched.append(next(((e2, v2) for e2, v2 in qf if abs(_days(tgt, e2)) <= 14), None))
-                if all(m is not None for m in matched):
+                # 5.4.6 review fix (ZTS: a CashPaid FY total plus Declared
+                # quarters): the roll-forward adds the change between the
+                # quarters since and the same quarters a year earlier, which must
+                # be one tag; when that tag is not the full-year total's, the
+                # basis names the mix (ATO / ED file both tags per quarter, so the
+                # change is the same either way)
+                q_kinds = {q[e]["kind"] for e, _ in after} | {q[m[0]]["kind"] for m in matched if m}
+                if all(m is not None for m in matched) and len(q_kinds) == 1:
                     dps_ttm = latest_dps_row["dps"] + sum(v for _, v in after) - sum(v for _, v in matched)
                     dps_ttm_basis = (f"FY{fy_lab} DPS {latest_dps_row['dps']:g} + the quarters since ({', '.join(f'{e}: {v:g}' for e, v in after)})"
                                      f" − the same quarters a year earlier ({', '.join(f'{e}: {v:g}' for e, v in matched)})")
+                    qk = next(iter(q_kinds))
+                    if qk != latest_kind:
+                        dps_ttm_basis += (f" — mixed basis: the full-year total is a {latest_kind} fact and the quarters are {qk} facts, so the year-over-year change in the "
+                                          f"{qk} quarterly rate is applied to the {latest_kind} total (a payment declared in one quarter and paid in the next can shift by a quarter)")
+                elif len(q_kinds) > 1:
+                    dps_ttm = latest_dps_row["dps"]
+                    dps_ttm_basis = (f"FY{fy_lab} DPS ({latest_kind}, {latest_dps_row['basis']}, period ended {fy_end}) — the quarterly facts since and a year earlier are on different "
+                                     f"tags ({'/'.join(sorted(q_kinds))}), so the year is not rolled forward")
                 else:
                     dps_ttm = latest_dps_row["dps"]
                     dps_ttm_basis = f"FY{fy_lab} DPS ({latest_dps_row['basis']}, period ended {fy_end}) — the {len(after)} quarterly fact(s) since have no prior-year comparative facts, so the year is not rolled forward"
             notes.append(f"dps_ttm: {why} — {dps_ttm_basis}")
         elif latest_dps_row:
             after = [e for e, _ in qf if e > latest_dps_row["period_end"]]
-            notes.append(f"dps_ttm: {why}; the latest full-year DPS (FY{latest_dps_row['fy']}, period ended {latest_dps_row['period_end']}) is more than 15 months older than the newest filed period ({reference}) — a suspended / reinstated dividend"
-                         + (f"; the {len(after)} quarterly fact(s) since ({', '.join(after)}) do not make a trailing twelve months" if after else "")
-                         + "; dps_ttm and dividend_yield null")
+            head = f"dps_ttm: {why}; the latest full-year DPS (FY{latest_dps_row['fy']}, period ended {latest_dps_row['period_end']}) is more than 15 months older than the newest filed period ({reference})"
+            tail = (f"; the {len(after)} quarterly fact(s) since ({', '.join(after)}) do not make a trailing twelve months" if after else "") + "; dps_ttm and dividend_yield null"
+            if cash_payer and cash_every_year_since(latest_dps_row["period_end"]):
+                # 5.4.5 review fix (STAG: Q1-Q3 per-share facts every year, no Q4 / FY fact since FY2019, cash dividends every quarter)
+                notes.append(head + f" — no full-year / fourth-quarter per-share fact is tagged since, although cash dividends are paid in every fiscal year since and {cash_recent[1]}"
+                             + " — the per-share rate is tagged for some quarters only, not a suspension" + tail)
+            elif untagged and (not after or (not cash_payer and stale(after[-1]))):  # per-share facts stopped (none recent); a recent run is a reinstatement
+                notes.append(head + f" — {untagged}" + tail)
+            else:
+                notes.append(head + " — a suspended / reinstated dividend" + tail)
+        elif untagged and (not qf or stale(qf[-1][0])):
+            notes.append(f"dps_ttm: {untagged}; dps_ttm and dividend_yield null")
         else:
             notes.append(f"dps_ttm: {why} and no FY DPS fact — dps_ttm null")
     if not any_facts:
         if paid_any:
             r = paid_rows[-1]
-            notes.append(f"no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) although cash dividends paid are filed ({_fmt_big(r['dividends_paid'])} for the period ended {r['period_end']}) — per-share rate not tagged; dps_ttm, dividend_yield and frequency null")
+            notes.append(f"no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) although cash dividends paid are filed ({_fmt_big(r['dividends_paid'])} for the period ended {r['period_end']}) — per-share rate not tagged; "
+                         + ("dps_ttm and dividend_yield null, frequency from the quarters with cash dividends paid" if cash_payer and cash_recent[0] else "dps_ttm, dividend_yield and frequency null"))
         else:
             notes.append("no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) and no dividends paid — not a dividend payer")
 
@@ -1155,47 +1899,146 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     # quarterly facts do not (the 10-K files the year, not the Q4), else the
     # spacing of the latest quarterly facts (a mid-year initiator reads quarterly)
     frequency, frequency_basis = None, None
-    pos = sorted(e for e, d in q.items() if d["val"] > 0)
-    recent = [e for e in pos if not stale(e)]
+    cash_cadence_pending = False
+    pos = q_pos
+    zeros = sorted(e for e, d in q.items() if d["val"] == 0)
+    # 5.4.4 review fix (WMT): staleness applies to the LATEST positive fact
+    # only; the spacing is read from the trailing run of positive facts (gaps
+    # ≤400 days — a suspension ends the run) whatever their own age, so an
+    # annual declarer whose previous fact is 457 days old still reads "annual"
+    recent = []
+    if pos and not stale(pos[-1]):
+        recent = [pos[-1]]
+        for e in reversed(pos[:-1]):
+            if _days(e, recent[0]) > FY_SPACING[1]:
+                break
+            recent.insert(0, e)
+
+    def _cash_frequency(lead):
+        """Frequency from the quarters with common cash dividends paid (cash_recent), with its basis; the note when it cannot be read."""
+        if not cash_payer:
+            if cash_recent:
+                notes.append(f"frequency: {lead}; {cash_recent[1]} — not the common-stock dividend line, so it does not give the common dividend's cadence; frequency null")
+            return None, None
+        f, desc = cash_recent[0], cash_recent[1]
+        # 4 of 4 quarters reads quarterly on its own; fewer only for an established
+        # payer (cash dividends in every fiscal year of the last three) — one paid
+        # quarter of a reinstated payer is not an "annual" cadence
+        if f and (f == "quarterly" or (reference and cash_every_year_since(_add_days(reference, -3 * 365)))):
+            return f, f"{desc} — {lead}; the per-share facts do not give the cadence, so this is the cadence of the filed cash dividends (a payment cadence inside a quarter is not filed)"
+        if last4:
+            notes.append(f"frequency: {lead}; {desc} — the four quarters do not show an established cadence, frequency null")
+        return None, None
+
     if not any_facts:
         frequency = infer_frequency(0, None, None, False, False, dividends_paid=paid_any)
+        if cash_recent:
+            frequency, frequency_basis = _cash_frequency("no dividends-per-share facts filed")
     elif not q:
-        notes.append("frequency: only full-year DPS facts are filed (no quarterly / interim facts) — payment count not inferable")
+        if dps_stale:
+            notes.append(f"frequency: the only DPS facts are full-year facts up to FY{latest_dps_row['fy']} (period ended {latest_dps_row['period_end']}), stale against the newest filed period ({reference})"
+                         + (f"; cash dividends paid are filed ({_fmt_big(paid_rows[-1]['dividends_paid'])} for the period ended {paid_rows[-1]['period_end']}) but the per-share rate is not tagged" if paid_any else "")
+                         + (" — frequency from the quarters with cash dividends paid" if cash_payer and cash_recent[0] else " — payment frequency not inferable"))
+            if cash_recent:
+                frequency, frequency_basis = _cash_frequency(f"no per-share fact since FY{latest_dps_row['fy']}")
+        else:
+            notes.append("frequency: only full-year DPS facts are filed (no quarterly / interim facts) — payment count not inferable")
     elif not recent:
-        frequency = "irregular"
-        notes.append(f"frequency: no positive quarterly DPS fact since {pos[-1] if pos else 'the filed history'} (newest filed period {reference}) — dividend suspended; shown as irregular")
+        last_pos = pos[-1] if pos else "the filed history"
+        if zero_since:
+            # 5.4.6 review fix (reviewer S1): per-share facts filed as ZERO are an explicit suspension — cash paid does not override them
+            frequency = "irregular"
+            notes.append(f"frequency: no positive quarterly DPS fact since {last_pos} and the per-share dividend is filed as zero since ({', '.join(zero_since[-6:])}) — dividend suspended; shown as irregular"
+                         + (f" ({cash_recent[1]} — not a common dividend rate the filer tags: preferred / noncontrolling-interest dividends or the last payment of the suspended dividend)" if cash_recent else ""))
+        elif cash_payer:
+            notes.append(f"frequency: no positive quarterly DPS fact since {last_pos} (newest filed period {reference}), but {cash_recent[1]} — "
+                         "the per-share rate is no longer tagged, not a suspension")
+            frequency, frequency_basis = _cash_frequency(f"no per-share fact since {last_pos}")
+        elif cash_recent:
+            notes.append(f"frequency: no positive quarterly DPS fact since {last_pos} (newest filed period {reference}); {cash_recent[1]} — whether the common dividend continues "
+                         "is not filed, so it is neither read as suspended nor as paid; frequency null")
+        else:
+            frequency = "irregular"
+            notes.append(f"frequency: no positive quarterly DPS fact since {last_pos} (newest filed period {reference}) and no cash dividends paid filed for the latest quarters — dividend suspended; shown as irregular")
     else:
+        fy_rule, fy_rule_basis = None, None
         if latest_dps_row and latest_dps_row["basis"] == "fy_fact" and not dps_stale:
             fy_end = latest_dps_row["period_end"]
-            in_fy = [d["val"] for e, d in q.items() if _add_days(fy_end, -400) < e <= fy_end and d["val"] > 0]
-            if in_fy and latest_dps_row["dps"] > sum(in_fy) + 1e-9:
-                frequency = infer_frequency(len(in_fy), latest_dps_row["dps"], sum(in_fy), True, True)
-                frequency_basis = f"{len(in_fy)} quarterly DPS facts inside FY{latest_dps_row['fy']} plus one payment carried only in the FY total"
-        if frequency is None:
-            if len(recent) >= 2:
-                frequency = frequency_from_spacing(recent)
-                frequency_basis = f"spacing of the latest {min(4, len(recent))} quarterly DPS facts ({', '.join(recent[-4:])})"
-            else:
-                notes.append(f"frequency: a single quarterly DPS fact so far ({recent[-1]}) — payment frequency not inferable yet")
+            # 5.4.4 review fix: the fiscal year is bounded by the previous
+            # fiscal year's period end (annual table, else annual_dps), not a
+            # 400-day look-back that pulled the prior year's Q4 fact in
+            prev_ends = [r["period_end"] for r in list(annual) + annual_dps if r.get("period_end") and r["period_end"] < fy_end and fy_consecutive(r["period_end"], fy_end)]
+            fy_floor = max(prev_ends) if prev_ends else _add_days(fy_end, -400)
+            in_fy_e = sorted(e for e, d in q.items() if fy_floor < e <= fy_end and d["val"] > 0)
+            in_fy = [q[e]["val"] for e in in_fy_e]
+            # 5.4.6 review fixes: the FY total and the quarters must be the same
+            # tag (ZTS: a CashPaid FY 2.03 against Declared quarters 0.5, 0.5, 0);
+            # a remainder below half a quarterly payment is rounding (IRM 3.22 vs 3.219)
+            mixed_kinds = sorted({q[e]["kind"] for e in in_fy_e} - {latest_kind})
+            if in_fy and mixed_kinds:
+                notes.append(f"frequency: the FY{latest_dps_row['fy']} total is a {latest_kind} fact and the quarterly facts inside that year are {'/'.join(mixed_kinds)} facts — "
+                             "the payment count needs both from one tag, so the cadence is read from the spacing of the quarterly facts")
+            elif in_fy and fy_remainder_is_a_payment(latest_dps_row["dps"], sum(in_fy), min(in_fy)):
+                fy_rule = infer_frequency(len(in_fy), latest_dps_row["dps"], sum(in_fy), True, True, min_quarterly=min(in_fy))
+                fy_rule_basis = f"{len(in_fy)} quarterly DPS facts inside FY{latest_dps_row['fy']} ({_add_days(fy_floor, 1)}..{fy_end}) plus one payment carried only in the FY total"
+        used = recent[-4:]
+        spacing = frequency_from_spacing(used) if len(recent) >= 2 else None
+        spacing_basis = None
+        if spacing:
+            spacing_basis = f"spacing of the latest {len(used)} positive quarterly DPS facts ({', '.join(used)})"
+            zero_in = [z for z in zeros if z > used[0]]
+            if zero_in:
+                spacing_basis += f"; quarters filed as zero: {', '.join(zero_in)}"
+        # an FY count that reads "irregular" does not override a regular spacing (5.4.6: GEHC declares two dividends in one quarter)
+        if fy_rule and not (fy_rule == "irregular" and spacing and spacing != "irregular"):
+            frequency, frequency_basis = fy_rule, fy_rule_basis
+        elif spacing:
+            frequency, frequency_basis = spacing, spacing_basis
+            if fy_rule:
+                frequency_basis += f" (the FY count — {fy_rule_basis} — reads irregular)"
+        elif fy_rule:
+            frequency, frequency_basis = fy_rule, fy_rule_basis
+        elif cash_payer and cash_recent[0] and reference and cash_every_year_since(_add_days(reference, -3 * 365)):
+            # an established payer whose per-share quarters are mostly untagged (STAG): the cash cadence, labelled
+            frequency, frequency_basis = _cash_frequency(f"only one recent quarterly per-share fact ({recent[-1]}) is tagged")
+        else:
+            notes.append(f"frequency: a single quarterly DPS fact so far ({recent[-1]}) — payment frequency not inferable yet")
+        # 5.4.6: a per-share reading other than quarterly while cash dividends are
+        # paid in each of the last four quarters is checked against the cash
+        # below, once dps_ttm, the cash TTM and the diluted count are known
+        cash_cadence_pending = bool(frequency in ("irregular", "semiannual", "annual") and cash_recent and cash_recent[0] == "quarterly" and not zero_since)
+        if frequency == "quarterly" and frequency_basis and not frequency_basis.startswith("cash dividends"):
+            # 5.4.5 review (MAIN, STAG pay monthly): the per-share facts are quarterly totals
+            frequency_basis += "; the per-share facts are filed per quarter — a payment cadence inside the quarter (a monthly payer) is not tagged"
 
     # growth (on the comparable series; null when the latest annual row is stale)
     dps_growth_yoy = None
     if not dps_stale and len(comparable) >= 2 and fy_consecutive(comparable[-2]["period_end"], comparable[-1]["period_end"]):
         dps_growth_yoy = _g(comparable[-1]["dps"], comparable[-2]["dps"])
-    cagr3 = dps_cagr(comparable, 3) if not dps_stale else None
-    cagr5 = dps_cagr(comparable, 5) if not dps_stale else None
+    cagr3 = cagr5 = None
+    if not dps_stale:
+        for years, key in ((3, "dps_cagr_3y"), (5, "dps_cagr_5y")):
+            value, why = dps_cagr_window(comparable, years)
+            if years == 3:
+                cagr3 = value
+            else:
+                cagr5 = value
+            if why and len(comparable) >= 2 and not why.startswith("no annual DPS row"):
+                notes.append(f"{key}: null — {why}")
     gyears = growth_years(comparable) if not dps_stale else 0
     cut = last_cut_fy(comparable)
     if dps_stale:
         notes.append(f"growth: the latest annual DPS row (FY{latest_dps_row['fy']}, period ended {latest_dps_row['period_end']}) is more than 15 months older than the newest filed period ({reference}) — YoY growth, CAGR and growth years null")
 
-    # payout ratios on the latest fiscal year in the annual table
+    # payout ratios on the latest fiscal year in the annual table (dividends
+    # paid sign-corrected: CCI's FY2025 10-K files −2.08B)
     pr_eps = pr_oe = pr_fcf = None
     if latest_fy_row:
         d_fy = by_end.get(latest_end)
+        div_fy = a_flow["dividends_paid"].get(latest_end)
         pr_eps = payout_ratio(d_fy, latest_fy_row.get("eps_diluted"))
-        pr_oe = payout_ratio(latest_fy_row.get("dividends_paid"), latest_fy_row.get("oe_conservative"))
-        pr_fcf = payout_ratio(latest_fy_row.get("dividends_paid"), latest_fy_row.get("fcf"))
+        pr_oe = payout_ratio(div_fy, latest_fy_row.get("oe_conservative"))
+        pr_fcf = payout_ratio(div_fy, latest_fy_row.get("fcf"))
         if d_fy is None and any_facts:
             notes.append(f"payout_ratio_eps: no DPS fact for FY{payout_fy} (latest fiscal year in the annual table)")
         if latest_fy_row.get("dividends_paid") is None and any_facts:
@@ -1203,37 +2046,81 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
 
     # flows: the last four quarterly rows when they are consecutive quarters;
     # a filer without 10-Qs (20-F/40-F) falls back to the latest fiscal year's
-    # annual flows, labelled as such. Each leg records how complete it is.
-    last4 = qrows[-4:] if len(qrows) >= 4 and consecutive_quarters([r["period_end"] for r in qrows[-4:]]) else []
-    flows = {k: ttm_sum(r.get(k) for r in last4) if last4 else None for k in FLOW_KEYS}
+    # annual flows, labelled as such. Each leg records how complete it is, and
+    # `sign_corrected` names any value the filing carried below zero and read
+    # as its absolute amount, `kept_as_filed` a negative issuance line kept,
+    # `left_out` the quarters no consistent figure exists for (5.4.6).
+    flows = {k: ttm_sum(q_flow[k].get(r["period_end"]) for r in last4) if last4 else None for k in FLOW_KEYS}
     legs, flows_basis, flows_end = {}, None, None
 
     def never_filed(k):
         return filed_any.get(k) is False
 
+    def _attach(leg_, entries):
+        """5.4.6: a leg's sign entries by kind — sign_corrected (a filed sign
+        read as its absolute amount), kept_as_filed (a negative issuance line
+        kept), left_out (quarters no consistent figure exists for)."""
+        for field, kinds in (("sign_corrected", (SIGN_ABS,)), ("kept_as_filed", (SIGN_KEPT,)), ("left_out", (SIGN_LEFT_OUT_SIGN, SIGN_LEFT_OUT_DECREASE))):
+            got = [t for t, kind in entries if kind in kinds]
+            if got:
+                leg_[field] = got
+
     if last4:
         flows_basis = f"sum of the four quarterly rows {last4[0]['period_end']}..{last4[-1]['period_end']}"
         flows_end = last4[-1]["period_end"]
+        win = {r["period_end"] for r in last4}
         for k in FLOW_KEYS:
+            fixed_here = [(t, kind) for e, t, kind in sign_fixes[k] if e in win]
             if flows[k] is not None:
                 legs[k] = {"value": flows[k], "basis": "4/4 quarters filed", "complete": True}
+                _attach(legs[k], fixed_here)
                 continue
-            filed = [(r["period_end"], r[k]) for r in last4 if _num(r.get(k))]
-            missing = [r["period_end"] for r in last4 if not _num(r.get(k))]
-            if filed:
+            filed = [(r["period_end"], q_flow[k].get(r["period_end"])) for r in last4 if _num(q_flow[k].get(r["period_end"]))]
+            missing = [r["period_end"] for r in last4 if not _num(q_flow[k].get(r["period_end"]))]
+            # 5.4.4 review fix (CCL): a filed year-to-date fact that spans
+            # window quarters the rows could not derive (Q1 untagged → Q2 = 6M
+            # − Q1 impossible) is a filed value covering them — the leg is the
+            # YTD plus the filed quarters outside its span, and only quarters
+            # no filed fact covers are missing (5.4.5: sign errors as absolute
+            # amounts; 5.4.6: a consistently negative issuance fact as filed)
+            ff = flow_facts.get(k) or {}
+            ff_signed, flipped = signed_flow_facts(k, ff)
+            ytd = ytd_cover(last4, ff_signed) if ff_signed else None
+            if ytd:
+                y_val, y_ends, y_desc, y_key = ytd
+                if y_key in flipped:
+                    fixed_here.append((f"the year-to-date fact {y_key[0]}..{y_key[1]} filed as {_fmt_big(ff[y_key][0])}, read as {_fmt_big(y_val)}", SIGN_ABS))
+                    notes.append(f"sign convention ({k}): the year-to-date fact {y_key[0]}..{y_key[1]} is filed as {_fmt_big(ff[y_key][0])} — a sign-convention error, read as {_fmt_big(y_val)}")
+                outside = [(e, v) for e, v in filed if e not in y_ends]
+                covered = set(y_ends) | {e for e, _ in outside}
+                missing = [r["period_end"] for r in last4 if r["period_end"] not in covered]
+                value = y_val + sum(v for _, v in outside)
+                desc = y_desc + (f" + the filed quarters {', '.join(e for e, _ in outside)}" if outside else "")
+                if not missing:
+                    legs[k] = {"value": value, "basis": f"4/4 quarters covered: {desc}", "complete": True}
+                    _attach(legs[k], fixed_here)
+                    flows[k] = value
+                    notes.append(f"{k}_ttm: {desc} — the four quarters are covered by filed facts although not every quarter is filed on its own")
+                    continue
+                legs[k] = {"value": value, "basis": f"{4 - len(missing)}/4 quarters covered ({desc}) — a lower bound", "complete": False}
+            elif filed:
                 legs[k] = {"value": sum(v for _, v in filed), "basis": f"{len(filed)}/4 quarters filed ({', '.join(e for e, _ in filed)}) — a lower bound", "complete": False}
             elif never_filed(k):
                 legs[k] = {"value": 0.0, "basis": "never filed in any period — zero by the filer's own statements", "complete": True}
             else:
                 legs[k] = {"value": None, "basis": "not filed for any of the four quarters", "complete": False}
-            notes.append(f"{k}_ttm: not all of the last four quarters have a filed {k} figure (missing {', '.join(missing)})" + ("" if filed else (" — the tag was never filed in any period, so the leg counts as zero" if never_filed(k) else "")))
+            _attach(legs[k], fixed_here)
+            notes.append(f"{k}_ttm: not all of the last four quarters have a filed {k} figure (missing {', '.join(missing)})"
+                         + (f" — {ytd[2]} covers {len(ytd[1])} of them" if ytd else "")
+                         + ("" if (filed or ytd) else (" — the tag was never filed in any period, so the leg counts as zero" if never_filed(k) else "")))
     elif not qrows and latest_fy_row:
         flows_basis = f"FY{payout_fy} annual flows (period ended {latest_end}) — no quarterly filings (20-F/40-F filer)"
         flows_end = latest_end
         for k in FLOW_KEYS:
-            v = latest_fy_row.get(k)
+            v = a_flow[k].get(latest_end)
             if _num(v):
                 legs[k] = {"value": v, "basis": f"FY{payout_fy} annual fact", "complete": True}
+                _attach(legs[k], [(t, kind) for e, t, kind in sign_fixes[k] if e == f"FY:{latest_end}"])
             elif never_filed(k):
                 legs[k] = {"value": 0.0, "basis": "never filed in any period — zero by the filer's own statements", "complete": True}
             else:
@@ -1252,11 +2139,17 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         diluted_src = "latest annual weighted-average diluted" if diluted is not None else None
     inst = ctx.get("shares_instant")
     if inst and _num(inst[0]) and inst[0] > 0:
-        shares, shares_as_of, shares_src = inst[0], inst[1], inst[2]
+        shares, shares_as_of, shares_src, shares_basis = inst[0], inst[1], inst[2], "instant"
     else:
-        shares, shares_as_of, shares_src = diluted, None, diluted_src
+        # 5.4.3 review fix (TKO): a dual-class filer's instant counts are
+        # class-dimensioned and absent from companyfacts — fall back to a filed
+        # diluted weighted-average count, say so in shares_source, and never
+        # leave the market cap null while a weighted count exists.
+        fb = fallback_share_count(qrows, annual)
+        shares, shares_as_of, shares_src = fb if fb else (None, None, None)
+        shares_basis = "weighted_average_diluted_fallback" if fb else None
         if shares is not None:
-            notes.append(f"shares: no period-end / cover-page share count filed — market cap uses the {diluted_src} count")
+            notes.append(f"shares: market cap uses the {shares_src}")
     if price is None:
         notes.append("price: neither prices.json nor score.json carries a price — yields null")
     elif price_source and "score.json" in price_source:
@@ -1266,18 +2159,146 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     if market_cap is None and shares is None:
         notes.append("shares: no share count filed — market cap and yields null")
 
+    # 5.4.6 review fix (HPQ declares two quarters at once, GEHC two in Q3 and
+    # none in Q2, KVUE / WRB at some run dates): per-share facts filed on a
+    # declaration cadence read "semiannual" / "irregular" (ZTS at some run dates:
+    # "annual" — Q1 and Q2 positive, Q3 filed as zero, no Q4) for a company whose
+    # common cash dividend is paid in each of the last four quarters. The cash
+    # line counts as the common dividend when it is the common-stock tag, or —
+    # on the total PaymentsOfDividends line — when the four quarters' cash
+    # (dividends_paid_ttm) is within 0.85–1.15x of dps_ttm × the latest diluted
+    # count, i.e. there is no material preferred / NCI dividend inside it
+    if cash_cadence_pending:
+        cash_ttm = flows.get("dividends_paid")
+        implied = dps_ttm * diluted if _num(dps_ttm) and _num(diluted) else None
+        corroborated = cash_payer or bool(_num(cash_ttm) and _num(implied) and implied > 0 and 0.85 <= cash_ttm / implied <= 1.15)
+        if corroborated:
+            check = "" if cash_payer else (f" ({', '.join(cash_tags) or 'the dividends line'} is not the common-stock tag, but its four quarters, {_fmt_big(cash_ttm)}, match dps_ttm "
+                                           f"{dps_ttm:g} × {diluted:,.0f} diluted shares = {_fmt_big(implied)}, so it carries the common dividend)")
+            frequency_basis = (f"{cash_desc}{check} — the cash dividend is paid every quarter; the per-share facts read {frequency} "
+                               f"({frequency_basis}) because they are filed on a declaration cadence, not a payment cadence")
+            frequency = "quarterly"
+        else:
+            notes.append(f"frequency: the per-share facts read {frequency} ({frequency_basis}); {cash_recent[1]} — not shown to be the common dividend alone, so the per-share reading stands")
+
     # yields
     def leg(k):
         return legs.get(k, {}).get("value")
 
     div_leg, bb_leg, iss_leg = leg("dividends_paid"), leg("buybacks"), leg("share_issuance")
-    bb_complete = legs.get("buybacks", {}).get("complete") and _num(bb_leg)
-    net_bb = (bb_leg - iss_leg) if (_num(bb_leg) and _num(iss_leg)) else None
-    sh_total = (div_leg + bb_leg - iss_leg) if (_num(div_leg) and _num(bb_leg) and _num(iss_leg)) else None
-    sh_basis = " + ".join(f"{k} ({legs[k]['basis']})" for k in ("dividends_paid", "buybacks") if k in legs) + (f" − share_issuance ({legs['share_issuance']['basis']})" if "share_issuance" in legs else "")
-    if flows_basis:
-        sh_basis = f"{sh_basis}; {flows_basis}"
-    history = [dict({"period_end": e, "dps": q[e]["val"], "kind": basis}, **({"split_factor": q[e]["split_factor"]} if q[e].get("split_factor") else {})) for e in sorted(q, reverse=True)[:20]]
+    # 5.4.3 review fix: every flow yield is built the same way — from the legs
+    # that ARE filed (complete, or filed for only some of the four quarters and
+    # summed as a bound), a never-filed line as zero, a leg not filed in the
+    # window left out — and `yield_basis` says, per yield, which legs went in,
+    # which were taken as zero, which were left out, and whether the figure is
+    # exact, a lower bound, an upper bound or neither. A yield is null only when
+    # its own leg is unknown (buybacks for the buyback yields; both dividends
+    # and buybacks for the shareholder yield). No headline carries a partial
+    # numerator without this flag.
+    YIELD_LEGS = {"buyback_yield": (("buybacks", 1),), "net_buyback_yield": (("buybacks", 1), ("share_issuance", -1)),
+                  "shareholder_yield": (("dividends_paid", 1), ("buybacks", 1), ("share_issuance", -1))}
+    YIELD_REQUIRES = {"buyback_yield": ("buybacks",), "net_buyback_yield": ("buybacks",), "shareholder_yield": ("dividends_paid", "buybacks")}
+
+    def yield_parts(name):
+        """(numerator, basis dict) for one flow yield."""
+        spec = YIELD_LEGS[name]
+        known = {k for k, _ in spec if _num(leg(k))}
+        req = YIELD_REQUIRES[name]
+        if not any(k in known for k in req):
+            return None, {"legs": {k: legs.get(k, {}).get("basis") for k, _ in spec}, "filed": [], "zero": [], "excluded": [k for k, _ in spec],
+                          "partial": [], "bound": None, "complete": False, "numerator": None, "denominator": market_cap_basis,
+                          "note": f"{' / '.join(req)} not filed for the window — null"}
+        total, filed, zero, excluded, partial, lower, upper = 0.0, [], [], [], [], False, False
+        for k, sign in spec:
+            info = legs.get(k) or {}
+            v = info.get("value")
+            if not _num(v):
+                excluded.append(k)
+                # an unknown positive leg means the true figure is at least this one; an unknown negative leg, at most
+                lower, upper = lower or sign > 0, upper or sign < 0
+                continue
+            total += sign * v
+            if "never filed" in str(info.get("basis")):
+                zero.append(k)
+            else:
+                filed.append(k)
+            if not info.get("complete"):
+                partial.append(k)
+                lower, upper = lower or sign > 0, upper or sign < 0
+        bound = "exact" if not (lower or upper) else ("lower" if lower and not upper else ("upper" if upper and not lower else "indeterminate"))
+        return total, {"legs": {k: legs.get(k, {}).get("basis") for k, _ in spec}, "filed": filed, "zero": zero, "excluded": excluded,
+                       "partial": partial, "bound": bound, "complete": False, "numerator": total, "denominator": market_cap_basis}
+
+    yields, yield_basis = {}, {}
+    for name in YIELD_LEGS:
+        total, yb = yield_parts(name)
+        yb["complete"] = bool(yb["bound"] == "exact" and not yb["excluded"])
+        yields[name] = _ratio(total, market_cap) if (market_cap and total is not None) else None
+        if market_cap and total is not None and yb["bound"] != "exact":
+            yb["note"] = {"lower": "a lower bound — a positive leg is filed for only some quarters or not at all",
+                          "upper": "an upper bound — the issuance leg is filed for only some quarters or not at all",
+                          "indeterminate": "neither bound — a positive leg and the issuance leg are both incomplete"}[yb["bound"]]
+        # 5.4.5 review blocker (CCI): a leg the filing carried below zero is read
+        # as its absolute amount, and the yield's basis says which legs and why
+        # (5.4.6: only the entries that were read as absolute amounts; a kept
+        # negative issuance line and left-out quarters are named as such)
+        fixed = {k: legs[k]["sign_corrected"] for k, _ in YIELD_LEGS[name] if legs.get(k, {}).get("sign_corrected")}
+        if fixed:
+            yb["sign_corrected"] = {k: "; ".join(v) + " — the filed sign is a sign-convention error, the absolute amount is used"
+                                    for k, v in fixed.items()}
+        kept = {k: legs[k]["kept_as_filed"] for k, _ in YIELD_LEGS[name] if legs.get(k, {}).get("kept_as_filed")}
+        if kept:
+            yb["kept_as_filed"] = {k: "; ".join(v) for k, v in kept.items()}
+        left = {k: legs[k]["left_out"] for k, _ in YIELD_LEGS[name] if legs.get(k, {}).get("left_out")}
+        if left:
+            yb["left_out"] = {k: "; ".join(v) for k, v in left.items()}
+        yield_basis[name] = yb
+    yield_basis["dividend_yield"] = {"numerator": dps_ttm, "basis": dps_ttm_basis, "bound": "exact" if dps_ttm is not None else None,
+                                     "complete": dps_ttm is not None, "denominator": f"price {price} ({price_source})" if _num(price) else None}
+    net_bb = yield_basis["net_buyback_yield"]["numerator"]
+    sh_total = yield_basis["shareholder_yield"]["numerator"]
+    parts = []
+    for k, sign in (("dividends_paid", "+"), ("buybacks", "+"), ("share_issuance", "−")):
+        if k not in legs:
+            continue
+        parts.append((f"{sign} " if parts else "") + (f"{k} ({legs[k]['basis']})" if _num(legs[k]["value"]) else f"{k} NOT INCLUDED ({legs[k]['basis']})"))
+    sh_basis = " ".join(parts) + (f"; {flows_basis}" if flows_basis else "")
+    history = [dict({"period_end": e, "dps": q[e]["val"], "kind": q[e]["kind"]}, **({"split_factor": q[e]["split_factor"]} if q[e].get("split_factor") else {})) for e in sorted(q, reverse=True)[:20]]
+    # 5.4.4 review fix: a display-ready figure per yield so no consumer (the
+    # Dividends tab, the ranking row) can print a partial numerator bare —
+    # the bound is in the label ("≥ 2.66%", "≤ 6.1%", "≈ 4.4% (incomplete)")
+    dividend_yield = _ratio(dps_ttm, price) if _num(price) and price > 0 else None
+    yields_display = {}
+    for name, value in (("dividend_yield", dividend_yield), ("buyback_yield", yields["buyback_yield"]),
+                        ("net_buyback_yield", yields["net_buyback_yield"]), ("shareholder_yield", yields["shareholder_yield"])):
+        yb = yield_basis[name]
+        bound = yb.get("bound") if value is not None else None
+        prefix = {"exact": "", "lower": "≥", "upper": "≤", "indeterminate": "≈"}.get(bound, "")
+        if value is None:
+            label = "—"
+        else:
+            label = (f"{prefix} " if prefix else "") + f"{value * 100:.2f}%" + (" (incomplete)" if bound == "indeterminate" else "")
+        if name == "dividend_yield":
+            note = dps_ttm_basis if value is not None else next((n for n in notes if n.startswith("dps_ttm") or n.startswith("no dividends-per-share")), None)
+        else:
+            # 5.4.5 review (APP '≤ 2.78%' over an issuance leg described as "a
+            # lower bound"): each leg's basis is phrased by what it does to THIS yield
+            sign_of = dict(YIELD_LEGS[name])
+            parts_n = []
+            for k in (yb.get("partial") or []) + (yb.get("excluded") or []):
+                if k not in legs:
+                    continue
+                b = str(legs[k]["basis"])
+                b = b[:-len(" — a lower bound")] if b.endswith(" — a lower bound") else b
+                if k in (yb.get("excluded") or []):
+                    eff = "left out, so this yield is a lower bound" if sign_of.get(k, 1) > 0 else "no deduction made, so this yield is an upper bound"
+                else:
+                    eff = "understated, so this yield is a lower bound" if sign_of.get(k, 1) > 0 else "the deduction is understated, so this yield is an upper bound"
+                parts_n.append(f"{k}: {b} — {eff}" if value is not None else f"{k}: {legs[k]['basis']}")
+            parts_n += [f"{k}: filed below zero, read as the absolute amount" for k in (yb.get("sign_corrected") or {})]
+            parts_n += [f"{k}: filed below zero as a net line, kept as filed" for k in (yb.get("kept_as_filed") or {})]
+            note = "; ".join(parts_n) or (yb.get("note") if value is None else None)
+        yields_display[name] = {"value": value, "bound": bound, "prefix": prefix, "label": label, "note": note or None}
 
     # the filing feed is ahead of companyfacts: say so
     lfp = ctx.get("latest_filed_period") or {}
@@ -1289,52 +2310,437 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
             ctx["warnings"].append(msg)
 
     return {
-        "dps_ttm": dps_ttm, "dps_ttm_basis": dps_ttm_basis, "dps_basis": basis,
+        "dps_ttm": dps_ttm, "dps_ttm_basis": dps_ttm_basis, "dps_basis": basis if not (extended or filled) else "mixed", "dps_basis_detail": dps_basis_detail,
         "frequency": frequency, "frequency_basis": frequency_basis,
         "annual_dps": annual_out,
         "dps_growth_yoy": dps_growth_yoy, "dps_cagr_3y": cagr3, "dps_cagr_5y": cagr5,
         "growth_years": gyears, "last_cut_fy": cut,
         "growth_from_fy": comparable[0]["fy"] if comparable else None,
+        "fy_label_basis": fy_label_basis,
         "basis_breaks": [{"period_end": e, "dps_ratio": rd, "shares_ratio": rs} for e, rd, rs in breaks],
-        "split_adjustments": [{"effective": d, "ratio": r} for d, r in (ctx.get("splits") or [])],
+        "basis_breaks_rejected": [{"period_end": e, "dps_ratio": rd, "shares_ratio": rs, "eps_ratio": re} for e, rd, rs, re in rejected],
+        "split_adjustments": [{"effective": _split_cutoff(s)[0], "ratio": _split_cutoff(s)[1], "first_post_split_filing": _split_cutoff(s)[2],
+                               "source": s[3] if len(s) > 3 and s[3] else "ratio_fact"} for s in (ctx.get("splits") or [])],
         "payout_ratio_eps": pr_eps, "payout_ratio_oe": pr_oe, "payout_ratio_fcf": pr_fcf,
         "payout_fy": payout_fy,
         "dividends_paid_ttm": flows["dividends_paid"], "buybacks_ttm": flows["buybacks"], "issuance_ttm": flows["share_issuance"],
         "ttm_period_end": last4[-1]["period_end"] if last4 else None,
         "flows_basis": flows_basis, "flows_period_end": flows_end, "legs": legs,
         "price": price, "price_date": price_date, "price_source": price_source,
-        "shares_outstanding": shares, "shares_as_of": shares_as_of, "shares_source": shares_src,
+        "shares_outstanding": shares, "shares_as_of": shares_as_of, "shares_source": shares_src, "shares_basis": shares_basis,
         "shares_diluted": diluted, "shares_diluted_source": diluted_src,
         "market_cap": market_cap, "market_cap_basis": market_cap_basis,
-        "dividend_yield": _ratio(dps_ttm, price) if _num(price) and price > 0 else None,
-        "buyback_yield": _ratio(bb_leg, market_cap) if (market_cap and bb_complete) else None,
-        "net_buyback_yield": _ratio(net_bb, market_cap) if (market_cap and net_bb is not None) else None,
-        "shareholder_yield": _ratio(sh_total, market_cap) if (market_cap and sh_total is not None) else None,
+        "dividend_yield": dividend_yield,
+        "buyback_yield": yields["buyback_yield"],
+        "net_buyback_yield": yields["net_buyback_yield"],
+        "shareholder_yield": yields["shareholder_yield"],
         "shareholder_yield_basis": sh_basis if sh_total is not None else None,
-        "shareholder_yield_complete": bool(sh_total is not None and all(legs[k].get("complete") for k in FLOW_KEYS if k in legs)),
+        "shareholder_yield_complete": yield_basis["shareholder_yield"]["complete"],
+        "yield_basis": yield_basis,
+        "yields_display": yields_display,
         "history": history,
         "notes": notes,
     }
 
 
+UNIT_SLIP_FACTOR = 10  # two filings of the same period's DPS that disagree by ≥10x disagree on the unit, not the dividend
+DPS_FY_FORMS = ("10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")  # annual reports and their amendments carry the FY DPS fact
+
+
+def _near_power_of_ten(ratio):
+    return ratio >= UNIT_SLIP_FACTOR and abs(math.log10(ratio) - round(math.log10(ratio))) < 0.01
+
+
+def split_restatement(hi_es, lo_es, splits=None, refilings=None):
+    """Is a two-valued filing history of one period's DPS a split restatement?
+    hi_es / lo_es: the facts carrying the larger / smaller value. A forward
+    split of ratio r re-files the period at value/r in every filing after the
+    split (the smaller value is the newer basis); a reverse split the other
+    way. Evidence, either: a filed ratio ≈ hi/lo (split events, direction-
+    checked) dated before the newer group's first filing and within 800 days
+    of it; or the filer's diluted share count re-filed ×≈hi/lo between the two
+    groups (share_refilings). Returns (post_is_lo, description, evidence) or
+    None; the older-basis filings must all precede the newer-basis ones.
+    evidence (5.4.5): ("ratio_fact", date, ratio) or ("re_filed_counts",
+    period_end, ratio, first_filing_on_the_new_basis) — ratio = new shares per
+    old share. 5.4.6 review fix (WRB's June 2024 3-for-2 read as 1.50847 =
+    0.89 / 0.59, two rounded DPS values): the ratio is the simplest whole-number
+    ratio p/q (p, q ≤ 10) within 1% of the DPS ratio, else of the re-filed
+    share-count factor, else the share-count factor itself — never the quotient
+    of two rounded per-share values."""
+    ratio = max(e["val"] for e in hi_es) / min(e["val"] for e in lo_es)
+    f_hi, f_lo = [e.get("filed", "") for e in hi_es], [e.get("filed", "") for e in lo_es]
+    for post_is_lo, old, new in ((True, f_hi, f_lo), (False, f_lo, f_hi)):
+        if max(old) >= min(new):
+            continue
+        target = ratio if post_is_lo else 1 / ratio
+        for s in splits or []:
+            d, r, cutoff = _split_cutoff(s)
+            if abs(math.log(r) - math.log(target)) <= math.log(SPLIT_RATIO_TOL) and d < min(new) and _days(d, min(new)) <= 800:
+                return post_is_lo, f"restated for the {_split_desc(d, r, cutoff)}", ("ratio_fact", d, r)
+        for e, k, old_filed, new_filed in refilings or []:
+            if abs(math.log(k) - math.log(target)) <= math.log(SPLIT_RATIO_TOL) and max(old) < new_filed <= min(new):
+                snapped = snap_ratio(target) or snap_ratio(k)
+                used = snapped[0] if snapped else k
+                how = (f"{snapped[1][0]}-for-{snapped[1][1]} (the per-share values move ×{target:.4f}, the share count ×{k:.4f})" if snapped
+                       else f"×{k:.4f} as the share count was re-filed (the per-share values move ×{target:.4f})")
+                return post_is_lo, (f"restated for a share-basis change with no ratio fact filed — the diluted share count for the period ended {e} was re-filed ×{k:.2f} on {new_filed}; "
+                                    f"read as {how}"), ("re_filed_counts", e, used, new_filed)
+    return None
+
+
+def dps_fy_facts(facts, tags, splits=None, refilings=None, restated=None):
+    """FY-duration DPS facts on annual forms: ({period_end: dps}, {period_end:
+    tag}, {period_end: filed}, notes). Like annual_series (tag priority per
+    period, the latest filing wins) EXCEPT for a unit slip: when the filings
+    that report one period disagree by a power of ten (GFI's FY2017 is 0.08
+    in two 20-Fs and 8 in a third — cents tagged as dollars, never restated),
+    the value most filings agree on wins, a tie going to the value closest in
+    log terms to the tag's other fiscal years; the note names both and says
+    which rule decided. Amended annual reports (10-K/A, 20-F/A, 40-F/A) count
+    as filings of their period — GFI's 0.08 is in a 20-F/A and a 20-F, the 8
+    in one 20-F. 5.4.3 review fix: before this the later filing's slip won
+    the annual series. 5.4.4 review fix: a disagreement that IS a split
+    restatement (split_restatement: a filed ratio ≈ the disagreement, or the
+    diluted share count re-filed by it, between the two groups of filings —
+    AVGO's FY2022 16.4 → 1.64 across the July 2024 10-for-1, NVDA's FY2023
+    0.16 → 0.016, LRCX's FY2023 6.9 → 0.69) takes the latest filing on the
+    new basis and says so; the majority rule applies only when no such
+    share-basis evidence exists (GFI: shares unchanged). `splits`:
+    [(date, ratio[, first_post_split_filing])]; `refilings`: share_refilings.
+    5.4.5 review fix (CCI's FY2014 is 1.87 in the 10-K filed 2015-02-19 and
+    1870 in the 10-Ks filed 2016-02-22 and 2017-02-22 — a 1000x slip the filer
+    carried into two later comparatives, so it wins the count): before the
+    majority rule, each power-of-ten group is checked against that year's own
+    quarterly facts (the same tag's three-month facts inside the fiscal year,
+    summed) and the tag's other fiscal years (log median); when exactly one group
+    is within 3x of every reference and every other group is ≥10x from all of
+    them, that group wins whatever the count, and the note says so. A note is
+    written for EVERY power-of-ten disagreement, also when the value used is the
+    latest filing's. `restated` (optional list) receives (period_end, evidence)
+    for each split restatement read here (split_restatement's evidence)."""
+    vals, tag_by, filed_by, notes = {}, {}, {}, []
+    restated_out = restated
+    for taxonomy, tag in _pairs(tags):
+        tf = facts.get("facts", {}).get(taxonomy, {})
+        if tag not in tf:
+            continue
+        units = tf[tag].get("units", {})
+        for unit_key in _units_pref(units):
+            by_end = {}
+            for e in units[unit_key]:
+                if e.get("fp") != "FY" or e.get("form", "") not in DPS_FY_FORMS:
+                    continue
+                end, start = e.get("end"), e.get("start")
+                if not end or not start or not (330 <= _days(start, end) <= 380) or not _num(e.get("val")):
+                    continue
+                by_end.setdefault(end, []).append(e)
+            latest_by_end = {end: max(es, key=lambda e: e.get("filed", "")) for end, es in by_end.items()}
+            three_month = {}
+            for e in units[unit_key]:
+                if e.get("start") and e.get("end") and _num(e.get("val")) and DPS_DIRECT_WINDOW[0] <= _days(e["start"], e["end"]) <= DPS_DIRECT_WINDOW[1]:
+                    prev = three_month.get((e["start"], e["end"]))
+                    if prev is None or e.get("filed", "") > prev.get("filed", ""):
+                        three_month[(e["start"], e["end"])] = e
+            for end, es in by_end.items():
+                if end in vals:
+                    continue
+                chosen = latest_by_end[end]
+                positive = [e for e in es if e["val"] > 0]
+                if len({round(e["val"], 9) for e in positive}) > 1:
+                    hi, lo = max(e["val"] for e in positive), min(e["val"] for e in positive)
+                    hi_es = [e for e in positive if round(e["val"], 9) == round(hi, 9)]
+                    lo_es = [e for e in positive if round(e["val"], 9) == round(lo, 9)]
+                    restated = split_restatement(hi_es, lo_es, splits, refilings) if len({round(e["val"], 9) for e in positive}) == 2 else None
+                    if restated:
+                        post_is_lo, why, evidence = restated
+                        if restated_out is not None:
+                            restated_out.append((end, evidence))
+                        post, pre = (lo_es, hi_es) if post_is_lo else (hi_es, lo_es)
+                        chosen = max(post, key=lambda e: e.get("filed", ""))
+
+                        def _desc2(g):
+                            return ", ".join(f"{e.get('form')} filed {e.get('filed')}" for e in sorted(g, key=lambda e: e.get("filed", "")))
+                        notes.append(f"annual_dps: FY DPS for the period ended {end} is filed as {pre[0]['val']:g} ({_desc2(pre)}) and as {chosen['val']:g} ({_desc2(post)}) — "
+                                     f"{why}; {chosen['val']:g} used (the latest filing on the new share basis, {tag})")
+                    elif _near_power_of_ten(hi / lo):
+                        groups = {}
+                        for e in positive:
+                            groups.setdefault(round(e["val"], 9), []).append(e)
+                        others = [latest_by_end[x]["val"] for x in latest_by_end if x != end and latest_by_end[x]["val"] > 0]
+                        centre = statistics.median(math.log10(v) for v in others) if others else None
+                        best = max(groups.items(), key=lambda kv: (len(kv[1]), -(abs(math.log10(kv[0]) - centre) if centre is not None else 0), max(e.get("filed", "") for e in kv[1])))
+                        majority = all(len(best[1]) > len(g) for k, g in groups.items() if k != best[0])
+                        rule = ("the value most filings agree on" if majority else
+                                ("the value closest to the tag's other fiscal years (the filings split evenly)" if centre is not None else
+                                 "the value in the latest filing among an even split"))
+                        # 5.4.5: the year's own quarterly facts and the tag's other fiscal years as references
+                        start = es[0].get("start")
+                        qy = sorted((k2, e2["val"]) for k2, e2 in three_month.items() if start <= k2[0] and k2[1] <= end and e2["val"] > 0)
+                        refs = []
+                        if len(qy) >= 2:
+                            refs.append((f"that year's {len(qy)} quarterly facts (sum {sum(v for _, v in qy):g})", sum(v for _, v in qy)))
+                        if centre is not None:
+                            refs.append((f"the tag's other fiscal years (median {10 ** centre:.4g})", 10 ** centre))
+                        near = [k for k in groups if refs and all(abs(math.log10(k) - math.log10(r)) < math.log10(3) for _, r in refs)]
+                        if len(near) == 1 and near[0] != best[0] and all(all(abs(math.log10(k) - math.log10(r)) >= 1 for _, r in refs) for k in groups if k != near[0]):
+                            repeated = any(len(g) > 1 for k, g in groups.items() if k != near[0])
+                            best = (near[0], groups[near[0]])
+                            rule = (f"the value consistent with {' and '.join(t for t, _ in refs)} — the other value is a unit slip"
+                                    + (" the filer repeated in later comparatives, so it wins the count but not the arithmetic" if repeated else ""))
+                        chosen = max(best[1], key=lambda e: e.get("filed", ""))
+
+                        def _desc(g):
+                            return ", ".join(f"{e.get('form')} filed {e.get('filed')}" for e in sorted(g, key=lambda e: e.get("filed", "")))
+                        notes.append(f"annual_dps: FY DPS for the period ended {end} is filed as {chosen['val']:g} ({_desc(best[1])}) and as "
+                                     + "; ".join(f"{k:g} ({_desc(g)})" for k, g in groups.items() if k != best[0])
+                                     + f" — the filings disagree by a power of ten (a unit slip, {tag}); {chosen['val']:g} used, {rule}")
+                vals[end], tag_by[end], filed_by[end] = chosen["val"], tag, chosen.get("filed")
+    return vals, tag_by, filed_by, notes
+
+
+def fallback_share_count(qrows, annual):
+    """(count, as_of, source) — the share count for the market cap when no
+    undimensioned instant count exists in companyfacts (a dual-class filer's
+    cover-page and balance-sheet counts are class-dimensioned and dropped by
+    the API — TKO). The latest filed (non-derived) quarterly diluted
+    weighted-average count is used, unless another recent filed diluted count
+    (the latest four quarterly rows or the latest fiscal year) exceeds it by
+    more than 20%: a diluted count excludes antidilutive / if-converted
+    shares period by period (TKO's Q2 2026 count is 75.9M against 194.6M the
+    quarter before), so the count that covers the shares the dividends and
+    buybacks are paid on is the LATEST filed count that is within 20% of the
+    largest recent one (TKO: Q1 2026's 194.6M, not Q3 2025's 199.1M — a
+    buyback year's newest consistent count, not its oldest). Every candidate
+    is named in `source`. None when no diluted count exists."""
+    cands = []
+    for r in (qrows or [])[-4:]:
+        if _num(r.get("shares_diluted")) and r["shares_diluted"] > 0 and not r.get("shares_diluted_derived"):
+            cands.append((r["shares_diluted"], r["period_end"], f"quarter ended {r['period_end']}"))
+    for r in (annual or [])[-1:]:
+        if _num(r.get("shares_diluted")) and r["shares_diluted"] > 0:
+            cands.append((r["shares_diluted"], r["period_end"], f"FY{r.get('fy')} (period ended {r['period_end']})"))
+    if not cands:
+        return None
+    latest = max(cands, key=lambda c: c[1])
+    biggest = max(cands, key=lambda c: c[0])
+    why = ("weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts "
+           "(a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API)")
+    if biggest[0] > 1.2 * latest[0]:
+        # the newest count that is not an exclusion anomaly: latest by date among those within 20% of the largest
+        consistent = max((c for c in cands if 1.2 * c[0] >= biggest[0]), key=lambda c: c[1])
+        return consistent[0], consistent[1], (f"{consistent[2]} {why}; the latest quarter's own diluted count ({latest[0]:,.0f}, {latest[2]}) is >20% lower — "
+                                              f"a diluted count excludes antidilutive / if-converted shares period by period, so the latest recent filed count "
+                                              f"consistent with the most inclusive one ({biggest[0]:,.0f}, {biggest[2]}) is used")
+    return latest[0], latest[1], f"{latest[2]} {why}"
+
+
 def dividends_inputs(facts):
     """The filed DPS series the dividends block reads — quarterly direct facts
-    (declared / paid) and FY-duration facts (declared / paid) — restated for
-    filed stock splits (apply_splits). Returns (dps_q, dps_fy, meta) with
-    meta = {splits: [(date, ratio)], split_notes: [...]}."""
+    (declared / paid) and FY-duration facts (declared / paid, unit-slip and
+    split-restatement aware: dps_fy_facts) — restated for filed stock splits
+    (one event per split however many context dates it is tagged at; the
+    basis changes at the first filing that re-files the diluted share count,
+    not at the ratio fact's date: apply_splits). Returns (dps_q, dps_fy, meta)
+    with meta = {splits: [(date, ratio, first_post_split_filing)], split_notes: [...]}."""
     fy_starts = core_fy_starts(facts)
     dps_q = {"declared": quarterly_by_tag(facts, DUR["dps_declared"], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts),
              "paid": quarterly_by_tag(facts, DUR["dps_paid"], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts)}
-    fy = {b: annual_series(facts, DUR[f"dps_{b}"], True, with_filed=True) for b in ("declared", "paid")}
-    dps_fy = {b: fy[b][0] for b in fy}
-    fy_filed = {b: fy[b][3] for b in fy}
-    notes, splits = [], []
-    for d, r, used, ev in split_direction(split_events(facts), _shares_with_filed(facts)):
-        splits.append((d, used))
+    notes, splits, dups, dropped = [], [], [], []
+    events = split_events(facts, duplicates=dups)
+    for d, r, folded in dups:
+        notes.append(f"split ratio {r:g} is tagged at {len(folded) + 1} context dates ({', '.join([d] + folded)}) — one split, read once at {d}")
+    refilings = share_refilings(facts)
+    directed = split_direction(events, _shares_with_filed(facts), dropped=dropped)
+    for d, r, ev in dropped:
+        notes.append(f"split ratio {r:g} tagged at {d} is left out — {ev}; it is the same split as the one already read, not a second one")
+    cutoffs = split_filing_cutoffs([(d, used) for d, r, used, ev in directed], refilings)
+    # 5.4.6: the same ratio tagged again within 400 days, further apart than
+    # split_events folds (WCN: 1.5 at 2017-04-26 and again at 2018-03-31), is a
+    # second split only when some filing re-files a value that was ALREADY on
+    # the first split's basis by the ratio again; otherwise it is the first
+    # split tagged twice, and compounding it would divide every older DPS fact
+    # by 2.25 instead of 1.5
+    deduped = []
+    for d, r, used, ev in directed:
+        prev = deduped[-1] if deduped else None
+        if prev and abs(math.log(prev[2]) - math.log(used)) <= math.log(SPLIT_RATIO_TOL) and 0 < _days(prev[0], d) <= 400:
+            c1 = cutoffs.get(prev[0], (prev[0], None))[0]
+            if not any(abs(math.log(k) - math.log(used)) <= math.log(SPLIT_RATIO_TOL) and old_filed >= c1 and -200 <= _days(d, new_filed) <= 400
+                       for e, k, old_filed, new_filed in refilings):
+                notes.append(f"split ratio {r:g} tagged at {d} is left out — the same ratio as the split tagged at {prev[0]} ({_days(prev[0], d)} days earlier), and no filing "
+                             f"re-files a value already on that split's basis (first filed {c1}) by it again: one split tagged twice, not two")
+                continue
+        deduped.append((d, r, used, ev))
+    directed = deduped
+    # 5.4.6: a ratio fact the filed share counts do not bear out is not a split
+    # (CFG tags 6 at 2021-12-31 and its diluted count moves ×0.95; DXCM tags its
+    # June 2022 4-for-1 at 2019-12-31 and 2020-12-31 too): across the first
+    # filing on the new basis (else the ratio fact's date) the annual diluted
+    # count must move closer to the ratio than to no change
+    swf = _shares_with_filed(facts)
+    supported = []
+    for d, r, used, ev in directed:
+        cut = cutoffs.get(d, (None, None))[0] or d
+        mv = share_count_move(swf, cut)
+        if mv and abs(math.log(used)) >= math.log(SHARE_REFILE_MIN) and abs(math.log(mv[0])) < abs(math.log(mv[0]) - math.log(used)):
+            notes.append(f"split ratio {r:g} tagged at {d} is left out — {mv[1]}: the share counts do not move by the ratio, so it is not a split of the common shares "
+                         "(an exchange or conversion ratio, or a split tagged at an earlier context date)")
+            continue
+        supported.append((d, r, used, ev))
+    directed = supported
+    for d, r, used, ev in directed:
+        cutoff, cev = cutoffs.get(d, (None, None))
+        splits.append((d, used, cutoff))
         if used != r:
             notes.append(f"split ratio {r:g} filed for {d} read as {used:g} new shares per old share — {ev}")
+        if cutoff and cutoff != d:
+            notes.append(f"split {used:g} tagged at {d}: facts filed before {cutoff} are on the pre-split basis — {cev}")
+    restated = []
+    fy = {b: dps_fy_facts(facts, DUR[f"dps_{b}"], splits=splits, refilings=refilings, restated=restated) for b in ("declared", "paid")}
+    dps_fy = {b: fy[b][0] for b in fy}
+    fy_filed = {b: fy[b][2] for b in fy}
+    for b in fy:
+        notes.extend(fy[b][3])
+    # 5.4.5 review fix (EXPE's December 2011 1-for-2 reverse split has no ratio
+    # fact): when a period's FY DPS AND the filer's diluted share count were both
+    # re-filed by the same factor between two groups of filings, that is a split
+    # the filings themselves evidence — it is applied like a filed ratio (every
+    # per-share fact last filed before the first filing on the new basis is
+    # restated, quarterly facts included) and listed in split_adjustments with
+    # source "re_filed_counts". Before this only the FY fact was restated and the
+    # quarterly history mixed bases (2010 quarters 0.07 beside 2011's 0.14).
+    for end, ev in sorted(restated, key=lambda x: x[1][-1] if x[1][0] == "re_filed_counts" else ""):
+        if ev[0] != "re_filed_counts":
+            continue
+        _, e, k, new_filed = ev
+        if any(abs(math.log(_split_cutoff(s)[1]) - math.log(k)) <= math.log(SPLIT_RATIO_TOL) and abs(_days(_split_cutoff(s)[2], new_filed)) <= 800 for s in splits):
+            continue
+        splits.append((new_filed, k, new_filed, "re_filed_counts"))
+        notes.append(f"share-basis change with no ratio fact filed: the FY DPS for the period ended {end} and the diluted share count for the period ended {e} were both re-filed by the same factor "
+                     f"(first on {new_filed}) — read as a {_split_desc(new_filed, k)}; every per-share fact last filed before {new_filed} is restated by it")
+    notes.extend(original_quarterly_dps(facts, dps_q, splits))
     dps_q, dps_fy, adj_notes = apply_splits(dps_q, dps_fy, fy_filed, splits)
-    return dps_q, dps_fy, {"splits": splits, "split_notes": notes + adj_notes}
+    # 5.4.6 review fix (WRB): the annual diluted counts on today's share basis
+    # (a count last filed before a split's first post-split filing × the
+    # ratio), so the unfiled-split guard (basis_breaks) never reads a known
+    # split as a share move — WRB's FY2021 count (filed before the 2024 3-for-2)
+    # against FY2022's (filed after it) is ×1.5 for that reason alone
+    shares_by_end = {e: v * split_factor(f, splits) for e, (v, f) in _shares_with_filed(facts).items() if _num(v)}
+    return dps_q, dps_fy, {"splits": splits, "split_notes": notes + adj_notes, "shares_by_end": shares_by_end}
+
+
+def original_quarterly_dps(facts, dps_q, splits):
+    """5.4.6 review blocker (FTI's 10-K filed 2021-03-05 re-tags Q1 2019 at
+    0.52, the year-to-date total, in a three-month context; HPQ's 10-K filed
+    2019-12-12 tags 0.53 and 0.64 YTD values as quarters; WRB's 10-Q filed
+    2021-08-02 re-files Q2 2020 at the six-month 0.23): when the filings of
+    one quarter's DPS disagree — different filed values that also differ on
+    today's share basis (split_factor; values within rounding are one value) —
+    the value is chosen by the filer's own arithmetic: the one equal to the
+    same tag's year-to-date fact minus the year-to-date fact a quarter shorter
+    (for a first quarter: the six-month fact minus the second quarter). WRB's
+    Q2 2021 shows why the first filing is not always right: its 10-Q tagged
+    0.12 while the later six-month 0.75 − Q1 0.12 gives the 0.63 a later
+    comparative carries. When the year-to-date facts decide nothing (none
+    filed, or both values fit), the filing that first reported the quarter is
+    used — later 10-Ks and comparatives are where the mis-tags are.
+    Every quarter whose value the year-to-date arithmetic confirms gets
+    `ytd_confirmed` (the facts used) — build_dividends uses it to tell a
+    full-year fact below its quarters (IBKR files one quarter's 0.025 with the
+    FY context; its quarters are confirmed by the 6M / 9M facts) from mis-tagged
+    quarters (FTI). Mutates dps_q (val, filed, ytd_confirmed); returns notes."""
+    notes = []
+
+    def adj(x):
+        return x["val"] / split_factor(x["filed"], splits)
+
+    by_tag = {}
+    for b in ("declared", "paid"):
+        for taxonomy, tag in _pairs(DUR[f"dps_{b}"]):
+            for unit_key, es in (facts.get("facts", {}).get(taxonomy, {}).get(tag, {}).get("units") or {}).items():
+                for x in es:
+                    if (x.get("start") and x.get("end") and x.get("filed") and _num(x.get("val")) and x.get("form", "") in DURATION_FORMS
+                            and DPS_DIRECT_WINDOW[0] <= _days(x["start"], x["end"]) <= 380):
+                        by_tag.setdefault(tag, []).append(x)
+    by_tag_end = {tag: {} for tag in by_tag}
+    for tag, xs in by_tag.items():
+        for x in xs:
+            by_tag_end[tag].setdefault(x["end"], []).append(x)
+
+    for b in ("declared", "paid"):
+        changed = []
+        for e, d in (dps_q.get(b) or {}).items():
+            if not _num(d.get("val")) or not d.get("tag") or not d.get("filed") or d["tag"] not in by_tag:
+                continue
+            ends = by_tag_end[d["tag"]]
+            three = [x for x in ends.get(e, []) if _days(x["start"], e) <= DPS_DIRECT_WINDOW[1]]
+            if not three:
+                continue
+            tol = 0.0051 / max(1.0, min(split_factor(x["filed"], splits) for x in three))
+
+            def corroborated(c):
+                for A in ends.get(e, []):
+                    if _days(A["start"], e) > DPS_DIRECT_WINDOW[1]:
+                        for B in by_tag[d["tag"]]:
+                            if B["start"] == A["start"] and DPS_DIRECT_WINDOW[0] <= _days(B["end"], e) <= DPS_DIRECT_WINDOW[1] and abs(adj(A) - adj(B) - c) <= tol:
+                                return f"{A['start']}..{e} − {B['start']}..{B['end']}"
+                for x in three:  # a first quarter: the six-month fact minus the second quarter
+                    for A in by_tag[d["tag"]]:
+                        if A["start"] == x["start"] and DPS_DIRECT_WINDOW[0] <= _days(e, A["end"]) <= DPS_DIRECT_WINDOW[1]:
+                            for N in ends.get(A["end"], []):
+                                if N["start"] > e and _days(N["start"], N["end"]) <= DPS_DIRECT_WINDOW[1] and abs(adj(A) - adj(N) - c) <= tol:
+                                    return f"{A['start']}..{A['end']} − {N['start']}..{N['end']}"
+                return None
+
+            groups = []  # [(adjusted value, [facts])], values within rounding merged
+            for x in sorted(three, key=lambda x: x["filed"]):
+                g = next((g for g in groups if abs(g[0] - adj(x)) <= tol), None)
+                if g:
+                    g[1].append(x)
+                else:
+                    groups.append((adj(x), [x]))
+            raw_same = len({round(x["val"], 9) for x in three}) == 1  # one filed value: a split that did not restate it is no disagreement
+            if len(groups) >= 2 and not raw_same:
+                fits = [(g, corroborated(g[0])) for g in groups]
+                fits = [(g, why) for g, why in fits if why]
+                if len(fits) == 1:
+                    pick, rule = fits[0][0], f"the value the year-to-date facts give ({fits[0][1]})"
+                else:
+                    pick, rule = groups[0], "the filing that first reported the quarter (the year-to-date facts do not decide)"
+                if not any(x["filed"] == d["filed"] and x["val"] == d["val"] for x in pick[1]):
+                    fact = max(pick[1], key=lambda x: x["filed"])
+                    changed.append((e, fact["val"], fact["filed"], d["val"], d["filed"], rule))
+                    d["val"], d["filed"] = fact["val"], fact["filed"]
+            cur = d["val"] / split_factor(d["filed"], splits)
+            d["ytd_confirmed"] = corroborated(cur)
+            d["first_filed"] = min((x["filed"] for x in three if abs(adj(x) - cur) <= tol), default=d["filed"])
+        if changed:
+            changed.sort()
+            ex = "; ".join(f"{e}: {v0:g} (filed {fd0}) used, not {v1:g} (filed {fd1}) — {rule}" for e, v0, fd0, v1, fd1, rule in changed[:6])
+            notes.append(f"quarterly DPS ({b}): {len(changed)} quarter(s) filed at different values on the same share basis ({ex}{'; …' if len(changed) > 6 else ''}) — "
+                         "later 10-Ks and comparatives sometimes tag a year-to-date or annual value with a three-month context")
+    return notes
+
+
+def share_count_move(shares_with_filed, date):
+    """(observed move, evidence) of the annual diluted count across `date`: the
+    last fiscal year whose count was last filed before it vs the first later
+    fiscal year filed on or after it (as split_direction reads it; a count
+    filed in thousands against one in shares is normalised). None without both."""
+    pre = [(e, v) for e, (v, f) in shares_with_filed.items() if f and f < date and _num(v) and v > 0]
+    post = [(e, v) for e, (v, f) in shares_with_filed.items() if f and f >= date and _num(v) and v > 0]
+    if not pre:
+        return None
+    post = [(e, v) for e, v in post if e > max(pre)[0]]
+    if not post:
+        return None
+    (e0, s0), (e1, s1) = max(pre), min(post)
+    obs = s1 / s0
+    k3 = round(-math.log10(obs) / 3)
+    if k3 and abs(math.log10(obs)) >= 2.5:
+        obs *= 1000.0 ** k3
+    return obs, f"diluted shares {s0:,.0f} (FY ending {e0}, last filed before {date}) → {s1:,.0f} (FY ending {e1}), ×{obs:.2f}"
 
 
 def _shares_with_filed(facts):
@@ -1437,12 +2843,13 @@ def main():
     profile = build_profile(cik, facts)
     dps_q, dps_fy, dmeta = dividends_inputs(facts)
     price, price_date, price_source = _read_price(folder)
-    filed_any = {"dividends_paid": bool(duration_facts(facts, DUR["dividends_paid"])),
-                 "buybacks": bool(duration_facts(facts, DUR["buybacks"])),
-                 "share_issuance": bool(combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS))}
-    ctx = {"filed_any": filed_any, "shares_instant": latest_share_count(facts),
+    flow_facts = {"dividends_paid": duration_facts(facts, DUR["dividends_paid"]),
+                  "buybacks": duration_facts(facts, DUR["buybacks"]),
+                  "share_issuance": combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS)}
+    filed_any = {k: bool(v) for k, v in flow_facts.items()}
+    ctx = {"filed_any": filed_any, "flow_facts": flow_facts, "shares_instant": latest_share_count(facts),
            "latest_filed_period": {f: v.get("period") for f, v in (profile.get("latest_filings") or {}).items() if isinstance(v, dict)},
-           "split_notes": dmeta["split_notes"], "splits": dmeta["splits"], "warnings": warnings}
+           "split_notes": dmeta["split_notes"], "splits": dmeta["splits"], "shares_by_end": dmeta.get("shares_by_end"), "warnings": warnings}
     dividends = build_dividends(annual, quarterly, dps_q, dps_fy, price, price_date, price_source, ctx)
     if currency:
         warnings.append(f"core facts filed in {', '.join(currency)} — figures are shown as filed (no FX conversion here; the engine converts for the valuation)")

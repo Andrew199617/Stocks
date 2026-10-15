@@ -61,8 +61,8 @@ ROW_KEYS = {"ticker": str, "name": str, "sector": (str, type(None)), "fit": str,
             "engine_release": (str, type(None)), "flags": list, "overrides": list, "override_unblocks_tier": bool,
             "second_pass": (dict, type(None)), "alert_eligible": bool, "dividend_yield": (float, type(None)),
             "shareholder_yield": (float, type(None)), "has": dict, "watchlist": bool}
-HAS_KEYS = ("prices", "fundamentals", "dividends", "segments", "live", "analysis", "second_pass")
-RECORD_KEYS = ("ticker", "name", "sector", "folder", "built_at", "built_from_mtime", "row", "score", "numbers", "forecast", "live",
+HAS_KEYS = ("prices", "fundamentals", "dividends", "segments", "live", "analysis", "second_pass", "statements", "profile")
+RECORD_KEYS = ("ticker", "name", "sector", "folder", "built_at", "built_from_mtime", "row", "score", "numbers", "forecast", "live", "profile",
                "history", "fundamentals", "prices", "segments", "ttm", "judgment", "registry", "analysis_md", "second_pass_md", "files")
 FORECAST_KEYS = ("paths", "growth_paths", "sensitivity", "hurdle_prices", "inputs", "g_base", "g_blend", "g_terminal", "cap_years",
                  "growth_components", "growth_components_adjusted", "share_cagr", "share_count_adj", "share_adj_basis", "replayed")
@@ -166,7 +166,9 @@ def test_contract_shapes():
             expect = {"prices": os.path.exists(os.path.join(folder, "prices.json")), "fundamentals": isinstance(fund, dict),
                       "dividends": isinstance(fund, dict) and isinstance(fund.get("dividends"), dict),
                       "segments": os.path.exists(os.path.join(folder, "segments.json")), "live": os.path.exists(os.path.join(folder, "live.json")),
-                      "analysis": os.path.exists(os.path.join(folder, "analysis.md")), "second_pass": os.path.exists(os.path.join(folder, "second_pass.md"))}
+                      "analysis": os.path.exists(os.path.join(folder, "analysis.md")), "second_pass": os.path.exists(os.path.join(folder, "second_pass.md")),
+                      "statements": isinstance(B.jload(os.path.join(folder, "statements.json")), dict),
+                      "profile": isinstance(B.jload(os.path.join(folder, "profile.json")), dict)}
             assert r["has"] == expect, (r["ticker"], r["has"], expect)
             if r["has"]["live"]:
                 assert r["irr_live"] is not None and r["price_live"] is not None and r["tier_live"] in "SABCDF"
@@ -324,8 +326,12 @@ def test_watchlist_flag():
         res = tb.build()
         meta, index = tb.read("meta.json"), tb.read("index.json")
         wl = meta["watchlist"]
-        assert wl == sorted(set(wl)) and all(t == t.upper() for t in wl) and "APP" in wl, wl  # APP is in watchlist.json
+        # file order (2026-10-15: meta.watchlist keeps _system/watchlist.json's order; meta.watchlist_outside = not in the universe)
+        file_order = [e["ticker"].upper() for e in B.jload(os.path.join(tb.dir, "_system", "watchlist.json"))["tickers"]]
+        assert wl == list(dict.fromkeys(file_order)) and all(t == t.upper() for t in wl) and "APP" in wl, wl  # APP is in watchlist.json
         assert res["watchlist"] == wl
+        assert isinstance(meta["watchlist_outside"], list) and all(t in wl for t in meta["watchlist_outside"])
+        assert [e["ticker"] for e in meta["watchlist_entries"]] == wl
         flags = {r["ticker"]: r["watchlist"] for r in index}
         assert flags["APP"] is True and flags["KR"] is False, flags
         assert meta["counts"]["watchlist"] == sum(flags.values()) >= 1

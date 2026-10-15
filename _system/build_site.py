@@ -29,10 +29,22 @@ coerced, non-finite floats become null, and a folder whose record still fails
 to build is logged to stderr (`build_site: FAILED <T>: ...`), keeps its
 previous row/record if any, and is listed in meta.failed / meta.notes.
 
-Watchlist: _system/watchlist.json tickers are listed in meta.watchlist and
-flagged as `watchlist: bool` on every index row and meta.stale entry; the
-flag is re-derived on every run from the current list (not part of the skip
-check), so the index is authoritative over a skipped record's `row`.
+Watchlist: _system/watchlist.json tickers are listed in meta.watchlist (file
+order) with the names outside the universe (over $40B, no page) repeated in
+meta.watchlist_outside, and flagged as `watchlist: bool` on every index row
+and meta.stale entry; the flag is re-derived on every run from the current
+list (not part of the skip check), so the index is authoritative over a
+skipped record's `row`. Without the file the universe.csv watchlist column
+is the list.
+
+Statements / profile / intraday (2026-10-15): <T>/statements.json
+(statements.py) is copied to <site>/data/<T>.statements.json next to the
+record — never inside it, never in the attachment — under the same
+incremental rule, removed with the record; the row carries has.statements.
+<T>/profile.json (profile.py) is embedded as record.profile (kept in the
+attachment) with has.profile on the row. record.prices carries
+prices.intraday / sessions_5d / warnings verbatim; the attachment drops
+sessions_5d (and daily_1y) and keeps intraday.
 
 --attachment inlines <site>/index.html + app.css + app.js (or a placeholder
 shell when the app is not there yet) with window.SITE_DATA = {meta, index,
@@ -71,7 +83,9 @@ RATES = (10, 12, 15, 20, 25)
 TABS = ["overview", "financials", "dividends", "segments", "forecast", "analysis", "data"]
 NY = ZoneInfo("America/New_York")
 COMPANY_FILES = ("score.json", "dcf_numbers.json", "financials_history.csv", "fundamentals.json", "prices.json",
-                 "live.json", "segments.json", "ttm.json", "judgment.json", "analysis.md", "second_pass.md")
+                 "live.json", "segments.json", "ttm.json", "judgment.json", "analysis.md", "second_pass.md",
+                 "profile.json", "statements.json")
+STATEMENTS_SUFFIX = ".statements.json"  # data/<T>.statements.json — served next to the record, loaded on demand
 _NUM_RX = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INT_RX = re.compile(r"-?\d+")
 
@@ -185,15 +199,62 @@ def newest_mtime(folder, files=None):
     return m
 
 
+def universe_tickers(base):
+    """Upper-cased tickers of _system/universe.csv, and the rows flagged in its
+    watchlist column (queue order). Both empty when the file is unreadable."""
+    allt, wl = [], []
+    try:
+        with open(os.path.join(base, "_system", "universe.csv"), encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                t = (r.get("ticker") or "").strip().upper()
+                if not t:
+                    continue
+                allt.append(t)
+                if (r.get("watchlist") or "").strip().lower() in ("yes", "y", "true", "1"):
+                    wl.append(t)
+    except Exception:
+        return [], []
+    return allt, wl
+
+
 def load_watchlist(base):
-    """_system/watchlist.json → sorted upper-cased tickers (entries may be
-    {ticker, ...} objects or bare strings); [] when the file is absent/malformed."""
-    out = set()
-    for e in _l(_d(jload(os.path.join(base, "_system", "watchlist.json"))).get("tickers")):
+    """_system/watchlist.json → (tickers, outside, entries). `tickers` keeps
+    the FILE ORDER (upper-cased, trimmed, duplicates / blanks / non-strings
+    dropped; entries may be {ticker, in_universe, name} objects or bare
+    strings). `outside` = the tickers not in the universe (over $40B, no page):
+    an entry's own in_universe flag when it carries one, else the universe.csv
+    membership test when that file is readable. `entries` = [{ticker,
+    in_universe, name}] in the same order. Without the file (or with a
+    malformed one) the universe.csv watchlist column is the list, in queue
+    order, and nothing is outside."""
+    raw = _d(jload(os.path.join(base, "_system", "watchlist.json"))).get("tickers")
+    uni, uni_wl = universe_tickers(base)
+    uni_set = set(uni)
+    tickers, outside, entries, seen = [], [], [], set()
+    if not isinstance(raw, list):
+        for t in uni_wl:
+            if t not in seen:
+                seen.add(t)
+                tickers.append(t)
+                entries.append({"ticker": t, "in_universe": True, "name": None})
+        return tickers, outside, entries
+    for e in raw:
         t = e.get("ticker") if isinstance(e, dict) else e
-        if isinstance(t, str) and t.strip():
-            out.add(t.strip().upper())
-    return sorted(out)
+        if not isinstance(t, str) or not t.strip():
+            continue
+        t = t.strip().upper()
+        if t in seen:
+            continue
+        seen.add(t)
+        iu = e.get("in_universe") if isinstance(e, dict) else None
+        if not isinstance(iu, bool):
+            iu = (t in uni_set) if uni_set else True
+        name = e.get("name") if isinstance(e, dict) and isinstance(e.get("name"), str) else None
+        tickers.append(t)
+        entries.append({"ticker": t, "in_universe": iu, "name": name})
+        if not iu:
+            outside.append(t)
+    return tickers, outside, entries
 
 
 # ---------------------------------------------------------------- loading
@@ -230,10 +291,12 @@ def load_company(folder):
     c["live"] = jload(os.path.join(folder, "live.json"))
     c["segments"] = jload(os.path.join(folder, "segments.json"))
     c["judgment"] = jload(os.path.join(folder, "judgment.json"))
+    c["profile"] = jload(os.path.join(folder, "profile.json"))
+    c["statements"] = jload(os.path.join(folder, "statements.json"))  # copied next to the record, never embedded
     c["analysis_md"] = tread(os.path.join(folder, "analysis.md"))
     c["second_pass_md"] = tread(os.path.join(folder, "second_pass.md"))
     c["files"] = folder_files(folder)
-    for k in ("fund", "prices", "ttm", "live", "segments", "judgment"):
+    for k in ("fund", "prices", "ttm", "live", "segments", "judgment", "profile", "statements"):
         if c[k] is not None and not isinstance(c[k], dict):
             c[k] = None  # a malformed file renders as absent
     return c
@@ -427,9 +490,15 @@ def index_row(c, registry, paths, hp, watchlist=()):
         "second_pass": {"date": sp.get("date"), "verdict": sp.get("verdict"), "prior_tier": sp.get("prior_tier")} if sp else None,
         "alert_eligible": bool(s.get("alert_eligible")),
         "dividend_yield": num(div.get("dividend_yield")) if div else None, "shareholder_yield": num(div.get("shareholder_yield")) if div else None,
+        # The fundamentals block marks partial yields (≥ lower bound, ≤ upper bound,
+        # ≈ incomplete): the row carries the label so the ranking never prints a
+        # bounded figure as if it were exact (review finding, dividends round 2).
+        "shareholder_yield_label": (_d(_d(div.get("yields_display")).get("shareholder_yield")).get("label") if div else None),
+        "shareholder_yield_bound": (_d(_d(div.get("yields_display")).get("shareholder_yield")).get("bound") if div else None),
         "has": {"prices": isinstance(c.get("prices"), dict), "fundamentals": isinstance(c.get("fund"), dict), "dividends": div is not None,
                 "segments": isinstance(c.get("segments"), dict), "live": lv is not None, "analysis": c.get("analysis_md") is not None,
-                "second_pass": c.get("second_pass_md") is not None},
+                "second_pass": c.get("second_pass_md") is not None,
+                "statements": isinstance(c.get("statements"), dict), "profile": isinstance(c.get("profile"), dict)},
     }
     if lv:
         p = num(lv.get("price"))
@@ -467,7 +536,10 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
     numbers = {k: v for k, v in n.items() if k not in ("paths", "growth_paths")}
     pr = c.get("prices")
     prices = ({"source": pr.get("source"), "as_of": pr.get("as_of"), "currency": pr.get("currency"), "stats": _d(pr.get("stats")),
-               "weekly": _l(pr.get("weekly")), "daily_1y": _l(pr.get("daily_1y"))} if isinstance(pr, dict) else None)
+               "weekly": _l(pr.get("weekly")), "daily_1y": _l(pr.get("daily_1y")),
+               # prices.py intraday capture (SITE_CONTRACT "prices.py intraday capture"): verbatim pass-through
+               "intraday": _d(pr.get("intraday")) or None, "sessions_5d": [x for x in _l(pr.get("sessions_5d")) if isinstance(x, dict)],
+               "warnings": [str(w) for w in _l(pr.get("warnings"))]} if isinstance(pr, dict) else None)
     rec = {"ticker": row["ticker"], "name": row["name"], "sector": row["sector"], "folder": c["folder"],
            "built_at": built_at, "built_from_mtime": built_from_mtime, "data_version": DATA_VERSION,
            "row": row, "score": s, "numbers": numbers,
@@ -476,6 +548,7 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
            "history": c.get("history") or [],
            "fundamentals": c.get("fund"), "prices": prices, "segments": c.get("segments"), "ttm": c.get("ttm"),
            "judgment": c.get("judgment"),
+           "profile": c.get("profile") if isinstance(c.get("profile"), dict) else None,
            "registry": registry_entries(registry, c, row["ticker"]),
            "analysis_md": c.get("analysis_md"), "second_pass_md": c.get("second_pass_md"),
            "files": c.get("files") or []}
@@ -483,10 +556,12 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
 
 
 def trim_record(rec):
-    """The attachment copy: no judgment / ttm / prices.daily_1y / numbers.used_tags."""
-    out = {k: v for k, v in rec.items() if k not in ("judgment", "ttm")}
+    """The attachment copy: no judgment / ttm / prices.daily_1y /
+    prices.sessions_5d / numbers.used_tags (prices.intraday and profile are
+    kept; the statements never live in a record, so nothing to drop there)."""
+    out = {k: v for k, v in rec.items() if k not in ("judgment", "ttm", "statements")}
     if isinstance(out.get("prices"), dict):
-        out["prices"] = {k: v for k, v in out["prices"].items() if k != "daily_1y"}
+        out["prices"] = {k: v for k, v in out["prices"].items() if k not in ("daily_1y", "sessions_5d")}
     if isinstance(out.get("numbers"), dict):
         out["numbers"] = {k: v for k, v in out["numbers"].items() if k != "used_tags"}
     return out
@@ -597,7 +672,11 @@ def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date):
     payload = {"meta": meta, "index": rows, "records": recs, "embedded_top": top, "embedded": sorted(recs)}
     data_js = "<script>window.SITE_DATA=" + script_json(payload) + ";</script>"
     doc = inline_shell(site_dir, data_js)
-    out_dir = os.path.join(base, "_daily")
+    # The attachment lives next to the site directory: <base>/_daily for the
+    # default site, the parent of --site-dir otherwise (a temp-dir test build
+    # must never overwrite the real ranking file — review finding).
+    default_site = os.path.abspath(os.path.join(base, "_daily", "site"))
+    out_dir = os.path.join(base, "_daily") if os.path.abspath(site_dir) == default_site else os.path.dirname(os.path.abspath(site_dir))
     path = os.path.join(out_dir, f"ranking-{date}.html")
     size = write_atomic(path, doc)
     write_atomic(os.path.join(out_dir, "latest.html"), doc)
@@ -615,10 +694,38 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     built_at, date = now.isoformat(timespec="seconds"), now.date().isoformat()
     builder_mtime = os.path.getmtime(os.path.abspath(__file__))
     registry = load_registry(base)
-    watchlist = load_watchlist(base)
+    watchlist, watchlist_outside, watchlist_entries = load_watchlist(base)
     wl = set(watchlist)
     def warn(msg):  # failures go to stderr even under --quiet: a cron must see them
         print(f"build_site: {msg}", file=sys.stderr)
+
+    def statements_path(t):
+        return os.path.join(data_dir, f"{t}{STATEMENTS_SUFFIX}")
+
+    def remove_file(path):
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+
+    def sync_statements(t, folder, files, obj=None, rebuilt=False):
+        """data/<T>.statements.json follows the folder's statements.json: written
+        (verbatim, NaN/inf → null) when the record is rebuilt or the copy is
+        missing, removed when the folder has no usable file. `obj` is the
+        already-loaded dict when the caller has it. Returns 'written' /
+        'removed' / None."""
+        path = statements_path(t)
+        want = "statements.json" in files
+        if want and obj is None:
+            obj = jload(os.path.join(folder, "statements.json"))
+            want = isinstance(obj, dict)
+        if want and (rebuilt or not os.path.exists(path)):
+            write_atomic(path, dump(finite(obj)))
+            return "written"
+        if not want and os.path.exists(path):
+            remove_file(path)
+            return "removed"
+        return None
 
     # 1. classify every scored folder (score.json + dcf_numbers.json only), keyed by
     #    the served ticker (score.ticker, else the folder name)
@@ -656,21 +763,34 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     prev_rows = {r.get("ticker"): r for r in (jload(os.path.join(site_dir, "index.json")) or []) if isinstance(r, dict)}
     state = jload(os.path.join(site_dir, "state.json")) or {}
     state = state.get("records") if isinstance(state.get("records"), dict) else {}
-    existing = {os.path.basename(p)[:-5] for p in glob.glob(os.path.join(data_dir, "*.json"))}
+    all_json = [os.path.basename(p) for p in glob.glob(os.path.join(data_dir, "*.json"))]
+    existing = {f[:-5] for f in all_json if not f.endswith(STATEMENTS_SUFFIX)}
+    existing_statements = {f[:-len(STATEMENTS_SUFFIX)] for f in all_json if f.endswith(STATEMENTS_SUFFIX)}
 
-    # 3. remove records whose folder no longer qualifies
+    # 3. remove records whose folder no longer qualifies (their statements copy goes with them;
+    #    an orphan statements copy with no record is removed too)
     removed = sorted(t for t in existing if t not in current)
     for t in removed:
-        try:
-            os.remove(os.path.join(data_dir, f"{t}.json"))
-        except OSError:
-            pass
+        remove_file(os.path.join(data_dir, f"{t}.json"))
+        remove_file(statements_path(t))
         state.pop(t, None)
         prev_rows.pop(t, None)
+    statements_removed = list(removed)
+    for t in sorted(existing_statements):
+        if t not in current and t not in removed:
+            remove_file(statements_path(t))
+            statements_removed.append(t)
 
     # 4. build / skip — one malformed folder never aborts the run
     written, skipped, failed, rows, records, sizes = [], [], [], {}, {}, {}
+    statements_written = []
     replayed = 0
+
+    def note_sync(t, outcome):
+        if outcome == "written":
+            statements_written.append(t)
+        elif outcome == "removed":
+            statements_removed.append(t)
 
     def previous_row(t, rec_path):
         row = prev_rows.get(t)
@@ -711,6 +831,10 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                     and bfiles == files and t in prev_rows):
                 rows[t] = prev_rows[t]
                 skipped.append(t)
+                try:  # a skipped record keeps its statements copy in step with the folder (missing copy → written)
+                    note_sync(t, sync_statements(t, c["path"], files))
+                except Exception as e:  # noqa: BLE001
+                    warn(f"statements copy for {t} failed: {type(e).__name__}: {e}")
                 continue
         try:
             full = load_company(c["path"])
@@ -728,6 +852,10 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
         sizes[t] = write_atomic(rec_path, text)
         rows[t] = rec["row"]
         records[t] = rec
+        try:  # the statements copy next to the record (never inside it)
+            note_sync(t, sync_statements(t, c["path"], files, obj=full.get("statements"), rebuilt=True))
+        except Exception as e:  # noqa: BLE001
+            warn(f"statements copy for {t} failed: {type(e).__name__}: {e}")
         state[t] = {"built_from_mtime": newest, "builder_mtime": builder_mtime, "built_at": built_at, "files": files}
         replayed += 1 if rec["forecast"].get("replayed") else 0
         written.append(t)
@@ -746,7 +874,8 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     latest_release = getattr(ENGINE, "ENGINE_RELEASE", None) or (releases[-1] if releases else None)
     notes = [f"ranked by the live IRR (live.json, scored paths repriced at the last close) when present, else the scored IRR; nulls last",
              f"this run: {len(written)} record(s) written, {len(skipped)} skipped unchanged, {len(removed)} removed" + (f" ({', '.join(removed)})" if removed else ""),
-             "watchlist: _system/watchlist.json tickers, flagged on every row (row.watchlist) and listed in meta.watchlist"]
+             "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
+             f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
     if failed:
         notes.append(f"{len(failed)} folder(s) FAILED to build and kept their previous row/record if any ({', '.join(failed)}) — see stderr")
     if duplicates:
@@ -759,8 +888,16 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
             "sweep": sweep_counts(base),
             "counts": {"current": len(index), "stale": len(stale), "misfits": sum(1 for r in index if r.get("fit") == "misfit"),
                        "tiers": tiers, "with_live": sum(1 for r in index if _d(r.get("has")).get("live")),
-                       "watchlist": sum(1 for r in index if r.get("watchlist")), "failed": len(failed)},
-            "hurdles": HURDLES, "tabs": TABS, "watchlist": watchlist, "stale": stale, "failed": failed, "notes": notes}
+                       "watchlist": sum(1 for r in index if r.get("watchlist")), "failed": len(failed),
+                       "statements": sum(1 for r in index if _d(r.get("has")).get("statements")),
+                       "profiles": sum(1 for r in index if _d(r.get("has")).get("profile"))},
+            # Where the complete site is hosted, for the attachment's "open the site"
+            # links (statements are served on demand there, never embedded). Set
+            # STOCKS_SITE_URL once a host exists; null otherwise (the repo is
+            # private, so GitHub Pages needs a paid plan).
+            "site_url": (os.environ.get("STOCKS_SITE_URL") or "").strip() or None,
+            "hurdles": HURDLES, "tabs": TABS, "watchlist": watchlist, "watchlist_outside": watchlist_outside,
+            "watchlist_entries": watchlist_entries, "stale": stale, "failed": failed, "notes": notes}
     index, meta = finite(index), finite(meta)
     write_atomic(os.path.join(site_dir, "index.json"), dump(index))
     write_atomic(os.path.join(site_dir, "meta.json"), dump(meta, compact=False))
@@ -776,13 +913,15 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                + (f" [{', '.join(removed)}]" if removed else "")
                + (f" / {len(failed)} FAILED [{', '.join(failed)}]" if failed else "")
                + (f" / {len(duplicates)} duplicate folder(s) ignored" if duplicates else "")
+               + f" | statements {len(statements_written)} written / {len(statements_removed)} removed"
                + (f" | largest record {largest[0]} {largest[1]:,} B" if largest else " | no record written")
                + (f" | attachment {att[1]:,} B ({att[2]} records) -> {att[0]}" if att else "")
                + f" | {len(index)} rows, {len(stale)} stale -> {site_dir}")  # ASCII only: Windows consoles
     if not quiet:
         print(summary)
     return {"written": written, "skipped": skipped, "removed": removed, "failed": failed, "duplicates": duplicates,
-            "rows": index, "meta": meta, "records": records, "watchlist": watchlist,
+            "statements_written": statements_written, "statements_removed": statements_removed,
+            "rows": index, "meta": meta, "records": records, "watchlist": watchlist, "watchlist_outside": watchlist_outside,
             "largest": largest, "attachment": att, "site_dir": site_dir, "summary": summary}
 
 

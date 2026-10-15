@@ -23,8 +23,14 @@ ifrs-full equivalents) in contexts carrying exactly one of
   us-gaap:StatementBusinessSegmentsAxis / ifrs-full:SegmentsAxis   -> business_segments
   srt:ProductOrServiceAxis / ifrs-full:ProductsAndServicesAxis     -> product
   srt:StatementGeographicalAxis / ifrs-full:GeographicalAreasAxis  -> geography
-optionally plus a ConsolidationItemsAxis member (so eliminations / corporate
-rows are labelled as such). Every other multi-axis combination is ignored.
+and nothing else (a ConsolidationItemsAxis OperatingSegmentsMember alongside
+is tolerated, see below), plus contexts whose ONLY dimension is a
+ConsolidationItemsAxis reconciling member (corporate, eliminations), which
+become reconciling rows of the business_segments tables. A kept-axis member
+combined with a reconciling consolidation member (Huntington's "Capital
+Market Fees x Corporate", Expedia's "trivago x Intersegment") is a cell of
+the segment-by-reconciliation matrix that is already inside the bare
+member's figure, so it is ignored like every other multi-axis combination.
 Undimensioned facts are the consolidated totals.
 
 Periods: annual facts (330-380 days) from the 10-K give the FY columns;
@@ -35,14 +41,41 @@ nine-month leg only when that leg exists for the same member (marked
 derived). Latest filing wins per (concept, member, period); within one filing
 a bare segment member beats member + OperatingSegmentsMember (Expedia tags
 trivago's external revenue bare and its gross-of-intersegment figure under
-OperatingSegmentsMember — the bare one ties to the consolidated total), and a
-reconciling line the filer tagged twice with identical numbers is shown once
-under the filer's own member. All-zero rows are dropped. Every number is a
-filed value or plain arithmetic on filed values; nothing is estimated.
+OperatingSegmentsMember — the bare one ties to the consolidated total).
+
+Rows that would double count are removed, in this order, each with a warning
+naming the row: (1) subtotal members — a member that is an ancestor (in the
+filing's definition linkbase, domain-member arcs) of another row in the same
+table, a member named *Total* / *ReportableSegments* / *IncludingOther*, or a
+row whose values equal, in every column, the sum of two or more other rows
+(Centene's TotalPremiumAndService = HealthCarePremium + Service; Martin
+Marietta's ReportableSegments; nested product subtotals); (2) one member the
+filer tagged under two names with identical numbers (Axon's
+SoftwareAndSensorsMember / SoftwareAndSensorsSegmentMember); (3) a
+reconciling line tagged twice — on the segment axis under the filer's own
+member and bare under a standard consolidation member — with identical
+numbers is shown once under the filer's member; (4) a reconciling row the
+bare segment rows already tie to the consolidated total without (Expedia's
+intersegment revenue, +51 in the 10-Q and -205 in the 10-K, which belongs to
+the gross OperatingSegments figures, not the bare external ones). When a
+consolidated fact exists and the surviving rows still sum more than 2% away
+from it the table carries ties_to_total: false and a warning; when they
+cover less than half of it (Con Edison: 4 / 0 / -2 against 16,918 because
+the real segments sit on an extra LegalEntityAxis) the table is dropped
+rather than shown as a breakdown. All-zero rows are dropped. Every number is
+a filed value or plain arithmetic on filed values; nothing is estimated.
+
+Labels and the member hierarchy come from the filing's label and definition
+linkbases (<basename>_lab.xml / _def.xml, else the *_lab.xml / *_def.xml in
+index.json); filers whose linkbases are embedded in the schema (DFIN /
+ActiveDisclosure-style: only <basename>.xsd and the instance in the folder)
+are read from the .xsd. De-camel-cased names are the last resort.
 
 Output: <TICKER>/segments.json (schema in build_output). A company with no
 dimensioned facts gets a file with empty tables and a warning; a filing with
-no instance gets a warning; a missing concept never crashes anything.
+no instance gets a warning; a missing concept never crashes anything. The
+payload's `complete` is false when any filing's instance could not be
+fetched or parsed; `--all` re-fetches such folders instead of skipping them.
 """
 import csv
 import datetime
@@ -107,6 +140,9 @@ TAG_TO_CONCEPT.update({
 })
 # a secondary concept is dropped when its primary already yields a table on the same axis / periodicity
 SECONDARY_OF = {"ProfitLoss": "NetIncomeLoss"}
+# concepts whose rows partition the consolidated figure (so rows covering under half of it are a leftover, not a
+# breakdown); profit concepts are excluded because an untagged corporate loss legitimately flips the sign
+PARTITION_CONCEPTS = {c for c in CONCEPTS if c not in ("OperatingIncomeLoss", "NetIncomeLoss", "ProfitLoss")}
 
 AXES = {
     "us-gaap:StatementBusinessSegmentsAxis": "business_segments",
@@ -120,6 +156,15 @@ AXIS_LABEL = {"business_segments": "segment", "product": "product / service", "g
 CONSOLIDATION_AXES = {"srt:ConsolidationItemsAxis", "us-gaap:ConsolidationItemsAxis", "ifrs-full:SegmentConsolidationItemsAxis"}
 OPERATING_SEGMENT_MEMBERS = {"us-gaap:OperatingSegmentsMember", "ifrs-full:OperatingSegmentsMember"}
 RECONCILING_RE = re.compile(r"Corporate|Eliminat|Reconcil|Unallocated|Intersegment|AllOther|OtherSegment|NonSegment|Other(Member|Domain)$", re.I)
+# a member whose name says it is a subtotal of the other members on its axis
+SUBTOTAL_RE = re.compile(r"Total|Subtotal|ReportableSegments|ReportingSegments|AllSegments|IncludingOther", re.I)
+STANDARD_PREFIXES = ("us-gaap", "ifrs-full", "srt")
+DOMAIN_MEMBER_ARCROLE = "http://xbrl.org/int/dim/arcrole/domain-member"
+# warnings that mean a filing was not read (transient EDGAR failures included): --all must retry these
+FAILURE_RE = re.compile(r"Error\b|unreadable|no XBRL instance document|timed out|Timeout", re.I)
+TIE_TOLERANCE = 0.0005  # rows "tie" to the consolidated fact within 0.05% (filed sums tie exactly; this absorbs rounding)
+MISMATCH_TOLERANCE = 0.02  # beyond 2% the table is flagged ties_to_total: false
+LEFTOVER_COVERAGE = 0.1   # rows covering under a tenth of the consolidated fact are leftovers, not a breakdown
 
 MAX_ROWS = 12
 MAX_ANNUAL_COLS = 4
@@ -259,24 +304,63 @@ def locate_files(cik, filing, index_cache):
     return None, None, base, folder, index_names, warnings
 
 
-def fetch_labels(base, folder, index_names, warnings, filing):
-    """The filing's label linkbase: <basename>_lab.xml, else the *_lab.xml named in index.json."""
+def _linkbase_candidates(base, folder, index_names, suffix):
+    """URLs to try for a linkbase: <basename><suffix> first, then every index.json name with that suffix."""
     tried = []
     if base:
-        tried.append(f"{folder}/{base}_lab.xml")
+        tried.append(f"{folder}/{base}{suffix}")
     for n in index_names():
-        if n.lower().endswith("_lab.xml") and f"{folder}/{n}" not in tried:
+        if n.lower().endswith(suffix.lower()) and f"{folder}/{n}" not in tried:
             tried.append(f"{folder}/{n}")
-    for url in tried:
+    return tried
+
+
+def _fetch_first(urls, parser, warnings, filing, what):
+    """Parse the first URL that exists; None when none does (a parse error warns and counts as found-but-empty)."""
+    for url in urls:
         try:
-            return parse_labels(io.BytesIO(fetch(url)))
+            return parser(io.BytesIO(fetch(url)))
         except NotFound:
             continue
         except Exception as e:
-            warnings.append(f"{filing['form']} {filing['accession']}: label linkbase unreadable ({e})")
+            warnings.append(f"{filing['form']} {filing['accession']}: {what} unreadable ({e})")
             return {}
-    warnings.append(f"{filing['form']} {filing['accession']}: no label linkbase found; member names de-camel-cased")
-    return {}
+    return None
+
+
+def fetch_linkbases(base, folder, index_names, warnings, filing):
+    """The filing's standard labels and member hierarchy -> (labels, hierarchy).
+    Separate linkbases first (<basename>_lab.xml / _def.xml, else the *_lab.xml / *_def.xml in index.json);
+    whatever is still missing is read from the filing's schema (<basename>.xsd, else the *.xsd in index.json),
+    where DFIN / ActiveDisclosure-style filings embed every linkbase. Fetched once per filing each."""
+    labels = _fetch_first(_linkbase_candidates(base, folder, index_names, "_lab.xml"), parse_labels, warnings, filing, "label linkbase")
+    hierarchy = _fetch_first(_linkbase_candidates(base, folder, index_names, "_def.xml"), parse_definitions, warnings, filing, "definition linkbase")
+    if labels is None or hierarchy is None:
+        xsd = None
+        for url in _linkbase_candidates(base, folder, index_names, ".xsd"):
+            try:
+                xsd = fetch(url)
+                break
+            except NotFound:
+                continue
+            except Exception as e:
+                warnings.append(f"{filing['form']} {filing['accession']}: schema unreadable ({e})")
+                break
+        if xsd is not None:
+            if labels is None:
+                try:
+                    labels = parse_labels(io.BytesIO(xsd)) or None
+                except Exception as e:
+                    warnings.append(f"{filing['form']} {filing['accession']}: labels embedded in the schema unreadable ({e})")
+            if hierarchy is None:
+                try:
+                    hierarchy = parse_definitions(io.BytesIO(xsd))
+                except Exception:
+                    hierarchy = {}
+    if labels is None:
+        warnings.append(f"{filing['form']} {filing['accession']}: no label linkbase found; member names de-camel-cased")
+        labels = {}
+    return labels, hierarchy or {}
 
 
 # ---------------------------------------------------------------------------
@@ -407,6 +491,53 @@ def parse_labels(source):
     return out
 
 
+def parse_definitions(source):
+    """Definition linkbase (or a schema with one embedded) -> {parent fragment: {child fragments}} from the
+    domain-member arcs, i.e. the member hierarchy of every axis (us-gaap_ProductMember -> alny_TTRMember ->
+    alny_AmvuttraMember). Locators are resolved per extended link. Works on a bare linkbase and on an .xsd."""
+    if isinstance(source, (bytes, bytearray)):
+        source = io.BytesIO(source)
+    elif isinstance(source, str) and not os.path.exists(source):
+        source = io.BytesIO(source.encode("utf-8"))
+    out, locs, arcs = {}, {}, []
+
+    def flush():
+        for frm, to in arcs:
+            a, b = locs.get(frm), locs.get(to)
+            if a and b and a != b:
+                out.setdefault(a, set()).add(b)
+        locs.clear(); arcs.clear()
+
+    for ev, el in ET.iterparse(source, events=("end",)):
+        uri, local = _split_tag(el.tag)
+        if uri != LINK:
+            continue
+        if local == "loc":
+            href = el.get(f"{{{XLINK}}}href", "")
+            locs[el.get(f"{{{XLINK}}}label")] = href.split("#", 1)[1] if "#" in href else href
+        elif local == "definitionArc":
+            if el.get(f"{{{XLINK}}}arcrole") == DOMAIN_MEMBER_ARCROLE:
+                arcs.append((el.get(f"{{{XLINK}}}from"), el.get(f"{{{XLINK}}}to")))
+        elif local == "definitionLink":
+            flush()
+        if local in ("loc", "definitionArc", "definitionLink"):
+            el.clear()
+    flush()
+    return out
+
+
+def descendants(frag, hierarchy):
+    """Every fragment below `frag` in the domain-member hierarchy (transitive, cycle-safe)."""
+    seen, stack = set(), list(hierarchy.get(frag, ()))
+    while stack:
+        f = stack.pop()
+        if f in seen:
+            continue
+        seen.add(f)
+        stack.extend(hierarchy.get(f, ()))
+    return seen
+
+
 def fallback_label(qname):
     """'hban:ConsumerAndBusinessBankingMember' -> 'Consumer And Business Banking'."""
     local = qname.split(":", 1)[-1]
@@ -425,9 +556,13 @@ def member_label(qname, labels):
 
 
 def classify_context(ctx):
-    """-> ("consolidated", None, None, None) | ("row", axis, member, consol_member|None) | ("ignore", ...).
-    A context with only a ConsolidationItemsAxis reconciling member (corporate, eliminations) becomes a
-    business_segments row keyed by that member; the operating-segments subtotal alone is ignored."""
+    """-> ("consolidated", None, None, None) | ("row", axis, member, None) | ("ignore", None, None, None).
+    A kept-axis member alone (or with the OperatingSegmentsMember on a consolidation axis) is a row. A
+    context whose only dimension is a ConsolidationItemsAxis reconciling member (corporate, eliminations)
+    becomes a business_segments row keyed by that member; the operating-segments subtotal alone is ignored.
+    A kept-axis member plus a reconciling consolidation member is a matrix cell already inside the bare
+    member's figure (Huntington's product x Corporate, Expedia's trivago x Intersegment) and is ignored,
+    like every other multi-axis context. The fourth slot is kept for compatibility and is always None."""
     if ctx.get("typed"):
         return ("ignore", None, None, None)
     dims = ctx.get("dims") or {}
@@ -439,8 +574,9 @@ def classify_context(ctx):
     if other or len(kept) > 1 or len(consol) > 1:
         return ("ignore", None, None, None)
     if len(kept) == 1:
-        cm = consol[0] if consol and consol[0] not in OPERATING_SEGMENT_MEMBERS else None
-        return ("row", kept[0][0], kept[0][1], cm)
+        if consol and consol[0] not in OPERATING_SEGMENT_MEMBERS:
+            return ("ignore", None, None, None)
+        return ("row", kept[0][0], kept[0][1], None)
     if consol and consol[0] not in OPERATING_SEGMENT_MEMBERS:
         return ("row", "business_segments", consol[0], None)
     return ("ignore", None, None, None)
@@ -460,9 +596,23 @@ def has_opseg(ctx):
     return any(a in CONSOLIDATION_AXES and m in OPERATING_SEGMENT_MEMBERS for a, m in (ctx.get("dims") or {}).items())
 
 
-def is_reconciling(member, consol_member):
+def is_reconciling(member, consol_only=False):
+    """A corporate / eliminations / reconciling row: any consolidation-axis-only context, or a kept-axis
+    member whose name says so (expe:CorporateAndEliminationsMember, gfi:CorporateAndOtherDomain)."""
     local = member.split(":", 1)[-1]
-    return bool(consol_member) or bool(RECONCILING_RE.search(local))
+    return bool(consol_only) or bool(RECONCILING_RE.search(local))
+
+
+def is_standard(member):
+    return member.split(":", 1)[0] in STANDARD_PREFIXES
+
+
+def normalized_name(member):
+    """Local name minus the Member / Domain / Segment decorations, lower-cased, for spotting one member
+    tagged under two names (axon:SoftwareAndSensorsMember vs axon:SoftwareAndSensorsSegmentMember)."""
+    local = member.split(":", 1)[-1]
+    local = re.sub(r"(Member|Domain)$", "", local)
+    return re.sub(r"Segments?", "", local).lower()
 
 
 def _d(s):
@@ -513,7 +663,12 @@ class FiscalCalendar:
             mmdd = cls._mmdd(dei.get("CurrentFiscalYearEndDate")) or cls._mmdd(sub_fye)
             if mmdd and dei.get("DocumentFiscalYearFocus") and dei.get("DocumentPeriodEndDate"):
                 try:
-                    return cls(mmdd, dei["DocumentPeriodEndDate"], int(dei["DocumentFiscalYearFocus"]), dei.get("DocumentFiscalPeriodFocus"))
+                    focus, end = int(dei["DocumentFiscalYearFocus"]), _d(dei["DocumentPeriodEndDate"])
+                    # a fiscal year is named after the calendar year it ends or starts in; a filing whose
+                    # DocumentFiscalYearFocus is further off (Mettler-Toledo's Q2 2026 10-Q says 2024) is a
+                    # filer error and the next filing anchors instead
+                    if abs(focus - end.year) <= 1:
+                        return cls(mmdd, dei["DocumentPeriodEndDate"], focus, dei.get("DocumentFiscalPeriodFocus"))
                 except Exception:
                     pass
             fye = fye or mmdd
@@ -540,7 +695,12 @@ class FiscalCalendar:
 
     def _fye_on_or_after(self, d):
         """Nominal fiscal year end on/after d (52/53-week ends drift a few days; a date within 7 days
-        after a nominal FYE is treated as that FYE)."""
+        after a nominal FYE is treated as that FYE). The previous calendar year's FYE is tested first so
+        a December year that drifts into early January (year ended 2024-01-02 on a --12-31 calendar) is
+        FY2023, not FY2024."""
+        prev = self._nominal(d.year - 1)
+        if 0 <= (d - prev).days <= 7:
+            return prev
         cand = self._nominal(d.year)
         if cand < d:
             if (d - cand).days <= 7:
@@ -648,9 +808,8 @@ def collect_cells(parsed_filings, warnings):
             put(totals.setdefault(f["concept"], {}), pkey, cell)
         else:
             n_dim += 1
-            row_key = f"{member}|{cm}" if cm else member
-            cell.update({"member": member, "consol_member": cm, "consol_only": consol_only})
-            put(cells.setdefault((f["concept"], axis, row_key), {}), pkey, cell)
+            cell.update({"member": member, "consol_only": consol_only})
+            put(cells.setdefault((f["concept"], axis, member), {}), pkey, cell)
     if dropped:
         warnings.append(f"{dropped} facts in a currency other than {currency} were ignored")
     return cells, totals, currency, labels, n_dim
@@ -675,25 +834,212 @@ def derive_q4(cells, totals):
                     periods[("quarter", q4_start, q4_end)] = {
                         "value": fy["value"] - nine["value"], "tag": fy["tag"], "filing": max(fy["filing"], nine["filing"]),
                         "form": fy["form"], "forms": fy["forms"] | nine["forms"], "derived": True, "opseg": fy.get("opseg", False),
-                        "member": fy.get("member"), "consol_member": fy.get("consol_member"), "consol_only": fy.get("consol_only", False)}
+                        "member": fy.get("member"), "consol_only": fy.get("consol_only", False)}
     return cells, totals
 
 
-def dedupe_reconciling(rows):
+def _sig(row):
+    return tuple(c["value"] if c else None for c in row["_vals"])
+
+
+def _close(a, b):
+    return abs(a - b) <= 1e-6 * max(1.0, abs(a), abs(b))
+
+
+def subtotal_parts(row, others):
+    """The other rows whose values sum, in every column the row has, to the row's values (at least two parts,
+    at least two non-zero matched columns), else None. Subsets are enumerated up to 12 candidates; beyond
+    that only "all the other rows" is tested."""
+    cols = [i for i, c in enumerate(row["_vals"]) if c is not None]
+    if sum(1 for i in cols if row["_vals"][i]["value"] != 0) < 2:
+        return None
+    cands = [o for o in others if all(o["_vals"][i] is not None for i in cols)]
+    if len(cands) < 2:
+        return None
+    target = [row["_vals"][i]["value"] for i in cols]
+
+    def matches(subset):
+        return all(_close(sum(o["_vals"][i]["value"] for o in subset), target[k]) for k, i in enumerate(cols))
+
+    if len(cands) > 12:
+        return cands if matches(cands) else None
+    n = len(cands)
+    for mask in range(1, 1 << n):
+        if mask & (mask - 1) == 0:
+            continue  # single row
+        subset = [cands[j] for j in range(n) if mask >> j & 1]
+        if matches(subset):
+            return subset
+    return None
+
+
+def drop_subtotal_rows(rows, hierarchy, warnings, name):
+    """Rows that double count the others, each dropped with a warning: a member named as a subtotal, an
+    ancestor (definition linkbase) of another row, a row equal to the sum of two or more other rows
+    (nested subtotals iterate), and one member tagged under two names with identical numbers."""
+    def drop(r, why):
+        warnings.append(f"{name}: row '{r['label']}' ({r['member']}) dropped: {why}")
+
+    keep = []
+    for r in rows:
+        if SUBTOTAL_RE.search(r["member"].split(":", 1)[-1]):
+            drop(r, "its name marks it as a subtotal of the other rows")
+        else:
+            keep.append(r)
+    rows = keep
+    if hierarchy:
+        frag_of = {r["member"].replace(":", "_", 1): r for r in rows}
+        keep = []
+        for r in rows:
+            below = descendants(r["member"].replace(":", "_", 1), hierarchy) & set(frag_of)
+            if below:
+                drop(r, "it is the parent of " + ", ".join(sorted(frag_of[f]["label"] for f in below)) + " in the filing's definition linkbase")
+            else:
+                keep.append(r)
+        rows = keep
+    changed = True
+    while changed and len(rows) > 2:
+        changed = False
+        for r in rows:
+            parts = subtotal_parts(r, [o for o in rows if o is not r])
+            if parts:
+                drop(r, "its values equal the sum of " + ", ".join(p["label"] for p in parts))
+                rows = [o for o in rows if o is not r]
+                changed = True
+                break
+    # one line tagged under two members with identical numbers (Axon: SoftwareAndSensorsSegment /
+    # SoftwareAndServicesSegment, us-gaap Service / SoftwareAndServices): the filer's own member is kept over a
+    # standard one, then the member the latest filing carries
+    def rank(r):
+        return (is_standard(r["member"]), -max(c["filing"] for c in r["_vals"] if c))
+    keep = []
+    for r in sorted(rows, key=rank):
+        dup = next((k for k in keep if same_line(k, r)), None)
+        if dup is not None:
+            drop(r, f"same numbers as '{dup['label']}' ({dup['member']})")
+            continue
+        keep.append(r)
+    order = {id(r): i for i, r in enumerate(rows)}
+    keep.sort(key=lambda r: order[id(r)])
+    return keep
+
+
+def same_line(a, b):
+    """Identical numbers in every column, with two or more non-zero columns, or with one and the same
+    normalized member name: the same line under two member names, not two lines that coincide."""
+    sa, sb = _sig(a), _sig(b)
+    if sa != sb:
+        return False
+    nonzero = sum(1 for v in sa if v)
+    return nonzero >= 2 or (nonzero == 1 and normalized_name(a["member"]) == normalized_name(b["member"]))
+
+
+def dedupe_reconciling(rows, warnings=None, name=""):
     """A reconciling line the filer tagged twice with identical numbers (Expedia: "Corporate & Eliminations"
-    on the segment axis AND the bare IntersegmentEliminationMember) is shown once. The row carrying the
-    filer's own kept-axis member is kept, then a filer extension member on the consolidation axis, and a
-    standard-taxonomy consolidation member only when nothing else carries the line."""
-    seen, out = set(), []
-    std = lambda r: r["member"].split("|")[0].split(":")[0] in ("us-gaap", "ifrs-full", "srt")  # noqa: E731
-    for r in sorted(rows, key=lambda r: (r["_recon"], r["_consol_only"], std(r))):
-        if r["_recon"]:
-            sig = tuple(c["value"] if c else None for c in r["_vals"])
-            if sig in seen:
-                continue
-            seen.add(sig)
+    on the consolidation axis AND the bare us-gaap IntersegmentEliminationMember) is shown once under the
+    filer's own member. Only a standard-taxonomy consolidation-only row is ever collapsed, and only into a
+    reconciling row carrying a filer extension member (on the kept axis or the consolidation axis) with
+    exactly the same numbers; two rows that merely coincide otherwise both stay."""
+    own = {}
+    for r in rows:
+        if r["_recon"] and not is_standard(r["member"]):
+            own.setdefault(_sig(r), r)
+    out = []
+    for r in rows:
+        if r["_recon"] and r["_consol_only"] and is_standard(r["member"]) and _sig(r) in own and own[_sig(r)] is not r:
+            if warnings is not None:
+                warnings.append(f"{name}: row '{r['label']}' ({r['member']}) merged into '{own[_sig(r)]['label']}' ({own[_sig(r)]['member']}): same numbers")
+            continue
         out.append(r)
     return out
+
+
+def drop_total_rows(rows, cons, warnings, name):
+    """A row equal to the consolidated fact in every column that has one (two or more columns) is the total
+    under a member name (ResMed's rmd:GlobalMember next to two regions covering 88%), not a breakdown row."""
+    cols = [i for i, t in enumerate(cons) if t]
+    if len(cols) < 2:
+        return rows
+    keep = []
+    for r in rows:
+        cells = [r["_vals"][i] for i in cols]
+        if all(c is not None for c in cells) and all(_close(c["value"], cons[i]) for c, i in zip(cells, cols)):
+            warnings.append(f"{name}: row '{r['label']}' ({r['member']}) dropped: its values equal the consolidated total")
+        else:
+            keep.append(r)
+    return keep
+
+
+def keep_one_partition(rows, cons, warnings, name):
+    """Filers tag two or more complete classifications on one axis (HP: Americas + EMEA + Asia Pacific and
+    US + Non-US both sum to revenue; Take-Two: four product splits, 400% of revenue). When the non-reconciling
+    rows do not tie but a subset of them sums exactly to the consolidated fact in every column (two or more
+    columns), the table keeps that split, the one with the most rows, and drops every other non-reconciling
+    row with a warning. Up to 16 candidate rows are searched; larger tables are left as they are."""
+    cols = [i for i, t in enumerate(cons) if t]
+    if len(cols) < 2:
+        return rows
+    plain = [r for r in rows if not r["_recon"]]
+    if _ties(plain, cons):
+        return rows
+    cands = [r for r in plain if all(r["_vals"][i] is not None for i in cols)]
+    n = len(cands)
+    if n < 2 or n > 16:
+        return rows
+    best = None
+    for mask in range(1, 1 << n):
+        subset = [cands[j] for j in range(n) if mask >> j & 1]
+        if best is not None and len(subset) <= len(best):
+            continue
+        if all(_close(sum(r["_vals"][i]["value"] for r in subset), cons[i]) for i in cols):
+            best = subset
+    if best is None or len(best) == len(plain):
+        return rows
+    kept = {id(r) for r in best}
+    split = ", ".join(r["label"] for r in best)
+    out = []
+    for r in rows:
+        if r["_recon"] or id(r) in kept:
+            out.append(r)
+        else:
+            warnings.append(f"{name}: row '{r['label']}' ({r['member']}) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total ({split})")
+    return out
+
+
+def _ties(rows, cons):
+    """True when the rows sum to the consolidated fact (within TIE_TOLERANCE) in every column that has one."""
+    checked = False
+    for i, t in enumerate(cons):
+        if not t:
+            continue
+        vals = [r["_vals"][i]["value"] for r in rows if r["_vals"][i] is not None]
+        if not vals:
+            continue
+        checked = True
+        if abs(sum(vals) / t - 1) > TIE_TOLERANCE:
+            return False
+    return checked
+
+
+def drop_double_counted_reconciling(rows, cons, warnings, name):
+    """A reconciling row the other rows already tie to the consolidated fact without is inside them already
+    (Expedia's intersegment revenue next to bare external segment figures) and is dropped with a warning.
+    Tried one row at a time, then all reconciling rows together; otherwise the rows are left alone."""
+    if not any(cons) or _ties(rows, cons):
+        return rows
+    recon = [r for r in rows if r["_recon"]]
+    for r in recon:
+        rest = [o for o in rows if o is not r]
+        if _ties(rest, cons):
+            warnings.append(f"{name}: reconciling row '{r['label']}' ({r['member']}) dropped: the other rows already tie to the consolidated total without it")
+            return rest
+    if len(recon) > 1:
+        rest = [o for o in rows if not o["_recon"]]
+        if _ties(rest, cons):
+            for r in recon:
+                warnings.append(f"{name}: reconciling row '{r['label']}' ({r['member']}) dropped: the other rows already tie to the consolidated total without it")
+            return rest
+    return rows
 
 
 def _yoy_prior(end, ends):
@@ -712,8 +1058,9 @@ def _fmt(v):
     return int(v) if float(v).is_integer() and abs(v) < 1e15 else round(v, 6)
 
 
-def build_tables(cells, totals, labels, calendar, warnings):
-    """Group cells into tables per (axis, concept, periodicity); rows sorted by latest value, reconciling rows last."""
+def build_tables(cells, totals, labels, calendar, warnings, hierarchy=None):
+    """Group cells into tables per (axis, concept, periodicity); rows sorted by latest value, reconciling rows last.
+    `hierarchy` is the merged definition-linkbase member tree ({parent fragment: {child fragments}})."""
     groups = {}
     for (concept, axis, row_key), periods in cells.items():
         for pk, cell in periods.items():
@@ -750,36 +1097,61 @@ def build_tables(cells, totals, labels, calendar, warnings):
         if len(ends) > limit:
             ends = ends[-limit:]
         pkeys = {end: col_cells[end][0] for end in ends}
+        name = f"{axis}/{concept}/{periodicity}"
         rows = []
         for row_key, periods in rows_src.items():
             vals = [periods.get(pkeys[end]) for end in ends]
             if all(v is None or v["value"] == 0 for v in vals):
                 continue  # nothing filed, or an all-zero placeholder row
             any_cell = next(v for v in vals if v is not None)
-            member, cm = any_cell["member"], any_cell.get("consol_member")
-            label = member_label(member, labels)
-            if cm:
-                label = f"{label} — {member_label(cm, labels)}"
-            rows.append({"member": row_key, "label": label, "_vals": vals, "_recon": is_reconciling(member, cm), "_consol_only": bool(any_cell.get("consol_only"))})
-        rows = dedupe_reconciling(rows)
+            member, consol_only = any_cell["member"], bool(any_cell.get("consol_only"))
+            rows.append({"member": row_key, "label": member_label(member, labels), "_vals": vals,
+                         "_recon": is_reconciling(member, consol_only), "_consol_only": consol_only})
+        # consolidated fact per column (None where the filing has none)
+        cons = [(totals.get(concept, {}).get(pkeys[end]) or {}).get("value") for end in ends]
+        rows = drop_subtotal_rows(rows, hierarchy or {}, warnings, name)
+        rows = drop_total_rows(rows, cons, warnings, name)
+        rows = keep_one_partition(rows, cons, warnings, name)
+        rows = dedupe_reconciling(rows, warnings, name)
+        rows = drop_double_counted_reconciling(rows, cons, warnings, name)
         if len(rows) < 2:
             continue
         # totals: consolidated fact for that period when it exists, else the sum of rows
         total_vals, basis = [], []
-        for end in ends:
-            pk = pkeys[end]
-            t = totals.get(concept, {}).get(pk)
-            if t is None and pk[0] == "instant":
-                t = None
-            if t is not None:
-                total_vals.append(t["value"]); basis.append("consolidated fact")
+        for i, end in enumerate(ends):
+            if cons[i] is not None:
+                total_vals.append(cons[i]); basis.append("consolidated fact")
             else:
-                s = [r["_vals"][ends.index(end)]["value"] for r in rows if r["_vals"][ends.index(end)] is not None]
+                s = [r["_vals"][i]["value"] for r in rows if r["_vals"][i] is not None]
                 total_vals.append(sum(s) if s else None); basis.append("sum of rows")
+        # does the breakdown tie to the consolidated fact? (latest column that has one)
+        ties = None
+        for i in range(len(ends) - 1, -1, -1):
+            if cons[i]:
+                s = [r["_vals"][i]["value"] for r in rows if r["_vals"][i] is not None]
+                ratio = sum(s) / cons[i]
+                if concept in PARTITION_CONCEPTS and abs(ratio) < LEFTOVER_COVERAGE:
+                    ties = "leftover"
+                else:
+                    ties = abs(ratio - 1) <= MISMATCH_TOLERANCE
+                if ties != "leftover" and not ties:
+                    warnings.append(f"{name}: rows sum to {ratio:.1%} of the consolidated total for {end} (ties_to_total: false)")
+                break
+        if ties == "leftover":
+            warnings.append(f"{name}: table dropped: its {len(rows)} rows cover {ratio:.1%} of the consolidated total for {end}, not a breakdown of it")
+            continue
         rows.sort(key=lambda r: (r["_recon"], -(r["_vals"][-1]["value"] if r["_vals"][-1] is not None else float("-inf"))))
         if len(rows) > MAX_ROWS:
-            warnings.append(f"{axis}/{concept}/{periodicity}: {len(rows)} rows, showing the largest {MAX_ROWS}")
-            rows = rows[:MAX_ROWS]
+            # the largest MAX_ROWS - 1 rows plus one aggregate of the rest (a plain sum of filed values), so the
+            # table shown still ties to the total; the app itself caps a table at MAX_ROWS rows
+            rest = rows[MAX_ROWS - 1:]
+            agg_vals = []
+            for i in range(len(ends)):
+                cells = [r["_vals"][i] for r in rest if r["_vals"][i] is not None]
+                agg_vals.append({"value": sum(c["value"] for c in cells), "tag": cells[0]["tag"], "filing": max(c["filing"] for c in cells),
+                                 "derived": any(c["derived"] for c in cells), "member": "_other"} if cells else None)
+            warnings.append(f"{name}: {len(rows)} rows; the {len(rest)} smallest ({', '.join(r['label'] for r in rest)}) are summed into one 'Other' row")
+            rows = rows[:MAX_ROWS - 1] + [{"member": "_other", "label": f"Other ({len(rest)} smaller rows)", "_vals": agg_vals, "_recon": True, "_consol_only": False}]
         out_rows = []
         for r in rows:
             values = [c["value"] if c else None for c in r["_vals"]]
@@ -806,19 +1178,33 @@ def build_tables(cells, totals, labels, calendar, warnings):
             "periodicity": periodicity, "periods": ends, "period_labels": period_labels,
             "rows": out_rows,
             "total": {"values": [_fmt(v) for v in total_vals], "basis": "consolidated fact" if all(b == "consolidated fact" for b in basis) else ("sum of rows" if all(b == "sum of rows" for b in basis) else "mixed: " + ", ".join(basis))},
+            "ties_to_total": ties,
         })
         emitted.add((axis, concept, periodicity))
     return tables
 
 
+def is_complete(payload):
+    """True when every filing's instance was read and no warning records a fetch / parse failure."""
+    if "complete" in payload:
+        return bool(payload["complete"])
+    filings = payload.get("filings") or []
+    return all(f.get("instance_url") for f in filings) and not any(FAILURE_RE.search(w or "") for w in payload.get("warnings") or [])
+
+
 def build_output(ticker, cik, parsed_filings, sub_fye=None, warnings=None):
     """parsed_filings: [{"form","accession","filed","period","instance_url","instance": parse_instance(...) or None,
-    "labels": parse_labels(...) or {}}] oldest first. Returns the segments.json payload."""
+    "labels": parse_labels(...) or {}, "hierarchy": parse_definitions(...) or {}}] oldest first.
+    Returns the segments.json payload."""
     warnings = list(warnings or [])
     calendar = FiscalCalendar.from_filings(parsed_filings, sub_fye)
     cells, totals, currency, labels, n_dim = collect_cells(parsed_filings, warnings)
     derive_q4(cells, totals)
-    tables = build_tables(cells, totals, labels, calendar, warnings)
+    hierarchy = {}
+    for pf in parsed_filings:
+        for parent, kids in (pf.get("hierarchy") or {}).items():
+            hierarchy.setdefault(parent, set()).update(kids)
+    tables = build_tables(cells, totals, labels, calendar, warnings, hierarchy)
     if not any(pf.get("instance") for pf in parsed_filings):
         warnings.append("no XBRL instance document could be read for any filing")
     elif n_dim == 0:
@@ -834,6 +1220,7 @@ def build_output(ticker, cik, parsed_filings, sub_fye=None, warnings=None):
         "currency": currency,
         "tables": tables,
         "warnings": warnings,
+        "complete": all(pf.get("instance") is not None for pf in parsed_filings) and not any(FAILURE_RE.search(w) for w in warnings),
     }
 
 
@@ -843,6 +1230,15 @@ def build_output(ticker, cik, parsed_filings, sub_fye=None, warnings=None):
 def latest_accessions(sub):
     filings, _ = select_filings(sub)
     return sorted(f["accession"] for f in filings)
+
+
+def up_to_date(prev, sub):
+    """--all skip predicate: the previous segments.json lists exactly EDGAR's latest filings AND read all of
+    them (a file written after a timeout / 503 / unreadable index is re-fetched, never frozen)."""
+    try:
+        return is_complete(prev) and sorted(f["accession"] for f in prev.get("filings", [])) == latest_accessions(sub)
+    except Exception:
+        return False
 
 
 def run_ticker(ticker, cik, write=True, sub=None):
@@ -861,12 +1257,12 @@ def run_ticker(ticker, cik, write=True, sub=None):
             rec["instance_url"] = inst_url
             if data is not None:
                 rec["instance"] = parse_instance(data)
-                rec["labels"] = fetch_labels(base, folder, index_names, warnings, filing)
+                rec["labels"], rec["hierarchy"] = fetch_linkbases(base, folder, index_names, warnings, filing)
             else:
-                rec["instance"], rec["labels"] = None, {}
+                rec["instance"], rec["labels"], rec["hierarchy"] = None, {}, {}
         except Exception as e:
             warnings.append(f"{filing['form']} {filing['accession']}: {type(e).__name__}: {e}")
-            rec.setdefault("instance_url", None); rec["instance"], rec["labels"] = None, {}
+            rec.setdefault("instance_url", None); rec["instance"], rec["labels"], rec["hierarchy"] = None, {}, {}
         parsed.append(rec)
     out = build_output(ticker, cik, parsed, sub_fye, warnings)
     if write:
@@ -878,9 +1274,10 @@ def run_ticker(ticker, cik, write=True, sub=None):
 
 
 def summarize(out):
-    return {"ticker": out["ticker"], "cik": out["cik"], "currency": out["currency"],
+    return {"ticker": out["ticker"], "cik": out["cik"], "currency": out["currency"], "complete": out.get("complete"),
             "filings": [f"{f['form']} {f['period']}" + ("" if f.get("instance_url") else " (no instance)") for f in out["filings"]],
-            "tables": [f"{t['axis']}/{t['concept']}/{t['periodicity']}: {len(t['rows'])} rows x {len(t['periods'])} cols" for t in out["tables"]],
+            "tables": [f"{t['axis']}/{t['concept']}/{t['periodicity']}: {len(t['rows'])} rows x {len(t['periods'])} cols"
+                       + ("" if t.get("ties_to_total") in (True, None) else " (does not tie)") for t in out["tables"]],
             "warnings": out["warnings"]}
 
 
@@ -905,10 +1302,10 @@ def main(argv=None):
                 if not force and os.path.isfile(f"{BASE}/{t}/segments.json"):
                     try:
                         prev = json.load(open(f"{BASE}/{t}/segments.json", encoding="utf-8"))
-                        if sorted(f["accession"] for f in prev.get("filings", [])) == latest_accessions(sub):
-                            skipped.append(t); continue
                     except Exception:
-                        pass
+                        prev = None
+                    if prev is not None and up_to_date(prev, sub):
+                        skipped.append(t); continue
                 out = run_ticker(t, cik, write=write, sub=sub)
                 done.append(f"{t}: {len(out['tables'])} tables" + (f", {len(out['warnings'])} warnings" if out["warnings"] else ""))
                 print(f"{t}: {len(out['tables'])} tables; warnings: {out['warnings'] or 'none'}", flush=True)

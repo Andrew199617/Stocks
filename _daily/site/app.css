@@ -1,7 +1,7 @@
 /* Owner's-Earnings DCF Ranking — static app styles (v6). IBM Plex dark system, ported from
    _system/build_daily_html.py v2 (tokens on :root, color-scheme: dark). 16px gutters, cards under
    760px, tables scroll inside .twrap, tabular numerals, visible focus, reduced motion respected. */
-:root{color-scheme:dark;--bg:#0C0E12;--card:#14171D;--card2:#1B1F27;--line:#272C36;--line2:#2C323D;--txt:#ECEEF2;--txt2:#D9DDE4;--mut:#A0A8B6;--acc:#C9D4FF;--pos:#5BD69C;--neg:#FF8A8A;--warn:#fbbf24;--gutter:16px;
+:root{color-scheme:dark;--bg:#0C0E12;--card:#14171D;--card2:#1B1F27;--line:#272C36;--line2:#2C323D;--txt:#ECEEF2;--txt2:#D9DDE4;--mut:#A0A8B6;--acc:#C9D4FF;--pos:#5BD69C;--neg:#FF8A8A;--warn:#fbbf24;--cardstrong:#191C22;--gutter:16px;
  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;overflow-x:hidden}
@@ -10,25 +10,35 @@ a{color:var(--acc)} a:hover{color:#fff}
 button,input,select{font-family:inherit}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums} .small{font-size:12px} .pos{color:var(--pos)} .neg{color:var(--neg)} .muted{color:var(--mut);font-weight:400}
-.note{font-size:13.5px;color:var(--mut);line-height:1.5;margin:6px 0} .note b{color:var(--txt);font-weight:500}
+.note{font-size:13.5px;color:var(--mut);line-height:1.5;margin:6px 0;overflow-wrap:anywhere} .note b{color:var(--txt);font-weight:500}
 .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;min-width:0;max-width:100%}
 .card.err{border-color:#7f1d1d;background:#1d1113} .card.err b{color:var(--neg)} .card.loading{color:var(--mut)} .card.notice h2{margin:0 0 8px;font-size:22px} .card.notice .hco{font-family:var(--sans);font-weight:500;font-size:16px;color:var(--txt2)}
 .notice{display:none;background:#3a2b0b;color:var(--warn);border:1px solid #8a6d1f;border-radius:10px;padding:8px 12px;margin:10px 0;font-size:13.5px}
 .sec{margin:26px 0} .sec>h2{font-size:19px;font-weight:600;margin:0 0 4px} .sec>h2:empty{display:none}
 h1{font-size:22px;margin:0 0 4px}
-.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;min-width:0} /* every wide table (min-width 640 / 1240) lives inside a .twrap; the tab pane below clips anything that escapes, so the page itself never scrolls sideways */
 table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums} th,td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} td.num,th.num{text-align:right;white-space:nowrap}
 table.mini{font-size:13px} table.mini th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:500}
-table.fin{font-size:13px;min-width:640px} table.fin td{text-align:right;white-space:nowrap;font-family:var(--mono)} table.fin th{font-weight:500;color:var(--txt2);white-space:nowrap;position:sticky;left:0;background:var(--card);z-index:1} table.fin thead th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)} table.fin thead th.num{text-align:right} table.fin thead tr.sub th,table.fin thead tr.sub td{font-size:11px;color:var(--mut);text-transform:none;letter-spacing:0;padding-top:0;font-family:var(--mono)}
+table.fin{font-size:13px;min-width:640px} table.fin td{text-align:right;white-space:nowrap;font-family:var(--mono)} table.fin th{font-weight:500;color:var(--txt2);white-space:nowrap} table.fin tbody th,table.fin thead th:first-child{position:sticky;left:0;background:var(--card);z-index:1} /* only the row-label column sticks (was every th, so period headers piled up at the left edge on scroll) */ table.fin thead th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)} table.fin thead th.num{text-align:right} table.fin thead tr.sub th,table.fin thead tr.sub td{font-size:11px;color:var(--mut);text-transform:none;letter-spacing:0;padding-top:0;font-family:var(--mono)}
 table.fin tr.sub th{color:var(--mut);font-size:12.5px;padding-left:22px} table.fin tr.sub td{font-size:12.5px}
-table.fin tr.strong th,table.fin tr.strong td{color:#fff;font-weight:600;background:rgba(255,255,255,.02)} table.fin tr.strong th .sub{font-weight:400}
+table.fin tr.strong td{color:#fff;font-weight:600;background:rgba(255,255,255,.02)} table.fin tr.strong th{color:#fff;font-weight:600;background:var(--cardstrong)} /* the sticky label cell of a total row stays OPAQUE (--card blended with the 2% white): a translucent background let the numbers scrolled under it print through on a phone */ table.fin tr.strong th .sub{font-weight:400}
 table.fin td .scored{display:block;font-size:11px;color:var(--mut);font-weight:400}
 table.kv th{width:190px;color:var(--mut);font-weight:500;font-size:12.5px} table.kv td{word-break:break-word}
 table.mdt th{font-weight:600} .md h2{font-size:17px;margin:18px 0 6px} .md h3{font-size:15px;margin:16px 0 4px} .md h4{font-size:14px;margin:14px 0 4px} .md p{line-height:1.6;margin:8px 0;color:var(--txt2)} .md ul,.md ol{padding-left:20px;line-height:1.55;color:var(--txt2)} .md li{margin:4px 0} .md code{font-family:var(--mono);font-size:12.5px;background:var(--card2);padding:1px 5px;border-radius:4px} .md hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 pre.json{font-family:var(--mono);font-size:12px;white-space:pre-wrap;word-break:break-word;color:var(--txt2);margin:0}
 sup{font-size:9px;color:var(--mut)} sup.floor{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--warn);margin-left:3px;cursor:help;white-space:nowrap} td.atfloor{color:var(--warn)}
-.wchip{border-color:#8a6d1f;color:var(--warn)}
+.wchip{border-color:#3b4a66;color:#7AA2FF} .wchip .sub{margin-left:4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+/* ---- statements viewer (Financials tab) ---- */
+.stmbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px} .stmbar .seg{flex-wrap:wrap;max-width:100%;min-width:0} .stmbar .seg button{flex:1 1 auto} /* the four-statement segment is wider than a 375px card: it wraps (the pane clips, it never scrolls) */ .tgl{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mut);cursor:pointer;min-height:38px;user-select:none} .tgl input{accent-color:#7AA2FF;min-height:0;margin:0;width:16px;height:16px}
+table.stm th:first-child,table.stm tbody th{white-space:normal;min-width:150px;max-width:220px;font-weight:500;line-height:1.35} table.stm thead th{vertical-align:bottom} table.stm thead th .pl{display:block;font-size:11.5px;letter-spacing:.04em} table.stm thead th .sub{display:block;font-size:10.5px;text-transform:none;letter-spacing:0;font-family:var(--mono);margin-top:2px}
+table.stm tr.l1 th{padding-left:24px} table.stm tr.l2 th{padding-left:40px} table.stm tr.strong th,table.stm tr.strong td{color:#fff;font-weight:600} table.stm tr.growth th{padding-left:24px} table.stm td.negv{color:var(--txt2)} table.stm tr.loading th{position:static;white-space:normal}
+.stl{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer;border-bottom:1px dotted transparent;min-height:0;line-height:inherit} .stl:hover{color:var(--acc);border-bottom-color:var(--acc)} table.stm tr.open th .stl{color:var(--acc);border-bottom-color:var(--acc)} .stl:focus-visible{outline-offset:1px}
+.spark{margin:12px 0 4px;padding:14px 12px 10px} .sparkh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;min-width:0} .sparkh>span{min-width:0;overflow-wrap:anywhere} .stm-close{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);border-radius:8px;width:34px;height:34px;font-size:20px;line-height:1;cursor:pointer;flex:0 0 auto}
+details.stmwarn{margin-top:8px} details.stmwarn summary{color:var(--mut);font-size:13px;cursor:pointer}
+/* ---- watchlist: repo star (blue, fixed) vs per-device star (gold toggle); copy action ---- */
+.star.repo{color:#7AA2FF;font-size:17px} .hstar{font-size:22px;min-width:34px;min-height:34px;align-self:center}
+.wbtn.sm{padding:5px 10px;font-size:12.5px;min-height:32px} .copyout{font-size:12.5px;color:var(--mut);display:inline-flex;align-items:center;gap:6px;min-width:0} .copyout:empty{display:none} .copyout input{min-height:32px;padding:4px 8px;font-family:var(--mono);font-size:12px;max-width:220px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:10px 0}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
 .tile .v{font-family:var(--mono);font-size:20px;font-weight:500;font-variant-numeric:tabular-nums;overflow-wrap:anywhere} .tsub{font-size:12px;color:var(--mut)}
@@ -41,8 +51,9 @@ sup{font-size:9px;color:var(--mut)} sup.floor{font-size:9px;letter-spacing:.06em
 .tchips{display:flex;flex-wrap:wrap;gap:8px} .tchip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:13px;padding:5px 10px 5px 5px;border-radius:999px;background:var(--card2);border:1px solid var(--line2)} .tchip i{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:var(--c);color:#0C0E12;font-style:normal;font-weight:600;font-size:12px}
 details.howto{margin:14px 0 6px} details.howto summary{color:var(--mut);font-size:13px;cursor:pointer} details.howto p{color:var(--mut);font-size:13px;line-height:1.55;margin:6px 0 0}
 .controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;align-items:center}
+@media (min-width:761px){.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:4;background:var(--bg);padding:8px 0;margin:8px 0;box-shadow:0 8px 16px -12px rgba(0,0,0,.8)}} /* the tab-like filter row stays at the top while the long table scrolls (desktop only: on a phone it wraps to three lines) */
 .wbtn{background:var(--card2);border:1px solid var(--line2);border-radius:10px;color:var(--txt2);padding:8px 12px;font-size:13.5px;cursor:pointer;min-height:38px;display:inline-flex;align-items:center;gap:6px} .wbtn .mono{color:var(--mut);font-size:12.5px} .wbtn.on{background:#3a2b0b;border-color:#8a6d1f;color:var(--warn)} .wbtn.on .mono{color:var(--warn)}
-.star{background:transparent;border:0;color:var(--mut);font-size:17px;line-height:1;padding:0 2px;cursor:pointer;min-width:24px;min-height:24px;border-radius:6px;flex:0 0 auto} button.star:hover{color:var(--warn)} .star.on,.star.fixed{color:var(--warn)} .star.fixed{cursor:default;display:inline-flex;align-items:center;justify-content:center}
+.star{background:transparent;border:0;color:var(--mut);font-size:17px;line-height:1;padding:0 2px;cursor:pointer;min-width:24px;min-height:24px;border-radius:6px;flex:0 0 auto} button.star:hover{color:var(--warn)} .star.on{color:var(--warn)} .star.fixed{cursor:default;display:inline-flex;align-items:center;justify-content:center}
 .seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--card2)} .seg button{background:transparent;border:0;color:var(--txt2);padding:8px 12px;font-size:13.5px;cursor:pointer;min-height:38px} .seg button.on{background:#2C3648;color:#fff} .seg button:focus-visible{outline-offset:-2px}
 select,input{background:var(--card2);color:var(--txt);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;font-size:14px;min-height:38px;max-width:100%}
 #t{min-width:1240px;table-layout:fixed} /* column widths: the <colgroup> app.js emits (COLS[i][3] %) — fixed layout would otherwise split 13 columns evenly */ #t th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:500;user-select:none} #t th.sortable{cursor:pointer} #t th.sortable:hover{color:var(--txt)} #t th.sorted{color:#fff} #t th.sorted::after{content:" ▾"}
@@ -67,19 +78,42 @@ details.stalebox{margin:18px 0 6px;border:1px dashed #4b5563;border-radius:10px;
 .take{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:16px;line-height:1.6;color:var(--txt2)}
 .about .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 18px;margin-top:14px} .about .fact{display:flex;flex-direction:column;gap:3px;font-size:14px;color:var(--txt2);min-width:0;overflow-wrap:anywhere} .about .fact .quote{display:block;font-style:italic;margin-top:2px}
 .about .dimp{margin:0 0 6px} table.filings td{vertical-align:middle} .street .tiles{margin-top:0}
+.about .fact[title]{cursor:help} .about .fact[title] .k::after{content:" ⓘ";font-size:10px;letter-spacing:0} /* a fact with evidence behind it (the employees sentence, the full address) */
+.about .more[hidden],.about .ell[hidden]{display:none} .readmore{background:none;border:0;padding:0 2px;margin:0;font:inherit;font-size:14px;font-weight:500;color:var(--acc);cursor:pointer;border-bottom:1px dotted var(--acc);min-height:0;line-height:inherit} .readmore:hover{color:#fff}
+/* Street summary: the label, the mean-target tile with its % badge, the small ratings chart */
+.streetlbl{display:block;margin-bottom:8px} .stgt{display:flex;flex-direction:column;gap:5px;margin:14px 0 4px;min-width:0} .stgt .v{font-size:30px;font-weight:500;line-height:1.1;letter-spacing:-.01em;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px} .stgt .badge{font-family:var(--mono);font-size:13px;font-weight:500;padding:2px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--line2)} .stgt .badge.pos{color:var(--pos);border-color:rgba(91,214,156,.4)} .stgt .badge.neg{color:var(--neg);border-color:rgba(255,138,138,.4)}
+.chart.small{min-height:100px;margin-bottom:0} .street .sub3{margin-top:14px}
+/* Filings: form filter chips; a filtered-out row is hidden */
+.fchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px} .fchips button{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;min-height:34px;display:inline-flex;align-items:center;gap:6px} .fchips button .mono{font-size:12px;color:var(--mut)} .fchips button.on{background:#2C3648;color:#fff;border-color:#3b4a66} .fchips button.on .mono{color:#C3C9D4} .fchips button:disabled{opacity:.45;cursor:default}
+table.filings tr[hidden]{display:none}
+/* partial yields (fundamentals.py yields_display): the ≥ / ≤ / ≈ label is printed, the bound named under it, the note in the tooltip */
+.tile[title]{cursor:help} .tile[title] .k::after{content:" ⓘ";font-size:10px;letter-spacing:0} .tile .v.bounded{color:var(--txt2)} .tile .v .vsfx{display:block;font-size:12px;font-family:var(--sans);color:var(--warn);font-weight:500;margin-top:2px} .tsub .bword{color:var(--warn);font-weight:500}
+#t td.take .syld{display:inline} #t td.take .syld b{color:var(--txt2);font-weight:500} #t td.take .syld.bounded b{color:var(--warn)} #t td.take .syld[title]{cursor:help}
+.copyout{flex-wrap:wrap} .copynote{display:block;flex-basis:100%;margin:2px 0 0;font-size:12px} .seg.dim{opacity:.5}
+.bhsl .bhst{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-right:4px}
+.chart .leg .offleg{color:var(--warn)} .stm-retry{margin:0 4px}
+/* statements viewer: a quarter flagged basis_break_quarterly is greyed (its fiscal year's quarters do not sum to the restated FY figure) */
+table.stm td.bbrk{color:var(--mut);text-decoration:underline dotted rgba(160,168,182,.6);text-underline-offset:3px;cursor:help}
 .pcsec{margin:14px 0} .pc{padding:14px 12px 12px}
-.pcbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px} .ranges{display:inline-flex;gap:4px} .ranges button{background:transparent;border:1px solid transparent;color:var(--mut);padding:6px 9px;border-radius:8px;font-family:var(--mono);font-size:12.5px;cursor:pointer;min-height:34px} .ranges button.on{background:var(--card2);border-color:var(--line2);color:#fff}
+.pcbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px} .pcbar>*{min-width:0;max-width:100%} .ranges{display:flex;flex-wrap:wrap;gap:4px} /* nine buttons are ~407px: wrap on a phone (the pane clips overflow, so an unwrapped strip lost 5Y and Max) */ .ranges .rb:not(:empty){display:block;font-size:10px;line-height:1.1;margin-top:2px;font-weight:500} .ranges button{background:transparent;border:1px solid transparent;color:var(--mut);padding:6px 9px;border-radius:8px;font-family:var(--mono);font-size:12.5px;cursor:pointer;min-height:34px} .ranges button.on{background:var(--card2);border-color:var(--line2);color:#fff}
 .toggles{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--mut)} .toggles label{display:inline-flex;align-items:center;gap:5px;cursor:pointer} .toggles input{accent-color:#7AA2FF;min-height:0}
-.pchart{position:relative;width:100%;height:280px} .pchart svg{width:100%;height:100%;display:block}
+.pchart{position:relative;width:100%;height:280px;touch-action:pan-y;cursor:crosshair;-webkit-user-select:none;user-select:none} /* touch-action:pan-y — a horizontal drag scrubs the crosshair, a vertical flick still scrolls the page (the browser takes the pan and fires pointercancel) */ .pchart svg{width:100%;height:100%;display:block} .pchart .xh text{font-variant-numeric:tabular-nums} .pchart .xtt,.pchart .xlt{font-size:11.5px} .pcnote{margin:4px 0 0}
+.ranges .rb:not(:empty).pos{color:var(--pos);background:rgba(91,214,156,.14)} .ranges .rb:not(:empty).neg{color:var(--neg);background:rgba(255,138,138,.14)} .ranges .rb:not(:empty){padding:1px 6px;border-radius:999px;font-variant-numeric:tabular-nums} /* the period-return pill under the active range */
 .pcfoot{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--mut);margin-top:8px;align-items:center} .legend{display:inline-flex;align-items:center;gap:6px} .legend i{display:inline-block;width:12px;height:12px;border-radius:3px} .legend i.dash{width:14px;height:0;border-top:2px dashed;border-radius:0} .pcret{margin-left:auto;font-family:var(--mono)}
-.chart{position:relative;width:100%;min-height:160px;margin:4px 0 8px} .chart svg{width:100%;display:block;height:auto} .chart .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--mut);margin-top:6px} .chart .leg span{display:inline-flex;align-items:center;gap:6px} .chart .leg i{display:inline-block;width:11px;height:11px;border-radius:3px}
+.chart{position:relative;width:100%;min-height:160px;margin:4px 0 8px;min-width:0} .chart svg{width:100%;display:block;height:auto} .chart .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--mut);margin-top:6px;min-width:0} .chart .leg span{display:inline-flex;align-items:center;gap:6px;min-width:0;overflow-wrap:anywhere} .chart .leg i{display:inline-block;width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+.chart svg,.pchart svg,.fanchart svg{max-width:100%}
 .chart text{font-family:var(--mono);font-size:11px;fill:var(--mut)} .chart .grid{stroke:#232832} .chart .zero{stroke:#3A4252} .pchart text{font-family:var(--mono);font-size:11px;fill:var(--mut)} .pchart .grid{stroke:#232832}
 /* sticky tab bar: condenses to ticker · last close · change · expected return once the header scrolls away */
-.tabbar{position:sticky;top:0;z-index:5;background:var(--bg);margin:18px calc(-1 * var(--gutter)) 6px;padding:0 var(--gutter)}
-.tabsum{display:none;align-items:center;gap:12px;padding:8px 2px 2px;font-size:14px;color:var(--txt2);white-space:nowrap;overflow:hidden} .tabsum b{font-size:16px;color:var(--txt)} .tabsum .ttile.sm{width:26px;height:26px;border-radius:7px;font-size:13px}
-.tabbar.condensed{box-shadow:0 8px 16px -10px rgba(0,0,0,.8)} .tabbar.condensed .tabsum{display:flex}
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:18px calc(-1 * var(--gutter)) 6px;padding:0 var(--gutter)} /* top: the notch inset on phones, 0 elsewhere */
+/* The condensed line OVERLAYS the space above the tabs (position:absolute, bottom:100%) instead of joining the bar's flow, and the
+   condensed bar sticks --tabsum-h lower: the bar's own height never changes, so nothing below it moves when it condenses
+   (it used to grow 45 → 81 px and push the pane down 36 px under the finger). app.js condenses once the bar's natural top is
+   within --tabsum-h of the viewport top, so the stuck position and the natural one meet and the tabs do not jump either. */
+:root{--tabsum-h:36px}
+.tabsum{display:flex;visibility:hidden;position:absolute;left:0;right:0;bottom:100%;height:var(--tabsum-h);box-sizing:border-box;align-items:center;gap:12px;padding:0 var(--gutter);background:var(--bg);font-size:14px;color:var(--txt2);white-space:nowrap;overflow:hidden} .tabsum b{font-size:16px;color:var(--txt)} .tabsum .ttile.sm{width:26px;height:26px;border-radius:7px;font-size:13px}
+.tabbar.condensed{top:calc(env(safe-area-inset-top,0px) + var(--tabsum-h));box-shadow:0 8px 16px -10px rgba(0,0,0,.8)} .tabbar.condensed .tabsum{visibility:visible}
 .tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin:0;overflow-x:auto} .tab{background:transparent;border:0;color:#7FA3FF;font-size:16px;font-weight:500;padding:12px 16px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;min-height:44px} .tab.on{color:#fff;background:var(--card2);border-radius:10px 10px 0 0;border-bottom-color:#fff} .tab:focus-visible{outline-offset:-2px}
-.pane{display:none} .pane.on{display:block}
+.pane{display:none;min-width:0;max-width:100%;overflow-x:hidden;overflow-x:clip} .pane.on{display:block} /* a pane can never widen the page: clip (no scroll container, sticky cells keep working inside .twrap), hidden as the fallback */
 /* Forecast sub-tabs: DCF · Street · Analysts */
 .subtabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px} .subtab{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);padding:7px 14px;border-radius:999px;font-size:13.5px;cursor:pointer;min-height:36px;display:inline-flex;align-items:center;gap:6px} .subtab .sub{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase} .subtab.on{background:#2C3648;color:#fff;border-color:#3b4a66} .subtab.on .sub{color:#C3C9D4}
 .subpane{display:none} .subpane.on{display:block}
@@ -127,6 +161,7 @@ ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
  .pchart{height:240px} .hero{padding:18px 16px} .card{padding:14px}
  .controls input{flex:1 1 160px}
  .sgrow{grid-template-columns:1fr} .fanchart{height:220px}
+ table.stm th:first-child,table.stm tbody th{min-width:118px;max-width:150px;font-size:12.5px} table.stm tr.l1 th{padding-left:18px} table.stm tr.l2 th{padding-left:30px} .spark{padding:12px 8px 8px}
 }
 @media (max-width:480px){.hstats{grid-template-columns:1fr} .hstat.big{grid-column:auto} .tabsum{gap:8px;font-size:13px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
