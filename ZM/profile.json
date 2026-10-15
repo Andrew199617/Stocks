@@ -1,0 +1,602 @@
+{
+ "ticker": "ZM",
+ "cik": 1585521,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:28:34-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001585521.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ZM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ZM/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ZM/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ZM/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ZM/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ZM/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ZM/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ZM/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ZM/peg-ratio"
+ },
+ "about": {
+  "entity": "Zoom Communications, Inc.",
+  "cik": 1585521,
+  "description": {
+   "text": "Zoom is redefining modern work as a system of action, turning live collaboration into completed results. From entrepreneurs to global enterprises, customers choose Zoom to seamlessly collaborate, communicate, and drive outcomes across meetings, chat, phone, contact center, events, and more — all with the built-in assistance of Zoom AI Companion. Our mission to deliver happiness, grounded in our core value of care, is fundamental to everything we do at Zoom. Our platform bridges work both inside and outside the organization by integrating AI capabilities across employee collaboration and customer-facing workflows, enabling seamless communication, collaboration, and engagement through Zoom Workplace and Zoom Business Services. Zoom Workplace with AI Companion brings together Zoom’s core communication and productivity tools—including Zoom Meetings, Zoom Phone, Zoom Team Chat, Zoom Docs, and Zoom Whiteboard—to support collaboration across organizations of varying sizes. Zoom’s Business Services for sales, marketing, and customer experience teams, including Zoom Contact Center, Zoom Revenue Accelerator, and Zoom Events, support customer engagement across the the customer lifecycle. Trust is a cornerstone of the Zoom platform. We equip users with a comprehensive set of tools to make their interactions safe, secure, and private. We believe that strong security should never compromise a great user experience.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2026-01-31",
+   "accession": "0001585521-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm"
+  },
+  "description_short": "Zoom (NASDAQ:ZM) is a system of action for modern work, turning live collaboration into completed results. From entrepreneurs to global enterprises, customers choose Zoom to seamlessly collaborate, communicate, and drive outcomes across meetings, phone, contact center, and more - all with the built-in assistance of Zoom AI. Founded in 2011, Zoom is headquartered in San Jose, CA. For more information, visit zoom.com.",
+  "industry": "Computer Software: Programming, Data Processing",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7370",
+  "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0131",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.zoom.com",
+  "headquarters": "San Jose, California",
+  "address": {
+   "street": "55 Almaden Boulevard 6",
+   "city": "San Jose",
+   "state": "California",
+   "zip": "95113",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "(888) 799-9666",
+  "employees": {
+   "count": 7438,
+   "as_of": "2026-01-31",
+   "evidence": "As of January 31, 2026, we had 7,438 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2019-03-22",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Zoom Video Communications, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001585521&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 27,
+  "buy": 11,
+  "hold": 8,
+  "sell": 0,
+  "target_mean": 118.78,
+  "target_low": 104.0,
+  "target_high": 135.0,
+  "target_1y_nasdaq_summary": 120.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 81.28,
+    "buy": 8,
+    "hold": 13,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 87.23,
+    "buy": 8,
+    "hold": 13,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 84.94,
+    "buy": 9,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 86.29,
+    "buy": 10,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 92.1,
+    "buy": 13,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 73.94,
+    "buy": 12,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 80.7,
+    "buy": 12,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 103.44,
+    "buy": 10,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 111.62,
+    "buy": 12,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 90.13,
+    "buy": 11,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 96.07,
+    "buy": 11,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 94.9,
+    "buy": 10,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 118.78,
+    "buy": 10,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "BENCHMARK COMPA",
+   "BTIG",
+   "CITIGROUP",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JP MORGAN SECUR",
+   "KEYBANC CAP MKT",
+   "MIZUHO SECURITI",
+   "MOFFETT NATHANS",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "ROSENBLATT SEC",
+   "SANFORD BERNSTE",
+   "STIFEL NICOLAUS",
+   "WEDBUSH SECURIT",
+   "WELLS FARGO SEC",
+   "WILLIAM BLAIR",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Oct 2026",
+     "fiscal_end": "2026-10",
+     "consensus": 1.01,
+     "low": 0.98,
+     "high": 1.05,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2027",
+     "fiscal_end": "2027-01",
+     "consensus": 1.06,
+     "low": 1.02,
+     "high": 1.11,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Apr 2027",
+     "fiscal_end": "2027-04",
+     "consensus": 1.05,
+     "low": 0.99,
+     "high": 1.13,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jul 2027",
+     "fiscal_end": "2027-07",
+     "consensus": 1.1,
+     "low": 1.04,
+     "high": 1.17,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Oct 2027",
+     "fiscal_end": "2027-10",
+     "consensus": 1.12,
+     "low": 1.03,
+     "high": 1.19,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Jan 2027",
+     "fiscal_end": "2027-01",
+     "consensus": 4.27,
+     "low": 4.09,
+     "high": 4.99,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2028",
+     "fiscal_end": "2028-01",
+     "consensus": 4.46,
+     "low": 4.13,
+     "high": 4.71,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2029",
+     "fiscal_end": "2029-01",
+     "consensus": 4.92,
+     "low": 4.66,
+     "high": 5.25,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Oct 2025",
+    "consensus": 0.86,
+    "actual": 0.89,
+    "surprise_pct": 3.49
+   },
+   {
+    "period": "Jan 2026",
+    "consensus": 0.95,
+    "actual": 0.8,
+    "surprise_pct": -15.79
+   },
+   {
+    "period": "Apr 2026",
+    "consensus": 0.93,
+    "actual": 1.01,
+    "surprise_pct": 8.6
+   },
+   {
+    "period": "Jul 2026",
+    "consensus": 1.01,
+    "actual": 0.93,
+    "surprise_pct": -7.92
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Oct 2026",
+    "consensus": 1.01
+   },
+   {
+    "period": "Jan 2027",
+    "consensus": 1.06
+   },
+   {
+    "period": "Apr 2027",
+    "consensus": 1.05
+   },
+   {
+    "period": "Jul 2027",
+    "consensus": 1.1
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Oct 2026",
+    "current": 1.01,
+    "week_ago": 1.01,
+    "month_ago": 1.01
+   },
+   "year": {
+    "period": "Jan 2027",
+    "current": 4.27,
+    "week_ago": 4.27,
+    "month_ago": 4.27
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-23",
+   "text": "Zoom Communications, Inc. Class A Common Stock is estimated to report earnings on 11/23/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $1.01. The reported EPS for the same quarter last year was $0.89.",
+   "timing": null
+  },
+  "peg_forward": 4.36
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-08-31",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001585521-26-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000126/zm-20260831.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-26",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001585521-26-000121",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/zm-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001585521-26-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000119/zm-20260825.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-050155",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000162828026050155/zm-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-043169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000162828026043169/zm-20260611.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-22",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001585521-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000071/zm-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001585521-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000069/zm-20260521.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-028866",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000162828026028866/zm-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-02",
+   "period": "2026-03-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-023131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000162828026023131/zm-20260330.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001585521-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001585521-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000026/zm-20260225.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-25",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001585521-25-000202",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000202/zm-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001585521-25-000200",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000200/zm-20251124.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-22",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001585521-25-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000141/zm-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-21",
+   "period": "2025-08-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001585521-25-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000138/zm-20250821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-15",
+   "period": "2025-08-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-181838",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000119312525181838/d31920d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-18",
+   "period": "2025-06-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-142800",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000119312525142800/d97479d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-23",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001585521-25-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000090/zm-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-21",
+   "period": "2025-05-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001585521-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552125000087/zm-20250521.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-05-01",
+   "period": "2025-06-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-016910",
+   "url": "https://www.sec.gov/Archives/edgar/data/1585521/000114036125016910/edge20045033x1_def14a.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 2994176,
+  "volume": 2877905,
+  "market_cap_nasdaq": 28743613371,
+  "high_52w": 114.74,
+  "low_52w": 70.7,
+  "previous_close": 94.47,
+  "one_year_target": 120.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

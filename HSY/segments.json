@@ -1,0 +1,870 @@
+{
+ "ticker": "HSY",
+ "cik": 47111,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-008586",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026008586/hsy-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028682",
+   "filed": "2026-04-30",
+   "period": "2026-03-29",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026028682/hsy-20260329_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050900",
+   "filed": "2026-07-30",
+   "period": "2026-06-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026050900/hsy-20260628_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hsy:NorthAmericaConfectionerySegmentMember",
+     "label": "North America Confectionery Segment",
+     "values": [
+      9123139000,
+      9118590000,
+      9479709000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8171,
+      0.814,
+      0.8107
+     ],
+     "growth_yoy": [
+      null,
+      -0.0005,
+      0.0396
+     ]
+    },
+    {
+     "member": "hsy:NorthAmericaSaltySnacksSegmentMember",
+     "label": "North America Salty Snacks Segment",
+     "values": [
+      1092689000,
+      1135720000,
+      1271299000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0979,
+      0.1014,
+      0.1087
+     ],
+     "growth_yoy": [
+      null,
+      0.0394,
+      0.1194
+     ]
+    },
+    {
+     "member": "hsy:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      949164000,
+      947953000,
+      941568000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.085,
+      0.0846,
+      0.0805
+     ],
+     "growth_yoy": [
+      null,
+      -0.0013,
+      -0.0067
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11164992000,
+     11202263000,
+     11692576000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hsy:NorthAmericaConfectionerySegmentMember",
+     "label": "North America Confectionery Segment",
+     "values": [
+      2300140000,
+      2085468000,
+      2489918000,
+      2173570000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8199,
+      0.7976,
+      0.8021,
+      0.7798
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0825,
+      0.0422
+     ]
+    },
+    {
+     "member": "hsy:NorthAmericaSaltySnacksSegmentMember",
+     "label": "North America Salty Snacks Segment",
+     "values": [
+      277798000,
+      315519000,
+      350070000,
+      387845000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.099,
+      0.1207,
+      0.1128,
+      0.1391
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2602,
+      0.2292
+     ]
+    },
+    {
+     "member": "hsy:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      227481000,
+      213731000,
+      264179000,
+      225891000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0811,
+      0.0817,
+      0.0851,
+      0.081
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1613,
+      0.0569
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2805419000,
+     2614718000,
+     3104167000,
+     2787306000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hsy:NorthAmericaConfectionerySegmentMember",
+     "label": "North America Confectionery Segment",
+     "values": [
+      3117044000,
+      2945688000,
+      2493732000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2172,
+      1.0164,
+      1.7299
+     ],
+     "growth_yoy": [
+      null,
+      -0.055,
+      -0.1534
+     ]
+    },
+    {
+     "member": "hsy:NorthAmericaSaltySnacksSegmentMember",
+     "label": "North America Salty Snacks Segment",
+     "values": [
+      158333000,
+      199390000,
+      241353000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0618,
+      0.0688,
+      0.1674
+     ],
+     "growth_yoy": [
+      null,
+      0.2593,
+      0.2105
+     ]
+    },
+    {
+     "member": "hsy:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      148259000,
+      111519000,
+      3318000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0579,
+      0.0385,
+      0.0023
+     ],
+     "growth_yoy": [
+      null,
+      -0.2478,
+      -0.9702
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2560867000,
+     2898232000,
+     1441528000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hsy:NorthAmericaConfectionerySegmentMember",
+     "label": "North America Confectionery Segment",
+     "values": [
+      696374000,
+      503929000,
+      792378000,
+      705785000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.8861,
+      2.6136,
+      1.2368,
+      1.0983
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1379,
+      0.4006
+     ]
+    },
+    {
+     "member": "hsy:NorthAmericaSaltySnacksSegmentMember",
+     "label": "North America Salty Snacks Segment",
+     "values": [
+      41853000,
+      66480000,
+      34300000,
+      62578000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1134,
+      0.3448,
+      0.0535,
+      0.0974
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1805,
+      -0.0587
+     ]
+    },
+    {
+     "member": "hsy:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      28726000,
+      19795000,
+      15263000,
+      -5145000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0778,
+      0.1027,
+      0.0238,
+      -0.008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4687,
+      -1.2599
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     369221000,
+     192811000,
+     640693000,
+     642641000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hsy:NorthAmericaConfectionerySegmentMember",
+     "label": "North America Confectionery Segment",
+     "values": [
+      238786000,
+      259502000,
+      299038000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5688,
+      0.57,
+      0.5937
+     ],
+     "growth_yoy": [
+      null,
+      0.0868,
+      0.1524
+     ]
+    },
+    {
+     "member": "hsy:NorthAmericaSaltySnacksSegmentMember",
+     "label": "North America Salty Snacks Segment",
+     "values": [
+      85566000,
+      86446000,
+      87238000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2038,
+      0.1899,
+      0.1732
+     ],
+     "growth_yoy": [
+      null,
+      0.0103,
+      0.0092
+     ]
+    },
+    {
+     "member": "hsy:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      23699000,
+      24793000,
+      28857000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0565,
+      0.0545,
+      0.0573
+     ],
+     "growth_yoy": [
+      null,
+      0.0462,
+      0.1639
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      71764000,
+      84514000,
+      88568000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1709,
+      0.1856,
+      0.1758
+     ],
+     "growth_yoy": [
+      null,
+      0.1777,
+      0.048
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     419815000,
+     455255000,
+     503701000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hsy:NorthAmericaConfectionerySegmentMember",
+     "label": "North America Confectionery Segment",
+     "values": [
+      69773000,
+      72787000,
+      77517000,
+      80358000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5836,
+      0.5878,
+      0.5828,
+      0.5905
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.111,
+      0.104
+     ]
+    },
+    {
+     "member": "hsy:NorthAmericaSaltySnacksSegmentMember",
+     "label": "North America Salty Snacks Segment",
+     "values": [
+      21846000,
+      22327000,
+      26056000,
+      26203000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1827,
+      0.1803,
+      0.1959,
+      0.1925
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1927,
+      0.1736
+     ]
+    },
+    {
+     "member": "hsy:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      6185000,
+      6713000,
+      7397000,
+      7670000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0517,
+      0.0542,
+      0.0556,
+      0.0564
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.196,
+      0.1426
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     119564000,
+     123833000,
+     133002000,
+     136095000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      9752314000,
+      9771343000,
+      10251643000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8735,
+      0.8723,
+      0.8768
+     ],
+     "growth_yoy": [
+      null,
+      0.002,
+      0.0492
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1412678000,
+      1430920000,
+      1440933000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1265,
+      0.1277,
+      0.1232
+     ],
+     "growth_yoy": [
+      null,
+      0.0129,
+      0.007
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11164992000,
+     11202263000,
+     11692576000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2467754000,
+      2285230000,
+      2711473000,
+      2438474000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8796,
+      0.874,
+      0.8735,
+      0.8748
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0988,
+      0.0671
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      337665000,
+      329488000,
+      392694000,
+      348832000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1204,
+      0.126,
+      0.1265,
+      0.1252
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.163,
+      0.0587
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2805419000,
+     2614718000,
+     3104167000,
+     2787306000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 190.0% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 118.8% of the consolidated total for 2026-06-28 (ties_to_total: false)",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: rows sum to 83.9% of the consolidated total for 2026-06-28 (ties_to_total: false)"
+ ],
+ "complete": true
+}

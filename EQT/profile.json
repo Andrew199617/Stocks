@@ -1,0 +1,620 @@
+{
+ "ticker": "EQT",
+ "cik": 33213,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:21:49-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000033213.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000018/eqt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EQT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EQT/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/EQT/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/EQT/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/EQT/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/EQT/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/EQT/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/EQT/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/EQT/peg-ratio"
+ },
+ "about": {
+  "entity": "EQT Corp",
+  "cik": 33213,
+  "description": {
+   "text": "We are a vertically integrated natural gas company with upstream, gathering and transmission operations focused in the Appalachian Basin. As of December 31, 2025, we had 28.0 Tcfe of proved natural gas, NGLs and oil reserves across approximately 2.3 million gross acres and approximately 2,945 miles of pipeline infrastructure. In addition, we own an investment in Series A of Mountain Valley Pipeline, LLC (MVP A), which owns the Mountain Valley Pipeline (MVP Mainline), a 303-mile-long pipeline that spans from Wetzel County, West Virginia to Pittsylvania County, Virginia.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0000033213-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000018/eqt-20251231.htm"
+  },
+  "description_short": "EQT Corporation is a premier, vertically integrated American natural gas company with production and midstream operations focused in the Appalachian Basin. We are dedicated to responsibly developing our world-class asset base and being the operator of choice for our stakeholders. By leveraging a culture that prioritizes operational efficiency, technology and sustainability, we seek to continuously improve the way we produce environmentally responsible, reliable and low-cost energy. We have a longstanding commitment to the safety of our employees, contractors, and communities, and to the reduction of our overall environmental footprint. Our values are evident in the way we operate and in how we interact each day - trust, teamwork, heart, and evolution are at the center of all we do.",
+  "industry": "Oil & Gas Production",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "1311",
+  "sic_description": "Crude Petroleum & Natural Gas",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.eqt.com",
+  "headquarters": "Pittsburgh, Pennsylvania",
+  "address": {
+   "street": "625 Liberty Avenue Suite 1700",
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "zip": "15222",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "4125535700",
+  "employees": {
+   "count": 1523,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 1,523 full-time equivalent employees (i.e., excluding temporary employees and contractors), none of whom were subject to a collective bargaining agreement.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000018/eqt-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-19",
+  "first_sec_filing_form": "424B3",
+  "former_names": [
+   "EQUITABLE RESOURCES INC /PA/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000033213&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 25,
+  "buy": 16,
+  "hold": 3,
+  "sell": 0,
+  "target_mean": 66.17,
+  "target_low": 52.0,
+  "target_high": 79.0,
+  "target_1y_nasdaq_summary": 67.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 56.16,
+    "buy": 15,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 53.58,
+    "buy": 16,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 60.52,
+    "buy": 13,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 53.6,
+    "buy": 13,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 57.73,
+    "buy": 12,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 61.42,
+    "buy": 15,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 61.09,
+    "buy": 16,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 58.66,
+    "buy": 16,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 55.26,
+    "buy": 16,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 52.48,
+    "buy": 17,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 53.29,
+    "buy": 16,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 55.59,
+    "buy": 15,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 66.17,
+    "buy": 15,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BMO CAPITAL MKT",
+   "CAP ONE SECURIT",
+   "CITIGROUP",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "PETERS & COMPAN",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "SANFORD BERNSTE",
+   "SCOTIABANK",
+   "SIEBERT WILLIAM",
+   "STEPHENS INC",
+   "TD COWEN",
+   "TD SECURITIES",
+   "TRUIST SECURITI",
+   "TUDOR PICKERING",
+   "UBS",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.41,
+     "low": 0.31,
+     "high": 0.51,
+     "estimates": 7,
+     "revisions_up": 1,
+     "revisions_down": 5
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.74,
+     "low": 0.54,
+     "high": 0.97,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 5
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.38,
+     "low": 1.11,
+     "high": 1.56,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.42,
+     "low": 0.36,
+     "high": 0.52,
+     "estimates": 5,
+     "revisions_up": 2,
+     "revisions_down": 1
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.68,
+     "low": 0.57,
+     "high": 0.8,
+     "estimates": 5,
+     "revisions_up": 1,
+     "revisions_down": 1
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 3.86,
+     "low": 3.42,
+     "high": 4.3,
+     "estimates": 9,
+     "revisions_up": 1,
+     "revisions_down": 5
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 3.48,
+     "low": 2.64,
+     "high": 4.03,
+     "estimates": 9,
+     "revisions_up": 1,
+     "revisions_down": 4
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 5.2,
+     "low": 4.57,
+     "high": 6.27,
+     "estimates": 6,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 5.45,
+     "low": 4.87,
+     "high": 6.02,
+     "estimates": 2,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.47,
+    "actual": 0.52,
+    "surprise_pct": 10.64
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.73,
+    "actual": 0.9,
+    "surprise_pct": 23.29
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.23,
+    "actual": 2.33,
+    "surprise_pct": 4.48
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.41,
+    "actual": 0.39,
+    "surprise_pct": -4.88
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.41
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.74
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.38
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.42
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.41,
+    "week_ago": 0.43,
+    "month_ago": 0.49
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 3.86,
+    "week_ago": 3.9,
+    "month_ago": 3.92
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-27",
+   "text": "EQT Corporation Common Stock is expected* to report earnings on 10/27/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $0.41. The reported EPS for the same quarter last year was $0.52.",
+   "timing": "after market close"
+  },
+  "peg_forward": 0.0
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000046/eqt-20261013.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-114364",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465926114364/tm2627066d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-22",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033213-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000043/eqt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000041/eqt-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-14",
+   "period": "2026-07-14",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000035/eqt-20260714.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033213-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000030/eqt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000028/eqt-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-14",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001104659-26-043807",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465926043807/tm2611806d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000022/eqt-20260414.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-033850",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465926033850/tm269666d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-025835",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465926025835/tm268423d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-02-26",
+   "period": "2026-04-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-020027",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465926020027/tm261383-1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000033213-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000018/eqt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000012/eqt-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-011726",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465926011726/tm265368d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000005/eqt-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-19",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-123150",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465925123150/tm2533739d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-22",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033213-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321325000049/eqt-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033213-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000003321325000047/eqt-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-16",
+   "items": [
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Other events",
+   "accession": "0001104659-25-100584",
+   "url": "https://www.sec.gov/Archives/edgar/data/33213/000110465925100584/tm2528911d1_8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 4835001,
+  "volume": 5475619,
+  "market_cap_nasdaq": 32811441780,
+  "high_52w": 68.24,
+  "low_52w": 47.9366,
+  "previous_close": 52.75,
+  "one_year_target": 67.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

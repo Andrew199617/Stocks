@@ -1,0 +1,412 @@
+{
+ "ticker": "ALNY",
+ "cik": 1178670,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-007497",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026007497/alny-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028605",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026028605/alny-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001178670-26-000062",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1178670/000117867026000062/alny-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "alny:AmvuttraMember",
+     "label": "Amvuttra",
+     "values": [
+      557838000,
+      970450000,
+      2313836000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3051,
+      0.4316,
+      0.623
+     ],
+     "growth_yoy": [
+      null,
+      0.7397,
+      1.3843
+     ]
+    },
+    {
+     "member": "alny:CollaborationsMember",
+     "label": "Collaborations",
+     "values": [
+      546185000,
+      510221000,
+      553366000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2987,
+      0.2269,
+      0.149
+     ],
+     "growth_yoy": [
+      null,
+      -0.0658,
+      0.0846
+     ]
+    },
+    {
+     "member": "alny:GIVLAARIMember",
+     "label": "GIVLAARI",
+     "values": [
+      219251000,
+      255871000,
+      308487000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1199,
+      0.1138,
+      0.0831
+     ],
+     "growth_yoy": [
+      null,
+      0.167,
+      0.2056
+     ]
+    },
+    {
+     "member": "alny:OXLUMOMember",
+     "label": "OXLUMO",
+     "values": [
+      109839000,
+      167050000,
+      191437000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0601,
+      0.0743,
+      0.0515
+     ],
+     "growth_yoy": [
+      null,
+      0.5209,
+      0.146
+     ]
+    },
+    {
+     "member": "us-gaap:RoyaltyMember",
+     "label": "Royalty",
+     "values": [
+      40633000,
+      91794000,
+      174022000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0222,
+      0.0408,
+      0.0469
+     ],
+     "growth_yoy": [
+      null,
+      1.2591,
+      0.8958
+     ]
+    },
+    {
+     "member": "alny:ONPATTROMember",
+     "label": "ONPATTRO",
+     "values": [
+      354546000,
+      252857000,
+      172789000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1939,
+      0.1125,
+      0.0465
+     ],
+     "growth_yoy": [
+      null,
+      -0.2868,
+      -0.3167
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1828292000,
+     2248243000,
+     3713937000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "alny:AmvuttraMember",
+     "label": "Amvuttra",
+     "values": [
+      309992000,
+      491953000,
+      889931000,
+      1011762000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5217,
+      0.6359,
+      0.7625,
+      0.7837
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8708,
+      1.0566
+     ]
+    },
+    {
+     "member": "alny:GIVLAARIMember",
+     "label": "GIVLAARI",
+     "values": [
+      66968000,
+      80849000,
+      74394000,
+      89764000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1127,
+      0.1045,
+      0.0637,
+      0.0695
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1109,
+      0.1103
+     ]
+    },
+    {
+     "member": "us-gaap:RoyaltyMember",
+     "label": "Royalty",
+     "values": [
+      26466000,
+      39981000,
+      48973000,
+      71674000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0445,
+      0.0517,
+      0.042,
+      0.0555
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8504,
+      0.7927
+     ]
+    },
+    {
+     "member": "alny:OXLUMOMember",
+     "label": "OXLUMO",
+     "values": [
+      42089000,
+      46872000,
+      51321000,
+      52122000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0708,
+      0.0606,
+      0.044,
+      0.0404
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2193,
+      0.112
+     ]
+    },
+    {
+     "member": "alny:CollaborationsMember",
+     "label": "Collaborations",
+     "values": [
+      99185000,
+      61496000,
+      82075000,
+      47165000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1669,
+      0.0795,
+      0.0703,
+      0.0365
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1725,
+      -0.233
+     ]
+    },
+    {
+     "member": "alny:ONPATTROMember",
+     "label": "ONPATTRO",
+     "values": [
+      49489000,
+      52538000,
+      20481000,
+      18461000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0833,
+      0.0679,
+      0.0175,
+      0.0143
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5862,
+      -0.6486
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     594189000,
+     773689000,
+     1167175000,
+     1290948000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product' (us-gaap:ProductMember) dropped: it is the parent of Amvuttra, GIVLAARI, ONPATTRO, OXLUMO, Rare, TTR in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'TTR' (alny:TTRMember) dropped: it is the parent of Amvuttra, ONPATTRO in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Rare' (alny:RareMember) dropped: it is the parent of GIVLAARI, OXLUMO in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product' (us-gaap:ProductMember) dropped: it is the parent of Amvuttra, GIVLAARI, ONPATTRO, OXLUMO, Rare, TTR in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'TTR' (alny:TTRMember) dropped: it is the parent of Amvuttra, ONPATTRO in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Rare' (alny:RareMember) dropped: it is the parent of GIVLAARI, OXLUMO in the filing's definition linkbase"
+ ],
+ "complete": true
+}

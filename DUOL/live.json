@@ -8,6 +8,7 @@
  "stale_price": false,
  "scored_price": 140.1,
  "scored_date": "2026-10-13",
+ "score_json_fresh": true,
  "price_change_pct": -0.26409707351892076,
  "irr_weighted": 0.09454986367671875,
  "tier": "D",

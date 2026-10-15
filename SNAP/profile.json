@@ -1,0 +1,633 @@
+{
+ "ticker": "SNAP",
+ "cik": 1564408,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:26:45-04:00",
+ "newest_filing_date": "2026-09-22",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001564408.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SNAP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SNAP/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/SNAP/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/SNAP/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/SNAP/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/SNAP/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/SNAP/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/SNAP/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/SNAP/peg-ratio"
+ },
+ "about": {
+  "entity": "Snap Inc",
+  "cik": 1564408,
+  "description": {
+   "text": "Snap Inc. is a technology company. We believe the camera presents the greatest opportunity to improve the way people live and communicate. We contribute to human progress by empowering people to express themselves, live in the moment, learn about the world, and have fun together. Our flagship product, Snapchat, is a visual messaging application that enhances your relationships with friends, family, and the world. Visual messaging is a fast, fun way to communicate with friends and family using augmented reality, video, voice, messaging, and creative tools. Snaps are deleted by default to mimic real-life conversations, so there is less pressure to look popular or perfect when creating and sending images on Snapchat. By reducing the friction typically associated with creating and sharing content, Snapchat has become one of the most used cameras in the world. The camera is a powerful tool for communication and the entry point for augmented reality experiences. By opening directly to the camera, Snapchat empowers our community to express themselves instantly and offers millions of augmented reality Lenses for self expression, learning, and play. In the way that the flashing cursor became the starting point for most products on desktop computers, we believe the camera screen will be the starting point for most products on smartphones.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "accession": "0001564408-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+  },
+  "description_short": "Snap Inc. is a technology company. We believe the camera presents the greatest opportunity to improve the way people live and communicate. Snap contributes to human progress by empowering people to express themselves, live in the moment, learn about the world, and have fun together. Snap Inc. operates Snapchat, a visual messaging app that enhances your relationships with friends, family, and the world, and Specs Inc., a wholly-owned subsidiary dedicated to making computing more human, in addition to Bitmoji, Saturn, and other digital services. For more information, visit snap.com.",
+  "industry": "Computer Software: Programming, Data Processing",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7370",
+  "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.snap.com",
+  "headquarters": "Santa Monica, California",
+  "address": {
+   "street": "3000 31st Street",
+   "city": "Santa Monica",
+   "state": "California",
+   "zip": "90405",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-05"
+  },
+  "phone": "(310) 399-3339",
+  "employees": {
+   "count": 5261,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 5,261 full-time employees, of whom approximately 54% are in engineering roles involved in the design, development, support, and manufacture of new and existing products and processes.",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-02-02",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Snap Inc",
+   "Snapchat Inc"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001564408&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 36,
+  "buy": 3,
+  "hold": 23,
+  "sell": 1,
+  "target_mean": 7.43,
+  "target_low": 5.5,
+  "target_high": 16.0,
+  "target_1y_nasdaq_summary": 7.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 7.71,
+    "buy": 4,
+    "hold": 23,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 7.8,
+    "buy": 2,
+    "hold": 22,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 7.64,
+    "buy": 1,
+    "hold": 24,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 8.07,
+    "buy": 1,
+    "hold": 24,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 6.93,
+    "buy": 2,
+    "hold": 20,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 5.21,
+    "buy": 3,
+    "hold": 19,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 4.9,
+    "buy": 4,
+    "hold": 19,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 6.29,
+    "buy": 5,
+    "hold": 18,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 5.86,
+    "buy": 2,
+    "hold": 21,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 4.75,
+    "buy": 3,
+    "hold": 20,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 4.69,
+    "buy": 4,
+    "hold": 24,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 5.35,
+    "buy": 4,
+    "hold": 24,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 7.43,
+    "buy": 3,
+    "hold": 23,
+    "sell": 1,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "ARETE RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BENCHMARK COMPA",
+   "BMO CAPITAL MKT",
+   "CANACCORD GENUI",
+   "CHINA RENAISSAN",
+   "CITIGROUP",
+   "CITIZENS JMP",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "GUGGENHEIM SEC.",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEYBANC CAP MKT",
+   "LOOP CAPITAL MK",
+   "MOFFETT NATHANS",
+   "MORGAN STANLEY",
+   "NEW STREET RESE",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "RBC CAPITAL",
+   "ROSENBLATT SEC",
+   "ROTH CAPITAL PA",
+   "ROTHSCHILD REDB",
+   "SANFORD BERNSTE",
+   "STIFEL NICOLAUS",
+   "SUSQUEHANNA",
+   "TD COWEN",
+   "TRUIST SECURITI",
+   "UBS",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.0,
+     "low": -0.03,
+     "high": 0.03,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.08,
+     "low": 0.03,
+     "high": 0.15,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.01,
+     "low": -0.02,
+     "high": 0.05,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.0,
+     "low": -0.04,
+     "high": 0.06,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.06,
+     "low": 0.01,
+     "high": 0.1,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -0.02,
+     "low": -0.17,
+     "high": 0.16,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 0.08,
+     "low": -0.09,
+     "high": 0.39,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 0.19,
+     "low": 0.04,
+     "high": 0.54,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 0.71,
+     "low": 0.71,
+     "high": 0.71,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": -0.11,
+    "actual": -0.06,
+    "surprise_pct": 45.45
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -0.02,
+    "actual": 0.03,
+    "surprise_pct": 250.0
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": -0.06,
+    "actual": -0.05,
+    "surprise_pct": 16.67
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": -0.08,
+    "actual": -0.1,
+    "surprise_pct": -25.0
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Dec 2026",
+    "consensus": 0.08
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.01
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.0,
+    "week_ago": 0.0,
+    "month_ago": 0.0
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": -0.02,
+    "week_ago": -0.02,
+    "month_ago": -0.02
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-04",
+   "text": "Snap Inc. Class A Common Stock is expected* to report earnings on 11/04/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 5 analysts' forecasts, the consensus EPS forecast for the quarter is $0. The reported EPS for the same quarter last year was $-0.06.",
+   "timing": "after market close"
+  },
+  "peg_forward": -6.81
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-385199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526385199/d129201d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000052/snap-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001564408-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000047/snap-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-09",
+   "period": "2026-07-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564408-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000041/snap-20260709.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-232814",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526232814/d100806d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-07",
+   "period": "2026-05-05",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-212461",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526212461/d135064d8ka.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000027/snap-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001564408-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000024/snap-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-164232",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526164232/d139401d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [
+    "2.02",
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Reg FD",
+   "accession": "0001193125-26-155861",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526155861/d36756d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001564408-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001564408-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000011/snap-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001564408-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000069/snap-20251204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-25-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000065/snap-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001564408-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000063/snap-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-196218",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312525196218/d913466d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-07",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-179072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312525179072/d427483d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000052/snap-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-04",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001564408-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000047/snap-20250804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-10",
+   "period": "2025-07-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564408-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000038/snap-20250710.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 24206428,
+  "volume": 43100214,
+  "market_cap_nasdaq": 10882857277,
+  "high_52w": 9.13,
+  "low_52w": 3.81,
+  "previous_close": 6.1,
+  "one_year_target": 7.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "street: 2 quote/eps row(s) with consensus = 0 and earnings = 0 are Nasdaq placeholders; dropped"
+ ]
+}

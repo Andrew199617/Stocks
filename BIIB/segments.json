@@ -1,0 +1,742 @@
+{
+ "ticker": "BIIB",
+ "cik": 875045,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000875045-26-000013",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000013/biib-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000875045-26-000045",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000045/biib-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000875045-26-000075",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000075/biib-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "biib:RevenuesFromAntiCD20TherapeuticProgramsMember",
+     "label": "Revenues From Anti-CD20 Therapeutic Programs",
+     "values": [
+      1689600000,
+      1749900000,
+      1860600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1718,
+      0.1809,
+      0.1881
+     ],
+     "growth_yoy": [
+      null,
+      0.0357,
+      0.0633
+     ]
+    },
+    {
+     "member": "biib:TysabriProductMember",
+     "label": "TYSABRI product",
+     "values": [
+      1876900000,
+      1715000000,
+      1665400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1908,
+      0.1772,
+      0.1684
+     ],
+     "growth_yoy": [
+      null,
+      -0.0863,
+      -0.0289
+     ]
+    },
+    {
+     "member": "biib:SPINRAZAMember",
+     "label": "SPINRAZA",
+     "values": [
+      1741200000,
+      1573200000,
+      1546800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.177,
+      0.1626,
+      0.1564
+     ],
+     "growth_yoy": [
+      null,
+      -0.0965,
+      -0.0168
+     ]
+    },
+    {
+     "member": "biib:RoyaltyAttributedToOCREVUSMember",
+     "label": "Royalty Attributed To OCREVUS",
+     "values": [
+      1266200000,
+      1339500000,
+      1414900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1287,
+      0.1384,
+      0.1431
+     ],
+     "growth_yoy": [
+      null,
+      0.0579,
+      0.0563
+     ]
+    },
+    {
+     "member": "biib:VUMERITYMember",
+     "label": "VUMERITY",
+     "values": [
+      576300000,
+      628000000,
+      746800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0586,
+      0.0649,
+      0.0755
+     ],
+     "growth_yoy": [
+      null,
+      0.0897,
+      0.1892
+     ]
+    },
+    {
+     "member": "biib:ContractManufacturingRoyaltyAndOtherRevenueMember",
+     "label": "Contract Manufacturing, Royalty And Other Revenue",
+     "values": [
+      899300000,
+      652600000,
+      732900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0914,
+      0.0674,
+      0.0741
+     ],
+     "growth_yoy": [
+      null,
+      -0.2743,
+      0.123
+     ]
+    },
+    {
+     "member": "biib:AVONEXMember",
+     "label": "AVONEX",
+     "values": [
+      811000000,
+      707500000,
+      695500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0825,
+      0.0731,
+      0.0703
+     ],
+     "growth_yoy": [
+      null,
+      -0.1276,
+      -0.017
+     ]
+    },
+    {
+     "member": "biib:TECFIDERAMember",
+     "label": "TECFIDERA",
+     "values": [
+      1012500000,
+      967100000,
+      679700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1029,
+      0.0999,
+      0.0687
+     ],
+     "growth_yoy": [
+      null,
+      -0.0448,
+      -0.2972
+     ]
+    },
+    {
+     "member": "biib:ContractManufacturingAndOtherRevenueMember",
+     "label": "Contract manufacturing and other revenue",
+     "values": [
+      848200000,
+      592100000,
+      679400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0862,
+      0.0612,
+      0.0687
+     ],
+     "growth_yoy": [
+      null,
+      -0.3019,
+      0.1474
+     ]
+    },
+    {
+     "member": "biib:SKYCLARYSMember",
+     "label": "SKYCLARYS",
+     "values": [
+      55900000,
+      382500000,
+      520500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0057,
+      0.0395,
+      0.0526
+     ],
+     "growth_yoy": [
+      null,
+      5.8426,
+      0.3608
+     ]
+    },
+    {
+     "member": "biib:BENEPALIMember",
+     "label": "BENEPALI",
+     "values": [
+      438800000,
+      479100000,
+      453200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0446,
+      0.0495,
+      0.0458
+     ],
+     "growth_yoy": [
+      null,
+      0.0918,
+      -0.0541
+     ]
+    },
+    {
+     "member": "_other",
+     "label": "Other (11 smaller rows)",
+     "values": [
+      785200000,
+      881500000,
+      1042700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0798,
+      0.0911,
+      0.1054
+     ],
+     "growth_yoy": [
+      null,
+      0.1226,
+      0.1829
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9835600000,
+     9675900000,
+     9890600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "biib:Revenuesfromanticd20therapeuticprogramsMember",
+     "label": "Revenues from anti-cd20 therapeutic programs",
+     "values": [
+      378200000,
+      467300000,
+      419100000,
+      513500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1556,
+      0.1766,
+      0.1691,
+      0.1877
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1081,
+      0.0989
+     ]
+    },
+    {
+     "member": "biib:TysabriProductMember",
+     "label": "TYSABRI product",
+     "values": [
+      381500000,
+      454600000,
+      441500000,
+      450800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1569,
+      0.1718,
+      0.1782,
+      0.1648
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1573,
+      -0.0084
+     ]
+    },
+    {
+     "member": "biib:SPINRAZAMember",
+     "label": "SPINRAZA",
+     "values": [
+      423900000,
+      392700000,
+      374000000,
+      401900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1744,
+      0.1484,
+      0.1509,
+      0.1469
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1177,
+      0.0234
+     ]
+    },
+    {
+     "member": "biib:RoyaltyAttributedToOCREVUSMember",
+     "label": "Royalty Attributed To OCREVUS",
+     "values": [
+      288800000,
+      353800000,
+      317200000,
+      381400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1188,
+      0.1337,
+      0.128,
+      0.1394
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0983,
+      0.078
+     ]
+    },
+    {
+     "member": "biib:ContractManufacturingAndOtherRevenueMember",
+     "label": "Contract manufacturing and other revenue",
+     "values": [
+      282300000,
+      225000000,
+      237200000,
+      232400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1161,
+      0.0851,
+      0.0957,
+      0.0849
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1598,
+      0.0329
+     ]
+    },
+    {
+     "member": "biib:VUMERITYMember",
+     "label": "VUMERITY",
+     "values": [
+      138800000,
+      212300000,
+      179000000,
+      196500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0571,
+      0.0802,
+      0.0722,
+      0.0718
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2896,
+      -0.0744
+     ]
+    },
+    {
+     "member": "biib:AVONEXMember",
+     "label": "AVONEX",
+     "values": [
+      166800000,
+      177700000,
+      163200000,
+      170000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0686,
+      0.0672,
+      0.0659,
+      0.0621
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0216,
+      -0.0433
+     ]
+    },
+    {
+     "member": "biib:SKYCLARYSMember",
+     "label": "SKYCLARYS",
+     "values": [
+      123900000,
+      130300000,
+      150700000,
+      167900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.051,
+      0.0493,
+      0.0608,
+      0.0614
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2163,
+      0.2886
+     ]
+    },
+    {
+     "member": "biib:BENEPALIMember",
+     "label": "BENEPALI",
+     "values": [
+      111300000,
+      112100000,
+      122100000,
+      106800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0458,
+      0.0424,
+      0.0493,
+      0.039
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.097,
+      -0.0473
+     ]
+    },
+    {
+     "member": "biib:SYFOVREMember",
+     "label": "SYFOVRE",
+     "values": [
+      null,
+      0,
+      null,
+      97400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0,
+      null,
+      0.0356
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "biib:TECFIDERAMember",
+     "label": "TECFIDERA",
+     "values": [
+      206100000,
+      193600000,
+      109500000,
+      90900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0848,
+      0.0732,
+      0.0442,
+      0.0332
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4687,
+      -0.5305
+     ]
+    },
+    {
+     "member": "_other",
+     "label": "Other (13 smaller rows)",
+     "values": [
+      511500000,
+      524500000,
+      528400000,
+      550300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2104,
+      0.1983,
+      0.2133,
+      0.2011
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.033,
+      0.0492
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2431000000,
+     2645500000,
+     2477800000,
+     2736000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable Segment' (biib:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/Revenues/quarterly: row 'Reportable Segment' (biib:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (biib:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (biib:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/Revenues/annual: row 'Product' (us-gaap:ProductMember) dropped: it is the parent of AVONEX, BENEPALI, BYOOVIZ, Biosimilars, FAMPYRA, FLIXABI, FUMADERM And ADUHELM, Fumarate, IMRALDI, Interferon, MS Product Revenues, PLEGRIDY, QALSODY, Rare Disease Product Revenue, SKYCLARYS, SPINRAZA, TECFIDERA, TOFIDENCE, TYSABRI product, VUMERITY, ZURZUVAE in the filing's definition linkbase",
+  "product/Revenues/annual: row 'Fumarate' (biib:FumarateMember) dropped: it is the parent of TECFIDERA, VUMERITY in the filing's definition linkbase",
+  "product/Revenues/annual: row 'Interferon' (biib:InterferonMember) dropped: it is the parent of AVONEX, PLEGRIDY in the filing's definition linkbase",
+  "product/Revenues/annual: row 'MS Product Revenues' (biib:MSProductRevenuesMember) dropped: it is the parent of AVONEX, FAMPYRA, Fumarate, Interferon, PLEGRIDY, TECFIDERA, TYSABRI product, VUMERITY in the filing's definition linkbase",
+  "product/Revenues/annual: row 'Rare Disease Product Revenue' (biib:RareDiseaseProductRevenueMember) dropped: it is the parent of QALSODY, SKYCLARYS, SPINRAZA in the filing's definition linkbase",
+  "product/Revenues/annual: row 'Biosimilars' (biib:BiosimilarsMember) dropped: it is the parent of BENEPALI, BYOOVIZ, FLIXABI, IMRALDI, TOFIDENCE in the filing's definition linkbase",
+  "product/Revenues/annual: row 'Other' (biib:OtherMember) dropped: it is the parent of FUMADERM And ADUHELM, ZURZUVAE in the filing's definition linkbase",
+  "product/Revenues/annual: rows sum to 121.7% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "product/Revenues/annual: 22 rows; the 11 smallest (PLEGRIDY, ZURZUVAE, IMRALDI, Alzheimer's Collaboration, QALSODY, Royalty, FLIXABI, BYOOVIZ, FUMADERM And ADUHELM, FAMPYRA, TOFIDENCE) are summed into one 'Other' row",
+  "product/Revenues/quarterly: row 'Product' (us-gaap:ProductMember) dropped: it is the parent of AVONEX, BENEPALI, BYOOVIZ, Biosimilars, EMPAVELI, FAMPYRA, FLIXABI, FUMADERM And ADUHELM, Fumarate, IMRALDI, Interferon, MS Product Revenues, Other Products, PLEGRIDY, QALSODY, Rare Disease Product Revenue, SKYCLARYS, SPINRAZA, SYFOVRE, Specialized Immunology, TECFIDERA, TOFIDENCE, TYSABRI product, VUMERITY, ZURZUVAE in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Fumarate' (biib:FumarateMember) dropped: it is the parent of TECFIDERA, VUMERITY in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Interferon' (biib:InterferonMember) dropped: it is the parent of AVONEX, PLEGRIDY in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'MS Product Revenues' (biib:MSProductRevenuesMember) dropped: it is the parent of AVONEX, FAMPYRA, Fumarate, Interferon, PLEGRIDY, TECFIDERA, TYSABRI product, VUMERITY in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Rare Disease Product Revenue' (biib:RareDiseaseProductRevenueMember) dropped: it is the parent of QALSODY, SKYCLARYS, SPINRAZA in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Biosimilars' (biib:BiosimilarsMember) dropped: it is the parent of BENEPALI, BYOOVIZ, FLIXABI, IMRALDI, TOFIDENCE in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Other Products' (biib:OtherProductsMember) dropped: it is the parent of FUMADERM And ADUHELM, ZURZUVAE in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Specialized Immunology' (biib:SpecializedImmunologyMember) dropped: it is the parent of EMPAVELI, SYFOVRE in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'LEQEMBI Collaboration' (biib:LEQEMBICollaborationMember) dropped: same numbers as 'Alzheimer's Collaboration' (biib:AlzheimersCollaborationMember)",
+  "product/Revenues/quarterly: rows sum to 122.8% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "product/Revenues/quarterly: 24 rows; the 13 smallest (ZURZUVAE, Alzheimer's Collaboration, PLEGRIDY, IMRALDI, QALSODY, EMPAVELI, Royalty, FLIXABI, BYOOVIZ, FUMADERM And ADUHELM, FAMPYRA, TOFIDENCE, Product and Service, Other) are summed into one 'Other' row"
+ ],
+ "complete": true
+}

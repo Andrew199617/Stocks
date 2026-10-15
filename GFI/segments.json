@@ -1,0 +1,122 @@
+{
+ "ticker": "GFI",
+ "cik": 1172724,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001628280-26-021904",
+   "filed": "2026-03-30",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gfi:GoldProductsMember",
+     "label": "Gold Products",
+     "values": [
+      4293100000,
+      5008900000,
+      8406500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9539,
+      0.963,
+      0.9606
+     ],
+     "growth_yoy": [
+      null,
+      0.1667,
+      0.6783
+     ]
+    },
+    {
+     "member": "gfi:CopperMember",
+     "label": "Copper",
+     "values": [
+      207600000,
+      192700000,
+      228100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0461,
+      0.037,
+      0.0261
+     ],
+     "growth_yoy": [
+      null,
+      -0.0718,
+      0.1837
+     ]
+    },
+    {
+     "member": "gfi:SilverMember",
+     "label": "Silver",
+     "values": [
+      0,
+      0,
+      116700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0133
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4500700000,
+     5201600000,
+     8751300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

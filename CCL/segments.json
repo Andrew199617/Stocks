@@ -1,0 +1,1028 @@
+{
+ "ticker": "CCL",
+ "cik": 815097,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000815097-26-000007",
+   "filed": "2026-01-27",
+   "period": "2025-11-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000007/ccl-20251130_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000815097-26-000096",
+   "filed": "2026-06-26",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000096/ccl-20260531_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000815097-26-000107",
+   "filed": "2026-09-29",
+   "period": "2026-08-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000107/ccl-20260831_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ccl:NorthAmericaSegmentMember",
+     "label": "North America Segment",
+     "values": [
+      14588000000,
+      16802000000,
+      17604000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6756,
+      0.6715,
+      0.6613
+     ],
+     "growth_yoy": [
+      null,
+      0.1518,
+      0.0477
+     ]
+    },
+    {
+     "member": "ccl:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      6535000000,
+      7710000000,
+      8467000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3026,
+      0.3081,
+      0.318
+     ],
+     "growth_yoy": [
+      null,
+      0.1798,
+      0.0982
+     ]
+    },
+    {
+     "member": "ccl:CruiseMember",
+     "label": "Cruise",
+     "values": [
+      206000000,
+      255000000,
+      309000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0095,
+      0.0102,
+      0.0116
+     ],
+     "growth_yoy": [
+      null,
+      0.2379,
+      0.2118
+     ]
+    },
+    {
+     "member": "ccl:TourAndOtherMember",
+     "label": "Tour And Other",
+     "values": [
+      265000000,
+      255000000,
+      241000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0123,
+      0.0102,
+      0.0091
+     ],
+     "growth_yoy": [
+      null,
+      -0.0377,
+      -0.0549
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21593000000,
+     25021000000,
+     26622000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2025-11-30",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ccl:NorthAmericaSegmentMember",
+     "label": "North America Segment",
+     "values": [
+      4214000000,
+      5348000000,
+      4135000000,
+      4412000000,
+      5543000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6659,
+      0.656,
+      0.6532,
+      0.6622,
+      0.6571
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.047,
+      0.0365
+     ]
+    },
+    {
+     "member": "ccl:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      2011000000,
+      2551000000,
+      2075000000,
+      2122000000,
+      2606000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3178,
+      0.3129,
+      0.3278,
+      0.3185,
+      0.309
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0552,
+      0.0216
+     ]
+    },
+    {
+     "member": "ccl:CruiseMember",
+     "label": "Cruise",
+     "values": [
+      73000000,
+      74000000,
+      90000000,
+      95000000,
+      96000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0115,
+      0.0091,
+      0.0142,
+      0.0143,
+      0.0114
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3014,
+      0.2973
+     ]
+    },
+    {
+     "member": "ccl:TourAndOtherMember",
+     "label": "Tour And Other",
+     "values": [
+      31000000,
+      179000000,
+      29000000,
+      34000000,
+      191000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0049,
+      0.022,
+      0.0046,
+      0.0051,
+      0.0226
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0968,
+      0.067
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6328000000,
+     8153000000,
+     6330000000,
+     6663000000,
+     8435000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ccl:NorthAmericaSegmentMember",
+     "label": "North America Segment",
+     "values": [
+      28547000000,
+      30892000000,
+      31400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5812,
+      0.6297,
+      0.6075
+     ],
+     "growth_yoy": [
+      null,
+      0.0821,
+      0.0164
+     ]
+    },
+    {
+     "member": "ccl:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      16524000000,
+      15042000000,
+      16030000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3364,
+      0.3066,
+      0.3101
+     ],
+     "growth_yoy": [
+      null,
+      -0.0897,
+      0.0657
+     ]
+    },
+    {
+     "member": "ccl:CruiseMember",
+     "label": "Cruise",
+     "values": [
+      3667000000,
+      2732000000,
+      3836000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0747,
+      0.0557,
+      0.0742
+     ],
+     "growth_yoy": [
+      null,
+      -0.255,
+      0.4041
+     ]
+    },
+    {
+     "member": "ccl:TourAndOtherMember",
+     "label": "Tour And Other",
+     "values": [
+      382000000,
+      390000000,
+      421000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0078,
+      0.0079,
+      0.0081
+     ],
+     "growth_yoy": [
+      null,
+      0.0209,
+      0.0795
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     49120000000,
+     49057000000,
+     51687000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-11-30",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ccl:NorthAmericaSegmentMember",
+     "label": "North America Segment",
+     "values": [
+      31400000000,
+      31399000000,
+      31164000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6075,
+      0.6012,
+      0.6114
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ccl:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      16030000000,
+      16202000000,
+      16087000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3101,
+      0.3102,
+      0.3156
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ccl:CruiseMember",
+     "label": "Cruise",
+     "values": [
+      3836000000,
+      4200000000,
+      3281000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0742,
+      0.0804,
+      0.0644
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ccl:TourAndOtherMember",
+     "label": "Tour And Other",
+     "values": [
+      421000000,
+      427000000,
+      439000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0081,
+      0.0082,
+      0.0086
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     51687000000,
+     52228000000,
+     50971000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ccl:CruisePassengerTicketMember",
+     "label": "Cruise Passenger Ticket",
+     "values": [
+      14067000000,
+      16463000000,
+      17419000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6515,
+      0.658,
+      0.6543
+     ],
+     "growth_yoy": [
+      null,
+      0.1703,
+      0.0581
+     ]
+    },
+    {
+     "member": "ccl:CruiseOnboardAndOtherMember",
+     "label": "Cruise Onboard And Other",
+     "values": [
+      7526000000,
+      8558000000,
+      9202000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3485,
+      0.342,
+      0.3457
+     ],
+     "growth_yoy": [
+      null,
+      0.1371,
+      0.0753
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21593000000,
+     25021000000,
+     26622000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2025-11-30",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ccl:CruisePassengerTicketMember",
+     "label": "Cruise Passenger Ticket",
+     "values": [
+      4104000000,
+      5430000000,
+      4053000000,
+      4273000000,
+      5529000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6485,
+      0.666,
+      0.6403,
+      0.6413,
+      0.6555
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0412,
+      0.0182
+     ]
+    },
+    {
+     "member": "ccl:CruiseOnboardAndOtherMember",
+     "label": "Cruise Onboard And Other",
+     "values": [
+      2224000000,
+      2723000000,
+      2277000000,
+      2390000000,
+      2906000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3515,
+      0.334,
+      0.3597,
+      0.3587,
+      0.3445
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0746,
+      0.0672
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6328000000,
+     8153000000,
+     6330000000,
+     6663000000,
+     8435000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      12253000000,
+      14061000000,
+      14847000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5675,
+      0.562,
+      0.5577
+     ],
+     "growth_yoy": [
+      null,
+      0.1476,
+      0.0559
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      2651000000,
+      3063000000,
+      3348000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1228,
+      0.1224,
+      0.1258
+     ],
+     "growth_yoy": [
+      null,
+      0.1554,
+      0.093
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      2284000000,
+      2740000000,
+      3054000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1058,
+      0.1095,
+      0.1147
+     ],
+     "growth_yoy": [
+      null,
+      0.1996,
+      0.1146
+     ]
+    },
+    {
+     "member": "ccl:AllOtherGeographicAreasMember",
+     "label": "All Other Geographic Areas",
+     "values": [
+      4406000000,
+      5157000000,
+      5374000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.204,
+      0.2061,
+      0.2019
+     ],
+     "growth_yoy": [
+      null,
+      0.1704,
+      0.0421
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21593000000,
+     25021000000,
+     26622000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2025-11-30",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3475000000,
+      4764000000,
+      3423000000,
+      3593000000,
+      4989000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5491,
+      0.5843,
+      0.5408,
+      0.5392,
+      0.5915
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.034,
+      0.0472
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      825000000,
+      987000000,
+      850000000,
+      866000000,
+      991000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1304,
+      0.1211,
+      0.1343,
+      0.13,
+      0.1175
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0497,
+      0.0041
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      733000000,
+      870000000,
+      778000000,
+      790000000,
+      903000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1158,
+      0.1067,
+      0.1229,
+      0.1186,
+      0.1071
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0778,
+      0.0379
+     ]
+    },
+    {
+     "member": "ccl:AllOtherGeographicAreasMember",
+     "label": "All Other Geographic Areas",
+     "values": [
+      1295000000,
+      1532000000,
+      1280000000,
+      1413000000,
+      1552000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2046,
+      0.1879,
+      0.2022,
+      0.2121,
+      0.184
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0911,
+      0.0131
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6328000000,
+     8153000000,
+     6330000000,
+     6663000000,
+     8435000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

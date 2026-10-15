@@ -1,0 +1,301 @@
+{
+ "ticker": "VRSN",
+ "cik": 1014473,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001014473-26-000006",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001014473-26-000020",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000020/vrsn-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001014473-26-000028",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000028/vrsn-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      994700000,
+      1035500000,
+      1093100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6662,
+      0.6649,
+      0.6598
+     ],
+     "growth_yoy": [
+      null,
+      0.041,
+      0.0556
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      228200000,
+      249600000,
+      279400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1528,
+      0.1603,
+      0.1687
+     ],
+     "growth_yoy": [
+      null,
+      0.0938,
+      0.1194
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      174800000,
+      175700000,
+      184600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1171,
+      0.1128,
+      0.1114
+     ],
+     "growth_yoy": [
+      null,
+      0.0051,
+      0.0507
+     ]
+    },
+    {
+     "member": "vrsn:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      95400000,
+      96600000,
+      99500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0639,
+      0.062,
+      0.0601
+     ],
+     "growth_yoy": [
+      null,
+      0.0126,
+      0.03
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1493100000,
+     1557400000,
+     1656600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      266100000,
+      270500000,
+      283400000,
+      287700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6614,
+      0.6599,
+      0.6608,
+      0.662
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.065,
+      0.0636
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      67000000,
+      68800000,
+      73500000,
+      75900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1665,
+      0.1678,
+      0.1714,
+      0.1746
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.097,
+      0.1032
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      44400000,
+      45500000,
+      48000000,
+      47500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1104,
+      0.111,
+      0.1119,
+      0.1093
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0811,
+      0.044
+     ]
+    },
+    {
+     "member": "vrsn:OtherMember",
+     "label": "Other",
+     "values": [
+      24800000,
+      25100000,
+      24000000,
+      23500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0616,
+      0.0612,
+      0.056,
+      0.0541
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0323,
+      -0.0637
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     402300000,
+     409900000,
+     428900000,
+     434600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

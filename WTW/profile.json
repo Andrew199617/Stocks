@@ -1,0 +1,608 @@
+{
+ "ticker": "WTW",
+ "cik": 1140536,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:28:26-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001140536.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526069307/wtw-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WTW/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WTW/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/WTW/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/WTW/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/WTW/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/WTW/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/WTW/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/WTW/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/WTW/peg-ratio"
+ },
+ "about": {
+  "entity": "WILLIS TOWERS WATSON PLC",
+  "cik": 1140536,
+  "description": {
+   "text": "WTW is a leading global advisory, broking and solutions company that provides data-driven, insight-led solutions in the areas of people, risk and capital. Utilizing the global view and local expertise of our approximately 47,000 colleagues serving more than 140 countries and markets, we help organizations sharpen strategies, enhance resilience, motivate workforces and maximize performance. We design and deliver solutions that manage risk, optimize benefits, cultivate talent and expand the power of capital to protect and strengthen institutions and individuals. Working closely with our clients, we uncover opportunities for sustainable success. Our clients operate on a global and local scale in a multitude of businesses and industries throughout the world and generally range in size from large, major multinational corporations to middle-market domestic and international companies. Our clients include many of the world’s leading corporations, including approximately 93% of the FTSE 100, 89% of the Fortune 1000, and 92% of the Fortune Global 500 companies. We also advise the majority of the world’s leading insurance companies. We work with major corporations, emerging growth companies, governmental agencies and not-for-profit institutions in a wide variety of industries, with many of our client relationships spanning decades.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-069307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526069307/wtw-20251231.htm"
+  },
+  "description_short": "At WTW (NASDAQ: WTW), we provide data-driven, insight-led solutions in the areas of people, risk and capital. Leveraging the global view and local expertise of our colleagues serving 140 countries and markets, we help organizations sharpen their strategy, enhance organizational resilience, motivate their workforce and maximize performance. Working shoulder to shoulder with our clients, we uncover opportunities for sustainable success, and provide perspective that moves you.",
+  "industry": "Specialty Insurers",
+  "sector": "Finance",
+  "region": "Europe",
+  "sic": "6411",
+  "sic_description": "Insurance Agents, Brokers & Service",
+  "state_of_incorporation": "L2",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.willistowerswatson.com",
+  "headquarters": "London, England, England",
+  "address": {
+   "street": "c/o Willis Group Limited 51 Lime Street",
+   "city": "London",
+   "state": null,
+   "zip": "EC3M 7DQ",
+   "country": "England",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "metro": "England",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "44-20-3124-6000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-05-15",
+  "first_sec_filing_form": "F-1",
+  "former_names": [
+   "WILLIS GROUP HOLDINGS PLC",
+   "WILLIS GROUP HOLDINGS LTD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001140536&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 17,
+  "buy": 11,
+  "hold": 6,
+  "sell": 0,
+  "target_mean": 370.25,
+  "target_low": 310.0,
+  "target_high": 455.0,
+  "target_1y_nasdaq_summary": 365.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 344.1,
+    "buy": 8,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 313.1,
+    "buy": 8,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 320.79,
+    "buy": 9,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 328.6,
+    "buy": 9,
+    "hold": 4,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 317.47,
+    "buy": 9,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 305.17,
+    "buy": 9,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 287.53,
+    "buy": 10,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 256.34,
+    "buy": 11,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 257.04,
+    "buy": 12,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 275.04,
+    "buy": 12,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 335.92,
+    "buy": 10,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 334.47,
+    "buy": 10,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 370.25,
+    "buy": 10,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BAIRD R W",
+   "BMO CAPITAL MKT",
+   "CITIGROUP",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "KEEFE BRUYETTE",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "ROTH CAPITAL PA",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "TRUIST SECURITI",
+   "WELLS FARGO SEC",
+   "WILLIAM BLAIR",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 3.6,
+     "low": 3.46,
+     "high": 3.81,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 9.22,
+     "low": 9.13,
+     "high": 9.4,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 4.21,
+     "low": 3.96,
+     "high": 4.45,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 3.81,
+     "low": 3.71,
+     "high": 3.91,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 4.3,
+     "low": 4.16,
+     "high": 4.56,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 19.8,
+     "low": 19.25,
+     "high": 20.18,
+     "estimates": 11,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 22.66,
+     "low": 22.0,
+     "high": 23.1,
+     "estimates": 11,
+     "revisions_up": 0,
+     "revisions_down": 3
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 26.04,
+     "low": 25.6,
+     "high": 26.31,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 3.0,
+    "actual": 3.07,
+    "surprise_pct": 2.33
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 7.92,
+    "actual": 8.12,
+    "surprise_pct": 2.53
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 3.59,
+    "actual": 3.72,
+    "surprise_pct": 3.62
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 3.13,
+    "actual": 3.35,
+    "surprise_pct": 7.03
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 3.6
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 9.22
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 4.21
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 3.81
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 3.6,
+    "week_ago": 3.6,
+    "month_ago": 3.61
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 19.8,
+    "week_ago": 19.8,
+    "month_ago": 19.82
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "Willis Towers Watson Public Limited Company Ordinary Shares is expected* to report earnings on 10/29/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 8 analysts' forecasts, the consensus EPS forecast for the quarter is $3.6. The reported EPS for the same quarter last year was $3.07.",
+   "timing": "before market open"
+  },
+  "peg_forward": 0.86
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-325374",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526325374/wtw-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-26-005042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184326005042/f8k_073026.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-234740",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526234740/d125692d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-195310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526195310/wtw-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-26-002866",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184326002866/f8k_042926.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-127613",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526127613/wtw-20260327.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-069307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526069307/wtw-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-26-000577",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184326000577/f8k_020326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-023799",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526023799/d29347d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-09",
+   "period": "2026-01-07",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-009009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526009009/d80722d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-25-328864",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525328864/d62193d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-321190",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525321190/d15891d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-313445",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525313445/d44393d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-10-31",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Amendment: Results of operations",
+   "accession": "0001171843-25-006847",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184325006847/f8ka_103025.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-257944",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525257944/wtw-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-25-006785",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184325006785/f8k_103025.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-17",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-243617",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525243617/d35058d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-101355",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000095017025101355/wtw-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-25-004852",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184325004852/f8k_073125.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-20",
+   "period": "2025-05-15",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001193125-25-123217",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525123217/d94652d8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 500159,
+  "volume": 514451,
+  "market_cap_nasdaq": 28823734367,
+  "high_52w": 351.51,
+  "low_52w": 240.6146,
+  "previous_close": 297.09,
+  "one_year_target": 365.0,
+  "dividend_yield_nasdaq": 1.29,
+  "annualized_dividend": 3.84,
+  "ex_dividend_date": "2026-09-30",
+  "dividend_pay_date": "2026-10-15"
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

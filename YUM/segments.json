@@ -1,0 +1,1400 @@
+{
+ "ticker": "YUM",
+ "cik": 1041061,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001041061-26-000084",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001041061-26-000119",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000119/yum-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001041061-26-000160",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000160/yum-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "yum:KFCGlobalDivisionMember",
+     "label": "KFC Global Division",
+     "values": [
+      2830000000,
+      3099000000,
+      3542000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3999,
+      0.4105,
+      0.4312
+     ],
+     "growth_yoy": [
+      null,
+      0.0951,
+      0.1429
+     ]
+    },
+    {
+     "member": "yum:TacoBellGlobalDivisionMember",
+     "label": "Taco Bell Global Division",
+     "values": [
+      2641000000,
+      2860000000,
+      3095000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3732,
+      0.3789,
+      0.3768
+     ],
+     "growth_yoy": [
+      null,
+      0.0829,
+      0.0822
+     ]
+    },
+    {
+     "member": "yum:PizzaHutGlobalDivisionMember",
+     "label": "Pizza Hut Global Division",
+     "values": [
+      1019000000,
+      1008000000,
+      1013000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.144,
+      0.1335,
+      0.1233
+     ],
+     "growth_yoy": [
+      null,
+      -0.0108,
+      0.005
+     ]
+    },
+    {
+     "member": "yum:TheHabitBurgerGrillGlobalDivisionMember",
+     "label": "The Habit Burger Grill Global Division",
+     "values": [
+      586000000,
+      600000000,
+      570000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0828,
+      0.0795,
+      0.0694
+     ],
+     "growth_yoy": [
+      null,
+      0.0239,
+      -0.05
+     ]
+    },
+    {
+     "member": "yum:PHStrategicOptionsMember",
+     "label": "PH Strategic Options",
+     "values": [
+      null,
+      null,
+      7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.0009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "yum:GermanAcquisitionMember",
+     "label": "German Acquisition",
+     "values": [
+      null,
+      18000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0024,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "yum:OtherMember",
+     "label": "Other",
+     "values": [
+      2464000000,
+      2417000000,
+      2668000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3482,
+      0.3202,
+      0.3248
+     ],
+     "growth_yoy": [
+      null,
+      -0.0191,
+      0.1038
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      null,
+      -18000000,
+      -7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      -0.0024,
+      -0.0009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7076000000,
+     7549000000,
+     8214000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q4 FY2025",
+    "Q2 FY2025",
+    "Q4 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "yum:KFCGlobalDivisionMember",
+     "label": "KFC Global Division",
+     "values": [
+      null,
+      849000000,
+      null,
+      924000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.4392,
+      null,
+      0.426
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0883
+     ]
+    },
+    {
+     "member": "yum:TacoBellGlobalDivisionMember",
+     "label": "Taco Bell Global Division",
+     "values": [
+      null,
+      711000000,
+      null,
+      853000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3678,
+      null,
+      0.3933
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1997
+     ]
+    },
+    {
+     "member": "yum:PizzaHutGlobalDivisionMember",
+     "label": "Pizza Hut Global Division",
+     "values": [
+      null,
+      239000000,
+      null,
+      254000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.1236,
+      null,
+      0.1171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0628
+     ]
+    },
+    {
+     "member": "yum:TheHabitBurgerGrillGlobalDivisionMember",
+     "label": "The Habit Burger Grill Global Division",
+     "values": [
+      null,
+      134000000,
+      null,
+      139000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0693,
+      null,
+      0.0641
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0373
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1787000000,
+     1933000000,
+     2059000000,
+     2169000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "yum:KFCGlobalDivisionMember",
+     "label": "KFC Global Division",
+     "values": [
+      1304000000,
+      1363000000,
+      1503000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5626,
+      0.5672,
+      0.5839
+     ],
+     "growth_yoy": [
+      null,
+      0.0452,
+      0.1027
+     ]
+    },
+    {
+     "member": "yum:TacoBellGlobalDivisionMember",
+     "label": "Taco Bell Global Division",
+     "values": [
+      944000000,
+      1049000000,
+      1129000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4072,
+      0.4365,
+      0.4386
+     ],
+     "growth_yoy": [
+      null,
+      0.1112,
+      0.0763
+     ]
+    },
+    {
+     "member": "yum:PizzaHutGlobalDivisionMember",
+     "label": "Pizza Hut Global Division",
+     "values": [
+      391000000,
+      373000000,
+      340000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1687,
+      0.1552,
+      0.1321
+     ],
+     "growth_yoy": [
+      null,
+      -0.046,
+      -0.0885
+     ]
+    },
+    {
+     "member": "yum:TheHabitBurgerGrillGlobalDivisionMember",
+     "label": "The Habit Burger Grill Global Division",
+     "values": [
+      -14000000,
+      0,
+      -13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.006,
+      0.0,
+      -0.0051
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2318000000,
+     2403000000,
+     2574000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "yum:KFCGlobalDivisionMember",
+     "label": "KFC Global Division",
+     "values": [
+      331000000,
+      363000000,
+      383000000,
+      410000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.604,
+      0.5836,
+      0.5947,
+      0.626
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1571,
+      0.1295
+     ]
+    },
+    {
+     "member": "yum:TacoBellGlobalDivisionMember",
+     "label": "Taco Bell Global Division",
+     "values": [
+      241000000,
+      262000000,
+      281000000,
+      311000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4398,
+      0.4212,
+      0.4363,
+      0.4748
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.166,
+      0.187
+     ]
+    },
+    {
+     "member": "yum:PizzaHutGlobalDivisionMember",
+     "label": "Pizza Hut Global Division",
+     "values": [
+      74000000,
+      80000000,
+      64000000,
+      70000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.135,
+      0.1286,
+      0.0994,
+      0.1069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1351,
+      -0.125
+     ]
+    },
+    {
+     "member": "yum:TheHabitBurgerGrillGlobalDivisionMember",
+     "label": "The Habit Burger Grill Global Division",
+     "values": [
+      -1000000,
+      3000000,
+      -7000000,
+      -4000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0018,
+      0.0048,
+      -0.0109,
+      -0.0061
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -2.3333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     548000000,
+     622000000,
+     644000000,
+     655000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "yum:TacoBellGlobalDivisionMember",
+     "label": "Taco Bell Global Division",
+     "values": [
+      61000000,
+      64000000,
+      78000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3987,
+      0.3657,
+      0.3786
+     ],
+     "growth_yoy": [
+      null,
+      0.0492,
+      0.2188
+     ]
+    },
+    {
+     "member": "yum:KFCGlobalDivisionMember",
+     "label": "KFC Global Division",
+     "values": [
+      22000000,
+      33000000,
+      50000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1438,
+      0.1886,
+      0.2427
+     ],
+     "growth_yoy": [
+      null,
+      0.5,
+      0.5152
+     ]
+    },
+    {
+     "member": "yum:TheHabitBurgerGrillGlobalDivisionMember",
+     "label": "The Habit Burger Grill Global Division",
+     "values": [
+      30000000,
+      31000000,
+      29000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1961,
+      0.1771,
+      0.1408
+     ],
+     "growth_yoy": [
+      null,
+      0.0333,
+      -0.0645
+     ]
+    },
+    {
+     "member": "yum:PizzaHutGlobalDivisionMember",
+     "label": "Pizza Hut Global Division",
+     "values": [
+      20000000,
+      16000000,
+      23000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1307,
+      0.0914,
+      0.1117
+     ],
+     "growth_yoy": [
+      null,
+      -0.2,
+      0.4375
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      20000000,
+      31000000,
+      26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1307,
+      0.1771,
+      0.1262
+     ],
+     "growth_yoy": [
+      null,
+      0.55,
+      -0.1613
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     153000000,
+     175000000,
+     206000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "yum:TacoBellGlobalDivisionMember",
+     "label": "Taco Bell Global Division",
+     "values": [
+      16000000,
+      16000000,
+      28000000,
+      29000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3556,
+      0.3636,
+      0.4667,
+      0.4833
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.75,
+      0.8125
+     ]
+    },
+    {
+     "member": "yum:KFCGlobalDivisionMember",
+     "label": "KFC Global Division",
+     "values": [
+      11000000,
+      11000000,
+      13000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2444,
+      0.25,
+      0.2167,
+      0.2167
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1818,
+      0.1818
+     ]
+    },
+    {
+     "member": "yum:TheHabitBurgerGrillGlobalDivisionMember",
+     "label": "The Habit Burger Grill Global Division",
+     "values": [
+      7000000,
+      6000000,
+      7000000,
+      7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1556,
+      0.1364,
+      0.1167,
+      0.1167
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.1667
+     ]
+    },
+    {
+     "member": "yum:PizzaHutGlobalDivisionMember",
+     "label": "Pizza Hut Global Division",
+     "values": [
+      4000000,
+      4000000,
+      6000000,
+      5000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0889,
+      0.0909,
+      0.1,
+      0.0833
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5,
+      0.25
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      7000000,
+      6000000,
+      6000000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1556,
+      0.1364,
+      0.1,
+      0.1
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1429,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     45000000,
+     44000000,
+     60000000,
+     60000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "yum:FranchiseandpropertyrevenueMember",
+     "label": "Franchise and property revenue",
+     "values": [
+      3247000000,
+      3295000000,
+      3473000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4589,
+      0.4365,
+      0.4228
+     ],
+     "growth_yoy": [
+      null,
+      0.0148,
+      0.054
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      2142000000,
+      2552000000,
+      2945000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3027,
+      0.3381,
+      0.3585
+     ],
+     "growth_yoy": [
+      null,
+      0.1914,
+      0.154
+     ]
+    },
+    {
+     "member": "us-gaap:AdvertisingMember",
+     "label": "Advertising",
+     "values": [
+      1687000000,
+      1702000000,
+      1796000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2384,
+      0.2255,
+      0.2187
+     ],
+     "growth_yoy": [
+      null,
+      0.0089,
+      0.0552
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7076000000,
+     7549000000,
+     8214000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FranchiseMember",
+     "label": "Franchise",
+     "values": [
+      785000000,
+      835000000,
+      856000000,
+      895000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4393,
+      0.4322,
+      0.4157,
+      0.4124
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0904,
+      0.0719
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      607000000,
+      669000000,
+      785000000,
+      837000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3397,
+      0.3463,
+      0.3813,
+      0.3857
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2932,
+      0.2511
+     ]
+    },
+    {
+     "member": "us-gaap:AdvertisingMember",
+     "label": "Advertising",
+     "values": [
+      395000000,
+      428000000,
+      418000000,
+      438000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.221,
+      0.2215,
+      0.203,
+      0.2018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0582,
+      0.0234
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1787000000,
+     1932000000,
+     2059000000,
+     2170000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4106000000,
+      4333000000,
+      4525000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5803,
+      0.574,
+      0.5509
+     ],
+     "growth_yoy": [
+      null,
+      0.0553,
+      0.0443
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      506000000,
+      799000000,
+      1021000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0715,
+      0.1058,
+      0.1243
+     ],
+     "growth_yoy": [
+      null,
+      0.5791,
+      0.2778
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7076000000,
+     7549000000,
+     8214000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      980000000,
+      1043000000,
+      1120000000,
+      1186000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5484,
+      0.5396,
+      0.544,
+      0.5468
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1429,
+      0.1371
+     ]
+    },
+    {
+     "member": "yum:NonUSUKMember",
+     "label": "Non-US & UK",
+     "values": [
+      601000000,
+      658000000,
+      684000000,
+      714000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3363,
+      0.3404,
+      0.3322,
+      0.3292
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1381,
+      0.0851
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      206000000,
+      232000000,
+      255000000,
+      269000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1153,
+      0.12,
+      0.1238,
+      0.124
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2379,
+      0.1595
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1787000000,
+     1933000000,
+     2059000000,
+     2169000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Total Division' (yum:TotalDivisionMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Revenues/annual: rows sum to 132.6% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/Revenues/quarterly: reconciling row 'Corporate Segment and Other Operating Segment' (us-gaap:CorporateAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: reconciling row 'Unallocated Franchise' (yum:UnallocatedFranchiseMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/annual: row 'Total Division' (yum:TotalDivisionMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 115.0% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Total Division' (yum:TotalDivisionMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 120.2% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/Revenues/annual: rows sum to 67.5% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/Revenues/quarterly: row 'All Countries' (country:AllCountriesDomain) dropped: its values equal the sum of UNITED STATES, UNITED KINGDOM, Non-US & UK"
+ ],
+ "complete": true
+}

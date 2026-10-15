@@ -1,0 +1,614 @@
+{
+ "ticker": "KMB",
+ "cik": 55785,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:23:49-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000055785.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/55785/000162828026007567/kmb-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/KMB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/KMB/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/KMB/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/KMB/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/KMB/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/KMB/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/KMB/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/KMB/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/KMB/peg-ratio"
+ },
+ "about": {
+  "entity": "KIMBERLY CLARK CORP",
+  "cik": 55785,
+  "description": {
+   "text": "Kimberly-Clark Corporation was founded in 1872 and incorporated in Delaware in 1928. We are a global company focused on delivering essential products and solutions that solve unmet consumer needs and provide Better Care for a Better World. We are principally engaged in the manufacturing and marketing of a wide range of products made from natural or synthetic fibers and materials using advanced technologies in fibers, nonwovens and absorbency. Kimberly-Clark and our trusted brands are an indispensable part of life for people in more than 175 countries and territories. Our portfolio of brands, including Huggies, Kleenex, Scott, Kotex, Cottonelle, Poise, Depend, Andrex, Pull-Ups, GoodNites, Intimus, Plenitud, Sweety, Softex, Viva and WypAll, hold No. 1 or No. 2 share positions in approximately 70 countries and encompass five global daily-need product categories: Baby & Child Care, Adult Care, Feminine Care, Family Care, and Professional. We are committed to using sustainable practices that are designed to support a healthy planet, build strong communities, and enable our business to thrive for decades to come. Unless the context indicates otherwise, the terms \"Corporation,\" \"Company,\" \"Kimberly-Clark,\" \"K-C,\" \"we,\" \"our\" and \"us\" refer to Kimberly-Clark Corporation and its consolidated subsidiaries. Amounts within this Annual Report on Form 10-K are reported in millions, except per share amounts, unless otherwise noted.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-007567",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026007567/kmb-20251231.htm"
+  },
+  "description_short": "Kimberly-Clark (NASDAQ: KMB) and its trusted brands are an indispensable part of life for people in more than 175 countries and territories. Our portfolio of brands, including Huggies, Kleenex, Scott, Kotex, Cottonelle, Poise, Depend, Pull-Ups, Goodnites, Intimus, Plenitud, Sweety, Softex, Viva and WypAll, hold No. 1 or No. 2 share positions in approximately 70 countries. Our company's purpose is to deliver Better Care for a Better World. We are committed to using sustainable practices designed to support a healthy planet, build strong communities, and enable our business to thrive for decades to come. To keep up with the latest news and learn more about the company's more than 150-year history of innovation, visit the Kimberly-Clark website.",
+  "industry": "Containers/Packaging",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2670",
+  "sic_description": "Converted Paper & Paperboard Prods (No Contaners/Boxes)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.kimberly-clark.com",
+  "headquarters": "Dallas, TX",
+  "address": {
+   "street": "P.O. Box 619100",
+   "city": "Dallas",
+   "state": "TX",
+   "zip": "75261-9100",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "9722811200",
+  "employees": {
+   "count": 36000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 36,000 employees in our consolidated operations, including employees of our IFP Business reported as discontinued operations.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026007567/kmb-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-18",
+  "first_sec_filing_form": "8-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000055785&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 19,
+  "buy": 5,
+  "hold": 6,
+  "sell": 0,
+  "target_mean": 113.83,
+  "target_low": 90.0,
+  "target_high": 162.0,
+  "target_1y_nasdaq_summary": 114.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 123.23,
+    "buy": 5,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 119.71,
+    "buy": 4,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 108.54,
+    "buy": 4,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 100.89,
+    "buy": 4,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 99.99,
+    "buy": 3,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 111.44,
+    "buy": 3,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 97.57,
+    "buy": 3,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 97.67,
+    "buy": 3,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 97.95,
+    "buy": 4,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 111.44,
+    "buy": 4,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 109.31,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 107.08,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 113.83,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BERENBERG BANK",
+   "CITIGROUP",
+   "CO FORECST",
+   "DBS BANK",
+   "DEUTSCHE BK SEC",
+   "EDWARD JONES",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JP MORGAN SECUR",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "ROTHSCHILD REDB",
+   "SANFORD BERNSTE",
+   "UBS",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.66,
+     "low": 1.55,
+     "high": 1.87,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.65,
+     "low": 1.63,
+     "high": 1.68,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.83,
+     "low": 1.65,
+     "high": 2.0,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.94,
+     "low": 1.81,
+     "high": 2.03,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.84,
+     "low": 1.73,
+     "high": 1.99,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 7.35,
+     "low": 7.28,
+     "high": 7.45,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 7.41,
+     "low": 6.97,
+     "high": 7.7,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 7.89,
+     "low": 7.82,
+     "high": 7.95,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 8.45,
+     "low": 8.45,
+     "high": 8.45,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.45,
+    "actual": 1.82,
+    "surprise_pct": 25.52
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.39,
+    "actual": 1.86,
+    "surprise_pct": 33.81
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.92,
+    "actual": 1.97,
+    "surprise_pct": 2.6
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 2.0,
+    "actual": 1.8,
+    "surprise_pct": -10.0
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.66
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.65
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.83
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.94
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.66,
+    "week_ago": 1.66,
+    "month_ago": 1.7
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 7.35,
+    "week_ago": 7.35,
+    "month_ago": 7.38
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "Kimberly-Clark Corporation Common Stock is estimated to report earnings on 10/29/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 6 analysts' forecasts, the consensus EPS forecast for the quarter is $1.66. The reported EPS for the same quarter last year was $1.82.",
+   "timing": null
+  },
+  "peg_forward": 5.08
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-115960",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465926115960/tm2627599d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-115239",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465926115239/tm2627373d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-112571",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465926112571/tm2626685d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-111354",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465926111354/tm2625576d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-052348",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026052348/kmb-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-052113",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026052113/kmb-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-035124",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026035124/pre-20260514.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-030566",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026030566/pre-20260501.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-027800",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026027800/kmb-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-027718",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026027718/pre-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-020404",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026020404/kmb-20260323.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-007567",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026007567/kmb-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001104659-26-008005",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465926008005/tm262467d8_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-003514",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026003514/pre-20260127.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-16",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-004634",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465926004634/tm262467d4_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-055209",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828025055209/kmb-20251204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-050635",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828025050635/pre-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-02",
+   "items": [
+    "1.01",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD; Other events",
+   "accession": "0001104659-25-105220",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000110465925105220/tm2530027d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047387",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828025047387/kmb-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047278",
+   "url": "https://www.sec.gov/Archives/edgar/data/55785/000162828025047278/pre-20251030.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 3975127,
+  "volume": 7954954,
+  "market_cap_nasdaq": 34611500485,
+  "high_52w": 123.09,
+  "low_52w": 92.42,
+  "previous_close": 99.41,
+  "one_year_target": 114.0,
+  "dividend_yield_nasdaq": 5.15,
+  "annualized_dividend": 5.12,
+  "ex_dividend_date": "2026-09-04",
+  "dividend_pay_date": "2026-10-02"
+ },
+ "warnings": []
+}

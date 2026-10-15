@@ -1,0 +1,605 @@
+{
+ "ticker": "AXON",
+ "cik": 1069183,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:18:58-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001069183.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026011360/axon-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AXON/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AXON/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/AXON/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/AXON/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/AXON/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/AXON/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/AXON/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/AXON/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/AXON/peg-ratio"
+ },
+ "about": {
+  "entity": "AXON ENTERPRISE, INC.",
+  "cik": 1069183,
+  "description": {
+   "text": "Axon Enterprise, Inc. (“Axon,” the “Company,” “we” or “us”) is a technology company that provides integrated hardware and software solutions. Founder-led since 1993, Axon began with a mission to protect life and has grown into a global technology company serving a range of customers. Our products and services allow customers across the public and private sector to capture and use critical data to support fully-connected operational workflows. Our trusted network seamlessly integrates software and hardware with a range of connected devices, including TASER energy devices, cameras and sensors, drones and robotics, cloud-based evidence management, records management, real-time operations software, critical incident and emergency response systems, immersive training, and productivity tools – all enhanced by artificial intelligence (“AI”). Designed to work together, these solutions create a unified, data-driven operating system that prioritizes safety and helps protect people and places with greater speed, accuracy, transparency, and accountability. Our integrated technology platform of hardware and software solutions advances our mission to (i) make the bullet obsolete, (ii) reduce social conflict, and (iii) enable a fair and effective justice system. Our products and technology solutions address complex, high-stakes challenges, and our mission attracts top talent.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-011360",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026011360/axon-20251231.htm"
+  },
+  "description_short": "Axon (Nasdaq: AXON) is the global leader in public safety technology, relentlessly innovating to protect more lives in more places. Founder-led since 1993, Axon began with a mission to reimagine conflict in law enforcement and has grown into a global company serving everyone who takes on the responsibility of public safety, enterprise security, and national security - from first responders and governments to companies, frontline workers, and communities. Our trusted network connects TASER energy devices, cameras and sensors including body, fixed and in-car cameras, drones and robotics, digital evidence and records management, real-time operations, immersive training, productivity tools, and AI-driven capabilities and insights. Designed to work seamlessly together, these solutions create a connected picture of safety that helps protect people and places with greater speed, clarity, and accountability.",
+  "industry": "Ordnance And Accessories",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3480",
+  "sic_description": "Ordnance & Accessories, (No Vehicles/Guided Missiles)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.axon.com",
+  "headquarters": "Scottsdale, Arizona",
+  "address": {
+   "street": "17800 North 85th Street",
+   "city": "Scottsdale",
+   "state": "Arizona",
+   "zip": "85255",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "480-991-0797",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-type / per-location breakdown with no filed total",
+   "evidence": "As of December 31, 2025, we had more than 5,100 full-time employees and more than 1,200 temporary employees (which include contractors, interns and individual consultants).",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026011360/axon-20251231.htm"
+  },
+  "first_sec_filing": "2001-03-07",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "TASER INTERNATIONAL INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001069183&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 12,
+  "buy": 12,
+  "hold": 1,
+  "sell": 0,
+  "target_mean": 705.0,
+  "target_low": 470.0,
+  "target_high": 830.0,
+  "target_1y_nasdaq_summary": 700.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 711.34,
+    "buy": 15,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 732.23,
+    "buy": 12,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 533.21,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 567.93,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 483.58,
+    "buy": 7,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 542.4,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 423.57,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 402.31,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 476.88,
+    "buy": 15,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 593.96,
+    "buy": 15,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 527.76,
+    "buy": 10,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 518.3,
+    "buy": 11,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 705.0,
+    "buy": 11,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "CITIZENS JMP",
+   "CRAIG-HALLUM",
+   "GOLDMAN SACHS",
+   "JP MORGAN SECUR",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "NORTHCOAST RESE",
+   "NORTHLAND CAPMK",
+   "RAYMOND JAMES",
+   "WILLIAM BLAIR"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.48,
+     "low": 0.01,
+     "high": 1.01,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.69,
+     "low": -0.23,
+     "high": 1.29,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.75,
+     "low": 0.31,
+     "high": 1.07,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.07,
+     "low": 0.62,
+     "high": 1.39,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.21,
+     "low": 0.76,
+     "high": 1.7,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.12,
+     "low": 0.6,
+     "high": 3.12,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 4.69,
+     "low": 2.75,
+     "high": 6.49,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 7.25,
+     "low": 6.2,
+     "high": 8.3,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.08,
+    "actual": -0.23,
+    "surprise_pct": -387.5
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -0.18,
+    "actual": 0.48,
+    "surprise_pct": 366.67
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.03,
+    "actual": 0.33,
+    "surprise_pct": 1000.0
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.3,
+    "actual": 0.57,
+    "surprise_pct": 90.0
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.48
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.69
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.75
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.07
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.48,
+    "week_ago": 0.48,
+    "month_ago": 0.48
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 2.12,
+    "week_ago": 2.12,
+    "month_ago": 2.12
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-03",
+   "text": "Axon Enterprise, Inc. Common Stock is estimated to report earnings on 11/03/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $0.48. The reported EPS for the same quarter last year was $-0.23.",
+   "timing": null
+  },
+  "peg_forward": 7.68
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001193125-26-395997",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000119312526395997/d476163d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001193125-26-391320",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000119312526391320/d17675d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-053646",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026053646/axon-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-053363",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026053363/axon-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-08",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-047888",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026047888/axon-20260708.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-28",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-039483",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026039483/axon-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-031542",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026031542/axon-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-031285",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026031285/axon-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-16",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-025521",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026025521/axon-20260416.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-024720",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026024720/axon-20260406.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-016872",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026016872/axon-20260305.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-011360",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026011360/axon-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-011106",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026011106/axon-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-13",
+   "period": "2026-02-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-008101",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026008101/axon-20260210.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-04",
+   "period": "2025-12-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Amendment: Other events",
+   "accession": "0001628280-26-005206",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828026005206/axon-20251218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-057967",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828025057967/axon-20251218.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-17",
+   "period": "2025-12-09",
+   "items": [
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Amendment: Unregistered sale of equity; Other events",
+   "accession": "0001628280-25-057640",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828025057640/axon-20251209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-09",
+   "items": [
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Other events",
+   "accession": "0001628280-25-056229",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828025056229/axon-20251209.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-049143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828025049143/axon-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-048845",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069183/000162828025048845/axon-20251104.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 983267,
+  "volume": 907635,
+  "market_cap_nasdaq": 33891437164,
+  "high_52w": 764.02,
+  "low_52w": 339.01,
+  "previous_close": 408.42,
+  "one_year_target": 700.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: null - a per-type / per-location breakdown with no filed total in the 10-K filed 2026-02-25: \"As of December 31, 2025, we had more than 5,100 full-time employees and more than 1,200 temporary employees (which include contractors, interns and individual consultants).\""
+ ]
+}

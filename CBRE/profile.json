@@ -1,0 +1,607 @@
+{
+ "ticker": "CBRE",
+ "cik": 1138118,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:19:21-04:00",
+ "newest_filing_date": "2026-08-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001138118.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000005/cbre-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CBRE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CBRE/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/CBRE/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/CBRE/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/CBRE/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/CBRE/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/CBRE/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/CBRE/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/CBRE/peg-ratio"
+ },
+ "about": {
+  "entity": "CBRE GROUP, INC.",
+  "cik": 1138118,
+  "description": {
+   "text": "CBRE is the world’s largest commercial real estate services and investments firm (based on 2025 revenue). We derive competitive advantage from our considerable scale and ability to offer integrated solutions for real estate investors and occupiers in more than 100 countries. We are global market leaders in most of our business lines and drive significant growth by helping clients optimize real estate costs, value, investment returns and workplace experiences. These capabilities, combined with our extensive knowledge platform (research, data, strategy, etc.), allow us to generate superior outcomes for our clients, which included nearly 90% of Fortune 100 companies and many of the world’s largest institutional real estate investors in 2025. Our growth opportunity is enhanced by the large and expanding total addressable market for our services. We are focused on cementing our leadership position in each of our businesses with a strategy that achieves growth across four dimensions of our business: geographies, clients, property types and services. We are committed to deploying our resources and capital in parts of our business that benefit from secular tailwinds and/or are cyclically resilient across these four dimensions.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001138118-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000005/cbre-20251231.htm"
+  },
+  "description_short": "CBRE Group, Inc. (NYSE: CBRE), a Fortune 500 and S&P 500 company headquartered in Dallas, is the world's largest commercial real estate services and investment firm and a premier provider of critical infrastructure services. The company has more than 155,000 employees serving clients in more than 100 countries. CBRE serves clients through four business segments: Advisory (leasing, sales, debt origination, mortgage servicing, valuations); Building Operations & Experience (facilities management, property management, flex space & experience, critical infrastructure); Project Management (program management, project management, cost consulting); Real Estate Investments (investment management, development).",
+  "industry": "Real Estate",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6500",
+  "sic_description": "Real Estate",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.cbre.com",
+  "headquarters": "Dallas, Texas",
+  "address": {
+   "street": "2121 North Pearl Street Suite 300",
+   "city": "Dallas",
+   "state": "Texas",
+   "zip": "75201",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "214-979-6100",
+  "employees": {
+   "count": 155000,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we had more than 155,000 employees (including Turner & Townsend employees) worldwide.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000005/cbre-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-04-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "CB RICHARD ELLIS GROUP INC",
+   "CB RICHARD ELLIS SERVICES INC",
+   "CBRE HOLDING INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001138118&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 8,
+  "buy": 8,
+  "hold": 0,
+  "sell": 0,
+  "target_mean": 184.0,
+  "target_low": 174.0,
+  "target_high": 190.0,
+  "target_1y_nasdaq_summary": 184.5,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 156.56,
+    "buy": 6,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 152.43,
+    "buy": 5,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 159.34,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 160.79,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 170.33,
+    "buy": 5,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 147.66,
+    "buy": 8,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 134.49,
+    "buy": 9,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 141.81,
+    "buy": 9,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 124.64,
+    "buy": 6,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 138.3,
+    "buy": 8,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 146.81,
+    "buy": 9,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 144.46,
+    "buy": 9,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 184.0,
+    "buy": 8,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "CITIGROUP",
+   "EVERCORE ISI",
+   "JP MORGAN SECUR",
+   "KEEFE BRUYETTE",
+   "RAYMOND JAMES",
+   "UBS",
+   "WILLIAM BLAIR",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.98,
+     "low": 1.92,
+     "high": 2.03,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.7,
+     "low": 2.65,
+     "high": 2.76,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.49,
+     "low": 1.4,
+     "high": 1.56,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.78,
+     "low": 1.48,
+     "high": 2.15,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 2.38,
+     "low": 2.26,
+     "high": 2.6,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 7.78,
+     "low": 7.57,
+     "high": 7.87,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 9.07,
+     "low": 8.83,
+     "high": 9.33,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 10.78,
+     "low": 10.31,
+     "high": 11.58,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 14.33,
+     "low": 14.33,
+     "high": 14.33,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.47,
+    "actual": 1.61,
+    "surprise_pct": 9.52
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 2.66,
+    "actual": 2.73,
+    "surprise_pct": 2.63
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.13,
+    "actual": 1.61,
+    "surprise_pct": 42.48
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.47,
+    "actual": 1.56,
+    "surprise_pct": 6.12
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.98
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 2.7
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.49
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.78
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.98,
+    "week_ago": 1.98,
+    "month_ago": 1.98
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 7.78,
+    "week_ago": 7.79,
+    "month_ago": 7.79
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-22",
+   "text": "CBRE Group Inc Common Stock Class A is expected* to report earnings on 10/22/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 3 analysts' forecasts, the consensus EPS forecast for the quarter is $1.98. The reported EPS for the same quarter last year was $1.61.",
+   "timing": "before market open"
+  },
+  "peg_forward": 0.0
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001138118-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000024/cbre-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001138118-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000021/cbre-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-279756",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526279756/cbre-20260623.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-15",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-271325",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526271325/cbre-20260615.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-237130",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526237130/cbre-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-204246",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526204246/cbre-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-27",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-187630",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526187630/cbre-20260427.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001138118-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000015/cbre-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001138118-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000013/cbre-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-03",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-141285",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526141285/cbre-20260402.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001138118-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000008/cbre-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-23",
+   "period": "2026-03-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-119981",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526119981/cbre-20260320.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-25",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-083199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526083199/cbre-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-25",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-076913",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312526076913/cbre-20260225.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001138118-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000005/cbre-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001138118-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000002/cbre-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-13",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-280290",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312525280290/cbre-20251113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-05",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-272474",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312525272474/cbre-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-263632",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000119312525263632/cbre-20251104.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001138118-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811825000025/cbre-20250930.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 1744345,
+  "volume": 2467198,
+  "market_cap_nasdaq": 39220078361,
+  "high_52w": 174.27,
+  "low_52w": 121.69,
+  "previous_close": 128.87,
+  "one_year_target": 184.5,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

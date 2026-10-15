@@ -454,7 +454,11 @@ function aboutFacts(record) {
   push('Incorporated', about.state_of_incorporation || fp.state_of_incorporation ? esc(about.state_of_incorporation || fp.state_of_incorporation) : null);
   // Only a registration or listing form dates the IPO; anything else (a 13G, a
   // Form 4) is just where EDGAR's record starts for a company public before 1996.
-  var regForm = /^(S-1|S-1\/A|F-1|F-1\/A|S-11|10-12B|10-12G|8-A12B|8-A12G|424B\d|20-F|40-F|10-K|10-Q|10-KSB|10-QSB)$/i.test(String(about.first_sec_filing_form || ''));
+  // EDGAR filing became mandatory for all registrants by May 1996, so a first
+  // record before 1997 is where the archive starts, not a listing (Kroger's is a
+  // 1994 debt prospectus); after that, only a registration form dates the IPO.
+  var regForm = /^(S-1|S-1\/A|F-1|F-1\/A|S-11|10-12B|10-12G|8-A12B|8-A12G|424B4|20-F|40-F)$/i.test(String(about.first_sec_filing_form || ''))
+    && String(about.first_sec_filing || '') >= '1997-01-01';
   push(regForm ? 'First SEC filing' : 'First EDGAR record', about.first_sec_filing ? esc(about.first_sec_filing) + ' <span class="sub">' + esc(about.first_sec_filing_form || 'filing') + '</span>' : null,
     regForm ? 'Earliest registration, listing or periodic form on EDGAR (' + String(about.first_sec_filing_form) + ') — the IPO-date proxy'
             : 'Earliest filing on EDGAR; the company was public before EDGAR\'s records start (1993–96), so this is not an IPO date');

@@ -1,0 +1,1645 @@
+{
+ "ticker": "CFG",
+ "cik": 759944,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000759944-26-000028",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000028/cfg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000759944-26-000101",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000101/cfg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000759944-26-000148",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000148/cfg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingMember",
+     "label": "Consumer Banking",
+     "values": [
+      5254000000,
+      5695000000,
+      6224000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6389,
+      0.7293,
+      0.7547
+     ],
+     "growth_yoy": [
+      null,
+      0.0839,
+      0.0929
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      3076000000,
+      2858000000,
+      2773000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.374,
+      0.366,
+      0.3362
+     ],
+     "growth_yoy": [
+      null,
+      -0.0709,
+      -0.0297
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -106000000,
+      -744000000,
+      -750000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0129,
+      -0.0953,
+      -0.0909
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8224000000,
+     7809000000,
+     8247000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingSegmentMember",
+     "label": "Consumer Banking Segment",
+     "values": [
+      1490000000,
+      1547000000,
+      1608000000,
+      1662000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.77,
+      0.7595,
+      0.7417,
+      0.728
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0792,
+      0.0743
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingSegmentMember",
+     "label": "Commercial Banking Segment",
+     "values": [
+      656000000,
+      671000000,
+      719000000,
+      759000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.339,
+      0.3294,
+      0.3316,
+      0.3325
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.096,
+      0.1311
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -211000000,
+      -181000000,
+      -159000000,
+      -138000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.109,
+      -0.0889,
+      -0.0733,
+      -0.0604
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1935000000,
+     2037000000,
+     2168000000,
+     2283000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingMember",
+     "label": "Consumer Banking",
+     "values": [
+      783000000,
+      869000000,
+      955000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6185,
+      0.5669,
+      0.5841
+     ],
+     "growth_yoy": [
+      null,
+      0.1098,
+      0.099
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      483000000,
+      639000000,
+      680000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3815,
+      0.4168,
+      0.4159
+     ],
+     "growth_yoy": [
+      null,
+      0.323,
+      0.0642
+     ]
+    },
+    {
+     "member": "cfg:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      0,
+      25000000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0163,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1266000000,
+     1533000000,
+     1635000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingSegmentMember",
+     "label": "Consumer Banking Segment",
+     "values": [
+      223000000,
+      239000000,
+      242000000,
+      254000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6076,
+      0.624,
+      0.5831,
+      0.5632
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0852,
+      0.0628
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingSegmentMember",
+     "label": "Commercial Banking Segment",
+     "values": [
+      144000000,
+      144000000,
+      169000000,
+      197000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3924,
+      0.376,
+      0.4072,
+      0.4368
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1736,
+      0.3681
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      0,
+      0,
+      4000000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0096,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     367000000,
+     383000000,
+     415000000,
+     451000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingMember",
+     "label": "Consumer Banking",
+     "values": [
+      1059000000,
+      1253000000,
+      1506000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6586,
+      0.8304,
+      0.8225
+     ],
+     "growth_yoy": [
+      null,
+      0.1832,
+      0.2019
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      1153000000,
+      973000000,
+      865000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.717,
+      0.6448,
+      0.4724
+     ],
+     "growth_yoy": [
+      null,
+      -0.1561,
+      -0.111
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -604000000,
+      -717000000,
+      -540000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3756,
+      -0.4751,
+      -0.2949
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1608000000,
+     1509000000,
+     1831000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingSegmentMember",
+     "label": "Consumer Banking Segment",
+     "values": [
+      336000000,
+      376000000,
+      378000000,
+      426000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9008,
+      0.8624,
+      0.7311,
+      0.7257
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.125,
+      0.133
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingSegmentMember",
+     "label": "Commercial Banking Segment",
+     "values": [
+      196000000,
+      206000000,
+      243000000,
+      280000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5255,
+      0.4725,
+      0.47,
+      0.477
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2398,
+      0.3592
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -159000000,
+      -146000000,
+      -104000000,
+      -119000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.4263,
+      -0.3349,
+      -0.2012,
+      -0.2027
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     373000000,
+     436000000,
+     517000000,
+     587000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingMember",
+     "label": "Consumer Banking",
+     "values": [
+      4187000000,
+      4564000000,
+      4972000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6709,
+      0.8102,
+      0.8495
+     ],
+     "growth_yoy": [
+      null,
+      0.09,
+      0.0894
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      2292000000,
+      1950000000,
+      1778000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3672,
+      0.3462,
+      0.3038
+     ],
+     "growth_yoy": [
+      null,
+      -0.1492,
+      -0.0882
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -238000000,
+      -881000000,
+      -897000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0381,
+      -0.1564,
+      -0.1533
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6241000000,
+     5633000000,
+     5853000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingSegmentMember",
+     "label": "Consumer Banking Segment",
+     "values": [
+      1193000000,
+      1218000000,
+      1309000000,
+      1348000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8577,
+      0.8476,
+      0.838,
+      0.8265
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0972,
+      0.1067
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingSegmentMember",
+     "label": "Commercial Banking Segment",
+     "values": [
+      441000000,
+      439000000,
+      456000000,
+      467000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.317,
+      0.3055,
+      0.2919,
+      0.2863
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.034,
+      0.0638
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -243000000,
+      -220000000,
+      -203000000,
+      -184000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1747,
+      -0.1531,
+      -0.13,
+      -0.1128
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1391000000,
+     1437000000,
+     1562000000,
+     1631000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingMember",
+     "label": "Consumer Banking",
+     "values": [
+      1067000000,
+      1131000000,
+      1252000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5381,
+      0.5198,
+      0.523
+     ],
+     "growth_yoy": [
+      null,
+      0.06,
+      0.107
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      784000000,
+      908000000,
+      995000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3954,
+      0.4173,
+      0.4156
+     ],
+     "growth_yoy": [
+      null,
+      0.1582,
+      0.0958
+     ]
+    },
+    {
+     "member": "cfg:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      132000000,
+      137000000,
+      147000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0666,
+      0.063,
+      0.0614
+     ],
+     "growth_yoy": [
+      null,
+      0.0379,
+      0.073
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1983000000,
+     2176000000,
+     2394000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingSegmentMember",
+     "label": "Consumer Banking Segment",
+     "values": [
+      297000000,
+      329000000,
+      299000000,
+      314000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.546,
+      0.5483,
+      0.4934,
+      0.4816
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0067,
+      -0.0456
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingSegmentMember",
+     "label": "Commercial Banking Segment",
+     "values": [
+      215000000,
+      232000000,
+      263000000,
+      292000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3952,
+      0.3867,
+      0.434,
+      0.4479
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2233,
+      0.2586
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      32000000,
+      39000000,
+      44000000,
+      46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0588,
+      0.065,
+      0.0726,
+      0.0706
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.375,
+      0.1795
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     544000000,
+     600000000,
+     606000000,
+     652000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingMember",
+     "label": "Consumer Banking",
+     "values": [
+      112000000,
+      121000000,
+      122000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2623,
+      0.2683,
+      0.2729
+     ],
+     "growth_yoy": [
+      null,
+      0.0804,
+      0.0083
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      30000000,
+      26000000,
+      20000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0703,
+      0.0576,
+      0.0447
+     ],
+     "growth_yoy": [
+      null,
+      -0.1333,
+      -0.2308
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      285000000,
+      304000000,
+      305000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6674,
+      0.6741,
+      0.6823
+     ],
+     "growth_yoy": [
+      null,
+      0.0667,
+      0.0033
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     427000000,
+     451000000,
+     447000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:ConsumerBankingSegmentMember",
+     "label": "Consumer Banking Segment",
+     "values": [
+      31000000,
+      32000000,
+      31000000,
+      31000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2793,
+      0.2807,
+      0.2844,
+      0.2897
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.0312
+     ]
+    },
+    {
+     "member": "cfg:CommercialBankingSegmentMember",
+     "label": "Commercial Banking Segment",
+     "values": [
+      5000000,
+      5000000,
+      4000000,
+      4000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.045,
+      0.0439,
+      0.0367,
+      0.0374
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2,
+      -0.2
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      75000000,
+      77000000,
+      74000000,
+      72000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6757,
+      0.6754,
+      0.6789,
+      0.6729
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0133,
+      -0.0649
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     111000000,
+     114000000,
+     109000000,
+     107000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cfg:CapitalMarketsFeesMember",
+     "label": "Capital Markets Fees",
+     "values": [
+      293000000,
+      445000000,
+      485000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2314,
+      0.2903,
+      0.2966
+     ],
+     "growth_yoy": [
+      null,
+      0.5188,
+      0.0899
+     ]
+    },
+    {
+     "member": "cfg:ServiceChargesandFeesMember",
+     "label": "Service Charges and Fees",
+     "values": [
+      409000000,
+      417000000,
+      442000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3231,
+      0.272,
+      0.2703
+     ],
+     "growth_yoy": [
+      null,
+      0.0196,
+      0.06
+     ]
+    },
+    {
+     "member": "cfg:WealthFeesMember",
+     "label": "Wealth Fees",
+     "values": [
+      259000000,
+      294000000,
+      360000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2046,
+      0.1918,
+      0.2202
+     ],
+     "growth_yoy": [
+      null,
+      0.1351,
+      0.2245
+     ]
+    },
+    {
+     "member": "cfg:CardFeesMember",
+     "label": "Card Fees",
+     "values": [
+      291000000,
+      362000000,
+      335000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2299,
+      0.2361,
+      0.2049
+     ],
+     "growth_yoy": [
+      null,
+      0.244,
+      -0.0746
+     ]
+    },
+    {
+     "member": "cfg:OtherBankingFeesMember",
+     "label": "Other Banking Fees",
+     "values": [
+      14000000,
+      15000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0111,
+      0.0098,
+      0.008
+     ],
+     "growth_yoy": [
+      null,
+      0.0714,
+      -0.1333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1266000000,
+     1533000000,
+     1635000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cfg:CapitalMarketsFeesMember",
+     "label": "Capital Markets Fees",
+     "values": [
+      95000000,
+      95000000,
+      120000000,
+      144000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2589,
+      0.248,
+      0.2892,
+      0.3193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2632,
+      0.5158
+     ]
+    },
+    {
+     "member": "cfg:ServiceChargesandFeesMember",
+     "label": "Service Charges and Fees",
+     "values": [
+      108000000,
+      111000000,
+      111000000,
+      118000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2943,
+      0.2898,
+      0.2675,
+      0.2616
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0278,
+      0.0631
+     ]
+    },
+    {
+     "member": "cfg:WealthFeesMember",
+     "label": "Wealth Fees",
+     "values": [
+      81000000,
+      88000000,
+      100000000,
+      102000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2207,
+      0.2298,
+      0.241,
+      0.2262
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2346,
+      0.1591
+     ]
+    },
+    {
+     "member": "cfg:CardFeesMember",
+     "label": "Card Fees",
+     "values": [
+      80000000,
+      87000000,
+      80000000,
+      86000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.218,
+      0.2272,
+      0.1928,
+      0.1907
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.0115
+     ]
+    },
+    {
+     "member": "cfg:OtherBankingFeesMember",
+     "label": "Other Banking Fees",
+     "values": [
+      3000000,
+      2000000,
+      4000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0082,
+      0.0052,
+      0.0096,
+      0.0022
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3333,
+      -0.5
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     367000000,
+     383000000,
+     415000000,
+     451000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/NoninterestIncome/annual: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Other Segment' (cfg:OtherSegmentMember)"
+ ],
+ "complete": true
+}

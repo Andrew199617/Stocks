@@ -1,0 +1,632 @@
+{
+ "ticker": "ON",
+ "cik": 1097864,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:24:52-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001097864.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000006/on-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ON/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ON/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ON/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ON/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ON/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ON/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ON/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ON/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ON/peg-ratio"
+ },
+ "about": {
+  "entity": "ON SEMICONDUCTOR CORP",
+  "cik": 1097864,
+  "description": {
+   "text": "ON Semiconductor Corporation, together with its wholly and majority-owned subsidiaries, which operate under the onsemiTM brand (\"onsemi,\" \"we,\" \"us,\" \"our,\" or the \"Company\"), was incorporated under the laws of the State of Delaware in 1992. We offer intelligent power and intelligent sensing solutions that drive electrification, energy efficiency, safety, and automation in automotive, industrial, and other end-markets, including AI data center. Our intelligent power technologies enable the electrification of drivetrain in the automotive industry to allow for lighter and longer-range electric vehicles and empower efficient fast-charging systems. Our intelligent sensing technologies enable advanced safety applications in automotive through industry leading performance and reliability. We believe the evolution of the automotive industry, with advancements in autonomous driving, ADAS, vehicle electrification, and the increase in electronics content for vehicle platforms is reshaping the boundaries of transportation. Through sensing integration, we believe our intelligent power solutions achieve increased efficiencies compared to our peers. This integration allows lower temperature operation and reduced cooling requirements while saving costs and minimizing weight. In addition, our power solutions deliver power with less die per module, achieving higher range for a given battery capacity.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "accession": "0001097864-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000006/on-20251231.htm"
+  },
+  "description_short": "onsemi (Nasdaq: ON) delivers intelligent power and sensing technologies that enable electrification, energy efficiency, safety, and automation across automotive, industrial, and AI data center end-markets. With a highly differentiated and innovative product portfolio, onsemi helps customers solve complex challenges to achieve higher efficiency, improved performance, and lower system cost, while supporting a safer, cleaner, and more energy-efficient world. The company is part of the S&P 500 index.",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.onsemi.com",
+  "headquarters": "Scottsdale, AZ",
+  "address": {
+   "street": "5701 N. Pima Road",
+   "city": "Scottsdale",
+   "state": "AZ",
+   "zip": "85250",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-09"
+  },
+  "phone": "6022446600",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-type / per-location breakdown with no filed total",
+   "evidence": "As of December 31, 2025, we had approximately 22,600 regular full-time employees and about 70 part-time or temporary employees across 33 countries.",
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000006/on-20251231.htm"
+  },
+  "first_sec_filing": "2000-02-18",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "SCG HOLDING CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001097864&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 30,
+  "buy": 11,
+  "hold": 12,
+  "sell": 0,
+  "target_mean": 104.53,
+  "target_low": 75.0,
+  "target_high": 137.0,
+  "target_1y_nasdaq_summary": 98.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 48.35,
+    "buy": 10,
+    "hold": 13,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 50.08,
+    "buy": 7,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 50.43,
+    "buy": 7,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 54.15,
+    "buy": 7,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 59.89,
+    "buy": 5,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 66.48,
+    "buy": 10,
+    "hold": 16,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 62.2,
+    "buy": 10,
+    "hold": 16,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 103.03,
+    "buy": 12,
+    "hold": 13,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 120.92,
+    "buy": 12,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 94.63,
+    "buy": 12,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 81.61,
+    "buy": 10,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 72.65,
+    "buy": 10,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 104.53,
+    "buy": 11,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "B.RILEY SECURIT",
+   "BAIRD R W",
+   "BENCHMARK COMPA",
+   "BMO CAPITAL MKT",
+   "CITIGROUP",
+   "CO FORECST",
+   "CRAIG-HALLUM",
+   "DEUTSCHE BK SEC",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEYBANC CAP MKT",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "ROSENBLATT SEC",
+   "ROTH CAPITAL PA",
+   "STIFEL NICOLAUS",
+   "SUMMIT INSIGHTS",
+   "SUSQUEHANNA",
+   "TD COWEN",
+   "TRUIST SECURITI",
+   "WELLS FARGO SEC",
+   "WILLIAM BLAIR",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.87,
+     "low": 0.86,
+     "high": 0.92,
+     "estimates": 11,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.96,
+     "low": 0.93,
+     "high": 0.99,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.96,
+     "low": 0.92,
+     "high": 1.01,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.07,
+     "low": 1.04,
+     "high": 1.1,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.21,
+     "low": 1.18,
+     "high": 1.24,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 3.2,
+     "low": 3.0,
+     "high": 3.33,
+     "estimates": 14,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 4.48,
+     "low": 4.0,
+     "high": 4.67,
+     "estimates": 15,
+     "revisions_up": 1,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 5.93,
+     "low": 5.42,
+     "high": 6.59,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 8.09,
+     "low": 8.09,
+     "high": 8.09,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.59,
+    "actual": 0.63,
+    "surprise_pct": 6.78
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.62,
+    "actual": 0.64,
+    "surprise_pct": 3.23
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.61,
+    "actual": 0.64,
+    "surprise_pct": 4.92
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.72,
+    "actual": 0.74,
+    "surprise_pct": 2.78
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.87
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.96
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.96
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.07
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.87,
+    "week_ago": 0.87,
+    "month_ago": 0.87
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 3.2,
+    "week_ago": 3.2,
+    "month_ago": 3.23
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-02",
+   "text": "ON Semiconductor Corporation Common Stock is estimated to report earnings on 11/02/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 11 analysts' forecasts, the consensus EPS forecast for the quarter is $0.87. The reported EPS for the same quarter last year was $0.63.",
+   "timing": null
+  },
+  "peg_forward": 0.61
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001140361-26-038294",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126038294/ef20083030_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-12",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-032594",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126032594/ef20080111_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-07-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001097864-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000017/on-20260703.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-26-030989",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126030989/ef20079200_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001140361-26-026395",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126026395/ef20076747_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001140361-26-021907",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126021907/ef20074056_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001140361-26-020642",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126020642/ef20072923_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-019416",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126019416/ef20072662_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-019207",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126019207/ef20066746_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-04-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001097864-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000014/on-20260403.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-26-018868",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126018868/ef20072220_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001097864-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000010/on-20260401.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-09",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-008936",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126008936/ef20067528_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001097864-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000006/on-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-26-004405",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126004405/ef20065070_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-13",
+   "items": [
+    "2.06"
+   ],
+   "description": "Impairment",
+   "accession": "0001140361-25-042498",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036125042498/ef20059530_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-25-040434",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036125040434/ef20058222_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-10-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001097864-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786425000019/on-20251003.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-25-040094",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036125040094/ef20058125_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-23",
+   "period": "2025-09-23",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001140361-25-035762",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036125035762/ef20055921_8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 9770102,
+  "volume": 11025724,
+  "market_cap_nasdaq": 28692781778,
+  "high_52w": 134.92,
+  "low_52w": 44.56,
+  "previous_close": 73.36,
+  "one_year_target": 98.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: null - a per-type / per-location breakdown with no filed total in the 10-K filed 2026-02-09: \"As of December 31, 2025, we had approximately 22,600 regular full-time employees and about 70 part-time or temporary employees across 33 countries.\""
+ ]
+}

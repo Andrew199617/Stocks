@@ -1,0 +1,1906 @@
+{
+ "ticker": "MTB",
+ "cik": 36270,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000036270-26-000010",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000010/mtb-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000036270-26-000034",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000034/mtb-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000036270-26-000050",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000050/mtb-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      5114000000,
+      5098000000,
+      4868000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5303,
+      0.5494,
+      0.5024
+     ],
+     "growth_yoy": [
+      null,
+      -0.0031,
+      -0.0451
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      3067000000,
+      2884000000,
+      2947000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3181,
+      0.3108,
+      0.3041
+     ],
+     "growth_yoy": [
+      null,
+      -0.0597,
+      0.0218
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      1705000000,
+      1557000000,
+      1562000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1768,
+      0.1678,
+      0.1612
+     ],
+     "growth_yoy": [
+      null,
+      -0.0868,
+      0.0032
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -243000000,
+      -260000000,
+      313000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0252,
+      -0.028,
+      0.0323
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9643000000,
+     9279000000,
+     9690000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      1180000000,
+      1222000000,
+      1167000000,
+      1210000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5117,
+      0.51,
+      0.4781,
+      0.4779
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.011,
+      -0.0098
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      702000000,
+      736000000,
+      728000000,
+      752000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3044,
+      0.3072,
+      0.2982,
+      0.297
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.037,
+      0.0217
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      380000000,
+      391000000,
+      377000000,
+      384000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1648,
+      0.1632,
+      0.1544,
+      0.1517
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0079,
+      -0.0179
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      44000000,
+      47000000,
+      169000000,
+      186000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0191,
+      0.0196,
+      0.0692,
+      0.0735
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.8409,
+      2.9574
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2306000000,
+     2396000000,
+     2441000000,
+     2532000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      783000000,
+      798000000,
+      854000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5276,
+      0.5178,
+      0.5154
+     ],
+     "growth_yoy": [
+      null,
+      0.0192,
+      0.0702
+     ]
+    },
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      444000000,
+      471000000,
+      501000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2992,
+      0.3056,
+      0.3024
+     ],
+     "growth_yoy": [
+      null,
+      0.0608,
+      0.0637
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      257000000,
+      272000000,
+      302000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1732,
+      0.1765,
+      0.1823
+     ],
+     "growth_yoy": [
+      null,
+      0.0584,
+      0.1103
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1484000000,
+     1541000000,
+     1657000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      209000000,
+      212000000,
+      218000000,
+      231000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5264,
+      0.5084,
+      0.5215,
+      0.5226
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0431,
+      0.0896
+     ]
+    },
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      116000000,
+      129000000,
+      121000000,
+      133000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2922,
+      0.3094,
+      0.2895,
+      0.3009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0431,
+      0.031
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      72000000,
+      76000000,
+      79000000,
+      78000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1814,
+      0.1823,
+      0.189,
+      0.1765
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0972,
+      0.0263
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     397000000,
+     417000000,
+     418000000,
+     442000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      1838000000,
+      1716000000,
+      1442000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6706,
+      0.6631,
+      0.5058
+     ],
+     "growth_yoy": [
+      null,
+      -0.0664,
+      -0.1597
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      1039000000,
+      871000000,
+      904000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3791,
+      0.3366,
+      0.3171
+     ],
+     "growth_yoy": [
+      null,
+      -0.1617,
+      0.0379
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      620000000,
+      535000000,
+      502000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2262,
+      0.2067,
+      0.1761
+     ],
+     "growth_yoy": [
+      null,
+      -0.1371,
+      -0.0617
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -756000000,
+      -534000000,
+      3000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2758,
+      -0.2063,
+      0.0011
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2741000000,
+     2588000000,
+     2851000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      347000000,
+      375000000,
+      344000000,
+      360000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5942,
+      0.5237,
+      0.5181,
+      0.4401
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0086,
+      -0.04
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      231000000,
+      231000000,
+      250000000,
+      271000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3955,
+      0.3226,
+      0.3765,
+      0.3313
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0823,
+      0.1732
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      121000000,
+      128000000,
+      112000000,
+      120000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2072,
+      0.1788,
+      0.1687,
+      0.1467
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0744,
+      -0.0625
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -115000000,
+      -18000000,
+      -42000000,
+      67000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1969,
+      -0.0251,
+      -0.0633,
+      0.0819
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     584000000,
+     716000000,
+     664000000,
+     818000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      4352000000,
+      4288000000,
+      3947000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6117,
+      0.6258,
+      0.5681
+     ],
+     "growth_yoy": [
+      null,
+      -0.0147,
+      -0.0795
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      2409000000,
+      2212000000,
+      2152000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3386,
+      0.3228,
+      0.3097
+     ],
+     "growth_yoy": [
+      null,
+      -0.0818,
+      -0.0271
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      700000000,
+      748000000,
+      655000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0984,
+      0.1092,
+      0.0943
+     ],
+     "growth_yoy": [
+      null,
+      0.0686,
+      -0.1243
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -346000000,
+      -396000000,
+      194000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0486,
+      -0.0578,
+      0.0279
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7115000000,
+     6852000000,
+     6948000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      972000000,
+      988000000,
+      950000000,
+      974000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5735,
+      0.5768,
+      0.5422,
+      0.5435
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0226,
+      -0.0142
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      529000000,
+      531000000,
+      535000000,
+      559000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3121,
+      0.31,
+      0.3054,
+      0.3119
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0113,
+      0.0527
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      171000000,
+      166000000,
+      156000000,
+      149000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1009,
+      0.0969,
+      0.089,
+      0.0831
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0877,
+      -0.1024
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      23000000,
+      28000000,
+      111000000,
+      110000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0136,
+      0.0163,
+      0.0634,
+      0.0614
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.8261,
+      2.9286
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1695000000,
+     1713000000,
+     1752000000,
+     1792000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      762000000,
+      810000000,
+      921000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3014,
+      0.3337,
+      0.3359
+     ],
+     "growth_yoy": [
+      null,
+      0.063,
+      0.137
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      1005000000,
+      809000000,
+      907000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3975,
+      0.3333,
+      0.3308
+     ],
+     "growth_yoy": [
+      null,
+      -0.195,
+      0.1211
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      658000000,
+      672000000,
+      795000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2603,
+      0.2769,
+      0.2899
+     ],
+     "growth_yoy": [
+      null,
+      0.0213,
+      0.183
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      103000000,
+      136000000,
+      119000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0407,
+      0.056,
+      0.0434
+     ],
+     "growth_yoy": [
+      null,
+      0.3204,
+      -0.125
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2528000000,
+     2427000000,
+     2742000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      208000000,
+      234000000,
+      217000000,
+      236000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3404,
+      0.3426,
+      0.3149,
+      0.3189
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0433,
+      0.0085
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      209000000,
+      225000000,
+      221000000,
+      235000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3421,
+      0.3294,
+      0.3208,
+      0.3176
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0574,
+      0.0444
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      173000000,
+      205000000,
+      193000000,
+      193000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2831,
+      0.3001,
+      0.2801,
+      0.2608
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1156,
+      -0.0585
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      21000000,
+      19000000,
+      58000000,
+      76000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0344,
+      0.0278,
+      0.0842,
+      0.1027
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.7619,
+      3.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     611000000,
+     683000000,
+     689000000,
+     740000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      249000000,
+      252000000,
+      241000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8191,
+      0.7975,
+      0.7461
+     ],
+     "growth_yoy": [
+      null,
+      0.012,
+      -0.0437
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      39000000,
+      39000000,
+      42000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1283,
+      0.1234,
+      0.13
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.0769
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      8000000,
+      9000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0263,
+      0.0285,
+      0.0248
+     ],
+     "growth_yoy": [
+      null,
+      0.125,
+      -0.1111
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      201000000,
+      208000000,
+      207000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6612,
+      0.6582,
+      0.6409
+     ],
+     "growth_yoy": [
+      null,
+      0.0348,
+      -0.0048
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     304000000,
+     316000000,
+     323000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtb:RetailBankingMember",
+     "label": "Retail Banking",
+     "values": [
+      62000000,
+      60000000,
+      36000000,
+      34000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.747,
+      0.4839,
+      0.4557,
+      0.3656
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4194,
+      -0.4333
+     ]
+    },
+    {
+     "member": "mtb:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      10000000,
+      11000000,
+      10000000,
+      11000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1205,
+      0.0887,
+      0.1266,
+      0.1183
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "member": "mtb:InstitutionalServicesAndWealthManagementMember",
+     "label": "Institutional Services And Wealth Management",
+     "values": [
+      2000000,
+      2000000,
+      2000000,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0241,
+      0.0161,
+      0.0253,
+      0.0215
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      56000000,
+      51000000,
+      49000000,
+      46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6747,
+      0.4113,
+      0.6203,
+      0.4946
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.125,
+      -0.098
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     83000000,
+     124000000,
+     79000000,
+     93000000
+    ],
+    "basis": "mixed: consolidated fact, sum of rows, consolidated fact, sum of rows"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FiduciaryAndTrustMember",
+     "label": "Fiduciary and Trust",
+     "values": [
+      680000000,
+      675000000,
+      724000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4582,
+      0.438,
+      0.4369
+     ],
+     "growth_yoy": [
+      null,
+      -0.0074,
+      0.0726
+     ]
+    },
+    {
+     "member": "us-gaap:DepositAccountMember",
+     "label": "Deposit Account",
+     "values": [
+      475000000,
+      514000000,
+      551000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3201,
+      0.3335,
+      0.3325
+     ],
+     "growth_yoy": [
+      null,
+      0.0821,
+      0.072
+     ]
+    },
+    {
+     "member": "us-gaap:CreditCardMerchantDiscountMember",
+     "label": "Credit Card, Merchant Discount",
+     "values": [
+      161000000,
+      162000000,
+      173000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1085,
+      0.1051,
+      0.1044
+     ],
+     "growth_yoy": [
+      null,
+      0.0062,
+      0.0679
+     ]
+    },
+    {
+     "member": "mtb:BrokerageServicesIncomeMember",
+     "label": "Brokerage Services Income",
+     "values": [
+      102000000,
+      121000000,
+      131000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0687,
+      0.0785,
+      0.0791
+     ],
+     "growth_yoy": [
+      null,
+      0.1863,
+      0.0826
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      66000000,
+      69000000,
+      78000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0445,
+      0.0448,
+      0.0471
+     ],
+     "growth_yoy": [
+      null,
+      0.0455,
+      0.1304
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1484000000,
+     1541000000,
+     1657000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FiduciaryAndTrustMember",
+     "label": "Fiduciary and Trust",
+     "values": [
+      177000000,
+      182000000,
+      183000000,
+      197000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4458,
+      0.4365,
+      0.4378,
+      0.4457
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0339,
+      0.0824
+     ]
+    },
+    {
+     "member": "us-gaap:DepositAccountMember",
+     "label": "Deposit Account",
+     "values": [
+      133000000,
+      137000000,
+      139000000,
+      144000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.335,
+      0.3285,
+      0.3325,
+      0.3258
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0451,
+      0.0511
+     ]
+    },
+    {
+     "member": "us-gaap:CreditCardMerchantDiscountMember",
+     "label": "Credit Card, Merchant Discount",
+     "values": [
+      37000000,
+      46000000,
+      37000000,
+      45000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0932,
+      0.1103,
+      0.0885,
+      0.1018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.0217
+     ]
+    },
+    {
+     "member": "mtb:BrokerageServicesIncomeMember",
+     "label": "Brokerage Services Income",
+     "values": [
+      32000000,
+      31000000,
+      35000000,
+      35000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0806,
+      0.0743,
+      0.0837,
+      0.0792
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0938,
+      0.129
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      18000000,
+      21000000,
+      24000000,
+      21000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0453,
+      0.0504,
+      0.0574,
+      0.0475
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3333,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     397000000,
+     417000000,
+     418000000,
+     442000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/DepreciationDepletionAndAmortization/annual: rows sum to 154.2% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: rows sum to 122.8% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

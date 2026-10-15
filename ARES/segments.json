@@ -1,0 +1,356 @@
+{
+ "ticker": "ARES",
+ "cik": 1176948,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-011413",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1176948/000162828026011413/ares-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-032990",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1176948/000162828026032990/ares-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-054538",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1176948/000162828026054538/ares-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ManagementServiceMember",
+     "label": "Management Service",
+     "values": [
+      2551150000,
+      2942126000,
+      3680467000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7024,
+      0.7573,
+      0.6571
+     ],
+     "growth_yoy": [
+      null,
+      0.1533,
+      0.251
+     ]
+    },
+    {
+     "member": "ares:CarriedInterestMember",
+     "label": "Carried Interest",
+     "values": [
+      618579000,
+      390180000,
+      1153976000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1703,
+      0.1004,
+      0.206
+     ],
+     "growth_yoy": [
+      null,
+      -0.3692,
+      1.9575
+     ]
+    },
+    {
+     "member": "us-gaap:ManagementServiceIncentiveMember",
+     "label": "Management Service, Incentive",
+     "values": [
+      276627000,
+      344157000,
+      362453000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0762,
+      0.0886,
+      0.0647
+     ],
+     "growth_yoy": [
+      null,
+      0.2441,
+      0.0532
+     ]
+    },
+    {
+     "member": "us-gaap:AdministrativeServiceMember",
+     "label": "Administrative Service",
+     "values": [
+      149012000,
+      162894000,
+      356437000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.041,
+      0.0419,
+      0.0636
+     ],
+     "growth_yoy": [
+      null,
+      0.0932,
+      1.1882
+     ]
+    },
+    {
+     "member": "ares:PrincipalInvestmentIncomeLossMember",
+     "label": "Principal Investment Income (Loss)",
+     "values": [
+      36516000,
+      45424000,
+      48149000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0101,
+      0.0117,
+      0.0086
+     ],
+     "growth_yoy": [
+      null,
+      0.2439,
+      0.06
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3631884000,
+     3884781000,
+     5601482000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ManagementServiceMember",
+     "label": "Management Service",
+     "values": [
+      816987000,
+      900622000,
+      989527000,
+      1017563000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7504,
+      0.6671,
+      0.7086,
+      0.7123
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2112,
+      0.1298
+     ]
+    },
+    {
+     "member": "ares:CarriedInterestMember",
+     "label": "Carried Interest",
+     "values": [
+      160008000,
+      323901000,
+      146631000,
+      249914000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.147,
+      0.2399,
+      0.105,
+      0.1749
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0836,
+      -0.2284
+     ]
+    },
+    {
+     "member": "us-gaap:AdministrativeServiceMember",
+     "label": "Administrative Service",
+     "values": [
+      57764000,
+      91563000,
+      97867000,
+      116092000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0531,
+      0.0678,
+      0.0701,
+      0.0813
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6943,
+      0.2679
+     ]
+    },
+    {
+     "member": "us-gaap:ManagementServiceIncentiveMember",
+     "label": "Management Service, Incentive",
+     "values": [
+      32048000,
+      23079000,
+      161934000,
+      42753000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0294,
+      0.0171,
+      0.116,
+      0.0299
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      4.0529,
+      0.8525
+     ]
+    },
+    {
+     "member": "ares:PrincipalInvestmentIncomeLossMember",
+     "label": "Principal Investment Income (Loss)",
+     "values": [
+      21998000,
+      10963000,
+      477000,
+      2288000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0202,
+      0.0081,
+      0.0003,
+      0.0016
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.9783,
+      -0.7913
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1088805000,
+     1350128000,
+     1396436000,
+     1428610000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: row 'Operating Segments And Corporate Non Segment' (ares:OperatingSegmentsAndCorporateNonSegmentMember) dropped: it is the parent of Segment Reporting, Reconciling Item, Corporate Nonsegment in the filing's definition linkbase",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Operating Segments And Corporate Non Segment' (ares:OperatingSegmentsAndCorporateNonSegmentMember) dropped: it is the parent of Segment Reporting, Reconciling Item, Corporate Nonsegment in the filing's definition linkbase"
+ ],
+ "complete": true
+}

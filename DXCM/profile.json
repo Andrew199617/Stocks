@@ -1,0 +1,616 @@
+{
+ "ticker": "DXCM",
+ "cik": 1093557,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:21:21-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001093557.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000027/dxcm-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DXCM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DXCM/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/DXCM/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/DXCM/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/DXCM/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/DXCM/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/DXCM/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/DXCM/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/DXCM/peg-ratio"
+ },
+ "about": {
+  "entity": "DEXCOM INC",
+  "cik": 1093557,
+  "description": {
+   "text": "We are a medical device company primarily focused on the design, development and commercialization of continuous glucose monitoring, or CGM, systems for the management of diabetes and metabolic health by patients, caregivers, and clinicians around the world. We received approval from the Food and Drug Administration, or FDA, and commercialized our first product in 2006. We launched our latest generation systems, the Dexcom G7 Continuous Glucose Monitoring System, or G7, in 2023, and the Dexcom G7 15 Day Continuous Glucose Monitoring System, or G7 15 Day, in late 2025. In August 2024, we launched Stelo, our biosensor designed for adults with prediabetes and Type 2 diabetes who do not use insulin, as the first over-the-counter glucose biosensor in the U.S. Unless the context requires otherwise, the terms “we,” “us,” “our,” the “company,” or “Dexcom” refer to DexCom, Inc. and its subsidiaries.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001093557-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000027/dxcm-20251231.htm"
+  },
+  "description_short": "Dexcom empowers people to take control of health through innovative biosensing technology. Founded in 1999, Dexcom has pioneered and set the standard in glucose biosensing for more than 25 years. Its technology has transformed how people manage diabetes and track their glucose, helping them feel more in control and live more confidently.",
+  "industry": "Medical/Dental Instruments",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3841",
+  "sic_description": "Surgical & Medical Instruments & Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.dexcom.com",
+  "headquarters": "San Diego, CA",
+  "address": {
+   "street": "6340 Sequence Drive",
+   "city": "San Diego",
+   "state": "CA",
+   "zip": "92121",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "8582000200",
+  "employees": {
+   "count": 11100,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we have approximately 11,100 employees around the globe, including 11,000 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000027/dxcm-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-02-01",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001093557&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 21,
+  "buy": 19,
+  "hold": 1,
+  "sell": 0,
+  "target_mean": 96.39,
+  "target_low": 82.0,
+  "target_high": 115.0,
+  "target_1y_nasdaq_summary": 95.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 66.08,
+    "buy": 19,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 58.22,
+    "buy": 18,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 63.52,
+    "buy": 18,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 66.37,
+    "buy": 18,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 73.04,
+    "buy": 14,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 73.43,
+    "buy": 16,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 62.37,
+    "buy": 16,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 61.35,
+    "buy": 18,
+    "hold": 1,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 74.87,
+    "buy": 17,
+    "hold": 1,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 68.86,
+    "buy": 18,
+    "hold": 1,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 83.45,
+    "buy": 20,
+    "hold": 1,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 90.14,
+    "buy": 18,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 96.39,
+    "buy": 18,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "BTIG",
+   "CANACCORD GENUI",
+   "CITIGROUP",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "LEERINK PARTNRS",
+   "MORGAN STANLEY",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "SANFORD BERNSTE",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "UBS",
+   "WELLS FARGO SEC",
+   "WILLIAM BLAIR",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.66,
+     "low": 0.63,
+     "high": 0.69,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.73,
+     "low": 0.69,
+     "high": 0.76,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.63,
+     "low": 0.57,
+     "high": 0.7,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.75,
+     "low": 0.71,
+     "high": 0.81,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.79,
+     "low": 0.74,
+     "high": 0.84,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.64,
+     "low": 2.45,
+     "high": 2.7,
+     "estimates": 12,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 3.08,
+     "low": 2.83,
+     "high": 3.29,
+     "estimates": 13,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 3.62,
+     "low": 3.19,
+     "high": 4.1,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 3.78,
+     "low": 3.54,
+     "high": 4.02,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.57,
+    "actual": 0.61,
+    "surprise_pct": 7.02
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.65,
+    "actual": 0.68,
+    "surprise_pct": 4.62
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.47,
+    "actual": 0.56,
+    "surprise_pct": 19.15
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.61,
+    "actual": 0.7,
+    "surprise_pct": 14.75
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.66
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.73
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.63
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.75
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.66,
+    "week_ago": 0.66,
+    "month_ago": 0.66
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 2.64,
+    "week_ago": 2.64,
+    "month_ago": 2.64
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "DexCom, Inc. Common Stock is expected* to report earnings on 10/29/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 10 analysts' forecasts, the consensus EPS forecast for the quarter is $0.66. The reported EPS for the same quarter last year was $0.61.",
+   "timing": "after market close"
+  },
+  "peg_forward": 1.4
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-10",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001093557-26-000175",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000175/dxcm-20260910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001093557-26-000167",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000167/dxcm-20260910.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001093557-26-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000143/dxcm-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001093557-26-000142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000142/dxcm-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-27",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001093557-26-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000105/dxcm-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-14",
+   "items": [
+    "7.01",
+    "8.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001093557-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000085/dxcm-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001093557-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000073/dxcm-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001093557-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000072/dxcm-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-15",
+   "period": "2026-05-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001093557-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000061/dxcm-20260415.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-02-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001093557-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000038/dxcm-20260227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001093557-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000031/dxcm-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001093557-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000027/dxcm-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001093557-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000025/dxcm-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001093557-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000003/dxcm-20260107.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001093557-25-000291",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355725000291/dxcm-20251219.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001093557-25-000280",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355725000280/dxcm-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001093557-25-000278",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355725000278/dxcm-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-24",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001093557-25-000264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355725000264/dxcm-20251024.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-16",
+   "period": "2025-09-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001093557-25-000257",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355725000257/dxcm-20250914.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001093557-25-000243",
+   "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355725000243/dxcm-20250630.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 4026589,
+  "volume": 4786174,
+  "market_cap_nasdaq": 33098312698,
+  "high_52w": 92.59,
+  "low_52w": 54.11,
+  "previous_close": 83.47,
+  "one_year_target": 95.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

@@ -1,0 +1,634 @@
+{
+ "ticker": "BIIB",
+ "cik": 875045,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:19:07-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000875045.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000013/biib-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BIIB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BIIB/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/BIIB/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/BIIB/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/BIIB/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/BIIB/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/BIIB/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/BIIB/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/BIIB/peg-ratio"
+ },
+ "about": {
+  "entity": "BIOGEN INC.",
+  "cik": 875045,
+  "description": {
+   "text": "Biogen is a global biopharmaceutical company focused on discovering, developing and delivering innovative therapies for people living with serious and complex diseases. We have a broad portfolio of medicines to treat MS, have introduced the first approved treatment for SMA, co-developed treatments to address a defining pathology of Alzheimer’s disease and launched the first approved treatment to target a genetic cause of ALS. We market the first and only drug approved in the U.S., the E.U. and certain international markets for the treatment of FA in adults and adolescents aged 16 years and older. We are focused on advancing our pipeline in neurology, specialized immunology and rare diseases. We support our drug discovery and development efforts through internal research and development programs, external collaborations and acquisitions. Our marketed products include VUMERITY, TYSABRI, TECFIDERA, AVONEX and PLEGRIDY for the treatment of MS; SPINRAZA for the treatment of SMA; SKYCLARYS for the treatment of FA; and QALSODY for the treatment of ALS. We also have collaborations with Eisai on the commercialization of LEQEMBI for the treatment of Alzheimer's disease and Supernus on the commercialization of ZURZUVAE for the treatment of PPD.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "accession": "0000875045-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000013/biib-20251231.htm"
+  },
+  "description_short": "Founded in 1978, Biogen is a leading biotechnology company that pioneers innovative science to deliver new medicines to transform patients' lives and to create value for shareholders and our communities. We apply deep understanding of human biology and leverage different modalities to advance first-in-class treatments or therapies that deliver superior outcomes. Our approach is to take bold risks, balanced with return on investment to deliver long-term growth.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.biogen.com",
+  "headquarters": "Cambridge, MA",
+  "address": {
+   "street": "225 Binney Street",
+   "city": "Cambridge",
+   "state": "MA",
+   "zip": "02142",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-06"
+  },
+  "phone": "6176792000",
+  "employees": {
+   "count": 7500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 7,500 employees worldwide.",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000013/biib-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-05-21",
+  "first_sec_filing_form": "SC 13D",
+  "former_names": [
+   "BIOGEN IDEC INC.",
+   "BIOGEN IDEC INC",
+   "IDEC PHARMACEUTICALS CORP / DE",
+   "IDEC PHARMACEUTICALS CORP / CA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000875045&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 35,
+  "buy": 17,
+  "hold": 6,
+  "sell": 1,
+  "target_mean": 241.96,
+  "target_low": 175.0,
+  "target_high": 300.0,
+  "target_1y_nasdaq_summary": 242.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 154.22,
+    "buy": 12,
+    "hold": 14,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 154.27,
+    "buy": 12,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 177.78,
+    "buy": 12,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 175.99,
+    "buy": 12,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 179.89,
+    "buy": 9,
+    "hold": 13,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 191.82,
+    "buy": 11,
+    "hold": 15,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 183.78,
+    "buy": 11,
+    "hold": 15,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 187.06,
+    "buy": 15,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 192.23,
+    "buy": 15,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 209.74,
+    "buy": 16,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 202.95,
+    "buy": 18,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 216.04,
+    "buy": 17,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 241.96,
+    "buy": 17,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "BMO CAPITAL MKT",
+   "BTIG",
+   "CANACCORD GENUI",
+   "CANTOR FITZGERA",
+   "CO FORECST",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "GUGGENHEIM SEC.",
+   "H C WAINWRIGHT",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "LEERINK PARTNRS",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "RBC CAPITAL",
+   "ROTHSCHILD REDB",
+   "SCOTIABANK",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "TRUIST SECURITI",
+   "UBS",
+   "WEDBUSH SECURIT",
+   "WELLS FARGO SEC",
+   "WILLIAM BLAIR",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 2.09,
+     "low": 1.71,
+     "high": 2.67,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 3.24,
+     "low": 2.95,
+     "high": 3.5,
+     "estimates": 9,
+     "revisions_up": 1,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 3.8,
+     "low": 3.15,
+     "high": 4.58,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 4.62,
+     "low": 4.05,
+     "high": 5.19,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 4.41,
+     "low": 3.92,
+     "high": 4.69,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 12.41,
+     "low": 12.0,
+     "high": 12.98,
+     "estimates": 11,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 16.15,
+     "low": 11.29,
+     "high": 19.29,
+     "estimates": 15,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 17.61,
+     "low": 15.25,
+     "high": 22.28,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 19.1,
+     "low": 17.39,
+     "high": 23.58,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 3.89,
+    "actual": 4.81,
+    "surprise_pct": 23.65
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.61,
+    "actual": 1.99,
+    "surprise_pct": 23.6
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.95,
+    "actual": 3.57,
+    "surprise_pct": 21.02
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 3.04,
+    "actual": 3.6,
+    "surprise_pct": 18.42
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 2.09
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 3.24
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 3.8
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 4.62
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 2.09,
+    "week_ago": 2.1,
+    "month_ago": 2.1
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 12.41,
+    "week_ago": 12.41,
+    "month_ago": 12.41
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-28",
+   "text": "Biogen Inc. Common Stock is expected* to report earnings on 10/28/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 10 analysts' forecasts, the consensus EPS forecast for the quarter is $2.09. The reported EPS for the same quarter last year was $4.81.",
+   "timing": "before market open"
+  },
+  "peg_forward": 2.57
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000875045-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000075/biib-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000073/biib-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000068/biib-20260701.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-09",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000950157-26-000700",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000095015726000700/form8-k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-06-10",
+   "period": "2026-05-14",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0000950157-26-000699",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000095015726000699/form8-ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "1.01",
+    "2.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Debt obligation; Reg FD",
+   "accession": "0001193125-26-222908",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000119312526222908/d109852d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000875045-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000045/biib-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000042/biib-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-28",
+   "period": "2026-06-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-187303",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000119312526187303/d788083ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000039/biib-20260406.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-31",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-134889",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000119312526134889/d14986d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950157-26-000280",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000095015726000280/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "5.02",
+    "8.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001193125-26-046803",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000119312526046803/d937279d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000875045-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000013/biib-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000011/biib-20260206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-14",
+   "period": "2026-01-13",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000003/biib-20260113.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000875045-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504525000049/biib-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504525000047/biib-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-14",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504525000040/biib-20251014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000875045-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504525000035/biib-20250731.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 940214,
+  "volume": 1572431,
+  "market_cap_nasdaq": 34773903429,
+  "high_52w": 238.24,
+  "low_52w": 138.0,
+  "previous_close": 232.83,
+  "one_year_target": 242.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

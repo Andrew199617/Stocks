@@ -1,0 +1,1024 @@
+{
+ "ticker": "KMB",
+ "cik": 55785,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-007567",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026007567/kmb-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-027800",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026027800/kmb-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-052348",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/55785/000162828026052348/kmb-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kmb:NorthAmericaNAMember",
+     "label": "North America (NA)",
+     "values": [
+      10996000000,
+      11017000000,
+      10753000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6413,
+      0.6556,
+      0.6538
+     ],
+     "growth_yoy": [
+      null,
+      0.0019,
+      -0.024
+     ]
+    },
+    {
+     "member": "kmb:InternationalPersonalCareIPCMember",
+     "label": "International Personal Care (IPC)",
+     "values": [
+      5940000000,
+      5743000000,
+      5694000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3464,
+      0.3417,
+      0.3462
+     ],
+     "growth_yoy": [
+      null,
+      -0.0332,
+      -0.0085
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      210000000,
+      45000000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0122,
+      0.0027,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -0.7857,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17146000000,
+     16805000000,
+     16447000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "kmb:NorthAmericaNAMember",
+     "label": "North America (NA)",
+     "values": [
+      2668000000,
+      2730000000,
+      2651000000,
+      2698000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6581,
+      0.6558,
+      0.6368,
+      0.6441
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0064,
+      -0.0117
+     ]
+    },
+    {
+     "member": "kmb:InternationalPersonalCareIPCMember",
+     "label": "International Personal Care (IPC)",
+     "values": [
+      1386000000,
+      1433000000,
+      1512000000,
+      1491000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3419,
+      0.3442,
+      0.3632,
+      0.3559
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0909,
+      0.0405
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4054000000,
+     4163000000,
+     4163000000,
+     4189000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kmb:NorthAmericaNAMember",
+     "label": "North America (NA)",
+     "values": [
+      2514000000,
+      2542000000,
+      2553000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3039,
+      0.9415,
+      1.0859
+     ],
+     "growth_yoy": [
+      null,
+      0.0111,
+      0.0043
+     ]
+    },
+    {
+     "member": "kmb:InternationalPersonalCareIPCMember",
+     "label": "International Personal Care (IPC)",
+     "values": [
+      673000000,
+      826000000,
+      796000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3491,
+      0.3059,
+      0.3386
+     ],
+     "growth_yoy": [
+      null,
+      0.2273,
+      -0.0363
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -1259000000,
+      -668000000,
+      -998000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.653,
+      -0.2474,
+      -0.4245
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1928000000,
+     2700000000,
+     2351000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "kmb:NorthAmericaNAMember",
+     "label": "North America (NA)",
+     "values": [
+      678000000,
+      655000000,
+      623000000,
+      725000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0745,
+      1.1064,
+      0.8274,
+      1.1453
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0811,
+      0.1069
+     ]
+    },
+    {
+     "member": "kmb:InternationalPersonalCareIPCMember",
+     "label": "International Personal Care (IPC)",
+     "values": [
+      201000000,
+      182000000,
+      245000000,
+      186000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3185,
+      0.3074,
+      0.3254,
+      0.2938
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2189,
+      0.022
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -248000000,
+      -245000000,
+      -115000000,
+      -278000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.393,
+      -0.4139,
+      -0.1527,
+      -0.4392
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     631000000,
+     592000000,
+     753000000,
+     633000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kmb:NorthAmericaNAMember",
+     "label": "North America (NA)",
+     "values": [
+      430000000,
+      440000000,
+      481000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.571,
+      0.5634,
+      0.5975
+     ],
+     "growth_yoy": [
+      null,
+      0.0233,
+      0.0932
+     ]
+    },
+    {
+     "member": "kmb:InternationalPersonalCareIPCMember",
+     "label": "International Personal Care (IPC)",
+     "values": [
+      205000000,
+      200000000,
+      247000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2722,
+      0.2561,
+      0.3068
+     ],
+     "growth_yoy": [
+      null,
+      -0.0244,
+      0.235
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      3000000,
+      8000000,
+      9000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.004,
+      0.0102,
+      0.0112
+     ],
+     "growth_yoy": [
+      null,
+      1.6667,
+      0.125
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     753000000,
+     781000000,
+     805000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "kmb:NorthAmericaNAMember",
+     "label": "North America (NA)",
+     "values": [
+      104000000,
+      124000000,
+      144000000,
+      117000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4771,
+      0.6392,
+      0.7461,
+      0.7006
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3846,
+      -0.0565
+     ]
+    },
+    {
+     "member": "kmb:InternationalPersonalCareIPCMember",
+     "label": "International Personal Care (IPC)",
+     "values": [
+      65000000,
+      70000000,
+      49000000,
+      50000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2982,
+      0.3608,
+      0.2539,
+      0.2994
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2462,
+      -0.2857
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      9000000,
+      0,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0413,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     218000000,
+     194000000,
+     193000000,
+     167000000
+    ],
+    "basis": "mixed: consolidated fact, sum of rows, consolidated fact, sum of rows"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kmb:BabyandchildcareproductsMember",
+     "label": "Baby and child care products",
+     "values": [
+      7054000000,
+      7056000000,
+      6773000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4114,
+      0.4199,
+      0.4118
+     ],
+     "growth_yoy": [
+      null,
+      0.0003,
+      -0.0401
+     ]
+    },
+    {
+     "member": "kmb:FamilyCareMember",
+     "label": "Family Care",
+     "values": [
+      4024000000,
+      3928000000,
+      4056000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2347,
+      0.2337,
+      0.2466
+     ],
+     "growth_yoy": [
+      null,
+      -0.0239,
+      0.0326
+     ]
+    },
+    {
+     "member": "kmb:AdultCareProductsMember",
+     "label": "Adult care products",
+     "values": [
+      1809000000,
+      1864000000,
+      1947000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1055,
+      0.1109,
+      0.1184
+     ],
+     "growth_yoy": [
+      null,
+      0.0304,
+      0.0445
+     ]
+    },
+    {
+     "member": "kmb:ProfessionalMember",
+     "label": "Professional",
+     "values": [
+      2385000000,
+      2152000000,
+      1841000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1391,
+      0.1281,
+      0.1119
+     ],
+     "growth_yoy": [
+      null,
+      -0.0977,
+      -0.1445
+     ]
+    },
+    {
+     "member": "kmb:FeminineCareProductsMember",
+     "label": "Feminine care products",
+     "values": [
+      1787000000,
+      1721000000,
+      1706000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1042,
+      0.1024,
+      0.1037
+     ],
+     "growth_yoy": [
+      null,
+      -0.0369,
+      -0.0087
+     ]
+    },
+    {
+     "member": "kmb:AllOtherMember",
+     "label": "All Other",
+     "values": [
+      87000000,
+      84000000,
+      124000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0051,
+      0.005,
+      0.0075
+     ],
+     "growth_yoy": [
+      null,
+      -0.0345,
+      0.4762
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17146000000,
+     16805000000,
+     16447000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "kmb:BabyandchildcareproductsMember",
+     "label": "Baby and child care products",
+     "values": [
+      1637000000,
+      1768000000,
+      1696000000,
+      1752000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4038,
+      0.4247,
+      0.4074,
+      0.4182
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.036,
+      -0.009
+     ]
+    },
+    {
+     "member": "kmb:FamilyCareMember",
+     "label": "Family Care",
+     "values": [
+      1027000000,
+      997000000,
+      1040000000,
+      1015000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2533,
+      0.2395,
+      0.2498,
+      0.2423
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0127,
+      0.0181
+     ]
+    },
+    {
+     "member": "kmb:AdultCareProductsMember",
+     "label": "Adult care products",
+     "values": [
+      476000000,
+      492000000,
+      483000000,
+      493000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1174,
+      0.1182,
+      0.116,
+      0.1177
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0147,
+      0.002
+     ]
+    },
+    {
+     "member": "kmb:ProfessionalProductsMember",
+     "label": "Professional products",
+     "values": [
+      446000000,
+      465000000,
+      460000000,
+      476000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.11,
+      0.1117,
+      0.1105,
+      0.1136
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0314,
+      0.0237
+     ]
+    },
+    {
+     "member": "kmb:FeminineCareProductsMember",
+     "label": "Feminine care products",
+     "values": [
+      443000000,
+      412000000,
+      451000000,
+      423000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1093,
+      0.099,
+      0.1083,
+      0.101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0181,
+      0.0267
+     ]
+    },
+    {
+     "member": "kmb:AllOtherMember",
+     "label": "All Other",
+     "values": [
+      25000000,
+      29000000,
+      33000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0062,
+      0.007,
+      0.0079,
+      0.0072
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.32,
+      0.0345
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4054000000,
+     4163000000,
+     4163000000,
+     4189000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/DepreciationDepletionAndAmortization/annual: rows sum to 91.6% of the consolidated total for 2025-12-31 (ties_to_total: false)"
+ ],
+ "complete": true
+}

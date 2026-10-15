@@ -1,0 +1,626 @@
+{
+ "ticker": "MTB",
+ "cik": 36270,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:24:20-04:00",
+ "newest_filing_date": "2026-09-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000036270.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000010/mtb-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MTB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MTB/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/MTB/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/MTB/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/MTB/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/MTB/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/MTB/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/MTB/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/MTB/peg-ratio"
+ },
+ "about": {
+  "entity": "M&T BANK CORP",
+  "cik": 36270,
+  "description": {
+   "text": "M&T is a New York business corporation that has elected to be treated as an FHC under the BHCA and is a BHC under Article III-A of the New York Banking Law. M&T was incorporated in November 1969. At December 31, 2025, M&T had two wholly-owned bank subsidiaries: M&T Bank and Wilmington Trust, N.A. The banks collectively offer a wide range of retail and commercial banking, wealth management, trust and institutional services to their customers. The Company had consolidated total assets of $213.5 billion, deposits of $166.9 billion and shareholders’ equity of $29.2 billion at December 31, 2025. The principal executive offices of M&T and M&T Bank are located in Buffalo, New York. M&T Bank is a banking corporation that is incorporated under the laws of the State of New York. M&T Bank is a member of the Federal Reserve System and the FHLB System, and its deposits are insured by the FDIC through its DIF up to applicable limits. M&T acquired all of the issued and outstanding shares of the capital stock of M&T Bank in December 1969. The stock of M&T Bank represents a major asset of M&T. M&T Bank operates under a charter granted by the State of New York in 1892, and the continuity of its banking business is traced to the organization of Manufacturers and Traders Bank in 1856.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0000036270-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000010/mtb-20251231.htm"
+  },
+  "description_short": "M&T Bank Corporation is a financial holding company headquartered in Buffalo, New York. M&T's principal banking subsidiary, M&T Bank, provides banking products and services with a branch and ATM network spanning the eastern U.S. from Maine to Virginia and Washington, D.C. Trust-related services are provided in select markets in the U.S. and abroad by M&T's Wilmington Trust-affiliated companies and by M&T Bank.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6022",
+  "sic_description": "State Commercial Banks",
+  "state_of_incorporation": "NY",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www3.mtb.com",
+  "headquarters": "Buffalo, New York",
+  "address": {
+   "street": "One M&T Plaza",
+   "city": "Buffalo",
+   "state": "New York",
+   "zip": "14203",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "7166354000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-10",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [
+   "FIRST EMPIRE STATE CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000036270&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 20,
+  "buy": 5,
+  "hold": 11,
+  "sell": 1,
+  "target_mean": 254.25,
+  "target_low": 224.0,
+  "target_high": 301.0,
+  "target_1y_nasdaq_summary": 250.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 195.29,
+    "buy": 7,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 183.87,
+    "buy": 7,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 190.22,
+    "buy": 6,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 201.48,
+    "buy": 4,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 221.57,
+    "buy": 4,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 216.98,
+    "buy": 5,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 208.98,
+    "buy": 5,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 216.44,
+    "buy": 4,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 211.62,
+    "buy": 3,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 241.95,
+    "buy": 2,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 246.29,
+    "buy": 4,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 232.02,
+    "buy": 4,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 254.25,
+    "buy": 5,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "AUTONOMOUS RES",
+   "B OF A GLBL RES",
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "CITIGROUP",
+   "DAVIDSON D A",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEEFE BRUYETTE",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "UBS",
+   "WEDBUSH SECURIT",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 4.98,
+     "low": 4.87,
+     "high": 5.25,
+     "estimates": 7,
+     "revisions_up": 3,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 5.05,
+     "low": 4.89,
+     "high": 5.14,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 4.65,
+     "low": 4.44,
+     "high": 5.1,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 5.33,
+     "low": 5.18,
+     "high": 5.67,
+     "estimates": 6,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 5.55,
+     "low": 5.35,
+     "high": 5.88,
+     "estimates": 6,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 19.42,
+     "low": 19.1,
+     "high": 19.92,
+     "estimates": 6,
+     "revisions_up": 2,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 21.2,
+     "low": 20.87,
+     "high": 22.26,
+     "estimates": 9,
+     "revisions_up": 2,
+     "revisions_down": 3
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 23.61,
+     "low": 22.58,
+     "high": 25.0,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 24.24,
+     "low": 24.24,
+     "high": 24.24,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 4.4,
+    "actual": 4.87,
+    "surprise_pct": 10.68
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 4.44,
+    "actual": 4.72,
+    "surprise_pct": 6.31
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 4.02,
+    "actual": 4.18,
+    "surprise_pct": 3.98
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 4.66,
+    "actual": 5.35,
+    "surprise_pct": 14.81
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 4.98
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 5.05
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 4.65
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 5.33
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 4.98,
+    "week_ago": 4.98,
+    "month_ago": 4.98
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 19.42,
+    "week_ago": 19.42,
+    "month_ago": 19.45
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-16",
+   "text": "M&T Bank Corporation Common Stock is expected* to report earnings on 10/16/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $4.98. The reported EPS for the same quarter last year was $4.87.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.22
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000036270-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000054/mbt-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-398138",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000119312526398138/d181022d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000036270-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000052/mbt-20260914.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036270-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000050/mtb-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-17",
+   "items": [
+    "3.03",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-26-310413",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000119312526310413/d127076d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036270-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000046/mbt-20260715.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000036270-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000039/mbt-20260616.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036270-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000034/mtb-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000036270-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000030/mbt-20260501.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000036270-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000027/mbt-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-164027",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000119312526164027/d133845d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036270-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000025/mbt-20260415.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-022025",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000162828026022025/mbt-20260330.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-10",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-099298",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000119312526099298/d74790ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000036270-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000010/mtb-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000036270-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000007/mbt-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-16",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036270-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627026000004/mbt-20260116.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000036270-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627025000028/mbt-20251209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-29",
+   "items": [
+    "3.03",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-25-260717",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000119312525260717/d940530d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000036270-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/36270/000003627025000026/mbt-20251028.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 885157,
+  "volume": 1265437,
+  "market_cap_nasdaq": 31593223556,
+  "high_52w": 255.95,
+  "low_52w": 174.76,
+  "previous_close": 216.05,
+  "one_year_target": 250.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-18"
+ ]
+}

@@ -1,0 +1,613 @@
+{
+ "ticker": "KVUE",
+ "cik": 1944048,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:23:57-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001944048.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000030/kvue-20251228.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/KVUE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/KVUE/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/KVUE/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/KVUE/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/KVUE/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/KVUE/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/KVUE/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/KVUE/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/KVUE/peg-ratio"
+ },
+ "about": {
+  "entity": "Kenvue Inc.",
+  "cik": 1944048,
+  "description": {
+   "text": "At Kenvue, our purpose is to realize the extraordinary power of everyday care. As a global leader at the intersection of healthcare and consumer goods, we are the world’s largest pure-play consumer health company by revenue with $15.1 billion in Net sales in the fiscal year 2025. By combining the power of science with meaningful consumer insights and our digital strategy, we empower consumers to live healthier lives every day. Built on more than a century of heritage and trusted by generations, our differentiated portfolio of iconic brands—including Aveeno®, BAND-AID® Brand, Johnson’s®, Listerine®, Neutrogena®, Nicorette®, Tylenol®, and Zyrtec®—is backed by science and recommended by healthcare professionals, which further reinforces our consumers’ connections to our brands. Our portfolio includes Self Care, Skin Health and Beauty, and Essential Health products, allowing us to connect with consumers across North America, Asia Pacific (“APAC”), Europe, Middle East, and Africa (“EMEA”), and Latin America (“LATAM”) in their daily rituals and the moments that matter most. Our products are marketed across more than 165 countries worldwide. Our global scale and the breadth of our brand portfolio are complemented by our well-developed capabilities and accelerated through our digital strategy, allowing us to dynamically capitalize on and respond to current trends impacting our categories and geographic markets.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-28",
+   "accession": "0001944048-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000030/kvue-20251228.htm"
+  },
+  "description_short": "Kenvue Inc. is a consumer health company that provides a wide range of products across various categories, including skin and personal care, oral care, and over-the-counter pharmaceuticals. The company is committed to improving the health and well-being of consumers through innovative and science-backed solutions.",
+  "industry": "Package Goods/Cosmetics",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2844",
+  "sic_description": "Perfumes, Cosmetics & Other Toilet Preparations",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0103",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.kenvue.com",
+  "headquarters": "Summit, New Jersey",
+  "address": {
+   "street": "1 Kenvue Way",
+   "city": "Summit",
+   "state": "New Jersey",
+   "zip": "07901",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "908-874-1200",
+  "employees": {
+   "count": 22000,
+   "as_of": "2025-12-28",
+   "evidence": "As of December 28, 2025, we had approximately 22,000 employees, with approximately 23% located in North America, 28% in EMEA, 30% in APAC, and 19% in LATAM.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000030/kvue-20251228.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2023-01-04",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "JNTL, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001944048&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 14,
+  "buy": 1,
+  "hold": 6,
+  "sell": 0,
+  "target_mean": 19.25,
+  "target_low": 19.0,
+  "target_high": 20.0,
+  "target_1y_nasdaq_summary": 19.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 15.85,
+    "buy": 5,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 14.37,
+    "buy": 4,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 17.22,
+    "buy": 4,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 17.25,
+    "buy": 3,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 17.4,
+    "buy": 0,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 19.12,
+    "buy": 0,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 17.38,
+    "buy": 0,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 17.43,
+    "buy": 0,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 17.35,
+    "buy": 0,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 19.33,
+    "buy": 0,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 19.24,
+    "buy": 0,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 18.75,
+    "buy": 0,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 19.25,
+    "buy": 1,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "CANACCORD GENUI",
+   "CITIGROUP",
+   "CO FORECST",
+   "DEUTSCHE BK SEC",
+   "EDWARD JONES",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JP MORGAN SECUR",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "UBS"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.28,
+     "low": 0.26,
+     "high": 0.32,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.27,
+     "low": 0.27,
+     "high": 0.28,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.33,
+     "low": 0.33,
+     "high": 0.33,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.31,
+     "low": 0.29,
+     "high": 0.33,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.29,
+     "low": 0.27,
+     "high": 0.32,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.14,
+     "low": 1.02,
+     "high": 1.22,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 1.23,
+     "low": 1.16,
+     "high": 1.32,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 1.3,
+     "low": 1.28,
+     "high": 1.32,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 1.37,
+     "low": 1.36,
+     "high": 1.37,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.27,
+    "actual": 0.28,
+    "surprise_pct": 3.7
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.22,
+    "actual": 0.27,
+    "surprise_pct": 22.73
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.27,
+    "actual": 0.32,
+    "surprise_pct": 18.52
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.32,
+    "actual": 0.31,
+    "surprise_pct": -3.13
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.28
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.27
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.33
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.31
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.28,
+    "week_ago": 0.28,
+    "month_ago": 0.28
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 1.14,
+    "week_ago": 1.14,
+    "month_ago": 1.14
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-02",
+   "text": "Kenvue Inc. Common Stock is estimated to report earnings on 11/02/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 4 analysts' forecasts, the consensus EPS forecast for the quarter is $0.28. The reported EPS for the same quarter last year was $0.28.",
+   "timing": null
+  },
+  "peg_forward": 1.65
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-09",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950157-26-001094",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000095015726001094/form8-k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944048-26-000142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000142/kvue-20260628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944048-26-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000141/kvue-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001944048-26-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000102/kvue-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944048-26-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000098/kvue-20260329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944048-26-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000097/kvue-20260507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950157-26-000493",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000095015726000493/form8-k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2025-12-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001944048-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000085/kvue-20260408.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001944048-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000030/kvue-20251228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "2.05",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs",
+   "accession": "0001944048-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000016/kvue-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950157-26-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000095015726000133/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001944048-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000008/kvue-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-16",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-001522",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000114036126001522/ef20063257_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944048-25-000198",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404825000198/kvue-20250928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-02",
+   "items": [
+    "1.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change; Reg FD",
+   "accession": "0001104659-25-105216",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000110465925105216/tm2529895d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944048-25-000194",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404825000194/kvue-20251103.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944048-25-000177",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404825000177/kvue-20250629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944048-25-000174",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404825000174/kvue-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-14",
+   "period": "2025-07-13",
+   "items": [
+    "2.02",
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Other events",
+   "accession": "0000950157-25-000569",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000095015725000569/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-24",
+   "period": "2025-06-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001944048-25-000166",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404825000166/kvue-20250617.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": null,
+  "volume": 26386139,
+  "market_cap_nasdaq": 35841632894,
+  "high_52w": 20.13,
+  "low_52w": 14.02,
+  "previous_close": 18.01,
+  "one_year_target": 19.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

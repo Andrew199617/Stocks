@@ -1,0 +1,271 @@
+{
+ "ticker": "SMCI",
+ "cik": 1375365,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001375365-26-000007",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000007/smci-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001375365-26-000014",
+   "filed": "2026-05-11",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000014/smci-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001375365-26-000022",
+   "filed": "2026-08-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000022/smci-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      10187331000,
+      13052563000,
+      27690067000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6796,
+      0.5941,
+      0.7089
+     ],
+     "growth_yoy": [
+      null,
+      0.2813,
+      1.1214
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      2912570000,
+      5494147000,
+      6063327000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1943,
+      0.2501,
+      0.1552
+     ],
+     "growth_yoy": [
+      null,
+      0.8864,
+      0.1036
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1293959000,
+      2726994000,
+      2674494000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0863,
+      0.1241,
+      0.0685
+     ],
+     "growth_yoy": [
+      null,
+      1.1075,
+      -0.0193
+     ]
+    },
+    {
+     "member": "smci:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      595391000,
+      698338000,
+      2635184000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0397,
+      0.0318,
+      0.0675
+     ],
+     "growth_yoy": [
+      null,
+      0.1729,
+      2.7735
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14989251000,
+     21972042000,
+     39063072000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3846960000,
+      2768181000,
+      2196073000,
+      10928946000,
+      7033882000,
+      7892762000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.6775,
+      0.6018,
+      0.3815,
+      0.8617,
+      0.6867,
+      0.7098
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.8409,
+      1.541,
+      2.594
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1831002000,
+      1831732000,
+      null,
+      1753545000,
+      3209132000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3225,
+      0.3982,
+      null,
+      0.1383,
+      0.3133,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0423,
+      0.752,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5677962000,
+     4599913000,
+     5756911000,
+     12682491000,
+     10243014000,
+     11119777000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: table dropped: its 2 rows cover 2.5% of the consolidated total for 2026-06-30, not a breakdown of it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: table dropped: its 2 rows cover 2.8% of the consolidated total for 2026-06-30, not a breakdown of it",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 71.0% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

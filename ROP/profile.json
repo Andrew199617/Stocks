@@ -1,0 +1,612 @@
+{
+ "ticker": "ROP",
+ "cik": 882835,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:26:32-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000882835.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000009/rop-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ROP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ROP/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ROP/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ROP/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ROP/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ROP/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ROP/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ROP/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ROP/peg-ratio"
+ },
+ "about": {
+  "entity": "ROPER TECHNOLOGIES INC",
+  "cik": 882835,
+  "description": {
+   "text": "Roper Technologies, Inc. (“Roper,” the “Company,” “we,” “our,” or “us”) is a diversified technology company. Roper has a proven, long-term, successful track record of compounding cash flow and increasing shareholder value. We operate market leading businesses that design and develop vertical software and technology enabled products for a variety of defensible niche markets. We pursue consistent and sustainable growth in revenue, earnings, and cash flow by enabling continuous improvement in the operating performance of our businesses and by acquiring businesses that offer high value-added software, services, technology-enabled products, and solutions that we believe are capable of realizing growth while maintaining high margins. We compete in many defensible niche markets and believe we are the market leader or a competitive alternative to the market leader in most of these markets. In the last three years, we have deployed approximately $8,960 of capital toward acquisitions. In 2025, this included approximately $1,850 for the acquisition of CentralReach, a leading provider of Software-as-a-Service (“SaaS”) and AI-enabled solutions for applied behavior analysis (“ABA”) therapy clinicians, and approximately $800 for the acquisition of Subsplash, a leading provider of AI-enabled SaaS, and integrated giving solutions, for faith-based organizations.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0000882835-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000009/rop-20251231.htm"
+  },
+  "description_short": "Roper Technologies is a constituent of the Nasdaq 100, S&P 500, and Fortune 500. Roper has a proven, long-term track record of compounding cash flow and shareholder value. The Company operates market leading businesses that design and develop vertical software and technology enabled products for a variety of defensible niche markets. Roper utilizes a disciplined, analytical, and process-driven approach to redeploy its excess capital toward high-quality acquisitions.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3823",
+  "sic_description": "Industrial Instruments For Measurement, Display, and Control",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.ropertech.com",
+  "headquarters": "Sarasota, Florida",
+  "address": {
+   "street": "6496 University Parkway",
+   "city": "Sarasota",
+   "state": "Florida",
+   "zip": "34240",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "9415562601",
+  "employees": {
+   "count": 19400,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 19,400 people worldwide on a consolidated basis, of which approximately 13,100 were employed in the U.S. and approximately 6,300 were employed outside of the U.S.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000009/rop-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "ROPER TECHNOLOGIES INC",
+   "ROPER INDUSTRIES INC",
+   "ROPER INDUSTRIES INC /DE/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000882835&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 17,
+  "buy": 6,
+  "hold": 3,
+  "sell": 2,
+  "target_mean": 449.0,
+  "target_low": 335.0,
+  "target_high": 550.0,
+  "target_1y_nasdaq_summary": 417.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 497.97,
+    "buy": 11,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 446.15,
+    "buy": 9,
+    "hold": 2,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 443.58,
+    "buy": 9,
+    "hold": 2,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 445.13,
+    "buy": 10,
+    "hold": 3,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 371.23,
+    "buy": 7,
+    "hold": 6,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 349.73,
+    "buy": 7,
+    "hold": 6,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 355.87,
+    "buy": 7,
+    "hold": 6,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 358.22,
+    "buy": 6,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 344.25,
+    "buy": 6,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 354.68,
+    "buy": 6,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 391.97,
+    "buy": 7,
+    "hold": 4,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 418.31,
+    "buy": 7,
+    "hold": 4,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 449.0,
+    "buy": 6,
+    "hold": 3,
+    "sell": 2,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "CO FORECST",
+   "EDWARD JONES",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MIZUHO SECURITI",
+   "OPPENHEIMER HLD",
+   "RAYMOND JAMES",
+   "RBC CAPITAL",
+   "TD COWEN",
+   "TRUIST SECURITI",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 5.79,
+     "low": 5.76,
+     "high": 5.86,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 5.92,
+     "low": 5.87,
+     "high": 5.97,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 5.86,
+     "low": 5.68,
+     "high": 6.06,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 6.02,
+     "low": 5.89,
+     "high": 6.15,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 6.18,
+     "low": 5.97,
+     "high": 6.35,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 22.22,
+     "low": 22.01,
+     "high": 22.33,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 24.46,
+     "low": 23.48,
+     "high": 25.6,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 26.74,
+     "low": 25.94,
+     "high": 27.36,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 29.52,
+     "low": 29.52,
+     "high": 29.52,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 5.11,
+    "actual": 5.14,
+    "surprise_pct": 0.59
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 5.14,
+    "actual": 5.21,
+    "surprise_pct": 1.36
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 4.97,
+    "actual": 5.16,
+    "surprise_pct": 3.82
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 5.29,
+    "actual": 5.38,
+    "surprise_pct": 1.7
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 5.79
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 5.92
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 5.86
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 6.02
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 5.79,
+    "week_ago": 5.79,
+    "month_ago": 5.79
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 22.22,
+    "week_ago": 22.22,
+    "month_ago": 22.22
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-22",
+   "text": "Roper Technologies, Inc. Common Stock is expected* to report earnings on 10/22/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $5.79. The reported EPS for the same quarter last year was $5.14.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.86
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000882835-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000039/rop-20260929.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-06",
+   "items": [
+    "5.04",
+    "9.01"
+   ],
+   "description": "Item 5.04",
+   "accession": "0001193125-26-342309",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312526342309/d124069d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882835-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000036/rop-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882835-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000031/rop-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-19",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-230480",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312526230480/d156759d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882835-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000019/rop-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882835-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000015/rop-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-145481",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312526145481/d204543ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-03-30",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-26-138072",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312526138072/d124209d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000882835-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000009/rop-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882835-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000003/rop-20260127.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882835-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283525000045/rop-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882835-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283525000041/rop-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-12",
+   "items": [
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Debt obligation; Other events",
+   "accession": "0001193125-25-178683",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312525178683/d88971d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882835-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283525000036/rop-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-21",
+   "period": "2025-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882835-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283525000031/rop-20250721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-11",
+   "period": "2025-06-10",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-139176",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312525139176/d836851d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882835-25-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283525000020/rop-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882835-25-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283525000016/rop-20250428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-25",
+   "period": "2025-06-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-096682",
+   "url": "https://www.sec.gov/Archives/edgar/data/882835/000119312525096682/d758559ddef14a.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 740005,
+  "volume": 867707,
+  "market_cap_nasdaq": 37824639261,
+  "high_52w": 519.1,
+  "low_52w": 305.96,
+  "previous_close": 372.69,
+  "one_year_target": 417.0,
+  "dividend_yield_nasdaq": 0.98,
+  "annualized_dividend": 3.64,
+  "ex_dividend_date": "2026-10-02",
+  "dividend_pay_date": "2026-10-21"
+ },
+ "warnings": []
+}

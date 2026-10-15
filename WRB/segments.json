@@ -1,0 +1,675 @@
+{
+ "ticker": "WRB",
+ "cik": 11544,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000011544-26-000005",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000005/wrb-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000011544-26-000011",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000011/wrb-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000011544-26-000036",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000036/wrb-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wrb:InsuranceDomesticSegmentMember",
+     "label": "Insurance-Domestic Segment",
+     "values": [
+      9827866000,
+      11181501000,
+      12095601000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8093,
+      0.8198,
+      0.8224
+     ],
+     "growth_yoy": [
+      null,
+      0.1377,
+      0.0818
+     ]
+    },
+    {
+     "member": "wrb:ReinsuranceandMonolineExcessSegmentMember",
+     "label": "Reinsurance and Monoline Excess Segment",
+     "values": [
+      1615277000,
+      1696905000,
+      1781761000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.133,
+      0.1244,
+      0.1211
+     ],
+     "growth_yoy": [
+      null,
+      0.0505,
+      0.05
+     ]
+    },
+    {
+     "member": "wrb:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      652753000,
+      642638000,
+      698274000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0538,
+      0.0471,
+      0.0475
+     ],
+     "growth_yoy": [
+      null,
+      -0.0155,
+      0.0866
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12142938000,
+     13638752000,
+     14707856000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wrb:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      2943707000,
+      3038414000,
+      3086576000,
+      3173718000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8298,
+      0.8277,
+      0.8364,
+      0.854
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0485,
+      0.0445
+     ]
+    },
+    {
+     "member": "wrb:ReinsuranceandMonolineExcessSegmentMember",
+     "label": "Reinsurance and Monoline Excess Segment",
+     "values": [
+      436304000,
+      450259000,
+      417529000,
+      432116000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.123,
+      0.1227,
+      0.1131,
+      0.1163
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.043,
+      -0.0403
+     ]
+    },
+    {
+     "member": "wrb:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      151033000,
+      151162000,
+      202004000,
+      165475000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0426,
+      0.0412,
+      0.0547,
+      0.0445
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3375,
+      0.0947
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3547399000,
+     3670808000,
+     3690334000,
+     3716119000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wrb:InsuranceDomesticSegmentMember",
+     "label": "Insurance-Domestic Segment",
+     "values": [
+      1283281000,
+      1503875000,
+      1584440000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.929,
+      0.8564,
+      0.8904
+     ],
+     "growth_yoy": [
+      null,
+      0.1719,
+      0.0536
+     ]
+    },
+    {
+     "member": "wrb:ReinsuranceandMonolineExcessSegmentMember",
+     "label": "Reinsurance and Monoline Excess Segment",
+     "values": [
+      355155000,
+      367569000,
+      407659000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2571,
+      0.2093,
+      0.2291
+     ],
+     "growth_yoy": [
+      null,
+      0.035,
+      0.1091
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      36792000,
+      88503000,
+      103708000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0266,
+      0.0504,
+      0.0583
+     ],
+     "growth_yoy": [
+      null,
+      1.4055,
+      0.1718
+     ]
+    },
+    {
+     "member": "wrb:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      -293869000,
+      -203832000,
+      -316404000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2127,
+      -0.1161,
+      -0.1778
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1381359000,
+     1756115000,
+     1779403000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wrb:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      393122000,
+      393450000,
+      433467000,
+      455140000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9414,
+      0.9805,
+      0.8413,
+      1.0064
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1026,
+      0.1568
+     ]
+    },
+    {
+     "member": "wrb:ReinsuranceandMonolineExcessSegmentMember",
+     "label": "Reinsurance and Monoline Excess Segment",
+     "values": [
+      95843000,
+      100040000,
+      122367000,
+      114049000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2295,
+      0.2493,
+      0.2375,
+      0.2522
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2767,
+      0.14
+     ]
+    },
+    {
+     "member": "wrb:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      -84221000,
+      -116490000,
+      -28224000,
+      -73593000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2017,
+      -0.2903,
+      -0.0548,
+      -0.1627
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     417571000,
+     401288000,
+     515216000,
+     452261000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "wrb:InsuranceDomesticSegmentMember",
+     "label": "Insurance-Domestic Segment",
+     "values": [
+      33030140000,
+      35830534000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8142,
+      0.8157
+     ],
+     "growth_yoy": [
+      null,
+      0.0848
+     ]
+    },
+    {
+     "member": "wrb:ReinsuranceandMonolineExcessSegmentMember",
+     "label": "Reinsurance and Monoline Excess Segment",
+     "values": [
+      5669729000,
+      5891538000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1398,
+      0.1341
+     ],
+     "growth_yoy": [
+      null,
+      0.0391
+     ]
+    },
+    {
+     "member": "wrb:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      1867399000,
+      2348999000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.046,
+      0.0535
+     ],
+     "growth_yoy": [
+      null,
+      0.2579
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     40567268000,
+     43926843000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wrb:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      35686306000,
+      35954379000,
+      37259095000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8124,
+      0.8113,
+      0.8157
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wrb:ReinsuranceandMonolineExcessSegmentMember",
+     "label": "Reinsurance and Monoline Excess Segment",
+     "values": [
+      5891538000,
+      5777792000,
+      5750756000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1341,
+      0.1304,
+      0.1259
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wrb:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      2348999000,
+      2583382000,
+      2667262000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0535,
+      0.0583,
+      0.0584
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     43926843000,
+     44315553000,
+     45677113000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/NetIncomeLoss/quarterly: rows sum to 109.6% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

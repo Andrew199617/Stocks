@@ -1,0 +1,613 @@
+{
+ "ticker": "CNC",
+ "cik": 1071739,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:20:16-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001071739.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000049/cnc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CNC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CNC/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/CNC/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/CNC/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/CNC/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/CNC/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/CNC/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/CNC/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/CNC/peg-ratio"
+ },
+ "about": {
+  "entity": "CENTENE CORP",
+  "cik": 1071739,
+  "description": {
+   "text": "Our mission is to transform the health of the communities we serve, one person at a time. As the nation's largest managed care company focused on underserved populations, Centene is committed to helping people live healthier lives. Centene offers affordable and high-quality products to more than 1 in 15 individuals across the nation, including Medicaid and Medicare members (including Medicare Prescription Drug Plans) as well as individuals and families served by the Health Insurance Marketplace. Centene provides access to high-quality healthcare, innovative programs and a wide range of health solutions that help families and individuals get well, stay well and be well. We believe the best way to deliver healthcare is with a personal approach, with local brands and local teams who live in, care about and directly influence the communities they serve – a key differentiator in our ability to provide access to quality care for our members. Our state-based plans are built on community expertise and backed by the depth, breadth, and experience of a leading national company. Our model is structured around partnership. By working hand-in-hand with providers, policymakers, and communities, we connect people to what matters most – not just healthcare, but essentials like food, housing, utilities, and transportation – to drive meaningful health outcomes. With our scale and expertise, we are not only improving lives but also shaping the future of healthcare.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001071739-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000049/cnc-20251231.htm"
+  },
+  "description_short": "Centene Corporation, a Fortune 500 company, is a leading healthcare enterprise that is committed to helping people live healthier lives. The Company takes a local approach - with local brands and local teams - to provide fully integrated, high-quality and cost-effective services to government-sponsored and commercial healthcare programs, focusing on under-insured and uninsured individuals. Centene offers affordable and high-quality products to nearly 1 in 15 individuals across the nation, including Medicaid and Medicare members (including Medicare Prescription Drug Plans) as well as individuals and families served by the Health Insurance Marketplace and the TRICARE program. The Company also contracts with other healthcare and commercial organizations to provide a variety of specialty services focused on treating the whole person.",
+  "industry": "Medical Specialities",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "6324",
+  "sic_description": "Hospital & Medical Service Plans",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.centene.com",
+  "headquarters": "St. Louis, Missouri",
+  "address": {
+   "street": "7700 Forsyth Boulevard",
+   "city": "St. Louis",
+   "state": "Missouri",
+   "zip": "63105",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "3147254477",
+  "employees": {
+   "count": 61100,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 61,100 team members.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000049/cnc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-10-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001071739&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 20,
+  "buy": 6,
+  "hold": 8,
+  "sell": 0,
+  "target_mean": 72.92,
+  "target_low": 65.0,
+  "target_high": 80.0,
+  "target_1y_nasdaq_summary": 70.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 35.74,
+    "buy": 3,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 35.37,
+    "buy": 3,
+    "hold": 10,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 37.89,
+    "buy": 3,
+    "hold": 9,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 41.15,
+    "buy": 3,
+    "hold": 9,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 43.32,
+    "buy": 3,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 44.88,
+    "buy": 4,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 33.95,
+    "buy": 4,
+    "hold": 9,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 53.34,
+    "buy": 6,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 62.0,
+    "buy": 7,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 68.35,
+    "buy": 7,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 62.22,
+    "buy": 6,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 65.23,
+    "buy": 6,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 72.92,
+    "buy": 6,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CANTOR FITZGERA",
+   "CO FORECST",
+   "DEUTSCHE BK SEC",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "LOOP CAPITAL MK",
+   "MIZUHO SECURITI",
+   "OPPENHEIMER HLD",
+   "SANFORD BERNSTE",
+   "STEPHENS INC",
+   "TD COWEN",
+   "TRUIST SECURITI",
+   "UBS",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.07,
+     "low": 0.01,
+     "high": 0.1,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -1.09,
+     "low": -1.28,
+     "high": -0.94,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 3.14,
+     "low": 1.45,
+     "high": 3.9,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 2.03,
+     "low": 1.54,
+     "high": 2.92,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.67,
+     "low": 0.15,
+     "high": 1.4,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 4.89,
+     "low": 4.8,
+     "high": 5.09,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 5.34,
+     "low": 4.99,
+     "high": 6.25,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 6.83,
+     "low": 6.06,
+     "high": 7.49,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 8.88,
+     "low": 8.88,
+     "high": 8.88,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": -0.21,
+    "actual": 0.5,
+    "surprise_pct": 338.1
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -1.25,
+    "actual": -1.19,
+    "surprise_pct": 4.8
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.87,
+    "actual": 3.37,
+    "surprise_pct": 80.21
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.89,
+    "actual": 2.51,
+    "surprise_pct": 182.02
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.07
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": -1.09
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 3.14
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 2.03
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.07,
+    "week_ago": 0.07,
+    "month_ago": 0.07
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 4.89,
+    "week_ago": 4.89,
+    "month_ago": 4.89
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-27",
+   "text": "Centene Corporation Common Stock is expected* to report earnings on 10/27/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 6 analysts' forecasts, the consensus EPS forecast for the quarter is $0.07. The reported EPS for the same quarter last year was $0.5.",
+   "timing": "before market open"
+  },
+  "peg_forward": 0.44
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001071739-26-000186",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000186/cnc-20261008.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001071739-26-000172",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000172/cnc-20260916.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001071739-26-000165",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000165/cnc-20260812.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001071739-26-000162",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000162/cnc-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0001071739-26-000154",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000154/cnc-20260728.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001071739-26-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000153/cnc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001071739-26-000132",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000132/cnc-20260619.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-12",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001071739-26-000117",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000117/cnc-20260512.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001071739-26-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000099/cnc-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001071739-26-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000098/cnc-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001071739-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000077/cnc-20260326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-18",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001071739-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000070/cnc-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "7.01",
+    "8.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001071739-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000056/cnc-20260310.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001071739-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000052/cnc-20260223.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001071739-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000049/cnc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001071739-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000031/cnc-20260206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-10",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001071739-25-000188",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173925000188/cnc-20251110.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001071739-25-000185",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173925000185/cnc-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001071739-25-000183",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173925000183/cnc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-11",
+   "period": "2025-09-11",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001071739-25-000168",
+   "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173925000168/cnc-20250911.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 3680525,
+  "volume": 4689339,
+  "market_cap_nasdaq": 34841467350,
+  "high_52w": 70.37,
+  "low_52w": 31.63,
+  "previous_close": 70.16,
+  "one_year_target": 70.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

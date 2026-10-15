@@ -1,0 +1,751 @@
+{
+ "ticker": "TKO",
+ "cik": 1973266,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-071651",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526071651/tko-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-208992",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526208992/tko-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-330592",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526330592/tko-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tko:WorldWrestlingEntertainmentSegmentMember",
+     "label": "World Wrestling Entertainment Segment",
+     "values": [
+      382767000,
+      1398100000,
+      1709395000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1187,
+      0.2862,
+      0.361
+     ],
+     "growth_yoy": [
+      null,
+      2.6526,
+      0.2227
+     ]
+    },
+    {
+     "member": "tko:UltimateFightingChampionshipSegmentMember",
+     "label": "Ultimate Fighting Championship Segment",
+     "values": [
+      1292201000,
+      1406241000,
+      1502161000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4007,
+      0.2879,
+      0.3172
+     ],
+     "growth_yoy": [
+      null,
+      0.0883,
+      0.0682
+     ]
+    },
+    {
+     "member": "tko:IMGSegmentMember",
+     "label": "IMG Segment",
+     "values": [
+      1437110000,
+      1970230000,
+      1367259000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4456,
+      0.4034,
+      0.2887
+     ],
+     "growth_yoy": [
+      null,
+      0.371,
+      -0.306
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      131987000,
+      170274000,
+      199062000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0409,
+      0.0349,
+      0.042
+     ],
+     "growth_yoy": [
+      null,
+      0.2901,
+      0.1691
+     ]
+    },
+    {
+     "member": "tko:EliminationsMember",
+     "label": "Eliminations",
+     "values": [
+      -19269000,
+      -60604000,
+      -42726000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.006,
+      -0.0124,
+      -0.009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3224796000,
+     4884241000,
+     4735151000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "tko:WorldWrestlingEntertainmentSegmentMember",
+     "label": "World Wrestling Entertainment Segment",
+     "values": [
+      391540000,
+      556142000,
+      475658000,
+      620950000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3086,
+      0.425,
+      0.2979,
+      0.4014
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2148,
+      0.1165
+     ]
+    },
+    {
+     "member": "tko:UltimateFightingChampionshipSegmentMember",
+     "label": "Ultimate Fighting Championship Segment",
+     "values": [
+      359747000,
+      415835000,
+      401221000,
+      535662000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2835,
+      0.3178,
+      0.2513,
+      0.3462
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1153,
+      0.2882
+     ]
+    },
+    {
+     "member": "tko:IMGSegmentMember",
+     "label": "IMG Segment",
+     "values": [
+      476268000,
+      306590000,
+      655534000,
+      354557000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3754,
+      0.2343,
+      0.4105,
+      0.2292
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3764,
+      0.1565
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      54377000,
+      44632000,
+      73906000,
+      48475000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0429,
+      0.0341,
+      0.0463,
+      0.0313
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3591,
+      0.0861
+     ]
+    },
+    {
+     "member": "tko:EliminationsMember",
+     "label": "Eliminations",
+     "values": [
+      -13132000,
+      -14757000,
+      -9443000,
+      -12566000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0103,
+      -0.0113,
+      -0.0059,
+      -0.0081
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1268800000,
+     1308442000,
+     1596876000,
+     1547078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tko:MediaRightsProductionAndContentMember",
+     "label": "Media rights, production and content",
+     "values": [
+      1828141000,
+      2498405000,
+      2605116000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5669,
+      0.5115,
+      0.5502
+     ],
+     "growth_yoy": [
+      null,
+      0.3666,
+      0.0427
+     ]
+    },
+    {
+     "member": "tko:LiveEventsAndHospitalityMember",
+     "label": "Live Events And Hospitality",
+     "values": [
+      987756000,
+      1791079000,
+      1339456000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3063,
+      0.3667,
+      0.2829
+     ],
+     "growth_yoy": [
+      null,
+      0.8133,
+      -0.2522
+     ]
+    },
+    {
+     "member": "tko:PartnershipsAndMarketingMember",
+     "label": "Partnerships and marketing",
+     "values": [
+      319753000,
+      444885000,
+      588516000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0992,
+      0.0911,
+      0.1243
+     ],
+     "growth_yoy": [
+      null,
+      0.3913,
+      0.3228
+     ]
+    },
+    {
+     "member": "tko:ConsumerProductsLicensingAndOtherMember",
+     "label": "Consumer Products Licensing And Other",
+     "values": [
+      108415000,
+      210476000,
+      244789000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0336,
+      0.0431,
+      0.0517
+     ],
+     "growth_yoy": [
+      null,
+      0.9414,
+      0.163
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3224796000,
+     4884241000,
+     4735151000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "tko:MediaRightsProductionAndContentMember",
+     "label": "Media rights, production and content",
+     "values": [
+      640326000,
+      707464000,
+      726168000,
+      835809000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5047,
+      0.5407,
+      0.4547,
+      0.5403
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1341,
+      0.1814
+     ]
+    },
+    {
+     "member": "tko:LiveEventsAndHospitalityMember",
+     "label": "Live Events And Hospitality",
+     "values": [
+      456681000,
+      394856000,
+      672625000,
+      418137000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3599,
+      0.3018,
+      0.4212,
+      0.2703
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4729,
+      0.059
+     ]
+    },
+    {
+     "member": "tko:PartnershipsAndMarketingMember",
+     "label": "Partnerships and marketing",
+     "values": [
+      124369000,
+      163539000,
+      131111000,
+      223749000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.098,
+      0.125,
+      0.0821,
+      0.1446
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0542,
+      0.3682
+     ]
+    },
+    {
+     "member": "tko:ConsumerProductsLicensingAndOtherMember",
+     "label": "Consumer Products Licensing And Other",
+     "values": [
+      60556000,
+      57340000,
+      76415000,
+      81949000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0477,
+      0.0438,
+      0.0479,
+      0.053
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2619,
+      0.4292
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1268800000,
+     1308442000,
+     1596876000,
+     1547078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      2096314000,
+      2999284000,
+      3514848000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6501,
+      0.6141,
+      0.7423
+     ],
+     "growth_yoy": [
+      null,
+      0.4307,
+      0.1719
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "E M E A",
+     "values": [
+      767887000,
+      1459627000,
+      898150000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2381,
+      0.2988,
+      0.1897
+     ],
+     "growth_yoy": [
+      null,
+      0.9008,
+      -0.3847
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      285692000,
+      337522000,
+      241672000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0886,
+      0.0691,
+      0.051
+     ],
+     "growth_yoy": [
+      null,
+      0.1814,
+      -0.284
+     ]
+    },
+    {
+     "member": "srt:LatinAmericaMember",
+     "label": "Latin America",
+     "values": [
+      74903000,
+      87808000,
+      80481000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0232,
+      0.018,
+      0.017
+     ],
+     "growth_yoy": [
+      null,
+      0.1723,
+      -0.0834
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3224796000,
+     4884241000,
+     4735151000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Eliminations' (tko:EliminationsMember)",
+  "business_segments/Revenues/annual: row 'Corporate Non Segment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Corporate Segment and Other Operating Segment' (us-gaap:CorporateAndOtherMember)",
+  "business_segments/Revenues/quarterly: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Eliminations' (tko:EliminationsMember)",
+  "business_segments/Revenues/quarterly: row 'Corporate Non Segment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Corporate Segment and Other Operating Segment' (us-gaap:CorporateAndOtherMember)",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Material Reconciling Items' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Material Reconciling Items' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

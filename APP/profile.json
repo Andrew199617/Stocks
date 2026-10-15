@@ -1,0 +1,602 @@
+{
+ "ticker": "APP",
+ "cik": 1751008,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T18:23:23-04:00",
+ "newest_filing_date": "2026-08-21",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001751008.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/APP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/APP/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/APP/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/APP/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/APP/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/APP/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/APP/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/APP/peg-ratio"
+ },
+ "about": {
+  "entity": "AppLovin Corp",
+  "cik": 1751008,
+  "description": {
+   "text": "Our mission is to create meaningful connections between companies and their ideal customers. We provide end-to-end artificial intelligence-powered (\"AI\") advertising solutions for businesses to reach, monetize and grow their global audience. Our scaled business model is intricately linked to the advertising ecosystem, providing a durable competitive advantage. We generate revenue when our advertisers achieve their return on advertising spend targets with our advertising solutions, ensuring that their success directly fuels our growth. AppLovin is critical to the success of advertisers and publishers seeking to solve marketing and monetization challenges. Through our technologies and scaled distribution, advertisers are able to better place content so that it is discovered by the right audience, manage, optimize, and analyze their marketing investments, and improve the monetization of their content, and publishers are able to better monetize their gaming apps. Our advertising solutions include a comprehensive suite of tools including: •Axon Ads Manager, our user acquisition solution, is the cornerstone of our advertising solutions. Axon Ads Manager is powered by our Axon AI advertising recommendation engine and matches advertiser demand with publisher supply through auctions at vast scale and at microsecond-level speeds.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001751008-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm"
+  },
+  "description_short": "AppLovin makes technologies that help businesses of every size connect to their ideal customers. The company provides end-to-end advertising solutions for businesses to reach, monetize and grow their global audiences.",
+  "industry": "Computer Software: Programming, Data Processing",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7370",
+  "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.applovin.com",
+  "headquarters": "Palo Alto, California",
+  "address": {
+   "street": "1100 Page Mill Road",
+   "city": "Palo Alto",
+   "state": "California",
+   "zip": "94304",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "(800) 839-9646",
+  "employees": {
+   "count": 898,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had a total of 898 employees, comprised of 876 full-time and 22 part-time/intern employees, located in 15 countries.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-03-02",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 16,
+  "buy": 16,
+  "hold": 4,
+  "sell": 0,
+  "target_mean": 489.3,
+  "target_low": 325.0,
+  "target_high": 790.0,
+  "target_1y_nasdaq_summary": 475.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 704.09,
+    "buy": 15,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 637.33,
+    "buy": 16,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 623.59,
+    "buy": 16,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 673.82,
+    "buy": 16,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 473.11,
+    "buy": 14,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 434.77,
+    "buy": 18,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 387.84,
+    "buy": 18,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 460.0,
+    "buy": 19,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 613.7,
+    "buy": 20,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 564.61,
+    "buy": 21,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 395.9,
+    "buy": 19,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 311.74,
+    "buy": 18,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 489.3,
+    "buy": 16,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BENCHMARK COMPA",
+   "BTIG",
+   "CITIGROUP",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MACQUARIE CAPIT",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "OPPENHEIMER HLD",
+   "STIFEL NICOLAUS",
+   "UBS",
+   "WEDBUSH SECURIT",
+   "WILLIAM BLAIR"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 3.94,
+     "low": 3.79,
+     "high": 4.14,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 4.42,
+     "low": 4.05,
+     "high": 4.75,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 4.63,
+     "low": 4.2,
+     "high": 4.96,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 4.81,
+     "low": 4.41,
+     "high": 4.99,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 5.06,
+     "low": 4.64,
+     "high": 5.35,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 2
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 15.67,
+     "low": 14.97,
+     "high": 16.02,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 19.9,
+     "low": 18.23,
+     "high": 21.31,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 24.83,
+     "low": 21.95,
+     "high": 28.97,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 25.78,
+     "low": 25.78,
+     "high": 25.78,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 2.37,
+    "actual": 2.45,
+    "surprise_pct": 3.38
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 2.89,
+    "actual": 3.24,
+    "surprise_pct": 12.11
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 3.4,
+    "actual": 3.56,
+    "surprise_pct": 4.71
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 3.72,
+    "actual": 3.76,
+    "surprise_pct": 1.08
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 3.94
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 4.42
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 4.63
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 4.81
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 3.94,
+    "week_ago": 3.95,
+    "month_ago": 3.95
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 15.67,
+    "week_ago": 15.72,
+    "month_ago": 15.72
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-04",
+   "text": "Applovin Corporation Class A Common Stock is expected* to report earnings on 11/04/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 9 analysts' forecasts, the consensus EPS forecast for the quarter is $3.94. The reported EPS for the same quarter last year was $2.45.",
+   "timing": "after market close"
+  },
+  "peg_forward": 0.55
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000059/app-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001751008-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000057/app-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-03",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001751008-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000050/app-20260603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000044/app-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001751008-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000042/app-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-21",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001751008-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000028/app-20260420.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-07",
+   "period": "2026-04-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001751008-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000014/app-20260402.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001751008-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001751008-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000005/app-20260211.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000081/app-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001751008-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000079/app-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-25-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000072/app-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001751008-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000069/app-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-01",
+   "period": "2025-06-30",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001751008-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000061/app-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-09",
+   "period": "2025-06-04",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001751008-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000057/app-20250604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000053/app-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "1.01",
+    "2.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations",
+   "accession": "0001751008-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000051/app-20250507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-22",
+   "period": "2025-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001751008-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000041/app-20250421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-09",
+   "period": "2025-04-08",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001751008-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000032/app-20250408.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-03",
+   "period": "2025-04-03",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001751008-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000028/app-20250403.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 5447143,
+  "volume": 4371941,
+  "market_cap_nasdaq": 93464677790,
+  "high_52w": 738.01,
+  "low_52w": 261.0,
+  "previous_close": 262.19,
+  "one_year_target": 475.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

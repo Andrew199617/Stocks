@@ -1,0 +1,186 @@
+{
+ "ticker": "KR",
+ "cik": 56873,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-037723",
+   "filed": "2026-03-31",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-078236",
+   "filed": "2026-06-26",
+   "period": "2026-05-23",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926078236/kr-20260523x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-108926",
+   "filed": "2026-09-18",
+   "period": "2026-08-15",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926108926/kr-20260815x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kr:NonPerishableMember",
+     "label": "Non perishable",
+     "values": [
+      78215000000,
+      77080000000,
+      77569000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5213,
+      0.5239,
+      0.5254
+     ],
+     "growth_yoy": [
+      null,
+      -0.0145,
+      0.0063
+     ]
+    },
+    {
+     "member": "kr:PerishableMember",
+     "label": "Perishable",
+     "values": [
+      36568000000,
+      36317000000,
+      37189000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2437,
+      0.2468,
+      0.2519
+     ],
+     "growth_yoy": [
+      null,
+      -0.0069,
+      0.024
+     ]
+    },
+    {
+     "member": "kr:PharmacyMember",
+     "label": "Pharmacy",
+     "values": [
+      14406000000,
+      15691000000,
+      18171000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.096,
+      0.1067,
+      0.1231
+     ],
+     "growth_yoy": [
+      null,
+      0.0892,
+      0.1581
+     ]
+    },
+    {
+     "member": "kr:SupermarketFuelMember",
+     "label": "Supermarket fuel",
+     "values": [
+      16621000000,
+      14973000000,
+      13584000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1108,
+      0.1018,
+      0.092
+     ],
+     "growth_yoy": [
+      null,
+      -0.0992,
+      -0.0928
+     ]
+    },
+    {
+     "member": "kr:OtherProductMember",
+     "label": "Other",
+     "values": [
+      4229000000,
+      3062000000,
+      1129000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0282,
+      0.0208,
+      0.0076
+     ],
+     "growth_yoy": [
+      null,
+      -0.276,
+      -0.6313
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     150039000000,
+     147123000000,
+     147642000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

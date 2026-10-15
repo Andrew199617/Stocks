@@ -1,0 +1,1050 @@
+{
+ "ticker": "IR",
+ "cik": 1699150,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-008617",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026008617/iri-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028401",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026028401/iri-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-051415",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026051415/iri-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iri:IndustrialTechnologiesAndServicesSegmentMember",
+     "label": "Industrial Technologies and Services Segment",
+     "values": [
+      5632800000,
+      5818100000,
+      6056400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8192,
+      0.8042,
+      0.7916
+     ],
+     "growth_yoy": [
+      null,
+      0.0329,
+      0.041
+     ]
+    },
+    {
+     "member": "iri:PrecisionAndScienceTechnologiesSegmentMember",
+     "label": "Precision and Science Technologies Segment",
+     "values": [
+      1243300000,
+      1416900000,
+      1594500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1808,
+      0.1958,
+      0.2084
+     ],
+     "growth_yoy": [
+      null,
+      0.1396,
+      0.1253
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6876100000,
+     7235000000,
+     7650900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iri:IndustrialTechnologiesAndServicesSegmentMember",
+     "label": "Industrial Technologies and Services Segment",
+     "values": [
+      1352100000,
+      1491600000,
+      1444500000,
+      1622100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7876,
+      0.7901,
+      0.782,
+      0.7917
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0683,
+      0.0875
+     ]
+    },
+    {
+     "member": "iri:PrecisionAndScienceTechnologiesSegmentMember",
+     "label": "Precision and Science Technologies Segment",
+     "values": [
+      364700000,
+      396300000,
+      402700000,
+      426700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2124,
+      0.2099,
+      0.218,
+      0.2083
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1042,
+      0.0767
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1716800000,
+     1887900000,
+     1847200000,
+     2048800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "iri:IndustrialTechnologiesAndServicesSegmentMember",
+     "label": "Industrial Technologies and Services Segment",
+     "values": [
+      10369600000,
+      11266400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5758,
+      0.6157
+     ],
+     "growth_yoy": [
+      null,
+      0.0865
+     ]
+    },
+    {
+     "member": "iri:PrecisionAndScienceTechnologiesSegmentMember",
+     "label": "Precision and Science Technologies Segment",
+     "values": [
+      5884100000,
+      5656400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3267,
+      0.3091
+     ],
+     "growth_yoy": [
+      null,
+      -0.0387
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1756100000,
+      1374400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0975,
+      0.0751
+     ],
+     "growth_yoy": [
+      null,
+      -0.2174
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     18009800000,
+     18297200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iri:IndustrialTechnologiesAndServicesSegmentMember",
+     "label": "Industrial Technologies and Services Segment",
+     "values": [
+      11266400000,
+      11172200000,
+      11294600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6157,
+      0.6132,
+      0.6208
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "iri:PrecisionAndScienceTechnologiesSegmentMember",
+     "label": "Precision and Science Technologies Segment",
+     "values": [
+      5656400000,
+      5643300000,
+      5673000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3091,
+      0.3098,
+      0.3118
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1374400000,
+      1402700000,
+      1226500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0751,
+      0.077,
+      0.0674
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     18297200000,
+     18218200000,
+     18194100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iri:IndustrialTechnologiesAndServicesSegmentMember",
+     "label": "Industrial Technologies and Services Segment",
+     "values": [
+      313800000,
+      296000000,
+      282100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6835,
+      0.6141,
+      0.5577
+     ],
+     "growth_yoy": [
+      null,
+      -0.0567,
+      -0.047
+     ]
+    },
+    {
+     "member": "iri:PrecisionAndScienceTechnologiesSegmentMember",
+     "label": "Precision and Science Technologies Segment",
+     "values": [
+      135400000,
+      177100000,
+      219100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2949,
+      0.3674,
+      0.4332
+     ],
+     "growth_yoy": [
+      null,
+      0.308,
+      0.2372
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      9900000,
+      8900000,
+      4600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0216,
+      0.0185,
+      0.0091
+     ],
+     "growth_yoy": [
+      null,
+      -0.101,
+      -0.4831
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     459100000,
+     482000000,
+     505800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iri:IndustrialTechnologiesAndServicesSegmentMember",
+     "label": "Industrial Technologies and Services Segment",
+     "values": [
+      67600000,
+      68500000,
+      71200000,
+      66300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5633,
+      0.5685,
+      0.5201,
+      0.4992
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0533,
+      -0.0321
+     ]
+    },
+    {
+     "member": "iri:PrecisionAndScienceTechnologiesSegmentMember",
+     "label": "Precision and Science Technologies Segment",
+     "values": [
+      51200000,
+      50900000,
+      64600000,
+      65300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4267,
+      0.4224,
+      0.4719,
+      0.4917
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2617,
+      0.2829
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1200000,
+      1100000,
+      1100000,
+      1200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.01,
+      0.0091,
+      0.008,
+      0.009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0833,
+      0.0909
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     120000000,
+     120500000,
+     136900000,
+     132800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iri:OriginalEquipmentMember",
+     "label": "Original Equipment",
+     "values": [
+      4604200000,
+      4861800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6364,
+      0.6355
+     ],
+     "growth_yoy": [
+      null,
+      0.0559
+     ]
+    },
+    {
+     "member": "iri:AftermarketMember",
+     "label": "Aftermarket",
+     "values": [
+      2630800000,
+      2789100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3636,
+      0.3645
+     ],
+     "growth_yoy": [
+      null,
+      0.0602
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7235000000,
+     7650900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iri:OriginalEquipmentMember",
+     "label": "Original Equipment",
+     "values": [
+      1063500000,
+      1196900000,
+      1155700000,
+      1313800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6195,
+      0.634,
+      0.6256,
+      0.6413
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0867,
+      0.0977
+     ]
+    },
+    {
+     "member": "iri:AftermarketMember",
+     "label": "Aftermarket",
+     "values": [
+      653300000,
+      691000000,
+      691500000,
+      735000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3805,
+      0.366,
+      0.3744,
+      0.3587
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0585,
+      0.0637
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1716800000,
+     1887900000,
+     1847200000,
+     2048800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3112300000,
+      3189900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4302,
+      0.4169
+     ],
+     "growth_yoy": [
+      null,
+      0.0249
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      2374900000,
+      2601500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3283,
+      0.34
+     ],
+     "growth_yoy": [
+      null,
+      0.0954
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      794600000,
+      789500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1098,
+      0.1032
+     ],
+     "growth_yoy": [
+      null,
+      -0.0064
+     ]
+    },
+    {
+     "member": "iri:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      541200000,
+      612100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0748,
+      0.08
+     ],
+     "growth_yoy": [
+      null,
+      0.131
+     ]
+    },
+    {
+     "member": "iri:OtherAsiaPacificMember",
+     "label": "Other Asia Pacific",
+     "values": [
+      412000000,
+      457900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0569,
+      0.0598
+     ],
+     "growth_yoy": [
+      null,
+      0.1114
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7235000000,
+     7650900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      754000000,
+      798400000,
+      753100000,
+      809500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4392,
+      0.4229,
+      0.4077,
+      0.3951
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0012,
+      0.0139
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      567400000,
+      611000000,
+      658600000,
+      674300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3305,
+      0.3236,
+      0.3565,
+      0.3291
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1607,
+      0.1036
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      166900000,
+      208500000,
+      193100000,
+      248000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0972,
+      0.1104,
+      0.1045,
+      0.121
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.157,
+      0.1894
+     ]
+    },
+    {
+     "member": "iri:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      141800000,
+      156600000,
+      141600000,
+      170200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0826,
+      0.0829,
+      0.0767,
+      0.0831
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0014,
+      0.0868
+     ]
+    },
+    {
+     "member": "iri:OtherAsiaPacificMember",
+     "label": "Other Asia Pacific",
+     "values": [
+      86700000,
+      113400000,
+      100800000,
+      146800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0505,
+      0.0601,
+      0.0546,
+      0.0717
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1626,
+      0.2945
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1716800000,
+     1887900000,
+     1847200000,
+     2048800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Americas' (srt:AmericasMember) dropped: it is the parent of Other Americas, UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Asia Pacific' (srt:AsiaPacificMember) dropped: it is the parent of CHINA, Other Asia Pacific in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Americas' (srt:AmericasMember) dropped: it is the parent of Other Americas, UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Asia Pacific' (srt:AsiaPacificMember) dropped: it is the parent of CHINA, Other Asia Pacific in the filing's definition linkbase"
+ ],
+ "complete": true
+}

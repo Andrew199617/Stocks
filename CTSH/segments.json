@@ -1,0 +1,1002 @@
+{
+ "ticker": "CTSH",
+ "cik": 1058290,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001058290-26-000008",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000008/ctsh-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001058290-26-000016",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000016/ctsh-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001058290-26-000031",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000031/ctsh-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ctsh:HealthSciencesMember",
+     "label": "Health Sciences",
+     "values": [
+      5674000000,
+      5932000000,
+      6347000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2932,
+      0.3006,
+      0.3007
+     ],
+     "growth_yoy": [
+      null,
+      0.0455,
+      0.07
+     ]
+    },
+    {
+     "member": "ctsh:FinancialServicesMember",
+     "label": "Financial Services",
+     "values": [
+      5809000000,
+      5753000000,
+      6173000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3002,
+      0.2915,
+      0.2924
+     ],
+     "growth_yoy": [
+      null,
+      -0.0096,
+      0.073
+     ]
+    },
+    {
+     "member": "ctsh:ProductsandResourcesMember",
+     "label": "Products and Resources",
+     "values": [
+      4628000000,
+      4782000000,
+      5285000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2391,
+      0.2423,
+      0.2504
+     ],
+     "growth_yoy": [
+      null,
+      0.0333,
+      0.1052
+     ]
+    },
+    {
+     "member": "ctsh:CommunicationsMediaandTechnologyMember",
+     "label": "Communications, Media and Technology",
+     "values": [
+      3242000000,
+      3269000000,
+      3303000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1675,
+      0.1656,
+      0.1565
+     ],
+     "growth_yoy": [
+      null,
+      0.0083,
+      0.0104
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19353000000,
+     19736000000,
+     21108000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ctsh:FinancialServicesMember",
+     "label": "Financial Services",
+     "values": [
+      1462000000,
+      1547000000,
+      1644000000,
+      1733000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2858,
+      0.2949,
+      0.3037,
+      0.3162
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1245,
+      0.1202
+     ]
+    },
+    {
+     "member": "ctsh:HealthSciencesMember",
+     "label": "Health Sciences",
+     "values": [
+      1571000000,
+      1551000000,
+      1579000000,
+      1572000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3071,
+      0.2957,
+      0.2917,
+      0.2868
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0051,
+      0.0135
+     ]
+    },
+    {
+     "member": "ctsh:ProductsandResourcesMember",
+     "label": "Products and Resources",
+     "values": [
+      1278000000,
+      1306000000,
+      1321000000,
+      1322000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2499,
+      0.249,
+      0.244,
+      0.2412
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0336,
+      0.0123
+     ]
+    },
+    {
+     "member": "ctsh:CommunicationsMediaAndTechnologyMember",
+     "label": "Communications, Media and Technology",
+     "values": [
+      804000000,
+      841000000,
+      869000000,
+      854000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1572,
+      0.1603,
+      0.1605,
+      0.1558
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0808,
+      0.0155
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5115000000,
+     5245000000,
+     5413000000,
+     5481000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ctsh:FinancialServicesMember",
+     "label": "Financial Services",
+     "values": [
+      1156000000,
+      915000000,
+      1233000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4299,
+      0.3164,
+      0.3638
+     ],
+     "growth_yoy": [
+      null,
+      -0.2085,
+      0.3475
+     ]
+    },
+    {
+     "member": "ctsh:HealthSciencesMember",
+     "label": "Health Sciences",
+     "values": [
+      1352000000,
+      1073000000,
+      1029000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5028,
+      0.371,
+      0.3036
+     ],
+     "growth_yoy": [
+      null,
+      -0.2064,
+      -0.041
+     ]
+    },
+    {
+     "member": "ctsh:ProductsandResourcesMember",
+     "label": "Products and Resources",
+     "values": [
+      984000000,
+      771000000,
+      787000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3659,
+      0.2666,
+      0.2322
+     ],
+     "growth_yoy": [
+      null,
+      -0.2165,
+      0.0208
+     ]
+    },
+    {
+     "member": "ctsh:CommunicationsMediaandTechnologyMember",
+     "label": "Communications, Media and Technology",
+     "values": [
+      625000000,
+      393000000,
+      436000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2324,
+      0.1359,
+      0.1287
+     ],
+     "growth_yoy": [
+      null,
+      -0.3712,
+      0.1094
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2689000000,
+     2892000000,
+     3389000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ctsh:HealthSciencesMember",
+     "label": "Health Sciences",
+     "values": [
+      288000000,
+      292000000,
+      315000000,
+      312000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3376,
+      0.3574,
+      0.3737,
+      0.357
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0938,
+      0.0685
+     ]
+    },
+    {
+     "member": "ctsh:FinancialServicesMember",
+     "label": "Financial Services",
+     "values": [
+      243000000,
+      250000000,
+      252000000,
+      277000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2849,
+      0.306,
+      0.2989,
+      0.3169
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.037,
+      0.108
+     ]
+    },
+    {
+     "member": "ctsh:ProductsandResourcesMember",
+     "label": "Products and Resources",
+     "values": [
+      179000000,
+      167000000,
+      178000000,
+      165000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2098,
+      0.2044,
+      0.2112,
+      0.1888
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0056,
+      -0.012
+     ]
+    },
+    {
+     "member": "ctsh:CommunicationsMediaAndTechnologyMember",
+     "label": "Communications, Media and Technology",
+     "values": [
+      81000000,
+      108000000,
+      98000000,
+      123000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.095,
+      0.1322,
+      0.1163,
+      0.1407
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2099,
+      0.1389
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     853000000,
+     817000000,
+     843000000,
+     874000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ctsh:ConsultingAndTechnologyServicesMember",
+     "label": "Consulting And Technology Services",
+     "values": [
+      11964000000,
+      12492000000,
+      13533000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6182,
+      0.633,
+      0.6411
+     ],
+     "growth_yoy": [
+      null,
+      0.0441,
+      0.0833
+     ]
+    },
+    {
+     "member": "ctsh:OutsourcingServicesMember",
+     "label": "Outsourcing Services",
+     "values": [
+      7389000000,
+      7244000000,
+      7575000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3818,
+      0.367,
+      0.3589
+     ],
+     "growth_yoy": [
+      null,
+      -0.0196,
+      0.0457
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19353000000,
+     19736000000,
+     21108000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ctsh:ConsultingAndTechnologyServicesMember",
+     "label": "Consulting And Technology Services",
+     "values": [
+      3226000000,
+      3389000000,
+      3491000000,
+      3518000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6307,
+      0.6461,
+      0.6449,
+      0.6419
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0821,
+      0.0381
+     ]
+    },
+    {
+     "member": "ctsh:OutsourcingServicesMember",
+     "label": "Outsourcing Services",
+     "values": [
+      1889000000,
+      1856000000,
+      1922000000,
+      1963000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3693,
+      0.3539,
+      0.3551,
+      0.3581
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0175,
+      0.0577
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5115000000,
+     5245000000,
+     5413000000,
+     5481000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      14263000000,
+      14698000000,
+      15780000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.737,
+      0.7447,
+      0.7476
+     ],
+     "growth_yoy": [
+      null,
+      0.0305,
+      0.0736
+     ]
+    },
+    {
+     "member": "ctsh:EuropeexcludingUnitedKingdomMember",
+     "label": "Europe, excluding United Kingdom",
+     "values": [
+      1909000000,
+      1932000000,
+      2090000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0986,
+      0.0979,
+      0.099
+     ],
+     "growth_yoy": [
+      null,
+      0.012,
+      0.0818
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      1885000000,
+      1827000000,
+      1922000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0974,
+      0.0926,
+      0.0911
+     ],
+     "growth_yoy": [
+      null,
+      -0.0308,
+      0.052
+     ]
+    },
+    {
+     "member": "ctsh:RestofWorldMember",
+     "label": "Rest of World",
+     "values": [
+      1296000000,
+      1279000000,
+      1316000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.067,
+      0.0648,
+      0.0623
+     ],
+     "growth_yoy": [
+      null,
+      -0.0131,
+      0.0289
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19353000000,
+     19736000000,
+     21108000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      3854000000,
+      3912000000,
+      4052000000,
+      4127000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7535,
+      0.7459,
+      0.7486,
+      0.753
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0514,
+      0.055
+     ]
+    },
+    {
+     "member": "ctsh:EuropeexcludingUnitedKingdomMember",
+     "label": "Europe, excluding United Kingdom",
+     "values": [
+      493000000,
+      520000000,
+      530000000,
+      535000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0964,
+      0.0991,
+      0.0979,
+      0.0976
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0751,
+      0.0288
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      457000000,
+      482000000,
+      509000000,
+      492000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0893,
+      0.0919,
+      0.094,
+      0.0898
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1138,
+      0.0207
+     ]
+    },
+    {
+     "member": "ctsh:RestofWorldMember",
+     "label": "Rest of World",
+     "values": [
+      311000000,
+      331000000,
+      322000000,
+      327000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0608,
+      0.0631,
+      0.0595,
+      0.0597
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0354,
+      -0.0121
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5115000000,
+     5245000000,
+     5413000000,
+     5481000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 102.8% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Europe' (srt:EuropeMember) dropped: its values equal the sum of UNITED KINGDOM, Europe, excluding United Kingdom",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Europe' (srt:EuropeMember) dropped: its values equal the sum of UNITED KINGDOM, Europe, excluding United Kingdom"
+ ],
+ "complete": true
+}

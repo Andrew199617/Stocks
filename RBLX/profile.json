@@ -1,0 +1,618 @@
+{
+ "ticker": "RBLX",
+ "cik": 1315098,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:25:57-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001315098.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RBLX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RBLX/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/RBLX/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/RBLX/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/RBLX/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/RBLX/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/RBLX/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/RBLX/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/RBLX/peg-ratio"
+ },
+ "about": {
+  "entity": "Roblox Corp",
+  "cik": 1315098,
+  "description": {
+   "text": "Roblox is an immersive gaming and creation platform (the “Roblox Platform” or “Platform”) that offers people millions of ways to be together, inviting its community to explore, create, and share endless unique experiences. Our vision is to reimagine the way people come together– in a world that’s safe, civil, and optimistic. To achieve this vision, we are building an innovative company that, together with the Roblox community, has the ability to strengthen our social fabric and support economic growth for people around the world. Our Platform consists of the Roblox Client, the Roblox Studio, and the Roblox Cloud. Roblox Client is the application that allows users to seamlessly explore immersive experiences. Roblox Studio is the free toolset that allows creators to build, publish, and operate immersive experiences and other content accessed with the Roblox Client. Roblox Cloud includes the services and infrastructure that power our Platform. Our mission is to connect a billion users with optimism and civility. We are constantly improving the ways in which our Platform supports shared experiences, ranging from how these experiences are built by an engaged community of creators to how they are enjoyed and safely accessed by users across the globe. We also believe there is a strong potential to capture a greater percentage of the global gaming market within the Roblox ecosystem.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001315098-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+  },
+  "description_short": "Roblox is an immersive gaming and creation platform that offers people millions of ways to be together, inviting its community to explore, create and share endless unique games. Our vision is to reimagine the way people come together- in a world that's safe, civil, and optimistic. To achieve this vision, we are building an innovative company that, together with the Roblox community, has the ability to strengthen our social fabric and support economic growth for people around the world.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "NV",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.corp.roblox.com",
+  "headquarters": "San Mateo, CA",
+  "address": {
+   "street": "3150 South Delaware Street",
+   "city": "San Mateo",
+   "state": "CA",
+   "zip": "94403",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "(888) 858-2569",
+  "employees": {
+   "count": 3065,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 3,065 full time employees, the majority of whom work from our San Mateo, California headquarters.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-11-19",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001315098&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 23,
+  "buy": 8,
+  "hold": 13,
+  "sell": 3,
+  "target_mean": 47.91,
+  "target_low": 33.0,
+  "target_high": 64.0,
+  "target_1y_nasdaq_summary": 49.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 134.07,
+    "buy": 16,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 113.72,
+    "buy": 15,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 93.79,
+    "buy": 13,
+    "hold": 7,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 81.03,
+    "buy": 12,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 65.76,
+    "buy": 15,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 68.66,
+    "buy": 17,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 57.63,
+    "buy": 17,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 45.13,
+    "buy": 15,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 47.0,
+    "buy": 12,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 57.95,
+    "buy": 12,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 35.6,
+    "buy": 9,
+    "hold": 11,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 40.67,
+    "buy": 9,
+    "hold": 11,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 47.91,
+    "buy": 8,
+    "hold": 12,
+    "sell": 3,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BENCHMARK COMPA",
+   "BMO CAPITAL MKT",
+   "BTIG",
+   "CANACCORD GENUI",
+   "CITIGROUP",
+   "DEUTSCHE BK SEC",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MOFFETT NATHANS",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "ROTH CAPITAL PA",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "WEDBUSH SECURIT",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": -0.41,
+     "low": -0.47,
+     "high": -0.27,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -0.44,
+     "low": -0.61,
+     "high": -0.29,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": -0.22,
+     "low": -0.27,
+     "high": -0.16,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": -0.22,
+     "low": -0.29,
+     "high": -0.14,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": -0.29,
+     "low": -0.36,
+     "high": -0.21,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -1.39,
+     "low": -1.55,
+     "high": -1.12,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": -1.32,
+     "low": -1.99,
+     "high": -0.72,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": -0.92,
+     "low": -1.49,
+     "high": -0.35,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 0.34,
+     "low": -0.08,
+     "high": 0.76,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": -0.53,
+    "actual": -0.37,
+    "surprise_pct": 30.19
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -0.49,
+    "actual": -0.45,
+    "surprise_pct": 8.16
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": -0.43,
+    "actual": -0.29,
+    "surprise_pct": 32.56
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": -0.33,
+    "actual": -0.26,
+    "surprise_pct": 21.21
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": -0.41
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": -0.44
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": -0.22
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": -0.22
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": -0.41,
+    "week_ago": -0.41,
+    "month_ago": -0.41
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": -1.39,
+    "week_ago": -1.39,
+    "month_ago": -1.39
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "Roblox Corporation Class A Common Stock is expected* to report earnings on 10/29/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 8 analysts' forecasts, the consensus EPS forecast for the quarter is $-0.41. The reported EPS for the same quarter last year was $-0.37.",
+   "timing": "after market close"
+  },
+  "peg_forward": -1.62
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026051082/rblx-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-051059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026051059/rblx-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001315098-26-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000124/rblx-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001315098-26-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000108/rblx-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026028904/rblx-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-028882",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026028882/rblx-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-16",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-044362",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000110465926044362/rblx-20260528xdef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000075/rblx-20260319.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-02-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000062/rblx-20260224.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001315098-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001315098-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000009/rblx-20260205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001315098-25-000327",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000327/rblx-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001315098-25-000326",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000326/rblx-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-17",
+   "period": "2025-09-15",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-25-000304",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000304/rblx-20250915.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001315098-25-000262",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000262/rblx-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-28",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD; Other events",
+   "accession": "0001315098-25-000261",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000261/rblx-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-01",
+   "period": "2025-06-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-25-000222",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000222/rblx-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-10",
+   "period": "2025-06-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-25-000199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000199/rblx-20250604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-02",
+   "period": "2025-05-29",
+   "items": [
+    "3.03",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Shareholder vote; Other events",
+   "accession": "0001315098-25-000178",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000178/rblx-20250529.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001315098-25-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000118/rblx-20250331.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": null,
+  "volume": 11298330,
+  "market_cap_nasdaq": 36533185623,
+  "high_52w": 141.95,
+  "low_52w": 33.88,
+  "previous_close": 47.54,
+  "one_year_target": 49.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

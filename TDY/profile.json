@@ -1,0 +1,596 @@
+{
+ "ticker": "TDY",
+ "cik": 1094285,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:27:05-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001094285.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000017/tdy-20251228.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TDY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TDY/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/TDY/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/TDY/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/TDY/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/TDY/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/TDY/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/TDY/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/TDY/peg-ratio"
+ },
+ "about": {
+  "entity": "TELEDYNE TECHNOLOGIES INC",
+  "cik": 1094285,
+  "description": {
+   "text": "Teledyne Technologies Incorporated is a Delaware corporation that provides enabling technologies to sense, analyze and distribute information for industrial growth markets that require advanced technology and high reliability. These markets include aerospace and defense, factory automation, air and water quality environmental monitoring, electronics design and development, oceanographic research, deepwater oil and gas exploration and production, medical imaging and pharmaceutical research. Our products include digital imaging sensors, cameras and systems within the visible, infrared and X-ray spectra, monitoring and control instrumentation for marine and environmental applications, harsh environment interconnects, electronic test and measurement equipment, aircraft information management systems, and defense electronics and satellite communication subsystems. We also supply engineered systems for defense, space, environmental and energy applications. We believe our technological capabilities, innovation and ability to invest in the development of new and enhanced products are critical to obtaining and maintaining leadership in our markets and the industries in which we compete. We became an independent public company effective November 29, 1999. The following description of our business should be read together with “Management’s Discussion and Analysis of Financial Condition and Results of Operations” within Item 7. of this Form 10-K.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-28",
+   "accession": "0001094285-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000017/tdy-20251228.htm"
+  },
+  "description_short": "Teledyne Technologies is a leading provider of sophisticated digital imaging products and software, instrumentation, aerospace and defense electronics, and engineered systems. Teledyne's operations are primarily located in the United States, the United Kingdom, Canada, and Western and Northern Europe. For more information, visit Teledyne's website at www.teledyne.com.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3812",
+  "sic_description": "Search, Detection, Navigation, Guidance, Aeronautical Sys",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0103",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.teledyne.com",
+  "headquarters": "Thousand Oaks, California",
+  "address": {
+   "street": "1049 Camino Dos Rios",
+   "city": "Thousand Oaks",
+   "state": "California",
+   "zip": "91360-2362",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "805-373-4545",
+  "employees": {
+   "count": 15800,
+   "as_of": "2025-12-28",
+   "evidence": "At December 28, 2025, our total workforce consisted of approximately 15,800 employees in 38 countries.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000017/tdy-20251228.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-09-13",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001094285&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 10,
+  "buy": 6,
+  "hold": 3,
+  "sell": 0,
+  "target_mean": 758.7,
+  "target_low": 640.0,
+  "target_high": 877.0,
+  "target_1y_nasdaq_summary": 760.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 575.07,
+    "buy": 6,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 526.82,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 492.56,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 510.73,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 620.3,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 681.1,
+    "buy": 5,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 617.97,
+    "buy": 5,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 640.33,
+    "buy": 5,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 609.47,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 661.2,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 655.57,
+    "buy": 6,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 610.51,
+    "buy": 6,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 758.7,
+    "buy": 6,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "CO FORECST",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "TD COWEN",
+   "UBS",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 6.15,
+     "low": 6.11,
+     "high": 6.2,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 6.48,
+     "low": 6.43,
+     "high": 6.5,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 6.1,
+     "low": 6.08,
+     "high": 6.12,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 6.82,
+     "low": 6.77,
+     "high": 6.86,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 6.76,
+     "low": 6.73,
+     "high": 6.79,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 24.69,
+     "low": 24.64,
+     "high": 24.78,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 26.89,
+     "low": 26.75,
+     "high": 27.25,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 28.87,
+     "low": 28.87,
+     "high": 28.87,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 5.5,
+    "actual": 5.57,
+    "surprise_pct": 1.27
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 5.83,
+    "actual": 6.3,
+    "surprise_pct": 8.06
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 5.48,
+    "actual": 5.8,
+    "surprise_pct": 5.84
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 5.78,
+    "actual": 6.28,
+    "surprise_pct": 8.65
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 6.15
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 6.48
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 6.1
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 6.82
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 6.15,
+    "week_ago": 6.15,
+    "month_ago": 6.15
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 24.69,
+    "week_ago": 24.69,
+    "month_ago": 24.69
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-28",
+   "text": "Teledyne Technologies Incorporated Common Stock is estimated to report earnings on 10/28/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 4 analysts' forecasts, the consensus EPS forecast for the quarter is $6.15. The reported EPS for the same quarter last year was $5.57.",
+   "timing": null
+  },
+  "peg_forward": 2.65
+ },
+ "filings": [
+  {
+   "form": "8-K/A",
+   "filed": "2026-10-02",
+   "period": "2026-09-28",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001094285-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000053/tdy-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001094285-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000050/tdy-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001094285-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000047/tdy-20260810.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-24",
+   "period": "2026-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001094285-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000043/tdy-20260628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001094285-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000039/tdy-20260722.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-24",
+   "period": "2026-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001094285-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000030/tdy-20260329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-21",
+   "items": [
+    "5.02",
+    "5.03",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment; Shareholder vote; Other events",
+   "accession": "0001193125-26-171087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000119312526171087/d116221d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001094285-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000024/tdy-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-104187",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000119312526104187/d70991ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-25",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001094285-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000019/tdy-20260225.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001094285-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000017/tdy-20251228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001094285-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000010/tdy-20260120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001094285-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000008/tdy-20260121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-02",
+   "period": "2025-12-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001094285-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428526000004/tdy-20251230.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-16",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001094285-25-000145",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428525000145/tdy-20251216.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-24",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001094285-25-000140",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428525000140/tdy-20250928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001094285-25-000137",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428525000137/tdy-20251021.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-28",
+   "period": "2025-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001094285-25-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428525000131/tdy-20250629.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-07-23",
+   "period": "2025-04-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001094285-25-000123",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428525000123/tdy-20250428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001094285-25-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1094285/000109428525000120/tdy-20250722.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 314571,
+  "volume": 280706,
+  "market_cap_nasdaq": 28727537672,
+  "high_52w": 697.67,
+  "low_52w": 483.02,
+  "previous_close": 608.9,
+  "one_year_target": 760.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

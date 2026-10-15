@@ -1,0 +1,1241 @@
+{
+ "ticker": "FTI",
+ "cik": 1681459,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001681459-26-000010",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000010/fti-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001681459-26-000026",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000026/fti-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001681459-26-000045",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000045/fti-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      6434800000,
+      7819900000,
+      8665900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8224,
+      0.8609,
+      0.8725
+     ],
+     "growth_yoy": [
+      null,
+      0.2153,
+      0.1082
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      1389400000,
+      1263400000,
+      1266700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1776,
+      0.1391,
+      0.1275
+     ],
+     "growth_yoy": [
+      null,
+      -0.0907,
+      0.0026
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7824200000,
+     9083300000,
+     9932600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      1936200000,
+      2216300000,
+      2208400000,
+      2486900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8669,
+      0.8744,
+      0.8859,
+      0.9
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1406,
+      0.1221
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      297400000,
+      318400000,
+      284300000,
+      276200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1331,
+      0.1256,
+      0.1141,
+      0.1
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.044,
+      -0.1325
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2233600000,
+     2534700000,
+     2492700000,
+     2763100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      543600000,
+      953100000,
+      1299400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8259,
+      0.8236,
+      0.9048
+     ],
+     "growth_yoy": [
+      null,
+      0.7533,
+      0.3633
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      114600000,
+      204200000,
+      136700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1741,
+      0.1764,
+      0.0952
+     ],
+     "growth_yoy": [
+      null,
+      0.7818,
+      -0.3306
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     658200000,
+     1157300000,
+     1436100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      247900000,
+      380300000,
+      349000000,
+      486500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8914,
+      0.942,
+      0.9039,
+      0.9258
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4078,
+      0.2793
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      30200000,
+      23400000,
+      37100000,
+      39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1086,
+      0.058,
+      0.0961,
+      0.0742
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2285,
+      0.6667
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     278100000,
+     403700000,
+     386100000,
+     525500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      6894000000,
+      6900300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6985,
+      0.682
+     ],
+     "growth_yoy": [
+      null,
+      0.0009
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      1208300000,
+      1145600000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1224,
+      0.1132
+     ],
+     "growth_yoy": [
+      null,
+      -0.0519
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1766900000,
+      2072300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.179,
+      0.2048
+     ],
+     "growth_yoy": [
+      null,
+      0.1728
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9869200000,
+     10118200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      6900300000,
+      7160700000,
+      7487300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.682,
+      0.71,
+      0.7221
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      1145600000,
+      1188900000,
+      1174200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1132,
+      0.1179,
+      0.1132
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2072300000,
+      1736500000,
+      1706900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2048,
+      0.1722,
+      0.1646
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10118200000,
+     10086100000,
+     10368400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      310500000,
+      342500000,
+      387200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8219,
+      0.8722,
+      0.8764
+     ],
+     "growth_yoy": [
+      null,
+      0.1031,
+      0.1305
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      65200000,
+      49000000,
+      54200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1726,
+      0.1248,
+      0.1227
+     ],
+     "growth_yoy": [
+      null,
+      -0.2485,
+      0.1061
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2100000,
+      1200000,
+      400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0056,
+      0.0031,
+      0.0009
+     ],
+     "growth_yoy": [
+      null,
+      -0.4286,
+      -0.6667
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     377800000,
+     392700000,
+     441800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fti:SubseaMember",
+     "label": "Subsea",
+     "values": [
+      86500000,
+      104400000,
+      91800000,
+      85200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8447,
+      0.9062,
+      0.8861,
+      0.8774
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0613,
+      -0.1839
+     ]
+    },
+    {
+     "member": "fti:SurfaceTechnologiesMember",
+     "label": "Surface Technologies",
+     "values": [
+      15700000,
+      10700000,
+      11700000,
+      11800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1533,
+      0.0929,
+      0.1129,
+      0.1215
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2548,
+      0.1028
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      200000,
+      100000,
+      100000,
+      100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.002,
+      0.0009,
+      0.001,
+      0.001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     102400000,
+     115200000,
+     103600000,
+     97100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      4283300000,
+      5520800000,
+      5642600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5673,
+      0.6245,
+      0.5853
+     ],
+     "growth_yoy": [
+      null,
+      0.2889,
+      0.0221
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      3267400000,
+      3319800000,
+      3997900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4327,
+      0.3755,
+      0.4147
+     ],
+     "growth_yoy": [
+      null,
+      0.016,
+      0.2043
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7550700000,
+     8840600000,
+     9640500000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      1304000000,
+      1533300000,
+      1209400000,
+      1776000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6003,
+      0.6049,
+      0.5005,
+      0.6428
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0725,
+      0.1583
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      868200000,
+      1001400000,
+      1207200000,
+      987100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3997,
+      0.3951,
+      0.4995,
+      0.3572
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3905,
+      -0.0143
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2172200000,
+     2534700000,
+     2416600000,
+     2763100000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      1687600000,
+      1710600000,
+      2158300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2157,
+      0.1883,
+      0.2173
+     ],
+     "growth_yoy": [
+      null,
+      0.0136,
+      0.2617
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1569500000,
+      1766000000,
+      1435900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2006,
+      0.1944,
+      0.1446
+     ],
+     "growth_yoy": [
+      null,
+      0.1252,
+      -0.1869
+     ]
+    },
+    {
+     "member": "country:NO",
+     "label": "NORWAY",
+     "values": [
+      1134100000,
+      1151400000,
+      1375500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1449,
+      0.1268,
+      0.1385
+     ],
+     "growth_yoy": [
+      null,
+      0.0153,
+      0.1946
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      867200000,
+      863000000,
+      840200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1108,
+      0.095,
+      0.0846
+     ],
+     "growth_yoy": [
+      null,
+      -0.0048,
+      -0.0264
+     ]
+    },
+    {
+     "member": "country:GY",
+     "label": "GUYANA",
+     "values": [
+      500400000,
+      795700000,
+      748900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.064,
+      0.0876,
+      0.0754
+     ],
+     "growth_yoy": [
+      null,
+      0.5901,
+      -0.0588
+     ]
+    },
+    {
+     "member": "country:AO",
+     "label": "ANGOLA",
+     "values": [
+      400800000,
+      829600000,
+      535600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0512,
+      0.0913,
+      0.0539
+     ],
+     "growth_yoy": [
+      null,
+      1.0699,
+      -0.3544
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      174600000,
+      350000000,
+      390800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0223,
+      0.0385,
+      0.0393
+     ],
+     "growth_yoy": [
+      null,
+      1.0046,
+      0.1166
+     ]
+    },
+    {
+     "member": "country:NG",
+     "label": "NIGERIA",
+     "values": [
+      54400000,
+      113500000,
+      326900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.007,
+      0.0125,
+      0.0329
+     ],
+     "growth_yoy": [
+      null,
+      1.0864,
+      1.8802
+     ]
+    },
+    {
+     "member": "country:ID",
+     "label": "INDONESIA",
+     "values": [
+      50000000,
+      168800000,
+      325700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0064,
+      0.0186,
+      0.0328
+     ],
+     "growth_yoy": [
+      null,
+      2.376,
+      0.9295
+     ]
+    },
+    {
+     "member": "country:IL",
+     "label": "ISRAEL",
+     "values": [
+      8800000,
+      90300000,
+      268000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0011,
+      0.0099,
+      0.027
+     ],
+     "growth_yoy": [
+      null,
+      9.2614,
+      1.9679
+     ]
+    },
+    {
+     "member": "country:MZ",
+     "label": "MOZAMBIQUE",
+     "values": [
+      153600000,
+      97700000,
+      216700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0196,
+      0.0108,
+      0.0218
+     ],
+     "growth_yoy": [
+      null,
+      -0.3639,
+      1.218
+     ]
+    },
+    {
+     "member": "_other",
+     "label": "Other (4 smaller rows)",
+     "values": [
+      1223200000,
+      1146700000,
+      1310100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1563,
+      0.1262,
+      0.1319
+     ],
+     "growth_yoy": [
+      null,
+      -0.0625,
+      0.1425
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7824200000,
+     9083300000,
+     9932600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/Revenues/annual: 15 rows; the 4 smallest (UNITED ARAB EMIRATES, SAUDI ARABIA, SURINAME, All Other Countries member) are summed into one 'Other' row"
+ ],
+ "complete": true
+}

@@ -1,5 +1,5 @@
 {
- "built_at": "2026-10-15T01:57:29-04:00",
+ "built_at": "2026-10-15T19:33:49-04:00",
  "date": "2026-10-15",
  "data_version": 1,
  "engine_release_latest": "5.4.0",
@@ -25,8 +25,11 @@
   },
   "with_live": 72,
   "watchlist": 10,
-  "failed": 0
+  "failed": 0,
+  "statements": 90,
+  "profiles": 90
  },
+ "site_url": null,
  "hurdles": {
   "S": 0.25,
   "A": 0.2,
@@ -43,38 +46,175 @@
   "data"
  ],
  "watchlist": [
+  "U",
+  "META",
+  "NFLX",
+  "RDDT",
+  "CMPS",
   "ADBE",
+  "MSFT",
   "AMZN",
   "APP",
-  "CMPS",
-  "DFTX",
-  "DUOL",
-  "FIG",
-  "GOOGL",
-  "INTC",
   "LFTO",
-  "META",
-  "MSFT",
-  "NFLX",
   "NTDOY",
+  "SONY",
+  "SNAP",
+  "GOOGL",
+  "DUOL",
+  "SE",
+  "NVO",
+  "TTWO",
+  "OTLY",
+  "STZ",
+  "INTC",
+  "DFTX",
+  "XIACY",
+  "FIG"
+ ],
+ "watchlist_outside": [
+  "META",
+  "NFLX",
+  "ADBE",
+  "MSFT",
+  "AMZN",
+  "APP",
+  "NTDOY",
+  "SONY",
+  "GOOGL",
+  "SE",
   "NVO",
   "OTLY",
-  "RDDT",
-  "SE",
-  "SNAP",
-  "SONY",
-  "STZ",
-  "TTWO",
-  "U",
+  "INTC",
   "XIACY"
+ ],
+ "watchlist_entries": [
+  {
+   "ticker": "U",
+   "in_universe": true,
+   "name": "Unity Software Inc."
+  },
+  {
+   "ticker": "META",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "NFLX",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "RDDT",
+   "in_universe": true,
+   "name": "Reddit Inc. Class A"
+  },
+  {
+   "ticker": "CMPS",
+   "in_universe": true,
+   "name": "COMPASS Pathways Plc American Depository Shares"
+  },
+  {
+   "ticker": "ADBE",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "MSFT",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "AMZN",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "APP",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "LFTO",
+   "in_universe": true,
+   "name": "Liftoff Mobile Inc."
+  },
+  {
+   "ticker": "NTDOY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "SONY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "SNAP",
+   "in_universe": true,
+   "name": "Snap Inc. Class A"
+  },
+  {
+   "ticker": "GOOGL",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "DUOL",
+   "in_universe": true,
+   "name": "Duolingo Inc. Class A"
+  },
+  {
+   "ticker": "SE",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "NVO",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "TTWO",
+   "in_universe": true,
+   "name": "Take-Two Interactive Software Inc."
+  },
+  {
+   "ticker": "OTLY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "STZ",
+   "in_universe": true,
+   "name": "Constellation Brands Inc."
+  },
+  {
+   "ticker": "INTC",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "DFTX",
+   "in_universe": true,
+   "name": "Definium Therapeutics Inc. Common Shares"
+  },
+  {
+   "ticker": "XIACY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "FIG",
+   "in_universe": true,
+   "name": "Figma Inc. Class A"
+  }
  ],
  "stale": [],
  "failed": [],
  "notes": [
   "ranked by the live IRR (live.json, scored paths repriced at the last close) when present, else the scored IRR; nulls last",
-  "this run: 1 record(s) written, 89 skipped unchanged, 0 removed",
-  "watchlist: _system/watchlist.json tickers, flagged on every row (row.watchlist) and listed in meta.watchlist",
-  "1 of the records written carry forecast paths replayed from pre-5.4 run inputs through dcf_engine.replay_paths",
-  "built with --only APP: other rows come from the previous index"
+  "this run: 0 record(s) written, 90 skipped unchanged, 0 removed",
+  "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
+  "statements: 0 data/<T>.statements.json cop(ies) written, 0 removed; served next to the record, loaded by the Financials tab on demand, never embedded"
  ]
 }

@@ -1,0 +1,603 @@
+{
+ "ticker": "IR",
+ "cik": 1699150,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:23:08-04:00",
+ "newest_filing_date": "2026-08-21",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001699150.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026008617/iri-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IR/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/IR/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/IR/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/IR/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/IR/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/IR/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/IR/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/IR/peg-ratio"
+ },
+ "about": {
+  "entity": "Ingersoll Rand Inc.",
+  "cik": 1699150,
+  "description": {
+   "text": "Ingersoll Rand Inc. is a diversified, global provider of mission-critical flow creation products, and industrial and life science solutions. The accompanying consolidated financial statements include the accounts of Ingersoll Rand Inc. and its majority-owned subsidiaries (collectively referred to herein as “Ingersoll Rand,” “Company,” “we,” “us,” “our,” or “ourselves”). We are a global market leader with a broad flow creation and industrial product portfolio across air, gas, powder, and liquid handling applications, providing services and solutions to increase industrial and life science productivity, efficiency, and sustainability. We manufacture one of the broadest and most complete ranges of compressor, pump, vacuum and blower products in our markets, which, when combined with our global geographic footprint and application expertise, allows us to provide differentiated product and service offerings to our customers. Our products are sold under more than 90 market-leading brands, including Ingersoll Rand and Gardner Denver, which we believe are globally recognized in their respective end-markets and known for product quality, reliability, efficiency and superior customer service. We are driven by an entrepreneurial spirit and ownership mindset, dedicated to helping make life better for our employees, customers, the planet, and our shareholders.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-008617",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026008617/iri-20251231.htm"
+  },
+  "description_short": "Ingersoll Rand Inc. (NYSE: IR), driven by an entrepreneurial spirit and ownership mindset, is dedicated to Making Life Better for our employees, customers, shareholders, and planet. Customers lean on us for exceptional performance and durability in mission-critical flow creation and life science and industrial solutions. Supported by over 80+ respected brands, our products and services excel in the most complex and harsh conditions. Our employees develop customers for life through their daily commitment to expertise, productivity, and efficiency. For more information, visit IRCO.com.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3560",
+  "sic_description": "General Industrial Machinery & Equipment",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.irco.com",
+  "headquarters": "Davidson, North Carolina",
+  "address": {
+   "street": "525 Harbour Place Drive Suite 600",
+   "city": "Davidson",
+   "state": "North Carolina",
+   "zip": "28036",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "414-212-4700",
+  "employees": {
+   "count": 21000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had over 21,000 employees, with approximately 6,100 of them working in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026008617/iri-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-02-28",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "GARDNER DENVER HOLDINGS, INC."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001699150&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 12,
+  "buy": 3,
+  "hold": 1,
+  "sell": 0,
+  "target_mean": 104.2,
+  "target_low": 87.0,
+  "target_high": 115.0,
+  "target_1y_nasdaq_summary": 90.5,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 83.5,
+    "buy": 4,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 76.33,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 79.19,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 79.22,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 86.09,
+    "buy": 3,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 94.14,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 80.0,
+    "buy": 4,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 77.99,
+    "buy": 5,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 70.96,
+    "buy": 5,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 80.86,
+    "buy": 5,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 83.38,
+    "buy": 3,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 74.64,
+    "buy": 4,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 104.2,
+    "buy": 3,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "CFRA RESEARCH",
+   "CITIGROUP",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "STIFEL NICOLAUS",
+   "UBS",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.85,
+     "low": 0.83,
+     "high": 0.86,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.99,
+     "low": 0.97,
+     "high": 1.01,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.76,
+     "low": 0.75,
+     "high": 0.78,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.89,
+     "low": 0.88,
+     "high": 0.91,
+     "estimates": 3,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.94,
+     "low": 0.9,
+     "high": 0.97,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 3.41,
+     "low": 3.38,
+     "high": 3.44,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 3.69,
+     "low": 3.6,
+     "high": 3.75,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 4.04,
+     "low": 3.97,
+     "high": 4.1,
+     "estimates": 3,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 4.46,
+     "low": 4.46,
+     "high": 4.46,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.83,
+    "actual": 0.83,
+    "surprise_pct": 0.0
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.88,
+    "actual": 0.95,
+    "surprise_pct": 7.95
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.72,
+    "actual": 0.73,
+    "surprise_pct": 1.39
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.8,
+    "actual": 0.82,
+    "surprise_pct": 2.5
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.85
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.99
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.76
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.89
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.85,
+    "week_ago": 0.85,
+    "month_ago": 0.85
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 3.41,
+    "week_ago": 3.41,
+    "month_ago": 3.41
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "Ingersoll Rand Inc. Common Stock is expected* to report earnings on 10/29/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 4 analysts' forecasts, the consensus EPS forecast for the quarter is $0.85. The reported EPS for the same quarter last year was $0.83.",
+   "timing": "after market close"
+  },
+  "peg_forward": 3.23
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051415",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026051415/iri-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-051068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026051068/iri-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-11",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001140361-26-025458",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036126025458/ef20076198_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028401",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026028401/iri-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-027949",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026027949/iri-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-016726",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036126016726/ny20063676x1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-008617",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026008617/iri-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-007710",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026007710/iri-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-25-057497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025057497/iri-20251217.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047838",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025047838/iri-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047573",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025047573/iri-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-037049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025037049/iri-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-037035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025037035/iri-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-15",
+   "period": "2025-07-14",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-25-025837",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036125025837/ef20051944_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-17",
+   "period": "2025-06-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-25-022750",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036125022750/ef20050699_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-16",
+   "period": "2025-06-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001140361-25-022666",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036125022666/ef20050648_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-021883",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025021883/iri-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-021577",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828025021577/iri-20250501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-25",
+   "period": "2025-06-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-015748",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036125015748/ny20042323x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-03",
+   "period": "2025-04-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-25-011979",
+   "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036125011979/ef20046812_8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 3147755,
+  "volume": 4328964,
+  "market_cap_nasdaq": 30213515536,
+  "high_52w": 100.96,
+  "low_52w": 68.07,
+  "previous_close": 77.94,
+  "one_year_target": 90.5,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

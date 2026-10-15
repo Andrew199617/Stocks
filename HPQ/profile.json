@@ -1,0 +1,606 @@
+{
+ "ticker": "HPQ",
+ "cik": 47217,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:22:47-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000047217.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000071/hpq-20251031.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HPQ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HPQ/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/HPQ/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/HPQ/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/HPQ/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/HPQ/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/HPQ/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/HPQ/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/HPQ/peg-ratio"
+ },
+ "about": {
+  "entity": "HP INC",
+  "cik": 47217,
+  "description": {
+   "text": "HP is a global technology leader and creator of solutions that enable people to bring their ideas to life and connect to the things that matter most. Operating in more than 170 countries, HP delivers innovative and sustainable devices, services and subscriptions for personal computing, printing, 3D printing, hybrid work, gaming and other related technologies. We believe artificial intelligence (“AI”) is playing a critical role in the transformation of how people live and work, and customers are beginning to recognize the benefits in security, speed and cost. Our high-performing product portfolio includes HP’s new line of AI PCs and workstations built with the computing power to enable local AI processing for enhanced performance and features as well as intelligent print features incorporated into our home, office and graphics solutions. Our broad range of security capabilities are designed to protect an increasingly distributed user base through security enhanced PCs and printers, hardware-enforced endpoint security software (for both HP and non-HP PCs), and endpoint security services. Our security solutions provide layered resiliency using enhanced features such as containment and isolation technology as well as the use of AI deep-learning to identify and remove malware threats. We have three reportable segments: Personal Systems, Printing and Corporate Investments.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-12-10",
+   "period": "2025-10-31",
+   "accession": "0000047217-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000071/hpq-20251031.htm"
+  },
+  "description_short": "HP Inc. (NYSE: HPQ) is a global technology leader redefining the Future of Work. Operating in more than 180 countries, HP delivers innovative and AI-powered devices, software, services, and subscriptions that drive business growth and professional fulfillment.",
+  "industry": "Computer Manufacturing",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3570",
+  "sic_description": "Computer & office Equipment",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1031",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.hp.com",
+  "headquarters": "Palo Alto, California",
+  "address": {
+   "street": "1501 Page Mill Road",
+   "city": "Palo Alto",
+   "state": "California",
+   "zip": "94304",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-12-10"
+  },
+  "phone": "6508571501",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-21",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [
+   "HEWLETT PACKARD CO"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000047217&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Underperform",
+  "analysts": 14,
+  "buy": 1,
+  "hold": 7,
+  "sell": 5,
+  "target_mean": 26.85,
+  "target_low": 19.0,
+  "target_high": 34.0,
+  "target_1y_nasdaq_summary": 30.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 26.7,
+    "buy": 1,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 27.67,
+    "buy": 1,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 24.39,
+    "buy": 1,
+    "hold": 9,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 22.28,
+    "buy": 1,
+    "hold": 9,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 19.44,
+    "buy": 0,
+    "hold": 7,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 18.99,
+    "buy": 0,
+    "hold": 6,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 18.95,
+    "buy": 0,
+    "hold": 6,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 20.83,
+    "buy": 0,
+    "hold": 6,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 29.34,
+    "buy": 0,
+    "hold": 5,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 22.02,
+    "buy": 0,
+    "hold": 3,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 27.27,
+    "buy": 0,
+    "hold": 3,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 31.32,
+    "buy": 1,
+    "hold": 6,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 26.85,
+    "buy": 1,
+    "hold": 7,
+    "sell": 5,
+    "consensus": "Sell"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CITIGROUP",
+   "CO FORECST",
+   "EDWARD JONES",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "JP MORGAN SECUR",
+   "LOOP CAPITAL MK",
+   "MORGAN STANLEY",
+   "TD COWEN",
+   "UBS",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Oct 2026",
+     "fiscal_end": "2026-10",
+     "consensus": 0.75,
+     "low": 0.74,
+     "high": 0.77,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2027",
+     "fiscal_end": "2027-01",
+     "consensus": 0.77,
+     "low": 0.71,
+     "high": 0.84,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Apr 2027",
+     "fiscal_end": "2027-04",
+     "consensus": 0.77,
+     "low": 0.7,
+     "high": 0.84,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jul 2027",
+     "fiscal_end": "2027-07",
+     "consensus": 0.76,
+     "low": 0.65,
+     "high": 0.88,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Oct 2027",
+     "fiscal_end": "2027-10",
+     "consensus": 0.75,
+     "low": 0.68,
+     "high": 0.81,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Oct 2026",
+     "fiscal_end": "2026-10",
+     "consensus": 3.23,
+     "low": 3.15,
+     "high": 3.27,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Oct 2027",
+     "fiscal_end": "2027-10",
+     "consensus": 3.07,
+     "low": 2.75,
+     "high": 3.36,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Oct 2028",
+     "fiscal_end": "2028-10",
+     "consensus": 3.18,
+     "low": 2.93,
+     "high": 3.35,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Oct 2029",
+     "fiscal_end": "2029-10",
+     "consensus": 3.28,
+     "low": 3.28,
+     "high": 3.28,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Oct 2025",
+    "consensus": 0.91,
+    "actual": 0.93,
+    "surprise_pct": 2.2
+   },
+   {
+    "period": "Jan 2026",
+    "consensus": 0.77,
+    "actual": 0.81,
+    "surprise_pct": 5.19
+   },
+   {
+    "period": "Apr 2026",
+    "consensus": 0.72,
+    "actual": 0.86,
+    "surprise_pct": 19.44
+   },
+   {
+    "period": "Jul 2026",
+    "consensus": 0.75,
+    "actual": 0.83,
+    "surprise_pct": 10.67
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Oct 2026",
+    "consensus": 0.75
+   },
+   {
+    "period": "Jan 2027",
+    "consensus": 0.77
+   },
+   {
+    "period": "Apr 2027",
+    "consensus": 0.77
+   },
+   {
+    "period": "Jul 2027",
+    "consensus": 0.76
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Oct 2026",
+    "current": 0.75,
+    "week_ago": 0.75,
+    "month_ago": 0.75
+   },
+   "year": {
+    "period": "Oct 2026",
+    "current": 3.23,
+    "week_ago": 3.23,
+    "month_ago": 3.23
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-24",
+   "text": "HP Inc. Common Stock is estimated to report earnings on 11/24/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 5 analysts' forecasts, the consensus EPS forecast for the quarter is $0.75. The reported EPS for the same quarter last year was $0.93.",
+   "timing": null
+  },
+  "peg_forward": 1.58
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001140361-26-037170",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000114036126037170/ef20082499_form8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-27",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000047217-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000051/hpq-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000047217-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000048/hpq-20260826.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-24",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000047217-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000041/hpq-20260624.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-28",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000047217-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000029/hpq-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000047217-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000027/hpq-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-16",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000047217-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000019/hpq-20260416.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-02-25",
+   "period": "2026-04-16",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000047217-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000015/hpq-20260225.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-25",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000047217-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000011/hpq-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000047217-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000009/hpq-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-02",
+   "items": [
+    "2.02",
+    "5.02",
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Charter or bylaw amendment; Reg FD",
+   "accession": "0001140361-26-003514",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000114036126003514/ef20064653_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-29",
+   "period": "2025-09-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001140361-25-046753",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000114036125046753/ef20061941_8ka.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-12-10",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000047217-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000071/hpq-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-25",
+   "items": [
+    "2.02",
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Reg FD",
+   "accession": "0000047217-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000068/hpq-20251125.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-01",
+   "period": "2025-09-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-25-036906",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000114036125036906/ef20056232_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000047217-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000063/hpq-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000047217-25-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000060/hpq-20250827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-25",
+   "period": "2025-06-18",
+   "items": [
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment",
+   "accession": "0001140361-25-023655",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000114036125023655/ef20050909_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-29",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000047217-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000043/hpq-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000047217-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000041/hpq-20250528.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 12200951,
+  "volume": 14114004,
+  "market_cap_nasdaq": 27815742439,
+  "high_52w": 36.225,
+  "low_52w": 17.56,
+  "previous_close": 30.46,
+  "one_year_target": 30.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2025-12-10"
+ ]
+}

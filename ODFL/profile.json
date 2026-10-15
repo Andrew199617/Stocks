@@ -1,0 +1,613 @@
+{
+ "ticker": "ODFL",
+ "cik": 878927,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:24:47-04:00",
+ "newest_filing_date": "2026-09-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000878927.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ODFL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ODFL/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ODFL/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ODFL/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ODFL/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ODFL/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ODFL/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ODFL/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ODFL/peg-ratio"
+ },
+ "about": {
+  "entity": "OLD DOMINION FREIGHT LINE, INC.",
+  "cik": 878927,
+  "description": {
+   "text": "We are one of the largest North American less-than-truckload (“LTL”) motor carriers. We provide regional, inter-regional and national LTL services through a single integrated, union-free organization. Our service offerings, which include expedited transportation, are provided through an expansive network of service centers located throughout the continental United States. Through strategic alliances, we also provide LTL services throughout North America. In addition to our core LTL services, we offer a range of value-added services including container drayage, truckload brokerage and supply chain consulting. More than 98% of our revenue has historically been derived from transporting LTL shipments for our customers, whose demand for our services is generally tied to industrial production and the overall health of the U.S. domestic economy. We have increased our revenue and customer base over the past ten years primarily through organic market share growth. Our infrastructure allows us to provide service through each of our regions covering the continental United States. In addition to numerous service center renovations, expansions, and existing service center relocations, we opened a net 16 and 35 service centers over the past five and ten years, respectively, for a total of 260 service centers at December 31, 2025. We believe these actions produced increased capacity within our service center network and provide us with opportunities for future growth.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-067161",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm"
+  },
+  "description_short": "Old Dominion Freight Line, Inc. is one of the largest North American less-than-truckload ('LTL') motor carriers and provides regional, inter-regional and national LTL services through a single integrated, union-free organization. Our service offerings, which include expedited transportation, are provided through an expansive network of service centers located throughout the continental United States. The Company also maintains strategic alliances with other carriers to provide LTL services throughout North America. In addition to its core LTL services, the Company offers a range of value-added services including container drayage, truckload brokerage, and supply chain consulting.",
+  "industry": "Trucking Freight/Courier Services",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "4213",
+  "sic_description": "Trucking (No Local)",
+  "state_of_incorporation": "VA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.odfl.com",
+  "headquarters": "Thomasville, North Carolina",
+  "address": {
+   "street": "500 Old Dominion Way",
+   "city": "Thomasville",
+   "state": "North Carolina",
+   "zip": "27360",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "3368895000",
+  "employees": {
+   "count": 20591,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 20,591 active full-time employees, none of which were represented under a collective bargaining agreement.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-07",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "OLD DOMINION FREIGHT LINE INC/VA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000878927&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 19,
+  "buy": 8,
+  "hold": 9,
+  "sell": 0,
+  "target_mean": 227.19,
+  "target_low": 200.0,
+  "target_high": 250.0,
+  "target_1y_nasdaq_summary": 229.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 139.24,
+    "buy": 6,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 140.42,
+    "buy": 5,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 139.67,
+    "buy": 6,
+    "hold": 8,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 156.8,
+    "buy": 7,
+    "hold": 7,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 173.2,
+    "buy": 6,
+    "hold": 9,
+    "sell": 4,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 203.05,
+    "buy": 6,
+    "hold": 11,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 199.63,
+    "buy": 6,
+    "hold": 11,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 205.81,
+    "buy": 8,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 228.53,
+    "buy": 7,
+    "hold": 11,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 217.96,
+    "buy": 7,
+    "hold": 10,
+    "sell": 2,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 212.14,
+    "buy": 8,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 187.01,
+    "buy": 8,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 227.19,
+    "buy": 9,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BAIRD R W",
+   "BARCLAYS CAPITA",
+   "BENCHMARK COMPA",
+   "CITIGROUP",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "MORGAN STANLEY",
+   "RAYMOND JAMES",
+   "STEPHENS INC",
+   "STIFEL NICOLAUS",
+   "SUSQUEHANNA",
+   "TD COWEN",
+   "UBS",
+   "VERTICAL RESEAR",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.61,
+     "low": 1.59,
+     "high": 1.64,
+     "estimates": 8,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.45,
+     "low": 1.42,
+     "high": 1.51,
+     "estimates": 7,
+     "revisions_up": 4,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.42,
+     "low": 1.32,
+     "high": 1.47,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 1
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.83,
+     "low": 1.82,
+     "high": 1.85,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.84,
+     "low": 1.83,
+     "high": 1.87,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 5.86,
+     "low": 5.6,
+     "high": 5.98,
+     "estimates": 10,
+     "revisions_up": 5,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 6.72,
+     "low": 6.36,
+     "high": 7.21,
+     "estimates": 10,
+     "revisions_up": 5,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 7.8,
+     "low": 7.25,
+     "high": 8.36,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 8.1,
+     "low": 8.1,
+     "high": 8.1,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.22,
+    "actual": 1.28,
+    "surprise_pct": 4.92
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.06,
+    "actual": 1.09,
+    "surprise_pct": 2.83
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.05,
+    "actual": 1.14,
+    "surprise_pct": 8.57
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.52,
+    "actual": 1.68,
+    "surprise_pct": 10.53
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.61
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.45
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.42
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.83
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.61,
+    "week_ago": 1.61,
+    "month_ago": 1.6
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 5.86,
+    "week_ago": 5.82,
+    "month_ago": 5.78
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-28",
+   "text": "Old Dominion Freight Line, Inc. Common Stock is expected* to report earnings on 10/28/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 8 analysts' forecasts, the consensus EPS forecast for the quarter is $1.61. The reported EPS for the same quarter last year was $1.28.",
+   "timing": "before market open"
+  },
+  "peg_forward": 3.05
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000878927-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000027/odfl-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000878927-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000025/odfl-20260903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000878927-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000023/odfl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000878927-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000021/odfl-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000878927-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000019/odfl-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000878927-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000015/odfl-20260603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0000878927-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000013/odfl-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000878927-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000011/odfl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000878927-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000009/odfl-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000878927-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000006/odfl-20260417.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000878927-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000002/odfl-20260303.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-067161",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-036791",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526036791/odfl-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-312744",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525312744/odfl-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-305457",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525305457/odfl-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-268415",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525268415/odfl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-255040",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525255040/odfl-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-247937",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525247937/odfl-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950170-25-112956",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000095017025112956/odfl-20250904.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-103916",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000095017025103916/odfl-20250630.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 1696987,
+  "volume": 2164507,
+  "market_cap_nasdaq": 39165518763,
+  "high_52w": 252.03,
+  "low_52w": 126.01,
+  "previous_close": 184.37,
+  "one_year_target": 229.0,
+  "dividend_yield_nasdaq": 0.63,
+  "annualized_dividend": 1.16,
+  "ex_dividend_date": "2026-09-02",
+  "dividend_pay_date": "2026-09-16"
+ },
+ "warnings": []
+}

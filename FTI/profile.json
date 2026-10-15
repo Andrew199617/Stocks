@@ -1,0 +1,588 @@
+{
+ "ticker": "FTI",
+ "cik": 1681459,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:22:27-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001681459.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000010/fti-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FTI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FTI/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/FTI/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/FTI/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/FTI/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/FTI/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/FTI/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/FTI/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/FTI/peg-ratio"
+ },
+ "about": {
+  "entity": "TechnipFMC plc",
+  "cik": 1681459,
+  "description": {
+   "text": "TechnipFMC plc (“TechnipFMC,” the “Company,” “we,” or “our”) is a leading technology provider to the traditional and new energy industries, delivering fully integrated projects, products, and services. With our proprietary technologies and comprehensive solutions, we transform our clients’ project economics, unlocking new possibilities to develop energy resources while reducing carbon intensity and supporting their energy transition ambitions. Organized in two business segments - Subsea and Surface Technologies - we will continue driving change in the energy industry with our pioneering integrated ecosystems, technology leadership, and digital innovation. Each of our approximately 22,000 employees is driven by a commitment to our clients’ success and a culture of execution excellence, purposeful innovation, and challenging industry conventions.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001681459-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000010/fti-20251231.htm"
+  },
+  "description_short": "TechnipFMC is a leading technology provider to the traditional and new energy industries, delivering fully integrated projects, products, and services. With our proprietary technologies and comprehensive solutions, we are transforming our clients' project economics, helping them unlock new possibilities to develop energy resources while reducing carbon intensity and supporting their energy transition ambitions. Organized in two business segments - Subsea and Surface Technologies - we will continue to advance the industry with our pioneering integrated ecosystems (such as iEPCI, iFEED and iComplete), technology leadership and digital innovation. Each of our approximately 22,000 employees is driven by a commitment to our clients' success, and a culture of strong execution, purposeful innovation, and challenging industry conventions.",
+  "industry": "Oil and Gas Field Machinery",
+  "sector": "Consumer Discretionary",
+  "region": null,
+  "sic": "3533",
+  "sic_description": "Oil & Gas Field Machinery & Equipment",
+  "state_of_incorporation": "X0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": null,
+  "headquarters": "Houston, Texas",
+  "address": {
+   "street": "One Subsea Lane",
+   "city": "Houston",
+   "state": "Texas",
+   "zip": "77044",
+   "country": "United States of America",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "44 191 295 0303",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2016-08-10",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "TechnipFMC Ltd"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001681459&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 22,
+  "buy": 6,
+  "hold": 1,
+  "sell": 0,
+  "target_mean": 82.86,
+  "target_low": 80.0,
+  "target_high": 89.0,
+  "target_1y_nasdaq_summary": 80.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 39.76,
+    "buy": 10,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 41.35,
+    "buy": 9,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 45.64,
+    "buy": 10,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 44.56,
+    "buy": 10,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 55.72,
+    "buy": 9,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 66.31,
+    "buy": 11,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 69.79,
+    "buy": 10,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 75.79,
+    "buy": 10,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 68.43,
+    "buy": 10,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 65.11,
+    "buy": 10,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 71.66,
+    "buy": 9,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 78.31,
+    "buy": 7,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 82.86,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ATB CORMARK CM",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BENCHMARK COMPA",
+   "BMO CAPITAL MKT",
+   "BTIG",
+   "CAP ONE SECURIT",
+   "CITIGROUP",
+   "EVERCORE ISI",
+   "EXANE BNP PARIB",
+   "GRIFFIN SECUR.",
+   "HEIKKINEN ENERG",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEPLER CHEUVREU",
+   "PIPER SANDLER",
+   "ROTHSCHILD REDB",
+   "SOCIETE GENERAL",
+   "SUSQUEHANNA",
+   "TD COWEN",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.88,
+     "low": 0.85,
+     "high": 0.94,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.78,
+     "low": 0.73,
+     "high": 0.9,
+     "estimates": 6,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.75,
+     "low": 0.7,
+     "high": 0.79,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.97,
+     "low": 0.91,
+     "high": 1.02,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.0,
+     "low": 0.94,
+     "high": 1.06,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 3.2,
+     "low": 3.12,
+     "high": 3.38,
+     "estimates": 7,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 3.73,
+     "low": 3.42,
+     "high": 4.37,
+     "estimates": 7,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 4.01,
+     "low": 3.8,
+     "high": 4.38,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.65,
+    "actual": 0.75,
+    "surprise_pct": 15.38
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.51,
+    "actual": 0.7,
+    "surprise_pct": 37.25
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.57,
+    "actual": 0.64,
+    "surprise_pct": 12.28
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.8,
+    "actual": 0.91,
+    "surprise_pct": 13.75
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.88
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.78
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.75
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.97
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.88,
+    "week_ago": 0.88,
+    "month_ago": 0.88
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 3.2,
+    "week_ago": 3.2,
+    "month_ago": 3.17
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "TechnipFMC plc Ordinary Share is expected* to report earnings on 10/29/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $0.88. The reported EPS for the same quarter last year was $0.75.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.11
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001681459-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000045/fti-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001681459-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000040/fti-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-29",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001681459-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000035/fti-20260529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001681459-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000027/fti-20260501.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001681459-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000026/fti-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001681459-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000023/fti-20260430.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-03-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001681459-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000016/fti-20251231.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-03-26",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001681459-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000015/fti-20241231.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-019819",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000162828026019819/fti-20260319.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001681459-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000010/fti-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001681459-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145926000006/fti-20260219.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001681459-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000112/fti-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001681459-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000109/fti-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001681459-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000102/fti-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001681459-25-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000099/fti-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-25",
+   "period": "2025-04-25",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001681459-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000085/fti-20250425.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001681459-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000079/fti-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001681459-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000077/fti-20250424.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-14",
+   "period": "2025-04-25",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001681459-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000068/fti-20250314.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-27",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001681459-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1681459/000168145925000036/fti-20241231.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 5941505,
+  "volume": 2434058,
+  "market_cap_nasdaq": 26757376193,
+  "high_52w": 80.6999,
+  "low_52w": 35.29,
+  "previous_close": 69.5,
+  "one_year_target": 80.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

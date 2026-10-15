@@ -1,0 +1,614 @@
+{
+ "ticker": "ED",
+ "cik": 1047862,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:21:35-04:00",
+ "newest_filing_date": "2026-10-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001047862.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000031/ed-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ED/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ED/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ED/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ED/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ED/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ED/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ED/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ED/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ED/peg-ratio"
+ },
+ "about": {
+  "entity": "CONSOLIDATED EDISON INC",
+  "cik": 1047862,
+  "description": {
+   "text": "Consolidated Edison, Inc. (Con Edison), incorporated in New York State in 1997, is a holding company that owns all of the outstanding common stock of Consolidated Edison Company of New York, Inc. (CECONY), Orange and Rockland Utilities, Inc. (O&R) and Con Edison Transmission, Inc. As used in this report, the term the “Companies” refers to Con Edison and CECONY, and the term the “Utilities” refers to CECONY and O&R. Con Edison’s principal business operations are those of CECONY, O&R and Con Edison Transmission. CECONY’s principal business operations are its regulated electric, gas and steam delivery businesses. O&R’s principal business operations are its regulated electric and gas delivery businesses. Con Edison Transmission, through its subsidiaries, develops and invests in electric transmission projects and owns, through joint ventures, both electric and gas assets. See “Con Edison Transmission” in Item 1. Con Edison seeks to provide shareholder value through continued dividend growth, supported by earnings growth in regulated utilities and electric transmission projects. The company invests to provide reliable, resilient, safe and clean energy critical for its New York and New Jersey customers. Con Edison is a responsible neighbor, helping the communities it serves become more sustainable.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001047862-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000031/ed-20251231.htm"
+  },
+  "description_short": "Con Ed is a holding company for Consolidated Edison of New York, or CECONY, and Orange & Rockland, or O&R. These utilities provide steam, natural gas, and electricity to customers in southeastern New York-including New York City-and small parts of New Jersey. The two utilities generate roughly 90% of Con Ed's earnings. The other 10% of earnings comes from investments in renewable energy projects and gas and electric transmission.",
+  "industry": "Power Generation",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4931",
+  "sic_description": "Electric & Other Services Combined",
+  "state_of_incorporation": "NY",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.conedison.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "4 Irving Place",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10003",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "8005225635",
+  "employees": {
+   "count": 15407,
+   "as_of": "2025-12-31",
+   "evidence": "On December 31, 2025, Con Edison and its subsidiaries had 15,407 employees, based entirely in the United States including 14,166 at CECONY; 1,232 at O&R and 9 at Con Edison Transmission.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000031/ed-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-10-31",
+  "first_sec_filing_form": "S-4",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001047862&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Underperform",
+  "analysts": 16,
+  "buy": 3,
+  "hold": 3,
+  "sell": 6,
+  "target_mean": 107.5,
+  "target_low": 87.0,
+  "target_high": 130.0,
+  "target_1y_nasdaq_summary": 110.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 98.17,
+    "buy": 2,
+    "hold": 3,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 97.41,
+    "buy": 2,
+    "hold": 3,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 97.88,
+    "buy": 2,
+    "hold": 4,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 99.32,
+    "buy": 2,
+    "hold": 4,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 106.63,
+    "buy": 1,
+    "hold": 5,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 112.52,
+    "buy": 2,
+    "hold": 6,
+    "sell": 5,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 113.91,
+    "buy": 2,
+    "hold": 6,
+    "sell": 5,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 110.49,
+    "buy": 2,
+    "hold": 5,
+    "sell": 5,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 103.6,
+    "buy": 0,
+    "hold": 5,
+    "sell": 6,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 110.95,
+    "buy": 1,
+    "hold": 5,
+    "sell": 6,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 108.85,
+    "buy": 1,
+    "hold": 5,
+    "sell": 5,
+    "consensus": "Sell"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 107.7,
+    "buy": 2,
+    "hold": 4,
+    "sell": 4,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 107.5,
+    "buy": 3,
+    "hold": 3,
+    "sell": 5,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CITIGROUP",
+   "CO FORECST",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "GUGGENHEIM SEC.",
+   "JP MORGAN SECUR",
+   "KEYBANC CAP MKT",
+   "LADENBERG THALM",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "RBC CAPITAL",
+   "SCOTIABANK",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 2.07,
+     "low": 2.05,
+     "high": 2.1,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 3
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.02,
+     "low": 1.0,
+     "high": 1.05,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 2
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 2.36,
+     "low": 2.3,
+     "high": 2.42,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.91,
+     "low": 0.87,
+     "high": 0.97,
+     "estimates": 3,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 2.14,
+     "low": 2.12,
+     "high": 2.15,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 6.1,
+     "low": 6.06,
+     "high": 6.15,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 6.49,
+     "low": 6.46,
+     "high": 6.55,
+     "estimates": 9,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 6.91,
+     "low": 6.89,
+     "high": 6.93,
+     "estimates": 5,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 7.45,
+     "low": 7.39,
+     "high": 7.51,
+     "estimates": 2,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.76,
+    "actual": 1.9,
+    "surprise_pct": 7.95
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.84,
+    "actual": 0.89,
+    "surprise_pct": 5.95
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.32,
+    "actual": 2.17,
+    "surprise_pct": -6.47
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.74,
+    "actual": 0.83,
+    "surprise_pct": 12.16
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 2.07
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.02
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 2.36
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.91
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 2.07,
+    "week_ago": 2.12,
+    "month_ago": 2.15
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 6.1,
+    "week_ago": 6.1,
+    "month_ago": 6.1
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-05",
+   "text": "Consolidated Edison, Inc. Common Stock is estimated to report earnings on 11/05/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 4 analysts' forecasts, the consensus EPS forecast for the quarter is $2.07. The reported EPS for the same quarter last year was $1.9.",
+   "timing": null
+  },
+  "peg_forward": 3.79
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-383674",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526383674/d144518d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001047862-26-000142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000142/ed-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047862-26-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000143/ed-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-01",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-294715",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526294715/d168683d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-254760",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526254760/d74070d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-232621",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526232621/d133085d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-214767",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526214767/d147037d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047862-26-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000092/ed-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001047862-26-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000091/ed-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-04-08",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001047862-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000078/ed-20260408.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-26-102202",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526102202/d820960d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-23",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-071602",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312526071602/d741444d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001047862-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000031/ed-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047862-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786226000028/ed-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-293866",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312525293866/d15757d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-292287",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312525292287/d46537d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-19",
+   "period": "2025-11-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-287455",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000119312525287455/d937760d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047862-25-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786225000139/ed-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001047862-25-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786225000138/ed-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001047862-25-000132",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047862/000104786225000132/ed-20251105.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 2163118,
+  "volume": 3227858,
+  "market_cap_nasdaq": 40621977049,
+  "high_52w": 116.23,
+  "low_52w": 94.96,
+  "previous_close": 109.6,
+  "one_year_target": 110.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

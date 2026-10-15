@@ -1,0 +1,548 @@
+{
+ "ticker": "RKT",
+ "cik": 1805284,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-013283",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1805284/000162828026013283/rkt-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-033694",
+   "filed": "2026-05-12",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1805284/000162828026033694/rkt-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-054577",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1805284/000162828026054577/rkt-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rkt:MortgageSegmentMember",
+     "label": "Mortgage Segment",
+     "values": [
+      null,
+      201000000,
+      null,
+      540000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.8481,
+      null,
+      0.9262
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.6866
+     ]
+    },
+    {
+     "member": "rkt:DirectToCustomerSegmentMember",
+     "label": "Direct To Customer Segment",
+     "values": [
+      131000000,
+      null,
+      376000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6517,
+      null,
+      0.7416,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8702,
+      null
+     ]
+    },
+    {
+     "member": "rkt:PartnerNetworkSegmentMember",
+     "label": "Partner Network Segment",
+     "values": [
+      42000000,
+      null,
+      104000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.209,
+      null,
+      0.2051,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.4762,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      28000000,
+      36000000,
+      27000000,
+      43000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1393,
+      0.1519,
+      0.0533,
+      0.0738
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0357,
+      0.1944
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     201000000,
+     237000000,
+     507000000,
+     583000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rkt:SubscriptionRevenueMember",
+     "label": "Subscription Revenue",
+     "values": [
+      179000000,
+      267000000,
+      351000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5159,
+      0.5767,
+      0.3734
+     ],
+     "growth_yoy": [
+      null,
+      0.4916,
+      0.3146
+     ]
+    },
+    {
+     "member": "rkt:RealEstateBrokerageMember",
+     "label": "Real Estate Brokerage",
+     "values": [
+      null,
+      null,
+      341000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.3628
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rkt:ClosingFeesMember",
+     "label": "Closing Fees",
+     "values": [
+      78000000,
+      106000000,
+      139000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2248,
+      0.2289,
+      0.1479
+     ],
+     "growth_yoy": [
+      null,
+      0.359,
+      0.3113
+     ]
+    },
+    {
+     "member": "rkt:RealEstateNetworkReferralMember",
+     "label": "Real Estate Network Referral",
+     "values": [
+      50000000,
+      54000000,
+      56000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1441,
+      0.1166,
+      0.0596
+     ],
+     "growth_yoy": [
+      null,
+      0.08,
+      0.037
+     ]
+    },
+    {
+     "member": "rkt:AppraisalRevenueMember",
+     "label": "Appraisal Revenue",
+     "values": [
+      40000000,
+      36000000,
+      41000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1153,
+      0.0778,
+      0.0436
+     ],
+     "growth_yoy": [
+      null,
+      -0.1,
+      0.1389
+     ]
+    },
+    {
+     "member": "rkt:RealEstateExchangeRevenueMember",
+     "label": "Real Estate Exchange Revenue",
+     "values": [
+      null,
+      null,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.0128
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     347000000,
+     463000000,
+     940000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rkt:RealEstateBrokerageMember",
+     "label": "Real Estate Brokerage",
+     "values": [
+      0,
+      0,
+      138000000,
+      197000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.4246,
+      0.4975
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rkt:SubscriptionRevenueMember",
+     "label": "Subscription Revenue",
+     "values": [
+      85000000,
+      86000000,
+      103000000,
+      107000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6641,
+      0.6014,
+      0.3169,
+      0.2702
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2118,
+      0.2442
+     ]
+    },
+    {
+     "member": "rkt:ClosingFeesMember",
+     "label": "Closing Fees",
+     "values": [
+      24000000,
+      32000000,
+      49000000,
+      51000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1875,
+      0.2238,
+      0.1508,
+      0.1288
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0417,
+      0.5938
+     ]
+    },
+    {
+     "member": "rkt:RealEstateExchangeRevenueMember",
+     "label": "Real Estate Exchange Revenue",
+     "values": [
+      0,
+      0,
+      15000000,
+      18000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0462,
+      0.0455
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rkt:RealEstatePartnerRevenueMember",
+     "label": "Real Estate Partner Revenue",
+     "values": [
+      10000000,
+      15000000,
+      9000000,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0781,
+      0.1049,
+      0.0277,
+      0.0303
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1,
+      -0.2
+     ]
+    },
+    {
+     "member": "rkt:AppraisalRevenueMember",
+     "label": "Appraisal Revenue",
+     "values": [
+      9000000,
+      10000000,
+      11000000,
+      11000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0703,
+      0.0699,
+      0.0338,
+      0.0278
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2222,
+      0.1
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     128000000,
+     143000000,
+     325000000,
+     396000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

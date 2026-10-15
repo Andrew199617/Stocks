@@ -1,0 +1,612 @@
+{
+ "ticker": "SYY",
+ "cik": 96021,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:26:58-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000096021.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SYY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SYY/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/SYY/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/SYY/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/SYY/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/SYY/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/SYY/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/SYY/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/SYY/peg-ratio"
+ },
+ "about": {
+  "entity": "SYSCO CORP",
+  "cik": 96021,
+  "description": {
+   "text": "Sysco Corporation is the global leader in selling, marketing and distributing food and related products to customers who prepare meals away from home. This includes restaurants, healthcare and educational facilities, lodging establishments, entertainment venues, and more. Founded in 1969, Sysco commenced operations as a public company in March 1970 when the stockholders of nine companies exchanged their stock for Sysco common stock. Since our formation, we have grown from $115 million to our all-time high of $84.6 billion in annual sales in fiscal 2026, both through internal expansion of existing operations and acquisitions. Sysco’s fiscal year ends on the Saturday nearest to June 30th. This resulted in a 52-week year ended June 27, 2026 for fiscal 2026, a 52-week year ended June 28, 2025 for fiscal 2025 and a 52-week year ended June 29, 2024 for fiscal 2024. We will have a 53-week year ending July 3, 2027 for fiscal 2027.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "period": "2026-06-27",
+   "accession": "0000096021-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm"
+  },
+  "description_short": "Sysco is the global leader in selling, marketing and distributing food and related products to customers who prepare meals away from home. This includes restaurants, healthcare and educational facilities, lodging establishments, entertainment venues, and more. Sysco operates 333 distribution centers, in 10 countries, with 75,000 colleagues serving approximately 670,000 customer locations. The company generated sales of more than $84 billion in fiscal year 2026 that ended June 27, 2026. As the world's largest food-away-from-home distributor, Sysco offers customized supply chain solutions, bespoke specialty product offerings, and culinary support to drive customers to innovate and optimize their operations. We act as a trusted business partner to our customers, helping them grow through our industry-leading portfolio that includes fresh produce, premium proteins, specialty products, sustainably focused items, equipment and supplies, and innovative culinary solutions.",
+  "industry": "Food Distributors",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5140",
+  "sic_description": "Wholesale-Groceries & Related Products",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0627",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.sysco.com",
+  "headquarters": "Houston, Texas",
+  "address": {
+   "street": "1390 Enclave Parkway",
+   "city": "Houston",
+   "state": "Texas",
+   "zip": "77077-2099",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-21"
+  },
+  "phone": "281-584-1390",
+  "employees": {
+   "count": 75000,
+   "as_of": "2026-06-27",
+   "evidence": "As of June 27, 2026, we employed approximately 75,000 employees, including 52,000 U.S. employees and 23,000 employees outside the U.S., as compared to approximately 75,000 employees as of June 28, 2025.",
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-11",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000096021&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 16,
+  "buy": 5,
+  "hold": 6,
+  "sell": 0,
+  "target_mean": 91.36,
+  "target_low": 84.0,
+  "target_high": 100.0,
+  "target_1y_nasdaq_summary": 89.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 82.82,
+    "buy": 7,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 74.28,
+    "buy": 5,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 75.91,
+    "buy": 6,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 73.69,
+    "buy": 6,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 83.85,
+    "buy": 9,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 91.16,
+    "buy": 9,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 72.17,
+    "buy": 8,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 74.05,
+    "buy": 6,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 73.72,
+    "buy": 6,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 83.53,
+    "buy": 5,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 85.24,
+    "buy": 5,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 82.11,
+    "buy": 6,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 91.36,
+    "buy": 6,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BMO CAPITAL MKT",
+   "C.L. KING",
+   "CO FORECST",
+   "DEUTSCHE BK SEC",
+   "EDWARD JONES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "STEPHENS INC",
+   "TRUIST SECURITI",
+   "UBS",
+   "WELLS FARGO SEC"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.16,
+     "low": 1.05,
+     "high": 1.2,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.09,
+     "low": 1.07,
+     "high": 1.13,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.09,
+     "low": 1.02,
+     "high": 1.24,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.78,
+     "low": 1.77,
+     "high": 1.8,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.3,
+     "low": 1.29,
+     "high": 1.3,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 5.1,
+     "low": 5.04,
+     "high": 5.2,
+     "estimates": 5,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2028",
+     "fiscal_end": "2028-06",
+     "consensus": 5.39,
+     "low": 5.28,
+     "high": 5.45,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2029",
+     "fiscal_end": "2029-06",
+     "consensus": 6.0,
+     "low": 6.0,
+     "high": 6.0,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.12,
+    "actual": 1.15,
+    "surprise_pct": 2.68
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.98,
+    "actual": 0.99,
+    "surprise_pct": 1.02
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.95,
+    "actual": 0.94,
+    "surprise_pct": -1.05
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.51,
+    "actual": 1.53,
+    "surprise_pct": 1.32
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.16
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.09
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.09
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.78
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.16,
+    "week_ago": 1.16,
+    "month_ago": 1.16
+   },
+   "year": {
+    "period": "Jun 2027",
+    "current": 5.1,
+    "week_ago": 5.1,
+    "month_ago": 5.07
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-03",
+   "text": "Sysco Corporation Common Stock is expected* to report earnings on 11/03/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 4 analysts' forecasts, the consensus EPS forecast for the quarter is $1.16. The reported EPS for the same quarter last year was $1.15.",
+   "timing": "before market open"
+  },
+  "peg_forward": 2.82
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-114079",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926114079/tm2625144d27_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000096021-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000037/syy-20261001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-110977",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926110977/tm2625144d26_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-110464",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926110464/tm2625144d25_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-108285",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926108285/tm2625144d7_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-107510",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926107510/tm2625144d3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-002526",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002526/eh260827982_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-002525",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002525/eh260827503_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Officer/director change",
+   "accession": "0000950142-26-002498",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002498/eh260826448_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000096021-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-14",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000096021-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000030/syy-20260814.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-002314",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002314/eh260819217_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000096021-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000026/syy-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-01",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-079979",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926079979/tm2619427d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-001434",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226001434/eh260780816_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000096021-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000022/syy-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000096021-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000019/syy-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-164087",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000119312526164087/d290779d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-02",
+   "period": "2026-03-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-140436",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000119312526140436/d103940d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950142-26-000922",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226000922/eh260755710_8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 3393709,
+  "volume": 2877113,
+  "market_cap_nasdaq": 40406917704,
+  "high_52w": 91.845,
+  "low_52w": 68.19,
+  "previous_close": 80.97,
+  "one_year_target": 89.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

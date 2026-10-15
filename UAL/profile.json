@@ -1,0 +1,620 @@
+{
+ "ticker": "UAL",
+ "cik": 100517,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T18:23:45-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000100517.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/UAL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/UAL/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/UAL/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/UAL/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/UAL/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/UAL/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/UAL/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/UAL/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/UAL/peg-ratio"
+ },
+ "about": {
+  "entity": "United Airlines Holdings, Inc.",
+  "cik": 100517,
+  "description": {
+   "text": "United Airlines Holdings, Inc. (together with its consolidated subsidiaries, \"UAL\" or the \"Company\") is a holding company and its wholly-owned subsidiary is United Airlines, Inc. (together with its consolidated subsidiaries, \"United\"). United's shared purpose is \"Connecting People. Uniting the World.\" United has the most comprehensive route network among North American carriers, including U.S. mainland hubs in Chicago, Denver, Houston, Los Angeles, New York/Newark, San Francisco and Washington, D.C. As UAL consolidates United for financial statement purposes, disclosures that relate to activities of United also apply to UAL, unless otherwise noted. United's operating revenues and operating expenses comprise nearly 100% of UAL's revenues and operating expenses. In addition, United comprises approximately the entire balance of UAL's assets, liabilities and operating cash flows. When appropriate, UAL and United are named specifically for their individual contractual obligations and related disclosures and any significant differences between the operations and results of UAL and United are separately disclosed and explained. We sometimes use the words \"we,\" \"our,\" \"us,\" and the \"Company\" in this report for disclosures that relate to all of UAL and United. The Company's principal executive office is located at 233 South Wacker Drive, Chicago, Illinois 60606 (telephone number (872) 825-4000).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0000100517-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm"
+  },
+  "description_short": "At United, Good Leads The Way. With U.S. hubs in Chicago, Denver, Houston, Los Angeles, New York/Newark, San Francisco and Washington, D.C., United operates the most comprehensive global route network among North American carriers and is now the largest airline in the world as measured by available seat miles. For more about how to join the United team, please visit www.united.com/careers and more information about the company is at www.united.com. United Airlines Holdings, Inc., the parent company of United Airlines, Inc., is traded on the Nasdaq under the symbol 'UAL'.",
+  "industry": "Air Freight/Delivery Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4512",
+  "sic_description": "Air Transportation, Scheduled",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.united.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "233 South Wacker Drive",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60606",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "872-825-4000",
+  "employees": {
+   "count": 113200,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company and its subsidiaries had approximately 113,200 employees, of whom approximately 83% were represented by various U.S. labor organizations.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-22",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "United Continental Holdings, Inc.",
+   "UAL CORP /DE/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000100517&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 20,
+  "buy": 15,
+  "hold": 0,
+  "sell": 0,
+  "target_mean": 159.93,
+  "target_low": 140.0,
+  "target_high": 203.0,
+  "target_1y_nasdaq_summary": 150.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 93.15,
+    "buy": 15,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 94.04,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 101.12,
+    "buy": 14,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 111.82,
+    "buy": 15,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 102.32,
+    "buy": 17,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 106.3,
+    "buy": 18,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 95.08,
+    "buy": 18,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 92.52,
+    "buy": 16,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 111.76,
+    "buy": 15,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 135.13,
+    "buy": 16,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 121.33,
+    "buy": 13,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 104.63,
+    "buy": 14,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 159.93,
+    "buy": 15,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CITIGROUP",
+   "CO FORECST",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MELIUS RESEARCH",
+   "MORGAN STANLEY",
+   "RAYMOND JAMES",
+   "ROTHSCHILD REDB",
+   "SANFORD BERNSTE",
+   "SEAPORT RES PTN",
+   "SUSQUEHANNA",
+   "TD COWEN",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 2.6,
+     "low": 2.48,
+     "high": 2.75,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 6
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.04,
+     "low": 1.03,
+     "high": 3.78,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 6
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.67,
+     "low": -0.4,
+     "high": 1.9,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 3.45,
+     "low": 3.2,
+     "high": 3.65,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 3.9,
+     "low": 3.1,
+     "high": 4.4,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 7.87,
+     "low": 6.94,
+     "high": 10.4,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 7
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 13.81,
+     "low": 10.84,
+     "high": 22.11,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 5
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 16.77,
+     "low": 14.3,
+     "high": 18.12,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 9.98,
+     "low": 9.98,
+     "high": 9.98,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 2.64,
+    "actual": 2.78,
+    "surprise_pct": 5.3
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 2.98,
+    "actual": 3.1,
+    "surprise_pct": 4.03
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.08,
+    "actual": 1.19,
+    "surprise_pct": 10.19
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.92,
+    "actual": 1.99,
+    "surprise_pct": 3.65
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 2.6
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 2.04
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.67
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 3.45
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 2.6,
+    "week_ago": 2.82,
+    "month_ago": 3.01
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 7.87,
+    "week_ago": 8.26,
+    "month_ago": 9.91
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-20",
+   "text": "United Airlines Holdings, Inc. Common Stock is expected* to report earnings on 10/20/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $2.6. The reported EPS for the same quarter last year was $2.78.",
+   "timing": "after market close"
+  },
+  "peg_forward": 1.14
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-16",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-26-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000139/ual-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000135/ual-20260715.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-19",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-065739",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926065739/tm2615419d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-048992",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926048992/tm2612792d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-26-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000091/ual-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-26-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000089/ual-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-040467",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926040467/tmb-20260519xdef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000100517-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-011544",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926011544/tm263646d10_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-02-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-009237",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926009237/tm263646d5_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000014/ual-20260120.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-16",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-25-000193",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000193/ual-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-25-000190",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000190/ual-20251015.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-17",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-25-000147",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000147/ual-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-16",
+   "period": "2025-07-16",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000143/ual-20250716.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-09",
+   "period": "2025-07-07",
+   "items": [
+    "1.02",
+    "2.02"
+   ],
+   "description": "Termination of agreement; Results of operations",
+   "accession": "0000100517-25-000140",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000140/ual-20250707.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-05-28",
+   "period": "2025-01-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-25-053608",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465925053608/tm2516249d2_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-25-053607",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465925053607/tm2516249d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-16",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000091/ual-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-15",
+   "period": "2025-04-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000087/ual-20250415.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 3657142,
+  "volume": 3841919,
+  "market_cap_nasdaq": 32883581941,
+  "high_52w": 138.77,
+  "low_52w": 84.6423,
+  "previous_close": 98.96,
+  "one_year_target": 150.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

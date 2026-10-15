@@ -1,0 +1,635 @@
+{
+ "ticker": "DG",
+ "cik": 29534,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:20:59-04:00",
+ "newest_filing_date": "2026-09-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000029534.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DG/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/DG/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/DG/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/DG/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/DG/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/DG/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/DG/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/DG/peg-ratio"
+ },
+ "about": {
+  "entity": "DOLLAR GENERAL CORP",
+  "cik": 29534,
+  "description": {
+   "text": "We are the largest discount retailer in the United States by number of stores, with 20,959 stores located in 48 U.S. states and Mexico as of February 27, 2026, with the greatest concentration of stores in the southern, southwestern, midwestern and eastern United States. Our first stores in Mexico opened in 2023. We offer a broad selection of merchandise, including consumable items, seasonal items, home products and apparel. Our merchandise includes national brands from leading manufacturers, as well as our own private brand selections with prices at substantial discounts to national brands. We offer our customers these national brand and private brand products at everyday low prices (typically $10 or less) in our convenient small-box locations.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-20",
+   "period": "2026-01-30",
+   "accession": "0001104659-26-032325",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm"
+  },
+  "description_short": "Dollar General Corporation (NYSE: DG) is proud to serve as America's neighborhood general store. Founded in 1939, Dollar General lives its mission of Serving Others every day by providing access to affordable products and services for its customers, career opportunities for its employees, and literacy and education support for its hometown communities. As of July 31, 2026, the Company's 21,148 Dollar General, DG Market, DGX and pOpshelf stores across the United States and Mi Súper Dollar General stores in Mexico provide everyday essentials including food, health and wellness products, cleaning and laundry supplies, self-care and beauty items, and seasonal decor from our high-quality private brands alongside many of the world's most trusted brands such as Coca Cola, PepsiCo/Frito-Lay, General Mills, Hershey, J.M. Smucker, Kraft, Mars, Nestle, Procter & Gamble and Unilever.",
+  "industry": "Department/Specialty Retail Stores",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5331",
+  "sic_description": "Retail-Variety Stores",
+  "state_of_incorporation": "TN",
+  "fiscal_year_end_mmdd": "0129",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.dollargeneral.com",
+  "headquarters": "Goodlettsville, TN",
+  "address": {
+   "street": "100 MISSION RIDGE",
+   "city": "Goodlettsville",
+   "state": "TN",
+   "zip": "37072",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-20"
+  },
+  "phone": "6158554000",
+  "employees": {
+   "count": 194000,
+   "as_of": "2026-02-27",
+   "evidence": "As of February 27, 2026, we employed approximately 194,000 full-time and part-time employees, including divisional and regional managers, district managers, store managers, other store employees, and distribution center, fleet and administrative employees.",
+   "form": "10-K",
+   "filed": "2026-03-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-16",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000029534&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 32,
+  "buy": 9,
+  "hold": 9,
+  "sell": 0,
+  "target_mean": 147.22,
+  "target_low": 123.0,
+  "target_high": 176.0,
+  "target_1y_nasdaq_summary": 140.5,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 99.68,
+    "buy": 9,
+    "hold": 13,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 98.66,
+    "buy": 8,
+    "hold": 13,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 109.34,
+    "buy": 7,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 132.77,
+    "buy": 7,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 143.43,
+    "buy": 9,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 156.24,
+    "buy": 8,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 117.17,
+    "buy": 8,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 114.43,
+    "buy": 9,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 109.93,
+    "buy": 8,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 115.2,
+    "buy": 8,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 127.05,
+    "buy": 8,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 131.09,
+    "buy": 8,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 147.22,
+    "buy": 8,
+    "hold": 9,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BMO CAPITAL MKT",
+   "CITIGROUP",
+   "CLEVELAND RESEA",
+   "CO FORECST",
+   "DAIWA AMERICA",
+   "DEUTSCHE BK SEC",
+   "EDWARD JONES",
+   "EVERCORE ISI",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "GORDON HASKETT",
+   "GUGGENHEIM SEC.",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEYBANC CAP MKT",
+   "LOOP CAPITAL MK",
+   "MORGAN STANLEY",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "R5 CAPITAL",
+   "RAYMOND JAMES",
+   "ROTHSCHILD REDB",
+   "TELSEY ADVISORY",
+   "TRUIST SECURITI",
+   "UBS",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Oct 2026",
+     "fiscal_end": "2026-10",
+     "consensus": 1.39,
+     "low": 1.36,
+     "high": 1.43,
+     "estimates": 12,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2027",
+     "fiscal_end": "2027-01",
+     "consensus": 2.03,
+     "low": 1.96,
+     "high": 2.08,
+     "estimates": 11,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Apr 2027",
+     "fiscal_end": "2027-04",
+     "consensus": 2.23,
+     "low": 2.12,
+     "high": 2.38,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jul 2027",
+     "fiscal_end": "2027-07",
+     "consensus": 2.37,
+     "low": 2.3,
+     "high": 2.45,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Oct 2027",
+     "fiscal_end": "2027-10",
+     "consensus": 1.57,
+     "low": 1.47,
+     "high": 1.73,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Jan 2027",
+     "fiscal_end": "2027-01",
+     "consensus": 7.69,
+     "low": 7.4,
+     "high": 8.0,
+     "estimates": 12,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2028",
+     "fiscal_end": "2028-01",
+     "consensus": 8.4,
+     "low": 8.0,
+     "high": 8.97,
+     "estimates": 14,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2029",
+     "fiscal_end": "2029-01",
+     "consensus": 9.46,
+     "low": 9.15,
+     "high": 10.32,
+     "estimates": 8,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jan 2030",
+     "fiscal_end": "2030-01",
+     "consensus": 10.6,
+     "low": 10.17,
+     "high": 11.14,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Oct 2025",
+    "consensus": 0.92,
+    "actual": 1.28,
+    "surprise_pct": 39.13
+   },
+   {
+    "period": "Jan 2026",
+    "consensus": 1.61,
+    "actual": 1.93,
+    "surprise_pct": 19.88
+   },
+   {
+    "period": "Apr 2026",
+    "consensus": 1.89,
+    "actual": 2.0,
+    "surprise_pct": 5.82
+   },
+   {
+    "period": "Jul 2026",
+    "consensus": 2.0,
+    "actual": 2.23,
+    "surprise_pct": 11.5
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Oct 2026",
+    "consensus": 1.39
+   },
+   {
+    "period": "Jan 2027",
+    "consensus": 2.03
+   },
+   {
+    "period": "Apr 2027",
+    "consensus": 2.23
+   },
+   {
+    "period": "Jul 2027",
+    "consensus": 2.37
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Oct 2026",
+    "current": 1.39,
+    "week_ago": 1.39,
+    "month_ago": 1.39
+   },
+   "year": {
+    "period": "Jan 2027",
+    "current": 7.69,
+    "week_ago": 7.69,
+    "month_ago": 7.68
+   }
+  },
+  "next_earnings": {
+   "date": "2026-12-03",
+   "text": "Dollar General Corporation Common Stock is estimated to report earnings on 12/03/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 12 analysts' forecasts, the consensus EPS forecast for the quarter is $1.39. The reported EPS for the same quarter last year was $1.28.",
+   "timing": null
+  },
+  "peg_forward": 1.77
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-28",
+   "period": "2026-08-25",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-102689",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926102689/tm2624201d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-27",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-101932",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926101932/dg-20260731x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-101918",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926101918/tm2623914d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-02",
+   "period": "2026-05-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-069205",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926069205/dg-20260501x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-05-28",
+   "items": [
+    "2.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Reg FD",
+   "accession": "0001104659-26-069198",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926069198/tm2616084d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-040394",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926040394/tm261322-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-20",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-033643",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926033643/tm269511d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-20",
+   "period": "2026-01-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-032325",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-026697",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926026697/tm268519d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-01-28",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-009777",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926009777/tm264806d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-04",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-118289",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925118289/dg-20251031x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-25-118286",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925118286/tm2532496d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-11-17",
+   "period": "2025-11-12",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-25-113199",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925113199/tm2531391d1_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-111359",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925111359/tm2530935d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-08-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-011786",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837025011786/dg-20250801x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-28",
+   "period": "2025-08-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-25-084297",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925084297/tm2524307d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-20",
+   "period": "2025-08-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-080921",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925080921/tm2523805d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-16",
+   "period": "2025-07-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-068367",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925068367/tm2521005d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-03",
+   "period": "2025-05-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-008354",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837025008354/dg-20250502x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-05-29",
+   "items": [
+    "2.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Reg FD",
+   "accession": "0001104659-25-055706",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925055706/tm2516684d1_8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 1980341,
+  "volume": 2661891,
+  "market_cap_nasdaq": 29525145006,
+  "high_52w": 158.23,
+  "low_52w": 95.11,
+  "previous_close": 129.94,
+  "one_year_target": 140.5,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

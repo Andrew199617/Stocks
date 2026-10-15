@@ -1,0 +1,626 @@
+{
+ "ticker": "EL",
+ "cik": 1001250,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T18:24:00-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001001250.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EL/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/EL/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/EL/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/EL/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/EL/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/EL/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/EL/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/EL/peg-ratio"
+ },
+ "about": {
+  "entity": "ESTEE LAUDER COMPANIES INC",
+  "cik": 1001250,
+  "description": {
+   "text": "The Estée Lauder Companies Inc., founded in 1946 by Estée and Joseph Lauder, is one of the world’s leading manufacturers, marketers and sellers of quality skin care, makeup, fragrance and hair care products. We are a steward of over 20 luxury and prestige brands globally. Since the initial launch of the Estée Lauder brand in the United States, we have significantly expanded our consumer reach to approximately 150 countries and territories. We operate as a wholesaler, with our products sold in brick-and-mortar locations and on various e-commerce platforms, including those operated by department stores, duty-free retailers, specialty-multi retailers, online pure players, upscale perfumeries and pharmacies, and top-tier salons and spas. Additionally, we operate a direct-to-consumer business across freestanding stores, our brands' websites and third-party online platforms. In February 2025, we embarked on “Beauty Reimagined,” a strategic vision which focuses on accelerating best-in-class consumer coverage, creating transformative innovation, boosting consumer-facing investments, fueling sustainable growth through bold efficiencies and reimagining the way we work. As part of reimagining the way we work, we created our \"One ELC\" operating model, a scalable, integrated system designed to operate faster, execute with greater discipline, and drive growth. One ELC is built on three elements: One Team, One Culture, and One Operating Ecosystem.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-19",
+   "period": "2026-06-30",
+   "accession": "0001001250-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm"
+  },
+  "description_short": "The Estee Lauder Companies Charitable Foundation (ELCCF) is the global philanthropic arm of The Estee Lauder Companies, a leader in prestige beauty. Turning The Estee Lauder Companies' and Mrs. Estee Lauder's legacy into action, the ELCCF supports nonprofit organizations that enable women and girls to thrive and advance through the transformative power of health, education, and entrepreneurship. The Foundation invests in programs worldwide that strengthen career readiness, workforce participation, and leadership development for women and girls, and supports scientists and practitioners advancing breakthroughs in breast cancer and women's health.",
+  "industry": "Package Goods/Cosmetics",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2844",
+  "sic_description": "Perfumes, Cosmetics & Other Toilet Preparations",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.elcompanies.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "767 Fifth Avenue",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10153",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-19"
+  },
+  "phone": "2125724200",
+  "employees": {
+   "count": 55000,
+   "as_of": "2026-06-30",
+   "evidence": "As of June 30, 2026 and 2025, we had approximately 55,000 and 57,000 employees worldwide, respectively, including approximately 35,000 demonstrators at points of sale who are employed by us as of June 30, 2026 and 2025.",
+   "form": "10-K",
+   "filed": "2026-08-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-06-07",
+  "first_sec_filing_form": "4",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001001250&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 28,
+  "buy": 10,
+  "hold": 10,
+  "sell": 0,
+  "target_mean": 109.14,
+  "target_low": 90.0,
+  "target_high": 125.0,
+  "target_1y_nasdaq_summary": 106.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 86.2,
+    "buy": 5,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 96.69,
+    "buy": 6,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 94.71,
+    "buy": 7,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 104.72,
+    "buy": 7,
+    "hold": 8,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 115.28,
+    "buy": 9,
+    "hold": 10,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 109.47,
+    "buy": 9,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 70.71,
+    "buy": 9,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 79.3,
+    "buy": 8,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 85.58,
+    "buy": 8,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 82.47,
+    "buy": 7,
+    "hold": 10,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 83.9,
+    "buy": 7,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 100.0,
+    "buy": 9,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 109.14,
+    "buy": 9,
+    "hold": 11,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BERENBERG BANK",
+   "CANACCORD GENUI",
+   "CITIGROUP",
+   "CO FORECST",
+   "DAVIDSON D A",
+   "DBS BANK",
+   "DEUTSCHE BK SEC",
+   "EDWARD JONES",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MORGAN STANLEY",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "RBC CAPITAL",
+   "SANFORD BERNSTE",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "TELSEY ADVISORY",
+   "UBS",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.51,
+     "low": 0.45,
+     "high": 0.65,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.2,
+     "low": 1.08,
+     "high": 1.28,
+     "estimates": 11,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.07,
+     "low": 1.0,
+     "high": 1.12,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.52,
+     "low": 0.3,
+     "high": 0.66,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.67,
+     "low": 0.61,
+     "high": 0.8,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 3.31,
+     "low": 3.2,
+     "high": 3.4,
+     "estimates": 13,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2028",
+     "fiscal_end": "2028-06",
+     "consensus": 3.94,
+     "low": 3.75,
+     "high": 4.3,
+     "estimates": 11,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Jun 2029",
+     "fiscal_end": "2029-06",
+     "consensus": 4.52,
+     "low": 4.11,
+     "high": 5.03,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2030",
+     "fiscal_end": "2030-06",
+     "consensus": 5.23,
+     "low": 4.65,
+     "high": 5.81,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.16,
+    "actual": 0.32,
+    "surprise_pct": 100.0
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.84,
+    "actual": 0.89,
+    "surprise_pct": 5.95
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.66,
+    "actual": 0.91,
+    "surprise_pct": 37.88
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.32,
+    "actual": 0.39,
+    "surprise_pct": 21.88
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.51
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.2
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.07
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.52
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.51,
+    "week_ago": 0.51,
+    "month_ago": 0.51
+   },
+   "year": {
+    "period": "Jun 2027",
+    "current": 3.31,
+    "week_ago": 3.31,
+    "month_ago": 3.3
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-02",
+   "text": "Estee Lauder Companies, Inc. (The) Common Stock is expected* to report earnings on 11/02/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 10 analysts' forecasts, the consensus EPS forecast for the quarter is $0.51. The reported EPS for the same quarter last year was $0.32.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.18
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-30",
+   "period": "2026-11-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-112176",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000110465926112176/tm2623505-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001001250-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000045/el-20260908.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-19",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001001250-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000038/el-20260819.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001001250-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000033/el-20260720.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-07-07",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000031/el-20240201.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-06-03",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000028/el-20240201.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-22",
+   "period": "2026-03-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Amendment: Other events",
+   "accession": "0001001250-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000022/el-20260323.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001001250-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000019/el-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000017/el-20260501.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-01",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000013/el-20240201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001001250-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000010/el-20260323.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001001250-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000006/el-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000004/el-20260205.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-01",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000115/el-20240201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-18",
+   "period": "2025-11-13",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001001250-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000112/el-20251113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-04",
+   "items": [
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Other events",
+   "accession": "0001104659-25-107826",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000110465925107826/tm2530418d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001001250-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000109/el-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-25-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000107/el-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-10-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001001250-25-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000103/el-20251002.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 1190837,
+  "volume": 3633538,
+  "market_cap_nasdaq": 38846436322,
+  "high_52w": 121.635,
+  "low_52w": 66.22,
+  "previous_close": 101.59,
+  "one_year_target": 106.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

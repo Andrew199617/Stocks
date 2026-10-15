@@ -1,0 +1,1064 @@
+{
+ "ticker": "HPQ",
+ "cik": 47217,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000047217-25-000071",
+   "filed": "2025-12-10",
+   "period": "2025-10-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000071/hpq-20251031_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000047217-26-000029",
+   "filed": "2026-05-28",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000029/hpq-20260430_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000047217-26-000051",
+   "filed": "2026-08-27",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/47217/000004721726000051/hpq-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hpq:PersonalSystemsMember",
+     "label": "Personal Systems",
+     "values": [
+      35684000000,
+      36195000000,
+      38532000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6643,
+      0.6758,
+      0.6968
+     ],
+     "growth_yoy": [
+      null,
+      0.0143,
+      0.0646
+     ]
+    },
+    {
+     "member": "hpq:PrintingMember",
+     "label": "Printing",
+     "values": [
+      18029000000,
+      17338000000,
+      16702000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3356,
+      0.3237,
+      0.3021
+     ],
+     "growth_yoy": [
+      null,
+      -0.0383,
+      -0.0367
+     ]
+    },
+    {
+     "member": "hpq:CorporateInvestmentsMember",
+     "label": "Corporate Investments",
+     "values": [
+      7000000,
+      25000000,
+      62000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0001,
+      0.0005,
+      0.0011
+     ],
+     "growth_yoy": [
+      null,
+      2.5714,
+      1.48
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      -2000000,
+      1000000,
+      -1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -2.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     53718000000,
+     53559000000,
+     55295000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hpq:PersonalSystemsMember",
+     "label": "Personal Systems",
+     "values": [
+      9024000000,
+      9931000000,
+      10353000000,
+      10213000000,
+      11767000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6826,
+      0.7128,
+      0.7072,
+      0.7088,
+      0.7506
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1318,
+      0.1849
+     ]
+    },
+    {
+     "member": "hpq:PrintingMember",
+     "label": "Printing",
+     "values": [
+      4197000000,
+      4002000000,
+      4223000000,
+      4195000000,
+      3912000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3175,
+      0.2873,
+      0.2885,
+      0.2912,
+      0.2495
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0005,
+      -0.0225
+     ]
+    },
+    {
+     "member": "hpq:CorporateInvestmentsMember",
+     "label": "Corporate Investments",
+     "values": [
+      0,
+      0,
+      62000000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0042,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      -1000000,
+      -1000000,
+      1000000,
+      0,
+      -2000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0001,
+      -0.0001,
+      0.0001,
+      0.0,
+      -0.0001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13220000000,
+     13932000000,
+     14639000000,
+     14408000000,
+     15677000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hpq:PrintingMember",
+     "label": "Printing",
+     "values": [
+      3399000000,
+      3290000000,
+      3118000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9835,
+      0.8617,
+      0.9824
+     ],
+     "growth_yoy": [
+      null,
+      -0.0321,
+      -0.0523
+     ]
+    },
+    {
+     "member": "hpq:PersonalSystemsMember",
+     "label": "Personal Systems",
+     "values": [
+      2129000000,
+      2253000000,
+      2054000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.616,
+      0.5901,
+      0.6471
+     ],
+     "growth_yoy": [
+      null,
+      0.0582,
+      -0.0883
+     ]
+    },
+    {
+     "member": "hpq:CorporateInvestmentsMember",
+     "label": "Corporate Investments",
+     "values": [
+      -142000000,
+      -132000000,
+      -130000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0411,
+      -0.0346,
+      -0.041
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3456000000,
+     3818000000,
+     3174000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hpq:PrintingMember",
+     "label": "Printing",
+     "values": [
+      804000000,
+      681000000,
+      832000000,
+      767000000,
+      709000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2294,
+      0.9511,
+      0.8676,
+      1.2533,
+      0.7948
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.046,
+      0.0411
+     ]
+    },
+    {
+     "member": "hpq:PersonalSystemsMember",
+     "label": "Personal Systems",
+     "values": [
+      409000000,
+      541000000,
+      597000000,
+      530000000,
+      537000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6254,
+      0.7556,
+      0.6225,
+      0.866,
+      0.602
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2958,
+      -0.0074
+     ]
+    },
+    {
+     "member": "hpq:CorporateInvestmentsMember",
+     "label": "Corporate Investments",
+     "values": [
+      -27000000,
+      -24000000,
+      -61000000,
+      -29000000,
+      -28000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0413,
+      -0.0335,
+      -0.0636,
+      -0.0474,
+      -0.0314
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     654000000,
+     716000000,
+     959000000,
+     612000000,
+     892000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "hpq:PersonalSystemsMember",
+     "label": "Personal Systems",
+     "values": [
+      22378000000,
+      24928000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5607,
+      0.5968
+     ],
+     "growth_yoy": [
+      null,
+      0.114
+     ]
+    },
+    {
+     "member": "hpq:PrintingMember",
+     "label": "Printing",
+     "values": [
+      16457000000,
+      14632000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4124,
+      0.3503
+     ],
+     "growth_yoy": [
+      null,
+      -0.1109
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      893000000,
+      1930000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0224,
+      0.0462
+     ],
+     "growth_yoy": [
+      null,
+      1.1613
+     ]
+    },
+    {
+     "member": "hpq:CorporateInvestmentsMember",
+     "label": "Corporate Investments",
+     "values": [
+      181000000,
+      279000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0045,
+      0.0067
+     ],
+     "growth_yoy": [
+      null,
+      0.5414
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     39909000000,
+     41769000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      50660000000,
+      50453000000,
+      52002000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9431,
+      0.942,
+      0.9404
+     ],
+     "growth_yoy": [
+      null,
+      -0.0041,
+      0.0307
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      3058000000,
+      3106000000,
+      3293000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0569,
+      0.058,
+      0.0596
+     ],
+     "growth_yoy": [
+      null,
+      0.0157,
+      0.0602
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     53718000000,
+     53559000000,
+     55295000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      12423000000,
+      13114000000,
+      13770000000,
+      13563000000,
+      14825000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9397,
+      0.9413,
+      0.9406,
+      0.9414,
+      0.9457
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0918,
+      0.1305
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      797000000,
+      818000000,
+      869000000,
+      845000000,
+      852000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0603,
+      0.0587,
+      0.0594,
+      0.0586,
+      0.0543
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0602,
+      0.0416
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13220000000,
+     13932000000,
+     14639000000,
+     14408000000,
+     15677000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      23095000000,
+      23251000000,
+      23545000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4299,
+      0.4341,
+      0.4258
+     ],
+     "growth_yoy": [
+      null,
+      0.0068,
+      0.0126
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      17819000000,
+      18044000000,
+      18596000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3317,
+      0.3369,
+      0.3363
+     ],
+     "growth_yoy": [
+      null,
+      0.0126,
+      0.0306
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      12804000000,
+      12264000000,
+      13154000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2384,
+      0.229,
+      0.2379
+     ],
+     "growth_yoy": [
+      null,
+      -0.0422,
+      0.0726
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     53718000000,
+     53559000000,
+     55295000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      5793000000,
+      6107000000,
+      6126000000,
+      5857000000,
+      6486000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4382,
+      0.4383,
+      0.4185,
+      0.4065,
+      0.4137
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.011,
+      0.0621
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      4393000000,
+      4502000000,
+      4947000000,
+      4971000000,
+      5181000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3323,
+      0.3231,
+      0.3379,
+      0.345,
+      0.3305
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1316,
+      0.1508
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      3034000000,
+      3323000000,
+      3566000000,
+      3580000000,
+      4010000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2295,
+      0.2385,
+      0.2436,
+      0.2485,
+      0.2558
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.18,
+      0.2067
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13220000000,
+     13932000000,
+     14639000000,
+     14408000000,
+     15677000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 158.9% of the consolidated total for 2025-10-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 136.5% of the consolidated total for 2026-07-31 (ties_to_total: false)",
+  "geography/Revenues/annual: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, EMEA, Asia Pacific)",
+  "geography/Revenues/annual: row 'Non-US' (us-gaap:NonUsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, EMEA, Asia Pacific)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,600 @@
+{
+ "ticker": "GEHC",
+ "cik": 1932393,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:22:33-04:00",
+ "newest_filing_date": "2026-09-22",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001932393.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000007/gehc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GEHC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GEHC/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/GEHC/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/GEHC/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/GEHC/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/GEHC/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/GEHC/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/GEHC/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/GEHC/peg-ratio"
+ },
+ "about": {
+  "entity": "GE HealthCare Technologies Inc.",
+  "cik": 1932393,
+  "description": {
+   "text": "GE HealthCare Technologies Inc. (“GE HealthCare,” the “Company,” “our,” “us,” or “we”) is a leading global healthcare solutions provider of advanced medical technology, pharmaceutical diagnostics, and AI, cloud and software solutions that help clinicians tackle the world’s most complex diseases. We have approximately 54,000 colleagues dedicated to our purpose to create a world where healthcare has no limits. Serving patients and providers for nearly 130 years, GE HealthCare is delivering bold innovations designed for the next era of medicine to help clinicians deliver more personalized, precise patient care. This is complemented by our broad service capabilities and dedication to quality and integrity with a strong operational culture, supported by our lean business system, Heartbeat. We generate revenue from the sale of medical devices, consumable products, service capabilities, and AI-enabled cloud and software solutions. We serve customers in over 160 countries with a global team of approximately 9,700 sales professionals and 8,900 field service engineers. Our customers are hospitals, health systems, and researchers, including public, private, academic, and government institutions. Our comprehensive portfolio of solutions addresses the biggest challenges facing healthcare today, and is designed to advance care delivery for customers, reduce disease burden, enable better patient outcomes, and drive sustainable growth for the company.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "accession": "0001932393-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000007/gehc-20251231.htm"
+  },
+  "description_short": "GE HealthCare is a leading global healthcare solutions provider of advanced medical technology, pharmaceutical diagnostics, and AI, cloud and software solutions that help clinicians tackle the world's most complex diseases. Serving patients and providers for 130 years, GE HealthCare is delivering bold innovations designed for the next era of medicine across its Advanced Imaging Solutions, Pharmaceutical Diagnostics and Patient Care Solutions segments to help clinicians deliver more personalized, precise patient care. We are a $20.6 billion business with approximately 54,000 colleagues working to create a world where healthcare has no limits.",
+  "industry": "Medical Electronics",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3844",
+  "sic_description": "X-Ray Apparatus & Tubes & Related Irradiation Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.gehealthcare.com",
+  "headquarters": "Chicago, IL",
+  "address": {
+   "street": "500 W. Monroe Street",
+   "city": "Chicago",
+   "state": "IL",
+   "zip": "60661",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-04"
+  },
+  "phone": "833-735-1139",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2022-10-11",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "GE Healthcare Holding LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001932393&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 13,
+  "buy": 11,
+  "hold": 5,
+  "sell": 0,
+  "target_mean": 79.81,
+  "target_low": 70.0,
+  "target_high": 93.0,
+  "target_1y_nasdaq_summary": 83.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 75.51,
+    "buy": 5,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 74.95,
+    "buy": 5,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 79.24,
+    "buy": 8,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 82.02,
+    "buy": 7,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 78.97,
+    "buy": 8,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 84.27,
+    "buy": 9,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 71.98,
+    "buy": 9,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 61.03,
+    "buy": 9,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 62.69,
+    "buy": 6,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 64.86,
+    "buy": 7,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 68.02,
+    "buy": 9,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 70.42,
+    "buy": 9,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 79.81,
+    "buy": 10,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BTIG",
+   "CITIGROUP",
+   "CO FORECST",
+   "EDWARD JONES",
+   "EVERCORE ISI",
+   "JEFFERIES & CO.",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "UBS",
+   "WELLS FARGO SEC"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.21,
+     "low": 1.19,
+     "high": 1.25,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.6,
+     "low": 1.58,
+     "high": 1.64,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.1,
+     "low": 1.07,
+     "high": 1.15,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.25,
+     "low": 1.17,
+     "high": 1.29,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.37,
+     "low": 1.35,
+     "high": 1.39,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 4.93,
+     "low": 4.9,
+     "high": 5.0,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 5.41,
+     "low": 5.13,
+     "high": 5.55,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 5.95,
+     "low": 5.9,
+     "high": 5.99,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.05,
+    "actual": 1.07,
+    "surprise_pct": 1.9
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.43,
+    "actual": 1.44,
+    "surprise_pct": 0.7
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.07,
+    "actual": 0.99,
+    "surprise_pct": -7.48
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.04,
+    "actual": 1.13,
+    "surprise_pct": 8.65
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.21
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.6
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.1
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.25
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.21,
+    "week_ago": 1.21,
+    "month_ago": 1.21
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 4.93,
+    "week_ago": 4.93,
+    "month_ago": 4.93
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-28",
+   "text": "GE HealthCare Technologies Inc. Common Stock is expected* to report earnings on 10/28/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 6 analysts' forecasts, the consensus EPS forecast for the quarter is $1.21. The reported EPS for the same quarter last year was $1.07.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.81
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001932393-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000053/gehc-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001932393-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000050/gehc-20260813.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001932393-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000047/gehc-20260729.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000046/gehc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000045/gehc-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001932393-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000039/gehc-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-07",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001932393-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000034/gehc-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000031/gehc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000030/gehc-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001932393-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000021/gehc-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-13",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001932393-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000013/gehc-20260313.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-26",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001932393-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000010/gehc-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001932393-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000007/gehc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000006/gehc-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-319383",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000119312525319383/d75788d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-305400",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000119312525305400/d84660d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000053/gehc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000052/gehc-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000049/gehc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000048/gehc-20250730.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 3234223,
+  "volume": 3747891,
+  "market_cap_nasdaq": 31776127828,
+  "high_52w": 89.77,
+  "low_52w": 58.75,
+  "previous_close": 68.47,
+  "one_year_target": 83.0,
+  "dividend_yield_nasdaq": 0.2,
+  "annualized_dividend": 0.14,
+  "ex_dividend_date": "2026-07-24",
+  "dividend_pay_date": "2026-08-14"
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-04"
+ ]
+}

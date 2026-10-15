@@ -1,0 +1,600 @@
+{
+ "ticker": "HAL",
+ "cik": 45012,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000045012-26-000015",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000015/hal-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000045012-26-000039",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000039/hal-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000045012-26-000061",
+   "filed": "2026-07-24",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000061/hal-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hal:CompletionAndProductionMember",
+     "label": "Completion And Production",
+     "values": [
+      2835000000,
+      2709000000,
+      2128000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6943,
+      0.7088,
+      0.9416
+     ],
+     "growth_yoy": [
+      null,
+      -0.0444,
+      -0.2145
+     ]
+    },
+    {
+     "member": "hal:DrillingAndEvaluationMember",
+     "label": "Drilling And Evaluation",
+     "values": [
+      1543000000,
+      1608000000,
+      1379000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3779,
+      0.4207,
+      0.6102
+     ],
+     "growth_yoy": [
+      null,
+      0.0421,
+      -0.1424
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4083000000,
+     3822000000,
+     2260000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hal:CompletionAndProductionMember",
+     "label": "Completion And Production",
+     "values": [
+      531000000,
+      513000000,
+      439000000,
+      474000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.232,
+      0.7056,
+      0.6465,
+      0.6093
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1733,
+      -0.076
+     ]
+    },
+    {
+     "member": "hal:DrillingAndEvaluationMember",
+     "label": "Drilling And Evaluation",
+     "values": [
+      352000000,
+      312000000,
+      351000000,
+      338000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8167,
+      0.4292,
+      0.5169,
+      0.4344
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0028,
+      0.0833
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     431000000,
+     727000000,
+     679000000,
+     778000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "hal:CompletionAndProductionMember",
+     "label": "Completion And Production",
+     "values": [
+      11987000000,
+      10492000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4685,
+      0.4195
+     ],
+     "growth_yoy": [
+      null,
+      -0.1247
+     ]
+    },
+    {
+     "member": "hal:DrillingAndEvaluationMember",
+     "label": "Drilling And Evaluation",
+     "values": [
+      7806000000,
+      7870000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3051,
+      0.3147
+     ],
+     "growth_yoy": [
+      null,
+      0.0082
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      5794000000,
+      6648000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2264,
+      0.2658
+     ],
+     "growth_yoy": [
+      null,
+      0.1474
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     25587000000,
+     25010000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hal:CompletionAndProductionMember",
+     "label": "Completion And Production",
+     "values": [
+      10492000000,
+      10621000000,
+      10839000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4195,
+      0.4224,
+      0.4197
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hal:DrillingAndEvaluationMember",
+     "label": "Drilling And Evaluation",
+     "values": [
+      7870000000,
+      8087000000,
+      8398000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3147,
+      0.3217,
+      0.3252
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      6648000000,
+      6434000000,
+      6591000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2658,
+      0.2559,
+      0.2552
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     25010000000,
+     25142000000,
+     25828000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hal:CompletionAndProductionMember",
+     "label": "Completion And Production",
+     "values": [
+      553000000,
+      588000000,
+      618000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5541,
+      0.5449,
+      0.544
+     ],
+     "growth_yoy": [
+      null,
+      0.0633,
+      0.051
+     ]
+    },
+    {
+     "member": "hal:DrillingAndEvaluationMember",
+     "label": "Drilling And Evaluation",
+     "values": [
+      430000000,
+      475000000,
+      496000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4309,
+      0.4402,
+      0.4366
+     ],
+     "growth_yoy": [
+      null,
+      0.1047,
+      0.0442
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      15000000,
+      16000000,
+      22000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.015,
+      0.0148,
+      0.0194
+     ],
+     "growth_yoy": [
+      null,
+      0.0667,
+      0.375
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     998000000,
+     1079000000,
+     1136000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hal:CompletionAndProductionMember",
+     "label": "Completion And Production",
+     "values": [
+      152000000,
+      154000000,
+      163000000,
+      162000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5487,
+      0.5423,
+      0.5525,
+      0.5473
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0724,
+      0.0519
+     ]
+    },
+    {
+     "member": "hal:DrillingAndEvaluationMember",
+     "label": "Drilling And Evaluation",
+     "values": [
+      121000000,
+      124000000,
+      126000000,
+      126000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4368,
+      0.4366,
+      0.4271,
+      0.4257
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0413,
+      0.0161
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      4000000,
+      6000000,
+      6000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0144,
+      0.0211,
+      0.0203,
+      0.027
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5,
+      0.3333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     277000000,
+     284000000,
+     295000000,
+     296000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 155.2% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 104.4% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

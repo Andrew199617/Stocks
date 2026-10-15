@@ -1,0 +1,617 @@
+{
+ "ticker": "ZTS",
+ "cik": 1555280,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:28:41-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001555280.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/zts-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ZTS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ZTS/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ZTS/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ZTS/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ZTS/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ZTS/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ZTS/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ZTS/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ZTS/peg-ratio"
+ },
+ "about": {
+  "entity": "Zoetis Inc.",
+  "cik": 1555280,
+  "description": {
+   "text": "Zoetis Inc. is a global leader in the animal health industry, focused on the discovery, development, manufacture and commercialization of medicines, vaccines, diagnostic products and services, biodevices, genetic tests and precision animal health. We have a diversified business, commercializing products across eight core species: dogs, cats and horses (collectively, companion animals) and cattle, swine, poultry, fish and sheep (collectively, livestock); and within seven major product categories: parasiticides, vaccines, dermatology, anti-infectives, pain and sedation, other pharmaceutical and animal health diagnostics. With a legacy of nearly 75 years, we continue to pioneer ways to predict, prevent, detect, and treat animal illness, supporting those raising and caring for animals worldwide - from veterinarians and pet owners to livestock producers. We were incorporated in Delaware in July 2012 and prior to that the company was a business unit of Pfizer Inc. (Pfizer). The address of our principal executive offices is 10 Sylvan Way, Parsippany, New Jersey 07054. Unless the context requires otherwise, references to “Zoetis,” “the company,” “we,” “us” or “our” in this Annual Report on Form 10-K for the fiscal year ended December 31, 2025 (2025 Annual Report) refer to Zoetis Inc., a Delaware corporation, and its subsidiaries.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001555280-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/zts-20251231.htm"
+  },
+  "description_short": "Zoetis is the world's leading animal health company, driven by a singular purpose: to nurture our world and humankind by advancing care for animals. With a legacy of nearly 75 years, Zoetis continues to pioneer ways to predict, prevent, detect, and treat animal illness, supporting veterinarians, livestock producers, and pet owners in over 100 countries. We integrate deep scientific expertise, data-driven R&D, advanced manufacturing, and commercial excellence to deliver meaningful innovation across medicines, vaccines, diagnostics, biopharmaceuticals, and digital solutions. Guided by our vision to be the most trusted and valued animal health company, Zoetis is committed to setting new standards for the future of animal care through innovation, customer obsession, and purpose-driven colleagues. To learn more, visit Zoetis.com.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.zoetis.com",
+  "headquarters": "Parsippany, New Jersey",
+  "address": {
+   "street": "10 Sylvan Way",
+   "city": "Parsippany",
+   "state": "New Jersey",
+   "zip": "07054",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "973-822-7000",
+  "employees": {
+   "count": 14500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 14,500 employees worldwide, which included approximately 6,800 employees in the U.S. and approximately 7,700 in other jurisdictions.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/zts-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2012-08-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001555280&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 16,
+  "buy": 4,
+  "hold": 7,
+  "sell": 0,
+  "target_mean": 90.71,
+  "target_low": 80.0,
+  "target_high": 115.0,
+  "target_1y_nasdaq_summary": 85.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 146.95,
+    "buy": 6,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 144.09,
+    "buy": 6,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 127.25,
+    "buy": 8,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 125.82,
+    "buy": 7,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 124.82,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 131.1,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 117.29,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 114.16,
+    "buy": 7,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 77.56,
+    "buy": 6,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 72.45,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 77.29,
+    "buy": 6,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 77.25,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 90.71,
+    "buy": 5,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CO FORECST",
+   "EDWARD JONES",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "ROTHSCHILD REDB",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "WILLIAM BLAIR",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.51,
+     "low": 1.46,
+     "high": 1.56,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.29,
+     "low": 1.23,
+     "high": 1.33,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.52,
+     "low": 1.41,
+     "high": 1.65,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.85,
+     "low": 1.67,
+     "high": 2.01,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 1.61,
+     "low": 1.55,
+     "high": 1.75,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 6.15,
+     "low": 5.67,
+     "high": 6.25,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 6.32,
+     "low": 5.97,
+     "high": 6.75,
+     "estimates": 10,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 6.61,
+     "low": 6.18,
+     "high": 7.32,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 6.42,
+     "low": 6.42,
+     "high": 6.42,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 1
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.62,
+    "actual": 1.7,
+    "surprise_pct": 4.94
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.4,
+    "actual": 1.48,
+    "surprise_pct": 5.71
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.61,
+    "actual": 1.53,
+    "surprise_pct": -4.97
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.84,
+    "actual": 1.87,
+    "surprise_pct": 1.63
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.51
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.29
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.52
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.85
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.51,
+    "week_ago": 1.51,
+    "month_ago": 1.51
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 6.15,
+    "week_ago": 6.2,
+    "month_ago": 6.2
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-05",
+   "text": "Zoetis Inc. Class A Common Stock is expected* to report earnings on 11/05/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 9 analysts' forecasts, the consensus EPS forecast for the quarter is $1.51. The reported EPS for the same quarter last year was $1.7.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.77
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-08",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001555280-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000044/zts-20261008.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001555280-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000042/zts-20261008.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-338080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000119312526338080/d166736d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001555280-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000040/zts-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001555280-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000038/zts-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-20",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001555280-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000029/zts-20260520.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001555280-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000026/zts-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001555280-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000024/zts-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001555280-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000021/zts-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001555280-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000015/zts-20260406.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001555280-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/zts-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001555280-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000008/zts-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001555280-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000003/zts-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Reg FD",
+   "accession": "0001193125-25-324853",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000119312525324853/d35588d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001555280-25-000282",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528025000282/zts-20251211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001555280-25-000280",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528025000280/zts-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001555280-25-000274",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528025000274/zts-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001555280-25-000272",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528025000272/zts-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-23",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001555280-25-000266",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528025000266/zts-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-09",
+   "period": "2025-10-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001555280-25-000264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1555280/000155528025000264/zts-20251009.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 1570736,
+  "volume": 5015395,
+  "market_cap_nasdaq": 32413259341,
+  "high_52w": 148.3,
+  "low_52w": 68.77,
+  "previous_close": 75.29,
+  "one_year_target": 85.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

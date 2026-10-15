@@ -1,0 +1,358 @@
+{
+ "ticker": "WSM",
+ "cik": 719955,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000719955-26-000059",
+   "filed": "2026-03-26",
+   "period": "2026-02-01",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000719955-26-000131",
+   "filed": "2026-05-22",
+   "period": "2026-05-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000131/wsm-20260503_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000719955-26-000208",
+   "filed": "2026-08-28",
+   "period": "2026-08-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000208/wsm-20260802_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-02-02",
+    "2026-02-01"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wsm:PotteryBarnSegmentMember",
+     "label": "Pottery Barn Segment",
+     "values": [
+      3206167000,
+      3039939000,
+      2999332000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4137,
+      0.3942,
+      0.3842
+     ],
+     "growth_yoy": [
+      null,
+      -0.0518,
+      -0.0134
+     ]
+    },
+    {
+     "member": "wsm:WestElmSegmentMember",
+     "label": "West Elm Segment",
+     "values": [
+      1854811000,
+      1840582000,
+      1859501000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2393,
+      0.2387,
+      0.2382
+     ],
+     "growth_yoy": [
+      null,
+      -0.0077,
+      0.0103
+     ]
+    },
+    {
+     "member": "wsm:WilliamsSonomaSegmentMember",
+     "label": "Williams Sonoma Segment",
+     "values": [
+      1260045000,
+      1302821000,
+      1362308000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1626,
+      0.1689,
+      0.1745
+     ],
+     "growth_yoy": [
+      null,
+      0.0339,
+      0.0457
+     ]
+    },
+    {
+     "member": "wsm:PotteryBarnKidsAndTeenSegmentMember",
+     "label": "Pottery Barn Kids And Teen Segment",
+     "values": [
+      1060470000,
+      1107057000,
+      1138051000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1368,
+      0.1436,
+      0.1458
+     ],
+     "growth_yoy": [
+      null,
+      0.0439,
+      0.028
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      369159000,
+      421142000,
+      447624000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0476,
+      0.0546,
+      0.0573
+     ],
+     "growth_yoy": [
+      null,
+      0.1408,
+      0.0629
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7750652000,
+     7711541000,
+     7806816000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-04",
+    "2025-08-03",
+    "2026-05-03",
+    "2026-08-02"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wsm:PotteryBarnSegmentMember",
+     "label": "Pottery Barn Segment",
+     "values": [
+      695092000,
+      724579000,
+      708447000,
+      770808000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4018,
+      0.3945,
+      0.3924,
+      0.3933
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0192,
+      0.0638
+     ]
+    },
+    {
+     "member": "wsm:WestElmSegmentMember",
+     "label": "West Elm Segment",
+     "values": [
+      437085000,
+      468550000,
+      471174000,
+      496251000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2526,
+      0.2551,
+      0.261,
+      0.2532
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.078,
+      0.0591
+     ]
+    },
+    {
+     "member": "wsm:PotteryBarnKidsAndTeenSegmentMember",
+     "label": "Pottery Barn Kids And Teen Segment",
+     "values": [
+      229716000,
+      286749000,
+      240149000,
+      297438000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1328,
+      0.1561,
+      0.133,
+      0.1518
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0454,
+      0.0373
+     ]
+    },
+    {
+     "member": "wsm:WilliamsSonomaSegmentMember",
+     "label": "Williams Sonoma Segment",
+     "values": [
+      257493000,
+      249053000,
+      271542000,
+      268828000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1488,
+      0.1356,
+      0.1504,
+      0.1372
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0546,
+      0.0794
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      110727000,
+      107829000,
+      114144000,
+      126432000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.064,
+      0.0587,
+      0.0632,
+      0.0645
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0309,
+      0.1725
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1730113000,
+     1836760000,
+     1805456000,
+     1959757000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (wsm:ReportableSegmentMember) dropped: its values equal the sum of Pottery Barn Segment, West Elm Segment, Williams Sonoma Segment, Pottery Barn Kids And Teen Segment, Other Operating Segment",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (wsm:ReportableSegmentMember) dropped: its values equal the sum of Pottery Barn Segment, West Elm Segment, Williams Sonoma Segment, Pottery Barn Kids And Teen Segment, Other Operating Segment",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (wsm:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment' (wsm:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

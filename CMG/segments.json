@@ -1,0 +1,491 @@
+{
+ "ticker": "CMG",
+ "cik": 1058090,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001058090-26-000009",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001058090-26-000028",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000028/cmg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001058090-26-000066",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000066/cmg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cmg:U.S.SegmentMember",
+     "label": "U. S. Segment",
+     "values": [
+      9720369000,
+      11111732000,
+      11679417000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9847,
+      0.9821,
+      0.9794
+     ],
+     "growth_yoy": [
+      null,
+      0.1431,
+      0.0511
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      151280000,
+      202121000,
+      246184000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0153,
+      0.0179,
+      0.0206
+     ],
+     "growth_yoy": [
+      null,
+      0.3361,
+      0.218
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9871649000,
+     11313853000,
+     11925601000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cmg:U.S.SegmentMember",
+     "label": "U. S. Segment",
+     "values": [
+      2222118000,
+      2628599000,
+      2587507000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.4264,
+      1.3717,
+      1.3367
+     ],
+     "growth_yoy": [
+      null,
+      0.1829,
+      -0.0156
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      657134000,
+      709426000,
+      660428000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4218,
+      0.3702,
+      0.3412
+     ],
+     "growth_yoy": [
+      null,
+      0.0796,
+      -0.0691
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      -7171000,
+      -2840000,
+      8719000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0046,
+      -0.0015,
+      0.0045
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1557813000,
+     1916333000,
+     1935798000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cmg:U.S.SegmentMember",
+     "label": "U. S. Segment",
+     "values": [
+      653091000,
+      728182000,
+      602179000,
+      717438000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3627,
+      1.3025,
+      1.5166,
+      1.365
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.078,
+      -0.0148
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      175607000,
+      172726000,
+      207344000,
+      197980000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3664,
+      0.309,
+      0.5222,
+      0.3767
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1807,
+      0.1462
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      1766000,
+      3601000,
+      2228000,
+      6137000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0037,
+      0.0064,
+      0.0056,
+      0.0117
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2616,
+      0.7042
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     479250000,
+     559057000,
+     397063000,
+     525595000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FoodAndBeverageMember",
+     "label": "Food and Beverage",
+     "values": [
+      9804124000,
+      11247384000,
+      11866051000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9932,
+      0.9941,
+      0.995
+     ],
+     "growth_yoy": [
+      null,
+      0.1472,
+      0.055
+     ]
+    },
+    {
+     "member": "cmg:DeliveryServiceMember",
+     "label": "Delivery Service",
+     "values": [
+      67525000,
+      66469000,
+      59550000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0068,
+      0.0059,
+      0.005
+     ],
+     "growth_yoy": [
+      null,
+      -0.0156,
+      -0.1041
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9871649000,
+     11313853000,
+     11925601000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FoodAndBeverageMember",
+     "label": "Food and Beverage",
+     "values": [
+      2859831000,
+      3047754000,
+      3072730000,
+      3332792000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9946,
+      0.9949,
+      0.995,
+      0.9953
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0744,
+      0.0935
+     ]
+    },
+    {
+     "member": "cmg:DeliveryServiceMember",
+     "label": "Delivery Service",
+     "values": [
+      15422000,
+      15639000,
+      15512000,
+      15770000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0054,
+      0.0051,
+      0.005,
+      0.0047
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0058,
+      0.0084
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2875253000,
+     3063393000,
+     3088242000,
+     3348562000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 168.2% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 175.3% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

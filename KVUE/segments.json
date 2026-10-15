@@ -1,0 +1,561 @@
+{
+ "ticker": "KVUE",
+ "cik": 1944048,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001944048-26-000030",
+   "filed": "2026-02-20",
+   "period": "2025-12-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000030/kvue-20251228_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001944048-26-000098",
+   "filed": "2026-05-07",
+   "period": "2026-03-29",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000098/kvue-20260329_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001944048-26-000142",
+   "filed": "2026-08-06",
+   "period": "2026-06-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1944048/000194404826000142/kvue-20260628_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kvue:SelfCareMember",
+     "label": "Self Care",
+     "values": [
+      6451000000,
+      6527000000,
+      6378000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4177,
+      0.4223,
+      0.4217
+     ],
+     "growth_yoy": [
+      null,
+      0.0118,
+      -0.0228
+     ]
+    },
+    {
+     "member": "kvue:EssentialHealthMember",
+     "label": "Essential Health",
+     "values": [
+      4615000000,
+      4688000000,
+      4632000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2988,
+      0.3033,
+      0.3063
+     ],
+     "growth_yoy": [
+      null,
+      0.0158,
+      -0.0119
+     ]
+    },
+    {
+     "member": "kvue:SkinHealthAndBeautyMember",
+     "label": "Skin Health and Beauty",
+     "values": [
+      4378000000,
+      4240000000,
+      4114000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2835,
+      0.2743,
+      0.272
+     ],
+     "growth_yoy": [
+      null,
+      -0.0315,
+      -0.0297
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15444000000,
+     15455000000,
+     15124000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "kvue:SelfCareMember",
+     "label": "Self Care",
+     "values": [
+      1667000000,
+      1555000000,
+      1699000000,
+      1589000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4456,
+      0.4051,
+      0.4346,
+      0.4018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0192,
+      0.0219
+     ]
+    },
+    {
+     "member": "kvue:EssentialHealthMember",
+     "label": "Essential Health",
+     "values": [
+      1097000000,
+      1225000000,
+      1151000000,
+      1253000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2932,
+      0.3191,
+      0.2944,
+      0.3168
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0492,
+      0.0229
+     ]
+    },
+    {
+     "member": "kvue:SkinHealthAndBeautyMember",
+     "label": "Skin Health and Beauty",
+     "values": [
+      977000000,
+      1059000000,
+      1059000000,
+      1113000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2612,
+      0.2759,
+      0.2709,
+      0.2814
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0839,
+      0.051
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3741000000,
+     3839000000,
+     3909000000,
+     3955000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kvue:EssentialHealthMember",
+     "label": "Essential Health",
+     "values": [
+      195000000,
+      231000000,
+      230000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.311,
+      0.3714,
+      0.4129
+     ],
+     "growth_yoy": [
+      null,
+      0.1846,
+      -0.0043
+     ]
+    },
+    {
+     "member": "kvue:SelfCareMember",
+     "label": "Self Care",
+     "values": [
+      202000000,
+      217000000,
+      204000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3222,
+      0.3489,
+      0.3662
+     ],
+     "growth_yoy": [
+      null,
+      0.0743,
+      -0.0599
+     ]
+    },
+    {
+     "member": "kvue:SkinHealthAndBeautyMember",
+     "label": "Skin Health and Beauty",
+     "values": [
+      230000000,
+      174000000,
+      123000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3668,
+      0.2797,
+      0.2208
+     ],
+     "growth_yoy": [
+      null,
+      -0.2435,
+      -0.2931
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     627000000,
+     622000000,
+     557000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2026-03-29"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q1 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "kvue:EssentialHealthMember",
+     "label": "Essential Health",
+     "values": [
+      58000000,
+      60000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4265,
+      0.4196
+     ],
+     "growth_yoy": [
+      null,
+      0.0345
+     ]
+    },
+    {
+     "member": "kvue:SelfCareMember",
+     "label": "Self Care",
+     "values": [
+      49000000,
+      53000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3603,
+      0.3706
+     ],
+     "growth_yoy": [
+      null,
+      0.0816
+     ]
+    },
+    {
+     "member": "kvue:SkinHealthAndBeautyMember",
+     "label": "Skin Health and Beauty",
+     "values": [
+      29000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2132,
+      0.2098
+     ],
+     "growth_yoy": [
+      null,
+      0.0345
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     136000000,
+     143000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      6767000000,
+      6719000000,
+      6460000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4382,
+      0.4347,
+      0.4271
+     ],
+     "growth_yoy": [
+      null,
+      -0.0071,
+      -0.0385
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      3388000000,
+      3559000000,
+      3721000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2194,
+      0.2303,
+      0.246
+     ],
+     "growth_yoy": [
+      null,
+      0.0505,
+      0.0455
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      3107000000,
+      2974000000,
+      2775000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2012,
+      0.1924,
+      0.1835
+     ],
+     "growth_yoy": [
+      null,
+      -0.0428,
+      -0.0669
+     ]
+    },
+    {
+     "member": "srt:LatinAmericaMember",
+     "label": "Latin America",
+     "values": [
+      1339000000,
+      1343000000,
+      1369000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0867,
+      0.0869,
+      0.0905
+     ],
+     "growth_yoy": [
+      null,
+      0.003,
+      0.0194
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15444000000,
+     15455000000,
+     15124000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'North America' (srt:NorthAmericaMember) dropped: it is the parent of UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 94.7% of the consolidated total for 2025-12-28 (ties_to_total: false)"
+ ],
+ "complete": true
+}

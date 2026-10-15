@@ -1,0 +1,604 @@
+{
+ "ticker": "CMPS",
+ "cik": 1816590,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:20:06-04:00",
+ "newest_filing_date": "2026-08-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001816590.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000020/cmps-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CMPS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CMPS/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/CMPS/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/CMPS/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/CMPS/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/CMPS/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/CMPS/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/CMPS/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/CMPS/peg-ratio"
+ },
+ "about": {
+  "entity": "COMPASS Pathways plc",
+  "cik": 1816590,
+  "description": {
+   "text": "We are a biotechnology company dedicated to accelerating patient access to evidence-based innovation in mental health. We are motivated by the need to find better ways to help and empower people with serious mental health conditions who are not helped by existing treatments. We are pioneering a new paradigm for treating mental health conditions focused on rapid and durable responses through the development of our investigational COMP360 psilocybin treatment, potentially a first in class treatment. COMP360 is our proprietary psilocybin formulation that includes our pharmaceutical-grade polymorphic crystalline psilocybin, optimized for stability and purity. We believe that our COMP360 psilocybin treatment could offer a new approach to treatment of serious mental health conditions, including treatment-resistant depression, or TRD, which is a subset of major depressive disorder, or MDD, post-traumatic stress disorder, or PTSD, and potentially many other serious mental health conditions. Our initial focus is on TRD, comprising patients who are inadequately served by current treatment options. In 2018, we received Breakthrough Therapy designation from the U.S. Food and Drug Administration, or the FDA, for COMP360 for the treatment of TRD. In November 2021, we announced positive top-line results from our Phase 2b clinical trial evaluating COMP360 for the treatment of TRD.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "accession": "0001816590-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000020/cmps-20251231.htm"
+  },
+  "description_short": "Compass Pathways plc (Nasdaq: CMPS) is a biotechnology company dedicated to unlocking urgently needed new treatment options in mental health care. Our initial focus is developing COMP360 psilocybin, a proprietary, investigational, synthetic psilocybin treatment under evaluation for treatment-resistant depression (TRD) and post-traumatic stress disorder (PTSD). COMP360 is a potentially first-in-class treatment and has Breakthrough Therapy designation from the U.S. Food and Drug Administration (FDA), as well as Innovative Licensing and Access Pathway (ILAP) designation in the UK for TRD. We are leading the world's largest classic psychedelic clinical program in TRD, and building upon that robust foundation, we are executing a late-stage trial evaluating COMP360 for PTSD, another condition with high unmet need. Our goal is to advance treatments that move the field of psychiatry towards treatment options that offer rapid onset and sustained durability with infrequent dosing.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "X0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer<br>Smaller reporting company",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://compasspathways.com",
+  "headquarters": "London, United Kingdom",
+  "address": {
+   "street": "33 Broadwick Street",
+   "city": "London",
+   "state": null,
+   "zip": "W1F 0DQ",
+   "country": "United Kingdom",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-24"
+  },
+  "phone": "1-716-676-6461",
+  "employees": {
+   "count": 156,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 156 employees, which represented a decrease of 6.0% compared to the prior year, of whom 101 employees are engaged in research and development activities and 55 employees are engaged in general administrative functions.",
+   "form": "10-K",
+   "filed": "2026-03-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000020/cmps-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-08-28",
+  "first_sec_filing_form": "F-1",
+  "former_names": [
+   "Compass Rx Ltd."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001816590&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 8,
+  "buy": 10,
+  "hold": 1,
+  "sell": 0,
+  "target_mean": 24.91,
+  "target_low": 13.0,
+  "target_high": 65.0,
+  "target_1y_nasdaq_summary": 21.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 5.77,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 6.32,
+    "buy": 7,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 5.24,
+    "buy": 5,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 6.9,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 6.69,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 6.9,
+    "buy": 11,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 5.62,
+    "buy": 11,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 9.01,
+    "buy": 11,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 14.19,
+    "buy": 12,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 13.29,
+    "buy": 11,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 11.35,
+    "buy": 14,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 13.24,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 24.91,
+    "buy": 13,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "BTIG",
+   "CANACCORD GENUI",
+   "CANTOR FITZGERA",
+   "DEUTSCHE BK SEC",
+   "H C WAINWRIGHT",
+   "MAXIM GROUP,LLC",
+   "OPPENHEIMER HLD",
+   "TD COWEN"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": -0.42,
+     "low": -0.91,
+     "high": -0.06,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -0.38,
+     "low": -0.48,
+     "high": -0.09,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": -0.4,
+     "low": -0.4,
+     "high": -0.4,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": -0.41,
+     "low": -0.41,
+     "high": -0.41,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": -0.39,
+     "low": -0.39,
+     "high": -0.39,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -1.26,
+     "low": -1.58,
+     "high": -0.58,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": -1.87,
+     "low": -3.3,
+     "high": -1.0,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": -0.88,
+     "low": -1.64,
+     "high": -0.17,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 0.81,
+     "low": -0.8,
+     "high": 1.66,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": -0.4,
+    "actual": -0.38,
+    "surprise_pct": 5.0
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -0.41,
+    "actual": -0.59,
+    "surprise_pct": -43.9
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": -0.45,
+    "actual": -0.3,
+    "surprise_pct": 33.33
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": -0.46,
+    "actual": -0.36,
+    "surprise_pct": 21.74
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": -0.42
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": -0.38
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": -0.4
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": -0.41
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": -0.42,
+    "week_ago": -0.42,
+    "month_ago": -0.42
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": -1.26,
+    "week_ago": -1.26,
+    "month_ago": -1.26
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-03",
+   "text": "COMPASS Pathways Plc American Depository Shares is estimated to report earnings on 11/03/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $-0.42. The reported EPS for the same quarter last year was $-0.38.",
+   "timing": null
+  },
+  "peg_forward": 0.0
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001816590-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000059/cmps-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001816590-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000058/cmps-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-07",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001816590-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000047/cmps-20260707.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-27",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001816590-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000046/cmps-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-13",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001816590-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000043/cmps-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-13",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001816590-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000042/cmps-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-15",
+   "period": "2026-05-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-157123",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000119312526157123/d87237ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001816590-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000020/cmps-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001816590-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000021/cmps-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-18",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001628280-26-009501",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000162828026009501/cmps-20260218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001816590-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000007/cmps-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-05",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001816590-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000004/cmps-20260105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001816590-25-000150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000150/cmps-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001816590-25-000149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000149/cmps-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001816590-25-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000141/cmps-20251026.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001816590-25-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000103/cmps-20250731.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001816590-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000102/cmps-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-28",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001816590-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000094/cmps-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-23",
+   "period": "2025-06-23",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001816590-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000085/cmps-20250623.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001816590-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659025000067/cmps-20250612.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 2713034,
+  "volume": 2804763,
+  "market_cap_nasdaq": 1609100672,
+  "high_52w": 15.87,
+  "low_52w": 4.88,
+  "previous_close": 11.27,
+  "one_year_target": 21.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

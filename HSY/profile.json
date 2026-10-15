@@ -1,0 +1,620 @@
+{
+ "ticker": "HSY",
+ "cik": 47111,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:22:54-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000047111.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/47111/000162828026008586/hsy-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HSY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HSY/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/HSY/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/HSY/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/HSY/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/HSY/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/HSY/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/HSY/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/HSY/peg-ratio"
+ },
+ "about": {
+  "entity": "HERSHEY CO",
+  "cik": 47111,
+  "description": {
+   "text": "The Hershey Company was incorporated under the laws of the State of Delaware on October 24, 1927 as a successor to a business founded in 1894 by Milton S. Hershey. In this report, the terms “Hershey,” “Company,” “we,” “us” or “our” mean The Hershey Company and its wholly-owned subsidiaries and entities in which it has a controlling financial interest, unless the context indicates otherwise. Hershey is a global confectionery leader known for making more moments of goodness through chocolate, sweets, mints, and other great tasting snacks. We are the largest producer of quality chocolate in North America, a leading snack maker in the United States and a global leader in chocolate and non-chocolate confectionery. We market, sell, and distribute our products under more than 85 brand names in approximately 65 countries worldwide.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-008586",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026008586/hsy-20251231.htm"
+  },
+  "description_short": "The Hershey Company (NYSE: HSY) is an industry-leading snacks company with a purpose to make more moments of goodness and a vision to lead next generation snacking. Hershey brings together more than 20,000 employees worldwide to deliver delicious, high-quality products across more than 85 brands in approximately 65 countries, generating more than $11.7 billion in annual revenues. Hershey brings its full portfolio to market as ONE Hershey, spanning confection, salty and functional snacking categories with beloved brands like Hershey's, Reese's, Kisses, KIT KAT, Jolly Rancher, Twizzlers and Ice Breakers; salty snacks including SkinnyPop, LesserEvil, Pirate's Booty and Dot's Homestyle Pretzels; and a protein portfolio including ONE Brands and Fulfil. For more than 130 years, Hershey has operated fairly, ethically and sustainably.",
+  "industry": "Specialty Foods",
+  "sector": "Consumer Staples",
+  "region": "North America",
+  "sic": "2060",
+  "sic_description": "Sugar & Confectionery Products",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.thehersheycompany.com",
+  "headquarters": "Hershey, PA",
+  "address": {
+   "street": "19 East Chocolate Avenue",
+   "city": "Hershey",
+   "state": "PA",
+   "zip": "17033",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "7175344200",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-10",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [
+   "HERSHEY FOODS CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000047111&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 22,
+  "buy": 4,
+  "hold": 12,
+  "sell": 0,
+  "target_mean": 197.73,
+  "target_low": 170.0,
+  "target_high": 250.0,
+  "target_1y_nasdaq_summary": 198.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 188.83,
+    "buy": 2,
+    "hold": 14,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 169.63,
+    "buy": 2,
+    "hold": 14,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 185.08,
+    "buy": 2,
+    "hold": 15,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 181.98,
+    "buy": 2,
+    "hold": 14,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 194.75,
+    "buy": 3,
+    "hold": 14,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 236.28,
+    "buy": 4,
+    "hold": 14,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 202.89,
+    "buy": 4,
+    "hold": 14,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 182.34,
+    "buy": 5,
+    "hold": 14,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 186.4,
+    "buy": 5,
+    "hold": 13,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 178.67,
+    "buy": 4,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 175.05,
+    "buy": 5,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 176.0,
+    "buy": 5,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 197.73,
+    "buy": 5,
+    "hold": 12,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "ARGUS RESEARCH",
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "DAVIDSON D A",
+   "DEUTSCHE BK SEC",
+   "EDWARD JONES",
+   "EVERCORE ISI",
+   "EXANE BNP PARIB",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "STEPHENS INC",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "UBS",
+   "WELLS FARGO SEC",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 2.11,
+     "low": 2.04,
+     "high": 2.23,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.12,
+     "low": 2.07,
+     "high": 2.19,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 2.8,
+     "low": 2.55,
+     "high": 3.1,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 2.1,
+     "low": 1.85,
+     "high": 2.22,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 2.58,
+     "low": 2.44,
+     "high": 2.69,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 8.49,
+     "low": 8.38,
+     "high": 8.65,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 9.86,
+     "low": 9.43,
+     "high": 10.35,
+     "estimates": 9,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 10.5,
+     "low": 10.13,
+     "high": 10.86,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 11.07,
+     "low": 10.69,
+     "high": 11.45,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 1.09,
+    "actual": 1.3,
+    "surprise_pct": 19.27
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.4,
+    "actual": 1.71,
+    "surprise_pct": 22.14
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.05,
+    "actual": 2.35,
+    "surprise_pct": 14.63
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.45,
+    "actual": 1.9,
+    "surprise_pct": 31.03
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 2.11
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 2.12
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 2.8
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 2.1
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 2.11,
+    "week_ago": 2.11,
+    "month_ago": 2.11
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 8.49,
+    "week_ago": 8.49,
+    "month_ago": 8.49
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "The Hershey Company Common Stock is expected* to report earnings on 10/29/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 8 analysts' forecasts, the consensus EPS forecast for the quarter is $2.11. The reported EPS for the same quarter last year was $1.3.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.3
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-060131",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026060131/hsy-20260902.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050900",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026050900/hsy-20260628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-050769",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026050769/hsy-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-041894",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026041894/hsy-20260603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-038847",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026038847/hsy-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-05",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-032947",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026032947/hsy-20260505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028682",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026028682/hsy-20260329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-028569",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026028569/hsy-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-025076",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026025076/hsy-20260414.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-022272",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026022272/hsy-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-25",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-021065",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026021065/hsy-20260325.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-008586",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026008586/hsy-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005604",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828026005604/hsy-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-05",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001628280-25-055617",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828025055617/hsy-20251205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047471",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828025047471/hsy-20250928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047294",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828025047294/hsy-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001628280-25-045714",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000162828025045714/hsy-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-21",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000047111-25-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711125000124/hsy-20250821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000047111-25-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711125000119/hsy-20250818.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-04",
+   "period": "2025-07-30",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000047111-25-000117",
+   "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711125000117/hsy-20250730.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 1008157,
+  "volume": 1446661,
+  "market_cap_nasdaq": 33892139823,
+  "high_52w": 239.48,
+  "low_52w": 156.16,
+  "previous_close": 164.25,
+  "one_year_target": 198.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-17"
+ ]
+}

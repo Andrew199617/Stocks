@@ -1,0 +1,611 @@
+{
+ "ticker": "FFIV",
+ "cik": 1048695,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:22:16-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001048695.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FFIV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FFIV/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/FFIV/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/FFIV/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/FFIV/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/FFIV/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/FFIV/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/FFIV/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/FFIV/peg-ratio"
+ },
+ "about": {
+  "entity": "F5, INC.",
+  "cik": 1048695,
+  "description": {
+   "text": "F5 is a multicloud application delivery and security provider committed to bringing a better digital world to life. F5 partners with the world’s largest, most advanced organizations to optimize and secure every application and Application Programming Interface (\"API\") anywhere, including on-premises, in the cloud, and at the network edge. F5 enables businesses to continuously stay ahead of threats while delivering exceptional, secure digital experiences for their customers. Our application delivery and security solutions are available in a range of deployment and consumption models. We sell packaged software in perpetual, subscription, and usage-based consumption models. We also sell our solutions in software-as-a-service (\"SaaS\") and managed services deployment models with subscription and usage-based consumption models. In addition, we sell high-performance systems, or hardware, as well as a broad range of global services including maintenance, consulting, training and other technical support services. Our customers include large enterprise businesses, public sector institutions, governments, and service providers. We conduct our business globally and manage our business by geography. Our business is organized into three primary geographic regions: Americas; Europe, the Middle East, and Africa (\"EMEA\"); and the Asia Pacific region (\"APAC\"). F5 was incorporated in 1996 and is headquartered in Seattle, Washington.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-09-30",
+   "accession": "0001048695-25-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm"
+  },
+  "description_short": "F5, Inc. (NASDAQ: FFIV) is the global leader that delivers and secures every app. Backed by three decades of expertise, F5 has built the industry's premier platform-F5 Application Delivery and Security Platform (ADSP)-to deliver and secure every app, every API, anywhere: on-premises, in the cloud, at the edge, and across hybrid, multicloud environments. F5 is committed to innovating and partnering with the world's largest and most advanced organizations to deliver fast, available, and secure digital experiences. Together, we help each other thrive and bring a better digital world to life.",
+  "industry": "Computer Communications Equipment",
+  "sector": "Telecommunications",
+  "region": "North America",
+  "sic": "3576",
+  "sic_description": "Computer Communications Equipment",
+  "state_of_incorporation": "WA",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.f5.com",
+  "headquarters": "Seattle, Washington",
+  "address": {
+   "street": "801 5th Avenue",
+   "city": "Seattle",
+   "state": "Washington",
+   "zip": "98104",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-25"
+  },
+  "phone": "2062725555",
+  "employees": {
+   "count": 6578,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we had 6,578 employees – over 99% of whom were full-time employees.",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-04-07",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "F5 NETWORKS, INC.",
+   "F5 NETWORKS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001048695&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 15,
+  "buy": 3,
+  "hold": 4,
+  "sell": 1,
+  "target_mean": 430.43,
+  "target_low": 300.0,
+  "target_high": 525.0,
+  "target_1y_nasdaq_summary": 468.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 327.29,
+    "buy": 1,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 253.05,
+    "buy": 0,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 238.57,
+    "buy": 0,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 255.26,
+    "buy": 0,
+    "hold": 9,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 275.61,
+    "buy": 3,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 271.36,
+    "buy": 3,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 295.65,
+    "buy": 3,
+    "hold": 6,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 323.2,
+    "buy": 3,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 395.62,
+    "buy": 4,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 424.18,
+    "buy": 4,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 402.57,
+    "buy": 4,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 395.72,
+    "buy": 3,
+    "hold": 4,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 430.43,
+    "buy": 3,
+    "hold": 4,
+    "sell": 1,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "GUGGENHEIM SEC.",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEYBANC CAP MKT",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "RBC CAPITAL",
+   "WILLIAM BLAIR",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 3.32,
+     "low": 3.25,
+     "high": 3.46,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 3.41,
+     "low": 3.2,
+     "high": 3.99,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 3.16,
+     "low": 3.04,
+     "high": 3.41,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 3.52,
+     "low": 3.34,
+     "high": 3.75,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 3.86,
+     "low": 3.75,
+     "high": 4.01,
+     "estimates": 6,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 13.65,
+     "low": 13.59,
+     "high": 13.81,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 14.07,
+     "low": 13.48,
+     "high": 15.0,
+     "estimates": 7,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2028",
+     "fiscal_end": "2028-09",
+     "consensus": 15.97,
+     "low": 14.83,
+     "high": 17.53,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2029",
+     "fiscal_end": "2029-09",
+     "consensus": 16.69,
+     "low": 16.36,
+     "high": 17.01,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 3.19,
+    "actual": 3.41,
+    "surprise_pct": 6.9
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 2.83,
+    "actual": 3.64,
+    "surprise_pct": 28.62
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.55,
+    "actual": 2.71,
+    "surprise_pct": 6.27
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 3.04,
+    "actual": 3.86,
+    "surprise_pct": 26.97
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 3.32
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 3.41
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 3.16
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 3.52
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 3.32,
+    "week_ago": 3.32,
+    "month_ago": 3.32
+   },
+   "year": {
+    "period": "Sep 2026",
+    "current": 13.65,
+    "week_ago": 13.65,
+    "month_ago": 13.65
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-27",
+   "text": "F5, Inc. Common Stock is expected* to report earnings on 10/27/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 6 analysts' forecasts, the consensus EPS forecast for the quarter is $3.32. The reported EPS for the same quarter last year was $3.41.",
+   "timing": "after market close"
+  },
+  "peg_forward": 4.47
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000067/ffiv-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048695-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000063/ffiv-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001048695-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000059/ffiv-20260617.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000051/ffiv-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-24",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001048695-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000044/ffiv-20260424.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048695-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000042/ffiv-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-13",
+   "period": "2026-03-12",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001048695-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000036/ffiv-20260312.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000023/ffiv-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048695-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000018/ffiv-20260127.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-26",
+   "period": "2026-03-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001048695-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000012/ffiv-20260126.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001048695-25-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-24",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001048695-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000153/ffiv-20251024.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "1.05",
+    "5.02",
+    "7.01"
+   ],
+   "description": "Material cybersecurity incident; Officer/director change; Reg FD",
+   "accession": "0001048695-25-000149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000149/ffiv-20251015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-11",
+   "period": "2025-09-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001048695-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000143/ffiv-20250911.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-25-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000129/ffiv-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001048695-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000113/ffiv-20250724.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000091/ffiv-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-25",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001048695-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000075/ffiv-20250425.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-17",
+   "period": "2025-03-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001048695-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000068/ffiv-20250313.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-02-07",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000026/ffiv-20241231.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 516126,
+  "volume": 555982,
+  "market_cap_nasdaq": 25854838758,
+  "high_52w": 483.3,
+  "low_52w": 223.76,
+  "previous_close": 457.26,
+  "one_year_target": 468.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

@@ -1,0 +1,612 @@
+{
+ "ticker": "VG",
+ "cik": 2007855,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:27:36-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002007855.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000013/vg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VG/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/VG/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/VG/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/VG/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/VG/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/VG/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/VG/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/VG/peg-ratio"
+ },
+ "about": {
+  "entity": "Venture Global, Inc.",
+  "cik": 2007855,
+  "description": {
+   "text": "Venture Global is a long-term, low-cost provider of U.S. LNG sourced from resource rich North American natural gas basins. Our integrated assets span the LNG supply chain, including LNG production, natural gas transportation, shipping and regasification. Our innovative approach, which is both scalable and repeatable, allows us to bring low-cost LNG to a global market years faster than traditional LNG projects. We believe supplying this clean, affordable fuel promotes global energy security and diversification and is essential to meeting growing global energy demand. Natural gas is a vital global resource that underpins economic development through the generation of reliable electricity. By cooling natural gas to -260°F, it is converted to LNG—reducing its volume to 1/600th of its original state for efficient transport by LNG tankers to international markets lacking domestic supply, displacing more carbon intensive sources of energy such as coal and oil. Venture Global’s modular, “design-one, build-many” approach enables faster, more cost-efficient construction and the rapid deployment of productive assets compared with traditional LNG projects, forming the foundation of both our operating platform and development strategy.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "accession": "0002007855-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000013/vg-20251231.htm"
+  },
+  "description_short": "Venture Global is an American producer and exporter of low-cost U.S . liquefied natural gas (LNG) with over 100 MTPA of capacity in production, construction, or development. Venture Global began producing LNG from its first facility in 2022 and is now one of the largest LNG exporters in the United States . The company's vertically integrated business includes assets across the LNG supply chain including LNG production, natural gas transport, shipping and regasification. The company's first three projects, Calcasieu Pass , Plaquemines LNG, and CP2 LNG, are located in Louisiana along the Gulf of America. Venture Global is developing carbon capture and sequestration projects at each of its LNG facilities.",
+  "industry": "Oil/Gas Transmission",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4924",
+  "sic_description": "Natural Gas Distribution",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ventureglobal.com",
+  "headquarters": "Arlington, Virginia",
+  "address": {
+   "street": "1001 19th Street North, Suite 1500",
+   "city": "Arlington",
+   "state": "Virginia",
+   "zip": "22209",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-02"
+  },
+  "phone": "(202) 759 6740",
+  "employees": {
+   "count": 2000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had over 2,000 full-time employees working on our EPCM, project development, project financing, corporate finance, legal, and LNG marketing teams.",
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000013/vg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2024-12-20",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002007855&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 0,
+  "buy": 6,
+  "hold": 3,
+  "sell": 0,
+  "target_mean": 17.4,
+  "target_low": 14.0,
+  "target_high": 22.0,
+  "target_1y_nasdaq_summary": 16.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 14.72,
+    "buy": 6,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 8.57,
+    "buy": 6,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 6.88,
+    "buy": 6,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 6.82,
+    "buy": 6,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 9.8,
+    "buy": 5,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 9.69,
+    "buy": 5,
+    "hold": 4,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 14.68,
+    "buy": 6,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 12.73,
+    "buy": 6,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 12.68,
+    "buy": 9,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 11.03,
+    "buy": 8,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 13.38,
+    "buy": 9,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 15.11,
+    "buy": 6,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 17.4,
+    "buy": 6,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.55,
+     "low": 0.43,
+     "high": 0.67,
+     "estimates": 7,
+     "revisions_up": 2,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.5,
+     "low": 0.39,
+     "high": 0.63,
+     "estimates": 6,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.41,
+     "low": 0.32,
+     "high": 0.54,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.33,
+     "low": 0.22,
+     "high": 0.44,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.28,
+     "low": 0.12,
+     "high": 0.38,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.73,
+     "low": 1.48,
+     "high": 1.93,
+     "estimates": 9,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 1.22,
+     "low": 0.79,
+     "high": 1.75,
+     "estimates": 9,
+     "revisions_up": 2,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 1.5,
+     "low": 0.88,
+     "high": 3.01,
+     "estimates": 6,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 0.69,
+     "low": 0.69,
+     "high": 0.69,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.22,
+    "actual": 0.16,
+    "surprise_pct": -27.27
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.35,
+    "actual": 0.41,
+    "surprise_pct": 17.14
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.13,
+    "actual": 0.19,
+    "surprise_pct": 46.15
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.49,
+    "actual": 0.51,
+    "surprise_pct": 4.08
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.55
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.5
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.41
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.33
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.55,
+    "week_ago": 0.55,
+    "month_ago": 0.56
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 1.73,
+    "week_ago": 1.71,
+    "month_ago": 1.69
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-10",
+   "text": "Venture Global, Inc. Class A common stock is expected* to report earnings on 11/10/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 7 analysts' forecasts, the consensus EPS forecast for the quarter is $0.55. The reported EPS for the same quarter last year was $0.16.",
+   "timing": "before market open"
+  },
+  "peg_forward": 1.6
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-09",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0002007855-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000081/vg-20261009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-07",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0002007855-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000072/vg-20261007.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002007855-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000069/vg-20261007.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0002007855-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000066/vg-20260902.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002007855-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000063/vg-20260811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-11",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002007855-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000062/vg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002007855-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000057/vg-20260708.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0002007855-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000055/vg-20260626.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0002007855-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000051/vg-20260611.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-06-01",
+   "items": [
+    "2.04",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Triggering event on a debt obligation; Other events",
+   "accession": "0002007855-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000048/vg-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950103-26-008083",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000095010326008083/dp247403_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-27",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0002007855-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000045/vg-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002007855-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000042/vg-20260512.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-12",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002007855-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000040/vg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0002007855-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000037/vg-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0002007855-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000034/vg-20260410.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-09",
+   "period": "2026-04-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002007855-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000032/vg-20260409.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0002007855-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000026/vg-20260407.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0002007855-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000021/vg-20260326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-13",
+   "period": "2026-03-13",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0002007855-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000018/vg-20260313.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": null,
+  "volume": 33937871,
+  "market_cap_nasdaq": 31301162495,
+  "high_52w": 17.62,
+  "low_52w": 5.72,
+  "previous_close": 13.27,
+  "one_year_target": 16.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

@@ -1,0 +1,595 @@
+{
+ "ticker": "VRSN",
+ "cik": 1014473,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:27:51-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001014473.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VRSN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VRSN/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/VRSN/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/VRSN/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/VRSN/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/VRSN/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/VRSN/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/VRSN/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/VRSN/peg-ratio"
+ },
+ "about": {
+  "entity": "VERISIGN INC/CA",
+  "cik": 1014473,
+  "description": {
+   "text": "We are a global provider of critical internet infrastructure and domain name registry services, enabling internet navigation for many of the world’s most recognized domain names. We help enable the security, stability, and resiliency of the Domain Name System (“DNS”) and the internet by providing Root Zone Maintainer services, operating two of the thirteen global internet root servers, and providing registration services and authoritative resolution for the .com and .net top-level domains (“TLDs”), which support the majority of global e-commerce. We were incorporated in Delaware on April 12, 1995. Our principal executive offices are located at 12061 Bluemont Way, Reston, Virginia 20190. Our telephone number at that address is (703) 948-3200. Our common stock is traded on the Nasdaq Global Select Market under the ticker symbol VRSN. VERISIGN, the VERISIGN logo, and certain other product or service names are registered or unregistered trademarks in the U.S. and other countries. Other names used in this Form 10-K may be trademarks of their respective owners. Our primary website is https://www.verisign.com. The information available on, or accessible through, this website is not incorporated in this Form 10-K by reference.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "accession": "0001014473-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm"
+  },
+  "description_short": "Verisign (NASDAQ: VRSN), a global provider of critical internet infrastructure and domain name registry services, enables internet navigation for many of the world's most recognized domain names. Verisign helps enable the security, stability, and resiliency of the Domain Name System and the internet by providing root zone maintainer services, operating two of the 13 global internet root servers, and providing registration services and authoritative resolution for the. com and. net top-level domains, which support the majority of global e-commerce.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7371",
+  "sic_description": "Services-Computer Programming Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.verisign.com",
+  "headquarters": "Reston, Virginia",
+  "address": {
+   "street": "12061 Bluemont Way",
+   "city": "Reston",
+   "state": "Virginia",
+   "zip": "20190",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-05"
+  },
+  "phone": "7039483200",
+  "employees": {
+   "count": 928,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 928 employees, of which 926 were full-time.",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-11-21",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001014473&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 3,
+  "buy": 1,
+  "hold": 1,
+  "sell": 0,
+  "target_mean": 328.5,
+  "target_low": 316.0,
+  "target_high": 341.0,
+  "target_1y_nasdaq_summary": 333.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 274.92,
+    "buy": 2,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 239.8,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 251.02,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 242.95,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 244.23,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 227.94,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 250.77,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 272.44,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 296.59,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 255.9,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 290.02,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 288.37,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 328.5,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "BAIRD R W",
+   "CITIGROUP",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 2.42,
+     "low": 2.41,
+     "high": 2.42,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.47,
+     "low": 2.46,
+     "high": 2.47,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 2.58,
+     "low": 2.58,
+     "high": 2.58,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 2.67,
+     "low": 2.67,
+     "high": 2.67,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 2.71,
+     "low": 2.71,
+     "high": 2.71,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 9.59,
+     "low": 9.58,
+     "high": 9.6,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 10.84,
+     "low": 10.74,
+     "high": 10.9,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 12.25,
+     "low": 11.89,
+     "high": 12.46,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 14.2,
+     "low": 14.2,
+     "high": 14.2,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.0,
+    "actual": 2.27,
+    "surprise_pct": null
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 2.29,
+    "actual": 2.23,
+    "surprise_pct": -2.62
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.2,
+    "actual": 2.34,
+    "surprise_pct": 6.36
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 2.36,
+    "actual": 2.38,
+    "surprise_pct": 0.85
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 2.42
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 2.47
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 2.58
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 2.67
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 2.42,
+    "week_ago": 2.42,
+    "month_ago": 2.42
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 9.59,
+    "week_ago": 9.59,
+    "month_ago": 9.59
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-22",
+   "text": "VeriSign, Inc. Common Stock is expected* to report earnings on 10/22/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 2 analysts' forecasts, the consensus EPS forecast for the quarter is $2.42. The reported EPS for the same quarter last year was $2.27.",
+   "timing": "after market close"
+  },
+  "peg_forward": 0.0
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001014473-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000030/vrsn-20260827.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000028/vrsn-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001014473-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000026/vrsn-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001140361-26-026574",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000114036126026574/ef20076830_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-026514",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000114036126026514/ef20076829_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001014473-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000023/vrsn-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000020/vrsn-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001014473-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000019/vrsn-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-10",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001014473-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000013/vrsn-20260409.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001014473-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001014473-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000005/vrsn-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-21",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001014473-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000051/vrsn-20251121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-24",
+   "period": "2025-10-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001014473-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000048/vrsn-20251024.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000046/vrsn-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001014473-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000045/vrsn-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-08",
+   "period": "2025-10-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001014473-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000042/vrsn-20251006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-027935",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000114036125027935/ny20052578x3_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000036/vrsn-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001014473-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000034/vrsn-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001014473-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000030/vrsn-20250610.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 764396,
+  "volume": 1089964,
+  "market_cap_nasdaq": 27459327000,
+  "high_52w": 312.48,
+  "low_52w": 208.8601,
+  "previous_close": 301.41,
+  "one_year_target": 333.0,
+  "dividend_yield_nasdaq": 1.07,
+  "annualized_dividend": 3.24,
+  "ex_dividend_date": "2026-08-19",
+  "dividend_pay_date": "2026-08-27"
+ },
+ "warnings": []
+}

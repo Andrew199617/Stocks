@@ -1,0 +1,580 @@
+{
+ "ticker": "JBL",
+ "cik": 898293,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:23:36-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000898293.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/898293/000162828025045293/jbl-20250831.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JBL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JBL/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/JBL/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/JBL/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/JBL/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/JBL/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/JBL/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/JBL/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/JBL/peg-ratio"
+ },
+ "about": {
+  "entity": "JABIL INC",
+  "cik": 898293,
+  "description": {
+   "text": "Jabil is one of the leading providers of engineering, manufacturing, and supply chain solutions. We deliver comprehensive design, production, and product management services to companies across a diverse range of industries and end markets. Our capabilities span the entire product lifecycle—from innovation, design, and planning to fabrication, assembly, and delivery—enabling seamless management of resources and materials across global supply chains. Through these integrated services, we help our customers reduce manufacturing costs, enhance supply chain efficiency, minimize inventory risk, lower transportation expenses, and accelerate product fulfillment. We serve our customers primarily through dedicated business units that combine highly automated, continuous flow manufacturing with advanced electronic design and design for manufacturability. Each business unit team serves as a single point of contact between a customer and Jabil. Business unit teams are supported by cross-functional teams, which leverage the power of our global expertise and capabilities to carry out work at the site level. We conduct our operations in facilities that are located worldwide, including but not limited to China, Malaysia, Mexico, and the United States. Our global manufacturing production sites allow customers to manufacture products simultaneously in the optimal locations for their products. Our global presence is key to assessing and executing on our business opportunities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-10-17",
+   "period": "2025-08-31",
+   "accession": "0001628280-25-045293",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828025045293/jbl-20250831.htm"
+  },
+  "description_short": "At Jabil (NYSE: JBL), we are proud to be a trusted partner for the world's top brands, offering comprehensive engineering, supply chain, and manufacturing solutions. With 60 years of experience across industries and a vast network of over 120 sites worldwide, Jabil combines global reach with local expertise to deliver both scalable and customized solutions. Our commitment extends beyond business success as we strive to build sustainable processes that minimize environmental impact and foster vibrant and diverse communities around the globe.",
+  "industry": "Electrical Products",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3672",
+  "sic_description": "Printed Circuit Boards",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0831",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.jabil.com",
+  "headquarters": "St. Petersburg, Florida",
+  "address": {
+   "street": "10800 Roosevelt Boulevard North",
+   "city": "St. Petersburg",
+   "state": "Florida",
+   "zip": "33716",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-10-17"
+  },
+  "phone": "7275779749",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-03-15",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "JABIL CIRCUIT INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000898293&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Strong Buy",
+  "analysts": 9,
+  "buy": 7,
+  "hold": 0,
+  "sell": 0,
+  "target_mean": 435.0,
+  "target_low": 378.0,
+  "target_high": 475.0,
+  "target_1y_nasdaq_summary": 430.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 214.84,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 220.89,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 209.99,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 228.02,
+    "buy": 4,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 237.19,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 264.99,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 271.96,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 342.47,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 359.97,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 375.34,
+    "buy": 8,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 315.05,
+    "buy": 8,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 299.14,
+    "buy": 9,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 435.0,
+    "buy": 7,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CO FORECST",
+   "GOLDMAN SACHS",
+   "JP MORGAN SECUR",
+   "RAYMOND JAMES",
+   "STIFEL NICOLAUS",
+   "UBS",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Nov 2026",
+     "fiscal_end": "2026-11",
+     "consensus": 3.64,
+     "low": 3.54,
+     "high": 3.93,
+     "estimates": 4,
+     "revisions_up": 4,
+     "revisions_down": 0
+    },
+    {
+     "period": "Feb 2027",
+     "fiscal_end": "2027-02",
+     "consensus": 3.8,
+     "low": 3.44,
+     "high": 4.19,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 2
+    },
+    {
+     "period": "May 2027",
+     "fiscal_end": "2027-05",
+     "consensus": 4.28,
+     "low": 4.14,
+     "high": 4.39,
+     "estimates": 4,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Aug 2027",
+     "fiscal_end": "2027-08",
+     "consensus": 4.82,
+     "low": 4.2,
+     "high": 5.38,
+     "estimates": 4,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Nov 2027",
+     "fiscal_end": "2027-11",
+     "consensus": 4.55,
+     "low": 4.23,
+     "high": 4.93,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Aug 2027",
+     "fiscal_end": "2027-08",
+     "consensus": 16.53,
+     "low": 16.45,
+     "high": 16.58,
+     "estimates": 4,
+     "revisions_up": 4,
+     "revisions_down": 0
+    },
+    {
+     "period": "Aug 2028",
+     "fiscal_end": "2028-08",
+     "consensus": 20.6,
+     "low": 19.53,
+     "high": 22.11,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Nov 2025",
+    "consensus": 2.29,
+    "actual": 2.3,
+    "surprise_pct": 0.44
+   },
+   {
+    "period": "Feb 2026",
+    "consensus": 2.39,
+    "actual": 2.44,
+    "surprise_pct": 2.09
+   },
+   {
+    "period": "May 2026",
+    "consensus": 2.96,
+    "actual": 2.93,
+    "surprise_pct": -1.01
+   },
+   {
+    "period": "Aug 2026",
+    "consensus": 3.89,
+    "actual": 4.17,
+    "surprise_pct": 7.2
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Nov 2026",
+    "consensus": 3.64
+   },
+   {
+    "period": "Feb 2027",
+    "consensus": 3.8
+   },
+   {
+    "period": "May 2027",
+    "consensus": 4.28
+   },
+   {
+    "period": "Aug 2027",
+    "consensus": 4.82
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Nov 2026",
+    "current": 3.64,
+    "week_ago": 3.64,
+    "month_ago": 3.19
+   },
+   "year": {
+    "period": "Aug 2027",
+    "current": 16.53,
+    "week_ago": 16.53,
+    "month_ago": 15.58
+   }
+  },
+  "next_earnings": {
+   "date": null,
+   "text": "Our vendor, Zacks Investment Research, hasn't provided us with the upcoming earnings report date.",
+   "timing": null
+  },
+  "peg_forward": 0.88
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-063890",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828026063890/jbl-20260930.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-30",
+   "period": "2026-05-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-046138",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828026046138/jbl-20260531.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-043719",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828026043719/jbl-20260617.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-170734",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312526170734/d33519d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-08",
+   "period": "2026-02-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-024148",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828026024148/jbl-20260228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-019043",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828026019043/jbl-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-22",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-027194",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312526027194/d67315d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-024377",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312526024377/d54848d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-23",
+   "period": "2026-01-23",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-021086",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312526021086/d211553d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-09",
+   "period": "2025-11-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-001450",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828026001450/jbl-20251130.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-057488",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828025057488/jbl-20251217.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-12-12",
+   "period": "2026-01-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-316927",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312525316927/d946966ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-16",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001193125-25-244288",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312525244288/d73972d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-10-17",
+   "period": "2025-08-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-25-045293",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828025045293/jbl-20250831.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-25",
+   "period": "2025-09-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-042693",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828025042693/jbl-20250925.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-30",
+   "period": "2025-05-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-033410",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828025033410/jbl-20250531.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-24",
+   "period": "2025-06-18",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-25-145722",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312525145722/d98395d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-06-20",
+   "period": "2025-06-13",
+   "items": [
+    "2.05"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001193125-25-143162",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312525143162/d70947d8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-17",
+   "period": "2025-06-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-031712",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000162828025031712/jbl-20250617.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-22",
+   "period": "2025-04-16",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-089186",
+   "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312525089186/d943610d8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 1281065,
+  "volume": 1710944,
+  "market_cap_nasdaq": 30083849316,
+  "high_52w": 428.9322,
+  "low_52w": 189.6,
+  "previous_close": 293.91,
+  "one_year_target": 430.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2025-10-17"
+ ]
+}

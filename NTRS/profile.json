@@ -1,0 +1,613 @@
+{
+ "ticker": "NTRS",
+ "cik": 73124,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:24:34-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000073124.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000016/ntrs-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NTRS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NTRS/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/NTRS/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/NTRS/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/NTRS/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/NTRS/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/NTRS/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/NTRS/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/NTRS/peg-ratio"
+ },
+ "about": {
+  "entity": "NORTHERN TRUST CORP",
+  "cik": 73124,
+  "description": {
+   "text": "Northern Trust Corporation (the “Corporation”) is a leading provider of wealth management, asset servicing, asset management and banking solutions to corporations, institutions, families and individuals. The Corporation is a financial holding company conducting business through various U.S. and non-U.S. subsidiaries, including The Northern Trust Company (Bank). The Bank is an Illinois banking corporation headquartered in Chicago and the Corporation’s principal subsidiary. Founded in 1889, the Bank conducts its business through its U.S. operations and its various U.S. and non-U.S. branches and subsidiaries. At December 31, 2025, the Bank had consolidated assets of $176.4 billion and common bank equity capital of $11.4 billion. The Corporation was formed as a holding company for the Bank in 1971. The Corporation has a global presence with offices in 24 U.S. states and Washington, D.C., and across 22 locations in Canada, Europe, the Middle East and the Asia-Pacific region. At December 31, 2025, the Corporation had consolidated total assets of $177.1 billion and stockholders’ equity of $13.0 billion. The Corporation expects that the Bank will continue in the foreseeable future to be the major source of the Corporation’s consolidated assets, revenues, and net income. Except where the context otherwise requires, references to “Northern Trust,” “we,” “us,” “our,” “its,” or similar terms mean Northern Trust Corporation and its subsidiaries on a consolidated basis.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0000073124-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000016/ntrs-20251231.htm"
+  },
+  "description_short": "Northern Trust Corporation (Nasdaq: NTRS) is a leading provider of wealth management, asset servicing, asset management and banking services to corporations, institutions, affluent families and individuals. Founded in Chicago in 1889, Northern Trust has a global presence with offices in 24 U.S. states and Washington, D.C., and across 22 locations in Canada, Europe, the Middle East and the Asia-Pacific region. As of June 30, 2026, Northern Trust had assets under custody/administration of US$20 trillion, and assets under management of US$2 trillion. For more than 135 years, Northern Trust has earned distinction as an industry leader for exceptional service, financial expertise, integrity and innovation.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6022",
+  "sic_description": "State Commercial Banks",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.northerntrust.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "50 South La Salle Street",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60603",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "3126306000",
+  "employees": {
+   "count": 23800,
+   "as_of": "2025-12-31",
+   "evidence": "Northern Trust employed approximately 23,800 full-time equivalent employees as of December 31, 2025.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000016/ntrs-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-04",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000073124&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 15,
+  "buy": 2,
+  "hold": 9,
+  "sell": 2,
+  "target_mean": 183.15,
+  "target_low": 173.0,
+  "target_high": 194.0,
+  "target_1y_nasdaq_summary": 186.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 131.2,
+    "buy": 3,
+    "hold": 8,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 128.67,
+    "buy": 3,
+    "hold": 7,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 130.98,
+    "buy": 3,
+    "hold": 6,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 136.59,
+    "buy": 3,
+    "hold": 6,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 149.43,
+    "buy": 3,
+    "hold": 5,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 143.09,
+    "buy": 3,
+    "hold": 6,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 141.41,
+    "buy": 3,
+    "hold": 6,
+    "sell": 3,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 164.48,
+    "buy": 3,
+    "hold": 6,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 168.34,
+    "buy": 3,
+    "hold": 6,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 175.6,
+    "buy": 3,
+    "hold": 6,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 182.19,
+    "buy": 2,
+    "hold": 8,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 182.68,
+    "buy": 2,
+    "hold": 8,
+    "sell": 2,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 183.15,
+    "buy": 2,
+    "hold": 8,
+    "sell": 2,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CITIGROUP",
+   "DEUTSCHE BK SEC",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "KEEFE BRUYETTE",
+   "MORGAN STANLEY",
+   "RBC CAPITAL",
+   "SEAPORT RES PTN",
+   "UBS",
+   "WELLS FARGO SEC",
+   "WOLFE RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 2.86,
+     "low": 2.81,
+     "high": 2.91,
+     "estimates": 5,
+     "revisions_up": 3,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.98,
+     "low": 2.94,
+     "high": 3.01,
+     "estimates": 3,
+     "revisions_up": 2,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 2.95,
+     "low": 2.81,
+     "high": 3.02,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 3.28,
+     "low": 3.2,
+     "high": 3.34,
+     "estimates": 3,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 3.24,
+     "low": 3.21,
+     "high": 3.29,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 11.65,
+     "low": 11.21,
+     "high": 12.8,
+     "estimates": 7,
+     "revisions_up": 4,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 12.8,
+     "low": 12.46,
+     "high": 12.97,
+     "estimates": 7,
+     "revisions_up": 6,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 14.22,
+     "low": 13.8,
+     "high": 14.68,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 15.33,
+     "low": 15.33,
+     "high": 15.33,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 2.26,
+    "actual": 2.29,
+    "surprise_pct": 1.33
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 2.37,
+    "actual": 2.69,
+    "surprise_pct": 13.5
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 2.37,
+    "actual": 2.71,
+    "surprise_pct": 14.35
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 2.68,
+    "actual": 2.97,
+    "surprise_pct": 10.82
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 2.86
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 2.98
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 2.95
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 3.28
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 2.86,
+    "week_ago": 2.86,
+    "month_ago": 2.82
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 11.65,
+    "week_ago": 11.65,
+    "month_ago": 11.59
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-21",
+   "text": "Northern Trust Corporation Common Stock is expected* to report earnings on 10/21/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 5 analysts' forecasts, the consensus EPS forecast for the quarter is $2.86. The reported EPS for the same quarter last year was $2.29.",
+   "timing": "before market open"
+  },
+  "peg_forward": 0.92
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-28",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000073124-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000057/ntrs-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000073124-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000051/ntrs-20260803.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000073124-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000047/ntrs-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000073124-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000043/ntrs-20260722.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000073124-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000035/ntrs-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-21",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000073124-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000031/ntrs-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000073124-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000029/ntrs-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000073124-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000028/ntrs-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-11",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000073124-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000022/ntrs-20260311.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000073124-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000016/ntrs-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000073124-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000007/ntrs-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000073124-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000005/ntrs-20260122.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-19",
+   "period": "2025-11-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-288182",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000119312525288182/d830310d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000073124-25-000247",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000247/ntrs-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000073124-25-000244",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000244/ntrs-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-03",
+   "period": "2025-09-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000073124-25-000238",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000238/ntrs-20250903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000073124-25-000235",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000235/ntrs-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-28",
+   "period": "2025-07-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000073124-25-000232",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000232/ntrs-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000073124-25-000229",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000229/ntrs-20250723.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-30",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000073124-25-000187",
+   "url": "https://www.sec.gov/Archives/edgar/data/73124/000007312425000187/ntrs-20250331.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 1017668,
+  "volume": 1050741,
+  "market_cap_nasdaq": 30268183232,
+  "high_52w": 195.78,
+  "low_52w": 121.12,
+  "previous_close": 162.64,
+  "one_year_target": 186.0,
+  "dividend_yield_nasdaq": 2.16,
+  "annualized_dividend": 3.52,
+  "ex_dividend_date": "2026-09-04",
+  "dividend_pay_date": "2026-10-01"
+ },
+ "warnings": []
+}

@@ -1,0 +1,39 @@
+{
+ "ticker": "ZS",
+ "cik": 1713683,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001713683-26-000048",
+   "filed": "2026-02-26",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1713683/000171368326000048/zs-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001713683-26-000096",
+   "filed": "2026-05-26",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1713683/000171368326000096/zs-20260430_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001713683-26-000157",
+   "filed": "2026-09-03",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1713683/000171368326000157/zs-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (zs:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (zs:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (zs:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (zs:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}

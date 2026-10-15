@@ -1,0 +1,621 @@
+{
+ "ticker": "ALNY",
+ "cik": 1178670,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:18:38-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001178670.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026007497/alny-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ALNY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ALNY/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ALNY/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ALNY/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ALNY/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ALNY/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ALNY/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ALNY/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ALNY/peg-ratio"
+ },
+ "about": {
+  "entity": "ALNYLAM PHARMACEUTICALS, INC.",
+  "cik": 1178670,
+  "description": {
+   "text": "Alnylam Pharmaceuticals, Inc. (also referred to as Alnylam, the Company, we, our or us) is a global commercial-stage biopharmaceutical company developing novel therapeutics based on ribonucleic acid interference, or RNAi. RNAi is a naturally occurring biological pathway within cells for sequence-specific silencing and regulation of gene expression. By harnessing the RNAi pathway, we have pioneered a new class of innovative medicines, known as RNAi therapeutics. RNAi therapeutics are comprised of small interfering RNA, or siRNA, that function upstream of conventional medicines by potently silencing messenger RNA, or mRNA, that encode for proteins implicated in the cause or pathway of disease, thus preventing them from being made. We believe this is a revolutionary approach with the potential to transform the care of patients across a broad range of disease areas and indications. To date, our efforts to advance this revolutionary approach have yielded the approval of six first-in-class RNAi-based medicines: AMVUTTRA® (vutrisiran), ONPATTRO® (patisiran), GIVLAARI® (givosiran), OXLUMO® (lumasiran), Leqvio® (inclisiran) and Qfitlia® (fitusiran). Our research and development strategy is to target genetically validated genes that have been implicated in the cause or pathway of human disease. We utilize a N-acetylgalactosamine (GalNAc) conjugate approach or lipid nanoparticle (LNP) to enable hepatic delivery of siRNAs.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-007497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026007497/alny-20251231.htm"
+  },
+  "description_short": "Alnylam (Nasdaq: ALNY) is a leading global biopharmaceutical company and the pioneer of the RNA interference (RNAi) revolution. The Company is focused on developing transformative therapies with the potential to prevent, halt, or reverse disease. For more than two decades, Alnylam has advanced the Nobel-Prize-winning science of RNAi, delivering critical breakthroughs and six approved medicines. Alnylam has medicines available in more than 70 countries and a rapidly expanding and robust pipeline, in addition to consistently being recognized as an exceptional workplace and socially responsible organization. The Company is executing on its Alnylam 2030 strategy to accelerate innovation and scale impact to transform human health. For more information, please visit www.alnylam.com or follow Alnylam on X, LinkedIn, Facebook, Instagram, or YouTube.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.alnylam.com",
+  "headquarters": "Cambridge, MA",
+  "address": {
+   "street": "675 West Kendall Street Henri A. Termeer Square",
+   "city": "Cambridge",
+   "state": "MA",
+   "zip": "02142",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "(617) 551-8200",
+  "employees": {
+   "count": 2500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 2,500 full-time employees, of whom approximately 1,945 were employed in the U.S. and approximately 555 were employed outside of the U.S.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026007497/alny-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2004-02-27",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "ALNYLAM PHARMACEUTICALS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001178670&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 26,
+  "buy": 19,
+  "hold": 4,
+  "sell": 0,
+  "target_mean": 364.76,
+  "target_low": 253.0,
+  "target_high": 489.0,
+  "target_1y_nasdaq_summary": 353.5,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 460.65,
+    "buy": 19,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 456.04,
+    "buy": 18,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 454.56,
+    "buy": 17,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 397.65,
+    "buy": 17,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 338.06,
+    "buy": 14,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 332.92,
+    "buy": 16,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 328.73,
+    "buy": 16,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 296.11,
+    "buy": 16,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 295.63,
+    "buy": 17,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 301.67,
+    "buy": 17,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 205.52,
+    "buy": 16,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 246.11,
+    "buy": 19,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 364.76,
+    "buy": 18,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BMO CAPITAL MKT",
+   "CANACCORD GENUI",
+   "CANTOR FITZGERA",
+   "CHARDAN CAPITAL",
+   "CITIGROUP",
+   "EVERCORE ISI",
+   "GOLDMAN SACHS",
+   "GUGGENHEIM SEC.",
+   "H C WAINWRIGHT",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "LEERINK PARTNRS",
+   "MORGAN STANLEY",
+   "NEEDHAM & CO.",
+   "OPPENHEIMER HLD",
+   "PIPER SANDLER",
+   "RAYMOND JAMES",
+   "RBC CAPITAL",
+   "SANFORD BERNSTE",
+   "STIFEL NICOLAUS",
+   "TD COWEN",
+   "WELLS FARGO SEC",
+   "WILLIAM BLAIR",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.68,
+     "low": 1.27,
+     "high": 2.87,
+     "estimates": 9,
+     "revisions_up": 1,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.91,
+     "low": 1.14,
+     "high": 2.31,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 2.01,
+     "low": 1.51,
+     "high": 2.51,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 2.49,
+     "low": 2.23,
+     "high": 2.74,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 2.82,
+     "low": 2.71,
+     "high": 2.93,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 6.68,
+     "low": 5.15,
+     "high": 10.99,
+     "estimates": 12,
+     "revisions_up": 0,
+     "revisions_down": 2
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 9.71,
+     "low": 5.58,
+     "high": 15.41,
+     "estimates": 12,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 12.13,
+     "low": 5.88,
+     "high": 17.19,
+     "estimates": 6,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 14.21,
+     "low": 5.6,
+     "high": 20.52,
+     "estimates": 4,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.46,
+    "actual": 1.84,
+    "surprise_pct": 300.0
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.75,
+    "actual": 0.82,
+    "surprise_pct": 9.33
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.91,
+    "actual": 1.51,
+    "surprise_pct": 65.93
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.44,
+    "actual": 1.21,
+    "surprise_pct": -15.97
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.68
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.91
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 2.01
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 2.49
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.68,
+    "week_ago": 1.68,
+    "month_ago": 1.68
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 6.68,
+    "week_ago": 6.71,
+    "month_ago": 6.71
+   }
+  },
+  "next_earnings": {
+   "date": "2026-10-29",
+   "text": "Alnylam Pharmaceuticals, Inc. Common Stock is estimated to report earnings on 10/29/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 9 analysts' forecasts, the consensus EPS forecast for the quarter is $1.68. The reported EPS for the same quarter last year was $1.84.",
+   "timing": null
+  },
+  "peg_forward": 0.0
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001178670-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000117867026000062/alny-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001178670-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000117867026000060/alny-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-20",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001628280-26-038499",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026038499/alny-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028605",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026028605/alny-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-028601",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026028601/alny-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-06",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-023923",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026023923/alny-20260406.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-02",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-014728",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026014728/alny-20260302.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-007497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026007497/alny-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-007491",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026007491/alny-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-11",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-001755",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828026001755/alny-20260111.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-315047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000119312525315047/d201569d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-03",
+   "period": "2025-12-02",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-055084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828025055084/alny-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047345",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828025047345/alny-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047342",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000162828025047342/alny-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-03",
+   "period": "2025-09-30",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-230201",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000119312525230201/d19737d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-12",
+   "period": "2025-09-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001193125-25-202366",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000119312525202366/d949176d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-10",
+   "period": "2025-09-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-199686",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000119312525199686/d72540d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001178670-25-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000117867025000090/alny-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001178670-25-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000117867025000089/alny-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-18",
+   "period": "2025-06-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001178670-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178670/000117867025000076/alny-20250612.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 1505352,
+  "volume": 1257451,
+  "market_cap_nasdaq": 31315347886,
+  "high_52w": 495.55,
+  "low_52w": 197.81,
+  "previous_close": 224.47,
+  "one_year_target": 353.5,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

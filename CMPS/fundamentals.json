@@ -2,7 +2,7 @@
  "ticker": "CMPS",
  "cik": 1816590,
  "entity": "COMPASS PATHWAYS PLC",
- "as_of": "2026-10-14",
+ "as_of": "2026-10-15",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -90,6 +90,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 24966000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 18000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -122,6 +124,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.2218963228256507,
    "current_ratio": 1.3477022328348205,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 0,
+   "share_issuance_tags": "ProceedsFromIssuanceInitialPublicOffering+ProceedsFromIssuanceOfCommonStock",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -179,6 +185,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 190327000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 29000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -211,6 +219,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.059216734822271154,
    "current_ratio": 29.355184916606238,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 132839000,
+   "share_issuance_tags": "ProceedsFromIssuanceInitialPublicOffering+ProceedsFromIssuanceOfCommonStock+ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -268,6 +280,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 273243000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 104000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -300,6 +314,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.07185491428989225,
    "current_ratio": 19.54722976103793,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 154794000,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -357,6 +375,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 143206000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 175000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -389,6 +409,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.24174582095755573,
    "current_ratio": 12.288471402923827,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 1040000,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -446,6 +470,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 220198000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 440000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -478,6 +504,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.1473185331193136,
    "current_ratio": 13.328708426851662,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 144935000,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -535,6 +565,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 165081000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 389000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -567,6 +599,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.1676495090468301,
    "current_ratio": 5.9175388052681095,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 63477000,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -624,6 +660,8 @@
    "acquisitions": null,
    "shareholder_yield_paid": null,
    "cash": 149608000,
+   "cash_basis": "CashAndCashEquivalentsAtCarryingValue",
+   "restricted_cash": 379000,
    "short_term_investments": null,
    "receivables": null,
    "inventory": null,
@@ -656,6 +694,10 @@
    "goodwill_pct_assets": null,
    "prepaids_pct_assets": 0.19730543049883764,
    "current_ratio": 0.7727758832906233,
+   "dps_declared": null,
+   "dps_paid": null,
+   "share_issuance": 140357000,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises",
    "revenue_growth": null,
    "gross_profit_growth": null,
    "operating_income_growth": null,
@@ -704,7 +746,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 116856000,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2023-12-31",
@@ -741,7 +794,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": -41000,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2024-03-31",
@@ -778,7 +842,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 63477000,
+   "share_issuance_derived": false,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2024-06-30",
@@ -815,7 +890,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 0,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2024-09-30",
@@ -852,7 +938,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 0,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2024-12-31",
@@ -877,8 +974,8 @@
    "da_derived": true,
    "eps_diluted": null,
    "eps_diluted_derived": null,
-   "shares_diluted": null,
-   "shares_diluted_derived": null,
+   "shares_diluted": 68942948,
+   "shares_diluted_derived": true,
    "gross_margin": null,
    "operating_margin": null,
    "net_margin": null,
@@ -889,7 +986,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 0,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2025-03-31",
@@ -926,7 +1034,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 140357000,
+   "share_issuance_derived": false,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock"
   },
   {
    "period_end": "2025-06-30",
@@ -963,7 +1082,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": -140189000,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised"
   },
   {
    "period_end": "2025-09-30",
@@ -1000,7 +1130,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 140189000,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2025-12-31",
@@ -1025,8 +1166,8 @@
    "da_derived": true,
    "eps_diluted": null,
    "eps_diluted_derived": null,
-   "shares_diluted": null,
-   "shares_diluted_derived": null,
+   "shares_diluted": 86698134,
+   "shares_diluted_derived": true,
    "gross_margin": null,
    "operating_margin": null,
    "net_margin": null,
@@ -1037,7 +1178,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 0,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock+ProceedsFromWarrantExercises"
   },
   {
    "period_end": "2026-03-31",
@@ -1074,7 +1226,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": 140643000,
+   "share_issuance_derived": false,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfCommonStock"
   },
   {
    "period_end": "2026-06-30",
@@ -1111,7 +1274,18 @@
    "operating_income_yoy": null,
    "ocf_yoy": null,
    "oe_conservative_yoy": null,
-   "eps_diluted_yoy": null
+   "eps_diluted_yoy": null,
+   "dividends_paid": null,
+   "dividends_paid_derived": null,
+   "buybacks": null,
+   "buybacks_derived": null,
+   "share_issuance": -139332000,
+   "share_issuance_derived": true,
+   "dps_declared": null,
+   "dps_declared_derived": null,
+   "dps_paid": null,
+   "dps_paid_derived": null,
+   "share_issuance_tags": "ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised"
   }
  ],
  "ttm": {
@@ -1133,7 +1307,8 @@
   "fcf": null,
   "oe_conservative": null,
   "eps_diluted": null,
-  "shares_diluted": 135039810,
+  "shares_diluted": 111671092.50410959,
+  "shares_basis": "duration-weighted average of the four quarterly diluted weighted-average counts (a fiscal-Q4 count derived as 4 x FY - the other three quarters)",
   "gross_margin": null,
   "operating_margin": null,
   "net_margin": null,
@@ -1142,6 +1317,191 @@
   "fcf_per_share": null,
   "net_income_yoy": null,
   "ocf_yoy": null
+ },
+ "dividends": {
+  "dps_ttm": null,
+  "dps_ttm_basis": null,
+  "dps_basis": null,
+  "dps_basis_detail": null,
+  "frequency": "none",
+  "frequency_basis": null,
+  "annual_dps": [],
+  "dps_growth_yoy": null,
+  "dps_cagr_3y": null,
+  "dps_cagr_5y": null,
+  "growth_years": 0,
+  "last_cut_fy": null,
+  "growth_from_fy": null,
+  "fy_label_basis": "calendar year of the fiscal period end (the annual table's convention)",
+  "basis_breaks": [],
+  "basis_breaks_rejected": [],
+  "split_adjustments": [
+   {
+    "effective": "2020-08-07",
+    "ratio": 0.000861,
+    "first_post_split_filing": "2020-08-07",
+    "source": "ratio_fact"
+   },
+   {
+    "effective": "2020-09-22",
+    "ratio": 8.8028,
+    "first_post_split_filing": "2020-09-22",
+    "source": "ratio_fact"
+   }
+  ],
+  "payout_ratio_eps": null,
+  "payout_ratio_oe": null,
+  "payout_ratio_fcf": null,
+  "payout_fy": "2025",
+  "dividends_paid_ttm": null,
+  "buybacks_ttm": null,
+  "issuance_ttm": 141500000,
+  "ttm_period_end": "2026-06-30",
+  "flows_basis": "sum of the four quarterly rows 2025-09-30..2026-06-30",
+  "flows_period_end": "2026-06-30",
+  "legs": {
+   "dividends_paid": {
+    "value": 0.0,
+    "basis": "never filed in any period \u2014 zero by the filer's own statements",
+    "complete": true
+   },
+   "buybacks": {
+    "value": 0.0,
+    "basis": "never filed in any period \u2014 zero by the filer's own statements",
+    "complete": true
+   },
+   "share_issuance": {
+    "value": 141500000,
+    "basis": "4/4 quarters covered: the six-month year-to-date fact 2026-01-01..2026-06-30 = 1.3M (ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised, filed 2026-08-05) + the filed quarters 2025-09-30, 2025-12-31",
+    "complete": true,
+    "left_out": [
+     "quarter ended 2026-06-30: the year-to-date facts decrease (2026-01-01..2026-03-31 = 140,643,000 > 2026-01-01..2026-06-30 = 1,311,000) \u2014 no quarter can be derived from them (the quarterly row read -139.3M; typically a line tagged in one filing and not in the next); left out (a missing quarter)"
+    ]
+   }
+  },
+  "price": 11.27,
+  "price_date": "2026-10-14",
+  "price_source": "prices.json stats.last",
+  "shares_outstanding": 138476822,
+  "shares_as_of": "2026-07-30",
+  "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05)",
+  "shares_basis": "instant",
+  "shares_diluted": 135039810,
+  "shares_diluted_source": "latest quarterly weighted-average diluted",
+  "market_cap": 1560633783.94,
+  "market_cap_basis": "11.27 \u00d7 138,476,822 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-30)",
+  "dividend_yield": null,
+  "buyback_yield": 0.0,
+  "net_buyback_yield": -0.09066829223878962,
+  "shareholder_yield": -0.09066829223878962,
+  "shareholder_yield_basis": "dividends_paid (never filed in any period \u2014 zero by the filer's own statements) + buybacks (never filed in any period \u2014 zero by the filer's own statements) \u2212 share_issuance (4/4 quarters covered: the six-month year-to-date fact 2026-01-01..2026-06-30 = 1.3M (ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised, filed 2026-08-05) + the filed quarters 2025-09-30, 2025-12-31); sum of the four quarterly rows 2025-09-30..2026-06-30",
+  "shareholder_yield_complete": true,
+  "yield_basis": {
+   "buyback_yield": {
+    "legs": {
+     "buybacks": "never filed in any period \u2014 zero by the filer's own statements"
+    },
+    "filed": [],
+    "zero": [
+     "buybacks"
+    ],
+    "excluded": [],
+    "partial": [],
+    "bound": "exact",
+    "complete": true,
+    "numerator": 0.0,
+    "denominator": "11.27 \u00d7 138,476,822 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-30)"
+   },
+   "net_buyback_yield": {
+    "legs": {
+     "buybacks": "never filed in any period \u2014 zero by the filer's own statements",
+     "share_issuance": "4/4 quarters covered: the six-month year-to-date fact 2026-01-01..2026-06-30 = 1.3M (ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised, filed 2026-08-05) + the filed quarters 2025-09-30, 2025-12-31"
+    },
+    "filed": [
+     "share_issuance"
+    ],
+    "zero": [
+     "buybacks"
+    ],
+    "excluded": [],
+    "partial": [],
+    "bound": "exact",
+    "complete": true,
+    "numerator": -141500000.0,
+    "denominator": "11.27 \u00d7 138,476,822 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-30)",
+    "left_out": {
+     "share_issuance": "quarter ended 2026-06-30: the year-to-date facts decrease (2026-01-01..2026-03-31 = 140,643,000 > 2026-01-01..2026-06-30 = 1,311,000) \u2014 no quarter can be derived from them (the quarterly row read -139.3M; typically a line tagged in one filing and not in the next); left out (a missing quarter)"
+    }
+   },
+   "shareholder_yield": {
+    "legs": {
+     "dividends_paid": "never filed in any period \u2014 zero by the filer's own statements",
+     "buybacks": "never filed in any period \u2014 zero by the filer's own statements",
+     "share_issuance": "4/4 quarters covered: the six-month year-to-date fact 2026-01-01..2026-06-30 = 1.3M (ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised, filed 2026-08-05) + the filed quarters 2025-09-30, 2025-12-31"
+    },
+    "filed": [
+     "share_issuance"
+    ],
+    "zero": [
+     "dividends_paid",
+     "buybacks"
+    ],
+    "excluded": [],
+    "partial": [],
+    "bound": "exact",
+    "complete": true,
+    "numerator": -141500000.0,
+    "denominator": "11.27 \u00d7 138,476,822 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-30)",
+    "left_out": {
+     "share_issuance": "quarter ended 2026-06-30: the year-to-date facts decrease (2026-01-01..2026-03-31 = 140,643,000 > 2026-01-01..2026-06-30 = 1,311,000) \u2014 no quarter can be derived from them (the quarterly row read -139.3M; typically a line tagged in one filing and not in the next); left out (a missing quarter)"
+    }
+   },
+   "dividend_yield": {
+    "numerator": null,
+    "basis": null,
+    "bound": null,
+    "complete": false,
+    "denominator": "price 11.27 (prices.json stats.last)"
+   }
+  },
+  "yields_display": {
+   "dividend_yield": {
+    "value": null,
+    "bound": null,
+    "prefix": "",
+    "label": "\u2014",
+    "note": "no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) and no dividends paid \u2014 not a dividend payer"
+   },
+   "buyback_yield": {
+    "value": 0.0,
+    "bound": "exact",
+    "prefix": "",
+    "label": "0.00%",
+    "note": null
+   },
+   "net_buyback_yield": {
+    "value": -0.09066829223878962,
+    "bound": "exact",
+    "prefix": "",
+    "label": "-9.07%",
+    "note": null
+   },
+   "shareholder_yield": {
+    "value": -0.09066829223878962,
+    "bound": "exact",
+    "prefix": "",
+    "label": "-9.07%",
+    "note": null
+   }
+  },
+  "history": [],
+  "notes": [
+   "share_issuance: quarters left out (not a sign error) \u2014 quarter ended 2023-12-31: the year-to-date facts decrease (2023-01-01..2023-09-30 = 144,976,000 > 2023-01-01..2023-12-31 = 144,935,000) \u2014 no quarter can be derived from them (the quarterly row read -41,000; typically a line tagged in one filing and not in the next); left out (a missing quarter); quarter ended 2025-06-30: the year-to-date facts decrease (2025-01-01..2025-03-31 = 140,357,000 > 2025-01-01..2025-06-30 = 168,000) \u2014 no quarter can be derived from them (the quarterly row read -140.2M; typically a line tagged in one filing and not in the next); left out (a missing quarter); quarter ended 2026-06-30: the year-to-date facts decrease (2026-01-01..2026-03-31 = 140,643,000 > 2026-01-01..2026-06-30 = 1,311,000) \u2014 no quarter can be derived from them (the quarterly row read -139.3M; typically a line tagged in one filing and not in the next); left out (a missing quarter)",
+   "no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) and no dividends paid \u2014 not a dividend payer",
+   "dividends_paid_ttm: not all of the last four quarters have a filed dividends_paid figure (missing 2025-09-30, 2025-12-31, 2026-03-31, 2026-06-30) \u2014 the tag was never filed in any period, so the leg counts as zero",
+   "buybacks_ttm: not all of the last four quarters have a filed buybacks figure (missing 2025-09-30, 2025-12-31, 2026-03-31, 2026-06-30) \u2014 the tag was never filed in any period, so the leg counts as zero",
+   "share_issuance_ttm: the six-month year-to-date fact 2026-01-01..2026-06-30 = 1.3M (ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans+ProceedsFromStockOptionsExercised, filed 2026-08-05) + the filed quarters 2025-09-30, 2025-12-31 \u2014 the four quarters are covered by filed facts although not every quarter is filed on its own"
+  ]
  },
  "tags_used": {
   "revenue": [],
@@ -1182,6 +1542,9 @@
   ],
   "assets": [
    "Assets"
+  ],
+  "revenue_mode": [
+   "standard"
   ]
  },
  "warnings": []

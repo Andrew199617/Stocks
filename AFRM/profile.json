@@ -1,0 +1,607 @@
+{
+ "ticker": "AFRM",
+ "cik": 1820953,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:18:31-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001820953.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026059279/afrm-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AFRM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AFRM/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/AFRM/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/AFRM/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/AFRM/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/AFRM/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/AFRM/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/AFRM/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/AFRM/peg-ratio"
+ },
+ "about": {
+  "entity": "Affirm Holdings, Inc.",
+  "cik": 1820953,
+  "description": {
+   "text": "Affirm was founded in 2012 with a mission to deliver honest financial products that improve lives. We are building the next generation payment network. We believe that by using modern technology, strong engineering talent, and a mission-driven approach, we can reinvent payments and commerce. Our solutions, which are built on trust and transparency, are designed to make it easier for consumers to spend and save responsibly and with confidence, easier for merchants and commerce platforms to convert sales and grow, and easier for commerce to thrive.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-27",
+   "period": "2026-06-30",
+   "accession": "0001628280-26-059279",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026059279/afrm-20260630.htm"
+  },
+  "description_short": "Affirm's mission is to deliver honest financial products that improve lives. By building a new kind of payment network-one based on trust, transparency, and putting people first-we empower millions of consumers to spend and save responsibly, and give thousands of businesses the tools to fuel growth. Unlike most credit cards and other pay-over-time options, we never charge any late or hidden fees.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6141",
+  "sic_description": "Personal Credit Institutions",
+  "state_of_incorporation": "NV",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.affirm.com",
+  "headquarters": "San Francisco, California",
+  "address": {
+   "street": "221 Main Street Floor 6",
+   "city": "San Francisco",
+   "state": "California",
+   "zip": "94105",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-27"
+  },
+  "phone": "(415) 960-1518",
+  "employees": {
+   "count": 2358,
+   "as_of": "2026-06-30",
+   "evidence": "As of June 30, 2026, we had a total of 2,358 employees, primarily located in the United States.",
+   "form": "10-K",
+   "filed": "2026-08-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026059279/afrm-20260630.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-11-18",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001820953&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 19,
+  "buy": 24,
+  "hold": 4,
+  "sell": 0,
+  "target_mean": 100.92,
+  "target_low": 82.0,
+  "target_high": 115.0,
+  "target_1y_nasdaq_summary": 100.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 74.42,
+    "buy": 14,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 71.88,
+    "buy": 15,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 69.065,
+    "buy": 14,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 74.43,
+    "buy": 12,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 60.3,
+    "buy": 16,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 46.98,
+    "buy": 16,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 45.54,
+    "buy": 16,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 67.54,
+    "buy": 17,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 72.91,
+    "buy": 18,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 83.85,
+    "buy": 19,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 71.51,
+    "buy": 21,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 69.94,
+    "buy": 21,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 100.92,
+    "buy": 24,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BMO CAPITAL MKT",
+   "COMPASS POINT",
+   "DBS BANK",
+   "DEUTSCHE BK SEC",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "MIZUHO SECURITI",
+   "MOFFETT NATHANS",
+   "MORGAN STANLEY",
+   "PIPER SANDLER",
+   "RBC CAPITAL",
+   "STEPHENS INC",
+   "TRUIST SECURITI",
+   "UBS",
+   "WEDBUSH SECURIT",
+   "WELLS FARGO SEC"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.35,
+     "low": 0.23,
+     "high": 0.45,
+     "estimates": 8,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.51,
+     "low": 0.37,
+     "high": 0.65,
+     "estimates": 7,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.46,
+     "low": 0.26,
+     "high": 0.7,
+     "estimates": 7,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.56,
+     "low": 0.43,
+     "high": 0.7,
+     "estimates": 7,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.55,
+     "low": 0.39,
+     "high": 0.74,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.91,
+     "low": 1.29,
+     "high": 2.45,
+     "estimates": 11,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2028",
+     "fiscal_end": "2028-06",
+     "consensus": 2.87,
+     "low": 2.26,
+     "high": 3.55,
+     "estimates": 8,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2029",
+     "fiscal_end": "2029-06",
+     "consensus": 3.86,
+     "low": 3.3,
+     "high": 4.33,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2030",
+     "fiscal_end": "2030-06",
+     "consensus": 5.42,
+     "low": 5.42,
+     "high": 5.42,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.11,
+    "actual": 0.23,
+    "surprise_pct": 109.09
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.28,
+    "actual": 0.37,
+    "surprise_pct": 32.14
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.17,
+    "actual": 0.3,
+    "surprise_pct": 76.47
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.33,
+    "actual": 4.62,
+    "surprise_pct": 1300.0
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.35
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.51
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.46
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.56
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.35,
+    "week_ago": 0.34,
+    "month_ago": 0.34
+   },
+   "year": {
+    "period": "Jun 2027",
+    "current": 1.91,
+    "week_ago": 1.87,
+    "month_ago": 1.87
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-05",
+   "text": "Affirm Holdings, Inc. Class A Common Stock is expected* to report earnings on 11/05/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 8 analysts' forecasts, the consensus EPS forecast for the quarter is $0.35. The reported EPS for the same quarter last year was $0.23.",
+   "timing": "after market close"
+  },
+  "peg_forward": 2.83
+ },
+ "filings": [
+  {
+   "form": "10-K",
+   "filed": "2026-08-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-059279",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026059279/afrm-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-25",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001628280-26-059271",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026059271/afrm-20260825.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-18",
+   "items": [
+    "1.01",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change",
+   "accession": "0001628280-26-045491",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026045491/afrm-20260618.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-032294",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026032294/afrm-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-032105",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026032105/afrm-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-005855",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026005855/afrm-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005772",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026005772/afrm-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-002442",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026002442/afrm-20260113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-25-057930",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828025057930/afrm-20251215.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-050295",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828025050295/afrm-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-02",
+   "items": [
+    "1.01",
+    "2.02",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Unregistered sale of equity",
+   "accession": "0001628280-25-050159",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828025050159/afrm-20251102.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-25-046264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828025046264/a2025proxystatement.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-22",
+   "period": "2025-09-18",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-042335",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828025042335/afrm-20250918.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-08-28",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001820953-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000080/afrm-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-28",
+   "period": "2025-08-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001820953-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000078/afrm-20250828.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-26",
+   "period": "2025-06-25",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001820953-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000064/afrm-20250625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-09",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001820953-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000061/afrm-20250609.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-05-12",
+   "period": "2025-05-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001820953-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000057/afrm-20250508.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001820953-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000052/afrm-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001820953-25-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000050/afrm-20250508.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 4449374,
+  "volume": 5920894,
+  "market_cap_nasdaq": 25617021756,
+  "high_52w": 90.44,
+  "low_52w": 42.095,
+  "previous_close": 70.51,
+  "one_year_target": 100.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

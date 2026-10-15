@@ -1,0 +1,772 @@
+{
+ "ticker": "EXPE",
+ "cik": 1324424,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001324424-26-000008",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001324424-26-000035",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000035/expe-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001324424-26-000053",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000053/expe-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "expe:B2CMember",
+     "label": "B2C",
+     "values": [
+      9113000000,
+      9274000000,
+      9474000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7098,
+      0.6774,
+      0.643
+     ],
+     "growth_yoy": [
+      null,
+      0.0177,
+      0.0216
+     ]
+    },
+    {
+     "member": "expe:BusinessToBusinessMember",
+     "label": "Business To Business",
+     "values": [
+      3388000000,
+      4102000000,
+      4842000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2639,
+      0.2996,
+      0.3286
+     ],
+     "growth_yoy": [
+      null,
+      0.2107,
+      0.1804
+     ]
+    },
+    {
+     "member": "expe:TrivagoMember",
+     "label": "Trivago",
+     "values": [
+      338000000,
+      315000000,
+      417000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0263,
+      0.023,
+      0.0283
+     ],
+     "growth_yoy": [
+      null,
+      -0.068,
+      0.3238
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12839000000,
+     13691000000,
+     14733000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "expe:B2CMember",
+     "label": "B2C",
+     "values": [
+      1956000000,
+      2479000000,
+      2118000000,
+      2677000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6546,
+      0.6548,
+      0.6182,
+      0.6204
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0828,
+      0.0799
+     ]
+    },
+    {
+     "member": "expe:B2BMember",
+     "label": "B2B",
+     "values": [
+      947000000,
+      1209000000,
+      1183000000,
+      1493000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3169,
+      0.3193,
+      0.3453,
+      0.346
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2492,
+      0.2349
+     ]
+    },
+    {
+     "member": "expe:TrivagoMember",
+     "label": "Trivago",
+     "values": [
+      85000000,
+      98000000,
+      125000000,
+      145000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0284,
+      0.0259,
+      0.0365,
+      0.0336
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4706,
+      0.4796
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2988000000,
+     3786000000,
+     3426000000,
+     4315000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "expe:B2CMember",
+     "label": "B2C",
+     "values": [
+      1810000000,
+      1930000000,
+      2240000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.7522,
+      1.4632,
+      1.1972
+     ],
+     "growth_yoy": [
+      null,
+      0.0663,
+      0.1606
+     ]
+    },
+    {
+     "member": "expe:BusinessToBusinessMember",
+     "label": "Business To Business",
+     "values": [
+      681000000,
+      879000000,
+      1028000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6592,
+      0.6664,
+      0.5494
+     ],
+     "growth_yoy": [
+      null,
+      0.2907,
+      0.1695
+     ]
+    },
+    {
+     "member": "expe:TrivagoMember",
+     "label": "Trivago",
+     "values": [
+      51000000,
+      6000000,
+      15000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0494,
+      0.0045,
+      0.008
+     ],
+     "growth_yoy": [
+      null,
+      -0.8824,
+      1.5
+     ]
+    },
+    {
+     "member": "expe:CorporateAndEliminationsMember",
+     "label": "Corporate And Eliminations",
+     "values": [
+      -1509000000,
+      -1496000000,
+      -1412000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -1.4608,
+      -1.1342,
+      -0.7547
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1033000000,
+     1319000000,
+     1871000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "expe:LodgingMember",
+     "label": "Lodging",
+     "values": [
+      10264000000,
+      10950000000,
+      11752000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7994,
+      0.7998,
+      0.7977
+     ],
+     "growth_yoy": [
+      null,
+      0.0668,
+      0.0732
+     ]
+    },
+    {
+     "member": "expe:OtherServicesMember",
+     "label": "Other Services",
+     "values": [
+      1344000000,
+      1359000000,
+      1399000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1047,
+      0.0993,
+      0.095
+     ],
+     "growth_yoy": [
+      null,
+      0.0112,
+      0.0294
+     ]
+    },
+    {
+     "member": "expe:EGAdvertisingMember",
+     "label": "EG Advertising",
+     "values": [
+      483000000,
+      639000000,
+      758000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0376,
+      0.0467,
+      0.0514
+     ],
+     "growth_yoy": [
+      null,
+      0.323,
+      0.1862
+     ]
+    },
+    {
+     "member": "expe:TrivagoAdvertisingMember",
+     "label": "Trivago Advertising",
+     "values": [
+      338000000,
+      315000000,
+      417000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0263,
+      0.023,
+      0.0283
+     ],
+     "growth_yoy": [
+      null,
+      -0.068,
+      0.3238
+     ]
+    },
+    {
+     "member": "expe:AirMember",
+     "label": "Air",
+     "values": [
+      410000000,
+      428000000,
+      407000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0319,
+      0.0313,
+      0.0276
+     ],
+     "growth_yoy": [
+      null,
+      0.0439,
+      -0.0491
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12839000000,
+     13691000000,
+     14733000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "expe:LodgingMember",
+     "label": "Lodging",
+     "values": [
+      2289000000,
+      3040000000,
+      2610000000,
+      3429000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7661,
+      0.803,
+      0.7618,
+      0.7947
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1402,
+      0.128
+     ]
+    },
+    {
+     "member": "expe:OtherServicesMember",
+     "label": "Other Services",
+     "values": [
+      333000000,
+      361000000,
+      387000000,
+      444000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1114,
+      0.0954,
+      0.113,
+      0.1029
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1622,
+      0.2299
+     ]
+    },
+    {
+     "member": "expe:ExpediaGroupEGAdvertisingMember",
+     "label": "Expedia Group (\u201cEG\u201d) Advertising",
+     "values": [
+      174000000,
+      182000000,
+      197000000,
+      206000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0582,
+      0.0481,
+      0.0575,
+      0.0477
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1322,
+      0.1319
+     ]
+    },
+    {
+     "member": "expe:TrivagoAdvertisingMember",
+     "label": "Trivago Advertising",
+     "values": [
+      85000000,
+      98000000,
+      125000000,
+      145000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0284,
+      0.0259,
+      0.0365,
+      0.0336
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4706,
+      0.4796
+     ]
+    },
+    {
+     "member": "expe:AirMember",
+     "label": "Air",
+     "values": [
+      107000000,
+      105000000,
+      107000000,
+      91000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0358,
+      0.0277,
+      0.0312,
+      0.0211
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.1333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2988000000,
+     3786000000,
+     3426000000,
+     4315000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      8147000000,
+      8372000000,
+      8710000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6346,
+      0.6115,
+      0.5912
+     ],
+     "growth_yoy": [
+      null,
+      0.0276,
+      0.0404
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      4692000000,
+      5319000000,
+      6023000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3654,
+      0.3885,
+      0.4088
+     ],
+     "growth_yoy": [
+      null,
+      0.1336,
+      0.1324
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12839000000,
+     13691000000,
+     14733000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Corporate And Eliminations' (expe:CorporateAndEliminationsMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Corporate And Eliminations' (expe:CorporateAndEliminationsMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

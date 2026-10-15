@@ -1,0 +1,518 @@
+{
+ "ticker": "FIG",
+ "cik": 1579878,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:22:21-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001579878.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026009228/fig-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FIG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FIG/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/FIG/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/FIG/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/FIG/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/FIG/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/FIG/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/FIG/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/FIG/peg-ratio"
+ },
+ "about": {
+  "entity": "Figma, Inc.",
+  "cik": 1579878,
+  "description": {
+   "text": "Figma is where teams come together to turn ideas into the world’s best digital products and experiences. Every day, billions of people around the world use apps, websites, and other digital experiences that are made in Figma. Behind each of these products is a team responsible for bringing them to life. In Figma, designers work alongside developers, product managers (“PMs”), researchers, marketers, writers, and other non-designers who, in the three months ended December 31, 2025, made up approximately two-thirds of our monthly active users.1 Together, they share and explore ideas, align on a vision, visualize concepts, and translate them into coded products — all on a single, connected, AI-powered platform that collaborators around the world can access with a URL. Our focus on the entire lifecycle of software creation reflects our ability to rapidly bring new products onto Figma’s platform and our belief that design spans beyond a single step or role. We take this expansive view because design is more than how something looks, or even feels; design is also how something works — and in today’s increasingly digital-first world, how brands and companies win. As AI makes software much easier to create, and as organizations across industries and geographies continue to invest heavily in digital transformation, better-designed digital products and experiences have become even more critical to a company’s success.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-009228",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026009228/fig-20251231.htm"
+  },
+  "description_short": "Figma (NYSE: FIG) is where teams come together to turn ideas into the world's best digital products and experiences. Founded in 2012, Figma has evolved from a design tool to a connected, AI-powered platform that helps teams go from idea to shipped product. Whether you're ideating, designing, building, or shipping, Figma makes the entire design and product development process more collaborative, efficient, and fun-while keeping everyone on the same page.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer<br>Emerging growth company",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.figma.com",
+  "headquarters": "San Francisco, California",
+  "address": {
+   "street": "760 Market Street, Floor 10",
+   "city": "San Francisco",
+   "state": "California",
+   "zip": "94102",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "415-890-5404",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-07-01",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001579878&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 0,
+  "buy": 5,
+  "hold": 5,
+  "sell": 0,
+  "target_mean": 30.43,
+  "target_low": 22.0,
+  "target_high": 37.0,
+  "target_1y_nasdaq_summary": 30.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 50.3,
+    "buy": 2,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 49.84,
+    "buy": 2,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 35.69,
+    "buy": 2,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 37.37,
+    "buy": 2,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 25.92,
+    "buy": 3,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 29.39,
+    "buy": 3,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 20.42,
+    "buy": 3,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 18.74,
+    "buy": 3,
+    "hold": 8,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 27.12,
+    "buy": 3,
+    "hold": 7,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 19.49,
+    "buy": 4,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 24.32,
+    "buy": 5,
+    "hold": 5,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 27.2,
+    "buy": 5,
+    "hold": 4,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 30.43,
+    "buy": 5,
+    "hold": 6,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": -0.22,
+     "low": -0.32,
+     "high": -0.11,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -0.21,
+     "low": -0.28,
+     "high": -0.11,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": -0.14,
+     "low": -0.25,
+     "high": -0.01,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": -0.17,
+     "low": -0.25,
+     "high": -0.07,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": -0.17,
+     "low": -0.23,
+     "high": -0.07,
+     "estimates": 5,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -0.75,
+     "low": -0.91,
+     "high": -0.54,
+     "estimates": 5,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": -0.64,
+     "low": -0.98,
+     "high": -0.24,
+     "estimates": 5,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": -0.68,
+     "low": -1.08,
+     "high": -0.4,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": -1.56,
+    "actual": -2.65,
+    "surprise_pct": -69.87
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -0.2,
+    "actual": -0.34,
+    "surprise_pct": -70.0
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": -0.17,
+    "actual": -0.21,
+    "surprise_pct": -23.53
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": -0.22,
+    "actual": -0.2,
+    "surprise_pct": 9.09
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": -0.22
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": -0.21
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": -0.14
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": -0.17
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": -0.22,
+    "week_ago": -0.22,
+    "month_ago": -0.22
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": -0.75,
+    "week_ago": -0.75,
+    "month_ago": -0.75
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-04",
+   "text": "Figma, Inc. Class A Common Stock is estimated to report earnings on 11/04/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 5 analysts' forecasts, the consensus EPS forecast for the quarter is $-0.22. The reported EPS for the same quarter last year was $-2.65.",
+   "timing": null
+  },
+  "peg_forward": -1.66
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-053348",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026053348/fig-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-053331",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026053331/fig-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-02",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-040792",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026040792/fig-20260602.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-14",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-035209",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026035209/fig-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-035087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026035087/fig-20260514.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-22",
+   "period": "2026-06-02",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-026641",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026026641/fig-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-025127",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026025127/fig-20260414.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-009228",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026009228/fig-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-009024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828026009024/fig-20260218.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-049683",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828025049683/fig-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-049555",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828025049555/fig-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-09-03",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579878-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000157987825000027/fig-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-03",
+   "period": "2025-09-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579878-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000157987825000026/fig-20250903.htm"
+  },
+  {
+   "form": "S-1/A",
+   "filed": "2025-07-28",
+   "period": null,
+   "items": [],
+   "description": "Amendment: Registration statement",
+   "accession": "0001628280-25-036090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828025036090/figmas-1a2.htm"
+  },
+  {
+   "form": "S-1/A",
+   "filed": "2025-07-21",
+   "period": null,
+   "items": [],
+   "description": "Amendment: Registration statement",
+   "accession": "0001628280-25-035381",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828025035381/figma-sx1a.htm"
+  },
+  {
+   "form": "S-1",
+   "filed": "2025-07-01",
+   "period": null,
+   "items": [],
+   "description": "Registration statement",
+   "accession": "0001628280-25-033742",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579878/000162828025033742/figma-sx1.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": null,
+  "volume": 14702089,
+  "market_cap_nasdaq": 12262425000,
+  "high_52w": 67.68,
+  "low_52w": 16.6,
+  "previous_close": 21.48,
+  "one_year_target": 30.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-18"
+ ]
+}

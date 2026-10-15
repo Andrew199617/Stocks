@@ -1,0 +1,763 @@
+{
+ "ticker": "ESLT",
+ "cik": 1027664,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001027664-26-000005",
+   "filed": "2026-03-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000005/eslt-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eslt:LandSystemsSegmentMember",
+     "label": "Land Systems Segment",
+     "values": [
+      1241023000,
+      1605046000,
+      2250354000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2077,
+      0.2351,
+      0.2835
+     ],
+     "growth_yoy": [
+      null,
+      0.2933,
+      0.402
+     ]
+    },
+    {
+     "member": "eslt:AerospaceSegmentMember",
+     "label": "Aerospace Segment",
+     "values": [
+      1613137000,
+      1780483000,
+      1820911000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.27,
+      0.2608,
+      0.2294
+     ],
+     "growth_yoy": [
+      null,
+      0.1037,
+      0.0227
+     ]
+    },
+    {
+     "member": "eslt:ESASegmentMember",
+     "label": "ESA Segment",
+     "values": [
+      1455243000,
+      1573141000,
+      1677668000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2436,
+      0.2304,
+      0.2113
+     ],
+     "growth_yoy": [
+      null,
+      0.081,
+      0.0664
+     ]
+    },
+    {
+     "member": "eslt:ISTARAndEWSegmentMember",
+     "label": "ISTAR And EW Segment",
+     "values": [
+      996927000,
+      1118628000,
+      1323489000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1669,
+      0.1638,
+      0.1667
+     ],
+     "growth_yoy": [
+      null,
+      0.1221,
+      0.1831
+     ]
+    },
+    {
+     "member": "eslt:C4ICyberSegmentMember",
+     "label": "C4I&Cyber Segment",
+     "values": [
+      668414000,
+      750573000,
+      866205000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1119,
+      0.1099,
+      0.1091
+     ],
+     "growth_yoy": [
+      null,
+      0.1229,
+      0.1541
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5974744000,
+     6827871000,
+     7938627000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eslt:LandSystemsSegmentMember",
+     "label": "Land Systems Segment",
+     "values": [
+      80610000,
+      150684000,
+      263687000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2184,
+      0.3081,
+      0.3927
+     ],
+     "growth_yoy": [
+      null,
+      0.8693,
+      0.7499
+     ]
+    },
+    {
+     "member": "eslt:AerospaceSegmentMember",
+     "label": "Aerospace Segment",
+     "values": [
+      125455000,
+      149060000,
+      151927000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3399,
+      0.3048,
+      0.2263
+     ],
+     "growth_yoy": [
+      null,
+      0.1882,
+      0.0192
+     ]
+    },
+    {
+     "member": "eslt:ISTARAndEWSegmentMember",
+     "label": "ISTAR And EW Segment",
+     "values": [
+      134882000,
+      96110000,
+      129121000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3654,
+      0.1965,
+      0.1923
+     ],
+     "growth_yoy": [
+      null,
+      -0.2875,
+      0.3435
+     ]
+    },
+    {
+     "member": "eslt:ESASegmentMember",
+     "label": "ESA Segment",
+     "values": [
+      -4687000,
+      56199000,
+      122757000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0127,
+      0.1149,
+      0.1828
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.1843
+     ]
+    },
+    {
+     "member": "eslt:C4ICyberSegmentMember",
+     "label": "C4I&Cyber Segment",
+     "values": [
+      50653000,
+      61987000,
+      55911000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1372,
+      0.1267,
+      0.0833
+     ],
+     "growth_yoy": [
+      null,
+      0.2238,
+      -0.098
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -17805000,
+      -24987000,
+      -51979000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0482,
+      -0.0511,
+      -0.0774
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     369108000,
+     489053000,
+     671424000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eslt:ESASegmentMember",
+     "label": "ESA Segment",
+     "values": [
+      50526000,
+      44307000,
+      44351000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3066,
+      0.2797,
+      0.2587
+     ],
+     "growth_yoy": [
+      null,
+      -0.1231,
+      0.001
+     ]
+    },
+    {
+     "member": "eslt:LandSystemsSegmentMember",
+     "label": "Land Systems Segment",
+     "values": [
+      34747000,
+      34813000,
+      39437000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2108,
+      0.2198,
+      0.23
+     ],
+     "growth_yoy": [
+      null,
+      0.0019,
+      0.1328
+     ]
+    },
+    {
+     "member": "eslt:ISTARAndEWSegmentMember",
+     "label": "ISTAR And EW Segment",
+     "values": [
+      29001000,
+      32978000,
+      38314000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.176,
+      0.2082,
+      0.2235
+     ],
+     "growth_yoy": [
+      null,
+      0.1371,
+      0.1618
+     ]
+    },
+    {
+     "member": "eslt:AerospaceSegmentMember",
+     "label": "Aerospace Segment",
+     "values": [
+      36284000,
+      34958000,
+      38211000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2202,
+      0.2207,
+      0.2229
+     ],
+     "growth_yoy": [
+      null,
+      -0.0365,
+      0.0931
+     ]
+    },
+    {
+     "member": "eslt:C4ICyberSegmentMember",
+     "label": "C4I&Cyber Segment",
+     "values": [
+      12551000,
+      9440000,
+      8931000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0762,
+      0.0596,
+      0.0521
+     ],
+     "growth_yoy": [
+      null,
+      -0.2479,
+      -0.0539
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1690000,
+      1895000,
+      2190000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0103,
+      0.012,
+      0.0128
+     ],
+     "growth_yoy": [
+      null,
+      0.1213,
+      0.1557
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     164799000,
+     158391000,
+     171434000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      5412455000,
+      6222939000,
+      7298232000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9059,
+      0.9114,
+      0.9193
+     ],
+     "growth_yoy": [
+      null,
+      0.1497,
+      0.1728
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      562289000,
+      604932000,
+      640395000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0941,
+      0.0886,
+      0.0807
+     ],
+     "growth_yoy": [
+      null,
+      0.0758,
+      0.0586
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5974744000,
+     6827871000,
+     7938627000
+    ],
+    "basis": "mixed: consolidated fact, consolidated fact, sum of rows"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:IL",
+     "label": "ISRAEL",
+     "values": [
+      1167228000,
+      1987974000,
+      2556388000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1954,
+      0.2912,
+      0.322
+     ],
+     "growth_yoy": [
+      null,
+      0.7032,
+      0.2859
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1776412000,
+      1820912000,
+      2139541000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2973,
+      0.2667,
+      0.2695
+     ],
+     "growth_yoy": [
+      null,
+      0.0251,
+      0.175
+     ]
+    },
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      1417742000,
+      1520338000,
+      1659290000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2373,
+      0.2227,
+      0.209
+     ],
+     "growth_yoy": [
+      null,
+      0.0724,
+      0.0914
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      1263771000,
+      1132701000,
+      1243687000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2115,
+      0.1659,
+      0.1567
+     ],
+     "growth_yoy": [
+      null,
+      -0.1037,
+      0.098
+     ]
+    },
+    {
+     "member": "eslt:OtherAreasMember",
+     "label": "Other Areas",
+     "values": [
+      228891000,
+      215933000,
+      240688000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0383,
+      0.0316,
+      0.0303
+     ],
+     "growth_yoy": [
+      null,
+      -0.0566,
+      0.1146
+     ]
+    },
+    {
+     "member": "srt:LatinAmericaMember",
+     "label": "Latin America",
+     "values": [
+      120700000,
+      150013000,
+      99033000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0202,
+      0.022,
+      0.0125
+     ],
+     "growth_yoy": [
+      null,
+      0.2429,
+      -0.3398
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5974744000,
+     6827871000,
+     7938627000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

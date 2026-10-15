@@ -1,0 +1,502 @@
+{
+ "ticker": "ESLT",
+ "cik": 1027664,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:21:55-04:00",
+ "newest_filing_date": "2026-09-18",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001027664.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000005/eslt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ESLT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ESLT/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ESLT/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ESLT/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ESLT/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ESLT/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ESLT/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ESLT/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ESLT/peg-ratio"
+ },
+ "about": {
+  "entity": "ELBIT SYSTEMS LTD",
+  "cik": 1027664,
+  "description": {
+   "text": "We are an international high technology company engaged in a wide range of programs throughout the world, primarily in the defense and homeland security arenas. We develop and supply a broad portfolio of airborne, land and naval systems and products for defense, homeland security and commercial applications. Our systems and products are installed on new platforms, and we also perform comprehensive platform modernization programs. In addition, we provide a range of training and support services. The Company's strategy is generally based on the following pillars: Strong worldwide presence – developing a unique global footprint and multiple local subsidiaries, to allow broad sourcing of revenues from different regions, thereby reducing risk. Our subsidiaries are located in several of our key markets, enjoying our advanced technologies and collective experience, while supporting local defense forces in their home markets and strengthening supply chains and local economies. Trusted and valued partner – positioning ourselves as a strategic partner of our customers, both our end users and OEMs, and not merely a supplier. R&D and innovative portfolio – investing in research and development, with an aim to increase the breadth of our portfolio both horizontally and vertically, to maximize our position in the markets in which we operate.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-17",
+   "period": "2025-12-31",
+   "accession": "0001027664-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000005/eslt-20251231.htm"
+  },
+  "description_short": "Elbit Systems is a leading global defense technology company, delivering advanced solutions for a secure and safer world. Elbit Systems develops, manufactures, integrates and sustains a range of next-generation solutions across multiple domains. Driven by its agile, collaborative culture, and leveraging Israel's technology ecosystem, Elbit Systems enables customers to address rapidly evolving battlefield challenges and overcome threats. Elbit Systems employs over 21,000 people in dozens of countries across five continents. The Company reported $2,287.1 million in revenues for the three months ended June 30, 2026 and an order backlog of $32 billion as of such date.",
+  "industry": "Military/Government/Technical",
+  "sector": "Industrials",
+  "region": "Middle East",
+  "sic": "3728",
+  "sic_description": "Aircraft Parts & Auxiliary Equipment, NEC",
+  "state_of_incorporation": "L3",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.elbitsystems.com",
+  "headquarters": "Haifa, Israel, Israel",
+  "address": {
+   "street": "Advanced Technology Center",
+   "city": "Haifa",
+   "state": null,
+   "zip": "3100401",
+   "country": "Israel",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-17",
+   "metro": "Israel",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "01197248316626",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-02-05",
+  "first_sec_filing_form": "6-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001027664&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 1,
+  "buy": 1,
+  "hold": 2,
+  "sell": 0,
+  "target_mean": 878.3333394158,
+  "target_low": 790.0000010765804,
+  "target_high": 960.0000013082496,
+  "target_1y_nasdaq_summary": 922.5,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 505.08,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 476.75,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 454.95,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 577.71,
+    "buy": 1,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 702.57,
+    "buy": 1,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 769.04,
+    "buy": 0,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 896.53,
+    "buy": 0,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 831.22,
+    "buy": 0,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 858.06,
+    "buy": 1,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 759.98,
+    "buy": 1,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 808.65,
+    "buy": 1,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 708.7,
+    "buy": 1,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 878.3333394158,
+    "buy": 1,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Neutral"
+   }
+  ],
+  "brokers": [
+   "JEFFERIES & CO."
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 3.75,
+     "low": 3.75,
+     "high": 3.75,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 4.26,
+     "low": 4.26,
+     "high": 4.26,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 15.86,
+     "low": 15.86,
+     "high": 15.86,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 18.88,
+     "low": 18.88,
+     "high": 18.88,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 21.55,
+     "low": 21.55,
+     "high": 21.55,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 2.75,
+    "actual": 3.35,
+    "surprise_pct": 21.82
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 3.23,
+    "actual": 3.56,
+    "surprise_pct": 10.22
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 3.44,
+    "actual": 3.73,
+    "surprise_pct": 8.43
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 3.57,
+    "actual": 3.98,
+    "surprise_pct": 11.48
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 3.75
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 4.26
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 3.75,
+    "week_ago": 3.75,
+    "month_ago": 3.75
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 15.86,
+    "week_ago": 15.86,
+    "month_ago": 15.86
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-17",
+   "text": "Elbit Systems Ltd. Ordinary Shares is estimated to report earnings on 11/17/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 1 analysts' forecasts, the consensus EPS forecast for the quarter is $3.75. The reported EPS for the same quarter last year was $3.35.",
+   "timing": null
+  },
+  "peg_forward": 2.87
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004544",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326004544/zk2636132.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004362",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326004362/zk2636055.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-11",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001027664-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000023/coveresltq220266k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003875",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326003875/zk2635877.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003522",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326003522/zk2635700.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-13",
+   "period": "2026-07-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003459",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326003459/zk2635672.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001027664-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000021/cover6k20260701.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002954",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326002954/zk2635441.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001027664-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000011/coveresltq120266k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002878",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326002878/zk2635407.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001027664-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000009/cover6k202605.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002547",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326002547/zk2635283.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002219",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326002219/zk2635132.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002179",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326002179/zk2635111.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326002010/zk2635032.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001027664-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000007/coverpr20f2025.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001027664-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000005/eslt-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001027664-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000102766426000002/coveresltq420256k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000537",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326000537/zk2634400.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000482",
+   "url": "https://www.sec.gov/Archives/edgar/data/1027664/000117891326000482/zk2634381.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 83915,
+  "volume": 196803,
+  "market_cap_nasdaq": 34491489802,
+  "high_52w": 1016.06,
+  "low_52w": 453.0,
+  "previous_close": 701.38,
+  "one_year_target": 922.5,
+  "dividend_yield_nasdaq": 0.57,
+  "annualized_dividend": 4.0,
+  "ex_dividend_date": "2026-10-13",
+  "dividend_pay_date": "2026-10-26"
+ },
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-17",
+  "street: 2 quote/eps row(s) with consensus = 0 and earnings = 0 are Nasdaq placeholders; dropped"
+ ]
+}

@@ -1,0 +1,595 @@
+{
+ "ticker": "IBKR",
+ "cik": 1381197,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:23:01-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001381197.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000062/ibkr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IBKR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IBKR/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/IBKR/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/IBKR/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/IBKR/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/IBKR/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/IBKR/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/IBKR/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/IBKR/peg-ratio"
+ },
+ "about": {
+  "entity": "Interactive Brokers Group, Inc.",
+  "cik": 1381197,
+  "description": {
+   "text": "Interactive Brokers Group, Inc. (“IBG, Inc.” or the “Company”) is an automated global broker. We custody and service accounts for hedge and mutual funds, exchange-traded funds (“ETFs”), registered investment advisors, proprietary trading groups, introducing brokers and individual investors. We specialize in routing orders and executing and processing trades in stocks, options, futures, foreign exchange instruments (“forex”), bonds, mutual funds, ETFs, precious metals, and forecast contracts on more than 170 electronic exchanges and market centers in 40 countries and 29 currencies around the world. In addition, our customers can use our trading platform to trade certain cryptocurrencies through third-party cryptocurrency service providers that execute, clear and custody the cryptocurrencies. In the United States of America (“U.S.”), we conduct our business primarily from our headquarters in Greenwich, Connecticut and from Chicago, Illinois. Abroad, we conduct our business through offices located in Canada, the United Kingdom, Ireland, Switzerland, Hungary, Dubai, India, China (Hong Kong and Shanghai), Japan, Singapore and Australia. As of December 31, 2025, we had 3,182 employees worldwide. IBG, Inc. is a holding company whose primary asset is the ownership of approximately 26.3% of the membership interests of IBG LLC, the current holding company for our businesses. IBG, Inc. is the sole managing member of IBG LLC.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001381197-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000062/ibkr-20251231.htm"
+  },
+  "description_short": "Interactive Brokers Group, Inc. (NASDAQ: IBKR) is a member of the S&P 500. Its affiliates provide automated trade execution and custody of securities, commodities, foreign exchange, and prediction markets around the clock on over 170 markets in numerous countries and currencies from a single unified platform to clients worldwide. We serve individual investors, hedge funds, proprietary trading groups, financial advisors and introducing brokers. Our four decades of focus on technology and automation have enabled us to equip our clients with a uniquely sophisticated platform to manage their investment portfolios. We strive to provide our clients with advantageous execution prices and trading, risk and portfolio management tools, research facilities and investment products, all at low or no cost, positioning them to achieve superior returns on investments.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6211",
+  "sic_description": "Security Brokers, Dealers & Flotation Companies",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.interactivebrokers.com",
+  "headquarters": "Greenwich, Connecticut",
+  "address": {
+   "street": "One Pickwick Plaza",
+   "city": "Greenwich",
+   "state": "Connecticut",
+   "zip": "06830",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "203-618-5800",
+  "employees": {
+   "count": 3182,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 3,182 employees in 24 cities across 16 countries.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000062/ibkr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2006-11-27",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001381197&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 9,
+  "buy": 9,
+  "hold": 3,
+  "sell": 0,
+  "target_mean": 106.73,
+  "target_low": 100.0,
+  "target_high": 116.0,
+  "target_1y_nasdaq_summary": 105.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 68.78,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 70.36,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 63.54,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 64.31,
+    "buy": 5,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 74.88,
+    "buy": 5,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 71.19,
+    "buy": 5,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 67.91,
+    "buy": 5,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 80.46,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 88.69,
+    "buy": 6,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 93.25,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 87.99,
+    "buy": 7,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 90.39,
+    "buy": 7,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 106.73,
+    "buy": 7,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "CITIGROUP",
+   "GOLDMAN SACHS",
+   "JEFFERIES & CO.",
+   "KEEFE BRUYETTE",
+   "PIPER SANDLER",
+   "UBS",
+   "ZACKS RESEARCH"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 0.67,
+     "low": 0.65,
+     "high": 0.68,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.71,
+     "low": 0.7,
+     "high": 0.73,
+     "estimates": 3,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.75,
+     "low": 0.75,
+     "high": 0.76,
+     "estimates": 2,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 0.8,
+     "low": 0.77,
+     "high": 0.83,
+     "estimates": 2,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.83,
+     "low": 0.79,
+     "high": 0.86,
+     "estimates": 2,
+     "revisions_up": 2,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 2.69,
+     "low": 2.64,
+     "high": 2.75,
+     "estimates": 4,
+     "revisions_up": 2,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 3.28,
+     "low": 3.12,
+     "high": 3.43,
+     "estimates": 4,
+     "revisions_up": 3,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 3.61,
+     "low": 3.22,
+     "high": 4.0,
+     "estimates": 2,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": 4.47,
+     "low": 4.28,
+     "high": 4.65,
+     "estimates": 2,
+     "revisions_up": 1,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.5,
+    "actual": 0.57,
+    "surprise_pct": 14.0
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 0.52,
+    "actual": 0.65,
+    "surprise_pct": 25.0
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 0.62,
+    "actual": 0.6,
+    "surprise_pct": -3.23
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 0.64,
+    "actual": 0.69,
+    "surprise_pct": 7.81
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 0.67
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.71
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.75
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 0.8
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 0.67,
+    "week_ago": 0.66,
+    "month_ago": 0.67
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 2.69,
+    "week_ago": 2.69,
+    "month_ago": 2.68
+   }
+  },
+  "next_earnings": {
+   "date": null,
+   "text": "Our vendor, Zacks Investment Research, hasn't provided us with the upcoming earnings report date.",
+   "timing": null
+  },
+  "peg_forward": 1.5
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001381197-26-000154",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000154/ibkr-20261015.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001381197-26-000147",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000147/ibkr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001381197-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000135/ibkr-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001381197-26-000130",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000130/ibkr-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001381197-26-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000118/ibkr-20260721.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001381197-26-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000093/ibkr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-23",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001381197-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000085/ibkr-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001381197-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000078/ibkr-20260421.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001381197-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000072/ibkr-20251231.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001381197-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000066/ibkr-20260311.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001381197-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000062/ibkr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-016540",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000119312526016540/ibkr-20260120.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001381197-25-000158",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000158/ibkr-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-16",
+   "period": "2025-10-16",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001381197-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000143/ibkr_8k-20250930.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001381197-25-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000103/ibkr-20250630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001381197-25-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000086/ibkr-20250730x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-17",
+   "period": "2025-07-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001381197-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000078/ibkr_8k-20250630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001381197-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000052/ibkr-20250331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001381197-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000049/ibkr-20250417x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-15",
+   "period": "2025-04-15",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001381197-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119725000043/ibkr_8k-20250331.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 3853678,
+  "volume": 5844339,
+  "market_cap_nasdaq": 38978315051,
+  "high_52w": 98.75,
+  "low_52w": 58.95,
+  "previous_close": 84.14,
+  "one_year_target": 105.0,
+  "dividend_yield_nasdaq": 0.42,
+  "annualized_dividend": 0.35,
+  "ex_dividend_date": "2026-09-01",
+  "dividend_pay_date": "2026-09-14"
+ },
+ "warnings": []
+}

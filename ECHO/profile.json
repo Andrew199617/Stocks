@@ -1,0 +1,605 @@
+{
+ "ticker": "ECHO",
+ "cik": 1415404,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T19:21:29-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001415404.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926021817/tmb-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ECHO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ECHO/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/ECHO/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ECHO/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/ECHO/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/ECHO/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/ECHO/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/ECHO/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/ECHO/peg-ratio"
+ },
+ "about": {
+  "entity": "EchoStar CORP",
+  "cik": 1415404,
+  "description": {
+   "text": "EchoStar Corporation is a holding company that was organized in October 2007 as a corporation under the laws of the State of Nevada. EchoStar Corporation together with its subsidiaries are referred to as “EchoStar,” the “Company,” “we,” “us” and/or “our,” unless otherwise required by the context. Our Class A common stock is publicly traded on the NASDAQ Global Select Market (“NASDAQ”) under the symbol “SATS.” Our principal executive offices are located at 9601 South Meridian Boulevard, Englewood, Colorado 80112 and our telephone number is (303) 723- 1000.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-021817",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926021817/tmb-20251231x10k.htm"
+  },
+  "description_short": "EchoStar Corporation is a premier provider of technology, networking services, television entertainment and connectivity, offering consumer, enterprise, operator and government solutions worldwide under its EchoStar®, Boost Mobile®, Sling TV, DISH TV, Hughes®, HughesNet®, HughesON, and JUPITER brands. In Europe, EchoStar operates under its EchoStar Mobile Limited subsidiary and in Australia, the company operates as EchoStar Global Australia.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4899",
+  "sic_description": "Communications Services, NEC",
+  "state_of_incorporation": "NV",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.echostar.com",
+  "headquarters": "Englewood, Colorado",
+  "address": {
+   "street": "9601 South Meridian Boulevard",
+   "city": "Englewood",
+   "state": "Colorado",
+   "zip": "80112",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-02"
+  },
+  "phone": "303-723-1000",
+  "employees": {
+   "count": 12100,
+   "as_of": "2025-12-31",
+   "evidence": "We had approximately 12,100 employees at December 31, 2025, the majority of whom were located in the United States and approximately 600 internationally.",
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926021817/tmb-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2007-11-06",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "EchoStar Holding CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001415404&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 0,
+  "buy": 6,
+  "hold": 0,
+  "sell": 0,
+  "target_mean": 127.33,
+  "target_low": 115.0,
+  "target_high": 150.0,
+  "target_1y_nasdaq_summary": 130.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 79.5,
+    "buy": 2,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 74.87,
+    "buy": 2,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 73.0,
+    "buy": 2,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 108.7,
+    "buy": 3,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 113.22,
+    "buy": 3,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 115.53,
+    "buy": 3,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 120.6,
+    "buy": 1,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 123.18,
+    "buy": 1,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 127.42,
+    "buy": 2,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 100.88,
+    "buy": 2,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 84.09,
+    "buy": 5,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 86.04,
+    "buy": 4,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 127.33,
+    "buy": 6,
+    "hold": 0,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": -0.04,
+     "low": -0.33,
+     "high": 0.35,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 0.22,
+     "low": -1.41,
+     "high": 1.48,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 0.7,
+     "low": 0.48,
+     "high": 0.92,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 1.01,
+     "low": 0.77,
+     "high": 1.26,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 0.37,
+     "low": 0.04,
+     "high": 0.7,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": -1.35,
+     "low": -2.12,
+     "high": -0.58,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 2.01,
+     "low": -0.17,
+     "high": 4.3,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 1.58,
+     "low": -1.64,
+     "high": 4.68,
+     "estimates": 4,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2029",
+     "fiscal_end": "2029-12",
+     "consensus": -0.56,
+     "low": -0.56,
+     "high": -0.56,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": -1.23,
+    "actual": 0.83,
+    "surprise_pct": 167.48
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": -0.85,
+    "actual": -1.03,
+    "surprise_pct": -21.18
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": -0.87,
+    "actual": -0.33,
+    "surprise_pct": 62.07
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": -0.29,
+    "actual": 0.19,
+    "surprise_pct": 165.52
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": -0.04
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 0.22
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 0.7
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 1.01
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": -0.04,
+    "week_ago": -0.04,
+    "month_ago": -0.04
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": -1.35,
+    "week_ago": -1.35,
+    "month_ago": -1.35
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-05",
+   "text": "EchoStar Corporation Common Stock is estimated to report earnings on 11/05/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 4 analysts' forecasts, the consensus EPS forecast for the quarter is $-0.04. The reported EPS for the same quarter last year was $0.83.",
+   "timing": null
+  },
+  "peg_forward": 0.0
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-01",
+   "items": [
+    "1.01",
+    "2.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition",
+   "accession": "0001415404-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000048/sats-20261001x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-18",
+   "period": "2026-10-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-108960",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926108960/sats-20261030xdef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001415404-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000042/sats-20260807x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-07-28",
+   "items": [
+    "1.03",
+    "2.04",
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Bankruptcy or receivership; Triggering event on a debt obligation; Officer/director change; Reg FD; Other events",
+   "accession": "0001415404-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000038/sats-20260728x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-089370",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926089370/sats-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "1.02",
+    "2.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Termination of agreement; Acquisition/disposition; Other events",
+   "accession": "0001415404-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000035/sats-20260728x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-06",
+   "items": [
+    "5.02",
+    "8.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001104659-26-080994",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926080994/tm2619909d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001415404-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000030/sats-20260623x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001415404-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000027/sats-20260617x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "2.04",
+    "9.01"
+   ],
+   "description": "Triggering event on a debt obligation",
+   "accession": "0001415404-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000020/sats-20260601x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001415404-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000013/sats-20260522x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-11",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-058150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926058150/sats-20260331x10q.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-04-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001415404-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000009/sats-20251231x10ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-19",
+   "period": "2026-03-16",
+   "items": [
+    "1.01",
+    "1.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement",
+   "accession": "0001415404-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000006/sats-20260316x8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-021817",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926021817/tmb-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001415404-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540425000052/tmb-20251226x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-05",
+   "items": [
+    "1.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change; Reg FD",
+   "accession": "0001415404-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540425000049/tmb-20251106x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-107277",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465925107277/tmb-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001415404-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540425000045/tmb-20250908x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-07",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001415404-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1415404/000141540425000041/tmb-20250907x8k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 3366489,
+  "volume": 4624885,
+  "market_cap_nasdaq": 25257356051,
+  "high_52w": 147.252,
+  "low_52w": 65.76,
+  "previous_close": 87.86,
+  "one_year_target": 130.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}

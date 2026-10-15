@@ -1,0 +1,1342 @@
+{
+ "ticker": "NTRS",
+ "cik": 73124,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000073124-26-000016",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000016/ntrs-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000073124-26-000035",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000035/ntrs-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000073124-26-000047",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/73124/000007312426000047/ntrs-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      2461900000,
+      2632800000,
+      2800200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5644,
+      0.5569,
+      0.5581
+     ],
+     "growth_yoy": [
+      null,
+      0.0694,
+      0.0636
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      1899900000,
+      2095000000,
+      2217600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4356,
+      0.4431,
+      0.4419
+     ],
+     "growth_yoy": [
+      null,
+      0.1027,
+      0.0585
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4361800000,
+     4727800000,
+     5017800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      671900000,
+      691800000,
+      740500000,
+      757400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5536,
+      0.5619,
+      0.552,
+      0.5612
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1021,
+      0.0948
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      541900000,
+      539300000,
+      600900000,
+      592100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4464,
+      0.4381,
+      0.448,
+      0.4388
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1089,
+      0.0979
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1213800000,
+     1231100000,
+     1341400000,
+     1349500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      729100000,
+      908200000,
+      980700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6584,
+      0.4471,
+      0.5646
+     ],
+     "growth_yoy": [
+      null,
+      0.2456,
+      0.0798
+     ]
+    },
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      677300000,
+      685000000,
+      882600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6117,
+      0.3373,
+      0.5081
+     ],
+     "growth_yoy": [
+      null,
+      0.0114,
+      0.2885
+     ]
+    },
+    {
+     "member": "ntrs:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -299100000,
+      437900000,
+      -126400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2701,
+      0.2156,
+      -0.0728
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.2887
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1107300000,
+     2031100000,
+     1736900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      184600000,
+      213200000,
+      290100000,
+      250400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4709,
+      0.5061,
+      0.552,
+      0.3161
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5715,
+      0.1745
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      229700000,
+      234000000,
+      247900000,
+      250300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.586,
+      0.5554,
+      0.4717,
+      0.316
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0792,
+      0.0697
+     ]
+    },
+    {
+     "member": "ntrs:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -22300000,
+      -25900000,
+      -12500000,
+      291500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0569,
+      -0.0615,
+      -0.0238,
+      0.368
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     392000000,
+     421300000,
+     525500000,
+     792200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      1197300000,
+      1209500000,
+      1398300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6041,
+      0.5556,
+      0.58
+     ],
+     "growth_yoy": [
+      null,
+      0.0102,
+      0.1561
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      842200000,
+      993400000,
+      1042500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4249,
+      0.4563,
+      0.4324
+     ],
+     "growth_yoy": [
+      null,
+      0.1795,
+      0.0494
+     ]
+    },
+    {
+     "member": "ntrs:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -57500000,
+      -25800000,
+      -29800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.029,
+      -0.0119,
+      -0.0124
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1982000000,
+     2177100000,
+     2411000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      323700000,
+      347200000,
+      401700000,
+      416100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5698,
+      0.5687,
+      0.6142,
+      0.616
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.241,
+      0.1984
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      250100000,
+      268300000,
+      259500000,
+      265300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4402,
+      0.4395,
+      0.3968,
+      0.3927
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0376,
+      -0.0112
+     ]
+    },
+    {
+     "member": "ntrs:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -5700000,
+      -5000000,
+      -7200000,
+      -5900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.01,
+      -0.0082,
+      -0.011,
+      -0.0087
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     568100000,
+     610500000,
+     654000000,
+     675500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      2938300000,
+      3151000000,
+      3366400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6132,
+      0.5154,
+      0.5932
+     ],
+     "growth_yoy": [
+      null,
+      0.0724,
+      0.0684
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      2041600000,
+      2219300000,
+      2334200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4261,
+      0.363,
+      0.4113
+     ],
+     "growth_yoy": [
+      null,
+      0.087,
+      0.0518
+     ]
+    },
+    {
+     "member": "ntrs:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -188400000,
+      743000000,
+      -25200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0393,
+      0.1215,
+      -0.0044
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0339
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4791500000,
+     6113300000,
+     5675400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:AssetServicingSegmentMember",
+     "label": "Asset Servicing Segment",
+     "values": [
+      804400000,
+      823400000,
+      916300000,
+      945600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5863,
+      0.5935,
+      0.5906,
+      0.4675
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1391,
+      0.1484
+     ]
+    },
+    {
+     "member": "ntrs:WealthManagementSegmentMember",
+     "label": "Wealth Management Segment",
+     "values": [
+      570200000,
+      563500000,
+      631500000,
+      626100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4156,
+      0.4062,
+      0.407,
+      0.3096
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1075,
+      0.1111
+     ]
+    },
+    {
+     "member": "ntrs:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -2700000,
+      500000,
+      3800000,
+      450800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.002,
+      0.0004,
+      0.0024,
+      0.2229
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      900.6
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1371900000,
+     1387400000,
+     1551600000,
+     2022500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:InvestmentManagementandAdvisoryMember",
+     "label": "Investment Management and Advisory",
+     "values": [
+      2232300000,
+      2491500000,
+      2659700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5118,
+      0.527,
+      0.5301
+     ],
+     "growth_yoy": [
+      null,
+      0.1161,
+      0.0675
+     ]
+    },
+    {
+     "member": "ntrs:CustodyandFundAdministrationMember",
+     "label": "Custody and Fund Administration",
+     "values": [
+      1805300000,
+      1915200000,
+      2026700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4139,
+      0.4051,
+      0.4039
+     ],
+     "growth_yoy": [
+      null,
+      0.0609,
+      0.0582
+     ]
+    },
+    {
+     "member": "ntrs:OtherTrustInvestmentAndOtherServicingFeesMember",
+     "label": "Other Trust, Investment, And Other Servicing Fees",
+     "values": [
+      240300000,
+      246800000,
+      248400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0551,
+      0.0522,
+      0.0495
+     ],
+     "growth_yoy": [
+      null,
+      0.027,
+      0.0065
+     ]
+    },
+    {
+     "member": "ntrs:SecuritiesLendingMember",
+     "label": "Securities Lending",
+     "values": [
+      83900000,
+      74300000,
+      83000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0192,
+      0.0157,
+      0.0165
+     ],
+     "growth_yoy": [
+      null,
+      -0.1144,
+      0.1171
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4361800000,
+     4727800000,
+     5017800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ntrs:InvestmentManagementandAdvisoryMember",
+     "label": "Investment Management and Advisory",
+     "values": [
+      647400000,
+      649600000,
+      717500000,
+      712300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5334,
+      0.5277,
+      0.5349,
+      0.5278
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1083,
+      0.0965
+     ]
+    },
+    {
+     "member": "ntrs:CustodyandFundAdministrationMember",
+     "label": "Custody and Fund Administration",
+     "values": [
+      485100000,
+      498400000,
+      531700000,
+      544900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3997,
+      0.4048,
+      0.3964,
+      0.4038
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0961,
+      0.0933
+     ]
+    },
+    {
+     "member": "ntrs:OtherTrustInvestmentAndOtherServicingFeesMember",
+     "label": "Other Trust, Investment, And Other Servicing Fees",
+     "values": [
+      63400000,
+      62800000,
+      68600000,
+      62700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0522,
+      0.051,
+      0.0511,
+      0.0465
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.082,
+      -0.0016
+     ]
+    },
+    {
+     "member": "ntrs:SecuritiesLendingMember",
+     "label": "Securities Lending",
+     "values": [
+      17900000,
+      20300000,
+      23600000,
+      29600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0147,
+      0.0165,
+      0.0176,
+      0.0219
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3184,
+      0.4581
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1213800000,
+     1231100000,
+     1341400000,
+     1349500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4687600000,
+      6167200000,
+      5651800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.692,
+      0.7439,
+      0.6989
+     ],
+     "growth_yoy": [
+      null,
+      0.3156,
+      -0.0836
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      2085900000,
+      2123200000,
+      2434600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.308,
+      0.2561,
+      0.3011
+     ],
+     "growth_yoy": [
+      null,
+      0.0179,
+      0.1467
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6773500000,
+     8290400000,
+     8086400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      732700000,
+      1723200000,
+      1297400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6617,
+      0.8484,
+      0.747
+     ],
+     "growth_yoy": [
+      null,
+      1.3518,
+      -0.2471
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      374600000,
+      307900000,
+      439500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3383,
+      0.1516,
+      0.253
+     ],
+     "growth_yoy": [
+      null,
+      -0.1781,
+      0.4274
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1107300000,
+     2031100000,
+     1736900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      99083700000,
+      103164600000,
+      122329200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6571,
+      0.6634,
+      0.6906
+     ],
+     "growth_yoy": [
+      null,
+      0.0412,
+      0.1858
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      51699400000,
+      52343800000,
+      54803500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3429,
+      0.3366,
+      0.3094
+     ],
+     "growth_yoy": [
+      null,
+      0.0125,
+      0.047
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     150783100000,
+     155508400000,
+     177132700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Securities Commission and Trading' (ntrs:SecuritiesCommissionandTradingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Custody and Fund Administration, Investment Management and Advisory, Securities Lending, Other Trust, Investment, And Other Servicing Fees)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Products and Services, Other Operating Income' (ntrs:ProductsandServicesOtherOperatingIncomeMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Custody and Fund Administration, Investment Management and Advisory, Securities Lending, Other Trust, Investment, And Other Servicing Fees)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Securities Commission and Trading' (ntrs:SecuritiesCommissionandTradingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Custody and Fund Administration, Investment Management and Advisory, Securities Lending, Other Trust, Investment, And Other Servicing Fees)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Products and Services, Other Operating Income' (ntrs:ProductsandServicesOtherOperatingIncomeMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Custody and Fund Administration, Investment Management and Advisory, Securities Lending, Other Trust, Investment, And Other Servicing Fees)"
+ ],
+ "complete": true
+}

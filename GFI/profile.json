@@ -1,0 +1,458 @@
+{
+ "ticker": "GFI",
+ "cik": 1172724,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T09:23:08-04:00",
+ "newest_filing_date": "2026-09-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001172724.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GFI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GFI/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/GFI/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/GFI/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/GFI/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/GFI/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/GFI/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/GFI/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/GFI/peg-ratio"
+ },
+ "about": {
+  "entity": "GOLD FIELDS LTD",
+  "cik": 1172724,
+  "description": {
+   "text": "Gold Fields is a significant producer of gold and a major holder of gold reserves and resources in South Africa, Ghana, Australia, Peru and Chile. In Peru, Gold Fields also produces copper. In Chile, Gold Fields produces silver and gold. Gold Fields is primarily involved in underground and surface gold, silver and copper and related activities, including exploration, extraction, processing and smelting. In 2025, the South African, Ghanaian, Peruvian, Australian and Chilean operations produced on a managed basis 12%, 23%, 7%, 42% and 16% of its total gold production, respectively. Gold Fields owns 100% of the St Ives, Agnew, Granny Smith and Gruyere gold mines in Australia, 100% of the Salares Norte mine in Chile, 100% of the Windfall Project in Canada, 99.5% of the Cerro Corona mine in Peru and 90.0% of the Tarkwa and Damang mines in Ghana. Gold Fields’ economic interest in the South Deep mine in South Africa is 93.1%.",
+   "source": "20-F Overview section (integrated annual report without an Item 4 heading)",
+   "form": "20-F",
+   "filed": "2026-03-30",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-021904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm"
+  },
+  "description_short": "Gold Fields is a globally diversified gold producer with nine operating mines in Australia , South Africa , Ghana , Chile and Peru and one project in Canada. The Company has a total attributable annual gold- equivalent production of 2.1 Moz, proved and probable Gold Mineral Reserves of 44.3 Moz, measured and indicated Gold Mineral Resources of 30.4 Moz (excluding Mineral Reserves) and inferred Gold Mineral Resources of 11.6 Moz (excluding Mineral Reserves). Gold Fields' shares are listed on the JSE and American depositary shares trade on the New York Stock Exchange.",
+  "industry": "Precious Metals",
+  "sector": "Basic Materials",
+  "region": "Africa",
+  "sic": "1040",
+  "sic_description": "Gold and Silver Ores",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.goldfields.com",
+  "headquarters": "Sandton, South Africa",
+  "address": {
+   "street": "150 Helen Road",
+   "city": "Sandton",
+   "state": null,
+   "zip": "2196",
+   "country": "South Africa",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-30"
+  },
+  "phone": "0027115629700",
+  "employees": {
+   "count": 6628,
+   "as_of": "2025-12-31",
+   "evidence": "6,628 employees (2024: 6,560) and 16,607 business partners (2024: 16,330) across six countries",
+   "basis": "headcount stated with the prior-year comparative; as-of = the filing's fiscal period end",
+   "form": "20-F",
+   "filed": "2026-03-30",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm"
+  },
+  "first_sec_filing": "2002-05-06",
+  "first_sec_filing_form": "20FR12B",
+  "former_names": [
+   "GOLD FIELD LTD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001172724&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Hold",
+  "analysts": 4,
+  "buy": 3,
+  "hold": 3,
+  "sell": 0,
+  "target_mean": 49.17,
+  "target_low": 38.0,
+  "target_high": 55.0,
+  "target_1y_nasdaq_summary": 51.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 41.74,
+    "buy": 3,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 38.41,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 42.71,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 43.66,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 50.12,
+    "buy": 4,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 58.84,
+    "buy": 2,
+    "hold": 1,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 48.13,
+    "buy": 2,
+    "hold": 1,
+    "sell": 1,
+    "consensus": "Neutral"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 42.08,
+    "buy": 3,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 38.01,
+    "buy": 3,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 33.73,
+    "buy": 3,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 32.42,
+    "buy": 2,
+    "hold": 1,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 44.66,
+    "buy": 2,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 49.17,
+    "buy": 3,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BMO CAPITAL MKT",
+   "JP MORGAN SECUR",
+   "SCOTIABANK"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 4.16,
+     "low": 3.89,
+     "high": 4.33,
+     "estimates": 3,
+     "revisions_up": 1,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 4.48,
+     "low": 3.79,
+     "high": 5.48,
+     "estimates": 3,
+     "revisions_up": 0,
+     "revisions_down": 1
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 4.02,
+     "low": 4.02,
+     "high": 4.02,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [],
+  "eps_upcoming": [],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": null,
+    "week_ago": null,
+    "month_ago": null
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 4.16,
+    "week_ago": 4.16,
+    "month_ago": 4.15
+   }
+  },
+  "next_earnings": {
+   "date": null,
+   "text": "Our vendor, Zacks Investment Research, hasn't provided us with the upcoming earnings report date.",
+   "timing": null
+  },
+  "peg_forward": 0.51
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-063642",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026063642/sens28september2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-26",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-058981",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026058981/a26august20266-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-055525",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026055525/sens11august2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-045050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026045050/sens24june2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-044509",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026044509/sens22june2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-040040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026040040/sens3june2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-037930",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026037930/sens26may266-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-031621",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026031621/a7may2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-022989",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026022989/sens2april266-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-021912",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021912/form6-kpublication2025.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001628280-26-021904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-013007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026013007/sens2march266-k2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-013005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026013005/sens2march266-k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-010046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026010046/sens20feb266-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-009631",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026009631/sens19feb266-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-058170",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828025058170/sens19december256-kb.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-058159",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828025058159/sens19december256-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-28",
+   "period": "2025-11-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-054228",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828025054228/sens28november256-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-051473",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828025051473/sens12november256-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-050527",
+   "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828025050527/sens7november256-k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NYSE",
+  "average_volume": 8018990,
+  "volume": 67045,
+  "market_cap_nasdaq": 32838439622,
+  "high_52w": 61.64,
+  "low_52w": 31.11,
+  "previous_close": 35.55,
+  "one_year_target": 51.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": [
+  "street: 8 quote/eps row(s) with consensus = 0 and earnings = 0 are Nasdaq placeholders; dropped",
+  "street: estimate-momentum published 999 (no estimate) for some means; those are null"
+ ]
+}

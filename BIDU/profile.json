@@ -1,0 +1,563 @@
+{
+ "ticker": "BIDU",
+ "cik": 1329099,
+ "as_of": "2026-10-15",
+ "fetched_at": "2026-10-15T18:15:22-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001329099.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526109289/d38065d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BIDU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BIDU/summary?assetclass=stocks",
+  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/BIDU/targetprice",
+  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/BIDU/ratings",
+  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/BIDU/earnings-forecast",
+  "nasdaq_eps": "https://api.nasdaq.com/api/quote/BIDU/eps",
+  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/BIDU/estimate-momentum",
+  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/BIDU/earnings-date",
+  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/BIDU/peg-ratio"
+ },
+ "about": {
+  "entity": "Baidu, Inc.",
+  "cik": 1329099,
+  "description": {
+   "text": "Our mission is to make the complicated world simpler through technology. We are a leading AI company with a strong internet foundation. We have been consistently investing in AI since 2010 to advance our technological capabilities, enhance our search functionality and boost overall monetization. The breadth and depth of our AI capabilities provide the differentiating foundational technologies that power all of our businesses. We are in the midst of a broad-based platform shift driven by generative AI and foundation models that is set to revolutionize every industry. To capture this opportunity, we launched ERNIE Bot, our conversational AI bot powered by ERNIE, our in-house foundation model, in the first quarter of 2023. We have continued to expand the ERNIE family of models. In May 2023, we launched ERNIE 3.5, which served as the latest foundation model powering ERNIE Bot at that time. According to the International Data Corporation (IDC)’s latest report on the technological abilities of AI models, issued in July 2023, ERNIE 3.5 excelled in many areas, such as algorithm, industry coverage, developer tools and ecosystem. In October 2023, we launched ERNIE 4.0 (EB4), our most advanced foundation model at the time. EB4 is a GPT4-type of model, displaying human-level performance in understanding, content generation, complex reasoning and memory retention. These capabilities are crucial for developing AI-native applications and solutions.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-17",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-109289",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526109289/d38065d20f.htm"
+  },
+  "description_short": "Founded in 2000, Baidu's mission is to make the complicated world simpler through technology. Baidu is a leading AI company with strong Internet foundation, trading on Nasdaq under 'BIDU' and HKEX under '9888'. One Baidu ADS represents eight Class A ordinary shares.",
+  "industry": "Computer Software: Programming, Data Processing",
+  "sector": "Technology",
+  "region": "Asia",
+  "sic": "7370",
+  "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "OTC"
+  ],
+  "website": "https://ir.baidu.com",
+  "headquarters": "Haidian District, Beijing, The People’s Republic of China",
+  "address": {
+   "street": "Baidu Campus No. 10 Shangdi 10th Street",
+   "city": "Haidian District",
+   "state": null,
+   "zip": "100085",
+   "country": "The People’s Republic of China",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-17",
+   "metro": "Beijing",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "(86-10)59928888",
+  "employees": {
+   "count": 33500,
+   "as_of": "2025-12-31",
+   "evidence": "We had approximately 39,800, 35,900 and 33,500 full time employees as of December 31, 2023, 2024 and 2025, respectively.",
+   "form": "20-F",
+   "filed": "2026-03-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526109289/d38065d20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-07-12",
+  "first_sec_filing_form": "F-1",
+  "former_names": [
+   "Baidu.com, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001329099&type=10-K&dateb=&owner=include&count=40"
+ },
+ "street": {
+  "source": "Nasdaq analyst endpoints",
+  "as_of": "2026-10-15",
+  "consensus": "Buy",
+  "analysts": 17,
+  "buy": 4,
+  "hold": 3,
+  "sell": 1,
+  "target_mean": 123.63,
+  "target_low": 80.0,
+  "target_high": 175.0,
+  "target_1y_nasdaq_summary": 159.0,
+  "history": [
+   {
+    "date": "2025-10-01",
+    "mean_target": 137.44,
+    "buy": 10,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-11-01",
+    "mean_target": 120.87,
+    "buy": 12,
+    "hold": 5,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2025-12-01",
+    "mean_target": 119.71,
+    "buy": 14,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-01-01",
+    "mean_target": 130.66,
+    "buy": 12,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-02-01",
+    "mean_target": 153.18,
+    "buy": 10,
+    "hold": 2,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-03-01",
+    "mean_target": 124.44,
+    "buy": 8,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-04-01",
+    "mean_target": 111.9,
+    "buy": 8,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-05-01",
+    "mean_target": 125.88,
+    "buy": 8,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-06-01",
+    "mean_target": 132.4,
+    "buy": 6,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-07-01",
+    "mean_target": 117.94,
+    "buy": 6,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-08-01",
+    "mean_target": 111.11,
+    "buy": 4,
+    "hold": 3,
+    "sell": 0,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-09-01",
+    "mean_target": 94.86,
+    "buy": 5,
+    "hold": 2,
+    "sell": 1,
+    "consensus": "Buy"
+   },
+   {
+    "date": "2026-10-01",
+    "mean_target": 123.63,
+    "buy": 4,
+    "hold": 3,
+    "sell": 1,
+    "consensus": "Buy"
+   }
+  ],
+  "brokers": [
+   "B OF A GLBL RES",
+   "BARCLAYS CAPITA",
+   "BENCHMARK COMPA",
+   "CITIGROUP",
+   "DAIWA AMERICA",
+   "GOLDMAN SACHS",
+   "HSBC GLOBAL RES",
+   "JEFFERIES & CO.",
+   "JP MORGAN SECUR",
+   "LOOP CAPITAL MK",
+   "MACQUARIE CAPIT",
+   "MIZUHO SECURITI",
+   "MORGAN STANLEY",
+   "NOMURA RESEARCH",
+   "SANFORD BERNSTE",
+   "SUSQUEHANNA",
+   "UBS"
+  ],
+  "upgrades_downgrades": [],
+  "eps_forecast": {
+   "quarterly": [
+    {
+     "period": "Sep 2026",
+     "fiscal_end": "2026-09",
+     "consensus": 1.05,
+     "low": 0.85,
+     "high": 1.25,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 1.46,
+     "low": 1.21,
+     "high": 1.71,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Mar 2027",
+     "fiscal_end": "2027-03",
+     "consensus": 1.8,
+     "low": 1.8,
+     "high": 1.8,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Jun 2027",
+     "fiscal_end": "2027-06",
+     "consensus": 2.11,
+     "low": 2.11,
+     "high": 2.11,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Sep 2027",
+     "fiscal_end": "2027-09",
+     "consensus": 2.13,
+     "low": 2.13,
+     "high": 2.13,
+     "estimates": 1,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ],
+   "annual": [
+    {
+     "period": "Dec 2026",
+     "fiscal_end": "2026-12",
+     "consensus": 4.33,
+     "low": 4.26,
+     "high": 4.39,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2027",
+     "fiscal_end": "2027-12",
+     "consensus": 6.68,
+     "low": 5.06,
+     "high": 8.29,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    },
+    {
+     "period": "Dec 2028",
+     "fiscal_end": "2028-12",
+     "consensus": 8.26,
+     "low": 5.27,
+     "high": 11.24,
+     "estimates": 2,
+     "revisions_up": 0,
+     "revisions_down": 0
+    }
+   ]
+  },
+  "eps_history": [
+   {
+    "period": "Sep 2025",
+    "consensus": 0.91,
+    "actual": 1.23,
+    "surprise_pct": 35.16
+   },
+   {
+    "period": "Dec 2025",
+    "consensus": 1.12,
+    "actual": 1.24,
+    "surprise_pct": 10.71
+   },
+   {
+    "period": "Mar 2026",
+    "consensus": 1.51,
+    "actual": 1.55,
+    "surprise_pct": 2.65
+   },
+   {
+    "period": "Jun 2026",
+    "consensus": 1.19,
+    "actual": 0.77,
+    "surprise_pct": -35.29
+   }
+  ],
+  "eps_upcoming": [
+   {
+    "period": "Sep 2026",
+    "consensus": 1.05
+   },
+   {
+    "period": "Dec 2026",
+    "consensus": 1.46
+   },
+   {
+    "period": "Mar 2027",
+    "consensus": 1.8
+   },
+   {
+    "period": "Jun 2027",
+    "consensus": 2.11
+   }
+  ],
+  "momentum": {
+   "quarter": {
+    "period": "Sep 2026",
+    "current": 1.05,
+    "week_ago": 1.05,
+    "month_ago": 1.05
+   },
+   "year": {
+    "period": "Dec 2026",
+    "current": 4.33,
+    "week_ago": 4.33,
+    "month_ago": 4.33
+   }
+  },
+  "next_earnings": {
+   "date": "2026-11-17",
+   "text": "Baidu, Inc. ADS is estimated to report earnings on 11/17/2026. The upcoming earnings date is derived from an algorithm based on a company's historical reporting dates. Our vendor, Zacks Investment Research, might revise this date in the future, once the company announces the actual earnings date. According to Zacks Investment Research, based on 2 analysts' forecasts, the consensus EPS forecast for the quarter is $1.05. The reported EPS for the same quarter last year was $1.23.",
+   "timing": null
+  },
+  "peg_forward": 3.61
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-416952",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526416952/d148700d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-409756",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526409756/d110370d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-408259",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526408259/d44191d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-405930",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526405930/d149776d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-403371",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526403371/d181948d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-401534",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526401534/d174785d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-400108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526400108/d532041d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-398460",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526398460/d125826d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-397206",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526397206/d47428d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-396029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526396029/d72390d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-395019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526395019/d112631d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-394299",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526394299/d152888d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-393691",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526393691/d137536d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-392507",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526392507/d359553d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-391264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526391264/d497629d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-389803",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526389803/d52238d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-388559",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526388559/d29437d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-387141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526387141/d123361d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-385860",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526385860/d947386d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-384289",
+   "url": "https://www.sec.gov/Archives/edgar/data/1329099/000119312526384289/d153013d6k.htm"
+  }
+ ],
+ "market": {
+  "exchange": "NASDAQ-GS",
+  "average_volume": 2701361,
+  "volume": 2767268,
+  "market_cap_nasdaq": 28091259527,
+  "high_52w": 165.3,
+  "low_52w": 81.2212,
+  "previous_close": 81.86,
+  "one_year_target": 159.0,
+  "dividend_yield_nasdaq": null,
+  "annualized_dividend": null,
+  "ex_dividend_date": null,
+  "dividend_pay_date": null
+ },
+ "warnings": []
+}
