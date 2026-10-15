@@ -777,6 +777,10 @@ def main():
         if conf == "low": reasons.append("confidence low")
         if model_fit == "misfit": reasons.append("sector model misfit")
         if applied and impact and impact.get("unblocks_tier"): reasons.append("tier exists only because of a judgment override")
+        # Codex review of PR #2: a tier_override that lifts a C/B numeric tier into
+        # S/A rests entirely on judgment — the weighted IRR never crossed the line.
+        if override and n.get("tier_by_numbers") not in ("S", "A"):
+            reasons.append(f"tier rests on a judgment tier override (numeric tier {n.get('tier_by_numbers')})")
         if diag.get("irr_at_floor"): reasons.append("IRR at solver floor")
     score["alert_eligible"] = tier_final in ("S", "A") and not reasons
     if reasons:

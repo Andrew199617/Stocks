@@ -1,21 +1,31 @@
 #!/usr/bin/env python3
 """Price-history store (v5.4, 2026-10-14).
 
-Usage: python3 prices.py <TICKER> [--years 10] [--no-write]
+Usage: python3 prices.py <TICKER> [--years 10] [--no-write] [--quiet]
+       python3 prices.py --all [--years 10] [--quiet]
 
 Pulls up to ten years of daily closes from the Nasdaq historical-quotes API —
 the same source the engine already uses for the spot price — and writes
 <TICKER>/prices.json: a compact daily series for the last year, a weekly
 series (last close of each week) for the full window, a monthly series, and
 a few return / drawdown statistics computed from those closes. The company
-page draws its price-vs-value chart from this file; nothing in the valuation
-reads it. Failures exit non-zero and write nothing (the page degrades to the
+page draws its price-vs-value chart from this file and reprice.py reads
+stats.last / stats.last_date as the live price (and `fetched_at`, the ET
+time this file was pulled, to refuse a file the daily refresh failed to
+update); nothing in the valuation reads it. Failures exit non-zero and write nothing (the page degrades to the
 value-only view). Exit 2 = no rows returned.
+
+--all   refresh every folder that has a score.json, sequentially with a 0.3 s
+        pause between names; a failure is reported and the sweep continues;
+        one summary line at the end (exit 1 if any name failed).
+--quiet print no per-name JSON (failures still go to stderr).
 """
 import json, sys, os, datetime, time, urllib.request
+from zoneinfo import ZoneInfo
 
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
+ALL_SLEEP_S = 0.3
 
 
 def get_json(url, timeout=40):
@@ -40,7 +50,7 @@ def _num(s):
 
 
 def fetch_daily(ticker, years):
-    today = datetime.date.today()
+    today = datetime.datetime.now(ZoneInfo("America/New_York")).date()  # Codex review of PR #2: the VM runs UTC
     frm = today - datetime.timedelta(days=int(years * 365.25) + 7)
     url = (f"https://api.nasdaq.com/api/quote/{ticker}/historical?assetclass=stocks"
            f"&fromdate={frm.isoformat()}&todate={today.isoformat()}&limit=9999")
@@ -113,30 +123,77 @@ def stats(daily):
     return out
 
 
-def main():
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    if not args:
-        print(__doc__); sys.exit(2)
-    ticker = args[0].upper()
-    years = float(sys.argv[sys.argv.index("--years") + 1]) if "--years" in sys.argv else 10
+def run_one(ticker, years=10, write=True, quiet=False):
+    """Fetch + write one ticker. Returns the payload (daily/weekly/monthly
+    included). Raises on a fetch failure; raises ValueError when the API
+    returns no rows."""
     daily = fetch_daily(ticker, years)
     if not daily:
-        print(f"prices.py: no price rows returned for {ticker}", file=sys.stderr)
-        sys.exit(2)
+        raise ValueError(f"no price rows returned for {ticker}")
     today = daily[-1][0]
     one_year_ago = (datetime.date.fromisoformat(today) - datetime.timedelta(days=370)).isoformat()
+    # fetched_at: when THIS file was pulled (ET, the sweep's clock), distinct from
+    # as_of = the last close in it. reprice.py compares fetched_at with the scored
+    # run's as_of to refuse a file the daily refresh failed to update.
+    fetched_at = datetime.datetime.now(ZoneInfo("America/New_York")).replace(microsecond=0).isoformat()
     out = {"ticker": ticker, "source": "Nasdaq historical quotes API (api.nasdaq.com)", "currency": "USD",
-           "as_of": today, "first_date": daily[0][0], "rows": len(daily),
+           "as_of": today, "fetched_at": fetched_at, "first_date": daily[0][0], "rows": len(daily),
            "daily_1y": [[dt, round(c, 2)] for dt, c, _ in daily if dt >= one_year_ago],
            "weekly": _last_per_bucket(daily, lambda dt: datetime.date.fromisoformat(dt).isocalendar()[:2]),
            "monthly": _last_per_bucket(daily, lambda dt: dt[:7]),
            "stats": stats(daily)}
-    if "--no-write" not in sys.argv:
+    if write:
         folder = f"{BASE}/{ticker}"
         os.makedirs(folder, exist_ok=True)
-        with open(f"{folder}/prices.json", "w", encoding="utf-8") as f:
+        tmp = f"{folder}/prices.json.tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
             json.dump(out, f, separators=(",", ":"))
-    print(json.dumps({k: v for k, v in out.items() if k not in ("daily_1y", "weekly", "monthly")}, indent=1))
+        os.replace(tmp, f"{folder}/prices.json")  # atomic: a reader never sees a half-written file
+    if not quiet:
+        print(json.dumps({k: v for k, v in out.items() if k not in ("daily_1y", "weekly", "monthly")}, indent=1))
+    return out
+
+
+def scored_tickers():
+    """Every company folder with a score.json, sorted (system folders excluded)."""
+    out = []
+    for name in sorted(os.listdir(BASE)):
+        if name.startswith(("_", ".")):
+            continue
+        if os.path.isfile(os.path.join(BASE, name, "score.json")):
+            out.append(name)
+    return out
+
+
+def main():
+    argv = sys.argv[1:]
+    quiet, do_all = "--quiet" in argv, "--all" in argv
+    years = float(argv[argv.index("--years") + 1]) if "--years" in argv else 10
+    write = "--no-write" not in argv
+    args = [a for i, a in enumerate(argv) if not a.startswith("--") and (i == 0 or argv[i - 1] != "--years")]
+    if do_all:
+        tickers = scored_tickers()
+        ok, failed = [], []
+        for i, t in enumerate(tickers):
+            if i:
+                time.sleep(ALL_SLEEP_S)
+            try:
+                out = run_one(t, years, write, quiet)
+                ok.append(t)
+            except Exception as e:
+                failed.append(t)
+                print(f"prices.py: {t} FAILED — {type(e).__name__}: {e}", file=sys.stderr)
+        print(f"prices.py --all: {len(ok)}/{len(tickers)} updated, {len(failed)} failed"
+              + (f" ({', '.join(failed)})" if failed else ""))
+        sys.exit(1 if failed else 0)
+    if not args:
+        print(__doc__); sys.exit(2)
+    ticker = args[0].upper()
+    try:
+        run_one(ticker, years, write, quiet)
+    except ValueError as e:
+        print(f"prices.py: {e}", file=sys.stderr)
+        sys.exit(2)
 
 
 if __name__ == "__main__":

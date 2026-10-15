@@ -93,7 +93,8 @@ def main():
 
     under.sort(key=queue_key)
 
-    today = datetime.date.today().isoformat()
+    from zoneinfo import ZoneInfo
+    today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()  # Codex review of PR #2: the VM runs UTC
     out_rows = []
     for i, r in enumerate(under, 1):
         sym = (r["symbol"] or "").strip().upper()

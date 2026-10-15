@@ -240,6 +240,68 @@ def cap_years_for_moat(moat):
     moat = max(0.0, min(10.0, float(moat)))
     return max(2.0, min(15.0, 2 + 1.3 * moat))
 
+
+def replay_paths(numbers):
+    """(paths, growth_paths) for a recorded dcf_numbers.json payload — the
+    flows the scored run discounted, replayed from its recorded inputs
+    exactly as the engine computed them (g0 = clamp(g_base + offset),
+    project_path(base * mult, g0, CAP(moat), g_terminal), weighted =
+    probability-weighted sum). Mirrors build_daily_html.forecast_paths; used
+    by reprice.py so the live IRR is solved on the SAME flows as the scored
+    IRR (bit-for-bit at the scored price).
+
+    Engine 5.4 also stores `paths` / `growth_paths`, rounded to 6 decimals
+    for the file. Those are the fallback, not the first choice: the replay
+    is exact, the stored copy is not. The stored copy is returned only when
+    the inputs are missing (a hand-built or foreign record) or when the
+    replay disagrees with it beyond rounding (the record is the engine's
+    own output and wins over a drifted replay). (None, None) when neither
+    is available. Additive (v5.4 reprice)."""
+    if not isinstance(numbers, dict):
+        return None, None
+    stored = None
+    if numbers.get("paths") and numbers.get("growth_paths"):
+        stored = (numbers["paths"], numbers["growth_paths"])
+    inp, scn = numbers.get("inputs") or {}, numbers.get("scenarios") or {}
+    try:
+        base = float(numbers.get("base_oe_per_share"))
+        gb = float(numbers.get("g_base"))
+    except (TypeError, ValueError):
+        return stored or (None, None)
+    if not inp or not scn:
+        return stored or (None, None)
+    labels = ["super_bear", "bear", "base", "bull", "super_bull"]
+    gterm = inp.get("g_terminal", DEFAULT_GTERM)
+    cap = cap_years_for_moat(inp.get("moat", 5))
+    paths, gpaths = {}, {}
+    try:
+        for i, k in enumerate(labels):
+            g0 = max(GROWTH_FLOOR_START, min(GROWTH_CAP_START, gb + inp["offsets"][i]))
+            paths[k] = project_path(base * inp["mults"][i], g0, cap, gterm)
+            gpaths[k] = growth_path(g0, cap, gterm)
+        probs = inp["probs"]
+        paths["weighted"] = [sum(probs[i] * paths[labels[i]][t] for i in range(5)) for t in range(len(paths["base"]))]
+    except Exception:
+        return stored or (None, None)
+    if stored is not None and not _paths_agree(paths, stored[0]):
+        return stored
+    return paths, gpaths
+
+
+def _paths_agree(replayed, stored, tol=1e-5):
+    """True when every stored path (rounded to 6 dp by the engine) matches the
+    replayed one within `tol` per flow — i.e. they differ only by rounding."""
+    try:
+        for k, flows in stored.items():
+            rep = replayed.get(k)
+            if rep is None or len(rep) != len(flows):
+                return False
+            if any(abs(float(a) - float(b)) > tol * max(1.0, abs(float(b))) for a, b in zip(rep, flows)):
+                return False
+        return True
+    except (TypeError, ValueError, AttributeError):
+        return False
+
 def load_overrides(ticker):
     """Structured judgment overrides from {ticker}/judgment.json. A malformed or
     incomplete override (non-numeric value, kind outside filing|estimate, blank
@@ -498,15 +560,25 @@ def main():
     }
     inst_defs = {
         "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", (IF, "CashAndCashEquivalents")],
+        # Codex review of PR #2: the combined cash+restricted fallback must not be
+        # netted against debt as if it were free — restricted cash is tracked and
+        # subtracted when tagged, flagged when not (see the per-period loop).
+        "restricted_cash": ["RestrictedCashAndCashEquivalents", "RestrictedCash", "RestrictedCashAndCashEquivalentsAtCarryingValue",
+                            "RestrictedCashCurrent", (IF, "RestrictedCashAndCashEquivalents")],
         "assets_current": ["AssetsCurrent", (IF, "CurrentAssets")],
         "liab_current": ["LiabilitiesCurrent", (IF, "CurrentLiabilities")],
         # v5.4 debt: CURRENT and NONCURRENT candidate lists hold only tags of
         # that classification; TOTAL tags (LongTermDebt includes current
         # maturities; the audit found it stacking on DebtCurrent) live in
         # debt_total and are used only when no noncurrent tag reports.
-        "debt_current": ["DebtCurrent", "LongTermDebtCurrent", "LongTermDebtAndCapitalLeaseObligationsCurrent",
-                         "ShortTermBorrowings", "CommercialPaper", "NotesPayableCurrent",
-                         (IF, "CurrentPortionOfLongtermBorrowings"), (IF, "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings"), (IF, "ShorttermBorrowings")],
+        # Codex review of PR #2: current debt is an AGGREGATE tag when filed; when
+        # it is not, the components are ADDITIVE (current maturities of long-term
+        # debt + short-term borrowings) and must be summed, not treated as
+        # fallbacks that keep only the first one present. Within each component
+        # group the tags are alternatives (one of them per period).
+        "debt_current": ["DebtCurrent", (IF, "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings")],
+        "debt_cur_ltd": ["LongTermDebtAndCapitalLeaseObligationsCurrent", "LongTermDebtCurrent", (IF, "CurrentPortionOfLongtermBorrowings")],
+        "debt_cur_st": ["ShortTermBorrowings", "CommercialPaper", "NotesPayableCurrent", (IF, "ShorttermBorrowings")],
         "debt_lt": ["LongTermDebtNoncurrent", "LongTermDebtAndCapitalLeaseObligations", "LongTermNotesPayable",
                     (IF, "LongtermBorrowings"), (IF, "NoncurrentPortionOfNoncurrentBorrowings")],
         "debt_total": ["LongTermDebt", "DebtLongtermAndShorttermCombinedAmount", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
@@ -700,6 +772,7 @@ def main():
     basic_only = set()  # periods where only BASIC shares are filed (no diluted figure)
     share_fallback = {}  # v5.4: period -> (fallback count, source tag) when no diluted figure is filed
     debt_blank = []      # v5.4: periods with no debt tag at all (net debt unknown, not zero)
+    cash_restricted_periods = []  # periods whose only cash tag includes restricted cash (Codex review of PR #2)
     hist, prev_nwc = [], None
     for p in periods:
         g = lambda k: series[k].get(p)
@@ -759,20 +832,36 @@ def main():
         # v5.4 debt basis per period: noncurrent + current when a noncurrent
         # tag reports; else a TOTAL tag alone (never stacked on current); else
         # unknown — recorded, flagged, never read as zero debt.
-        d_cur, d_lt, d_tot = g("debt_current"), g("debt_lt"), g("debt_total")
+        if g("debt_current") is not None:
+            d_cur, d_cur_tag = g("debt_current"), series_tags["debt_current"].get(p)
+        else:
+            _parts = [(k, g(k)) for k in ("debt_cur_ltd", "debt_cur_st") if g(k) is not None]
+            d_cur = sum(v for _, v in _parts) if _parts else None
+            d_cur_tag = "+".join(str(series_tags[k].get(p)) for k, _ in _parts) if _parts else None
+        d_lt, d_tot = g("debt_lt"), g("debt_total")
         if d_lt is not None:
             total_debt = d_lt + (d_cur or 0)
-            debt_tag_p = f"{series_tags['debt_lt'].get(p)}+{series_tags['debt_current'].get(p) or 'none'}"
+            debt_tag_p = f"{series_tags['debt_lt'].get(p)}+{d_cur_tag or 'none'}"
         elif d_tot is not None:
             total_debt = d_tot
             debt_tag_p = f"TOTAL:{series_tags['debt_total'].get(p)}"
         elif d_cur is not None:
             total_debt = d_cur
-            debt_tag_p = f"CURRENT_ONLY:{series_tags['debt_current'].get(p)}"
+            debt_tag_p = f"CURRENT_ONLY:{d_cur_tag}"
         else:
             total_debt, debt_tag_p = None, None
             debt_blank.append(p)
-        net_debt_p = (total_debt - (g("cash") or 0)) if total_debt is not None else None
+        # Codex review of PR #2: when the only cash tag is the combined
+        # cash + restricted-cash total, subtract the restricted part if it is
+        # tagged; otherwise the period is flagged and net debt is understated
+        # in a known direction rather than silently.
+        cash_avail, cash_tag_p = g("cash"), series_tags["cash"].get(p)
+        if cash_avail is not None and cash_tag_p == "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents":
+            if g("restricted_cash") is not None:
+                cash_avail = cash_avail - g("restricted_cash"); cash_tag_p = f"{cash_tag_p} minus {series_tags['restricted_cash'].get(p)}"
+            else:
+                cash_restricted_periods.append(p)
+        net_debt_p = (total_debt - (cash_avail or 0)) if total_debt is not None else None
         lease_liab = None
         if g("lease_liab_lt") is not None or g("lease_liab_current") is not None:
             lease_liab = (g("lease_liab_lt") or 0) + (g("lease_liab_current") or 0)
@@ -794,7 +883,8 @@ def main():
                      "capex_tag": capex_tag_p, "sbc_tag": sbc_tag_p,
                      "da": da, "sbc": sbc, "fcf": fcf,
                      "oe_conservative": oe_cons, "oe_maintenance": oe_maint, "delta_nwc": d_nwc,
-                     "shares_diluted": shares_val, "shares_tag": shares_src, "cash": g("cash"),
+                     "shares_diluted": shares_val, "shares_tag": shares_src, "cash": cash_avail,
+                     "cash_tag": cash_tag_p, "restricted_cash": g("restricted_cash"),
                      "debt_current": d_cur, "debt_lt": d_lt, "debt_total": total_debt, "debt_tag": debt_tag_p,
                      "net_debt": net_debt_p, "lease_liabilities": lease_liab,
                      "assets": g("assets"), "liabilities": g("liabilities"),
@@ -989,6 +1079,8 @@ def main():
         flags_pre.append(f"SHARES_FALLBACK: no diluted share count filed for {', '.join(_fb_hist)} — those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate")
     if debt_blank and latest.get("period_end") in debt_blank:
         flags_pre.append("DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year — net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md")
+    if cash_restricted_periods and latest.get("period_end") in cash_restricted_periods:
+        flags_pre.append("CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it — net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence")
     sector_u = (uni.get(ticker) or {}).get("sector", "")
     if sector_u in ("Finance", "Real Estate", "Utilities"):  # v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged
         flags_pre.append(f"SECTOR_MODEL_MISMATCH: {sector_u} sector — OE/capex DCF fits {sector_u.lower()} names poorly; grade confidence low")
@@ -1127,14 +1219,35 @@ def main():
     else:
         # v5.4: Tier F is split — "SBC exceeds cash generation" and "no cash
         # generation" are different stories (audit round-1, Model design).
-        _fcf_latest = latest.get("fcf")
-        if oe_ps is not None and oe_ps <= 0 and isinstance(_fcf_latest, (int, float)) and _fcf_latest > 0:
-            f_subtype = "sbc_exceeds_cash"
-        elif oe_ps is not None and oe_ps <= 0:
-            f_subtype = "no_cash_generation"
-        else:
+        # Codex review of PR #2: classify on the SAME basis that produced the
+        # non-positive base — the ttm.json legs for a TTM pin, else the last
+        # three fiscal years (the median window) summed — and actually test
+        # SBC against FCF, never the latest year alone.
+        f_fcf = f_sbc = None
+        f_basis = None
+        if pin_source == "ttm_json":
+            try:
+                with open(f"{BASE}/{ticker}/ttm.json") as _f:
+                    _t = json.load(_f)
+                f_fcf = float(_t["ttm_ocf"]) - float(_t["ttm_capex"]); f_sbc = float(_t["ttm_sbc"]); f_basis = "ttm.json legs (TTM pin)"
+            except Exception:
+                f_fcf = f_sbc = None
+        if f_fcf is None:
+            _w = [h for h in hist[-3:] if h.get("fcf") is not None]
+            if _w:
+                f_fcf = sum(h["fcf"] for h in _w); f_sbc = sum((h.get("sbc") or 0) for h in _w)
+                f_basis = f"sum of the last {len(_w)} fiscal years (the median window)"
+        if oe_ps is None:
             f_subtype = "no_base"
-        result.update({"tier_by_numbers": "F", "f_subtype": f_subtype,
+        elif f_fcf is None:
+            f_subtype = "indeterminate"
+        elif f_fcf <= 0:
+            f_subtype = "no_cash_generation"
+        elif f_sbc is not None and f_sbc >= f_fcf:
+            f_subtype = "sbc_exceeds_cash"
+        else:
+            f_subtype = "indeterminate"  # FCF > SBC on this basis yet the base is non-positive (an agent-supplied pin without legs)
+        result.update({"tier_by_numbers": "F", "f_subtype": f_subtype, "f_subtype_basis": f_basis,
                        "implied_irr_weighted": None, "implied_irr_base": None, "moat_score": moat,
                        "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,

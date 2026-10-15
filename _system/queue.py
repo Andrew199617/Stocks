@@ -84,7 +84,22 @@ def cmd_pass2_claim(path, queue_path):
         for t in cands:
             if not os.path.exists(f"{BASE}/{t}/score.json"):
                 continue
-            st = (entries.get(t) or {}).get("status")
+            ent = entries.get(t) or {}
+            st = ent.get("status")
+            if st == "in_progress":
+                # Codex review of PR #2: a worker that died after claiming left
+                # the ticker in_progress forever — the primary queue's lease
+                # reaper never ran here. An expired lease (or a pre-lease entry
+                # with no claimed_at) is reclaimable, same 90-minute rule.
+                claimed = ent.get("claimed_at")
+                stale = True
+                if claimed:
+                    try:
+                        stale = datetime.datetime.fromisoformat(claimed) < now_et() - datetime.timedelta(minutes=LEASE_MINUTES)
+                    except ValueError:
+                        stale = True
+                if stale:
+                    st = "pending"
             if st in (None, "pending"):
                 entries[t] = {"status": "in_progress", "date": now_et().date().isoformat(),
                               "claimed_at": now_et().isoformat(timespec="seconds")}
