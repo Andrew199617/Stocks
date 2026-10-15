@@ -1,0 +1,81 @@
+{
+ "ticker": "MTB",
+ "as_of": "2026-10-15",
+ "price": 216.05,
+ "price_date": "2026-10-14",
+ "price_source": "prices.json (Nasdaq last close)",
+ "price_age_days": 1,
+ "stale_price": false,
+ "scored_price": 215.425,
+ "scored_date": "2026-10-14",
+ "price_change_pct": 0.2901241731461113,
+ "irr_weighted": 0.11827510297662636,
+ "tier": "C",
+ "tier_display": "C",
+ "tier_by_numbers": "C",
+ "override_active": false,
+ "override_superseded": false,
+ "irr_base": 0.1159297183530118,
+ "irr_bear": 0.07413847918642491,
+ "irr_bull": 0.14856061636012396,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "irr_low": 0.062011111124194884,
+ "irr_high": 0.1926860448174864,
+ "irr_capped": false,
+ "irr_at_floor": false,
+ "scenarios": {
+  "super_bear": {
+   "irr": 0.062011111124194884,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "irr": 0.07413847918642491,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "base": {
+   "irr": 0.1159297183530118,
+   "tier": "C",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "irr": 0.14856061636012396,
+   "tier": "C",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "irr": 0.1926860448174864,
+   "tier": "B",
+   "irr_capped": false,
+   "irr_at_floor": false
+  }
+ },
+ "iv_at_15": 161.0867371240195,
+ "iv_at_12": 212.11666632065362,
+ "iv_at_20": 114.95949145554471,
+ "iv_at_25": 89.36286455668926,
+ "upside_at_15": -0.2544006613097918,
+ "upside_at_12": -0.018205663871077915,
+ "market_cap_est": 34306795550.0,
+ "in_scope_under_40b": true,
+ "scored": {
+  "irr_weighted": 0.11854498376607892,
+  "tier_by_numbers": "C",
+  "tier_final": "C",
+  "tier_override_reason": null,
+  "upside_at_15": -0.25223749739343393
+ },
+ "delta": {
+  "irr_pp": -0.0269880789452559,
+  "tier_changed": false,
+  "tier_changed_vs_final": false
+ },
+ "engine_release_of_run": "pre-5.4 (engine_version 5)",
+ "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+}

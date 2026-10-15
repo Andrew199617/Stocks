@@ -1,0 +1,81 @@
+{
+ "ticker": "DUOL",
+ "as_of": "2026-10-15",
+ "price": 139.73,
+ "price_date": "2026-10-14",
+ "price_source": "prices.json (Nasdaq last close)",
+ "price_age_days": 1,
+ "stale_price": false,
+ "scored_price": 140.1,
+ "scored_date": "2026-10-13",
+ "price_change_pct": -0.26409707351892076,
+ "irr_weighted": 0.09454986367671875,
+ "tier": "D",
+ "tier_display": "D",
+ "tier_by_numbers": "D",
+ "override_active": false,
+ "override_superseded": false,
+ "irr_base": 0.09361771387476009,
+ "irr_bear": 0.06837868386013929,
+ "irr_bull": 0.12668300901299767,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "irr_low": 0.0477303640380778,
+ "irr_high": 0.1761138974306683,
+ "irr_capped": false,
+ "irr_at_floor": false,
+ "scenarios": {
+  "super_bear": {
+   "irr": 0.0477303640380778,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "irr": 0.06837868386013929,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "base": {
+   "irr": 0.09361771387476009,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "irr": 0.12668300901299767,
+   "tier": "C",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "irr": 0.1761138974306683,
+   "tier": "B",
+   "irr_capped": false,
+   "irr_at_floor": false
+  }
+ },
+ "iv_at_15": 72.53990362594404,
+ "iv_at_12": 98.90426395072213,
+ "iv_at_20": 49.248606297551355,
+ "iv_at_25": 36.72590679995198,
+ "upside_at_15": -0.4808566261651468,
+ "upside_at_12": -0.2921758824109201,
+ "market_cap_est": 6750076839.999999,
+ "in_scope_under_40b": true,
+ "scored": {
+  "irr_weighted": 0.09438239641619128,
+  "tier_by_numbers": "D",
+  "tier_final": "D",
+  "tier_override_reason": null,
+  "upside_at_15": -0.48222766862281197
+ },
+ "delta": {
+  "irr_pp": 0.01674672605274652,
+  "tier_changed": false,
+  "tier_changed_vs_final": false
+ },
+ "engine_release_of_run": "pre-5.4 (engine_version 5)",
+ "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+}

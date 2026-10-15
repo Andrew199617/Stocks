@@ -1,0 +1,81 @@
+{
+ "ticker": "ARES",
+ "as_of": "2026-10-15",
+ "price": 112.49,
+ "price_date": "2026-10-14",
+ "price_source": "prices.json (Nasdaq last close)",
+ "price_age_days": 1,
+ "stale_price": false,
+ "scored_price": 111.985,
+ "scored_date": "2026-10-14",
+ "price_change_pct": 0.450953252667774,
+ "irr_weighted": 0.15903832329737522,
+ "tier": "C",
+ "tier_display": "C",
+ "tier_by_numbers": "B",
+ "override_active": true,
+ "override_superseded": false,
+ "irr_base": 0.1541903767774896,
+ "irr_bear": 0.1132569841227028,
+ "irr_bull": 0.19159627631270226,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "irr_low": 0.08333651083518293,
+ "irr_high": 0.23936285862597273,
+ "irr_capped": false,
+ "irr_at_floor": false,
+ "scenarios": {
+  "super_bear": {
+   "irr": 0.08333651083518293,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "irr": 0.1132569841227028,
+   "tier": "C",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "base": {
+   "irr": 0.1541903767774896,
+   "tier": "B",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "irr": 0.19159627631270226,
+   "tier": "B",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "irr": 0.23936285862597273,
+   "tier": "A",
+   "irr_capped": false,
+   "irr_at_floor": false
+  }
+ },
+ "iv_at_15": 122.18893360331491,
+ "iv_at_12": 168.40553151925207,
+ "iv_at_20": 81.71892041832334,
+ "iv_at_25": 60.20990075147682,
+ "upside_at_15": 0.08622040717677049,
+ "upside_at_12": 0.497071130938324,
+ "market_cap_est": 36788219007.89,
+ "in_scope_under_40b": true,
+ "scored": {
+  "irr_weighted": 0.15954699040637454,
+  "tier_by_numbers": "B",
+  "tier_final": "C",
+  "tier_override_reason": "SECTOR_MODEL_MISMATCH: the standardized engine base capitalizes consolidated-fund OCF (NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025, and ttm.py's consolidated-OCF TTM base collapses to $0.4157/share on fund timing), so tier-by-numbers B overstates the manager's distributable owner's earnings; on the manager's realized-earnings definition the weighted IRR is in the low teens (2026-10-13 v4 run: 11.9%, IV@15% $84.17 at $118.15). Softened one notch to C, confidence low - same treatment as ACGL/HIG.",
+  "upside_at_15": 0.09111875343407516
+ },
+ "delta": {
+  "irr_pp": -0.05086671089993278,
+  "tier_changed": false,
+  "tier_changed_vs_final": false
+ },
+ "engine_release_of_run": "pre-5.4 (engine_version 5)",
+ "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+}

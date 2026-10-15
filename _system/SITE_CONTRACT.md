@@ -38,8 +38,13 @@ field is missing from an older file. The app never computes a valuation figure.
  "sweep": {"done": 89, "total": 2617, "pending": 2518, "blocked_data_gap": 5, "blocked_no_data": 5, "in_progress": 0},
  "counts": {"current": 90, "stale": 0, "misfits": 23, "tiers": {"S":0,"A":0,"B":3,"C":22,"D":48,"F":17}, "with_live": 70},
  "hurdles": {"S": 0.25, "A": 0.20, "B": 0.15, "C": 0.10},
+ "watchlist": ["APP", "DUOL", "U", "..."],
+ "failed": [],
  "notes": ["..."]}
 ```
+`watchlist` is every ticker in `_system/watchlist.json` (upper-cased, sorted, whether or not it is in the universe);
+`counts.watchlist` is how many index rows carry the flag. `failed` lists tickers whose record could not be built this
+run (`counts.failed`); they keep their previous row/record, if any.
 
 ## `index.json` — one row per CURRENT company (engine v5+, no uncovered gap), ranked by `irr_live` when present else `irr`
 ```json
@@ -60,9 +65,12 @@ field is missing from an older file. The app never computes a valuation figure.
  "second_pass": {"date": "...", "verdict": "changed" | "no_change", "prior_tier": "C"} | null,
  "alert_eligible": false,
  "dividend_yield": 0.0 | null, "shareholder_yield": 0.024 | null,
+ "watchlist": true,
  "has": {"prices": true, "fundamentals": true, "dividends": true, "segments": true, "live": true, "analysis": true, "second_pass": false}}
 ```
-Stale (pre-v5) scores are listed under `meta.stale` as `[{ticker, name, tier, irr, analysis_date}]`, never in `index`.
+`watchlist` is true when the row's ticker is in `_system/watchlist.json` (the app's "Watchlist" toggle next to the tier
+filters filters on it). Stale (pre-v5) scores are listed under `meta.stale` as
+`[{ticker, name, tier, irr, analysis_date, watchlist}]`, never in `index`.
 
 ## `data/<TICKER>.json` — everything the company page renders
 ```json
@@ -191,3 +199,174 @@ Choices made where the text above was silent or ambiguous; each is additive to t
 - **Layout change (Andrew):** the company page is header → tab bar → tab content. The header is compact (tier tile, ticker, name, sector line; last close with 1-day change; live expected return with the scored figure beside it). The tab bar sits directly under the header and becomes a sticky condensed bar on scroll (ticker · last close · change · expected return · the tabs). The price-vs-value chart moves INSIDE the Overview tab as its first card, followed by: the verdict gauge + chips + one-liner, "About" (profile), "Financial performance" (generated prose from the filed numbers), "Street consensus" (Nasdaq analyst data, clearly labelled as the Street's view next to our hurdle prices), "Filings" (the 8-K / 10-Q / 10-K feed from EDGAR with links), then the existing key numbers, overrides, scenarios, moat and flags cards. Nothing that exists today is removed.
 - **`<T>/profile.json`** (new, `_system/profile.py`), copied into the record as `record.profile` (kept in the attachment; it is small): {"ticker","as_of","sources":{...},"about":{"description" (10-K Item 1 Business first paragraphs, cleaned, ≤1,500 chars, with the filing accession and a link), "description_short" (Nasdaq company-profile description), "industry","sector" (Nasdaq), "sic","sic_description","state_of_incorporation","fiscal_year_end_mmdd","filer_category","exchange","website","headquarters" (EDGAR submissions business address, city/state), "employees" (from the 10-K human-capital text, with the sentence quoted as evidence) | null, "first_sec_filing" (earliest filing date in submissions, the IPO-date proxy), "edgar_url"}, "street":{"source":"Nasdaq analyst endpoints","as_of","consensus":"Buy"|...,"analysts":16,"buy":16,"hold":4,"sell":0,"target_mean","target_low","target_high","target_1y_nasdaq_summary","history":[{"date","mean_target","buy","hold","sell"}...],"eps_forecast":{"quarterly":[{"period","consensus","low","high","estimates","revisions_up","revisions_down"}],"annual":[...]}} | null, "filings":[{"form","filed","period","items" (8-K items),"description" (e.g. "Results of operations" for 2.02),"url"}...] (latest 20), "market":{"exchange","average_volume","volume","market_cap_nasdaq","high_52w","low_52w","dividend_yield_nasdaq"} }. Refresh policy: profile.py --all skips files younger than --max-age-days (default 7) unless the company has a newer filing; the Street block is third-party data and is never used by the valuation.
 - **Financial performance prose** is generated in the app from record.fundamentals / live (pure function, node-tested): latest FY revenue and growth, net income, operating cash flow, owner's earnings and margin, TTM where available, shares trend, with the fiscal year named — no adjectives, numbers only.
+
+## Decisions (static app — `_daily/site/index.html`, `app.css`, `app.js`, `tests/`, 2026-10-14)
+Choices made where the text above was silent or ambiguous; none changes a data shape.
+- **Hash parsing.** `#T.tab` splits at the LAST `.` and only when the suffix is one of the seven tab names, so a dotted ticker
+  (`#BRK.B`, `#BRK.B.data`) routes correctly. The v2 form `#T/tab` is accepted and normalised to `#T.tab`. Ticker matching is
+  case-insensitive against `index.json`; the canonical ticker from the index is what the hash is rewritten to. A token outside
+  `[A-Za-z0-9._-]` or a ticker not in the index returns to the list with a one-time notice ("No company "X" in this ranking").
+  Tab switches use `history.replaceState` (in try/catch), so the back button returns to the ranking, not through every tab.
+- **`window.SITE_DATA`** is read as `{meta, index, records}` where `records` is an object keyed by ticker (an array of records is
+  also accepted). With `SITE_DATA` present the app never calls `fetch`; a row without a record renders the "not embedded in this
+  file — open the site" page (linking to `meta.site_url` when the data layer provides one) with the row's scored / live figures.
+- **Ranking columns and sort.** The default sort is Live IRR with the scored IRR as the fallback key for rows without `live.json`
+  (the same order as `index.json`), so names never fall to the bottom for lacking a repricing. The tier filter matches the
+  DISPLAYED tier (`tier_live` when present, else `tier`); the Band column shows `tier_bear_live → tier_bull_live` on live rows and
+  the scored band otherwise; Price / Upside / Mkt cap show the live figure when the row has one (the title attribute carries
+  `price_date`). Column headers with a key sort on click; the sort select, tier and fit segments and the search box are one
+  state object remembered in `localStorage` (`oe-dcf.list.v1`, every read/write in try/catch, bad values fall back to defaults).
+- **Prev / next by rank** walk `index.json` order (which includes sector misfits even when the list is filtered to Modeled);
+  the page footer shows the rank.
+- **Live view precedence** is the v2 rule: `live.json` wins when it carries a price AND a weighted IRR; `score.json` otherwise, with
+  `row.*` only as a fallback for fields an older score lacks (`irr_bear`, `tier_bear`, `iv20`, `iv25`, `irr_at_floor`). The band
+  text falls back to `tierForIrr(scenario irr)` using `meta.hurdles` (default S .25 / A .20 / B .15 / C .10) only when no tier is
+  stored — a classification of a stored IRR, never a valuation.
+- **Hurdle prices / sensitivity** come from `forecast.hurdle_prices` / `forecast.sensitivity`; without them the page falls back to
+  `score.iv_at_15` + `row.iv20/iv25` and the stored `numbers.scenarios[*].iv_at_*`. No present-value replay happens in the app;
+  a record without `forecast.paths` shows a note in place of the two Forecast charts.
+- **Negative money** renders as `-$1,234.50` (v2 Python printed `$-1,234.50`). `fmtPct` renders `-12.3%`; signed variants
+  prefix `+`. Nothing else in the number formats differs from v2.
+- **Markdown** is the v2 subset (headings shifted one level, `-`/`*` lists, pipe tables, `**bold**`, `` `code` ``, http(s) links
+  only — `javascript:` and relative targets stay plain text) plus `1.` ordered lists and ``` fences (escaped). Everything is
+  passed through `esc()` before inline formatting.
+- **Charts.** Specs live in a per-page map keyed by `data-cid` (never in attributes); `stacked:true` stacks positives per label
+  upward from zero and negatives downward, draws `spec.totals` as an unfilled outline (legend entry `totalName`), and every
+  bar / point carries a `<title>` tooltip "label · series: value" plus the optional per-point `tips[i]` (YoY on the DPS chart,
+  share of total on segments — v2 emitted these tips but never rendered them). Charts are drawn after mount, on tab switch and
+  150 ms after the last resize; hidden panes are drawn when they become visible.
+- **Owner layout decision (header → sticky tab bar → tab content)** is implemented as: compact hero (tier tile, ticker, name,
+  tier chip, sector · cap · exchange · filer line; expected return with the scored figure beside it; last close with 1-day
+  change, 52-week range and 1-year return; value @15% with upside) → `.tabbar` (`position: sticky`, with a `.tabsum` line
+  "tier · ticker · last close · 1d change · expected return" that appears once the hero scrolls above the viewport, toggled by a
+  frame-throttled scroll listener) → panes. The price-vs-value card is the first card of the Overview pane; the one-liner moved
+  from the hero into the verdict card. Overview order: price chart, verdict (gauge + chips + one-liner), pass-2 box, About,
+  Financial performance, Street consensus, Filings, Key numbers, Overrides, Scenarios, Moat, Fragility flags.
+- **`record.profile` absent** (profile.py has not run): About falls back to `fundamentals.profile` facts (SIC, exchange, filer
+  category, FYE, incorporation) with a note; Street consensus renders a one-line empty card stating the Street's view never
+  enters the valuation; Filings fall back to `fundamentals.profile.latest_filings`. `about.description` is accepted either as a
+  string or as `{text, accession, url}`; `about.employees` as a number or `{count, as_of, evidence}`. Only `http(s)` URLs become
+  links. Street price targets are shown beside OUR hurdle prices (15% / 20%) with the Street-not-ours note.
+- **Financial performance prose** (`financialPerformance(record)`, exported and node-tested) reads only `fundamentals.annual`
+  (latest FY vs prior) and `fundamentals.ttm`: revenue and growth, gross / operating / net margins, operating cash flow, capex,
+  SBC, owner's earnings and margin and per share, TTM figures, diluted-share change (vs prior FY and vs five FYs back), cash /
+  debt / net debt, dividends / buybacks / acquisitions. Empty string without annual rows (the card is then omitted).
+- **Tests** (`node _daily/site/tests/app.test.js`) load `data/<T>.json` when the data layer has written it, else assemble a record
+  from the company folder via `tests/fixtures/assemble.js` (no fixture is ever written into a company folder); the dividends /
+  segments / live / profile paths are covered by `tests/fixtures/synthetic.json`, since no real folder carried those blocks when
+  the app was written.
+
+## Decisions (owner, 2026-10-14 night — Forecast tab)
+- **Forecast tab = three sub-tabs**, in this order: **DCF** (ours, the verdict's engine), **Street** (Nasdaq analyst data, clearly labelled third-party and never used by the valuation), **Analysts** (coverage and rating history). The Overview keeps only a compact "Street summary" card (one paragraph: analyst count, consensus, mean target and its % vs the last close; the buy/hold/sell bar; a "See forecast" link) — the full section lives here.
+- **DCF sub-tab** (every existing section stays): (1) "Owner's earnings per share — history and forecast": one chart in the stockanalysis style — the filed OE/share history (fundamentals annual `oe_per_share`, else the engine CSV) as a solid line, then the forecast as dashed lines from the base year: the probability-weighted path bold, bear and bull as thinner dashed lines, super-bear→super-bull as a shaded band; below it the table High (super bull) / Avg (weighted) / Low (super bear) for projection years 1, 2, 3, 5, 10 and 15. (2) "Owner's earnings growth": historical YoY bars from the same series, then forecast bars = the weighted growth path with an error bar from the bear to the bull growth path for the same year; table High / Avg / Low for years 1–3. (3) The existing growth-fade chart, value-at-every-rate table (scored + live IRR columns), hurdle-price tiles, and "how growth was set".
+- **Street sub-tab**, sections in order: (1) "Stock price forecast" — paragraph (N analysts, consensus, mean target, % vs the last close, low and high), the gauge (semicircle Sell → Hold → Buy with the needle at (buy + 0.5·hold) / (buy + hold + sell); Nasdaq gives buy / hold / sell only, no strong split — say so in the legend), the price-target chart (past year of weekly closes, then a fan from the last close to low / mean / high one year out, labelled tags at the right edge). (2) "Price target" table: Low / Average / High with % change vs the last close (Nasdaq publishes no median — omit the column). (3) "Analyst ratings" — the paragraph, "Recommendation trends" stacked bars by month (buy / hold / sell from `street.history`), the monthly table (Buy / Hold / Sell / Total / mean target). (4) "Financial forecast" with an Annual · Quarterly toggle: tiles EPS This Year / Next Year (from `street.eps_forecast.annual`; "from" = last FY diluted EPS in fundamentals; growth badge) and, on Quarterly, EPS This Quarter / Next Quarter ("from" = the same quarter a year earlier from fundamentals quarterly `eps_diluted`); the table with historical columns (last two FY or four quarters, filed: Revenue, Revenue growth, Gross profit, Gross margin, Operating income, Net income, EPS, EPS growth) and forecast columns (EPS consensus, EPS growth vs the prior filed/forecast, No. of estimates; revenue and margin rows show "—" because Nasdaq publishes EPS consensus only — say so under the table). (5) "EPS forecast": chart with filed diluted EPS as a solid line then consensus dashed with the low–high band; table High / Avg / Low per forecast fiscal year. (6) "EPS growth": historical YoY bars then forecast bars with error bars (low–high); table High / Avg / Low. (7) "Earnings track record": the last four quarters' actual vs consensus EPS (`street.eps_history`) as paired bars with the surprise %, plus the next report date line. (8) Data-sources box: "Nasdaq analyst endpoints (Zacks consensus) — pulled <as_of>; EPS consensus is on the analysts' adjusted basis, not GAAP; not an input to the DCF."
+- **Analysts sub-tab**: the covering brokers (`street.brokers`, as chips), the ratings history table (monthly: consensus label, buy / hold / sell / total, mean target), estimate momentum (consensus EPS now vs 1 week / 1 month ago for the quarter and the year), the forward PEG when present, upgrades / downgrades when Nasdaq returns any (it rarely does), and an honest note: individual analyst names, track records and per-analyst targets are paid (TipRanks) data and are not included.
+- **`profile.street` schema (extends the earlier decision):** {"source","as_of","consensus","analysts","buy","hold","sell","target_mean","target_low","target_high","target_1y_nasdaq_summary","history":[{"date","mean_target","buy","hold","sell","consensus"}] (oldest first),"brokers":[...],"upgrades_downgrades":[...],"eps_forecast":{"quarterly":[{"period","fiscal_end","consensus","low","high","estimates","revisions_up","revisions_down"}],"annual":[...]},"eps_history":[{"period","consensus","actual","surprise_pct"}] (quote/eps PreviousQuarter rows, oldest first),"eps_upcoming":[{"period","consensus"}],"momentum":{"quarter":{"period","current","week_ago","month_ago"},"year":{...}},"next_earnings":{"date","text"},"peg_forward"}.
+
+## Decisions (build_site.py review round, 2026-10-15)
+Fixes from the adversarial review of the data layer; each is additive to the shapes above.
+- **Watchlist is in the data.** `build()` reads `_system/watchlist.json` (`tickers[]` of `{ticker, ...}` objects or bare
+  strings; upper-cased, trimmed, blanks and non-strings dropped; a missing or malformed file is an empty list). It emits
+  `meta.watchlist` (sorted), `meta.counts.watchlist`, and `watchlist: bool` on every `index.json` row and every `meta.stale`
+  entry. The flag is **re-derived on every run for every row**, including skipped ones, and the watchlist file is deliberately
+  NOT part of the per-record skip check (editing it must not rebuild 2,600 records). Consequence: `index.json` is authoritative
+  for `watchlist`; a skipped record's embedded `row.watchlist` can lag until that record is next rebuilt. The attachment
+  therefore copies the index row into each embedded record (`records[T].row` is the index row, not the on-disk record's row).
+  The app side (the toggle itself in `app.js`) is not part of this builder.
+- **Served key = `score.json`'s `ticker`.** A company is keyed by `score.ticker` (trimmed, upper-cased), falling back to the
+  folder name; `data/<key>.json`, the index row's `ticker`, `state.json`, `meta.stale[].ticker` and the attachment's `records`
+  all use that key, so the app's `fetch('./data/' + row.ticker + '.json')` always finds the file. The folder name stays in
+  `record.folder`. `--only` accepts either the served ticker or the folder name. When two folders claim one ticker, the folder
+  named exactly after the ticker is served; otherwise the first by folder name. The other is ignored and reported (stderr
+  `build_site: duplicate ticker ...`, `meta.notes`, the summary line, `build()["duplicates"]`); when the served folder
+  disappears the remaining claimant takes over the key on the next run.
+- **One malformed folder never aborts the build.** (1) `score.json` / `dcf_numbers.json` that are not JSON objects count as
+  absent (`{}`): a non-object `score.json` means "not scored" (neither current nor stale); a non-object `dcf_numbers.json` is
+  classified like a pre-v5 run (`meta.stale`). (2) Every nested field read as an object or list (`scenarios`, `weighted`,
+  `hurdle_prices`, `inputs`, `diagnostics`, `growth_components[_adjusted]`, `override_impact`, `second_pass`, `overrides`,
+  `fragility_flags`, `paths`/`growth_paths`, `live.scenarios`, `prices.stats/weekly/daily_1y`, `fundamentals.dividends`,
+  registry entries) is coerced — a wrong type renders as absent/empty, so e.g. a list under `numbers.scenarios` gives a record
+  with `forecast.paths/hurdle_prices = null` (and `iv20/iv25` from `live.json` if present), a string under
+  `score.fragility_flags` falls back to `numbers.fragility_flags`. Tier strings are validated against S/A/B/C/D/F (anything else
+  → null, `tier` → "?"). (3) Non-finite floats: `financials_history.csv` cells that parse to ±inf (e.g. `1e400`) become null
+  like NaN; every record, the index and meta pass through a deep `finite()` pass (NaN/±inf → null) before `dump()`, whose
+  `allow_nan=False` stays as the guard. (4) The per-folder body of the build loop (`load_company` → `build_record` → `dump`)
+  runs under `try/except Exception`: a failure is logged to stderr as `build_site: FAILED <T> (<folder>): <Exc>: <msg>`
+  (even under `--quiet`), the ticker is listed in `meta.failed` / `meta.counts.failed` / `meta.notes` / the summary line
+  (`/ N FAILED [T]`) and `build()["failed"]`; the previous row and record are kept when they exist (`state.json` is not
+  updated for it, so the next run retries); without a previous record the ticker is simply absent this run. Exit status stays
+  0 — everything else was written and WORKER_SPEC step 10 / the crons do not gate on it; the stderr line and `meta.failed`
+  are the signal.
+- **Deleted folder files invalidate the record.** `state.json` record entries carry `files` (the folder's sorted file list at
+  build time) and a record is skipped only when the list is unchanged as well as the mtime/builder checks above. Removing
+  `live.json` / `segments.json` / `fundamentals.json` therefore rebuilds the record (`has.*` false, `irr_live` null, ranking by
+  the scored IRR). The fallback-from-record path compares `record.files`; a `state.json` written before this change (no
+  `files`) rebuilds its records once, then settles.
+- **`write_atomic` retries on Windows locks.** `os.replace` onto a file another process has open (the browser serving the
+  site, another agent, antivirus) raises `PermissionError` on Windows; the writer retries ~20 times with a short back-off before
+  giving up (the `.tmp` file is removed on failure).
+
+## Decisions (static app review round, 2026-10-15 — Forecast sub-tabs, watchlist, floor markers)
+Fixes from the adversarial review of `app.js` / `app.css` / `tests/app.test.js`; none changes a data shape.
+- **Forecast sub-tabs and their hash form.** The Forecast pane carries a sub-tab strip DCF · Street · Analysts (`.subtabs` /
+  `.subpane`, DCF default). Hash: `#T.forecast` (DCF), `#T.forecast.street`, `#T.forecast.analysts`; `parseHash` only treats a
+  trailing `.street` / `.analysts` / `.dcf` as a sub-tab when the token before it ends in `.forecast`, so dotted tickers still
+  route (`#BRK.B.forecast.analysts`) and `#APP.overview.street` is simply an unknown ticker. The sub-tab is remembered for the
+  page (switching Overview → Forecast returns to the last sub-tab). The Overview's Street card is the compact "Street summary"
+  (one paragraph: analyst count, consensus, mean target and its % vs the last close, range; our 15% / 20% hurdle prices; the
+  buy / hold / sell bar; a "See forecast ›" link to `#T.forecast.street`); the EPS and history tables moved to the Street sub-tab.
+- **OE/share history + forecast chart.** History = `fundamentals.annual.oe_per_share`; a null cell is filled by filed OE ÷ diluted
+  shares from the annual row or, failing that, the engine CSV row for the same fiscal year (display arithmetic on two filed
+  values; APP's FY2025 is such a cell); without fundamentals the CSV alone. Last 10 FYs, leading empty years dropped. The
+  forecast series carry the engine's base OE/share (`score.base_oe_per_share`) at the last history position so the dashed lines
+  start "from the base year"; projection years are labelled FY+1… when the last FY label is a year, else `+1…`. Without any
+  history a single `Base` label is used. The chart gets a dashed divider ("forecast →") after the base year. The High / Avg /
+  Low table is super bull / weighted / super bear for years 1, 2, 3, 5, 10, 15, straight from `forecast.paths`.
+- **OE growth chart: the weighted growth is derived, not stored.** No weighted growth path exists in the data (`growth_paths`
+  has the five scenarios only), so the forecast bars are the year-over-year change of the stored weighted OE path (year 1
+  measured from the base — it therefore also carries the scenarios' OE level multiples, said in the note). Error bars run from
+  the stored bear to bull growth path for the same year; the High / Avg / Low table for years 1–3 is bull growth path / weighted
+  YoY / bear growth path (matching the error bars). Historical bars are YoY of the filed series and blank where the prior year
+  was not positive (a ratio on a negative base has no sign). This is display arithmetic on stored values, never a valuation.
+- **Street sub-tab.** Every section the owner listed renders from `profile.street` with graceful empties: paragraph; semicircle
+  gauge (needle at (buy + ½·hold) ÷ total, legend says Nasdaq gives no strong split); price-target fan (`drawFan`: past year of
+  closes from `prices.daily_1y` else `weekly`, dashed lines from the last close to low / mean / high one year out, shaded fan,
+  right-edge tags; omitted with a note when there are no prices); Low / Average / High table with % vs the last close (no
+  median — Nasdaq publishes none); ratings paragraph + stacked buy / hold / sell bars by month from `street.history` (sorted
+  oldest first for the chart, newest first in tables) + the monthly table; Financial forecast with an Annual · Quarterly
+  toggle (tiles "EPS this / next year" from `eps_forecast.annual[0..1]`, "from" = last filed FY diluted EPS then the prior
+  consensus; quarterly tiles' "from" = the same quarter a year earlier matched by quarter number and year−1 against
+  `fundamentals.quarterly` labels, blank when no match; the table shows the last two FYs / four quarters filed beside the
+  consensus columns, with "—" for everything but EPS, growth and estimate counts); EPS forecast chart (filed solid, consensus
+  dashed, low–high band) + High / Avg / Low table; EPS growth bars with low–high error bars + table; earnings track record
+  (`eps_history`, last four, paired consensus / actual bars with the surprise % computed when not supplied) + next report line
+  (`next_earnings`, `eps_upcoming`); the data-sources box. Consensus EPS is labelled as the analysts' adjusted basis.
+- **Analysts sub-tab** renders `street.brokers` (strings or `{name}`), the ratings history (newest first), `street.momentum`
+  (now vs 1 week / 1 month ago with the % change), `peg_forward`, `upgrades_downgrades` (objects or strings) and the TipRanks
+  note; without `profile.street` it shows the enrichment note plus the TipRanks note.
+- **Watchlist toggle and per-device stars.** The list state gains `watch: false` (persisted with the rest in `oe-dcf.list.v1`;
+  only a real boolean is accepted). A "★ Watchlist N" button sits between the tier and fit segments; N counts index rows with
+  `row.watchlist === true` plus the tickers starred on this device (`oe-dcf.stars.v1`, an array, normalised and upper-cased).
+  Canonical watchlist rows show a fixed star (no toggle — the file is the source of truth); every other row gets a ☆/★ button
+  that adds a per-device extra, which the watch filter includes. The company hero shows a "★ Watchlist" chip for canonical rows
+  only (the record does not know about device stars). `filterSortIndex`, `renderListRowsHTML`, `renderRowHTML` and
+  `renderListHTML` take the stars as an extra argument so they stay pure.
+- **Ranking table geometry.** `renderListHTML` emits a `<colgroup>` with the width % from `COLS[i][3]` (Company 14, Tier 4.5,
+  Band 5.5, Live / Scored IRR 6 each, Price 6, IV 6, Upside 5, Moat 4.5, Conf. 5, Mkt cap 6, 1y 5, Take 26.5 — sums to 100), so
+  `table-layout: fixed` no longer splits 13 columns evenly. At 1265 px the rows are ~120–185 px tall (were 400–600).
+- **Condensed tab bar price.** `renderTabSummary` follows the header's rule: live page → live price with the 1-day change; no
+  live.json → `prices.stats.last` with its change when `last_date` exists, else the scored price with no change figure. A change
+  is never shown beside a price it was not measured on (AEE: `$104.58 +0.25%`, not `$104.48 +0.25%`).
+- **Floor markers.** `sensitivity()` carries `irr_at_floor` and `irr_live_at_floor` per scenario (the weighted row also reads
+  `live.irr_at_floor` / `row.irr_at_floor_live`); `liveView().irr_at_floor` treats `row.irr_at_floor_live` like
+  `live.irr_at_floor`. A flagged IRR cell in "Value at every discount rate" is coloured and carries an "at floor" superscript
+  with a title explaining it is a bound, not a solved return (the note under the table repeats this when any cell is flagged);
+  the hurdle-price band note and the hero's bear → bull band mark a floored end the same way; the hero's "at the model floor"
+  text covers the weighted figure. ZS (live super bear / bear at the floor) is the test case.
+- **Chart primitives added** to `drawChart`: `kind: 'band'` series (`values` = high, `lows` = low, shaded between contiguous
+  runs), per-bar `colors`, per-bar `errors` (`[lo, hi]` stems with caps and a tooltip), `nodots`, `dividerAt` (index after which
+  the dashed "forecast →" divider is drawn) and `legendExtra`; legend swatches distinguish dashed lines, bands and error bars.
+- **Not done here (deliberately).** The attachment build (`--attachment`) writes `_daily/ranking-<date>.html` / `latest.html` next
+  to files other agents own and was not run from this change; the app's `SITE_DATA` path is unchanged. Per-device stars are not
+  synced anywhere (README already says GitHub Pages cannot). `meta.counts.watchlist` is not read: the button's count is derived
+  from the index rows so device stars are included — the two agree for the canonical set.

@@ -1,0 +1,80 @@
+{
+ "built_at": "2026-10-15T01:57:29-04:00",
+ "date": "2026-10-15",
+ "data_version": 1,
+ "engine_release_latest": "5.4.0",
+ "sweep": {
+  "done": 89,
+  "total": 2617,
+  "pending": 2518,
+  "blocked_data_gap": 5,
+  "blocked_no_data": 5,
+  "in_progress": 0
+ },
+ "counts": {
+  "current": 90,
+  "stale": 0,
+  "misfits": 25,
+  "tiers": {
+   "S": 0,
+   "A": 0,
+   "B": 3,
+   "C": 22,
+   "D": 49,
+   "F": 16
+  },
+  "with_live": 72,
+  "watchlist": 10,
+  "failed": 0
+ },
+ "hurdles": {
+  "S": 0.25,
+  "A": 0.2,
+  "B": 0.15,
+  "C": 0.1
+ },
+ "tabs": [
+  "overview",
+  "financials",
+  "dividends",
+  "segments",
+  "forecast",
+  "analysis",
+  "data"
+ ],
+ "watchlist": [
+  "ADBE",
+  "AMZN",
+  "APP",
+  "CMPS",
+  "DFTX",
+  "DUOL",
+  "FIG",
+  "GOOGL",
+  "INTC",
+  "LFTO",
+  "META",
+  "MSFT",
+  "NFLX",
+  "NTDOY",
+  "NVO",
+  "OTLY",
+  "RDDT",
+  "SE",
+  "SNAP",
+  "SONY",
+  "STZ",
+  "TTWO",
+  "U",
+  "XIACY"
+ ],
+ "stale": [],
+ "failed": [],
+ "notes": [
+  "ranked by the live IRR (live.json, scored paths repriced at the last close) when present, else the scored IRR; nulls last",
+  "this run: 1 record(s) written, 89 skipped unchanged, 0 removed",
+  "watchlist: _system/watchlist.json tickers, flagged on every row (row.watchlist) and listed in meta.watchlist",
+  "1 of the records written carry forecast paths replayed from pre-5.4 run inputs through dcf_engine.replay_paths",
+  "built with --only APP: other rows come from the previous index"
+ ]
+}

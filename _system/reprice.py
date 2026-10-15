@@ -189,7 +189,13 @@ def reprice(numbers, price, price_date=None, scored=None, today=None):
     # is a judgment on the business, not on the price: keep it while the numbers
     # tier is where it was on scoring day; let the live numbers tier through —
     # flagged — only when the price move actually moved the numbers tier.
-    override_active = bool(scored_final and scored_tier and scored_final != scored_tier)
+    # Re-verification finding: a score.json left over from an EARLIER engine run
+    # is not evidence of an override on this run. make_score.py copies the
+    # engine's as_of into analysis_date, so a fresh score carries the same
+    # date as dcf_numbers.json; anything else is stale and ignored here.
+    scored_fresh = bool(isinstance(scored, dict) and scored.get("analysis_date")
+                        and scored.get("analysis_date") == numbers.get("as_of"))
+    override_active = bool(scored_fresh and scored_final and scored_tier and scored_final != scored_tier)
     numbers_moved = tier_numbers != scored_tier
     if override_active and not numbers_moved:
         tier, override_superseded = scored_final, False
@@ -211,6 +217,7 @@ def reprice(numbers, price, price_date=None, scored=None, today=None):
         "stale_price": (age > STALE_DAYS) if age is not None else None,
         "scored_price": scored_price,
         "scored_date": numbers.get("as_of"),
+        "score_json_fresh": scored_fresh if isinstance(scored, dict) else None,
         "price_change_pct": (price / scored_price - 1) * 100 if scored_price else None,
         "irr_weighted": irr_w,
         "tier": tier,

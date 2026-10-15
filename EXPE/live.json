@@ -1,0 +1,81 @@
+{
+ "ticker": "EXPE",
+ "as_of": "2026-10-15",
+ "price": 274.69,
+ "price_date": "2026-10-14",
+ "price_source": "prices.json (Nasdaq last close)",
+ "price_age_days": 1,
+ "stale_price": false,
+ "scored_price": 272.055,
+ "scored_date": "2026-10-14",
+ "price_change_pct": 0.9685541526529562,
+ "irr_weighted": 0.23130436339939753,
+ "tier": "B",
+ "tier_display": "B",
+ "tier_by_numbers": "A",
+ "override_active": true,
+ "override_superseded": false,
+ "irr_base": 0.2216503710976857,
+ "irr_bear": 0.17625016181025532,
+ "irr_bull": 0.271902556619645,
+ "tier_bear": "B",
+ "tier_bull": "S",
+ "irr_low": 0.12118043582420424,
+ "irr_high": 0.35098141012837003,
+ "irr_capped": false,
+ "irr_at_floor": false,
+ "scenarios": {
+  "super_bear": {
+   "irr": 0.12118043582420424,
+   "tier": "C",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "irr": 0.17625016181025532,
+   "tier": "B",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "base": {
+   "irr": 0.2216503710976857,
+   "tier": "A",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "irr": 0.271902556619645,
+   "tier": "S",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "irr": 0.35098141012837003,
+   "tier": "S",
+   "irr_capped": false,
+   "irr_at_floor": false
+  }
+ },
+ "iv_at_15": 491.7408124094533,
+ "iv_at_12": 671.3197000459227,
+ "iv_at_20": 333.1724227870567,
+ "iv_at_25": 247.9829614137849,
+ "upside_at_15": 0.7901664145380367,
+ "upside_at_12": 1.44391750717508,
+ "market_cap_est": 36243422670.0,
+ "in_scope_under_40b": true,
+ "scored": {
+  "irr_weighted": 0.23300030567238916,
+  "tier_by_numbers": "A",
+  "tier_final": "B",
+  "tier_override_reason": "Method range spans Tier C (median base $13.57/sh: weighted IRR 14.11%, IV@15 $249.37) to Tier A (TTM base $32.70/sh: 23.30%, $491.74). The TTM base embeds merchant-float working-capital inflow that scales with bookings growth and has not survived a full audited year; with WIDE_SCENARIO_SPREAD present, the verdict is sized to the conservative end per the standing rule.",
+  "upside_at_15": 0.8075051456854434
+ },
+ "delta": {
+  "irr_pp": -0.1695942272991635,
+  "tier_changed": false,
+  "tier_changed_vs_final": false
+ },
+ "engine_release_of_run": "pre-5.4 (engine_version 5)",
+ "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+}

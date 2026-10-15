@@ -1,0 +1,81 @@
+{
+ "ticker": "ZS",
+ "as_of": "2026-10-15",
+ "price": 220.79,
+ "price_date": "2026-10-14",
+ "price_source": "prices.json (Nasdaq last close)",
+ "price_age_days": 1,
+ "stale_price": false,
+ "scored_price": 228.66,
+ "scored_date": "2026-10-14",
+ "price_change_pct": -3.4417913058689797,
+ "irr_weighted": 0.032836075973581014,
+ "tier": "D",
+ "tier_display": "D",
+ "tier_by_numbers": "D",
+ "override_active": false,
+ "override_superseded": false,
+ "irr_base": 0.032769175949824245,
+ "irr_bear": 0.02999498851781423,
+ "irr_bull": 0.036735105501684615,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "irr_low": 0.027918804369503038,
+ "irr_high": 0.04378571731460991,
+ "irr_capped": false,
+ "irr_at_floor": false,
+ "scenarios": {
+  "super_bear": {
+   "irr": 0.027918804369503038,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": true
+  },
+  "bear": {
+   "irr": 0.02999498851781423,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": true
+  },
+  "base": {
+   "irr": 0.032769175949824245,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "irr": 0.036735105501684615,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "irr": 0.04378571731460991,
+   "tier": "D",
+   "irr_capped": false,
+   "irr_at_floor": false
+  }
+ },
+ "iv_at_15": 11.139729803952925,
+ "iv_at_12": 15.344233796017203,
+ "iv_at_20": 7.45701595637644,
+ "iv_at_25": 5.498925110891565,
+ "upside_at_15": -0.9495460401107254,
+ "upside_at_12": -0.9305030400107921,
+ "market_cap_est": 35374753010.0,
+ "in_scope_under_40b": true,
+ "scored": {
+  "irr_weighted": 0.032571107735754154,
+  "tier_by_numbers": "D",
+  "tier_final": "D",
+  "tier_override_reason": null,
+  "upside_at_15": -0.9512825601156611
+ },
+ "delta": {
+  "irr_pp": 0.026496823782685974,
+  "tier_changed": false,
+  "tier_changed_vs_final": false
+ },
+ "engine_release_of_run": "pre-5.4 (engine_version 5)",
+ "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+}

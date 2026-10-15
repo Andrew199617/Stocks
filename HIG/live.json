@@ -1,0 +1,81 @@
+{
+ "ticker": "HIG",
+ "as_of": "2026-10-15",
+ "price": 131.96,
+ "price_date": "2026-10-14",
+ "price_source": "prices.json (Nasdaq last close)",
+ "price_age_days": 1,
+ "stale_price": false,
+ "scored_price": 137.5912,
+ "scored_date": "2026-10-14",
+ "price_change_pct": -4.092703603137393,
+ "irr_weighted": 0.21018696530904746,
+ "tier": "B",
+ "tier_display": "B",
+ "tier_by_numbers": "A",
+ "override_active": true,
+ "override_superseded": false,
+ "irr_base": 0.2001612089210708,
+ "irr_bear": 0.15537146762141874,
+ "irr_bull": 0.25093283992319015,
+ "tier_bear": "B",
+ "tier_bull": "S",
+ "irr_low": 0.10334803733291933,
+ "irr_high": 0.33233340260049216,
+ "irr_capped": false,
+ "irr_at_floor": false,
+ "scenarios": {
+  "super_bear": {
+   "irr": 0.10334803733291933,
+   "tier": "C",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "irr": 0.15537146762141874,
+   "tier": "B",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "base": {
+   "irr": 0.2001612089210708,
+   "tier": "A",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "irr": 0.25093283992319015,
+   "tier": "S",
+   "irr_capped": false,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "irr": 0.33233340260049216,
+   "tier": "S",
+   "irr_capped": false,
+   "irr_at_floor": false
+  }
+ },
+ "iv_at_15": 201.3929917752237,
+ "iv_at_12": 269.7804260688981,
+ "iv_at_20": 140.2745989650236,
+ "iv_at_25": 106.88378870636696,
+ "upside_at_15": 0.5261669579813859,
+ "upside_at_12": 1.0444106249537595,
+ "market_cap_est": 37806540000.0,
+ "in_scope_under_40b": true,
+ "scored": {
+  "irr_weighted": 0.2031593138371507,
+  "tier_by_numbers": "A",
+  "tier_final": "B",
+  "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (NI_OCF_DIVERGENCE is structural in 2023/2024), so tier-by-numbers A overstates distributable owner's earnings; softened one notch to B, confidence low.",
+  "upside_at_15": 0.46370546790218925
+ },
+ "delta": {
+  "irr_pp": 0.7027651471896768,
+  "tier_changed": false,
+  "tier_changed_vs_final": false
+ },
+ "engine_release_of_run": "pre-5.4 (engine_version 5)",
+ "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+}

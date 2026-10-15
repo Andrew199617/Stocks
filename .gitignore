@@ -4,3 +4,4 @@ __pycache__/
 .DS_Store
 .claude/
 _daily/preview-*.html
+_daily/site/state.json
