@@ -13,10 +13,17 @@ Method (documented, reproducible):
 - Queue order: Andrew's watchlist first, then descending market cap (largest under-$40B first).
 Outputs: universe.csv, queue.json (with status per ticker), universe_notes.md
 """
-import json, csv, re, sys, datetime, urllib.request
+import json, csv, re, sys, os, datetime, urllib.request
 
-BASE = "/home/hatch/workspace/stocks/_system"
-WATCHLIST = ["U","META","NFLX","RDDT","CMPS","ADBE","MSFT","AMZN","APP","LFTO","NTDOY","SONY","SNAP","GOOGL","DUOL","SE","NVO","TTWO","OTLY","STZ","INTC","DFTX","XIACY","FIG"]
+BASE = os.environ.get("STOCKS_SYS") or os.path.dirname(os.path.abspath(__file__))
+def _load_watchlist():
+    """v5.4: the canonical watchlist lives in _system/watchlist.json (Andrew edits it or
+    asks Muse to); the old hard-coded list is the fallback."""
+    try:
+        return [x["ticker"].upper() for x in json.load(open(f"{BASE}/watchlist.json", encoding="utf-8"))["tickers"]]
+    except Exception:
+        return ["U","META","NFLX","RDDT","CMPS","ADBE","MSFT","AMZN","APP","LFTO","NTDOY","SONY","SNAP","GOOGL","DUOL","SE","NVO","TTWO","OTLY","STZ","INTC","DFTX","XIACY","FIG"]
+WATCHLIST = _load_watchlist()
 
 def fetch(url, out, ua="Mozilla/5.0"):
     req = urllib.request.Request(url, headers={"User-Agent": ua})

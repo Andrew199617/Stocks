@@ -45,6 +45,10 @@ Andrew's fundamental-analysis checklist, baked in. `forensic_pull.py` computes t
 filing-direct half automatically (paste its output into second_pass.md); the worker
 resolves every tripped flag in writing and runs the judgment checks. The battery feeds
 three things only: moat evidence, base-OE reconstruction, and confidence.
+- **Return on invested capital (added 2026-10-14)** — the `roic_proxy` series and the
+  gross-margin series in `fundamentals.json` are the measured half of the moat. Compare
+  pass 1's moat score against them: a 7+ on ROIC below ~10% without a written reason is a
+  finding (moat evidence AGAINST); a 4 on sustained 20%+ ROIC is the reverse case.
 - **Margin structure** — gross margin level + trend (≥40% is the durable-advantage rule
   of thumb, judged sector-relative: a grocer and a software firm are not the same test);
   COGS % of revenue stability (swings in non-compounders = weak cost control = moat
@@ -125,7 +129,7 @@ the new engine run.
    the adversarial tests). Add `second_pass {verdict: "no_change", ...}` to judgment.json
    and run `python3 _system/make_score.py <T>`. Then
    `python3 _system/queue.py pass2-done <T> done_no_change` and
-   `python3 _system/build_daily_html.py`. Finish silently.
+   `python3 _system/build_site.py`. Finish silently.
 6. **Material finding**: quantify it; rerun the engine with the pass-1 sanity checks
    (`python3 _system/dcf_engine.py <T> --moat ... --probs ... [--offsets] [--mults] [--ttm] [--gterm] [--cik]`,
    `--ttm` after a fresh `ttm.py` run when the base moved); write the new judgment.json
@@ -133,8 +137,9 @@ the new engine run.
    second_pass.md with what pass 1 missed, the evidence with sources, old vs new inputs,
    old vs new scenario table and weighted result; append a dated
    "## Second pass (YYYY-MM-DD)" addendum to analysis.md pointing to second_pass.md —
-   never rewrite pass-1 content. Then `queue.py pass2-done <T> done_changed` and rebuild
-   the HTML.
+   never rewrite pass-1 content. Then `python3 _system/reprice.py <T>` (the live overlay
+   follows the new paths), `queue.py pass2-done <T> done_changed` and
+   `python3 _system/build_site.py`.
 7. **Reporting**: per the alert rule above; also report plainly if the second-pass system
    itself is blocked. Never invent numbers — every figure comes from dcf_numbers.json,
    key_numbers.md, ttm.json, the forensic battery, fundamentals.json or a cited source.

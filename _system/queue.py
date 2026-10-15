@@ -9,6 +9,7 @@ Usage:
   python3 queue.py [--file PATH] reap            -> print reaped tickers
   python3 queue.py [--file PATH] requeue <TICKER>   (blocked/expired -> pending)
   python3 queue.py [--file PATH] migrate-data-gap   (one-off status migration)
+  python3 queue.py refresh <TICKER> --stdin         (done -> pending: a newer filing exists; v5.4)
   python3 queue.py pass2-claim                      -> print the second-pass ticker (v5.4)
   python3 queue.py pass2-done <TICKER> <done_no_change|done_changed>
   python3 queue.py pass2-reset <TICKER>             (-> pending)
@@ -197,6 +198,29 @@ def cmd_requeue(path, ticker):
     print(f"{ticker} requeued (pending)")
 
 
+def cmd_refresh(path, ticker, reason):
+    """v5.4: a DONE name goes back to pending because a newer filing exists
+    (the filing watcher's job — audit round-1 P1 "freshness moves out of pass
+    2"). The reason is kept on the entry so the worker sees why it is scoring
+    the name again; the previous completion date is preserved as last_done."""
+    def fn(data):
+        e = find(data, ticker)
+        if e is None:
+            print(f"queue.py: {ticker} not in queue", file=sys.stderr)
+            sys.exit(1)
+        if e["status"] != "done":
+            print(f"queue.py: {ticker} is {e['status']} — only done entries refresh (use requeue for blocked ones)", file=sys.stderr)
+            sys.exit(1)
+        e["status"] = "pending"
+        e["last_done"] = e.get("completed")
+        e["refresh_reason"] = reason or "newer filing"
+        e["refresh_date"] = now_et().date().isoformat()
+        e.pop("claimed_at", None)
+        return ticker
+    with_lock(path, fn)
+    print(f"{ticker} refreshed (pending): {reason}")
+
+
 def cmd_migrate_data_gap(path):
     """One-off (round-2): entries blocked before the blocked_data_gap status
     existed, whose note carries a DATA_GAP reason, move to the new status."""
@@ -242,6 +266,11 @@ def main():
         cmd_migrate_data_gap(path)
     elif cmd == "reap":
         cmd_reap(path)
+    elif cmd == "refresh" and len(rest) >= 1:
+        if rest[1:] == ["--stdin"]:
+            cmd_refresh(path, rest[0].upper(), sys.stdin.read().strip())
+        else:
+            cmd_refresh(path, rest[0].upper(), " ".join(rest[1:]))
     elif cmd == "pass2-claim":
         cmd_pass2_claim(PASS2_FILE, path)
     elif cmd == "pass2-done" and len(rest) == 2:

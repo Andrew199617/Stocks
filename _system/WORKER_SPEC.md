@@ -26,6 +26,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      did file: the diluted count sits in the 10-K EPS note — a `shares_override` kind
      "filing" from it is in bounds.
    - **Exit 3 `DATA_GAP:price`** → block the same way and finish.
+   - **Re-score after a new filing**: when the folder already holds a prior run (the queue
+     entry carries `refresh_reason: NEW_FILING…`), read its analysis.md first; judgment.json
+     and its overrides carry over and the tools apply them. Write the new analysis.md as a
+     dated supersession (state what the new filing changed), keep the prior flag and
+     override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
      CIK change: web-search "<company> CIK 10-K", rerun with `--cik <CIK>`; only if no filing
      parent exists, block with a reason starting `NO_DATA:` and finish.
@@ -48,9 +53,14 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
 5. **Moat 0–10, justified.** Rubric: 9–10 wide and durable (network effects, switching
    costs, structural cost advantage, proven pricing power, high returns on capital through
    a cycle); 7–8 strong; 5–6 moderate/narrow; 3–4 weak; 0–2 none. Name the specific pillars
-   FOR and the erosion forces AGAINST — no generic claims. Use the Financials data the
-   enrichment pulls (gross margin level and trend, ROIC proxy, SBC load) as evidence. The
-   moat sets the fade: growth holds 2 years, then converges to 2.5% over
+   FOR and the erosion forces AGAINST — no generic claims. Evidence first: quote the
+   company's **return on invested capital** history (the `roic_proxy` series in
+   `fundamentals.json`: after-tax operating income over equity + debt − cash) and its gross
+   margin level and trend for the last five fiscal years. Andrew thinks in ROIC terms: a
+   moat of 7 or above should sit on ROIC that has stayed well above the cost of capital
+   through a cycle, or carry a written reason why the measured history understates the
+   franchise (early scale, heavy growth spend, a divestiture break). A high moat on low or
+   falling ROIC is the first thing pass 2 will attack. The moat sets the fade: growth holds 2 years, then converges to 2.5% over
    CAP = clamp(2 + 1.3 × moat, 2, 15) years. `--gterm` only with a written reason.
 6. **Five scenarios** summing to 100%. Defaults 10/25/30/25/10; growth-start offsets
    −12/−5/0/+5/+12pp vs the engine's blended start; OE multipliers 0.75/0.90/1.00/1.10/1.25.
@@ -86,11 +96,22 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    exact judgment inputs) and run it again. `DATA_GAP:ads_ratio` has the bounded fix (d).
    After it runs, check analysis.md against `key_numbers.md` and fix any figure that
    disagrees.
-9. **Enrich (5.4, non-blocking).** `python3 _system/fundamentals.py <T>` (filing-direct
-   annual + quarterly statements → `fundamentals.json`) and `python3 _system/prices.py <T>`
-   (ten years of closes → `prices.json`). The company page's chart and Financials tab read
-   them. A failure here never blocks the score — note it and move on.
-10. `python3 _system/queue.py done <T>` then `python3 _system/build_daily_html.py`.
+9. **Enrich (5.4, non-blocking).** Run, in this order: `python3 _system/fundamentals.py <T>`
+   (filing-direct annual + quarterly statements, TTM, dividends → `fundamentals.json`),
+   `python3 _system/prices.py <T>` (ten years of closes → `prices.json`),
+   `python3 _system/segments.py <T>` (segment / product / geography breakdowns from the
+   filing's XBRL instance → `segments.json`), `python3 _system/statements.py <T>` (the full
+   standardized income statement, balance sheet, cash flow and metrics, whole filing history
+   → `statements.json`), `python3 _system/profile.py <T>` (About, Street consensus, filing
+   feed → `profile.json`), `python3 _system/reprice.py <T>` (the scored cash-flow paths
+   repriced at the last close → `live.json`; Tier F names are skipped by design). The
+   company page reads all of them. A failure here never blocks the score — note it
+   in analysis.md's data section and move on.
+10. `python3 _system/queue.py done <T>` then `python3 _system/build_site.py` (the data layer:
+    `_daily/site/{meta,index}.json` + `data/<T>.json`; incremental, so it only regenerates the
+    names whose files changed). The static app in `_daily/site/` renders everything — never
+    edit HTML by hand. `--attachment` (the daily cron's job) also writes the dated
+    self-contained ranking file.
 11. **Report** to chat ONLY when `score.json` has `alert_eligible: true` (Tier S/A at
     medium+ confidence, not a sector misfit, tier not resting on an override, IRR not at
     the floor): one line — ticker, tier, weighted IRR, bear→bull band, moat, price, IV@15%,

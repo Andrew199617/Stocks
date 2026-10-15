@@ -1,0 +1,126 @@
+{
+ "updated": "2026-10-14",
+ "note": "Andrew's watchlist. Canonical list: build_universe.py puts these first in the queue (those under $40B) and build_site.py marks them on the ranking. Add a ticker by editing this file (or ask Muse to); browser stars in the app are per-device extras.",
+ "tickers": [
+  {
+   "ticker": "U",
+   "in_universe": true,
+   "name": "Unity Software Inc."
+  },
+  {
+   "ticker": "META",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "NFLX",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "RDDT",
+   "in_universe": true,
+   "name": "Reddit Inc. Class A"
+  },
+  {
+   "ticker": "CMPS",
+   "in_universe": true,
+   "name": "COMPASS Pathways Plc American Depository Shares"
+  },
+  {
+   "ticker": "ADBE",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "MSFT",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "AMZN",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "APP",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "LFTO",
+   "in_universe": true,
+   "name": "Liftoff Mobile Inc."
+  },
+  {
+   "ticker": "NTDOY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "SONY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "SNAP",
+   "in_universe": true,
+   "name": "Snap Inc. Class A"
+  },
+  {
+   "ticker": "GOOGL",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "DUOL",
+   "in_universe": true,
+   "name": "Duolingo Inc. Class A"
+  },
+  {
+   "ticker": "SE",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "NVO",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "TTWO",
+   "in_universe": true,
+   "name": "Take-Two Interactive Software Inc."
+  },
+  {
+   "ticker": "OTLY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "STZ",
+   "in_universe": true,
+   "name": "Constellation Brands Inc."
+  },
+  {
+   "ticker": "INTC",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "DFTX",
+   "in_universe": true,
+   "name": "Definium Therapeutics Inc. Common Shares"
+  },
+  {
+   "ticker": "XIACY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "FIG",
+   "in_universe": true,
+   "name": "Figma Inc. Class A"
+  }
+ ]
+}

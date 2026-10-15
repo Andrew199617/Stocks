@@ -1,14 +1,14 @@
 ---
 id: dcf-second-pass
-title: DCF second pass — 1 company per 15 min
-enabled: false
+title: DCF second pass — 1 company per 30 min (re-enabled 2026-10-14 under the v5.4 governance)
+enabled: true
 owner: goal:russell-3000-owner-s-earnings-dcf-sweep
 mode: task
 schedule:
   kind: interval
   timezone: America/New_York
   at: 2026-10-13T22:09:00
-  every: 15m
+  every: 30m
 timeout_secs: 3600
 delivery:
   - chat_id: be9b1806-e747-4d34-97fc-f5080aadead5
