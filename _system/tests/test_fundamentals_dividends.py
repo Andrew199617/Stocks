@@ -10,8 +10,13 @@ build_dividends calls on hand-made annual / quarterly tables shaped like the
 real names the reviewers used (HBAN, KR, TKO, CCL, ESLT, KVUE, ZS; 5.4.4:
 TSCO, NVDA, CTAS, AVGO, LRCX, WMT, CCL again; 5.4.6: ZTS, ATO, IRM, GEHC, HPQ,
 FTI, WRB, WCN, FIG, DHI, ROP, LRCX, and the reviewers' S1 / S2 / edge3 fixtures).
+2026-10-16 (price-free fundamentals.json): price_dividends — the price leaves
+of the block from its own price-free fields — and, over EVERY build_dividends
+call the other tests make, build_dividends(price P) == price_dividends(
+build_dividends(price Q), P): the block build_site.py reprices at a newer
+close is the block this script would write at it.
 """
-import os, sys, math
+import copy, json, os, sys, math
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYS = os.path.dirname(HERE)
@@ -467,7 +472,8 @@ def test_build_dividends_uses_paid_when_no_declared_facts():
     d = F.build_dividends(annual, qrows, dps_q, {"declared": {}, "paid": {"2024-12-31": 0.6, "2025-12-31": 0.6}}, 10.0, "2026-10-14", "score.json price", _ctx())
     assert d["dps_basis"] == "paid" and d["frequency"] == "semiannual" and d["frequency_basis"].startswith("spacing")
     assert close(d["dps_ttm"], 0.6) and all(h["kind"] == "paid" for h in d["history"])
-    assert any("score.json" in n for n in d["notes"])
+    # 2026-10-16: the price note is the volatile `price_note`, never an entry of the committed `notes`
+    assert "score.json" in d["price_note"] and not any("score.json" in n for n in d["notes"])
 
 
 def test_build_dividends_semiannual_with_the_second_payment_only_in_the_fy_total():
@@ -1273,6 +1279,176 @@ def test_build_dividends_a_decreasing_year_to_date_is_left_out_not_a_sign_error(
     assert not any(n.startswith("sign convention") for n in d["notes"]) and any("quarters left out (not a sign error)" in n for n in d["notes"])
     assert "filed below zero" not in (d["yields_display"]["net_buyback_yield"]["note"] or "") and "sign_corrected" not in d["yield_basis"]["net_buyback_yield"]
 
+
+# ---------------- Codex review of PR #2: quarterly share evidence for a split ----------------
+def _q_facts(q1_count=210.3e6, q2_count=210.2e6):
+    """Q (Qnity): the 0.5 spin-off distribution ratio (one Qnity share per two DuPont shares) tagged on the duration contexts of
+    its Q1 and Q2 2026 10-Qs; diluted counts FY2023-FY2025 from the 10-K filed 2026-02-26, then the 2026 quarters; FY2025
+    declared DPS 0.14 and Q2 2026 0.08. No fiscal year has been filed since the ratio, so only the quarters can speak."""
+    def ratio(start, end, filed, fp):
+        return ("us-gaap", "StockholdersEquityNoteStockSplitConversionRatio1", "pure", _e(start, end, 0.5, filed, filed, "10-Q", fp))
+
+    def dps(start, end, val, filed, form="10-Q", fp="Q2"):
+        return ("us-gaap", "CommonStockDividendsPerShareDeclared", "USD/shares", _e(start, end, val, filed, filed, form, fp, int(end[:4])))
+    return _facts([
+        ratio("2026-01-01", "2026-03-31", "2026-05-12", "Q1"), ratio("2026-01-01", "2026-06-30", "2026-08-04", "Q2"),
+        _sh("2023-01-01", "2023-12-31", 209.4e6, "2026-02-26", "10-K", "FY"), _sh("2024-01-01", "2024-12-31", 209.4e6, "2026-02-26", "10-K", "FY"),
+        _sh("2025-07-01", "2025-09-30", 209.0e6, "2025-11-18", "10-Q", "Q3"), _sh("2025-01-01", "2025-12-31", 209.8e6, "2026-02-26", "10-K", "FY"),
+        _sh("2026-01-01", "2026-03-31", q1_count, "2026-05-12"), _sh("2026-04-01", "2026-06-30", q2_count, "2026-08-04", fp="Q2"),
+        dps("2025-01-01", "2025-12-31", 0.14, "2026-02-26", "10-K", "FY"), dps("2026-04-01", "2026-06-30", 0.08, "2026-08-04"),
+    ])
+
+
+def test_dividends_inputs_rejects_a_ratio_the_quarterly_counts_do_not_bear_out():
+    # Before: the annual counts alone (none filed after the ratio) said nothing, the 0.5 was applied and the FY2025 DPS of 0.14
+    # became 0.28 — yield 0.2302% and EPS payout 8.4848% at $121.62 instead of 0.1151% / 4.2424%
+    dps_q, dps_fy, meta = F.dividends_inputs(_q_facts())
+    assert meta["splits"] == [], meta["splits"]
+    assert dps_fy["declared"]["2025-12-31"] == 0.14 and dps_q["declared"]["2026-06-30"]["val"] == 0.08
+    note = next(n for n in meta["split_notes"] if "is left out" in n and "0.5" in n)
+    assert "209,800,000 (FY ending 2025-12-31" in note and "210,300,000 (quarter ending 2026-03-31)" in note and "×1.00" in note
+    annual = [{"fy": "2025", "period_end": "2025-12-31", "eps_diluted": 3.30, "dividends_paid": None, "oe_conservative": None, "fcf": None, "shares_diluted": 209.8e6}]
+    d = F.build_dividends(annual, [], dps_q, dps_fy, 121.62, "2026-10-14", "prices.json stats.last", _ctx(splits=meta["splits"]))
+    assert d["split_adjustments"] == [] and close(d["dps_ttm"], 0.14)
+    assert [r["dps"] for r in d["annual_dps"]] == [0.14]
+    assert round(d["dividend_yield"] * 100, 4) == 0.1151 and round(d["payout_ratio_eps"] * 100, 4) == 4.2424
+
+
+def test_dividends_inputs_keeps_a_split_the_quarterly_counts_bear_out():
+    # the same facts with the Q1 2026 count halved: a genuine 1-for-2 reverse split evidenced by the quarters is still applied
+    dps_q, dps_fy, meta = F.dividends_inputs(_q_facts(q1_count=105.2e6, q2_count=105.1e6))
+    assert [(d, r) for d, r, *_ in meta["splits"]] == [("2026-03-31", 0.5)]
+    assert close(dps_fy["declared"]["2025-12-31"], 0.28), "the FY2025 DPS filed before the reverse split is restated to the new basis"
+
+
+def test_share_count_move_reads_fiscal_years_and_quarters():
+    counts = {("2025-01-01", "2025-12-31"): (209.8e6, "2026-02-26"), ("2025-10-01", "2025-12-31"): (209.9e6, "2026-02-26"),
+              ("2026-01-01", "2026-03-31"): (210.3e6, "2026-05-12"), ("2026-01-01", "2026-06-30"): (210.3e6, "2026-08-04"),
+              ("2026-04-01", "2026-06-30"): (210.2e6, "2026-08-04")}
+    obs, ev = F.share_count_move(counts, "2026-03-31")
+    assert close(obs, 210.3e6 / 209.9e6) and "(quarter ending 2025-12-31" in ev, "the shortest period at the last end before the date (Q4, not FY)"
+    assert F.share_count_move(counts, "2027-01-01") is None and F.share_count_move(counts, "2025-01-01") is None
+    # the annual {end: (val, filed)} shape still reads as before
+    obs, ev = F.share_count_move({"2024-12-31": (100e6, "2025-02-01"), "2025-12-31": (200e6, "2026-02-01")}, "2025-06-01")
+    assert close(obs, 2.0) and "(FY ending 2024-12-31" in ev and "(FY ending 2025-12-31)" in ev
+    # a count filed in thousands against one in shares is normalised
+    assert close(F.share_count_move({"2024-12-31": (100e3, "2025-02-01"), "2025-12-31": (101e6, "2026-02-01")}, "2025-06-01")[0], 1.01)
+
+
+def test_diluted_counts_with_filed_reads_quarters_and_years_newest_filing():
+    facts = _facts([_sh("2025-01-01", "2025-12-31", 209.8e6, "2026-02-26", "10-K", "FY"), _sh("2025-01-01", "2025-12-31", 209.7e6, "2027-02-26", "10-K", "FY"),
+                    _sh("2026-01-01", "2026-03-31", 210.3e6, "2026-05-12"), _sh("2026-01-01", "2026-01-20", 1e6, "2026-05-12")])
+    c = F.diluted_counts_with_filed(facts)
+    assert c == {("2025-01-01", "2025-12-31"): (209.7e6, "2027-02-26"), ("2026-01-01", "2026-03-31"): (210.3e6, "2026-05-12")}, "newest filing; a 19-day stub is no period"
+
+
+# ---------------- 2026-10-16: the price leaves (price_dividends) ----------------
+def _jd(o):
+    return json.dumps(o, ensure_ascii=False)  # key order included: the file is written in this order
+
+
+def test_price_dividends_recomputes_every_price_leaf_from_the_block():
+    annual, qrows, dps_q, dps_fy = _fixture()
+    ctx = _ctx(shares_instant=(2027130587, "2026-03-31", "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-04-30)"))
+    d = F.build_dividends(annual, qrows, dps_q, dps_fy, 15.10, "2026-10-14", "prices.json stats.last", copy.deepcopy(ctx))
+    before = _jd(d)
+    r = F.price_dividends(d, 20.0, "2026-10-20", "prices.json stats.last")
+    assert _jd(d) == before, "the input block is not modified"
+    assert (r["price"], r["price_date"], r["price_source"], r["price_note"]) == (20.0, "2026-10-20", "prices.json stats.last", None)
+    assert close(r["market_cap"], 20.0 * 2027130587) and r["market_cap_basis"].startswith("20.0 × 2,027,130,587 shares (dei:")
+    assert close(r["dividend_yield"], d["dps_ttm"] / 20.0) and close(r["dividend_yield"], d["dividend_yield"] * 15.10 / 20.0)
+    for k in ("buyback_yield", "net_buyback_yield", "shareholder_yield"):
+        assert close(r[k], d["yield_basis"][k]["numerator"] / r["market_cap"]), k
+        assert r["yield_basis"][k]["denominator"] == r["market_cap_basis"] and r["yields_display"][k]["value"] == r[k]
+        assert r["yields_display"][k]["label"].endswith(f"{r[k] * 100:.2f}%") or "(incomplete)" in r["yields_display"][k]["label"]
+    assert r["yield_basis"]["dividend_yield"]["denominator"] == "price 20.0 (prices.json stats.last)"
+    # everything else is the block as built
+    strip = lambda b: {k: v for k, v in b.items() if k not in ("price", "price_date", "price_source", "price_note", "market_cap", "market_cap_basis",
+                                                                "dividend_yield", "buyback_yield", "net_buyback_yield", "shareholder_yield",
+                                                                "yield_basis", "yields_display")}
+    assert _jd(strip(r)) == _jd(strip(d))
+    # back at the original price: the original block, key order included
+    assert _jd(F.price_dividends(r, 15.10, "2026-10-14", "prices.json stats.last")) == before
+    # no price: every yield null, the note says why (price_note, never `notes`), the bound notes go with the market cap
+    n = F.price_dividends(d, None, None, None)
+    assert n["market_cap"] is None and all(n[k] is None for k in F.YIELD_KEYS) and all(v["label"] == "—" for v in n["yields_display"].values())
+    assert n["price_note"] == "price: neither prices.json nor score.json carries a price — yields null" and not any(x.startswith("price:") for x in n["notes"])
+    s = F.price_dividends(d, 14.0, "2026-10-14", "score.json price")
+    assert s["price_note"] == "price: 14.0 from score.json (2026-10-14); prices.json absent" and s["notes"] == d["notes"]
+    # a bound note follows the market cap, placed right after the denominator (the order the file has always had)
+    for r_ in qrows[:-1]:
+        r_["buybacks"] = None
+    p = F.build_dividends(annual, qrows, dps_q, dps_fy, 15.10, "2026-10-14", "prices.json stats.last", copy.deepcopy(ctx))
+    yb = p["yield_basis"]["buyback_yield"]
+    assert yb["bound"] == "lower" and yb["note"] == F.YIELD_BOUND_NOTES["lower"] and list(yb).index("note") == list(yb).index("denominator") + 1
+    q = F.price_dividends(p, None, None, None)
+    assert "note" not in q["yield_basis"]["buyback_yield"] and q["yields_display"]["buyback_yield"]["note"].startswith("buybacks: ")
+    assert _jd(F.price_dividends(q, 15.10, "2026-10-14", "prices.json stats.last")) == _jd(p)
+    # a block written before 2026-10-16 carried the price note in `notes`: dropped, the note is price_note now
+    legacy = dict(n, notes=["price: neither prices.json nor score.json carries a price — yields null"] + n["notes"])
+    legacy.pop("price_note")
+    assert F.price_dividends(legacy, 20.0, "2026-10-20", "prices.json stats.last")["notes"] == d["notes"]
+    assert F.price_dividends(None, 1.0, None, None) is None and F.price_dividends([1], 1.0, None, None) == [1]
+    assert F.repriceable(d) and not F.repriceable({k: v for k, v in d.items() if k != "yields_display"}) and not F.repriceable(None)
+
+
+def test_build_dividends_at_any_price_is_price_dividends_of_the_block():
+    """Every build_dividends call the other tests in this module make (the shapes of HBAN, KR, TKO, CCL,
+    CCI, AVGO, ZTS, ...) is replayed at a second price P: build_dividends(P) must equal
+    price_dividends(build_dividends(Q), P) byte for byte (key order included), and at the same price the
+    two blocks must differ only in the volatile price leaves (fundamentals.PRICE_LEAVES)."""
+    import _stable
+    orig, seen = F.build_dividends, []
+
+    def check(*a, **k):
+        snap = copy.deepcopy((list(a), k))  # the inputs as passed (the call itself appends to ctx["warnings"])
+        out = orig(*a, **k)
+        price = snap[0][4]
+        for p2, d2, s2 in (((price * 1.37 if F._num(price) and price > 0 else 42.0), "2026-11-02", "prices.json stats.last"),
+                           (9.5, "2026-11-03", "score.json price"), (None, None, None)):
+            b, kb = copy.deepcopy(snap)
+            b[4:7] = [p2, d2, s2]
+            want = orig(*b, **kb)
+            got = F.price_dividends(out, p2, d2, s2)
+            assert _jd(got) == _jd(want), (snap[0][4:7], p2)
+            if F._num(price) and price > 0 and p2 is not None:  # a close moved, nothing filed: only the volatile leaves differ
+                assert _stable.canonical({"dividends": want}, F.PRICE_LEAVES) == _stable.canonical({"dividends": out}, F.PRICE_LEAVES)
+        assert _jd(F.price_dividends(out, *snap[0][4:7])) == _jd(out), "idempotent at its own price"
+        seen.append(1)
+        return out
+
+    F.build_dividends = check
+    try:
+        for name, fn in list(globals().items()):
+            if name.startswith("test_") and callable(fn) and name != "test_build_dividends_at_any_price_is_price_dividends_of_the_block":
+                fn()
+    finally:
+        F.build_dividends = orig
+    assert len(seen) >= 60, len(seen)
+
+
+
+def test_read_price_skips_a_post_split_close():
+    """A split since the scored run (live.json split_factor 2.0) leaves prices.json's close in post-split units while the
+    filed DPS / share counts are pre-split: _read_price falls back to the carried close (or score.json), never pairing them."""
+    import tempfile, shutil
+    d = tempfile.mkdtemp(prefix="fund_split_")
+    try:
+        with open(os.path.join(d, "prices.json"), "w", encoding="utf-8") as f:
+            json.dump({"stats": {"last": 50.0, "last_date": "2026-10-20"}}, f)
+        with open(os.path.join(d, "score.json"), "w", encoding="utf-8") as f:
+            json.dump({"price": 101.0, "analysis_date": "2026-10-01"}, f)
+        assert F._read_price(d)[:2] == (50.0, "2026-10-20")
+        with open(os.path.join(d, "live.json"), "w", encoding="utf-8") as f:
+            json.dump({"split_factor": 1.0}, f)
+        assert F._read_price(d)[:2] == (50.0, "2026-10-20")
+        with open(os.path.join(d, "live.json"), "w", encoding="utf-8") as f:
+            json.dump({"split_factor": 2.0}, f)
+        assert F._read_price(d) == (101.0, "2026-10-01", "score.json price"), F._read_price(d)
+        prev = {"price": 100.0, "price_date": "2026-10-10", "price_source": "prices.json stats.last"}
+        assert F._read_price(d, prev) == (100.0, "2026-10-10", "prices.json stats.last"), F._read_price(d, prev)
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
 
 if __name__ == "__main__":
     fails = 0

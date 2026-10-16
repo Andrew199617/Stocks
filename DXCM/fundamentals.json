@@ -1617,12 +1617,6 @@
   "basis_breaks_rejected": [],
   "split_adjustments": [
    {
-    "effective": "2019-12-31",
-    "ratio": 4,
-    "first_post_split_filing": "2019-12-31",
-    "source": "ratio_fact"
-   },
-   {
     "effective": "2021-06-30",
     "ratio": 4,
     "first_post_split_filing": "2022-07-28",
@@ -1770,6 +1764,7 @@
    "split ratio 4 is tagged at 2 context dates (2021-12-31, 2022-06-10) \u2014 one split, read once at 2021-12-31",
    "split ratio 4 tagged at 2020-12-31 is left out \u2014 the same ratio as the split tagged at 2019-12-31 (366 days earlier), and no filing re-files a value already on that split's basis (first filed 2019-12-31) by it again: one split tagged twice, not two",
    "split ratio 4 tagged at 2021-12-31 is left out \u2014 the same ratio as the split tagged at 2021-06-30 (184 days earlier), and no filing re-files a value already on that split's basis (first filed 2022-07-28) by it again: one split tagged twice, not two",
+   "split ratio 4 tagged at 2019-12-31 is left out \u2014 diluted shares 90,300,000 (quarter ending 2018-09-30, last filed before 2019-12-31) \u2192 88,200,000 (FY ending 2018-12-31), \u00d70.98: the share counts do not move by the ratio, so it is not a split of the common shares (an exchange or conversion ratio, or a split tagged at an earlier context date)",
    "split 4 tagged at 2021-06-30: facts filed before 2022-07-28 are on the pre-split basis \u2014 the diluted share count for the period ended 2021-06-30 was re-filed \u00d74.29 on 2022-07-28 (last filed on the old basis 2021-07-29)",
    "no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) and no dividends paid \u2014 not a dividend payer",
    "dividends_paid_ttm: not all of the last four quarters have a filed dividends_paid figure (missing 2025-09-30, 2025-12-31, 2026-03-31, 2026-06-30) \u2014 the tag was never filed in any period, so the leg counts as zero",

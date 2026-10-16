@@ -220,6 +220,76 @@ function tierShiftChip(v) {
   if (v.is_live && v.tier_changed && v.tier !== v.scored_tier) return '<span class="chip lvchip">Tier ' + esc(v.scored_tier) + ' → ' + esc(v.tier) + ' at last close</span>';
   return '';
 }
+function isoDay(x) { return typeof x === 'string' && /^\d{4}-\d{2}-\d{2}/.test(x) ? x.slice(0, 10) : null; }
+function fmtFactor(f) { return String(Number(Number(f).toPrecision(6))); } // a split factor as Python's {:g}: 2 → "2", 1.5 → "1.5", 0.1 → "0.1"
+/* record.live_withheld (build_site live_shown): a live.json whose close is older than the scored analysis (Nasdaq had not
+   posted the scored session yet), or one left from an earlier run of a re-scored name, is not shown as current — record.live is null, the scored figures are the current ones
+   and this says why. {price, price_date, scored_date, method, note}, or null when nothing was withheld. */
+function liveWithheld(record) {
+  var w = obj(obj(record).live_withheld);
+  if (!Object.keys(w).length) return null;
+  return { price: num(w.price), price_date: isoDay(w.price_date), scored_date: isoDay(w.scored_date), method: typeof w.method === 'string' ? w.method : null, note: typeof w.note === 'string' ? w.note : '' };
+}
+function pendingText(w) { // plain text; escaped where it is printed
+  w = obj(w);
+  if (w.price_date && w.scored_date && w.price_date >= w.scored_date) return 'Live figures pending — the live repricing on file predates the ' + w.scored_date + ' score';
+  return 'Live figures pending — ' + (w.price_date && w.scored_date ? 'the ' + w.price_date + ' close predates the ' + w.scored_date + ' analysis' : 'the last close on file predates the analysis');
+}
+/* The close a page that is not live shows as the current price (header, condensed bar): prices.stats.last with its date and
+   1-day change — but never a close older than the scored analysis on a record whose live.json was withheld for exactly that
+   (the scored price is the current one there). Null when there is no such close. */
+function currentClose(record) {
+  var st = obj(obj(obj(record).prices).stats), last = num(st.last), date = typeof st.last_date === 'string' && st.last_date ? st.last_date : null;
+  if (last === null || !date) return null;
+  var w = liveWithheld(record);
+  if (w && w.scored_date && date.slice(0, 10) < w.scored_date) return null;
+  return { last: last, date: date, chg: num(st.change_1d_pct) };
+}
+/* record.split_restated (build_site restate_split): a split since the scored run. Every per-share figure of the run in the
+   record is already divided by `factor` (today's share units, next to the last close) and its share counts multiplied by
+   it; IRRs, tiers, upside and market caps do not change. {factor, split ('2:1'), scored_date, price_date, as_scored (the run
+   figures as scored), note}, or null without a split. */
+function splitInfo(record) {
+  var sp = obj(obj(record).split_restated), f = num(sp.factor);
+  if (f === null || !(f > 0) || Math.abs(f - 1) < 1e-9) return null;
+  return { factor: f, split: typeof sp.split === 'string' && sp.split ? sp.split : fmtFactor(f) + 'x', scored_date: isoDay(sp.scored_date), price_date: isoDay(sp.price_date),
+    as_scored: obj(sp.as_scored), note: typeof sp.note === 'string' ? sp.note : '' };
+}
+/* What a filed per-share figure (fundamentals.json, as filed) is divided by to read in today's share units after a split
+   since scoring: the factor when its row is still on the pre-split basis, else 1. Pre-split = the period ends on or before
+   the scored date and the row's filed diluted count sits nearer (log scale) the restated run count ÷ factor than the
+   restated count itself. The reference is the run's own count for that fiscal year (record.history, which build_site
+   multiplied by the factor), else numbers.shares_diluted_latest (restated). A row whose comparatives a post-split filing
+   restated reads ~1× and is left alone; a row without a share count, or a record without a reference, is left as filed. */
+function splitRefs(record) {
+  var byEnd = {}, byFy = {};
+  arr(obj(record).history).forEach(function (r) {
+    r = obj(r); var sh = num(r.shares_diluted), e = isoDay(r.period_end);
+    if (sh === null || !(sh > 0)) return;
+    if (e) byEnd[e] = sh;
+    if (r.fy_label !== null && r.fy_label !== undefined && r.fy_label !== '') byFy[String(r.fy_label)] = sh;
+  });
+  var latest = num(obj(obj(record).numbers).shares_diluted_latest);
+  return { byEnd: byEnd, byFy: byFy, latest: latest !== null && latest > 0 ? latest : null };
+}
+function splitDivisor(sp, refs, sh, end, fy) {
+  sh = num(sh); refs = obj(refs);
+  if (!sp || sh === null || !(sh > 0)) return 1;
+  var e = isoDay(end);
+  if (e && sp.scored_date && e > sp.scored_date) return 1;
+  var ref = (e && obj(refs.byEnd)[e]) || (fy !== null && fy !== undefined && obj(refs.byFy)[String(fy)]) || refs.latest;
+  if (!ref) return 1;
+  return Math.abs(Math.log(sh * sp.factor / ref)) < Math.abs(Math.log(sh / ref)) ? sp.factor : 1;
+}
+/* The split notes the tabs print (HTML). splitChip: the header chip; splitBrief: the short line by the verdict; splitNoteHTML:
+   build_site's own note plus a tab-specific sentence. '' without a split. */
+function splitChip(sp) { return sp ? '<span class="chip lvchip splitchip" title="' + esc(sp.note) + '">Restated for a ' + esc(sp.split) + ' split since scoring</span>' : ''; }
+function splitBrief(sp) {
+  if (!sp) return '';
+  return '<p class="note splitnote"><b>Restated for a ' + esc(sp.split) + ' split since scoring</b>' + (sp.scored_date ? ' (scored ' + esc(sp.scored_date) + ')' : '') + ': every per-share figure of the run on this page is in today\'s share units (÷ ' + esc(fmtFactor(sp.factor))
+    + ') next to the last close; IRRs, tiers and upside are unchanged. The one-liner and the write-up quote the run as scored.</p>';
+}
+function splitNoteHTML(sp, extra) { return sp ? '<p class="note splitnote"><b>Restated for a ' + esc(sp.split) + ' split since scoring.</b> ' + esc(sp.note) + (extra ? ' ' + extra : '') + '</p>' : ''; }
 function modelFit(record) {
   var row = obj(record.row), s = obj(record.score);
   if (row.fit) return row.fit;
@@ -321,11 +391,16 @@ function renderHeader(record, stars, repo) {
     priceTile = '<div class="hstat"><span class="k">Last close</span><span class="v mono">' + fmtMoney(price) + chgS + '</span><span class="tsub">' + joinNonEmpty([esc(v.price_date), v.price_change_pct !== null ? fmtPts(v.price_change_pct, 1) + ' vs scored ' + fmtMoney(v.scored_price) : 'scored at ' + fmtMoney(v.scored_price), rangeSub], ' · ') + '</span></div>';
     ttile = '<span class="ttile" style="background:' + acc + '" title="Live tier at the last close">' + esc(tier) + '</span>';
   } else {
+    // a live.json withheld for predating the analysis (record.live_withheld): its close is not the current price either —
+    // the scored price is, with the reason beside it (the note in the tooltip); a close that IS current still shows
+    var cc = currentClose(record), wh = liveWithheld(record);
+    var pend = wh ? '<span class="lvpend"' + (wh.note ? ' title="' + esc(wh.note) + '"' : '') + '>' + esc(pendingText(wh)) + '</span>' : '';
     sub = 'Probability-weighted IRR at ' + fmtMoney(price);
-    priceTile = '<div class="hstat"><span class="k">' + (last !== null && st.last_date ? 'Last close' : 'Price used') + '</span><span class="v mono">' + fmtMoney(last !== null && st.last_date ? last : price) + (last !== null && st.last_date ? chgS : '') + '</span><span class="tsub">' + joinNonEmpty([last !== null && st.last_date ? esc(st.last_date) + ' · scored at ' + fmtMoney(price) + ' (' + esc(s.analysis_date || '') + ')' : esc(n.price_source || '') + ' · ' + esc(s.analysis_date || ''), rangeSub], ' · ') + '</span></div>';
+    priceTile = '<div class="hstat"><span class="k">' + (cc ? 'Last close' : wh ? 'Scored price' : 'Price used') + '</span><span class="v mono">' + fmtMoney(cc ? cc.last : price) + (cc ? chgS : '') + '</span><span class="tsub">'
+      + joinNonEmpty([cc ? esc(cc.date) + ' · scored at ' + fmtMoney(price) + ' (' + esc(s.analysis_date || '') + ')' : (wh ? '' : esc(n.price_source || '') + ' · ' + esc(s.analysis_date || '')), pend, rangeSub], ' · ') + '</span></div>';
     ttile = '<span class="ttile" style="background:' + acc + '">' + esc(tier) + '</span>';
   }
-  var chip = tierShiftChip(v);
+  var chip = tierShiftChip(v), schip = splitChip(splitInfo(record));
   var scoredChip = v.is_live ? '<span class="chip lvchip muted" title="Scored on ' + esc(v.scored_date) + '">Scored ' + esc(v.scored_tier) + ' · live ' + esc(tier) + '</span>' : '';
   // watchlist: a repo name carries the fixed repo star chip; any other name gets the per-device star button (local, not synced)
   // the index row is authoritative for the repo flag (a skipped record's embedded row.watchlist can lag — SITE_CONTRACT
@@ -334,7 +409,7 @@ function renderHeader(record, stars, repo) {
   var wchip = isRepo(hrow, repo) ? '<span class="chip lvchip wchip" title="On the repo watchlist (_system/watchlist.json)">★ Watchlist <span class="sub">repo</span></span>'
     : (hticker ? starButtonHTML(hticker, isStarred(hrow, stars), 'hstar') : '');
   return '<header class="hero" style="--acc:' + acc + '"><div class="hrow">' + ttile
-    + '<div class="hname"><div class="hline"><span class="htick">' + esc(s.ticker || record.ticker) + '</span><span class="hco">' + esc(s.name || record.name) + '</span>' + (chip || scoredChip) + wchip + '</div><span class="note">' + meta + '</span></div></div>'
+    + '<div class="hname"><div class="hline"><span class="htick">' + esc(s.ticker || record.ticker) + '</span><span class="hco">' + esc(s.name || record.name) + '</span>' + (chip || scoredChip) + schip + wchip + '</div><span class="note">' + meta + '</span></div></div>'
     + '<div class="hstats"><div class="hstat big"><span class="k">Expected return / yr' + (v.is_live ? ' · live' : '') + '</span><span class="v mono" style="color:' + acc + '">' + irrS + '</span><span class="tsub">' + sub + (floor ? ' · at the model floor' : '') + (fsub ? ' · ' + esc(fsub) : '') + '</span>' + band + '</div>'
     + priceTile
     + '<div class="hstat"><span class="k">Value @15%</span><span class="v mono">' + fmtMoney(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15) + '</span><span class="tsub ' + signCls(up) + '">' + (up !== null ? fmtPts(up, 0) + ' vs ' + (v.is_live ? 'last close' : 'price') : '—') + '</span></div>'
@@ -346,10 +421,10 @@ function renderHeader(record, stars, repo) {
    price with no change figure — a change belongs to the close it was measured on, never to the scored price. */
 function renderTabSummary(record) {
   var s = obj(record.score), row = obj(record.row), v = liveView(record), st = obj(obj(record.prices).stats), acc = TIER_ACCENT[v.tier] || '#9AA3B2';
-  var last = num(st.last), hasLast = last !== null && !!st.last_date, chg = num(st.change_1d_pct);
-  var price = v.is_live ? v.price : (hasLast ? last : v.price), showChg = chg !== null && (v.is_live || hasLast);
+  var cc = currentClose(record), hasLast = !!cc, chg = num(st.change_1d_pct); // a close older than a withheld live.json's analysis is not current (currentClose)
+  var price = v.is_live ? v.price : (hasLast ? cc.last : v.price), showChg = chg !== null && (v.is_live || hasLast);
   return '<div class="tabsum" aria-hidden="true"><span class="ttile sm" style="background:' + acc + '">' + esc(v.tier) + '</span><b class="mono">' + esc(s.ticker || record.ticker || row.ticker) + '</b>'
-    + '<span class="mono" title="' + (v.is_live || hasLast ? 'Last close' : 'Scored price') + '">' + fmtMoney(price) + '</span>' + (showChg ? '<span class="mono ' + ((chg || 0) >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</span>' : '')
+    + '<span class="mono" title="' + (v.is_live || hasLast ? 'Last close' : liveWithheld(record) ? 'Scored price — live figures pending' : 'Scored price') + '">' + fmtMoney(price) + '</span>' + (showChg ? '<span class="mono ' + ((chg || 0) >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</span>' : '')
     + '<span class="mono" style="color:' + acc + '">' + (v.irr !== null ? fmtPct(v.irr) : '—') + (v.is_live ? ' live' : '') + '</span></div>';
 }
 
@@ -414,10 +489,24 @@ function renderOverrides(record) {
     if (imp.unblocks_tier) impH += '<p class="note"><b>This override is the only reason this company has a tier.</b> Without it the filing gap blocks scoring entirely — the judgment call is the whole verdict.</p>';
   }
   var reasons = ov.filter(function (o) { return o.reason; }).map(function (o) { return '<p class="note"><b>' + esc(o.field) + ':</b> ' + esc(o.reason) + '</p>'; }).join('');
-  return '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Field</th><th class="num">Value</th><th>Kind</th><th>Source</th><th>Years filled</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + impH + reasons + '</div>';
+  var sp = splitInfo(record), spH = sp ? '<p class="note">Override values are as entered for the scored run, before the ' + esc(sp.split) + ' split since scoring (not restated)'
+    + (impH ? '; the base OE/share figures above are restated to today\'s share units' : '') + '.</p>' : '';
+  return '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Field</th><th class="num">Value</th><th>Kind</th><th>Source</th><th>Years filled</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + impH + reasons + spH + '</div>';
 }
 
 /* ---- profile cards (record.profile from profile.py; every card renders gracefully without it) */
+/* record.profile joins two files: profile.json (SEC: about, filings — committed) and street.json (Nasdaq: street, market,
+   its fetched_at as street_fetched_at — a gitignored cache), so either can exist without the other. profilePulled: the
+   SEC part is there (any key beyond the street ones). streetPulled: the Nasdaq pull ran — street.json's fetched_at, or a
+   record that carries street_fetched_at: null (built without street.json: a fresh clone before its first refresh) says
+   not yet; a record built before the split (no street_fetched_at key) counts any profile, as before. */
+var STREET_KEYS = ['street', 'market', 'street_fetched_at'];
+function profilePulled(p) { return Object.keys(obj(p)).some(function (k) { return STREET_KEYS.indexOf(k) < 0; }); }
+function streetPulled(p) {
+  p = obj(p);
+  if (p.street_fetched_at) return true;
+  return Object.prototype.hasOwnProperty.call(p, 'street_fetched_at') ? false : Object.keys(p).length > 0;
+}
 function safeUrl(u) { u = String(u || ''); return /^https?:\/\//i.test(u) ? u : ''; }
 function extLink(url, text) { var u = safeUrl(url); return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + text + '</a>' : text; }
 /* "Read more": a description past ~600 characters is cut at a sentence end inside the second half of the window
@@ -480,9 +569,9 @@ function renderAbout(record) {
   // The 10-K description is authoritative; Nasdaq's short profile is shown only
   // when there is no 10-K text (review finding: for some names it describes a
   // different entity — Estée Lauder's is its charitable foundation).
-  var missing = Object.keys(p).length ? '' : '<p class="note"><b>Profile not pulled yet</b> — profile.py has not run for this name; the facts shown come from fundamentals.json and the engine run.</p>';
+  var missing = profilePulled(p) ? '' : '<p class="note"><b>Profile not pulled yet</b> — profile.py has not run for this name; the facts shown come from fundamentals.json and the engine run.</p>';
   if (!facts.length && !desc) return section('About', '<div class="card empty">' + (missing || '<p class="note">No profile facts on record.</p>') + '</div>');
-  return section('About', '<div class="card about">' + desc + (facts.length ? '<div class="facts">' + factsH + '</div>' : '') + missing + (p.as_of ? '<p class="note">Profile as of ' + esc(p.as_of) + '.</p>' : '') + '</div>');
+  return section('About', '<div class="card about">' + desc + (facts.length ? '<div class="facts">' + factsH + '</div>' : '') + missing + (p.as_of ? '<p class="note">Profile updated ' + esc(p.as_of) + '.</p>' : '') + '</div>');
 }
 /* Generated prose from the filed numbers: fiscal year named, numbers only, no adjectives. Pure; '' without annual rows. */
 function financialPerformance(record) {
@@ -531,7 +620,9 @@ function financialPerformance(record) {
 function renderPerformance(record) {
   var text = financialPerformance(record);
   if (!text) return '';
-  return section('Financial performance', '<div class="card"><p class="dimp">' + text + '</p><p class="note">Generated from the filed figures in fundamentals.json (EDGAR companyfacts) — see the Financials tab for the statements.</p></div>');
+  var sp = splitInfo(record);
+  return section('Financial performance', '<div class="card"><p class="dimp">' + text + '</p><p class="note">Generated from the filed figures in fundamentals.json (EDGAR companyfacts) — see the Financials tab for the statements.'
+    + (sp ? ' Per-share figures are as filed: filings before the ' + esc(sp.split) + ' split since scoring are on the pre-split basis.' : '') + '</p></div>');
 }
 /* ---- Street (Nasdaq analyst data from profile.street): third-party, clearly labelled, never an input to the valuation.
    The Overview keeps a compact summary; the full section lives in the Forecast tab's Street sub-tab. */
@@ -542,7 +633,7 @@ function streetCounts(st) {
 }
 function streetEmpty(record, title) {
   var p = obj(record.profile);
-  return section(title || 'Street summary', '<div class="card empty"><p class="note">' + (Object.keys(p).length ? 'No analyst data on record for this name.' : 'Street consensus appears once profile.py has pulled the Nasdaq analyst data for this name.') + ' The Street\'s targets are shown only beside our hurdle prices and never enter the valuation.</p></div>');
+  return section(title || 'Street summary', '<div class="card empty"><p class="note">' + (streetPulled(p) ? 'No analyst data on record for this name.' : 'Street consensus appears once profile.py has pulled the Nasdaq analyst data for this name.') + ' The Street\'s targets are shown only beside our hurdle prices and never enter the valuation.</p></div>');
 }
 /* The one paragraph both the summary card and the Street sub-tab open with. */
 /* opts.noTargetPct: the summary card prints the mean target's move in its own badge, so the paragraph leaves it out (the
@@ -611,7 +702,7 @@ function renderFilings(record) {
   var filings = arr(p.filings).filter(function (f) { return f && typeof f === 'object'; });
   if (!filings.length) {
     var lf = obj(fp.latest_filings), keys = Object.keys(lf);
-    if (!keys.length) return section('Filings', '<div class="card empty"><p class="note">' + (Object.keys(p).length ? 'No filings on record.' : 'The EDGAR filing feed appears once profile.py has run for this name.') + '</p></div>');
+    if (!keys.length) return section('Filings', '<div class="card empty"><p class="note">' + (profilePulled(p) ? 'No filings on record.' : 'The EDGAR filing feed appears once profile.py has run for this name.') + '</p></div>');
     filings = keys.map(function (form) { var d = obj(lf[form]); return { form: form, filed: d.filed, period: d.period, url: d.url, description: 'latest ' + form }; });
   }
   filings = filings.slice(0, 20);
@@ -620,7 +711,7 @@ function renderFilings(record) {
     return '<tr data-kind="' + filingKind(f.form) + '"><td class="mono">' + esc(f.filed) + '</td><td><b>' + esc(f.form) + '</b>' + (items ? ' <span class="sub">' + items + '</span>' : '') + '</td><td>' + esc(f.description || '') + (f.period ? ' <span class="sub">period ' + esc(f.period) + '</span>' : '') + '</td><td>' + (safeUrl(f.url) ? extLink(f.url, 'open') : '') + '</td></tr>';
   }).join('');
   var chips = FILING_KINDS.map(function (k) { var n = filterFilings(filings, k[0]).length; return '<button type="button" data-fk="' + k[0] + '" class="' + (k[0] === 'all' ? 'on' : '') + '" aria-pressed="' + (k[0] === 'all') + '"' + (n ? '' : ' disabled') + (k[0] === '8k' ? ' title="Current reports (6-K for a foreign filer)"' : k[0] === 'periodic' ? ' title="Annual and quarterly reports, amendments included"' : '') + '>' + k[1] + ' <span class="mono">' + n + '</span></button>'; }).join('');
-  return section('Filings', '<div class="card fcard" data-fk="all"><div class="fchips" role="group" aria-label="Filter by form">' + chips + '</div><div class="twrap"><table class="mini filings"><thead><tr><th>Filed</th><th>Form</th><th>What</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">From EDGAR submissions' + (p.as_of ? ', as of ' + esc(p.as_of) : '') + (fp.eight_k_count_12m !== undefined && fp.eight_k_count_12m !== null ? ' · ' + esc(fp.eight_k_count_12m) + ' 8-Ks in the last 12 months' : '') + '.</p></div>');
+  return section('Filings', '<div class="card fcard" data-fk="all"><div class="fchips" role="group" aria-label="Filter by form">' + chips + '</div><div class="twrap"><table class="mini filings"><thead><tr><th>Filed</th><th>Form</th><th>What</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">From EDGAR submissions' + (p.as_of ? ', updated ' + esc(p.as_of) : '') + (fp.eight_k_count_12m !== undefined && fp.eight_k_count_12m !== null ? ' · ' + esc(fp.eight_k_count_12m) + ' 8-Ks in the last 12 months' : '') + '.</p></div>');
 }
 
 function renderOverview(record) {
@@ -647,9 +738,9 @@ function renderOverview(record) {
   var sp = obj(s.second_pass), p2 = '';
   if (sp.verdict === 'changed') p2 = '<div class="p2box"><b>↺ Revised by pass 2 · ' + esc(sp.date) + '</b><p>Tier ' + esc(sp.prior_tier) + ' → ' + esc(tier) + ' · Wtd IRR ' + fmtPct(sp.prior_weighted_irr) + ' → ' + fmtPct(irr) + ' · IV@15% ' + fmtMoney(sp.prior_iv_at_15) + ' → ' + fmtMoney(s.iv_at_15) + '</p><p>' + esc(sp.summary) + '</p></div>';
   else if (Object.keys(sp).length) p2 = '<div class="p2box"><b>✓ Pass 2 checked ' + esc(sp.date) + ' — no material change</b><p>' + esc(sp.summary) + '</p></div>';
-  var up = v.upside, hp = hurdlePrices(record), px = v.price, iv15 = num(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15);
+  var up = v.upside, hp = hurdlePrices(record), px = v.price, iv15 = num(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15), wh = liveWithheld(record);
   var tiles = [
-    tile(v.is_live ? 'Last close' : 'Price', fmtMoney(px), '', v.is_live ? esc(v.price_date) + ' · scored at ' + fmtMoney(v.scored_price) : ''),
+    tile(v.is_live ? 'Last close' : 'Price', fmtMoney(px), '', v.is_live ? esc(v.price_date) + ' · scored at ' + fmtMoney(v.scored_price) : (wh ? 'scored ' + esc(v.price_date) + ' · live pending' : ''), wh && !v.is_live ? pendingText(wh) : ''),
     tile('IV @15%', fmtMoney(iv15), px && iv15 !== null ? signCls(iv15 - px) : '', 'clears 15%' + (v.is_live ? ' at last close' : '')),
     tile('Price for 20%', fmtMoney(hp[20]), px && hp[20] !== null ? signCls(hp[20] - px) : '', 'Tier A hurdle'),
     tile('Price for 25%', fmtMoney(hp[25]), px && hp[25] !== null ? signCls(hp[25] - px) : '', 'Tier S hurdle'),
@@ -701,7 +792,7 @@ function renderOverview(record) {
     fl = '<div class="card"><ul class="flags">' + items + '</ul><p class="note">Each flag is resolved in the write-up — see the Analysis tab.</p></div>';
   }
   var ov = renderOverrides(record);
-  return gauge + p2 + renderAbout(record) + renderPerformance(record) + renderStreet(record) + renderFilings(record)
+  return splitBrief(splitInfo(record)) + gauge + p2 + renderAbout(record) + renderPerformance(record) + renderStreet(record) + renderFilings(record)
     + section('Key numbers', kn) + (ov ? section('Overrides', ov, 'Filing gaps filled by a judgment override — an override never replaces a filed value.') : '')
     + section('Scenarios', sc, 'IRR ' + atPx + ' for each case, against the 15% hurdle.' + (v.is_live ? " Live figures reprice the scored cash-flow paths at the last close; the scored IRR is the agent's verdict-date figure." : '') + floorNote)
     + section('', moatH) + (flags.length ? section('Fragility flags <span class="fcount mono">' + flags.length + '</span>', fl) : '');
@@ -773,7 +864,11 @@ function renderFinancials(record, stm) {
       parts.push(section('Financial history (engine)', '<div class="card">' + chartDiv('fin-hist') + '<div class="twrap"><table class="mini"><thead><tr><th>FY</th><th class="num">Revenue</th><th class="num">Net income</th><th class="num">Op CF</th><th class="num">Capex</th><th class="num">SBC</th><th class="num">OE (cons)</th><th class="num">OE (maint)</th><th class="num">Shares</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">The extended statements appear once fundamentals.py has been run for this name.</p></div>'));
     } else parts.push('<div class="card"><p class="note">No financial history available.</p></div>');
   }
-  return stmH + parts.join('');
+  // a split since scoring: this tab is the filings as filed — only the run's figures elsewhere are restated
+  var sp = splitInfo(record), spH = !sp ? '' : '<p class="note splitnote"><b>' + esc(sp.split) + ' split since scoring.</b> '
+    + (fund ? 'Per-share figures in the filed statements on this tab (EPS, owner\'s earnings and book value per share, share counts) are as filed: periods filed before the split are on the pre-split basis. The engine run\'s figures on the other tabs are restated to today\'s share units.</p>'
+            : 'The engine history\'s share counts are restated to today\'s share units (× ' + esc(fmtFactor(sp.factor)) + ').</p>');
+  return spH + stmH + parts.join('');
 }
 
 /* ---- Statements viewer (Financials tab): <T>/statements.json served as ./data/<T>.statements.json, loaded on demand
@@ -819,7 +914,11 @@ function stmColumns(data, statement, period) {
   return first.concat(cols.reverse());
 }
 /* The table model: rows (lines with at least one value in the chosen period) × columns, each cell formatted, with the YoY
-   growth, the derived-quarter flag and the cash-flow sign applied (outflow lines, cf_sign −1, are shown as negatives). */
+   growth, the derived-quarter flag and the cash-flow sign applied (outflow lines, cf_sign −1, are shown as negatives).
+   inclRestricted (statements.py restricted_cash_split): the cell counts restricted cash — on the cash line, a cell filed only
+   as the combined cash + restricted cash total; on net cash, net cash per share and the ROIC proxy, a period where no figure
+   separates the restricted part (incl_restricted_annual / _quarterly per column, incl_restricted_ttm for the TTM / Current
+   column). */
 function stmTable(data, statement, period, growth) {
   statement = STM_KEYS.indexOf(statement) >= 0 ? statement : 'income'; period = STM_PKEYS.indexOf(period) >= 0 ? period : 'annual';
   var lines = arr(obj(obj(data).statements)[statement]).filter(function (l) { return l && typeof l === 'object'; }), cols = stmColumns(data, statement, period);
@@ -829,13 +928,16 @@ function stmTable(data, statement, period, growth) {
       var v = num(c.src === 'ttm' ? L.ttm : get(L[c.src], c.i)), shown = v === null ? null : (v === 0 ? 0 : v * sign);
       var g = c.src === 'ttm' ? null : num(get(L['growth_' + c.src], c.i)), der = c.src === 'quarterly' && get(L.derived_quarterly, c.i) === true;
       var bb = c.src === 'quarterly' && get(L.basis_break_quarterly, c.i) === true; // statements.py: the fiscal year's four quarters do not sum to its restated FY figure
-      return { raw: v, value: shown, text: stmFmt(unit, shown), derived: der, basisBreak: bb, growth: g, growthText: g === null ? '–' : fmtPct(g, 1, true), growthCls: signCls(g) };
+      var ir = v !== null && (c.src === 'ttm' ? L.incl_restricted_ttm === true : get(L['incl_restricted_' + c.src], c.i) === true); // a mark on an empty cell would mark nothing
+      return { raw: v, value: shown, text: stmFmt(unit, shown), derived: der, basisBreak: bb, inclRestricted: ir, growth: g, growthText: g === null ? '–' : fmtPct(g, 1, true), growthCls: signCls(g) };
     });
     return { key: String(L.key || ''), label: String(L.label || L.key || ''), level: lvl, total: L.total === true, unit: unit, sign: sign, cells: cells,
-      hasGrowth: cells.some(function (c) { return c.growth !== null; }), anyDerived: cells.some(function (c) { return c.derived; }), anyBasisBreak: cells.some(function (c) { return c.basisBreak; }), empty: cells.every(function (c) { return c.raw === null; }) };
+      hasGrowth: cells.some(function (c) { return c.growth !== null; }), anyDerived: cells.some(function (c) { return c.derived; }), anyBasisBreak: cells.some(function (c) { return c.basisBreak; }),
+      anyInclRestricted: cells.some(function (c) { return c.inclRestricted; }), empty: cells.every(function (c) { return c.raw === null; }) };
   }).filter(function (r) { return !r.empty; });
   return { statement: statement, period: period, growth: growth === true, cols: cols, rows: rows, lines: lines.length,
-    anyDerived: rows.some(function (r) { return r.anyDerived; }), anyBasisBreak: rows.some(function (r) { return r.anyBasisBreak; }), ttmMissing: period === 'ttm' && !cols.some(function (c) { return c.src === 'ttm'; }) };
+    anyDerived: rows.some(function (r) { return r.anyDerived; }), anyBasisBreak: rows.some(function (r) { return r.anyBasisBreak; }), anyInclRestricted: rows.some(function (r) { return r.anyInclRestricted; }),
+    ttmMissing: period === 'ttm' && !cols.some(function (c) { return c.src === 'ttm'; }) };
 }
 /* "7 fiscal years, FY2019 → FY2025" / "26 quarters, Q1 FY2020 → Q2 FY2026": how far the table reaches (a phone shows two
    or three columns of it). The TTM / Current column is not counted. */
@@ -845,13 +947,16 @@ function stmSpan(M) {
   return n + (cols[0].src === 'quarterly' ? ' quarters' : ' fiscal years') + ', ' + String(cols[n - 1].label) + ' → ' + String(cols[0].label);
 }
 var BASIS_BREAK_TITLE = 'basis break: this fiscal year\'s four quarters do not add up to its restated fiscal-year figure (the quarters were filed on the earlier basis — a divestiture or restatement); the growth cells on it are blank. See the build notes.';
+var RESTRICTED_TITLE = 'includes restricted cash: the filed cash + restricted cash total; net cash deducts the restricted part where the Restricted cash line shows it, otherwise still counts it';
+var RESTRICTED_LEGEND = '‡ includes restricted cash; growth is blank where one period deducts it and the other does not. ';
 function renderStatementsTable(M, openLine) {
   var head = '<tr><th class="stl0">' + esc(STM_NAMES[M.statement] || M.statement).replace(/^./, function (c) { return c.toUpperCase(); }) + '</th>'
     + M.cols.map(function (c) { return '<th class="num"><span class="pl">' + esc(c.label) + '</span><span class="sub">' + esc(c.sub) + '</span></th>'; }).join('') + '</tr>';
   var body = M.rows.map(function (r) {
     var open = openLine && r.key === openLine;
     var tr = '<tr class="l' + r.level + (r.total ? ' strong' : '') + (open ? ' open' : '') + '" data-line="' + esc(r.key) + '"><th><button type="button" class="stl" data-line="' + esc(r.key) + '" aria-expanded="' + (open ? 'true' : 'false') + '"' + (open ? ' aria-controls="stmspark"' : '') + ' title="Chart this line">' + esc(r.label) + '</button></th>'
-      + r.cells.map(function (c) { var cls = joinNonEmpty([c.value !== null && c.value < 0 ? 'negv' : '', c.basisBreak ? 'bbrk' : ''], ' '); return '<td' + (cls ? ' class="' + cls + '"' : '') + (c.basisBreak ? ' title="' + esc(BASIS_BREAK_TITLE) + '"' : '') + '>' + esc(c.text) + (c.derived ? '<sup title="derived quarter: year-to-date minus the prior year-to-date; Q4 = fiscal year minus nine months">†</sup>' : '') + '</td>'; }).join('') + '</tr>';
+      + r.cells.map(function (c) { var cls = joinNonEmpty([c.value !== null && c.value < 0 ? 'negv' : '', c.basisBreak ? 'bbrk' : ''], ' '); return '<td' + (cls ? ' class="' + cls + '"' : '') + (c.basisBreak ? ' title="' + esc(BASIS_BREAK_TITLE) + '"' : '') + '>' + esc(c.text) + (c.derived ? '<sup title="derived quarter: year-to-date minus the prior year-to-date; Q4 = fiscal year minus nine months">†</sup>' : '')
+        + (c.inclRestricted ? '<sup class="rcash" title="' + esc(RESTRICTED_TITLE) + '">‡</sup>' : '') + '</td>'; }).join('') + '</tr>';
     if (M.growth && r.hasGrowth) tr += '<tr class="sub growth"><th>YoY growth</th>' + r.cells.map(function (c) { return '<td' + (c.growthCls ? ' class="' + c.growthCls + '"' : '') + '>' + esc(c.growthText) + '</td>'; }).join('') + '</tr>';
     return tr;
   }).join('');
@@ -895,7 +1000,8 @@ function renderStatementsBody(stm, ticker) {
   var table = M.rows.length ? renderStatementsTable(M, stm.line) : '<p class="note">No ' + esc(STM_NAMES[stm.statement] || stm.statement) + ' lines carry a value for this period.</p>';
   var legend = '<p class="note">' + (M.anyDerived ? '† derived quarter: year-to-date minus the prior year-to-date in the same fiscal year; Q4 = fiscal year minus nine months. ' : '')
     + (M.anyBasisBreak ? 'Greyed quarters: that fiscal year\'s four quarters do not add up to its restated fiscal-year figure (filed on the earlier basis — a divestiture or restatement), so their growth cells are blank. ' : '')
-    + 'Tap a line\'s name to chart it. Source: ' + esc(d.source || 'SEC EDGAR companyfacts') + (d.as_of ? ', as of ' + esc(d.as_of) : '') + (lf.form ? '; latest filing ' + esc(lf.form) + (lf.filed ? ' filed ' + esc(lf.filed) : '') + (lf.period ? ' for the period ending ' + esc(lf.period) : '') : '') + '.</p>';
+    + (M.anyInclRestricted ? RESTRICTED_LEGEND : '')
+    + 'Tap a line\'s name to chart it. Source: ' + esc(d.source || 'SEC EDGAR companyfacts') + (d.as_of ? ', updated ' + esc(d.as_of) : '') + (lf.form ? '; latest filing ' + esc(lf.form) + (lf.filed ? ' filed ' + esc(lf.filed) : '') + (lf.period ? ' for the period ending ' + esc(lf.period) : '') : '') + '.</p>';
   var warn = arr(d.warnings).map(function (w) { return '<li>' + esc(w) + '</li>'; });
   // the chart card only while the open line has values in this periodicity (a period switch can drop the row — the card goes too)
   return '<p class="note units">' + units + '</p>' + table + legend + (stm.line && stmSparkSpec(d, stm.statement, stm.period, stm.line) ? renderSparkCard(d, stm) : '')
@@ -918,10 +1024,24 @@ function renderStatements(record, stm) {
 }
 
 /* ---- Dividends (fundamentals.json "dividends" block) */
+/* The price the block's yields stand on, worded from its own price_source (HTML; null without a price): build_site reprices
+   the block at prices.json's last close ('prices.json stats.last'); fundamentals.py falls back to score.json's analysis price
+   when there is no prices.json yet. Across a split since scoring the block is shown as written (never repriced: its filed
+   DPS and share count would meet a post-split close) — the wording says so. */
+function divPriceWords(d, sp) {
+  d = obj(d); var p = num(d.price), date = isoDay(d.price_date);
+  if (p === null) return null;
+  if (sp) {
+    var before = date && (!sp.scored_date || date <= sp.scored_date);
+    return fmtMoney(p) + (date ? ' on ' + esc(date) : '') + (before ? ', before the ' + esc(sp.split) + ' split' : ' — not repriced across the ' + esc(sp.split) + ' split since scoring');
+  }
+  var at = fmtMoney(p) + (date ? ' (' + esc(date) + ')' : '');
+  return String(d.price_source || '').indexOf('score.json') >= 0 ? 'the scored price ' + at + ', no prices.json yet' : 'the last close ' + at;
+}
 function renderDividends(record) {
   var fund = obj(record.fundamentals), d = fund.dividends;
   if (!d || typeof d !== 'object' || Array.isArray(d)) return '<div class="card empty"><p class="note">Dividend enrichment has not run for this name yet — fundamentals.py adds a <code>dividends</code> block (declared / paid per-share facts, dividends paid, buybacks, issuance) once it is re-run.</p></div>';
-  var price = num(d.price), pdate = d.price_date, dps = num(d.dps_ttm), basis = d.dps_basis;
+  var price = num(d.price), dps = num(d.dps_ttm), basis = d.dps_basis, sp = splitInfo(record);
   // "No dividend" is decided from the block's frequency ('none' = no per-share fact AND nothing paid) and the absence of
   // dividends paid / DPS history — never from dps_ttm being null (CCL pays quarterly with dps_ttm null after the staleness
   // rule; TKO, a 20-F-style payer, has frequency null with a note). Those render as payers with the note.
@@ -930,7 +1050,7 @@ function renderDividends(record) {
   var annFacts = arr(d.annual_dps).filter(function (r) { return r && typeof r === 'object' && num(r.dps) !== null && num(r.dps) > 0; });
   var hasDps = dpsFacts.length > 0 || annFacts.length > 0;
   var payer = freq === 'none' ? hasPaid : (hasDps || hasPaid);
-  var priceNote = price !== null ? 'the last close ' + fmtMoney(price) + ' (' + esc(pdate) + ')' : 'the last close';
+  var priceNote = divPriceWords(d, sp); // null without a price: the sentences below say the yields are blank
   // buyback / net buyback / shareholder yield print yields_display's label (≥ / ≤ / ≈ when a leg is partial) with the note in
   // the tooltip; the leg amounts come from dividends.legs (a partial leg still carries its filed sum — HBAN's Q1-only $150M)
   var legs = obj(d.legs), legV = function (k, alt) { var v = num(obj(legs[k]).value); return v !== null ? v : num(alt); };
@@ -948,7 +1068,7 @@ function renderDividends(record) {
   if (!payer) {
     var paid = num(d.dividends_paid_ttm);
     var why = (paid === null || paid === 0) ? 'no dividend per-share fact or dividend payment in the filings' : 'no per-share dividend fact filed; cash dividends paid TTM ' + fmtBig(paid);
-    parts.push('<div class="card nodiv"><span class="k">Dividend</span><span class="bv">No dividend</span><p class="note">' + why + '. Capital returned to shareholders comes through buybacks, if any — the yields below use ' + priceNote + '.</p></div>');
+    parts.push('<div class="card nodiv"><span class="k">Dividend</span><span class="bv">No dividend</span><p class="note">' + why + '. Capital returned to shareholders comes through buybacks, if any — ' + (priceNote ? 'the yields below use ' + priceNote : 'no price is on file, so the yields below are blank') + '.</p></div>');
     parts.push('<div class="tiles">' + cashTiles.join('') + '</div>');
   } else {
     var g5 = num(d.dps_cagr_5y), g3 = num(d.dps_cagr_3y);
@@ -958,7 +1078,7 @@ function renderDividends(record) {
       + joinNonEmpty([hasPaid ? 'Cash dividends paid TTM ' + fmtBig(d.dividends_paid_ttm) : '', dpsFacts.length ? dpsFacts.length + ' per-share fact' + (dpsFacts.length === 1 ? '' : 's') + ' filed, latest ' + fmtDps(dpsFacts[0].dps) + ' (' + esc(dpsFacts[0].period_end) + ')' : (annFacts.length ? 'latest full-year DPS ' + fmtDps(annFacts[annFacts.length - 1].dps) + ' (FY' + esc(annFacts[annFacts.length - 1].fy) + ')' : '')], ' · ')
       + '. A TTM DPS and yield need four consecutive quarterly per-share facts (or a current full-year fact) — the notes below say what is missing.</p></div>');
     var tiles = [
-      yieldTile(d, 'dividend_yield', 'Dividend yield', '', dps === null ? 'no TTM DPS — see notes' : (price !== null ? 'TTM DPS ÷ ' + fmtMoney(price) : 'TTM DPS ÷ last close')),
+      yieldTile(d, 'dividend_yield', 'Dividend yield', '', dps === null ? 'no TTM DPS — see notes' : (price !== null ? 'TTM DPS ÷ ' + fmtMoney(price) : 'no price on file')),
       tile('Annual dividend', fmtDps(dps), '', dps === null ? (annFacts.length ? 'last full year FY' + esc(annFacts[annFacts.length - 1].fy) + ': ' + fmtDps(annFacts[annFacts.length - 1].dps) : 'no TTM DPS') : (basis ? 'TTM DPS · ' + esc(basis) : 'TTM DPS')),
       tile('Payout frequency', freq ? (DIV_FREQ[freq] || esc(freq)) : 'Not inferable', '', freq ? '' : 'per-share rate not tagged in the filings'),
       tile('Payout ratio (vs EPS)', fmtPct(d.payout_ratio_eps), '', 'TTM DPS ÷ diluted EPS'),
@@ -976,12 +1096,16 @@ function renderDividends(record) {
     var rows = hist.map(function (r) { return '<tr><td class="mono">' + esc(r.period_end) + '</td><td class="num mono">' + fmtDps(r.dps) + '</td><td>' + esc(r.kind) + '</td></tr>'; }).join('');
     parts.push(section('Dividend history', '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Period end</th><th class="num">DPS</th><th>Basis</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">The last ' + hist.length + ' per-share facts, newest first, at their filed precision.</p></div>'));
   }
-  var notes = arr(d.notes).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  // price_note (fundamentals.py: "price: … from score.json …" / "… carries a price — yields null") leads the list; it is never
+  // in `notes` any more (build_site drops it from older blocks), and an equal entry is skipped so it cannot print twice
+  var pn = typeof d.price_note === 'string' && d.price_note ? d.price_note : null;
+  var notes = (pn ? '<li>' + esc(pn) + '</li>' : '') + arr(d.notes).filter(function (x) { return x !== pn; }).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
   // the share basis the block used and the market cap on that basis — it can differ from the header's live market cap (a different share count)
   var so = num(d.shares_outstanding), sd = num(d.shares_diluted), cap = num(d.market_cap);
   var meta = 'Share basis: ' + (d.shares_source ? esc(d.shares_source) : (sd !== null ? 'latest diluted weighted-average count' : '—')) + (so !== null ? ' — ' + fmtCnt(so) + ' shares' + (d.shares_as_of ? ' as of ' + esc(d.shares_as_of) : '') : (sd !== null ? ' — ' + fmtCnt(sd) + ' diluted shares' : ''))
     + (cap !== null ? ' · market cap on that basis ' + fmtBig(cap) + (d.market_cap_basis ? ' (' + esc(d.market_cap_basis) + ')' : '') : '') + " — the header's market cap uses the engine's diluted count at the last close, so the two can differ.";
-  parts.push("<p class=\"note\">Filing-direct EDGAR figures: per-share dividend facts (declared or paid, as filed) and the cash-flow statement's dividends paid, buybacks and issuance; TTM is the last four filed quarters. Yields use " + priceNote + '.</p><p class="note">' + meta + '</p>' + (notes ? '<ul class="warnlist">' + notes + '</ul>' : ''));
+  parts.push("<p class=\"note\">Filing-direct EDGAR figures: per-share dividend facts (declared or paid, as filed) and the cash-flow statement's dividends paid, buybacks and issuance; TTM is the last four filed quarters. " + (priceNote ? 'Yields use ' + priceNote + '.' : 'No price is on file, so the yields are blank.')
+    + (sp ? ' Per-share dividends are as filed: a split the filings do not report yet is not reflected, so the block keeps its own price and date.' : '') + '</p><p class="note">' + meta + '</p>' + (notes ? '<ul class="warnlist">' + notes + '</ul>' : ''));
   return parts.join('');
 }
 
@@ -1026,7 +1150,7 @@ function renderSegments(record) {
   });
   var fl = arr(sg.filings).filter(function (f) { return f && typeof f === 'object'; }).map(function (f) { return esc(f.form) + ' ' + esc(f.period); }).join(', ');
   var warn = arr(sg.warnings).map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('');
-  parts.push('<p class="note">Source: ' + esc(sg.source || '') + (fl ? ' — ' + fl : '') + '. As of ' + esc(sg.as_of || '') + '.</p>' + (warn ? '<ul class="warnlist">' + warn + '</ul>' : ''));
+  parts.push('<p class="note">Source: ' + esc(sg.source || '') + (fl ? ' — ' + fl : '') + '.' + (sg.as_of ? ' Updated ' + esc(sg.as_of) + '.' : '') + '</p>' + (warn ? '<ul class="warnlist">' + warn + '</ul>' : ''));
   return parts.join('');
 }
 
@@ -1049,7 +1173,10 @@ var FC_YEARS = [1, 2, 3, 5, 10, 15];
      so two years apart never sit next to each other as if adjacent.
    - Share basis: a year whose filed diluted count is more than SHARE_BASIS_X× away from the recent basis (median of the
      last three filed counts) is not plotted — WRB's FY2017–22 counts are in thousands (193,527), CMG's FY2016–21 are
-     pre-50:1-split. Per-share figures on two bases are not comparable, and the app never restates them.
+     pre-50:1-split. Per-share figures on two bases are not comparable, and the app never restates them — with one
+     exception: a split since scoring (record.split_restated). build_site restated the run (the forecast, the base) to
+     today's share units, so a filed year still on the pre-split basis (splitDivisor) is divided by the factor — its count
+     multiplied — before the basis rule runs, and `split` names the factor (oeSplitNote prints it under the charts).
    - Leading empty years are kept (labels and reasons), so a name with no plottable year still gets fiscal-year labels
      and a note that says why (TDY: SBC not tagged in any year). */
 var OE_LEGS = { ocf: 'operating cash flow', capex: 'capex', sbc: 'stock-based compensation', shares: 'diluted share count' };
@@ -1093,6 +1220,13 @@ function oeHistory(record) {
   };
   if (ann.length) ann.forEach(function (r) { rows.push(cell(r, String(r.fy || r.period_end || ''), false)); });
   else arr(record.history).filter(function (r) { return r && typeof r === 'object'; }).forEach(function (r) { rows.push(cell(r, String(r.fy_label || r.period_end || ''), true)); });
+  // a split since scoring: the filed years still on the pre-split basis into today's share units, like the restated forecast
+  // (the engine CSV branch needs nothing — build_site already multiplied its share counts)
+  var sp = splitInfo(record);
+  if (sp && ann.length) {
+    var refs = splitRefs(record);
+    rows.forEach(function (h) { var f = splitDivisor(sp, refs, h.sh, h.end, h.fy); if (f === 1) return; h.sh = h.sh * f; if (h.v !== null) h.v = h.v / f; h.split = f; });
+  }
   // share basis: the median of the last three filed diluted counts (one slipped latest year cannot move it)
   var shs = rows.filter(function (h) { return h.sh !== null; }).slice(-3).map(function (h) { return h.sh; }).sort(function (a, b) { return a - b; });
   var ref = shs.length ? shs[Math.floor((shs.length - 1) / 2)] : null;
@@ -1178,6 +1312,16 @@ function oeGapNote(hist) {
   gaps.forEach(function (g) { out.push(esc(g.reason ? 'FY' + g.from + (g.to && g.to !== g.from ? '–FY' + g.to : '') + ': ' + g.reason : g.why)); });
   return out.length ? ' <b>Not shown:</b> ' + out.join('; ') + '.' : '';
 }
+/* The plotted years oeHistory divided for a split since scoring (h.split), as one sentence; when none needed it (filed after
+   the split) the sentence says the filed years are already on today's basis. '' without a split or without a plotted year. */
+function oeSplitNote(hist, sp) {
+  if (!sp) return '';
+  var H = arr(hist).filter(function (h) { return h && !h.gap && h.v !== null && h.v !== undefined; }), adj = H.filter(function (h) { return h.split; }); // plotted years only
+  if (!adj.length) return H.length ? ' The filed years shown are already on the post-split basis of the ' + esc(sp.split) + ' split since scoring, like the restated forecast.' : '';
+  var fys = adj.map(function (h) { return String(h.fy); }), a = Number(fys[0]), b = Number(fys[fys.length - 1]);
+  var span = fys.length > 1 && isFinite(a) && isFinite(b) && b - a + 1 === fys.length ? 'FY' + fys[0] + '–FY' + fys[fys.length - 1] : fys.map(function (f) { return 'FY' + f; }).join(', ');
+  return ' Filed years on the pre-split basis (' + esc(span) + ') are divided by ' + esc(fmtFactor(sp.factor)) + ' for the ' + esc(sp.split) + ' split since scoring, so the filed line reads in today\'s share units next to the restated forecast.';
+}
 /* The growth chart's blank historical bars that need a reason (not one fiscal year apart, or a share-basis jump). */
 function oeYoyNote(whys) {
   var w = arr(whys).filter(Boolean).map(esc);
@@ -1192,15 +1336,16 @@ function oeHistorySection(record) {
   if (!filed.length) return section("Owner's earnings per share — history", '<div class="card empty"><p class="note">No fiscal year' + src + ' has both owner\'s earnings and the diluted share count filed, so no OE/share history is drawn.' + oeGapNote(H) + ' No forecast is drawn: this run has no projection path.</p></div>');
   var neg = filed.filter(function (h) { return h.v < 0; }).length;
   return section("Owner's earnings per share — history", '<div class="card">' + chartDiv('fc-oe') + '<p class="note">Filed owner\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share by fiscal year'
-    + src + ' — only years with both figures filed, on one share basis.' + (neg ? ' ' + neg + ' of the ' + filed.length + ' years are negative; the axis covers every one.' : '') + oeGapNote(H)
+    + src + ' — only years with both figures filed, on one share basis.' + (neg ? ' ' + neg + ' of the ' + filed.length + ' years are negative; the axis covers every one.' : '') + oeGapNote(H) + oeSplitNote(H, splitInfo(record))
     + ' No forecast is drawn: this run has no projection path.</p></div>', 'What was filed — there is no positive base for the engine to grow.');
 }
 function renderForecastDCF(record) {
   var s = obj(record.score), n = obj(record.numbers), fc = obj(record.forecast), row = obj(record.row);
   var hasScn = Object.keys(obj(n.scenarios)).length || Object.keys(obj(s.scenarios)).length || Object.keys(obj(fc.sensitivity)).length;
   var noProj = "<div class=\"card empty\"><p class=\"note\">No projection: the engine found no positive normalized owner's earnings (Tier F), so there is no cash-flow path to discount.</p></div>";
-  if (!hasScn) return oeHistorySection(record) + noProj;
-  var parts = [], inp = Object.keys(obj(fc.inputs)).length ? obj(fc.inputs) : obj(n.inputs);
+  var sp = splitInfo(record), spTop = splitNoteHTML(sp, sp && sp.as_scored && num(sp.as_scored.price) !== null ? 'Scored at ' + fmtMoney(sp.as_scored.price) + (num(sp.as_scored.iv_at_15) !== null ? ' with IV @15% ' + fmtMoney(sp.as_scored.iv_at_15) : '') + ' before the split.' : '');
+  if (!hasScn) return spTop + oeHistorySection(record) + noProj;
+  var parts = spTop ? [spTop] : [], inp = Object.keys(obj(fc.inputs)).length ? obj(fc.inputs) : obj(n.inputs);
   var gterm = inp.g_terminal !== undefined ? inp.g_terminal : (fc.g_terminal !== undefined ? fc.g_terminal : n.g_terminal);
   var paths = obj(fc.paths), gpaths = obj(fc.growth_paths), base = num(s.base_oe_per_share !== undefined ? s.base_oe_per_share : n.base_oe_per_share);
   var capYears = s.cap_years !== undefined ? s.cap_years : fc.cap_years, moat = s.moat_score !== undefined ? s.moat_score : row.moat;
@@ -1213,7 +1358,7 @@ function renderForecastDCF(record) {
       { name: 'Avg <span class="sub">probability-weighted</span>', strong: true, cells: FC_YEARS.map(function (y) { return cell(J.raw.weighted, y); }) },
       { name: 'Low <span class="sub">super bear</span>', cells: FC_YEARS.map(function (y) { return cell(J.raw.super_bear, y); }) }]);
     parts.push(section("Owner's earnings per share — history and forecast", '<div class="card">' + chartDiv('fc-oe') + t1
-      + '<p class="note">' + (J.filedCount ? 'Solid line: filed owner\'s earnings per diluted share by fiscal year' + (arr(obj(record.fundamentals).annual).length ? ' (fundamentals.json)' : ' (engine history CSV)') + ' — only years with both owner\'s earnings and the diluted share count filed, on one share basis.' : (J.hist.length && J.hist[0].fy !== 'Base' ? 'No solid line: no fiscal year' + (arr(obj(record.fundamentals).annual).length ? ' in fundamentals.json' : ' in the engine history CSV') + ' has both owner\'s earnings and the diluted share count filed.' : 'No solid line: this record has no filed annual history.')) + oeGapNote(J.hist) + ' Dashed lines from the base year: the engine\'s projection — base ' + fmtMoney(base) + '/share (' + esc({ ttm_json: 'TTM', agent_supplied_ttm_override: 'TTM pin', median_of_last_3_fy_oe_per_share: '3-year median' }[s.base_source] || s.base_source || 'engine base') + ') grown along each scenario\'s path; the bold dashed line is the probability-weighted path whose IRR is the headline, the shaded band runs from super bear to super bull. Year-15 flow carries a Gordon terminal value at ' + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + '</p></div>', 'What the DCF actually discounts, against what was filed.'));
+      + '<p class="note">' + (J.filedCount ? 'Solid line: filed owner\'s earnings per diluted share by fiscal year' + (arr(obj(record.fundamentals).annual).length ? ' (fundamentals.json)' : ' (engine history CSV)') + ' — only years with both owner\'s earnings and the diluted share count filed, on one share basis.' : (J.hist.length && J.hist[0].fy !== 'Base' ? 'No solid line: no fiscal year' + (arr(obj(record.fundamentals).annual).length ? ' in fundamentals.json' : ' in the engine history CSV') + ' has both owner\'s earnings and the diluted share count filed.' : 'No solid line: this record has no filed annual history.')) + oeGapNote(J.hist) + oeSplitNote(J.hist, sp) + ' Dashed lines from the base year: the engine\'s projection — base ' + fmtMoney(base) + '/share (' + esc({ ttm_json: 'TTM', agent_supplied_ttm_override: 'TTM pin', median_of_last_3_fy_oe_per_share: '3-year median' }[s.base_source] || s.base_source || 'engine base') + ') grown along each scenario\'s path; the bold dashed line is the probability-weighted path whose IRR is the headline, the shaded band runs from super bear to super bull. Year-15 flow carries a Gordon terminal value at ' + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + '</p></div>', 'What the DCF actually discounts, against what was filed.'));
     var gy = [1, 2, 3], gcell = function (vals, y) { var v = get(vals, y - 1); return '<span class="mono ' + signCls(v) + '">' + fmtPct(v, 1, true) + '</span>'; };
     var hasG = J.bearGrowth.length && J.bullGrowth.length;
     var t2 = hal('OE / share growth', gy.map(yl), [
@@ -1221,14 +1366,15 @@ function renderForecastDCF(record) {
       { name: 'Avg <span class="sub">weighted path, YoY</span>', strong: true, cells: gy.map(function (y) { return gcell(J.wGrowth, y); }) },
       { name: 'Low <span class="sub">bear growth path</span>', cells: gy.map(function (y) { return hasG ? gcell(J.bearGrowth, y) : '—'; }) }]);
     parts.push(section("Owner's earnings growth", '<div class="card">' + chartDiv('fc-oegrowth') + t2
-      + '<p class="note">Historical bars: year-over-year change in the filed OE/share between consecutive fiscal years (blank where either year is not plotted or the prior year was not positive).' + oeYoyNote(J.histGrowthWhy) + ' Forecast bars: the year-over-year change of the probability-weighted path (year 1 is measured from the base, so it also carries the scenarios\' OE level multiples); the error bar runs from the bear to the bull growth path for the same year' + (hasG ? '' : ' (no growth paths stored for this run)') + '.</p></div>'));
+      + '<p class="note">Historical bars: year-over-year change in the filed OE/share between consecutive fiscal years (blank where either year is not plotted or the prior year was not positive).' + oeYoyNote(J.histGrowthWhy) + oeSplitNote(J.hist, sp) + ' Forecast bars: the year-over-year change of the probability-weighted path (year 1 is measured from the base, so it also carries the scenarios\' OE level multiples); the error bar runs from the bear to the bull growth path for the same year' + (hasG ? '' : ' (no growth paths stored for this run)') + '.</p></div>'));
   }
   else parts.push(oeHistorySection(record));
   if (arr(paths.weighted).length) {
     parts.push(section("Owner's earnings per share — the five paths", '<div class="card">' + chartDiv('fc-paths') + '<p class="note">Base ' + fmtMoney(base) + "/share × each scenario's OE multiple, grown along its growth path. The weighted line is the probability-weighted path whose IRR is the headline. Year-15 flow carries a Gordon terminal value at " + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + '</p></div>'));
     if (arr(gpaths.base).length) parts.push(section('Growth fade', '<div class="card">' + chartDiv('fc-growth') + '<p class="note">Growth holds for 2 years, then converges linearly to the ' + fmtPct(gterm) + ' terminal rate over the competitive advantage period of ' + esc(capYears) + ' years (moat ' + esc(moat) + '/10 → CAP = 2 + 1.3 × moat).</p></div>'));
   } else parts.push('<div class="card"><p class="note">No stored projection paths for this run — the 15-year paths appear after the next engine run (5.4+) or when the data layer replays them.</p></div>');
-  var sens = sensitivity(record), lv = liveView(record), price = lv.price, pxWord = lv.is_live ? 'the last close' : "today's price";
+  var sens = sensitivity(record), lv = liveView(record), price = lv.price, wh = lv.is_live ? null : liveWithheld(record);
+  var pxWord = lv.is_live ? 'the last close' : wh ? 'the scored price' : "today's price"; // withheld: the scored price is the current one, not "today's"
   var head = [10, 12, 15, 20, 25].map(function (r) { return '<th class="num">IV @' + r + '%</th>'; }).join(''), rows = '', anyFloor = false;
   LABELS.concat([['weighted', 'Probability-weighted']]).forEach(function (l) {
     var k = l[0], r = obj(sens[k]), cells = '';
@@ -1250,7 +1396,7 @@ function renderForecastDCF(record) {
   var hp = hurdlePrices(record);
   var hpTile = function (k, label) { return tile(label, fmtMoney(hp[k]), hp[k] !== null && price ? signCls(hp[k] - price) : ''); };
   var tiles = hpTile(15, 'Price for 15% (Tier B)') + hpTile(20, 'Price for 20% (Tier A)') + hpTile(25, 'Price for 25% (Tier S)')
-    + tile(lv.is_live ? 'Last close' : "Today's price", fmtMoney(price), '', lv.is_live ? esc(lv.price_date) + ' · scored at ' + fmtMoney(lv.scored_price) : '');
+    + tile(lv.is_live ? 'Last close' : wh ? 'Scored price' : "Today's price", fmtMoney(price), '', lv.is_live ? esc(lv.price_date) + ' · scored at ' + fmtMoney(lv.scored_price) : (wh ? esc(pendingText(wh)) : ''), wh ? wh.note : '');
   var band = '', sb = obj(lv.scenarios.bear).irr, su = obj(lv.scenarios.bull).irr, ff = floorFlags(record, lv.is_live);
   if (sb === undefined) sb = lv.irr_bear; if (su === undefined) su = lv.irr_bull;
   if (sb !== null && sb !== undefined && su !== null && su !== undefined) {
@@ -1305,7 +1451,26 @@ function yearAgoQuarter(f, quarters) {
   return { v: num(hit.eps_diluted), label: esc(hit.label || hit.period_end) + ' filed', end: hit.period_end || null };
 }
 function fyParse(period) { var m = /(\d{4})/.exec(String(period || '')); return m ? Number(m[1]) : null; }
-function epsAnnualHist(record) { return arr(obj(record.fundamentals).annual).filter(function (r) { return r && typeof r === 'object' && num(r.eps_diluted) !== null; }).map(function (r) { return { fy: String(r.fy || ''), v: num(r.eps_diluted), g: num(r.eps_diluted_growth), r: r }; }); }
+/* Filed diluted EPS by fiscal year, oldest first, for the comparisons with Nasdaq's consensus (in today's share units). After
+   a split since scoring a year still on the pre-split basis is divided by the factor (splitDivisor; `split` names it) and
+   its growth is recomputed where the basis changes between two years; otherwise the filed values as they are. */
+function epsAnnualHist(record) {
+  var sp = splitInfo(record), refs = sp ? splitRefs(record) : null, prev = null;
+  return arr(obj(record.fundamentals).annual).filter(function (r) { return r && typeof r === 'object' && num(r.eps_diluted) !== null; }).map(function (r) {
+    var f = sp ? splitDivisor(sp, refs, r.shares_diluted, r.period_end, r.fy) : 1, v = num(r.eps_diluted) / f, g = num(r.eps_diluted_growth);
+    if (prev && prev.f !== f) g = prev.v > 0 ? v / prev.v - 1 : null; // the filed growth spans the two bases
+    prev = { f: f, v: v };
+    return { fy: String(r.fy || ''), v: v, g: g, r: r, split: f !== 1 ? f : 0 };
+  });
+}
+/* The year-ago filed quarter for a consensus quarter (yearAgoQuarter), split-adjusted like epsAnnualHist. */
+function yearAgoQuarterAdj(record, f, quarters) {
+  var q = yearAgoQuarter(f, quarters), sp = splitInfo(record);
+  if (!q || !sp) return q;
+  var row = obj(arr(quarters).filter(function (r) { return r && typeof r === 'object' && (r.period_end || null) === q.end; })[0]);
+  var k = splitDivisor(sp, splitRefs(record), row.shares_diluted, q.end, null);
+  return k === 1 ? q : Object.assign({}, q, { v: q.v / k, label: q.label + ', split-adjusted', split: k });
+}
 function growthCell(v) { return '<span class="' + signCls(v) + '">' + fmtPct(v, 1, true) + '</span>'; }
 function epsTile(label, f, from, fromLabel) {
   var c = f ? num(f.consensus) : null, g = c !== null && from !== null && from > 0 ? c / from - 1 : null;
@@ -1332,15 +1497,17 @@ function renderForecastStreet(record) {
   // (4) financial forecast — annual · quarterly
   var ef = obj(st.eps_forecast), fa = arr(ef.annual).filter(function (r) { return r && typeof r === 'object'; }), fq = arr(ef.quarterly).filter(function (r) { return r && typeof r === 'object'; });
   var lastFy = annH.length ? annH[annH.length - 1] : null;
-  var aTiles = '<div class="tiles">' + epsTile('EPS this year', fa[0] || null, lastFy ? lastFy.v : null, lastFy ? 'FY' + esc(lastFy.fy) + ' filed' : '') + epsTile('EPS next year', fa[1] || null, fa[0] ? num(fa[0].consensus) : null, fa[0] ? esc(fa[0].period) + ' consensus' : '') + '</div>';
-  var qFrom = function (f) { return yearAgoQuarter(f, qH); };
+  var aTiles = '<div class="tiles">' + epsTile('EPS this year', fa[0] || null, lastFy ? lastFy.v : null, lastFy ? 'FY' + esc(lastFy.fy) + ' filed' + (lastFy.split ? ', split-adjusted' : '') : '') + epsTile('EPS next year', fa[1] || null, fa[0] ? num(fa[0].consensus) : null, fa[0] ? esc(fa[0].period) + ' consensus' : '') + '</div>';
+  // the consensus is in today's share units: after a split since scoring a filed "from" still on the pre-split basis is ÷ factor
+  var spS = splitInfo(record), refsS = spS ? splitRefs(record) : null;
+  var qFrom = function (f) { return yearAgoQuarterAdj(record, f, qH); };
   var q0 = qFrom(fq[0]), q1 = qFrom(fq[1]);
   var qTiles = '<div class="tiles">' + epsTile('EPS this quarter', fq[0] || null, q0 ? q0.v : null, q0 ? q0.label : '') + epsTile('EPS next quarter', fq[1] || null, q1 ? q1.v : null, q1 ? q1.label : '') + '</div>';
   var ffTable = function (histRows, histLabel, fcRows, isQ) {
     var cols = histRows.map(function (r) { return '<th class="num">' + histLabel(r) + ' <span class="sub">filed</span></th>'; }).join('') + fcRows.map(function (f) { return '<th class="num">' + esc(f.period) + ' <span class="sub">consensus</span></th>'; }).join('');
     var line = function (name, hf, ff, cls) { return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><th>' + name + '</th>' + histRows.map(function (r) { return '<td>' + hf(r) + '</td>'; }).join('') + fcRows.map(function (f, i) { return '<td>' + ff(f, i) + '</td>'; }).join('') + '</tr>'; };
     var dash = function () { return '—'; };
-    var prevEps = function (i) { if (i > 0) return num(fcRows[i - 1].consensus); var h = histRows.length ? histRows[histRows.length - 1] : null; if (!h) return null; if (isQ) { var qf = qFrom(fcRows[0]); return qf ? qf.v : null; } return num(h.eps_diluted); };
+    var prevEps = function (i) { if (i > 0) return num(fcRows[i - 1].consensus); var h = histRows.length ? histRows[histRows.length - 1] : null; if (!h) return null; if (isQ) { var qf = qFrom(fcRows[0]); return qf ? qf.v : null; } var e = num(h.eps_diluted); return e === null ? null : e / (spS ? splitDivisor(spS, refsS, h.shares_diluted, h.period_end, h.fy) : 1); };
     return '<div class="twrap"><table class="fin fft"><thead><tr><th>' + (isQ ? 'Quarter' : 'Fiscal year') + '</th>' + cols + '</tr></thead><tbody>'
       + line('Revenue', function (r) { return fmtBig(r.revenue); }, dash)
       + line('Revenue growth', function (r) { return growthCell(isQ ? r.revenue_yoy : r.revenue_growth); }, dash, 'sub')
@@ -1359,13 +1526,16 @@ function renderForecastStreet(record) {
   var ffQ = qTiles + ffTable(qRows, function (r) { return esc(r.label || r.period_end); }, fq.slice(0, 4), true);
   parts.push(section('Financial forecast', '<div class="card ffcard"><div class="ffbar"><div class="seg ffseg" role="group" aria-label="Forecast basis"><button type="button" data-ff="annual" class="on" aria-pressed="true">Annual</button><button type="button" data-ff="quarterly" aria-pressed="false">Quarterly</button></div><span class="note">Filed columns from fundamentals.json; consensus columns from Nasdaq.</span></div>'
     + '<div class="ffpane on" data-ff="annual">' + ffA + '</div><div class="ffpane" data-ff="quarterly">' + ffQ + '</div>'
-    + '<p class="note">Revenue, profit and margin rows show "—" in the consensus columns because Nasdaq publishes EPS consensus only. EPS growth in a consensus column is measured against the prior filed figure (or the prior consensus); the "from" figure on a quarterly tile is the same quarter a year earlier as filed.</p></div>'));
+    + '<p class="note">Revenue, profit and margin rows show "—" in the consensus columns because Nasdaq publishes EPS consensus only. EPS growth in a consensus column is measured against the prior filed figure (or the prior consensus); the "from" figure on a quarterly tile is the same quarter a year earlier as filed.'
+    + (spS && (annH.some(function (h) { return h.split; }) || (q0 && q0.split) || (q1 && q1.split) || annRows.some(function (r) { return splitDivisor(spS, refsS, r.shares_diluted, r.period_end, r.fy) !== 1; }))
+      ? ' After the ' + esc(spS.split) + ' split since scoring the filed columns stay as filed; a "from" figure and the EPS growth into a consensus column divide a filed EPS still on the pre-split basis by ' + esc(fmtFactor(spS.factor)) + ' (split-adjusted), because the consensus is in today\'s share units.' : '')
+    + '</p></div>'));
   // (5) EPS forecast chart + table
   var epsHal = function (rows, labelOf) { return hal('EPS', rows.map(function (f) { return esc(labelOf(f)); }), [
     { name: 'High', cells: rows.map(function (f) { return '<span class="mono">' + fmtMoney(f.high) + '</span>'; }) },
     { name: 'Avg <span class="sub">consensus</span>', strong: true, cells: rows.map(function (f) { return '<span class="mono">' + fmtMoney(f.consensus) + '</span>'; }) },
     { name: 'Low', cells: rows.map(function (f) { return '<span class="mono">' + fmtMoney(f.low) + '</span>'; }) }]); };
-  if (fa.length || annH.length) parts.push(section('EPS forecast', '<div class="card">' + (fa.length ? chartDiv('street-eps') : '') + (fa.length ? epsHal(fa, function (f) { return f.period; }) : '<p class="note">No annual EPS consensus on record.</p>') + '<p class="note">Solid line: filed diluted EPS by fiscal year. Dashed: the Nasdaq consensus, with the low–high range of estimates shaded. Consensus EPS is on the analysts\' adjusted basis, not GAAP, so the two lines are not strictly comparable.</p></div>'));
+  if (fa.length || annH.length) parts.push(section('EPS forecast', '<div class="card">' + (fa.length ? chartDiv('street-eps') : '') + (fa.length ? epsHal(fa, function (f) { return f.period; }) : '<p class="note">No annual EPS consensus on record.</p>') + '<p class="note">Solid line: filed diluted EPS by fiscal year' + (annH.some(function (h) { return h.split; }) ? ' (years on the pre-split basis ÷ ' + esc(fmtFactor(spS.factor)) + ' for the ' + esc(spS.split) + ' split since scoring)' : '') + '. Dashed: the Nasdaq consensus, with the low–high range of estimates shaded. Consensus EPS is on the analysts\' adjusted basis, not GAAP, so the two lines are not strictly comparable.</p></div>'));
   // (6) EPS growth
   if (fa.length || annH.length) {
     var prevC = lastFy ? lastFy.v : null, gRows = fa.map(function (f, i) { var p = i ? num(fa[i - 1].consensus) : prevC, ok = p !== null && p > 0; var r = { period: f.period, hi: ok && num(f.high) !== null ? num(f.high) / p - 1 : null, avg: ok && num(f.consensus) !== null ? num(f.consensus) / p - 1 : null, lo: ok && num(f.low) !== null ? num(f.low) / p - 1 : null }; return r; });
@@ -1385,7 +1555,7 @@ function renderForecastStreet(record) {
 function renderForecastAnalysts(record) {
   var st = streetOf(record), p = obj(record.profile), parts = [];
   var honest = '<p class="note">Individual analyst names, track records and per-analyst price targets are paid (TipRanks) data and are not included here.</p>';
-  if (!st) return '<div class="card empty"><p class="note">' + (Object.keys(p).length ? 'No analyst coverage data on record for this name.' : 'Analyst coverage appears once profile.py has pulled the Nasdaq analyst data for this name.') + '</p>' + honest + '</div>';
+  if (!st) return '<div class="card empty"><p class="note">' + (streetPulled(p) ? 'No analyst coverage data on record for this name.' : 'Analyst coverage appears once profile.py has pulled the Nasdaq analyst data for this name.') + '</p>' + honest + '</div>';
   var brokers = arr(st.brokers).map(function (b) { return typeof b === 'string' ? b : obj(b).name || obj(b).broker || ''; }).filter(Boolean);
   parts.push(section('Covering brokers', '<div class="card">' + (brokers.length ? '<div class="chips">' + brokers.map(function (b) { return '<span class="chip">' + esc(b) + '</span>'; }).join('') + '</div>' : '<p class="note">Nasdaq returned no broker list for this name.</p>') + (num(st.analysts) !== null ? '<p class="note">' + esc(st.analysts) + ' analysts in the consensus.</p>' : '') + '</div>'));
   var hist = arr(st.history).filter(function (r) { return r && typeof r === 'object'; }).slice().sort(function (a, b) { return String(a.date) < String(b.date) ? 1 : String(a.date) > String(b.date) ? -1 : 0; });
@@ -1413,7 +1583,10 @@ function renderForecast(record, sub) {
 }
 
 function renderAnalysis(record) {
-  var out = [];
+  var out = [], sp = splitInfo(record);
+  // the write-up, the pass-2 note and the judgment quote the run's dollar figures as scored (not restated)
+  if (sp) out.push('<p class="note splitnote"><b>' + esc(sp.split) + ' split since scoring.</b> The write-up quotes the run as scored' + (sp.scored_date ? ' (' + esc(sp.scored_date) + ')' : '') + ', before the split: divide its per-share dollar figures (prices, intrinsic values, owner\'s earnings per share) by '
+    + esc(fmtFactor(sp.factor)) + ' to compare them with today\'s price. IRRs, tiers and percentages are unchanged.</p>');
   if (record.analysis_md) out.push('<div class="card md">' + md(record.analysis_md) + '</div>');
   else out.push('<div class="card empty"><p class="note">No analysis.md in this folder.</p></div>');
   if (record.second_pass_md) out.push(section('Second pass', '<div class="card md">' + md(record.second_pass_md) + '</div>'));
@@ -1438,9 +1611,13 @@ function renderData(record) {
     kv('8-K filings, last 12 months', esc(prof.eight_k_count_12m));
   }
   kv('Engine', 'v' + esc(n.engine_version) + ' · release ' + esc(n.engine_release || s.engine_release || '5.3.x (pre-5.4)') + ' · run ' + esc(n.as_of) + ' · annual form ' + esc(n.filer_annual_form));
-  kv('Price', fmtMoney(n.price) + ' (' + esc(n.price_source) + ') · market cap est. ' + fmtBig(n.market_cap_est) + ' · diluted shares ' + fmtCnt(n.shares_diluted_latest));
+  // after a split since scoring the run's per-share figures and share count here are restated (record.split_restated);
+  // as_scored keeps the price, IV and base as the run had them
+  var sp = splitInfo(record), asc = sp ? sp.as_scored : {}, before = sp ? ' before the ' + esc(sp.split) + ' split' : '';
+  kv('Price', fmtMoney(n.price) + ' (' + esc(n.price_source) + ')' + (sp && num(asc.price) !== null ? ' · scored at ' + fmtMoney(asc.price) + before : '') + ' · market cap est. ' + fmtBig(n.market_cap_est) + ' · diluted shares ' + fmtCnt(n.shares_diluted_latest) + (sp ? ' (restated × ' + esc(fmtFactor(sp.factor)) + ')' : ''));
   var inp = obj(n.inputs);
-  kv('Base', fmtMoney(n.base_oe_per_share) + '/share · ' + esc(n.base_source) + ' · pin source ' + esc(inp.base_pin_source));
+  kv('Base', fmtMoney(n.base_oe_per_share) + '/share' + (sp && num(asc.base_oe_per_share) !== null ? ' (scored ' + fmtMoney(asc.base_oe_per_share) + before + ')' : '') + ' · ' + esc(n.base_source) + ' · pin source ' + esc(inp.base_pin_source));
+  if (sp) kv('Split since scoring', esc(sp.split) + ' (factor ' + esc(fmtFactor(sp.factor)) + ')' + (sp.scored_date ? ' · scored ' + esc(sp.scored_date) : '') + (sp.price_date ? ' · restated against the ' + esc(sp.price_date) + ' close' : '') + (num(asc.iv_at_15) !== null ? ' · IV @15% as scored ' + fmtMoney(asc.iv_at_15) : ''));
   kv('Run inputs', 'moat ' + esc(inp.moat) + ' · probs ' + esc(JSON.stringify(inp.probs || null)) + ' · offsets ' + esc(JSON.stringify(inp.offsets || null)) + ' · mults ' + esc(JSON.stringify(inp.mults || null)) + ' · g_terminal ' + esc(inp.g_terminal));
   kv('Net debt basis', fmtBig(n.net_debt_latest) + ' · ' + esc(n.net_debt_basis || 'current + noncurrent tags (pre-5.4)') + (n.lease_liabilities_latest !== undefined && n.lease_liabilities_latest !== null ? ' · operating leases ' + fmtBig(n.lease_liabilities_latest) : ''));
   if (n.fx_conversion) { var fx = obj(n.fx_conversion); kv('FX conversion', esc(fx.from_currency) + ' → USD at period-end ECB rates (' + esc(fx.source) + '); rates ' + esc(JSON.stringify(fx.rates || null))); }
@@ -1452,7 +1629,7 @@ function renderData(record) {
   var tu = obj(fund.tags_used), tuKeys = Object.keys(tu).filter(function (k) { return arr(tu[k]).length; });
   if (tuKeys.length) kv('EDGAR tags (fundamentals)', tuKeys.map(function (k) { return '<span class="mono small">' + esc(k) + ': ' + esc(arr(tu[k]).join(', ')) + '</span>'; }).join('<br>'));
   kv('Files', arr(record.files).map(function (f) { return '<span class="mono">' + esc(f) + '</span>'; }).join(' · ') || '—');
-  var parts = [section('Provenance', '<div class="card"><div class="twrap"><table class="kv"><tbody>' + rows.join('') + '</tbody></table></div></div>')];
+  var parts = [splitNoteHTML(sp, j && typeof j === 'object' ? 'judgment.json below is the run\'s input as entered, before the split.' : '') + section('Provenance', '<div class="card"><div class="twrap"><table class="kv"><tbody>' + rows.join('') + '</tbody></table></div></div>')];
   if (Object.keys(obj(ttm.inputs)).length) {
     var ti = obj(ttm.inputs), trs = '';
     [['ocf', 'Operating cash flow'], ['capex', 'Capex'], ['sbc', 'Stock-based comp'], ['shares_diluted', 'Diluted shares']].forEach(function (c) {
@@ -1462,7 +1639,8 @@ function renderData(record) {
     var fyEnd = get(obj(ti.ocf).fy_period, 1) || '';
     var ovUsed = arr(ttm.overrides_used).map(function (o) { return obj(o).field; }).filter(Boolean);
     parts.push(section('TTM construction', '<div class="card"><div class="twrap"><table class="fin"><thead><tr><th>TTM leg</th><th class="num">FY ' + esc(fyEnd) + '</th><th class="num">− prior YTD</th><th class="num">+ current YTD</th><th class="num">= TTM</th><th>Tag</th></tr></thead><tbody>' + trs + '</tbody></table></div>'
-      + "<p class=\"note\">TTM owner's earnings " + fmtBig(ttm.ttm_oe_total) + ' ÷ ' + fmtCnt(ttm.ttm_shares_diluted) + ' shares = <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share) + '</b> / share, computed by ttm.py from EDGAR 10-Q year-to-date facts (FY − prior YTD + current YTD). ' + (ovUsed.length ? 'Overrides used: ' + esc(ovUsed.join(', ')) : '') + '</p></div>'));
+      + "<p class=\"note\">TTM owner's earnings " + fmtBig(ttm.ttm_oe_total) + ' ÷ ' + fmtCnt(ttm.ttm_shares_diluted) + ' shares = <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share) + '</b> / share, computed by ttm.py from EDGAR 10-Q year-to-date facts (FY − prior YTD + current YTD). ' + (ovUsed.length ? 'Overrides used: ' + esc(ovUsed.join(', ')) + '. ' : '')
+      + (sp ? 'The legs above are as filed, before the ' + esc(sp.split) + ' split; the share count and the per-share figure in this sentence are restated to today\'s share units.' : '') + '</p></div>'));
   } else if (record.ttm === undefined && record.live) {
     parts.push('<p class="note">TTM construction and judgment.json are trimmed from the attachment — open the site for the full record.</p>');
   }
@@ -1637,6 +1815,11 @@ function renderRowHTML(row, stars, repo) {
   if (liveFloor) badges.push('<span class="bdg mf" title="' + liveFloorT + '">live IRR at floor</span>');
   if (scoredFloor) badges.push('<span class="bdg mf" title="' + scoredFloorT + '">' + (live ? 'scored IRR at floor' : 'IRR at floor') + '</span>');
   if (row.irr_capped) badges.push('<span class="bdg mf">IRR capped</span>');
+  // row.split_restated (build_site): the run's price / IV columns are restated for a split since scoring
+  var srs = obj(row.split_restated), srf = num(srs.factor);
+  if (srf !== null && srf > 0 && Math.abs(srf - 1) > 1e-9) badges.push('<span class="bdg sp" title="' + esc('A ' + (srs.split || fmtFactor(srf) + 'x') + ' split since scoring: the price and IV columns are the run restated to today\'s share units (÷ ' + fmtFactor(srf) + '); IRR, tier and upside are unchanged') + '">' + esc(srs.split || fmtFactor(srf) + 'x') + ' split since scoring</span>');
+  // row.live_withheld: live.json predates the scored analysis, so the row is ranked on its scored IRR (the live fields are null)
+  var pending = !live && row.live_withheld === true, pendingT = 'Live figures pending: the live repricing on file predates the scored analysis, so this row is ranked on its scored IRR until it is repriced';
   var tb = (live && row.tier_bear_live) || row.tier_bear, tu = (live && row.tier_bull_live) || row.tier_bull;
   var band = tb && tu ? '<span class="band" title="' + (live ? 'bear → bull tier at the last close' : 'bear → bull tier as scored') + '"><i style="background:' + (TIER_ACCENT[tb] || '#333') + '">' + esc(tb) + '</i>→<i style="background:' + (TIER_ACCENT[tu] || '#333') + '">' + esc(tu) + '</i></span>' : '—';
   var up = live ? num(row.upside15_live) : num(row.upside15), price = live && num(row.price_live) !== null ? row.price_live : row.price;
@@ -1645,9 +1828,9 @@ function renderRowHTML(row, stars, repo) {
   return '<tr data-ticker="' + esc(t) + '" data-tier="' + esc(tier) + '" data-fit="' + esc(row.fit || 'modeled') + '"' + (isWatched(row, stars, repo) ? ' data-watch="1"' : '') + '>'
     + '<td class="co"><div class="corow">' + starHTML(row, stars, repo) + '<a href="#' + esc(t) + '"><b class="mono">' + esc(t) + '</b><span class="nm">' + esc(row.name) + '</span></a></div><span class="sub">' + esc(row.sector) + '</span></td>'
     + '<td>' + tierCell + '</td><td class="num">' + band + '</td>'
-    + '<td class="num mono strong' + (liveFloor ? ' atfloor' : '') + '">' + (live ? fmtPct(row.irr_live) + (liveFloor ? ' ' + floorSup(liveFloorT) : '') : '<span class="sub">—</span>') + '</td>'
+    + '<td class="num mono strong' + (liveFloor ? ' atfloor' : '') + '">' + (live ? fmtPct(row.irr_live) + (liveFloor ? ' ' + floorSup(liveFloorT) : '') : pending ? '<span class="sub lvpend" title="' + esc(pendingT) + '">live pending</span>' : '<span class="sub">—</span>') + '</td>'
     + '<td class="num mono' + (live ? ' muted' : ' strong') + (scoredFloor ? ' atfloor' : '') + '">' + fmtPct(row.irr) + (scoredFloor ? ' ' + floorSup(scoredFloorT) : '') + '</td>'
-    + '<td class="num mono"' + (row.price_date ? ' title="' + esc(row.price_date) + '"' : '') + '>' + fmtMoney(price) + '</td>'
+    + '<td class="num mono"' + (row.price_date ? ' title="' + esc(row.price_date) + '"' : pending ? ' title="scored price — live figures pending"' : '') + '>' + fmtMoney(price) + '</td>'
     + '<td class="num mono">' + fmtMoney(row.iv15) + '</td>'
     + '<td class="num mono ' + signCls(up) + '">' + (up !== null ? fmtPts(up, 0) : '—') + '</td>'
     + '<td class="num mono">' + (moat !== null ? moat.toFixed(0) + '/10' : '—') + '</td>'
@@ -1684,6 +1867,7 @@ function renderListHTML(meta, index, state, stars) {
   var done = num(sweep.done) || 0, total = num(sweep.total) || 0, pct = total ? done / total * 100 : 0;
   var misfits = num(counts.misfits) !== null ? num(counts.misfits) : index.filter(function (r) { return obj(r).fit === 'misfit'; }).length;
   var withLive = num(counts.with_live) !== null ? num(counts.with_live) : index.filter(function (r) { return num(obj(r).irr_live) !== null; }).length;
+  var pendingN = num(counts.live_withheld) !== null ? num(counts.live_withheld) : index.filter(function (r) { return obj(r).live_withheld === true; }).length;
   var tierChips = 'SABCDF'.split('').map(function (t) { return '<span class="tchip" style="--c:' + TIER_ACCENT[t] + '"><i>' + t + '</i>' + (num(tiers[t]) !== null ? num(tiers[t]) : index.filter(function (r) { return obj(r).tier === t; }).length) + '</span>'; }).join('');
   var notes = arr(meta.notes).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
   var seg = function (id, items, cur, attr, extra, title) { return '<div class="seg' + (extra || '') + '" id="' + id + '" role="group"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + items.map(function (it) { return '<button type="button" data-' + attr + '="' + esc(it[0]) + '" class="' + (it[0] === cur ? 'on' : '') + '" aria-pressed="' + (it[0] === cur) + '">' + it[1] + '</button>'; }).join('') + '</div>'; };
@@ -1691,7 +1875,7 @@ function renderListHTML(meta, index, state, stars) {
   var ths = COLS.map(function (c) { var sortable = SORTS.some(function (s) { return s[0] === c[2]; }); return '<th class="' + c[1] + (sortable ? ' sortable' : '') + (sortable && state.sort === c[2] ? ' sorted' : '') + '"' + (sortable ? ' data-sort="' + c[2] + '" title="Sort by ' + esc(c[0]) + '"' : (c[2] ? ' title="' + esc(c[2]) + '"' : '')) + '>' + c[0] + '</th>'; }).join('');
   var colgroup = '<colgroup>' + COLS.map(function (c, i) { return '<col class="c' + (i + 1) + '" style="width:' + c[3] + '%">'; }).join('') + '</colgroup>';
   return '<div id="listView">'
-    + '<header class="lhead"><div><h1>Owner\'s-Earnings DCF Ranking</h1><div class="note">' + esc(meta.date) + ' · ' + commas(done) + ' of ' + commas(total) + ' companies under $40B analyzed (' + pct.toFixed(1) + '%) · ranked by probability-weighted expected return at the last close (' + withLive + ' of ' + index.length + ' repriced live; the rest at their scored price) · tap a company for its page</div>'
+    + '<header class="lhead"><div><h1>Owner\'s-Earnings DCF Ranking</h1><div class="note">' + esc(meta.date) + ' · ' + commas(done) + ' of ' + commas(total) + ' companies under $40B analyzed (' + pct.toFixed(1) + '%) · ranked by probability-weighted expected return at the last close (' + withLive + ' of ' + index.length + ' repriced live' + (pendingN ? ', ' + pendingN + ' pending a close after scoring' : '') + '; the rest at their scored price) · tap a company for its page</div>'
     + '<div class="prog" role="progressbar" aria-valuenow="' + pct.toFixed(1) + '" aria-valuemin="0" aria-valuemax="100"><div style="width:' + pct.toFixed(2) + '%"></div></div></div>'
     + '<div class="tchips">' + tierChips + '<span class="tchip"><i style="background:#3A4252">MF</i>' + misfits + ' sector misfits</span></div></header>'
     + '<div id="notice" class="notice" role="status" aria-live="polite"></div>'
@@ -1972,7 +2156,7 @@ function chartSpecsStreet(record) {
     var filed = annH.map(function (h) { return r4(h.v); }); while (filed.length < labels.length) filed.push(null);
     out['street-eps'] = { labels: labels, yfmt: 'money', height: 240, zero: true, dividerAt: H - 1, series: [
       { name: 'Low → high estimate', color: '#7AA2FF', kind: 'band', values: pad(function (x) { return x.high; }), lows: pad(function (x) { return x.low; }) },
-      { name: 'Filed diluted EPS', color: C_OE, kind: 'line', width: 2.5, values: filed },
+      { name: 'Filed diluted EPS' + (annH.some(function (h) { return h.split; }) ? ' (split-adjusted)' : ''), color: C_OE, kind: 'line', width: 2.5, values: filed },
       { name: 'Consensus', color: SCN_COLORS.weighted, kind: 'line', dash: true, width: 2.5, values: pad(function (x) { return x.consensus; }) }] };
     var gv = [], ge = [], gc = [], gt = [];
     annH.forEach(function (h, i) { var g = h.g !== null ? h.g : (i && annH[i - 1].v > 0 ? h.v / annH[i - 1].v - 1 : null); gv.push(r4(g)); ge.push(null); gc.push(C_OE); gt.push('filed, year over year'); });
@@ -2516,8 +2700,13 @@ function canonicalHash(h, findTicker) {
   var t = typeof findTicker === 'function' ? findTicker(p.ticker) : p.ticker;
   return t ? hashFor(String(t), p.tab, p.sub) : null;
 }
+/* Every navigation takes a fresh token FIRST, so a company record still in flight from an earlier hash can never mount
+   over what this one shows: back to the ranking (#APP → # while APP loads), an unknown name, or a return to the company
+   already open (#KR → #APP → #KR while APP loads). The loading card replaces the open company's page, so D.current is
+   cleared with it — a return to that company re-mounts it from the cache instead of leaving "Loading …" on screen. */
 function route() {
   if (!D.index) return;
+  var token = (D.routeToken = {});
   var p = parseHash(location.hash);
   if (!p.ticker) { if (D.current || !$('#listView', D.app)) mountList(); return; }
   var row = findRow(p.ticker);
@@ -2528,9 +2717,8 @@ function route() {
   var ticker = row.ticker, canon = hashFor(ticker, p.tab, p.sub);
   if (String(location.hash || '') !== canon) setHash(canon); // legacy '#T/tab' and non-canonical casing → '#T.tab' on load (replaceState: no hashchange, no history entry)
   if (D.current && D.current.ticker === ticker) { if (D.current.tab !== p.tab) showTab(p.tab, p.tab === 'forecast' ? p.sub : null); else if (p.tab === 'forecast' && D.current.sub !== p.sub) showSub(p.sub); return; }
-  var token = (D.routeToken = {});
   var cached = D.records[ticker];
-  if (!cached) D.app.innerHTML = '<div class="card loading" role="status">Loading ' + esc(ticker) + '…</div>';
+  if (!cached) { D.current = null; D.app.innerHTML = '<div class="card loading" role="status">Loading ' + esc(ticker) + '…</div>'; }
   loadRecord(ticker, function (err, record) {
     if (D.routeToken !== token) return; // a later navigation won
     if (err || !record) {
@@ -2696,6 +2884,8 @@ var API = {
   crosshairLines: crosshairLines, labelWidth: labelWidth, estWidth: estWidth, XL_CH: XL_CH, XL_PAD_X: XL_PAD_X, XL_PAD_Y: XL_PAD_Y, XL_LINE: XL_LINE,
   condenseNow: condenseNow, TABSUM_H: TABSUM_H, sparkLabels: sparkLabels, oeGapNote: oeGapNote, oeYoyNote: oeYoyNote, histYoy: histYoy, overrideWhy: overrideWhy, SHARE_BASIS_X: SHARE_BASIS_X, SHARE_JUMP_X: SHARE_JUMP_X, renderStatementsBody: renderStatementsBody,
   parseHash: parseHash, TABS: TABS, TAB_KEYS: TAB_KEYS, SORTS: SORTS, TIER_ACCENT: TIER_ACCENT, tabScrollLeft: tabScrollLeft, TAB_PAD: TAB_PAD,
+  liveWithheld: liveWithheld, pendingText: pendingText, currentClose: currentClose, splitInfo: splitInfo, splitRefs: splitRefs, splitDivisor: splitDivisor, fmtFactor: fmtFactor, splitBrief: splitBrief,
+  renderOverrides: renderOverrides, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
   drawChart: drawChart, drawPrice: drawPrice // DOM-touching only through the element they are handed
 };
 if (typeof module !== 'undefined' && module.exports) module.exports = API;

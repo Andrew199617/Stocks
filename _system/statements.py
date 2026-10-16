@@ -89,6 +89,24 @@ for the rules below.
   there) and net margin continuing net income. Two lines that resolve
   to the same filed fact (same value, date and filing) are counted once.
   Totals are never synthesised from components.
+- restricted cash (Codex review of PR #2): a balance-sheet cash cell filed
+  only as the combined cash + restricted cash total
+  (CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents) is shown
+  as filed. Its restricted part is the difference from the same date's
+  cash-only caption (CashAndCashEquivalentsAtCarryingValue) where a filing
+  reports both with that total, or 0 where the two are equal (ZTS FY2025:
+  the 2026 10-Qs file 2,450M of both, so 0 — both columns then agree), else
+  a restricted-cash total filed for the date, else the current and
+  noncurrent restricted captions summed. A positive part is shown on the
+  "Restricted cash (included in cash above)" line in those cells only, and
+  net cash, net cash per share and the ROIC proxy's invested capital use
+  cash minus it — NTRS FY2025: 5,873.1M − 531.2M restricted, net cash
+  2,521.6M → 1,990.4M, 13.53 → 10.68 per share. A combined cell nothing
+  separates stays in those metrics, flagged `incl_restricted_*`, the line
+  labelled "(some periods incl. restricted cash)", warned, and the growth
+  cells across a change between the two bases blank (NTRS 2023-06-30 vs
+  2022-06-30: −12.6% compared 1,584.7M without restricted cash to 1,814.0M
+  with it).
 Cash-flow lines are as filed: capex, buybacks, dividends, repayments,
 acquisitions and investment purchases are POSITIVE amounts paid (a payment a
 filing tagged negative is the filer's sign slip and is read as the absolute
@@ -102,6 +120,11 @@ existing statements.json already records the newest 10-K / 10-Q / 20-F / 40-F
 filing (`latest_filed`) AND its period is covered by the columns written
 (`covered_through`), unless --force. EDGAR rules: the Muse User-Agent,
 <= 10 requests/second, 3 attempts with backoff, 90 s timeout.
+
+statements.json is committed: it is written through _stable.write_json_if_changed,
+so a rebuild whose content differs from the file only in `as_of` leaves the file
+untouched (`as_of` = the day the content was produced); --all reports written /
+unchanged / skipped.
 """
 import argparse
 import bisect
@@ -118,11 +141,16 @@ sys.path.insert(0, HERE)
 from fundamentals import (DUR, INST, DURATION_FORMS, core_fy_starts, _days, _g, _ratio, _num, fy_labels,  # noqa: E402
                           resolve_cik, get_json, split_direction, share_refilings, split_filing_cutoffs,
                           split_factor, _split_desc, _split_cutoff, _shares_with_filed, _units_pref)
+from _stable import write_json_if_changed  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 IF = "ifrs-full"
 SOURCE = "SEC EDGAR companyfacts (filing-direct)"
-SCHEMA_VERSION = 3  # 3 (2026-10-15 review round 4): newest filing wins (anomalies dropped), growth / FCF never across filing generations, Q4 diluted / EPS rules, splits — --all rebuilds older files once
+# 3 (2026-10-15 review round 4): newest filing wins (anomalies dropped), growth / FCF never across filing generations, Q4
+# diluted / EPS rules, splits — --all rebuilds older files once. The restricted-cash split (round 5) only ADDS fields and
+# changes only files whose cash line uses the combined cash + restricted tag, so it is not a version bump: can_skip
+# rebuilds exactly those files once (restricted_cash_pending) and leaves the rest untouched.
+SCHEMA_VERSION = 3
 FILING_FORMS = ("10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F", "40-F/A")
 INSTANT_FORMS = ("10-Q", "10-Q/A", "10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
@@ -219,6 +247,27 @@ EPS_CONTINUING = {"eps_diluted": "IncomeLossFromContinuingOperationsPerDilutedSh
 # cash-flow lines whose filed amount is a payment (non-negative by definition): a negative filed value is the filer's
 # sign slip — read as its absolute value, warned
 PAYMENT_LINES = ("capex", "capex_intangibles", "buybacks", "dividends_paid", "purchases_investments", "debt_repaid")
+# the cash-flow statement's cash total (cash + equivalents + RESTRICTED cash): the cash line's second tag, used for a date
+# with no CashAndCashEquivalentsAtCarryingValue (fundamentals.py / dcf_engine.py read the same tag and treat it the same
+# way). The restricted part is not cash the company can use, so the figures below that treat cash as available deduct it
+# (Codex review of PR #2).
+CASH_WITH_RESTRICTED_TAGS = ("CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",)
+# the balance-sheet cash caption WITHOUT restricted cash: where one filing reports it next to the combined total for the
+# same date (a later 10-Q's comparative of a year end the 10-K tagged only with the total), the difference is exactly
+# the restricted part (_cash_only_part)
+CASH_ONLY_TAG = "CashAndCashEquivalentsAtCarryingValue"
+# the restricted part of a combined total: a restricted-cash TOTAL for the date (fundamentals' INST["restricted_cash"]
+# order, its current-only tag excepted), else the current and the noncurrent captions filed for the date summed (the
+# cash-flow total includes both — U files RestrictedCashNoncurrent only). Listed here, not imported, so the split does
+# not move when fundamentals' own list changes.
+RESTRICTED_TOTAL_TAGS = ["RestrictedCashAndCashEquivalents", "RestrictedCash", "RestrictedCashAndCashEquivalentsAtCarryingValue", (IF, "RestrictedCashAndCashEquivalents")]
+RESTRICTED_PART_TAGS = (["RestrictedCashCurrent"], ["RestrictedCashNoncurrent", "RestrictedCashAndCashEquivalentsNoncurrent"])
+RESTRICTED_CASH_DERIVED = ("net_cash", "net_cash_per_share", "roic_proxy")
+CASH_WITH_RESTRICTED_LABEL = "Cash, equivalents & restricted cash"
+# visible on the statements table (the per-cell incl_restricted_* marks are JSON only): a line where SOME valued cells
+# still count restricted cash as cash says so in its label; every cell → the ALL suffix (the cash line: the label above)
+RESTRICTED_SOME_SUFFIX = " (some periods incl. restricted cash)"
+RESTRICTED_ALL_SUFFIX = " (incl. restricted cash)"
 DEBT_TOTAL_TAGS = ("LongTermDebt", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities", "DebtLongtermAndShorttermCombinedAmount", "Borrowings",
                    "SeniorNotes", "ConvertibleNotesPayable")  # totals that include current maturities: never added to the current-debt lines
 
@@ -274,6 +323,11 @@ INCOME = [
 ]
 BALANCE = [
     L("cash", "Cash & equivalents", list(INST["cash"]) + ["CashAndDueFromBanks", "Cash"], 1, kind="instant"),
+    # the restricted part of a cash cell filed only as the combined cash + restricted cash total (NTRS FY2025: 531.2M of
+    # the 5,873.1M); filled ONLY in those cells by restricted_cash_split (from CASH_ONLY_TAG / RESTRICTED_TOTAL_TAGS /
+    # RESTRICTED_PART_TAGS, so no tags here) — a separate restricted-cash caption next to a cash-only line is not part of
+    # the line above and is not shown
+    L("restricted_cash", "Restricted cash (included in cash above)", [], 2, kind="instant"),
     L("short_term_investments", "Short-term investments", list(INST["short_term_investments"]) + ["DebtSecuritiesAvailableForSaleExcludingAccruedInterestCurrent", "AvailableForSaleSecuritiesCurrent",
                                                                                                   (IF, "CurrentInvestments")], 1, kind="instant"),
     # banks: AFS and HTM are separate captions on the face; a total only when the filer tags one
@@ -1815,6 +1869,7 @@ def assemble_lines(facts, bank, annual_ends, q_ends, qmeta, fy_starts, money, sp
     zero_unfiled_components(facts, lines, annual_ends, q_ends, qmeta, money, warnings)
     capex_gap_warning(facts, lines, annual_ends, q_ends, warnings)
     opex_gap_warning(lines, annual_ends, warnings)
+    restricted_cash_split(facts, lines, annual_ends, q_ends, money, warnings)
     return lines
 
 
@@ -2300,6 +2355,170 @@ def opex_gap_warning(lines, annual_ends, warnings):
         warnings.append(f"income statement: the operating lines shown for FY ending {annual_ends[i]} explain {shown:,.0f} of the {gap:,.0f} between revenue and operating income — the filer tags its other operating lines with custom elements that EDGAR companyfacts does not carry")
 
 
+def _span(ends):
+    ends = sorted(set(ends))
+    return f"{len(ends)} period(s), {ends[0]}..{ends[-1]}" if len(ends) > 1 else f"1 period, {ends[0]}"
+
+
+def _cash_only_part(e, v, cash_only, h_c0, h_comb):
+    """(part, accns, all_accns) from the same date's cash-only caption (CASH_ONLY_TAG), or None:
+    - a filing that reports BOTH for date e with this combined value (within RESTATE_TOL): part = its total − its
+      cash-only figure (the newest such filing; its accessions are the provenance);
+    - else, when the newest cash-only figure equals the combined value exactly (APP / RBLX 2019-12-31, ARES
+      2017-12-31: a 10-Q comparative and the 10-K's total, the same dollars): part 0.
+    A cash-only figure from another filing generation is no evidence (ZTS 2024-12-31: the 2025 10-Qs' 1,987M of both
+    against the 2026 10-Qs' restated 2,114M total — 127M of reclassified cash, not restricted cash)."""
+    c0s, combs = h_c0.get(e) or [], h_comb.get(e) or []
+    c0_by = {x[2]: x[1] for x in c0s if x[2]}
+    pairs = sorted(((x[0], x[2], c0_by[x[2]], x[1]) for x in combs if x[2] in c0_by and _close(x[1], v)), reverse=True)
+    if pairs:
+        _, _, c0, tot = pairs[0]
+        if 0 <= c0 <= tot:
+            return tot - c0, sorted({p[1] for p in pairs if (p[2], p[3]) == (c0, tot)}), sorted({p[1] for p in pairs})
+    rec = cash_only.get(e)
+    if rec is not None and rec[0] == v:
+        return 0.0, list(rec[4]), list(rec[5] or rec[4])
+    return None
+
+
+def _restricted_part(e, v, cash_only, totals, parts, h_c0=None, h_comb=None):
+    """(part, tag, accns, all_accns, how) — the restricted cash inside a combined cash + restricted cash cell of value v
+    at date e:
+    - how "cash_only": the same date's CASH_ONLY_TAG caption separates it (_cash_only_part — ZTS FY2025: the 2026
+      10-Qs file 2,450M of both, so 0, where RestrictedCashCurrent says 2M; the quarterly column at that date reads the
+      cash-only figure itself, so both columns now agree);
+    - how "tagged": a RESTRICTED_TOTAL_TAGS figure for the date, else the RESTRICTED_PART_TAGS captions filed for it
+      summed (current + noncurrent: U's RestrictedCashNoncurrent), 0 <= part <= v;
+    - how "odd": that figure is outside 0..v (not deducted); None: nothing separates it."""
+    cp = _cash_only_part(e, v, cash_only, h_c0 or {}, h_comb or {})
+    if cp is not None:
+        return cp[0], f"{CASH_WITH_RESTRICTED_TAGS[0]}-{CASH_ONLY_TAG}", cp[1], cp[2], "cash_only"
+    got = [totals[e]] if e in totals else [p[e] for p in parts if e in p]
+    if not got:
+        return None, None, [], [], None
+    val = sum(g[0] for g in got)
+    acc = set.intersection(*(set(g[4]) for g in got))
+    al = set.intersection(*(set(g[5] or g[4]) for g in got))
+    return val, "+".join(g[1] for g in got), sorted(acc), sorted(al), ("tagged" if 0 <= val <= v else "odd")
+
+
+def restricted_cash_split(facts, lines, annual_ends, q_ends, money, warnings):
+    """The cash line where its cell is the combined cash + restricted cash
+    total (CASH_WITH_RESTRICTED_TAGS — the line's tag for a date the annual
+    report filed no CashAndCashEquivalentsAtCarryingValue for; NTRS's FY2025
+    5,873.1M includes 531.2M of restricted cash):
+    - the cell stays as filed; `_incl_restricted` (→ incl_restricted_annual /
+      _quarterly / _ttm, emitted whenever the line has a combined cell) is True
+      where it holds restricted cash: a positive part, or an unknown one. A
+      part of 0 (the same date's cash-only figure equals the total) is not;
+    - the restricted part (_restricted_part) is shown on the restricted_cash
+      line in exactly the cells where it is positive and inside the total — the
+      line is built here, never from a restricted-cash caption next to a
+      cash-only cell (a separate caption, not part of the line above);
+    - `_unsplit` marks the combined cells no figure separates: the derived
+      figures that treat cash as available (RESTRICTED_CASH_DERIVED) deduct the
+      part where it is shown and are flagged where it is not (add_derived),
+      their growth blank across a change between the two (finish_lines);
+    - the label says so: every valued cell holding restricted cash ->
+      CASH_WITH_RESTRICTED_LABEL, some -> RESTRICTED_SOME_SUFFIX. Warned."""
+    cash, rc = lines.get("cash"), lines.get("restricted_cash")
+    if rc is None:
+        spec = next(s for s in BALANCE if s["key"] == "restricted_cash")
+        rc = lines["restricted_cash"] = {"key": "restricted_cash", "label": spec["label"], "level": spec["level"], "total": False, "unit": "money",
+                                         "ttm": None, "tags": [], "_kind": "instant", "_stmt": "balance", "_spec": spec}
+    # built from scratch: only the parts of combined cells
+    rc["annual"], rc["quarterly"], rc["derived_quarterly"] = [None] * len(annual_ends), [None] * len(q_ends), [False] * len(q_ends)
+    for m in ("_atags", "_qtags", "_aaccn", "_qaccn", "_aall", "_adis", "_qdis"):
+        rc[m] = {}
+    rc["tags"] = []
+    if cash is None:
+        return
+    cash_only = instant_values(facts, [CASH_ONLY_TAG], money)
+    h_c0 = instant_history(facts, ("us-gaap", CASH_ONLY_TAG), money)
+    h_comb = instant_history(facts, ("us-gaap", CASH_WITH_RESTRICTED_TAGS[0]), money)
+    totals = instant_values(facts, RESTRICTED_TOTAL_TAGS, money)
+    parts = [instant_values(facts, tags, money) for tags in RESTRICTED_PART_TAGS]
+    combined, by_c0, by_tag, zero, unsplit, odd, rtags = [], [], [], [], [], [], set()
+    flags, loose, basis = {}, {}, {}
+    for col, ends, tmap in (("annual", annual_ends, "_atags"), ("quarterly", q_ends, "_qtags")):
+        fl, un, bs = [], [], []
+        for i, e in enumerate(ends):
+            v = cash[col][i]
+            comb = bool(_num(v) and cash[tmap].get(e) in CASH_WITH_RESTRICTED_TAGS)
+            part, tag, acc, al, how = _restricted_part(e, v, cash_only, totals, parts, h_c0, h_comb) if comb else (None, None, [], [], None)
+            known = how in ("cash_only", "tagged")
+            fl.append(bool(comb and not (known and part == 0)))
+            un.append(bool(comb and not known))
+            # what the derived figures' cash means here: "incl" restricted cash, "ex" (deducted, or the cash-only caption),
+            # None when the caption does not say (CashAndDueFromBanks, Cash: NTRS's equals its combined total)
+            bs.append(("ex" if known else "incl") if comb else ("ex" if (_num(v) and cash[tmap].get(e) == CASH_ONLY_TAG) else None))
+            if not comb:
+                continue
+            combined.append(e)
+            if known and part == 0:
+                zero.append(e)
+            elif known:
+                (by_c0 if how == "cash_only" else by_tag).append(e)
+                rc[col][i] = part
+                rc[tmap][e] = tag
+                if how == "tagged":
+                    rtags.add(tag)
+                if col == "annual":
+                    rc["_aaccn"][e], rc["_aall"][e] = acc, al
+                else:
+                    rc["_qaccn"][e] = acc
+            else:
+                unsplit.append(e)
+                if how == "odd":
+                    odd.append(f"{e} ({part:,.0f} of {tag} vs cash {v:,.0f})")
+        flags[col], loose[col], basis[col] = fl, un, bs
+    _retag(rc)
+    if not combined:
+        return
+    flags["ttm"] = bool(flags["quarterly"] and flags["quarterly"][-1])  # an instant's ttm is the latest quarter's cell
+    loose["ttm"] = bool(loose["quarterly"] and loose["quarterly"][-1])
+    cash["_incl_restricted"] = flags  # emitted even when all False: the file records that the split was applied (restricted_cash_pending)
+    cash["_unsplit"] = loose
+    cash["_rbasis"] = basis
+    valued = sum(1 for v in cash["annual"] + cash["quarterly"] if _num(v))
+    held = sum(flags["annual"]) + sum(flags["quarterly"])
+    if held and held == valued:
+        cash["label"] = CASH_WITH_RESTRICTED_LABEL
+    elif held:
+        cash["label"] = cash["label"] + RESTRICTED_SOME_SUFFIX
+    msg = (f"restricted cash: in {_span(combined)} the cash line is the filed cash + restricted cash total ({CASH_WITH_RESTRICTED_TAGS[0]}, "
+           f"the cash-flow statement's total, read where the annual report filed no {CASH_ONLY_TAG} for the date)")
+    if by_c0:
+        msg += f"; in {_span(by_c0)} a filing reports the same date's {CASH_ONLY_TAG} next to that total, so the restricted part is the difference"
+    if by_tag:
+        msg += f"; in {_span(by_tag)} the restricted part is the restricted-cash figure filed for the same date ({', '.join(sorted(rtags))})"
+    if by_c0 or by_tag:
+        msg += ("; that part is shown on the 'Restricted cash (included in cash above)' line and deducted from cash wherever net cash, net cash per "
+                "share and the ROIC proxy's invested capital are computed")
+    if zero:
+        msg += (f"; in {_span(zero)} it holds no restricted cash (the same date's {CASH_ONLY_TAG} equals the total, or the restricted-cash "
+                f"figure is 0): nothing deducted, not marked")
+    if unsplit:
+        msg += (f"; in {_span(unsplit)} no figure separates the restricted part, so where those metrics are computed they still count restricted cash "
+                f"as cash (net cash overstated, net debt understated by the restricted amount; flagged incl_restricted_* and labelled "
+                f"'{RESTRICTED_SOME_SUFFIX.strip()[1:-1]}' on the metric; growth across a change between the two bases is blank)")
+    if odd:
+        msg += f"; a restricted-cash figure outside 0..cash was not deducted: {'; '.join(odd[:4])}{'; ...' if len(odd) > 4 else ''}"
+    warnings.append(msg)
+
+
+def _derived_restricted_flags(cash, annual, quarterly, ttm):
+    """incl_restricted_* for a derived figure that treats cash as available: True where its value exists and the
+    period's cash is the combined total with no restricted figure to deduct (restricted_cash_split's `_unsplit`)."""
+    u = (cash or {}).get("_unsplit")
+    if not u:
+        return None
+    a = [bool(_num(v) and i < len(u["annual"]) and u["annual"][i]) for i, v in enumerate(annual)]
+    q = [bool(_num(v) and i < len(u["quarterly"]) and u["quarterly"][i]) for i, v in enumerate(quarterly)]
+    t = bool(_num(ttm) and u["quarterly"] and u["quarterly"][-1])
+    return {"annual": a, "quarterly": q, "ttm": t} if (any(a) or any(q) or t) else None
+
+
 # ---- derived lines ----------------------------------------------------------
 def _opt(get, present, key):
     """A component that may legitimately not exist: its value when filed for
@@ -2337,7 +2556,7 @@ def derived_input_keys(name, get):
     return {"ebitda": ["operating_income", "da"], "fcf": [_ocf_key(get), "capex"], "owner_earnings": [_ocf_key(get), "capex", "sbc"],
             "gross_margin": ["gross_profit", "revenue"], "operating_margin": ["operating_income", "revenue"], "net_margin": [_ni_key(get), "revenue"],
             "fcf_margin": ["fcf", "revenue"], "total_debt": ["long_term_debt", "short_term_debt", "current_lt_debt", "debt_current_agg", "debt_total_agg"],
-            "net_cash": ["cash", "short_term_investments", "total_debt"], "working_capital": ["total_current_assets", "total_current_liabilities"],
+            "net_cash": ["cash", "restricted_cash", "short_term_investments", "total_debt"], "working_capital": ["total_current_assets", "total_current_liabilities"],
             "tangible_book_value": ["total_common_equity", "goodwill", "intangibles"], "net_cash_per_share": ["net_cash", "shares_outstanding"],
             "book_value_per_share": ["total_common_equity", "shares_outstanding"], "tangible_book_value_per_share": ["tangible_book_value", "shares_outstanding"],
             "fcf_per_share": ["fcf", "shares_diluted"], "owner_earnings_per_share": ["owner_earnings", "shares_diluted"]}.get(name, [])
@@ -2367,6 +2586,17 @@ def _prov_join(provs):
 def _prov_conflict(p):
     """The values share no filing although some filing reported all of them: two filing generations."""
     return p is not None and not p[0] and bool(p[1])
+
+
+def _available_cash(cash, get, tag_of):
+    """The period's cash a derived figure may treat as available: the cash cell minus its restricted part when the cell
+    is the combined cash + restricted total (CASH_WITH_RESTRICTED_TAGS) and the period's restricted figure is shown
+    (restricted_cash_split keeps it only there); otherwise the cash cell itself."""
+    if _num(cash) and tag_of is not None and tag_of("cash") in CASH_WITH_RESTRICTED_TAGS:
+        r = get("restricted_cash")
+        if _num(r):
+            return cash - r
+    return cash
 
 
 def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_ttm=None):
@@ -2406,7 +2636,7 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
             return agg_tot + (st if (_num(st) and not st_is_agg) else 0.0)
         return cur
     if name == "net_cash":
-        cash = get("cash")
+        cash = _available_cash(get("cash"), get, tag_of)
         sti, debt = _opt(get, present, "short_term_investments"), _opt(get, present, "total_debt")
         return cash + sti - debt if (_num(cash) and sti is not None and debt is not None) else None
     if name == "working_capital":
@@ -2434,7 +2664,7 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
         oi = oi_ttm if oi_ttm is not None else get("operating_income")
         t = tax_ttm if tax_ttm is not None else _tax_rate(get)
         eq = get("total_common_equity")
-        debt, cash = _opt(get, present, "total_debt"), _opt(get, present, "cash")
+        debt, cash = _opt(get, present, "total_debt"), _available_cash(_opt(get, present, "cash"), get, tag_of)
         if not (_num(oi) and t is not None and _num(eq) and debt is not None and cash is not None):
             return None
         invested = eq + debt - cash
@@ -2535,6 +2765,15 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
             lines[spec["key"]] = {"key": spec["key"], "label": spec["label"], "level": spec["level"], "total": bool(spec["total"]), "unit": spec["unit"],
                                   "annual": annual, "quarterly": quarterly, "ttm": ttm, "derived_quarterly": dq, "tags": [], "_aaccn": aacc, "_aall": aall,
                                   "_kind": "derived", "_stmt": stmt, **({"cf_sign": spec["cf_sign"]} if spec["cf_sign"] is not None else {})}
+            if name in RESTRICTED_CASH_DERIVED:
+                fl = _derived_restricted_flags(lines.get("cash"), annual, quarterly, ttm)
+                if fl:
+                    lines[spec["key"]]["_incl_restricted"] = fl
+                    lines[spec["key"]]["_rbasis"] = lines["cash"]["_rbasis"]  # growth never across "incl" vs "ex" (finish_lines)
+                    # the per-cell marks are JSON only: the label tells the reader of the table
+                    held = sum(fl["annual"]) + sum(fl["quarterly"]) + int(fl["ttm"])
+                    valued = sum(1 for v in annual + quarterly + [ttm] if _num(v))
+                    lines[spec["key"]]["label"] = spec["label"] + (RESTRICTED_ALL_SUFFIX if held == valued else RESTRICTED_SOME_SUFFIX)
     icf = lines.get("icf_discontinued")
     if icf is not None and warnings is not None:
         per = [e for col, ends in (("annual", annual_ends), ("quarterly", q_ends)) for i, e in enumerate(ends) if _num(icf[col][i]) and icf[col][i] != 0]
@@ -2648,7 +2887,7 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
             lines[key]["ttm"] = None
     basis_breaks(lines, annual_ends, q_ends, qmeta, warnings)
     yoy = yoy_index(q_ends)
-    gen_breaks = {}
+    gen_breaks, rc_breaks = {}, {}
     out = {}
     for stmt, specs in STATEMENTS:
         out[stmt] = []
@@ -2670,6 +2909,9 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
             for i in annual_generation_breaks(line, annual_ends, ga):
                 ga[i] = None
                 gen_breaks.setdefault(spec["key"], set()).add(annual_ends[i])
+            if spec["key"] == line["key"] and line["key"] in RESTRICTED_CASH_DERIVED:
+                for cell in restricted_basis_breaks(line, annual_ends, q_ends, yoy, ga, gq):
+                    rc_breaks.setdefault(spec["key"], []).append(cell)
             rec = {"key": spec["key"], "label": line["label"] if spec["key"] == line["key"] and line["_stmt"] == stmt else spec["label"],
                    "level": spec["level"], "total": bool(spec["total"]), "unit": line["unit"],
                    "annual": line["annual"], "quarterly": line["quarterly"], "ttm": line["ttm"],
@@ -2677,6 +2919,9 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
                    "growth_quarterly": gq, "derived_quarterly": line["derived_quarterly"], "tags": line["tags"]}
             if flags:
                 rec["basis_break_quarterly"] = flags
+            ir = line.get("_incl_restricted") if line["key"] == spec["key"] else None
+            if ir:  # the cell counts restricted cash as cash (restricted_cash_split / _derived_restricted_flags)
+                rec["incl_restricted_annual"], rec["incl_restricted_quarterly"], rec["incl_restricted_ttm"] = ir["annual"], ir["quarterly"], ir["ttm"]
             if spec["cf_sign"] is not None:
                 rec["cf_sign"] = spec["cf_sign"]
             out[stmt].append(rec)
@@ -2685,6 +2930,37 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
         warnings.append(f"growth across filing generations: {sum(len(v) for v in gen_breaks.values())} annual growth cell(s) are blank because the year and "
                         f"the year before come from different filings that disagree (one restated by a later filing — discontinued operations, an "
                         f"accounting change, a recast — the other as originally filed; or a capex caption change): " + "; ".join(parts[:12]) + ("; ..." if len(parts) > 12 else ""))
+    if rc_breaks:
+        parts = []
+        for k, cells in sorted(rc_breaks.items()):
+            a, q = [e for c, e in cells if c == "annual"], [e for c, e in cells if c == "quarterly"]
+            parts.append(f"{k} (" + "; ".join(x for x in ((f"FY ending {', '.join(a)}" if a else ""), (f"quarters {', '.join(q[:6])}{'…' if len(q) > 6 else ''}" if q else "")) if x) + ")")
+        warnings.append(f"restricted cash: {sum(len(v) for v in rc_breaks.values())} growth cell(s) are blank because one of the two periods deducts "
+                        f"restricted cash and the other still counts it as cash (no figure separates it there; flagged incl_restricted_*): " + "; ".join(parts))
+    return out
+
+
+def restricted_basis_breaks(line, annual_ends, q_ends, yoy, ga, gq):
+    """Blank (in place) the growth cells of a figure that treats cash as available (RESTRICTED_CASH_DERIVED) where one
+    period counts restricted cash as cash (a combined cash cell no figure separates: `_rbasis` "incl") and the other does
+    not ("ex": its restricted part deducted, or the cash-only caption CASH_ONLY_TAG). NTRS net cash 2023-06-30 vs
+    2022-06-30: 1,584.7M after deducting 583.5M vs 1,814.0M still including it — −12.6%, a change of definition, not of
+    the business. A caption that does not say (NTRS's CashAndDueFromBanks before 2016, which equals its combined total
+    wherever both are filed) is no break. Returns the cells blanked as (column, period end)."""
+    b = line.get("_rbasis") if line.get("_incl_restricted") else None
+    if not b:
+        return []
+    out = []
+    a, q = b["annual"], b["quarterly"]
+    for i in range(1, len(ga)):
+        if ga[i] is not None and i < len(a) and {a[i], a[i - 1]} == {"incl", "ex"}:
+            ga[i] = None
+            out.append(("annual", annual_ends[i]))
+    for i, g in enumerate(gq):
+        j = yoy[i] if i < len(yoy) else None
+        if g is not None and j is not None and i < len(q) and {q[i], q[j]} == {"incl", "ex"}:
+            gq[i] = None
+            out.append(("quarterly", q_ends[i]))
     return out
 
 
@@ -2890,7 +3166,9 @@ def can_skip(existing, latest):
     file records the same newest filing (form + date), the same schema, AND
     its columns already cover that filing's period (`covered_through`) — a
     file written while EDGAR's companyfacts lagged the filing is retried on
-    every run until the data arrives."""
+    every run until the data arrives; a file written before the restricted-cash
+    split whose cash line used the combined tag is rebuilt once
+    (restricted_cash_pending)."""
     if not existing or not latest or not isinstance(existing.get("latest_filed"), dict):
         return False
     lf = existing["latest_filed"]
@@ -2899,7 +3177,23 @@ def can_skip(existing, latest):
     covered = existing.get("covered_through")
     if latest.get("period") and (not covered or latest["period"] > covered):
         return False
+    if restricted_cash_pending(existing):
+        return False
     return True
+
+
+def restricted_cash_pending(existing):
+    """A file written before the restricted-cash split whose cash line uses the combined cash + restricted cash tag: its
+    net cash counted restricted cash as cash, so --all rebuilds it once (the rebuilt file carries incl_restricted_* on
+    that line — all False where no combined cell holds any). A file whose cash line never used the combined tag is
+    unaffected and stays skipped."""
+    st = existing.get("statements")
+    bal = st.get("balance") if isinstance(st, dict) else None
+    for ln in bal if isinstance(bal, list) else []:
+        if isinstance(ln, dict) and ln.get("key") == "cash":
+            tags = ln.get("tags") if isinstance(ln.get("tags"), list) else []
+            return any(t in CASH_WITH_RESTRICTED_TAGS for t in tags) and "incl_restricted_annual" not in ln
+    return False
 
 
 def run_one(ticker, cik=None, write=True, cache=None, force=False, existing=None):
@@ -2931,13 +3225,12 @@ def run_one(ticker, cik=None, write=True, cache=None, force=False, existing=None
     out = {"ticker": ticker, "cik": cik, "entity": facts.get("entityName"), "as_of": _et_today().isoformat(), "currency": currency,
            "fiscal_year_end_mmdd": sub.get("fiscalYearEnd"), "source": SOURCE, "schema_version": SCHEMA_VERSION,
            "latest_filed": latest, "covered_through": newest_period, "periods": periods, "statements": statements, "warnings": warnings}
+    written = None  # --no-write
     if write:
-        os.makedirs(folder, exist_ok=True)
-        tmp = os.path.join(folder, f"statements.json.tmp{os.getpid()}")
-        with open(tmp, "w", encoding="utf-8", newline="\n") as f:
-            json.dump(out, f, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
-        os.replace(tmp, os.path.join(folder, "statements.json"))
-    summary = {"ticker": ticker, "cik": cik, "skipped": False, "currency": currency, "fiscal_year_end_mmdd": sub.get("fiscalYearEnd"),
+        # committed file: rewritten (atomically) only when something besides the run date `as_of` changed (_stable.py)
+        written = write_json_if_changed(os.path.join(folder, "statements.json"), out, volatile=("as_of",),
+                                        ensure_ascii=False, separators=(",", ":"), allow_nan=False)
+    summary = {"ticker": ticker, "cik": cik, "skipped": False, "written": written, "currency": currency, "fiscal_year_end_mmdd": sub.get("fiscalYearEnd"),
                "annual_years": len(periods["annual"]), "first_fy": periods["annual"][0]["label"] if periods["annual"] else None,
                "last_fy": periods["annual"][-1]["label"] if periods["annual"] else None,
                "quarters": len(periods["quarterly"]), "first_quarter": periods["quarterly"][0]["end"] if periods["quarterly"] else None,
@@ -2957,7 +3250,7 @@ def main(argv=None):
     if a.all:
         folders = sorted(os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(BASE, "*", "score.json")))
         folders = [f for f in folders if not f.startswith(("_", "."))]
-        written, skipped, failed = [], [], []
+        written, unchanged, skipped, failed = [], [], [], []
         for t in folders:
             try:
                 s, sk = run_one(t, write=not a.no_write, cache=a.cache, force=a.force)
@@ -2965,12 +3258,17 @@ def main(argv=None):
                 failed.append(t)
                 print(f"statements.py: FAILED {t}: {type(e).__name__}: {e}", file=sys.stderr)
                 continue
-            (skipped if sk else written).append(t)
-            if not sk:
-                print(f"{t}: FY{s['first_fy'][2:] if s['first_fy'] else '?'}..{s['last_fy'][2:] if s['last_fy'] else '?'} ({s['annual_years']} FY, {s['quarters']} quarters, ttm {(s['ttm'] or {}).get('end')})" + (f" | {len(s['warnings'])} warning(s)" if s["warnings"] else ""))
-        print(f"statements.py --all: {len(written)} written, {len(skipped)} skipped (newest filing already recorded and covered - companyfacts not downloaded), {len(failed)} failed"
+            if sk:
+                skipped.append(t)
+                continue
+            same = s.get("written") is False
+            (unchanged if same else written).append(t)
+            print(f"{t}: FY{s['first_fy'][2:] if s['first_fy'] else '?'}..{s['last_fy'][2:] if s['last_fy'] else '?'} ({s['annual_years']} FY, {s['quarters']} quarters, ttm {(s['ttm'] or {}).get('end')})"
+                  + (f" | {len(s['warnings'])} warning(s)" if s["warnings"] else "") + (" | content unchanged, file left as is" if same else ""))
+        print(f"statements.py --all: {len(written)} {'built (--no-write)' if a.no_write else 'written'}, {len(unchanged)} unchanged (rebuilt; same content apart from as_of - file left as is), "
+              f"{len(skipped)} skipped (newest filing already recorded and covered - companyfacts not downloaded), {len(failed)} failed"
               + (f" [{', '.join(failed)}]" if failed else ""))
-        return 1 if failed and not written and not skipped else 0
+        return 1 if failed and not written and not unchanged and not skipped else 0
     if not a.ticker:
         ap.print_help()
         return 2

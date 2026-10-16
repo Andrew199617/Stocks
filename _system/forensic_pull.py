@@ -125,11 +125,11 @@ def main():
     folder = f"{BASE}/{ticker}"
     nums, score = {}, {}
     try:
-        nums = json.load(open(f"{folder}/dcf_numbers.json"))
+        nums = json.load(open(f"{folder}/dcf_numbers.json", encoding="utf-8"))
     except Exception:
         pass
     try:
-        score = json.load(open(f"{folder}/score.json"))
+        score = json.load(open(f"{folder}/score.json", encoding="utf-8"))
     except Exception:
         pass
     if cik is None:

@@ -2,7 +2,7 @@
  "ticker": "GFI",
  "cik": 1172724,
  "entity": "Gold Fields Limited",
- "as_of": "2026-10-15",
+ "as_of": "2026-10-16",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -993,7 +993,7 @@
   "dps_ttm": 0.39,
   "dps_ttm_basis": "FY2024 DPS (fy_fact, period ended 2024-12-31) \u2014 no quarterly DPS fact since",
   "dps_basis": "mixed",
-  "dps_basis_detail": "declared facts for periods ending 2015-12-31..2024-12-31; paid facts for the periods the declared tag does not cover (2007-06-30..2014-12-31, 8 facts)",
+  "dps_basis_detail": "declared facts for periods ending 2015-12-31..2024-12-31; paid facts for the periods the declared tag does not cover (2007-06-30..2014-12-31, 8 facts); the paid tag stopped: its newest fact (2015-12-31) is 3288 days older than the declared tag's (2024-12-31) \u2014 declared is primary",
   "frequency": null,
   "frequency_basis": null,
   "annual_dps": [
@@ -1146,6 +1146,7 @@
   "price": null,
   "price_date": null,
   "price_source": null,
+  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
   "shares_outstanding": 895024247,
   "shares_as_of": "2024-12-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (20-F filed 2025-03-27)",
@@ -1256,11 +1257,12 @@
   "history": [],
   "notes": [
    "annual_dps: FY DPS for the period ended 2017-12-31 is filed as 0.08 (20-F/A filed 2018-04-23, 20-F filed 2019-03-29) and as 8 (20-F filed 2020-04-06) \u2014 the filings disagree by a power of ten (a unit slip, DividendsRecognisedAsDistributionsToOwnersPerShare); 0.08 used, the value most filings agree on",
+   "annual_dps: FY DPS for the period ended 2018-12-31 is filed as 0.06 (20-F filed 2019-03-29, 20-F filed 2021-03-31) and as 6 (20-F filed 2020-04-06) \u2014 the filings disagree by a power of ten (a unit slip, DividendsRecognisedAsDistributionsToOwnersPerShare); 0.06 used, the value most filings agree on",
+   "annual_dps: FY DPS for the period ended 2019-12-31 is filed as 0.05 (20-F filed 2021-03-31, 20-F filed 2022-03-31) and as 5 (20-F filed 2020-04-06) \u2014 the filings disagree by a power of ten (a unit slip, DividendsRecognisedAsDistributionsToOwnersPerShare); 0.05 used, the value most filings agree on",
    "dps_basis: declared facts for periods ending 2015-12-31..2024-12-31; paid facts for the periods the declared tag does not cover (2007-06-30..2014-12-31, 8 facts) \u2014 the series switches basis where one tag stops; the switch year can double-count or skip one payment (a dividend declared in one quarter and paid in the next)",
    "dps_ttm: fewer than four quarterly DPS facts \u2014 FY2024 DPS (fy_fact, period ended 2024-12-31) \u2014 no quarterly DPS fact since",
    "frequency: only full-year DPS facts are filed (no quarterly / interim facts) \u2014 payment count not inferable",
    "quarterly flows: no quarterly facts (20-F/40-F filer without 10-Qs) \u2014 dividends_paid_ttm / buybacks_ttm / issuance_ttm null; the buyback and shareholder yields use the latest fiscal year's annual flows",
-   "price: neither prices.json nor score.json carries a price \u2014 yields null",
    "latest 20-F (period 2025-12-31) is not yet in EDGAR companyfacts \u2014 annual / quarterly rows, TTM flows and this dividends block stop at 2024-12-31"
   ]
  },

@@ -310,7 +310,7 @@ def load_overrides(ticker):
     if os.environ.get("DCF_NO_OVERRIDES"):
         return {}
     try:
-        j = json.load(open(f"{BASE}/{ticker}/judgment.json"))
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
     except Exception:
         return {}
     out = {}
@@ -330,7 +330,7 @@ def load_ads_ratio(ticker):
     filers: ratio = ordinary shares per ADS. Per-share EDGAR figures for a
     20-F/40-F filer are per ordinary share while the traded price is per ADS."""
     try:
-        j = json.load(open(f"{BASE}/{ticker}/judgment.json"))
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
     except Exception:
         return None
     a = j.get("ads_ratio") if isinstance(j, dict) else None
@@ -436,6 +436,31 @@ def nasdaq_price(ticker):
     except Exception:
         return None
 
+# Codex review of PR #2 (HBAN FY2025: net debt read on 17.221B of debt while the
+# statements pipeline shows 18.482B): the debt_total tags are of two kinds. A
+# LONG-TERM total (LongTermDebt, LongTermDebtAndCapitalLeaseObligationsIncluding-
+# CurrentMaturities) carries the current maturities of long-term debt but not
+# the short-term borrowings a filer reports on their own line (debt_cur_st:
+# ShortTermBorrowings / CommercialPaper / NotesPayableCurrent / IFRS
+# ShorttermBorrowings), so those are added — never the current maturities,
+# which are inside it. An aggregate of long- AND short-term debt
+# (DebtLongtermAndShorttermCombinedAmount, IFRS Borrowings) stands alone.
+# Debt feeds diagnostics only (net_debt_latest, HIGH_NET_DEBT / BIG_NET_CASH):
+# no valuation input moves, so engine_release stays 5.4.0.
+LT_DEBT_TOTAL_TAGS = frozenset({"LongTermDebt", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities"})
+
+
+def debt_from_total_tag(tot, tot_tag, st=None, st_tag=None, same_unit=True):
+    """(total debt, debt_tag) for a period whose only long-term figure is a
+    debt_total tag; st = the short-term-borrowings component (debt_cur_st) and
+    same_unit = whether it is in tot's unit after the FX pass (never added
+    across currencies)."""
+    if tot_tag in LT_DEBT_TOTAL_TAGS and st is not None:
+        if same_unit:
+            return tot + st, f"TOTAL:{tot_tag}+{st_tag}"
+        return tot, f"TOTAL:{tot_tag} (short-term {st_tag} filed in another unit, not added)"
+    return tot, f"TOTAL:{tot_tag}"
+
 def period_series(facts, tags, duration=True):
     """({period_end: value}, first_used_tag, {period_end: tag}, {period_end: unit}) —
     annual periods only, latest filing wins. v4: MERGES across candidate tags per
@@ -488,9 +513,9 @@ def main():
     price_arg = float(sys.argv[sys.argv.index("--price") + 1]) if "--price" in sys.argv else None
 
     uni = {}
-    with open(f"{SYS}/universe.csv") as f:
+    with open(f"{SYS}/universe.csv", encoding="utf-8") as f:
         for row in csv.DictReader(f): uni[row["ticker"]] = row
-    sec = json.load(open(f"{SYS}/sec_tickers_exchange.json"))
+    sec = json.load(open(f"{SYS}/sec_tickers_exchange.json", encoding="utf-8"))
     cik_by_ticker = {}
     for rec in sec["data"]: cik_by_ticker.setdefault(rec[2].upper(), rec[0])
     cik = None
@@ -843,8 +868,9 @@ def main():
             total_debt = d_lt + (d_cur or 0)
             debt_tag_p = f"{series_tags['debt_lt'].get(p)}+{d_cur_tag or 'none'}"
         elif d_tot is not None:
-            total_debt = d_tot
-            debt_tag_p = f"TOTAL:{series_tags['debt_total'].get(p)}"
+            _eff_unit = lambda k: "USD" if (k, p) in fx_converted_periods else series_units.get(k, {}).get(p)
+            total_debt, debt_tag_p = debt_from_total_tag(d_tot, series_tags["debt_total"].get(p), g("debt_cur_st"), series_tags["debt_cur_st"].get(p),
+                                                         same_unit=_eff_unit("debt_total") == _eff_unit("debt_cur_st"))
         elif d_cur is not None:
             total_debt = d_cur
             debt_tag_p = f"CURRENT_ONLY:{d_cur_tag}"
@@ -956,7 +982,7 @@ def main():
         base_override = float(sys.argv[sys.argv.index("--base-oe-ps") + 1]); pin_source = "base_oe_ps_arg"
     elif "--ttm" in sys.argv:
         try:
-            with open(f"{BASE}/{ticker}/ttm.json") as _f:
+            with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as _f:
                 base_override = float(json.load(_f)["ttm_oe_per_share"])
             pin_source = "ttm_json"
         except Exception as e:
@@ -1129,10 +1155,10 @@ def main():
                        "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap — a missing value is not a zero."})
         result["content_hash"] = _content_hash(result)
         folder = f"{BASE}/{ticker}"; os.makedirs(folder, exist_ok=True)
-        with open(f"{folder}/financials_history.csv", "w", newline="") as f:
+        with open(f"{folder}/financials_history.csv", "w", newline="", encoding="utf-8") as f:
             if hist:
                 w = csv.DictWriter(f, fieldnames=list(hist[0].keys())); w.writeheader(); w.writerows(hist)
-        json.dump(result, open(f"{folder}/dcf_numbers.json", "w"), indent=1)
+        json.dump(result, open(f"{folder}/dcf_numbers.json", "w", encoding="utf-8"), indent=1)
         print(f"DATA_GAP for {ticker}: {', '.join(uncovered)} — no tier emitted (dcf_numbers.json written with data_gap + flags)")
         print(json.dumps(result, indent=1))
         sys.exit(3 if uncovered == ["price"] else 4)  # price-only failure exits like NO_DATA, never Tier F
@@ -1227,7 +1253,7 @@ def main():
         f_basis = None
         if pin_source == "ttm_json":
             try:
-                with open(f"{BASE}/{ticker}/ttm.json") as _f:
+                with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as _f:
                     _t = json.load(_f)
                 f_fcf = float(_t["ttm_ocf"]) - float(_t["ttm_capex"]); f_sbc = float(_t["ttm_sbc"]); f_basis = "ttm.json legs (TTM pin)"
             except Exception:
@@ -1266,10 +1292,10 @@ def main():
     result["content_hash"] = _content_hash(result)
     folder = f"{BASE}/{ticker}"; os.makedirs(folder, exist_ok=True)
     if not MEASURE:
-        with open(f"{folder}/financials_history.csv", "w", newline="") as f:
+        with open(f"{folder}/financials_history.csv", "w", newline="", encoding="utf-8") as f:
             if hist:
                 w = csv.DictWriter(f, fieldnames=list(hist[0].keys())); w.writeheader(); w.writerows(hist)
-        json.dump(result, open(f"{folder}/dcf_numbers.json", "w"), indent=1)
+        json.dump(result, open(f"{folder}/dcf_numbers.json", "w", encoding="utf-8"), indent=1)
     print(json.dumps(result, indent=1))
 
 if __name__ == "__main__":

@@ -31,9 +31,10 @@ Pass 1's numbers are only as fresh as its analysis date. Run
 10-K/10-Q filed after pass 1's analysis date with a newer period than pass 1 used, plus
 material 8-Ks (routine items 2.02 results and 7.01 Reg FD are excluded since 5.4).
 - **Newer periodic filing exists** → pass 1's base is stale by definition. Recompute the
-  TTM base in code — `python3 _system/ttm.py <TICKER>` (never by hand) — and treat a
-  material base change as a finding; a base that barely moves still gets both values
-  noted in second_pass.md.
+  TTM base in code — `DCF_TTM_NO_WRITE=1 python3 _system/ttm.py <TICKER>` (never by hand;
+  the variable stops it saving ttm.json, since nothing is written before `pass2-check`,
+  worker step 5) — and treat a material base change as a finding; a base that barely
+  moves still gets both values noted in second_pass.md.
 - **Material 8-K only** → fold its content into the post-filing hunt; quantify or say
   why it doesn't move the numbers.
 - `fundamentals.json` (fundamentals.py) carries the last twelve quarters and the TTM; the
@@ -98,8 +99,13 @@ three things only: moat evidence, base-OE reconstruction, and confidence.
   one_liner, plus a `second_pass` object — see below) and a final engine run; then
   `make_score.py` rebuilds score.json and refuses any disagreement, exactly as in pass 1.
 - **Alerts.** Report to chat ONLY when a change moves the company INTO or OUT of Tier S/A
-  AND the new score.json has `alert_eligible: true` (medium+ confidence, not a sector
-  misfit, tier not resting on an override, IRR not at the floor). Everything else is
+  AND the new score.json clears that direction's gate: an entry needs `alert_eligible: true`
+  (medium+ confidence, not a sector misfit, tier not resting on an override, IRR not at
+  the floor); an exit needs `exit_alert_eligible: true` (medium+ confidence, not a sector
+  misfit, tier not existing only because of a data override; a floor IRR reads "at most
+  terminal growth", which confirms the drop, and a judgment tier override that takes the
+  name below A is still a warning, so neither suppresses an exit; `alert_eligible` is
+  false below A by construction, so it can never gate an exit). Everything else is
   silent; the daily ranking shows the ↺ badge.
 
 ## The `second_pass` object (judgment.json → score.json, via make_score.py)
@@ -115,24 +121,34 @@ the new engine run.
 
 ## Worker steps (both second-pass crons point here)
 1. **Claim.** `python3 _system/queue.py pass2-claim` prints the ticker (first done name in
-   queue order with a score.json whose second-pass entry is absent or pending; APP is the
-   last candidate; the claim is marked under the lock). Nothing printed → finish silently.
+   queue order with a score.json whose second-pass entry is absent, pending, an expired
+   claim, or a review of an older scoring generation; APP is the last candidate; the claim
+   is marked under the lock). A generation is one pass-1 scoring run: when the filing
+   watcher refreshes a name and pass 1 re-scores it, the new score is reviewed again.
+   Nothing printed → finish silently.
 2. **Read the folder fully**: analysis.md, score.json, dcf_numbers.json, key_numbers.md,
    financials_history.csv, fundamentals.json. Identify pass 1's load-bearing assumptions:
    base choice, blended growth and scenario starts, moat, probabilities, and how each flag
    was resolved. Attack the assumptions most likely to be wrong — do not redo the pass.
-3. **Freshness + battery**: `python3 _system/forensic_pull.py <T>`; paste the output into
-   second_pass.md; resolve every tripped flag in writing; run the judgment checks above.
+3. **Freshness + battery**: `python3 _system/forensic_pull.py <T>`; keep the output for
+   second_pass.md, where every tripped flag gets a written resolution; run the judgment
+   checks above.
 4. **Targeted research** (2–4 searches) in BOTH directions, plus the guidance-vs-model
    check and the two adversarial tier tests.
-5. **No material finding**: write second_pass.md (checks, sources, why the score stands,
-   the adversarial tests). Add `second_pass {verdict: "no_change", ...}` to judgment.json
+5. **Check the claim before you write anything.** Steps 2–4 only read. Before the first
+   write for this review — second_pass.md, the analysis.md addendum, judgment.json,
+   ttm.json, the engine, make_score.py — run `python3 _system/queue.py pass2-check <T>`.
+   It refuses (exit 1) when the name was refreshed for a newer filing or re-scored after
+   your claim, so your review read a superseded score: write nothing, report nothing and
+   finish — the new score gets its own second pass. Exit 0 → step 6 or 7.
+6. **No material finding**: write second_pass.md (checks, sources, why the score stands,
+   the adversarial tests), add `second_pass {verdict: "no_change", ...}` to judgment.json
    and run `python3 _system/make_score.py <T>`. Then
    `python3 _system/queue.py pass2-done <T> done_no_change` and
    `python3 _system/build_site.py`. Finish silently.
-6. **Material finding**: quantify it; rerun the engine with the pass-1 sanity checks
+7. **Material finding**: quantify it; rerun the engine with the pass-1 sanity checks
    (`python3 _system/dcf_engine.py <T> --moat ... --probs ... [--offsets] [--mults] [--ttm] [--gterm] [--cik]`,
-   `--ttm` after a fresh `ttm.py` run when the base moved); write the new judgment.json
+   `--ttm` after a fresh, saving `ttm.py` run when the base moved); write the new judgment.json
    with the `second_pass {verdict: "changed", prior_*}` object; `make_score.py <T>`; write
    second_pass.md with what pass 1 missed, the evidence with sources, old vs new inputs,
    old vs new scenario table and weighted result; append a dated
@@ -140,6 +156,19 @@ the new engine run.
    never rewrite pass-1 content. Then `python3 _system/reprice.py <T>` (the live overlay
    follows the new paths), `queue.py pass2-done <T> done_changed` and
    `python3 _system/build_site.py`.
-7. **Reporting**: per the alert rule above; also report plainly if the second-pass system
+   **`pass2-done` refused** (exit 1, in step 6 or 7: the refresh or re-score landed while
+   you were writing). Nothing was recorded in the second-pass queue. Delete the
+   second_pass.md you wrote in this run and the dated "## Second pass" addendum you
+   appended to analysis.md in step 7 (it points to that file), and leave the rest; the
+   refusal names the case:
+   - **pending, being re-scored or blocked** in queue.json → the re-score the name awaits
+     rewrites judgment.json, dcf_numbers.json and score.json, and your `second_pass`
+     object goes with them;
+   - **re-scored after this claim** → the newer generation is already scored, so nothing
+     will rewrite what you wrote: leave judgment.json and score.json as the new
+     generation left them.
+   Either way report nothing and finish — once your claim's lease expires, the new score
+   gets its own second pass.
+8. **Reporting**: per the alert rule above; also report plainly if the second-pass system
    itself is blocked. Never invent numbers — every figure comes from dcf_numbers.json,
    key_numbers.md, ttm.json, the forensic battery, fundamentals.json or a cited source.

@@ -1,21 +1,14 @@
 {
  "ticker": "CBOE",
  "cik": 1374310,
- "as_of": "2026-10-15",
- "fetched_at": "2026-10-15T19:19:14-04:00",
- "newest_filing_date": "2026-10-14",
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:08:04-04:00",
+ "newest_filing_date": "2026-09-29",
  "sources": {
   "edgar_submissions": "https://data.sec.gov/submissions/CIK0001374310.json",
   "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026010013/cboe-20251231.htm",
   "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CBOE/company-profile",
-  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CBOE/summary?assetclass=stocks",
-  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/CBOE/targetprice",
-  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/CBOE/ratings",
-  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/CBOE/earnings-forecast",
-  "nasdaq_eps": "https://api.nasdaq.com/api/quote/CBOE/eps",
-  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/CBOE/estimate-momentum",
-  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/CBOE/earnings-date",
-  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/CBOE/peg-ratio"
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CBOE/summary?assetclass=stocks"
  },
  "about": {
   "entity": "Cboe Global Markets, Inc.",
@@ -70,170 +63,6 @@
    "CBOE Holdings, Inc."
   ],
   "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001374310&type=10-K&dateb=&owner=include&count=40"
- },
- "street": {
-  "source": "Nasdaq analyst endpoints",
-  "as_of": "2026-10-15",
-  "consensus": "Hold",
-  "analysts": 16,
-  "buy": 5,
-  "hold": 7,
-  "sell": 1,
-  "target_mean": 327.75,
-  "target_low": 288.0,
-  "target_high": 380.0,
-  "target_1y_nasdaq_summary": 315.5,
-  "history": [
-   {
-    "date": "2025-10-01",
-    "mean_target": 241.57,
-    "buy": 2,
-    "hold": 8,
-    "sell": 2,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2025-11-01",
-    "mean_target": 245.64,
-    "buy": 2,
-    "hold": 8,
-    "sell": 2,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2025-12-01",
-    "mean_target": 255.28,
-    "buy": 2,
-    "hold": 8,
-    "sell": 2,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-01-01",
-    "mean_target": 251.0,
-    "buy": 3,
-    "hold": 7,
-    "sell": 2,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-02-01",
-    "mean_target": 265.06,
-    "buy": 2,
-    "hold": 4,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-03-01",
-    "mean_target": 299.72,
-    "buy": 2,
-    "hold": 5,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-04-01",
-    "mean_target": 280.29,
-    "buy": 2,
-    "hold": 5,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-05-01",
-    "mean_target": 326.96,
-    "buy": 2,
-    "hold": 6,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-06-01",
-    "mean_target": 300.99,
-    "buy": 3,
-    "hold": 7,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-07-01",
-    "mean_target": 247.72,
-    "buy": 3,
-    "hold": 8,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-08-01",
-    "mean_target": 310.23,
-    "buy": 3,
-    "hold": 7,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-09-01",
-    "mean_target": 307.62,
-    "buy": 3,
-    "hold": 8,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-10-01",
-    "mean_target": 327.75,
-    "buy": 3,
-    "hold": 8,
-    "sell": 2,
-    "consensus": "Neutral"
-   }
-  ],
-  "brokers": [
-   "ARGUS RESEARCH",
-   "B OF A GLBL RES",
-   "BARCLAYS CAPITA",
-   "CITIGROUP",
-   "DEUTSCHE BK SEC",
-   "GOLDMAN SACHS",
-   "JEFFERIES & CO.",
-   "JP MORGAN SECUR",
-   "KEEFE BRUYETTE",
-   "MORGAN STANLEY",
-   "OPPENHEIMER HLD",
-   "PIPER SANDLER",
-   "RAYMOND JAMES",
-   "ROSENBLATT SEC",
-   "UBS",
-   "ZACKS RESEARCH"
-  ],
-  "upgrades_downgrades": [],
-  "eps_forecast": {
-   "quarterly": [],
-   "annual": []
-  },
-  "eps_history": [],
-  "eps_upcoming": [],
-  "momentum": {
-   "quarter": {
-    "period": "Sep 2026",
-    "current": 3.41,
-    "week_ago": 3.41,
-    "month_ago": 3.4
-   },
-   "year": {
-    "period": "Dec 2026",
-    "current": 13.9,
-    "week_ago": 13.88,
-    "month_ago": 13.83
-   }
-  },
-  "next_earnings": {
-   "date": "2026-10-30",
-   "text": "Cboe Global Markets, Inc. Common Stock is expected* to report earnings on 10/30/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 9 analysts' forecasts, the consensus EPS forecast for the quarter is $3.41. The reported EPS for the same quarter last year was $2.67.",
-   "timing": "before market open"
-  },
-  "peg_forward": 1.36
  },
  "filings": [
   {
@@ -465,19 +294,5 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465925045577/tm2514232d1_8k.htm"
   }
  ],
- "market": {
-  "exchange": "BATS",
-  "average_volume": null,
-  "volume": 1246270,
-  "market_cap_nasdaq": 34531866375,
-  "high_52w": 371.18,
-  "low_52w": 227.15,
-  "previous_close": 300.47,
-  "one_year_target": 315.5,
-  "dividend_yield_nasdaq": null,
-  "annualized_dividend": null,
-  "ex_dividend_date": null,
-  "dividend_pay_date": null
- },
  "warnings": []
 }

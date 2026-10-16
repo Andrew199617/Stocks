@@ -1,0 +1,1386 @@
+{
+ "_note": "Frozen copies of the gitignored Nasdaq caches (prices.json trimmed, live.json verbatim) for the four test folders, captured 2026-10-15 from the live refresh. test_build_site.py installs them into its temporary base so the tests never depend on caches a fresh clone does not have, and never move with the market.",
+ "folders": {
+  "APP": {
+   "prices.json": {
+    "ticker": "APP",
+    "source": "Nasdaq historical quotes API (api.nasdaq.com)",
+    "currency": "USD",
+    "as_of": "2026-10-14",
+    "fetched_at": "2026-10-15T20:49:32-04:00",
+    "first_date": "2021-04-15",
+    "rows": 15,
+    "daily_1y": [
+     [
+      "2026-09-24",
+      312.47
+     ],
+     [
+      "2026-09-25",
+      310.75
+     ],
+     [
+      "2026-09-28",
+      308.24
+     ],
+     [
+      "2026-09-29",
+      305.66
+     ],
+     [
+      "2026-09-30",
+      290.43
+     ],
+     [
+      "2026-10-01",
+      281.31
+     ],
+     [
+      "2026-10-02",
+      268.22
+     ],
+     [
+      "2026-10-05",
+      281.97
+     ],
+     [
+      "2026-10-06",
+      278.78
+     ],
+     [
+      "2026-10-07",
+      281.29
+     ],
+     [
+      "2026-10-08",
+      280.12
+     ],
+     [
+      "2026-10-09",
+      277.04
+     ],
+     [
+      "2026-10-12",
+      270.87
+     ],
+     [
+      "2026-10-13",
+      272.28
+     ],
+     [
+      "2026-10-14",
+      262.19
+     ]
+    ],
+    "weekly": [
+     [
+      "2026-07-10",
+      506.98
+     ],
+     [
+      "2026-07-17",
+      424.54
+     ],
+     [
+      "2026-07-24",
+      391.98
+     ],
+     [
+      "2026-07-31",
+      395.9
+     ],
+     [
+      "2026-08-07",
+      346.8
+     ],
+     [
+      "2026-08-14",
+      315.44
+     ],
+     [
+      "2026-08-21",
+      305.77
+     ],
+     [
+      "2026-08-28",
+      317.76
+     ],
+     [
+      "2026-09-04",
+      320.56
+     ],
+     [
+      "2026-09-11",
+      323.96
+     ],
+     [
+      "2026-09-18",
+      308.06
+     ],
+     [
+      "2026-09-25",
+      310.75
+     ],
+     [
+      "2026-10-02",
+      268.22
+     ],
+     [
+      "2026-10-09",
+      277.04
+     ],
+     [
+      "2026-10-14",
+      262.19
+     ]
+    ],
+    "monthly": [
+     [
+      "2026-05-29",
+      613.09
+     ],
+     [
+      "2026-06-30",
+      515.23
+     ],
+     [
+      "2026-07-31",
+      395.9
+     ],
+     [
+      "2026-08-31",
+      312.06
+     ],
+     [
+      "2026-09-30",
+      290.43
+     ],
+     [
+      "2026-10-14",
+      262.19
+     ]
+    ],
+    "stats": {
+     "last_date": "2026-10-14",
+     "last": 262.19,
+     "prev_close": 272.28,
+     "change_1d_pct": -3.71,
+     "high_52w": 733.6,
+     "low_52w": 262.19,
+     "ret_1m_pct": -21.56,
+     "ret_3m_pct": -42.09,
+     "ret_6m_pct": -43.57,
+     "ret_1y_pct": -55.56,
+     "ret_3y_pct": 580.66,
+     "ret_5y_pct": 188.79,
+     "ret_ytd_pct": -61.09,
+     "max_drawdown_5y_pct": -91.9,
+     "cagr_window_pct": 28.81,
+     "window_years": 5.5
+    },
+    "intraday": {
+     "session_date": "2026-10-15",
+     "tz": "America/New_York",
+     "regular_open": "09:30",
+     "regular_close": "16:00",
+     "prev_close": 262.19,
+     "prev_close_source": "daily close 2026-10-14",
+     "prev_close_nasdaq": 262.19,
+     "close": 279.29,
+     "close_source": "nasdaq lastSalePrice",
+     "last": 278.03,
+     "last_time": "19:59",
+     "last_minute": 1199,
+     "last_sale": 279.29,
+     "time_as_of": "Oct 15, 2026",
+     "captured_at": "2026-10-15T20:49:32-04:00",
+     "complete": true,
+     "points": 8,
+     "bars": [
+      [
+       240,
+       259.9275
+      ],
+      [
+       245,
+       258.6
+      ],
+      [
+       250,
+       258.5
+      ],
+      [
+       255,
+       258.15
+      ],
+      [
+       260,
+       257.0
+      ],
+      [
+       265,
+       257.47
+      ],
+      [
+       270,
+       257.19
+      ],
+      [
+       275,
+       257.87
+      ]
+     ],
+     "bar_key": "end",
+     "source": "api.nasdaq.com chart (no dates)"
+    },
+    "sessions_5d": [
+     {
+      "session_date": "2026-10-14",
+      "prev_close": 272.28,
+      "bars": [
+       [
+        240,
+        272.06
+       ],
+       [
+        250,
+        272.56
+       ],
+       [
+        255,
+        273.0
+       ],
+       [
+        260,
+        273.0
+       ],
+       [
+        265,
+        272.98
+       ]
+      ],
+      "complete": true,
+      "close": 262.19,
+      "close_source": "daily close"
+     },
+     {
+      "session_date": "2026-10-15",
+      "prev_close": 262.19,
+      "close": 279.29,
+      "captured_at": "2026-10-15T20:49:32-04:00",
+      "complete": true,
+      "last_minute": 1199,
+      "bar_key": "end",
+      "bars": [
+       [
+        240,
+        259.9275
+       ],
+       [
+        245,
+        258.6
+       ],
+       [
+        250,
+        258.5
+       ],
+       [
+        255,
+        258.15
+       ],
+       [
+        260,
+        257.0
+       ]
+      ]
+     }
+    ],
+    "warnings": []
+   },
+   "live.json": {
+    "ticker": "APP",
+    "as_of": "2026-10-15",
+    "price": 262.19,
+    "price_date": "2026-10-14",
+    "price_source": "prices.json (Nasdaq last close)",
+    "price_age_days": 1,
+    "stale_price": false,
+    "scored_price": 272.28,
+    "scored_date": "2026-10-14",
+    "score_json_fresh": true,
+    "price_change_pct": -3.705744086969287,
+    "irr_weighted": 0.1887629762778814,
+    "tier": "B",
+    "tier_display": "B",
+    "tier_by_numbers": "B",
+    "override_active": false,
+    "override_superseded": false,
+    "irr_base": 0.17900130200895292,
+    "irr_bear": 0.1326049070300369,
+    "irr_bull": 0.23234535387224986,
+    "tier_bear": "C",
+    "tier_bull": "A",
+    "irr_low": 0.09378673962078954,
+    "irr_high": 0.2921878319478187,
+    "irr_capped": false,
+    "irr_at_floor": false,
+    "scenarios": {
+     "super_bear": {
+      "irr": 0.09378673962078954,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "bear": {
+      "irr": 0.1326049070300369,
+      "tier": "C",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "base": {
+      "irr": 0.17900130200895292,
+      "tier": "B",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "bull": {
+      "irr": 0.23234535387224986,
+      "tier": "A",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "super_bull": {
+      "irr": 0.2921878319478187,
+      "tier": "S",
+      "irr_capped": false,
+      "irr_at_floor": false
+     }
+    },
+    "iv_at_15": 376.12353352679133,
+    "iv_at_12": 535.4650247420267,
+    "iv_at_20": 239.4905737513305,
+    "iv_at_25": 168.9794248152144,
+    "upside_at_15": 0.4345456864365207,
+    "upside_at_12": 1.0422785946909747,
+    "market_cap_est": 89661114300.0,
+    "in_scope_under_40b": false,
+    "scored": {
+     "irr_weighted": 0.18426820483745066,
+     "tier_by_numbers": "B",
+     "tier_final": "B",
+     "tier_override_reason": null,
+     "upside_at_15": 0.38138509448652624
+    },
+    "delta": {
+     "irr_pp": 0.4494771440430756,
+     "tier_changed": false,
+     "tier_changed_vs_final": false
+    },
+    "engine_release_of_run": "pre-5.4 (engine_version 5)",
+    "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+   }
+  },
+  "KR": {
+   "prices.json": {
+    "ticker": "KR",
+    "source": "Nasdaq historical quotes API (api.nasdaq.com)",
+    "currency": "USD",
+    "as_of": "2026-10-14",
+    "fetched_at": "2026-10-15T19:31:11-04:00",
+    "first_date": "2016-10-14",
+    "rows": 15,
+    "daily_1y": [
+     [
+      "2026-09-24",
+      58.92
+     ],
+     [
+      "2026-09-25",
+      58.74
+     ],
+     [
+      "2026-09-28",
+      59.69
+     ],
+     [
+      "2026-09-29",
+      60.79
+     ],
+     [
+      "2026-09-30",
+      58.62
+     ],
+     [
+      "2026-10-01",
+      59.48
+     ],
+     [
+      "2026-10-02",
+      59.03
+     ],
+     [
+      "2026-10-05",
+      58.78
+     ],
+     [
+      "2026-10-06",
+      58.41
+     ],
+     [
+      "2026-10-07",
+      59.25
+     ],
+     [
+      "2026-10-08",
+      61.41
+     ],
+     [
+      "2026-10-09",
+      61.64
+     ],
+     [
+      "2026-10-12",
+      62.56
+     ],
+     [
+      "2026-10-13",
+      60.74
+     ],
+     [
+      "2026-10-14",
+      63.09
+     ]
+    ],
+    "weekly": [
+     [
+      "2026-07-10",
+      60.54
+     ],
+     [
+      "2026-07-17",
+      58.82
+     ],
+     [
+      "2026-07-24",
+      56.87
+     ],
+     [
+      "2026-07-31",
+      57.74
+     ],
+     [
+      "2026-08-07",
+      56.73
+     ],
+     [
+      "2026-08-14",
+      56.69
+     ],
+     [
+      "2026-08-21",
+      57.9
+     ],
+     [
+      "2026-08-28",
+      57.72
+     ],
+     [
+      "2026-09-04",
+      58.59
+     ],
+     [
+      "2026-09-11",
+      58.49
+     ],
+     [
+      "2026-09-18",
+      60.0
+     ],
+     [
+      "2026-09-25",
+      58.74
+     ],
+     [
+      "2026-10-02",
+      59.03
+     ],
+     [
+      "2026-10-09",
+      61.64
+     ],
+     [
+      "2026-10-14",
+      63.09
+     ]
+    ],
+    "monthly": [
+     [
+      "2026-05-29",
+      62.15
+     ],
+     [
+      "2026-06-30",
+      55.53
+     ],
+     [
+      "2026-07-31",
+      57.74
+     ],
+     [
+      "2026-08-31",
+      57.54
+     ],
+     [
+      "2026-09-30",
+      58.62
+     ],
+     [
+      "2026-10-14",
+      63.09
+     ]
+    ],
+    "stats": {
+     "last_date": "2026-10-14",
+     "last": 63.09,
+     "prev_close": 60.74,
+     "change_1d_pct": 3.87,
+     "high_52w": 75.6,
+     "low_52w": 55.53,
+     "ret_1m_pct": 3.58,
+     "ret_3m_pct": 11.55,
+     "ret_6m_pct": -5.31,
+     "ret_1y_pct": -8.74,
+     "ret_3y_pct": 42.87,
+     "ret_5y_pct": 61.27,
+     "ret_10y_pct": 101.76,
+     "ret_ytd_pct": 0.98,
+     "max_drawdown_5y_pct": -31.72,
+     "cagr_window_pct": 7.27,
+     "window_years": 10.0
+    },
+    "intraday": {
+     "session_date": "2026-10-15",
+     "tz": "America/New_York",
+     "regular_open": "09:30",
+     "regular_close": "16:00",
+     "prev_close": 63.09,
+     "prev_close_source": "daily close 2026-10-14",
+     "prev_close_nasdaq": 60.74,
+     "close": 62.75,
+     "close_source": "nasdaq lastSalePrice",
+     "last": 62.75,
+     "last_time": "19:30",
+     "last_minute": 1170,
+     "last_sale": 62.75,
+     "time_as_of": "Oct 15, 2026 7:31 PM ET",
+     "captured_at": "2026-10-15T19:31:12-04:00",
+     "complete": false,
+     "points": 8,
+     "bars": [
+      [
+       240,
+       63.5
+      ],
+      [
+       245,
+       63.88
+      ],
+      [
+       250,
+       63.88
+      ],
+      [
+       255,
+       63.96
+      ],
+      [
+       260,
+       63.96
+      ],
+      [
+       265,
+       63.96
+      ],
+      [
+       270,
+       63.41
+      ],
+      [
+       305,
+       63.52
+      ]
+     ],
+     "bar_key": "end",
+     "source": "api.nasdaq.com chart (no dates)"
+    },
+    "sessions_5d": [
+     {
+      "session_date": "2026-10-14",
+      "prev_close": 60.74,
+      "bars": [
+       [
+        240,
+        60.99
+       ],
+       [
+        255,
+        62.7372
+       ],
+       [
+        270,
+        62.7372
+       ],
+       [
+        340,
+        62.7372
+       ],
+       [
+        405,
+        62.6787
+       ]
+      ],
+      "complete": true,
+      "close": 63.09,
+      "close_source": "daily close"
+     },
+     {
+      "session_date": "2026-10-15",
+      "prev_close": 63.09,
+      "close": 62.75,
+      "captured_at": "2026-10-15T19:31:12-04:00",
+      "complete": false,
+      "bar_key": "end",
+      "bars": [
+       [
+        240,
+        63.5
+       ],
+       [
+        245,
+        63.88
+       ],
+       [
+        250,
+        63.88
+       ],
+       [
+        255,
+        63.96
+       ],
+       [
+        260,
+        63.96
+       ]
+      ]
+     }
+    ],
+    "warnings": [
+     "prev_close: Nasdaq previousClose 60.74 differs from the daily close 63.09 (2026-10-14) before session 2026-10-15; daily used"
+    ]
+   },
+   "live.json": {
+    "ticker": "KR",
+    "as_of": "2026-10-15",
+    "price": 63.09,
+    "price_date": "2026-10-14",
+    "price_source": "prices.json (Nasdaq last close)",
+    "price_age_days": 1,
+    "stale_price": false,
+    "scored_price": 60.75,
+    "scored_date": "2026-10-14",
+    "score_json_fresh": true,
+    "price_change_pct": 3.851851851851862,
+    "irr_weighted": 0.08777700884738737,
+    "tier": "D",
+    "tier_display": "D",
+    "tier_by_numbers": "D",
+    "override_active": false,
+    "override_superseded": false,
+    "irr_base": 0.09000551632062204,
+    "irr_bear": 0.07081880388706646,
+    "irr_bull": 0.1101596629419545,
+    "tier_bear": "D",
+    "tier_bull": "C",
+    "irr_low": 0.05092253882382518,
+    "irr_high": 0.14208277304420636,
+    "irr_capped": false,
+    "irr_at_floor": false,
+    "scenarios": {
+     "super_bear": {
+      "irr": 0.05092253882382518,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "bear": {
+      "irr": 0.07081880388706646,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "base": {
+      "irr": 0.09000551632062204,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "bull": {
+      "irr": 0.1101596629419545,
+      "tier": "C",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "super_bull": {
+      "irr": 0.14208277304420636,
+      "tier": "C",
+      "irr_capped": false,
+      "irr_at_floor": false
+     }
+    },
+    "iv_at_15": 31.26080323530617,
+    "iv_at_12": 41.37943795323068,
+    "iv_at_20": 22.14497595773593,
+    "iv_at_25": 17.109796017931487,
+    "upside_at_15": -0.5045046245790749,
+    "upside_at_12": -0.34412049527293276,
+    "market_cap_est": 41323950000.0,
+    "in_scope_under_40b": false,
+    "scored": {
+     "irr_weighted": 0.09015625553611295,
+     "tier_by_numbers": "D",
+     "tier_final": "D",
+     "tier_override_reason": null,
+     "upside_at_15": -0.48541887678508366
+    },
+    "delta": {
+     "irr_pp": -0.2379246688725578,
+     "tier_changed": false,
+     "tier_changed_vs_final": false
+    },
+    "engine_release_of_run": "pre-5.4 (engine_version 5)",
+    "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+   }
+  },
+  "AEE": {
+   "prices.json": {
+    "ticker": "AEE",
+    "source": "Nasdaq historical quotes API (api.nasdaq.com)",
+    "currency": "USD",
+    "as_of": "2026-10-14",
+    "fetched_at": "2026-10-15T19:29:34-04:00",
+    "first_date": "2016-10-14",
+    "rows": 15,
+    "daily_1y": [
+     [
+      "2026-09-24",
+      99.2
+     ],
+     [
+      "2026-09-25",
+      99.39
+     ],
+     [
+      "2026-09-28",
+      99.39
+     ],
+     [
+      "2026-09-29",
+      100.25
+     ],
+     [
+      "2026-09-30",
+      99.38
+     ],
+     [
+      "2026-10-01",
+      99.64
+     ],
+     [
+      "2026-10-02",
+      99.94
+     ],
+     [
+      "2026-10-05",
+      99.7
+     ],
+     [
+      "2026-10-06",
+      101.68
+     ],
+     [
+      "2026-10-07",
+      101.32
+     ],
+     [
+      "2026-10-08",
+      101.84
+     ],
+     [
+      "2026-10-09",
+      102.19
+     ],
+     [
+      "2026-10-12",
+      103.24
+     ],
+     [
+      "2026-10-13",
+      104.32
+     ],
+     [
+      "2026-10-14",
+      104.58
+     ]
+    ],
+    "weekly": [
+     [
+      "2026-07-10",
+      112.94
+     ],
+     [
+      "2026-07-17",
+      111.55
+     ],
+     [
+      "2026-07-24",
+      113.78
+     ],
+     [
+      "2026-07-31",
+      109.61
+     ],
+     [
+      "2026-08-07",
+      108.84
+     ],
+     [
+      "2026-08-14",
+      109.74
+     ],
+     [
+      "2026-08-21",
+      106.13
+     ],
+     [
+      "2026-08-28",
+      106.12
+     ],
+     [
+      "2026-09-04",
+      106.47
+     ],
+     [
+      "2026-09-11",
+      104.9
+     ],
+     [
+      "2026-09-18",
+      102.23
+     ],
+     [
+      "2026-09-25",
+      99.39
+     ],
+     [
+      "2026-10-02",
+      99.94
+     ],
+     [
+      "2026-10-09",
+      102.19
+     ],
+     [
+      "2026-10-14",
+      104.58
+     ]
+    ],
+    "monthly": [
+     [
+      "2026-05-29",
+      107.97
+     ],
+     [
+      "2026-06-30",
+      113.04
+     ],
+     [
+      "2026-07-31",
+      109.61
+     ],
+     [
+      "2026-08-31",
+      106.01
+     ],
+     [
+      "2026-09-30",
+      99.38
+     ],
+     [
+      "2026-10-14",
+      104.58
+     ]
+    ],
+    "stats": {
+     "last_date": "2026-10-14",
+     "last": 104.58,
+     "prev_close": 104.32,
+     "change_1d_pct": 0.25,
+     "high_52w": 118.32,
+     "low_52w": 97.25,
+     "ret_1m_pct": 0.59,
+     "ret_3m_pct": -6.11,
+     "ret_6m_pct": -5.56,
+     "ret_1y_pct": 0.34,
+     "ret_3y_pct": 34.16,
+     "ret_5y_pct": 24.65,
+     "ret_10y_pct": 117.74,
+     "ret_ytd_pct": 4.73,
+     "max_drawdown_5y_pct": -31.05,
+     "cagr_window_pct": 8.09,
+     "window_years": 10.0
+    },
+    "intraday": {
+     "session_date": "2026-10-15",
+     "tz": "America/New_York",
+     "regular_open": "09:30",
+     "regular_close": "16:00",
+     "prev_close": 104.58,
+     "prev_close_source": "daily close 2026-10-14",
+     "prev_close_nasdaq": 104.32,
+     "close": 103.9,
+     "close_source": "nasdaq lastSalePrice",
+     "last": 103.9,
+     "last_time": "19:23",
+     "last_minute": 1163,
+     "last_sale": 103.9,
+     "time_as_of": "Oct 15, 2026 7:29 PM ET",
+     "captured_at": "2026-10-15T19:29:34-04:00",
+     "complete": false,
+     "points": 8,
+     "bars": [
+      [
+       245,
+       105.61
+      ],
+      [
+       355,
+       104.58
+      ],
+      [
+       420,
+       105.64
+      ],
+      [
+       425,
+       104.79
+      ],
+      [
+       435,
+       104.79
+      ],
+      [
+       440,
+       104.8
+      ],
+      [
+       460,
+       104.58
+      ],
+      [
+       550,
+       105.92
+      ]
+     ],
+     "bar_key": "end",
+     "source": "api.nasdaq.com chart (no dates)"
+    },
+    "sessions_5d": [
+     {
+      "session_date": "2026-10-15",
+      "prev_close": 104.58,
+      "close": 103.9,
+      "captured_at": "2026-10-15T19:29:34-04:00",
+      "complete": false,
+      "bar_key": "end",
+      "bars": [
+       [
+        245,
+        105.61
+       ],
+       [
+        355,
+        104.58
+       ],
+       [
+        420,
+        105.64
+       ],
+       [
+        425,
+        104.79
+       ],
+       [
+        435,
+        104.79
+       ]
+      ]
+     }
+    ],
+    "warnings": [
+     "prev_close: Nasdaq previousClose 104.32 differs from the daily close 104.58 (2026-10-14) before session 2026-10-15; daily used"
+    ]
+   }
+  },
+  "ZS": {
+   "prices.json": {
+    "ticker": "ZS",
+    "source": "Nasdaq historical quotes API (api.nasdaq.com)",
+    "currency": "USD",
+    "as_of": "2026-10-14",
+    "fetched_at": "2026-10-15T19:32:42-04:00",
+    "first_date": "2018-03-16",
+    "rows": 15,
+    "daily_1y": [
+     [
+      "2026-09-24",
+      214.64
+     ],
+     [
+      "2026-09-25",
+      193.05
+     ],
+     [
+      "2026-09-28",
+      199.39
+     ],
+     [
+      "2026-09-29",
+      198.35
+     ],
+     [
+      "2026-09-30",
+      199.42
+     ],
+     [
+      "2026-10-01",
+      198.78
+     ],
+     [
+      "2026-10-02",
+      196.6
+     ],
+     [
+      "2026-10-05",
+      201.8
+     ],
+     [
+      "2026-10-06",
+      212.25
+     ],
+     [
+      "2026-10-07",
+      213.55
+     ],
+     [
+      "2026-10-08",
+      216.81
+     ],
+     [
+      "2026-10-09",
+      233.73
+     ],
+     [
+      "2026-10-12",
+      225.78
+     ],
+     [
+      "2026-10-13",
+      228.66
+     ],
+     [
+      "2026-10-14",
+      220.79
+     ]
+    ],
+    "weekly": [
+     [
+      "2026-07-10",
+      139.27
+     ],
+     [
+      "2026-07-17",
+      149.94
+     ],
+     [
+      "2026-07-24",
+      142.32
+     ],
+     [
+      "2026-07-31",
+      151.2
+     ],
+     [
+      "2026-08-07",
+      168.68
+     ],
+     [
+      "2026-08-14",
+      183.6
+     ],
+     [
+      "2026-08-21",
+      181.75
+     ],
+     [
+      "2026-08-28",
+      184.23
+     ],
+     [
+      "2026-09-04",
+      169.8
+     ],
+     [
+      "2026-09-11",
+      164.54
+     ],
+     [
+      "2026-09-18",
+      197.31
+     ],
+     [
+      "2026-09-25",
+      193.05
+     ],
+     [
+      "2026-10-02",
+      196.6
+     ],
+     [
+      "2026-10-09",
+      233.73
+     ],
+     [
+      "2026-10-14",
+      220.79
+     ]
+    ],
+    "monthly": [
+     [
+      "2026-05-29",
+      139.73
+     ],
+     [
+      "2026-06-30",
+      141.15
+     ],
+     [
+      "2026-07-31",
+      151.2
+     ],
+     [
+      "2026-08-31",
+      188.38
+     ],
+     [
+      "2026-09-30",
+      199.42
+     ],
+     [
+      "2026-10-14",
+      220.79
+     ]
+    ],
+    "stats": {
+     "last_date": "2026-10-14",
+     "last": 220.79,
+     "prev_close": 228.66,
+     "change_1d_pct": -3.44,
+     "high_52w": 336.27,
+     "low_52w": 118.05,
+     "ret_1m_pct": 15.16,
+     "ret_3m_pct": 48.99,
+     "ret_6m_pct": 68.53,
+     "ret_1y_pct": -26.84,
+     "ret_3y_pct": 31.02,
+     "ret_5y_pct": -24.87,
+     "ret_ytd_pct": -1.84,
+     "max_drawdown_5y_pct": -76.41,
+     "cagr_window_pct": 24.8,
+     "window_years": 8.6
+    },
+    "intraday": {
+     "session_date": "2026-10-15",
+     "tz": "America/New_York",
+     "regular_open": "09:30",
+     "regular_close": "16:00",
+     "prev_close": 220.79,
+     "prev_close_source": "daily close 2026-10-14",
+     "prev_close_nasdaq": 228.66,
+     "close": 220.0233,
+     "close_source": "nasdaq lastSalePrice",
+     "last": 220.055,
+     "last_time": "19:32",
+     "last_minute": 1172,
+     "last_sale": 220.0233,
+     "time_as_of": "Oct 15, 2026 7:32 PM ET",
+     "captured_at": "2026-10-15T19:32:42-04:00",
+     "complete": false,
+     "points": 8,
+     "bars": [
+      [
+       240,
+       217.0
+      ],
+      [
+       245,
+       218.07
+      ],
+      [
+       250,
+       216.24
+      ],
+      [
+       255,
+       219.7677
+      ],
+      [
+       260,
+       213.1
+      ],
+      [
+       265,
+       213.92
+      ],
+      [
+       270,
+       214.0
+      ],
+      [
+       275,
+       214.99
+      ]
+     ],
+     "bar_key": "end",
+     "source": "api.nasdaq.com chart (no dates)"
+    },
+    "sessions_5d": [
+     {
+      "session_date": "2026-10-15",
+      "prev_close": 220.79,
+      "close": 220.0233,
+      "captured_at": "2026-10-15T19:32:42-04:00",
+      "complete": false,
+      "bar_key": "end",
+      "bars": [
+       [
+        240,
+        217.0
+       ],
+       [
+        245,
+        218.07
+       ],
+       [
+        250,
+        216.24
+       ],
+       [
+        255,
+        219.7677
+       ],
+       [
+        260,
+        213.1
+       ]
+      ]
+     }
+    ],
+    "warnings": [
+     "prev_close: Nasdaq previousClose 228.66 differs from the daily close 220.79 (2026-10-14) before session 2026-10-15; daily used"
+    ]
+   },
+   "live.json": {
+    "ticker": "ZS",
+    "as_of": "2026-10-15",
+    "price": 220.79,
+    "price_date": "2026-10-14",
+    "price_source": "prices.json (Nasdaq last close)",
+    "price_age_days": 1,
+    "stale_price": false,
+    "scored_price": 228.66,
+    "scored_date": "2026-10-14",
+    "score_json_fresh": true,
+    "price_change_pct": -3.4417913058689797,
+    "irr_weighted": 0.032836075973581014,
+    "tier": "D",
+    "tier_display": "D",
+    "tier_by_numbers": "D",
+    "override_active": false,
+    "override_superseded": false,
+    "irr_base": 0.032769175949824245,
+    "irr_bear": 0.02999498851781423,
+    "irr_bull": 0.036735105501684615,
+    "tier_bear": "D",
+    "tier_bull": "D",
+    "irr_low": 0.027918804369503038,
+    "irr_high": 0.04378571731460991,
+    "irr_capped": false,
+    "irr_at_floor": false,
+    "scenarios": {
+     "super_bear": {
+      "irr": 0.027918804369503038,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": true
+     },
+     "bear": {
+      "irr": 0.02999498851781423,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": true
+     },
+     "base": {
+      "irr": 0.032769175949824245,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "bull": {
+      "irr": 0.036735105501684615,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     },
+     "super_bull": {
+      "irr": 0.04378571731460991,
+      "tier": "D",
+      "irr_capped": false,
+      "irr_at_floor": false
+     }
+    },
+    "iv_at_15": 11.139729803952925,
+    "iv_at_12": 15.344233796017203,
+    "iv_at_20": 7.45701595637644,
+    "iv_at_25": 5.498925110891565,
+    "upside_at_15": -0.9495460401107254,
+    "upside_at_12": -0.9305030400107921,
+    "market_cap_est": 35374753010.0,
+    "in_scope_under_40b": true,
+    "scored": {
+     "irr_weighted": 0.032571107735754154,
+     "tier_by_numbers": "D",
+     "tier_final": "D",
+     "tier_override_reason": null,
+     "upside_at_15": -0.9512825601156611
+    },
+    "delta": {
+     "irr_pp": 0.026496823782685974,
+     "tier_changed": false,
+     "tier_changed_vs_final": false
+    },
+    "engine_release_of_run": "pre-5.4 (engine_version 5)",
+    "basis": "same base OE/share, scenario paths and probabilities as the scored run; only the price moved; an agent tier override (score.json tier_final) is preserved in `tier` unless the numbers tier itself moved"
+   }
+  }
+ }
+}

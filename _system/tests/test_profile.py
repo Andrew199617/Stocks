@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""profile.py tests (v5.4). Run: python3 _system/tests/test_profile.py
-(or python3 -m pytest _system/tests). No network, no writes: every case is a
-pure function on an inline fixture.
+"""profile.py tests (v5.5). Run: python3 _system/tests/test_profile.py
+(or python3 -m pytest _system/tests). No network, and nothing written in the
+repository: every case is a pure function on an inline fixture, except the
+split tests (10), which stub the network and write into a temporary folder.
+No test needs a gitignored cache (prices / live / street.json) to exist.
 
 1. Item 1 Business extractor: an inline 10-K HTML fixture with a table of
    contents ("Item 1. Business ... Item 1A." within 300 chars) and the real
@@ -30,8 +32,14 @@ pure function on an inline fixture.
    described unless alone; unknown codes read "Item X.XX"; the filings feed
    keeps only the eight forms, newest first, at most 20, with primary-document
    URLs and amendment labelling.
-4. The max-age skip rule: fresh + unchanged newest filing -> skip; a new
-   filing, an old file, a missing/malformed file, or --force -> rebuild.
+4. The refresh policy (split 2026-10-16): profile.json is rebuilt only when
+   missing, pre-split (still carries street / market), its
+   newest_filing_date (feed forms only; a Form 4 does not count) or its
+   feed's accession numbers changed, its last build was degraded (FAILED
+   source, unreadable annual document or submissions page; a deterministic
+   extraction outcome is not), or --force — never for age; street.json is
+   re-fetched when missing, unreadable, --max-age-days or more old,
+   degraded (a FAILED endpoint, not a Nasdaq placeholder), or --force.
 5. Street block assembly from the verified endpoint shapes (history oldest
    first with ISO dates, surprise_pct = (actual - consensus) / |consensus| *
    100 so a beat on a negative consensus is positive, momentum, next earnings
@@ -41,8 +49,13 @@ pure function on an inline fixture.
 6. first_filing: the earliest registration / listing form (APP's real
    sequence D, DRS, DRSLTR, S-1, 424B4 -> the S-1) unless a periodic report
    precedes it (Kroger -> the 1994 10-K405); paginated files fetched oldest
-   first with an injected fetcher and stopped once a registration form is
-   seen.
+   first with an injected fetcher and stopped only once the earliest
+   registration or periodic report seen predates every unread page (review
+   finding 4289642905: a recent resale S-1 must not stop the search before
+   the page holding the IPO S-1; overlapping pages and a page without
+   filingFrom are read; a pre-EDGAR company with a recent 8-A12B stops
+   after its oldest page), and on 3,000 random histories the paginated
+   answer equals the answer from every row at once.
 7. Helpers: num rejects NaN / Infinity / '1_000'; html_to_text keeps words
    split across inline tags whole; cover_address reads the filed
    dei:EntityAddress* tags and headquarters prefers them over submissions;
@@ -69,6 +82,42 @@ pure function on an inline fixture.
    Human Capital count outranks later-dated counts and "people enrolled" /
    "persons serving as executive officers"; "Sept." dates, impossible dates
    -> None.
+10. The profile.json / street.json split, with the network stubbed and
+   STOCKS_BASE pointed at a temporary folder: profile.json has no street /
+   market and is written through _stable (indent 1, raw UTF-8); a second
+   run whose only differences are as_of / fetched_at and the volatile quote
+   figures (price, volume, market cap, 1y target) leaves it byte-identical
+   with the same mtime, while street.json is rewritten in the agreed format;
+   a new feed filing rewrites profile.json; a pre-split file is migrated;
+   an EDGAR failure still refreshes street.json (exit 3); --all rebuilds
+   and re-fetches per the policy with the exact request counts (the quote
+   summary read once per name), and --street-only makes no EDGAR request.
+   Verifier round: a second feed filing on the same filingDate rebuilds
+   profile.json (accession numbers compared); a degraded build (Nasdaq
+   About endpoints down, the annual document timing out) is retried by the
+   next --all and heals, a persisting failure leaves the file untouched,
+   and a degraded street.json is re-fetched; a Windows PermissionError on
+   the swap (a real reader holding the file open) is retried, a write that
+   still fails costs only that file (exit 5), and an exception in one name
+   never aborts --all.
+11. Parse error vs unreadable: a timeout, an undecodable body or no body is
+   "annual document unreadable" (degraded, retried); an extractor raising
+   (cover_address, html_to_text, extract_item1, extract_employees, each
+   monkeypatched) is "annual document parse error (TypeError: ...) in
+   <extractor>", nulls only that extractor's fields, prints the traceback,
+   is not degraded (rebuilt on a feed change or --force only), exits 6 from
+   run_one with both files still written, is a failure line in the --all
+   summary, and the next --all does not re-download the document.
+12. Corrupt files under --all: a profile.json / street.json with fields of
+   the wrong type, or a CIK that is not an integer, is one name's failure
+   line naming the file; the other file of that name is still refreshed,
+   the walk goes on, and a single-name run heals it.
+13. --street-only with the transport (urllib) stubbed: zero EDGAR requests
+   for --all and for one ticker; the CIK from profile.json first, then
+   dcf_numbers.json / fundamentals.json, then the local ticker maps; the
+   street.json age / degraded policy with --max-age-days; profile.json
+   never written; the same stub sees a full run's EDGAR requests.
+14. Every text-mode open() in profile.py names encoding="utf-8" (AST scan).
 """
 import os, sys, json, datetime
 
@@ -323,7 +372,11 @@ def test_items_and_feed():
     check(amend and amend[0]["description"] == "Amendment: Non-reliance on financials", f"feed amendment {amend}")
     check("S-1" not in [f["form"] for f in feed] and "40-F" not in [f["form"] for f in feed], "feed: the 2018 S-1 and the 2025 40-F should fall outside the latest 20")
     check(any(f["form"] == "20-F" and f["description"] == "Annual report (foreign private issuer)" for f in feed), "feed: 20-F described")
-    check(P.newest_filing_date(SUB) == "2026-08-21", "newest_filing_date")
+    # the newest filing of a form profile.json reflects: SUB's newest row is a Form 4 (2026-08-21), which changes nothing in
+    # the file, so the rebuild key is the 8-K of 2026-08-05 (= the feed's first row)
+    check(P.newest_filing_date(SUB) == "2026-08-05" == feed[0]["filed"], f"newest_filing_date ignores the Form 4: {P.newest_filing_date(SUB)}")
+    check(P.newest_filing_date(_sub_rows([("4", "2026-09-01"), ("10-Q/A", "2026-08-10"), ("144", "2026-09-02")])) == "2026-08-10", "newest_filing_date counts feed-form amendments")
+    check(P.newest_filing_date(_sub_rows([("4", "2026-09-01")])) is None and P.newest_filing_date({}) is None, "newest_filing_date without a feed form -> None")
     la = P.latest_annual(SUB, 1751008)
     check(la and la["form"] == "10-K" and la["filed"] == "2026-02-19" and la["url"].endswith("app-20251231.htm"), f"latest_annual {la}")
     hq, addr = P.headquarters(SUB)
@@ -331,19 +384,49 @@ def test_items_and_feed():
 
 
 # ---------------------------------------------------------------------------
-# 4. max-age skip rule
+# 4. refresh policy: profile.json on a new filing (never for age), street.json on age
 def test_skip_rule():
     today = datetime.date(2026, 10, 14)
-    fresh = {"as_of": "2026-10-12", "newest_filing_date": "2026-08-21"}
-    check(P.should_skip(fresh, "2026-08-21", 7, today) is True, "skip: fresh + unchanged should skip")
-    check(P.should_skip(fresh, "2026-10-13", 7, today) is False, "skip: a newer filing must rebuild")
-    check(P.should_skip({"as_of": "2026-10-07", "newest_filing_date": "2026-08-21"}, "2026-08-21", 7, today) is False, "skip: exactly max-age days old must rebuild")
-    check(P.should_skip({"as_of": "2026-10-08", "newest_filing_date": "2026-08-21"}, "2026-08-21", 7, today) is True, "skip: 6 days old is fresh")
-    check(P.should_skip(None, "2026-08-21", 7, today) is False, "skip: missing file must build")
-    check(P.should_skip({"as_of": "garbage"}, "2026-08-21", 7, today) is False, "skip: malformed as_of must build")
-    check(P.should_skip(fresh, "2026-08-21", 7, today, force=True) is False, "skip: --force rebuilds")
-    check(P.should_skip(fresh, None, 7, today) is True, "skip: unknown newest filing falls back to the age check")
-    check(P.should_skip(fresh, "2026-08-21", 1, today) is False, "skip: --max-age-days 1 rebuilds a 2-day-old file")
+    prof = {"as_of": "2026-01-02", "newest_filing_date": "2026-08-21", "about": {}}
+    R = P.profile_rebuild_reason
+    check(R(prof, "2026-08-21") is None, "profile: unchanged newest filing -> left alone, however old its as_of")
+    check(R(prof, "2026-10-13") == "new filing 2026-10-13", f"profile: a newer filing rebuilds: {R(prof, '2026-10-13')}")
+    check(R(prof, None) is None, "profile: no feed-form filing in the submissions -> left alone")
+    check(R(None, "2026-08-21") == "missing" and R({"as_of": "2026-10-12"}, "2026-08-21") == "missing" and R([], "2026-08-21") == "missing",
+          "profile: a missing or unreadable file (no about object) is built")
+    check(R(dict(prof, street=None, market=None), "2026-08-21") == "legacy file with street / market", "profile: a pre-split file (street / market keys, even null) is rebuilt")
+    check(R(dict(prof, market={"volume": 1}), "2026-08-21") is not None, "profile: a pre-split file with market only is rebuilt")
+    check(R(prof, "2026-08-21", force=True) == "--force", "profile: --force rebuilds")
+    S = P.street_refresh_reason
+    check(S({"as_of": "2026-10-12"}, 7, today) is None, "street: 2 days old is fresh")
+    check(S({"as_of": "2026-10-08"}, 7, today) is None, "street: 6 days old is fresh")
+    check(S({"as_of": "2026-10-07"}, 7, today) == "7 days old", "street: exactly max-age days old is re-fetched")
+    check(S({"as_of": "2026-10-12"}, 1, today) == "2 days old", "street: --max-age-days 1 re-fetches a 2-day-old file")
+    check(S(None, 7, today) == "missing" and S([1], 7, today) == "missing", "street: missing / malformed file is fetched")
+    check(S({"as_of": "garbage"}, 7, today) == "unreadable as_of" and S({}, 7, today) == "unreadable as_of", "street: unreadable as_of is fetched")
+    check(S({"as_of": "2026-10-14"}, 7, today, force=True) == "--force", "street: --force re-fetches")
+
+    # verifier round: the feed's accession numbers (a second filing on the same filingDate), degraded builds
+    feed = [{"form": "8-K", "filed": "2026-08-21", "accession": "a1"}, {"form": "10-K", "filed": "2026-02-19", "accession": "a0"}]
+    fprof = dict(prof, filings=feed)
+    same_day = [{"form": "10-Q", "filed": "2026-08-21", "accession": "a2"}] + feed
+    check(R(fprof, "2026-08-21", feed=feed) is None, "profile: same feed -> left alone")
+    check(R(fprof, "2026-08-21", feed=same_day) == "new filing 10-Q 2026-08-21 (a2)", f"profile: a same-day second filing rebuilds: {R(fprof, '2026-08-21', feed=same_day)}")
+    check(R(fprof, "2026-08-21", feed=feed[:1]) == "filing feed changed", "profile: a feed that lost a filing rebuilds")
+    check(R(fprof, "2026-08-21") is None, "profile: no feed given -> only newest_filing_date is compared")
+    bad_nq = dict(fprof, sources={"edgar_submissions": "u", "nasdaq_company_profile": "FAILED: u", "nasdaq_summary": "FAILED: v"})
+    check(R(bad_nq, "2026-08-21", feed=feed) == "last build degraded (nasdaq_company_profile, nasdaq_summary)", f"profile: a Nasdaq failure is retried: {R(bad_nq, '2026-08-21', feed=feed)}")
+    bad_doc = dict(fprof, warnings=["annual document unreadable (timed out); description and employees null"])
+    check(R(bad_doc, "2026-08-21", feed=feed) == "last build degraded (annual document unreadable)", "profile: an unreadable annual document is retried")
+    bad_page = dict(fprof, warnings=["submissions page CIK0000123-submissions-001.json unreadable (HTTP 503); first filing date from the other pages only"])
+    check(R(bad_page, "2026-08-21", feed=feed) == "last build degraded (submissions page CIK0000123-submissions-001.json unreadable)", "profile: an unreadable submissions page is retried")
+    settled = dict(fprof, warnings=["employees: no headcount sentence found in the 10-K filed 2026-02-19", "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-19)",
+                                    "no 10-K / 20-F / 40-F in the recent submissions; description and employees null"])
+    check(R(settled, "2026-08-21", feed=feed) is None, "profile: a deterministic extraction outcome is not a failure (no retry)")
+    check(S({"as_of": "2026-10-12", "sources": {"nasdaq_ratings": "FAILED: u", "nasdaq_summary": "u"}}, 7, today) == "last pull degraded (nasdaq_ratings)",
+          "street: a pull with a failed endpoint is re-fetched on the next run")
+    check(S({"as_of": "2026-10-12", "sources": {"nasdaq_ratings": "u"}, "warnings": ["street: estimate-momentum published 999 (no estimate) for some means; those are null"]}, 7, today) is None,
+          "street: Nasdaq placeholders are not a failure")
 
 
 # ---------------------------------------------------------------------------
@@ -472,12 +555,113 @@ def test_first_filing():
     def fetch_old(url):
         calls.append(url)
         return {"form": ["10-K405"], "filingDate": ["1996-03-01"]} if url.endswith("003.json") else {"form": ["10-Q"], "filingDate": ["2011-02-01"]}
-    check(P.first_filing(old, fetch=fetch_old) == ("1996-03-01", "10-K405") and calls == ["https://data.sec.gov/submissions/CIK-003.json", "https://data.sec.gov/submissions/CIK-001.json"], f"first_filing: every page when no registration form exists {calls}")
+    # the oldest page's 10-K405 predates the other page's filingFrom: that settles the answer after one page
+    check(P.first_filing(old, fetch=fetch_old) == ("1996-03-01", "10-K405") and calls == ["https://data.sec.gov/submissions/CIK-003.json"], f"first_filing: a periodic report on the oldest page settles it {calls}")
+    calls.clear()
+
+    def fetch_undecided(url):
+        calls.append(url)
+        return {"form": ["SC 13G", "D"], "filingDate": ["1996-03-01", "1996-04-01"]} if url.endswith("003.json") else {"form": ["10-Q"], "filingDate": ["2011-02-01"]}
+    check(P.first_filing(old, fetch=fetch_undecided) == ("1996-03-01", "SC 13G") and calls == ["https://data.sec.gov/submissions/CIK-003.json", "https://data.sec.gov/submissions/CIK-001.json"],
+          f"first_filing: every page when no registration or periodic report settles it {calls}")
 
     def boom(url):
         raise OSError("down")
     w = []
     check(P.first_filing(paged, fetch=boom, warnings=w) == ("2009-01-01", None) and len(w) == 2, f"first_filing: unreadable pages fall back to filingFrom with a warning {w}")
+
+    # review finding 4289642905: `recent` already holds a registration (a 2025 resale S-1); the oldest page holds only the
+    # Form D and the DRS drafts and the next page the IPO S-1. The search must not stop after the first page because of the
+    # recent S-1: it reads on until the earliest registration seen predates every unread page (page C starts 2021-06-01).
+    pages = {"CIK-A.json": {"form": ["D", "DRS", "DRSLTR"], "filingDate": ["2018-08-24", "2020-12-07", "2021-01-15"]},
+             "CIK-B.json": {"form": ["S-1", "S-1/A", "424B4", "10-Q"], "filingDate": ["2021-03-02", "2021-03-22", "2021-04-15", "2021-05-15"]},
+             "CIK-C.json": {"form": ["10-Q", "8-K", "10-K"], "filingDate": ["2021-08-01", "2022-02-01", "2023-02-28"]}}
+    calls.clear()
+
+    def fetch_pages(url):
+        calls.append(url.rsplit("/", 1)[1])
+        return pages[url.rsplit("/", 1)[1]]
+    recent_reg = _sub_rows([("10-K", "2026-02-01"), ("S-1", "2025-06-01")], files=[
+        {"name": "CIK-C.json", "filingFrom": "2021-06-01", "filingTo": "2024-12-31"},
+        {"name": "CIK-A.json", "filingFrom": "2018-08-24", "filingTo": "2021-01-15"},
+        {"name": "CIK-B.json", "filingFrom": "2021-03-02", "filingTo": "2021-05-31"}])
+    r = P.first_filing(recent_reg, fetch=fetch_pages)
+    check(r == ("2021-03-02", "S-1") and calls == ["CIK-A.json", "CIK-B.json"], f"first_filing: a recent registration does not stop the search early: {r} {calls}")
+    # a periodic report on the oldest page, older than every unread page, settles the answer (the earliest filing): no
+    # later page can hold an earlier registration or an earlier filing, so the search stops after that page
+    calls.clear()
+    pages["CIK-A.json"] = {"form": ["10-K405", "D"], "filingDate": ["2017-03-01", "2018-08-24"]}
+    r = P.first_filing(recent_reg, fetch=fetch_pages)
+    check(r == ("2017-03-01", "10-K405") and calls == ["CIK-A.json"], f"first_filing: periodic before the IPO page: {r} {calls}")
+    # overlapping pages: a registration on the oldest page does not end the search while a later-listed page starts
+    # before it (EDGAR's pages are date ranges, not a strict partition)
+    calls.clear()
+    pages.update({"CIK-X.json": {"form": ["D", "S-1"], "filingDate": ["2009-01-01", "2010-06-01"]},
+                  "CIK-Y.json": {"form": ["F-1", "6-K"], "filingDate": ["2010-02-01", "2010-09-01"]}})
+    overlap = _sub_rows([("20-F", "2026-04-01")], files=[{"name": "CIK-Y.json", "filingFrom": "2010-01-01"}, {"name": "CIK-X.json", "filingFrom": "2009-01-01"}])
+    r = P.first_filing(overlap, fetch=fetch_pages)
+    check(r == ("2010-02-01", "F-1") and calls == ["CIK-X.json", "CIK-Y.json"], f"first_filing: overlapping page read: {r} {calls}")
+    # a page without filingFrom has an unknown range: it is read too (last, by the sort)
+    calls.clear()
+    nofrom = _sub_rows([("10-K", "2026-02-01")], files=[{"name": "CIK-Y.json"}, {"name": "CIK-X.json", "filingFrom": "2009-01-01"}])
+    r = P.first_filing(nofrom, fetch=fetch_pages)
+    check(r == ("2010-02-01", "F-1") and calls == ["CIK-X.json", "CIK-Y.json"], f"first_filing: page without filingFrom read: {r} {calls}")
+    # nothing to read when the registration in hand already predates every page (and the stop is strict: a page that
+    # starts ON the registration date is read, it could hold a same-day registration)
+    check(P._older_than_unread([("S-1", "2005-01-01")], [{"filingFrom": "2006-01-01"}]) is True, "early stop: registration older than every unread page")
+    check(P._older_than_unread([("S-1", "2006-01-01")], [{"filingFrom": "2006-01-01"}]) is False, "early stop is strict")
+    check(P._older_than_unread([("10-K", "2005-01-01")], [{"filingFrom": "2006-01-01"}]) is True, "early stop: a periodic report older than every unread page")
+    check(P._older_than_unread([("D", "2005-01-01"), ("DRS", "2005-02-01")], [{"filingFrom": "2006-01-01"}]) is False, "early stop needs a registration or a periodic report")
+    check(P._older_than_unread([("10-K", "2005-01-01")], [{"filingFrom": "2006-01-01"}, {"name": "x"}]) is False, "early stop: a page without filingFrom is read")
+    check(P._older_than_unread([("S-1", "2005-01-01")], []) is True, "early stop: no page left")
+
+    # verifier round: a company public before EDGAR with a recent 8-A12B (an exchange move). The oldest page's 1994 10-K
+    # settles the answer; the two later pages are no longer read (the registration-only rule read all three)
+    calls.clear()
+    pages.update({"CIK-P1.json": {"form": ["10-K", "10-Q"], "filingDate": ["1994-03-01", "1994-05-01"]},
+                  "CIK-P2.json": {"form": ["10-Q", "8-K"], "filingDate": ["2001-05-01", "2002-01-01"]},
+                  "CIK-P3.json": {"form": ["10-K", "S-3"], "filingDate": ["2010-03-01", "2011-01-01"]}})
+    pre = _sub_rows([("10-K", "2026-02-01"), ("8-A12B", "2024-05-01")], files=[
+        {"name": "CIK-P3.json", "filingFrom": "2010-03-01"}, {"name": "CIK-P1.json", "filingFrom": "1994-03-01"}, {"name": "CIK-P2.json", "filingFrom": "2001-05-01"}])
+    r = P.first_filing(pre, fetch=fetch_pages)
+    check(r == ("1994-03-01", "10-K") and calls == ["CIK-P1.json"], f"first_filing: pre-EDGAR company with a recent 8-A12B reads one page: {r} {calls}")
+
+    # exhaustive check of the stop rule: on 3,000 random histories (pages as date ranges, overlapping or not, some without
+    # filingFrom; registration / periodic / other forms; registrations among the recent filings) the paginated answer
+    # equals the answer computed from every row at once, and no page is read twice
+    import random
+    rnd = random.Random(4289642905)
+    pool = ["S-1", "S-1/A", "424B4", "8-A12B", "F-1", "10-12B", "10-K", "10-Q", "8-K", "10-K405", "6-K", "DEF 14A", "D", "DRS", "SC 13G", "4", "S-8"]
+    day0 = datetime.date(1993, 1, 1)
+    mism = []
+    for case in range(3000):
+        def row():
+            return (rnd.choice(pool), (day0 + datetime.timedelta(days=rnd.randrange(0, 12000))).isoformat())
+        recent = [row() for _ in range(rnd.randrange(0, 6))]
+        pg, metas = {}, []
+        for k in range(rnd.randrange(0, 5)):
+            rows_k = sorted((row() for _ in range(rnd.randrange(1, 6))), key=lambda x: x[1])
+            name = f"R{case}-{k}.json"
+            pg[name] = {"form": [x[0] for x in rows_k], "filingDate": [x[1] for x in rows_k]}
+            meta = {"name": name}
+            if rnd.random() > 0.1:
+                meta["filingFrom"] = rows_k[0][1]
+            metas.append(meta)
+        rnd.shuffle(metas)
+        read = []
+
+        def fetch_r(url, pg=pg, read=read):
+            read.append(url.rsplit("/", 1)[1])
+            return pg[url.rsplit("/", 1)[1]]
+        got = P.first_filing(_sub_rows(recent, files=metas), fetch=fetch_r)
+        # every row, in the order a full read would see them (recent, then the pages oldest first), so that two filings
+        # on the same earliest date break the tie the same way
+        order = sorted(metas, key=lambda m: m.get("filingFrom") or "9999")
+        everything = recent + [(f, d) for m in order for f, d in zip(pg[m["name"]]["form"], pg[m["name"]]["filingDate"])]
+        want = P.first_filing(_sub_rows(everything)) if everything else (None, None)
+        if got != want or len(read) != len(set(read)):
+            mism.append((case, got, want))
+    check(not mism, f"first_filing: paginated answer differs from the all-rows answer in {len(mism)} of 3000 random histories: {mism[:3]}")
 
 
 # ---------------------------------------------------------------------------
@@ -846,13 +1030,780 @@ def test_build_unresolved_employees():
           and u.get("form") == "10-K", f"build: employees_unresolved {u}")
     check(any(w.startswith("employees: null - ") and "11,172 people in the United States" in w for w in p["warnings"]), f"build: warning {p['warnings']}")
     check(a["description"] and a["description"]["text"].startswith("Widget Corp makes widgets"), f"build: description {a['description']}")
-    check(p["street"] is None and p["market"] is None, "build: Nasdaq offline -> street / market null")
+    # profile.json never carries the Street / market blocks (street.json does); the About endpoints' failure is recorded
+    check(list(p) == ["ticker", "cik", "as_of", "fetched_at", "newest_filing_date", "sources", "about", "filings", "warnings"], f"build: profile.json keys {list(p)}")
+    check(p["sources"].get("nasdaq_company_profile", "").startswith("FAILED: ") and "nasdaq_targetprice" not in p["sources"], f"build: profile sources {p['sources']}")
+    check(any(w.startswith("nasdaq company_profile failed (offline test)") for w in p["warnings"]) and not any("street" in w or "market" in w for w in p["warnings"]),
+          f"build: profile warnings name the About endpoints only {p['warnings']}")
+
+
+# ---------------------------------------------------------------------------
+# 10. profile.json (committed, rewritten on content change) / street.json (gitignored cache) split
+SPLIT_DOC = ('<html><body><div><ix:nonNumeric name="dei:EntityAddressCityOrTown" contextRef="c">Columbus</ix:nonNumeric></div><div>PART I</div><div>Item 1. Business</div><div>Widget Corp makes widgets for industrial customers in many markets, and it sells '
+             "them through distributors in the company’s home region. It was founded in 1950 and is headquartered in Ohio.</div><div>Human Capital</div>"
+             "<div>As of December 31, 2025, we had approximately 1,900 employees.</div><div>Item 1A. Risk Factors</div></body></html>").encode("utf-8")
+NQ_PROFILE = {"CompanyDescription": {"value": "Widgets."}, "Industry": {"value": "Software"}, "Sector": {"value": "Technology"}, "Region": {"value": "North America"}}
+
+
+def _split_sub(cik, extra_rows=()):
+    rows = [("10-K", "2026-02-19", "2025-12-31", "w-20251231.htm"), ("8-K", "2026-08-05", "2026-08-05", "w8k.htm"),
+            ("4", "2026-09-30", "", "form4.xml")] + list(extra_rows)
+    return dict(SUB, cik=str(cik), filings={"recent": {"form": [r[0] for r in rows], "filingDate": [r[1] for r in rows], "reportDate": [r[2] for r in rows],
+                                                       "items": ["2.02" if r[0] == "8-K" else "" for r in rows],
+                                                       "accessionNumber": [f"0000{cik}-26-{i:06d}" for i in range(len(rows))],
+                                                       "primaryDocument": [r[3] for r in rows], "primaryDocDescription": [""] * len(rows)}, "files": []})
+
+
+class _Net:
+    """The network, stubbed: EDGAR submissions per CIK, the annual document, Nasdaq per endpoint; every request logged."""
+
+    def __init__(self, base):
+        self.base, self.subs, self.edgar, self.docs, self.nasdaq = base, {}, [], [], []
+        self.summary = json.loads(json.dumps(SUMM))
+        self.nasdaq_down, self.edgar_down, self.doc_down = False, False, False
+
+    def edgar_json(self, url):
+        self.edgar.append(url)
+        if self.edgar_down:
+            raise OSError("EDGAR down (test)")
+        return self.subs[int(url.split("CIK")[1][:10])]
+
+    def get_bytes(self, url, headers, timeout):
+        assert "sec.gov" in url, url
+        self.docs.append(url)
+        if self.doc_down:
+            raise TimeoutError("timed out")
+        return SPLIT_DOC
+
+    def nasdaq_json(self, url):
+        ticker = url.split("/")[5]
+        key = next(k for k, u in P.nasdaq_urls(ticker).items() if u == url)
+        self.nasdaq.append(key)
+        if self.nasdaq_down:
+            raise OSError("Nasdaq down (test)")
+        return {"company_profile": NQ_PROFILE, "summary": self.summary, "targetprice": TP, "ratings": RT, "earnings_forecast": FC, "eps": EPS,
+                "estimate_momentum": MO, "earnings_date": ED, "peg_ratio": PEG}[key]
+
+    def clear(self):
+        self.edgar, self.docs, self.nasdaq = [], [], []
+
+    def __enter__(self):
+        self.saved = {k: getattr(P, k) for k in ("BASE", "SYS", "edgar_json", "get_bytes", "nasdaq_json", "ZoneInfo", "ALL_SLEEP_S",
+                                                 "write_json_if_changed", "write_atomic", "WRITE_RETRIES")}
+        P.BASE, P.SYS, P.ALL_SLEEP_S = self.base, os.path.join(self.base, "_system"), 0
+        P.edgar_json, P.get_bytes, P.nasdaq_json = self.edgar_json, self.get_bytes, self.nasdaq_json
+        P.ZoneInfo = lambda key: datetime.timezone(datetime.timedelta(hours=-5))   # no tzdata needed (python -I)
+        return self
+
+    def __exit__(self, *exc):
+        for k, v in self.saved.items():
+            setattr(P, k, v)
+
+
+def _folder(base, ticker, cik):
+    os.makedirs(os.path.join(base, ticker), exist_ok=True)
+    for name, obj in (("dcf_numbers.json", {"cik": cik}), ("score.json", {"ticker": ticker})):
+        with open(os.path.join(base, ticker, name), "w", encoding="utf-8") as f:
+            json.dump(obj, f)
+
+
+def _read(path):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _quiet(fn, *a, **kw):
+    import io, contextlib
+    out, err = io.StringIO(), io.StringIO()
+    with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+        r = fn(*a, **kw)
+    return r, out.getvalue(), err.getvalue()
+
+
+def test_split_run_one():
+    import tempfile
+    with tempfile.TemporaryDirectory() as base, _Net(base) as net:
+        _folder(base, "WID", 123)
+        net.subs[123] = _split_sub(123)
+        (res, rc), _, _ = _quiet(P.run_one, "WID", quiet=True)
+        pj, sj = os.path.join(base, "WID", "profile.json"), os.path.join(base, "WID", "street.json")
+        check(rc == 0 and res["profile_written"] is True and res["street_written"] is True, f"split: first run writes both {rc} {res and (res['profile_written'], res['street_written'])}")
+        p, s = _read(pj), _read(sj)
+        check("street" not in p and "market" not in p and list(p) == ["ticker", "cik", "as_of", "fetched_at", "newest_filing_date", "sources", "about", "filings", "warnings"],
+              f"split: profile.json keys {list(p)}")
+        check(set(p["sources"]) == {"edgar_submissions", "edgar_annual_document", "nasdaq_company_profile", "nasdaq_summary"}, f"split: profile sources {p['sources']}")
+        check(p["newest_filing_date"] == "2026-08-05" and p["about"]["exchange"] == "NASDAQ-GS" and p["about"]["industry"] == "Software" and p["warnings"] == [],
+              f"split: profile content {p['newest_filing_date']} {p['about'].get('exchange')} {p['warnings']}")
+        text = open(pj, encoding="utf-8").read()
+        check(text.startswith('{\n "ticker": "WID"') and "company’s home region" in text, "split: profile.json keeps write_atomic's format (indent 1, raw UTF-8)")
+        today = P.et_today().isoformat()
+        check(list(s) == ["ticker", "cik", "as_of", "fetched_at", "source", "street", "market", "sources", "warnings"] and s["ticker"] == "WID" and s["cik"] == 123
+              and s["as_of"] == today and s["fetched_at"].startswith(today + "T") and s["fetched_at"].endswith("-05:00")
+              and s["source"] == "Nasdaq analyst and quote endpoints", f"split: street.json header {[(k, s[k]) for k in ('ticker', 'cik', 'as_of', 'fetched_at', 'source')]}")
+        check(s["street"] == P.build_street(today, TP, RT, FC, EPS, MO, ED, PEG, SUMM) and s["street"]["as_of"] == today and s["market"] == P.build_market(SUMM),
+              "split: street.json street / market keep their pre-split shapes")
+        check(set(s["sources"]) == {f"nasdaq_{k}" for k in P.NASDAQ_STREET_KEYS} and s["sources"]["nasdaq_summary"].endswith("/summary?assetclass=stocks") and s["warnings"] == [],
+              f"split: street.json sources {s['sources']}")
+        check(sorted(net.nasdaq) == sorted(["company_profile", "summary", "targetprice", "ratings", "earnings_forecast", "eps", "estimate_momentum", "earnings_date", "peg_ratio"]),
+              f"split: one request per Nasdaq endpoint, the summary read once for both files: {net.nasdaq}")
+
+        # the next day: as_of / fetched_at differ and every volatile quote figure moved -> profile.json untouched, street.json rewritten
+        old = dict(p, as_of="2026-10-01", fetched_at="2026-10-01T19:07:00-04:00")
+        with open(pj, "w", encoding="utf-8") as f:
+            json.dump(old, f, indent=1, ensure_ascii=False)
+        before_bytes = open(pj, "rb").read()
+        past = 1_700_000_000
+        os.utime(pj, (past, past))
+        with open(sj, "w", encoding="utf-8") as f:
+            json.dump(dict(s, as_of="2026-10-01"), f)
+        sd = net.summary["summaryData"]
+        sd.update({"PreviousClose": {"value": "$250.00"}, "MarketCap": {"value": "80,000,000,000"}, "ShareVolume": {"value": "9,999"},
+                   "OneYrTarget": {"value": "$500.00"}, "FiftTwoWeekHighLow": {"value": "$740.00/$240.00"}})
+        net.clear()
+        (res, rc), _, _ = _quiet(P.run_one, "WID", quiet=True)
+        check(rc == 0 and res["profile_written"] is False and open(pj, "rb").read() == before_bytes and os.path.getmtime(pj) == past,
+              f"split: an as_of / fetched_at / quote-figure-only change leaves profile.json untouched (written={res and res['profile_written']})")
+        s2 = _read(sj)
+        check(res["street_written"] is True and s2["as_of"] == today and s2["market"]["previous_close"] == 250.0 and s2["street"]["target_1y_nasdaq_summary"] == 500.0,
+              f"split: street.json rewritten with the new figures {s2['as_of']} {s2['market']}")
+
+        # a new feed filing changes the content -> profile.json rewritten, with the new as_of and newest_filing_date
+        net.subs[123] = _split_sub(123, [("10-Q", "2026-10-10", "2026-09-30", "w10q.htm")])
+        (res, rc), _, _ = _quiet(P.run_one, "WID", quiet=True)
+        p3 = _read(pj)
+        check(rc == 0 and res["profile_written"] is True and p3["newest_filing_date"] == "2026-10-10" and p3["as_of"] == today and p3["filings"][0]["form"] == "10-Q",
+              f"split: a new filing rewrites profile.json {res and res['profile_written']} {p3['newest_filing_date']}")
+
+        # EDGAR down: exit 3, profile.json untouched, street.json still refreshed
+        net.edgar_down = True
+        snap = open(pj, "rb").read()
+        os.remove(sj)
+        (res, rc), _, err = _quiet(P.run_one, "WID", quiet=True)
+        check(rc == 3 and res["profile"] is None and res["profile_written"] is None and open(pj, "rb").read() == snap and os.path.exists(sj)
+              and "profile.json not written" in err, f"split: EDGAR failure -> exit 3, street.json still written: rc={rc} {err!r}")
+        net.edgar_down = False
+
+        # --street-only: no EDGAR request at all
+        net.clear()
+        (res, rc), _, _ = _quiet(P.run_one, "WID", quiet=True, profile=False)
+        check(rc == 0 and net.edgar == [] and net.docs == [] and "company_profile" not in net.nasdaq and res["street_written"] is True and res["profile"] is None,
+              f"split: street only {net.edgar} {net.nasdaq}")
+
+        # every Nasdaq endpoint down: street.json still written with null blocks and warnings; profile.json's About keeps its
+        # EDGAR part (exchange falls back to the submissions list) and is rewritten because its content really changed
+        net.nasdaq_down = True
+        (res, rc), _, _ = _quiet(P.run_one, "WID", quiet=True)
+        s4, p4 = _read(sj), _read(pj)
+        check(rc == 0 and s4["street"] is None and s4["market"] is None and all(v.startswith("FAILED: ") for v in s4["sources"].values())
+              and any("every Nasdaq analyst endpoint failed" in w for w in s4["warnings"]), f"split: Nasdaq down -> street.json nulls {s4['warnings']}")
+        check(p4["about"]["exchange"] == "Nasdaq" and p4["about"]["description"]["text"].startswith("Widget Corp") and p4["sources"]["nasdaq_summary"].startswith("FAILED: "),
+              f"split: Nasdaq down -> profile About from EDGAR {p4['about']['exchange']}")
+        net.nasdaq_down = False
+
+        # --no-write builds both and writes neither
+        snap_p, snap_s = open(pj, "rb").read(), open(sj, "rb").read()
+        (res, rc), out, _ = _quiet(P.run_one, "WID", write=False, quiet=False)
+        check(rc == 0 and res["profile"] and res["street"] and open(pj, "rb").read() == snap_p and open(sj, "rb").read() == snap_s
+              and "profile.json not written" in out and "street.json not written" in out, f"split: --no-write {out!r}")
+
+
+def test_split_run_all():
+    import tempfile
+    with tempfile.TemporaryDirectory() as base, _Net(base) as net:
+        names = {"AAA": 101, "BBB": 102, "CCC": 103, "DDD": 104, "EEE": 105, "FFF": 106}
+        for t, cik in names.items():
+            _folder(base, t, cik)
+            net.subs[cik] = _split_sub(cik)
+        _quiet(P.run_all, 7, force=True, quiet=True)   # build everything once
+        today = P.et_today()
+        check(all(os.path.exists(os.path.join(base, t, f)) for t in names for f in ("profile.json", "street.json")), "run_all --force builds both files everywhere")
+
+        def edit(t, name, fn):
+            path = os.path.join(base, t, name)
+            obj = _read(path)
+            fn(obj)
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(obj, f, indent=1, ensure_ascii=False)
+        # AAA: everything fresh -> skipped (one submissions request, nothing else)
+        # BBB: a pre-split profile.json (street / market inside) and no street.json -> migrated + fetched
+        edit("BBB", "profile.json", lambda o: o.update(street={"consensus": "Buy"}, market={"volume": 1}))
+        os.remove(os.path.join(base, "BBB", "street.json"))
+        # CCC: street.json 8 days old -> Street only, no EDGAR document read
+        edit("CCC", "street.json", lambda o: o.update(as_of=(today - datetime.timedelta(days=8)).isoformat()))
+        # DDD: a new 10-Q since the last build -> profile.json rebuilt (and rewritten: the feed changed)
+        net.subs[104] = _split_sub(104, [("10-Q", "2026-10-10", "2026-09-30", "d10q.htm")])
+        # EEE: only a newer Form 4 -> nothing to do (newest_filing_date counts feed forms only)
+        net.subs[105] = _split_sub(105, [("4", "2026-10-12", "", "f4.xml")])
+        # FFF: profile.json's as_of is a year old but nothing was filed -> still left alone
+        edit("FFF", "profile.json", lambda o: o.update(as_of="2025-10-01"))
+        mt = {t: os.path.getmtime(os.path.join(base, t, "profile.json")) for t in names}
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 0 and "profile.json 2 rewritten, 0 rebuilt but unchanged; street.json 2 refreshed; 3 skipped (fresh); 0 failed" in out, f"run_all summary {out!r}")
+        check(len(net.edgar) == 6 and sorted(u.rsplit("/", 1)[1] for u in net.docs) == ["w-20251231.htm", "w-20251231.htm"],
+              f"run_all: one submissions request per name, the annual document only for the two rebuilds {len(net.edgar)} {net.docs}")
+        check(sorted(net.nasdaq) == sorted(["company_profile", "summary"] * 2 + list(P.NASDAQ_STREET_KEYS[1:]) * 2 + ["summary"]),
+              f"run_all: Nasdaq requests BBB 9 (summary once), CCC 8, DDD 2: {sorted(net.nasdaq)}")
+        b = _read(os.path.join(base, "BBB", "profile.json"))
+        check("street" not in b and "market" not in b and _read(os.path.join(base, "BBB", "street.json"))["street"]["consensus"] == "Buy", "run_all: pre-split file migrated")
+        check(_read(os.path.join(base, "DDD", "profile.json"))["newest_filing_date"] == "2026-10-10", "run_all: new filing rebuilt")
+        check(_read(os.path.join(base, "CCC", "street.json"))["as_of"] == today.isoformat(), "run_all: stale street.json re-fetched")
+        check(all(os.path.getmtime(os.path.join(base, t, "profile.json")) == mt[t] for t in ("AAA", "CCC", "EEE", "FFF")), "run_all: untouched profiles keep their mtime")
+        # --street-only: no EDGAR request, only stale street files
+        edit("AAA", "street.json", lambda o: o.update(as_of="2020-01-01"))
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True, street_only=True)
+        check(rc == 0 and net.edgar == [] and net.docs == [] and sorted(net.nasdaq) == sorted(P.NASDAQ_STREET_KEYS) and "street.json 1 refreshed; 5 skipped" in out,
+              f"run_all --street-only: {net.edgar} {net.nasdaq} {out!r}")
+        # an EDGAR outage: every name fails its profile check, the stale Street files are still refreshed, exit 1
+        edit("EEE", "street.json", lambda o: o.update(as_of="2020-01-01"))
+        net.edgar_down = True
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 1 and "street.json 1 refreshed" in out and "6 failed" in out and "profile.json not checked" in out, f"run_all EDGAR down: {out!r}")
+        net.edgar_down = False
+        # a rebuild forced on unchanged content is counted as unchanged, not rewritten
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, force=True, quiet=True)
+        check(rc == 0 and "profile.json 0 rewritten, 6 rebuilt but unchanged; street.json 6 refreshed" in out, f"run_all --force on unchanged content: {out!r}")
+
+
+def test_split_verifier_round():
+    """Verifier round on the split: a second feed filing on the same filingDate rebuilds profile.json; a degraded build
+    (Nasdaq About endpoints down, the annual document timing out) is retried by the next --all run and heals, and a
+    failure that persists leaves the file untouched; a degraded street.json is re-fetched on the next run; a Windows
+    PermissionError on the swap is retried, a write that still fails costs only that file (exit 5), and one name that
+    raises never aborts --all."""
+    import tempfile, threading
+    with tempfile.TemporaryDirectory() as base, _Net(base) as net:
+        names = {"AAA": 201, "BBB": 202, "CCC": 203, "DDD": 204}
+        for t, cik in names.items():
+            _folder(base, t, cik)
+            net.subs[cik] = _split_sub(cik)
+        net.subs[201] = _split_sub(201, [("8-K", "2026-10-14", "2026-10-14", "a8k.htm")])
+        _quiet(P.run_all, 7, force=True, quiet=True)
+        pj = {t: os.path.join(base, t, "profile.json") for t in names}
+        sj = {t: os.path.join(base, t, "street.json") for t in names}
+        check(_read(pj["AAA"])["newest_filing_date"] == "2026-10-14", "verifier: AAA built with the 2026-10-14 8-K")
+
+        # 1. a 10-Q accepted later on the same filingDate: newest_filing_date is unchanged, the feed is not -> rebuilt
+        net.subs[201] = _split_sub(201, [("8-K", "2026-10-14", "2026-10-14", "a8k.htm"), ("10-Q", "2026-10-14", "2026-09-30", "a10q.htm")])
+        mt = {t: os.path.getmtime(pj[t]) for t in names}
+        rc, out, _ = _quiet(P.run_all, 7, quiet=False)
+        a = _read(pj["AAA"])
+        check(rc == 0 and "AAA: profile.json: new filing 10-Q 2026-10-14 (0000201-26-000004)" in out and "profile.json 1 rewritten" in out
+              and sorted(f["form"] for f in a["filings"][:2]) == ["10-Q", "8-K"] and "3 skipped" in out,
+              f"verifier: a same-day second filing rebuilds profile.json: {[f['form'] for f in a['filings']]} {out!r}")
+        check(all(os.path.getmtime(pj[t]) == mt[t] for t in ("BBB", "CCC", "DDD")), "verifier: the other names are untouched")
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 0 and "4 skipped (fresh)" in out, f"verifier: the next run skips AAA again: {out!r}")
+
+        # 2. BBB rebuilt (worker step 9) while Nasdaq is down: About degraded, street.json null; the next --all heals both
+        net.nasdaq_down = True
+        _quiet(P.run_one, "BBB", quiet=True)
+        net.nasdaq_down = False
+        b = _read(pj["BBB"])
+        check(b["about"]["industry"] is None and b["about"]["exchange"] == "Nasdaq" and b["sources"]["nasdaq_company_profile"].startswith("FAILED: ")
+              and _read(sj["BBB"])["street"] is None, "verifier: BBB degraded by the Nasdaq outage")
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=False)
+        b = _read(pj["BBB"])
+        check(rc == 0 and "BBB: profile.json: last build degraded (nasdaq_company_profile, nasdaq_summary); street.json: last pull degraded (" in out
+              and b["about"]["industry"] == "Software" and b["about"]["exchange"] == "NASDAQ-GS" and b["about"]["description_short"] == "Widgets."
+              and not any(str(v).startswith("FAILED") for v in b["sources"].values()) and b["warnings"] == []
+              and _read(sj["BBB"])["street"]["consensus"] == "Buy" and "profile.json 1 rewritten" in out and "street.json 1 refreshed" in out,
+              f"verifier: the next --all heals a Nasdaq-degraded build: {b['about'].get('industry')} {out!r}")
+
+        # 3. a new 10-Q for CCC while its 10-K document times out: rewritten with null description / employees (the feed
+        # really changed), then retried; a failure that persists leaves the file untouched; recovery heals it
+        net.subs[203] = _split_sub(203, [("10-Q", "2026-10-13", "2026-09-30", "c10q.htm")])
+        net.doc_down = True
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        c = _read(pj["CCC"])
+        check(c["about"]["description"] is None and c["about"]["employees"] is None and c["warnings"][0].startswith("annual document unreadable (timed out)")
+              and c["filings"][0]["form"] == "10-Q", f"verifier: CCC degraded by the document timeout {c['warnings']}")
+        past = 1_700_000_000
+        os.utime(pj["CCC"], (past, past))
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 0 and "profile.json 0 rewritten, 1 rebuilt but unchanged" in out and os.path.getmtime(pj["CCC"]) == past and len(net.docs) == 1,
+              f"verifier: a persisting failure is retried but leaves the file untouched {out!r} {net.docs}")
+        net.doc_down = False
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        c = _read(pj["CCC"])
+        check(rc == 0 and "profile.json 1 rewritten" in out and c["about"]["description"]["text"].startswith("Widget Corp") and c["about"]["employees"]["count"] == 1900
+              and c["warnings"] == [], f"verifier: the document read again heals CCC {c['about'].get('employees')} {out!r}")
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 0 and "4 skipped (fresh)" in out, f"verifier: nothing left to retry {out!r}")
+
+        # 4. Windows PermissionError on the swap: retried; a real reader holding the file open for 0.3 s
+        real = P.write_json_if_changed
+        target = os.path.join(base, "lock.json")
+        P.write_profile_json(target, {"a": 1})
+        f = open(target, encoding="utf-8")
+        threading.Timer(0.3, f.close).start()
+        ok = P.write_profile_json(target, {"a": 2})
+        check(ok is True and _read(target) == {"a": 2}, "verifier: write_profile_json waits out a reader holding the file open")
+        tries = []
+
+        def flaky(path, obj, **kw):
+            tries.append(path)
+            if len(tries) <= 2:
+                raise PermissionError(13, "Access is denied (test)")
+            return real(path, obj, **kw)
+        P.write_json_if_changed = flaky
+        check(P.write_profile_json(target, {"a": 3}) is True and _read(target) == {"a": 3} and len(tries) == 3,
+              f"verifier: two PermissionErrors then success {len(tries)}")
+
+        # ... a swap that never succeeds: profile.json is reported (exit 5), street.json is still written, --all goes on
+        def locked(path, obj, **kw):
+            if os.sep + "AAA" + os.sep in path or "/AAA/" in path:
+                raise PermissionError(13, "Access is denied (test)")
+            return real(path, obj, **kw)
+        P.write_json_if_changed, P.WRITE_RETRIES = locked, 2
+        os.remove(sj["AAA"])
+        (res, rc), _, err = _quiet(P.run_one, "AAA", quiet=True)
+        check(rc == 5 and res["profile_written"] is None and res["street_written"] is True and os.path.exists(sj["AAA"]) and "profile.json not written (PermissionError" in err,
+              f"verifier: a locked profile.json -> exit 5, street.json written: rc={rc} {err!r}")
+        net.subs[201] = _split_sub(201, [("8-K", "2026-10-14", "2026-10-14", "a8k.htm"), ("10-Q", "2026-10-14", "2026-09-30", "a10q.htm"),
+                                         ("8-K", "2026-10-15", "2026-10-15", "b8k.htm")])
+        net.subs[204] = _split_sub(204, [("8-K", "2026-10-15", "2026-10-15", "d8k.htm")])
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 1 and "AAA: exit 5" in out and "profile.json 1 rewritten" in out and _read(pj["DDD"])["newest_filing_date"] == "2026-10-15",
+              f"verifier: a locked file fails its name only; DDD after it is still rebuilt {out!r}")
+        P.write_json_if_changed = real
+
+        # ... an exception nobody expected in one name never aborts the walk
+        real_atomic = P.write_atomic
+
+        def boom(path, obj):
+            if os.sep + "BBB" + os.sep in path or "/BBB/" in path:
+                raise ValueError("Out of range float values are not JSON compliant (test)")
+            return real_atomic(path, obj)
+        P.write_atomic = boom
+        for t in ("BBB", "CCC"):
+            os.remove(sj[t])
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 1 and "BBB: raised ValueError" in out and "street.json 1 refreshed" in out and os.path.exists(sj["CCC"]) and not os.path.exists(sj["BBB"]),
+              f"verifier: an exception in BBB is counted and CCC after it is still refreshed {out!r}")
+        P.write_atomic = real_atomic
+
+
+# ---------------------------------------------------------------------------
+# 11-14. Follow-up round: parse error vs unreadable, corrupt files under --all, --street-only without EDGAR, encodings
+def _main(argv):
+    """profile.main(argv) -> (exit code, stdout, stderr)."""
+    import io, contextlib
+    out, err = io.StringIO(), io.StringIO()
+    code = None
+    with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+        try:
+            P.main(argv)
+        except SystemExit as e:
+            code = e.code
+    return code, out.getvalue(), err.getvalue()
+
+
+def _annual(cik=123):
+    return {"form": "10-K", "filed": "2026-02-19", "period": "2025-12-31", "accession": f"0000{cik}-26-000000",
+            "url": f"https://www.sec.gov/Archives/edgar/data/{cik}/0000{cik}26000000/w-20251231.htm"}
+
+
+def test_profile_parse_error_vs_unreadable():
+    """An exception from the network / response is "annual document unreadable" (degraded: retried by --all); one raised
+    by an extractor on a document that was read is "annual document parse error (<Type>: ...)": on stderr with the
+    traceback, exit 6, a failure line in the --all summary, only that extractor's fields null, and NOT degraded, so the
+    next --all leaves the name alone (no re-download) until the filing feed changes or --force."""
+    import tempfile
+
+    class BadBytes(bytes):
+        def decode(self, *a, **k):
+            raise UnicodeDecodeError("utf-8", b"\xff", 0, 1, "undecodable (test)")
+
+    with tempfile.TemporaryDirectory() as base, _Net(base) as net:
+        sub = _split_sub(123)
+        feed, newest = P.build_filings(sub, 123), P.newest_filing_date(sub)
+
+        def build_with(get_bytes):
+            P.get_bytes = get_bytes
+            try:
+                return _quiet(P.build, "WID", 123, quiet=True, sub=sub)
+            finally:
+                P.get_bytes = net.get_bytes
+
+        # the network / response: unreadable, degraded, retried
+        def timeout(url, headers, timeout):
+            raise TimeoutError("timed out")
+        for label, getter, start in (("timeout", timeout, "annual document unreadable (timed out); description and employees null"),
+                                     ("undecodable body", lambda url, h, t: BadBytes(b"<html>"), "annual document unreadable ('utf-8' codec can't decode"),
+                                     ("no body", lambda url, h, t: None, "annual document unreadable (response body is NoneType, not bytes)")):
+            doc, _, err = build_with(getter)
+            w = [x for x in doc["warnings"] if x.startswith("annual document")]
+            check(len(w) == 1 and w[0].startswith(start) and P.degraded(doc) == "annual document unreadable" and P.parse_errors(doc) == []
+                  and P.profile_rebuild_reason(doc, newest, feed=feed) == "last build degraded (annual document unreadable)" and err == ""
+                  and doc["about"]["description"] is None and doc["about"]["employees"] is None,
+                  f"parse vs unreadable: {label} is unreadable and retried: {w} {P.degraded(doc)} {err!r}")
+
+        # a healthy build for comparison
+        good, _, err = _quiet(P.build, "WID", 123, quiet=True, sub=sub)
+        check(good["about"]["description"] and good["about"]["employees"]["count"] == 1900 and good["about"]["address"]["source"] == "annual filing cover"
+              and good["warnings"] == [] and err == "", f"parse vs unreadable: the healthy build {good['warnings']} {err!r}")
+
+        # each extractor raising: only its fields are null, the warning names it, stderr has the traceback, not degraded
+        class Obj:
+            pass
+        cases = (("cover_address", "headquarters from the EDGAR submissions address",
+                  lambda a: a["address"]["source"] == "EDGAR submissions" and a["description"] and a["employees"]["count"] == 1900),
+                 ("html_to_text", "description and employees null",
+                  lambda a: a["address"]["source"] == "annual filing cover" and a["description"] is None and a["employees"] is None),
+                 ("extract_item1", "description null",
+                  lambda a: a["address"]["source"] == "annual filing cover" and a["description"] is None and a["employees"]["count"] == 1900),
+                 ("extract_employees", "employees null",
+                  lambda a: a["address"]["source"] == "annual filing cover" and a["description"]["text"].startswith("Widget Corp") and a["employees"] is None
+                  and a["employees_unresolved"] is None))
+        import re
+        obj = Obj()
+        shown = re.sub(r" at 0x[0-9a-fA-F]+", "", repr(obj))   # "<...Obj object>": the address is dropped
+        for step, effect, fields_ok in cases:
+            real = getattr(P, step)
+
+            def bug(*a, **k):
+                raise TypeError(f"'NoneType' object is not subscriptable, {obj!r}")
+            setattr(P, step, bug)
+            try:
+                doc, _, err = _quiet(P.build, "WID", 123, quiet=True, sub=sub)
+            finally:
+                setattr(P, step, real)
+            pe = P.parse_errors(doc)
+            want = (f"annual document parse error (TypeError: 'NoneType' object is not subscriptable, {shown}) in {step} on the 10-K"
+                    f" filed 2026-02-19; {effect}")
+            check(pe == [want] and "0x" not in pe[0], f"parse error: {step} warning {pe}")
+            check(fields_ok(doc["about"]), f"parse error: {step} nulls only its own fields {doc['about'].get('address')} {doc['about'].get('description')} {doc['about'].get('employees')}")
+            check(P.degraded(doc) is None and P.profile_rebuild_reason(doc, newest, feed=feed) is None,
+                  f"parse error: {step} is not degraded, so --all does not retry it: {P.degraded(doc)}")
+            check(P.profile_rebuild_reason(doc, "2026-10-10", feed=feed) == "new filing 2026-10-10" and P.profile_rebuild_reason(doc, newest, force=True, feed=feed) == "--force",
+                  f"parse error: {step} is rebuilt on a feed change or --force")
+            check(f"profile.py: WID: annual document parse error in {step} (TypeError: " in err and "Traceback (most recent call last)" in err
+                  and "Not retried until the filing feed changes (or --force)" in err, f"parse error: {step} on stderr with the traceback {err!r}")
+
+        # run_one: exit 6, profile.json still written (with the warning), street.json written
+        _folder(base, "WID", 123)
+        net.subs[123] = sub
+        real_item1 = P.extract_item1
+
+        def buggy_item1(text, form="10-K", entity=None):
+            if "BUGGY" in text:
+                raise TypeError("boom (test)")
+            return real_item1(text, form, entity=entity)
+        P.extract_item1 = buggy_item1
+        real_get = net.get_bytes
+
+        def get_doc(url, headers, timeout):   # CIK 402's 10-K trips the bug; every other document is clean
+            raw = real_get(url, headers, timeout)
+            return raw.replace(b"Human Capital", b"BUGGY Human Capital") if "/data/402/" in url else raw
+        net.get_bytes = get_doc
+        P.get_bytes = get_doc
+        try:
+            (res, rc), out, err = _quiet(P.run_one, "WID", quiet=True)
+            check(rc == 0 and res["errors"] == [], f"parse error: the clean document exits 0 {rc} {res['errors']}")
+            _folder(base, "BUG", 402)
+            net.subs[402] = _split_sub(402)
+            (res, rc), out, err = _quiet(P.run_one, "BUG", quiet=True)
+            pj = os.path.join(base, "BUG", "profile.json")
+            p = _read(pj)
+            check(rc == 6 and res["profile_written"] is True and res["street_written"] is True and p["about"]["description"] is None
+                  and p["about"]["employees"]["count"] == 1900 and P.parse_errors(p) == res["profile"]["warnings"][-1:]
+                  and res["errors"] == [(6, P.parse_errors(p)[0])] and "boom (test)" in err and "Traceback" in err,
+                  f"parse error: run_one exits 6 and still writes both files: rc={rc} {res['errors']} {p['warnings']}")
+
+            # --all: the build that meets the bug is a failure line; the next run leaves it alone (no re-download)
+            os.remove(pj)
+            net.clear()
+            rc, out, err = _quiet(P.run_all, 7, quiet=True)
+            check(rc == 1 and "1 failed" in out and "\n  BUG: exit 6 - annual document parse error (TypeError: boom (test)) in extract_item1 on the 10-K filed 2026-02-19; description null" in out
+                  and "profile.json 1 rewritten" in out and "boom (test)" in err and len(net.docs) == 1, f"parse error: --all reports it as a failure {out!r} {net.docs}")
+            net.clear()
+            rc, out, err = _quiet(P.run_all, 7, quiet=True)
+            check(rc == 0 and "2 skipped (fresh); 0 failed" in out and net.docs == [] and err == "",
+                  f"parse error: the next --all does not retry it (no document read) {out!r} {net.docs}")
+            # a feed change rebuilds it (and reports the bug again); --force does too
+            net.subs[402] = _split_sub(402, [("10-Q", "2026-10-10", "2026-09-30", "b10q.htm")])
+            net.clear()
+            rc, out, err = _quiet(P.run_all, 7, quiet=True)
+            check(rc == 1 and "BUG: exit 6 - annual document parse error" in out and len(net.docs) == 1, f"parse error: a new filing rebuilds it {out!r}")
+            net.clear()
+            rc, out, err = _quiet(P.run_all, 7, force=True, quiet=True)
+            check(rc == 1 and "BUG: exit 6 - annual document parse error" in out and len(net.docs) == 2 and "1 failed" in out, f"parse error: --force rebuilds it {out!r}")
+            # contrast: an unreadable document IS retried on the next run
+            net.doc_down = True
+            net.subs[402] = _split_sub(402, [("10-Q", "2026-10-10", "2026-09-30", "b10q.htm"), ("8-K", "2026-10-12", "2026-10-12", "b8k.htm")])
+            _quiet(P.run_all, 7, quiet=True)
+            net.clear()
+            rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+            check(len(net.docs) == 1 and "/data/402/" in net.docs[0] and rc == 0, f"parse error: an unreadable document is retried on the next run {net.docs} {out!r}")
+            net.doc_down = False
+            net.clear()
+            rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+            check(rc == 1 and len(net.docs) == 1 and "BUG: exit 6 - annual document parse error" in out, f"parse error: the retry that reads it meets the bug once {out!r}")
+            net.clear()
+            rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+            check(rc == 0 and net.docs == [], f"parse error: ... and then stops {out!r}")
+        finally:
+            P.extract_item1 = real_item1
+
+
+def test_profile_corrupt_files_in_all():
+    """A profile.json / street.json whose fields have the wrong types (or a CIK that is not an integer) never aborts
+    --all: that check is a failure line naming the file, the other file of the same name is still checked and
+    refreshed, the names after it are processed, and the exit status is 1. A single-name run rewrites the file."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as base, _Net(base) as net:
+        names = {"AAA": 501, "BBB": 502, "CCC": 503, "DDD": 504, "EEE": 505, "FFF": 506}
+        for t, cik in names.items():
+            _folder(base, t, cik)
+            net.subs[cik] = _split_sub(cik)
+        _quiet(P.run_all, 7, force=True, quiet=True)
+        pj = {t: os.path.join(base, t, "profile.json") for t in names}
+        sj = {t: os.path.join(base, t, "street.json") for t in names}
+
+        def edit(path, fn):
+            obj = _read(path)
+            fn(obj)
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(obj, f)
+        old = (P.et_today() - datetime.timedelta(days=30)).isoformat()
+        # AAA: profile.json warnings is a number (degraded() raises TypeError); its street.json is stale -> still refreshed
+        edit(pj["AAA"], lambda o: o.update(warnings=5))
+        edit(sj["AAA"], lambda o: o.update(as_of=old))
+        # BBB: street.json warnings is a number; a new filing -> profile.json still rebuilt
+        edit(sj["BBB"], lambda o: o.update(warnings=5))
+        net.subs[502] = _split_sub(502, [("10-Q", "2026-10-10", "2026-09-30", "b10q.htm")])
+        # CCC: profile.json filings is a number (the accession comparison raises)
+        edit(pj["CCC"], lambda o: o.update(filings=7))
+        # DDD: dcf_numbers.json cik is not a number, fundamentals.json has it -> resolved, fresh, skipped
+        with open(os.path.join(base, "DDD", "dcf_numbers.json"), "w", encoding="utf-8") as f:
+            json.dump({"cik": "abc"}, f)
+        with open(os.path.join(base, "DDD", "fundamentals.json"), "w", encoding="utf-8") as f:
+            json.dump({"cik": 504}, f)
+        # EEE: no usable CIK anywhere (an object, a bool) -> "no CIK"
+        with open(os.path.join(base, "EEE", "dcf_numbers.json"), "w", encoding="utf-8") as f:
+            json.dump({"cik": {"value": 505}}, f)
+        with open(os.path.join(base, "EEE", "fundamentals.json"), "w", encoding="utf-8") as f:
+            json.dump({"cik": True}, f)
+        # FFF: after all of them, a stale street.json -> refreshed (the walk went on)
+        edit(sj["FFF"], lambda o: o.update(as_of=old))
+        snap = {t: open(pj[t], "rb").read() for t in ("AAA", "CCC")}
+        net.clear()
+        rc, out, err = _quiet(P.run_all, 7, quiet=True)
+        lines = out.split("\n  ")
+        check(rc == 1 and "4 failed" in out and len(lines) == 5, f"corrupt: four names fail, one line each {out!r}")
+        check(any(x.startswith("AAA: profile.json unreadable (TypeError: ") and "not rebuilt (profile.py AAA, or --force, rewrites it)" in x for x in lines)
+              and any(x.startswith("BBB: street.json unreadable (TypeError: ") and "profile.py BBB --street-only" in x for x in lines)
+              and any(x.startswith("CCC: profile.json unreadable (TypeError: ") for x in lines) and any(x.strip() == "EEE: no CIK" for x in lines),
+              f"corrupt: each failure line names the file and the reason {lines}")
+        check(_read(sj["AAA"])["as_of"] == P.et_today().isoformat() and open(pj["AAA"], "rb").read() == snap["AAA"],
+              "corrupt: AAA's stale street.json is refreshed although its profile.json is corrupt (left as it was)")
+        check(_read(pj["BBB"])["newest_filing_date"] == "2026-10-10" and _read(sj["BBB"])["warnings"] == 5,
+              "corrupt: BBB's profile.json is rebuilt although its street.json is corrupt (left as it was)")
+        check(_read(sj["FFF"])["as_of"] == P.et_today().isoformat() and "profile.json 1 rewritten" in out and "street.json 2 refreshed" in out
+              and "1 skipped (fresh)" in out, f"corrupt: the walk went on to FFF; DDD resolved through fundamentals.json and skipped {out!r}")
+        check(P.resolve_cik("DDD") == 504 and P.resolve_cik("EEE") is None, "corrupt: resolve_cik skips a CIK that is not a positive integer")
+
+        # --street-only meets the corrupt street.json the same way
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True, street_only=True)
+        # (EEE resolves here: --street-only reads the CIK from its committed profile.json first)
+        check(rc == 1 and "BBB: street.json unreadable (TypeError: " in out and "; 1 failed" in out and "EEE" not in out and net.edgar == [],
+              f"corrupt: --street-only {out!r}")
+
+        # an exception nobody expected anywhere in one name's checks (here the CIK lookup itself) is counted, the walk goes on
+        real = P.resolve_cik
+
+        def flaky(t, *a, **k):
+            if t == "DDD":
+                raise RuntimeError("resolver bug (test)")
+            return real(t, *a, **k)
+        P.resolve_cik = flaky
+        try:
+            rc, out, err = _quiet(P.run_all, 7, quiet=True)
+        finally:
+            P.resolve_cik = real
+        check(rc == 1 and "DDD: raised RuntimeError: resolver bug (test)" in out and "resolver bug (test)" in err and "5 failed" in out
+              and "FFF" not in out.split("failed")[1],
+              f"corrupt: an exception in the CIK lookup is one name's failure {out!r}")
+
+        # a single-name run rewrites the corrupt files; --all is clean again (EEE aside)
+        for t, extra in (("AAA", []), ("BBB", ["--street-only"]), ("CCC", [])):
+            code, _, _ = _main([t, "--quiet"] + extra)
+            check(code == 0, f"corrupt: profile.py {t} {extra} heals it ({code})")
+        net.clear()
+        rc, out, _ = _quiet(P.run_all, 7, quiet=True)
+        check(rc == 1 and "1 failed" in out and "EEE: no CIK" in out and "5 skipped (fresh)" in out, f"corrupt: healed {out!r}")
+
+
+class _Resp:
+    def __init__(self, body):
+        self.body = body
+
+    def read(self):
+        return self.body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+
+class _Wire:
+    """The transport stubbed (urllib.request.urlopen), so get_bytes / edgar_json / nasdaq_json run for real and every
+    request is logged by host: an EDGAR request made by any code path shows up in `sec`."""
+
+    def __init__(self, base, subs):
+        self.base, self.subs, self.urls = base, subs, []
+
+    def urlopen(self, req, timeout=None):
+        url = req.full_url if hasattr(req, "full_url") else str(req)
+        self.urls.append(url)
+        host = url.split("/")[2]
+        if host == "data.sec.gov":
+            return _Resp(json.dumps(self.subs[int(url.split("CIK")[1][:10])]).encode("utf-8"))
+        if host == "www.sec.gov":
+            return _Resp(SPLIT_DOC)
+        assert host == "api.nasdaq.com", url
+        ticker = url.split("/")[5]
+        key = next(k for k, u in P.nasdaq_urls(ticker).items() if u == url)
+        data = {"company_profile": NQ_PROFILE, "summary": SUMM, "targetprice": TP, "ratings": RT, "earnings_forecast": FC, "eps": EPS,
+                "estimate_momentum": MO, "earnings_date": ED, "peg_ratio": PEG}[key]
+        return _Resp(json.dumps({"data": data, "status": {"rCode": 200}}).encode("utf-8"))
+
+    def sec(self):
+        return [u for u in self.urls if "sec.gov" in u.split("/")[2]]
+
+    def nasdaq(self):
+        return [u for u in self.urls if u.split("/")[2] == "api.nasdaq.com"]
+
+    def __enter__(self):
+        import urllib.request
+        self.saved = {k: getattr(P, k) for k in ("BASE", "SYS", "ZoneInfo", "ALL_SLEEP_S", "MIN_INTERVAL_S")}
+        self.saved_urlopen = urllib.request.urlopen
+        P.BASE, P.SYS, P.ALL_SLEEP_S, P.MIN_INTERVAL_S = self.base, os.path.join(self.base, "_system"), 0, 0
+        P.ZoneInfo = lambda key: datetime.timezone(datetime.timedelta(hours=-5))
+        urllib.request.urlopen = self.urlopen
+        return self
+
+    def __exit__(self, *exc):
+        import urllib.request
+        urllib.request.urlopen = self.saved_urlopen
+        for k, v in self.saved.items():
+            setattr(P, k, v)
+
+
+def test_profile_street_only_no_edgar():
+    """--street-only (with --all and with one ticker) makes zero EDGAR requests at the transport level: the CIK comes
+    from the committed profile.json, else dcf_numbers.json / fundamentals.json, else the local ticker maps; --all keeps
+    the street.json policy (missing, --max-age-days old, degraded, --force); profile.json is never touched. The same
+    stub sees the EDGAR requests of a full run, so it would catch one."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as base:
+        os.makedirs(os.path.join(base, "_system"))
+        subs = {303: _split_sub(303)}
+        with _Wire(base, subs) as wire:
+            today = P.et_today()
+
+            def put(t, name, obj):
+                os.makedirs(os.path.join(base, t), exist_ok=True)
+                with open(os.path.join(base, t, name), "w", encoding="utf-8") as f:
+                    json.dump(obj, f)
+
+            def street(as_of, sources=None):
+                return {"ticker": "X", "cik": 1, "as_of": as_of, "fetched_at": as_of + "T19:00:00-05:00", "source": P.STREET_SOURCE,
+                        "street": None, "market": None, "sources": sources or {}, "warnings": []}
+            for t in ("AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK"):
+                put(t, "score.json", {"ticker": t})
+            put("AAA", "profile.json", {"ticker": "AAA", "cik": 301, "about": {}})           # profile.json only
+            put("BBB", "fundamentals.json", {"ticker": "BBB", "cik": "0000302"})             # fundamentals.json only
+            put("CCC", "dcf_numbers.json", {"ticker": "CCC", "cik": 303})                     # dcf_numbers.json only
+            with open(os.path.join(base, "_system", "sec_tickers_exchange.json"), "w", encoding="utf-8") as f:   # DDD: the ticker map
+                json.dump({"fields": ["cik", "name", "ticker", "exchange"], "data": [[304, "Ddd Inc", "DDD", "NYSE"]]}, f)
+            with open(os.path.join(base, "_system", "universe.csv"), "w", encoding="utf-8", newline="") as f:      # EEE: universe.csv
+                f.write("queue_pos,ticker,name,cik\n1,EEE,Eee Corp,305\n")
+            put("FFF", "profile.json", {"ticker": "FFF", "cik": 306, "about": {}})           # profile.json beats dcf_numbers.json
+            put("FFF", "dcf_numbers.json", {"ticker": "FFF", "cik": 999})
+            for t, cik in (("GGG", 307), ("HHH", 308), ("III", 309), ("JJJ", 310)):
+                put(t, "dcf_numbers.json", {"cik": cik})
+            put("GGG", "street.json", street(today.isoformat()))                                                   # fresh
+            put("HHH", "street.json", street(today.isoformat(), {"nasdaq_ratings": "FAILED: https://api.nasdaq.com/x"}))  # degraded
+            put("III", "street.json", street((today - datetime.timedelta(days=3)).isoformat()))                     # 3 days > 2
+            put("JJJ", "street.json", street((today - datetime.timedelta(days=1)).isoformat()))                     # 1 day < 2
+            # KKK: no CIK anywhere
+            profile_bytes = {t: open(os.path.join(base, t, "profile.json"), "rb").read() for t in ("AAA", "FFF")}
+
+            code, out, err = _main(["--all", "--street-only", "--quiet", "--max-age-days", "2"])
+            check(wire.sec() == [], f"street-only --all: zero EDGAR requests {wire.sec()}")
+            check(code == 1 and "profile.json 0 rewritten, 0 rebuilt but unchanged (EDGAR not read: --street-only); street.json 8 refreshed; 2 skipped (fresh); 1 failed" in out
+                  and "KKK: no CIK" in out, f"street-only --all: summary {code} {out!r} {err!r}")
+            got = {t: _read(os.path.join(base, t, "street.json"))["cik"] for t in ("AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "HHH", "III")}
+            check(got == {"AAA": 301, "BBB": 302, "CCC": 303, "DDD": 304, "EEE": 305, "FFF": 306, "HHH": 308, "III": 309},
+                  f"street-only --all: CIK from profile.json, fundamentals.json, dcf_numbers.json, the ticker map, universe.csv; profile.json first {got}")
+            check(_read(os.path.join(base, "GGG", "street.json"))["street"] is None and _read(os.path.join(base, "JJJ", "street.json"))["street"] is None
+                  and _read(os.path.join(base, "HHH", "street.json"))["street"]["consensus"] == "Buy",
+                  "street-only --all: the fresh files are left alone, the degraded and stale ones re-fetched")
+            keys = sorted(u.split("/")[-1].split("?")[0] for u in wire.nasdaq())
+            check(len(wire.nasdaq()) == 8 * len(P.NASDAQ_STREET_KEYS) and not any("company-profile" in u for u in wire.nasdaq()),
+                  f"street-only --all: only the street.json endpoints, once each per name {len(wire.nasdaq())} {keys[:10]}")
+            check(all(open(os.path.join(base, t, "profile.json"), "rb").read() == profile_bytes[t] for t in profile_bytes)
+                  and not os.path.exists(os.path.join(base, "CCC", "profile.json")), "street-only --all: profile.json never written")
+
+            # one ticker: re-fetched whatever its age, still no EDGAR request
+            wire.urls = []
+            code, out, err = _main(["GGG", "--street-only", "--quiet"])
+            check(code == 0 and wire.sec() == [] and len(wire.nasdaq()) == len(P.NASDAQ_STREET_KEYS)
+                  and _read(os.path.join(base, "GGG", "street.json"))["street"]["consensus"] == "Buy" and not os.path.exists(os.path.join(base, "GGG", "profile.json")),
+                  f"street-only <T>: no EDGAR request, street.json re-fetched {code} {wire.sec()} {err!r}")
+            wire.urls = []
+            code, out, err = _main(["AAA", "--street-only", "--no-write"])
+            check(code == 0 and wire.sec() == [] and "profile: AAA cik=301 | street.json not written" in out, f"street-only <T> --no-write {code} {out!r}")
+            wire.urls = []
+            code, out, err = _main(["KKK", "--street-only", "--quiet"])
+            check(code == 2 and wire.urls == [] and "NO_CIK for KKK" in err, f"street-only <T> without a CIK: exit 2, no request {code} {err!r}")
+            wire.urls = []
+            code, out, err = _main(["--all", "--street-only", "--max-age-days", "two"])
+            check(code == 2 and wire.urls == [] and "--max-age-days" in err, f"a bad --max-age-days is a usage error {code} {err!r}")
+            code, out, err = _main(["CCC", "--cik", "x1"])
+            check(code == 2 and wire.urls == [], f"a bad --cik is a usage error {code} {err!r}")
+
+            # the same stub sees a full run's EDGAR requests (submissions + the 10-K), so the zero above is real
+            wire.urls = []
+            code, out, err = _main(["CCC", "--quiet"])
+            check(code == 0 and len(wire.sec()) == 2 and any("data.sec.gov/submissions/CIK0000000303.json" in u for u in wire.sec())
+                  and os.path.exists(os.path.join(base, "CCC", "profile.json")), f"full run: EDGAR requests seen by the stub {wire.sec()} {err!r}")
+
+
+def test_profile_open_encoding():
+    """Every text-mode open() in profile.py names encoding="utf-8" (Windows' default code page would otherwise read
+    and write the files differently from the VM)."""
+    import ast
+    src = open(os.path.join(SYS, "profile.py"), encoding="utf-8").read()
+    bad, seen = [], 0
+    for node in ast.walk(ast.parse(src)):
+        if isinstance(node, ast.Call) and ((isinstance(node.func, ast.Name) and node.func.id == "open")
+                                           or (isinstance(node.func, ast.Attribute) and node.func.attr in ("open", "fdopen")
+                                               and getattr(node.func.value, "id", "") in ("os", "io", "codecs"))):
+            seen += 1
+            mode = node.args[1] if len(node.args) > 1 else next((k.value for k in node.keywords if k.arg == "mode"), None)
+            binary = isinstance(mode, ast.Constant) and "b" in str(mode.value)
+            enc = next((k.value for k in node.keywords if k.arg == "encoding"), None)
+            if not binary and not (isinstance(enc, ast.Constant) and str(enc.value).lower().replace("-", "") == "utf8"):
+                bad.append(node.lineno)
+    check(seen >= 3 and bad == [], f"profile.py: text-mode open() without encoding='utf-8' at lines {bad} ({seen} calls)")
 
 
 if __name__ == "__main__":
     for fn in (test_item1, test_item1_review_round, test_employees, test_employees_review_round, test_items_and_feed, test_skip_rule,
                test_street, test_first_filing, test_helpers, test_hq_and_forms_review_round, test_build_unresolved_employees,
-               test_item1_preamble_round, test_employees_breakdown_round):
+               test_item1_preamble_round, test_employees_breakdown_round, test_split_run_one, test_split_run_all, test_split_verifier_round,
+               test_profile_parse_error_vs_unreadable, test_profile_corrupt_files_in_all, test_profile_street_only_no_edgar, test_profile_open_encoding):
         fn()
     if FAILS:
         print(f"{len(FAILS)} failure(s)")

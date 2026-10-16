@@ -1,21 +1,14 @@
 {
  "ticker": "Q",
  "cik": 2058873,
- "as_of": "2026-10-15",
- "fetched_at": "2026-10-15T19:25:43-04:00",
- "newest_filing_date": "2026-10-01",
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:08-04:00",
+ "newest_filing_date": "2026-09-10",
  "sources": {
   "edgar_submissions": "https://data.sec.gov/submissions/CIK0002058873.json",
   "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000010/q-20251231.htm",
   "nasdaq_company_profile": "https://api.nasdaq.com/api/company/Q/company-profile",
-  "nasdaq_summary": "https://api.nasdaq.com/api/quote/Q/summary?assetclass=stocks",
-  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/Q/targetprice",
-  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/Q/ratings",
-  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/Q/earnings-forecast",
-  "nasdaq_eps": "https://api.nasdaq.com/api/quote/Q/eps",
-  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/Q/estimate-momentum",
-  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/Q/earnings-date",
-  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/Q/peg-ratio"
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/Q/summary?assetclass=stocks"
  },
  "about": {
   "entity": "Qnity Electronics, Inc.",
@@ -29,7 +22,7 @@
    "accession": "0002058873-26-000010",
    "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000010/q-20251231.htm"
   },
-  "description_short": "Qnity is a premier technology solutions provider across the semiconductor value chain, empowering AI, high-performance computing, and advanced connectivity. From groundbreaking solutions for semiconductor chip manufacturing, to enabling high-speed transmission within complex electronic systems, our high-performance materials and integration expertise make tomorrow's technologies possible.",
+  "description_short": "Qnity is a premier technology provider across the semiconductor value chain, empowering AI, high performance computing, and advanced connectivity. From groundbreaking solutions for semiconductor chip manufacturing, to enabling high-speed transmission within complex electronic systems, our high-performance materials and integration expertise make tomorrow's technologies possible.",
   "industry": "Semiconductors",
   "sector": "Technology",
   "region": "North America",
@@ -63,182 +56,6 @@
    "Novus SpinCo 1, Inc."
   ],
   "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002058873&type=10-K&dateb=&owner=include&count=40"
- },
- "street": {
-  "source": "Nasdaq analyst endpoints",
-  "as_of": "2026-10-15",
-  "consensus": "Buy",
-  "analysts": 0,
-  "buy": null,
-  "hold": null,
-  "sell": null,
-  "target_mean": null,
-  "target_low": null,
-  "target_high": null,
-  "target_1y_nasdaq_summary": 182.5,
-  "history": [],
-  "brokers": [],
-  "upgrades_downgrades": [],
-  "eps_forecast": {
-   "quarterly": [
-    {
-     "period": "Sep 2026",
-     "fiscal_end": "2026-09",
-     "consensus": 1.18,
-     "low": 1.16,
-     "high": 1.2,
-     "estimates": 3,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Dec 2026",
-     "fiscal_end": "2026-12",
-     "consensus": 1.06,
-     "low": 1.02,
-     "high": 1.13,
-     "estimates": 3,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Mar 2027",
-     "fiscal_end": "2027-03",
-     "consensus": 1.16,
-     "low": 1.11,
-     "high": 1.24,
-     "estimates": 3,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Jun 2027",
-     "fiscal_end": "2027-06",
-     "consensus": 1.31,
-     "low": 1.28,
-     "high": 1.37,
-     "estimates": 3,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Sep 2027",
-     "fiscal_end": "2027-09",
-     "consensus": 1.45,
-     "low": 1.39,
-     "high": 1.54,
-     "estimates": 3,
-     "revisions_up": 0,
-     "revisions_down": 0
-    }
-   ],
-   "annual": [
-    {
-     "period": "Dec 2026",
-     "fiscal_end": "2026-12",
-     "consensus": 4.52,
-     "low": 4.46,
-     "high": 4.58,
-     "estimates": 4,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Dec 2027",
-     "fiscal_end": "2027-12",
-     "consensus": 5.22,
-     "low": 4.97,
-     "high": 5.65,
-     "estimates": 4,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Dec 2028",
-     "fiscal_end": "2028-12",
-     "consensus": 5.85,
-     "low": 5.32,
-     "high": 6.41,
-     "estimates": 4,
-     "revisions_up": 0,
-     "revisions_down": 0
-    },
-    {
-     "period": "Dec 2029",
-     "fiscal_end": "2029-12",
-     "consensus": 6.57,
-     "low": 6.27,
-     "high": 6.86,
-     "estimates": 2,
-     "revisions_up": 0,
-     "revisions_down": 0
-    }
-   ]
-  },
-  "eps_history": [
-   {
-    "period": "Sep 2025",
-    "consensus": 0.69,
-    "actual": 1.01,
-    "surprise_pct": 46.38
-   },
-   {
-    "period": "Dec 2025",
-    "consensus": 0.65,
-    "actual": 0.82,
-    "surprise_pct": 26.15
-   },
-   {
-    "period": "Mar 2026",
-    "consensus": 0.92,
-    "actual": 1.08,
-    "surprise_pct": 17.39
-   },
-   {
-    "period": "Jun 2026",
-    "consensus": 1.07,
-    "actual": 1.19,
-    "surprise_pct": 11.21
-   }
-  ],
-  "eps_upcoming": [
-   {
-    "period": "Sep 2026",
-    "consensus": 1.18
-   },
-   {
-    "period": "Dec 2026",
-    "consensus": 1.06
-   },
-   {
-    "period": "Mar 2027",
-    "consensus": 1.16
-   },
-   {
-    "period": "Jun 2027",
-    "consensus": 1.31
-   }
-  ],
-  "momentum": {
-   "quarter": {
-    "period": "Sep 2026",
-    "current": 1.18,
-    "week_ago": 1.18,
-    "month_ago": 1.18
-   },
-   "year": {
-    "period": "Dec 2026",
-    "current": 4.52,
-    "week_ago": 4.52,
-    "month_ago": 4.52
-   }
-  },
-  "next_earnings": {
-   "date": "2026-11-04",
-   "text": "Qnity Electronics, Inc. Common Stock is expected* to report earnings on 11/04/2026 before market open. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 3 analysts' forecasts, the consensus EPS forecast for the quarter is $1.18. The reported EPS for the same quarter last year was $1.01.",
-   "timing": "before market open"
-  },
-  "peg_forward": 1.42
  },
  "filings": [
   {
@@ -453,20 +270,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/2058873/000119312525240313/d21160d8k.htm"
   }
  ],
- "market": {
-  "exchange": "NYSE",
-  "average_volume": 1808584,
-  "volume": 1615488,
-  "market_cap_nasdaq": 25000420889,
-  "high_52w": 177.2799,
-  "low_52w": 70.5,
-  "previous_close": 121.62,
-  "one_year_target": 182.5,
-  "dividend_yield_nasdaq": null,
-  "annualized_dividend": null,
-  "ex_dividend_date": null,
-  "dividend_pay_date": null
- },
  "warnings": [
   "employees: no headcount sentence found in the 10-K filed 2026-02-26"
  ]

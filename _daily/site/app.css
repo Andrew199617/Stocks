@@ -94,6 +94,13 @@ table.filings tr[hidden]{display:none}
 .chart .leg .offleg{color:var(--warn)} .stm-retry{margin:0 4px}
 /* statements viewer: a quarter flagged basis_break_quarterly is greyed (its fiscal year's quarters do not sum to the restated FY figure) */
 table.stm td.bbrk{color:var(--mut);text-decoration:underline dotted rgba(160,168,182,.6);text-underline-offset:3px;cursor:help}
+/* restricted cash (statements.py incl_restricted_*): ‡ after a cell that counts restricted cash as cash; the title says how */
+table.stm sup.rcash{color:var(--warn);margin-left:1px;cursor:help}
+/* live.json withheld for predating the analysis (record.live_withheld / row.live_withheld): the "live pending" marker */
+.lvpend{color:var(--warn);cursor:help} td .lvpend{font-size:11px;white-space:nowrap}
+/* a split since scoring (record.split_restated): the header chip, the per-tab note and the ranking badge */
+.splitchip{border-color:#8a6d1f;color:var(--warn)} .splitnote{border-left:3px solid #8a6d1f;padding:2px 0 2px 10px;margin:10px 0}
+.bdg.sp{background:#14302a;color:#5eead4;border-color:#115e59}
 .pcsec{margin:14px 0} .pc{padding:14px 12px 12px}
 .pcbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px} .pcbar>*{min-width:0;max-width:100%} .ranges{display:flex;flex-wrap:wrap;gap:4px} /* nine buttons are ~407px: wrap on a phone (the pane clips overflow, so an unwrapped strip lost 5Y and Max) */ .ranges .rb:not(:empty){display:block;font-size:10px;line-height:1.1;margin-top:2px;font-weight:500} .ranges button{background:transparent;border:1px solid transparent;color:var(--mut);padding:6px 9px;border-radius:8px;font-family:var(--mono);font-size:12.5px;cursor:pointer;min-height:34px} .ranges button.on{background:var(--card2);border-color:var(--line2);color:#fff}
 .toggles{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--mut)} .toggles label{display:inline-flex;align-items:center;gap:5px;cursor:pointer} .toggles input{accent-color:#7AA2FF;min-height:0}

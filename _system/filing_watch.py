@@ -18,8 +18,14 @@ Names scored on the median base are re-queued on a new 10-K only — a new 10-Q
 does not change a 3-year-median base, and STALE_FY already tells the worker to
 pin TTM when it matters.
 
-One request per name (≤10/s); nothing is written except the queue entries.
+One request per name (≤10/s). The watcher writes nothing itself; everything
+goes through `queue.py refresh`, which writes the refreshed queue.json entry
+and, when the name's second pass was done, puts that second_pass_queue.json
+entry back to pending (the re-score is a new scoring generation).
 Prints a summary: checked / refreshed (with form + period) / unchanged / errors.
+An unreadable queue.json is an error (exit 1), not an empty queue; the read is
+retried while queue.py replaces the file (on Windows a read that lands
+mid-replace fails to open).
 """
 import json, sys, os, time, datetime, subprocess, urllib.request
 
@@ -52,6 +58,20 @@ def jload(p):
         return None
 
 
+def load_queue(path, attempts=20, pause=0.1):
+    """queue.json, re-read on PermissionError or a parse failure (a read that
+    lands while queue.py replaces the file, on Windows). Missing or still
+    unreadable: raises, so the caller never mistakes it for an empty queue."""
+    for i in range(attempts):
+        try:
+            with open(path, encoding="utf-8") as f:
+                return json.load(f)
+        except (PermissionError, ValueError):
+            if i == attempts - 1:
+                raise
+            time.sleep(pause)
+
+
 def newest_periodic(sub):
     """{'annual': (form, report, filed), 'quarterly': (...)} from submissions.recent."""
     rec = (sub.get("filings") or {}).get("recent") or {}
@@ -72,7 +92,12 @@ def main():
     dry = "--dry-run" in args
     quiet = "--quiet" in args
     only = set(x.upper() for x in args[args.index("--only") + 1].split(",")) if "--only" in args else None
-    q = jload(f"{BASE}/_system/queue.json") or {"queue": []}
+    qpath = f"{BASE}/_system/queue.json"
+    try:
+        q = load_queue(qpath)
+    except (OSError, ValueError) as e:  # before 2026-10-16 this read as an empty queue: "checked 0 done names"
+        print(f"filing_watch: cannot read {qpath} ({type(e).__name__}: {e})", file=sys.stderr)
+        sys.exit(1)
     done = [e["ticker"] for e in q["queue"] if e.get("status") == "done" and (not only or e["ticker"] in only)]
     refreshed, unchanged, errors = [], 0, []
     for t in done:

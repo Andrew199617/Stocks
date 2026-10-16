@@ -2,23 +2,42 @@
 /* Tests for _daily/site/app.js. Run: node _daily/site/tests/app.test.js (zero dependencies).
    Loads app.js via require (the module.exports branch), the real data/<T>.json records for
    APP, KR and AEE when the data layer has written them (else a fixture assembled from the
-   company folders), and the synthetic fixture that carries dividends, segments and live. */
+   company folders), and the synthetic fixture that carries dividends, segments and live.
+   build_site.py's output (data/, index.json, meta.json) is a gitignored cache that a fresh clone
+   does not have: every check that reads it falls back to the committed company files or skips
+   with a printed note, and the fixtures always run. To run the suite as a fresh clone would,
+   without touching the real cache: APP_TEST_BUILT=<an empty dir> node _daily/site/tests/app.test.js
+   (APP_TEST_BASE=<dir> also moves the company folders, e.g. a copy holding only committed files). */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 const SITE = path.resolve(__dirname, '..');
-const BASE = path.resolve(SITE, '..', '..');
+const BASE = process.env.APP_TEST_BASE ? path.resolve(process.env.APP_TEST_BASE) : path.resolve(SITE, '..', '..');
+const BUILT = process.env.APP_TEST_BUILT ? path.resolve(process.env.APP_TEST_BUILT) : SITE; // where data/, index.json, meta.json are read
+const HAVE_BUILT = fs.existsSync(path.join(BUILT, 'data')) && fs.existsSync(path.join(BUILT, 'index.json')) && fs.existsSync(path.join(BUILT, 'meta.json'));
 const App = require(path.join(SITE, 'app.js'));
 const { assemble } = require('./fixtures/assemble.js');
 
-const results = [];
-function test(name, fn) {
-  try { fn(); results.push([name, null]); }
-  catch (e) { results.push([name, e]); }
+const results = [], pending = [], skipped = [];
+function test(name, fn) { // fn may return a promise (the router tests wait on deferred fetches); the summary waits for every one
+  try {
+    const r = fn();
+    if (r && typeof r.then === 'function') { pending.push(Promise.resolve(r).then(() => { results.push([name, null]); }, (e) => { results.push([name, e]); })); return; }
+    results.push([name, null]);
+  } catch (e) { results.push([name, e]); }
+}
+function skip(what) { if (skipped.indexOf(what) < 0) { skipped.push(what); console.log('  (skipped: ' + what + ')'); } } // a real-data check with nothing to read
+/* A company's statements file: the served copy when the data layer wrote it, else the committed <T>/statements.json it is copied from. */
+function statementsPath(t) {
+  const served = path.join(BUILT, 'data', t + '.statements.json');
+  if (fs.existsSync(served)) return served;
+  const own = path.join(BASE, t, 'statements.json');
+  return fs.existsSync(own) ? own : null;
 }
 function loadRecord(t) {
-  const p = path.join(SITE, 'data', t + '.json');
+  const p = path.join(BUILT, 'data', t + '.json');
   if (fs.existsSync(p)) return { record: JSON.parse(fs.readFileSync(p, 'utf8')), source: 'data/' + t + '.json' };
   const r = assemble(BASE, t);
   return r ? { record: r, source: 'assembled from ' + t + '/' } : null;
@@ -32,10 +51,14 @@ function inject(v) { // append a raw-HTML marker to every string in a record
 function fakeEl(w, h) { return { clientWidth: w || 600, clientHeight: h || 260, innerHTML: '' }; }
 function tabOrder(html) { const re = /data-pane="([a-z]+)"/g, out = []; let m; while ((m = re.exec(html))) out.push(m[1]); return out; }
 const synthetic = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'synthetic.json'), 'utf8'));
-const metaPath = path.join(SITE, 'meta.json'), indexPath = path.join(SITE, 'index.json');
+const metaPath = path.join(BUILT, 'meta.json'), indexPath = path.join(BUILT, 'index.json');
 const meta = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : { date: '2026-10-14', sweep: { done: 3, total: 2617 }, counts: { tiers: { S: 0, A: 0, B: 1, C: 1, D: 0, F: 1 }, misfits: 1, with_live: 2 }, hurdles: { S: 0.25, A: 0.2, B: 0.15, C: 0.1 }, notes: [], stale: [] };
 const loaded = {};
 ['APP', 'KR', 'AEE', 'HBAN', 'ZS', 'EXPE'].forEach((t) => { const r = loadRecord(t); if (r) loaded[t] = r; });
+/* The records build_site.py wrote (data/<T>.json). A check that pins what the build adds to a real record — the engine's
+   replayed paths, live floor flags, profile.street — reads only these; an assembled stand-in skips it with a note. */
+const built = {}; Object.keys(loaded).forEach((t) => { if (loaded[t].source.startsWith('data/')) built[t] = loaded[t].record; });
+function builtOr(t, what) { if (built[t]) return built[t]; skip(what + ' — needs the built data/' + t + '.json'); return null; }
 const index = fs.existsSync(indexPath) ? JSON.parse(fs.readFileSync(indexPath, 'utf8')) : Object.keys(loaded).map((t) => loaded[t].record.row);
 
 /* ---- helpers */
@@ -321,7 +344,8 @@ test('renderListHTML: columns, default live sort, filters, search, remembered st
 
 /* ---- review round (2026-10-15): condensed bar price rule, column geometry, watchlist, floor markers, Forecast sub-tabs */
 test('renderTabSummary pairs the 1-day change with the close it was measured on', () => {
-  if (loaded.AEE) {
+  if (!loaded.AEE || !loaded.AEE.record.prices) skip('AEE tab summary close — needs AEE/prices.json (a gitignored cache)');
+  else {
     const r = loaded.AEE.record, st = r.prices.stats, sum = App.renderTabSummary(r);
     assert.ok(!r.live, 'AEE has no live.json');
     assert.ok(sum.includes(App.fmtMoney(st.last)) && sum.includes(App.fmtPts(st.change_1d_pct, 2)), 'last close + its change: ' + sum);
@@ -367,20 +391,25 @@ test('watchlist: state, filter, toggle button, canonical star vs per-device star
   assert.ok(!App.renderHeader(synthetic).includes('★ Watchlist'));
 });
 test('floor-clamped IRRs are marked (ZS: live super-bear / bear at the floor), header band too', () => {
-  const rec = loaded.ZS ? loaded.ZS.record : null;
+  const rec = builtOr('ZS', 'ZS live floor flags in the Forecast table and header');
   if (rec) {
     const sens = App.sensitivity(rec);
-    assert.equal(sens.super_bear.irr_live_at_floor, true); assert.equal(sens.bear.irr_live_at_floor, true); assert.equal(sens.base.irr_live_at_floor, false);
-    const ff = App.floorFlags(rec, true); assert.ok(ff.bear && ff.super_bear && ff.any && !ff.weighted);
+    // the scored flags are the run's own (ZS: super bear and bear at the floor); the live ones follow the last close
+    assert.equal(sens.super_bear.irr_at_floor, true); assert.equal(sens.bear.irr_at_floor, true); assert.equal(sens.base.irr_at_floor, false);
+    const ff = App.floorFlags(rec, true), SC = ['super_bear', 'bear', 'base', 'bull', 'super_bull'];
+    SC.forEach((k) => assert.equal(!!ff[k], sens[k].irr_live_at_floor === true, 'live floor flag ' + k));
+    assert.ok(!ff.weighted && !!ff.any === SC.some((k) => !!ff[k]));
     const fc = App.renderForecastDCF(rec);
     const sb = fc.slice(fc.indexOf('<th>Super bear'), fc.indexOf('<th>Bear'));
-    assert.ok(sb.includes('class="num mono atfloor"') && sb.includes('>at floor</sup>'), 'super-bear live IRR cell marked');
+    assert.ok(sb.includes('class="num mono atfloor"') && sb.includes('>at floor</sup>'), 'super-bear IRR cell marked');
     const base = fc.slice(fc.indexOf('<th>Base'), fc.indexOf('<th>Bull'));
     assert.ok(!base.includes('at floor'), 'base cell unmarked');
     assert.ok(fc.includes('<b>At floor</b> marks an IRR the solver clamped'), 'explanation under the table');
-    assert.ok(/bear case <b>[A-F]<\/b> \([-\d.]+%, <sup class="floor"/.test(fc), 'hurdle band note marks the bear end');
-    assert.ok(App.renderHeader(rec).includes('<sup class="floor"'), 'header band marks the bear end');
-  } else console.log('  (ZS record not available — skipped)');
+    if (ff.bear) {
+      assert.ok(/bear case <b>[A-F]<\/b> \([-\d.]+%, <sup class="floor"/.test(fc), 'hurdle band note marks the bear end');
+      assert.ok(App.renderHeader(rec).includes('<sup class="floor"'), 'header band marks the bear end');
+    }
+  }
   const clean = App.renderForecastDCF(synthetic); assert.ok(!clean.includes('at floor'), 'no marker without flags');
   const flagged = JSON.parse(JSON.stringify(synthetic)); flagged.forecast.sensitivity.bear.irr_at_floor = true; flagged.live = null;
   assert.ok(App.renderForecastDCF(flagged).includes('>at floor</sup>') && App.renderHeader(flagged).includes('<sup class="floor"'), 'scored floor flag marks the scored view');
@@ -422,11 +451,11 @@ test('OE/share history + forecast: series join at the base year, High/Avg/Low ta
   ['Year 1', 'Year 2', 'Year 3', 'Year 5', 'Year 10', 'Year 15', 'FY2025', 'FY2039', 'High <span class="sub">super bull</span>', 'Avg <span class="sub">probability-weighted</span>', 'Low <span class="sub">super bear</span>'].forEach((k) => assert.ok(t1.includes(k), k));
   assert.ok(t1.includes(App.fmtMoney(synthetic.forecast.paths.weighted[0])) && t1.includes(App.fmtMoney(synthetic.forecast.paths.super_bear[14])) && t1.includes(App.fmtMoney(synthetic.forecast.paths.super_bull[9])), 'table cells come from the stored paths');
   assert.ok(dcf.includes('bull growth path') && dcf.includes('weighted path, YoY') && dcf.includes('bear growth path'), 'growth table rows');
-  if (loaded.APP) { // FY2025: capex not tagged, the engine CSV's OE uses the capex estimate override → not a filed value, so no point
-    const a = App.oeForecastSeries(loaded.APP.record); assert.ok(a.H >= 6 && a.histVals[a.baseIndex] === null && a.hist[a.baseIndex].fy === '2025', 'APP FY2025 OE/share left blank (no filed OE)'); assert.equal(a.labels[a.baseIndex + 1], '2026');
+  if (builtOr('APP', 'APP FY2025 OE/share gap against the engine paths')) { // FY2025: capex not tagged, the engine CSV's OE uses the capex estimate override → not a filed value, so no point
+    const a = App.oeForecastSeries(built.APP); assert.ok(a.H >= 6 && a.histVals[a.baseIndex] === null && a.hist[a.baseIndex].fy === '2025', 'APP FY2025 OE/share left blank (no filed OE)'); assert.equal(a.labels[a.baseIndex + 1], '2026');
     assert.ok(/FY2025: capex not filed \(the engine run fills capex with an estimate/.test(a.hist[a.baseIndex].why), a.hist[a.baseIndex].why);
-    assert.equal(a.weighted[a.baseIndex], loaded.APP.record.score.base_oe_per_share, 'the dashed paths still start from the engine base at FY2025');
-    assert.ok(App.renderForecastDCF(loaded.APP.record).includes('<b>Not shown:</b> FY2025: capex not filed'), 'the note says which year is blank and why');
+    assert.equal(a.weighted[a.baseIndex], built.APP.score.base_oe_per_share, 'the dashed paths still start from the engine base at FY2025');
+    assert.ok(App.renderForecastDCF(built.APP).includes('<b>Not shown:</b> FY2025: capex not filed'), 'the note says which year is blank and why');
   }
   if (loaded.AEE) assert.equal(App.oeForecastSeries(loaded.AEE.record), null, 'Tier F: no series');
   const noHist = Object.assign({}, synthetic, { fundamentals: null, history: [] }); const nh = App.oeForecastSeries(noHist); assert.deepEqual(nh.labels.slice(0, 2), ['Base', '+1']); assert.equal(nh.histVals[0], synthetic.score.base_oe_per_share);
@@ -571,9 +600,13 @@ test('negative zero never prints: sign from the rounded text in stmFmt / fmtPct 
   const scan = (data, name) => { App.STM_TABS.forEach(([st]) => App.STM_PERIODS.forEach(([pd]) => { App.stmTable(data, st, pd, true).rows.forEach((r) => r.cells.forEach((c) => { if (negZero.test(c.text)) bad.push(name + ' ' + st + ' ' + pd + ' ' + r.key + ' ' + c.text); if (negZero.test(c.growthText)) bad.push(name + ' ' + st + ' ' + pd + ' ' + r.key + ' growth ' + c.growthText); })); })); };
   const neg = JSON.parse(JSON.stringify(stmFx)); neg.statements.income[0].annual[0] = -1106; neg.statements.income[0].growth_annual[1] = -0.0004; neg.statements.metrics[0].annual[1] = -0.0005; neg.statements.cashflow[1].annual[2] = 3000;
   scan(neg, 'fixture'); assert.equal(App.stmTable(neg, 'income', 'annual', true).rows[0].cells[2].text, '0.00'); assert.equal(App.stmTable(neg, 'cashflow', 'annual').rows[1].cells[0].text, '0.00', 'a tiny outflow (cf_sign −1) is not "-0.00"');
-  const dataDir = path.join(SITE, 'data'); let files = 0;
-  if (fs.existsSync(dataDir)) fs.readdirSync(dataDir).filter((f) => /\.statements\.json$/.test(f)).forEach((f) => { files++; scan(JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8')), f); });
-  assert.deepEqual(bad, [], 'negative-zero cells in ' + files + ' served statements files');
+  // every served data/<T>.statements.json; on a fresh clone (no data/), the committed <T>/statements.json they are copied from
+  const dataDir = path.join(BUILT, 'data'); let files = 0;
+  const served = fs.existsSync(dataDir) ? fs.readdirSync(dataDir).filter((f) => /\.statements\.json$/.test(f)).map((f) => path.join(dataDir, f)) : [];
+  const own = served.length ? [] : fs.readdirSync(BASE).filter((d) => /^[A-Z][A-Z0-9.-]*$/.test(d)).map((d) => path.join(BASE, d, 'statements.json')).filter((p) => fs.existsSync(p));
+  served.concat(own).forEach((p) => { files++; scan(JSON.parse(fs.readFileSync(p, 'utf8')), path.relative(BASE, p)); });
+  if (!files) skip('negative-zero sweep over real statements files — none served or committed under ' + BASE);
+  assert.deepEqual(bad, [], 'negative-zero cells in ' + files + (served.length ? ' served' : ' committed') + ' statements files');
 });
 test('company page re-mount keeps an open sparkline: companyCharts() carries the stm-spark spec; focusKey() names redrawn controls', () => {
   const rec = { ticker: 'FX', score: { ticker: 'FX' } };
@@ -718,7 +751,7 @@ test('YTD opens at the last close of the prior year (the base, as prices.py\'s r
   const noPrior = App.selectRange({ w: [], d: [['2026-01-02', 12], ['2026-01-05', 13], ['2026-01-06', 14]] }, 'YTD'); assert.equal(noPrior.pts.length, 3); assert.equal(noPrior.priorBase, false); assert.equal(noPrior.base, 12, 'no close before the window → the first close is the base');
   assert.deepEqual(App.RANGE_DAYS, { '1M': 30, '3M': 91, '6M': 182, '1Y': 365, '5Y': 1826 }, 'prices.py stats() reference distances');
   Object.keys(loaded).forEach((t) => { // the pill must equal prices.stats.ret_*_pct wherever the served daily series reaches the reference close
-    const spec = App.priceSpec(loaded[t].record), st = loaded[t].record.prices.stats || {}; if (App.selectRange(spec, '1M') === null || App.selectRange(spec, '1M').kind !== 'daily') return;
+    const spec = App.priceSpec(loaded[t].record), st = (loaded[t].record.prices || {}).stats || {}; if (App.selectRange(spec, '1M') === null || App.selectRange(spec, '1M').kind !== 'daily') return;
     [['1M', 'ret_1m_pct'], ['3M', 'ret_3m_pct'], ['6M', 'ret_6m_pct'], ['YTD', 'ret_ytd_pct'], ['1Y', 'ret_1y_pct']].forEach(([rg, k]) => {
       const sel = App.selectRange(spec, rg); if (!sel || !sel.priorBase || typeof st[k] !== 'number') return;
       const r = App.drawPrice(fakeEl(800, 280), spec, { range: rg }); assert.ok(Math.abs(Math.round(r.pct * 100) / 100 - st[k]) < 0.011, t + ' ' + rg + ' pill ' + r.pct.toFixed(2) + ' vs stats ' + st[k]);
@@ -798,7 +831,7 @@ test('a finished session\'s period return ends on the official close (= prices.s
   assert.deepEqual(App.sessionEnd([[240, 1], [960, 2]], 2), { last: 2, lastAt: '4:00 PM ET close', after: null }); assert.deepEqual(App.sessionEnd([[240, 1], [955, 2]], 2), { last: 2, lastAt: null, after: null }, 'bars short of 16:00: last print');
   assert.deepEqual(App.sessionEnd([[240, 1], [960, 2], [965, 3]], null), { last: 3, lastAt: null, after: null }, 'no close: last print'); assert.deepEqual(App.sessionEnd([], 2), { last: null, lastAt: null, after: null });
   Object.keys(loaded).forEach((t) => { // every served finished session: the chart's 1D figure equals the hero's daily change
-    const rec = loaded[t].record, st = rec.prices.stats || {}, full = (rec.prices.sessions_5d || []).find((x) => x && x.complete === true && typeof x.close === 'number' && x.session_date === st.last_date);
+    const rec = loaded[t].record, pr = rec.prices || {}, st = pr.stats || {}, full = (pr.sessions_5d || []).find((x) => x && x.complete === true && typeof x.close === 'number' && x.session_date === st.last_date);
     if (!full) return;
     const spec = App.priceSpec(rec), rr = App.drawPrice(fakeEl(800, 280), Object.assign({}, spec, { intraday: Object.assign({ regular_open: '09:30', regular_close: '16:00' }, full) }), { range: '1D' });
     assert.equal(Math.round(rr.pct * 100) / 100, st.change_1d_pct, t + ' 1D pill vs stats.change_1d_pct'); assert.ok(rr.after === null || rr.after.t > 960, t + ' after-hours only past the close');
@@ -853,7 +886,7 @@ test('price card markup: nine range buttons with the period-return slot, disable
     if (spec.sessions.length) { const el = fakeEl(800, 280), r = App.drawPrice(el, spec, { range: '5D' }); assert.ok(r && r.kind === 'sessions' && r.n >= 2, t + ' 5D draws ' + (r && r.n) + ' points'); }
     App.PRICE_RANGES.forEach((rg) => { if (!avail[rg]) return; const el = fakeEl(800, 280), r = App.drawPrice(el, spec, { range: rg }); assert.ok(r && r.range === rg && el.innerHTML.includes('class="xh"'), t + ' ' + rg); });
   });
-  if (loaded.APP) { const i = loaded.APP.record.prices.intraday; if (i) { const s = App.selectRange(App.priceSpec(loaded.APP.record), '1D'); assert.equal(s.prevClose, i.prev_close, 'APP 1D prev close is the reconciled daily close (not Nasdaq\'s stale previousClose)'); } }
+  if (loaded.APP) { const i = (loaded.APP.record.prices || {}).intraday; if (i) { const s = App.selectRange(App.priceSpec(loaded.APP.record), '1D'); assert.equal(s.prevClose, i.prev_close, 'APP 1D prev close is the reconciled daily close (not Nasdaq\'s stale previousClose)'); } }
 });
 test('app.css: the chart scrubs on a horizontal drag but a vertical flick still scrolls (touch-action: pan-y); the return badge is a coloured pill', () => {
   const css = fs.readFileSync(path.join(SITE, 'app.css'), 'utf8');
@@ -939,13 +972,13 @@ test('canonicalHash: legacy #T/tab and non-canonical casing normalise to #T.tab 
   assert.equal(App.canonicalHash('#APP.financials', find), '#APP.financials', 'a canonical hash is unchanged');
 });
 test('floor-clamped scenario IRRs are marked in the Overview Scenarios card and badged in the ranking row (live and scored separately)', () => {
-  const rec = loaded.ZS ? loaded.ZS.record : null;
+  const rec = builtOr('ZS', 'ZS live floor flags in the Overview Scenarios card');
   if (rec) {
     const ov = App.renderOverview(rec), sc = ov.slice(ov.indexOf('<h2>Scenarios</h2>'), ov.indexOf('<h2>Moat</h2>'));
     const sb = sc.slice(sc.indexOf('Super bear'), sc.indexOf('>Bear<')); assert.ok(sb.includes('class="mono scni atfloor"') && sb.includes('>at floor</sup>'), 'ZS live super-bear IRR is marked');
     const base = sc.slice(sc.indexOf('>Base<'), sc.indexOf('>Bull<')); assert.ok(!base.includes('at floor'), 'base unmarked');
     assert.ok(sc.includes('<b>At floor</b> marks an IRR the solver clamped'), 'explanation in the section note');
-  } else console.log('  (ZS record not available — skipped)');
+  }
   assert.ok(!App.renderOverview(synthetic).includes('at floor'), 'no marker without flags');
   const flagged = JSON.parse(JSON.stringify(synthetic)); flagged.forecast.sensitivity.bear.irr_at_floor = true; flagged.live = null;
   const fo = App.renderOverview(flagged), fb = fo.slice(fo.indexOf('>Bear<'), fo.indexOf('>Base<')); assert.ok(fb.includes('class="mono scni atfloor"') && fb.includes('the scored IRR solver stopped at its floor'), 'scored floor flag marks the scored view');
@@ -973,8 +1006,9 @@ test('statements viewer: basis-break quarters are greyed with a title and a lege
   assert.equal(App.stmSpan(App.stmTable(stmFx, 'income', 'annual')), '3 fiscal years, FY2024 → FY2026'); assert.equal(App.stmSpan(App.stmTable(stmFx, 'income', 'quarterly')), '6 quarters, Q1 FY2026 → Q2 FY2027'); assert.equal(App.stmSpan(App.stmTable(stmFx, 'cashflow', 'ttm')), '3 fiscal years, FY2024 → FY2026', 'the TTM column is not counted');
   assert.equal(App.stmSpan({ cols: [{ src: 'annual', label: 'FY2026' }] }), ''); assert.equal(App.stmSpan(null), '');
   assert.ok(html.includes('<b>6 quarters, Q1 FY2026 → Q2 FY2027</b> — scroll the table sideways for the older periods.'), 'units note carries the span');
-  if (loaded.APP && fs.existsSync(path.join(SITE, 'data', 'APP.statements.json'))) { // APP's FY2023 / FY2024 quarters (the apps divestiture) are the real case
-    const d = JSON.parse(fs.readFileSync(path.join(SITE, 'data', 'APP.statements.json'), 'utf8')), M = App.stmTable(d, 'income', 'quarterly');
+  if (!statementsPath('APP')) skip('APP statements basis-break check — no APP statements file');
+  else { // APP's FY2023 / FY2024 quarters (the apps divestiture) are the real case
+    const d = JSON.parse(fs.readFileSync(statementsPath('APP'), 'utf8')), M = App.stmTable(d, 'income', 'quarterly');
     if (M.anyBasisBreak) { const rev = M.rows.find((r) => r.key === 'revenue'); assert.ok(rev.cells.filter((c) => c.basisBreak).length >= 4 && rev.cells.filter((c) => c.basisBreak).every((c) => c.growth === null), 'APP: flagged quarters carry no growth'); }
   }
 });
@@ -1030,7 +1064,7 @@ test('tab strip: a deep link or hashchange to a tab past the strip\'s edge scrol
 /* ---- report */
 /* ---- review round 4 (2026-10-15): Forecast audit, watchlist view, partial yields, sticky bar, chart / statements minors */
 test('OE/share history: a year counts only when BOTH owner\'s earnings and diluted shares are filed; the engine CSV never fills an override year (ZS, APP, AEE)', () => {
-  const zs = loaded.ZS ? loaded.ZS.record : null;
+  const zs = builtOr('ZS', 'ZS OE/share history against the engine paths');
   if (zs) {
     const H = App.oeHistory(zs), ann = zs.fundamentals.annual;
     assert.ok(H.every((h) => h.v === null || Math.abs(h.v) < 5), 'no -61 / share from the engine CSV\'s mangled FY2018 share count: ' + H.map((h) => h.fy + ':' + h.v).join(' '));
@@ -1084,7 +1118,7 @@ test('Street: quarterly "from" = the filed quarter a year earlier matched on the
   assert.equal(App.yearAgoQuarter({ period: 'Oct 2026', fiscal_end: '2026-10' }, qs.slice(2)).v, -2.02, 'Kroger: a quarter ending 2025-11-08 is the year-ago "Oct" quarter (8 days off the month end)');
   assert.equal(App.yearAgoQuarter({ period: 'Mar 2027', fiscal_end: '2027-03' }, qs), null, 'nothing within 45 days');
   assert.equal(App.yearAgoQuarter({ period: 'Q1 2026' }, [{ label: 'Q1 FY2025', period_end: '2025-03-31', eps_diluted: 0.38 }]).v, 0.38, 'Q-form periods still match by quarter number');
-  if (loaded.APP) { const s = App.renderForecastStreet(loaded.APP.record); assert.ok(s.includes('from $2.45 (Q3 FY2025 filed)'), 'APP: Sep 2026 consensus vs the filed Sep 2025 quarter'); }
+  if (builtOr('APP', 'APP Street quarterly "from" (profile.street)')) { const s = App.renderForecastStreet(built.APP); assert.ok(s.includes('from $2.45 (Q3 FY2025 filed)'), 'APP: Sep 2026 consensus vs the filed Sep 2025 quarter'); }
 });
 test('Watchlist toggle: every watched name whatever the Modeled / misfit filter, the tier filter still applies, the count = rows shown with tier All, Copy = the count with the no-page names in a note', () => {
   const rows = [{ ticker: 'AAA', watchlist: true, fit: 'modeled', tier: 'B', irr: 0.2 }, { ticker: 'MIS', fit: 'misfit', tier: 'C', irr: 0.12 }, { ticker: 'CCC', fit: 'modeled', tier: 'D', irr: 0.05 }, { ticker: 'DDD', fit: 'modeled', tier: 'D', irr: 0.04 }];
@@ -1111,12 +1145,12 @@ test('Partial yields: the Dividends tiles and the ranking print yields_display l
   if (loaded.HBAN) {
     const d = loaded.HBAN.record.fundamentals.dividends, html = App.renderDividends(loaded.HBAN.record);
     ['buyback_yield', 'net_buyback_yield', 'shareholder_yield'].forEach((k) => { const yd = d.yields_display[k], txt = html.replace(/<[^>]+>/g, ''); assert.ok(txt.includes(yd.label), k + ' label ' + yd.label); assert.ok(html.includes('title="' + App.esc(yd.note) + '"'), k + ' note in the tooltip'); });
-    assert.ok(html.includes('>≥ 0.49%</span>') && !html.includes('>0.49%</span>'), 'HBAN buyback yield: the lower bound is marked');
+    const bl = d.yields_display.buyback_yield.label; assert.ok(/^≥ /.test(bl) && html.includes('>' + bl + '</span>') && !html.includes('>' + bl.slice(2) + '</span>'), 'HBAN buyback yield: the lower bound is marked');
     assert.ok(html.includes('$150M TTM') && !html.includes('no buyback filed'), 'the partial leg\'s filed sum is shown (legs.buybacks.value), not "no buyback filed"');
-    assert.ok(html.includes('<b class="bword">lower bound</b>') && html.includes('≈ 3.53% <span class="vsfx">(incomplete)</span>'), 'the bound is named on the tile (phones have no hover): under the figure, or the label\'s own "(incomplete)" on its own line');
+    const sl = d.yields_display.shareholder_yield.label; assert.ok(/^≈ [\d.]+% \(incomplete\)$/.test(sl), 'HBAN shareholder yield label ' + sl); assert.ok(html.includes('<b class="bword">lower bound</b>') && html.includes(sl.replace(' (incomplete)', ' <span class="vsfx">(incomplete)</span>')), 'the bound is named on the tile (phones have no hover): under the figure, or the label\'s own "(incomplete)" on its own line');
   }
-  if (loaded.ZS) { const z = App.renderDividends(loaded.ZS.record); assert.ok(z.includes('>≥ -0.18%</span>') && z.includes('no buyback filed')); }
-  if (loaded.KR) { const k = App.renderDividends(loaded.KR.record); assert.ok(k.includes('>12.36%</span>') && !k.includes('class="bword"'), 'exact yields carry no bound marker'); }
+  if (loaded.ZS) { const z = App.renderDividends(loaded.ZS.record), zd = loaded.ZS.record.fundamentals.dividends.yields_display || {}; const lower = Object.keys(zd).filter((k) => zd[k].bound === 'lower'); assert.ok(lower.length && lower.every((k) => /^≥ /.test(zd[k].label) && z.includes('>' + zd[k].label + '</span>')) && z.includes('no buyback filed'), 'ZS: lower bounds marked'); }
+  if (loaded.KR) { const k = App.renderDividends(loaded.KR.record), kd = loaded.KR.record.fundamentals.dividends.yields_display || {}; const exact = Object.keys(kd).filter((x) => !kd[x].bound || kd[x].bound === 'exact'); assert.ok(exact.length === Object.keys(kd).length && exact.every((x) => /^-?[\d.]+%$/.test(kd[x].label) && k.includes('>' + kd[x].label + '</span>')) && !k.includes('class="bword"'), 'exact yields carry no bound marker'); }
   const y = App.yieldShown({ shareholder_yield: 0.0123 }, 'shareholder_yield'); assert.equal(y.text, '1.2%', 'an older block without yields_display falls back to the figure'); assert.equal(y.partial, false);
   assert.deepEqual(App.yieldShown({ yields_display: { buyback_yield: { label: '≤ 2.78%', bound: 'upper', note: 'n' } } }, 'buyback_yield'), { text: '≤ 2.78%', note: 'n', bound: 'upper', partial: true, word: 'upper bound' });
   const r = App.rowYieldHTML({ shareholder_yield: 0.0353, shareholder_yield_label: '≈ 3.53% (incomplete)', shareholder_yield_bound: 'indeterminate' });
@@ -1171,8 +1205,9 @@ test('Statements minors: the chart card closes with its line on a period switch;
   const err = App.renderStatements(rec, { status: 'error', error: 'HTTP 500' }); assert.ok(err.includes('class="wbtn sm stm-retry">Retry</button>') && err.includes('reopening the tab retries'));
   assert.ok(/if \(st\.status === 'error'\) \{ st\.status = 'idle';/.test(src) && /closest\('\.stm-retry'\)/.test(src), 'ensureStatements retries an error; the Retry button resets it');
   assert.deepEqual(App.sparkLabels([{ label: 'Q1 FY2012', end: '2011-09-30' }, { label: 'Q1 FY2012', end: '2012-03-31' }]), ["Q1 FY2012 · Sep '11", "Q1 FY2012 · Mar '12"]); assert.deepEqual(App.sparkLabels([{ label: 'FY2024', end: '2024-12-31' }]), ['FY2024'], 'unique labels unchanged');
-  const dupF = path.join(SITE, 'data', 'ADM.statements.json');
-  if (fs.existsSync(dupF)) { const sp = App.stmSparkSpec(JSON.parse(fs.readFileSync(dupF, 'utf8')), 'income', 'quarterly', 'revenue'); assert.equal(new Set(sp.labels).size, sp.labels.length, 'ADM: every sparkline label distinct'); const el = fakeEl(360); App.drawChart(el, sp); const drawn = (el.innerHTML.match(/<text x="[\d.]+" y="\d+" text-anchor="middle">/g) || []).length; assert.ok(drawn >= 2 && drawn <= Math.floor((360 - 46 - 12) / (sp.labels[0].length * 6.8 + 10)) + 1, 'long labels are thinned to fit: ' + drawn); }
+  const dupF = statementsPath('ADM');
+  if (!dupF) skip('ADM duplicate quarter labels — no ADM statements file');
+  else { const sp = App.stmSparkSpec(JSON.parse(fs.readFileSync(dupF, 'utf8')), 'income', 'quarterly', 'revenue'); assert.equal(new Set(sp.labels).size, sp.labels.length, 'ADM: every sparkline label distinct'); const el = fakeEl(360); App.drawChart(el, sp); const drawn = (el.innerHTML.match(/<text x="[\d.]+" y="\d+" text-anchor="middle">/g) || []).length; assert.ok(drawn >= 2 && drawn <= Math.floor((360 - 46 - 12) / (sp.labels[0].length * 6.8 + 10)) + 1, 'long labels are thinned to fit: ' + drawn); }
 });
 test('Hero watchlist chip reads the index (authoritative) when a repo list is given; record.row only without one', () => {
   const lag = { score: { ticker: 'KR', name: 'Kroger' }, row: { ticker: 'KR', watchlist: true } };
@@ -1183,7 +1218,9 @@ test('Hero watchlist chip reads the index (authoritative) when a repo list is gi
 });
 
 /* ---- review round 5 (2026-10-15): OE/share history — override kinds, share basis, fiscal-year gaps, all-blank histories; shareholder-yield caption */
-const SITE_DATA = (t) => { const p = path.join(SITE, 'data', t + '.json'); return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : null; };
+/* A built record by ticker (data/<T>.json); on a fresh clone null, and the real-record check that wanted it skips with a
+   note — these checks pin the engine's override notes and history placeholders as the build serves them. */
+const SITE_DATA = (t) => { const p = path.join(BUILT, 'data', t + '.json'); if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8')); skip(t + ' real-record check — needs the built data/' + t + '.json'); return null; };
 test('OE/share history: a "filing" override is described as a value read from the filing, never "an filing — not a filed value" (CFG / CMPS / MTB shape)', () => {
   const cfgShape = { numbers: { overrides_applied: [{ field: 'capex', kind: 'filing', value: 174e6, source: 'Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows …', periods_filled: ['2024-12-31', '2025-12-31'] }] },
     fundamentals: { annual: [{ fy: '2023', period_end: '2023-12-31', oe_conservative: 150, shares_diluted: 100, oe_per_share: 1.5 },
@@ -1252,12 +1289,378 @@ test('Shareholder yield tile: the caption names its own dividend leg (cash paid 
     assert.ok(tileHtml.includes('not TTM DPS × shares, so it need not equal the Dividend yield tile') && tileHtml.includes(App.esc(d.yields_display ? d.yields_display.shareholder_yield.note || '' : '')), 'tooltip: the yield\'s own note, then the dividend-leg sentence');
     const paidPct = d.legs.dividends_paid.value / d.market_cap, net = d.net_buyback_yield; if (net !== null && net !== undefined) assert.ok(Math.abs(paidPct + net - d.shareholder_yield) < 1e-9, t + ': paid + net buyback = shareholder yield');
   };
-  chk('HBAN', '$930M (3.04%)', '$30.61B'); chk('KR', '$894M (2.40%)', '$37.26B');
+  const own = (t) => { const r = loaded[t] ? loaded[t].record : SITE_DATA(t); if (!r) return; const d = r.fundamentals.dividends, paid = d.legs.dividends_paid.value; chk(t, App.fmtBig(paid) + ' (' + App.fmtPct(paid / d.market_cap, 2) + ')', App.fmtBig(d.market_cap)); };
+  own('HBAN'); own('KR');   // the figures move with the close the block is priced at; the caption's shape does not
   const app = loaded.APP ? App.renderDividends(loaded.APP.record) : ''; if (app) assert.ok(app.includes('no dividends paid + net buyback'), 'a non-payer says so');
 });
 
-const failed = results.filter((r) => r[1]);
-results.forEach((r) => console.log((r[1] ? 'FAIL ' : 'ok   ') + r[0]));
-failed.forEach((r) => { console.error('\n--- ' + r[0] + '\n' + (r[1].stack || r[1])); });
-console.log('\n' + (results.length - failed.length) + ' passed, ' + failed.length + ' failed' + (Object.keys(loaded).length ? ' · records: ' + Object.keys(loaded).map((t) => t + ' (' + loaded[t].source + ')').join(', ') : ''));
-process.exit(failed.length ? 1 : 0);
+/* ---- review round 6 (2026-10-16): the router never mounts a stale company; SEC dates read "updated"; a fresh clone runs the suite */
+/* app.js's own route() in a browser-shaped vm sandbox (the module.exports branch has no router). #app is an innerHTML string,
+   history.replaceState writes location.hash, and fetch is deferred: each request waits until the test settles it, so a record
+   can arrive after the viewer has navigated elsewhere — the review's reproduction (finding 4289642900). */
+function routerSandbox(rows) {
+  const fetches = [], location = { hash: '' };
+  const node = (html) => ({ innerHTML: html || '', textContent: '', style: {}, dataset: {}, classList: { toggle() {}, contains() { return false; } }, focus() {}, setSelectionRange() {},
+    querySelector(sel) { return /^#[\w-]+$/.test(sel) && this.innerHTML.includes('id="' + sel.slice(1) + '"') ? node() : null; }, querySelectorAll() { return []; } });
+  const app = node();
+  const document = { readyState: 'loading', title: '', activeElement: null, addEventListener() {}, getElementById: (id) => (id === 'app' ? app : null), querySelector: (sel) => app.querySelector(sel), querySelectorAll: () => [] };
+  const sb = { document, location, console, setTimeout, clearTimeout, scrollTo() {}, addEventListener() {}, getComputedStyle: () => null,
+    history: { replaceState(_s, _t, url) { location.hash = url; } },
+    localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+    fetch: (url) => new Promise((resolve) => { fetches.push({ url, resolve }); }) };
+  sb.window = sb; vm.createContext(sb);
+  vm.runInContext(fs.readFileSync(path.join(SITE, 'app.js'), 'utf8'), sb, { filename: 'app.js' }); // readyState 'loading': boot() waits for a DOMContentLoaded that never comes
+  const D = sb.App.state; D.app = app; D.index = rows; D.meta = meta;
+  return { D, app, location, document, fetches,
+    go(h) { location.hash = h; sb.App.route(); },
+    urls() { return fetches.map((f) => f.url); },
+    isList() { return app.innerHTML.includes('id="listView"'); },
+    shows() { return D.current ? D.current.ticker + (app.innerHTML.startsWith('<div class="card loading"') ? ' (loading card)' : '') : (this.isList() ? 'ranking' : app.innerHTML.slice(0, 60)); },
+    settle(url, record) { const i = fetches.findIndex((f) => f.url === url); assert.ok(i >= 0, 'a fetch pending for ' + url + ' (pending: ' + this.urls().join(', ') + ')'); fetches.splice(i, 1)[0].resolve({ ok: true, status: 200, json: () => record }); return new Promise((r) => setImmediate(r)); } };
+}
+function recFor(t) { const r = JSON.parse(JSON.stringify(synthetic)); r.ticker = r.folder = r.score.ticker = r.row.ticker = t; r.name = r.score.name = r.row.name = t + ' Corp'; return r; }
+const routeRows = ['APP', 'KR', 'EXPE'].map((t) => recFor(t).row);
+test('router: #APP → # while APP loads, then APP arrives — the ranking stays (review 4289642900); an unknown name the same', async () => {
+  const R = routerSandbox(routeRows);
+  R.go('#'); assert.ok(R.isList(), 'ranking mounted');
+  R.go('#APP'); assert.ok(R.app.innerHTML.includes('Loading APP'), 'loading card'); assert.deepEqual(R.urls(), ['./data/APP.json']);
+  R.go('#'); assert.ok(R.isList(), 'back on the ranking before APP arrives');
+  await R.settle('./data/APP.json', recFor('APP'));
+  assert.equal(R.shows(), 'ranking', 'APP arriving late does not replace the ranking'); assert.equal(R.D.current, null); assert.equal(App.parseHash(R.location.hash).ticker, null, 'the address still names the ranking');
+  assert.equal(R.document.title, "Owner's-Earnings DCF Ranking");
+  R.go('#APP'); assert.equal(R.shows(), 'APP', 'the late record was cached: #APP now mounts at once'); assert.equal(R.fetches.length, 0, 'no second request');
+  const U = routerSandbox(routeRows); // an unknown name while a company loads: the notice + the ranking, and the late record stays out
+  U.go('#KR'); U.go('#NOPE'); assert.ok(U.isList() && App.parseHash(U.location.hash).ticker === null, 'unknown name → the ranking');
+  await U.settle('./data/KR.json', recFor('KR')); assert.equal(U.shows(), 'ranking', 'KR arriving after #NOPE does not mount');
+});
+test('router: back to the company already open while another loads (#KR → #APP → #KR) re-mounts KR, and the late APP record is dropped', async () => {
+  const R = routerSandbox(routeRows);
+  R.go('#KR'); await R.settle('./data/KR.json', recFor('KR')); assert.equal(R.shows(), 'KR');
+  R.go('#APP'); assert.ok(R.app.innerHTML.includes('Loading APP') && R.D.current === null, 'the loading card replaced the KR page, so KR is no longer the open company');
+  R.go('#KR'); assert.equal(R.shows(), 'KR', 'KR is back at once from the cache — not left on "Loading APP…"'); assert.ok(R.document.title.startsWith('KR — '));
+  await R.settle('./data/APP.json', recFor('APP'));
+  assert.equal(R.shows(), 'KR', 'APP arriving late does not replace KR'); assert.equal(R.location.hash, '#KR'); assert.ok(R.document.title.startsWith('KR — '), R.document.title);
+  R.go('#EXPE'); R.go('#KR.data'); assert.equal(R.shows(), 'KR'); assert.equal(R.D.current.tab, 'data', 'a tab of the open company while another loads');
+  await R.settle('./data/EXPE.json', recFor('EXPE')); assert.equal(R.shows(), 'KR'); assert.equal(R.D.current.tab, 'data');
+});
+test('router: the latest company navigation wins whichever record arrives first', async () => {
+  const R = routerSandbox(routeRows);
+  R.go('#APP'); R.go('#KR'); assert.ok(R.app.innerHTML.includes('Loading KR'));
+  await R.settle('./data/APP.json', recFor('APP')); assert.ok(R.app.innerHTML.includes('Loading KR') && R.D.current === null, 'the earlier APP record arriving first is dropped');
+  await R.settle('./data/KR.json', recFor('KR')); assert.equal(R.shows(), 'KR');
+  const Q = routerSandbox(routeRows);
+  Q.go('#APP'); Q.go('#KR'); await Q.settle('./data/KR.json', recFor('KR')); await Q.settle('./data/APP.json', recFor('APP'));
+  assert.equal(Q.shows(), 'KR', 'KR first, APP late: KR stays');
+  const src = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8'), body = src.slice(src.indexOf('function route() {'), src.indexOf('function wireEvents()'));
+  assert.ok(body.indexOf('D.routeToken = {}') > 0 && body.indexOf('D.routeToken = {}') < body.indexOf('parseHash(location.hash)'), 'route() takes its token before it reads the hash, so before every early return that follows');
+});
+test('SEC files are rewritten only when their content changes, so their dates read "updated <date>"; the Street keeps "pulled", prices "through"', () => {
+  const about = App.renderAbout(synthetic), filings = App.renderFilings(synthetic), segs = App.renderSegments(synthetic);
+  assert.ok(about.includes('<p class="note">Profile updated 2026-10-14.</p>') && !about.includes('Profile as of'), 'About');
+  assert.ok(filings.includes('From EDGAR submissions, updated 2026-10-14') && !filings.includes('submissions, as of'), 'Filings');
+  assert.ok(segs.includes('. Updated 2026-10-14.</p>') && !/As of /.test(segs), 'Segments');
+  const noDate = App.renderSegments(Object.assign({}, synthetic, { segments: Object.assign({}, synthetic.segments, { as_of: null }) }));
+  assert.ok(!/Updated|As of/.test(noDate) && noDate.includes('<p class="note">Source: SEC EDGAR XBRL segment axis'), 'no date: no dangling "As of ."');
+  const stm = App.renderStatements({ ticker: 'FX' }, { status: 'ready', data: stmFx, statement: 'income', period: 'annual' });
+  assert.ok(stm.includes('Source: SEC EDGAR companyfacts (filing-direct), updated 2026-10-15') && !stm.includes('companyfacts (filing-direct), as of'), 'Statements');
+  assert.ok(App.renderStreet(synthetic).includes(', pulled 2026-10-14.') && App.renderForecastStreet(synthetic).includes(' — pulled 2026-10-14;'), 'the Street block keeps "pulled" (Nasdaq, re-fetched every run)');
+  const priced = Object.assign({}, synthetic, { prices: { source: 'nasdaq historical', as_of: '2026-10-14', weekly: [['2026-10-02', 44], ['2026-10-09', 45]], daily_1y: [['2026-10-13', 44.5], ['2026-10-14', 45]], stats: {} } });
+  assert.ok(App.renderPriceChart(priced).includes('Prices: nasdaq historical, through 2026-10-14.'), 'prices keep "through"');
+  const all = App.TAB_KEYS.map((t) => App.renderCompanyHTML(synthetic, t)).join('');
+  assert.ok(!/Profile as of|EDGAR submissions, as of|companyfacts[^<]*, as of|>Source:[^<]*\. As of/.test(all), 'no SEC file date is labelled "as of" on any tab');
+});
+test('fresh clone: the test record assembler serves street.json on record.profile as build_site does; the suite never needs the built caches', () => {
+  const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-street-'));
+  try {
+    const { profileOf } = require('./fixtures/assemble.js');
+    assert.equal(profileOf(dir), null, 'neither file: null');
+    fs.writeFileSync(path.join(dir, 'profile.json'), JSON.stringify({ ticker: 'T', as_of: '2026-09-01', about: synthetic.profile.about, filings: [] }));
+    assert.deepEqual(profileOf(dir), { ticker: 'T', as_of: '2026-09-01', about: synthetic.profile.about, filings: [], street: null, market: null, street_fetched_at: null }, 'profile.json alone: no Street yet');
+    fs.writeFileSync(path.join(dir, 'street.json'), JSON.stringify({ ticker: 'T', as_of: '2026-10-16', fetched_at: '2026-10-16T07:01:02-04:00', street: { as_of: '2026-10-16', analysts: 3 }, market: { exchange: 'NYSE' } }));
+    const p = profileOf(dir); assert.equal(p.as_of, '2026-09-01', 'profile.json keeps its own (content-change) date'); assert.deepEqual(p.street, { as_of: '2026-10-16', analysts: 3 }); assert.deepEqual(p.market, { exchange: 'NYSE' }); assert.equal(p.street_fetched_at, '2026-10-16T07:01:02-04:00');
+    assert.ok(App.renderStreet({ score: { ticker: 'T' }, profile: p }).includes('based on 3 analysts') && App.renderAbout({ profile: p }).includes('Profile updated 2026-09-01'), 'the app reads the merged record');
+    fs.unlinkSync(path.join(dir, 'street.json')); fs.writeFileSync(path.join(dir, 'profile.json'), JSON.stringify({ ticker: 'T', as_of: '2026-09-01', street: { analysts: 5 }, market: { exchange: 'NYSE' } }));
+    assert.deepEqual(profileOf(dir).street, { analysts: 5 }, 'a legacy profile.json with street / market still serves them');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+  // the empty states tell "not pulled yet" from "pulled, nothing there" per file: profile.json (SEC) and street.json (Nasdaq) arrive separately
+  const secOnly = { score: { ticker: 'T' }, profile: { ticker: 'T', as_of: '2026-09-01', about: synthetic.profile.about, filings: [], street: null, market: null, street_fetched_at: null } };
+  assert.ok(App.renderStreet(secOnly).includes('Street consensus appears once profile.py has pulled') && App.renderForecastStreet(secOnly).includes('Street consensus appears once profile.py has pulled') && App.renderForecastAnalysts(secOnly).includes('Analyst coverage appears once profile.py has pulled'), 'profile.json without street.json (a fresh clone): the Street is not pulled yet — not "no analyst data"');
+  assert.ok(!App.renderAbout(secOnly).includes('Profile not pulled yet') && App.renderFilings(secOnly).includes('No filings on record.'), 'the SEC part is there');
+  const pulledEmpty = { score: { ticker: 'T' }, profile: Object.assign({}, secOnly.profile, { street_fetched_at: '2026-10-16T07:01:02-04:00' }) };
+  assert.ok(App.renderStreet(pulledEmpty).includes('No analyst data on record for this name.') && App.renderForecastAnalysts(pulledEmpty).includes('No analyst coverage data on record'), 'street.json pulled, Nasdaq had nothing');
+  const nasdaqOnly = { score: { ticker: 'T' }, profile: { street: { analysts: 2 }, market: { exchange: 'NYSE' }, street_fetched_at: '2026-10-16T07:01:02-04:00' } };
+  assert.ok(App.renderAbout(Object.assign({}, nasdaqOnly, { fundamentals: synthetic.fundamentals })).includes('Profile not pulled yet') && App.renderFilings(nasdaqOnly).includes('The EDGAR filing feed appears once profile.py has run'), 'street.json without profile.json: the SEC part is not pulled yet');
+  assert.ok(App.renderStreet({ profile: { about: {} } }).includes('No analyst data') && App.renderStreet({ profile: { as_of: '2026-10-14', street: null } }).includes('No analyst data'), 'a record built before the split (no street_fetched_at key) reads as before');
+  if (!HAVE_BUILT) console.log('  (no built data/, index.json, meta.json under ' + BUILT + ': real-record checks use assembled records or skip, as on a fresh clone)');
+});
+
+/* ---- PR #2 follow-ups (2026-10-16): restricted cash in the statements viewer, the dividends price note, a live.json older
+   than the score, a split since scoring */
+const clone = (o) => JSON.parse(JSON.stringify(o));
+const rcFx = (() => { // stmFx with statements.py's restricted-cash marks: a combined cash + restricted total in FY2025 / FY2026 and the last two quarters
+  const fx = clone(stmFx);
+  const cash = fx.statements.balance[0];
+  cash.label = 'Cash & equivalents (some periods incl. restricted cash)';
+  cash.incl_restricted_annual = [false, true, true]; cash.incl_restricted_quarterly = [false, false, false, false, true, true]; cash.incl_restricted_ttm = true;
+  fx.statements.balance.splice(1, 0, { key: 'restricted_cash', label: 'Restricted cash (included in cash above)', level: 2, total: false, unit: 'money', annual: [null, 2.0e8, null], quarterly: [null, null, null, null, null, null], ttm: null,
+    growth_annual: [null, null, null], growth_quarterly: [null, null, null, null, null, null], derived_quarterly: [false, false, false, false, false, false], tags: [] });
+  fx.statements.metrics.push({ key: 'net_cash', label: 'Net cash (debt) (some periods incl. restricted cash)', level: 0, total: false, unit: 'money', annual: [-1.0e9, 1.2e9, 3.0e9], quarterly: [1.0e9, 0.9e9, 1.1e9, 3.0e9, 0.4e9, null], ttm: 1.5e9,
+    growth_annual: [null, null, 1.5], growth_quarterly: [null, null, null, null, null, null], derived_quarterly: [false, false, false, false, false, false],
+    incl_restricted_annual: [false, false, true], incl_restricted_quarterly: [false, false, false, false, true, true], incl_restricted_ttm: false, tags: [] });
+  return fx;
+})();
+test('statements viewer: restricted cash — ‡ (with its title) on exactly the cells statements.py flags incl_restricted_*, a legend line only when a cell is marked', () => {
+  const ir = (M, key) => M.rows.find((r) => r.key === key).cells.map((c) => c.inclRestricted);
+  const A = App.stmTable(rcFx, 'balance', 'annual'); // columns newest first: FY2026 (i 2), FY2025 (i 1), FY2024 (i 0)
+  assert.deepEqual(ir(A, 'cash'), [true, true, false]); assert.deepEqual(ir(A, 'restricted_cash'), [false, false, false], 'the Restricted cash line itself is never marked');
+  assert.equal(A.anyInclRestricted, true); assert.equal(A.rows.find((r) => r.key === 'cash').anyInclRestricted, true);
+  assert.deepEqual(ir(App.stmTable(rcFx, 'balance', 'ttm'), 'cash'), [true, true, true, false], 'the Current column reads incl_restricted_ttm');
+  assert.deepEqual(ir(App.stmTable(rcFx, 'balance', 'quarterly'), 'cash'), [true, true, false, false, false, false], 'quarterly: per column, newest first');
+  assert.deepEqual(ir(App.stmTable(rcFx, 'metrics', 'quarterly'), 'net_cash'), [false, true, false, false, false, false], 'a flag on an empty cell (Q2 FY2027 net cash) marks nothing');
+  assert.deepEqual(ir(App.stmTable(rcFx, 'metrics', 'ttm'), 'net_cash'), [false, true, false, false], 'net cash: TTM false, FY2026 unsplit');
+  assert.equal(App.stmTable(rcFx, 'income', 'annual').anyInclRestricted, false); assert.equal(App.stmTable(stmFx, 'balance', 'annual').anyInclRestricted, false, 'no flags → nothing marked');
+  const rec = { ticker: 'FX', score: { ticker: 'FX' } };
+  const bal = App.renderStatements(rec, { status: 'ready', data: rcFx, statement: 'balance', period: 'annual' });
+  const marks = bal.match(/<sup class="rcash" title="[^"]*">‡<\/sup>/g) || [];
+  assert.equal(marks.length, 2, 'one ‡ per marked cell'); assert.ok(marks[0].includes('title="' + App.esc(App.RESTRICTED_TITLE) + '"'));
+  assert.equal(App.RESTRICTED_TITLE, 'includes restricted cash: the filed cash + restricted cash total; net cash deducts the restricted part where the Restricted cash line shows it, otherwise still counts it');
+  assert.ok(bal.includes('>4,600<sup class="rcash"') && bal.includes('>1,400<sup class="rcash"') && bal.includes('>1,900</td>'), 'FY2026 and FY2025 marked, FY2024 not');
+  assert.ok(bal.includes('‡ includes restricted cash; growth is blank where one period deducts it and the other does not.'), 'legend line');
+  assert.ok(bal.includes('Restricted cash (included in cash above)') && bal.includes('Cash &amp; equivalents (some periods incl. restricted cash)'), 'the lines statements.py labels');
+  const both = App.renderStatements(rec, { status: 'ready', data: rcFx, statement: 'metrics', period: 'quarterly' });
+  assert.equal((both.match(/‡<\/sup>/g) || []).length, 1); assert.ok(both.includes('‡ includes restricted cash'));
+  const der = App.renderStatements(rec, { status: 'ready', data: rcFx, statement: 'cashflow', period: 'quarterly' });
+  assert.ok(der.includes('†</sup>') && !der.includes('‡') && !der.includes('includes restricted cash'), 'no mark, no legend where nothing is flagged (the † legend unaffected)');
+  assert.ok(!App.renderStatements(rec, { status: 'ready', data: stmFx, statement: 'balance', period: 'annual' }).includes('‡'));
+  // the committed NTRS file (FY2025 5,873.1M includes 531.2M restricted): every flagged valued cell carries one ‡. The committed
+  // file first — a served copy built before the restricted-cash split carries no flags
+  const own = path.join(BASE, 'NTRS', 'statements.json'), p = fs.existsSync(own) ? own : statementsPath('NTRS');
+  if (!p || !fs.readFileSync(p, 'utf8').includes('incl_restricted_')) skip('NTRS restricted-cash marks — needs an NTRS statements.json built with the restricted-cash split');
+  else {
+    const d = JSON.parse(fs.readFileSync(p, 'utf8'));
+    ['balance', 'metrics'].forEach((st) => ['annual', 'quarterly', 'ttm'].forEach((pd) => {
+      const M = App.stmTable(d, st, pd), html = App.renderStatements({ ticker: 'NTRS' }, { status: 'ready', data: d, statement: st, period: pd });
+      const want = M.rows.reduce((s, r) => s + r.cells.filter((c) => c.inclRestricted).length, 0);
+      const flagged = arr2(d.statements[st]).reduce((s, L) => s + M.cols.filter((c) => { const v = c.src === 'ttm' ? L.ttm : (L[c.src] || [])[c.i]; return v !== null && v !== undefined && (c.src === 'ttm' ? L.incl_restricted_ttm === true : (L['incl_restricted_' + c.src] || [])[c.i] === true); }).length, 0);
+      assert.equal(want, flagged, 'NTRS ' + st + ' ' + pd + ': the model marks every flagged valued cell');
+      assert.equal((html.match(/‡<\/sup>/g) || []).length, want, 'NTRS ' + st + ' ' + pd + ': one ‡ per marked cell');
+      assert.equal(html.includes('‡ includes restricted cash'), want > 0, 'NTRS ' + st + ' ' + pd + ': legend iff marked');
+    }));
+    assert.ok(App.stmTable(d, 'balance', 'annual').anyInclRestricted, 'NTRS balance has marked cells');
+  }
+});
+function arr2(x) { return Array.isArray(x) ? x.filter((l) => l && typeof l === 'object') : []; }
+
+test('Dividends: the yields name the price they stand on from price_source (last close · scored price, no prices.json yet · none); price_note leads the notes, once', () => {
+  const withDiv = (over) => { const r = clone(synthetic); Object.assign(r.fundamentals.dividends, over); return r; };
+  const closeRec = withDiv({ price: 45, price_date: '2026-10-14', price_source: 'prices.json stats.last', price_note: null });
+  const h1 = App.renderDividends(closeRec);
+  assert.ok(h1.includes('Yields use the last close $45.00 (2026-10-14).') && h1.includes('TTM DPS ÷ $45.00'), 'prices.json close');
+  assert.ok(!/<li>price: /.test(h1), 'no price note without one');
+  const pn = 'price: 50.0 from score.json (2026-10-14); prices.json absent';
+  const scored = withDiv({ price: 50, price_date: '2026-10-14', price_source: 'score.json price', price_note: pn, notes: synthetic.fundamentals.dividends.notes.concat([pn]) });
+  const h2 = App.renderDividends(scored);
+  assert.ok(h2.includes('Yields use the scored price $50.00 (2026-10-14), no prices.json yet.'), 'score.json price');
+  assert.ok(h2.includes('<ul class="warnlist"><li>' + App.esc(pn) + '</li><li>annual_dps:'), 'price_note is the first item');
+  assert.equal(h2.split(App.esc(pn)).length - 1, 1, 'printed once even when an older block also carries it in notes');
+  const noPx = withDiv({ price: null, price_date: null, price_source: null, market_cap: null, dividend_yield: null, price_note: 'price: neither prices.json nor score.json carries a price — yields null' });
+  const h3 = App.renderDividends(noPx);
+  assert.ok(h3.includes('No price is on file, so the yields are blank.') && h3.includes('no price on file') && h3.includes('<li>price: neither prices.json nor score.json carries a price — yields null</li>') && !h3.includes('Yields use'), 'no price');
+  const nonPayer = withDiv({ frequency: 'none', dps_ttm: null, dividends_paid_ttm: 0, history: [], annual_dps: [], price: null, price_source: null });
+  assert.ok(App.renderDividends(nonPayer).includes('no price is on file, so the yields below are blank.'), 'non-payer without a price');
+  assert.ok(App.renderDividends(withDiv({ frequency: 'none', dps_ttm: null, dividends_paid_ttm: 0, history: [], annual_dps: [] })).includes('the yields below use the last close $45.00 (2026-10-14).'), 'non-payer with a close');
+  assert.ok(App.renderDividends(synthetic).includes('Yields use the last close $45.00 (2026-10-14).'), 'an older block (price_source "prices.json", no price_note) reads as before');
+  // a split since scoring: build_site shows the block as written (never repriced across the split)
+  const sp = { factor: 2, split: '2:1', scored_date: '2026-10-14', price_date: '2026-10-20', as_scored: {}, note: 'n' };
+  const split = Object.assign(withDiv({ price: 45, price_date: '2026-10-14', price_source: 'prices.json stats.last' }), { split_restated: sp });
+  const h4 = App.renderDividends(split);
+  assert.ok(h4.includes('Yields use $45.00 on 2026-10-14, before the 2:1 split.') && h4.includes('a split the filings do not report yet is not reflected'), 'block at its own pre-split price');
+  assert.equal(App.divPriceWords({ price: 45, price_date: '2026-10-16', price_source: 'prices.json stats.last' }, App.splitInfo(split)), '$45.00 on 2026-10-16 — not repriced across the 2:1 split since scoring', 'a block priced after the scored date: no "before" claim');
+  assert.equal(App.divPriceWords({ price: null }, null), null); assert.equal(App.divPriceWords({ price: 3.5 }, null), 'the last close $3.50', 'no date: no empty parentheses');
+  assert.ok(!App.renderDividends(inject(scored)).includes('<x-inj>'), 'price_note escaped');
+});
+
+/* A record as build_site writes it when live.json's close predates the scored analysis (live_shown). */
+const withheldNote = 'The last close on file (2026-10-13) is older than the scored analysis (2026-10-14): Nasdaq had not posted the scored session when prices were last pulled, so the scored figures are the current ones; the live repricing returns with the first close after scoring.';
+const withheldRec = (() => {
+  const r = clone(synthetic);
+  r.live = null;
+  r.live_withheld = { reason: 'live_older_than_score', price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote };
+  Object.assign(r.row, { tier_live: null, irr_live: null, price_live: null, price_date: null, upside15_live: null, market_cap_b_live: null, live_withheld: true });
+  Object.keys(r.forecast.sensitivity).forEach((k) => { r.forecast.sensitivity[k].irr_live = null; });
+  r.prices = { source: 'nasdaq historical', as_of: '2026-10-13', stats: { last: 44, last_date: '2026-10-13', change_1d_pct: -1.5, low_52w: 38.4, high_52w: 55.2, ret_1y_pct: 12.5 }, weekly: [['2026-10-02', 45], ['2026-10-09', 44.5]], daily_1y: [] };
+  return r;
+})();
+test('Live older than the score: the header and the condensed bar show the scored price with the reason, never the older close; Overview / Forecast tiles say live pending', () => {
+  const v = App.liveView(withheldRec); assert.equal(v.is_live, false); assert.equal(v.price, 50); assert.equal(v.irr, 0.142);
+  const w = App.liveWithheld(withheldRec); assert.deepEqual(w, { price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
+  assert.equal(App.pendingText(w), 'Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis');
+  assert.equal(App.liveWithheld(synthetic), null); assert.equal(App.liveWithheld({ live_withheld: null }), null); assert.equal(App.pendingText({}), 'Live figures pending — the last close on file predates the analysis');
+  assert.equal(App.currentClose(withheldRec), null, 'the 2026-10-13 close predates the 2026-10-14 analysis');
+  const head = App.renderHeader(withheldRec);
+  assert.ok(head.includes('<span class="k">Scored price</span><span class="v mono">$50.00</span>'), 'scored price as the current price: ' + head);
+  assert.ok(head.includes('title="' + App.esc(withheldNote) + '">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis</span>'), 'the reason beside it, the note in the tooltip');
+  assert.ok(!head.includes('$44.00') && !head.includes('-1.50%') && head.includes('52-wk $38.40–$55.20'), 'not the older close nor its 1-day change; the 52-week range stays');
+  assert.ok(head.includes('Probability-weighted IRR at $50.00') && !head.includes('· live'), 'the scored IRR');
+  const sum = App.renderTabSummary(withheldRec);
+  assert.ok(sum.includes('title="Scored price — live figures pending">$50.00') && !sum.includes('$44.00') && !sum.includes('-1.50%'), 'condensed bar: ' + sum);
+  // a close not older than the analysis is current again (prices.py ran after the scored session; reprice has not yet)
+  const fresh = clone(withheldRec); fresh.prices.stats.last_date = '2026-10-14';
+  assert.deepEqual(App.currentClose(fresh), { last: 44, date: '2026-10-14', chg: -1.5 });
+  const fh = App.renderHeader(fresh); assert.ok(fh.includes('<span class="k">Last close</span>') && fh.includes('$44.00') && fh.includes('Live figures pending'), 'current close, still pending');
+  // nothing withheld: unchanged — the last close shows whatever its date (AEE-style record without live.json)
+  const plain = clone(withheldRec); delete plain.live_withheld; plain.row.live_withheld = false;
+  assert.equal(App.currentClose(plain).last, 44); assert.ok(App.renderHeader(plain).includes('<span class="k">Last close</span>') && !App.renderHeader(plain).includes('pending'));
+  assert.ok(App.renderTabSummary(plain).includes('$44.00') && App.renderTabSummary(plain).includes('-1.50%'));
+  const ov = App.renderOverview(withheldRec); assert.ok(ov.includes('scored 2026-10-14 · live pending') && ov.includes('title="Live figures pending'), 'Overview price tile');
+  const fc = App.renderForecastDCF(withheldRec);
+  assert.ok(fc.includes('<span class="k">Scored price</span><span class="v ">$50.00</span><span class="tsub">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis') && fc.includes('Green = at or above the scored price') && !fc.includes("Today's price"), 'Forecast hurdle tiles');
+  App.TAB_KEYS.forEach((t) => { const h = App.renderCompanyHTML(withheldRec, t); assert.ok(!h.includes('could not be rendered'), t); });
+  assert.ok(!App.TAB_KEYS.map((t) => App.renderCompanyHTML(inject(withheldRec), t)).join('').includes('<x-inj>'), 'escaped');
+});
+test('Live older than the score: the ranking marks the row "live pending" and ranks it on its scored IRR; the header counts the pending rows', () => {
+  const row = withheldRec.row, html = App.renderRowHTML(row);
+  assert.ok(/<td class="num mono strong"><span class="sub lvpend" title="Live figures pending: [^"]*">live pending<\/span><\/td>/.test(html), 'Live IRR cell: ' + html);
+  assert.ok(html.includes('title="scored price — live figures pending">$50.00</td>') && html.includes('>14.2%</td>'), 'scored price and IRR');
+  assert.ok(!App.renderRowHTML(Object.assign({}, row, { live_withheld: false })).includes('live pending'), 'no marker otherwise');
+  assert.ok(!App.renderRowHTML(synthetic.row).includes('live pending'), 'a live row never');
+  const rows = [Object.assign({}, row, { ticker: 'W' }), Object.assign({}, synthetic.row, { ticker: 'L1', irr_live: 0.15, irr: 0.1 }), Object.assign({}, synthetic.row, { ticker: 'L2', irr_live: 0.13, irr: 0.2 })];
+  assert.deepEqual(App.filterSortIndex(rows, { sort: 'irr_live', fit: 'all' }).map((r) => r.ticker), ['L1', 'W', 'L2'], 'ranked on the scored IRR (14.2%) between 15% and 13% live');
+  const m = Object.assign({}, meta, { counts: Object.assign({}, meta.counts, { with_live: 2, live_withheld: 1 }) });
+  assert.ok(App.renderListHTML(m, rows).includes('(2 of 3 repriced live, 1 pending a close after scoring; the rest at their scored price)'));
+  const noCount = Object.assign({}, m, { counts: { tiers: {} } });
+  assert.ok(App.renderListHTML(noCount, rows).includes('1 pending a close after scoring'), 'counted from the rows without meta.counts.live_withheld');
+  assert.ok(!App.renderListHTML(noCount, rows.slice(1)).includes('pending a close'), 'nothing pending: no clause');
+});
+test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
+  const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
+  const { assemble: asm, liveShown, liveSplit, SPLIT_DIVIDE, SPLIT_MULTIPLY } = require('./fixtures/assemble.js');
+  const put = (f, o) => fs.writeFileSync(path.join(dir, 'T', f), typeof o === 'string' ? o : JSON.stringify(o));
+  try {
+    fs.mkdirSync(path.join(dir, 'T'));
+    const score = Object.assign(clone(synthetic.score), { ticker: 'T' }), numbers = Object.assign(clone(synthetic.numbers), { inputs: Object.assign(clone(synthetic.numbers.inputs), { base_oe_ps_arg: 3.2 }), hurdle_prices: { 15: 60, 20: 45.5, 25: 36 } });
+    delete score.iv_at_20; // the row's iv20 then falls back to live.json's
+    put('score.json', score); put('dcf_numbers.json', numbers);
+    put('financials_history.csv', 'period_end,fy_label,revenue,oe_conservative,shares_diluted\n2024-12-31,2024,2000000000,320000000,100000000\n');
+    put('ttm.json', { ttm_oe_total: 343000000, ttm_shares_diluted: 98500000, ttm_oe_per_share: 3.4822 });
+    const live = Object.assign(clone(synthetic.live), { ticker: 'T', price_date: '2026-10-13', scored_date: '2026-10-14', basis_check: { method: 'no_close_since_scoring' } });
+    put('live.json', live);
+    let r = asm(dir, 'T');
+    assert.equal(r.live, null); assert.equal(r.row.live_withheld, true); assert.equal(r.row.irr_live, null); assert.equal(r.row.price_live, null); assert.equal(r.forecast.sensitivity.weighted.irr_live, null);
+    assert.deepEqual(r.live_withheld, { reason: 'live_older_than_score', price: 45, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
+    assert.equal(r.split_restated, null);
+    put('live.json', Object.assign({}, live, { price_date: '2026-10-14' })); r = asm(dir, 'T');
+    assert.ok(r.live && r.live_withheld === null && r.row.live_withheld === false && r.row.irr_live === 0.161, 'a same-day close is shown');
+    put('live.json', Object.assign({}, live, { price_date: '2026-10-14', scored_date: '2026-10-15' })); r = asm(dir, 'T');
+    assert.equal(r.live, null, 'the later of analysis_date and live.scored_date counts'); assert.equal(r.live_withheld.scored_date, '2026-10-15');
+    put('live.json', Object.assign({}, live, { price: null })); r = asm(dir, 'T');
+    assert.ok(r.live === null && r.live_withheld === null && r.row.live_withheld === false, 'a live.json without a price is not shown and not "withheld"');
+    assert.deepEqual(liveShown(score, null), { live: null, withheld: null });
+    // a split since scoring: live.json in today's units (÷ 2) with split_factor 2
+    const half = (o) => Object.assign({}, o, { price: o.price / 2, scored_price: o.scored_price / 2, iv_at_15: o.iv_at_15 / 2, iv_at_12: o.iv_at_12 / 2, iv_at_20: o.iv_at_20 / 2, iv_at_25: o.iv_at_25 / 2 });
+    const splitLive = Object.assign(half(live), { price_date: '2026-10-20', split_factor: 2, basis_check: { status: 'split_adjusted', factor: 2, split: '2:1', method: 'ratio' } });
+    put('live.json', Object.assign({}, live, { price_date: '2026-10-20' })); const base = asm(dir, 'T');
+    put('live.json', splitLive); r = asm(dir, 'T');
+    assert.deepEqual(r.row.split_restated, { factor: 2, split: '2:1' }); assert.equal(r.split_restated.factor, 2); assert.equal(r.split_restated.scored_date, '2026-10-14'); assert.equal(r.split_restated.price_date, '2026-10-20');
+    assert.deepEqual(r.split_restated.as_scored, { price: 50, iv_at_15: 60, base_oe_per_share: 3.2 });
+    assert.ok(r.split_restated.note.startsWith('A 2:1 split since the scored run (2026-10-14): every per-share figure of the run') && r.split_restated.note.includes('divided by 2 and its share counts multiplied by 2'));
+    [['score.price', 25], ['score.iv_at_15', 30], ['numbers.price', 25], ['numbers.weighted.iv_at_15', 30], ['row.price', 25], ['row.iv15', 30], ['numbers.inputs.base_oe_ps_arg', 1.6], ['forecast.inputs.base_oe_ps_arg', 1.6],
+      ['numbers.hurdle_prices.20', 22.75], ['forecast.hurdle_prices.20', 22.75], ['forecast.sensitivity.weighted.15', 30], ['ttm.ttm_oe_per_share', 1.7411],
+      ['numbers.shares_diluted_latest', 2e8], ['ttm.ttm_shares_diluted', 1.97e8], ['row.irr', 0.142], ['row.irr_live', 0.161], ['score.implied_irr', 0.142]].forEach(([p, want]) => {
+      const got = p.split('.').reduce((o, k) => (o == null ? o : o[k]), r); assert.ok(Math.abs(got - want) < 1e-9, p + ' = ' + got + ', want ' + want + ' (divided once)');
+    });
+    assert.equal(r.history[0].shares_diluted, 2e8, 'engine history shares × 2');
+    assert.ok(Math.abs(r.row.iv20 - splitLive.iv_at_20) < 1e-9 && Math.abs(r.row.iv20 - base.row.iv20 / 2) < 1e-9, 'the live.json iv20 fallback (today\'s units) is restated exactly once');
+    assert.ok(r.split_restated.fields.includes('score.price') && r.split_restated.fields.includes('history.*.shares_diluted') && r.split_restated.fields.every((f) => SPLIT_DIVIDE.includes(f) || SPLIT_MULTIPLY.includes(f)));
+    assert.deepEqual(liveSplit({ split_factor: 1 }), { factor: null, label: null }); assert.deepEqual(liveSplit({ basis_check: { factor: 3 } }), { factor: 3, label: '3x' });
+    put('live.json', Object.assign({}, splitLive, { split_factor: 1, basis_check: {} })); assert.equal(asm(dir, 'T').split_restated, null, 'factor 1: nothing restated');
+    put('live.json', Object.assign({}, splitLive, { price_date: '2026-10-13' })); r = asm(dir, 'T');
+    assert.ok(r.live === null && r.split_restated === null && r.score.price === 50, 'a withheld live.json\'s split factor is not applied');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+/* A record as build_site writes it after a 2:1 split since scoring: fixtures/assemble.js's restateSplit on the synthetic record
+   (the mirror of build_site.restate_split), with live.json in today's units as reprice.py writes it. */
+const splitLiveFx = Object.assign(clone(synthetic.live), { price: 22.5, scored_price: 25, iv_at_15: 30, iv_at_12: 40, iv_at_20: 22.75, iv_at_25: 18, price_date: '2026-10-20', split_factor: 2, basis_check: { status: 'split_adjusted', factor: 2, split: '2:1' } });
+const splitRec = (() => { // the row's live fields come from live.json (today's units), like build_site's index_row
+  const r = require('./fixtures/assemble.js').restateSplit(clone(synthetic), 2, '2:1', splitLiveFx); r.live = clone(splitLiveFx); r.row.price_live = splitLiveFx.price; r.row.price_date = splitLiveFx.price_date; return r;
+})();
+test('Split since scoring: the run reads in today\'s units (restated fields), a header chip, a short note by the verdict, notes on Forecast / Data / Analysis / Financials, a ranking badge', () => {
+  const sp = App.splitInfo(splitRec);
+  assert.deepEqual([sp.factor, sp.split, sp.scored_date, sp.price_date], [2, '2:1', '2026-10-14', '2026-10-20']); assert.deepEqual(sp.as_scored, { price: 50, iv_at_15: 60, base_oe_per_share: 3.2 });
+  [null, {}, { factor: 1 }, { factor: 0 }, { factor: 'x' }].forEach((x) => assert.equal(App.splitInfo({ split_restated: x }), null, JSON.stringify(x)));
+  assert.equal(App.splitInfo({ split_restated: { factor: 0.1 } }).split, '0.1x'); assert.equal(App.fmtFactor(2.0), '2'); assert.equal(App.fmtFactor(1.5), '1.5');
+  const v = App.liveView(splitRec); assert.equal(v.price, 22.5); assert.equal(v.scored_price, 25); assert.ok(Math.abs(v.upside - 33.333) < 0.01, 'upside unchanged');
+  const head = App.renderHeader(splitRec);
+  assert.ok(head.includes('<span class="chip lvchip splitchip" title="' + App.esc(splitRec.split_restated.note) + '">Restated for a 2:1 split since scoring</span>'), 'header chip');
+  assert.ok(head.includes('$30.00') && head.includes('Scored <b>14.2%</b> at $25.00') && head.includes('$22.50'), 'Value @15%, scored price and last close in today\'s units');
+  const page = App.renderCompanyHTML(splitRec, 'overview');
+  const brief = page.indexOf('<p class="note splitnote"><b>Restated for a 2:1 split since scoring</b> (scored 2026-10-14): every per-share figure of the run on this page is in today\'s share units (÷ 2)');
+  assert.ok(brief > page.indexOf('class="sec pcsec"') && brief < page.indexOf('class="card verdict"'), 'the short note sits between the price chart and the verdict');
+  const ov = App.renderOverview(splitRec); assert.ok(ov.includes('IV @15% <b>$40.00</b>') && ov.includes('$1.60<span class="bu"> / share</span>') && ov.includes('>$22.75<'), 'scenario IV, base OE and hurdle tiles restated');
+  const fc = App.renderForecastDCF(splitRec);
+  assert.ok(fc.startsWith('<p class="note splitnote"><b>Restated for a 2:1 split since scoring.</b> ' + App.esc(splitRec.split_restated.note) + ' Scored at $50.00 with IV @15% $60.00 before the split.</p>'), 'Forecast note: ' + fc.slice(0, 300));
+  assert.ok(fc.includes('<td class="num mono pos">$30.00</td>') && fc.includes('Price for 25% (Tier S)</span><span class="v neg">$18.00'), 'sensitivity and hurdle prices restated');
+  const data = App.renderData(splitRec);
+  assert.ok(data.startsWith('<p class="note splitnote"><b>Restated for a 2:1 split since scoring.</b>') && data.includes('judgment.json below is the run\'s input as entered, before the split.'), 'Data note');
+  assert.ok(data.includes('$25.00 (nasdaq_quote_api) · scored at $50.00 before the 2:1 split') && data.includes('diluted shares 200.0M (restated × 2)') && data.includes('$1.60/share (scored $3.20 before the 2:1 split)') && data.includes('<th>Split since scoring</th><td>2:1 (factor 2) · scored 2026-10-14 · restated against the 2026-10-20 close · IV @15% as scored $60.00</td>'), 'Data provenance rows');
+  const an = App.renderAnalysis(splitRec); assert.ok(an.startsWith('<p class="note splitnote"><b>2:1 split since scoring.</b> The write-up quotes the run as scored (2026-10-14), before the split: divide its per-share dollar figures') && an.includes('by 2 to compare'), 'Analysis note');
+  const fin = App.renderFinancials(splitRec, { status: 'missing' }); assert.ok(fin.startsWith('<p class="note splitnote"><b>2:1 split since scoring.</b> Per-share figures in the filed statements on this tab'), 'Financials note');
+  assert.ok(App.renderFinancials(Object.assign({}, splitRec, { fundamentals: null })).includes('engine history\'s share counts are restated to today\'s share units (× 2)'));
+  assert.ok(App.renderPerformance(splitRec).includes('filings before the 2:1 split since scoring are on the pre-split basis'));
+  const row = App.renderRowHTML(splitRec.row);
+  assert.ok(/<span class="bdg sp" title="A 2:1 split since scoring: [^"]*">2:1 split since scoring<\/span>/.test(row) && row.includes('>$30.00</td>') && row.includes('>$22.50</td>'), 'ranking badge, restated IV and live price');
+  const ovr = clone(splitRec); ovr.numbers.overrides_applied = [{ field: 'shares', value: 98500000, kind: 'filing', source: 'Form 10-K', reason: '', periods_filled: ['2024-12-31'] }];
+  assert.ok(App.renderOverrides(ovr).includes('Override values are as entered for the scored run, before the 2:1 split since scoring'), 'overrides as entered');
+  // no split: none of it
+  const none = App.TAB_KEYS.map((t) => App.renderCompanyHTML(synthetic, t)).join('') + App.renderRowHTML(synthetic.row);
+  assert.ok(!none.includes('splitnote') && !none.includes('split since scoring') && !none.includes('split-adjusted') && !none.includes('splitchip'), 'nothing without split_restated');
+  App.TAB_KEYS.forEach((t) => { const h = App.renderCompanyHTML(splitRec, t); assert.ok(!h.includes('could not be rendered'), t); });
+  assert.ok(!App.TAB_KEYS.map((t) => App.renderCompanyHTML(inject(splitRec), t)).join('').includes('<x-inj>') && !App.renderRowHTML(inject(splitRec).row).includes('<x-inj>'), 'escaped');
+});
+test('Split since scoring: filed OE/share years still on the pre-split basis are ÷ factor next to the restated forecast (a post-split refiling is left alone); Street EPS "from" figures too', () => {
+  const H = App.oeHistory(splitRec);
+  assert.deepEqual(H.map((h) => [h.fy, Math.round(h.v * 1e4) / 1e4, h.split || 0]), [['2023', 1.38, 2], ['2024', 1.6, 2]], 'FY2023 (no run row: vs the restated latest count) and FY2024 (vs the run\'s own FY2024 count) ÷ 2');
+  assert.deepEqual(H.map((h) => h.sh), [2.08e8, 2e8], 'their counts × 2, so the basis rule compares like with like');
+  const J = App.oeForecastSeries(splitRec); assert.equal(J.base, 1.6); assert.equal(J.raw.weighted[0], 1.7, 'forecast restated by build_site'); assert.ok(Math.abs(J.histGrowth[1] - (1.6 / 1.38 - 1)) < 1e-9, 'YoY on the adjusted pair');
+  const fc = App.renderForecastDCF(splitRec);
+  assert.equal((fc.match(/Filed years on the pre-split basis \(FY2023–FY2024\) are divided by 2 for the 2:1 split since scoring/g) || []).length, 2, 'under the OE/share chart and the growth chart');
+  // FY2024 refiled after the split (its comparatives restated): ~1× the run's restated count → as filed; FY2023 still pre-split
+  const refiled = clone(splitRec); Object.assign(refiled.fundamentals.annual[1], { shares_diluted: 2e8, oe_per_share: 1.6 });
+  assert.deepEqual(App.oeHistory(refiled).map((h) => [h.fy, Math.round(h.v * 1e4) / 1e4, h.split || 0]), [['2023', 1.38, 2], ['2024', 1.6, 0]]);
+  assert.ok(App.renderForecastDCF(refiled).includes('Filed years on the pre-split basis (FY2023) are divided by 2'));
+  const allPost = clone(refiled); Object.assign(allPost.fundamentals.annual[0], { shares_diluted: 2.08e8, oe_per_share: 1.38 });
+  assert.ok(App.oeHistory(allPost).every((h) => !h.split) && App.renderForecastDCF(allPost).includes('The filed years shown are already on the post-split basis of the 2:1 split since scoring'));
+  // a fiscal year ending after the scored date is never divided
+  const later = clone(splitRec); later.fundamentals.annual.push(Object.assign(clone(later.fundamentals.annual[1]), { fy: '2026', period_end: '2026-12-31' }));
+  assert.equal(App.oeHistory(later).slice(-1)[0].split, undefined);
+  const sp = App.splitInfo(splitRec), refs = App.splitRefs(splitRec);
+  assert.deepEqual(refs, { byEnd: { '2024-12-31': 2e8 }, byFy: { 2024: 2e8 }, latest: 2e8 });
+  assert.equal(App.splitDivisor(sp, refs, 1e8, '2024-12-31', '2024'), 2); assert.equal(App.splitDivisor(sp, refs, 1.9e8, '2024-12-31', '2024'), 1); assert.equal(App.splitDivisor(sp, refs, null, '2024-12-31'), 1); assert.equal(App.splitDivisor(null, refs, 1e8), 1);
+  assert.equal(App.splitDivisor(sp, { byEnd: {}, byFy: {}, latest: null }, 1e8, '2020-12-31'), 1, 'no reference: left as filed');
+  const rev = { factor: 0.1, split: '1:10', scored_date: '2026-10-14' }; assert.equal(App.splitDivisor(rev, { byEnd: {}, byFy: {}, latest: 1e7 }, 1e8, '2025-12-31'), 0.1, 'a 1:10 reverse split: the pre-split count is 10× today\'s');
+  assert.equal(App.oeSplitNote(H, null), ''); assert.equal(App.oeSplitNote([], sp), '');
+  assert.ok(App.oeHistory(synthetic).every((h) => !h.split), 'no split: untouched');
+  assert.deepEqual(App.oeHistory(synthetic).map((h) => h.v), [2.76, 3.2]);
+  // Street: Nasdaq's consensus is in today's units — the filed EPS it is measured from is split-adjusted where pre-split
+  const eps = App.epsAnnualHist(splitRec); assert.deepEqual(eps.map((h) => [h.fy, h.v, h.split]), [['2023', 0.625, 2], ['2024', 0.75, 2]]); assert.equal(eps[1].g, 0.2, 'same basis both years: the filed growth stands');
+  refiled.fundamentals.annual[1].eps_diluted = 0.8; const mixed = App.epsAnnualHist(refiled); assert.ok(Math.abs(mixed[1].g - (0.8 / 0.625 - 1)) < 1e-9 && mixed[1].split === 0, 'the growth across the two bases is recomputed on the adjusted values (not the filed 20%)');
+  const st = App.renderForecastStreet(splitRec);
+  assert.ok(st.includes('from $0.75 (FY2024 filed, split-adjusted)'), 'annual from');
+  assert.ok(st.includes('from $0.19 (Q1 FY2025 filed, split-adjusted)'), 'quarterly from (vs the restated latest count)');
+  assert.ok(st.includes('After the 2:1 split since scoring the filed columns stay as filed') && st.includes('Solid line: filed diluted EPS by fiscal year (years on the pre-split basis ÷ 2 for the 2:1 split since scoring).'), 'Street notes');
+  assert.ok(st.includes('<td>$1.50</td>'), 'the filed column itself stays as filed');
+  assert.equal(App.chartSpecsStreet(splitRec)['street-eps'].series[1].name, 'Filed diluted EPS (split-adjusted)');
+  assert.deepEqual(App.chartSpecsStreet(splitRec)['street-eps'].series[1].values.slice(0, 2), [0.625, 0.75]);
+  const plainSt = App.renderForecastStreet(synthetic); assert.ok(plainSt.includes('from $1.50 (FY2024 filed)') && !plainSt.includes('split-adjusted') && !plainSt.includes('split since scoring'), 'no split: as before');
+  assert.deepEqual(App.yearAgoQuarterAdj(synthetic, { period: 'Q1 2026' }, synthetic.fundamentals.quarterly), App.yearAgoQuarter({ period: 'Q1 2026' }, synthetic.fundamentals.quarterly));
+});
+
+Promise.all(pending).then(() => {
+  const failed = results.filter((r) => r[1]);
+  results.forEach((r) => console.log((r[1] ? 'FAIL ' : 'ok   ') + r[0]));
+  failed.forEach((r) => { console.error('\n--- ' + r[0] + '\n' + (r[1].stack || r[1])); });
+  console.log('\n' + (results.length - failed.length) + ' passed, ' + failed.length + ' failed' + (Object.keys(loaded).length ? ' · records: ' + Object.keys(loaded).map((t) => t + ' (' + loaded[t].source + ')').join(', ') : '')
+    + (skipped.length ? ' · ' + skipped.length + ' real-data check' + (skipped.length === 1 ? '' : 's') + ' skipped (' + (HAVE_BUILT ? 'files absent' : 'no built data/: a fresh clone') + ')' : ''));
+  process.exit(failed.length ? 1 : 0);
+});

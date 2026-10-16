@@ -17,6 +17,12 @@ with the two fetchers and the clock (now_et) monkeypatched.
    oldest first, malformed entries dropped; a stored entry that reaches a
    later minute (or the same minute with more bars) is KEPT over a shorter
    new capture; legacy entries get `complete` derived from their bars.
+3b. merge_sessions orders captures by the RAW last print (entry last_minute)
+   before the 5-minute bucket: a stale 08:41 capture arriving after a stored
+   08:44 one (both in the 08:45 bar, same bar count) no longer replaces it;
+   the same last print falls to complete, then the later captured_at, so a
+   late partial capture cannot take back completion; legacy entries without
+   last_minute fall back to bucket / bar count; run_one end to end.
 4. parse_chart on an inline sample of the real APP payload shape, including
    captured_at / complete / close / bar_key.
 5. session_complete: by last print (>= 19:55) or by capture time (>= 20:00 ET
@@ -166,8 +172,118 @@ def test_merge_sessions_rolling_and_guard():
     assert "bar_key" not in cl[0]  # no retro-labelling: the app treats both keyings as x = key
 
 
+def _premarket_payload(last_label, last_minute, last_price):
+    """PREMARKET with its final point moved to `last_minute` (same date, 3 points)."""
+    pts = PREMARKET["data"]["chart"][:2] + [{"z": {"dateTime": last_label, "value": str(last_price)},
+                                             "x": X_1015_0400 + (last_minute - 240) * 60000, "y": last_price}]
+    return {"data": {**PREMARKET["data"], "chart": pts, "lastSalePrice": f"${last_price}"}}
+
+
+def test_merge_sessions_raw_last_print_beats_bucket():
+    # Finding 4289642911: two captures of 10-15 inside the SAME 5-minute bucket (08:41 and 08:44 both end in bar 525)
+    a = P.parse_chart(_premarket_payload("8:41 AM ET", 521, 258.10), captured_at=et("2026-10-15T08:41:20"))
+    b = P.parse_chart(_premarket_payload("8:44 AM ET", 524, 258.95), captured_at=et("2026-10-15T08:44:30"))
+    ea, eb = P.session_entry(a), P.session_entry(b)
+    assert ea["last_minute"] == 521 and eb["last_minute"] == 524
+    assert P._last_bar_minute(ea) == P._last_bar_minute(eb) == 525 and len(ea["bars"]) == len(eb["bars"]) == 3  # the old guard tied
+    assert ea["bars"][-1] == [525, 258.1] and eb["bars"][-1] == [525, 258.95]
+    # out of order: the 08:44 capture is stored, the older 08:41 result arrives late -> stored kept (old code replaced it)
+    kept = P.merge_sessions([eb], ea)
+    assert len(kept) == 1 and kept[0] is eb and kept[0]["bars"][-1] == [525, 258.95], kept
+    # a stale response stamped LATER (a cached copy fetched at 08:46) still loses: the raw print decides before captured_at
+    stale = dict(ea, captured_at="2026-10-15T08:46:00-04:00")
+    assert P.merge_sessions([eb], stale)[0] is eb
+    # in order: the 08:41 capture is stored, the 08:44 one replaces it
+    assert P.merge_sessions([ea], eb)[0] is eb
+    # a later raw print in a later bucket with FEWER bars still wins (raw minute first)
+    c = dict(eb, last_minute=531, bars=[[240, 260.0], [535, 259.0]])
+    assert P.merge_sessions([eb], c)[0] is c and P.merge_sessions([c], eb)[0] is c
+    # same raw print: the later captured_at wins either way round; a full tie goes to the new entry (a re-run replaces)
+    eb2 = dict(eb, captured_at="2026-10-15T08:44:55-04:00", bars=[[240, 260.0], [435, 259.1], [525, 259.0]])
+    assert P.merge_sessions([eb2], eb)[0] is eb2 and P.merge_sessions([eb], eb2)[0] is eb2
+    twin = dict(eb)
+    assert P.merge_sessions([eb], twin)[0] is twin
+    # completion is never taken back: last print 19:50 (bar 1190) captured 20:01 is complete by capture time;
+    # a 19:58 capture of the same last print arriving late is partial and is not stored over it
+    done = dict(eb, last_minute=1190, bars=[[240, 1.0], [1190, 2.0]], captured_at="2026-10-15T20:01:00-04:00", complete=True)
+    late = dict(done, captured_at="2026-10-15T19:58:00-04:00", complete=False)
+    assert P.merge_sessions([done], late)[0] is done and P.merge_sessions([late], done)[0] is done
+    # malformed raw fields are ignored (bucket fallback) instead of crashing or winning
+    for junk in (None, "08:44", True, -1, 1440):
+        j = dict(eb, last_minute=junk)
+        assert P._raw_last_minute(j) is None
+        # bucket 525 = 525, bars 3 = 3, both partial -> captured_at decides: j 08:44:30 > ea 08:41:20
+        assert P.merge_sessions([j], ea)[0] is j and P.merge_sessions([ea], j)[0] is j
+
+
+def test_merge_sessions_legacy_entry_without_raw_print():
+    # An entry written before last_minute existed (bars + captured_at only, or bars only) is compared by bucket / bar count
+    new = P.session_entry(P.parse_chart(_premarket_payload("8:41 AM ET", 521, 258.10), captured_at=et("2026-10-15T08:41:20")))
+    assert new["last_minute"] == 521 and P._last_bar_minute(new) == 525 and len(new["bars"]) == 3
+    bars3 = [[240, 260.0], [435, 259.1], [525, 258.9]]
+    later_bucket = {"session_date": "2026-10-15", "prev_close": 262.19, "bars": bars3[:2] + [[530, 258.7]]}
+    assert P.merge_sessions([later_bucket], new)[0] is later_bucket        # 530 > 525: stored kept
+    earlier_bucket = {"session_date": "2026-10-15", "prev_close": 262.19, "bars": bars3[:2] + [[520, 258.8]]}
+    assert P.merge_sessions([earlier_bucket], new)[0] is new               # 520 < 525: replaced
+    more_bars = {"session_date": "2026-10-15", "prev_close": 262.19, "bars": [[240, 260.0], [300, 259.5]] + bars3[1:]}
+    assert P.merge_sessions([more_bars], new)[0] is more_bars              # same bucket, 4 bars > 3: stored kept
+    # same bucket, same bars, no captured_at on the legacy side: a tie, the new capture replaces it (pre-fix behaviour)
+    bare = {"session_date": "2026-10-15", "prev_close": 262.19, "bars": bars3}
+    out = P.merge_sessions([bare], new)
+    assert out[0] is new and out[0]["last_minute"] == 521
+    # same bucket, same bars, legacy captured_at later than the new one: stored kept; earlier: replaced
+    stamped = dict(bare, captured_at="2026-10-15T08:44:30-04:00")
+    assert P.merge_sessions([stamped], new)[0] is stamped
+    assert P.merge_sessions([dict(bare, captured_at="2026-10-15T08:40:00-04:00")], new)[0] is new
+    # a legacy complete entry (last bar 1195) is never replaced by a partial capture of the same date
+    legacy_done = {"session_date": "2026-10-15", "prev_close": 262.19, "bars": [[240, 260.0], [1195, 258.0]]}
+    assert P.merge_sessions([legacy_done], new)[0]["bars"][-1] == [1195, 258.0]
+    assert P.merge_sessions([legacy_done], new)[0]["complete"] is True and "last_minute" not in legacy_done
+
+
+def test_run_one_out_of_order_same_bucket():
+    tmp = tempfile.mkdtemp(prefix="prices_test_")
+    old_base, old_daily, old_get, old_pause, old_now = P.BASE, P.fetch_daily, P.get_json, P.INTRADAY_PAUSE_S, P.now_et
+    try:
+        P.BASE, P.INTRADAY_PAUSE_S = tmp, 0
+        P.fetch_daily = lambda t, y: [("2026-10-13", 272.28, 1.0), ("2026-10-14", 262.19, 1.0)]
+        state = {}
+        P.get_json = lambda url, timeout=40: state["payload"]
+        P.now_et = lambda: state["now"]
+        # 08:44 capture lands first
+        state["payload"], state["now"] = _premarket_payload("8:44 AM ET", 524, 258.95), et("2026-10-15T08:44:30")
+        first = P.run_one("T", 10, True, True)
+        assert first["warnings"][-1].startswith("prev_close:") and first["sessions_5d"][-1]["last_minute"] == 524
+        # then a stale 08:41 result (same 08:45 bucket, same 3 bars) is written by a later run
+        state["payload"], state["now"] = _premarket_payload("8:41 AM ET", 521, 258.10), et("2026-10-15T08:46:00")
+        second = P.run_one("T", 10, True, True)
+        s = second["sessions_5d"][-1]
+        assert s["last_minute"] == 524 and s["bars"][-1] == [525, 258.95] and s["captured_at"] == "2026-10-15T08:44:30-04:00"
+        w = [x for x in second["warnings"] if x.startswith("sessions_5d:")]
+        assert w == ["sessions_5d: the stored 2026-10-15 entry (captured 2026-10-15T08:44:30-04:00, last print 08:44) is newer than "
+                     "this capture (captured 2026-10-15T08:46:00-04:00, last print 08:41); stored entry kept"], w
+        assert json.load(open(f"{tmp}/T/prices.json", encoding="utf-8"))["sessions_5d"][-1]["bars"][-1] == [525, 258.95]
+        # a legacy stored entry (no last_minute) in a later bucket: the warning names its last bar
+        on_disk = json.load(open(f"{tmp}/T/prices.json", encoding="utf-8"))
+        legacy = {k: v for k, v in on_disk["sessions_5d"][-1].items() if k != "last_minute"}
+        legacy["bars"] = legacy["bars"][:2] + [[530, 258.7]]
+        on_disk["sessions_5d"][-1] = legacy
+        with open(f"{tmp}/T/prices.json", "w", encoding="utf-8") as f:
+            json.dump(on_disk, f)
+        third = P.run_one("T", 10, True, True)
+        assert third["sessions_5d"][-1]["bars"][-1] == [530, 258.7] and "last_minute" not in third["sessions_5d"][-1]
+        assert any("(captured 2026-10-15T08:44:30-04:00, last bar 08:50) is newer" in x for x in third["warnings"]), third["warnings"]
+        # in order: a genuinely later print (08:52) replaces it and no sessions_5d warning is raised
+        state["payload"], state["now"] = _premarket_payload("8:52 AM ET", 532, 258.5), et("2026-10-15T08:52:10")
+        fourth = P.run_one("T", 10, True, True)
+        assert fourth["sessions_5d"][-1]["last_minute"] == 532 and not any(x.startswith("sessions_5d:") for x in fourth["warnings"])
+    finally:
+        P.BASE, P.fetch_daily, P.get_json, P.INTRADAY_PAUSE_S, P.now_et = old_base, old_daily, old_get, old_pause, old_now
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def test_parse_chart_sample():
-    intra = P.parse_chart(SAMPLE, captured_at=et("2026-10-15T02:07:00"))
+    intra =P.parse_chart(SAMPLE, captured_at=et("2026-10-15T02:07:00"))
     assert intra["session_date"] == "2026-10-14" and intra["tz"] == "America/New_York"
     assert intra["regular_open"] == "09:30" and intra["regular_close"] == "16:00"
     assert intra["prev_close"] == 272.28 and intra["prev_close_nasdaq"] == 272.28 and intra["prev_close_source"] == "nasdaq"
@@ -232,7 +348,7 @@ def test_reconcile_with_daily():
     # the session entry carries what the 5D chart needs
     ent = P.session_entry(full)
     assert ent == {"session_date": "2026-10-14", "prev_close": 272.28, "close": 262.19, "captured_at": "2026-10-15T02:07:00-04:00",
-                   "complete": True, "bar_key": "end", "bars": SAMPLE_BARS}
+                   "complete": True, "last_minute": 1199, "bar_key": "end", "bars": SAMPLE_BARS}
 
 
 def test_run_one_rolling_and_failure():
@@ -264,7 +380,7 @@ def test_run_one_rolling_and_failure():
         assert out["intraday"]["close"] == 262.19 and out["intraday"]["close_source"] == "daily close"
         assert out["intraday"]["complete"] is True
         assert out["sessions_5d"][-1] == {"session_date": "2026-10-14", "prev_close": 272.28, "close": 262.19, "captured_at": out["fetched_at"],
-                                          "complete": True, "bar_key": "end", "bars": out["intraday"]["bars"]}
+                                          "complete": True, "last_minute": 1199, "bar_key": "end", "bars": out["intraday"]["bars"]}
         assert all(s["complete"] is False for s in out["sessions_5d"][:-1])  # legacy seed entries: derived from their bars
         # a stored entry without `close` gets the filed daily close for its date when the series has that row
         by_date = {s["session_date"]: s for s in out["sessions_5d"]}

@@ -29,8 +29,43 @@ file" and "folder no longer qualifies" cases run on the copies.
    previous row and is listed in meta.failed, the others are written.
 8. Deleted folder files: removing live.json (or segments.json) rebuilds the
    record on the next run even though no surviving file is newer.
+9. Scored floor flags (review 4289642893): every sensitivity row carries
+   irr_at_floor for the SCORED IRR — the run's own flag when recorded, else
+   solve_irr's flag on the replayed flows (ZS bear / super-bear at floor),
+   never replacing the recorded IRR.
+10. Zero terminal growth (review 4289642918): g_terminal = 0.0 is kept, and
+   the replayed hurdle prices / sensitivity IVs use it.
+11. street.json (2026-10-16 data policy): merged onto record.profile.street /
+   .market / .street_fetched_at, legacy profile.json fallback, a changed
+   street.json rebuilds only that record.
+12. Missing outputs: a fresh clone (no caches, no _daily/) builds everything;
+   a deleted data/<T>.json is rebuilt whatever state.json says, even outside
+   --only; meta.json / index.json are always written.
+13. History CSV: --attachment writes _daily/history/ranking-<date>.csv.
+14. Dividends at the latest close (2026-10-16 data policy): a newer
+   prices.json close reprices the committed dividends block with
+   fundamentals.price_dividends (row yields follow); an older close, no
+   prices.json, a pre-5.4.4 block or a split since scoring leave it as
+   written. On EVERY committed folder with a dividends block (offline) the
+   function reproduces the committed block at its own price, and the block
+   build_site serves at a price P equals price_dividends(price-free core, P)
+   — what fundamentals.py writes at P (build_dividends ends with that call).
+15. Split since scoring: a live.json with split_factor 2.0 halves every
+   per-share run figure the app shows (SPLIT_DIVIDE), doubles the run's share
+   counts, leaves IRRs / tiers / upside / market caps alone, and sets
+   record.split_restated and row.split_restated.
+16. Live older than the score: a live.json whose close predates the scored
+   analysis is withheld (record.live null, record.live_withheld, row flag),
+   and the ranking / history CSV use the scored figures.
+17. record.profile carries street_fetched_at (null) without street.json.
+
+The Nasdaq caches (prices.json, live.json, street.json) are gitignored, so
+a fresh clone has none: TempBase removes whatever the copies carried and
+installs the frozen copies in test_build_site_fixtures.json (or nothing,
+with caches=False), so no assertion depends on the machine or the market.
 """
 import datetime
+import glob
 import json
 import os
 import shutil
@@ -44,6 +79,8 @@ SYS = os.path.dirname(HERE)
 BASE = os.path.dirname(SYS)
 sys.path.insert(0, SYS)
 import build_site as B  # noqa: E402
+import fundamentals as F  # noqa: E402
+import _stable as S  # noqa: E402
 
 TICKERS = ["APP", "KR", "AEE", "ZS"]
 ONLY = ",".join(TICKERS)
@@ -60,22 +97,40 @@ ROW_KEYS = {"ticker": str, "name": str, "sector": (str, type(None)), "fit": str,
             "confidence": (str, type(None)), "confidence_capped": bool, "one_liner": (str, type(None)), "analysis_date": (str, type(None)),
             "engine_release": (str, type(None)), "flags": list, "overrides": list, "override_unblocks_tier": bool,
             "second_pass": (dict, type(None)), "alert_eligible": bool, "dividend_yield": (float, type(None)),
-            "shareholder_yield": (float, type(None)), "has": dict, "watchlist": bool}
+            "shareholder_yield": (float, type(None)), "has": dict, "watchlist": bool,
+            "live_withheld": bool, "split_restated": (dict, type(None))}
 HAS_KEYS = ("prices", "fundamentals", "dividends", "segments", "live", "analysis", "second_pass", "statements", "profile")
 RECORD_KEYS = ("ticker", "name", "sector", "folder", "built_at", "built_from_mtime", "row", "score", "numbers", "forecast", "live", "profile",
-               "history", "fundamentals", "prices", "segments", "ttm", "judgment", "registry", "analysis_md", "second_pass_md", "files")
+               "history", "fundamentals", "prices", "segments", "ttm", "judgment", "registry", "analysis_md", "second_pass_md", "files",
+               "live_withheld", "split_restated")
 FORECAST_KEYS = ("paths", "growth_paths", "sensitivity", "hurdle_prices", "inputs", "g_base", "g_blend", "g_terminal", "cap_years",
                  "growth_components", "growth_components_adjusted", "share_cagr", "share_count_adj", "share_adj_basis", "replayed")
 
 
+CACHE_FILES = ("prices.json", "live.json", "street.json")  # gitignored: never assumed present in the repo
+FIXTURES = os.path.join(HERE, "test_build_site_fixtures.json")
+
+
 class TempBase:
-    """A temporary STOCKS_BASE holding copies of the test folders."""
+    """A temporary STOCKS_BASE holding copies of the test folders. The
+    gitignored caches are replaced by the frozen fixtures (caches=True) or
+    left absent like a fresh clone (caches=False)."""
+
+    def __init__(self, caches=True):
+        self.caches = caches
 
     def __enter__(self):
         self.dir = tempfile.mkdtemp(prefix="build_site_test_")
         os.makedirs(os.path.join(self.dir, "_system"))
+        fixtures = B.jload(FIXTURES)["folders"] if self.caches else {}
         for t in TICKERS:
             shutil.copytree(os.path.join(BASE, t), os.path.join(self.dir, t))
+            for f in CACHE_FILES:
+                p = os.path.join(self.dir, t, f)
+                if os.path.exists(p):
+                    os.remove(p)
+            for f, obj in fixtures.get(t, {}).items():
+                self.write_json(t, f, obj=obj)
         for f in ("queue.json", "overrides_registry.json", "watchlist.json"):
             shutil.copy(os.path.join(SYS, f), os.path.join(self.dir, "_system", f))
         self.site = os.path.join(self.dir, "_daily", "site")
@@ -97,7 +152,9 @@ class TempBase:
         return self.read(os.path.join("data", f"{t}.json"))
 
     def write_json(self, *parts, obj):
-        with open(os.path.join(self.dir, *parts), "w", encoding="utf-8") as f:
+        path = os.path.join(self.dir, *parts)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(obj, f)
 
     def clone(self, src, folder, ticker=None, **edits):
@@ -222,7 +279,9 @@ def test_contract_shapes():
                     assert isinstance(row[rate], float), (t, k, rate, row)
                 assert row["10"] > row["12"] > row["15"] > row["20"] > row["25"] > 0, (t, k)
                 assert isinstance(row["irr"], float) and "irr_live" in row
+                assert isinstance(row["irr_at_floor"], bool), (t, k, row)  # the scored flag: recorded or replayed, never missing here
                 assert isinstance(row["irr_live"], float)  # all three carry live.json
+            assert fc["sensitivity"]["weighted"]["irr_at_floor"] is rec["row"]["irr_at_floor"], t
             assert set(fc["hurdle_prices"]) == {"15", "20", "25"}
             hp = fc["hurdle_prices"]
             assert hp["15"] > hp["20"] > hp["25"] > 0
@@ -319,6 +378,8 @@ def test_cli():
         q = subprocess.run(cmd + ["--quiet", "--attachment", "--top", "1"], capture_output=True, text=True, env=env)
         assert q.returncode == 0 and q.stdout.strip() == "", q.stdout
         assert os.path.exists(os.path.join(tb.dir, "_daily", "latest.html"))
+        hist = os.listdir(os.path.join(tb.dir, "_daily", "history"))
+        assert len(hist) == 1 and hist[0].startswith("ranking-") and hist[0].endswith(".csv"), hist
 
 
 def test_watchlist_flag():
@@ -534,6 +595,599 @@ def test_deleted_file_rebuilds():
         tb.write_json("_daily", "site", "state.json", obj=st)
         assert sorted(tb.build()["written"]) == sorted(TICKERS)
         assert tb.build()["written"] == []
+
+
+def test_scored_floor_flags_in_sensitivity():
+    """Review 4289642893: the sensitivity block kept the scored IRR but dropped its
+    floor flag while carrying the live one (ZS: live Bear '3.0% at floor' beside an
+    unmarked scored 2.7%)."""
+    E = B.ENGINE
+    with TempBase() as tb:
+        tb.build()
+        zs = tb.record("ZS")
+        sens, n = zs["forecast"]["sensitivity"], zs["numbers"]
+        # ZS is a pre-5.4 run: no recorded scenario flags, so the replay decides
+        assert all("irr_at_floor" not in n["scenarios"][k] for k in SCN[:-1])
+        paths, _ = E.replay_paths(n)
+        for k in SCN[:-1]:
+            assert sens[k]["irr_at_floor"] is E.solve_irr(paths[k], n["price"], n["inputs"]["g_terminal"])[2], k
+        assert sens["bear"]["irr_at_floor"] is True and sens["super_bear"]["irr_at_floor"] is True
+        assert sens["base"]["irr_at_floor"] is False and sens["bull"]["irr_at_floor"] is False and sens["super_bull"]["irr_at_floor"] is False
+        assert sens["weighted"]["irr_at_floor"] is False and zs["row"]["irr_at_floor"] is False
+        # the historical scored IRR is kept, never replaced by the replay's 2.98%
+        assert sens["bear"]["irr"] == n["scenarios"]["bear"]["irr"] == 0.027458705313011644
+        assert sens["super_bear"]["irr"] == n["scenarios"]["super_bear"]["irr"]
+        assert sens["bear"]["irr_live_at_floor"] is True  # its live counterpart, unchanged
+        # recorded flags (engine 5.4) win over the replay, in both directions
+        def flagged(nn):
+            nn["scenarios"]["bear"]["irr_at_floor"] = False   # replay says True
+            nn["scenarios"]["base"]["irr_at_floor"] = True    # replay says False
+            nn["weighted"]["irr_at_floor"] = True
+            return nn
+        tb.clone("ZS", "ZSF", **{"dcf_numbers.json": flagged})
+        tb.build(only=TICKERS + ["ZSF"])
+        f = tb.record("ZSF")["forecast"]["sensitivity"]
+        assert f["bear"]["irr_at_floor"] is False and f["base"]["irr_at_floor"] is True and f["super_bear"]["irr_at_floor"] is True
+        assert f["weighted"]["irr_at_floor"] is True and tb.record("ZSF")["row"]["irr_at_floor"] is True
+        # nothing recorded and nothing to replay (no inputs): unknown, not a guess
+        def no_inputs(nn):
+            nn.pop("inputs")
+            return nn
+        tb.clone("ZS", "ZSN", **{"dcf_numbers.json": no_inputs})
+        tb.build(only=TICKERS + ["ZSN"])
+        nrec = tb.record("ZSN")
+        assert nrec["forecast"]["paths"] is None
+        assert all(nrec["forecast"]["sensitivity"][k]["irr_at_floor"] is None for k in SCN), nrec["forecast"]["sensitivity"]
+        assert nrec["row"]["irr_at_floor"] is False
+    # unit: the helper itself
+    flows = [1.0] * 15
+    assert B.scored_floor((None, True), flows, 100.0, 0.025) is True
+    assert B.scored_floor(("yes", None), [], 100.0, 0.025) is None
+    assert B.scored_floor((), flows, 10_000.0, 0.025) is True and B.scored_floor((), flows, 1.0, 0.025) is False
+
+
+def test_zero_terminal_growth_is_kept():
+    """Review 4289642918: `or` treated g_terminal = 0.0 as missing and replayed with 2.5%."""
+    assert B._gterm({"inputs": {"g_terminal": 0.0}, "g_terminal": 0.03}) == 0.0
+    assert B._gterm({"inputs": {}, "g_terminal": 0.0}) == 0.0
+    assert B._gterm({"inputs": {"g_terminal": None}, "g_terminal": 0.01}) == 0.01
+    assert B._gterm({}) == 0.025 and B._gterm({"inputs": "x", "g_terminal": "nan"}) == 0.025
+    E = B.ENGINE
+
+    def zero_g(nn):
+        nn["inputs"]["g_terminal"] = 0.0
+        nn["g_terminal"] = 0.0
+        return nn
+    with TempBase() as tb:
+        tb.clone("ZS", "ZSG", **{"dcf_numbers.json": zero_g})
+        tb.build(only=TICKERS + ["ZSG"])
+        rec = tb.record("ZSG")
+        fc, n = rec["forecast"], rec["numbers"]
+        assert fc["g_terminal"] == 0.0 and fc["replayed"] is True
+        paths, _ = E.replay_paths(n)
+        assert fc["paths"]["weighted"] == paths["weighted"]
+        for rate in (0.20, 0.25):  # not stored by a pre-5.4 run: replayed with the run's own 0.0
+            want = E.present_value(paths["weighted"], rate, 0.0)
+            assert fc["hurdle_prices"][str(int(rate * 100))] == want, (rate, fc["hurdle_prices"])
+            assert want != E.present_value(paths["weighted"], rate, 0.025)  # the old fallback gave a different price
+            for k in SCN:
+                assert fc["sensitivity"][k][str(int(rate * 100))] == E.present_value(paths[k], rate, 0.0), (k, rate)
+        for k in SCN[:-1]:  # the floor replay uses 0.0 too
+            assert fc["sensitivity"][k]["irr_at_floor"] is E.solve_irr(paths[k], n["price"], 0.0)[2], k
+        assert rec["row"]["iv20"] == fc["hurdle_prices"]["20"]
+
+
+STREET = {"source": "Nasdaq analyst endpoints", "as_of": "2026-10-16", "consensus": "Buy", "analysts": 9, "buy": 7, "hold": 2, "sell": 0,
+          "target_mean": 300.0, "target_low": 250.0, "target_high": 350.0, "history": [{"date": "2026-10", "mean_target": 300.0, "buy": 7, "hold": 2, "sell": 0}]}
+MARKET = {"exchange": "NASDAQ-GS", "average_volume": 1000, "volume": 900, "market_cap_nasdaq": 35000000000, "high_52w": 336.99, "low_52w": 114.6}
+
+
+def street_file(**over):
+    d = {"ticker": "ZS", "cik": 1713683, "as_of": "2026-10-16", "fetched_at": "2026-10-16T18:01:02-04:00",
+         "source": "Nasdaq analyst and quote endpoints", "street": STREET, "market": MARKET,
+         "sources": {"nasdaq_ratings": "https://api.nasdaq.com/api/analyst/ZS/ratings"}, "warnings": []}
+    d.update(over)
+    return d
+
+
+def test_street_json_merged_into_profile():
+    with TempBase() as tb:
+        prof_path = os.path.join(tb.dir, "ZS", "profile.json")
+        legacy = B.jload(prof_path)
+        legacy.update({"street": {**STREET, "consensus": "Hold", "as_of": "2026-10-01"}, "market": {**MARKET, "volume": 1},
+                       "fetched_at": "2026-10-01T06:00:00-04:00"})
+        tb.write_json("ZS", "profile.json", obj=legacy)
+        # (1) legacy profile.json, no street.json: its own street / market, its fetched_at
+        tb.build()
+        p = tb.record("ZS")["profile"]
+        assert p["street"]["consensus"] == "Hold" and p["market"]["volume"] == 1 and p["street_fetched_at"] == "2026-10-01T06:00:00-04:00"
+        assert p.get("about") == legacy.get("about") and p.get("filings") == legacy.get("filings") and p["ticker"] == "ZS"
+        # (2) street.json wins over the legacy keys; only ZS rebuilds (an ordinary folder file)
+        tb.write_json("ZS", "street.json", obj=street_file())
+        rec_mtime = os.path.getmtime(os.path.join(tb.site, "data", "ZS.json"))
+        st_path = os.path.join(tb.dir, "ZS", "street.json")
+        os.utime(st_path, (rec_mtime + 5, rec_mtime + 5))
+        res = tb.build()
+        assert res["written"] == ["ZS"] and sorted(res["skipped"]) == ["AEE", "APP", "KR"], res["summary"]
+        rec = tb.record("ZS")
+        p = rec["profile"]
+        assert p["street"] == STREET and p["market"] == MARKET and p["street_fetched_at"] == "2026-10-16T18:01:02-04:00"
+        assert p.get("about") == legacy.get("about") and p["fetched_at"] == legacy["fetched_at"] and rec["row"]["has"]["profile"] is True
+        assert "street.json" in rec["files"]
+        # unchanged -> skipped; a re-pulled street.json (newer mtime) rebuilds ZS again
+        assert tb.build()["written"] == []
+        tb.write_json("ZS", "street.json", obj=street_file(street={**STREET, "analysts": 10}, fetched_at="2026-10-17T18:00:00-04:00"))
+        os.utime(st_path, (rec_mtime + 10, rec_mtime + 10))
+        assert tb.build()["written"] == ["ZS"] and tb.record("ZS")["profile"]["street"]["analysts"] == 10
+        # (3) a new pull with no coverage (street: null) is not overridden by the older profile.json block
+        tb.write_json("ZS", "street.json", obj=street_file(street=None))
+        os.utime(st_path, (rec_mtime + 15, rec_mtime + 15))
+        tb.build()
+        p = tb.record("ZS")["profile"]
+        assert p["street"] is None and p["market"] == MARKET and p["street_fetched_at"] == "2026-10-16T18:01:02-04:00"
+        # (4) the new profile.json shape (no street / market keys) without street.json -> null, about kept
+        new_prof = {k: v for k, v in legacy.items() if k not in ("street", "market")}
+        tb.write_json("ZS", "profile.json", obj=new_prof)
+        os.remove(st_path)
+        assert tb.build()["written"] == ["ZS"]  # the deleted street.json rebuilds the record
+        p = tb.record("ZS")["profile"]
+        assert p["street"] is None and p["market"] is None and p["street_fetched_at"] is None and p.get("about") == legacy.get("about")
+        # (5) a malformed street.json counts as absent; street.json without profile.json still serves the Street
+        tb.write_json("ZS", "street.json", obj=[1, 2])
+        os.utime(st_path, (rec_mtime + 20, rec_mtime + 20))
+        tb.build()
+        assert tb.record("ZS")["profile"]["street"] is None
+        os.remove(prof_path)
+        tb.write_json("ZS", "street.json", obj=street_file())
+        os.utime(st_path, (rec_mtime + 25, rec_mtime + 25))
+        tb.build()
+        rec = tb.record("ZS")
+        assert rec["profile"] == {"street": STREET, "market": MARKET, "street_fetched_at": "2026-10-16T18:01:02-04:00"}
+        assert rec["row"]["has"]["profile"] is False
+        # the attachment keeps record.profile (with the merged Street)
+        att = tb.build(attachment=True, top=4)
+        with open(att["attachment"][0], encoding="utf-8") as f:
+            doc = f.read()
+        start = doc.index("<script>window.SITE_DATA=") + len("<script>window.SITE_DATA=")
+        data = json.loads(doc[start:doc.index(";</script>", start)])
+        assert data["records"]["ZS"]["profile"]["street"] == STREET
+    # unit: neither file -> None
+    assert B.profile_with_street(None, None) is None and B.profile_with_street("x", [1]) is None
+
+
+def test_missing_outputs_fresh_clone():
+    """A fresh clone has no caches and no _daily/; a machine may lose data/ while state.json
+    and index.json still claim the records exist."""
+    with TempBase(caches=False) as tb:
+        assert not os.path.exists(os.path.join(tb.dir, "_daily"))
+        for t in TICKERS:
+            assert not any(os.path.exists(os.path.join(tb.dir, t, f)) for f in CACHE_FILES)
+        res = tb.build(attachment=True)
+        assert sorted(res["written"]) == sorted(TICKERS) and res["failed"] == []
+        meta, index = tb.read("meta.json"), tb.read("index.json")
+        assert meta["counts"]["current"] == 4 and meta["counts"]["with_live"] == 0 and len(index) == 4
+        for r in index:
+            assert r["has"]["prices"] is False and r["has"]["live"] is False and r["irr_live"] is None and r["price_live"] is None
+            rec = tb.record(r["ticker"])
+            assert rec["prices"] is None and rec["live"] is None
+            if rec["forecast"]["sensitivity"]:
+                assert all(v["irr_live"] is None and v["irr_live_at_floor"] is None for v in rec["forecast"]["sensitivity"].values())
+        assert [r["ticker"] for r in index] == ["APP", "KR", "ZS", "AEE"]  # scored IRR order without live data
+        assert tb.record("ZS")["forecast"]["sensitivity"]["bear"]["irr_at_floor"] is True  # needs no cache
+        assert os.path.exists(res["history"][0]) and os.path.exists(res["attachment"][0])
+        # data/ deleted while state.json and index.json survive: everything is rebuilt
+        shutil.rmtree(os.path.join(tb.site, "data"))
+        assert os.path.exists(os.path.join(tb.site, "state.json")) and os.path.exists(os.path.join(tb.site, "index.json"))
+        res2 = tb.build()
+        assert sorted(res2["written"]) == sorted(TICKERS), res2["summary"]
+        # one record deleted -> only that one is rebuilt
+        os.remove(os.path.join(tb.site, "data", "ZS.json"))
+        res3 = tb.build()
+        assert res3["written"] == ["ZS"] and sorted(res3["skipped"]) == ["AEE", "APP", "KR"]
+        # outside --only too: a missing record is built so the index keeps every company
+        os.remove(os.path.join(tb.site, "data", "KR.json"))
+        res4 = tb.build(only=["APP"])
+        assert res4["written"] == ["KR"] and res4["missing_outside_only"] == ["KR"] and sorted(res4["skipped"]) == ["AEE", "APP", "ZS"]
+        assert sorted(r["ticker"] for r in tb.read("index.json")) == sorted(TICKERS)
+        assert any("outside --only" in n and "KR" in n for n in tb.read("meta.json")["notes"])
+        assert tb.build(only=["APP"])["written"] == []  # settled
+        # meta.json / index.json are always written: removed, they come back on a run that builds nothing
+        os.remove(os.path.join(tb.site, "meta.json"))
+        os.remove(os.path.join(tb.site, "index.json"))
+        res5 = tb.build()
+        assert sorted(res5["written"]) == sorted(TICKERS)  # no index rows to reuse -> rebuilt, never served empty
+        assert len(tb.read("index.json")) == 4 and tb.read("meta.json")["counts"]["current"] == 4
+        assert tb.build()["written"] == []
+        os.remove(os.path.join(tb.site, "meta.json"))
+        assert tb.build()["written"] == [] and tb.read("meta.json")["counts"]["current"] == 4
+        # unreadable / foreign-shaped state.json, index.json, queue.json, registry: treated as absent
+        tb.write_json("_daily", "site", "state.json", obj=[1, 2])
+        tb.write_json("_daily", "site", "index.json", obj=7)
+        tb.write_json("_system", "queue.json", obj=[1])
+        tb.write_json("_system", "overrides_registry.json", obj=["x"])
+        res6 = tb.build()
+        assert res6["written"] == [] and res6["failed"] == []  # rows and mtimes recovered from the records themselves
+        meta = tb.read("meta.json")
+        assert meta["sweep"]["total"] == 0 and [r["ticker"] for r in tb.read("index.json")] == ["APP", "KR", "ZS", "AEE"]
+        # state.json entries for tickers that are no longer current are dropped
+        st = tb.read("state.json")
+        st["records"]["GONE"] = {"built_from_mtime": 1.0, "builder_mtime": 1.0, "files": []}
+        tb.write_json("_daily", "site", "state.json", obj=st)
+        tb.build()
+        assert "GONE" not in tb.read("state.json")["records"] and sorted(tb.read("state.json")["records"]) == sorted(TICKERS)
+
+
+def _read_csv(path):
+    with open(path, "rb") as f:
+        raw = f.read()
+    text = raw.decode("utf-8")
+    import csv as _csv
+    return raw, list(_csv.reader(text.splitlines()))
+
+
+def test_history_csv():
+    now = datetime.datetime(2026, 10, 16, 19, 7, tzinfo=B.NY)
+    with TempBase() as tb:
+        res = tb.build(attachment=True, now=now)
+        path, n = res["history"]
+        assert path == os.path.join(tb.dir, "_daily", "history", "ranking-2026-10-16.csv") and n == 4
+        assert os.path.basename(res["attachment"][0]) == "ranking-2026-10-16.html"  # the same date as the attachment
+        raw, rows = _read_csv(path)
+        assert b"\r" not in raw and raw.endswith(b"\n") and not raw.startswith(b"\xef\xbb\xbf")
+        header, body = rows[0], rows[1:]
+        assert tuple(header) == B.HISTORY_COLUMNS
+        assert [r[1] for r in body] == ["APP", "KR", "ZS", "AEE"] and [r[0] for r in body] == ["1", "2", "3", "4"]
+        by = {r[1]: dict(zip(header, r)) for r in body}
+        idx = {r["ticker"]: r for r in tb.read("index.json")}
+        zs, z = by["ZS"], idx["ZS"]
+        assert zs["name"] == "Zscaler Inc" and zs["sector_misfit"] == "false" and zs["tier_scored"] == "D" and zs["tier_live"] == "D"
+        assert zs["irr_scored"] == "0.032600" and zs["irr_live"] == f"{z['irr_live']:.6f}" == "0.032836"
+        assert zs["band_low_tier"] == z["tier_bear_live"] == "D" and zs["band_high_tier"] == z["tier_bull_live"] == "D"
+        assert zs["price"] == "220.79" and zs["price_date"] == "2026-10-14" and zs["iv15"] == "11.14"
+        assert zs["upside15_pct"] == f"{z['upside15_live']:.2f}" == "-94.95"
+        assert zs["analysis_date"] == "2026-10-14" and zs["engine_release"] == "" and zs["alert_eligible"] == "false"
+        assert by["APP"]["watchlist"] == "true" and by["KR"]["watchlist"] == "false"
+        aee = by["AEE"]  # Tier F: no IRRs -> last, blanks (never "None" / "nan")
+        assert aee["tier_scored"] == "F" and aee["irr_scored"] == "" and aee["irr_live"] == "" and aee["tier_live"] == ""
+        assert aee["price"] == f"{idx['AEE']['price']:.2f}" and aee["price_date"] == idx["AEE"]["analysis_date"]
+        for r in body:
+            assert len(r) == len(header)
+            assert not any(v in ("None", "null", "nan", "inf", "-0.000000") for v in r), r
+        # deterministic: an identical run writes identical bytes; the same day's file is overwritten
+        tb.build(attachment=True, now=now)
+        assert _read_csv(path)[0] == raw
+        tb.write_json("_system", "watchlist.json", obj={"tickers": ["KR"]})
+        tb.build(attachment=True, now=now)
+        assert os.listdir(os.path.dirname(path)) == ["ranking-2026-10-16.csv"]
+        assert {r[1]: r[-1] for r in _read_csv(path)[1][1:]} == {"APP": "false", "KR": "true", "ZS": "false", "AEE": "false"}
+        # a --site-dir build writes next to that directory, never into the real _daily/history
+        other = os.path.join(tb.dir, "scratch", "site")
+        res2 = B.build(base=tb.dir, site_dir=other, only=TICKERS, attachment=True, quiet=True, now=now)
+        assert res2["history"][0] == os.path.join(tb.dir, "scratch", "history", "ranking-2026-10-16.csv")
+    # ordering: live IRR desc, then scored IRR desc, then ticker; nulls after values; no "-0.000000"
+    rows = [{"ticker": "B", "irr_live": 0.10, "irr": 0.05, "price_live": 1.0}, {"ticker": "A", "irr_live": 0.10, "irr": 0.05, "price_live": 1.0},
+            {"ticker": "C", "irr_live": 0.10, "irr": 0.09, "price_live": 1.0}, {"ticker": "D", "irr_live": None, "irr": 0.50},
+            {"ticker": "E", "irr_live": None, "irr": None}, {"ticker": "F", "irr_live": 0.20, "irr": None, "price_live": 1.0},
+            {"ticker": "G", "irr_live": None, "irr": -1e-9, "name": "Comma, Inc", "fit": "misfit", "price": 1234.5}]
+    out = B.history_rows(rows)
+    assert [r[1] for r in out] == ["F", "C", "A", "B", "D", "G", "E"], [r[1] for r in out]
+    g = dict(zip(B.HISTORY_COLUMNS, out[5]))
+    assert g["irr_scored"] == "0.000000" and g["sector_misfit"] == "true" and g["price"] == "1234.50" and g["name"] == "Comma, Inc"
+
+
+# ---------------- 14. dividends at the latest close
+def _json(o):
+    return json.loads(json.dumps(o))
+
+
+def _isclose(a, b, rel=1e-12):
+    return a is not None and b is not None and abs(a - b) <= rel * max(1.0, abs(a), abs(b))
+
+
+def _set_close(tb, t, last, last_date):
+    p = B.jload(os.path.join(tb.dir, t, "prices.json"))
+    p["stats"] = dict(p.get("stats") or {}, last=last, last_date=last_date)
+    tb.write_json(t, "prices.json", obj=p)
+
+
+def test_dividends_block_repriced_at_a_newer_close():
+    with TempBase() as tb:
+        fpath = os.path.join(tb.dir, "KR", "fundamentals.json")
+        fund = B.jload(fpath)
+        # the committed block, on a known close (whatever close the file was last written at) that prices.json also has
+        committed = _json(F.price_dividends(fund["dividends"], 63.09, "2026-10-14", "prices.json stats.last"))
+        tb.write_json("KR", "fundamentals.json", obj=dict(fund, dividends=committed))
+        _set_close(tb, "KR", 63.09, "2026-10-14")
+        assert committed["dps_ttm"] and committed["shares_outstanding"]
+        tb.build()
+        assert tb.record("KR")["fundamentals"]["dividends"] == committed, "the close the block already has: shown as written"
+        # a newer close: the block fundamentals.py would write at that close
+        _set_close(tb, "KR", 70.0, "2026-10-16")
+        assert tb.build()["written"] == ["KR"]
+        rec = tb.record("KR")
+        d, row = rec["fundamentals"]["dividends"], rec["row"]
+        assert d == _json(F.price_dividends(committed, 70.0, "2026-10-16", "prices.json stats.last"))
+        assert (d["price"], d["price_date"], d["price_source"], d["price_note"]) == (70.0, "2026-10-16", "prices.json stats.last", None)
+        assert _isclose(d["dividend_yield"], committed["dps_ttm"] / 70.0)
+        assert _isclose(d["market_cap"], 70.0 * committed["shares_outstanding"])
+        assert _isclose(d["shareholder_yield"], committed["yield_basis"]["shareholder_yield"]["numerator"] / d["market_cap"])
+        assert d["yield_basis"]["dividend_yield"]["denominator"] == "price 70.0 (prices.json stats.last)"
+        assert d["yields_display"]["dividend_yield"]["label"] == f"{d['dividend_yield'] * 100:.2f}%"
+        assert S.canonical({"dividends": d}, F.PRICE_LEAVES) == S.canonical({"dividends": committed}, F.PRICE_LEAVES), \
+            "only the price leaves moved"
+        assert (row["dividend_yield"], row["shareholder_yield"]) == (d["dividend_yield"], d["shareholder_yield"])
+        assert row["shareholder_yield_label"] == d["yields_display"]["shareholder_yield"]["label"]
+        assert row["shareholder_yield_bound"] == d["yields_display"]["shareholder_yield"]["bound"]
+        assert B.jload(fpath)["dividends"] == committed, "the committed file is never touched"
+        # an older close than the block's own: as written
+        _set_close(tb, "KR", 50.0, "2026-10-01")
+        tb.build()
+        assert tb.record("KR")["fundamentals"]["dividends"] == committed
+        # the same date: a different figure (the block came from score.json's analysis-time quote) reprices, the same one does not
+        sc = dict(committed, price=63.5, price_source="score.json price")
+        tb.write_json("KR", "fundamentals.json", obj=dict(B.jload(fpath), dividends=sc))
+        _set_close(tb, "KR", 63.09, "2026-10-14")
+        tb.build()
+        d = tb.record("KR")["fundamentals"]["dividends"]
+        assert d["price"] == 63.09 and d["price_source"] == "prices.json stats.last" and d["price_note"] is None
+        tb.write_json("KR", "fundamentals.json", obj=dict(B.jload(fpath), dividends=committed))
+        tb.build()
+        assert tb.record("KR")["fundamentals"]["dividends"] == committed
+        # a block written before 5.4.4 (no yields_display) is shown as written whatever the close
+        old = {k: v for k, v in committed.items() if k != "yields_display"}
+        tb.write_json("KR", "fundamentals.json", obj=dict(B.jload(fpath), dividends=old))
+        _set_close(tb, "KR", 70.0, "2026-10-16")
+        tb.build()
+        assert tb.record("KR")["fundamentals"]["dividends"] == old
+    # a fresh clone (no prices.json): as written
+    with TempBase(caches=False) as tb:
+        tb.build()
+        assert tb.record("KR")["fundamentals"]["dividends"] == B.jload(os.path.join(tb.dir, "KR", "fundamentals.json"))["dividends"]
+    assert B.priced_fundamentals(None, {"stats": {"last": 1.0, "last_date": "2026-10-16"}}) is None
+    assert B.priced_fundamentals({"annual": []}, {"stats": {"last": 1.0, "last_date": "2026-10-16"}}) == {"annual": []}
+    # the close as filed: a JSON number only (fundamentals._read_price reads the same value), else as written
+    fund = B.jload(os.path.join(BASE, "KR", "fundamentals.json"))
+    for bad in ("70.0", True, None, 0, -1.0, float("nan")):
+        assert B.priced_fundamentals(fund, {"stats": {"last": bad, "last_date": "2099-01-01"}}) is fund, bad
+    assert B.priced_fundamentals(fund, {"stats": {"last": 70.0, "last_date": "2099"}}) is fund, "no usable date"
+    d = B.priced_fundamentals(fund, {"stats": {"last": 70, "last_date": "2099-01-01"}})["dividends"]
+    assert d["market_cap_basis"].startswith("70 × ") and d["yield_basis"]["dividend_yield"]["denominator"] == "price 70 (prices.json stats.last)"
+
+
+def test_repriced_block_equals_what_fundamentals_writes_on_every_committed_folder():
+    """Offline, on the committed SEC files themselves (no caches needed): for every folder whose
+    fundamentals.json carries a dividends block, (1) price_dividends reproduces the committed block at
+    its own price — it is the function the file was written with; (2) the block build_site serves at a
+    newer close P equals price_dividends(core, P), core = the block without its price leaves — exactly
+    what fundamentals.py writes at P, since build_dividends returns price_dividends(core, price); and
+    (3) the two differ only in the volatile price leaves, so that close alone never rewrites the file."""
+    n = 0
+    for path in sorted(glob.glob(os.path.join(BASE, "*", "fundamentals.json"))):
+        fund = B.jload(path)
+        div = fund.get("dividends") if isinstance(fund, dict) else None
+        if not isinstance(div, dict):
+            continue
+        assert F.repriceable(div), f"{path}: a committed block price_dividends cannot read"
+        n += 1
+        legacy = [x for x in div["notes"] if x.startswith("price: ")]  # written before 2026-10-16: the note is price_note now
+        own = _json(F.price_dividends(div, div["price"], div["price_date"], div["price_source"]))
+        if "price_note" in div:  # written from 2026-10-16 on
+            assert not legacy and own == div, path
+        else:
+            assert own.pop("price_note") == (legacy[0] if legacy else None), path
+            assert own == dict(div, notes=[x for x in div["notes"] if x not in legacy]), path
+        core = S._strip({"dividends": div}, F.PRICE_LEAVES)["dividends"]
+        assert not any(k in core for k in ("price", "price_date", "market_cap", "dividend_yield")), path
+        for p, d in ((123.45, "2099-01-02"), ((div["price"] or 20.0) * 0.5, "2099-01-03")):
+            served = B.priced_fundamentals(fund, {"stats": {"last": p, "last_date": d}})["dividends"]
+            written = F.price_dividends(core, p, d, "prices.json stats.last")
+            assert _json(served) == _json(written), (path, p)
+            assert served["price"] == p and served["price_date"] == d and served["price_source"] == "prices.json stats.last"
+            if div["price"] is not None:  # a price present on both sides: only the volatile leaves differ
+                assert S.canonical({"dividends": served}, F.PRICE_LEAVES) == S.canonical({"dividends": own}, F.PRICE_LEAVES), (path, p)
+        assert fund == B.jload(path), "nothing is modified in place"
+    assert n >= 80, n
+
+
+# ---------------- 15. split since scoring
+def _split_live(live, factor=2.0, label="2:1"):
+    """live.json as reprice.py writes it after a split since the scored run: every per-share value in
+    today's units (÷ factor), the IRRs, upside and market cap unchanged."""
+    lv = _json(live)
+    for k in ("price", "scored_price", "iv_at_15", "iv_at_12", "iv_at_20", "iv_at_25"):
+        lv[k] = lv[k] / factor
+    lv["split_factor"] = factor
+    lv["basis_check"] = {"status": "split_adjusted", "factor": factor, "split": label, "method": "ratio",
+                         "scored_price_raw": live["scored_price"], "scored_price_adjusted": live["scored_price"] / factor,
+                         "scored_date": live["scored_date"]}
+    return lv
+
+
+def _at(rec, path):
+    """{concrete path: number} for a dotted path with `*` (as SPLIT_DIVIDE spells them)."""
+    out = {}
+
+    def walk(o, parts, where):
+        if not parts:
+            if B.num(o) is not None:
+                out[where] = B.num(o)
+            return
+        k, rest = parts[0], parts[1:]
+        if isinstance(o, dict):
+            for kk in (list(o) if k == "*" else [k] if k in o else []):
+                walk(o[kk], rest, f"{where}.{kk}")
+        elif isinstance(o, list) and k == "*":
+            for i, v in enumerate(o):
+                walk(v, rest, f"{where}[{i}]")
+    walk(rec, path.split("."), "")
+    return out
+
+
+# every per-share run figure app.js displays (renderHeader / renderOverview / renderForecast / renderData,
+# priceSpec's IV line, band and hurdle lines, the scored-price marker, the ranking row): restated
+SHOWN_PER_SHARE = ("score.price", "score.iv_at_15", "score.iv_at_12", "score.base_oe_per_share", "score.scenarios.*.iv_at_15",
+                   "numbers.price", "numbers.base_oe_per_share", "numbers.base_oe_latest_per_share", "numbers.base_oe_normalized_per_share",
+                   "numbers.weighted.iv_at_15", "numbers.scenarios.*.iv_at_15", "forecast.paths.*.*", "forecast.hurdle_prices.*",
+                   "forecast.sensitivity.*.15", "forecast.sensitivity.*.25", "row.price", "row.iv15", "row.iv12", "row.iv20", "row.iv25",
+                   "ttm.ttm_oe_per_share")
+UNCHANGED = ("row.irr", "row.irr_live", "row.irr_bear", "row.irr_bull", "row.irr_bear_live", "row.irr_bull_live", "row.upside15",
+             "row.upside15_live", "row.market_cap_b", "row.market_cap_b_live", "score.implied_irr", "score.scenarios.*.irr",
+             "score.upside_at_15_pct", "score.market_cap_b", "numbers.implied_irr_weighted", "numbers.scenarios.*.irr",
+             "numbers.market_cap_est", "numbers.upside_at_15", "forecast.sensitivity.*.irr", "forecast.sensitivity.*.irr_live",
+             "forecast.growth_paths.*.*", "forecast.g_base", "history.*.oe_conservative")
+
+
+def test_split_since_scoring_restates_every_per_share_run_figure():
+    with TempBase() as tb:
+        now = datetime.datetime(2026, 10, 16, 19, 7, tzinfo=B.NY)
+        tb.build(attachment=True, now=now)
+        a = tb.record("APP")
+        assert a["split_restated"] is None and a["row"]["split_restated"] is None
+        live = B.jload(os.path.join(tb.dir, "APP", "live.json"))
+        div0 = a["fundamentals"]["dividends"]
+        tb.write_json("APP", "live.json", obj=_split_live(live))
+        _set_close(tb, "APP", live["price"] / 2, "2099-01-02")  # Nasdaq's history is split-adjusted; newer than any block
+        res = tb.build(attachment=True, now=now)
+        assert res["written"] == ["APP"]
+        b = tb.record("APP")
+        for path in SHOWN_PER_SHARE:
+            va, vb = _at(a, path), _at(b, path)
+            assert va and set(va) == set(vb), (path, va, vb)
+            for k in va:
+                assert _isclose(vb[k], va[k] / 2), (k, va[k], vb[k])
+        for path in B.SPLIT_DIVIDE:
+            va, vb = _at(a, path), _at(b, path)
+            assert set(va) == set(vb) and all(_isclose(vb[k], va[k] / 2) for k in va), path
+        for path in B.SPLIT_MULTIPLY:
+            va, vb = _at(a, path), _at(b, path)
+            assert set(va) == set(vb) and all(_isclose(vb[k], va[k] * 2) for k in va), path
+        assert _at(a, "history.*.shares_diluted") and _at(a, "numbers.shares_diluted_latest")
+        for path in UNCHANGED:
+            va, vb = _at(a, path), _at(b, path)
+            assert va == vb, (path, va, vb)
+        assert (a["row"]["tier"], a["row"]["tier_live"]) == (b["row"]["tier"], b["row"]["tier_live"])
+        # the record agrees with reprice.py's own restated live figures, and live.json itself is not restated twice
+        assert b["live"] == _split_live(live)
+        assert _isclose(b["forecast"]["hurdle_prices"]["15"], b["live"]["iv_at_15"]) and _isclose(b["row"]["iv20"], b["live"]["iv_at_20"])
+        assert _isclose(b["score"]["price"], b["live"]["scored_price"]), "the scored-price marker in today's units"
+        sr = b["split_restated"]
+        assert sr["factor"] == 2.0 and sr["split"] == "2:1" and sr["scored_date"] == "2026-10-14" and sr["price_date"] == "2026-10-14"
+        assert sr["as_scored"] == {"price": a["score"]["price"], "iv_at_15": a["score"]["iv_at_15"], "base_oe_per_share": a["score"]["base_oe_per_share"]}
+        assert "score.price" in sr["fields"] and "forecast.paths.*.*" in sr["fields"] and "history.*.shares_diluted" in sr["fields"]
+        assert "2:1 split" in sr["note"] and b["row"]["split_restated"] == {"factor": 2.0, "split": "2:1"}
+        meta = tb.read("meta.json")
+        assert meta["counts"]["split_restated"] == 1 and any("split" in x and "APP 2:1" in x for x in meta["notes"])
+        # the dividends block is not repriced across the split (filed DPS / shares vs a post-split close)
+        assert b["fundamentals"]["dividends"] == div0
+        # the attachment record and the history CSV carry the restated figures
+        att = res["attachment"][0]
+        assert os.path.exists(att)
+        hist = {r[1]: dict(zip(B.HISTORY_COLUMNS, r)) for r in _read_csv(res["history"][0])[1][1:]}
+        assert hist["APP"]["iv15"] == f"{b['row']['iv15']:.2f}" and _isclose(b["row"]["iv15"], a["row"]["iv15"] / 2)
+        # a reverse split (1:10): × 10
+        tb.write_json("APP", "live.json", obj=_split_live(live, 0.1, "1:10"))
+        tb.build()
+        c = tb.record("APP")
+        assert _isclose(c["score"]["iv_at_15"], a["score"]["iv_at_15"] * 10) and c["row"]["split_restated"] == {"factor": 0.1, "split": "1:10"}
+        # factor 1.0 (reprice's normal output): nothing restated
+        lv1 = dict(live, split_factor=1.0, basis_check={"status": "ok", "factor": 1.0, "split": None, "method": "ratio"})
+        tb.write_json("APP", "live.json", obj=lv1)
+        _set_close(tb, "APP", live["price"], "2026-10-14")
+        tb.build()
+        d = tb.record("APP")
+        assert d["split_restated"] is None and d["score"] == a["score"] and d["forecast"] == a["forecast"] and d["row"]["iv15"] == a["row"]["iv15"]
+
+
+def test_split_live_iv_fallback_is_restated_once():
+    """A run whose hurdle prices are unknown takes iv20 / iv25 from live.json, already in today's units:
+    the row must show them once restated, not divided again."""
+    live = {"price": 50.0, "price_date": "2026-10-20", "scored_date": "2026-10-14", "irr_weighted": 0.12, "iv_at_15": 40.0,
+            "iv_at_20": 30.0, "iv_at_25": 20.0, "split_factor": 2.0, "basis_check": {"factor": 2.0, "split": "2:1"}}
+    c = {"folder": "T", "path": "", "ticker": "T", "score": {"ticker": "T", "price": 100.0, "iv_at_15": 80.0, "implied_irr": 0.12,
+                                                            "analysis_date": "2026-10-14"},
+         "numbers": {"engine_version": 5, "data_gap": [], "price": 100.0}, "live": live, "history": [], "files": []}
+    rec = B.build_record(c, {}, "2026-10-20T19:00:00-04:00", 0.0)
+    assert rec["row"]["iv20"] == 30.0 and rec["row"]["iv25"] == 20.0 and rec["row"]["iv15"] == 40.0 and rec["row"]["price"] == 50.0
+    assert rec["score"]["price"] == 50.0 and rec["numbers"]["price"] == 50.0 and rec["split_restated"]["split"] == "2:1"
+    assert c["score"]["price"] == 100.0 and c["live"]["iv_at_20"] == 30.0, "the loaded files are never modified"
+    assert B.live_split({"split_factor": 1.0}) == (None, None) and B.live_split({"basis_check": {"factor": 3.0}}) == (3.0, "3x")
+    assert B.live_split(None) == (None, None) and B.live_split({"split_factor": -2}) == (None, None)
+
+
+# ---------------- 16. live older than the score
+def test_live_older_than_the_score_is_withheld():
+    now = datetime.datetime(2026, 10, 16, 19, 7, tzinfo=B.NY)
+    with TempBase() as tb:
+        tb.build()
+        a = tb.record("APP")
+        live = B.jload(os.path.join(tb.dir, "APP", "live.json"))
+        # scoring day: Nasdaq has not posted the scored session; reprice used the session before it
+        stale = dict(live, price_date="2026-10-13", irr_weighted=-0.5, split_factor=1.0,
+                     basis_check={"status": "ok", "factor": 1.0, "split": None, "method": "no_close_since_scoring"})
+        tb.write_json("APP", "live.json", obj=stale)
+        res = tb.build(attachment=True, now=now)
+        b, row = tb.record("APP"), tb.record("APP")["row"]
+        assert b["live"] is None and b["live_withheld"]["reason"] == "live_older_than_score"
+        w = b["live_withheld"]
+        assert (w["price_date"], w["scored_date"], w["method"], w["price"]) == ("2026-10-13", "2026-10-14", "no_close_since_scoring", live["price"])
+        assert "older than the scored analysis" in w["note"]
+        assert row["live_withheld"] is True and row["has"]["live"] is False
+        for k in ("irr_live", "price_live", "tier_live", "upside15_live", "market_cap_b_live", "price_date"):
+            assert row[k] is None, k
+        assert all(v["irr_live"] is None for v in b["forecast"]["sensitivity"].values())
+        assert row["irr"] == a["row"]["irr"] and b["score"] == a["score"] and b["forecast"]["hurdle_prices"] == a["forecast"]["hurdle_prices"]
+        index = tb.read("index.json")
+        assert [r["ticker"] for r in index][0] == "APP" and B.rank_key(index[0])[1] == -row["irr"], "ranked on the scored IRR, not -50%"
+        meta = tb.read("meta.json")
+        assert meta["counts"]["live_withheld"] == 1 and meta["counts"]["with_live"] == 2 and any("withheld" in x and "APP" in x for x in meta["notes"])
+        hist = {r[1]: dict(zip(B.HISTORY_COLUMNS, r)) for r in _read_csv(res["history"][0])[1][1:]}
+        assert hist["APP"]["irr_live"] == "" and hist["APP"]["tier_live"] == "" and hist["APP"]["price_date"] == "2026-10-14"
+        assert hist["APP"]["price"] == f"{a['score']['price']:.2f}"
+        # a split factor on a withheld live.json is not applied
+        tb.write_json("APP", "live.json", obj=dict(_split_live(live), price_date="2026-10-13"))
+        tb.build()
+        assert tb.record("APP")["split_restated"] is None and tb.record("APP")["score"] == a["score"]
+        # the scored session's own close (same date) is current: shown
+        tb.write_json("APP", "live.json", obj=dict(stale, price_date="2026-10-14"))
+        tb.build()
+        assert tb.record("APP")["live"] is not None and tb.record("APP")["live_withheld"] is None and tb.record("APP")["row"]["irr_live"] == -0.5
+    # the later of score.json analysis_date and the run's as_of (live.scored_date) counts
+    c = {"score": {"analysis_date": "2026-10-16"}, "live": {"price": 1.0, "irr_weighted": 0.1, "price_date": "2026-10-15", "scored_date": "2026-10-14"}}
+    assert B.live_shown(c)[0] is None and B.live_shown(c)[1]["scored_date"] == "2026-10-16"
+    c["score"]["analysis_date"] = "2026-10-14"
+    assert B.live_shown(c) == (c["live"], None)
+    assert B.live_shown({"score": {}, "live": {"price": 1.0, "irr_weighted": 0.1}}) == ({"price": 1.0, "irr_weighted": 0.1}, None), "undatable: shown as before"
+    assert B.live_shown({"score": {}, "live": {"price": 1.0}}) == (None, None)
+    # a live.json left over from an earlier run of a re-scored name: withheld even when its close is newer
+    old_run = {"score": {"analysis_date": "2026-10-16"},
+               "live": {"price": 50.0, "irr_weighted": 0.2, "price_date": "2026-10-17", "scored_date": "2026-10-01"}}
+    lv, w = B.live_shown(old_run)
+    assert lv is None and w["reason"] == "live_from_earlier_run" and w["scored_date"] == "2026-10-16", w
+    assert "2026-10-01 run" in w["note"] and "reprice.py" in w["note"], w["note"]
+    old_run["live"]["scored_date"] = "2026-10-16"
+    assert B.live_shown(old_run) == (old_run["live"], None), "same run, close after scoring: shown"
+
+
+# ---------------- 17. street_fetched_at without street.json
+def test_profile_carries_street_fetched_at_without_street_json():
+    new = {"ticker": "T", "as_of": "2026-09-01", "fetched_at": "2026-09-01T06:00:00-04:00", "about": {"x": 1}, "filings": []}
+    for prof in (new, dict(new, street=None, market={}), dict(new, street={}, market=None)):
+        p = B.profile_with_street(prof, None)
+        assert "street_fetched_at" in p and p["street_fetched_at"] is None and p["street"] is None and p["market"] is None, prof
+        assert p["about"] == {"x": 1} and p["as_of"] == "2026-09-01"
+    assert B.profile_with_street(dict(new, street={"a": 1}), None)["street_fetched_at"] == new["fetched_at"], "a legacy block was pulled"
+    with TempBase(caches=False) as tb:
+        for t in TICKERS:
+            prof = B.jload(os.path.join(tb.dir, t, "profile.json"))
+            tb.write_json(t, "profile.json", obj={k: v for k, v in prof.items() if k not in ("street", "market")})
+        res = tb.build(attachment=True)
+        for t in TICKERS:
+            p = tb.record(t)["profile"]
+            assert "street_fetched_at" in p and p["street_fetched_at"] is None and p["street"] is None, t
+        with open(res["attachment"][0], encoding="utf-8") as f:
+            html = f.read()
+        data = json.loads(html.split("window.SITE_DATA=", 1)[1].split(";</script>", 1)[0].replace("<\\/", "</"))
+        assert all("street_fetched_at" in r["profile"] and r["profile"]["street_fetched_at"] is None for r in data["records"].values())
 
 
 if __name__ == "__main__":

@@ -42,11 +42,56 @@ pre-v5 or drifted inputs).
   `audits/`, queue/universe state, and the overrides registry
 - `<TICKER>/` — one folder per company: `financials_history.csv`,
   `dcf_numbers.json`, `analysis.md`, `score.json`, plus `judgment.json`,
-  `key_numbers.md`, `ttm.json` where applicable
-- `_daily/` — the daily ranking HTML (current + dated snapshots)
-- `automation/` — the scheduled-job definitions that run the sweep (two pass-1
-  workers every 15 minutes, a daily ranking; pass 2 is currently paused
-  pending governance rules)
+  `key_numbers.md`, `ttm.json` where applicable (the judgment record), and the
+  SEC files `fundamentals.json`, `statements.json`, `segments.json`,
+  `profile.json` (see "What is in git" below)
+- `_daily/` — the static site (`site/`: the app; its data is built locally),
+  `history/` (one small CSV per day: that day's ranking), and the dated ranking
+  HTML from before 2026-10-16
+- `automation/` — the scheduled-job definitions that run the sweep (pass-1
+  workers every 15 minutes, pass 2 every 30, a 06:30 filing watcher, a
+  market-hours live refresh, and the 19:07 daily ranking)
+
+## What is in git
+
+Committed: the code and specs, each company's judgment record, its SEC files
+(rewritten only when a filing changes their content, so they do not churn),
+and the daily ranking CSVs in `_daily/history/`. Not committed: data anyone
+can re-fetch or rebuild in minutes. That covers Nasdaq prices
+(`<T>/prices.json`), the Street block (`<T>/street.json`), live returns
+(`<T>/live.json`), the built site data (`_daily/site/data/`, `index.json`,
+`meta.json`) and the 10 MB dated ranking attachments. `.gitignore` lists them.
+
+## Run it on your own computer
+
+```
+python -m pip install -r requirements.txt     # Windows only needs tzdata
+python _system/refresh.py                     # Nasdaq prices + Street, live returns, the site
+python -m http.server 8791 --directory _daily # then open http://localhost:8791/site/
+```
+
+`python _system/refresh.py --quick` refreshes prices and live returns only;
+`--sec` also re-checks every name's SEC files; `--tickers APP,KR` limits it to
+those names. Tests: `python _system/tests/test_<name>.py` and
+`node _daily/site/tests/app.test.js`.
+
+On Windows, two cron files under `automation/crons/daily/` have `:` in their
+names, which NTFS cannot hold, so a plain `git clone` fails its checkout. Clone
+this way instead (tested on Windows 11): the sparse checkout leaves those two
+files out, and the per-repo `protectNTFS` setting lets git read a tree that
+lists them.
+
+```
+git clone --no-checkout https://github.com/Andrew199617/Stocks.git
+cd Stocks
+git sparse-checkout set --no-cone "/*" "!/automation/crons/daily/*:*"
+git config core.protectNTFS false
+git checkout main
+```
+
+In an existing Windows checkout that shows those two files as deleted, never
+commit the deletion (never `git add -A`). Renaming the two files without a
+colon on Muse's side would remove the problem for good.
 
 The APP folder is the worked example of the required output shape, including a
 proper override. This repo is a snapshot mirror of the live working tree; the

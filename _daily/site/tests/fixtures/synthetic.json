@@ -94,7 +94,7 @@
   },
   "prices": null,
   "profile": {
-    "ticker": "SYN", "as_of": "2026-10-14", "sources": {"about": "SEC EDGAR submissions + 10-K Item 1", "street": "Nasdaq analyst endpoints"},
+    "ticker": "SYN", "as_of": "2026-10-14", "street_fetched_at": "2026-10-14T18:05:00-04:00", "sources": {"about": "SEC EDGAR submissions + 10-K Item 1", "street": "Nasdaq analyst endpoints"},
     "about": {"description": {"text": "Synthetic Payer Corp operates 1,200 grocery and pharmacy stores in 14 states; revenue is 65% grocery and 35% pharmacy.", "accession": "0001234567-26-000012", "url": "https://www.sec.gov/Archives/edgar/data/1234567/syn-20251231.htm"},
               "description_short": "Regional grocer and pharmacy operator.", "industry": "Food Chains", "sector": "Consumer Staples", "sic": "5411", "sic_description": "Retail-Grocery Stores", "state_of_incorporation": "DE", "fiscal_year_end_mmdd": "1231",
               "filer_category": "Large accelerated filer", "exchange": "NYSE", "website": "https://www.synthetic-payer.example/", "headquarters": "Cincinnati, OH",

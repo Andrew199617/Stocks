@@ -1,21 +1,14 @@
 {
  "ticker": "GFI",
  "cik": 1172724,
- "as_of": "2026-10-15",
- "fetched_at": "2026-10-15T09:23:08-04:00",
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:19:50-04:00",
  "newest_filing_date": "2026-09-28",
  "sources": {
   "edgar_submissions": "https://data.sec.gov/submissions/CIK0001172724.json",
   "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm",
   "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GFI/company-profile",
-  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GFI/summary?assetclass=stocks",
-  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/GFI/targetprice",
-  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/GFI/ratings",
-  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/GFI/earnings-forecast",
-  "nasdaq_eps": "https://api.nasdaq.com/api/quote/GFI/eps",
-  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/GFI/estimate-momentum",
-  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/GFI/earnings-date",
-  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/GFI/peg-ratio"
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GFI/summary?assetclass=stocks"
  },
  "about": {
   "entity": "GOLD FIELDS LTD",
@@ -65,195 +58,13 @@
    "filed": "2026-03-30",
    "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828026021904/gfi-20251231.htm"
   },
+  "employees_unresolved": null,
   "first_sec_filing": "2002-05-06",
   "first_sec_filing_form": "20FR12B",
   "former_names": [
    "GOLD FIELD LTD"
   ],
   "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001172724&type=10-K&dateb=&owner=include&count=40"
- },
- "street": {
-  "source": "Nasdaq analyst endpoints",
-  "as_of": "2026-10-15",
-  "consensus": "Hold",
-  "analysts": 4,
-  "buy": 3,
-  "hold": 3,
-  "sell": 0,
-  "target_mean": 49.17,
-  "target_low": 38.0,
-  "target_high": 55.0,
-  "target_1y_nasdaq_summary": 51.0,
-  "history": [
-   {
-    "date": "2025-10-01",
-    "mean_target": 41.74,
-    "buy": 3,
-    "hold": 1,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2025-11-01",
-    "mean_target": 38.41,
-    "buy": 4,
-    "hold": 3,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2025-12-01",
-    "mean_target": 42.71,
-    "buy": 4,
-    "hold": 3,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-01-01",
-    "mean_target": 43.66,
-    "buy": 4,
-    "hold": 3,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-02-01",
-    "mean_target": 50.12,
-    "buy": 4,
-    "hold": 2,
-    "sell": 1,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-03-01",
-    "mean_target": 58.84,
-    "buy": 2,
-    "hold": 1,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-04-01",
-    "mean_target": 48.13,
-    "buy": 2,
-    "hold": 1,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-05-01",
-    "mean_target": 42.08,
-    "buy": 3,
-    "hold": 1,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-06-01",
-    "mean_target": 38.01,
-    "buy": 3,
-    "hold": 1,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-07-01",
-    "mean_target": 33.73,
-    "buy": 3,
-    "hold": 1,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-08-01",
-    "mean_target": 32.42,
-    "buy": 2,
-    "hold": 1,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-09-01",
-    "mean_target": 44.66,
-    "buy": 2,
-    "hold": 2,
-    "sell": 0,
-    "consensus": "Buy"
-   },
-   {
-    "date": "2026-10-01",
-    "mean_target": 49.17,
-    "buy": 3,
-    "hold": 2,
-    "sell": 0,
-    "consensus": "Buy"
-   }
-  ],
-  "brokers": [
-   "B OF A GLBL RES",
-   "BMO CAPITAL MKT",
-   "JP MORGAN SECUR",
-   "SCOTIABANK"
-  ],
-  "upgrades_downgrades": [],
-  "eps_forecast": {
-   "quarterly": [],
-   "annual": [
-    {
-     "period": "Dec 2026",
-     "fiscal_end": "2026-12",
-     "consensus": 4.16,
-     "low": 3.89,
-     "high": 4.33,
-     "estimates": 3,
-     "revisions_up": 1,
-     "revisions_down": 0
-    },
-    {
-     "period": "Dec 2027",
-     "fiscal_end": "2027-12",
-     "consensus": 4.48,
-     "low": 3.79,
-     "high": 5.48,
-     "estimates": 3,
-     "revisions_up": 0,
-     "revisions_down": 1
-    },
-    {
-     "period": "Dec 2028",
-     "fiscal_end": "2028-12",
-     "consensus": 4.02,
-     "low": 4.02,
-     "high": 4.02,
-     "estimates": 1,
-     "revisions_up": 0,
-     "revisions_down": 0
-    }
-   ]
-  },
-  "eps_history": [],
-  "eps_upcoming": [],
-  "momentum": {
-   "quarter": {
-    "period": "Sep 2026",
-    "current": null,
-    "week_ago": null,
-    "month_ago": null
-   },
-   "year": {
-    "period": "Dec 2026",
-    "current": 4.16,
-    "week_ago": 4.16,
-    "month_ago": 4.15
-   }
-  },
-  "next_earnings": {
-   "date": null,
-   "text": "Our vendor, Zacks Investment Research, hasn't provided us with the upcoming earnings report date.",
-   "timing": null
-  },
-  "peg_forward": 0.51
  },
  "filings": [
   {
@@ -437,22 +248,5 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1172724/000162828025050527/sens7november256-k.htm"
   }
  ],
- "market": {
-  "exchange": "NYSE",
-  "average_volume": 8018990,
-  "volume": 67045,
-  "market_cap_nasdaq": 32838439622,
-  "high_52w": 61.64,
-  "low_52w": 31.11,
-  "previous_close": 35.55,
-  "one_year_target": 51.0,
-  "dividend_yield_nasdaq": null,
-  "annualized_dividend": null,
-  "ex_dividend_date": null,
-  "dividend_pay_date": null
- },
- "warnings": [
-  "street: 8 quote/eps row(s) with consensus = 0 and earnings = 0 are Nasdaq placeholders; dropped",
-  "street: estimate-momentum published 999 (no estimate) for some means; those are null"
- ]
+ "warnings": []
 }

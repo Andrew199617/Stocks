@@ -8,8 +8,9 @@ now split in two, built around Muse's loop (claim a company → scripts write fi
 
 1. **Data layer** — `python3 _system/build_site.py` reads the per-company folders (the source of
    truth Muse writes) and derives JSON: `_daily/site/meta.json`, `_daily/site/index.json` and
-   `_daily/site/data/<TICKER>.json`. Incremental: a company record is regenerated only when a
-   file in its folder is newer than the record. Python only, stdlib only, nothing for Muse to
+   `_daily/site/data/<TICKER>.json`. Incremental: a company record is regenerated only when its
+   folder's files changed (a newer, added or deleted file), the builder changed, or its
+   `data/<TICKER>.json` is missing. Python only, stdlib only, nothing for Muse to
    install. This is WORKER_SPEC step 10 and the daily cron's build step.
 2. **Static app** — `_daily/site/index.html`, `app.css`, `app.js` are hand-written, committed
    files (vanilla JS, no bundler, no framework, no network calls except fetching the JSON next
@@ -19,8 +20,12 @@ now split in two, built around Muse's loop (claim a company → scripts write fi
    `_daily/ranking-YYYY-MM-DD.html` (+ `latest.html`) by inlining `index.html` + `app.css` +
    `app.js` and a `window.SITE_DATA` object carrying `meta`, the full `index`, and the records
    for the top `--top N` rows (default 150, trimmed as described under "Attachment trimming").
-   The same app renders it; it just never fetches. The hosted site (GitHub Pages at
-   `_daily/site/`, updated on every push of the mirror) is the complete one.
+   The same app renders it; it just never fetches. The served site (`_daily/site/` on a machine
+   where `build_site.py` has run — its data is a gitignored cache, so a static host pointed at the
+   repo alone has none; `meta.site_url` names the host when `STOCKS_SITE_URL` is set) is the
+   complete one. The same run writes the compact committed snapshot
+   `_daily/history/ranking-YYYY-MM-DD.csv` (see "Data policy, 2026-10-16" at the end — it also
+   lists which files are committed and which are gitignored caches).
 
 Every number on a page comes from a file Muse's scripts wrote; the only computation in the data
 layer is the forecast replay through the engine's own functions (`dcf_engine.replay_paths`,
@@ -42,9 +47,11 @@ field is missing from an older file. The app never computes a valuation figure.
  "failed": [],
  "notes": ["..."]}
 ```
-`watchlist` is every ticker in `_system/watchlist.json` (upper-cased, sorted, whether or not it is in the universe);
+`watchlist` is every ticker in `_system/watchlist.json` (upper-cased, in file order, whether or not it is in the universe);
 `counts.watchlist` is how many index rows carry the flag. `failed` lists tickers whose record could not be built this
-run (`counts.failed`); they keep their previous row/record, if any.
+run (`counts.failed`); they keep their previous row/record, if any. `counts.live_withheld` / `counts.split_restated`
+count the rows whose live.json was withheld / whose run was restated for a split (the 2026-10-16 round at the end).
+`site_url` is `$STOCKS_SITE_URL` when set, else null (the attachment then names the site without a link).
 
 ## `index.json` — one row per CURRENT company (engine v5+, no uncovered gap), ranked by `irr_live` when present else `irr`
 ```json
@@ -54,6 +61,7 @@ run (`counts.failed`); they keep their previous row/record, if any.
  "tier_live": "A" | null,     "tier_bear": "C" | null, "tier_bull": "A" | null,
  "irr": 0.1843,               "irr_live": 0.199 | null, "irr_bear": 0.1293 | null, "irr_bull": 0.227 | null,
  "irr_at_floor": false,       "irr_capped": false,     "f_subtype": null | "sbc_exceeds_cash" | "no_cash_generation",
+ "live_withheld": false,      "split_restated": null | {"factor": 2.0, "split": "2:1"},
  "price": 272.28,             "price_live": 262.19 | null, "price_date": "2026-10-14" | null, "ret_1y_pct": -55.6 | null,
  "iv15": 376.12, "iv12": 535.47, "iv20": 290.1 | null, "iv25": 230.4 | null,
  "upside15": 38.1,            "upside15_live": 43.5 | null,
@@ -65,12 +73,16 @@ run (`counts.failed`); they keep their previous row/record, if any.
  "second_pass": {"date": "...", "verdict": "changed" | "no_change", "prior_tier": "C"} | null,
  "alert_eligible": false,
  "dividend_yield": 0.0 | null, "shareholder_yield": 0.024 | null,
+ "shareholder_yield_label": "≥ 2.66%" | null, "shareholder_yield_bound": "lower" | null,
  "watchlist": true,
- "has": {"prices": true, "fundamentals": true, "dividends": true, "segments": true, "live": true, "analysis": true, "second_pass": false}}
+ "has": {"prices": true, "fundamentals": true, "dividends": true, "segments": true, "live": true, "analysis": true, "second_pass": false,
+         "statements": true, "profile": true}}
 ```
 `watchlist` is true when the row's ticker is in `_system/watchlist.json` (the app's "Watchlist" toggle next to the tier
 filters filters on it). Stale (pre-v5) scores are listed under `meta.stale` as
-`[{ticker, name, tier, irr, analysis_date, watchlist}]`, never in `index`.
+`[{ticker, name, tier, irr, analysis_date, watchlist}]`, never in `index`. `live_withheld` true means live.json's close
+predates the scored analysis: the live fields stay null and the row ranks on its scored IRR; `split_restated` names a
+split since scoring the row's price / IV columns were restated for (both: the 2026-10-16 round at the end).
 
 ## `data/<TICKER>.json` — everything the company page renders
 ```json
@@ -80,28 +92,41 @@ filters filters on it). Stale (pre-v5) scores are listed under `meta.stale` as
  "numbers": { ...dcf_numbers.json verbatim minus "paths" and "growth_paths" (they live under forecast)... },
  "forecast": {"paths": {"super_bear": [15 floats], "bear": [...], "base": [...], "bull": [...], "super_bull": [...], "weighted": [...]},
               "growth_paths": {"super_bear": [15 floats], ...},
-              "sensitivity": {"super_bear": {"10": 238.3, "12": 183.0, "15": 134.0, "20": 90.1, "25": 65.2, "irr": 0.0915, "irr_live": 0.101 | null}, ..., "weighted": {...}},
+              "sensitivity": {"super_bear": {"10": 238.3, "12": 183.0, "15": 134.0, "20": 90.1, "25": 65.2, "irr": 0.0915, "irr_at_floor": false | null,
+                                             "irr_live": 0.101 | null, "irr_live_at_floor": false | null}, ..., "weighted": {...}},
               "hurdle_prices": {"15": 376.12, "20": 290.1, "25": 230.4},
               "inputs": { ...numbers.inputs... }, "g_base": 0.35, "g_blend": 0.5022, "g_terminal": 0.025, "cap_years": 9.8,
               "growth_components": {...}, "growth_components_adjusted": {...} | null, "share_cagr": -0.027, "share_count_adj": 0.027, "share_adj_basis": "..." | null,
               "replayed": true | false},
  "live": { ...live.json verbatim... } | null,
+ "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
+ "split_restated": {"factor": 2.0, "split": "2:1", "scored_date": "...", "price_date": "...", "fields": [...], "as_scored": {...}, "note": "..."} | null,
  "history": [ {financials_history.csv rows, numeric strings coerced to numbers, blanks to null} ],
- "fundamentals": { ...fundamentals.json verbatim (profile, annual, quarterly, ttm, dividends, tags_used, warnings, currency)... } | null,
- "prices": {"source": "...", "as_of": "...", "stats": {...}, "weekly": [[date, close]...], "daily_1y": [[date, close]...]} | null,
+ "fundamentals": { ...fundamentals.json verbatim (profile, annual, quarterly, ttm, dividends, tags_used, warnings, currency),
+                   the dividends block repriced at a newer last close... } | null,
+ "prices": {"source": "...", "as_of": "...", "currency": "...", "stats": {...}, "weekly": [[date, close]...], "daily_1y": [[date, close]...],
+            "intraday": {...} | null, "sessions_5d": [{...}...], "warnings": [...]} | null,
  "segments": { ...segments.json verbatim... } | null,
  "ttm": { ...ttm.json verbatim... } | null,
  "judgment": { ...judgment.json verbatim... } | null,
+ "profile": { ...profile.json verbatim..., "street": {...} | null, "market": {...} | null, "street_fetched_at": "..." | null } | null,
  "registry": [ ...overrides_registry entries for this ticker... ],
  "analysis_md": "..." | null, "second_pass_md": "..." | null,
  "files": ["analysis.md", "dcf_numbers.json", ...]}
 ```
 `forecast.sensitivity[*].irr_live` is the live repricing's scenario IRR when `live` exists.
+`forecast.sensitivity[*].irr_at_floor` / `irr_live_at_floor` mark a scored / live IRR the solver stopped at its floor (a
+bound, not a solved return); null when undecidable (see "Data policy, 2026-10-16").
 `forecast.replayed` is true when paths were replayed (pre-5.4 run) rather than read from the file.
+`profile.street` / `profile.market` come from `<T>/street.json` (legacy: from an older profile.json).
+`live` is null and `live_withheld` set when live.json's close predates the scored analysis or live.json belongs to an
+earlier run of a re-scored name; `split_restated` is set when
+the run's per-share figures in this record were restated for a split since scoring; the dividends block is repriced at
+prices.json's last close when that close is newer than the block's own (all three: the 2026-10-16 round at the end).
 
 ## Attachment trimming (`--attachment`, top N rows only)
-Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y` and `numbers.used_tags`;
-everything else is kept. Rows beyond the top N are in `index` but have no record; the app shows
+Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y`, `prices.sessions_5d` and
+`numbers.used_tags`; everything else is kept. Rows beyond the top N are in `index` but have no record; the app shows
 "not embedded in this file — open the site" for them.
 
 ## What the app renders (parity with the v2 Python pages)
@@ -151,14 +176,16 @@ everything else is kept. Rows beyond the top N are in `index` but have no record
 Choices made where the text above was silent or ambiguous; each is additive to the shapes above.
 - **Incremental bookkeeping lives in `_daily/site/state.json`** (`{records: {T: {built_from_mtime, builder_mtime, built_at}}}`),
   not in the served files: deciding "skip" for 2,600 folders must not parse 2,600 records. A record is skipped when
-  `built_from_mtime >= newest mtime among the folder's files` AND the builder's own mtime has not moved since the record was
+  `built_from_mtime >= newest mtime among the folder's files` AND the builder's mtime (the newer of build_site.py and
+  fundamentals.py, whose `price_dividends` reprices every dividends block) has not moved since the record was
   written; `--force` rebuilds all. Without `state.json` the builder falls back to the record file (its `built_from_mtime` and
   file mtime). Skipped records' index rows come from the previous `index.json` (fallback: the record's `row`). The registry
   (`_system/overrides_registry.json`) is not part of the mtime check: it is only ever rewritten by `make_score.py`, which also
   rewrites the folder's `score.json`.
 - **`--only T,T` scopes the rebuild, not the index.** Only the listed tickers are (re)built (still incremental unless `--force`);
-  every other current company keeps its previous row and record. In a fresh site dir that means the index holds only the
-  listed names — the test harness relies on it. The removal of disqualified records and `meta.stale` always run over all folders.
+  every other current company keeps its previous row and record — when it has one: a current company with no usable
+  `data/<T>.json` is built even outside `--only`, so a fresh site dir gets every current company ("Missing outputs" under
+  "Data policy, 2026-10-16"). The removal of disqualified records and `meta.stale` always run over all folders.
 - **Qualifying folder** = `score.json` present and non-empty, `dcf_numbers.json` with `engine_version >= 5` and a `data_gap` key,
   and an empty `data_gap_uncovered`. Pre-v5 numbers go to `meta.stale`; an uncovered gap is neither stale nor current (same as v2).
   Folders starting with `_` or `.` are ignored.
@@ -167,12 +194,13 @@ Choices made where the text above was silent or ambiguous; each is additive to t
   (`numbers.weighted.iv_at_15` reproduces bit-for-bit); `hurdle_prices` prefer `numbers.hurdle_prices`, then `score.iv_at_15/20/25`,
   else `present_value` of the weighted path at 15/20/25%. `irr` per scenario is the stored scored figure (never re-solved — the
   5.4 floor fix would change it); `irr_live` (and `irr_live_at_floor`) are copied from `live.json` when it carries a price and a
-  weighted IRR, else null. `row.irr_at_floor` is `score.irr_at_floor` (5.4) → `diagnostics.irr_at_floor` → for an older run the
+  weighted IRR and is not withheld (2026-10-16 round), else null. `row.irr_at_floor` is `score.irr_at_floor` (5.4) →
+  `diagnostics.irr_at_floor` → `weighted.irr_at_floor` → for an older run the
   at-floor flag of `solve_irr` on the replayed weighted path at the scored price (flag only; the IRR itself stays the stored one).
   `row.irr_bear/irr_bull` fall back to `scenarios.bear/bull.irr`, `tier_bear/tier_bull` to `tier_for_irr` of those.
 - **Band fields are the scored band**, as in the v2 ranking row; the live band is carried additively as `irr_bear_live`,
   `irr_bull_live`, `tier_bear_live`, `tier_bull_live`, plus `irr_at_floor_live`, only on rows with `has.live`.
-- **`price_date`** is the live price's date (`live.price_date` else `live.as_of`) and null without `live.json`; the scored price's
+- **`price_date`** is the live price's date (`live.price_date` else `live.as_of`) and null without a shown `live.json`; the scored price's
   date is `analysis_date`. `upside15_live` = `live.iv_at_15 / live.price − 1` in percent (falls back to `live.upside_at_15`).
   `iv20` / `iv25` = `forecast.hurdle_prices` (fallback `live.iv_at_20/25`).
 - **`has.dividends`** is true only when `fundamentals.json` carries a `dividends` object; `has.second_pass` means `second_pass.md`
@@ -197,7 +225,7 @@ Choices made where the text above was silent or ambiguous; each is additive to t
 
 ## Decisions (owner, 2026-10-14 evening — layout and profile)
 - **Layout change (Andrew):** the company page is header → tab bar → tab content. The header is compact (tier tile, ticker, name, sector line; last close with 1-day change; live expected return with the scored figure beside it). The tab bar sits directly under the header and becomes a sticky condensed bar on scroll (ticker · last close · change · expected return · the tabs). The price-vs-value chart moves INSIDE the Overview tab as its first card, followed by: the verdict gauge + chips + one-liner, "About" (profile), "Financial performance" (generated prose from the filed numbers), "Street consensus" (Nasdaq analyst data, clearly labelled as the Street's view next to our hurdle prices), "Filings" (the 8-K / 10-Q / 10-K feed from EDGAR with links), then the existing key numbers, overrides, scenarios, moat and flags cards. Nothing that exists today is removed.
-- **`<T>/profile.json`** (new, `_system/profile.py`), copied into the record as `record.profile` (kept in the attachment; it is small): {"ticker","as_of","sources":{...},"about":{"description" (10-K Item 1 Business first paragraphs, cleaned, ≤1,500 chars, with the filing accession and a link), "description_short" (Nasdaq company-profile description), "industry","sector" (Nasdaq), "sic","sic_description","state_of_incorporation","fiscal_year_end_mmdd","filer_category","exchange","website","headquarters" (EDGAR submissions business address, city/state), "employees" (from the 10-K human-capital text, with the sentence quoted as evidence) | null, "first_sec_filing" (earliest filing date in submissions, the IPO-date proxy), "edgar_url"}, "street":{"source":"Nasdaq analyst endpoints","as_of","consensus":"Buy"|...,"analysts":16,"buy":16,"hold":4,"sell":0,"target_mean","target_low","target_high","target_1y_nasdaq_summary","history":[{"date","mean_target","buy","hold","sell"}...],"eps_forecast":{"quarterly":[{"period","consensus","low","high","estimates","revisions_up","revisions_down"}],"annual":[...]}} | null, "filings":[{"form","filed","period","items" (8-K items),"description" (e.g. "Results of operations" for 2.02),"url"}...] (latest 20), "market":{"exchange","average_volume","volume","market_cap_nasdaq","high_52w","low_52w","dividend_yield_nasdaq"} }. Refresh policy: profile.py --all skips files younger than --max-age-days (default 7) unless the company has a newer filing; the Street block is third-party data and is never used by the valuation.
+- **`<T>/profile.json`** (new, `_system/profile.py`), copied into the record as `record.profile` (kept in the attachment; it is small): {"ticker","as_of","sources":{...},"about":{"description" (10-K Item 1 Business first paragraphs, cleaned, ≤1,500 chars, with the filing accession and a link), "description_short" (Nasdaq company-profile description), "industry","sector" (Nasdaq), "sic","sic_description","state_of_incorporation","fiscal_year_end_mmdd","filer_category","exchange","website","headquarters" (EDGAR submissions business address, city/state), "employees" (from the 10-K human-capital text, with the sentence quoted as evidence) | null, "first_sec_filing" (earliest filing date in submissions, the IPO-date proxy), "edgar_url"}, "street":{"source":"Nasdaq analyst endpoints","as_of","consensus":"Buy"|...,"analysts":16,"buy":16,"hold":4,"sell":0,"target_mean","target_low","target_high","target_1y_nasdaq_summary","history":[{"date","mean_target","buy","hold","sell"}...],"eps_forecast":{"quarterly":[{"period","consensus","low","high","estimates","revisions_up","revisions_down"}],"annual":[...]}} | null, "filings":[{"form","filed","period","items" (8-K items),"description" (e.g. "Results of operations" for 2.02),"url"}...] (latest 20), "market":{"exchange","average_volume","volume","market_cap_nasdaq","high_52w","low_52w","dividend_yield_nasdaq"} }. Refresh policy: profile.py --all skips files younger than --max-age-days (default 7) unless the company has a newer filing; the Street block is third-party data and is never used by the valuation. (Since 2026-10-16 `street` and `market` live in `<T>/street.json` and build_site.py puts them back on `record.profile`; each file has its own refresh rule — "Data policy, 2026-10-16" and the profile.py section's "Refresh and failure policy".)
 - **Financial performance prose** is generated in the app from record.fundamentals / live (pure function, node-tested): latest FY revenue and growth, net income, operating cash flow, owner's earnings and margin, TTM where available, shares trend, with the fiscal year named — no adjectives, numbers only.
 
 ## Decisions (static app — `_daily/site/index.html`, `app.css`, `app.js`, `tests/`, 2026-10-14)
@@ -374,17 +402,21 @@ Fixes from the adversarial review of `app.js` / `app.css` / `tests/app.test.js`;
 ## Decisions (prices.py intraday capture, 2026-10-15 — schema for build_site.py's pass-through)
 `prices.py` makes a second Nasdaq request per name (after the daily history; `--no-intraday` skips it) and `prices.json`
 gains three top-level keys. Every pre-existing key (`daily_1y`, `weekly`, `monthly`, `stats`, `as_of`, `fetched_at`, …) is
-unchanged in meaning. Nothing here feeds the valuation; `reprice.py` still reads `stats.last` / `stats.last_date` only.
+unchanged in meaning. Nothing here feeds the valuation. `reprice.py` reads none of these three keys: it takes the live price
+from `stats.last` / `stats.last_date`, refuses a file whose `fetched_at` predates the scored run, and (since 2026-10-16) checks
+the run's per-share basis against the `daily_1y` / `weekly` closes (the 2026-10-16 round at the end).
 - **`prices.intraday`** (object | null) — the current session, or on a weekend / holiday the LAST session the endpoint returns:
   `{"session_date": "2026-10-14", "tz": "America/New_York", "regular_open": "09:30", "regular_close": "16:00",
-  "prev_close": 272.28, "last": 257.14, "last_time": "19:59", "last_sale": 262.19, "time_as_of": "Oct 14, 2026", "points": 821,
+  "prev_close": 272.28, "last": 257.14, "last_time": "19:59", "last_minute": 1199, "last_sale": 262.19,
+  "time_as_of": "Oct 14, 2026", "points": 821,
   "bars": [[minutes_since_ET_midnight, price], ...], "source": "api.nasdaq.com chart (no dates)"}`. `bars` are 5-minute buckets
   keyed by the bucket's START minute (240 = 04:00, 570 = 09:30, 955 = 15:55, 1195 = 19:55), the LAST 1-minute price inside each
   bucket, time order, no empty buckets, pre-market + regular + after-hours exactly as Nasdaq returned them (a thin name has
   gaps). `prev_close` = `data.previousClose`; `last` / `last_time` = the FINAL point (after-hours when the session has any —
-  so `last` ≠ the regular close); `last_sale` = `data.lastSalePrice` (the official last sale = the regular-session close, equal to
-  `stats.last` after the close); `points` = raw 1-minute points received. Prices are rounded to 4 dp. The 1D chart's
-  previous-close dashed line is `prev_close`; the pre / after-hours shading is `minutes < 570` / `minutes >= 960`.
+  so `last` ≠ the regular close; `last_minute` = its raw ET minute, not its 5-minute bucket); `last_sale` =
+  `data.lastSalePrice` (the official last sale = the regular-session close, equal to `stats.last` after the close);
+  `points` = raw 1-minute points received. Prices are rounded to 4 dp. The 1D chart's previous-close dashed line is
+  `prev_close`; the pre / after-hours shading is `minutes < 570` / `minutes >= 960`.
 - **`prices.sessions_5d`** (list) — rolling buffer of the most recent up to five sessions, OLDEST FIRST, today's included:
   `[{"session_date", "prev_close", "bars"}, ...]` with the same bar shape. Maintained by reading the previous `prices.json`
   before writing: a re-run on the same day replaces that day's entry (never duplicates it); a sixth day drops the oldest.
@@ -474,7 +506,8 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   `schema_version`, unless `--force`. The run prints `N written, N skipped (…companyfacts not downloaded), N failed [T…]`; one
   failure never stops the loop (stderr `statements.py: FAILED T: …`). EDGAR rules: the Muse User-Agent, ≤ 10 requests/second
   (0.11 s floor between requests), 3 attempts with backoff, 90 s timeout; `--cache DIR` reads / writes the raw payloads there
-  (tests and offline verification only). A single-name run always rebuilds. Writes are atomic (`.tmp` then `os.replace`).
+  (tests and offline verification only). A single-name run always rebuilds. Writes are atomic (`.tmp` then `os.replace`) and,
+  since 2026-10-16, happen only when the content changed apart from `as_of` (the summary then counts the name as unchanged).
 - **Verified 2026-10-15** against the filings' own R pages (EDGAR Financial Report viewer), raw units: APP 10-Q 2026-06-30 — revenue
   1,923,686K, net income 1,266,538K, total assets 8,269,131K, total liabilities 5,106,115K, Q2 OCF 869,040K (= 6M 2,160,433K −
   Q1, derived), diluted shares 337,031K, cash 3,053,306K, diluted EPS 3.76; capex null because APP's cash-flow statement has no
@@ -505,7 +538,8 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   tickers, which have no index row). Without the file (or a malformed one) the list is the universe.csv `watchlist` column in
   queue order and nothing is outside. `row.watchlist` on every index row and `meta.stale` entry, re-derived every run, unchanged.
   (d) `<T>/profile.json` (profile.py) is embedded as `record.profile` (dict | null; a malformed file renders as absent) and kept in
-  the attachment; `has.profile` on the row; `meta.counts.profiles`. `COMPANY_FILES` lists profile.json and statements.json.
+  the attachment; `has.profile` on the row; `meta.counts.profiles`. `COMPANY_FILES` lists profile.json and statements.json
+  (and, since 2026-10-16, street.json, merged into `record.profile` — "Profile merge" under "Data policy, 2026-10-16").
 - **Tests**: `python _system/tests/test_statements.py` (no network: an inline companyfacts fixture with two FYs / ten quarters, the
   skip rule on cached payloads, and the build_site pass-through on a temp copy of APP with `--only APP`). `test_build_site.py`'s
   watchlist and `has` assertions were extended for the file-order list and the two new flags.
@@ -608,15 +642,28 @@ and "Forecast tab". `build_site.py` (other owner) copies the file verbatim into 
   (and their `/A` amendments) appear, newest first, at most 20.
 - **Top-level extras**: `cik`, `fetched_at` (ET, seconds), `newest_filing_date` (the skip check's key), `sources`
   (every URL used; a failed Nasdaq endpoint reads `"FAILED: <url>"`) and `warnings` (always a list).
-- **Refresh and failure policy**: `--all` walks every folder with a `score.json`; a name is skipped when its
-  `profile.json` `as_of` is younger than `--max-age-days` (default 7, ET dates) AND `newest_filing_date` equals the
-  newest `filingDate` in the submissions feed (one small request per name); `--force` rebuilds all. A single-name run
-  exits 2 with no CIK (`--cik` > `dcf_numbers.json` > `sec_tickers_exchange.json` > `universe.csv`), 3 when the
-  submissions feed is unreadable (nothing written); an unreadable annual document or any Nasdaq failure still writes the
-  file with the affected block null and a warning. Rate limit: ≥ 0.11 s between requests to the same host (≤ 10/s),
-  three attempts with 1 s / 2 s backoff, EDGAR timeout 90 s, Nasdaq 40 s, 0.5 s pause between names under `--all`.
-  Writes are atomic (`.tmp` + `os.replace`, retried on Windows locks). Tests: `python _system/tests/test_profile.py`
-  (no network).
+- **Refresh and failure policy** (rewritten 2026-10-16 for the profile.json / street.json split — "Data policy,
+  2026-10-16"): `--all` walks every folder with a `score.json` and decides per FILE. `street.json` is re-fetched when it
+  is missing or unreadable, its `as_of` is `--max-age-days` (default 7, ET dates) or more days old, its last pull was
+  degraded (a source reads `FAILED: …`), or with `--force`. For `profile.json` the EDGAR submissions feed is read (one
+  small request per name) and the file rebuilt when it is missing, a pre-split file that still carries `street` /
+  `market`, its `newest_filing_date` or the accession numbers of its `filings` differ from the feed's (a second filing
+  on the same date counts; only the feed's eight forms and their amendments, so a Form 4 never does), its last build
+  was degraded (a failed Nasdaq About endpoint, an unreadable annual document or submissions page — retried on every run
+  until a build succeeds), or with `--force`. Age alone never rebuilds profile.json, and a rebuild whose content differs
+  only in `as_of` / `fetched_at` leaves the file untouched (`_stable.write_json_if_changed`). A name needing neither is
+  skipped; one name's failure is listed on its own summary line and the walk goes on (exit 1). `--street-only` (also
+  with a single ticker) refreshes street.json with no EDGAR request: the CIK comes from the committed profile.json, else
+  `dcf_numbers.json` / `fundamentals.json`, else `sec_tickers_exchange.json` / `universe.csv`. A single-name run rebuilds
+  both files and exits 2 with no CIK (`--cik` > `dcf_numbers.json` > `fundamentals.json` > `sec_tickers_exchange.json` >
+  `universe.csv`), 3 when the submissions feed is unreadable (profile.json not written; street.json still refreshed),
+  4 when a build raised (traceback; that file not written), 5 when a file could not be written (the other still is),
+  6 when an extractor raised on a document that was read (profile.json written with that extractor's fields null and
+  the "annual document parse error" warning — not a degraded build, so it is not retried until the feed changes); an
+  unreadable annual document or any Nasdaq failure still writes the file(s) with the affected block null and a warning.
+  Rate limit: ≥ 0.11 s between requests to the same host (≤ 10/s), three attempts with 1 s / 2 s backoff, EDGAR timeout
+  90 s, Nasdaq 40 s, 0.5 s pause after each name `--all` fetches. Writes are atomic (`.tmp` + `os.replace`, retried
+  for ~20 s on Windows locks). Tests: `python _system/tests/test_profile.py` (no network).
 
 ## Decisions (prices.py review round, 2026-10-15 — stale prev_close, the lost 16:00 print, partial sessions)
 Fixes from the adversarial review of the intraday capture. Each is additive to the shapes above; where a sentence in the
@@ -659,15 +706,19 @@ Fixes from the adversarial review of the intraday capture. Each is additive to t
   one `python3 _system/prices.py --all --quiet` between 20:00 and 03:59 ET (e.g. 20:15), or move the daily-ranking job's
   prices step past 20:00; until then every `sessions_5d` entry is `complete: false` and the 1D chart of a name the sweep
   touched at 10:00 freezes at 10:00 until the next touch. `prices.py` itself cannot schedule anything.
-- **`merge_sessions` never shortens a stored session.** The same-date entry on disk is KEPT when its last bar is later
-  than the new capture's, or equal with more bars (a later capture of one session is a superset), and a `warnings` entry
-  says so (`sessions_5d: the stored 2026-10-15 entry (captured …, last bar 08:51) reaches further than this capture …;
-  stored entry kept`). The `intraday` block itself is always the current capture (it is "what Nasdaq says now": `last`,
-  `last_sale`, `time_as_of`). This guards an out-of-order or concurrent run; it is not a substitute for the post-20:00 run.
-- **For `build_site.py` (other owner, still open):** `record.prices` must pass `intraday`, `sessions_5d` and `warnings`
-  through (build_site.py:469 whitelists `source, as_of, currency, stats, weekly, daily_1y` only) and `trim_record` should
-  drop `sessions_5d` as it drops `daily_1y`. Until that lands the site shows "Intraday (1D · 5D) not captured yet" for every
-  name although the files carry the sessions. The new per-entry fields add ~120 bytes per session.
+- **`merge_sessions` never shortens a stored session** (rule as of 2026-10-16). Every `sessions_5d` entry now stores
+  `last_minute`, the RAW last 1-minute print (ET minutes since midnight, 524 = 08:44) — two captures inside one 5-minute
+  bucket share a last bar key (08:41 and 08:44 both sit in the 08:45 bar) but not a last print. The same-date entry on disk
+  is KEPT when it is a strictly newer capture, compared in turn by: the raw last print when both entries carry one (else
+  the last bar key — the only clock an entry written before 2026-10-16 has), the bar count (a later capture is a
+  superset), complete over partial, and the later `captured_at`; a full tie goes to the new capture. A `warnings` entry
+  says so (`sessions_5d: the stored 2026-10-15 entry (captured …, last print 08:44) is newer than this capture (captured …,
+  last print 08:41); stored entry kept` — "last bar HH:MM" for a legacy entry). The `intraday` block itself is always the
+  current capture (it is "what Nasdaq says now": `last`, `last_sale`, `time_as_of`). This guards an out-of-order,
+  concurrent or stale run; it is not a substitute for the post-20:00 run.
+- **For `build_site.py` (other owner; since done):** `record.prices` passes `intraday`, `sessions_5d` and `warnings`
+  through verbatim and `trim_record` drops `sessions_5d` as it drops `daily_1y` (the statements section below, item (b)).
+  The new per-entry fields add ~120 bytes per session.
 - **Tests:** `_system/tests/test_prices.py` (no network, no writes in the repo; the clock `now_et()` and both fetchers are
   monkeypatched) covers the 959 / 960 / 961 boundary, the pre-market payload (`prev_close` == `daily[-1]` close, warning
   names Nasdaq's stale value), `complete` by print and by capture time, `close` by daily row and by lastSalePrice, the
@@ -743,8 +794,9 @@ profile decisions above stand except where this section says otherwise.
 - **Numbers and JSON hygiene**: `num()` accepts only a finite decimal literal — "NaN", "Infinity", "-inf", "1_000"
   → null (a NaN crashed `intnum`; an inf serialised as `Infinity`, invalid JSON for the browser); `write_atomic`
   passes `allow_nan=False` so no such value can ever reach the file. `run_one` fetches the submissions feed itself
-  (exit 3 when unreadable, nothing written) and an exception inside the build is reported as "build failed
-  (<type>: <msg>)" with the traceback, **exit 4** (nothing written) — no longer mislabelled as a submissions failure.
+  (exit 3 when unreadable: profile.json not written — since the 2026-10-16 split street.json is still refreshed) and an
+  exception inside a build is reported as "profile build failed" / "street build failed (<type>: <msg>)" with the
+  traceback, **exit 4** (that file not written) — no longer mislabelled as a submissions failure.
 - Tests (`python _system/tests/test_profile.py`, no network) carry fixtures for each case: ZS's four negative-consensus
   rows, APP's D → DRS → S-1 → 424B4 sequence and Kroger's pre-EDGAR sequence, pagination order and early stop, the ZS
   and HBAN cover tags, HBAN's text dividend dates, the HAL and CCL tables of contents, the JD / EQT / ED / subsidiary /
@@ -757,7 +809,7 @@ Fixes from the adversarial review of `app.js` / `app.css` / `tests/app.test.js`;
 - **Negative zero never prints.** The minus sign is decided on the ROUNDED text (`minus(v, txt)`: `-` only when `v < 0` and the text has a non-zero digit) in `stmFmt`, `fmtPct`, `fmtPts`, `fmtX` and `fmtMoney`; `-4,000` in millions is `0.00`, `-0.0004` growth is `0.0%` / `+0.0%` signed. `stmFmt`'s 100 M switch (no decimals) is decided on the rounded value, so 99.995 M prints `100`, not `100.00`. The test sweeps every served statements file × 4 statements × 3 periods for `-0`, `-0.00`, `-0.0%`.
 - **The sparkline survives a re-mount.** `companyCharts(record, stm)` (exported, node-tested) = `chartSpecs(record)` plus the `stm-spark` spec when the cached statements state is `ready` with a line open; `mountCompany` uses it, so back-to-the-ranking-and-return or Overview → Financials later in the session draws the open line's chart instead of "No data." The open line still resets only on a statement switch (unchanged).
 - **Keyboard focus is kept across redraws.** `focusKey(el)` (pure, node-tested) names a redrawn control by selector — line button, statement / period segment button, Growth-rows checkbox, chart close button, ☆/★ star, the watch toggle; `redrawStatements(focusSel)` and `refreshRows()` remember the focused control before replacing markup and re-focus it (`focus({preventScroll:true})`) after; closing a chart with its × returns focus to the line it belonged to. The open line's `.stl` button carries `aria-controls="stmspark"` (only while the region exists — a closed line does not point at a missing id).
-- **Attachment without `meta.site_url`.** `build_site.py` does not emit `site_url` (meta.json has none), so the embedded statements card no longer links to a relative `index.html` that does not exist next to the attachment: it says "open <T>'s Financials tab on the site" with no link, and links to `<site_url>#<T>.financials` only when the data layer provides the URL. **Open for the build_site.py owner:** emit `meta.site_url` (the GitHub Pages URL) so the attachment and `renderMissingHTML` can link.
+- **Attachment without `meta.site_url`.** `meta.site_url` is null unless `STOCKS_SITE_URL` is set when `build_site.py` runs (the repo is private, so there is no public host by default), so the embedded statements card no longer links to a relative `index.html` that does not exist next to the attachment: it says "open <T>'s Financials tab on the site" with no link, and links to `<site_url>#<T>.financials` only when the data layer provides the URL (`renderMissingHTML` likewise).
 
 ## Decisions (fundamentals.py dividends block 5.4.4, 2026-10-15 — adversarial-review fixes)
 Additive to `fundamentals.dividends` (copied verbatim into `data/<T>.json`); nothing feeds the valuation. Every figure stays a filed value or
@@ -874,7 +926,8 @@ describe it (`daily_1y`, `weekly`, `intraday`, `sessions_5d`); nothing here is a
 - **Open for other owners.** (1) The served `intraday` blocks today are 08:5x ET pre-market captures with `complete: false` and the
   `sessions_5d` buffer holds one or two days per name — the 1D / 5D charts are correct but thin until the post-20:00 ET prices.py run the
   prices.py section asks for is scheduled (automation owner). (2) The attachment drops `sessions_5d`, so 5D is "not captured yet" there by
-  design. (3) `meta.site_url` is still not emitted (build_site.py), so the attachment's links stay plain text.
+  design. (3) `meta.site_url` is `$STOCKS_SITE_URL` (build_site.py) and null while that is unset, so the attachment's links
+  stay plain text until a host is configured.
 
 ## Decisions (statements.py review round, 2026-10-15 — filing generations, units, splits, bank / Kroger / IFRS lines)
 Fixes from the adversarial review of `<T>/statements.json`. Additive to the statements section above; where a sentence there now
@@ -963,8 +1016,9 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   existing file records the same newest filing (form + date), the same `schema_version` AND `latest_filed.period <= covered_through`.
   A file written while companyfacts lagged the filing (the "not yet in EDGAR companyfacts" warning) is therefore retried on every
   run until the data arrives (HBAN's Q2 2026 10-Q, GFI's FY2025 20-F, BIIB, CTSH, ED, GEHC, VMC on 2026-10-15). A file without
-  `covered_through` (pre-rule) is rebuilt once. `can_skip()` is the rule; the summary line reads "newest filing already recorded
-  and covered".
+  `covered_through` (pre-rule) is rebuilt once, and so (2026-10-16) is a file whose cash line used the combined cash + restricted
+  cash tag but carries no `incl_restricted_annual` (`restricted_cash_pending`). `can_skip()` is the rule; the summary line reads
+  "newest filing already recorded and covered".
 - **Open questions for the owner.** (1) Whether FCF should subtract purchases of intangibles / capitalised software for filers
   with no PP&E line (APP: 28,318K in FY2025; the engine's capex override does); the file keeps the contract's ocf − capex and shows
   the intangibles line beside it. (2) HBAN's provision total differs from the face by 2–3M in FY2024/FY2025 (a securities
@@ -1057,8 +1111,8 @@ changes a data shape:
   margin", a bank's "Cost of revenue"). Lines with any value are unchanged.
 - **What the chat attachment cannot show.** `_daily/latest.html` inlines this app with the top-150 records but, by the data-layer
   contract, no `statements.json` (57–266 KB per name), so its Financials tab shows the summary tables and "The full statements are
-  on the site". That is the "missing" Financials page when the attachment is what is open; the served site has the viewer. Still
-  open for build_site.py: emit `meta.site_url` so the attachment can link straight to `<site>#<T>.financials`.
+  on the site". That is the "missing" Financials page when the attachment is what is open; the served site has the viewer. With
+  `STOCKS_SITE_URL` set, build_site.py's `meta.site_url` lets the attachment link straight to `<site>#<T>.financials`.
 - **Tests** (`node _daily/site/tests/app.test.js`, 61): the About grid (order, Ticker, title evidence, first-filing form, fallbacks),
   `clampText` and the Read more markup, the Street card model (percent vs the last close and vs the scored price, history order,
   no-price / no-target / one-month cases) and its small chart, the filings kinds / filter / chips / disabled chips / fallback rows,
@@ -1460,3 +1514,200 @@ file once. Tests: `python _system/tests/test_statements.py` (37, no network).
 - Split-adjusted values are trimmed to 12 significant digits (−1.95, not −1.9500000000000002).
 - **Verified**: tests above; offline rebuild of all 94 cached companyfacts (no crash, JSON finite); live single-name writes for
   CCI, APP, DXCM, KR, JBL, CBRE, RMD, ECHO, HPQ, TKO, NVT, Q, DFTX, EXR, HBAN, HIG, HAL, CCL, ALNY, AXON, CNC, WRB (never `--all`).
+
+## Data policy, 2026-10-16 — committed files vs caches, street.json, history CSV (build_site.py review round 2)
+The repo is meant to be cloned and run anywhere (Andrew's PC as well as Muse's VM), so only what cannot be re-derived
+cheaply is committed; everything re-fetchable or re-buildable is a gitignored cache. `python _system/refresh.py` recreates
+the caches on a fresh clone (Nasdaq only — no SEC requests are needed to show the site).
+- **Committed**: code and specs (`_system/`, the app shell `_daily/site/index.html` / `app.css` / `app.js` / `tests/`);
+  each company's judgment record (`score.json`, `dcf_numbers.json`, `judgment.json`, `analysis.md`, `key_numbers.md`,
+  `ttm.json`, `financials_history.csv`, `second_pass.md`); its SEC-derived files `fundamentals.json`, `statements.json`,
+  `segments.json`, `profile.json`, rewritten **only when their content changes** apart from the volatile run-date keys
+  (`as_of`, and `fetched_at` where the file has one; fundamentals.json also ignores its dividends block's price leaves —
+  the 2026-10-16 round at the end) (`_system/_stable.py` `write_json_if_changed`), so a file's `as_of` is the day its
+  content was produced; and the daily snapshot `_daily/history/ranking-YYYY-MM-DD.csv`.
+- **Gitignored caches** (written every run, never committed; a fresh clone has none of them): `<T>/prices.json`,
+  `<T>/live.json`, `<T>/street.json`, `_daily/site/data/`, `_daily/site/index.json`, `_daily/site/meta.json`,
+  `_daily/site/state.json`, `_daily/latest.html`, `_daily/ranking-*.html`, `*.lock`. Nothing may require them to exist:
+  `build_site.py` renders a company without prices / live / Street data (`has.*` false, nulls), and its tests install
+  frozen copies (`_system/tests/test_build_site_fixtures.json`) or none at all.
+- **`<T>/street.json`** (profile.py writes it on every Nasdaq pull; the Street and market data moved out of profile.json):
+  `{"ticker": str, "cik": int, "as_of": "YYYY-MM-DD" (America/New_York date of the pull), "fetched_at": ISO-8601 with offset,
+  "source": "Nasdaq analyst and quote endpoints", "street": <the object formerly at profile.json["street"], unchanged shape,
+  with its own as_of> | null, "market": <the object formerly at profile.json["market"], unchanged shape> | null,
+  "sources": {<nasdaq endpoint key>: url, ...}, "warnings": [str, ...]}`. `profile.json` keeps `ticker`, `cik`, `as_of`,
+  `fetched_at`, `newest_filing_date`, `sources` (EDGAR plus the Nasdaq company-profile / summary endpoints used for About),
+  `about`, `filings`, `warnings` — and no `street` / `market` keys.
+- **Profile merge** (`profile_with_street`): `record.profile` is profile.json with `street`, `market` and
+  `street_fetched_at` set, so the app keeps reading `record.profile.street` / `.market`. A key street.json carries wins,
+  null included (a newer pull with no coverage is not overridden by an older profile.json); a key it lacks (or no
+  street.json, or one that is not a JSON object) falls back to the legacy key of an older profile.json, else null. An
+  empty object counts as null. `street_fetched_at` is street.json's `fetched_at`, or the legacy profile.json's
+  `fetched_at` when the legacy block is the one shown, else null. With street.json but no profile.json, `record.profile`
+  is just `{street, market, street_fetched_at}` and `has.profile` stays false (it means profile.json). street.json is an
+  ordinary folder file: a new pull (newer mtime) or its deletion rebuilds that record and no other. The attachment keeps
+  `record.profile` as before.
+- **Missing outputs.** A record whose `data/<T>.json` is missing is built, whatever `state.json` / `index.json` claim —
+  also when it is outside `--only` (`build()["missing_outside_only"]`, a `meta.notes` line), because otherwise an
+  `--only` run on a fresh clone would publish an index of one company. A record outside `--only` whose file exists but has
+  no readable row is rebuilt the same way. `state.json` entries for tickers that are no longer current are dropped; a
+  skipped record whose state entry was lost re-seeds it from the record. `meta.json` and `index.json` are written on every
+  run; an unreadable or foreign-shaped `state.json` / `index.json` / `queue.json` / `overrides_registry.json` counts as
+  absent (rows and mtimes are then recovered from the records themselves).
+- **`_daily/history/ranking-YYYY-MM-DD.csv`** (written with `--attachment`; the same America/New_York date as the dated
+  attachment; the same day's file is overwritten; a `--site-dir` build writes `<parent of site-dir>/history/` instead).
+  UTF-8 without BOM, `\n` line endings, a header row, RFC 4180 quoting only where needed (names with commas), one row per
+  index row (every ranked, i.e. current, company), ordered by live IRR desc, then scored IRR desc, then ticker — names
+  without live data therefore follow every live-priced name, which is the "top N by live expected return" the daily
+  message quotes. Columns (`HISTORY_COLUMNS`), all from the index row: `rank` (1..N in that order), `ticker`, `name`,
+  `sector_misfit` (`fit == "misfit"`), `tier_scored` (`tier`, the final tier), `irr_scored` (`irr`), `tier_live`,
+  `irr_live` (blank without live data), `band_low_tier` / `band_high_tier` (the live bear / bull tiers when the row has live
+  data, else the scored ones), `price` and `price_date` (the last close and its date when live, else the scored price and
+  the analysis date), `iv15` (weighted IV at 15%), `upside15_pct` (`upside15_live` when live, else `upside15`; percent),
+  `analysis_date`, `engine_release`, `alert_eligible`, `watchlist`. Plain values: IRRs as decimals with 6 digits
+  (`0.032836`), money and upside with 2 (`220.79`, `-94.95`), no thousands separators, never `-0.000000`; booleans
+  `true` / `false`; null as an empty cell. The `--attachment` summary line carries `history N rows -> <path>`;
+  `build()["history"]` is `(path, rows)`.
+- **Scored floor flags in the sensitivity block** (review finding 4289642893). Every `forecast.sensitivity` row carries
+  `irr_at_floor` for its SCORED IRR beside the live `irr_live_at_floor`. Source, in order: the run's own flag (engine 5.4:
+  `numbers.scenarios[k].irr_at_floor`; weighted: `score.irr_at_floor` → `diagnostics.irr_at_floor` →
+  `numbers.weighted.irr_at_floor`); for an older run with none, `solve_irr`'s at-floor flag on the replayed flows at the
+  scored price. Only the flag comes from the replay — the recorded (historical) IRR is never replaced. Null when the row has
+  no scored IRR or there is neither a flag nor anything to replay (RDDT and U: no recorded inputs). `row.irr_at_floor`
+  uses the same rule for the weighted case (false when undecidable). ZS: scored Bear 2.75% and Super-bear −0.97% are now
+  marked at floor (the replay solves 2.98% / 2.78% at $228.66, both within 0.5 pp of the 2.5% terminal growth); Base,
+  Bull, Super-bull and the weighted case are not. Over every folder whose run can be replayed (74, 370 scenario IRRs) the
+  replay flag agrees with the engine's own "within 0.5 pp of g" rule applied to the recorded IRR in all 370 cases.
+- **Zero terminal growth** (review finding 4289642918). `g_terminal` is `inputs.g_terminal`, else the top-level copy, else
+  the engine default, tested for null rather than truthiness: a recorded 0.0 is kept for `forecast.g_terminal`, the
+  replayed hurdle prices, the replayed sensitivity IVs and the floor replay (ZS with g = 0: hurdle price at 20% 6.90, was
+  7.01 — flows faded to 0% but discounted with a 2.5% terminal).
+- **Tests**: `python _system/tests/test_build_site.py` — frozen caches for APP / KR / AEE / ZS
+  (`test_build_site_fixtures.json`: prices.json trimmed, live.json verbatim, captured 2026-10-15) plus a fresh-clone case
+  with no caches and no `_daily/`; scored floor flags (replayed and recorded, both directions); zero terminal growth; the
+  street.json merge, its legacy fallback and its incremental rebuild; missing outputs; the history CSV.
+
+## Decisions (follow-up round, 2026-10-16 — repricing basis, withheld live, split restatement, dividends at the last close, restricted cash, app)
+Closes the follow-ups the PR #2 review round handed back. Additive to the shapes above; where an earlier sentence reads
+differently, THIS section wins (passages that had become plainly wrong were corrected in place and point here).
+- **reprice.py: what it reads, and the per-share basis check.** The live price is prices.json `stats.last` / `stats.last_date`;
+  a file whose `fetched_at` predates the scored run is refused (as before). New: the run's per-share basis is checked against
+  the `daily_1y` closes (the `weekly` ones for a run older than the daily window), with fundamentals.json
+  `dividends.split_adjustments` as evidence only. Nasdaq's history is split-adjusted on every pull, so the scored quote over
+  the split-adjusted close of the scored session (or the one before it, within 7 days) is ~1 when nothing happened: within
+  |ln ratio| 0.10 the basis is `ok`; within 0.05 (log) of exactly one clean ratio (2:1 … 10:1, 12, 15, 20, 25, 30, 40, 50 and
+  100 to 1, 3:2, 5:2 and the reverse of each) it is a split since scoring, and every per-share value of the run (the scenario
+  paths, IV@12/15/20/25, the scored price) is divided by the factor and the share count multiplied by it, so the IRR is
+  solved in one unit. Anything else (no reference close, an ambiguous or unexplained ratio) writes no live.json — a stale one
+  is deleted and a single ticker exits 3 — so the scored figures stand. While the series still ends before the scored
+  session (Nasdaq posts a session's row hours after the close) the basis is `ok` with method `no_close_since_scoring`; a
+  one-session move of a clean split ratio's size into a session after the scored date, among the newest three closes, is
+  held (no live.json) until Nasdaq adjusts the history or the move has stood three sessions.
+- **live.json additions.** `split_factor` (new shares per scored-run share; 1.0 without a split), `basis_check`
+  (`{status: "ok" | "split_adjusted", factor, split: "2:1" | null, method: "ratio" | "no_close_since_scoring" |
+  "within_scored_day_range", scored_price_raw, scored_price_adjusted, scored_date, ref_close, ref_close_date, observed_ratio,
+  log_residual, filed_splits_after_scoring}`), `score_mismatch` (list | null) and `score_note`. `scored_price` and the IVs are
+  in today's share units. An agent tier override is read only from a score.json built from THIS engine run
+  (`score_matches_run`: `analysis_date` = the run's `as_of`, `tier_by_numbers` — itself the tier of the run's weighted IRR —,
+  `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`);
+  otherwise `score_json_fresh` is false, `score_mismatch` lists every disagreement, no override applies and
+  `scored.tier_final` is null. The `--all` summary names the splits restated and the scores from another run.
+- **Live older than the score** (`build_site.live_shown`). A live.json repriced on scoring day can carry the close BEFORE the
+  scored session. When `live.price_date` is earlier than the later of score.json `analysis_date` and `live.scored_date`, the
+  scored figures are the current ones: `record.live` is null and `record.live_withheld` = `{reason: "live_older_than_score",
+  price, price_date, scored_date, method (basis_check.method), note}` (null otherwise); the row keeps `irr_live` / `tier_live` /
+  `price_live` / `price_date` null, `has.live` false and `live_withheld: true`, so it ranks on its scored IRR;
+  `forecast.sensitivity[*].irr_live` is null. `meta.counts.live_withheld` and a `meta.notes` line name them. A live.json
+  left over from an earlier run (`live.scored_date` before score.json `analysis_date`: the name was re-scored and
+  reprice.py has not run since) is withheld the same way with `reason: "live_from_earlier_run"`, whatever its close.
+- **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
+  `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
+  OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,
+  `score.second_pass.prior_iv_at_15`, `forecast.paths`, `forecast.hurdle_prices`, the sensitivity IVs, `row.price` /
+  `iv12` / `iv15` / `iv20` / `iv25`, `ttm.ttm_oe_per_share`) is divided by the factor and its share counts (`SPLIT_MULTIPLY`:
+  `numbers.shares_diluted_latest`, `history[*].shares_diluted`, `ttm.ttm_shares_diluted`) multiplied by it, so they read in
+  today's share units next to the last close; IRRs, tiers, upside and market caps do not change. `record.split_restated` =
+  `{factor, split, scored_date, price_date, fields (the paths scaled), as_scored: {price, iv_at_15, base_oe_per_share}, note}`,
+  `row.split_restated` = `{factor, split}` (both null without a split); `meta.counts.split_restated` and a notes line. A live
+  IV@20/25 used as the row's fallback is put back in run units first, so it is restated exactly once. The dividends block
+  is shown as written across such a split (its filed DPS and share count would meet a post-split close).
+- **Dividends at the last close** (`build_site.priced_fundamentals`). fundamentals.json is committed, and its dividends
+  block's price leaves (`fundamentals.PRICE_LEAVES`: `price`, `price_date`, `price_source`, `price_note`, `market_cap` and
+  its basis, the four yields, `yield_basis.*.denominator`, `yields_display.*.value` / `.label`) are volatile for the file
+  comparison, so a new close alone never rewrites it. build_site.py reprices the block with `fundamentals.price_dividends`
+  — the function fundamentals.py writes it with — at prices.json `stats.last` / `last_date` (`price_source`
+  "prices.json stats.last") when that close is not older than the block's `price_date` and is not already its price; the
+  row's `dividend_yield`, `shareholder_yield` and `shareholder_yield_label` / `_bound` follow. Shown as written without
+  prices.json (a fresh clone), with an older close, for a block written before 5.4.4 (`fundamentals.repriceable`), across
+  a split since scoring, or when fundamentals.py cannot be imported. The block's price note ("price: … from score.json …",
+  "… carries a price — yields null") is the new key `dividends.price_note`, no longer an entry of `notes` (price_dividends
+  drops it from an older block). fundamentals.py's own price: prices.json `stats.last`, else the close the committed file
+  already used (with its date and source) unless score.json's analysis price is newer, else score.json's price.
+- **fundamentals.json, other committed-file rules.** Written through `_stable.write_json_if_changed` (volatile: `as_of` and
+  the price leaves); the printed summary's `fundamentals_json` says "written" or "unchanged". `profile.eight_k_count_12m`
+  counts the 8-Ks in the 365 days to the file's `as_of`, so a run whose only other difference is 8-Ks ageing out of the
+  window leaves the file alone. Total debt read from a long-term total tag (`LongTermDebt`,
+  `LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities`) adds short-term borrowings filed on their own line
+  (never the current maturities, which are inside it, and never across currencies), and `annual[].debt_basis` says which;
+  the engine's net debt (diagnostics only, `engine_release` unchanged) follows the same rule. The split guard reads the
+  quarterly diluted counts as well as the fiscal-year ones (Q's 0.5 spin-off distribution ratio no longer doubles its DPS).
+- **statements.json: restricted cash.** A cash cell filed only as the combined cash + restricted cash total
+  (`CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents`, read where the annual report filed no
+  `CashAndCashEquivalentsAtCarryingValue` for the date) stays as filed. Its restricted part is the difference from the same
+  date's cash-only caption where a filing reports both with that total (0 where they are equal), else a restricted-cash
+  total filed for the date, else the current and noncurrent restricted captions summed (a figure outside 0 … the cash cell
+  is not deducted, and the cell counts as unseparated). A positive part is shown on the new
+  balance-sheet line `restricted_cash` ("Restricted cash (included in cash above)", level 2) in those cells only, and net
+  cash, net cash per share and the ROIC proxy's invested capital use cash minus it (NTRS FY2025: 5,873.1M − 531.2M, net cash
+  2,521.6M → 1,990.4M, 13.53 → 10.68 per share). `incl_restricted_annual` / `incl_restricted_quarterly` (bool per column)
+  and `incl_restricted_ttm` (bool) mark the cells that still count restricted cash as cash: on the cash line (emitted
+  whenever it has a combined cell; true where the part is positive or unknown) and on `net_cash`, `net_cash_per_share` and
+  `roic_proxy` (emitted only when some cell is true: a combined cell nothing separates). Labels say so: the cash line reads
+  "Cash, equivalents & restricted cash" when every valued cell holds restricted cash and gains " (some periods incl.
+  restricted cash)" when only some do; a flagged derived line gains " (incl. restricted cash)" / " (some periods incl.
+  restricted cash)" the same way.
+  **Growth-blank rule:** on those three derived lines a growth cell (annual, or quarterly YoY) whose two periods are on
+  different bases — one deducts the part or uses the cash-only caption, the other still counts it — is null (NTRS net cash
+  2023-06-30 vs 2022-06-30 read −12.6%, a change of definition); a caption that does not say (CashAndDueFromBanks, Cash) is
+  no break. A `restricted cash: …` warning describes the split (a second one lists any growth cells blanked).
+  `schema_version` stays 3: `--all` rebuilds once only the files whose cash line used the combined tag
+  (`restricted_cash_pending`). statements.json, segments.json and profile.json are written through
+  `write_json_if_changed` too; their `--all` summaries say which names were rebuilt but left unchanged.
+- **profile.py / street.json.** The refresh policy and exit codes are the rewritten "Refresh and failure policy" in the
+  profile.py section: per file, the filing feed compared by `newest_filing_date` AND accession numbers, a degraded build or
+  pull retried on the next run, `--street-only` for a Nasdaq-only refresh with no EDGAR request.
+- **prices.py `last_minute`.** `intraday.last_minute` (the raw last print) is copied to every `sessions_5d` entry, and
+  `merge_sessions` orders two captures of one session by it (the corrected bullet in the prices.py review round).
+- **Static app.** *Live pending:* with `record.live_withheld` the header's price tile reads "Scored price" with the reason
+  (the note in its title) and never shows a close older than the analysis (`currentClose`; the condensed bar the same), the
+  Overview / Forecast price tiles say "live pending", the ranking's Live IRR cell reads "live pending" (`row.live_withheld`),
+  and the list header counts the pending rows (`meta.counts.live_withheld`). *Split since scoring* (`record.split_restated`):
+  a header chip, a short note above the Overview, notes on the Forecast, Data, Analysis, Financials and Dividends tabs
+  (analysis.md, judgment.json, the override values, the filed statements and the dividends block stay as scored / as
+  filed), a ranking badge from
+  `row.split_restated`; where filed per-share figures meet restated or consensus ones (the OE/share history, the Street
+  sub-tab's filed EPS and "from" figures) a fiscal year still on the pre-split basis is divided by the factor
+  (`splitDivisor`) and the note says so. *Restricted cash:* a ‡ (with a title) on every statements cell flagged
+  `incl_restricted_*`, and a legend line when any is. *Dividends:* the yields name the price they stand on from
+  `price_source` ("the last close $X (date)", "the scored price $X (date), no prices.json yet", or the pre-split price
+  across a split) and `price_note` leads the notes. *Dates:* the SEC files' dates read "updated <date>" (About, Filings,
+  statements, segments — rewritten only when their content changes), the Street keeps "pulled", prices "through".
+  *Profile vs Street:* `record.profile` can hold only the Street keys (street.json without profile.json), so About and
+  Filings ask whether profile.json was pulled (any key beyond `street` / `market` / `street_fetched_at`) and the Street
+  cards whether street.json was (`street_fetched_at`; the key present and null = not pulled yet; a record built before the
+  split, with no such key, counts any profile). *Router:* every navigation takes a fresh token before anything else, so a
+  record still loading from an earlier hash never mounts over the ranking, an unknown name, or a return to the company
+  already open (which re-mounts from the cache).
+- **Tests.** `node _daily/site/tests/app.test.js` (89). `data/`, `index.json` and `meta.json` are gitignored caches: a check
+  that reads them falls back to the committed company files (`tests/fixtures/assemble.js`, which mirrors build_site's street
+  merge, withheld live and split restatement) or skips with a printed note. `APP_TEST_BUILT=<dir>` reads the built data from
+  another directory (an empty one runs the suite as a fresh clone would) and `APP_TEST_BASE=<dir>` moves the company folders
+  (e.g. a copy holding only committed files). Python, no network: `test_reprice.py` (split divided out; ordinary,
+  unexplained and unverifiable bases; disjoint split windows; a score from another run; the scored session's close not
+  posted yet; a held unadjusted step; a big scoring-day move never read as a split), `test_build_site.py` (dividends repriced
+  at a newer close and equal to fundamentals.py's own output on every committed folder; split restatement and the live
+  IV fallback; live withheld; `street_fetched_at` without street.json), `test_statements.py` (restricted cash),
+  `test_prices.py` (raw last print, legacy entries, an out-of-order run in the same bucket), `test_fundamentals_debt.py`,
+  `test_profile.py`, `test_docs_contract.py` (these documents against the code: every index row / record / `meta.counts`
+  key and the history CSV columns named here, the keys and options this round added, automation/README.md's day table
+  against the cron files).

@@ -28,7 +28,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    - **Exit 3 `DATA_GAP:price`** → block the same way and finish.
    - **Re-score after a new filing**: when the folder already holds a prior run (the queue
      entry carries `refresh_reason: NEW_FILING…`), read its analysis.md first; judgment.json
-     and its overrides carry over and the tools apply them. Write the new analysis.md as a
+     and its overrides carry over and the tools apply them, except its `second_pass` object:
+     remove it, since it reviewed the previous score (pass 2 reviews the new one, and
+     make_score.py would otherwise copy the old badge onto it). Write the new analysis.md as a
      dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
@@ -102,11 +104,14 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `python3 _system/segments.py <T>` (segment / product / geography breakdowns from the
    filing's XBRL instance → `segments.json`), `python3 _system/statements.py <T>` (the full
    standardized income statement, balance sheet, cash flow and metrics, whole filing history
-   → `statements.json`), `python3 _system/profile.py <T>` (About, Street consensus, filing
-   feed → `profile.json`), `python3 _system/reprice.py <T>` (the scored cash-flow paths
+   → `statements.json`), `python3 _system/profile.py <T>` (About and filing feed →
+   `profile.json`; Street consensus and market data → `street.json`),
+   `python3 _system/reprice.py <T>` (the scored cash-flow paths
    repriced at the last close → `live.json`; Tier F names are skipped by design). The
-   company page reads all of them. A failure here never blocks the score — note it
-   in analysis.md's data section and move on.
+   company page reads all of them. The SEC files (fundamentals, statements, segments,
+   profile) are committed and rewritten only when their content changes; `prices.json`,
+   `street.json` and `live.json` are gitignored caches rewritten every run. A failure here
+   never blocks the score — note it in analysis.md's data section and move on.
 10. `python3 _system/queue.py done <T>` then `python3 _system/build_site.py` (the data layer:
     `_daily/site/{meta,index}.json` + `data/<T>.json`; incremental, so it only regenerates the
     names whose files changed). The static app in `_daily/site/` renders everything — never

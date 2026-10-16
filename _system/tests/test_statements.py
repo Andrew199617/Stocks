@@ -45,6 +45,20 @@ folder in a temporary STOCKS_BASE (nothing in the repo is written).
    corroborated 1-for-15 reverse split (DFTX); two splits of one ratio (WRB);
    a gross interest tag carrying the net figure (KR); one capex caption per
    series (EXR).
+12. Review round 5 (Codex, PR #2): a cash line filed as the combined cash +
+   restricted cash total — the restricted part deducted from net cash, net
+   cash per share and the ROIC proxy where it is tagged (NTRS FY2025
+   2,521.6M / 13.53 -> 1,990.4M / 10.68), flagged where it is not, the line
+   labelled and marked; a separate restricted caption next to a cash-only
+   line changes nothing; the --all rebuild rule for files written before;
+   statements.json written only when its content (not just as_of) changes.
+   Verifier round: growth blank between a period that still counts
+   restricted cash and one that deducts it (NTRS 2023-06-30 −12.6% compared
+   two definitions), kept next to a caption that does not say (NTRS's
+   CashAndDueFromBanks); the same date's cash-only caption from the same
+   filing decides the part (ZTS FY2025: 0, not the tagged 2M; another filing
+   generation is no evidence); current + noncurrent restricted cash (U);
+   the "(some periods incl. restricted cash)" labels.
 6. build_site pass-through on a temp site dir with --only APP:
    data/APP.statements.json next to the record, has.statements / has.profile,
    record.profile, prices.intraday / sessions_5d in the record, sessions_5d
@@ -417,6 +431,11 @@ def test_build_site_passthrough():
     try:
         os.makedirs(os.path.join(tmp, "_system"))
         shutil.copytree(os.path.join(BASE, "APP"), os.path.join(tmp, "APP"))
+        # the gitignored caches (Nasdaq prices / Street / live returns) are absent from a fresh clone: never read them —
+        # the copy drops whatever this checkout has and the test writes its own prices.json below
+        for f in ("prices.json", "live.json", "street.json"):
+            if os.path.exists(os.path.join(tmp, "APP", f)):
+                os.remove(os.path.join(tmp, "APP", f))
         for f in ("queue.json", "overrides_registry.json"):
             shutil.copy(os.path.join(SYS, f), os.path.join(tmp, "_system", f))
         with open(os.path.join(tmp, "_system", "watchlist.json"), "w", encoding="utf-8") as f:
@@ -429,10 +448,12 @@ def test_build_site_passthrough():
         folder = os.path.join(tmp, "APP")
         with open(os.path.join(folder, "statements.json"), "w", encoding="utf-8") as f:
             json.dump(stmts, f)
-        profile = {"ticker": "APP", "as_of": "2026-10-15", "about": {"description": "Fixture about text.", "website": "https://example.com"}, "street": None, "filings": []}
+        # profile.json as profile.py writes it since 2026-10-16: SEC-derived About / filings only (the Street block and
+        # market data live in the gitignored street.json, absent here)
+        profile = {"ticker": "APP", "as_of": "2026-10-15", "about": {"description": "Fixture about text.", "website": "https://example.com"}, "filings": []}
         with open(os.path.join(folder, "profile.json"), "w", encoding="utf-8") as f:
             json.dump(profile, f)
-        pr = B.jload(os.path.join(folder, "prices.json"))
+        pr = {"ticker": "APP", "source": "fixture", "as_of": "2026-10-14", "currency": "USD", "stats": {}, "weekly": [], "daily_1y": []}
         pr["intraday"] = {"session_date": "2026-10-14", "prev_close": 272.28, "last": 257.14, "bars": [[240, 271.9], [570, 270.1], [1195, 257.14]]}
         pr["sessions_5d"] = [{"session_date": "2026-10-13", "prev_close": 270.0, "bars": [[570, 271.0]]}, {"session_date": "2026-10-14", "prev_close": 272.28, "bars": [[570, 270.1]]}]
         pr["warnings"] = []
@@ -448,7 +469,9 @@ def test_build_site_passthrough():
         assert served == json.loads(json.dumps(stmts))  # verbatim copy
         rec = B.jload(os.path.join(site, "data", "APP.json"))
         assert "statements" not in rec and rec["row"]["has"]["statements"] is True and rec["row"]["has"]["profile"] is True
-        assert rec["profile"] == profile
+        # every profile.json key verbatim; no street.json → the Street / market keys build_site adds (if any) are null
+        assert all(rec["profile"].get(k) == v for k, v in profile.items()), rec["profile"]
+        assert rec["profile"].get("street") is None and rec["profile"].get("market") is None
         assert rec["prices"]["intraday"] == pr["intraday"] and rec["prices"]["sessions_5d"] == pr["sessions_5d"] and rec["prices"]["warnings"] == []
         index = B.jload(os.path.join(site, "index.json"))
         row = next(r for r in index if r["ticker"] == "APP")
@@ -466,7 +489,7 @@ def test_build_site_passthrough():
         data = json.loads(doc[start:doc.index(";</script>", start)])
         arec = data["records"]["APP"]
         assert "sessions_5d" not in arec["prices"] and "daily_1y" not in arec["prices"] and arec["prices"]["intraday"] == pr["intraday"]
-        assert arec["profile"] == profile and "statements" not in arec and data["meta"]["watchlist_outside"] == ["META"]
+        assert arec["profile"] == rec["profile"] and "statements" not in arec and data["meta"]["watchlist_outside"] == ["META"]
         # unchanged folder → the record is skipped and the copy stays
         res2 = B.build(base=tmp, site_dir=site, only=["APP"], quiet=True)
         assert res2["written"] == [] and res2["skipped"] == ["APP"] and res2["statements_written"] == [] and os.path.exists(copy_path)
@@ -1337,6 +1360,327 @@ def test_continuing_eps_and_original_filing_date():
     us["IncomeLossFromDiscontinuedOperationsNetOfTax"] = {"units": {"USD": [_fact("2025-01-01", "2025-12-31", 5, "10-K", "FY", 2025, "2026-02-19", "acc-2025-12-31")]}}
     _, st, _, _ = S.build_statements(facts, [])
     assert line(st, "income", "eps_diluted")["annual"] == [1.00, None]
+
+
+# ---------------------------------------------------------------- 12. review round 5: restricted cash, stable write
+COMB = "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+
+
+def _restricted_facts():
+    """NTRS-shaped: every cash cell is the combined cash + restricted total (no CashAndCashEquivalentsAtCarryingValue),
+    RestrictedCash tagged from 2025 only; FY2025 = NTRS's 10-K: cash and due from banks 5,873.1M of which 531.2M
+    restricted, statements.py's total debt 3,351.5M, 186,337,588 shares outstanding."""
+    facts = make_facts()
+    us = facts["facts"]["us-gaap"]
+    del us["CashAndCashEquivalentsAtCarryingValue"]
+    cash = {e: 4_000_000_000 + 100_000_000 * i for i, e in enumerate(ALL_ENDS)}
+    cash["2025-12-31"] = 5_873_100_000
+    rc = {e: 500_000_000 + 1_000_000 * i for i, e in enumerate(ALL_ENDS) if e >= "2025-01-01"}
+    rc["2025-12-31"] = 531_200_000
+    us[COMB] = {"units": {"USD": _instant_entries(cash)}}
+    us["RestrictedCash"] = {"units": {"USD": _instant_entries(rc)}}
+    us["LongTermDebtNoncurrent"] = {"units": {"USD": _instant_entries({e: 3_351_500_000 for e in ALL_ENDS})}}
+    us["CommonStockSharesOutstanding"] = {"units": {"shares": _instant_entries({e: 186_337_588 for e in ALL_ENDS})}}
+    return facts, cash, rc
+
+
+def test_restricted_cash_deducted_from_net_cash():
+    """Codex review of PR #2 (statements.py:2411): the cash line accepts the combined cash + restricted cash tag, and net
+    cash netted the whole amount — NTRS FY2025 2,521.6M / 13.53 per share. The restricted part is deducted where it is
+    tagged (1,990.4M / 10.68), flagged where it is not, and the cash line itself says what it holds."""
+    facts, cash, rc = _restricted_facts()
+    periods, st, _, warnings = S.build_statements(facts, [])
+    debt = 3_351_500_000
+    # the balance-sheet line stays as filed, labelled and marked as including restricted cash
+    c = line(st, "balance", "cash")
+    assert c["annual"] == [cash["2024-12-31"], 5_873_100_000] and c["quarterly"] == [cash[e] for e in ALL_ENDS] and c["tags"] == [COMB]
+    assert c["label"] == "Cash, equivalents & restricted cash"
+    assert c["incl_restricted_annual"] == [True, True] and c["incl_restricted_quarterly"] == [True] * 10 and c["incl_restricted_ttm"] is True
+    # the restricted part on its own line, right under cash, only where it is tagged
+    keys = [l["key"] for l in st["balance"]]
+    assert keys[keys.index("cash") + 1] == "restricted_cash"
+    r = line(st, "balance", "restricted_cash")
+    assert r["label"] == "Restricted cash (included in cash above)" and r["level"] == 2 and r["tags"] == ["RestrictedCash"]
+    assert r["annual"] == [None, 531_200_000] and r["quarterly"] == [None] * 4 + [rc[e] for e in ALL_ENDS[4:]] and r["ttm"] == rc["2026-06-30"]
+    # net cash: FY2025 2,521.6M -> 1,990.4M; FY2024 (no restricted-cash tag) stays the combined figure, flagged
+    nc = line(st, "metrics", "net_cash")
+    assert nc["annual"][1] == 5_873_100_000 - 531_200_000 - debt == 1_990_400_000
+    assert nc["annual"][0] == cash["2024-12-31"] - debt and nc["incl_restricted_annual"] == [True, False]
+    assert nc["quarterly"] == [cash[e] - debt for e in ALL_ENDS[:4]] + [cash[e] - rc[e] - debt for e in ALL_ENDS[4:]]
+    assert nc["incl_restricted_quarterly"] == [True] * 4 + [False] * 6 and nc["incl_restricted_ttm"] is False
+    assert nc["ttm"] == cash["2026-06-30"] - rc["2026-06-30"] - debt
+    # net cash per share: 13.53 -> 10.68
+    ncps = line(st, "metrics", "net_cash_per_share")
+    assert round(ncps["annual"][1], 2) == 10.68 and round((5_873_100_000 - debt) / 186_337_588, 2) == 13.53
+    assert ncps["incl_restricted_annual"] == [True, False] and ncps["incl_restricted_quarterly"] == nc["incl_restricted_quarterly"]
+    # the marks are JSON only (the app shows labels): the labels say some periods still count restricted cash as cash
+    assert nc["label"] == "Net cash (debt) (some periods incl. restricted cash)" and ncps["label"] == "Net cash per share (some periods incl. restricted cash)"
+    # growth never compares a cell that still counts restricted cash (2024, nothing separates it) with one that deducts it
+    # (2025): FY2025 and the four 2025 quarters are blank on both lines; 2026 vs 2025 (both deducted) stays
+    assert nc["growth_annual"] == [None, None] and ncps["growth_annual"] == [None, None]
+    assert nc["growth_quarterly"][4:8] == [None] * 4 and ncps["growth_quarterly"][4:8] == [None] * 4
+    for i in (8, 9):
+        j = i - 4
+        assert approx(nc["growth_quarterly"][i], nc["quarterly"][i] / nc["quarterly"][j] - 1), (i, nc["growth_quarterly"])
+        assert ncps["growth_quarterly"][i] is not None
+    # (the fixture files no income tax, so there is no ROIC proxy line to flag: its deduction is checked on derive_value below)
+    assert line(st, "metrics", "roic_proxy") is None
+    # lines that do not treat cash as available carry no flag, keep their label and their growth
+    wc = line(st, "metrics", "working_capital")
+    assert "incl_restricted_annual" not in wc and "incl_restricted_annual" not in line(st, "metrics", "total_debt") and wc["label"] == "Working capital"
+    assert wc["growth_annual"][1] is not None
+    w = [x for x in warnings if x.startswith("restricted cash:")]
+    assert len(w) == 2 and "in 10 period(s), 2024-03-31..2026-06-30 the cash line is the filed cash + restricted cash total" in w[0], w
+    assert "in 6 period(s), 2025-03-31..2026-06-30 the restricted part is the restricted-cash figure filed for the same date (RestrictedCash)" in w[0], w
+    assert "in 4 period(s), 2024-03-31..2024-12-31 no figure separates the restricted part" in w[0], w
+    assert w[1].startswith("restricted cash: 10 growth cell(s) are blank because one of the two periods deducts restricted cash"), w
+    assert "net_cash (FY ending 2025-12-31; quarters 2025-03-31, 2025-06-30, 2025-09-30, 2025-12-31)" in w[1], w
+    json.dumps(st, allow_nan=False)
+    # derive_value directly with NTRS's FY2025 cells (the tag decides; no tag_of = a cash-only line, nothing deducted)
+    vals = {"cash": 5_873_100_000, "restricted_cash": 531_200_000, "total_debt": debt}
+    no_sti = lambda k: k != "short_term_investments"  # noqa: E731
+    assert S.derive_value("net_cash", vals.get, no_sti, lambda k: COMB if k == "cash" else None) == 1_990_400_000
+    assert S.derive_value("net_cash", vals.get, no_sti) == 2_521_600_000
+    assert S.derive_value("net_cash", vals.get, no_sti, lambda k: "CashAndCashEquivalentsAtCarryingValue" if k == "cash" else None) == 2_521_600_000
+    roic = {"operating_income": 100, "income_tax": 21, "pretax_income": 100, "total_common_equity": 500, "total_debt": 300, "cash": 200, "restricted_cash": 50}
+    assert approx(S.derive_value("roic_proxy", roic.get, lambda k: True, lambda k: COMB if k == "cash" else None), 79 / (500 + 300 - 150))
+    assert approx(S.derive_value("roic_proxy", roic.get, lambda k: True), 79 / (500 + 300 - 200))
+
+
+def test_restricted_cash_only_where_the_cash_line_is_the_combined_total():
+    """A separate restricted-cash caption next to a cash-only line is not part of that line: no deduction, no line, no
+    flag — the output is identical to the same filer without the caption. Where the combined total takes over (2026
+    here) the restricted part is deducted; a restricted figure above the cash figure is not, and is warned."""
+    base = S.build_statements(make_facts(), [])
+    facts = make_facts()
+    facts["facts"]["us-gaap"]["RestrictedCash"] = {"units": {"USD": _instant_entries({e: 30 for e in ALL_ENDS})}}
+    with_caption = S.build_statements(facts, [])
+    assert with_caption[1] == base[1] and with_caption[3] == base[3]
+    assert line(base[1], "balance", "restricted_cash") is None
+    assert not any(k.startswith("incl_restricted") for lines in base[1].values() for l in lines for k in l)
+    # the combined total only for the 2026 quarter ends; RestrictedCash for every date, 500 > the 420 of cash at 2026-06-30
+    us = facts["facts"]["us-gaap"]
+    us["CashAndCashEquivalentsAtCarryingValue"]["units"]["USD"] = [e for e in us["CashAndCashEquivalentsAtCarryingValue"]["units"]["USD"] if not e["end"].startswith("2026")]
+    us[COMB] = {"units": {"USD": _instant_entries({"2026-03-31": 400, "2026-06-30": 420})}}
+    us["RestrictedCash"] = {"units": {"USD": _instant_entries(dict({e: 30 for e in ALL_ENDS}, **{"2026-06-30": 500}))}}
+    _, st, _, warnings = S.build_statements(facts, [])
+    c = line(st, "balance", "cash")
+    assert c["label"] == "Cash & equivalents (some periods incl. restricted cash)" and c["quarterly"] == [CASH[e] for e in ALL_ENDS[:8]] + [400, 420]
+    assert c["incl_restricted_annual"] == [False, False] and c["incl_restricted_quarterly"] == [False] * 8 + [True, True] and c["incl_restricted_ttm"] is True
+    r = line(st, "balance", "restricted_cash")
+    assert r["annual"] == [None, None] and r["quarterly"] == [None] * 8 + [30, None] and r["ttm"] is None
+    nc = line(st, "metrics", "net_cash")
+    assert nc["annual"] == [CASH["2024-12-31"] - 200, CASH["2025-12-31"] - 200]  # cash-only cells: unchanged
+    assert nc["quarterly"][:8] == [CASH[e] - 200 for e in ALL_ENDS[:8]] and nc["quarterly"][8] == 400 - 30 - 200 and nc["quarterly"][9] == 420 - 200
+    assert nc["incl_restricted_quarterly"] == [False] * 9 + [True] and nc["incl_restricted_annual"] == [False, False]
+    assert nc["ttm"] == 220 and nc["incl_restricted_ttm"] is True
+    # growth: 2026-03-31 (restricted deducted) vs 2025-03-31 (the cash-only caption) is one basis — kept; 2026-06-30
+    # (restricted cash still in) vs 2025-06-30 (cash-only) is not — blank
+    assert approx(nc["growth_quarterly"][8], 170 / (CASH["2025-03-31"] - 200) - 1) and nc["growth_quarterly"][9] is None
+    w = [x for x in warnings if x.startswith("restricted cash:")]
+    assert len(w) == 2 and "outside 0..cash was not deducted: 2026-06-30 (500 of RestrictedCash vs cash 420)" in w[0], w
+    assert "net_cash (quarters 2026-06-30)" in w[1], w
+
+
+def _inst(end, val, form, filed, accn):
+    """One balance-sheet fact as a specific filing reported it (a 10-K for its own year end, or any later comparative)."""
+    return {"end": end, "val": val, "fy": int(filed[:4]), "fp": "FY" if form == "10-K" else "Q1", "form": form, "filed": filed, "accn": accn}
+
+
+def _drop(us, tag, ends):
+    us[tag]["units"]["USD"] = [x for x in us[tag]["units"]["USD"] if x["end"] not in ends]
+
+
+def test_restricted_cash_same_date_cash_only_caption():
+    """Verifier round on the Codex fix: a combined year-end cell whose date also carries the cash-only caption.
+    ZTS FY2025: the 10-K tags only the combined total; the 2026 10-Qs file 2,450M of BOTH for 2025-12-31 (so nothing
+    restricted is inside), yet RestrictedCashCurrent says 2M — the fix deducted it, so the FY2025 column read 2M less net
+    cash than the 2025-12-31 quarter column (cash-only caption). Now the filing that reports both decides: part 0, the
+    two columns agree, nothing is marked. A cash-only figure from another filing generation is no evidence (ZTS
+    2024-12-31: the 2025 10-Qs' 1,987M of both vs the 2026 10-Qs' restated 2,114M total) — the tagged restricted figure
+    is used there."""
+    facts = make_facts()
+    us = facts["facts"]["us-gaap"]
+    c0 = "CashAndCashEquivalentsAtCarryingValue"
+    _drop(us, c0, ("2024-12-31", "2025-12-31"))
+    us[c0]["units"]["USD"] += [_inst("2024-12-31", 1987, "10-Q", f, a) for f, a in (("2025-05-01", "acc-2025-03-31"), ("2025-08-01", "acc-2025-06-30"))]
+    us[c0]["units"]["USD"] += [_inst("2025-12-31", 2450, "10-Q", f, a) for f, a in (("2026-05-01", "acc-2026-03-31"), ("2026-08-01", "acc-2026-06-30"))]
+    us[COMB] = {"units": {"USD": [_inst("2024-12-31", 1987, "10-K", "2025-02-20", "acc-2024-12-31"),
+                                  _inst("2024-12-31", 1987, "10-Q", "2025-05-01", "acc-2025-03-31"), _inst("2024-12-31", 1987, "10-Q", "2025-08-01", "acc-2025-06-30"),
+                                  _inst("2024-12-31", 2114, "10-Q", "2026-05-01", "acc-2026-03-31"), _inst("2024-12-31", 2114, "10-Q", "2026-08-01", "acc-2026-06-30"),
+                                  _inst("2025-12-31", 2312, "10-K", "2026-02-19", "acc-2025-12-31"),
+                                  _inst("2025-12-31", 2450, "10-Q", "2026-05-01", "acc-2026-03-31"), _inst("2025-12-31", 2450, "10-Q", "2026-08-01", "acc-2026-06-30")]}}
+    us["RestrictedCashCurrent"] = {"units": {"USD": [_inst("2024-12-31", 2, "10-K", "2025-02-20", "acc-2024-12-31"),
+                                                     _inst("2025-12-31", 2, "10-K", "2026-02-19", "acc-2025-12-31"),
+                                                     _inst("2025-12-31", 2, "10-Q", "2026-08-01", "acc-2026-06-30")]}}
+    _, st, _, warnings = S.build_statements(facts, [])
+    c, nc = line(st, "balance", "cash"), line(st, "metrics", "net_cash")
+    # the annual cells read the combined tag (no 10-K filed the cash-only caption for its year end), newest value
+    assert c["annual"] == [2114, 2450] and c["quarterly"][3] == 1987 and c["quarterly"][7] == 2450
+    # FY2025: 2,450 − 0 → net cash 2,250 in both columns (the fix gave 2,248 in the annual one); not marked
+    assert nc["annual"][1] == 2450 - 200 == nc["quarterly"][7]
+    assert c["incl_restricted_annual"] == [True, False] and c["incl_restricted_quarterly"] == [False] * 10
+    # FY2024: the 1,987 pair is another generation than the 2,114 total — the tagged 2 is the restricted part
+    r = line(st, "balance", "restricted_cash")
+    assert r["annual"] == [2, None] and r["quarterly"] == [None] * 10 and r["tags"] == ["RestrictedCashCurrent"]
+    assert nc["annual"][0] == 2114 - 2 - 200 and "incl_restricted_annual" not in nc and nc["label"] == "Net cash (debt)"
+    assert approx(nc["growth_annual"][1], 2250 / 1912 - 1)
+    w = [x for x in warnings if x.startswith("restricted cash:")]
+    assert len(w) == 1 and "in 1 period, 2025-12-31 it holds no restricted cash" in w[0] and "in 1 period, 2024-12-31 the restricted part is the restricted-cash figure" in w[0], w
+
+    # YUM FY2016: the 10-K's 831M total, a 10-Q's 725M cash-only caption for the same date, no filing with both and no
+    # restricted tag — nothing separates the part: flagged, and the growth into the next (cash-only) year is blank.
+    # APP / RBLX 2019-12-31: the cash-only caption equals the total to the dollar (different filings) — part 0.
+    facts = make_facts()
+    us = facts["facts"]["us-gaap"]
+    _drop(us, c0, ("2024-12-31", "2025-12-31"))
+    us[c0]["units"]["USD"] += [_inst("2024-12-31", 725, "10-Q", "2025-05-01", "acc-2025-03-31"), _inst("2025-12-31", 700, "10-Q", "2026-05-01", "acc-2026-03-31")]
+    us[COMB] = {"units": {"USD": [_inst("2024-12-31", 831, "10-K", "2025-02-20", "acc-2024-12-31"), _inst("2025-12-31", 700, "10-K", "2026-02-19", "acc-2025-12-31")]}}
+    _, st, _, warnings = S.build_statements(facts, [])
+    c, nc = line(st, "balance", "cash"), line(st, "metrics", "net_cash")
+    assert c["annual"] == [831, 700] and c["incl_restricted_annual"] == [True, False] and line(st, "balance", "restricted_cash") is None
+    assert nc["annual"] == [631, 500] and nc["incl_restricted_annual"] == [True, False] and nc["growth_annual"] == [None, None]
+    assert c["label"] == "Cash & equivalents (some periods incl. restricted cash)" and nc["label"] == "Net cash (debt) (some periods incl. restricted cash)"
+    w = [x for x in warnings if x.startswith("restricted cash:")]
+    assert "in 1 period, 2024-12-31 no figure separates the restricted part" in w[0] and "in 1 period, 2025-12-31 it holds no restricted cash" in w[0], w
+    assert "net_cash (FY ending 2025-12-31)" in w[1], w
+
+
+def test_restricted_cash_noncurrent_and_parts():
+    """Verifier round: the restricted part of a combined total is current AND noncurrent restricted cash. U files only
+    RestrictedCashNoncurrent (14.6M at 2019-09-30) — before, its cells said 'no restricted-cash figure separates it';
+    a filer with both captions had only the current one deducted. A restricted TOTAL wins over its parts (U 2022-03-31:
+    RestrictedCashAndCashEquivalents and RestrictedCashNoncurrent both 10,678K — counted once)."""
+    facts, cash, _ = _restricted_facts()
+    us = facts["facts"]["us-gaap"]
+    del us["RestrictedCash"]
+    us["RestrictedCashCurrent"] = {"units": {"USD": _instant_entries({e: 30_000_000 for e in ALL_ENDS[:4]})}}
+    us["RestrictedCashNoncurrent"] = {"units": {"USD": _instant_entries(dict({e: 50_000_000 for e in ALL_ENDS[:8]}, **{e: 70_000_000 for e in ALL_ENDS[8:]}))}}
+    us["RestrictedCashAndCashEquivalents"] = {"units": {"USD": _instant_entries({e: 70_000_000 for e in ALL_ENDS[8:]})}}
+    _, st, _, warnings = S.build_statements(facts, [])
+    r = line(st, "balance", "restricted_cash")
+    assert r["quarterly"] == [80_000_000] * 4 + [50_000_000] * 4 + [70_000_000] * 2, r["quarterly"]
+    assert r["annual"] == [80_000_000, 50_000_000]
+    assert r["tags"] == ["RestrictedCashAndCashEquivalents", "RestrictedCashCurrent+RestrictedCashNoncurrent", "RestrictedCashNoncurrent"], r["tags"]
+    nc = line(st, "metrics", "net_cash")
+    assert nc["quarterly"] == [cash[e] - r["quarterly"][i] - 3_351_500_000 for i, e in enumerate(ALL_ENDS)]
+    assert "incl_restricted_annual" not in nc and nc["label"] == "Net cash (debt)"  # every cell separated: nothing flagged
+    c = line(st, "balance", "cash")
+    assert c["label"] == "Cash, equivalents & restricted cash" and c["incl_restricted_quarterly"] == [True] * 10
+    assert all(g is not None for g in nc["growth_quarterly"][4:])  # one basis throughout: growth kept
+    w = [x for x in warnings if x.startswith("restricted cash:")]
+    assert len(w) == 1 and "(RestrictedCashAndCashEquivalents, RestrictedCashCurrent+RestrictedCashNoncurrent, RestrictedCashNoncurrent)" in w[0], w
+
+
+def test_restricted_cash_growth_kept_where_the_caption_does_not_say():
+    """Growth is blanked only between a period that still counts restricted cash (combined, unseparated) and one that
+    does not (deducted, or the cash-only caption). A caption that does not say — NTRS's CashAndDueFromBanks before
+    2016, equal to its combined total wherever both are filed — is no break: NTRS FY2016 vs FY2015 keeps its −22.1%."""
+    facts, cash, rc = _restricted_facts()
+    us = facts["facts"]["us-gaap"]
+    _drop(us, COMB, ALL_ENDS[:4])
+    us["CashAndDueFromBanks"] = {"units": {"USD": _instant_entries({e: cash[e] for e in ALL_ENDS[:4]})}}
+    # restricted cash tagged only from 2026: 2024 = the bank caption, 2025 = combined, not separated, 2026 = deducted
+    us["RestrictedCash"] = {"units": {"USD": _instant_entries({e: rc[e] for e in ALL_ENDS[8:]})}}
+    _, st, _, warnings = S.build_statements(facts, [])
+    nc = line(st, "metrics", "net_cash")
+    assert nc["incl_restricted_quarterly"] == [False] * 4 + [True] * 4 + [False] * 2 and nc["incl_restricted_annual"] == [False, True]
+    assert nc["growth_annual"][1] is not None and all(g is not None for g in nc["growth_quarterly"][4:8])  # caption vs combined: kept
+    assert nc["growth_quarterly"][8:] == [None, None]  # deducted vs not separated: blank
+    w = [x for x in warnings if x.startswith("restricted cash:")]
+    assert "net_cash (quarters 2026-03-31, 2026-06-30)" in w[1], w
+
+
+def test_restricted_cash_rebuild_rule():
+    """--all rebuilds a file written before the split only when its cash line used the combined tag; others stay skipped."""
+    latest = {"form": "10-Q", "filed": "2026-08-01", "period": "2026-06-30"}
+    current = {"latest_filed": dict(latest), "schema_version": S.SCHEMA_VERSION, "covered_through": "2026-06-30",
+               "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalentsAtCarryingValue"]}]}}
+    assert S.can_skip(current, latest) and not S.restricted_cash_pending(current)
+    old = copy.deepcopy(current)
+    old["statements"]["balance"][0]["tags"].append(COMB)
+    assert S.restricted_cash_pending(old) and not S.can_skip(old, latest)
+    new = copy.deepcopy(old)
+    new["statements"]["balance"][0].update(incl_restricted_annual=[True], incl_restricted_quarterly=[True], incl_restricted_ttm=True)
+    assert S.can_skip(new, latest)
+    # a rebuilt file whose combined cells all hold no restricted cash (ZTS: the cash-only caption equals each total)
+    # still records the split — all-False marks on the cash line — so --all does not re-download it every run
+    facts = make_facts()
+    us = facts["facts"]["us-gaap"]
+    _drop(us, "CashAndCashEquivalentsAtCarryingValue", ("2025-12-31",))
+    us["CashAndCashEquivalentsAtCarryingValue"]["units"]["USD"].append(_inst("2025-12-31", 700, "10-Q", "2026-05-01", "acc-2026-03-31"))
+    us[COMB] = {"units": {"USD": [_inst("2025-12-31", 700, "10-K", "2026-02-19", "acc-2025-12-31"), _inst("2025-12-31", 700, "10-Q", "2026-05-01", "acc-2026-03-31")]}}
+    _, st, _, _ = S.build_statements(facts, [])
+    c = line(st, "balance", "cash")
+    assert COMB in c["tags"] and c["incl_restricted_annual"] == [False, False] and c["incl_restricted_quarterly"] == [False] * 10 and c["label"] == "Cash & equivalents"
+    built = dict(current, statements=st)
+    assert not S.restricted_cash_pending(built) and S.can_skip(built, latest)
+    for bad in ({"statements": None}, {"statements": {"balance": "x"}}, {"statements": {"balance": [{"key": "cash", "tags": None}]}}):
+        assert S.restricted_cash_pending(bad) is False
+
+
+def test_stable_write_only_when_content_changes():
+    """statements.json is committed: a rebuild that changes nothing but as_of leaves the file byte-for-byte alone (and
+    --all reports it as unchanged); a real change rewrites it with today's as_of."""
+    import contextlib
+    import io
+    sub = {"cik": "999", "fiscalYearEnd": "1231", "filings": {"recent": {"form": ["10-Q"], "filingDate": ["2026-08-01"], "reportDate": ["2026-06-30"]}}}
+    tmp = tempfile.mkdtemp(prefix="statements_stable_")
+    old_base = S.BASE
+    try:
+        cache, folder = os.path.join(tmp, "cache"), os.path.join(tmp, "FIX")
+        os.makedirs(cache)
+        os.makedirs(folder)
+        for name, obj in (("FIX.sub.json", sub), ("FIX.facts.json", make_facts())):
+            with open(os.path.join(cache, name), "w", encoding="utf-8") as f:
+                json.dump(obj, f)
+        S.BASE = tmp
+        path = os.path.join(folder, "statements.json")
+        s1, _ = S.run_one("FIX", cik=999, write=True, cache=cache, force=True)
+        assert s1["written"] is True
+        with open(path, encoding="utf-8") as f:
+            text = f.read()
+        assert text.startswith('{"ticker":"FIX","cik":999,') and "NaN" not in text and "\n" not in text  # the same compact dump as before
+        # an older as_of on disk: the rebuild has the same content, so the file (and its as_of) is left exactly as it was
+        doc = json.loads(text)
+        doc["as_of"] = "2000-01-01"
+        with open(path, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(doc, f, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
+        with open(path, "rb") as f:
+            before = f.read()
+        s2, _ = S.run_one("FIX", cik=999, write=True, cache=cache, force=True)
+        with open(path, "rb") as f:
+            assert s2["written"] is False and f.read() == before
+        assert S.run_one("FIX", cik=999, write=False, cache=cache, force=True)[0]["written"] is None
+        # --all: forced rebuild with nothing new -> unchanged; without --force -> skipped (companyfacts not read)
+        with open(os.path.join(folder, "score.json"), "w", encoding="utf-8") as f:
+            json.dump({"ticker": "FIX"}, f)
+        with open(os.path.join(folder, "dcf_numbers.json"), "w", encoding="utf-8") as f:
+            json.dump({"cik": 999}, f)
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            assert S.main(["--all", "--force", "--cache", cache]) == 0
+        assert "content unchanged, file left as is" in out.getvalue() and "--all: 0 written, 1 unchanged" in out.getvalue(), out.getvalue()
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            assert S.main(["--all", "--cache", cache]) == 0
+        assert "--all: 0 written, 0 unchanged" in out.getvalue() and "1 skipped" in out.getvalue(), out.getvalue()
+        # a real change (a restated cash figure) -> written, with today's as_of
+        facts = make_facts()
+        facts["facts"]["us-gaap"]["CashAndCashEquivalentsAtCarryingValue"]["units"]["USD"][-1]["val"] += 1
+        with open(os.path.join(cache, "FIX.facts.json"), "w", encoding="utf-8") as f:
+            json.dump(facts, f)
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            assert S.main(["--all", "--force", "--cache", cache]) == 0
+        assert "--all: 1 written, 0 unchanged" in out.getvalue(), out.getvalue()
+        with open(path, encoding="utf-8") as f:
+            doc = json.load(f)
+        assert doc["as_of"] == S._et_today().isoformat() and line(doc["statements"], "balance", "cash")["ttm"] == CASH["2026-06-30"] + 1
+        assert not [p for p in os.listdir(folder) if p.endswith(".tmp")]  # the atomic write leaves no temp file
+    finally:
+        S.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":

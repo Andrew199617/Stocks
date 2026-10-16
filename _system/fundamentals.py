@@ -4,14 +4,20 @@
 Usage: python3 fundamentals.py <TICKER> [--cik N] [--no-write]
 
 Pulls the SEC EDGAR data a READER of the company page needs but the valuation
-engine does not, and writes <TICKER>/fundamentals.json. The company page's
-Financials and Data tabs render from it. Nothing here feeds the DCF —
+engine does not, and writes <TICKER>/fundamentals.json — a committed file,
+rewritten only when its content apart from `as_of` changed
+(_stable.write_json_if_changed; the printed summary's `fundamentals_json` says
+"written" or "unchanged"). The file is a snapshot as of its `as_of`: the 8-K
+count is the 12 months to that date, and a run whose only other difference is
+8-Ks ageing out of a later window leaves it alone (write_fundamentals). The
+company page's Financials and Data tabs render from it. Nothing here feeds the DCF —
 dcf_numbers.json stays the engine's domain and score.json make_score's.
 
 Contents (every figure is a filed value, or arithmetic on filed values —
 growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
 - profile: SIC, fiscal year end, filer category, exchanges, latest 10-K /
-  10-Q filed + period, 8-K count last 12 months (EDGAR submissions API).
+  10-Q filed + period, 8-K count in the 12 months to `as_of` (EDGAR
+  submissions API).
 - annual: up to 10 fiscal years of income statement, cash flow and balance
   sheet lines (revenue, COGS, gross profit, R&D, SG&A, operating income,
   interest, pretax, tax, net income, EPS, shares, OCF, capex, SBC, D&A,
@@ -63,8 +69,18 @@ growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
   so (fallback_share_count). Quarterly rows carry dividends_paid, buybacks, share_issuance (with
   the contributing tags) and DPS. DPS is a per-share rate: only direct
   quarterly facts are used, never YTD subtraction; the cash flows derive like
-  the other cash-flow lines. Price = <T>/prices.json stats.last, else
-  score.json price. A filing in the submissions feed that companyfacts has not
+  the other cash-flow lines. Price = <T>/prices.json stats.last; without
+  prices.json (a fresh clone: the file is a gitignored cache) the close this
+  file already used, carried with its date and source, unless score.json's
+  analysis price is newer; else score.json price. Price-free file (2026-10-16):
+  every leaf that depends on the price (price / price_date / price_source /
+  price_note, market_cap and its basis, the four yields,
+  yield_basis.*.denominator, yields_display.*.value / label — PRICE_LEAVES)
+  is set by price_dividends() from the block's own price-free fields and is
+  volatile for the file comparison, so a new close alone never rewrites the
+  committed file; build_site.py reprices the block at the newer prices.json
+  close with the same function. The price note ("from score.json", "no
+  price") is `price_note`, not an entry of `notes`. A filing in the submissions feed that companyfacts has not
   ingested yet is named in `notes` and `warnings`. Anything not computable
   from filed values is null and `notes` says why. 5.4.5 (re-verification
   fixes): a dividends / buyback / issuance value filed below zero is a sign
@@ -99,6 +115,7 @@ import json, sys, os, csv, datetime, time, math, statistics, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+from _stable import write_json_if_changed, same_content  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 SYS = f"{BASE}/_system"
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
@@ -127,7 +144,8 @@ def resolve_cik(ticker, nums):
     if nums.get("cik"):
         return int(nums["cik"])  # the CIK the engine actually used (covers --cik and the fallback probe)
     try:
-        sec = json.load(open(f"{SYS}/sec_tickers_exchange.json"))
+        with open(f"{SYS}/sec_tickers_exchange.json", encoding="utf-8") as f:
+            sec = json.load(f)
         m = {}
         for rec in sec["data"]:
             m.setdefault(rec[2].upper(), rec[0])
@@ -137,7 +155,7 @@ def resolve_cik(ticker, nums):
     except Exception:
         pass
     try:
-        with open(f"{SYS}/universe.csv") as f:
+        with open(f"{SYS}/universe.csv", encoding="utf-8", newline="") as f:
             for row in csv.DictReader(f):
                 if row["ticker"] == ticker and row.get("cik"):
                     return int(row["cik"])
@@ -288,10 +306,11 @@ def _units_pref(units):
     return pref + [u for u in units if u not in pref]
 
 
-def annual_series(facts, tags, duration=True, with_filed=False):
+def annual_series(facts, tags, duration=True, with_filed=False, unit=None):
     """{period_end: val}, {period_end: tag}, {period_end: unit} — FY facts on
     annual forms, merged across candidate tags per period, latest filing wins.
-    with_filed=True adds a fourth dict {period_end: filed date}."""
+    with_filed=True adds a fourth dict {period_end: filed date}. unit= reads
+    only that unit (the same line in another line's currency)."""
     merged, tag_by, unit_by, filed_by = {}, {}, {}, {}
     for taxonomy, tag in _pairs(tags):
         tf = facts.get("facts", {}).get(taxonomy, {})
@@ -299,6 +318,8 @@ def annual_series(facts, tags, duration=True, with_filed=False):
             continue
         units = tf[tag].get("units", {})
         for unit_key in _units_pref(units):
+            if unit is not None and unit_key != unit:
+                continue
             best = {}
             for e in units[unit_key]:
                 if e.get("fp") != "FY" or e.get("form", "") not in ("10-K", "10-K/A", "20-F", "40-F"):
@@ -500,6 +521,37 @@ def _ratio(a, b):
     return (a / b) if (a is not None and b not in (None, 0)) else None
 
 
+# Codex review of PR #2 (HBAN FY2025: 17.221B here vs 18.482B in statements.json):
+# the debt_total tags are of two kinds. A LONG-TERM total (LongTermDebt,
+# LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities) carries the
+# current maturities of long-term debt but not the short-term borrowings a
+# filer reports on their own line (ShortTermBorrowings / CommercialPaper /
+# NotesPayableCurrent / IFRS ShorttermBorrowings = debt_cur_st), so those are
+# added — never the current maturities (debt_cur_ltd), which are inside it.
+# An aggregate of long- AND short-term debt (DebtLongtermAndShorttermCombinedAmount,
+# IFRS Borrowings) already holds them and stands alone.
+LT_DEBT_TOTAL_TAGS = frozenset({"LongTermDebt", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities"})
+
+
+def debt_from_total_tag(tot, tot_tag, st=None, st_tag=None, cur_agg=None, unit_mismatch=None):
+    """(total debt, basis) for a period whose only long-term figure is a
+    debt_total tag. tot_tag / st_tag are bare element names; st = the
+    short-term-borrowings component (debt_cur_st) in the same unit as tot;
+    cur_agg = an aggregate current-debt fact (DebtCurrent), used only to say
+    that short-term borrowings inside it could not be separated;
+    unit_mismatch = the unit short-term borrowings were filed in when it is
+    not tot's (they are then left out, never added across currencies)."""
+    if tot_tag not in LT_DEBT_TOTAL_TAGS:
+        return tot, f"total tag ({tot_tag}, includes short-term debt)"
+    if st is not None:
+        return tot + st, f"total tag ({tot_tag}, long-term incl. current maturities) + short-term borrowings ({st_tag})"
+    if unit_mismatch:
+        return tot, f"total tag ({tot_tag}, long-term incl. current maturities); short-term borrowings filed only in {unit_mismatch} — not added"
+    if cur_agg is not None:
+        return tot, f"total tag ({tot_tag}, long-term incl. current maturities); DebtCurrent has no separately filed short-term part — none added"
+    return tot, f"total tag ({tot_tag}, long-term incl. current maturities; no short-term borrowings filed)"
+
+
 def build_annual(facts):
     series, tags, units = {}, {}, {}
     for k, t in DUR.items():
@@ -527,6 +579,7 @@ def build_annual(facts):
             revenue_mode = "total"
     rows = []
     currency = set()
+    st_same_unit = {}  # {unit: annual_series of debt_cur_st read in that unit only}
     for p in periods:
         g = lambda k: series[k].get(p)
         for k in ("revenue", "net_income", "ocf"):
@@ -564,7 +617,18 @@ def build_annual(facts):
         if d_lt is not None:
             total_debt, debt_basis = d_lt + (d_cur or 0), "noncurrent+current"
         elif d_tot is not None:
-            total_debt, debt_basis = d_tot, "total tag"
+            st, st_tag, st_unit_other = g("debt_cur_st"), tags["debt_cur_st"].get(p), None
+            tot_unit = units["debt_total"].get(p)
+            if st is not None and units["debt_cur_st"].get(p) != tot_unit:
+                # never add across currencies (JD files ShortTermBorrowings in USD
+                # convenience translation and LongTermDebt in RMB): read the line
+                # in the total's own unit, else leave it out and say so
+                st_unit_other = units["debt_cur_st"].get(p)
+                if tot_unit not in st_same_unit:
+                    st_same_unit[tot_unit] = annual_series(facts, INST["debt_cur_st"], False, unit=tot_unit)
+                st, st_tag = st_same_unit[tot_unit][0].get(p), st_same_unit[tot_unit][1].get(p)
+            total_debt, debt_basis = debt_from_total_tag(d_tot, tags["debt_total"].get(p), st, st_tag, cur_agg=g("debt_current"),
+                                                         unit_mismatch=(st_unit_other if st is None else None))
         elif d_cur is not None:
             total_debt, debt_basis = d_cur, "current only"
         else:
@@ -1272,22 +1336,59 @@ def latest_share_count(facts):
     return e["val"], e["end"], f"{src} ({e.get('form')} filed {e.get('filed')})"
 
 
-def _read_price(folder):
-    """(price, date, source) from prices.json stats.last, else score.json price."""
+PRICES_JSON_SOURCE = "prices.json stats.last"  # dividends.price_source of a close read from prices.json (build_site.py reprices with it too)
+
+
+def _read_price(folder, prev_dividends=None):
+    """(price, date, source) from prices.json stats.last; else the close the
+    committed fundamentals.json already used (prev_dividends = its dividends
+    block), carried with its own date and source, unless score.json's
+    analysis price is dated later; else score.json price.
+
+    prices.json is a gitignored cache that a fresh clone does not have, and
+    refresh.py --sec runs this script before prices.py: falling straight back
+    to score.json's analysis-time price there replaced a newer close and
+    rewrote every priced name's committed file (verifier, PR #2 repair round:
+    Q 121.62 'prices.json stats.last' -> 121.8685 'score.json price'). A price
+    that came from score.json is never carried; score.json is read afresh.
+    A split since the scored run (live.json split_factor != 1, from
+    reprice.py) puts prices.json's close in post-split units while the filed
+    DPS and share counts stay pre-split until the company files again; that
+    close is then skipped (build_site does not reprice across a split
+    either), so the yields are never doubled or halved by mixed units.
+    """
     try:
-        p = json.load(open(f"{folder}/prices.json", encoding="utf-8"))
+        with open(f"{folder}/live.json", encoding="utf-8") as f:
+            sf = json.load(f).get("split_factor")
+        split_since_scoring = bool(_num(sf) and sf > 0 and abs(sf - 1.0) > 1e-9)
+    except Exception:
+        split_since_scoring = False
+    try:
+        if split_since_scoring:
+            raise ValueError("split since scoring: prices.json is in post-split units")
+        with open(f"{folder}/prices.json", encoding="utf-8") as f:
+            p = json.load(f)
         st = p.get("stats") or {}
         if _num(st.get("last")):
-            return st["last"], st.get("last_date"), "prices.json stats.last"
+            return st["last"], st.get("last_date"), PRICES_JSON_SOURCE
     except Exception:
         pass
+    score = None
     try:
-        s = json.load(open(f"{folder}/score.json", encoding="utf-8"))
+        with open(f"{folder}/score.json", encoding="utf-8") as f:
+            s = json.load(f)
         if _num(s.get("price")):
-            return s["price"], s.get("analysis_date"), "score.json price"
+            score = (s["price"], s.get("analysis_date"), "score.json price")
     except Exception:
         pass
-    return None, None, None
+    pv = prev_dividends if isinstance(prev_dividends, dict) else {}
+    carried = None
+    if (_num(pv.get("price")) and pv["price"] > 0 and isinstance(pv.get("price_date"), str) and pv.get("price_date")
+            and isinstance(pv.get("price_source"), str) and "score.json" not in pv["price_source"]):
+        carried = (pv["price"], pv["price_date"], pv["price_source"])
+    if carried and not (score and isinstance(score[1], str) and score[1] > carried[1]):
+        return carried
+    return score or (None, None, None)
 
 
 def _fmt_big(v):
@@ -1539,7 +1640,9 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     shares_instant (count, as_of, source), latest_filed_period {form: period}
     from the submissions feed, split_notes, splits, warnings (list to append
     to). Every figure is a filed value or arithmetic on filed values; anything
-    else is None and `notes` says why."""
+    else is None and `notes` says why. price / price_date / price_source go
+    only to the closing price_dividends call, which sets every price leaf
+    (PRICE_LEAVES) — the rest of the block is price-free."""
     ctx = ctx or {}
     notes = list(ctx.get("split_notes") or [])
     filed_any = ctx.get("filed_any") or {}
@@ -2131,7 +2234,9 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
             legs[k] = {"value": None, "basis": "fewer than four consecutive quarterly rows", "complete": False}
         notes.append("quarterly flows: fewer than four consecutive quarterly rows — dividends_paid_ttm / buybacks_ttm / issuance_ttm null")
 
-    # price, shares, market cap
+    # shares (the price, the market cap and every yield on them are set by
+    # price_dividends below, so build_site.py can reprice the block at a newer
+    # close with the very same code)
     diluted = next((r["shares_diluted"] for r in reversed(qrows) if _num(r.get("shares_diluted"))), None)
     diluted_src = "latest quarterly weighted-average diluted" if diluted is not None else None
     if diluted is None and annual:
@@ -2150,13 +2255,7 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         shares_basis = "weighted_average_diluted_fallback" if fb else None
         if shares is not None:
             notes.append(f"shares: market cap uses the {shares_src}")
-    if price is None:
-        notes.append("price: neither prices.json nor score.json carries a price — yields null")
-    elif price_source and "score.json" in price_source:
-        notes.append(f"price: {price} from score.json ({price_date}); prices.json absent")
-    market_cap = price * shares if (_num(price) and _num(shares)) else None
-    market_cap_basis = f"{price} × {shares:,.0f} shares ({shares_src}" + (f", as of {shares_as_of})" if shares_as_of else ")") if market_cap is not None else None
-    if market_cap is None and shares is None:
+    if shares is None:
         notes.append("shares: no share count filed — market cap and yields null")
 
     # 5.4.6 review fix (HPQ declares two quarters at once, GEHC two in Q3 and
@@ -2195,9 +2294,9 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     # its own leg is unknown (buybacks for the buyback yields; both dividends
     # and buybacks for the shareholder yield). No headline carries a partial
     # numerator without this flag.
-    YIELD_LEGS = {"buyback_yield": (("buybacks", 1),), "net_buyback_yield": (("buybacks", 1), ("share_issuance", -1)),
-                  "shareholder_yield": (("dividends_paid", 1), ("buybacks", 1), ("share_issuance", -1))}
-    YIELD_REQUIRES = {"buyback_yield": ("buybacks",), "net_buyback_yield": ("buybacks",), "shareholder_yield": ("dividends_paid", "buybacks")}
+    # The market cap (the denominator) and the bound note that goes with it are
+    # set by price_dividends (YIELD_LEGS / YIELD_REQUIRES are module constants):
+    # everything here is price-free.
 
     def yield_parts(name):
         """(numerator, basis dict) for one flow yield."""
@@ -2206,7 +2305,7 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         req = YIELD_REQUIRES[name]
         if not any(k in known for k in req):
             return None, {"legs": {k: legs.get(k, {}).get("basis") for k, _ in spec}, "filed": [], "zero": [], "excluded": [k for k, _ in spec],
-                          "partial": [], "bound": None, "complete": False, "numerator": None, "denominator": market_cap_basis,
+                          "partial": [], "bound": None, "complete": False, "numerator": None, "denominator": None,
                           "note": f"{' / '.join(req)} not filed for the window — null"}
         total, filed, zero, excluded, partial, lower, upper = 0.0, [], [], [], [], False, False
         for k, sign in spec:
@@ -2227,17 +2326,12 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
                 lower, upper = lower or sign > 0, upper or sign < 0
         bound = "exact" if not (lower or upper) else ("lower" if lower and not upper else ("upper" if upper and not lower else "indeterminate"))
         return total, {"legs": {k: legs.get(k, {}).get("basis") for k, _ in spec}, "filed": filed, "zero": zero, "excluded": excluded,
-                       "partial": partial, "bound": bound, "complete": False, "numerator": total, "denominator": market_cap_basis}
+                       "partial": partial, "bound": bound, "complete": False, "numerator": total, "denominator": None}
 
-    yields, yield_basis = {}, {}
+    yield_basis = {}
     for name in YIELD_LEGS:
         total, yb = yield_parts(name)
         yb["complete"] = bool(yb["bound"] == "exact" and not yb["excluded"])
-        yields[name] = _ratio(total, market_cap) if (market_cap and total is not None) else None
-        if market_cap and total is not None and yb["bound"] != "exact":
-            yb["note"] = {"lower": "a lower bound — a positive leg is filed for only some quarters or not at all",
-                          "upper": "an upper bound — the issuance leg is filed for only some quarters or not at all",
-                          "indeterminate": "neither bound — a positive leg and the issuance leg are both incomplete"}[yb["bound"]]
         # 5.4.5 review blocker (CCI): a leg the filing carried below zero is read
         # as its absolute amount, and the yield's basis says which legs and why
         # (5.4.6: only the entries that were read as absolute amounts; a kept
@@ -2254,8 +2348,7 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
             yb["left_out"] = {k: "; ".join(v) for k, v in left.items()}
         yield_basis[name] = yb
     yield_basis["dividend_yield"] = {"numerator": dps_ttm, "basis": dps_ttm_basis, "bound": "exact" if dps_ttm is not None else None,
-                                     "complete": dps_ttm is not None, "denominator": f"price {price} ({price_source})" if _num(price) else None}
-    net_bb = yield_basis["net_buyback_yield"]["numerator"]
+                                     "complete": dps_ttm is not None, "denominator": None}
     sh_total = yield_basis["shareholder_yield"]["numerator"]
     parts = []
     for k, sign in (("dividends_paid", "+"), ("buybacks", "+"), ("share_issuance", "−")):
@@ -2264,42 +2357,6 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         parts.append((f"{sign} " if parts else "") + (f"{k} ({legs[k]['basis']})" if _num(legs[k]["value"]) else f"{k} NOT INCLUDED ({legs[k]['basis']})"))
     sh_basis = " ".join(parts) + (f"; {flows_basis}" if flows_basis else "")
     history = [dict({"period_end": e, "dps": q[e]["val"], "kind": q[e]["kind"]}, **({"split_factor": q[e]["split_factor"]} if q[e].get("split_factor") else {})) for e in sorted(q, reverse=True)[:20]]
-    # 5.4.4 review fix: a display-ready figure per yield so no consumer (the
-    # Dividends tab, the ranking row) can print a partial numerator bare —
-    # the bound is in the label ("≥ 2.66%", "≤ 6.1%", "≈ 4.4% (incomplete)")
-    dividend_yield = _ratio(dps_ttm, price) if _num(price) and price > 0 else None
-    yields_display = {}
-    for name, value in (("dividend_yield", dividend_yield), ("buyback_yield", yields["buyback_yield"]),
-                        ("net_buyback_yield", yields["net_buyback_yield"]), ("shareholder_yield", yields["shareholder_yield"])):
-        yb = yield_basis[name]
-        bound = yb.get("bound") if value is not None else None
-        prefix = {"exact": "", "lower": "≥", "upper": "≤", "indeterminate": "≈"}.get(bound, "")
-        if value is None:
-            label = "—"
-        else:
-            label = (f"{prefix} " if prefix else "") + f"{value * 100:.2f}%" + (" (incomplete)" if bound == "indeterminate" else "")
-        if name == "dividend_yield":
-            note = dps_ttm_basis if value is not None else next((n for n in notes if n.startswith("dps_ttm") or n.startswith("no dividends-per-share")), None)
-        else:
-            # 5.4.5 review (APP '≤ 2.78%' over an issuance leg described as "a
-            # lower bound"): each leg's basis is phrased by what it does to THIS yield
-            sign_of = dict(YIELD_LEGS[name])
-            parts_n = []
-            for k in (yb.get("partial") or []) + (yb.get("excluded") or []):
-                if k not in legs:
-                    continue
-                b = str(legs[k]["basis"])
-                b = b[:-len(" — a lower bound")] if b.endswith(" — a lower bound") else b
-                if k in (yb.get("excluded") or []):
-                    eff = "left out, so this yield is a lower bound" if sign_of.get(k, 1) > 0 else "no deduction made, so this yield is an upper bound"
-                else:
-                    eff = "understated, so this yield is a lower bound" if sign_of.get(k, 1) > 0 else "the deduction is understated, so this yield is an upper bound"
-                parts_n.append(f"{k}: {b} — {eff}" if value is not None else f"{k}: {legs[k]['basis']}")
-            parts_n += [f"{k}: filed below zero, read as the absolute amount" for k in (yb.get("sign_corrected") or {})]
-            parts_n += [f"{k}: filed below zero as a net line, kept as filed" for k in (yb.get("kept_as_filed") or {})]
-            note = "; ".join(parts_n) or (yb.get("note") if value is None else None)
-        yields_display[name] = {"value": value, "bound": bound, "prefix": prefix, "label": label, "note": note or None}
-
     # the filing feed is ahead of companyfacts: say so
     lfp = ctx.get("latest_filed_period") or {}
     newest = max(((p, f) for f, p in lfp.items() if p), default=None)
@@ -2309,7 +2366,7 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         if isinstance(ctx.get("warnings"), list):
             ctx["warnings"].append(msg)
 
-    return {
+    block = {
         "dps_ttm": dps_ttm, "dps_ttm_basis": dps_ttm_basis, "dps_basis": basis if not (extended or filled) else "mixed", "dps_basis_detail": dps_basis_detail,
         "frequency": frequency, "frequency_basis": frequency_basis,
         "annual_dps": annual_out,
@@ -2326,21 +2383,160 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         "dividends_paid_ttm": flows["dividends_paid"], "buybacks_ttm": flows["buybacks"], "issuance_ttm": flows["share_issuance"],
         "ttm_period_end": last4[-1]["period_end"] if last4 else None,
         "flows_basis": flows_basis, "flows_period_end": flows_end, "legs": legs,
-        "price": price, "price_date": price_date, "price_source": price_source,
+        # the price leaves (PRICE_LEAVES) are placeholders here, set by price_dividends
+        "price": None, "price_date": None, "price_source": None, "price_note": None,
         "shares_outstanding": shares, "shares_as_of": shares_as_of, "shares_source": shares_src, "shares_basis": shares_basis,
         "shares_diluted": diluted, "shares_diluted_source": diluted_src,
-        "market_cap": market_cap, "market_cap_basis": market_cap_basis,
-        "dividend_yield": dividend_yield,
-        "buyback_yield": yields["buyback_yield"],
-        "net_buyback_yield": yields["net_buyback_yield"],
-        "shareholder_yield": yields["shareholder_yield"],
+        "market_cap": None, "market_cap_basis": None,
+        "dividend_yield": None,
+        "buyback_yield": None,
+        "net_buyback_yield": None,
+        "shareholder_yield": None,
         "shareholder_yield_basis": sh_basis if sh_total is not None else None,
         "shareholder_yield_complete": yield_basis["shareholder_yield"]["complete"],
         "yield_basis": yield_basis,
-        "yields_display": yields_display,
+        "yields_display": None,
         "history": history,
         "notes": notes,
     }
+    return price_dividends(block, price, price_date, price_source)
+
+
+# ---------------------------------------------------------------------------
+# The price-dependent part of the dividends block (2026-10-16 data policy).
+# fundamentals.json is committed and rewritten only when its content changes;
+# the close moves every day. Every leaf that depends on the price is set by
+# price_dividends from the block's own price-free fields (dps_ttm, the share
+# count, the yield_basis numerators and bounds, the legs) and listed in
+# PRICE_LEAVES, which write_fundamentals treats as volatile: a new close alone
+# never rewrites the file. build_site.py calls the same function with a newer
+# prices.json close, so the page shows the yields at the latest close, equal
+# to what this script would write at that price.
+# ---------------------------------------------------------------------------
+YIELD_LEGS = {"buyback_yield": (("buybacks", 1),), "net_buyback_yield": (("buybacks", 1), ("share_issuance", -1)),
+              "shareholder_yield": (("dividends_paid", 1), ("buybacks", 1), ("share_issuance", -1))}
+YIELD_REQUIRES = {"buyback_yield": ("buybacks",), "net_buyback_yield": ("buybacks",), "shareholder_yield": ("dividends_paid", "buybacks")}
+YIELD_BOUND_NOTES = {"lower": "a lower bound — a positive leg is filed for only some quarters or not at all",
+                     "upper": "an upper bound — the issuance leg is filed for only some quarters or not at all",
+                     "indeterminate": "neither bound — a positive leg and the issuance leg are both incomplete"}
+YIELD_KEYS = ("dividend_yield", "buyback_yield", "net_buyback_yield", "shareholder_yield")
+# dotted paths in fundamentals.json (_stable.py: `*` = every key at that level)
+PRICE_LEAVES = ("dividends.price", "dividends.price_date", "dividends.price_source", "dividends.price_note",
+                "dividends.market_cap", "dividends.market_cap_basis",
+                "dividends.dividend_yield", "dividends.buyback_yield", "dividends.net_buyback_yield", "dividends.shareholder_yield",
+                "dividends.yield_basis.*.denominator",
+                "dividends.yields_display.*.value", "dividends.yields_display.*.label")
+FUNDAMENTALS_VOLATILE = ("as_of",) + PRICE_LEAVES
+LEGACY_PRICE_NOTE = "price: "  # a block written before 2026-10-16 carried its price note in `notes`
+
+
+def _with_note_after_denominator(yb, note):
+    """yb with `note` set (None: removed) right after `denominator`, the key
+    order the block has always been written in."""
+    out = {}
+    for k, v in yb.items():
+        if k == "note":
+            continue
+        out[k] = v
+        if k == "denominator" and note is not None:
+            out["note"] = note
+    if note is not None and "note" not in out:
+        out["note"] = note
+    return out
+
+
+def price_dividends(div, price, price_date, price_source):
+    """The dividends block `div` priced at `price` (pure: `div` is not
+    modified). Every price-dependent leaf — price / price_date / price_source
+    / price_note, market_cap and its basis, the four yields,
+    yield_basis.*.denominator (and the bound note that goes with a market
+    cap), yields_display — is recomputed from the block's own price-free
+    fields: dps_ttm and its basis, shares_outstanding / shares_source /
+    shares_as_of, the yield_basis numerators, bounds and legs, `notes`.
+    build_dividends ends with this call, so a block repriced here at P equals
+    the block fundamentals.py writes at P. A price note in `notes` from a
+    block written before 2026-10-16 is dropped (it is `price_note` now)."""
+    if not isinstance(div, dict):
+        return div
+    d = dict(div)
+    notes = [n for n in (d.get("notes") if isinstance(d.get("notes"), list) else [])
+             if not (isinstance(n, str) and n.startswith(LEGACY_PRICE_NOTE))]
+    if price is None:
+        price_note = "price: neither prices.json nor score.json carries a price — yields null"
+    elif price_source and "score.json" in price_source:
+        price_note = f"price: {price} from score.json ({price_date}); prices.json absent"
+    else:
+        price_note = None
+    shares, shares_src, shares_as_of = d.get("shares_outstanding"), d.get("shares_source"), d.get("shares_as_of")
+    market_cap = price * shares if (_num(price) and _num(shares)) else None
+    market_cap_basis = f"{price} × {shares:,.0f} shares ({shares_src}" + (f", as of {shares_as_of})" if shares_as_of else ")") if market_cap is not None else None
+    legs = d.get("legs") if isinstance(d.get("legs"), dict) else {}
+    yield_basis = dict(d.get("yield_basis")) if isinstance(d.get("yield_basis"), dict) else {}
+    values = {}
+    for name in YIELD_LEGS:
+        yb = yield_basis.get(name)
+        if not isinstance(yb, dict):
+            values[name] = None
+            continue
+        total = yb.get("numerator")
+        values[name] = _ratio(total, market_cap) if (market_cap and total is not None) else None
+        yb = dict(yb, denominator=market_cap_basis)
+        if total is not None:  # a filed numerator: its bound is stated only next to a market cap
+            yb = _with_note_after_denominator(yb, YIELD_BOUND_NOTES[yb["bound"]] if (market_cap and yb.get("bound") in YIELD_BOUND_NOTES) else None)
+        yield_basis[name] = yb
+    dps_ttm, dps_ttm_basis = d.get("dps_ttm"), d.get("dps_ttm_basis")
+    values["dividend_yield"] = _ratio(dps_ttm, price) if _num(price) and price > 0 else None
+    if isinstance(yield_basis.get("dividend_yield"), dict):
+        yield_basis["dividend_yield"] = dict(yield_basis["dividend_yield"], denominator=f"price {price} ({price_source})" if _num(price) else None)
+    # 5.4.4 review fix: a display-ready figure per yield so no consumer (the
+    # Dividends tab, the ranking row) can print a partial numerator bare —
+    # the bound is in the label ("≥ 2.66%", "≤ 6.1%", "≈ 4.4% (incomplete)")
+    yields_display = {}
+    for name in YIELD_KEYS:
+        value = values[name]
+        yb = yield_basis.get(name) if isinstance(yield_basis.get(name), dict) else {}
+        bound = yb.get("bound") if value is not None else None
+        prefix = {"exact": "", "lower": "≥", "upper": "≤", "indeterminate": "≈"}.get(bound, "")
+        if value is None:
+            label = "—"
+        else:
+            label = (f"{prefix} " if prefix else "") + f"{value * 100:.2f}%" + (" (incomplete)" if bound == "indeterminate" else "")
+        if name == "dividend_yield":
+            note = dps_ttm_basis if value is not None else next(
+                (n for n in notes if isinstance(n, str) and (n.startswith("dps_ttm") or n.startswith("no dividends-per-share"))), None)
+        else:
+            # 5.4.5 review (APP '≤ 2.78%' over an issuance leg described as "a
+            # lower bound"): each leg's basis is phrased by what it does to THIS yield
+            sign_of = dict(YIELD_LEGS[name])
+            parts_n = []
+            for k in (yb.get("partial") or []) + (yb.get("excluded") or []):
+                if not isinstance(legs.get(k), dict):
+                    continue
+                b = str(legs[k].get("basis"))
+                b = b[:-len(" — a lower bound")] if b.endswith(" — a lower bound") else b
+                if k in (yb.get("excluded") or []):
+                    eff = "left out, so this yield is a lower bound" if sign_of.get(k, 1) > 0 else "no deduction made, so this yield is an upper bound"
+                else:
+                    eff = "understated, so this yield is a lower bound" if sign_of.get(k, 1) > 0 else "the deduction is understated, so this yield is an upper bound"
+                parts_n.append(f"{k}: {b} — {eff}" if value is not None else f"{k}: {legs[k].get('basis')}")
+            parts_n += [f"{k}: filed below zero, read as the absolute amount" for k in (yb.get("sign_corrected") or {})]
+            parts_n += [f"{k}: filed below zero as a net line, kept as filed" for k in (yb.get("kept_as_filed") or {})]
+            note = "; ".join(parts_n) or (yb.get("note") if value is None else None)
+        yields_display[name] = {"value": value, "bound": bound, "prefix": prefix, "label": label, "note": note or None}
+    d.update({"price": price, "price_date": price_date, "price_source": price_source, "price_note": price_note,
+              "market_cap": market_cap, "market_cap_basis": market_cap_basis,
+              "dividend_yield": values["dividend_yield"], "buyback_yield": values["buyback_yield"],
+              "net_buyback_yield": values["net_buyback_yield"], "shareholder_yield": values["shareholder_yield"],
+              "yield_basis": yield_basis, "yields_display": yields_display, "notes": notes})
+    return d
+
+
+def repriceable(div):
+    """Whether a dividends block carries what price_dividends reads (a block
+    written from 5.4.4 on: yield_basis for every yield and yields_display).
+    An older block is shown as written."""
+    return (isinstance(div, dict) and isinstance(div.get("yield_basis"), dict) and isinstance(div.get("yields_display"), dict)
+            and all(isinstance(div["yield_basis"].get(k), dict) for k in YIELD_KEYS))
 
 
 UNIT_SLIP_FACTOR = 10  # two filings of the same period's DPS that disagree by ≥10x disagree on the unit, not the dividend
@@ -2576,13 +2772,19 @@ def dividends_inputs(facts):
     # 5.4.6: a ratio fact the filed share counts do not bear out is not a split
     # (CFG tags 6 at 2021-12-31 and its diluted count moves ×0.95; DXCM tags its
     # June 2022 4-for-1 at 2019-12-31 and 2020-12-31 too): across the first
-    # filing on the new basis (else the ratio fact's date) the annual diluted
-    # count must move closer to the ratio than to no change
-    swf = _shares_with_filed(facts)
+    # filing on the new basis (else the ratio fact's date) the diluted count
+    # must move closer to the ratio than to no change. Codex review of PR #2:
+    # the counts are the fiscal-year AND quarterly ones (the same evidence
+    # statements.py's split_borne_out reads) — Q tags the 0.5 spin-off
+    # distribution ratio (one Qnity share per two DuPont shares) on its Q1 2026
+    # 10-Q; no fiscal year has been filed since, so the annual counts alone
+    # said nothing and the FY2025 DPS of $0.14 was doubled to $0.28, while the
+    # quarterly count went 209.8M (FY2025) -> 210.3M (Q1 2026): no split
+    counts = diluted_counts_with_filed(facts) if directed else {}
     supported = []
     for d, r, used, ev in directed:
         cut = cutoffs.get(d, (None, None))[0] or d
-        mv = share_count_move(swf, cut)
+        mv = share_count_move(counts, cut)
         if mv and abs(math.log(used)) >= math.log(SHARE_REFILE_MIN) and abs(math.log(mv[0])) < abs(math.log(mv[0]) - math.log(used)):
             notes.append(f"split ratio {r:g} tagged at {d} is left out — {mv[1]}: the share counts do not move by the ratio, so it is not a split of the common shares "
                          "(an exchange or conversion ratio, or a split tagged at an earlier context date)")
@@ -2724,23 +2926,51 @@ def original_quarterly_dps(facts, dps_q, splits):
 
 
 def share_count_move(shares_with_filed, date):
-    """(observed move, evidence) of the annual diluted count across `date`: the
-    last fiscal year whose count was last filed before it vs the first later
-    fiscal year filed on or after it (as split_direction reads it; a count
-    filed in thousands against one in shares is normalised). None without both."""
-    pre = [(e, v) for e, (v, f) in shares_with_filed.items() if f and f < date and _num(v) and v > 0]
-    post = [(e, v) for e, (v, f) in shares_with_filed.items() if f and f >= date and _num(v) and v > 0]
+    """(observed move, evidence) of the diluted count across `date`: the last
+    period whose count was last filed before it vs the first later period
+    filed on or after it (as split_direction reads it; a count filed in
+    thousands against one in shares is normalised). Keys are fiscal-year ends
+    ({end: (val, filed)}, _shares_with_filed) or (start, end) periods
+    ({(start, end): (val, filed)}, diluted_counts_with_filed: fiscal years and
+    quarters); where several periods end on one date the shortest is read
+    (the quarter, not the year-to-date or the year around it). None without both."""
+    def _end(k):
+        return k[1] if isinstance(k, tuple) else k
+
+    def _span(k):
+        return _days(k[0], k[1]) if isinstance(k, tuple) else 365
+
+    def _label(k):
+        sp = _span(k)
+        return "FY" if sp >= 330 else ("quarter" if sp <= 120 else "year-to-date period")
+
+    pre = [(_end(k), _span(k), k, v) for k, (v, f) in shares_with_filed.items() if f and f < date and _num(v) and v > 0]
+    post = [(_end(k), _span(k), k, v) for k, (v, f) in shares_with_filed.items() if f and f >= date and _num(v) and v > 0]
     if not pre:
         return None
-    post = [(e, v) for e, v in post if e > max(pre)[0]]
+    last_end = max(x[0] for x in pre)
+    post = [x for x in post if x[0] > last_end]
     if not post:
         return None
-    (e0, s0), (e1, s1) = max(pre), min(post)
+    first_end = min(x[0] for x in post)
+    e0, _, k0, s0 = min((x for x in pre if x[0] == last_end), key=lambda x: (x[1], str(x[2])))
+    e1, _, k1, s1 = min((x for x in post if x[0] == first_end), key=lambda x: (x[1], str(x[2])))
     obs = s1 / s0
     k3 = round(-math.log10(obs) / 3)
     if k3 and abs(math.log10(obs)) >= 2.5:
         obs *= 1000.0 ** k3
-    return obs, f"diluted shares {s0:,.0f} (FY ending {e0}, last filed before {date}) → {s1:,.0f} (FY ending {e1}), ×{obs:.2f}"
+    return obs, f"diluted shares {s0:,.0f} ({_label(k0)} ending {e0}, last filed before {date}) → {s1:,.0f} ({_label(k1)} ending {e1}), ×{obs:.2f}"
+
+
+def diluted_counts_with_filed(facts):
+    """{(start, end): (diluted weighted shares, filed)} — every fiscal-year AND
+    quarter count (3-month or year-to-date) filed in shares, each period's
+    newest filing (the evidence statements.py's split_borne_out reads)."""
+    out = {}
+    for (s, e), (v, tag, unit, filed, accn) in duration_facts(facts, DUR["shares_diluted"]).items():
+        if unit == "shares" and filed and _num(v) and v > 0 and 60 <= _days(s, e) <= 380:
+            out[(s, e)] = (v, filed)
+    return out
 
 
 def _shares_with_filed(facts):
@@ -2790,7 +3020,16 @@ def build_ttm(qrows):
     return out
 
 
-def build_profile(cik, facts):
+def eight_k_count(dates, as_of):
+    """8-K filings dated in the 365 days to `as_of` (a date), both ends included."""
+    lo, hi = (as_of - datetime.timedelta(days=365)).isoformat(), as_of.isoformat()
+    return sum(1 for d in dates if isinstance(d, str) and lo <= d <= hi)
+
+
+def build_profile(cik, facts, eight_k_dates=None):
+    """The EDGAR submissions profile. eight_k_count_12m is counted to ET_TODAY;
+    a list passed as eight_k_dates receives every 8-K filing date in the feed
+    so write_fundamentals can recount the window to an earlier as_of."""
     prof = {"cik": cik, "entity": facts.get("entityName")}
     try:
         sub = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
@@ -2804,8 +3043,7 @@ def build_profile(cik, facts):
     rec = (sub.get("filings") or {}).get("recent") or {}
     forms, fds, rds, accs, docs = rec.get("form", []), rec.get("filingDate", []), rec.get("reportDate", []), rec.get("accessionNumber", []), rec.get("primaryDocument", [])
     latest = {}
-    n8k = 0
-    cutoff = (ET_TODAY - datetime.timedelta(days=365)).isoformat()
+    dates8k = []
     for i, form in enumerate(forms):
         fd = fds[i] if i < len(fds) else ""
         if form in ("10-K", "10-K/A", "20-F", "40-F", "10-Q", "10-Q/A") and form.replace("/A", "") not in latest:
@@ -2813,12 +3051,52 @@ def build_profile(cik, facts):
             doc = docs[i] if i < len(docs) else ""
             latest[form.replace("/A", "")] = {"filed": fd, "period": rds[i] if i < len(rds) else "",
                                               "url": f"https://www.sec.gov/Archives/edgar/data/{cik}/{acc}/{doc}" if acc and doc else None}
-        if form == "8-K" and fd >= cutoff:
-            n8k += 1
+        if form == "8-K" and fd:
+            dates8k.append(fd)
     prof["latest_filings"] = latest
-    prof["eight_k_count_12m"] = n8k
+    prof["eight_k_count_12m"] = eight_k_count(dates8k, ET_TODAY)
+    if eight_k_dates is not None:
+        eight_k_dates.extend(dates8k)
     prof["edgar_url"] = f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={cik:010d}&type=10-K&dateb=&owner=include&count=40"
     return prof
+
+
+def _prev_file(path):
+    """The fundamentals.json already on disk (dict), else None."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            d = json.load(f)
+        return d if isinstance(d, dict) else None
+    except (OSError, ValueError):
+        return None
+
+
+def write_fundamentals(path, out, eight_k_dates=None, prev=None):
+    """Write `out` to path (json.dump indent=1, atomically) unless the file
+    already holds the same content apart from `as_of`. Returns True when written.
+
+    The committed file is a snapshot as of its own `as_of`. Its one rolling
+    figure, profile.eight_k_count_12m (8-Ks in the 365 days to the run date),
+    changes when an old 8-K ages out of the window with no filing at all
+    (verifier, PR #2 repair round: Q 13 -> 12 and HBAN 31 -> 29 between
+    2026-10-15 and 2026-10-20 on the same companyfacts and submissions, so
+    both files were rewritten). So the count is first compared as of the
+    file's own as_of: when that is the only other difference the file stays —
+    as_of and its 8-K count still agree — and a file rewritten for any other
+    reason carries the count to the run date. An 8-K filed after the file's
+    as_of is therefore picked up with the next content change, not on its own."""
+    prev = prev if prev is not None else _prev_file(path)
+    prof = out.get("profile")
+    try:
+        then = datetime.date.fromisoformat(str((prev or {}).get("as_of")))
+    except ValueError:
+        then = None
+    if (then is not None and eight_k_dates is not None and isinstance(prof, dict) and "eight_k_count_12m" in prof
+            and then.isoformat() != out.get("as_of") and then <= ET_TODAY):
+        as_then = dict(out, as_of=then.isoformat(), profile=dict(prof, eight_k_count_12m=eight_k_count(eight_k_dates, then)))
+        if same_content(path, as_then, volatile=FUNDAMENTALS_VOLATILE):
+            return False
+    return write_json_if_changed(path, out, volatile=FUNDAMENTALS_VOLATILE, indent=1)
 
 
 def main():
@@ -2829,7 +3107,8 @@ def main():
     folder = f"{BASE}/{ticker}"
     nums = {}
     try:
-        nums = json.load(open(f"{folder}/dcf_numbers.json", encoding="utf-8"))
+        with open(f"{folder}/dcf_numbers.json", encoding="utf-8") as f:
+            nums = json.load(f)
     except Exception:
         pass
     cik = resolve_cik(ticker, nums)
@@ -2840,9 +3119,12 @@ def main():
     annual, tag_summary, currency = build_annual(facts)
     quarterly = build_quarterly(facts, warnings=warnings, revenue_mode=(tag_summary.get("revenue_mode") or ["standard"])[0], annual=annual)
     ttm = build_ttm(quarterly)
-    profile = build_profile(cik, facts)
+    eight_k_dates = []
+    profile = build_profile(cik, facts, eight_k_dates=eight_k_dates)
     dps_q, dps_fy, dmeta = dividends_inputs(facts)
-    price, price_date, price_source = _read_price(folder)
+    path = f"{folder}/fundamentals.json"
+    prev = _prev_file(path)
+    price, price_date, price_source = _read_price(folder, (prev or {}).get("dividends"))
     flow_facts = {"dividends_paid": duration_facts(facts, DUR["dividends_paid"]),
                   "buybacks": duration_facts(facts, DUR["buybacks"]),
                   "share_issuance": combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS)}
@@ -2863,16 +3145,17 @@ def main():
            "currency": currency[0] if currency else "USD",
            "profile": profile, "annual": annual, "quarterly": quarterly, "ttm": ttm, "dividends": dividends,
            "tags_used": tag_summary, "warnings": warnings}
+    file_status = "not written (--no-write)"
     if "--no-write" not in sys.argv:
-        os.makedirs(folder, exist_ok=True)
-        with open(f"{folder}/fundamentals.json", "w", encoding="utf-8") as f:
-            json.dump(out, f, indent=1)
-    summary = {"ticker": ticker, "cik": cik, "annual_years": len(annual), "quarters": len(quarterly),
+        # committed file: rewritten only when something besides the run date
+        # changed (_stable.py), so `as_of` = the day this content was produced
+        file_status = "written" if write_fundamentals(path, out, eight_k_dates, prev) else "unchanged"
+    summary = {"ticker": ticker, "cik": cik, "fundamentals_json": file_status, "annual_years": len(annual), "quarters": len(quarterly),
                "ttm_period": (ttm or {}).get("period_end"), "latest_filings": profile.get("latest_filings"), "warnings": warnings,
                "dividends": {k: dividends.get(k) for k in ("dps_ttm", "dps_ttm_basis", "dps_basis", "frequency", "frequency_basis", "dividend_yield",
                                                            "growth_years", "last_cut_fy", "dps_cagr_5y", "dividends_paid_ttm", "buybacks_ttm", "issuance_ttm",
                                                            "buyback_yield", "net_buyback_yield", "shareholder_yield", "shareholder_yield_basis", "shareholder_yield_complete",
-                                                           "shares_outstanding", "shares_source", "market_cap", "price", "price_date", "notes")}}
+                                                           "shares_outstanding", "shares_source", "market_cap", "price", "price_date", "price_note", "notes")}}
     print(json.dumps(summary, indent=1))
 
 

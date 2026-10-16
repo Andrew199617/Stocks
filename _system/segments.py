@@ -90,6 +90,8 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from _stable import write_json_if_changed  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 SYS = f"{BASE}/_system"
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com", "Accept-Encoding": "identity"}
@@ -1268,8 +1270,8 @@ def run_ticker(ticker, cik, write=True, sub=None):
     if write:
         folder = f"{BASE}/{ticker}"
         os.makedirs(folder, exist_ok=True)
-        with open(f"{folder}/segments.json", "w", encoding="utf-8") as f:
-            json.dump(out, f, indent=1)
+        # committed file: rewritten only when something besides the run date changed (_stable.py)
+        run_ticker.last_written = write_json_if_changed(f"{folder}/segments.json", out, indent=1)
     return out
 
 
@@ -1306,8 +1308,10 @@ def main(argv=None):
                         prev = None
                     if prev is not None and up_to_date(prev, sub):
                         skipped.append(t); continue
+                run_ticker.last_written = None
                 out = run_ticker(t, cik, write=write, sub=sub)
-                done.append(f"{t}: {len(out['tables'])} tables" + (f", {len(out['warnings'])} warnings" if out["warnings"] else ""))
+                done.append(f"{t}: {len(out['tables'])} tables" + (f", {len(out['warnings'])} warnings" if out["warnings"] else "")
+                            + (" (content unchanged; file left as is)" if run_ticker.last_written is False else ""))
                 print(f"{t}: {len(out['tables'])} tables; warnings: {out['warnings'] or 'none'}", flush=True)
             except Exception as e:
                 failed.append(f"{t}: {type(e).__name__}: {e}")

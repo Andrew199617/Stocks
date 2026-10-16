@@ -742,7 +742,7 @@
   "net_income_yoy": -0.2309523809523809
  },
  "dividends": {
-  "dps_ttm": 0.28,
+  "dps_ttm": 0.14,
   "dps_ttm_basis": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 the 1 quarterly fact(s) since have no prior-year comparative facts, so the year is not rolled forward",
   "dps_basis": "declared",
   "dps_basis_detail": "declared facts for periods ending 2025-12-31..2026-06-30",
@@ -752,7 +752,7 @@
    {
     "fy": "2025",
     "period_end": "2025-12-31",
-    "dps": 0.28,
+    "dps": 0.14,
     "kind": "declared"
    }
   ],
@@ -765,15 +765,8 @@
   "fy_label_basis": "calendar year of the fiscal period end (the annual table's convention)",
   "basis_breaks": [],
   "basis_breaks_rejected": [],
-  "split_adjustments": [
-   {
-    "effective": "2026-03-31",
-    "ratio": 0.5,
-    "first_post_split_filing": "2026-03-31",
-    "source": "ratio_fact"
-   }
-  ],
-  "payout_ratio_eps": 0.08484848484848487,
+  "split_adjustments": [],
+  "payout_ratio_eps": 0.042424242424242434,
   "payout_ratio_oe": 0.013429752066115703,
   "payout_ratio_fcf": 0.013157894736842105,
   "payout_fy": "2025",
@@ -811,7 +804,7 @@
   "shares_diluted_source": "latest quarterly weighted-average diluted",
   "market_cap": 25443942999.66,
   "market_cap_basis": "121.62 \u00d7 209,208,543 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-04), as of 2026-07-31)",
-  "dividend_yield": 0.0023022529189278083,
+  "dividend_yield": 0.0011511264594639041,
   "buyback_yield": 0.001965104229351093,
   "net_buyback_yield": 0.001965104229351093,
   "shareholder_yield": 0.003301375105309836,
@@ -882,7 +875,7 @@
     "note": "neither bound \u2014 a positive leg and the issuance leg are both incomplete"
    },
    "dividend_yield": {
-    "numerator": 0.28,
+    "numerator": 0.14,
     "basis": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 the 1 quarterly fact(s) since have no prior-year comparative facts, so the year is not rolled forward",
     "bound": "exact",
     "complete": true,
@@ -891,10 +884,10 @@
   },
   "yields_display": {
    "dividend_yield": {
-    "value": 0.0023022529189278083,
+    "value": 0.0011511264594639041,
     "bound": "exact",
     "prefix": "",
-    "label": "0.23%",
+    "label": "0.12%",
     "note": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 the 1 quarterly fact(s) since have no prior-year comparative facts, so the year is not rolled forward"
    },
    "buyback_yield": {
@@ -928,7 +921,7 @@
   ],
   "notes": [
    "split ratio 0.5 is tagged at 2 context dates (2026-03-31, 2026-06-30) \u2014 one split, read once at 2026-03-31",
-   "split adjustment (declared DPS): 1 facts for periods ending 2025-12-31..2025-12-31 were last filed before the 1-for-2 reverse split effective 2026-03-31 and are divided by the filed ratio (StockholdersEquityNoteStockSplitConversionRatio1) to today's share basis",
+   "split ratio 0.5 tagged at 2026-03-31 is left out \u2014 diluted shares 209,800,000 (FY ending 2025-12-31, last filed before 2026-03-31) \u2192 210,300,000 (quarter ending 2026-03-31), \u00d71.00: the share counts do not move by the ratio, so it is not a split of the common shares (an exchange or conversion ratio, or a split tagged at an earlier context date)",
    "dps_ttm: fewer than four quarterly DPS facts \u2014 FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 the 1 quarterly fact(s) since have no prior-year comparative facts, so the year is not rolled forward",
    "frequency: a single quarterly DPS fact so far (2026-06-30) \u2014 payment frequency not inferable yet",
    "dividends_paid_ttm: not all of the last four quarters have a filed dividends_paid figure (missing 2025-09-30, 2025-12-31) \u2014 the six-month year-to-date fact 2026-01-01..2026-06-30 = 34.0M (PaymentsOfDividendsCommonStock, filed 2026-08-04) covers 2 of them",

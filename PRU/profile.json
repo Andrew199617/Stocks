@@ -1,21 +1,14 @@
 {
  "ticker": "PRU",
  "cik": 1137774,
- "as_of": "2026-10-15",
- "fetched_at": "2026-10-15T18:24:10-04:00",
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:03-04:00",
  "newest_filing_date": "2026-10-15",
  "sources": {
   "edgar_submissions": "https://data.sec.gov/submissions/CIK0001137774.json",
   "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000048/pru-20251231.htm",
   "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PRU/company-profile",
-  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PRU/summary?assetclass=stocks",
-  "nasdaq_targetprice": "https://api.nasdaq.com/api/analyst/PRU/targetprice",
-  "nasdaq_ratings": "https://api.nasdaq.com/api/analyst/PRU/ratings",
-  "nasdaq_earnings_forecast": "https://api.nasdaq.com/api/analyst/PRU/earnings-forecast",
-  "nasdaq_eps": "https://api.nasdaq.com/api/quote/PRU/eps",
-  "nasdaq_estimate_momentum": "https://api.nasdaq.com/api/analyst/PRU/estimate-momentum",
-  "nasdaq_earnings_date": "https://api.nasdaq.com/api/analyst/PRU/earnings-date",
-  "nasdaq_peg_ratio": "https://api.nasdaq.com/api/analyst/PRU/peg-ratio"
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PRU/summary?assetclass=stocks"
  },
  "about": {
   "entity": "PRUDENTIAL FINANCIAL INC",
@@ -29,7 +22,7 @@
    "accession": "0001137774-26-000048",
    "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000048/pru-20251231.htm"
   },
-  "description_short": "PGIM is the global asset management business of Prudential Financial, Inc. ( NYSE: PRU ), with $1.5 trillion in assets under management.1 PGIM offers clients deep expertise across public and private asset classes, delivering a diverse range of investment strategies and tailored solutions - including fixed income, equities, real estate and alternatives. With 1,500+ investment professionals across 40 offices in 20 countries, we serve retail and institutional clients worldwide.",
+  "description_short": "Prudential Financial, Inc. ( NYSE: PRU ), a global financial services leader and premier active global investment manager with approximately $1.6 trillion in assets under management as of June 30, 2026, has operations in the United States, Asia, Europe, and Latin America. Prudential's diverse and talented employees help make lives better and create financial opportunity for more people by expanding access to investing, insurance, and retirement security. Prudential's iconic Rock symbol has stood for strength, stability, expertise, and innovation for over 150 years.",
   "industry": "Life Insurance",
   "sector": "Finance",
   "region": "North America",
@@ -64,294 +57,6 @@
   "first_sec_filing_form": "S-1",
   "former_names": [],
   "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001137774&type=10-K&dateb=&owner=include&count=40"
- },
- "street": {
-  "source": "Nasdaq analyst endpoints",
-  "as_of": "2026-10-15",
-  "consensus": "Underperform",
-  "analysts": 16,
-  "buy": 0,
-  "hold": 8,
-  "sell": 3,
-  "target_mean": 114.33,
-  "target_low": 96.0,
-  "target_high": 132.0,
-  "target_1y_nasdaq_summary": 109.0,
-  "history": [
-   {
-    "date": "2025-10-01",
-    "mean_target": 102.99,
-    "buy": 0,
-    "hold": 10,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2025-11-01",
-    "mean_target": 104.0,
-    "buy": 0,
-    "hold": 9,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2025-12-01",
-    "mean_target": 108.22,
-    "buy": 0,
-    "hold": 9,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-01-01",
-    "mean_target": 112.88,
-    "buy": 0,
-    "hold": 8,
-    "sell": 0,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-02-01",
-    "mean_target": 111.11,
-    "buy": 0,
-    "hold": 10,
-    "sell": 1,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-03-01",
-    "mean_target": 98.38,
-    "buy": 0,
-    "hold": 9,
-    "sell": 2,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-04-01",
-    "mean_target": 97.98,
-    "buy": 0,
-    "hold": 10,
-    "sell": 2,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-05-01",
-    "mean_target": 98.62,
-    "buy": 0,
-    "hold": 10,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-06-01",
-    "mean_target": 100.49,
-    "buy": 0,
-    "hold": 7,
-    "sell": 4,
-    "consensus": "Sell"
-   },
-   {
-    "date": "2026-07-01",
-    "mean_target": 111.07,
-    "buy": 0,
-    "hold": 9,
-    "sell": 4,
-    "consensus": "Sell"
-   },
-   {
-    "date": "2026-08-01",
-    "mean_target": 122.08,
-    "buy": 0,
-    "hold": 9,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-09-01",
-    "mean_target": 117.14,
-    "buy": 0,
-    "hold": 9,
-    "sell": 3,
-    "consensus": "Neutral"
-   },
-   {
-    "date": "2026-10-01",
-    "mean_target": 114.33,
-    "buy": 0,
-    "hold": 9,
-    "sell": 3,
-    "consensus": "Neutral"
-   }
-  ],
-  "brokers": [
-   "B OF A GLBL RES",
-   "BARCLAYS CAPITA",
-   "CITIGROUP",
-   "DEUTSCHE BK SEC",
-   "DOWLING & PARTN",
-   "EVERCORE ISI",
-   "GOLDMAN SACHS",
-   "JEFFERIES & CO.",
-   "JP MORGAN SECUR",
-   "MORGAN STANLEY",
-   "PIPER SANDLER",
-   "RAYMOND JAMES",
-   "RBC CAPITAL",
-   "UBS",
-   "WELLS FARGO SEC",
-   "ZACKS RESEARCH"
-  ],
-  "upgrades_downgrades": [],
-  "eps_forecast": {
-   "quarterly": [
-    {
-     "period": "Sep 2026",
-     "fiscal_end": "2026-09",
-     "consensus": 3.47,
-     "low": 3.33,
-     "high": 3.63,
-     "estimates": 8,
-     "revisions_up": 4,
-     "revisions_down": 2
-    },
-    {
-     "period": "Dec 2026",
-     "fiscal_end": "2026-12",
-     "consensus": 3.34,
-     "low": 3.17,
-     "high": 3.49,
-     "estimates": 7,
-     "revisions_up": 1,
-     "revisions_down": 2
-    },
-    {
-     "period": "Mar 2027",
-     "fiscal_end": "2027-03",
-     "consensus": 3.54,
-     "low": 3.26,
-     "high": 3.79,
-     "estimates": 6,
-     "revisions_up": 0,
-     "revisions_down": 1
-    },
-    {
-     "period": "Jun 2027",
-     "fiscal_end": "2027-06",
-     "consensus": 3.78,
-     "low": 3.53,
-     "high": 4.16,
-     "estimates": 6,
-     "revisions_up": 0,
-     "revisions_down": 1
-    },
-    {
-     "period": "Sep 2027",
-     "fiscal_end": "2027-09",
-     "consensus": 3.78,
-     "low": 3.58,
-     "high": 3.96,
-     "estimates": 6,
-     "revisions_up": 1,
-     "revisions_down": 1
-    }
-   ],
-   "annual": [
-    {
-     "period": "Dec 2026",
-     "fiscal_end": "2026-12",
-     "consensus": 14.5,
-     "low": 14.19,
-     "high": 14.9,
-     "estimates": 10,
-     "revisions_up": 4,
-     "revisions_down": 2
-    },
-    {
-     "period": "Dec 2027",
-     "fiscal_end": "2027-12",
-     "consensus": 14.85,
-     "low": 14.37,
-     "high": 15.25,
-     "estimates": 10,
-     "revisions_up": 3,
-     "revisions_down": 3
-    },
-    {
-     "period": "Dec 2028",
-     "fiscal_end": "2028-12",
-     "consensus": 16.22,
-     "low": 15.54,
-     "high": 16.8,
-     "estimates": 5,
-     "revisions_up": 1,
-     "revisions_down": 0
-    }
-   ]
-  },
-  "eps_history": [
-   {
-    "period": "Sep 2025",
-    "consensus": 3.66,
-    "actual": 4.26,
-    "surprise_pct": 16.39
-   },
-   {
-    "period": "Dec 2025",
-    "consensus": 3.37,
-    "actual": 3.3,
-    "surprise_pct": -2.08
-   },
-   {
-    "period": "Mar 2026",
-    "consensus": 3.24,
-    "actual": 3.61,
-    "surprise_pct": 11.42
-   },
-   {
-    "period": "Jun 2026",
-    "consensus": 3.47,
-    "actual": 4.08,
-    "surprise_pct": 17.58
-   }
-  ],
-  "eps_upcoming": [
-   {
-    "period": "Sep 2026",
-    "consensus": 3.47
-   },
-   {
-    "period": "Dec 2026",
-    "consensus": 3.34
-   },
-   {
-    "period": "Mar 2027",
-    "consensus": 3.54
-   },
-   {
-    "period": "Jun 2027",
-    "consensus": 3.78
-   }
-  ],
-  "momentum": {
-   "quarter": {
-    "period": "Sep 2026",
-    "current": 3.47,
-    "week_ago": 3.44,
-    "month_ago": 3.45
-   },
-   "year": {
-    "period": "Dec 2026",
-    "current": 14.5,
-    "week_ago": 14.5,
-    "month_ago": 14.51
-   }
-  },
-  "next_earnings": {
-   "date": "2026-11-03",
-   "text": "Prudential Financial, Inc. Common Stock is expected* to report earnings on 11/03/2026 after market close. The report will be for the fiscal Quarter ending Sep 2026. According to Zacks Investment Research, based on 8 analysts' forecasts, the consensus EPS forecast for the quarter is $3.47. The reported EPS for the same quarter last year was $4.26.",
-   "timing": "after market close"
-  },
-  "peg_forward": 1.68
  },
  "filings": [
   {
@@ -589,20 +294,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526043795/d33481d8k.htm"
   }
  ],
- "market": {
-  "exchange": "NYSE",
-  "average_volume": 2716885,
-  "volume": 2111094,
-  "market_cap_nasdaq": 40133850000,
-  "high_52w": 127.72,
-  "low_52w": 91.89,
-  "previous_close": 113.49,
-  "one_year_target": 109.0,
-  "dividend_yield_nasdaq": null,
-  "annualized_dividend": null,
-  "ex_dividend_date": null,
-  "dividend_pay_date": null
- },
  "warnings": [
   "employees: no headcount sentence found in the 10-K filed 2026-02-12"
  ]

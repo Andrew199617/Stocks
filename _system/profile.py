@@ -1,13 +1,40 @@
 #!/usr/bin/env python3
-"""Company profile store (v5.4, 2026-10-14) -> <TICKER>/profile.json.
+"""Company profile store (v5.5, 2026-10-16) -> <TICKER>/profile.json + <TICKER>/street.json.
 
-Usage: python3 profile.py <TICKER> [--cik N] [--no-write] [--quiet]
-       python3 profile.py --all [--max-age-days 7] [--force] [--quiet]
+Usage: python3 profile.py <TICKER> [--cik N] [--no-write] [--quiet] [--street-only]
+       python3 profile.py --all [--max-age-days 7] [--force] [--quiet] [--street-only]
+
+  --street-only  street.json only, with NO EDGAR request (Nasdaq endpoints only):
+                 the CIK comes from the committed <T>/profile.json, else
+                 dcf_numbers.json / fundamentals.json, else the local ticker maps
+                 (_system/sec_tickers_exchange.json, universe.csv). refresh.py
+                 runs "profile.py --all --street-only --quiet" for a plain refresh
+                 and "profile.py --all --quiet" with --sec (and the same per name
+                 with --tickers).
+
+Two files per company (split 2026-10-16):
+  profile.json  COMMITTED. EDGAR-derived About block, filing feed and first SEC
+      filing, plus the stable Nasdaq company-profile / quote-summary fields the
+      About block uses (description_short, industry, sector, region, exchange).
+      Keys: ticker, cik, as_of, fetched_at, newest_filing_date, sources, about,
+      filings, warnings; never `street` or `market`. Written through
+      _stable.write_json_if_changed: a rebuild whose content differs only in
+      as_of / fetched_at leaves the file untouched (same bytes, same mtime), so
+      `as_of` is the day the current content was produced.
+  street.json   GITIGNORED cache, written on every pull. {ticker, cik, as_of
+      (ET date of the pull), fetched_at (ISO-8601 with offset), source "Nasdaq
+      analyst and quote endpoints", street (the Street block, its own as_of
+      included), market (the quote-summary block), sources {nasdaq_<endpoint>:
+      url | "FAILED: url"}, warnings}. `street` and `market` keep the shapes
+      they had inside the pre-split profile.json.
 
 Schema: SITE_CONTRACT.md, "Decisions (owner, 2026-10-14 evening - layout and
 profile)" and the extended `street` block under "Decisions (owner, 2026-10-14
-night - Forecast tab)". build_site.py copies the file into the record as
-`record.profile`; the app's About / Street / Filings cards render it.
+night - Forecast tab)". build_site.py copies profile.json into the record as
+`record.profile` and puts street.json's street / market / fetched_at on
+record.profile.street / .market / .street_fetched_at (falling back to the
+keys of a pre-split profile.json); the app's About / Street / Filings cards
+render them.
 
 Sources (every figure is a filed value, a Nasdaq-published value or plain
 arithmetic on them; nothing is estimated):
@@ -17,9 +44,13 @@ arithmetic on them; nothing is estimated):
       the filings.recent arrays. `about.first_sec_filing` (+ `_form`), the
       IPO-date proxy, is the earliest registration / listing form (S-1, F-1,
       S-11, Form 10, 20FR12B, 40FR12B, 8-A12B, 424B4 ...) across `recent` and
-      the paginated files (fetched oldest first until one is seen) unless a
-      periodic report precedes it (a company public before EDGAR), else the
-      earliest filing of any form. A Form D or a DRS draft never wins.
+      the paginated files unless a periodic report precedes it (a company
+      public before EDGAR), else the earliest filing of any form. A Form D or
+      a DRS draft never wins. The paginated files are fetched oldest first
+      and the search stops once the earliest registration or periodic report
+      seen predates the filingFrom of every page not yet read (that settles
+      the answer); a later registration among the recent filings never stops
+      it, and a page without filingFrom is always read.
   EDGAR 10-K primary document (the latest 10-K; 20-F for foreign filers)
       `about.headquarters` / `address` = the inline-XBRL cover's filed
       dei:EntityAddress* values (`address.source` "annual filing cover"),
@@ -50,29 +81,72 @@ arithmetic on them; nothing is estimated):
       null with no such sentence (never guessed). The count under the Human
       Capital / Employees heading outranks a later-dated one elsewhere.
   Nasdaq (User-Agent Mozilla/5.0, Accept application/json)
-      company-profile, quote summary, analyst targetprice / ratings /
-      earnings-forecast / estimate-momentum / earnings-date / peg-ratio and
-      quote eps. Each endpoint fails independently: the affected sub-block is
-      null and `warnings` says so; the EDGAR part is always written. `street`
-      is null only when every analyst endpoint failed. Nasdaq placeholders are
-      not figures: estimate-momentum means of 999 are null and quote/eps rows
-      with consensus 0 AND earnings 0 are dropped (both leave a warning).
+      profile.json: company-profile and the quote summary (About fields only;
+      no price, volume or target ever enters it). street.json: the quote
+      summary plus analyst targetprice / ratings / earnings-forecast /
+      estimate-momentum / earnings-date / peg-ratio and quote eps. Each
+      endpoint fails independently: the affected fields or sub-block are null
+      and that file's `warnings` says so; the EDGAR part is always written.
+      `street` is null only when every analyst endpoint failed. Nasdaq
+      placeholders are not figures: estimate-momentum means of 999 are null
+      and quote/eps rows with consensus 0 AND earnings 0 are dropped (both
+      leave a warning). A run that builds both files reads the summary once.
 
-Refresh policy (--all): a name is skipped when its profile.json is younger
-than --max-age-days (default 7) AND the newest EDGAR filing date (from the
-small submissions feed, one request) is unchanged; --force rebuilds all.
+Refresh policy. `profile.py <T>` (WORKER_SPEC step 9) rebuilds both files
+(--street-only: re-fetches street.json, whatever its age, with no EDGAR
+request). `--all` walks every folder with a score.json and, per name:
+  - street.json is re-fetched when it is missing or unreadable, when its
+    as_of is --max-age-days (default 7) or more days old, when the last pull
+    was degraded (a source reads "FAILED: ..."), or with --force (the same
+    policy with --street-only);
+  - the EDGAR submissions feed is read (one request; skipped by
+    --street-only) and profile.json rebuilt when it is missing, when it is a
+    pre-split file that still carries street / market, when the filing feed
+    changed (newest_filing_date, or the feed's accession numbers, so a
+    second filing on the same filingDate counts), when the last build was
+    degraded (a Nasdaq About endpoint "FAILED: ...", or the annual document
+    or a submissions page unreadable: retried on every run until a build
+    succeeds), or with --force. newest_filing_date and the feed cover only
+    the forms the file reflects (the feed's eight forms and their
+    amendments), so a Form 4 or 144 does not trigger a rebuild. Age alone
+    never rebuilds profile.json, and a rebuild that changes nothing but
+    as_of / fetched_at does not rewrite it;
+  - a name needing neither is skipped. One name's failure (even an
+    unexpected exception, or a profile.json / street.json whose fields have
+    the wrong types) is counted, with its reason on its own line of the
+    summary, and the walk goes on; a corrupt file of one kind does not stop
+    the other file's check.
+"Unreadable" means the network or the response (HTTP error, timeout, a
+body that does not decode): transient, so retried. An extractor that raises
+on a document that WAS read (cover_address, html_to_text, extract_item1,
+extract_employees) is a bug, and deterministic: the file keeps the warning
+"annual document parse error (<Type>: <message>) in <extractor> ...", the
+fields that extractor supplies are null (the others are still extracted),
+stderr gets the traceback, the exit status is 6 and --all lists it as a
+failure; it is NOT a degraded build, so the 10-K is not re-downloaded on
+every run: the name is rebuilt when its filing feed changes or with --force.
 Rate limits: at most 10 requests/second per host (0.11 s spacing); --all
-pauses between names. EDGAR timeout 90 s, Nasdaq 40 s, three attempts with
-backoff for both.
+pauses between names it fetches. EDGAR timeout 90 s, Nasdaq 40 s, three
+attempts with backoff for both. Both files are swapped in atomically, and
+the swap is retried for ~20 s on a Windows PermissionError (a reader such as
+build_site.py holding the file open).
 
-Exit status: 0 written (or --all finished), 2 no CIK / usage, 3 the EDGAR
-submissions feed could not be read (nothing written), 4 the build itself
-raised (a bug, traceback printed; nothing written).
+Exit status: 0 done (or --all finished with no failure), 1 --all had a
+failure, 2 no CIK / usage, 3 the EDGAR submissions feed could not be read
+(profile.json not written; street.json still refreshed), 4 a build raised (a
+bug, traceback printed; that file not written), 5 a file could not be
+written (OSError after the retries; the other file is still written), 6 an
+extractor raised on the annual document (a bug, traceback printed;
+profile.json still written with that extractor's fields null). A
+single-name run that meets several returns the first one's code (6 only
+when nothing else failed).
 """
 import json, sys, os, re, csv, html, math, time, datetime, traceback, urllib.request
 from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from _stable import write_json_if_changed  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 SYS = f"{BASE}/_system"
 EDGAR_UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
@@ -162,10 +236,14 @@ def jload(p):
         return None
 
 
+JSON_FORMAT = {"indent": 1, "ensure_ascii": False, "allow_nan": False}   # both files, either writer
+
+
 def write_atomic(path, obj):
     """Serialise first (a NaN / Infinity raises before any file exists), then write a temp file next to the target
-    and swap it in; the temp file is removed if anything fails, so no profile.json.tmp is left in a company folder."""
-    data = json.dumps(obj, indent=1, ensure_ascii=False, allow_nan=False)
+    and swap it in; the temp file is removed if anything fails, so no street.json.tmp is left in a company folder.
+    Used for street.json (a cache, written on every pull); profile.json goes through _stable.write_json_if_changed."""
+    data = json.dumps(obj, **JSON_FORMAT)
     tmp = path + ".tmp"
     try:
         with open(tmp, "w", encoding="utf-8") as f:
@@ -185,29 +263,72 @@ def write_atomic(path, obj):
                 pass
 
 
-def resolve_cik(ticker, cik_arg=None):
-    """--cik > dcf_numbers.json cik (the CIK the engine used) > sec_tickers_exchange.json > universe.csv."""
+WRITE_RETRIES = 20   # os.replace on Windows fails with PermissionError while another process holds the target open
+
+
+def write_profile_json(path, obj, volatile=None):
+    """profile.json through _stable.write_json_if_changed (True written, False same content apart from as_of /
+    fetched_at), with write_atomic's retry: a PermissionError from the swap (a reader such as build_site.py holding
+    the file open on Windows) is retried for ~20 s. write_json_if_changed removes its temp file before re-raising,
+    so each attempt starts clean and re-checks the content."""
+    volatile = PROFILE_VOLATILE if volatile is None else volatile
+    for attempt in range(WRITE_RETRIES):
+        try:
+            return write_json_if_changed(path, obj, volatile=volatile, **JSON_FORMAT)
+        except PermissionError:
+            time.sleep(0.1 * (attempt + 1))
+    return write_json_if_changed(path, obj, volatile=volatile, **JSON_FORMAT)
+
+
+def as_cik(v):
+    """A CIK as an int, or None when `v` is not a positive integer (int or digit string; a bool, a float, "abc" and a
+    nested object are not): a corrupt record falls through to the next source instead of raising."""
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, int):
+        return v if v > 0 else None
+    if isinstance(v, str) and v.strip().isascii() and v.strip().isdigit():   # not superscripts / other Unicode digits
+        return int(v.strip()) or None
+    return None
+
+
+# Where a CIK is found without the network, in order, after --cik. The EDGAR path (profile.json built) trusts the
+# engine's record first; --street-only takes the committed profile.json's first so street.json carries the CIK of the
+# profile.json it pairs with. Both then fall back to the local ticker maps (sec_tickers_exchange.json, universe.csv,
+# files in _system/): resolve_cik never makes a request.
+CIK_FILES = ("dcf_numbers.json", "fundamentals.json")
+STREET_CIK_FILES = ("profile.json",) + CIK_FILES
+
+
+def resolve_cik(ticker, cik_arg=None, files=CIK_FILES):
+    """--cik > the company folder's `files` ("cik" key; CIK_FILES: dcf_numbers.json, the CIK the engine used, then
+    fundamentals.json; STREET_CIK_FILES puts profile.json first) > sec_tickers_exchange.json > universe.csv. Local
+    files only (no request); a value that is not a positive integer is skipped. None when nothing names one."""
     if cik_arg:
-        return int(cik_arg)
-    nums = jload(f"{BASE}/{ticker}/dcf_numbers.json") or {}
-    if isinstance(nums, dict) and nums.get("cik"):
-        return int(nums["cik"])
+        return as_cik(str(cik_arg))
+    for name in files:
+        d = jload(f"{BASE}/{ticker}/{name}")
+        cik = as_cik(d.get("cik")) if isinstance(d, dict) else None
+        if cik:
+            return cik
     sec = jload(f"{SYS}/sec_tickers_exchange.json")
     if isinstance(sec, dict):
         m = {}
         for rec in sec.get("data") or []:
             try:
-                m.setdefault(str(rec[2]).upper(), int(rec[0]))
+                cik = as_cik(rec[0])
+                if cik:
+                    m.setdefault(str(rec[2]).upper(), cik)
             except Exception:
                 pass
         for cand in (ticker, ticker.replace("/", "-"), ticker.replace("/", "."), ticker.replace(".", "-")):
             if cand in m:
                 return m[cand]
     try:
-        with open(f"{SYS}/universe.csv", encoding="utf-8") as f:
+        with open(f"{SYS}/universe.csv", encoding="utf-8", newline="") as f:
             for row in csv.DictReader(f):
-                if row.get("ticker") == ticker and row.get("cik"):
-                    return int(row["cik"])
+                if row.get("ticker") == ticker and as_cik(row.get("cik")):
+                    return as_cik(row["cik"])
     except Exception:
         pass
     return None
@@ -996,7 +1117,12 @@ def latest_annual(sub, cik):
 
 
 def newest_filing_date(sub):
-    dates = [r.get("filingDate") for r in _recent_rows(sub) if r.get("filingDate")]
+    """The newest filingDate among the forms profile.json reflects: the feed's eight forms and their amendments
+    (FEED_FORMS, which include every ANNUAL_FORMS form the About block reads). A Form 4, 144 or SC 13G changes
+    nothing in the file, so it does not count; otherwise insider filings alone would rebuild and rewrite the
+    committed file every few days. This is the --all rebuild trigger."""
+    dates = [r.get("filingDate") for r in _recent_rows(sub)
+             if r.get("filingDate") and _base_form(r.get("form")) in FEED_FORMS]
     return max(dates) if dates else None
 
 
@@ -1023,26 +1149,47 @@ REGISTRATION_KEYS = {_form_key(f) for f in REGISTRATION_FORMS}
 PERIODIC_KEYS = {_form_key(f) for f in PERIODIC_FORMS}
 
 
+def _older_than_unread(rows, unread):
+    """True when first_filing's answer is settled by `rows`: the earliest registration OR periodic report in `rows`
+    (date k) predates every filing the `unread` pages can hold, each page's `filingFrom` being strictly later. Every
+    unread row is then dated after k, so:
+      - k is a registration (no periodic report before it): no unread page holds an earlier registration or a
+        periodic report before it, so the registration stays the answer;
+      - k is a periodic report: any registration, read or unread, is not earlier, so the answer is the earliest
+        filing, which is no later than k and therefore already in `rows` (a company public before EDGAR with a
+        recent 8-A12B stops after its oldest page).
+    A page without `filingFrom` has an unknown date range and keeps the search going."""
+    decisive = [d for f, d in rows if _form_key(f) in REGISTRATION_KEYS or _form_key(f) in PERIODIC_KEYS]
+    if not decisive:
+        return False
+    first = min(decisive)
+    return all(p.get("filingFrom") and first < str(p["filingFrom"]) for p in unread)
+
+
 def first_filing(sub, fetch=edgar_json, warnings=None):
     """(date, form) of the company's first SEC filing: the earliest registration / listing form
     (REGISTRATION_FORMS) unless a periodic report precedes it, else the earliest filing of any form.
-    Rows come from filings.recent plus the paginated files, fetched oldest first and stopped as soon
-    as a registration form has been seen (one request for most names, none when `files` is empty)."""
+    Rows come from filings.recent plus the paginated files, fetched oldest first (by `filingFrom`).
+    The search stops once the rows read settle the answer (_older_than_unread: the earliest registration
+    or periodic report seen is older than the start of every page not yet read). A registration among
+    the recent filings (a later S-1 or 8-A12B) never ends it on its own while an older page could still
+    hold the IPO registration. Usually one page (the oldest) or none when `files` is empty; a company
+    whose oldest page holds only a Form D / DRS drafts reads on to the page with its IPO registration."""
     rows = [(r.get("form"), r.get("filingDate")) for r in _recent_rows(sub) if r.get("filingDate")]
     files = ((sub or {}).get("filings") or {}).get("files") or []
     files = sorted((f for f in files if isinstance(f, dict) and f.get("name")), key=lambda f: f.get("filingFrom") or "9999")
-    for page_meta in files:
+    for i, page_meta in enumerate(files):
+        if _older_than_unread(rows, files[i:]):
+            break
         try:
             page = fetch(f"https://data.sec.gov/submissions/{page_meta['name']}") or {}
             forms, dates = page.get("form") or [], page.get("filingDate") or []
-            rows += [(forms[i] if i < len(forms) else None, d) for i, d in enumerate(dates) if d]
+            rows += [(forms[j] if j < len(forms) else None, d) for j, d in enumerate(dates) if d]
         except Exception as e:
             if warnings is not None:
                 warnings.append(f"submissions page {page_meta['name']} unreadable ({e}); first filing date from the other pages only")
             if page_meta.get("filingFrom"):
                 rows.append((None, page_meta["filingFrom"]))
-        if any(_form_key(f) in REGISTRATION_KEYS for f, _ in rows):
-            break
     if not rows:
         return None, None
     reg = [r for r in rows if _form_key(r[0]) in REGISTRATION_KEYS]
@@ -1314,25 +1461,227 @@ def build_street(as_of, targetprice=None, ratings=None, forecast=None, eps=None,
 
 
 # ---------------------------------------------------------------------------
-# Refresh policy
-def should_skip(existing, newest_filing, max_age_days, today=None, force=False):
-    """True when profile.json is younger than max_age_days AND the newest EDGAR filing date is unchanged."""
-    if force or not isinstance(existing, dict):
-        return False
-    try:
-        as_of = datetime.date.fromisoformat(str(existing.get("as_of")))
-    except Exception:
-        return False
-    today = today or et_today()
-    if (today - as_of).days >= max_age_days:
-        return False
-    if newest_filing and existing.get("newest_filing_date") != newest_filing:
-        return False
-    return True
+# Nasdaq endpoints. profile.json uses company-profile and the quote summary for About (description_short,
+# industry, sector, region, exchange); street.json uses the quote summary (market, the summary 1y target) and
+# the analyst endpoints. A run that builds both reads the summary once.
+NASDAQ_ABOUT_KEYS = ("company_profile", "summary")
+NASDAQ_STREET_KEYS = ("summary", "targetprice", "ratings", "earnings_forecast", "eps", "estimate_momentum", "earnings_date", "peg_ratio")
+STREET_SOURCE = "Nasdaq analyst and quote endpoints"
+LEGACY_KEYS = ("street", "market")          # pre-split profile.json carried these; street.json holds them now
+PROFILE_VOLATILE = ("as_of", "fetched_at")  # a rebuild that changes only these leaves profile.json untouched
+
+
+def nasdaq_urls(ticker):
+    return {"company_profile": f"https://api.nasdaq.com/api/company/{ticker}/company-profile",
+            "summary": f"https://api.nasdaq.com/api/quote/{ticker}/summary?assetclass=stocks",
+            "targetprice": f"https://api.nasdaq.com/api/analyst/{ticker}/targetprice",
+            "ratings": f"https://api.nasdaq.com/api/analyst/{ticker}/ratings",
+            "earnings_forecast": f"https://api.nasdaq.com/api/analyst/{ticker}/earnings-forecast",
+            "eps": f"https://api.nasdaq.com/api/quote/{ticker}/eps",
+            "estimate_momentum": f"https://api.nasdaq.com/api/analyst/{ticker}/estimate-momentum",
+            "earnings_date": f"https://api.nasdaq.com/api/analyst/{ticker}/earnings-date",
+            "peg_ratio": f"https://api.nasdaq.com/api/analyst/{ticker}/peg-ratio"}
+
+
+def fetch_nasdaq(ticker, keys, got=None):
+    """Each endpoint in `keys` read into `got` as {key: {"url", "data", "error"}} (data None when it failed); an entry
+    already in `got` is reused, so the quote summary both files need costs one request per run."""
+    got = {} if got is None else got
+    urls = nasdaq_urls(ticker)
+    for k in keys:
+        if k in got:
+            continue
+        try:
+            got[k] = {"url": urls[k], "data": nasdaq_json(urls[k]), "error": None}
+        except Exception as e:
+            got[k] = {"url": urls[k], "data": None, "error": str(e)}
+    return got
+
+
+def _nasdaq_sources(got, keys, sources, warnings, effect):
+    for k in keys:
+        r = got[k]
+        sources[f"nasdaq_{k}"] = r["url"] if r["error"] is None else f"FAILED: {r['url']}"
+        if r["error"] is not None:
+            warnings.append(f"nasdaq {k} failed ({r['error']}); {effect}")
 
 
 # ---------------------------------------------------------------------------
-def build(ticker, cik, quiet=False, sub=None):
+# The latest annual document: reading it (the network, transient) and parsing it (this file's extractors, deterministic)
+# are told apart, because --all retries only the first. "annual document unreadable (...)" is a DEGRADED_WARNINGS
+# entry; "annual document parse error (...)" is not: the same document fails the same way on every run, so it is
+# reported (stderr with the traceback, exit 6, a failure line in the --all summary) and rebuilt only when the filing
+# feed changes or with --force, never re-downloaded on every run.
+UNREADABLE = "annual document unreadable"
+PARSE_ERROR = "annual document parse error"
+
+
+def read_annual_document(url, warnings):
+    """The annual document as text, or None after the warning "annual document unreadable (<error>); ...". Only the
+    request and the response can fail here: an HTTP error, a timeout or a dropped connection (get_bytes has already
+    tried three times), or a body that does not decode to text. Transient: --all retries the build on the next run."""
+    try:
+        raw = get_bytes(url, EDGAR_UA, EDGAR_TIMEOUT)
+        doc = _decode(raw)
+        if not isinstance(doc, str):
+            raise TypeError(f"response body is {type(raw).__name__}, not bytes")
+        return doc
+    except Exception as e:
+        warnings.append(f"{UNREADABLE} ({e}); description and employees null")
+        return None
+
+
+def _parse_error(ticker, annual, step, e, effect, warnings):
+    """Record an extractor that raised on a document that was read: a bug, not a network failure. The warning
+    "annual document parse error (<Type>: <message>) in <step> on the <form> filed <date>; <effect>" goes into the file
+    (an object address in the message is dropped, so a rebuild does not differ by it), and stderr gets the same with the
+    traceback."""
+    msg = re.sub(r" at 0x[0-9a-fA-F]+", "", re.sub(r"\s+", " ", f"{type(e).__name__}: {e}").strip())[:300]
+    warnings.append(f"{PARSE_ERROR} ({msg}) in {step} on the {annual['form']} filed {annual['filed']}; {effect}")
+    print(f"profile.py: {ticker}: {PARSE_ERROR} in {step} ({msg}) on {annual['url']}: a bug in the extractor, not a network"
+          f" failure; {effect}. Not retried until the filing feed changes (or --force).", file=sys.stderr)
+    traceback.print_exception(type(e), e, e.__traceback__, file=sys.stderr)
+
+
+def parse_annual_document(ticker, doc, annual, entity, warnings):
+    """(description, employees, cover, employees_unresolved) from the annual document's text. Each extractor
+    (cover_address, html_to_text, extract_item1, extract_employees) runs on its own, so one that raises costs only
+    the fields it supplies (cover -> the headquarters falls back to the submissions address; html_to_text ->
+    description and employees; extract_item1 -> description; extract_employees -> employees) and leaves an
+    "annual document parse error" warning (_parse_error)."""
+    form, filed, url = annual["form"], annual["filed"], annual["url"]
+    description, employees, cover, emp_unresolved = None, None, None, None
+    try:
+        cover = cover_address(doc)
+        if cover:
+            cover.update({"form": form, "filed": filed})
+        else:
+            warnings.append(f"headquarters: no dei:EntityAddress cover tags in the {form} filed {filed}; EDGAR submissions address used")
+    except Exception as e:
+        cover = None
+        _parse_error(ticker, annual, "cover_address", e, "headquarters from the EDGAR submissions address", warnings)
+    try:
+        text = html_to_text(doc)
+    except Exception as e:
+        _parse_error(ticker, annual, "html_to_text", e, "description and employees null", warnings)
+        return description, employees, cover, emp_unresolved
+    try:
+        desc_text, note = extract_item1(text, form, entity=entity)
+        if desc_text:
+            description = {"text": desc_text, "source": note, "form": form, "filed": filed,
+                           "period": annual["period"], "accession": annual["accession"], "url": url}
+        else:
+            warnings.append(f"description: {note} ({form} filed {filed})")
+    except Exception as e:
+        description = None
+        _parse_error(ticker, annual, "extract_item1", e, "description null", warnings)
+    try:
+        emp_notes = []
+        employees = extract_employees(text, period=annual.get("period"), entity=entity, notes=emp_notes)
+        if employees:
+            employees.update({"form": form, "filed": filed, "url": url})
+        elif emp_notes:
+            # only a part of the workforce is filed (one function / location, a per-type split, or the registrant and a
+            # subsidiary separately) or the stated date is unreadable: employees stays null and the sentence is the evidence
+            reason, _, evidence = emp_notes[0].partition(": ")
+            emp_unresolved = {"count": None, "reason": reason, "evidence": evidence.strip('"'),
+                              "form": form, "filed": filed, "url": url}
+            warnings.append(f"employees: null - {reason} in the {form} filed {filed}: {evidence}")
+        else:
+            warnings.append(f"employees: no headcount sentence found in the {form} filed {filed}")
+    except Exception as e:
+        employees, emp_unresolved = None, None
+        _parse_error(ticker, annual, "extract_employees", e, "employees null", warnings)
+    return description, employees, cover, emp_unresolved
+
+
+def parse_errors(doc):
+    """The "annual document parse error" warnings of a built profile.json (an extractor raised)."""
+    ws = doc.get("warnings") if isinstance(doc, dict) else None
+    return [w for w in ws if isinstance(w, str) and w.startswith(PARSE_ERROR)] if isinstance(ws, list) else []
+
+
+# ---------------------------------------------------------------------------
+# Refresh policy (--all)
+# a build that met a transient failure: the About fields of a failed Nasdaq endpoint are null ("FAILED: <url>" in
+# sources), the annual document could not be read (description / employees / cover address null), or a submissions
+# page could not be read (first_sec_filing from the other pages). Such a file is rebuilt on the next --all run (and
+# every run after it until a build succeeds); a failure that persists leaves the file untouched (same content).
+# "annual document parse error" (an extractor raised: deterministic) is deliberately NOT here.
+DEGRADED_WARNINGS = (r"^" + UNREADABLE + r"\b", r"^submissions page \S+ unreadable\b")
+
+
+def degraded(doc):
+    """What went wrong in the build that produced `doc` (profile.json or street.json), or None when nothing did:
+    the failed source keys ("FAILED: <url>") and the transient-failure warnings (DEGRADED_WARNINGS)."""
+    if not isinstance(doc, dict):
+        return None
+    sources = doc.get("sources") if isinstance(doc.get("sources"), dict) else {}
+    bad = sorted(k for k, v in sources.items() if isinstance(v, str) and v.startswith("FAILED: "))
+    for w in doc.get("warnings") or []:
+        for pat in DEGRADED_WARNINGS:
+            m = re.match(pat, str(w))
+            if m:
+                bad.append(m.group(0))
+                break
+    return ", ".join(bad) or None
+
+
+def _accessions(filings):
+    return [f.get("accession") for f in filings or [] if isinstance(f, dict)]
+
+
+def profile_rebuild_reason(existing, newest_filing, force=False, feed=None):
+    """Why profile.json must be rebuilt, or None to leave it: --force; the file is missing or unreadable; it is a
+    pre-split file that still carries `street` / `market`; newest_filing_date (the newest filing of a form the file
+    reflects) changed; the feed (`feed`, build_filings on the current submissions) lists other accession numbers
+    than the file's `filings` (a second filing on the same filingDate leaves newest_filing_date as it was); or the
+    last build was degraded (a transient failure: retried until a build succeeds). Its age alone never rebuilds it:
+    the content is EDGAR's and changes with a filing."""
+    if force:
+        return "--force"
+    if not isinstance(existing, dict) or not isinstance(existing.get("about"), dict):
+        return "missing"
+    if any(k in existing for k in LEGACY_KEYS):
+        return "legacy file with street / market"
+    if newest_filing and existing.get("newest_filing_date") != newest_filing:
+        return f"new filing {newest_filing}"
+    if feed is not None:
+        have, now = _accessions(existing.get("filings")), _accessions(feed)
+        if have != now:
+            new = [f for f in feed if isinstance(f, dict) and f.get("accession") not in set(have)]
+            return (f"new filing {new[0].get('form')} {new[0].get('filed')} ({new[0].get('accession')})" if new
+                    else "filing feed changed")
+    bad = degraded(existing)
+    if bad:
+        return f"last build degraded ({bad})"
+    return None
+
+
+def street_refresh_reason(existing, max_age_days, today=None, force=False):
+    """Why street.json must be re-fetched, or None when it is fresh: --force; missing or unreadable; its `as_of`
+    (ET date of the pull) is max_age_days or more old; or the last pull was degraded (an endpoint FAILED: re-fetched
+    on the next run rather than shown with null blocks for max_age_days)."""
+    if force:
+        return "--force"
+    if not isinstance(existing, dict):
+        return "missing"
+    try:
+        as_of = datetime.date.fromisoformat(str(existing.get("as_of")))
+    except ValueError:
+        return "unreadable as_of"
+    age = ((today or et_today()) - as_of).days
+    if age >= max_age_days:
+        return f"{age} days old"
+    bad = degraded(existing)
+    return f"last pull degraded ({bad})" if bad else None
+
+
+# ---------------------------------------------------------------------------
+def build(ticker, cik, quiet=False, sub=None, nq=None):
+    """profile.json: EDGAR (submissions, the latest annual document, the older submissions pages) plus the Nasdaq
+    company-profile and quote-summary endpoints the About block reads. No `street` / `market` (street.json).
+    `nq` (fetch_nasdaq's dict) is filled and may be shared with build_street_doc."""
     warnings, sources = [], {}
     as_of = et_today().isoformat()
     sub_url = f"https://data.sec.gov/submissions/CIK{int(cik):010d}.json"
@@ -1343,155 +1692,254 @@ def build(ticker, cik, quiet=False, sub=None):
     description, employees, cover, emp_unresolved = None, None, None, None
     if annual and annual.get("url"):
         sources["edgar_annual_document"] = annual["url"]
-        try:
-            raw = get_bytes(annual["url"], EDGAR_UA, EDGAR_TIMEOUT)
-            cover = cover_address(raw)
-            if cover:
-                cover.update({"form": annual["form"], "filed": annual["filed"]})
-            else:
-                warnings.append(f"headquarters: no dei:EntityAddress cover tags in the {annual['form']} filed {annual['filed']}; EDGAR submissions address used")
-            text = html_to_text(raw)
-            desc_text, note = extract_item1(text, annual["form"], entity=sub.get("name"))
-            if desc_text:
-                description = {"text": desc_text, "source": note, "form": annual["form"], "filed": annual["filed"],
-                               "period": annual["period"], "accession": annual["accession"], "url": annual["url"]}
-            else:
-                warnings.append(f"description: {note} ({annual['form']} filed {annual['filed']})")
-            emp_notes = []
-            employees = extract_employees(text, period=annual.get("period"), entity=sub.get("name"), notes=emp_notes)
-            if employees:
-                employees.update({"form": annual["form"], "filed": annual["filed"], "url": annual["url"]})
-            elif emp_notes:
-                # only a part of the workforce is filed (one function / location, a per-type split, or the registrant and a
-                # subsidiary separately) or the stated date is unreadable: employees stays null and the sentence is the evidence
-                reason, _, evidence = emp_notes[0].partition(": ")
-                emp_unresolved = {"count": None, "reason": reason, "evidence": evidence.strip('"'),
-                                  "form": annual["form"], "filed": annual["filed"], "url": annual["url"]}
-                warnings.append(f"employees: null - {reason} in the {annual['form']} filed {annual['filed']}: {evidence}")
-            else:
-                warnings.append(f"employees: no headcount sentence found in the {annual['form']} filed {annual['filed']}")
-        except Exception as e:
-            warnings.append(f"annual document unreadable ({e}); description and employees null")
+        doc = read_annual_document(annual["url"], warnings)
+        if doc is not None:
+            description, employees, cover, emp_unresolved = parse_annual_document(ticker, doc, annual, sub.get("name"), warnings)
     else:
         warnings.append("no 10-K / 20-F / 40-F in the recent submissions; description and employees null")
     first = first_filing(sub, warnings=warnings)
 
-    nq = {}
-    endpoints = {"company_profile": f"https://api.nasdaq.com/api/company/{ticker}/company-profile",
-                 "summary": f"https://api.nasdaq.com/api/quote/{ticker}/summary?assetclass=stocks",
-                 "targetprice": f"https://api.nasdaq.com/api/analyst/{ticker}/targetprice",
-                 "ratings": f"https://api.nasdaq.com/api/analyst/{ticker}/ratings",
-                 "earnings_forecast": f"https://api.nasdaq.com/api/analyst/{ticker}/earnings-forecast",
-                 "eps": f"https://api.nasdaq.com/api/quote/{ticker}/eps",
-                 "estimate_momentum": f"https://api.nasdaq.com/api/analyst/{ticker}/estimate-momentum",
-                 "earnings_date": f"https://api.nasdaq.com/api/analyst/{ticker}/earnings-date",
-                 "peg_ratio": f"https://api.nasdaq.com/api/analyst/{ticker}/peg-ratio"}
-    for key, url in endpoints.items():
-        try:
-            nq[key] = nasdaq_json(url)
-            sources[f"nasdaq_{key}"] = url
-        except Exception as e:
-            nq[key] = None
-            warnings.append(f"nasdaq {key} failed ({e}); that block is null")
-            sources[f"nasdaq_{key}"] = f"FAILED: {url}"
-
-    about = build_about(sub, cik, nq.get("company_profile"), nq.get("summary"), description, employees, first, cover=cover,
+    nq = fetch_nasdaq(ticker, NASDAQ_ABOUT_KEYS, nq)
+    _nasdaq_sources(nq, NASDAQ_ABOUT_KEYS, sources, warnings, "the About fields it supplies are null or from EDGAR")
+    about = build_about(sub, cik, nq["company_profile"]["data"], nq["summary"]["data"], description, employees, first, cover=cover,
                         employees_unresolved=emp_unresolved)
-    street = build_street(as_of, nq.get("targetprice"), nq.get("ratings"), nq.get("earnings_forecast"), nq.get("eps"),
-                          nq.get("estimate_momentum"), nq.get("earnings_date"), nq.get("peg_ratio"), nq.get("summary"), warnings=warnings)
-    if street is None:
-        warnings.append("street: every Nasdaq analyst endpoint failed; block is null")
-    market = build_market(nq.get("summary"))
-    if market is None:
-        warnings.append("market: Nasdaq summary unavailable; block is null")
     return {"ticker": ticker, "cik": int(cik), "as_of": as_of,
             "fetched_at": datetime.datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="seconds"),
             "newest_filing_date": newest_filing_date(sub), "sources": sources,
-            "about": about, "street": street, "filings": build_filings(sub, cik), "market": market, "warnings": warnings}
+            "about": about, "filings": build_filings(sub, cik), "warnings": warnings}
 
 
-def summary_line(p):
-    a, s = p.get("about") or {}, p.get("street") or {}
-    d = a.get("description") or {}
-    e = a.get("employees") or {}
-    return (f"profile: {p['ticker']} cik={p['cik']} description={'yes (' + str(d.get('source')) + ')' if d else 'null'}"
-            f" employees={e.get('count') if e else 'null'} first_filing={a.get('first_sec_filing')}"
-            f" street={'consensus ' + str(s.get('consensus')) + ' n=' + str(s.get('analysts')) + ' target ' + str(s.get('target_mean')) if s else 'null'}"
-            f" filings={len(p.get('filings') or [])} warnings={len(p.get('warnings') or [])}")
+def build_street_doc(ticker, cik, nq=None):
+    """street.json: the Street block (analyst endpoints) and the market block (quote summary), unchanged shapes,
+    with the pull's ET date (`as_of`), time (`fetched_at`), the endpoint URLs and the warnings. Each endpoint fails
+    independently (its part is null, a warning says so); `street` is null only when every analyst endpoint failed."""
+    warnings, sources = [], {}
+    now = datetime.datetime.now(ZoneInfo("America/New_York"))
+    as_of = now.date().isoformat()
+    nq = fetch_nasdaq(ticker, NASDAQ_STREET_KEYS, nq)
+    _nasdaq_sources(nq, NASDAQ_STREET_KEYS, sources, warnings, "that block is null")
+    d = {k: nq[k]["data"] for k in NASDAQ_STREET_KEYS}
+    street = build_street(as_of, d["targetprice"], d["ratings"], d["earnings_forecast"], d["eps"], d["estimate_momentum"],
+                          d["earnings_date"], d["peg_ratio"], d["summary"], warnings=warnings)
+    if street is None:
+        warnings.append("street: every Nasdaq analyst endpoint failed; block is null")
+    market = build_market(d["summary"])
+    if market is None:
+        warnings.append("market: Nasdaq summary unavailable; block is null")
+    return {"ticker": ticker, "cik": int(cik), "as_of": as_of, "fetched_at": now.isoformat(timespec="seconds"),
+            "source": STREET_SOURCE, "street": street, "market": market, "sources": sources, "warnings": warnings}
 
 
-def run_one(ticker, cik_arg=None, write=True, quiet=False, sub=None):
-    cik = resolve_cik(ticker, cik_arg)
+WRITE_STATE = {True: "written", False: "unchanged (left as is)", None: "not written"}
+
+
+def summary_line(res):
+    """One line per run: what each file holds and whether it was written."""
+    out = [f"profile: {res['ticker']} cik={res['cik']}"]
+    p, s = res.get("profile"), res.get("street")
+    if p:
+        a = p.get("about") or {}
+        d, e = a.get("description") or {}, a.get("employees") or {}
+        out.append(f"profile.json {WRITE_STATE[res.get('profile_written')]}: description={'yes (' + str(d.get('source')) + ')' if d else 'null'}"
+                   f" employees={e.get('count') if e else 'null'} first_filing={a.get('first_sec_filing')}"
+                   f" newest_filing={p.get('newest_filing_date')} filings={len(p.get('filings') or [])} warnings={len(p.get('warnings') or [])}")
+    if s:
+        st = s.get("street") or {}
+        out.append(f"street.json {WRITE_STATE[res.get('street_written')]}: "
+                   + (f"consensus {st.get('consensus')} n={st.get('analysts')} target {st.get('target_mean')}" if st else "street null")
+                   + f" market={'yes' if s.get('market') else 'null'} warnings={len(s.get('warnings') or [])}")
+    return " | ".join(out)
+
+
+def run_one(ticker, cik_arg=None, write=True, quiet=False, sub=None, profile=True, street=True):
+    """Build, and unless write=False write, profile.json (profile=True) and street.json (street=True) for one name.
+    profile.json is written only when its content changed apart from as_of / fetched_at (_stable.py); street.json,
+    a gitignored cache, every time. The two are independent: an EDGAR failure still refreshes street.json, and a
+    file that cannot be written (OSError after the PermissionError retries) does not stop the other. With
+    profile=False (--street-only) no EDGAR request is made: the CIK comes from local files only (STREET_CIK_FILES,
+    the committed profile.json first) and only the Nasdaq endpoints street.json needs are read.
+    Returns (result, rc): result {"ticker", "cik", "profile", "street", "profile_written", "street_written",
+    "errors"} (None with no CIK; "errors" one (code, message) per failure, for the --all summary); rc 0, 2 no CIK, 3 EDGAR
+    submissions unreadable, 4 a build raised, 5 a write failed, 6 an extractor raised on the annual document
+    (profile.json still built and written, the affected fields null); the first failure's code wins, 6 the last."""
+    cik = resolve_cik(ticker, cik_arg, files=CIK_FILES if profile else STREET_CIK_FILES)
     if cik is None:
         print(f"profile.py: NO_CIK for {ticker}", file=sys.stderr)
         return None, 2
-    if sub is None:
+    res = {"ticker": ticker, "cik": int(cik), "profile": None, "street": None, "profile_written": None, "street_written": None,
+           "errors": []}
+    rc, nq = 0, {}
+
+    def fail(code, line):
+        nonlocal rc
+        rc = rc or code
+        res["errors"].append((code, line))
+
+    if profile:
+        if sub is None:
+            try:
+                sub = edgar_json(f"https://data.sec.gov/submissions/CIK{int(cik):010d}.json")
+            except Exception as e:
+                print(f"profile.py: {ticker}: EDGAR submissions unreadable ({e}); profile.json not written", file=sys.stderr)
+                fail(3, f"EDGAR submissions unreadable ({e}); profile.json not written")
+        if sub is not None:
+            try:
+                res["profile"] = build(ticker, cik, quiet=quiet, sub=sub, nq=nq)
+            except Exception as e:
+                # a bug in the build is not a network failure: say so, with the traceback
+                print(f"profile.py: {ticker}: profile build failed ({type(e).__name__}: {e}); profile.json not written", file=sys.stderr)
+                traceback.print_exc()
+                fail(4, f"profile build failed ({type(e).__name__}: {e}); profile.json not written")
+    if street:
         try:
-            sub = edgar_json(f"https://data.sec.gov/submissions/CIK{int(cik):010d}.json")
+            res["street"] = build_street_doc(ticker, cik, nq=nq)
         except Exception as e:
-            print(f"profile.py: {ticker}: EDGAR submissions unreadable ({e}); nothing written", file=sys.stderr)
-            return None, 3
-    try:
-        p = build(ticker, cik, quiet=quiet, sub=sub)
-    except Exception as e:
-        # a bug in the build is not a network failure: say so, with the traceback
-        print(f"profile.py: {ticker}: build failed ({type(e).__name__}: {e}); nothing written", file=sys.stderr)
-        traceback.print_exc()
-        return None, 4
-    if write:
+            print(f"profile.py: {ticker}: street build failed ({type(e).__name__}: {e}); street.json not written", file=sys.stderr)
+            traceback.print_exc()
+            fail(4, f"street build failed ({type(e).__name__}: {e}); street.json not written")
+    if write and (res["profile"] or res["street"]):
         folder = f"{BASE}/{ticker}"
         os.makedirs(folder, exist_ok=True)
-        write_atomic(f"{folder}/profile.json", p)
+        if res["profile"]:
+            try:
+                res["profile_written"] = write_profile_json(f"{folder}/profile.json", res["profile"])
+            except OSError as e:
+                print(f"profile.py: {ticker}: profile.json not written ({type(e).__name__}: {e})", file=sys.stderr)
+                fail(5, f"profile.json not written ({type(e).__name__}: {e})")
+        if res["street"]:
+            try:
+                write_atomic(f"{folder}/street.json", res["street"])
+                res["street_written"] = True
+            except OSError as e:
+                print(f"profile.py: {ticker}: street.json not written ({type(e).__name__}: {e})", file=sys.stderr)
+                fail(5, f"street.json not written ({type(e).__name__}: {e})")
+    # an extractor that raised (already on stderr, with its traceback, from build): the file is built, so this ranks
+    # after every other failure, and it is not retried by --all (not degraded) until the feed changes
+    for w in parse_errors(res["profile"]):
+        fail(6, w)
     if not quiet:
-        print(summary_line(p))
-        for w in p["warnings"]:
-            print(f"  warning: {w}")
-    return p, 0
+        print(summary_line(res))
+        for name in ("profile", "street"):
+            for w in (res[name] or {}).get("warnings") or []:
+                print(f"  {name} warning: {w}")
+    return res, rc
 
 
-def run_all(max_age_days, force=False, quiet=False):
-    names = sorted(d for d in os.listdir(BASE) if not d.startswith((".", "_")) and os.path.isdir(f"{BASE}/{d}")
-                   and os.path.exists(f"{BASE}/{d}/score.json"))
-    written, skipped, failed = [], [], []
-    for t in names:
-        cik = resolve_cik(t)
-        if cik is None:
-            failed.append(f"{t}: no CIK"); continue
+def company_folders():
+    return sorted(d for d in os.listdir(BASE) if not d.startswith((".", "_")) and os.path.isdir(f"{BASE}/{d}")
+                  and os.path.exists(f"{BASE}/{d}/score.json"))
+
+
+def _all_one(t, max_age_days, force, quiet, street_only, tally):
+    """One name of run_all; True when it ran a build (run_all then pauses before the next name). Each check is
+    caught on its own and becomes a failure line naming the file: a corrupt street.json (fields of the wrong type)
+    does not stop profile.json's check and rebuild, nor the reverse, and neither stops the walk."""
+    failed = tally["failed"]
+    cik = resolve_cik(t, files=STREET_CIK_FILES if street_only else CIK_FILES)
+    if cik is None:
+        failed.append(f"{t}: no CIK")
+        return False
+    check_failed = False
+    try:
+        street_why = street_refresh_reason(jload(f"{BASE}/{t}/street.json"), max_age_days, force=force)
+    except Exception as e:   # a street.json whose fields have the wrong types
+        failed.append(f"{t}: street.json unreadable ({type(e).__name__}: {e}); not refreshed"
+                      f" (profile.py {t} --street-only, or --force, rewrites it)")
+        street_why, check_failed = None, True
+    profile_why, sub = None, None
+    if not street_only:
         try:
             sub = edgar_json(f"https://data.sec.gov/submissions/CIK{int(cik):010d}.json")
-        except Exception as e:
-            failed.append(f"{t}: submissions fetch failed ({e})"); continue
-        existing = jload(f"{BASE}/{t}/profile.json")
-        if should_skip(existing, newest_filing_date(sub), max_age_days, force=force):
-            skipped.append(t)
-            continue
-        p, rc = run_one(t, write=True, quiet=quiet, sub=sub)
-        if rc == 0:
-            written.append(t)
+            newest, feed = newest_filing_date(sub), build_filings(sub, cik)
+        except Exception as e:   # the request failed, or a submissions document of an unexpected shape
+            failed.append(f"{t}: submissions {'fetch failed' if sub is None else 'unreadable'} ({type(e).__name__}: {e});"
+                          " profile.json not checked")
+            sub, check_failed = None, True
         else:
-            failed.append(f"{t}: exit {rc}")
-        time.sleep(ALL_SLEEP_S)
-    print(f"profile --all: {len(names)} names - {len(written)} written, {len(skipped)} skipped (fresh), {len(failed)} failed"
+            try:
+                profile_why = profile_rebuild_reason(jload(f"{BASE}/{t}/profile.json"), newest, force=force, feed=feed)
+            except Exception as e:   # a profile.json whose fields have the wrong types
+                failed.append(f"{t}: profile.json unreadable ({type(e).__name__}: {e}); not rebuilt"
+                              f" (profile.py {t}, or --force, rewrites it)")
+                check_failed = True
+    if not profile_why and not street_why:
+        if not check_failed:
+            tally["skipped"].append(t)
+        return False
+    if not quiet:
+        print(f"{t}: " + "; ".join(x for x in (f"profile.json: {profile_why}" if profile_why else "",
+                                                 f"street.json: {street_why}" if street_why else "") if x))
+    res, rc = run_one(t, cik_arg=cik, write=True, quiet=quiet, sub=sub, profile=bool(profile_why), street=bool(street_why))
+    if res:
+        if res["profile_written"] is True:
+            tally["rewritten"].append(t)
+        elif res["profile_written"] is False:
+            tally["unchanged"].append(t)
+        if res["street_written"]:
+            tally["streets"].append(t)
+    if rc != 0:
+        failed.extend([f"{t}: exit {code} - {line}" for code, line in (res or {}).get("errors") or []] or [f"{t}: exit {rc}"])
+    return True
+
+
+def run_all(max_age_days, force=False, quiet=False, street_only=False):
+    """Every scored folder. Per name: street.json is re-fetched when street_refresh_reason says so; unless
+    street_only, the EDGAR submissions feed is read (one request) and profile.json rebuilt when
+    profile_rebuild_reason says so. A name needing neither costs that one request and is skipped. With street_only
+    no EDGAR request is made at all (the CIK from local files, the committed profile.json first). A name that fails
+    in any way (a corrupt file, an extractor that raised, even an exception nobody expected) is counted as failed,
+    with its reason on its own line, and the walk goes on; the exit status is then 1."""
+    names = company_folders()
+    tally = {k: [] for k in ("rewritten", "unchanged", "streets", "skipped", "failed")}
+    for t in names:
+        try:
+            fetched = _all_one(t, max_age_days, force, quiet, street_only, tally)
+        except Exception as e:   # one name never aborts the walk
+            print(f"profile.py: {t}: {type(e).__name__}: {e}", file=sys.stderr)
+            traceback.print_exc()
+            tally["failed"].append(f"{t}: raised {type(e).__name__}: {e}")
+            fetched = True
+        if fetched:
+            time.sleep(ALL_SLEEP_S)
+    failed = tally["failed"]   # one line per failure, each "<T>: ..."; the count is of names
+    print(f"profile --all: {len(names)} names - profile.json {len(tally['rewritten'])} rewritten, {len(tally['unchanged'])} rebuilt but unchanged"
+          + (" (EDGAR not read: --street-only)" if street_only else "")
+          + f"; street.json {len(tally['streets'])} refreshed; {len(tally['skipped'])} skipped (fresh)"
+          + f"; {len({line.split(':', 1)[0] for line in failed})} failed"
           + ("\n  " + "\n  ".join(failed) if failed else ""))
     return 1 if failed else 0
 
 
-def main():
-    argv = sys.argv[1:]
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else list(argv)
     if not argv or "-h" in argv or "--help" in argv:
         print(__doc__); sys.exit(2)
+    for stream in (sys.stdout, sys.stderr):   # a filed name or address a Windows code page cannot print never aborts a run
+        try:
+            stream.reconfigure(errors="backslashreplace")
+        except (AttributeError, ValueError, OSError):
+            pass
 
     def opt(name, default=None):
         return argv[argv.index(name) + 1] if name in argv and argv.index(name) + 1 < len(argv) else default
 
     quiet = "--quiet" in argv
+    street_only = "--street-only" in argv
+    cik_arg = opt("--cik")
+    try:
+        max_age = int(opt("--max-age-days", DEFAULT_MAX_AGE_DAYS))
+    except ValueError:
+        max_age = -1
+    if max_age < 0 or (cik_arg is not None and as_cik(cik_arg) is None):
+        print("profile.py: --max-age-days takes a whole number of days >= 0 and --cik a positive integer", file=sys.stderr)
+        sys.exit(2)
     if "--all" in argv:
-        sys.exit(run_all(int(opt("--max-age-days", DEFAULT_MAX_AGE_DAYS)), force="--force" in argv, quiet=quiet))
+        sys.exit(run_all(max_age, force="--force" in argv, quiet=quiet, street_only=street_only))
     pos = [a for i, a in enumerate(argv) if not a.startswith("--") and (i == 0 or argv[i - 1] not in ("--cik", "--max-age-days"))]
     if not pos:
         print(__doc__); sys.exit(2)
     ticker = pos[0].upper()
-    _, rc = run_one(ticker, cik_arg=opt("--cik"), write="--no-write" not in argv, quiet=quiet)
+    _, rc = run_one(ticker, cik_arg=cik_arg, write="--no-write" not in argv, quiet=quiet, profile=not street_only)
     sys.exit(rc)
 
 

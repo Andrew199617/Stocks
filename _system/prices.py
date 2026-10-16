@@ -12,7 +12,9 @@ a few return / drawdown statistics computed from those closes. The company
 page draws its price-vs-value chart from this file and reprice.py reads
 stats.last / stats.last_date as the live price (and `fetched_at`, the ET
 time this file was pulled, to refuse a file the daily refresh failed to
-update); nothing in the valuation reads it. Failures exit non-zero and write nothing (the page degrades to the
+update), plus daily_1y / weekly to check that the scored run's per-share
+basis still matches today's split-adjusted closes; nothing in the valuation
+reads it. Failures exit non-zero and write nothing (the page degrades to the
 value-only view). Exit 2 = no rows returned.
 
 Intraday (second request per name, after the daily history): the no-dates
@@ -27,8 +29,11 @@ session at one-minute resolution from 4:00 AM to 7:59 PM ET. It becomes
                   (oldest first, today's included), maintained by reading the
                   existing prices.json before writing: a re-run on the same
                   day REPLACES that day's entry, never duplicates it — unless
-                  the entry on disk already reaches a LATER minute of that
-                  session (an out-of-order run never shortens a session).
+                  the entry on disk is a newer capture of that session: a
+                  later RAW last print (each entry stores last_minute, the
+                  1-minute print, not just its 5-minute bar), or the same
+                  print with more bars / complete / a later captured_at (an
+                  out-of-order or stale run never shortens a session).
 Bars are keyed by the bucket's END minute (right-closed: prints 15:56-16:00
 → 960, so the 16:00 closing print is the regular segment's last bar and the
 9:30 opening print sits at 570; 19:56-19:59 → 1200).
@@ -362,15 +367,69 @@ def fetch_intraday(ticker):
 
 
 def session_entry(intraday):
+    """One sessions_5d entry. last_minute is the RAW last 1-minute print (ET
+    minutes since midnight, e.g. 524 = 08:44), not its 5-minute bucket: two
+    captures inside one bucket share a last bar key but not a last print, and
+    merge_sessions orders captures by it."""
     return {"session_date": intraday["session_date"], "prev_close": intraday.get("prev_close"),
             "close": intraday.get("close"), "captured_at": intraday.get("captured_at"),
-            "complete": bool(intraday.get("complete")), "bar_key": intraday.get("bar_key") or BAR_KEY,
-            "bars": intraday["bars"]}
+            "complete": bool(intraday.get("complete")), "last_minute": intraday.get("last_minute"),
+            "bar_key": intraday.get("bar_key") or BAR_KEY, "bars": intraday["bars"]}
 
 
 def _last_bar_minute(entry):
     bars = [b for b in (entry.get("bars") or []) if isinstance(b, list) and b and isinstance(b[0], (int, float))]
     return max((b[0] for b in bars), default=-1)
+
+
+def _raw_last_minute(entry):
+    """The entry's raw last-print minute (0..1439), or None for an entry written
+    before 2026-10-15's review round (no last_minute) or with a malformed one."""
+    m = entry.get("last_minute")
+    if isinstance(m, bool) or not isinstance(m, (int, float)) or not 0 <= m < 24 * 60:
+        return None
+    return m
+
+
+def _captured_dt(entry):
+    """captured_at as an aware datetime (a naive stamp is read as ET), or None."""
+    s = entry.get("captured_at")
+    if not isinstance(s, str):
+        return None
+    try:
+        d = datetime.datetime.fromisoformat(s)
+    except ValueError:
+        return None
+    return d if d.tzinfo is not None else d.replace(tzinfo=ET)
+
+
+def _newer_capture(a, b):
+    """True when capture `a` of a session is STRICTLY newer than capture `b` of the
+    same session. Ordered by, in turn: the raw last-print minute when BOTH carry
+    one (else the last 5-minute bar key, the only clock a legacy entry has), the
+    bar count (a later capture is a superset), complete over partial, and the
+    later captured_at when both carry one. A full tie is not newer."""
+    ka, kb = [], []
+    ra, rb = _raw_last_minute(a), _raw_last_minute(b)
+    if ra is not None and rb is not None:
+        ka.append(ra); kb.append(rb)
+    else:
+        ka.append(_last_bar_minute(a)); kb.append(_last_bar_minute(b))
+    ka.append(len(a.get("bars") or [])); kb.append(len(b.get("bars") or []))
+    ka.append(bool(a.get("complete"))); kb.append(bool(b.get("complete")))
+    ca, cb = _captured_dt(a), _captured_dt(b)
+    if ca is not None and cb is not None:
+        ka.append(ca); kb.append(cb)
+    return tuple(ka) > tuple(kb)
+
+
+def _reach(entry):
+    """'last print HH:MM' (raw) or 'last bar HH:MM' (legacy entry) for a warning."""
+    r = _raw_last_minute(entry)
+    if r is not None:
+        return f"last print {minutes_hhmm(int(r))}"
+    b = _last_bar_minute(entry)
+    return f"last bar {minutes_hhmm(int(b))}" if b >= 0 else "no bars"
 
 
 def clean_sessions(existing, keep=SESSIONS_KEEP):
@@ -389,19 +448,21 @@ def clean_sessions(existing, keep=SESSIONS_KEEP):
 def merge_sessions(existing, entry, keep=SESSIONS_KEEP):
     """Rolling buffer: replace the existing entry for the same session_date with
     the new one, sort oldest first, keep the newest `keep`. Malformed existing
-    entries are dropped. Guard: an existing same-day entry is KEPT when it
-    already reaches a later minute of the session than the new one, or the
-    same minute with more bars (a later capture of one session is a superset,
-    so an out-of-order or late partial run never shortens a stored session)."""
+    entries are dropped. Guard: an existing same-day entry is KEPT when it is a
+    strictly newer capture (_newer_capture): its RAW last print is later (08:44
+    beats 08:41 although both sit in the 08:45 bar), or — same last print, or
+    either side a legacy entry without one, compared by last bar key instead —
+    it has more bars, or is complete where the new one is partial, or was
+    captured later. So an out-of-order or late stale run never shortens a
+    stored session or takes back its completion; a full tie goes to the new one."""
     rows = clean_sessions(existing, keep=10 ** 6)
     same = [s for s in rows if s["session_date"] == entry["session_date"]]
     rows = [s for s in rows if s["session_date"] != entry["session_date"]]
-    keep_old = None
+    best = entry
     for s in same:
-        om, nm = _last_bar_minute(s), _last_bar_minute(entry)
-        if om > nm or (om == nm and len(s["bars"]) > len(entry["bars"])):
-            keep_old = s if keep_old is None or _last_bar_minute(s) > _last_bar_minute(keep_old) else keep_old
-    rows.append(keep_old if keep_old is not None else entry)
+        if _newer_capture(s, best):
+            best = s
+    rows.append(best)
     rows.sort(key=lambda s: s["session_date"])
     return rows[-keep:]
 
@@ -457,12 +518,13 @@ def run_one(ticker, years=10, write=True, quiet=False, intraday=True):
         try:
             intra = fetch_intraday(ticker)
             warnings.extend(reconcile_with_daily(intra, daily))
-            sessions = merge_sessions(prev_sessions, session_entry(intra))
+            new_entry = session_entry(intra)
+            sessions = merge_sessions(prev_sessions, new_entry)
             kept = next((s for s in sessions if s["session_date"] == intra["session_date"]), None)
-            if kept is not None and kept.get("captured_at") != intra["captured_at"]:
+            if kept is not None and kept is not new_entry:
                 warnings.append(f"sessions_5d: the stored {intra['session_date']} entry (captured {kept.get('captured_at')}, "
-                                f"last bar {minutes_hhmm(int(_last_bar_minute(kept)))}) reaches further than this capture "
-                                f"(last bar {intra['last_time']}); stored entry kept")
+                                f"{_reach(kept)}) is newer than this capture (captured {intra['captured_at']}, "
+                                f"last print {intra['last_time']}); stored entry kept")
         except Exception as e:
             intra, sessions = None, clean_sessions(prev_sessions)
             warnings.append(f"intraday: chart request failed - {type(e).__name__}: {e}; daily series kept, "

@@ -18,6 +18,15 @@ changed (a deleted live.json counts), or this script is newer than the record
 (--force rebuilds everything). Records whose folder no longer qualifies
 (score.json gone, pre-v5 numbers, an uncovered data gap) are removed.
 
+Missing outputs (2026-10-16): everything under <site> except the app shell is
+a gitignored cache, so a fresh clone has no data/ at all and a machine may
+have lost it. A record whose data/<T>.json is missing is always built — even
+outside --only, so the index never silently loses a company — whatever
+state.json or index.json still claim; state.json entries for tickers that
+are no longer current are dropped; meta.json and index.json are written on
+every run (an unreadable state.json / index.json / queue.json / registry
+counts as absent).
+
 Keys: every company is served under score.json's `ticker` (upper-cased; the
 folder name when absent) — data/<ticker>.json, the index row, the attachment
 and state.json all agree; the folder stays in record.folder. Two folders
@@ -46,17 +55,78 @@ attachment) with has.profile on the row. record.prices carries
 prices.intraday / sessions_5d / warnings verbatim; the attachment drops
 sessions_5d (and daily_1y) and keeps intraday.
 
+Street (2026-10-16): profile.py writes the Nasdaq Street block and market
+data to <T>/street.json (a gitignored cache, rewritten on every pull) and
+keeps profile.json for the SEC-derived About / filings (committed, rewritten
+only when its content changes). The builder puts street.json's `street` and
+`market` back at record.profile.street / record.profile.market and its
+fetched_at at record.profile.street_fetched_at, so the app reads the same
+paths; without street.json the legacy street / market keys of an older
+profile.json are used, else null. record.profile (whenever either file
+exists) always carries the key street_fetched_at: null without street.json
+and without a legacy block (the app reads the key's presence as "the Street
+pull has not run yet" rather than "a record built before the split").
+street.json is an ordinary folder file, so a new pull rebuilds the record
+like any other changed file.
+
 --attachment inlines <site>/index.html + app.css + app.js (or a placeholder
 shell when the app is not there yet) with window.SITE_DATA = {meta, index,
 records of the top N rows (default 150), trimmed} into
-<base>/_daily/ranking-<America/New_York date>.html and <base>/_daily/latest.html.
+<base>/_daily/ranking-<America/New_York date>.html and <base>/_daily/latest.html
+(gitignored), and writes the compact committed snapshot
+<base>/_daily/history/ranking-<same date>.csv: one row per ranked company,
+the columns the daily chat message quotes (HISTORY_COLUMNS), ordered by live
+IRR desc, then scored IRR desc, then ticker. A --site-dir build writes both
+next to that directory instead (its parent), never into the real _daily/.
+
+Dividends at the last close (2026-10-16): fundamentals.json is committed and
+no longer rewritten for a new close alone — its price leaves are volatile
+(fundamentals.PRICE_LEAVES). When <T>/prices.json's close is not older than
+the dividends block's price_date (and differs from it), the block is
+repriced with fundamentals.price_dividends — the function fundamentals.py
+writes the block with — at stats.last / last_date ("prices.json
+stats.last"), so the Dividends tab and the row's dividend_yield /
+shareholder_yield / shareholder_yield_label / shareholder_yield_bound read
+the latest close and equal what fundamentals.py would write at that price.
+Without prices.json (a fresh clone) or with an older close, for a block
+written before 5.4.4, or across a split since scoring (below: the block's
+filed DPS and share count would meet a post-split close), the block is
+shown as written.
+
+Live older than the score (2026-10-16): Nasdaq posts a session's close hours
+after it ends, so a live.json repriced on scoring day can carry the close
+BEFORE the scored session (reprice's basis_check.method
+"no_close_since_scoring") — older than the verdict's own price. Such a
+live.json (price_date earlier than score.json analysis_date / the run's
+as_of) is not shown as current: record.live is null, record.live_withheld =
+{reason, note, price, price_date, scored_date, method}, the row's live
+fields stay null with row.live_withheld = true, so the ranking sorts on the
+scored IRR and the page shows the scored figures until a close after the
+scored session arrives.
+
+Splits since scoring (2026-10-16): reprice.py restates live.json in today's
+share units and records split_factor (new shares per scored-run share). The
+record's run figures (score.json, dcf_numbers.json, the run's history CSV
+and ttm.json, the replayed forecast and the index row) are in the scored
+run's units; when the live.json shown carries split_factor != 1 every
+per-share run figure (SPLIT_DIVIDE: prices, IVs, hurdle prices, OE per
+share, the forecast paths and sensitivity IVs) is divided by it and the
+run's share counts (SPLIT_MULTIPLY) multiplied by it, so the page compares
+like with like against today's close; IRRs, tiers, upside and market caps
+do not change. record.split_restated = {factor, split, scored_date,
+price_date, fields, as_scored, note}, row.split_restated = {factor, split}
+(null otherwise).
 
 Every number comes from a file; the only computation here is the forecast
 replay through the engine's own functions (dcf_engine.replay_paths,
 present_value, solve_irr, tier_for_irr) when a pre-5.4 run lacks the stored
-values, plus the display arithmetic (upside = IV / price − 1) the v2 pages
-did. Stdlib only. The loaders and derivations were copied from
-build_daily_html.py (v2, being retired) — nothing is imported from it.
+values — including solve_irr's at-floor flag for a scored scenario IRR the run
+did not flag itself (the recorded IRR is never replaced) — plus the display
+arithmetic (upside = IV / price − 1) the v2 pages did, the dividends
+repricing above (fundamentals.price_dividends) and the split restatement
+(division by the factor reprice.py found). Stdlib only. The loaders and
+derivations were copied from build_daily_html.py (v2, being retired) —
+nothing is imported from it.
 """
 import argparse
 import csv
@@ -75,6 +145,10 @@ try:
     import dcf_engine as ENGINE
 except Exception:  # the data layer still builds without the forecast replay
     ENGINE = None
+try:  # price_dividends: the dividends block at a newer close, with the code fundamentals.py writes it with
+    import fundamentals as FUND
+except Exception:  # the data layer still builds; dividends blocks are then shown as written
+    FUND = None
 
 DATA_VERSION = 1
 HURDLES = {"S": 0.25, "A": 0.20, "B": 0.15, "C": 0.10}
@@ -84,8 +158,29 @@ TABS = ["overview", "financials", "dividends", "segments", "forecast", "analysis
 NY = ZoneInfo("America/New_York")
 COMPANY_FILES = ("score.json", "dcf_numbers.json", "financials_history.csv", "fundamentals.json", "prices.json",
                  "live.json", "segments.json", "ttm.json", "judgment.json", "analysis.md", "second_pass.md",
-                 "profile.json", "statements.json")
+                 "profile.json", "statements.json", "street.json")
 STATEMENTS_SUFFIX = ".statements.json"  # data/<T>.statements.json — served next to the record, loaded on demand
+DEFAULT_GTERM = getattr(ENGINE, "DEFAULT_GTERM", 0.025)
+# _daily/history/ranking-<date>.csv (committed): what the daily chat message quotes, one row per ranked company
+HISTORY_COLUMNS = ("rank", "ticker", "name", "sector_misfit", "tier_scored", "irr_scored", "tier_live", "irr_live",
+                   "band_low_tier", "band_high_tier", "price", "price_date", "iv15", "upside15_pct",
+                   "analysis_date", "engine_release", "alert_eligible", "watchlist")
+# Split restatement (see the module docstring): dotted paths in the record, `*` = every key / item at that level.
+# SPLIT_DIVIDE holds every per-share figure of the scored run the page shows; SPLIT_MULTIPLY its share counts.
+_IV_KEYS = tuple(f"iv_at_{r}" for r in RATES)
+SPLIT_DIVIDE = (tuple(f"score.{k}" for k in ("price", "base_oe_per_share") + _IV_KEYS)
+                + tuple(f"score.scenarios.*.{k}" for k in _IV_KEYS)
+                + ("score.override_impact.base_oe_without_override", "score.override_impact.base_oe_with_override",
+                   "score.second_pass.prior_iv_at_15")
+                + tuple(f"numbers.{k}" for k in ("price", "base_oe_per_share", "base_oe_latest_per_share", "base_oe_normalized_per_share") + _IV_KEYS)
+                + tuple(f"numbers.scenarios.*.{k}" for k in _IV_KEYS) + tuple(f"numbers.weighted.{k}" for k in _IV_KEYS)
+                + ("numbers.hurdle_prices.*", "numbers.inputs.base_oe_ps_arg",
+                   "numbers.override_impact.base_oe_per_share_zero_fill", "numbers.override_impact.base_oe_per_share_final")
+                + ("forecast.paths.*.*", "forecast.hurdle_prices.*", "forecast.inputs.base_oe_ps_arg")
+                + tuple(f"forecast.sensitivity.*.{r}" for r in RATES)
+                + tuple(f"row.{k}" for k in ("price", "iv15", "iv12", "iv20", "iv25"))
+                + ("ttm.ttm_oe_per_share",))
+SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "ttm.ttm_shares_diluted")
 _NUM_RX = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INT_RX = re.compile(r"-?\d+")
 
@@ -292,11 +387,12 @@ def load_company(folder):
     c["segments"] = jload(os.path.join(folder, "segments.json"))
     c["judgment"] = jload(os.path.join(folder, "judgment.json"))
     c["profile"] = jload(os.path.join(folder, "profile.json"))
+    c["street"] = jload(os.path.join(folder, "street.json"))  # merged into record.profile (profile_with_street)
     c["statements"] = jload(os.path.join(folder, "statements.json"))  # copied next to the record, never embedded
     c["analysis_md"] = tread(os.path.join(folder, "analysis.md"))
     c["second_pass_md"] = tread(os.path.join(folder, "second_pass.md"))
     c["files"] = folder_files(folder)
-    for k in ("fund", "prices", "ttm", "live", "segments", "judgment", "profile", "statements"):
+    for k in ("fund", "prices", "ttm", "live", "segments", "judgment", "profile", "street", "statements"):
         if c[k] is not None and not isinstance(c[k], dict):
             c[k] = None  # a malformed file renders as absent
     return c
@@ -322,6 +418,165 @@ def live_ok(lv):
     return isinstance(lv, dict) and num(lv.get("price")) is not None and num(lv.get("irr_weighted")) is not None
 
 
+def _date10(v):
+    return v[:10] if isinstance(v, str) and len(v) >= 10 else None
+
+
+def live_shown(c):
+    """(live, withheld): the live.json the page shows as current, else None,
+    and why it was withheld (None when it was not). A live.json whose close
+    (price_date) is older than the scored analysis — score.json
+    analysis_date or the run's as_of (live.scored_date), whichever is later —
+    reprices the scored paths at a price older than the verdict's own: Nasdaq
+    had not posted the scored session yet (reprice's basis_check.method
+    "no_close_since_scoring"). A live.json whose run (scored_date) predates
+    score.json's analysis_date belongs to an earlier run of a re-scored name
+    and is withheld too. The scored figures are then the current ones."""
+    lv = c.get("live")
+    if not live_ok(lv):
+        return None, None
+    pd = _date10(lv.get("price_date"))
+    sa, ls = _date10(_d(c.get("score")).get("analysis_date")), _date10(lv.get("scored_date"))
+    if sa and ls and ls < sa:
+        # live.json left over from an earlier run (the name was re-scored and
+        # reprice.py has not run since): its paths are not the verdict's
+        return None, {"reason": "live_from_earlier_run", "price": num(lv.get("price")), "price_date": pd, "scored_date": sa,
+                      "method": None,
+                      "note": (f"The live repricing on file ({ls} run) predates the current score ({sa}), so the scored figures "
+                               "are the current ones until reprice.py runs on the new score.")}
+    scored = [d for d in (sa, ls) if d]
+    sd = max(scored) if scored else None
+    if pd is None or sd is None or pd >= sd:
+        return lv, None
+    method = _d(lv.get("basis_check")).get("method")
+    return None, {"reason": "live_older_than_score", "price": num(lv.get("price")), "price_date": pd, "scored_date": sd,
+                  "method": method if isinstance(method, str) else None,
+                  "note": (f"The last close on file ({pd}) is older than the scored analysis ({sd}): Nasdaq had not posted the "
+                           "scored session when prices were last pulled, so the scored figures are the current ones; the live "
+                           "repricing returns with the first close after scoring.")}
+
+
+def live_split(lv):
+    """(factor, label) of a split since the scored run that reprice.py
+    restated live.json for (live.split_factor, else basis_check.factor; the
+    label from basis_check.split), else (None, None)."""
+    if not isinstance(lv, dict):
+        return None, None
+    bc = _d(lv.get("basis_check"))
+    f = num(lv.get("split_factor"))
+    if f is None:
+        f = num(bc.get("factor"))
+    if f is None or f <= 0 or abs(f - 1.0) < 1e-9:
+        return None, None
+    label = bc.get("split") if isinstance(bc.get("split"), str) and bc.get("split") else f"{f:g}x"
+    return f, label
+
+
+def _scale_path(obj, parts, factor):
+    """Multiply every number at the dotted path `parts` inside obj by factor,
+    in place (`*` = every key of an object / item of a list). Returns how
+    many numbers were scaled."""
+    if not parts:
+        return 0
+    key, rest, n = parts[0], parts[1:], 0
+    if isinstance(obj, dict):
+        keys = list(obj) if key == "*" else ([key] if key in obj else [])
+        for k in keys:
+            if rest:
+                n += _scale_path(obj[k], rest, factor)
+            elif num(obj[k]) is not None:
+                obj[k] = num(obj[k]) * factor
+                n += 1
+    elif isinstance(obj, list) and key == "*":
+        for i, v in enumerate(obj):
+            if rest:
+                n += _scale_path(v, rest, factor)
+            elif num(v) is not None:
+                obj[i] = num(v) * factor
+                n += 1
+    return n
+
+
+def restate_split(rec, factor, label, lv):
+    """Restate the record's scored-run figures in today's share units (in
+    place; rec is build_record's own deep copy): SPLIT_DIVIDE / factor,
+    SPLIT_MULTIPLY × factor. Sets record.split_restated and
+    row.split_restated."""
+    s = _d(rec.get("score"))
+    as_scored = {k: num(s.get(k)) for k in ("price", "iv_at_15", "base_oe_per_share")}
+    fields = []
+    for path in SPLIT_DIVIDE:
+        if _scale_path(rec, path.split("."), 1.0 / factor):
+            fields.append(path)
+    for path in SPLIT_MULTIPLY:
+        if _scale_path(rec, path.split("."), factor):
+            fields.append(path)
+    scored_date = lv.get("scored_date") if isinstance(lv.get("scored_date"), str) else s.get("analysis_date")
+    rec["split_restated"] = {
+        "factor": factor, "split": label, "scored_date": scored_date,
+        "price_date": lv.get("price_date") if isinstance(lv.get("price_date"), str) else None,
+        "fields": fields, "as_scored": as_scored,
+        "note": (f"A {label} split since the scored run ({scored_date}): every per-share figure of the run (prices, intrinsic "
+                 f"values, hurdle prices, owner's earnings per share, the forecast paths) is divided by {factor:g} and its share "
+                 f"counts multiplied by {factor:g}, so they read in today's share units next to the last close. IRRs, tiers, "
+                 "upside and market cap do not change.")}
+    if isinstance(rec.get("row"), dict):
+        rec["row"]["split_restated"] = {"factor": factor, "split": label}
+
+
+def priced_fundamentals(fund, prices):
+    """fundamentals.json as the page shows it: the dividends block repriced
+    with fundamentals.price_dividends at prices.json stats.last / last_date
+    when that close is not older than the block's own price_date and differs
+    from the block's price (a same-day close supersedes a score.json
+    analysis-time quote). A shallow copy with a new `dividends`; the input is
+    not modified. Shown as written without prices.json, with an older close,
+    for a block written before 5.4.4 (fundamentals.repriceable), or without
+    fundamentals.py. The close is passed as filed (a JSON number, as
+    fundamentals._read_price reads it), never a coerced string."""
+    if FUND is None or not isinstance(fund, dict) or not FUND.repriceable(fund.get("dividends")):
+        return fund
+    st = _d(_d(prices).get("stats"))
+    last, last_date = st.get("last"), _date10(st.get("last_date"))
+    if not isinstance(last, (int, float)) or isinstance(last, bool) or not math.isfinite(last) or last <= 0 or last_date is None:
+        return fund
+    div = fund["dividends"]
+    pd = _date10(div.get("price_date"))
+    if pd is not None and (last_date < pd or (last_date == pd and num(div.get("price")) == last
+                                              and div.get("price_source") == FUND.PRICES_JSON_SOURCE)):
+        return fund
+    return dict(fund, dividends=FUND.price_dividends(div, st.get("last"), st.get("last_date"), FUND.PRICES_JSON_SOURCE))
+
+
+def profile_with_street(profile, street):
+    """record.profile: profile.json (SEC-derived About / filings, committed)
+    with the Street block and market data put back where the app reads them
+    — profile.street, profile.market, profile.street_fetched_at. Since
+    2026-10-16 profile.py writes those to street.json (a gitignored cache):
+    when street.json carries a key its value wins (null included: a newer
+    pull with no coverage is not overridden by an older profile.json);
+    otherwise the legacy key of an older profile.json is used, else null.
+    street_fetched_at is street.json's fetched_at, or the legacy
+    profile.json's fetched_at when the legacy block is the one shown. None
+    when neither file is a usable object."""
+    prof = profile if isinstance(profile, dict) else None
+    st = street if isinstance(street, dict) else None
+    if prof is None and st is None:
+        return None
+    out = dict(prof or {})
+    from_street = from_legacy = False
+    for key in ("street", "market"):
+        if st is not None and key in st:
+            out[key] = _d(st.get(key)) or None
+            from_street = True
+        else:
+            out[key] = _d(out.get(key)) or None
+            from_legacy = from_legacy or out[key] is not None
+    fa = st.get("fetched_at") if from_street else (out.get("fetched_at") if from_legacy else None)
+    out["street_fetched_at"] = fa if isinstance(fa, str) else None
+    return out
+
+
 # ---------------------------------------------------------------- forecast replay (engine functions)
 def forecast_paths(n):
     """(paths, growth_paths, replayed). Stored paths when the run carries them
@@ -341,7 +596,7 @@ def forecast_paths(n):
     base, gb = num(n.get("base_oe_per_share")), num(n.get("g_base"))
     if not inp or base is None or gb is None or not scn:
         return None, None, False
-    gterm = inp.get("g_terminal", 0.025)
+    gterm = _gterm(n)
     cap = ENGINE.cap_years_for_moat(inp.get("moat", 5))
     paths, gpaths = {}, {}
     try:
@@ -357,7 +612,44 @@ def forecast_paths(n):
 
 
 def _gterm(n):
-    return num(_d(n.get("inputs")).get("g_terminal")) or num(n.get("g_terminal")) or 0.025
+    """The run's terminal growth: inputs.g_terminal, else the top-level copy,
+    else the engine default. Tested for None, never truthiness — a recorded
+    0.0 is a valid assumption (review finding: `or` replaced it with 2.5%)."""
+    for v in (_d(n.get("inputs")).get("g_terminal"), n.get("g_terminal")):
+        g = num(v)
+        if g is not None:
+            return g
+    return DEFAULT_GTERM
+
+
+def _scored_price(n, s):
+    """The price the scored IRRs were solved at: score.json's copy, else the run's own."""
+    return num(s.get("price")) or num(n.get("price"))
+
+
+def scored_floor(recorded, flows, px, g):
+    """Whether a SCORED IRR sits at the solver's floor. The first boolean in
+    `recorded` (the run's own flags — engine 5.4 writes them per scenario and
+    for the weighted case) wins. A pre-5.4 run recorded none, so the flag is
+    inferred through the engine: solve_irr's at_floor on the replayed flows at
+    the scored price. Only the flag is taken from the replay — the recorded
+    (historical) IRR is never replaced. None when there is neither a flag nor
+    anything to replay."""
+    for v in recorded:
+        if isinstance(v, bool):
+            return v
+    flows = _l(flows)
+    if not flows or px is None or px <= 0 or ENGINE is None or not hasattr(ENGINE, "solve_irr"):
+        return None
+    try:
+        return bool(ENGINE.solve_irr(flows, px, g)[2])
+    except Exception:
+        return None
+
+
+def _weighted_floor_recorded(n, s):
+    """The run's own flags for the weighted IRR, in precedence order."""
+    return (s.get("irr_at_floor"), _d(n.get("diagnostics")).get("irr_at_floor"), _d(n.get("weighted")).get("irr_at_floor"))
 
 
 def hurdle_prices(n, s, paths):
@@ -375,12 +667,16 @@ def hurdle_prices(n, s, paths):
 
 
 def scenario_sensitivity(n, s, paths, lv):
-    """{label: {"10".."25": iv, irr, irr_live, irr_live_at_floor}} from stored
-    values (5.4) or present_value on the replayed paths; irr_live from live.json."""
+    """{label: {"10".."25": iv, irr, irr_at_floor, irr_live, irr_live_at_floor}}
+    from stored values (5.4) or present_value on the replayed paths; irr_live
+    from live.json. irr_at_floor marks the SCORED IRR: the run's own flag when
+    recorded, else solve_irr's flag on the replayed flows at the scored price
+    (scored_floor); null when there is no scored IRR or nothing to decide it."""
     scn = _d(n.get("scenarios")) or _d(s.get("scenarios"))
     if not scn:
         return None
     g = _gterm(n)
+    px = _scored_price(n, s)
     live = lv if live_ok(lv) else None
     paths = _d(paths)
     out = {}
@@ -398,6 +694,8 @@ def scenario_sensitivity(n, s, paths, lv):
                     v = None
             row[str(rate)] = num(v)
         row["irr"] = num(r.get("irr")) if k != "weighted" else (num(r.get("irr")) if r.get("irr") is not None else num(n.get("implied_irr_weighted") if n.get("implied_irr_weighted") is not None else s.get("implied_irr")))
+        recorded = (r.get("irr_at_floor"),) if k != "weighted" else _weighted_floor_recorded(n, s)
+        row["irr_at_floor"] = scored_floor(recorded, paths.get(k), px, g) if row["irr"] is not None else None
         if live:
             lscn = _d(_d(live.get("scenarios")).get(k))
             lr = live.get("irr_weighted") if k == "weighted" else lscn.get("irr")
@@ -421,21 +719,12 @@ def forecast_block(c, paths, gpaths, replayed, sens, hp):
 
 
 def irr_at_floor_flag(c, paths):
-    """score.irr_at_floor (5.4) → diagnostics.irr_at_floor → for an older run,
-    solve_irr's at-floor flag on the replayed weighted path at the scored price."""
+    """score.irr_at_floor (5.4) → diagnostics.irr_at_floor → weighted.irr_at_floor
+    → for an older run, solve_irr's at-floor flag on the replayed weighted path
+    at the scored price (scored_floor; the same answer as
+    forecast.sensitivity.weighted.irr_at_floor). False when undecidable."""
     s, n = c["score"], c["numbers"]
-    if "irr_at_floor" in s:
-        return bool(s.get("irr_at_floor"))
-    diag = _d(n.get("diagnostics"))
-    if "irr_at_floor" in diag:
-        return bool(diag.get("irr_at_floor"))
-    px = num(s.get("price")) or num(n.get("price"))
-    if _l(_d(paths).get("weighted")) and px and ENGINE is not None and hasattr(ENGINE, "solve_irr"):
-        try:
-            return bool(ENGINE.solve_irr(paths["weighted"], px, _gterm(n))[2])
-        except Exception:
-            return False
-    return False
+    return bool(scored_floor(_weighted_floor_recorded(n, s), _d(paths).get("weighted"), _scored_price(n, s), _gterm(n)))
 
 
 # ---------------------------------------------------------------- index row
@@ -474,6 +763,7 @@ def index_row(c, registry, paths, hp, watchlist=()):
         "tier_live": None, "tier_bear": _tier(s.get("tier_bear")) or tier_for_irr(irr_bear), "tier_bull": _tier(s.get("tier_bull")) or tier_for_irr(irr_bull),
         "irr": irr, "irr_live": None, "irr_bear": irr_bear, "irr_bull": irr_bull,
         "irr_at_floor": irr_at_floor_flag(c, paths), "irr_capped": bool(s.get("irr_capped") or diag.get("irr_capped")),
+        "live_withheld": False, "split_restated": None,  # set by build_record (live_shown / restate_split)
         "f_subtype": s.get("f_subtype") or n.get("f_subtype"),
         "price": price, "price_live": None, "price_date": None, "ret_1y_pct": num(st.get("ret_1y_pct")),
         "iv15": num(s.get("iv_at_15")) if s.get("iv_at_15") is not None else num(n.get("iv_at_15")),
@@ -512,10 +802,13 @@ def index_row(c, registry, paths, hp, watchlist=()):
                     "irr_bear_live": num(lv.get("irr_bear")), "irr_bull_live": num(lv.get("irr_bull")),
                     "tier_bear_live": _tier(lv.get("tier_bear")), "tier_bull_live": _tier(lv.get("tier_bull")),
                     "irr_at_floor_live": bool(lv.get("irr_at_floor"))})
+        # live.json's IVs are in today's share units; the row's run figures are in the scored run's until
+        # restate_split, so a fallback is put back in run units first (× the split factor, 1 without a split)
+        sf = live_split(lv)[0] or 1.0
         if row["iv20"] is None and num(lv.get("iv_at_20")) is not None:
-            row["iv20"] = num(lv.get("iv_at_20"))
+            row["iv20"] = num(lv.get("iv_at_20")) * sf
         if row["iv25"] is None and num(lv.get("iv_at_25")) is not None:
-            row["iv25"] = num(lv.get("iv_at_25"))
+            row["iv25"] = num(lv.get("iv_at_25")) * sf
     return row
 
 
@@ -526,13 +819,22 @@ def rank_key(row):
 
 # ---------------------------------------------------------------- record
 def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
+    # the live.json shown as current (not one older than the score) and the
+    # dividends block at the latest close; every derivation below reads these.
+    # Across a split since scoring the block is shown as written: its filed DPS
+    # and share count are in the units of the filings it was built from, and a
+    # post-split close would mix the two (a 2:1 split doubles every yield).
+    live, withheld = live_shown(c)
+    factor, label = live_split(live)
+    c = dict(c, live=live, fund=c.get("fund") if factor else priced_fundamentals(c.get("fund"), c.get("prices")))
     s, n = c["score"], c["numbers"]
     has_scn = bool(_d(n.get("scenarios")))
     paths, gpaths, replayed = forecast_paths(n) if has_scn else (None, None, False)
     paths, gpaths = (_d(paths) or None), (_d(gpaths) or None)
     hp = hurdle_prices(n, s, paths) if has_scn else None
-    sens = scenario_sensitivity(n, s, paths, c.get("live"))
+    sens = scenario_sensitivity(n, s, paths, live)
     row = index_row(c, registry, paths, hp, watchlist)
+    row["live_withheld"] = withheld is not None
     numbers = {k: v for k, v in n.items() if k not in ("paths", "growth_paths")}
     pr = c.get("prices")
     prices = ({"source": pr.get("source"), "as_of": pr.get("as_of"), "currency": pr.get("currency"), "stats": _d(pr.get("stats")),
@@ -544,15 +846,18 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
            "built_at": built_at, "built_from_mtime": built_from_mtime, "data_version": DATA_VERSION,
            "row": row, "score": s, "numbers": numbers,
            "forecast": forecast_block(c, paths, gpaths, replayed, sens, hp),
-           "live": c.get("live") if live_ok(c.get("live")) else None,
+           "live": live, "live_withheld": withheld, "split_restated": None,
            "history": c.get("history") or [],
            "fundamentals": c.get("fund"), "prices": prices, "segments": c.get("segments"), "ttm": c.get("ttm"),
            "judgment": c.get("judgment"),
-           "profile": c.get("profile") if isinstance(c.get("profile"), dict) else None,
+           "profile": profile_with_street(c.get("profile"), c.get("street")),
            "registry": registry_entries(registry, c, row["ticker"]),
            "analysis_md": c.get("analysis_md"), "second_pass_md": c.get("second_pass_md"),
            "files": c.get("files") or []}
-    return finite(rec)  # NaN / inf anywhere in a verbatim file -> null
+    rec = finite(rec)  # NaN / inf anywhere in a verbatim file -> null; also the deep copy restate_split edits
+    if factor:
+        restate_split(rec, factor, label, live)
+    return rec
 
 
 def trim_record(rec):
@@ -604,15 +909,15 @@ def script_json(obj):
 
 def load_registry(base):
     reg = {}
-    for e in (jload(os.path.join(base, "_system", "overrides_registry.json")) or {}).get("entries", []) or []:
-        if isinstance(e, dict):
+    for e in _l(_d(jload(os.path.join(base, "_system", "overrides_registry.json"))).get("entries")):
+        if isinstance(e, dict) and isinstance(e.get("ticker"), str):
             reg.setdefault(e.get("ticker"), []).append(e)
     return reg
 
 
 def sweep_counts(base):
-    qd = jload(os.path.join(base, "_system", "queue.json")) or {}
-    q = [e for e in (qd.get("queue") or []) if isinstance(e, dict)]
+    qd = _d(jload(os.path.join(base, "_system", "queue.json")))
+    q = [e for e in _l(qd.get("queue")) if isinstance(e, dict)]
     cnt = lambda st: sum(1 for e in q if e.get("status") == st)
     total = qd.get("universe_size") if isinstance(qd.get("universe_size"), int) else len(q)
     return {"done": cnt("done"), "total": total, "pending": cnt("pending"), "blocked_data_gap": cnt("blocked_data_gap"),
@@ -657,6 +962,79 @@ def inline_shell(site_dir, data_js):
     return out
 
 
+def attachment_dir(base, site_dir):
+    """Where the attachment and the history CSV go: <base>/_daily for the
+    default site, the parent of --site-dir otherwise (a temp-dir test build
+    must never overwrite the real ranking file — review finding)."""
+    default_site = os.path.normcase(os.path.abspath(os.path.join(base, "_daily", "site")))
+    if os.path.normcase(os.path.abspath(site_dir)) == default_site:
+        return os.path.join(base, "_daily")
+    return os.path.dirname(os.path.abspath(site_dir))
+
+
+def _csv_num(v, digits):
+    """Fixed-point text with no thousands separators ('' for null); never '-0.00'."""
+    v = num(v)
+    if v is None:
+        return ""
+    s = f"{v:.{digits}f}"
+    return s[1:] if s.startswith("-") and float(s) == 0 else s
+
+
+def _csv_str(v):
+    return v if isinstance(v, str) else ""
+
+
+def _csv_bool(v):
+    return "true" if v is True else "false"
+
+
+def history_key(r):
+    """Live IRR desc, then scored IRR desc, then ticker (nulls after values)."""
+    lv, sc = num(r.get("irr_live")), num(r.get("irr"))
+    return (lv is None, -lv if lv is not None else 0.0, sc is None, -sc if sc is not None else 0.0, str(r.get("ticker") or ""))
+
+
+def history_rows(index):
+    """index.json rows -> HISTORY_COLUMNS value lists, in history_key order.
+    Live figures where the row has live.json, else the scored ones: price and
+    price_date (the scored price's date is the analysis date), upside at 15%,
+    and the bear -> bull band tiers; tier_live / irr_live stay blank without
+    live data."""
+    out = []
+    for i, r in enumerate(sorted(index, key=history_key), 1):
+        live = num(r.get("price_live")) is not None and num(r.get("irr_live")) is not None
+        lo, hi = (_tier(r.get("tier_bear_live")), _tier(r.get("tier_bull_live"))) if live else (None, None)
+        if lo is None or hi is None:
+            lo, hi = _tier(r.get("tier_bear")), _tier(r.get("tier_bull"))
+        out.append([str(i), _csv_str(r.get("ticker")), _csv_str(r.get("name")), _csv_bool(r.get("fit") == "misfit"),
+                    _csv_str(_tier(r.get("tier")) or r.get("tier")), _csv_num(r.get("irr"), 6),
+                    _csv_str(_tier(r.get("tier_live"))) if live else "", _csv_num(r.get("irr_live"), 6) if live else "",
+                    _csv_str(lo), _csv_str(hi),
+                    _csv_num(r.get("price_live") if live else r.get("price"), 2),
+                    _csv_str(r.get("price_date") if live else r.get("analysis_date")),
+                    _csv_num(r.get("iv15"), 2), _csv_num(r.get("upside15_live") if live else r.get("upside15"), 2),
+                    _csv_str(r.get("analysis_date")), _csv_str(r.get("engine_release")),
+                    _csv_bool(r.get("alert_eligible")), _csv_bool(r.get("watchlist"))])
+    return out
+
+
+def write_history_csv(out_dir, index, date):
+    """<out_dir>/history/ranking-<date>.csv — the compact committed daily
+    snapshot (UTF-8, \\n line endings, header row, plain values: IRRs as
+    decimals with 6 digits, money and upside % with 2). The same day's file
+    is overwritten. Returns (path, rows)."""
+    import io
+    rows = history_rows(index)
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(HISTORY_COLUMNS)
+    w.writerows(rows)
+    path = os.path.join(out_dir, "history", f"ranking-{date}.csv")
+    write_atomic(path, buf.getvalue())
+    return path, len(rows)
+
+
 def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date):
     """records_by_ticker and data/<T>.json are both keyed by row.ticker (the
     served key), so every top-N row with a record is embedded."""
@@ -672,11 +1050,7 @@ def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date):
     payload = {"meta": meta, "index": rows, "records": recs, "embedded_top": top, "embedded": sorted(recs)}
     data_js = "<script>window.SITE_DATA=" + script_json(payload) + ";</script>"
     doc = inline_shell(site_dir, data_js)
-    # The attachment lives next to the site directory: <base>/_daily for the
-    # default site, the parent of --site-dir otherwise (a temp-dir test build
-    # must never overwrite the real ranking file — review finding).
-    default_site = os.path.abspath(os.path.join(base, "_daily", "site"))
-    out_dir = os.path.join(base, "_daily") if os.path.abspath(site_dir) == default_site else os.path.dirname(os.path.abspath(site_dir))
+    out_dir = attachment_dir(base, site_dir)  # next to the site directory, never the real _daily/ for a --site-dir build
     path = os.path.join(out_dir, f"ranking-{date}.html")
     size = write_atomic(path, doc)
     write_atomic(os.path.join(out_dir, "latest.html"), doc)
@@ -692,7 +1066,9 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     only = set(x.strip().upper() for x in only if x.strip()) if only else None
     now = now or datetime.datetime.now(NY)
     built_at, date = now.isoformat(timespec="seconds"), now.date().isoformat()
-    builder_mtime = os.path.getmtime(os.path.abspath(__file__))
+    # the builder's code: this script and the fundamentals.price_dividends it reprices every dividends block with
+    builder_mtime = max(os.path.getmtime(os.path.abspath(__file__)),
+                        os.path.getmtime(FUND.__file__) if FUND is not None and os.path.exists(FUND.__file__) else 0.0)
     registry = load_registry(base)
     watchlist, watchlist_outside, watchlist_entries = load_watchlist(base)
     wl = set(watchlist)
@@ -759,10 +1135,14 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                           "watchlist": t in wl})
     current = dict(sorted(current.items()))
 
-    # 2. previous state: rows from index.json, mtimes + file lists from state.json
-    prev_rows = {r.get("ticker"): r for r in (jload(os.path.join(site_dir, "index.json")) or []) if isinstance(r, dict)}
-    state = jload(os.path.join(site_dir, "state.json")) or {}
-    state = state.get("records") if isinstance(state.get("records"), dict) else {}
+    # 2. previous state: rows from index.json, mtimes + file lists from state.json. Both are
+    #    gitignored caches: absent (fresh clone) or unreadable counts as empty, and neither is
+    #    trusted over the data/ directory itself — a record whose data/<T>.json is missing is
+    #    rebuilt whatever they claim (`have` below), and entries for tickers that are no longer
+    #    current are dropped.
+    prev_rows = {r.get("ticker"): r for r in _l(jload(os.path.join(site_dir, "index.json"))) if isinstance(r, dict)}
+    state = _d(_d(jload(os.path.join(site_dir, "state.json"))).get("records"))
+    state = {t: e for t, e in state.items() if t in current and isinstance(e, dict)}
     all_json = [os.path.basename(p) for p in glob.glob(os.path.join(data_dir, "*.json"))]
     existing = {f[:-5] for f in all_json if not f.endswith(STATEMENTS_SUFFIX)}
     existing_statements = {f[:-len(STATEMENTS_SUFFIX)] for f in all_json if f.endswith(STATEMENTS_SUFFIX)}
@@ -783,7 +1163,7 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
 
     # 4. build / skip — one malformed folder never aborts the run
     written, skipped, failed, rows, records, sizes = [], [], [], {}, {}, {}
-    statements_written = []
+    statements_written, missing_outside_only = [], []
     replayed = 0
 
     def note_sync(t, outcome):
@@ -806,12 +1186,14 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
         st = state.get(t) if isinstance(state.get(t), dict) else None
         have = t in existing and t not in removed
         if only and t not in only and c["folder"].upper() not in only:
-            if have:
-                row = previous_row(t, rec_path)
-                if row:
-                    rows[t] = row
-                    skipped.append(t)
-            continue
+            row = previous_row(t, rec_path) if have else None
+            if row:
+                rows[t] = row
+                skipped.append(t)
+                continue
+            # no usable record (fresh clone, deleted data/): build it anyway, or the index
+            # would silently lose a current company for as long as --only runs continue
+            missing_outside_only.append(t)
         if have and not force:
             bfm, bm, bfiles = (num(st.get("built_from_mtime")), num(st.get("builder_mtime")), st.get("files")) if st else (None, None, None)
             if bfm is None or bm is None:  # no state: recover from the record itself
@@ -831,6 +1213,8 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                     and bfiles == files and t in prev_rows):
                 rows[t] = prev_rows[t]
                 skipped.append(t)
+                # re-seed a lost / unreadable state.json entry from what the record proved
+                state[t] = {**(st or {}), "built_from_mtime": bfm, "builder_mtime": bm, "files": bfiles}
                 try:  # a skipped record keeps its statements copy in step with the folder (missing copy → written)
                     note_sync(t, sync_statements(t, c["path"], files))
                 except Exception as e:  # noqa: BLE001
@@ -872,10 +1256,16 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     stale.sort(key=lambda r: (-(r["irr"] if r["irr"] is not None else -9), r["ticker"] or ""))
     releases = sorted({r.get("engine_release") for r in index if isinstance(r.get("engine_release"), str)})
     latest_release = getattr(ENGINE, "ENGINE_RELEASE", None) or (releases[-1] if releases else None)
-    notes = [f"ranked by the live IRR (live.json, scored paths repriced at the last close) when present, else the scored IRR; nulls last",
+    withheld = sorted(r.get("ticker") or "" for r in index if r.get("live_withheld"))
+    restated = sorted(f"{r.get('ticker')} {_d(r.get('split_restated')).get('split')}" for r in index if _d(r.get("split_restated")))
+    notes = [f"ranked by the live IRR (live.json, scored paths repriced at the last close) when present and not older than the scored analysis, else the scored IRR; nulls last",
              f"this run: {len(written)} record(s) written, {len(skipped)} skipped unchanged, {len(removed)} removed" + (f" ({', '.join(removed)})" if removed else ""),
              "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
              f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
+    if withheld:
+        notes.append(f"{len(withheld)} live.json close(s) older than the scored analysis withheld (scored figures shown, row.live_withheld): " + ", ".join(withheld))
+    if restated:
+        notes.append(f"{len(restated)} record(s) restated for a split since scoring (record.split_restated): " + ", ".join(restated))
     if failed:
         notes.append(f"{len(failed)} folder(s) FAILED to build and kept their previous row/record if any ({', '.join(failed)}) — see stderr")
     if duplicates:
@@ -884,10 +1274,13 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
         notes.append(f"{replayed} of the records written carry forecast paths replayed from pre-5.4 run inputs through dcf_engine.replay_paths")
     if only:
         notes.append("built with --only " + ",".join(sorted(only)) + ": other rows come from the previous index")
+    if missing_outside_only:
+        notes.append(f"{len(missing_outside_only)} record(s) outside --only had no data/<T>.json and were built anyway: " + ", ".join(missing_outside_only))
     meta = {"built_at": built_at, "date": date, "data_version": DATA_VERSION, "engine_release_latest": latest_release,
             "sweep": sweep_counts(base),
             "counts": {"current": len(index), "stale": len(stale), "misfits": sum(1 for r in index if r.get("fit") == "misfit"),
                        "tiers": tiers, "with_live": sum(1 for r in index if _d(r.get("has")).get("live")),
+                       "live_withheld": len(withheld), "split_restated": len(restated),
                        "watchlist": sum(1 for r in index if r.get("watchlist")), "failed": len(failed),
                        "statements": sum(1 for r in index if _d(r.get("has")).get("statements")),
                        "profiles": sum(1 for r in index if _d(r.get("has")).get("profile"))},
@@ -903,10 +1296,11 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     write_atomic(os.path.join(site_dir, "meta.json"), dump(meta, compact=False))
     write_atomic(os.path.join(site_dir, "state.json"), dump({"built_at": built_at, "builder_mtime": builder_mtime, "records": state}))
 
-    # 6. attachment
-    att = None
+    # 6. attachment + the committed daily history snapshot (same date)
+    att = hist = None
     if attachment:
         att = build_attachment(base, site_dir, meta, index, records, top, date)
+        hist = write_history_csv(attachment_dir(base, site_dir), index, date)
 
     largest = max(sizes.items(), key=lambda kv: kv[1]) if sizes else None
     summary = (f"build_site: {len(written)} written / {len(skipped)} skipped / {len(removed)} removed"
@@ -916,20 +1310,23 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                + f" | statements {len(statements_written)} written / {len(statements_removed)} removed"
                + (f" | largest record {largest[0]} {largest[1]:,} B" if largest else " | no record written")
                + (f" | attachment {att[1]:,} B ({att[2]} records) -> {att[0]}" if att else "")
+               + (f" | history {hist[1]} rows -> {hist[0]}" if hist else "")
                + f" | {len(index)} rows, {len(stale)} stale -> {site_dir}")  # ASCII only: Windows consoles
     if not quiet:
         print(summary)
     return {"written": written, "skipped": skipped, "removed": removed, "failed": failed, "duplicates": duplicates,
             "statements_written": statements_written, "statements_removed": statements_removed,
+            "missing_outside_only": missing_outside_only,
             "rows": index, "meta": meta, "records": records, "watchlist": watchlist, "watchlist_outside": watchlist_outside,
-            "largest": largest, "attachment": att, "site_dir": site_dir, "summary": summary}
+            "largest": largest, "attachment": att, "history": hist, "site_dir": site_dir, "summary": summary}
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Build the site data layer (meta.json, index.json, data/<T>.json).")
     ap.add_argument("--only", help="comma-separated tickers to (re)build; other rows come from the previous index")
     ap.add_argument("--force", action="store_true", help="rebuild every record")
-    ap.add_argument("--attachment", action="store_true", help="also write _daily/ranking-<date>.html and latest.html")
+    ap.add_argument("--attachment", action="store_true",
+                    help="also write _daily/ranking-<date>.html and latest.html, and the committed _daily/history/ranking-<date>.csv")
     ap.add_argument("--top", type=int, default=150, help="records embedded in the attachment (default 150)")
     ap.add_argument("--site-dir", help="output directory (default <base>/_daily/site)")
     ap.add_argument("--quiet", action="store_true")
