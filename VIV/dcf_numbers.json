@@ -1,0 +1,217 @@
+{
+ "ticker": "VIV",
+ "name": "TELEFONICA BRASIL S.A.",
+ "cik": 1066119,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 12.26,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 3195606352,
+ "market_cap_est": 39178133875.52,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": null,
+ "rev_cagr_3y": null,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2045777035.6799998,
+ "base_oe_per_share": 1.2803686126106435,
+ "base_oe_latest_per_share": 1.2803686126106435,
+ "base_oe_normalized_per_share": 2068.560818461329,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": null,
+  "rev_cagr_3y": null,
+  "rev_yoy_latest": null,
+  "oe_ps_cagr_2y": -0.9771480288980727
+ },
+ "g_blend": -0.9771480288980727,
+ "share_cagr": -0.875631107977937,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": null,
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 2.0,
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed February 23, 2026), notes to the consolidated financial statements describing the 2025 reverse stock split / stock split transaction: '1 ADR now representing 2 ordinary shares issued by the Company, while the total number of ADRs in circulation remained unchanged.'",
+  "reason": "DATA_GAP:ads_ratio \u2014 VIV is a 20-F filer; engine per-share figures are per ordinary share while the traded NYSE price is per ADS. The ratio of 2 ordinary shares per ADS is stated in the filer's own FY2025 20-F (the ratio changed from 1 in the April 2025 transaction: 40-for-1 reverse split followed by a split under which 1 grouped share became 80 shares, a net doubling of the share count)."
+ },
+ "fx_conversion": {
+  "from_currency": "BRL",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2015-12-31": 0.2525,
+   "2016-12-31": 0.30727,
+   "2017-12-31": 0.30187,
+   "2018-01-01": 0.30187,
+   "2018-12-31": 0.25765,
+   "2019-12-31": 0.24878,
+   "2020-12-31": 0.19253,
+   "2021-12-31": 0.17949,
+   "2022-12-31": 0.18916,
+   "2023-12-31": 0.20609,
+   "2024-12-31": 0.16169,
+   "2025-12-31": 0.18256
+  },
+  "rates_by_currency": {
+   "BRL": {
+    "2015-12-31": 0.2525,
+    "2016-12-31": 0.30727,
+    "2017-12-31": 0.30187,
+    "2018-01-01": 0.30187,
+    "2018-12-31": 0.25765,
+    "2019-12-31": 0.24878,
+    "2020-12-31": 0.19253,
+    "2021-12-31": 0.17949,
+    "2022-12-31": 0.18916,
+    "2023-12-31": 0.20609,
+    "2024-12-31": 0.16169,
+    "2025-12-31": 0.18256
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": -0.05,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   0.03,
+   0.06,
+   0.1,
+   0.14,
+   0.19
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 1.2803686126106435,
+  "base_pin_source": "base_oe_ps_arg"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.02,
+   "oe_mult": 0.75,
+   "iv_at_10": 10.636033991454745,
+   "iv_at_12": 8.477729716223125,
+   "iv_at_15": 6.52510381622312,
+   "irr": 0.0897189774199244
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.01,
+   "oe_mult": 0.9,
+   "iv_at_10": 14.68729523226375,
+   "iv_at_12": 11.631306962399613,
+   "iv_at_15": 8.87632107963675,
+   "irr": 0.11506187987882979
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.05,
+   "oe_mult": 1.0,
+   "iv_at_10": 19.64247102556952,
+   "iv_at_12": 15.430093596836848,
+   "iv_at_15": 11.648965643465203,
+   "irr": 0.1439219719313819
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.09,
+   "oe_mult": 1.1,
+   "iv_at_10": 25.94743224094798,
+   "iv_at_12": 20.2307266210004,
+   "iv_at_15": 15.119262575787612,
+   "irr": 0.17709375343277733
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.14,
+   "oe_mult": 1.25,
+   "iv_at_10": 36.941707794526145,
+   "iv_at_12": 28.55660101294945,
+   "iv_at_15": 21.091992617648767,
+   "irr": 0.22751688753278188
+  }
+ },
+ "weighted": {
+  "iv_at_10": 20.043627442097215,
+  "iv_at_12": 15.71031970257945,
+  "iv_at_15": 11.825587312304616,
+  "irr": 0.1457264811138811
+ },
+ "implied_irr_weighted": 0.1457264811138811,
+ "implied_irr_base": 0.1439219719313819,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.03543333504856305,
+ "upside_at_12": 0.2814290132609667,
+ "iv_at_15": 11.825587312304616,
+ "iv_at_12": 15.71031970257945,
+ "diagnostics": {
+  "oe_yield": 0.1044346339812923,
+  "tv_share_at_15": 0.18734034473800013,
+  "scenario_spread_iv15": 3.2324378602541985,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 87.6%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed February 23, 2026), notes to the consolidated financial statements describing the 2025 reverse stock split / stock split transaction: '1 ADR now representing 2 ordinary shares issued by the Company, while the total number of ADRs in circulation remained unchanged.') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 1.28 vs 3-yr median 2068.56 \u2014 one of them is distorted; find out which and why"
+ ],
+ "content_hash": "5eccdd449608430bce23a79316ff0a92669dfd159797605e1b5912296d5272c5"
+}

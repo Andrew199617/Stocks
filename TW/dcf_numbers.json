@@ -1,0 +1,162 @@
+{
+ "ticker": "TW",
+ "name": "Tradeweb Markets Inc.",
+ "cik": 1758730,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 110.68,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 214898240,
+ "market_cap_est": 23784937203.2,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.1812080875002655,
+ "rev_cagr_3y": 0.19960259440339878,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1023557000,
+ "base_oe_per_share": 4.860201325846021,
+ "base_oe_latest_per_share": 4.7629845642290976,
+ "base_oe_normalized_per_share": 3.569304854834247,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.1812080875002655,
+  "rev_cagr_3y": 0.19960259440339878,
+  "rev_yoy_latest": 0.18915970286491657,
+  "oe_ps_cagr_2y": 0.23639646610581155
+ },
+ "g_blend": 0.19438114863415767,
+ "share_cagr": 0.010285235813856541,
+ "share_count_adj": -0.010285235813856541,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.18409591282030113,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 4.860201325846021,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0641,
+   "oe_mult": 0.75,
+   "iv_at_10": 61.48733789581823,
+   "iv_at_12": 48.00717058844739,
+   "iv_at_15": 35.9577724635511,
+   "irr": 0.06754321791399909
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.1341,
+   "oe_mult": 0.9,
+   "iv_at_10": 107.29589504362883,
+   "iv_at_12": 82.28717461123257,
+   "iv_at_15": 60.167701087122495,
+   "irr": 0.0979364100837371
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1841,
+   "oe_mult": 1.0,
+   "iv_at_10": 155.32536330798285,
+   "iv_at_12": 117.7830002058916,
+   "iv_at_15": 84.79107279542947,
+   "irr": 0.12511571905057373
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.2341,
+   "oe_mult": 1.1,
+   "iv_at_10": 221.91968809828745,
+   "iv_at_12": 166.5795874926101,
+   "iv_at_15": 118.22290649692209,
+   "irr": 0.15664978014038533
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.3041,
+   "oe_mult": 1.25,
+   "iv_at_10": 361.48467367705985,
+   "iv_at_12": 267.9689703124324,
+   "iv_at_15": 186.81692177441155,
+   "irr": 0.20795705559750333
+  }
+ },
+ "weighted": {
+  "iv_at_10": 171.19870593516174,
+  "iv_at_12": 129.1492046778161,
+  "iv_at_15": 92.31244315843625,
+  "irr": 0.13286997395610178
+ },
+ "implied_irr_weighted": 0.13286997395610178,
+ "implied_irr_base": 0.12511571905057373,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.1659519049653393,
+ "upside_at_12": 0.16687029885992133,
+ "iv_at_15": 92.31244315843625,
+ "iv_at_12": 129.1492046778161,
+ "diagnostics": {
+  "oe_yield": 0.04391219123460446,
+  "tv_share_at_15": 0.24434701094115038,
+  "scenario_spread_iv15": 5.195453137809916,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "8cd0471a54ab605f8a198923367b62d2002c1d7a6eb330966920cf84a5839c0b"
+}

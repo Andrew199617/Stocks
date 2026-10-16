@@ -1,0 +1,89 @@
+{
+ "ticker": "VTRS",
+ "name": "Viatris Inc.",
+ "sector": "Healthcare / Pharmaceuticals (generics & legacy brands)",
+ "price": 18.22,
+ "market_cap_b": 21.33,
+ "engine_version": 5,
+ "base_oe_per_share": 1.5638506876227898,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Scale without pricing power: Viatris has global generics scale and distribution (1,400+ molecules, 165+ countries, Mylan manufacturing plus Upjohn's legacy brands) and a broadening specialty pipeline, but the products themselves are commodities \u2014 off-patent brands and generics face structural price erosion, revenue fell at a 3-yr CAGR of -4.22% (engine), buyers (wholesalers/PBMs) hold the pricing power, manufacturing quality is a live liability (Indore FDA import alert, Nashik disruption), and net debt of $13,088M (7.1x normalized OE) thins the cushion. That is a weak moat: 4/10, CAP 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Operations and EPS note (Note 5): 'Weighted average shares outstanding \u2014 Diluted' 1,170.7M for FY2025, 1,193.3M for FY2024, 1,206.9M for FY2023 (in millions). EDGAR companyfacts carries no full-year diluted-share fact for FY2024/FY2025 under WeightedAverageNumberOfDilutedSharesOutstanding (the loss-year counts, where diluted equals basic because share awards are anti-dilutive, are not carried in the aggregated facts).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 7.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 6.14,
+   "irr": 0.0634
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 8.97,
+   "irr": 0.0844
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 11.64,
+   "irr": 0.1042
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 15.52,
+   "irr": 0.1318
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 21.33,
+   "irr": 0.1699
+  }
+ },
+ "iv_at_15": 11.28,
+ "iv_at_12": 14.77,
+ "implied_irr": 0.1018,
+ "implied_irr_base_case": 0.1042,
+ "upside_at_15_pct": -38.1,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Scaled generics cash machine with a weak moat 4/10 \u2014 OE yield 8.58% on a $1.56/share normalized base is not enough at $18.22 with 7.1x net debt/OE and a falling OE trend: weighted IRR 10.18% (Tier C), IV@15% $11.28; it clears the 15% hurdle only below ~$11.28.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Global scale and distribution: 1,400+ approved molecules sold in 165+ countries (Mylan generics manufacturing + Upjohn commercial footprint)",
+  "Low-cost global manufacturing footprint \u2014 the cost position a generics producer needs to survive price erosion",
+  "Legacy brand recognition (Lipitor, Viagra, Celebrex) inside a diversified base business that has produced positive conservative OE in 5 of the last 5 fiscal years",
+  "Specialty pipeline optionality: five positive Phase 3 readouts in 2025 (ophthalmology phentolamine programs, selatogrel, fast-acting meloxicam) plus a Feb 2026 restructuring targeting ~$650M of annual savings by end-2028"
+ ],
+ "moat_against": [
+  "Commodity products, no pricing power: generics and off-patent brands face structural price erosion \u2014 revenue 3-yr CAGR -4.22% and latest FY YoY -3.01% (engine)",
+  "Channel holds the power: wholesalers and PBMs squeeze generic prices; Viatris must launch new products just to hold revenue",
+  "Manufacturing quality overhang: FDA warning letter and import alert at Indore (11 products barred from the U.S.), Nashik fire/disruption expected to cut H2 2026 revenue by $100-150M",
+  "Leverage: net debt $13,088.1M = 7.1x normalized OE (engine diagnostics) on a shrinking OE base",
+  "Shrinking, churned base: biosimilars/OTC/women's-health/API divestitures cut the revenue base through 2024-25, and the Feb 2026 program cuts another ~10% of the workforce at an expected $700-850M cost"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 1170700000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Operations and EPS note (Note 5): 'Weighted average shares outstanding \u2014 Diluted' 1,170.7M for FY2025, 1,193.3M for FY2024, 1,206.9M for FY2023 (in millions). EDGAR companyfacts carries no full-year diluted-share fact for FY2024/FY2025 under WeightedAverageNumberOfDilutedSharesOutstanding (the loss-year counts, where diluted equals basic because share awards are anti-dilutive, are not carried in the aggregated facts)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 2.0256,
+  "base_oe_with_override": 1.5639,
+  "base_oe_impact_pct": -22.794,
+  "weighted_irr_without_override": 0.1147,
+  "weighted_irr_with_override": 0.1018,
+  "weighted_irr_impact_pp": -1.292,
+  "unblocks_tier": true
+ }
+}

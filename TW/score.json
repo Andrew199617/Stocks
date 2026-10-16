@@ -1,0 +1,70 @@
+{
+ "ticker": "TW",
+ "name": "Tradeweb Markets Inc.",
+ "sector": "Finance / Electronic trading marketplaces",
+ "price": 110.68,
+ "market_cap_b": 23.78,
+ "engine_version": 5,
+ "base_oe_per_share": 4.860201325846021,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Dominant rates franchise with real network effects \u2014 over 50% institutional U.S. Treasury electronic share for nine consecutive quarters and a record 24.1% core risk (swaps) share \u2014 plus workflow embedding via AiEX automation and 54% EBITDA margins. Not 8+: credit is contested, wholesale Treasury share is slipping, fees per million are compressing on mix, and volumes ride market volatility.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 35.96,
+   "irr": 0.0675
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 60.17,
+   "irr": 0.0979
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 84.79,
+   "irr": 0.1251
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 118.22,
+   "irr": 0.1566
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 186.82,
+   "irr": 0.208
+  }
+ },
+ "iv_at_15": 92.31,
+ "iv_at_12": 129.15,
+ "implied_irr": 0.1329,
+ "implied_irr_base_case": 0.1251,
+ "upside_at_15_pct": -16.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality electronic-trading franchise, moat 7/10 \u2014 but at $110.68 it prices in the bull case: weighted IRR 13.29%, IV@15% $92.31; clears the 15% hurdle only at or below ~$92.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Network effects \u2014 liquidity attracts liquidity; #1 in rates, >50% institutional U.S. Treasury share for nine straight quarters",
+  "Workflow embedding and switching costs \u2014 AiEX automation built into client trading workflows",
+  "Secular electronification tailwind, especially credit and international markets",
+  "Capital-light, high-margin model \u2014 54.4% adjusted EBITDA margin, capex trivial vs OCF"
+ ],
+ "moat_against": [
+  "Fee compression \u2014 average fees per million fell double digits in swaps and cash credit in Q2 2026 on mix shift",
+  "Contested adjacencies \u2014 credit share fought over with MarketAxess/Bloomberg; wholesale Treasury revenue -1% YoY in Q2 2026",
+  "Volatility dependence \u2014 Q2 2026 revenue growth slowed to +9.0% as volatility normalized",
+  "Retail credit weakness \u2014 retail credit / muni revenue fell 22% in Q2 2026"
+ ]
+}

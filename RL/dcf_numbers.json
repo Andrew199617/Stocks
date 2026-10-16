@@ -1,0 +1,192 @@
+{
+ "ticker": "RL",
+ "name": "Ralph Lauren Corporation",
+ "cik": 1037038,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 392.36,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 62300000,
+ "market_cap_est": 24444028000.0,
+ "net_debt_latest": -749100000,
+ "latest_period_end": "2026-03-28",
+ "rev_cagr_5y": 0.1301190861164212,
+ "rev_cagr_3y": 0.0801705985021004,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 635100000.0,
+ "base_oe_per_share": 12.111278195488723,
+ "base_oe_latest_per_share": 10.194221508828251,
+ "base_oe_normalized_per_share": 12.111278195488723,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.1301190861164212,
+  "rev_cagr_3y": 0.0801705985021004,
+  "rev_yoy_latest": 0.1462777228422094,
+  "oe_ps_cagr_2y": -0.08282217233295519
+ },
+ "g_blend": 0.1051448423092608,
+ "share_cagr": -0.03358824088102641,
+ "share_count_adj": 0.03358824088102641,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 408100000.0,
+   "last_filed_value": 216200000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.1387330831902872,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.16,
+   -0.1,
+   -0.05,
+   0.0,
+   0.06
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 408100000.0,
+   "kind": "filing",
+   "source": "Ralph Lauren FY2026 Form 10-K filed 2026-05-21 (accession 0001628280-26-037074), Consolidated Statements of Cash Flows, period ended 2026-03-28: Capital expenditures (408.1) tagged us-gaap:PaymentsToAcquireMachineryAndEquipment, scale 6 (millions); FY2025 comparative (216.2) on the same line",
+   "reason": "Ralph Lauren files FY2026 capital expenditures under us-gaap:PaymentsToAcquireMachineryAndEquipment, a tag the engine does not read, so companyfacts has no full-year FY2026 value under PaymentsToAcquireProductiveAssets (only Q1-Q3 YTD). The 10-K cash-flow statement reports $408.1M for FY2026. Value is 1.89x the last filed FY2025 capex of $216.2M, inside the 0.1x-10x band.",
+   "periods_filled": [
+    "2026-03-28"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 216200000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0213,
+   "oe_mult": 0.75,
+   "iv_at_10": 98.30135213292172,
+   "iv_at_12": 78.54046393472012,
+   "iv_at_15": 60.62838176449202,
+   "irr": 0.042992222737026464
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0387,
+   "oe_mult": 0.9,
+   "iv_at_10": 159.6001574068289,
+   "iv_at_12": 125.57709424591295,
+   "iv_at_15": 95.01592638475192,
+   "irr": 0.05577936304007068
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0887,
+   "oe_mult": 1.0,
+   "iv_at_10": 227.55970812087992,
+   "iv_at_12": 176.99667214282977,
+   "iv_at_15": 131.87363813841887,
+   "irr": 0.06962639990561936
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1387,
+   "oe_mult": 1.1,
+   "iv_at_10": 320.27633017399893,
+   "iv_at_12": 246.52200519522103,
+   "iv_at_15": 181.0789942606247,
+   "irr": 0.08729091927786181
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1987,
+   "oe_mult": 1.25,
+   "iv_at_10": 487.0267467625092,
+   "iv_at_12": 370.69027867228846,
+   "iv_at_15": 268.0824346106458,
+   "irr": 0.11547551710955159
+  }
+ },
+ "weighted": {
+  "iv_at_10": 246.76984422101404,
+  "iv_at_12": 191.04685076383328,
+  "iv_at_15": 141.4569032403836,
+  "irr": 0.0735544134118224
+ },
+ "implied_irr_weighted": 0.0735544134118224,
+ "implied_irr_base": 0.06962639990561936,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6394716504221032,
+ "upside_at_12": -0.5130827536858159,
+ "iv_at_15": 141.4569032403836,
+ "iv_at_12": 191.04685076383328,
+ "diagnostics": {
+  "oe_yield": 0.030867769893691308,
+  "tv_share_at_15": 0.2044596277450431,
+  "scenario_spread_iv15": 4.421731651225641,
+  "net_debt_to_normalized_oe": -0.9928000044642483,
+  "months_since_fy_end": 6.603153745072273,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Ralph Lauren FY2026 Form 10-K filed 2026-05-21 (accession 0001628280-26-037074), Consolidated Statements of Cash Flows, period ended 2026-03-28: Capital expenditures (408.1) tagged us-gaap:PaymentsToAcquireMachineryAndEquipment, scale 6 (millions); FY2025 comparative (216.2) on the same line); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 14.234375,
+  "base_oe_per_share_final": 12.111278195488723,
+  "weighted_irr_zero_fill": 0.09101585944642687,
+  "weighted_irr_final": 0.0735544134118224,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "ee37271b68373ffaeb26fbea0b0e8b5a63a469bce7c2a4ff0ed7431cd73b9c4b"
+}

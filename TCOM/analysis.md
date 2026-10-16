@@ -1,0 +1,66 @@
+# TCOM — Trip.com Group Limited
+v5 run, 2026-10-15. In scope (market cap $27.495B at $39.37, nasdaq_quote_api).
+
+All figures below are copied from key_numbers.md, dcf_numbers.json, financials_history.csv, or the cited earnings/regulatory reports — none are recomputed.
+
+## What it is
+China's leading one-stop online travel platform: Ctrip and Qunar in China, Trip.com for global travelers, and Skyscanner for travel search. Revenue is mainly accommodation reservations and transportation ticketing, plus packaged tours and corporate travel. Cayman holding company, reporting currency CNY, listed on Nasdaq (ADSs) and in Hong Kong (9961). Q1 2026 net revenue grew 17% YoY and Q2 2026 grew about 6% YoY — a sharp deceleration the company attributed in part to macro headwinds and compliance-related adjustments, after guiding Q2 growth of roughly 3–8%.
+
+## Owner's earnings
+**FY2025 (20-F via EDGAR, from financials_history.csv):** operating cash flow $2,059,000,000; capex $114,000,000; SBC $325,000,000 (always a real cost — it is a material share of OCF).
+- **Conservative owner's earnings FY2025: $1,620,000,000 = $2.32/share** (key_numbers.md: latest FY OE/share $2.32, latest FY OE total $1.620B)
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): $2,810,000,000 — well above the conservative figure in FY2025, and for a diagnosed reason (see NI_OCF_DIVERGENCE below): FY2025 net income is inflated by investment gains that never pass through operating cash flow. The OCF-based conservative figure is the cleaner series and is what the engine uses.
+- OE positive 5 of the last 5 fiscal years, but the trend is down, not up: conservative OE was $2,755,000,000 in FY2023 and $2,330,000,000 in FY2024 before FY2025's $1,620,000,000, while revenue rose every one of those years. OCF itself fell each year (FY2023 $3,098,000,000 → FY2025 $2,059,000,000). This falling-OE/rising-revenue pattern is the central fact of the name and is why the growth blend cannot be taken at face value.
+- Balance sheet: net debt $-1.299B (key_numbers.md) — net cash on the engine's definition, -0.55x normalized OE. The FY2025 results release reports a broader liquidity balance (cash, equivalents, restricted cash, short-term investments and held-to-maturity products) of RMB105.8 billion at December 31, 2025. The balance sheet is not the risk here; it also comfortably covers the SAMR penalty below.
+
+**Base used = normalized base, median of last 3 FY OE/share: $3.38/share** (key_numbers.md).
+- No TTM base was used: ttm.py exited non-zero with "ttm.py: cannot compute TTM for TCOM (CIK 1269238): ocf: no annual (FY) fact; sbc: no annual (FY) fact; shares_diluted: no annual (FY) fact; capex: no capex facts in companyfacts under any candidate tag and no capex_override in judgment.json — refusing to zero-fill (same DATA_GAP standard as the engine)". TCOM is a 20-F filer whose interim facts ttm.py cannot assemble, so the engine's median base stands, with the reason stated here per the sweep spec.
+- The median ($3.38) sits ABOVE the latest FY ($2.32) because it includes the stronger FY2023–24 years. That makes the base generous, not conservative: on the latest year alone every scenario would be weaker. This is disclosed rather than "fixed" with a base_override, because no construction from this run's code outputs justifies replacing the median — the honest adjustment is in the growth starts and probabilities below.
+
+## Moat: 6/10 — moderate-strong, under direct regulatory attack
+Justification: China's dominant online travel platform (Ctrip, Qunar, Trip.com, Skyscanner) with scale in hotel/airline supply, service infrastructure and data — but the SAMR antitrust decision in July 2026 directly outlawed the exclusivity and lowest-price tactics that reinforced that dominance, consumers multi-home across Meituan, Fliggy, Tongcheng and Douyin at near-zero switching cost, and suppliers are now explicitly freed to multi-home.
+- FOR: Dominant China OTA scale: Ctrip/Qunar/Trip.com/Skyscanner brand portfolio, deepest hotel and airline supply, go-to destination for Asian travelers
+- FOR: One-stop platform + service infrastructure (24/7 support, AI/data from accumulated travel insights) that smaller rivals cannot match at scale
+- FOR: International platform compounding fast: international revenue +50%+ YoY in Q2 2026 and inbound bookings +95% YoY in H1 2026, diversifying beyond China
+- FOR: Fortress liquidity: cash, equivalents, restricted cash and short-term investments of RMB105.8B at Dec 31, 2025 (FY2025 results release), engine net debt is negative (net cash)
+- AGAINST: SAMR antitrust rectification (July 2026): exclusivity deals and lowest-price demands — core moat tactics — are banned; multi-tier partner framework replaces them, weakening pricing/supply lock-in
+- AGAINST: Near-zero consumer switching costs: Meituan, Fliggy (Alibaba), Tongcheng and Douyin compete for the same bookings and are now themselves under regulatory scrutiny, intensifying service-based competition
+- AGAINST: Regulatory/political overhang in China: dominant-position abuse finding since 2020, US class action followed, and further compliance adjustments were guided to weigh on margins
+- AGAINST: Supplier pushback: hotels/airlines regain pricing autonomy and multi-homing rights, pressuring take rates
+- A 6 gives CAP = 9.8 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 9.8 years, 15-year projection.
+
+## DCF — v5 final run (2026-10-15)
+Growth recalibration (written reason): the engine's blended growth is 24.13% → g_base 22.08%, but its components are COVID-cycle artifacts — rev CAGR 3y 45.33% is measured off the COVID trough, rev CAGR 5y is 26.03%, and OE/share CAGR 2y is -24.82% (key_numbers.md). Actual recent prints are decelerating hard: FY2025 revenue +22.23% (latest rev YoY), Q1 2026 +17%, Q2 2026 about +6% with Q2 guided at roughly 3–8% on compliance adjustments — and OE has fallen for two straight years while the RMB5.18 billion SAMR penalty (booked in Q2 2026, plus a RMB122 million refund/contra-revenue item) is still to flow through cash. Scenario starts were therefore set via offsets (-0.22 / -0.17 / -0.12 / -0.07 / -0.02 vs g_base) to 0.1 / 5.1 / **10.1** / 15.1 / 20.1%. Even the super-bull start (20.1%) sits below FY2025's +22.23% print — justified in writing here: that print predates the antitrust rectification, the Q2 2026 print is ~6%, and OE/share is shrinking, so no current print supports a higher start. Probabilities were skewed bearish (15/30/30/18/7 vs the 10/25/30/25/10 default) for the same regulatory and OE-trend reasons. OE multipliers are the defaults 0.75/0.90/1.00/1.10/1.25; the super-bear multiplier is where the penalty's cash hit and further rectification costs land. Price $39.37.
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 15% | 0.1% | 0.75 | Rectification bites take rates; penalty cash-out; China travel stalls | $18.68 | 8.31% |
+| Bear | 30% | 5.1% | 0.90 | Q2 2026's ~6% growth is the new normal; OE keeps leaking | $28.00 | 11.48% |
+| Base | 30% | 10.1% | 1.00 | Growth settles high-single/low-double digits; international offsets China softness | $38.86 | 14.85% |
+| Bull | 18% | 15.1% | 1.1 | International + inbound momentum restores mid-teens growth | $53.35 | 18.76% |
+| Super bull | 7% | 20.1% | 1.25 | Rectification proves cosmetic; FY2025 growth rates return and OE re-inflects | $75.56 | 23.83% |
+
+- **Probability-weighted: IV@15% $37.76 (-4.1% vs price), IV@12% $50.94 (+29.4%), IV@10% $65.75, weighted IRR 14.53%, base-case IRR 14.85%**
+- **Tier by numbers: C.** Diagnostics (key_numbers.md): OE yield 8.59%, terminal value 20.3% of IV@15%, scenario spread 4.04x, net debt -0.55x normalized OE, 9.5 months since FY end.
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (FY ended 9.5 months ago): ttm.py cannot compute a TTM base for this 20-F filer (its exact failure message is quoted under Owner's earnings above), so the median base is used with that reason stated. The staleness is handled in the inputs instead: the 2026 quarterly evidence (Q1 +17%, Q2 ~+6%, Q2 net loss on the SAMR penalty, non-GAAP Q2 net income of RMB4.8 billion per the Q2 release) is what drove the growth recalibration and bearish probability skew.
+- **BASIS_BREAK_SUSPECT**: no divestiture, big M&A or restatement was found. The >60% revenue swing is the COVID cycle in financials_history.csv — revenue fell to $2,807,000,000 in FY2020 and rebounded to $6,269,000,000 in FY2023 from $2,907,000,000 in FY2022. Consequence: the 3-yr and 5-yr revenue CAGRs straddle the trough and are not repeatable growth rates; scenario starts were set from FY2025/Q1/Q2 2026 prints instead (see recalibration above).
+- **OE_VOLATILE**: real and unresolved by normalization alone — conservative OE totals in financials_history.csv run from $35,000,000 (FY2021) to $2,755,000,000 (FY2023) to $1,620,000,000 (FY2025). Handled by widening the bear weight (45% on bear-or-worse) and by confidence low; the business is post-COVID-recovery normalizing, not steady-state.
+- **NI_OCF_DIVERGENCE** (2023, 2025): FY2025 — net income $4,762,000,000 vs OCF $2,059,000,000 (financials_history.csv). The FY2025 results release attributes the net-income jump primarily to a large gain from investments recorded in other income (including a partial disposal that drove Q3 2025 net income); that gain is investing, not operating, so it inflates net income and the maintenance OE ($2,810,000,000) but not the conservative OE used for the base. FY2023 — net income $1,397,000,000 vs OCF $3,098,000,000, with ΔNWC of -$2,217,000,000 in financials_history.csv: a working-capital release in the COVID-recovery year flattered OCF. Both years are why the verdict leans on the conservative series and treats the median base as generous.
+- **FX_CONVERTED**: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app); flow facts use the period-end rate, not a period average, and the rates used are recorded in dcf_numbers.json fx_conversion. A simplification, noted.
+- **USD_TRANSLATIONS_USED**: the base rests in part on the issuer's own filed USD convenience translations alongside its CNY reporting currency; the engine used the filed USD figures.
+- **ADS_RATIO_APPLIED**: ratio 1.0 — each ADS represents one ordinary share, stated on the cover of the Form 20-F for FY2025 (filed 2026-04-28) and in the FY2025 results release; per-share figures needed no scaling to be comparable to the $39.37 ADS price. Declared in judgment.json under bounded authority (filing-sourced).
+- **WIDE_SCENARIO_SPREAD** (4.04x): real — the outcome genuinely hinges on whether rectification is cosmetic or structural. Confidence is low and the verdict is sized to the conservative end.
+
+## My thoughts / overlay
+- The method range is the honest headline: the preliminary engine run at default settings (g_base 22.08%, default probabilities) produced a weighted IRR of 21.58% and IV@15% of $65.90 — Tier A. The final run, recalibrated to the prints the company is actually making in 2026, produces 14.53% — Tier C. The entire gap is the growth assumption, and the 2026 evidence (guided deceleration, two years of falling OE, a penalty equal to a large fraction of a year's OE still to be paid in cash) supports the recalibrated end.
+- The SAMR decision (July 25, 2026) is summarized from regulatory reporting: a combined RMB5.179 billion in confiscated gains and fine, plus a RMB122 million refund of hotel order reserve funds, for abusing a dominant position in online hotel bookings since 2020 through exclusivity and lowest-price arrangements. The cash is affordable given the liquidity above; the structural cost — losing those tactics — is the real hit, and it is why the moat is 6 and not 7–8.
+- Dilution: share count CAGR is 2.05%/yr (growth adj -2.05% in key_numbers.md) — already charged in g_base; SBC of $325,000,000 in FY2025 is a real, recurring cost on top.
+- What would change the verdict: OE/share re-inflecting (OCF recovering toward FY2023 levels) or international growth compounding long enough to offset China take-rate pressure. Neither is in the current prints.
+- Price that clears 15%: the weighted IV@15% is $37.76 — the stock clears Andrew's 15% hurdle only at/below roughly that price, and with any margin of safety against the bear cases ($28.00 / $18.68) the entry would need to be materially lower. At $39.37 the price sits above even the base case's IV@15% ($38.86).
+
+## Final verdict
+- **Final tier: C** (weighted IRR 14.53% on the v5 final inputs; the method range runs A on unadjusted engine defaults to C on print-calibrated inputs, and the current evidence supports C)
+- Confidence: **Low** (WIDE_SCENARIO_SPREAD, stale FY with no computable TTM base, and an unresolved structural question — post-rectification take rates — that no filing yet answers)
+- One-liner: Dominant China OTA, moat 6/10, net cash — but growth decelerated to +6% YoY in Q2 2026, OE/share has fallen two years, and SAMR rectification bans its exclusivity tactics: weighted IRR 14.5%, weighted IV@15 $37.76 vs $39.37 price; clears 15% only at/below ~$37.76.

@@ -1,0 +1,91 @@
+{
+ "ticker": "TPL",
+ "name": "Texas Pacific Land Corporation",
+ "sector": "Energy / Oil & gas royalties, land and water",
+ "price": 354.5,
+ "market_cap_b": 24.47,
+ "engine_version": 5,
+ "base_oe_per_share": 7.634377474848368,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Irreplaceable Permian land and perpetual royalty acreage with a zero-cost royalty structure and a debt-free balance sheet \u2014 a strong asset moat \u2014 but the company is a price-taker on oil and gas, volumes depend on third-party operators and Permian depletion, and essentially all value is concentrated in one basin facing long-run hydrocarbon decline, so it is strong (7), not wide (9-10).",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 43.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001811074-26-000018), Consolidated Statements of Cash Flows (p. F-7): 'Purchase of fixed assets' $(59,531) thousand for FY2025, with $(29,696) thousand for FY2024 and $(15,028) thousand for FY2023 in the same statement); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 47.51,
+   "irr": 0.0418
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 79.42,
+   "irr": 0.0559
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 111.93,
+   "irr": 0.0699
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 156.14,
+   "irr": 0.0877
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 247.09,
+   "irr": 0.1193
+  }
+ },
+ "iv_at_15": 116.5,
+ "iv_at_12": 161.01,
+ "implied_irr": 0.0724,
+ "implied_irr_base_case": 0.0699,
+ "upside_at_15_pct": -67.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Superb royalty asset, moat 7/10, but the price pays for land scarcity, not owner's earnings \u2014 weighted IRR 7.24% (Tier D), weighted IV@15% $116.50 vs the $354.50 price; it clears 15% only at or below $116.50.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Irreplaceable Permian acreage: ~882,000 surface acres plus perpetual nonparticipating royalty interests (~224,000 net royalty acres) that cannot be replicated",
+  "Royalties bear no well capex or operating-expense burden \u2014 a structural cost advantage no producer can match",
+  "Same acreage monetized repeatedly across the well lifecycle: easements, leases, caliche/sand, sourced water and produced-water royalties",
+  "Scale water network in the Permian (produced-water royalty volumes of 4.9 million bbl/d in Q2 2026)",
+  "Debt-free balance sheet with cash on hand \u2014 survives commodity troughs without dilution or distress"
+ ],
+ "moat_against": [
+  "No pricing power: royalties are a price-taker claim on oil and gas prices",
+  "Volumes depend on third-party operators' drilling pace and on Permian depletion",
+  "Single-basin concentration: essentially all value sits in West Texas",
+  "Long-run hydrocarbon demand decline caps the terminal story",
+  "Water segment is capital-intensive and competitive, unlike the royalty segment; growth acreage is now bought at market prices ($454.244M of royalty-interest acquisitions in FY2025)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 59531000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001811074-26-000018), Consolidated Statements of Cash Flows (p. F-7): 'Purchase of fixed assets' $(59,531) thousand for FY2025, with $(29,696) thousand for FY2024 and $(15,028) thousand for FY2023 in the same statement"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 8.2477,
+  "base_oe_with_override": 7.6344,
+  "base_oe_impact_pct": -7.436,
+  "weighted_irr_without_override": 0.073,
+  "weighted_irr_with_override": 0.0724,
+  "weighted_irr_impact_pp": -0.064,
+  "unblocks_tier": true
+ }
+}

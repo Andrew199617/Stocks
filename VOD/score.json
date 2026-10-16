@@ -1,0 +1,76 @@
+{
+ "ticker": "VOD",
+ "name": "Vodafone Group Plc",
+ "sector": "Telecommunications",
+ "price": 15.51,
+ "market_cap_b": 405.57,
+ "engine_version": 5,
+ "base_oe_per_share": 4.868951714485654,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak moat (4/10). Vodafone owns scarce spectrum and sunk network infrastructure in 15+ markets and is now the UK's largest mobile operator via VodafoneThree, with real scale in Germany (largest market), a majority stake in Vodacom with M-Pesa financial services in Africa, and a top-tier enterprise/IoT franchise. But connectivity is a commodity: switching costs are low, regulators cap returns and mandate wholesale access, MVNOs and price competition (Germany especially) grind ARPU, and ROCE has run below the cost of capital for years \u2014 the FY26 investor targets only promise ROCE above WACC by FY32. Scale buys survival and synergies, not pricing power.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 18 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.5%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Vodafone Group Plc Form 20-F (filed 14 June 2024), cover page: American Depositary Shares 'each representing ten ordinary shares'; same ratio stated in the depositary (BNY) ADR records for CUSIP 92857W209) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 18.37,
+   "irr": 0.1765
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 28.3,
+   "irr": 0.2622
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 38.19,
+   "irr": 0.3361
+  },
+  "bull": {
+   "prob": 0.18,
+   "iv_at_15": 50.89,
+   "irr": 0.4175
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "iv_at_15": 75.27,
+   "irr": 0.5458
+  }
+ },
+ "iv_at_15": 37.13,
+ "iv_at_12": 48.81,
+ "implied_irr": 0.3257,
+ "implied_irr_base_case": 0.3361,
+ "upside_at_15_pct": 139.4,
+ "tier_by_numbers": "S",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Post-restructuring telecom, moat 4/10 \u2014 engine prints Tier S (32.6% weighted IRR, IV@15 $37.13) only because its capex tag misses spectrum/intangible capex, lease principal and cash interest; on Vodafone's own adjusted FCF (EUR 2.6B in FY26) the cash yield is ~7% with low-single-digit guided growth, so it does not clear 15% at $15.51 \u2014 final tier D by override, numbers tier S retained.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "tier_override_reason": "Model-measurement artifact: the engine's conservative OE subtracts capex only from the PP&E-purchase tag (EUR ~4.3B FY25) off OCF as filed, so it excludes the cash costs that dominate telecom economics \u2014 spectrum and intangible capital additions (group capital additions were EUR 6.9B in FY25 per the FY26 results presentation), lease principal payments, and cash interest. Vodafone's own adjusted free cash flow was EUR 2.5B in FY25 vs the engine's EUR 10.9B OE total for the same year. Every scenario inherits the inflated base, so even the super-bear IRR (17.6%) is an artifact. On the company's own cash measure the ADS yields roughly 7% with low-single-digit guided FCF growth \u2014 a D-tier return profile at $15.51. Tier set to D; tier_by_numbers (S) retained in score.json.",
+ "moat_for": [
+  "Scarce licensed spectrum + sunk network assets in 15+ markets",
+  "VodafoneThree: UK's largest mobile operator (~28m customers), GBP 1bn/yr synergy target by FY32",
+  "Germany scale: largest single market, cable/fibre footprint to ~75% of homes",
+  "Vodacom + M-Pesa: African growth and mobile-money franchise (Safaricom stake raised to 55%)",
+  "Vodafone Business: global enterprise, IoT platform (240m+ connections), digital services growing high-double-digit"
+ ],
+ "moat_against": [
+  "Commodity connectivity: low switching costs, MVNO and price competition, esp. Germany",
+  "Regulated returns: spectrum auctions, wholesale-access mandates, price interventions cap ROCE (below WACC for years)",
+  "Structural decline in legacy fixed/voice; OTT players capture the value layer above the network",
+  "Emerging-market/FX exposure: Turkiye hyperinflation accounting, EGP/ZAR volatility",
+  "Leverage constrains the investment race: net debt EUR 25.4B at FY26-end plus GBP 4.3B cash buyout of CK Hutchison's 49% of VodafoneThree"
+ ]
+}

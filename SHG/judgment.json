@@ -1,0 +1,43 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "20-F filer: EDGAR per-share figures are per ordinary share and the NYSE price is per ADS; at a 1:1 ADS-to-ordinary ratio the two bases are identical, so no scaling applies.",
+  "source": "Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-23), Item 7.A Major Shareholders: Citibank, N.A. is the depositary for the company's American depositary shares, 'each representing one share of our common stock effective October 15, 2012, prior to which each American depositary share represented two common shares'"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity product: deposits and loans are fungible; no structural pricing power over NIM through a cycle",
+  "Credit-cycle exposure: Q2 2026 credit cost ratio 42bp and rising QoQ on conservative provisioning; a Korean downturn hits provisions first",
+  "Regulatory/political direction: Korean authorities steer bank dividends, buybacks, household-debt growth and windfall measures",
+  "Mature low-growth home market: Korean nominal growth caps loan and fee growth; overseas is still a minority of earnings",
+  "Rate and FX sensitivity: NIM depends on market rates management does not control, and KRW moves drive both RWA and USD-translated earnings"
+ ],
+ "moat_for": [
+  "Regulated big-four oligopoly in Korean banking: scale deposit franchise at Shinhan Bank, high entry barriers, sticky retail/SME relationships",
+  "Diversified group earnings: bank plus Shinhan Card, Shinhan Life and Shinhan Securities fee businesses reduce single-line cyclicality",
+  "Capital strength funding returns: CET1 13.43% at Q2 2026, KRW 1.4 trillion of buybacks announced through October 2026 plus quarterly dividends",
+  "Overseas growth leg: overseas earnings up ~13% QoQ in Q2 2026, led by Japan and Vietnam",
+  "Returns discipline: management ROE range 10-12% with a 10% floor; Q2 2026 ROE 12.4% and ROTCE 13.9%"
+ ],
+ "moat_justification": "One of Korea's big-four financial holding companies in a regulated domestic oligopoly (KB, Shinhan, Hana, Woori): a large, sticky retail/SME deposit franchise at Shinhan Bank plus diversified fee businesses (Shinhan Card, Shinhan Life, Shinhan Securities) and growing overseas earnings (Japan, Vietnam). That buys durability and mid-cycle ROE management guided at 10-12% (Q2 2026 ROE 12.4%, CET1 13.43%). Against it: banking products are commodities with no structural pricing power, earnings are fully exposed to the Korean credit and rate cycle and to regulatory direction on dividends, buybacks and household lending, and growth is capped by a mature, low-growth domestic market and regulatory capital. Moderate moat, 5/10.",
+ "moat_score": 5,
+ "name": "Shinhan Financial Group Co., Ltd.",
+ "one_liner": "Korean big-four financial holding, moat 5/10 — base OE $5.88/sh is an 8.32% yield at $70.71, but the weighted IRR is only 12.84% (weighted IV@15% $57.95), so it clears 15% only below ~$58; bank-model mismatch and a stale FY2024 base, confidence low.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2023 and 2024 of the last 3 under the engine's ifrs-full tag (ExpenseFromSharebasedPaymentTransactionsWithEmployees), which the filer stops tagging after FY2022. The filer's own Note 42(b) reports the same performance-share compensation series for all three years; its FY2022 total of W28,251 million converts at the engine's 2022 period-end rate (0.00079) to exactly the engine's last filed SBC value, confirming it is the identical series. The engine applies this single FY2024 value to both missing periods; for FY2023 it overstates the true W41,874 million by W4,762 million (conservative direction - it lowers that year's OE - and immaterial against OE in the billions). In band: W46,636M is ~1.65x the last filed W28,251M.",
+  "source": "Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-23), Notes to the Consolidated Financial Statements (in millions of won), Note 42(b) 'Share-based payments': total share-based compensation costs W46,636 million for FY2024 (controlling company W4,950 million + subsidiaries W41,686 million), with W41,874 million for FY2023 and W28,251 million for FY2022 in the same table. Declared in KRW (the reporting currency); the engine FX-converts at period-end ECB rates.",
+  "value": 46636000000
+ },
+ "sector": "Finance / Diversified banking & financial holding (Korea)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

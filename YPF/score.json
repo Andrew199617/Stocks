@@ -1,0 +1,74 @@
+{
+ "ticker": "YPF",
+ "name": "YPF Sociedad Anonima",
+ "sector": "Energy \u2014 Integrated Oil & Gas",
+ "price": 51.11,
+ "market_cap_b": 20.1,
+ "engine_version": 5,
+ "base_oe_per_share": 0.6025738400021989,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "YPF holds a real resource-cost advantage: it is the largest operator in Vaca Muerta (the world's second-largest unconventional gas reserve and fourth-largest shale-oil reserve) and dominates Argentine refining and fuel marketing. But it is a commodity price-taker whose durability is hostage to its controlling shareholder \u2014 the Argentine state (51%) \u2014 with the 2012 Repsol expropriation, a history of domestic fuel-price controls, and ARS/sovereign risk repeatedly overriding shareholder economics. Resource quality earns a weak-moat score, not a moderate one.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency ARS converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (YPF Form 20-F, Item 9 (Shares and ADSs) and the Amended and Restated Deposit Agreement dated March 9, 2022 filed with the 20-F: each ADS represents one Class D share) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share -0.34 vs 3-yr median 0.60 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "HIGH_NET_DEBT: net debt is 30.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.27,
+   "irr": 0.0264
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.25,
+   "irr": 0.0322
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 4.39,
+   "irr": 0.0354
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 5.86,
+   "irr": 0.0396
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 8.68,
+   "irr": 0.0478
+  }
+ },
+ "iv_at_15": 4.38,
+ "iv_at_12": 5.74,
+ "implied_irr": 0.0355,
+ "implied_irr_base_case": 0.0354,
+ "upside_at_15_pct": -91.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "State-controlled Argentine integrated oil major with a world-class Vaca Muerta resource but a weak, sovereign-capped moat (4/10) \u2014 on owner's earnings after full capex it clears nothing: weighted IRR 3.6%, weighted IV@15 $4.38 vs the $51.11 ADS price; the market is paying for shale growth and EBITDA that this screen charges as capex. Clears 15% only below ~$4.38.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest Vaca Muerta operator \u2014 world-class shale resource (2nd-largest unconventional gas, 4th-largest shale oil globally) with falling shale unit costs",
+  "Dominant Argentine downstream position \u2014 refining and fuel-marketing leadership with integrated logistics",
+  "Scale and infrastructure incumbency in Argentine energy (pipelines, refineries, retail network) that rivals cannot replicate quickly"
+ ],
+ "moat_against": [
+  "Argentine state controls 51% \u2014 political override risk; 2012 Repsol expropriation precedent and a history of fuel-price controls",
+  "Pure commodity price-taker \u2014 earnings swing with Brent and ARS; no pricing power over its main product",
+  "Capital intensity consumes the cash engine \u2014 FY2025 capex of $5,077M vs OCF of $4,959M; growth must be bought with capex every year",
+  "Sovereign/FX exposure \u2014 ARS reporting currency, Argentine macro and capital-control cycles sit between operations and USD shareholders"
+ ]
+}

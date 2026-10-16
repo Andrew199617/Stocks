@@ -1,0 +1,46 @@
+{
+ "ticker": "SOFI",
+ "name": "SoFi Technologies, Inc.",
+ "sector": "Finance / Digital banking & consumer lending",
+ "price": 15.09,
+ "market_cap_b": 18.89,
+ "engine_version": 5,
+ "base_oe_per_share": -3.39277197753256,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Real, compounding advantages \u2014 a national bank charter with a $45.5B deposit base (Q2 2026), a 15.8M-member cross-sell loop (24.4M products, +42% YoY; existing members opened 51% of new products in Q2 2026), and the Galileo/Technisys B2B infrastructure arm \u2014 but the consumer products are commodities contested by JPMorgan, Capital One, Chime, Robinhood and every large-bank app, deposits must be bought with a competitive APY, Technology Platform revenue declined YoY in Q2 2026, and the core asset is unsecured consumer credit whose returns are set by the credit cycle. No pricing power has been demonstrated through a downturn. A 5 gives CAP = 8.5 years (moot here \u2014 no positive OE base).",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 11.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Digital bank/fintech, moat 5/10 \u2014 GAAP-profitable and compounding fast (Q2 2026 revenue +43% YoY, 15.8M members), but conservative owner's earnings are negative on every filing basis (normalized -$3.39/sh, TTM -$6.65/sh) because a growing lender's OCF is consumed by loan-book growth; the OE DCF cannot support $15.09 \u2014 Tier F, low confidence on sector-model mismatch.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "National bank charter (2022) and deposit funding \u2014 $45.5B of deposits at Q2 2026 funding the loan book, replacing costlier warehouse funding",
+  "Member ecosystem / cross-sell loop \u2014 15.8M members (+35% YoY), 24.4M products (+42%), existing members opened 51% of new products in Q2 2026",
+  "Technology Platform (Galileo + Technisys / SoFi Tech Solutions) \u2014 B2B payment processing, card issuing and core-banking infrastructure sold to third parties",
+  "Scale and brand in digital consumer finance \u2014 record $14.8B of originations in Q2 2026 across personal, student and home loans to a high-income member base"
+ ],
+ "moat_against": [
+  "Commodity products, no proven pricing power \u2014 loans, deposits, investing and cards contested by the largest banks and fintechs",
+  "Deposit advantage must be bought with rate \u2014 funding edge narrows when competitors match its savings APY",
+  "Earnings geared to unsecured consumer credit \u2014 personal-loan charge-offs are the swing factor and the book is untested at scale in a recession",
+  "Technology Platform momentum stalled \u2014 segment revenue declined YoY in Q2 2026; Galileo competes with Marqeta and in-house bank builds",
+  "Dilution and capital retention \u2014 share count +11.6%/yr (engine); a growing bank must retain capital against its loan book, limiting distributable cash"
+ ]
+}

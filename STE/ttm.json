@@ -1,0 +1,101 @@
+{
+ "ticker": "STE",
+ "cik": 1757898,
+ "entity": "STERIS plc",
+ "fy_end": "2026-03-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1341400000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 420000000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 367100000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1288500000
+  },
+  "capex": {
+   "fy": 369000000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 93600000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 87500000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 362900000
+  },
+  "sbc": {
+   "fy": 61700000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 11900000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 12800000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 62600000
+  },
+  "shares_diluted": {
+   "fy": 98700000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 98800000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 97900000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1288500000,
+ "ttm_capex": 362900000,
+ "ttm_sbc": 62600000,
+ "ttm_shares_diluted": 97900000,
+ "ttm_oe_total": 863000000,
+ "ttm_oe_per_share": 8.81511746680286,
+ "warnings": [],
+ "overrides_used": []
+}

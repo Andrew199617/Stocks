@@ -1,0 +1,73 @@
+{
+ "ticker": "PTC",
+ "name": "PTC Inc.",
+ "sector": "Technology / Industrial software",
+ "price": 193.0,
+ "market_cap_b": 23.31,
+ "engine_version": 5,
+ "base_oe_per_share": 5.896150843488001,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Strong, not wide: Windchill PLM is the system of record for product data at large discrete manufacturers and Creo/Onshape sit inside daily engineering workflows, so ripping PTC out means migrating decades of product history \u2014 real switching costs, 95% recurring revenue (FY2025), and Gartner Leader positioning in PLM. Capped at 7 because Siemens (NX/Teamcenter) and Dassault (CATIA/ENOVIA) are equally entrenched at many of the same accounts, the SaaS/cloud transition (Windchill+, Onshape) gives customers a natural re-evaluation point, and end-demand is industrial capex, which is cyclical.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 35.41,
+   "irr": 0.0477
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 51.33,
+   "irr": 0.0598
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 67.33,
+   "irr": 0.072
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 87.47,
+   "irr": 0.0867
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 120.22,
+   "irr": 0.1086
+  }
+ },
+ "iv_at_15": 70.46,
+ "iv_at_12": 95.52,
+ "implied_irr": 0.0747,
+ "implied_irr_base_case": 0.072,
+ "upside_at_15_pct": -63.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality industrial-software franchise, moat 7/10, but standalone DCF does not clear 15% (weighted IRR 7.5%, IV@15 $70.46 vs $193.00 price; clears 15% only below ~$70) \u2014 the price is a Schneider takeover proxy: $205/share cash deal announced 2026-10-05, expected to close Q3 2027, so the live return is the ~6% deal spread, not the DCF.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Windchill PLM is the system of record for product data \u2014 migration means moving decades of engineering history",
+  "Creo and Onshape embedded in daily engineering design workflows",
+  "95% recurring revenue in FY2025; ARR ex-divestitures $2.448B at Q3 FY26",
+  "Gartner Magic Quadrant Leader for PLM (Windchill), highest on Ability to Execute (2026)",
+  "Breadth across CAD, PLM, ALM (Codebeamer) and SLM (ServiceMax) supports cross-sell / digital-thread lock-in",
+  "Asset-light: capex is de minimis vs OCF, so owner's earnings convert almost fully to cash"
+ ],
+ "moat_against": [
+  "Siemens (NX/Teamcenter) and Dassault Systemes (CATIA/ENOVIA) are equally entrenched rivals at the same accounts",
+  "SaaS/cloud migration (Windchill+, Onshape) is a natural re-evaluation point where share can be lost",
+  "End demand tied to discrete-manufacturing capex cycles \u2014 cyclical, not secular-only",
+  "ARR growth has decelerated to ~9% constant-currency \u2014 pricing/expansion power is real but not accelerating",
+  "SBC is a heavy, persistent cost ($240.7M TTM) \u2014 roughly a quarter of TTM operating cash flow",
+  "AI-driven design tools from larger platforms could compress the CAD/PLM value pool over the CAP"
+ ]
+}

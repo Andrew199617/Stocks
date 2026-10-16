@@ -1,0 +1,160 @@
+{
+ "ticker": "ULTA",
+ "name": "ULTA BEAUTY, INC.",
+ "cik": 1403568,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 591.3615,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 44991000,
+ "market_cap_est": 26605945246.5,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-01-31",
+ "rev_cagr_5y": 0.15028764391644134,
+ "rev_cagr_3y": 0.06655993129696691,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1030525000,
+ "base_oe_per_share": 20.016795709331397,
+ "base_oe_latest_per_share": 22.90513658287213,
+ "base_oe_normalized_per_share": 20.016795709331397,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.15028764391644134,
+  "rev_cagr_3y": 0.06655993129696691,
+  "rev_yoy_latest": 0.09713169330434512,
+  "oe_ps_cagr_2y": 0.06996525914339347
+ },
+ "g_blend": 0.0835484762238693,
+ "share_cagr": -0.04537715734569525,
+ "share_count_adj": 0.04537715734569525,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.12892563356956455,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.119,
+   -0.079,
+   -0.029,
+   0.011,
+   0.061
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0099,
+   "oe_mult": 0.75,
+   "iv_at_10": 191.28000674032194,
+   "iv_at_12": 151.4827057594859,
+   "iv_at_15": 115.60497383906448,
+   "irr": 0.0490276132612642
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0499,
+   "oe_mult": 0.9,
+   "iv_at_10": 276.27997751107284,
+   "iv_at_12": 217.03418272834827,
+   "iv_at_15": 163.85337409845357,
+   "irr": 0.060440006770921095
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0999,
+   "oe_mult": 1.0,
+   "iv_at_10": 385.7710067939821,
+   "iv_at_12": 300.2460640449601,
+   "iv_at_15": 223.84546633035293,
+   "irr": 0.07490236956381177
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1399,
+   "oe_mult": 1.1,
+   "iv_at_10": 508.0597810910259,
+   "iv_at_12": 392.7440711705837,
+   "iv_at_15": 290.0868335333138,
+   "irr": 0.0901495907827744
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1899,
+   "oe_mult": 1.25,
+   "iv_at_10": 720.4911704862354,
+   "iv_at_12": 552.644464717818,
+   "iv_at_15": 403.8045147282393,
+   "irr": 0.11447104001215391
+  }
+ },
+ "weighted": {
+  "iv_at_10": 402.9933594113751,
+  "iv_at_12": 312.9310997359514,
+  "iv_at_15": 232.5796406637781,
+  "irr": 0.07718123873946028
+ },
+ "implied_irr_weighted": 0.07718123873946028,
+ "implied_irr_base": 0.07490236956381177,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6067047978879618,
+ "upside_at_12": -0.47082943388105003,
+ "iv_at_15": 232.5796406637781,
+ "iv_at_12": 312.9310997359514,
+ "diagnostics": {
+  "oe_yield": 0.03384866229764941,
+  "tv_share_at_15": 0.19986568822532508,
+  "scenario_spread_iv15": 3.4929683500502495,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 8.442838370565045,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.5%/yr \u2014 already credited via the growth adjustment"
+ ],
+ "content_hash": "d8d89f5870d148883aba8fbd1f57843bddedb135d83012e0fe25ecddbe8f0e7f"
+}

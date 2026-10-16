@@ -1,0 +1,69 @@
+{
+ "ticker": "WST",
+ "name": "West Pharmaceutical Services, Inc.",
+ "sector": "Healthcare / Life Sciences Tools & Services",
+ "price": 374.65,
+ "market_cap_b": 27.24,
+ "engine_version": 5,
+ "base_oe_per_share": 5.6230876216968015,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Components spec'd into FDA drug filings create regulatory lock-in that is expensive and risky to change mid-product-life; scale and materials-science know-how (Daikyo FluroTec) are hard to replicate; dominant elastomer supplier into GLP-1 pens. Held below 8 because the moat protects share, not volume \u2014 Lilly/Novo concentration and oral GLP-1 modality risk sit outside it, and credible scaled rivals (Datwyler, Gerresheimer, Stevanato, Aptar) exist.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "LOW_OE_YIELD: base OE yield 1.5% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 25.78,
+   "irr": 0.0325
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 42.95,
+   "irr": 0.0395
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 60.47,
+   "irr": 0.047
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 84.36,
+   "irr": 0.0573
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 133.7,
+   "irr": 0.0773
+  }
+ },
+ "iv_at_15": 65.92,
+ "iv_at_12": 89.35,
+ "implied_irr": 0.0498,
+ "implied_irr_base_case": 0.047,
+ "upside_at_15_pct": -82.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Excellent business, impossible price \u2014 strong 7/10 regulatory-lock-in moat and net cash, but at $374.65 the weighted IRR is 5.0% (IV@15% $65.92); it would need to fall to ~$66 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Regulatory lock-in \u2014 components spec'd into FDA filings; requalifying a supplier risks the drug's approval and supply",
+  "Near-dominant position in elastomer components for GLP-1 injectable pens (Lilly / Novo supply relationships)",
+  "Materials-science and quality intangibles (FluroTec via Daikyo) plus efficient scale in a safety-critical niche",
+  "Through-cycle economics \u2014 OE positive 5/5 years, net cash, mix shifting to High-Value Products (~49% of Q2 revenue)"
+ ],
+ "moat_against": [
+  "Customer concentration at the top of the GLP-1 market (Lilly, Novo set the volumes)",
+  "Modality risk \u2014 oral GLP-1 formulations would bypass injectable components entirely",
+  "Real scaled rivals (Datwyler, Gerresheimer, Stevanato, Aptar) expanding into the same GLP-1 demand",
+  "Demand is cyclical at the margin \u2014 2023\u201324 destocking flattened revenue (3-yr revenue CAGR 2.1%) despite the moat"
+ ]
+}

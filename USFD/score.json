@@ -1,0 +1,72 @@
+{
+ "ticker": "USFD",
+ "name": "US Foods Holding Corp.",
+ "sector": "Foodservice Distribution",
+ "price": 101.47,
+ "market_cap_b": 23.34,
+ "engine_version": 5,
+ "base_oe_per_share": 3.8468468468468466,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate moat, 4/10. US Foods is the second-largest U.S. broadline foodservice distributor (~10% share vs Sysco at ~17-18%), with a dense national distribution network, scale purchasing, private label, and value-added services driving per-case operating leverage. Against that: Sysco is larger with a demonstrated cost advantage (Morningstar assigns US Foods no moat), customers can multi-source with low switching costs, margins are thin (Q2 2026 adjusted EBITDA margin 5.7%), and the business is exposed to restaurant cyclicality, labor and fuel costs. CAP = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 17.93,
+   "irr": 0.0456
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 28.24,
+   "irr": 0.0597
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 37.98,
+   "irr": 0.0732
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 50.44,
+   "irr": 0.0898
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 74.23,
+   "irr": 0.1195
+  }
+ },
+ "iv_at_15": 40.28,
+ "iv_at_12": 53.76,
+ "implied_irr": 0.0766,
+ "implied_irr_base_case": 0.0732,
+ "upside_at_15_pct": -60.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid #2 foodservice distributor, moat 4/10, but priced for much more than its owner's earnings deliver - weighted IRR 7.66% at $101.47, does not clear 15%; hurdle-clearing price is the weighted IV@15% of $40.28.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "#2 U.S. broadline distributor, ~10% national share",
+  "Dense national distribution and route network",
+  "Diversified mix across independents, healthcare, hospitality and chains",
+  "Private label and value-added services (Pronto, MenuIQ)",
+  "Scale purchasing and per-case operating leverage"
+ ],
+ "moat_against": [
+  "Sysco is larger (~17-18% share) with a cost advantage; no demonstrated moat vs peers",
+  "Low switching costs - customers multi-source",
+  "Thin margins - Q2 2026 adjusted EBITDA margin 5.7%",
+  "Labor, fuel and food-inflation pass-through risk",
+  "Restaurant cyclicality - chain case volume fell 1.5% in Q2 2026"
+ ]
+}

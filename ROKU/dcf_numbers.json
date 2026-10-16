@@ -1,0 +1,163 @@
+{
+ "ticker": "ROKU",
+ "name": "Roku, Inc.",
+ "cik": 1428439,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 154.57,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 150912000,
+ "market_cap_est": 23326467840.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.21649863660349822,
+ "rev_cagr_3y": 0.1485256324024804,
+ "oe_positive_years_of_last_5": "2/5",
+ "base_oe_total_latest_fy": 124269000,
+ "base_oe_per_share": 2.5212298875618147,
+ "base_oe_latest_per_share": 0.8234534033078881,
+ "base_oe_normalized_per_share": -1.1870151420867041,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.21649863660349822,
+  "rev_cagr_3y": 0.1485256324024804,
+  "rev_yoy_latest": 0.1518036673897578,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.1518036673897578,
+ "share_cagr": 0.031083627552549897,
+ "share_count_adj": -0.031083627552549897,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.12072003983720792,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.07,
+   0.0,
+   0.08,
+   0.15,
+   0.23
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 2.5212298875618147,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0507,
+   "oe_mult": 0.75,
+   "iv_at_10": 29.3997002025037,
+   "iv_at_12": 23.066169988120603,
+   "iv_at_15": 17.386421402172726,
+   "irr": 0.03960302143155306
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.1207,
+   "oe_mult": 0.9,
+   "iv_at_10": 49.933840710738224,
+   "iv_at_12": 38.5752573000718,
+   "iv_at_15": 28.476661438697434,
+   "irr": 0.05080022817076098
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.2007,
+   "oe_mult": 1.0,
+   "iv_at_10": 81.88720461631557,
+   "iv_at_12": 62.305033460346195,
+   "iv_at_15": 45.036905994511514,
+   "irr": 0.06747783465355647
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.2707,
+   "oe_mult": 1.1,
+   "iv_at_10": 125.64953568620419,
+   "iv_at_12": 94.51835617860652,
+   "iv_at_15": 67.23040324534034,
+   "irr": 0.08788769936695895
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.3507,
+   "oe_mult": 1.25,
+   "iv_at_10": 206.8785331825798,
+   "iv_at_12": 153.89415833807757,
+   "iv_at_15": 107.72111967770806,
+   "irr": 0.11967357856545446
+  }
+ },
+ "weighted": {
+  "iv_at_10": 92.08982882263862,
+  "iv_at_12": 69.66094624039326,
+  "iv_at_15": 49.94859207735097,
+  "irr": 0.07264338464385312
+ },
+ "implied_irr_weighted": 0.07264338464385312,
+ "implied_irr_base": 0.06747783465355647,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6768545508355375,
+ "upside_at_12": -0.5493242787061314,
+ "iv_at_15": 49.94859207735097,
+ "iv_at_12": 69.66094624039326,
+ "diagnostics": {
+  "oe_yield": 0.016311249838660898,
+  "tv_share_at_15": 0.23898675425672883,
+  "scenario_spread_iv15": 6.19570394539307,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.6% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "be36db456a68e66209f0be9d182774a13db808fc1fcb58f1e1cfc39e0ad22581"
+}

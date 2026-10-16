@@ -1,0 +1,214 @@
+{
+ "ticker": "TCOM",
+ "name": "Trip.com Group Limited",
+ "cik": 1269238,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 39.37,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 698378891,
+ "market_cap_est": 27495176938.67,
+ "net_debt_latest": -1299000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.2603376738890879,
+ "rev_cagr_3y": 0.45328466195089256,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1620000000,
+ "base_oe_per_share": 3.3831617299323864,
+ "base_oe_latest_per_share": 2.319657740056178,
+ "base_oe_normalized_per_share": 3.3831617299323864,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.2603376738890879,
+  "rev_cagr_3y": 0.45328466195089256,
+  "rev_yoy_latest": 0.22226787181594077,
+  "oe_ps_cagr_2y": -0.24817398754490383
+ },
+ "g_blend": 0.24130277285251434,
+ "share_cagr": 0.02051512852965076,
+ "share_count_adj": -0.02051512852965076,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Trip.com Group Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-28), cover / Item 4: American depositary shares (each representing one ordinary share, par value US$0.00125 per share), symbol TCOM on Nasdaq; the FY2025 results release likewise states each ADS currently represents one ordinary share of the Company",
+  "reason": "ADS-to-ordinary ratio is 1:1 since the March 18, 2021 one-to-eight share subdivision and concurrent ADS ratio change stated in the 20-F, so engine per-share figures (per ordinary share) are already on the same basis as the per-ADS traded price; no scaling applies."
+ },
+ "fx_conversion": {
+  "from_currency": "CNY",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2007-12-31": 0.13691,
+   "2008-12-31": 0.14656,
+   "2009-12-31": 0.14648,
+   "2010-12-31": 0.15146,
+   "2011-12-31": 0.15859,
+   "2014-12-31": 0.16111,
+   "2015-12-31": 0.15419,
+   "2016-12-31": 0.144,
+   "2018-12-31": 0.14539
+  },
+  "rates_by_currency": {
+   "CNY": {
+    "2007-12-31": 0.13691,
+    "2008-12-31": 0.14656,
+    "2009-12-31": 0.14648,
+    "2010-12-31": 0.15146,
+    "2011-12-31": 0.15859,
+    "2014-12-31": 0.16111,
+    "2015-12-31": 0.15419,
+    "2016-12-31": 0.144,
+    "2018-12-31": 0.14539
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.22078764432286357,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.18,
+   0.07
+  ],
+  "offsets": [
+   -0.22,
+   -0.17,
+   -0.12,
+   -0.07,
+   -0.02
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0008,
+   "oe_mult": 0.75,
+   "iv_at_10": 30.696745148179005,
+   "iv_at_12": 24.383503993185386,
+   "iv_at_15": 18.6809953961156,
+   "irr": 0.0831422556813248
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0508,
+   "oe_mult": 0.9,
+   "iv_at_10": 47.35668643693166,
+   "iv_at_12": 37.154117844315714,
+   "iv_at_15": 28.00479757217709,
+   "irr": 0.11479343496344818
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1008,
+   "oe_mult": 1.0,
+   "iv_at_10": 67.4773039436321,
+   "iv_at_12": 52.346948564320286,
+   "iv_at_15": 38.863994635074285,
+   "irr": 0.14852623417021105
+  },
+  "bull": {
+   "prob": 0.18,
+   "g_start": 0.1508,
+   "oe_mult": 1.1,
+   "iv_at_10": 94.89680137302707,
+   "iv_at_12": 72.87102517873478,
+   "iv_at_15": 53.352286555301205,
+   "irr": 0.1876430860362256
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "g_start": 0.2008,
+   "oe_mult": 1.25,
+   "iv_at_10": 137.3970958520965,
+   "iv_at_12": 104.53927987391327,
+   "iv_at_15": 75.56448490357903,
+   "irr": 0.23825174765370571
+  }
+ },
+ "weighted": {
+  "iv_at_10": 65.7539298431876,
+  "iv_at_12": 50.9423796449148,
+  "iv_at_15": 37.7557124947975,
+  "irr": 0.14531825530318498
+ },
+ "implied_irr_weighted": 0.14531825530318498,
+ "implied_irr_base": 0.14852623417021105,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.041002984638112694,
+ "upside_at_12": 0.29393903085889783,
+ "iv_at_15": 37.7557124947975,
+ "iv_at_12": 50.9423796449148,
+ "diagnostics": {
+  "oe_yield": 0.08593247980524223,
+  "tv_share_at_15": 0.2034507700463532,
+  "scenario_spread_iv15": 4.044992426864545,
+  "net_debt_to_normalized_oe": -0.5497880394159287,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Trip.com Group Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-28), cover / Item 4: American depositary shares (each representing one ordinary share, par value US$0.00125 per share), symbol TCOM on Nasdaq; the FY2025 results release likewise states each ADS currently represents one ordinary share of the Company) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "d64bdddb89810161f44d4818359fa619877ba0ba91bb87dee7e3ed571cd889f2"
+}

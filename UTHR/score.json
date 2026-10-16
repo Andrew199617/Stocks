@@ -1,0 +1,70 @@
+{
+ "ticker": "UTHR",
+ "name": "United Therapeutics Corporation",
+ "sector": "Healthcare / Biotechnology",
+ "price": 545.08,
+ "market_cap_b": 26.11,
+ "engine_version": 5,
+ "base_oe_per_share": 20.163440860215054,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Entrenched prostacyclin leadership, device and specialist-channel advantages and proven pricing power in PAH/PH-ILD, but the franchise rests overwhelmingly on one molecule facing generic and branded competition, with the next growth leg binary on 2027 approvals.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 111.13,
+   "irr": 0.0496
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 159.35,
+   "irr": 0.0622
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 221.15,
+   "irr": 0.0785
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 317.39,
+   "irr": 0.1024
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 490.71,
+   "irr": 0.1396
+  }
+ },
+ "iv_at_15": 224.03,
+ "iv_at_12": 302.31,
+ "implied_irr": 0.0798,
+ "implied_irr_base_case": 0.0785,
+ "upside_at_15_pct": -58.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality treprostinil franchise, moat 6/10 \u2014 but at $545.08 it does not clear 15% (weighted IRR 7.98%, IV@15 $224.03 vs $545.08 price; even super-bull prints 13.96%); it clears 15% only near $224.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant treprostinil franchise across inhaled, oral and infused delivery in PAH/PH-ILD",
+  "Tyvaso DPI device differentiation and patent protection reported through 2035",
+  "Proven pricing power and margins / returns on capital held through a cycle",
+  "Deep specialist prescriber relationships; record starts, referrals and patients exiting Q2 2026",
+  "Pipeline breadth inside its pathway \u2014 ralinepag and Tyvaso IPF/PPF expansion"
+ ],
+ "moat_against": [
+  "Single-molecule concentration \u2014 Tyvaso alone about 58% of Q2 2026 revenue",
+  "Generic / branded erosion already visible \u2014 nebulized Tyvaso -18% and Remodulin -6% in Q2 2026, Orenitram generics expected after 2027",
+  "New PAH mechanisms (sotatercept class) changing the treatment paradigm",
+  "Growth reset is binary \u2014 Tyvaso IPF (Apr 2027) and ralinepag (Jun 24, 2027) must land and ramp",
+  "Xenotransplantation consumes large capex with no commercial revenue yet"
+ ]
+}

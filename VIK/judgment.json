@@ -1,0 +1,45 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "Viking is a direct-listed foreign private issuer: one NYSE-traded VIK share is one ordinary share, so no ADS conversion applies; per-share figures and the traded price are on the same basis.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), cover page, securities registered pursuant to Section 12(b): 'Ordinary Shares, par value $0.01 per share', trading symbol VIK, New York Stock Exchange \u2014 the NYSE security is the ordinary share itself; no ADSs are registered"
+ },
+ "capex_override": {
+  "ack_reason": "Any out-of-band flag is by construction: the band is computed against the last FILED capex value and VIK has never filed capex under a tag the engine reads (last filed value is null), so every value flags out-of-band. This value is not an estimate lacking an anchor \u2014 it is the exact capex line from the filer's own FY2025 20-F cash-flow statement (see source).",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024 and FY2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads (the filer's combined PP&E-and-intangibles investing line is not captured by the engine's capex tags). The engine applies this single FY2025 filing value to every missing period: against the filing's own per-year figures it overstates FY2024 capex by about $109M and FY2023 capex by about $353M, in the conservative direction (it lowers those years' OE and the median base). The line is mostly vessel growth capex, but the standardized conservative OE definition deducts total capex; the company's own split (Ongoing Capex $135,075 thousand in FY2025, 20-F non-IFRS reconciliation) is noted in analysis.md, not used to override the standardized definition.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), Consolidated Statements of Cash Flows (p. F-9): 'Investments in property, plant and equipment and intangible assets' $(1,026,854) thousand for FY2025, with $(917,424) thousand for FY2024 and $(673,932) thousand for FY2023 in the same statement",
+  "value": 1026854000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No network effects or switching costs \u2014 guests re-shop each voyage; Royal Caribbean, Norwegian, premium lines (Oceania/Regent) and river rivals compete for the same affluent traveler",
+  "Fleet advantage is replicable capital, not owned \u2014 any well-funded rival can order similar ships; growth requires ~$1B/yr of vessel capex",
+  "Discretionary, cyclical demand \u2014 travel spending falls in recessions and stops in crises (COVID-era losses; FY2023 net loss on derivative marks shows the leveraged history)",
+  "Environmental/operational exposure \u2014 historically low European river water levels disrupted over 50% of river capacity PCDs in Q3 2026; fuel and emissions-regulation costs sit outside management control",
+  "Leverage and sponsor history \u2014 net debt $1,698,031,000 at FY2025 (dcf_numbers.json) after a leveraged pre-IPO capital structure; share count rose with preference conversions and equity issuance (diluted shares 446,418,000 in FY2025 vs 221,936,000 in FY2023 on the engine history, a basis break from the Series C conversion at IPO)"
+ ],
+ "moat_for": [
+  "Premium brand and product ratings \u2014 #1 for Rivers and Oceans (Conde Nast Readers' Choice, five consecutive years per company reporting), destination-focused 'Thinking Person' positioning for affluent 55+ travelers",
+  "Proven pricing power \u2014 Q2 2026 net yield +6.2% YoY on top of capacity growth; FY2025 revenue +21.9%",
+  "Booking visibility \u2014 96% of 2026 core capacity booked at Q2 2026; 2027 advance bookings pacing ahead of the prior season",
+  "Identical-ship fleet design \u2014 standardized river and ocean ships lower crew training, maintenance and inventory costs; young fleet keeps maintenance capex low (company-defined Ongoing Capex only $135.1M in FY2025)",
+  "High returns on capital \u2014 ROIC 45.8% for FY2025 on the company's own 20-F non-IFRS calculation",
+  "Direct sales channel and loyal repeat-guest base in a demographic (affluent retirees) with growing wealth and leisure time"
+ ],
+ "moat_justification": "Strong premium brand in destination-focused cruising for affluent 55+ travelers: #1-rated river and ocean product, direct distribution, identical-ship fleet design that lowers unit costs, advance-booking visibility (96% of 2026 core capacity booked at Q2 2026, 2027 advance bookings ahead of prior year) and proven pricing power (Q2 2026 net yield +6.2% YoY, revenue +16.5% YoY) with high reported returns on invested capital (45.8% for FY2025 on the company's own non-IFRS calc in the 20-F) \u2014 capped at moderate-strong because cruising has no network effects or switching costs (guests re-shop every voyage against Royal Caribbean, Norwegian, Oceania/Regent and river rivals), the fleet advantage is bought with replicable shipbuilding capital rather than owned, demand is discretionary and cyclical (COVID-era losses, low-water disruption on European rivers in 2026), and growth requires continuous heavy vessel capex funded partly with debt. A 6 gives CAP 9.8 years.",
+ "moat_score": 6,
+ "name": "Viking Holdings Ltd",
+ "one_liner": "Premium cruise brand with proven pricing power, moat 6/10 \u2014 but on the standardized total-capex OE base ($2.84/sh median) the weighted IRR is 9.61% (IV@15% $43.23 vs $82.60 price), so it clears 15% only below ~$43; confidence low \u2014 the median base is conservatively understated by the single-value capex override and no IFRS TTM pin exists.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Consumer Services / Cruise travel",
+ "tier_override": null,
+ "tier_override_reason": null
+}

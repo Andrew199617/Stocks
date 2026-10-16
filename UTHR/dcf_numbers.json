@@ -1,0 +1,160 @@
+{
+ "ticker": "UTHR",
+ "name": "United Therapeutics Corporation",
+ "cik": 1082554,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 545.08,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 47900000,
+ "market_cap_est": 26109332000.000004,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.16499059827329376,
+ "rev_cagr_3y": 0.18011575840284655,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 893000000,
+ "base_oe_per_share": 20.163440860215054,
+ "base_oe_latest_per_share": 18.643006263048015,
+ "base_oe_normalized_per_share": 18.643006263048015,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.16499059827329376,
+  "rev_cagr_3y": 0.18011575840284655,
+  "rev_yoy_latest": 0.10610273163272388,
+  "oe_ps_cagr_2y": 0.1434742418023991
+ },
+ "g_blend": 0.15423242003784643,
+ "share_cagr": -0.004139891605464574,
+ "share_count_adj": 0.004139891605464574,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.158372311643311,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.158,
+   -0.118,
+   -0.068,
+   -0.008,
+   0.062
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 20.163440860215054,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0004,
+   "oe_mult": 0.75,
+   "iv_at_10": 182.5677661402141,
+   "iv_at_12": 145.0356083444333,
+   "iv_at_15": 111.13207355764862,
+   "irr": 0.04963800536151192
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0404,
+   "oe_mult": 0.9,
+   "iv_at_10": 267.9022945779622,
+   "iv_at_12": 210.70832509853685,
+   "iv_at_15": 159.3456214869586,
+   "irr": 0.06216970254061638
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0904,
+   "oe_mult": 1.0,
+   "iv_at_10": 381.9446698279949,
+   "iv_at_12": 296.9710425562481,
+   "iv_at_15": 221.15474068847564,
+   "irr": 0.07851487725021183
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.1504,
+   "oe_mult": 1.1,
+   "iv_at_10": 564.4338754962105,
+   "iv_at_12": 433.462330365925,
+   "iv_at_15": 317.39330489485303,
+   "irr": 0.10239635082816267
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.2204,
+   "oe_mult": 1.25,
+   "iv_at_10": 899.4831125736036,
+   "iv_at_12": 682.0821563983355,
+   "iv_at_15": 490.71328168765274,
+   "irr": 0.13960908891028045
+  }
+ },
+ "weighted": {
+  "iv_at_10": 390.2516620830633,
+  "iv_at_12": 302.31432022217456,
+  "iv_at_15": 224.03384405341478,
+  "irr": 0.079838787562582
+ },
+ "implied_irr_weighted": 0.079838787562582,
+ "implied_irr_base": 0.07851487725021183,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5889890583888333,
+ "upside_at_12": -0.44537623794273407,
+ "iv_at_15": 224.03384405341478,
+ "iv_at_12": 302.31432022217456,
+ "diagnostics": {
+  "oe_yield": 0.03699170921739021,
+  "tv_share_at_15": 0.2036217388735054,
+  "scenario_spread_iv15": 4.415586481728879,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "1ad8e65e30f86d530e2c704f635fbe243573d2728884b830822273950e071d1a"
+}

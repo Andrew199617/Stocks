@@ -1,0 +1,74 @@
+{
+ "ticker": "SN",
+ "name": "SharkNinja, Inc.",
+ "sector": "Consumer Durables",
+ "price": 186.32,
+ "market_cap_b": 26.47,
+ "engine_version": 5,
+ "base_oe_per_share": 4.967076444765549,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Two strong consumer brands (Shark, Ninja) with leading share in many small-appliance categories and a repeatable category-creation/marketing engine (~25 launches/yr), plus a supply-chain lead from moving ~90-100% of US volume out of China. But no recurring revenue, lock-in or switching costs \u2014 every purchase is a fresh contest, growth is hit-driven, distribution is rented from retailers, and pricing sits deliberately below premium rivals, capping pricing power. Moderate/narrow moat: 5/10, CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 3.13 vs 3-yr median 1.59 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 33.97,
+   "irr": 0.0484
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 54.41,
+   "irr": 0.0644
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 74.12,
+   "irr": 0.0794
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 99.73,
+   "irr": 0.0977
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 149.61,
+   "irr": 0.1294
+  }
+ },
+ "iv_at_15": 79.13,
+ "iv_at_12": 108.35,
+ "implied_irr": 0.0834,
+ "implied_irr_base_case": 0.0794,
+ "upside_at_15_pct": -57.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality hit-driven appliance brands, moat 5/10 \u2014 at $186.32 even the super-bull case returns only 12.9%; weighted IRR 8.3% (Tier D), clears 15% only at or below $79.13.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Leading Shark/Ninja brand share in many US small-appliance and floorcare categories",
+  "Proven category-creation engine, ~25 launches/yr (CREAMi, SLUSHi, Luxe Caf\u00e9, CryoGlow)",
+  "Social-first + omnichannel distribution flywheel (retail, Amazon, DTC, TikTok Shop)",
+  "Supply-chain agility: ~90-100% of US volume moved out of China ahead of rivals",
+  "Premium-but-accessible pricing with ~48.7% adjusted gross margin under tariff pressure"
+ ],
+ "moat_against": [
+  "No recurring revenue, consumables lock-in or switching costs",
+  "Hit-driven growth; core US categories grow only mid-to-high single digits",
+  "Intense competition (Dyson, iRobot, Breville, Keurig, private label) and constant patent litigation",
+  "Retailer/shelf-space concentration \u2014 distribution is rented, not owned",
+  "Tariff exposure across Southeast Asia supply; expected ~$247.1M refund is one-off",
+  "Controlling shareholder (JS Global ties) and product-recall risk (Foodi recall, 2025)"
+ ]
+}

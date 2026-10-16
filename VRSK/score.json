@@ -1,0 +1,73 @@
+{
+ "ticker": "VRSK",
+ "name": "Verisk Analytics, Inc.",
+ "sector": "Technology",
+ "price": 190.415,
+ "market_cap_b": 26.67,
+ "engine_version": 5,
+ "base_oe_per_share": 7.9150987886119895,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 8,
+ "moat_justification": "50+ years of proprietary, industry-contributed P&C insurance data carriers cannot replicate, ISO rating/forms and 2,000+ regulatory filings a year embedded in industry compliance plumbing, Xactimate embedded in claims workflows, 83% recurring subscription revenue with proven renewal pricing power, and ~56%+ adjusted EBITDA margins. Held below 9-10 by single-industry (P&C insurance) concentration after divestitures and live AI-disruption scrutiny.",
+ "cap_years": 12.4,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.1%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.6x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 40.99,
+   "irr": 0.0502
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 69.59,
+   "irr": 0.0728
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 99.45,
+   "irr": 0.095
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 140.98,
+   "irr": 0.1223
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 228.86,
+   "irr": 0.1688
+  }
+ },
+ "iv_at_15": 109.46,
+ "iv_at_12": 150.75,
+ "implied_irr": 0.1025,
+ "implied_irr_base_case": 0.095,
+ "upside_at_15_pct": -42.5,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Elite insurance-data franchise, moat 8/10, but priced for perfection \u2014 weighted IRR 10.3% (IV@15 $109.46 vs $190.42) clears the 15% hurdle only below ~$109.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Proprietary industry-contributed P&C datasets built over 50+ years, not replicable by entrants",
+  "ISO rating/forms and regulatory filing infrastructure embedded in insurer compliance workflows",
+  "Xactimate embedded in claims workflows; serves the top 100 US P&C providers",
+  "83% recurring subscription revenue with demonstrated price realization on renewals",
+  "Asset-light high-margin model (~56%+ adj. EBITDA margin) funding aggressive buybacks"
+ ],
+ "moat_against": [
+  "Single-industry concentration in P&C insurance after energy/financial-services divestitures",
+  "AI disruption risk: insurer in-house AI builds and analyst scrutiny of organic growth",
+  "Transactional revenue is weather/claims-cyclical (-4.2% OCC in Q2 2026)",
+  "Credible adjacent competitors (LexisNexis, CoreLogic, Guidewire)",
+  "Growth decelerated to mid-single digits; FY2026 revenue guided $3.19-3.24B"
+ ]
+}

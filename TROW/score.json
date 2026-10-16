@@ -1,0 +1,72 @@
+{
+ "ticker": "TROW",
+ "name": "T. Rowe Price Group, Inc.",
+ "sector": "Financials \u2014 Asset Management",
+ "price": 101.49,
+ "market_cap_b": 22.36,
+ "engine_version": 5,
+ "base_oe_per_share": 6.780917091245947,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Scale, brand, and a sticky retirement/target-date franchise (roughly two-thirds of AUM) are real, but the core fundamental active-equity product is in structural outflow against passive, the effective fee rate is compressing (38.1 bps in Q2 2026 vs 39.6 bps a year earlier), and revenue is a percentage of market levels with no pricing power to offset a drawdown \u2014 moderate/narrow moat.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 27.68,
+   "irr": 0.0556
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 44.56,
+   "irr": 0.0788
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 60.97,
+   "irr": 0.1009
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 82.47,
+   "irr": 0.1279
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 124.76,
+   "irr": 0.1748
+  }
+ },
+ "iv_at_15": 63.4,
+ "iv_at_12": 84.3,
+ "implied_irr": 0.1044,
+ "implied_irr_base_case": 0.1009,
+ "upside_at_15_pct": -37.5,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality, debt-free retirement-franchise asset manager, moat 5/10 \u2014 but structural outflows and fee compression mean it does not clear 15% at $101.49 (weighted IRR 10.4%, IV@15% $63.40); it clears the hurdle only at or below ~$63.40.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "$1.89T AUM scale and 85+ year brand in US retirement channels",
+  "Sticky target-date / defined-contribution franchise \u2014 retirement assets roughly two-thirds of AUM",
+  "Debt-free, cash-rich balance sheet funds buybacks (-1.01%/yr share count) through drawdowns",
+  "ETF/SMA and alternatives build-out plus Goldman Sachs partnership gaining flows"
+ ],
+ "moat_against": [
+  "Persistent net outflows ($56.9B in 2025; $6.5B in Q2 2026; reported $28.3B in Q3 2026), concentrated in active equity",
+  "Structural shift to passive/index undercuts the core product; no network effect",
+  "Fee-rate compression from mix shift to lower-fee vehicles (38.1 bps and falling)",
+  "Rising technology and distribution costs squeezing margins",
+  "Revenue is a percentage of market levels \u2014 a bear market cuts OE mechanically"
+ ]
+}

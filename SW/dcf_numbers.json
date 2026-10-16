@@ -1,0 +1,163 @@
+{
+ "ticker": "SW",
+ "name": "Smurfit Westrock plc",
+ "cik": 2005951,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 41.28,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 526000000,
+ "market_cap_est": 21713280000.0,
+ "net_debt_latest": 12677000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.3214539747251477,
+ "rev_cagr_3y": 0.3214539747251477,
+ "oe_positive_years_of_last_5": "3/4",
+ "base_oe_total_latest_fy": 1061000000,
+ "base_oe_per_share": 1.7110266159695817,
+ "base_oe_latest_per_share": 2.017110266159696,
+ "base_oe_normalized_per_share": 2.017110266159696,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.3214539747251477,
+  "rev_cagr_3y": 0.3214539747251477,
+  "rev_yoy_latest": 0.4770477047704771,
+  "oe_ps_cagr_2y": -0.035676521272097195
+ },
+ "g_blend": 0.3214539747251477,
+ "share_cagr": 0.2630637518175505,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebt",
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.2714539747251477,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.3215,
+   -0.2715,
+   -0.2315,
+   -0.1915,
+   -0.1415
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 1.7110266159695817,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.05,
+   "oe_mult": 0.75,
+   "iv_at_10": 12.70838461544399,
+   "iv_at_12": 10.164785014094646,
+   "iv_at_15": 7.860733781026495,
+   "irr": 0.047146616956627904
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0,
+   "oe_mult": 0.9,
+   "iv_at_10": 18.9208528362005,
+   "iv_at_12": 14.999696615416994,
+   "iv_at_15": 11.463519652439121,
+   "irr": 0.05904045298677263
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.04,
+   "oe_mult": 1.0,
+   "iv_at_10": 24.905269400343304,
+   "iv_at_12": 19.615165303103222,
+   "iv_at_15": 14.859540141143622,
+   "irr": 0.0704278868652003
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.08,
+   "oe_mult": 1.1,
+   "iv_at_10": 32.36454577630614,
+   "iv_at_12": 25.335989388198144,
+   "iv_at_15": 19.03574319204819,
+   "irr": 0.08422507776924895
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.13,
+   "oe_mult": 1.25,
+   "iv_at_10": 45.11954296594495,
+   "iv_at_12": 35.07631659589859,
+   "iv_at_15": 26.103033543247346,
+   "irr": 0.10655274211649321
+  }
+ },
+ "weighted": {
+  "iv_at_10": 24.420730526320156,
+  "iv_at_12": 19.21720639548984,
+  "iv_at_15": 14.54169283836076,
+  "irr": 0.0696148303017683
+ },
+ "implied_irr_weighted": 0.0696148303017683,
+ "implied_irr_base": 0.0704278868652003,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6477303091482374,
+ "upside_at_12": -0.534466899334064,
+ "iv_at_15": 14.54169283836076,
+ "iv_at_12": 19.21720639548984,
+ "diagnostics": {
+  "oe_yield": 0.0414492881775577,
+  "tv_share_at_15": 0.1820976830862069,
+  "scenario_spread_iv15": 3.3206866267691715,
+  "net_debt_to_normalized_oe": 14.085555555555555,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 26.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 14.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "7f3f24351e369e835490153bcf8f8119af5236f063b6bdee7ade9a111e9b8bf1"
+}

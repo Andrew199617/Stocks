@@ -1,0 +1,70 @@
+{
+ "ticker": "STE",
+ "name": "STERIS plc",
+ "sector": "Healthcare \u2014 Infection Prevention & Sterilization",
+ "price": 224.33,
+ "market_cap_b": 22.14,
+ "engine_version": 5,
+ "base_oe_per_share": 8.81511746680286,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Narrow/moderate moat: global contract-sterilization (AST) network scale with validated, regulated capacity and geographic redundancy; installed Healthcare sterilizer/endoscopy base pulling recurring consumables and service revenue with real switching friction; regulatory sterility know-how as an intangible barrier; demonstrated pricing power. Against: EO sterilization faces EPA emissions tightening and litigation risk, Healthcare products face large diversified rivals, capital-equipment revenue is cyclical, tariff/inflation cost pressure, growth partly acquisition-bought, and large customers can insource sterilization at the margin.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 48.75,
+   "irr": 0.0513
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 69.9,
+   "irr": 0.0646
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 92.8,
+   "irr": 0.0791
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 116.63,
+   "irr": 0.0935
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 151.38,
+   "irr": 0.1131
+  }
+ },
+ "iv_at_15": 94.49,
+ "iv_at_12": 126.78,
+ "implied_irr": 0.0804,
+ "implied_irr_base_case": 0.0791,
+ "upside_at_15_pct": -57.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality narrow-moat sterilization franchise (moat 6/10) growing at a guided 7-8%, but at $224.33 the price embeds far more \u2014 weighted IRR 8.0%, IV@15% $94.49; clears 15% only at or below $94.49.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Global AST contract-sterilization network scale \u2014 validated capacity and redundancy device makers rely on",
+  "Installed sterilizer/endoscopy base driving recurring consumables + service revenue with switching friction",
+  "Regulatory sterility-validation know-how as an intangible barrier to entry",
+  "Demonstrated pricing power \u2014 price contributed to FY2026 growth",
+  "Defensive, non-discretionary demand \u2014 infection prevention is mandatory"
+ ],
+ "moat_against": [
+  "EO sterilization faces EPA emissions tightening and emissions-litigation risk",
+  "Healthcare products compete with large diversified rivals (Stryker, 3M, Getinge) on thinner moat",
+  "Capital-equipment revenue is cyclical \u2014 AST capital equipment fell sharply in Q4 FY2026",
+  "Tariff and inflation cost pressure on margins, flagged in FY2026 results",
+  "Growth partly acquisition-bought, with heavy intangible amortization",
+  "Large device makers can insource sterilization at the margin"
+ ]
+}

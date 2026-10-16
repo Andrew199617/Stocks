@@ -1,0 +1,162 @@
+{
+ "ticker": "ZBRA",
+ "name": "Zebra Technologies Corporation",
+ "cik": 877212,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 380.5,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 51212395,
+ "market_cap_est": 19486316297.5,
+ "net_debt_latest": 2377000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.03940243535005217,
+ "rev_cagr_3y": -0.022705923829747565,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 668000000,
+ "base_oe_per_share": 14.966208453984722,
+ "base_oe_latest_per_share": 13.043717248529385,
+ "base_oe_normalized_per_share": 13.043717248529385,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.03940243535005217,
+  "rev_cagr_3y": -0.022705923829747565,
+  "rev_yoy_latest": 0.08331660309174871,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.03940243535005217,
+ "share_cagr": -0.008610501079553079,
+ "share_count_adj": 0.008610501079553079,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.048012936429605246,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.1,
+   -0.04,
+   0.03,
+   0.09,
+   0.16
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 14.966208453984722,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.052,
+   "oe_mult": 0.75,
+   "iv_at_10": 103.95797792050395,
+   "iv_at_12": 83.76779137943825,
+   "iv_at_15": 65.36975985061271,
+   "irr": 0.044034786860012054
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.008,
+   "oe_mult": 0.9,
+   "iv_at_10": 168.99982208193367,
+   "iv_at_12": 133.99303134189623,
+   "iv_at_15": 102.40765771749574,
+   "irr": 0.057954660803224575
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.078,
+   "oe_mult": 1.0,
+   "iv_at_10": 266.62185085561373,
+   "iv_at_12": 207.87329205547096,
+   "iv_at_15": 155.37579827310813,
+   "irr": 0.07834932796619828
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.138,
+   "oe_mult": 1.1,
+   "iv_at_10": 394.3800601970695,
+   "iv_at_12": 303.6043456769442,
+   "iv_at_15": 223.05182245314964,
+   "irr": 0.10248344328223358
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.208,
+   "oe_mult": 1.25,
+   "iv_at_10": 629.2718979364316,
+   "iv_at_12": 478.1843996640831,
+   "iv_at_15": 345.04045908783814,
+   "irr": 0.14021025452999003
+  }
+ },
+ "weighted": {
+  "iv_at_10": 294.15451341212844,
+  "iv_at_12": 227.95655097570355,
+  "iv_at_15": 169.01863141843887,
+  "irr": 0.0839326956388472
+ },
+ "implied_irr_weighted": 0.0839326956388472,
+ "implied_irr_base": 0.07834932796619828,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5557986033680975,
+ "upside_at_12": -0.4009026255566267,
+ "iv_at_15": 169.01863141843887,
+ "iv_at_12": 227.95655097570355,
+ "diagnostics": {
+  "oe_yield": 0.039333005135308075,
+  "tv_share_at_15": 0.20311420682361653,
+  "scenario_spread_iv15": 5.278288613517128,
+  "net_debt_to_normalized_oe": 3.1012894750743314,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "e77dbffe613750d84c0d73d175cff102e2d34a54cb8bc0efb8fa704b3cfb9bd1"
+}

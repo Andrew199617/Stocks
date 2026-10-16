@@ -1,0 +1,161 @@
+{
+ "ticker": "WST",
+ "name": "WEST PHARMACEUTICAL SERVICES, INC.",
+ "cik": 105770,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 374.65,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 72700000,
+ "market_cap_est": 27237055000.0,
+ "net_debt_latest": -588500000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.07444825293892654,
+ "rev_cagr_3y": 0.02115893594829843,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 445100000,
+ "base_oe_per_share": 5.6230876216968015,
+ "base_oe_latest_per_share": 6.12242090784044,
+ "base_oe_normalized_per_share": 5.195219123505976,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.07444825293892654,
+  "rev_cagr_3y": 0.02115893594829843,
+  "rev_yoy_latest": 0.06252592285358771,
+  "oe_ps_cagr_2y": 0.08551359201194231
+ },
+ "g_blend": 0.06848708789625713,
+ "share_cagr": -0.013819417327581074,
+ "share_count_adj": 0.013819417327581074,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.0823065052238382,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 5.6230876216968015,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0377,
+   "oe_mult": 0.75,
+   "iv_at_10": 41.102421739257835,
+   "iv_at_12": 33.0857675708524,
+   "iv_at_15": 25.778461603484672,
+   "irr": 0.03251874417828493
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0323,
+   "oe_mult": 0.9,
+   "iv_at_10": 71.94193250423865,
+   "iv_at_12": 56.67522597692596,
+   "iv_at_15": 42.953549806088034,
+   "irr": 0.03952135232454354
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0823,
+   "oe_mult": 1.0,
+   "iv_at_10": 104.59387459112702,
+   "iv_at_12": 81.26442893628784,
+   "iv_at_15": 60.47241359691117,
+   "irr": 0.04704967315291568
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1323,
+   "oe_mult": 1.1,
+   "iv_at_10": 150.28647443464976,
+   "iv_at_12": 115.30662906403026,
+   "iv_at_15": 84.3603726338928,
+   "irr": 0.05730413506473886
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2023,
+   "oe_mult": 1.25,
+   "iv_at_10": 247.1722977428163,
+   "iv_at_12": 186.71414456006926,
+   "iv_at_15": 133.69820444310312,
+   "irr": 0.07727476190283941
+  }
+ },
+ "weighted": {
+  "iv_at_10": 115.76273606026761,
+  "iv_at_12": 89.35478365421757,
+  "iv_at_15": 65.91787129372733,
+  "irr": 0.04981163163206215
+ },
+ "implied_irr_weighted": 0.04981163163206215,
+ "implied_irr_base": 0.04704967315291568,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.824054794358128,
+ "upside_at_12": -0.7614979750321165,
+ "iv_at_15": 65.91787129372733,
+ "iv_at_12": 89.35478365421757,
+ "diagnostics": {
+  "oe_yield": 0.015008908639254775,
+  "tv_share_at_15": 0.20926516928688413,
+  "scenario_spread_iv15": 5.1864306916216485,
+  "net_debt_to_normalized_oe": -1.4395846438951831,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "LOW_OE_YIELD: base OE yield 1.5% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "940a0971578279ced1f26bbde8aa57e0679ce10eeb2693853ca6e370ffbf36f4"
+}

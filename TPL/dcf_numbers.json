@@ -1,0 +1,195 @@
+{
+ "ticker": "TPL",
+ "name": "TEXAS PACIFIC LAND CORPORATION",
+ "cik": 1811074,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 354.5,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 69027492,
+ "market_cap_est": 24470245914.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.21414160609435928,
+ "rev_cagr_3y": 0.061441376871583575,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 471248000.0,
+ "base_oe_per_share": 7.634377474848368,
+ "base_oe_latest_per_share": 6.826961060674202,
+ "base_oe_normalized_per_share": 6.062084194019362,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.21414160609435928,
+  "rev_cagr_3y": 0.061441376871583575,
+  "rev_yoy_latest": 0.13086425350264874,
+  "oe_ps_cagr_2y": 0.16415163458478887
+ },
+ "g_blend": 0.1475079440437188,
+ "share_cagr": 0.4385695219244261,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 59531000.0,
+   "last_filed_value": 18967000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.0975079440437188,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.07,
+   0.0,
+   0.05,
+   0.1,
+   0.17
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 7.634377474848368,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 59531000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001811074-26-000018), Consolidated Statements of Cash Flows (p. F-7): 'Purchase of fixed assets' $(59,531) thousand for FY2025, with $(29,696) thousand for FY2024 and $(15,028) thousand for FY2023 in the same statement",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads (the filed values through FY2022 came via PaymentsToAcquirePropertyPlantAndEquipment, $18.967M in FY2022); the filer's own cash-flow statement reports this capex line for all three missing years. The engine applies this single FY2025 filing value to every missing period; against the same statement's true per-year values it overstates FY2023 capex by $44.503M (true $15.028M) and FY2024 capex by $29.835M (true $29.696M) \u2014 both in the conservative direction of lowering owner's earnings. The value is 3.14x the last filed capex value ($18.967M, FY2022), inside the engine's 0.1x-10x band.",
+   "periods_filled": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 18967000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0275,
+   "oe_mult": 0.75,
+   "iv_at_10": 79.31740758236283,
+   "iv_at_12": 62.57297378507559,
+   "iv_at_15": 47.509945617917985,
+   "irr": 0.041826643810279646
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0975,
+   "oe_mult": 0.9,
+   "iv_at_10": 138.6490192208859,
+   "iv_at_12": 107.29832931267758,
+   "iv_at_15": 79.42299483960275,
+   "irr": 0.055901834963746455
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1475,
+   "oe_mult": 1.0,
+   "iv_at_10": 201.09426205194154,
+   "iv_at_12": 153.73798833377603,
+   "iv_at_15": 111.92847941574077,
+   "irr": 0.06992430425480778
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.1975,
+   "oe_mult": 1.1,
+   "iv_at_10": 287.9762547845389,
+   "iv_at_12": 217.75393033127682,
+   "iv_at_15": 156.14140990499993,
+   "irr": 0.08768487577343775
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2675,
+   "oe_mult": 1.25,
+   "iv_at_10": 470.84010265728796,
+   "iv_at_12": 351.2400767377923,
+   "iv_at_15": 247.09117427857245,
+   "irr": 0.11930510395904304
+  }
+ },
+ "weighted": {
+  "iv_at_10": 211.56740578079496,
+  "iv_at_12": 161.00671863609816,
+  "iv_at_15": 116.49818378616786,
+  "irr": 0.07237015545935155
+ },
+ "implied_irr_weighted": 0.07237015545935155,
+ "implied_irr_base": 0.06992430425480778,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6713732474297098,
+ "upside_at_12": -0.5458202577260982,
+ "iv_at_15": 116.49818378616786,
+ "iv_at_12": 161.00671863609816,
+ "diagnostics": {
+  "oe_yield": 0.021535620521434044,
+  "tv_share_at_15": 0.23052270190523622,
+  "scenario_spread_iv15": 5.2008305011695075,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 43.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001811074-26-000018), Consolidated Statements of Cash Flows (p. F-7): 'Purchase of fixed assets' $(59,531) thousand for FY2025, with $(29,696) thousand for FY2024 and $(15,028) thousand for FY2023 in the same statement); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 6.924112065389877,
+  "base_oe_per_share_final": 7.634377474848368,
+  "weighted_irr_zero_fill": 0.06590213857745542,
+  "weighted_irr_final": 0.07237015545935155,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "7efd35c202cebe9d0d975a5fd26b6531fada940525a99841f4f1d1a151f3edde"
+}

@@ -1,0 +1,196 @@
+{
+ "ticker": "SYM",
+ "name": "SYMBOTIC INC.",
+ "cik": 1837240,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 37.9,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 108670159,
+ "market_cap_est": 4118599026.1,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-09-27",
+ "rev_cagr_5y": 0.8939345642841332,
+ "rev_cagr_3y": 0.5566759908384042,
+ "oe_positive_years_of_last_5": "2/5",
+ "base_oe_total_latest_fy": 603973000.0,
+ "base_oe_per_share": 0.9462285303778852,
+ "base_oe_latest_per_share": 5.557855123778737,
+ "base_oe_normalized_per_share": 0.9462285303778852,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.8939345642841332,
+  "rev_cagr_3y": 0.5566759908384042,
+  "rev_yoy_latest": 0.2565419904830557,
+  "oe_ps_cagr_2y": 1.4309489429029054
+ },
+ "g_blend": 0.7253052775612687,
+ "share_cagr": 0.26098162216196297,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 79030000.0,
+   "last_filed_value": 42237000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.35,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 79030000.0,
+   "kind": "filing",
+   "source": "Symbotic FY2025 Form 10-K (filed 2025-11-24), consolidated statements of cash flows / free-cash-flow reconciliation, year ended September 27, 2025: 'Purchases of property and equipment and capitalization of internal use software development costs' $79,030 thousand",
+   "reason": "From FY2025 Symbotic reports capex only on this combined line (PPE purchases plus capitalized internal-use software), which no engine candidate tag reads, so the annual capex fact is absent and the engine gated the run. The combined line is the filing's own capex definition (it is the line subtracted in the 10-K free-cash-flow reconciliation; FY2024 comparative on the same line is $44,374 thousand vs the $42,237 thousand PPE-only tag the engine captured). The override fills only the missing FY2025 period and does not replace any filed value.",
+   "periods_filled": [
+    "2021-12-31",
+    "2025-09-27"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 42237000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.23,
+   "oe_mult": 0.75,
+   "iv_at_10": 24.333968737938044,
+   "iv_at_12": 18.558991863558113,
+   "iv_at_15": 13.452442787191726,
+   "irr": 0.07542256161407612
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.3,
+   "oe_mult": 0.9,
+   "iv_at_10": 39.364481373293444,
+   "iv_at_12": 29.75528796393656,
+   "iv_at_15": 21.295690303225186,
+   "irr": 0.1024689944444398
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.35,
+   "oe_mult": 1.0,
+   "iv_at_10": 53.87233309506597,
+   "iv_at_12": 40.49111376343515,
+   "iv_at_15": 28.74360229956917,
+   "irr": 0.12524504199384545
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.4,
+   "oe_mult": 1.1,
+   "iv_at_10": 72.69179171542982,
+   "iv_at_12": 54.35491495088371,
+   "iv_at_15": 38.297610317445915,
+   "irr": 0.15100552449332427
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.47,
+   "oe_mult": 1.25,
+   "iv_at_10": 109.21440496233967,
+   "iv_at_12": 81.13889505047122,
+   "iv_at_15": 56.63197497597395,
+   "irr": 0.19245324264854868
+  }
+ },
+ "weighted": {
+  "iv_at_10": 53.446348904746976,
+  "iv_at_12": 40.12489604542491,
+  "iv_at_15": 28.437493244131346,
+  "irr": 0.12448968166360375
+ },
+ "implied_irr_weighted": 0.12448968166360375,
+ "implied_irr_base": 0.12524504199384545,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.24967036295167955,
+ "upside_at_12": 0.05870438114577614,
+ "iv_at_15": 28.437493244131346,
+ "iv_at_12": 40.12489604542491,
+ "diagnostics": {
+  "oe_yield": 0.02496645198886241,
+  "tv_share_at_15": 0.24985837565753843,
+  "scenario_spread_iv15": 4.2097911785875874,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 12.582128777923783,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 26.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Symbotic FY2025 Form 10-K (filed 2025-11-24), consolidated statements of cash flows / free-cash-flow reconciliation, year ended September 27, 2025: 'Purchases of property and equipment and capitalization of internal use software development costs' $79,030 thousand); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 5.56 vs 3-yr median 0.95 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 0.9462285303778852,
+  "base_oe_per_share_final": 0.9462285303778852,
+  "weighted_irr_zero_fill": 0.12448968166360375,
+  "weighted_irr_final": 0.12448968166360375,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "e339fe0eabc73c3d6ba80afca5cbf4910cb522d0a2a75e5e3d34dae3be909df7"
+}

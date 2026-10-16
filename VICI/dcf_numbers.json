@@ -1,0 +1,163 @@
+{
+ "ticker": "VICI",
+ "name": "VICI Properties Inc.",
+ "cik": 1705696,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 23.1,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1062693062,
+ "market_cap_est": 24548209732.2,
+ "net_debt_latest": 16209762000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.2673334018213529,
+ "rev_cagr_3y": 0.15486261151108938,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2492461000,
+ "base_oe_per_share": 2.4266123056823323,
+ "base_oe_latest_per_share": 2.3454194716479666,
+ "base_oe_normalized_per_share": 2.249228768783837,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.2673334018213529,
+  "rev_cagr_3y": 0.15486261151108938,
+  "rev_yoy_latest": 0.04076452150509002,
+  "oe_ps_cagr_2y": 0.04984101661487306
+ },
+ "g_blend": 0.10235181406298122,
+ "share_cagr": 0.06501441217421777,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.052351814062981214,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.07,
+   -0.04,
+   0.0,
+   0.03,
+   0.06
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 2.4266123056823323,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0176,
+   "oe_mult": 0.75,
+   "iv_at_10": 19.76189083010963,
+   "iv_at_12": 15.805631958165579,
+   "iv_at_15": 12.214991593350225,
+   "irr": 0.08864022511415881
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0124,
+   "oe_mult": 0.9,
+   "iv_at_10": 27.87963429111873,
+   "iv_at_12": 22.093114409588132,
+   "iv_at_15": 16.872828023479272,
+   "irr": 0.11579063105593057
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0524,
+   "oe_mult": 1.0,
+   "iv_at_10": 38.42756147108434,
+   "iv_at_12": 30.100522245337665,
+   "iv_at_15": 22.64257046923538,
+   "irr": 0.14761757070799358
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0824,
+   "oe_mult": 1.1,
+   "iv_at_10": 49.66266373182485,
+   "iv_at_12": 38.5850483697002,
+   "iv_at_15": 28.712361828556258,
+   "irr": 0.1777657415368884
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1124,
+   "oe_mult": 1.25,
+   "iv_at_10": 66.26309907960325,
+   "iv_at_12": 51.08807479745553,
+   "iv_at_15": 37.624927354522214,
+   "irr": 0.21743228674617876
+  }
+ },
+ "weighted": {
+  "iv_at_10": 38.42719046599718,
+  "iv_at_12": 30.06447134597989,
+  "iv_at_15": 22.581083808312894,
+  "irr": 0.1473118394601155
+ },
+ "implied_irr_weighted": 0.1473118394601155,
+ "implied_irr_base": 0.14761757070799358,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.02246390440203927,
+ "upside_at_12": 0.30149226605973545,
+ "iv_at_15": 22.581083808312894,
+ "iv_at_12": 30.06447134597989,
+ "diagnostics": {
+  "oe_yield": 0.10504815176113992,
+  "tv_share_at_15": 0.19014779111347824,
+  "scenario_spread_iv15": 3.080225399009281,
+  "net_debt_to_normalized_oe": 6.285913457856511,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 6.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 6.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "8533559cdcafc55b5d240c5d53d1d18e8595ac33a06f1f9df1295af74c82e2fb"
+}

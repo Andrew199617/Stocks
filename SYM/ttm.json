@@ -1,0 +1,137 @@
+{
+ "ticker": "SYM",
+ "cik": 1837240,
+ "entity": "SYMBOTIC INC.",
+ "fy_end": "2025-09-27",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 866939000,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 278090000,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 305584000,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 894433000
+  },
+  "capex": {
+   "fy": 78813479.4520548,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 59110109.5890411,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 59110109.5890411,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 78813479.4520548
+  },
+  "sbc": {
+   "fy": 183936000,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 92322000,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 142919000,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 234533000
+  },
+  "shares_diluted": {
+   "fy": 108670159,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 107664864,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 131666538,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 894433000,
+ "ttm_capex": 78813479.4520548,
+ "ttm_sbc": 234533000,
+ "ttm_shares_diluted": 131666538,
+ "ttm_oe_total": 581086520.5479453,
+ "ttm_oe_per_share": 4.41331965869677,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 79030000.0,
+   "kind": "filing",
+   "source": "Symbotic FY2025 Form 10-K (filed 2025-11-24), consolidated statements of cash flows / free-cash-flow reconciliation, year ended September 27, 2025: 'Purchases of property and equipment and capitalization of internal use software development costs' $79,030 thousand",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2024-09-29",
+      "2025-09-27"
+     ],
+     "amount": 78813479.4520548,
+     "days": 364,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2024-09-29",
+      "2025-06-28"
+     ],
+     "amount": 59110109.5890411,
+     "days": 273,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2025-09-28",
+      "2026-06-27"
+     ],
+     "amount": 59110109.5890411,
+     "days": 273,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

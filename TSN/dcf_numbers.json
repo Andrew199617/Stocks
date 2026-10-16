@@ -1,0 +1,161 @@
+{
+ "ticker": "TSN",
+ "name": "TYSON FOODS, INC.",
+ "cik": 100493,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 54.04,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 357000000,
+ "market_cap_est": 19292280000.0,
+ "net_debt_latest": -320000000,
+ "latest_period_end": "2025-09-27",
+ "rev_cagr_5y": 0.04758126461793366,
+ "rev_cagr_3y": 0.007223592176943239,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 1077000000,
+ "base_oe_per_share": 3.0168067226890756,
+ "base_oe_latest_per_share": 3.0168067226890756,
+ "base_oe_normalized_per_share": 3.0168067226890756,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.04758126461793366,
+  "rev_cagr_3y": 0.007223592176943239,
+  "rev_yoy_latest": 0.021234688326549067,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.021234688326549067,
+ "share_cagr": -0.005559252592807651,
+ "share_count_adj": 0.005559252592807651,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.026793940919356718,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0932,
+   "oe_mult": 0.75,
+   "iv_at_10": 19.481318955835576,
+   "iv_at_12": 15.632114100289066,
+   "iv_at_15": 12.142933347634271,
+   "irr": 0.05079173565481776
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0232,
+   "oe_mult": 0.9,
+   "iv_at_10": 30.839849667056896,
+   "iv_at_12": 24.498537636724706,
+   "iv_at_15": 18.77603183641856,
+   "irr": 0.0673199040732978
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0268,
+   "oe_mult": 1.0,
+   "iv_at_10": 41.51081373233471,
+   "iv_at_12": 32.7644926885176,
+   "iv_at_15": 24.89354569392071,
+   "irr": 0.08262306873697234
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0768,
+   "oe_mult": 1.1,
+   "iv_at_10": 55.04475714010285,
+   "iv_at_12": 43.193985287926154,
+   "iv_at_15": 32.55575075602602,
+   "irr": 0.1013618830748112
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1468,
+   "oe_mult": 1.25,
+   "iv_at_10": 80.61518908165922,
+   "iv_at_12": 62.79861340697068,
+   "iv_at_15": 46.853943587446366,
+   "irr": 0.13439866520413402
+  }
+ },
+ "weighted": {
+  "iv_at_10": 40.43422070354304,
+  "iv_at_12": 31.890592784121154,
+  "iv_at_15": 24.205106376767052,
+  "irr": 0.08117349155503542
+ },
+ "implied_irr_weighted": 0.08117349155503542,
+ "implied_irr_base": 0.08262306873697234,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5520890751893588,
+ "upside_at_12": -0.40987059984971963,
+ "iv_at_15": 24.205106376767052,
+ "iv_at_12": 31.890592784121154,
+ "diagnostics": {
+  "oe_yield": 0.05582543898388371,
+  "tv_share_at_15": 0.17921769926627742,
+  "scenario_spread_iv15": 3.8585358451773613,
+  "net_debt_to_normalized_oe": -0.2971216341689879,
+  "months_since_fy_end": 12.614980289093298,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "content_hash": "db86bc969fceb9ef5fd49c345eef2faf46e781c2646f17caaa5ead5445c7305d"
+}

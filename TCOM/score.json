@@ -1,0 +1,74 @@
+{
+ "ticker": "TCOM",
+ "name": "Trip.com Group Limited",
+ "sector": "Consumer Services / Online travel agency",
+ "price": 39.37,
+ "market_cap_b": 27.5,
+ "engine_version": 5,
+ "base_oe_per_share": 3.3831617299323864,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "China's dominant online travel platform (Ctrip, Qunar, Trip.com, Skyscanner) with scale in hotel/airline supply, service infrastructure and data \u2014 but the SAMR antitrust decision in July 2026 directly outlawed the exclusivity and lowest-price tactics that reinforced that dominance, consumers multi-home across Meituan, Fliggy, Tongcheng and Douyin at near-zero switching cost, and suppliers are now explicitly freed to multi-home.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Trip.com Group Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-28), cover / Item 4: American depositary shares (each representing one ordinary share, par value US$0.00125 per share), symbol TCOM on Nasdaq; the FY2025 results release likewise states each ADS currently represents one ordinary share of the Company) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 18.68,
+   "irr": 0.0831
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 28.0,
+   "irr": 0.1148
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 38.86,
+   "irr": 0.1485
+  },
+  "bull": {
+   "prob": 0.18,
+   "iv_at_15": 53.35,
+   "irr": 0.1876
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "iv_at_15": 75.56,
+   "irr": 0.2383
+  }
+ },
+ "iv_at_15": 37.76,
+ "iv_at_12": 50.94,
+ "implied_irr": 0.1453,
+ "implied_irr_base_case": 0.1485,
+ "upside_at_15_pct": -4.1,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Dominant China OTA, moat 6/10, net cash \u2014 but growth decelerated to +6% YoY in Q2 2026, OE/share has fallen two years, and SAMR rectification bans its exclusivity tactics: weighted IRR 14.5%, weighted IV@15 $37.76 vs $39.37 price; clears 15% only at/below ~$37.76.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant China OTA scale: Ctrip/Qunar/Trip.com/Skyscanner brand portfolio, deepest hotel and airline supply, go-to destination for Asian travelers",
+  "One-stop platform + service infrastructure (24/7 support, AI/data from accumulated travel insights) that smaller rivals cannot match at scale",
+  "International platform compounding fast: international revenue +50%+ YoY in Q2 2026 and inbound bookings +95% YoY in H1 2026, diversifying beyond China",
+  "Fortress liquidity: cash, equivalents, restricted cash and short-term investments of RMB105.8B at Dec 31, 2025 (FY2025 results release), engine net debt is negative (net cash)"
+ ],
+ "moat_against": [
+  "SAMR antitrust rectification (July 2026): exclusivity deals and lowest-price demands \u2014 core moat tactics \u2014 are banned; multi-tier partner framework replaces them, weakening pricing/supply lock-in",
+  "Near-zero consumer switching costs: Meituan, Fliggy (Alibaba), Tongcheng and Douyin compete for the same bookings and are now themselves under regulatory scrutiny, intensifying service-based competition",
+  "Regulatory/political overhang in China: dominant-position abuse finding since 2020, US class action followed, and further compliance adjustments were guided to weigh on margins",
+  "Supplier pushback: hotels/airlines regain pricing autonomy and multi-homing rights, pressuring take rates"
+ ]
+}

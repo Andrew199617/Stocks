@@ -1,0 +1,214 @@
+{
+ "ticker": "WF",
+ "name": "Woori Financial Group Inc.",
+ "cik": 1264136,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 70.07,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 742537556,
+ "market_cap_est": 52029606548.92,
+ "net_debt_latest": null,
+ "latest_period_end": "2024-12-31",
+ "rev_cagr_5y": null,
+ "rev_cagr_3y": null,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": -4315915720.0,
+ "base_oe_per_share": 4.463944349416761,
+ "base_oe_latest_per_share": -17.437161333291538,
+ "base_oe_normalized_per_share": 4.463944349416761,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": null,
+  "rev_cagr_3y": null,
+  "rev_yoy_latest": null,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.03,
+ "share_cagr": 0.006584225865863047,
+ "share_count_adj": -0.006584225865863047,
+ "used_tags": {
+  "revenue": null,
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 3.0,
+  "source": "Woori Financial Group's own SEC filings (CIK 1264136): Form 20-F filer whose ADS registration statement on Form F-6 states 'American Depositary Shares (ADSs), each ADS representing three (3) Shares of Common Stock, par value 5,000 Won per share'; the NYSE security name itself is 'American Depositary Shares (each representing three (3) shares of Common Stock)'.",
+  "reason": "Engine per-share figures are per ordinary share while the traded NYSE price ($70.07) is per ADS; without the ratio every per-share comparison is understated 3x."
+ },
+ "fx_conversion": {
+  "from_currency": "KRW",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 0.00092,
+   "2015-12-31": 0.00085,
+   "2016-12-31": 0.00083,
+   "2017-12-31": 0.00094,
+   "2018-12-31": 0.0009,
+   "2019-12-31": 0.00087,
+   "2020-12-31": 0.00092,
+   "2021-12-31": 0.00084,
+   "2022-12-31": 0.00079,
+   "2023-12-31": 0.00077,
+   "2024-12-31": 0.00068
+  },
+  "rates_by_currency": {
+   "KRW": {
+    "2014-12-31": 0.00092,
+    "2015-12-31": 0.00085,
+    "2016-12-31": 0.00083,
+    "2017-12-31": 0.00094,
+    "2018-12-31": 0.0009,
+    "2019-12-31": 0.00087,
+    "2020-12-31": 0.00092,
+    "2021-12-31": 0.00084,
+    "2022-12-31": 0.00079,
+    "2023-12-31": 0.00077,
+    "2024-12-31": 0.00068
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.023415774134136952,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0966,
+   "oe_mult": 0.75,
+   "iv_at_10": 28.436198168158324,
+   "iv_at_12": 22.829524833536077,
+   "iv_at_15": 17.746054219200047,
+   "irr": 0.05409584841127446
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0266,
+   "oe_mult": 0.9,
+   "iv_at_10": 45.03784423839009,
+   "iv_at_12": 35.79343722023773,
+   "iv_at_15": 27.449467073048048,
+   "irr": 0.07272594382463732
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0234,
+   "oe_mult": 1.0,
+   "iv_at_10": 60.64191813260423,
+   "iv_at_12": 47.88452184939986,
+   "iv_at_15": 36.401905818054125,
+   "irr": 0.08990180835273323
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.0734,
+   "oe_mult": 1.1,
+   "iv_at_10": 80.43949394975591,
+   "iv_at_12": 63.14522587156313,
+   "iv_at_15": 47.61798155484374,
+   "irr": 0.11083028682461549
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1434,
+   "oe_mult": 1.25,
+   "iv_at_10": 117.85838509909306,
+   "iv_at_12": 91.84121303817017,
+   "iv_at_15": 68.55432772056737,
+   "irr": 0.14747343286835324
+  }
+ },
+ "weighted": {
+  "iv_at_10": 59.82112103889474,
+  "iv_at_12": 47.18372163047317,
+  "iv_at_15": 35.81545000549396,
+  "irr": 0.08906469467910616
+ },
+ "implied_irr_weighted": 0.08906469467910616,
+ "implied_irr_base": 0.08990180835273323,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.4888618523548742,
+ "upside_at_12": -0.3266202136367464,
+ "iv_at_15": 35.81545000549396,
+ "iv_at_12": 47.18372163047317,
+ "diagnostics": {
+  "oe_yield": 0.06370692663646013,
+  "tv_share_at_15": 0.17915096414776652,
+  "scenario_spread_iv15": 3.8630743980482243,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 21.48488830486202,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2022, 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency KRW converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x3.0 ordinary shares per ADS (Woori Financial Group's own SEC filings (CIK 1264136): Form 20-F filer whose ADS registration statement on Form F-6 states 'American Depositary Shares (ADSs), each ADS representing three (3) Shares of Common Stock, par value 5,000 Won per share'; the NYSE security name itself is 'American Depositary Shares (each representing three (3) shares of Common Stock)'.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share -17.44 vs 3-yr median 4.46 \u2014 one of them is distorted; find out which and why"
+ ],
+ "content_hash": "b51d8245170e2f20e3f0c7c585c6abb1be30d553fd3ee32773b3ae579694314d"
+}

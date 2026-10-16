@@ -1,0 +1,79 @@
+{
+ "ticker": "TECK",
+ "name": "Teck Resources Limited",
+ "sector": "Materials / Diversified mining (copper, zinc)",
+ "price": 64.0,
+ "market_cap_b": 31.7,
+ "engine_version": 5,
+ "base_oe_per_share": 0.16951224340622525,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Scarce, long-life tier-1 copper and zinc assets in mining-friendly jurisdictions (Quebrada Blanca, Highland Valley, Red Dog, Antamina stake, Trail) that cannot be replicated quickly and were hard to permit \u2014 but Teck is a pure commodity price-taker with no pricing power, structurally heavy capex and stripping, depleting reserves, and owner's earnings that were negative in the latest fiscal year after capex; returns are set by the copper/zinc cycle, not by the franchise.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.6%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-19), cover page: securities registered under Section 12(b) are 'Class B subordinate voting shares', trading symbol TECK, listed directly on the New York Stock Exchange \u2014 the NYSE security is the Class B share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share -0.63 vs 3-yr median 0.17 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 9.6x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 0.72,
+   "irr": -0.0635
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 1.13,
+   "irr": -0.0281
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1.52,
+   "irr": -0.0044
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 2.02,
+   "irr": 0.0186
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 2.98,
+   "irr": 0.0316
+  }
+ },
+ "iv_at_15": 1.61,
+ "iv_at_12": 2.14,
+ "implied_irr": 0.0011,
+ "implied_irr_base_case": -0.0044,
+ "upside_at_15_pct": -97.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified copper/zinc miner, moat 4/10, net cash \u2014 but normalized owner's earnings are only $0.17/share against a $64.00 price: weighted IRR 0.1%, weighted IV@15 $1.61, and even the super-bull case clears only 3.2%; on this OE method it clears 15% only below ~$1.61 \u2014 the price rests on reserve/NAV value and the Anglo merger exchange terms, not on current owner's earnings.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Tier-1, long-life copper/zinc reserves (Quebrada Blanca, Highland Valley, Red Dog, Antamina stake) that are scarce and hard to permit or replicate",
+  "Diversified copper + zinc + Trail smelting footprint across Canada, Chile, Peru and the US",
+  "Net-cash balance sheet after the steelmaking-coal sale (engine: net debt -9.6x normalized OE) funds the capex cycle without forced dilution",
+  "Highland Valley life extension sanctioned to 2046 and Quebrada Blanca ramp give visible volume growth"
+ ],
+ "moat_against": [
+  "Pure commodity price-taker: no pricing power; earnings are set by copper/zinc prices it does not control",
+  "Structurally capex-heavy: latest-FY owner's earnings were negative after capex despite positive operating cash flow",
+  "Cyclical and volatile OE: OE/share range over the last 5 years spans >3x (engine OE_VOLATILE flag)",
+  "Quebrada Blanca ramp/tailings execution risk and a 2024 asset impairment show operating risk at the flagship growth asset",
+  "Pending Anglo American merger: China approval and integration risk; consideration is Anglo shares, not cash",
+  "Reserves deplete, decommissioning/restoration liabilities grow, and the dual-class structure concentrates voting control"
+ ]
+}

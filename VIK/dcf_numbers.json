@@ -1,0 +1,200 @@
+{
+ "ticker": "VIK",
+ "name": "Viking Holdings Ltd",
+ "cik": 1745201,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 82.6,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 446418000,
+ "market_cap_est": 36874126800.0,
+ "net_debt_latest": 1698031000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.2696573217719278,
+ "rev_cagr_3y": 0.2696573217719278,
+ "oe_positive_years_of_last_5": "3/4",
+ "base_oe_total_latest_fy": 1444938000.0,
+ "base_oe_per_share": 2.838883147127559,
+ "base_oe_latest_per_share": 3.2367377659502976,
+ "base_oe_normalized_per_share": 2.838883147127559,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.2696573217719278,
+  "rev_cagr_3y": 0.2696573217719278,
+  "rev_yoy_latest": 0.21889066912241395,
+  "oe_ps_cagr_2y": 0.48273566767386944
+ },
+ "g_blend": 0.2696573217719278,
+ "share_cagr": 0.031960497017659906,
+ "share_count_adj": -0.031960497017659906,
+ "used_tags": {
+  "revenue": "RevenueFromContractsWithCustomers",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": null,
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": null,
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), cover page, securities registered pursuant to Section 12(b): 'Ordinary Shares, par value $0.01 per share', trading symbol VIK, New York Stock Exchange \u2014 the NYSE security is the ordinary share itself; no ADSs are registered",
+  "reason": "Viking is a direct-listed foreign private issuer: one NYSE-traded VIK share is one ordinary share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 1026854000.0,
+   "last_filed_value": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.2376968247542679,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.2,
+   -0.14,
+   -0.073,
+   -0.023,
+   0.027
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 1026854000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), Consolidated Statements of Cash Flows (p. F-9): 'Investments in property, plant and equipment and intangible assets' $(1,026,854) thousand for FY2025, with $(917,424) thousand for FY2024 and $(673,932) thousand for FY2023 in the same statement",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024 and FY2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads (the filer's combined PP&E-and-intangibles investing line is not captured by the engine's capex tags). The engine applies this single FY2025 filing value to every missing period: against the filing's own per-year figures it overstates FY2024 capex by about $109M and FY2023 capex by about $353M, in the conservative direction (it lowers those years' OE and the median base). The line is mostly vessel growth capex, but the standardized conservative OE definition deducts total capex; the company's own split (Ongoing Capex $135,075 thousand in FY2025, 20-F non-IFRS reconciliation) is noted in analysis.md, not used to override the standardized definition.",
+   "periods_filled": [
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0377,
+   "oe_mult": 0.75,
+   "iv_at_10": 31.013672273954334,
+   "iv_at_12": 24.408394775359056,
+   "iv_at_15": 18.47435643700145,
+   "irr": 0.05340637579030069
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0977,
+   "oe_mult": 0.9,
+   "iv_at_10": 50.1861400238778,
+   "iv_at_12": 38.9588527410817,
+   "iv_at_15": 28.950323810069634,
+   "irr": 0.07180096434699856
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1647,
+   "oe_mult": 1.0,
+   "iv_at_10": 77.46527793933541,
+   "iv_at_12": 59.32745659087981,
+   "iv_at_15": 43.27709402549354,
+   "irr": 0.09581037229339062
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.2147,
+   "oe_mult": 1.1,
+   "iv_at_10": 108.45976981390501,
+   "iv_at_12": 82.32445931351589,
+   "iv_at_15": 59.30698714676992,
+   "irr": 0.11973122474454734
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2647,
+   "oe_mult": 1.25,
+   "iv_at_10": 156.28105366962757,
+   "iv_at_12": 117.66844967233601,
+   "iv_at_15": 83.80639323513306,
+   "irr": 0.15145034168290816
+  }
+ },
+ "weighted": {
+  "iv_at_10": 77.75822855860699,
+  "iv_at_12": 59.43094620877501,
+  "iv_at_15": 43.233899378582976,
+  "irr": 0.0960773422635256
+ },
+ "implied_irr_weighted": 0.0960773422635256,
+ "implied_irr_base": 0.09581037229339062,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.47658717459342637,
+ "upside_at_12": -0.280497019264225,
+ "iv_at_15": 43.233899378582976,
+ "iv_at_12": 59.43094620877501,
+ "diagnostics": {
+  "oe_yield": 0.034369045364740426,
+  "tv_share_at_15": 0.22312262649877987,
+  "scenario_spread_iv15": 4.536363338063622,
+  "net_debt_to_normalized_oe": 1.339850678595019,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), cover page, securities registered pursuant to Section 12(b): 'Ordinary Shares, par value $0.01 per share', trading symbol VIK, New York Stock Exchange \u2014 the NYSE security is the ordinary share itself; no ADSs are registered) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), Consolidated Statements of Cash Flows (p. F-9): 'Investments in property, plant and equipment and intangible assets' $(1,026,854) thousand for FY2025, with $(917,424) thousand for FY2024 and $(673,932) thousand for FY2023 in the same statement); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 5.639070761830225,
+  "base_oe_per_share_final": 2.838883147127559,
+  "weighted_irr_zero_fill": 0.1422809573427929,
+  "weighted_irr_final": 0.0960773422635256,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "9c8ce57c5c81e2680b0f50f14d94b69a49f9ddb8a3b05b25528a8a25627c1c17"
+}

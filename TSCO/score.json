@@ -1,0 +1,72 @@
+{
+ "ticker": "TSCO",
+ "name": "Tractor Supply Company",
+ "sector": "Consumer Discretionary / Specialty Retail",
+ "price": 33.885,
+ "market_cap_b": 18.03,
+ "engine_version": 5,
+ "base_oe_per_share": 0.46110300598765996,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat (5/10). Tractor Supply is the dominant rural-lifestyle retailer in the US with scale procurement, small-town locations that often face no direct farm/ranch competitor, and a needs-based consumables mix (animal feed, pet food) that drives repeat trips and loyalty. Against that: retail switching costs are near zero, pricing power is capped by Walmart, Amazon, Home Depot and Lowe's, the big-ticket/discretionary half of the mix is weather-, fuel- and farm-income-cyclical (Q2 2026 comps -1.5% on a weak May, drought and fuel costs), and pet faces Chewy/Petco/Walmart. Returns on capital were historically strong but the moat did not prevent a guidance cut and withdrawal of the long-term framework in July 2026. CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "LOW_OE_YIELD: base OE yield 1.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "HIGH_NET_DEBT: net debt is 6.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.07,
+   "irr": 0.0319
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.07,
+   "irr": 0.036
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 3.87,
+   "irr": 0.0394
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 4.82,
+   "irr": 0.0435
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 6.19,
+   "irr": 0.0494
+  }
+ },
+ "iv_at_15": 3.73,
+ "iv_at_12": 4.92,
+ "implied_irr": 0.0389,
+ "implied_irr_base_case": 0.0394,
+ "upside_at_15_pct": -89.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Solid niche retailer, moat 5/10, but owner's earnings collapsed on a TTM basis (base $0.46/sh) and it does not clear 15% on any base \u2014 weighted IRR 3.9% (TTM) to 7.1% (median base), IV@15% $3.73 vs $33.89 price; clears 15% only below ~$3.73 (TTM base) or ~$11.93 (median base).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant rural-lifestyle niche; scale procurement across ~2,400+ Tractor Supply stores plus Petsense",
+  "Small-town locations with limited direct farm/ranch competition nearby",
+  "Needs-based consumables (feed, pet food) drive repeat trips and retention",
+  "Neighbor's Club loyalty base and private brands",
+  "Historically high returns on capital through cycles"
+ ],
+ "moat_against": [
+  "Near-zero customer switching costs; price capped by Walmart/Amazon/Home Depot/Lowe's",
+  "Discretionary big-ticket mix is weather, fuel and farm-income cyclical (Q2 2026 comps -1.5%)",
+  "Pet category contested by Chewy, Petco and Walmart",
+  "No protection in 2026: guidance cut and long-term framework withdrawn",
+  "Store-expansion capex rising into negative comps"
+ ]
+}

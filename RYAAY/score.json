@@ -1,0 +1,77 @@
+{
+ "ticker": "RYAAY",
+ "name": "Ryanair Holdings plc",
+ "sector": "Airlines",
+ "price": 51.33,
+ "market_cap_b": 56.86,
+ "engine_version": 5,
+ "base_oe_per_share": 3.613266407872167,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Europe's structural low-cost carrier: a genuine, cycle-tested unit-cost advantage (single-type 737 fleet, high-density Gamechanger aircraft, direct distribution, ancillary revenue engine, disciplined fuel hedging) that has kept it profitable through shocks that bankrupted rivals, plus the scale of Europe's largest passenger airline and a debt-free, net-cash balance sheet after the May 2026 bond repayment. Capped at 6 because the product is a commodity seat bought purely on price \u2014 there are no switching costs, no loyalty lock-in and no network-effect moat; fares fell 6% in Q1 FY27 despite the cost lead, and the economics remain hostage to fuel prices, EU environmental taxes, ATC disruption, Boeing deliveries and geopolitics.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 18 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Ryanair Holdings plc Form 20-F for the fiscal year ended March 31, 2025 (SEC filing, accession 0001558370-25-007966), Item 12 (Description of Securities Other than Equity Securities): during FY25 the Board approved a change to the ADS ratio so that one ADS is now equal to two Ordinary Shares, a 2:1 ratio (previously 5:1); the ratio change was effected in September 2024) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 16.38,
+   "irr": 0.0617
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.84,
+   "irr": 0.0904
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 37.25,
+   "irr": 0.1173
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 51.16,
+   "irr": 0.1496
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 79.18,
+   "irr": 0.2039
+  }
+ },
+ "iv_at_15": 40.23,
+ "iv_at_12": 54.18,
+ "implied_irr": 0.1249,
+ "implied_irr_base_case": 0.1173,
+ "upside_at_15_pct": -21.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Europe's lowest-cost airline, moat 6/10, debt-free \u2014 quality is not the issue; at $51.33 the weighted IRR is 12.49% (Tier C), below the 15% hurdle; it clears 15% at the weighted IV@15% of $40.23.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "Structural unit-cost advantage vs EU rivals (single-type fleet, high-density B737-8200 Gamechangers)",
+  "Scale: Europe's largest airline by passengers (208.4m in FY26)",
+  "Ancillary revenue engine (~\u20ac24 per passenger in FY26)",
+  "Debt-free / net-cash balance sheet after May 2026 bond repayment",
+  "Disciplined fuel hedging (80% of FY27 needs at ~$67/bbl)",
+  "Profitable through cycles that bankrupted less efficient rivals"
+ ],
+ "moat_against": [
+  "Commodity seat bought on price alone \u2014 zero switching costs, no loyalty lock-in",
+  "Fuel exposure: 20% unhedged FY27 volume spiked above $150/bbl in Q1 FY27",
+  "Rising EU environmental taxes (~\u20ac300m additional expected in FY27)",
+  "Boeing delivery delays have repeatedly capped traffic growth",
+  "Regulatory risk: Italian AGCM \u20ac256m fine (appealed; \u20ac85m provided in FY26)",
+  "ATC strikes, geopolitics and fare cyclicality hit earnings directly"
+ ]
+}

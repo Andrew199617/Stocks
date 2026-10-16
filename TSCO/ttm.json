@@ -1,0 +1,101 @@
+{
+ "ticker": "TSCO",
+ "cik": 916365,
+ "entity": "TRACTOR SUPPLY CO /DE/",
+ "fy_end": "2025-12-27",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 1635259000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1002575000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 653136000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1285820000
+  },
+  "capex": {
+   "fy": 894770000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 351644000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 435713000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 978839000
+  },
+  "sbc": {
+   "fy": 57063000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 25976000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 33162000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 64249000
+  },
+  "shares_diluted": {
+   "fy": 532178000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 533152000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 526416000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1285820000,
+ "ttm_capex": 978839000,
+ "ttm_sbc": 64249000,
+ "ttm_shares_diluted": 526416000,
+ "ttm_oe_total": 242732000,
+ "ttm_oe_per_share": 0.46110300598765996,
+ "warnings": [],
+ "overrides_used": []
+}

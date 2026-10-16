@@ -1,0 +1,72 @@
+{
+ "ticker": "SBAC",
+ "name": "SBA COMMUNICATIONS CORPORATION",
+ "sector": "Real Estate",
+ "price": 183.72,
+ "market_cap_b": 19.76,
+ "engine_version": 5,
+ "base_oe_per_share": 9.101612234904133,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Strong tower moat: zoning/permitting scarcity makes existing sites nearly impossible to replicate, long-term leases with fixed escalators, very high incremental margin on colocation (tower cash flow margin 79.5% in Q2 2026), and a three-player US oligopoly (AMT/CCI/SBAC) serving carriers who cannot easily relocate equipment. Capped below wide-moat 9-10 because the customer base is only three major US carriers (consolidation already produced Sprint churn, Dish churn follows in 2027-28), pricing is contractual escalators rather than true pricing power, the US market is mature, and 6.4x leverage leaves the equity as a levered claim on slow growth.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 12.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 38.13,
+   "irr": 0.0474
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 57.75,
+   "irr": 0.0626
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 73.89,
+   "irr": 0.0752
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 93.65,
+   "irr": 0.0902
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 116.99,
+   "irr": 0.1067
+  }
+ },
+ "iv_at_15": 72.75,
+ "iv_at_12": 95.76,
+ "implied_irr": 0.0746,
+ "implied_irr_base_case": 0.0752,
+ "upside_at_15_pct": -60.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Strong-moat (7/10) tower REIT with contracted escalator growth, but slow growth plus 12.9x net debt/OE cannot clear 15% at $183.72 \u2014 Tier D, weighted IRR 7.46%, weighted IV@15 $72.75; clears 15% only below ~$73.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Zoning/permitting scarcity \u2014 existing towers cannot be replicated",
+  "Long-term leases with fixed escalators \u2014 contracted, visible revenue",
+  "Colocation economics \u2014 added tenants drop through at ~79.5% tower cash flow margin",
+  "Three-player tower oligopoly (AMT / CCI / SBAC), high carrier switching costs",
+  "46,390 sites, scale in international growth markets (Millicom portfolio)"
+ ],
+ "moat_against": [
+  "Customer concentration \u2014 three major US carriers; consolidation drives churn (Sprint, then Dish 2027-28)",
+  "No pricing power beyond contractual escalators",
+  "Mature US market \u2014 domestic site leasing flat in Q2 2026, growth is international/FX-exposed",
+  "High leverage \u2014 net debt 12.9x normalized OE (6.4x Adj. EBITDA), rate-sensitive REIT equity",
+  "Ground-lease renewals and satellite direct-to-cell as long-run erosion forces"
+ ]
+}

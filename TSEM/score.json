@@ -1,0 +1,44 @@
+{
+ "ticker": "TSEM",
+ "name": "Tower Semiconductor Ltd.",
+ "sector": "Semiconductors / Specialty analog foundry (silicon photonics, RF, SiGe)",
+ "price": 209.16,
+ "market_cap_b": 23.76,
+ "engine_version": 5,
+ "base_oe_per_share": -0.18966913826406628,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "A differentiated specialty foundry, not a scale leader: Tower leads in silicon photonics for AI data-center optical interconnect and holds deep, hard-to-replicate process know-how across SiPho, SiGe BiCMOS, RF SOI and CMOS image sensors, where customer designs are qualified onto specific process recipes and switching means re-qualification. Contracted SiPho demand ($1.3B of customer contracts for 2027 revenue per management) and $290M of customer prepayments evidence real stickiness. Capped at moderate: Tower is sub-scale versus TSMC/GlobalFoundries, has no leading-edge logic position, historically earned only thin foundry margins through the cycle (FY2024-25 gross profitability fell back after the 2023 one-off year), and its growth is now concentrated in one hot end-market (AI optical) whose demand and pricing it does not control, funded by a capex program ($920M plan in the 20-F) that consumes all of its operating cash flow.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Tower Semiconductor Form 20-F for the fiscal year ended December 31, 2025 (SEC filing, CIK 928876), Item 9: 'Our ordinary shares are listed and traded on the NASDAQ Stock Market ... and on the TASE under the symbol TSEM' \u2014 the security registered under Section 12 is the ordinary shares themselves, listed directly on Nasdaq; there is no depositary/ADS program.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "medium",
+ "one_liner": "Real specialty-foundry franchise riding the AI silicon-photonics wave, moat 5/10 \u2014 but conservative owner's earnings are negative on the normalized base (-$0.19/share) and in the latest FY (-$0.76/share) because capex absorbs all operating cash flow, so it cannot clear 15% at $209.16 on an OE DCF at any scenario; Tier F until the capacity build converts to positive OE.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Leading silicon photonics foundry position for AI data-center optical interconnect \u2014 SiPho at a $680M annualized run rate in Q2 2026, guided to cross $1B in Q4 2026",
+  "Deep specialty process know-how (SiPho, SiGe BiCMOS, RF SOI, BCD power, CMOS image sensors) \u2014 customer designs qualified onto Tower recipes are slow and expensive to move",
+  "Contracted demand visibility: ~$1.3B of SiPho customer contracts for 2027 and ~$290M of customer prepayments received",
+  "Multi-fab footprint across Israel, the US and Japan (with Japanese government/METI support for the 300mm expansion) \u2014 a scarce diversified-supply asset",
+  "Net-cash balance sheet (engine net debt -$73,851,000) funds the expansion without forced dilution"
+ ],
+ "moat_against": [
+  "Sub-scale specialty player: no leading-edge logic, and larger foundries (TSMC, GlobalFoundries, Intel) are all pushing into silicon photonics",
+  "Capex intensity consumes the business: capex $444,425,000 in FY2025 exceeded operating cash flow; the $920M expansion plan plus a further Japan build-out keep OE negative while capacity is built",
+  "Growth concentration in AI optical interconnect \u2014 a single end-market and a narrow set of transceiver customers; an AI capex slowdown or a co-packaged-optics architecture shift hits the core growth leg",
+  "Thin through-cycle pricing power: FY2025 revenue grew only 9.05% and net income was $220,470,000 on $1,566,104,000 of revenue despite the SiPho ramp already starting",
+  "Capacity execution risk: the Japan dual-track expansion must be built, qualified and filled at high utilization for the raised 2028 target model ($3.6B revenue) to hold"
+ ]
+}

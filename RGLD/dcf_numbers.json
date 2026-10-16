@@ -1,0 +1,201 @@
+{
+ "ticker": "RGLD",
+ "name": "Royal Gold, Inc",
+ "cik": 85535,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 233.0,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 69560911,
+ "market_cap_est": 16207692263.0,
+ "net_debt_latest": 661717000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.12108287509571203,
+ "rev_cagr_3y": 0.19537918861188097,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 693041000.0,
+ "base_oe_per_share": 12.126777672157342,
+ "base_oe_latest_per_share": 9.963081133310633,
+ "base_oe_normalized_per_share": 7.869199055704019,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.12108287509571203,
+  "rev_cagr_3y": 0.19537918861188097,
+  "rev_yoy_latest": 0.432413347326573,
+  "oe_ps_cagr_2y": 0.2697651197007458
+ },
+ "g_blend": 0.23257215415631338,
+ "share_cagr": 0.019410342600969743,
+ "share_count_adj": -0.019410342600969743,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 0.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.21316181155534364,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.26,
+   -0.19,
+   -0.12,
+   -0.07,
+   -0.01
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 12.126777672157342,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-19, Consolidated Statements of Cash Flows (in thousands): the investing-activities section lists ONLY Sandstorm & Horizon acquisition, net of cash acquired $(411,342) for 2025 (none in 2024/2023), Acquisition of stream and royalty interests $(1,164,753) / $(102,564) / $(2,678) for 2025/2024/2023, Proceeds from the sale of the Versamet Shares and other securities $158,886 (2025 only), Cash calls for Hod Maden equity method investment $(9,330) (2025 only), Proceeds from Khoemacau debt facility $25,000 (2024 only), Proceeds from the sale of inventory - restricted $7,681 (2025 only), and Other $299 / $(116) / $(151) \u2014 net cash used in investing activities $(1,418,559) / $(77,680) / $(2,829). There is no purchases-of-property-and-equipment line anywhere in the statement for any of the three years, and the balance sheet carries no property and equipment asset line (the engine's financials_history.csv ppe_net is blank for every year).",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 in EDGAR companyfacts under every candidate tag the engine reads, because Royal Gold buys no property or equipment: it is a royalty/stream company whose investing outflows are acquisitions of stream and royalty interests (a separate, growth-investment line the standardized PPE-capex definition does not deduct \u2014 the company's own free-cash-flow definition, OCF minus acquisition of stream and royalty interests, is discussed in analysis.md). The filing's cash-flow statement fully accounts for investing activities for all three years with no PPE purchase line, so PPE capex is $0 as a filing fact, not an estimate. Measured impact is nil: the engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+   "periods_filled": [
+    "2017-06-30",
+    "2018-06-30",
+    "2019-06-30",
+    "2020-06-30",
+    "2021-06-30",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0468,
+   "oe_mult": 0.75,
+   "iv_at_10": 88.76201351622665,
+   "iv_at_12": 71.18300236840525,
+   "iv_at_15": 55.22472193633716,
+   "irr": 0.0522985468125452
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0232,
+   "oe_mult": 0.9,
+   "iv_at_10": 147.89200528509974,
+   "iv_at_12": 116.8007526515645,
+   "iv_at_15": 88.81299565807853,
+   "irr": 0.07257707901595115
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0932,
+   "oe_mult": 1.0,
+   "iv_at_10": 226.6483865650739,
+   "iv_at_12": 176.61314593014296,
+   "iv_at_15": 131.88834093959395,
+   "irr": 0.09805282425601397
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1432,
+   "oe_mult": 1.1,
+   "iv_at_10": 312.2800985625404,
+   "iv_at_12": 241.27384823625925,
+   "iv_at_15": 178.07893764197988,
+   "irr": 0.12306376315134449
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2032,
+   "oe_mult": 1.25,
+   "iv_at_10": 462.54272943430436,
+   "iv_at_12": 354.1029054711414,
+   "iv_at_15": 258.03516042687585,
+   "irr": 0.16139697066636371
+  }
+ },
+ "weighted": {
+  "iv_at_10": 238.16801622648532,
+  "iv_at_12": 185.0311847849535,
+  "iv_at_15": 137.6154738432141,
+  "irr": 0.10156336063778504
+ },
+ "implied_irr_weighted": 0.10156336063778504,
+ "implied_irr_base": 0.09805282425601397,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.4093756487415704,
+ "upside_at_12": -0.2058747434122168,
+ "iv_at_15": 137.6154738432141,
+ "iv_at_12": 185.0311847849535,
+ "diagnostics": {
+  "oe_yield": 0.05204625610367958,
+  "tv_share_at_15": 0.1992314230857934,
+  "scenario_spread_iv15": 4.6724573955182205,
+  "net_debt_to_normalized_oe": 0.7844434040354535,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-19, Consolidated Statements of Cash Flows (in thousands): the investing-activities section lists ONLY Sandstorm & Horizon acquisition, net of cash acquired $(411,342) for 2025 (none in 2024/2023), Acquisition of stream and royalty interests $(1,164,753) / $(102,564) / $(2,678) for 2025/2024/2023, Proceeds from the sale of the Versamet Shares and other securities $158,886 (2025 only), Cash calls for Hod Maden equity method investment $(9,330) (2025 only), Proceeds from Khoemacau debt facility $25,000 (2024 only), Proceeds from the sale of inventory - restricted $7,681 (2025 only), and Other $299 / $(116) / $(151) \u2014 net cash used in investing activities $(1,418,559) / $(77,680) / $(2,829). There is no purchases-of-property-and-equipment line anywhere in the statement for any of the three years, and the balance sheet carries no property and equipment asset line (the engine's financials_history.csv ppe_net is blank for every year).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 7.869199055704019,
+  "base_oe_per_share_final": 12.126777672157342,
+  "weighted_irr_zero_fill": 0.07582532190214597,
+  "weighted_irr_final": 0.10156336063778504,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "29d91e70e6f5c7b569c8417da5a251abec7d79de873c9a5d8e59713087abb1c0"
+}

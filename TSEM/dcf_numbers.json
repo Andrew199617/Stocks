@@ -1,0 +1,93 @@
+{
+ "ticker": "TSEM",
+ "name": "TOWER SEMICONDUCTOR LTD.",
+ "cik": 928876,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 209.16,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 113597000,
+ "market_cap_est": 23759948520.0,
+ "net_debt_latest": -73851000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.04352196393417307,
+ "rev_cagr_3y": -0.022661237914398447,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": -86711000,
+ "base_oe_per_share": -0.18966913826406628,
+ "base_oe_latest_per_share": -0.7633212144686919,
+ "base_oe_normalized_per_share": -0.18966913826406628,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.04352196393417307,
+  "rev_cagr_3y": -0.022661237914398447,
+  "rev_yoy_latest": 0.09050902360662949,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.04352196393417307,
+ "share_cagr": 0.008482369965978842,
+ "share_count_adj": -0.008482369965978842,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Tower Semiconductor Form 20-F for the fiscal year ended December 31, 2025 (SEC filing, CIK 928876), Item 9: 'Our ordinary shares are listed and traded on the NASDAQ Stock Market ... and on the TASE under the symbol TSEM' \u2014 the security registered under Section 12 is the ordinary shares themselves, listed directly on Nasdaq; there is no depositary/ADS program.",
+  "reason": "Direct-listed foreign private issuer: one Nasdaq-traded TSEM share is one ordinary share, so per-share figures from the filings and the traded price are on the same basis and no ADS scaling applies. Declared under step 8(d) bounded authority from the filer's own 20-F."
+ },
+ "fx_conversion": null,
+ "override_checks": {},
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   1.0
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Tower Semiconductor Form 20-F for the fiscal year ended December 31, 2025 (SEC filing, CIK 928876), Item 9: 'Our ordinary shares are listed and traded on the NASDAQ Stock Market ... and on the TASE under the symbol TSEM' \u2014 the security registered under Section 12 is the ordinary shares themselves, listed directly on Nasdaq; there is no depositary/ADS program.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "content_hash": "923064da7df1d69bfbe83b568081a745bd745f429291160075e31efe57734660"
+}

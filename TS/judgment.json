@@ -1,0 +1,44 @@
+{
+ "ads_ratio": {
+  "ratio": 2.0,
+  "reason": "EDGAR diluted share counts are in ordinary shares while the NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. Note the engine's market_cap_est still multiplies the ordinary share count by the ADS price, so make_score's computed scope follows that overstated engine figure.",
+  "source": "Tenaris Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Income Statements footnote to earnings per ADS: 'Each ADS equals two shares' (basic and diluted EPS $1.83 per share vs $3.66 per ADS for FY2025); the same ratio is stated in Item 7 share-ownership footnotes ('each ADS represents 2 shares') and on the 20-F cover, where American Depositary Shares are the NYSE-registered class."
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": false,
+ "moat_against": [
+  "Demand is a derivative of E&P capex and rig counts: revenue went $5.1B (2020) to $14.9B (2023) to $12.0B (2025) \u2014 Tenaris is a price-taker on the cycle, not on its own products only",
+  "Customers are majors and NOCs with concentrated bargaining power; work is re-won program by program with no long-term lock-in",
+  "Capable premium rivals \u2014 Vallourec, Nippon Steel, TMK and US mills \u2014 contest the same wells, and standard OCTG is a commodity",
+  "Cost-side exposure it cannot fully pass through: US tariff costs and rising raw-material/logistics costs cut H1 2026 EBITDA margin to 22.8% from 23.8% (Q2 2026 release)",
+  "Long-term oil & gas demand / energy-transition risk caps the terminal story, and regional shocks hit shipments directly (Hormuz closure postponed Middle East deliveries in Q2 2026)"
+ ],
+ "moat_for": [
+  "Global leader in seamless and premium OCTG \u2014 proprietary premium connections qualified into demanding shale, sour-service and deepwater wells, where failure costs dwarf pipe price",
+  "Vertically integrated steelmaking-to-threading footprint inside the major basins (US, Canada, Mexico, Argentina, Italy, Romania, Middle East) \u2014 logistics and lead-time advantage rivals importing at distance cannot match",
+  "Rig Direct service model and technical collaboration with majors/NOCs embed Tenaris in well design and inventory, creating real switching friction beyond the pipe itself",
+  "Through-cycle economics: positive owner's earnings in 4 of the last 5 fiscal years, mid-teens net margins in 2024-25, and a company-reported net cash position ($3.6B at June 30, 2026 per the Q2 2026 release)",
+  "Aggressive buybacks: share count fell from 1,167,888,739 (FY2023) to 1,011,823,958 (FY2025) in the filed history, a 5.0%/yr tailwind already credited in the growth blend"
+ ],
+ "moat_justification": "Global leader in seamless/premium OCTG: proprietary premium connections qualified into demanding shale, sour and deepwater wells, a vertically integrated steel-to-threading mill network located in the major basins, and the Rig Direct just-in-time service model create real qualification and logistics switching friction, proven by mid-teens net margins and positive owner's earnings in 4 of the last 5 years through the cycle. Against that, the product is ultimately a steel tube sold to majors/NOCs with hard bargaining power, demand is set by E&P capex and rig counts Tenaris does not control (revenue swung from $5.1B in 2020 to a $14.9B peak in 2023 and back to $12.0B in 2025), Vallourec/Nippon Steel/TMK contest the same premium programs, and US tariffs plus raw-material costs squeezed H1 2026 EBITDA. Moderate moat, 6/10, CAP 9.8y.",
+ "moat_score": 6,
+ "name": "Tenaris S.A.",
+ "one_liner": "Global premium OCTG leader, moat 6/10, company-reported net cash \u2014 but on a normalized mid-cycle base the price already pays for a recovery: weighted IRR 10.47%, weighted IV@15% $36.53 vs $58.17 per ADS, Tier C; clears 15% only below ~$36.53 per ADS.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out of band by construction: the engine has no filed SBC value for Tenaris in any period (last_filed_value is null), so any override flags out-of-band. The value is not an estimate and has no filed anchor to be a multiple of \u2014 it is the filer's own reported position (no share-based payment line exists in its 20-F cash-flow statement or compensation notes; see source).",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees have no facts in this filer's companyfacts for any year 2016-2025). Tenaris has no equity-settled share-based payment expense to subtract: it files no IFRS 2 expense, its cash-flow statement shows no such addback, and its sole long-term incentive is cash-settled (units redeemed for cash, expensed through income and provisions and therefore already inside operating cash flow \u2014 subtracting it again as SBC would double-count it). The filing-sourced figure for equity SBC in the gap years is $0.",
+  "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Statements of Cash Flows (p. F-7): the adjustments reconciling income to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, bargain purchase gain, income tax accruals less payments, equity in earnings, interest accruals, the Usiminas litigation provision, changes in provisions, CTA reclassification, changes in working capital, others/FX) with no share-based payment addback in any year; the term 'share-based' appears nowhere in the 20-F. Compensation disclosure (Item 6) states directors and the CEO receive cash compensation only with no long-term incentive or pension plan, and the only long-term program (Note II.P.3, employee retention and long-term incentive program) grants units valued on shareholders' equity that are mandatorily redeemed for cash seven years after grant \u2014 an 'other long-term benefit' liability, not an equity award.",
+  "value": 0
+ },
+ "sector": "Energy / Steel pipes \u2014 OCTG & line pipe (Tubes)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

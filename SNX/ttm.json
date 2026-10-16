@@ -1,0 +1,101 @@
+{
+ "ticker": "SNX",
+ "cik": 1177394,
+ "entity": "TD SYNNEX CORPORATION",
+ "fy_end": "2025-11-30",
+ "ytd_end": "2026-08-31",
+ "inputs": {
+  "ocf": {
+   "fy": 1531704000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 71326000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -2078194000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": -617816000
+  },
+  "capex": {
+   "fy": 142282000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 103989000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 158853000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 197146000
+  },
+  "sbc": {
+   "fy": 66428000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 46238000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 57771000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 77961000
+  },
+  "shares_diluted": {
+   "fy": 82430000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 82928000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 79777000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": -617816000,
+ "ttm_capex": 197146000,
+ "ttm_sbc": 77961000,
+ "ttm_shares_diluted": 79777000,
+ "ttm_oe_total": -892923000,
+ "ttm_oe_per_share": -11.192737255098587,
+ "warnings": [],
+ "overrides_used": []
+}

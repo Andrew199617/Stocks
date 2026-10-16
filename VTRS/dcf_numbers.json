@@ -1,0 +1,193 @@
+{
+ "ticker": "VTRS",
+ "name": "VIATRIS INC.",
+ "cik": 1792044,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 18.22,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1170700000.0,
+ "market_cap_est": 21330154000.0,
+ "net_debt_latest": 13088100000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.03811358490909722,
+ "rev_cagr_3y": -0.04218868172868395,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1759400000,
+ "base_oe_per_share": 1.5638506876227898,
+ "base_oe_latest_per_share": 1.5028615358332622,
+ "base_oe_normalized_per_share": 1.5638506876227898,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.03811358490909722,
+  "rev_cagr_3y": -0.04218868172868395,
+  "rev_yoy_latest": -0.030109985843406295,
+  "oe_ps_cagr_2y": -0.11994087839976897
+ },
+ "g_blend": -0.036149333786045124,
+ "share_cagr": -0.01295095658724732,
+ "share_count_adj": 0.01295095658724732,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "ProfitLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "shares": {
+   "value": 1170700000.0,
+   "last_filed_value": 1206900000,
+   "last_filed_unit": "shares",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": -0.023198377198797804,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.2,
+   0.05
+  ],
+  "offsets": [
+   -0.0668,
+   -0.0168,
+   0.0232,
+   0.0732,
+   0.1232
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "shares"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 1170700000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Operations and EPS note (Note 5): 'Weighted average shares outstanding \u2014 Diluted' 1,170.7M for FY2025, 1,193.3M for FY2024, 1,206.9M for FY2023 (in millions). EDGAR companyfacts carries no full-year diluted-share fact for FY2024/FY2025 under WeightedAverageNumberOfDilutedSharesOutstanding (the loss-year counts, where diluted equals basic because share awards are anti-dilutive, are not carried in the aggregated facts).",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2024 and FY2025 of the last 3 fiscal years in EDGAR companyfacts. The filer's own FY2025 diluted weighted-average count from its FY2025 10-K fills the gap; the engine applies this single value to every missing period, so FY2024 OE/share is computed on 1,170.7M instead of its own filed 1,193.3M (overstates FY2024 OE/share by ~1.9%, disclosed in analysis.md) and FY2025 is exact. In FY2024/FY2025 diluted equals basic (net losses; anti-dilutive awards excluded \u2014 FY2025 EPS note: total dilutive shares 1,170.7M = basic 1,170.7M, share-based awards \u2014).",
+   "periods_filled": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 1206900000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.09,
+   "oe_mult": 0.75,
+   "iv_at_10": 9.74700923737994,
+   "iv_at_12": 7.85661375080335,
+   "iv_at_15": 6.137431534654862,
+   "irr": 0.06337982537002934
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.04,
+   "oe_mult": 0.9,
+   "iv_at_10": 14.560664138720586,
+   "iv_at_12": 11.624731675349098,
+   "iv_at_15": 8.967783654670074,
+   "irr": 0.08436702773713967
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0,
+   "oe_mult": 1.0,
+   "iv_at_10": 19.218748203861846,
+   "iv_at_12": 15.23573288959658,
+   "iv_at_15": 11.643784391427909,
+   "irr": 0.10418232238021352
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.05,
+   "oe_mult": 1.1,
+   "iv_at_10": 26.11673823299025,
+   "iv_at_12": 20.537112188768006,
+   "iv_at_15": 15.52497509226881,
+   "irr": 0.13184724414636245
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "g_start": 0.1,
+   "oe_mult": 1.25,
+   "iv_at_10": 36.50467247575042,
+   "iv_at_12": 28.495182843622654,
+   "iv_at_15": 21.325323771301118,
+   "irr": 0.16994823951599358
+  }
+ },
+ "weighted": {
+  "iv_at_10": 18.644456358767293,
+  "iv_at_12": 14.76881301203894,
+  "iv_at_15": 11.275346351046442,
+  "irr": 0.10177093833712572
+ },
+ "implied_irr_weighted": 0.10177093833712572,
+ "implied_irr_base": 0.10418232238021352,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.3811555240918527,
+ "upside_at_12": -0.18941750757195708,
+ "iv_at_15": 11.275346351046442,
+ "iv_at_12": 14.76881301203894,
+ "diagnostics": {
+  "oe_yield": 0.08583154158193139,
+  "tv_share_at_15": 0.17384514119522948,
+  "scenario_spread_iv15": 3.474633264890725,
+  "net_debt_to_normalized_oe": 7.148842036268298,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Operations and EPS note (Note 5): 'Weighted average shares outstanding \u2014 Diluted' 1,170.7M for FY2025, 1,193.3M for FY2024, 1,206.9M for FY2023 (in millions). EDGAR companyfacts carries no full-year diluted-share fact for FY2024/FY2025 under WeightedAverageNumberOfDilutedSharesOutstanding (the loss-year counts, where diluted equals basic because share awards are anti-dilutive, are not carried in the aggregated facts).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 7.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 2.0255625413633354,
+  "base_oe_per_share_final": 1.5638506876227898,
+  "weighted_irr_zero_fill": 0.11468663228227938,
+  "weighted_irr_final": 0.10177093833712572,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "3370f14e183aaf661cd696c417bc0ba1d2f5ee2986c958410dc46b6328a058b7"
+}

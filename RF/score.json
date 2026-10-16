@@ -1,0 +1,71 @@
+{
+ "ticker": "RF",
+ "name": "Regions Financial Corporation",
+ "sector": "Finance / Regional banking",
+ "price": 27.175,
+ "market_cap_b": 24.35,
+ "engine_version": 5,
+ "base_oe_per_share": 2.1841517857142856,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Durable, sticky low-cost deposit franchise in a 15-state Southeast/Midwest/Texas footprint (peer-leading interest-bearing deposit costs of 1.69% in Q2 2026), real treasury/commercial switching costs and a hedging program supporting a top-quartile 3.66% NIM and 19% reported ROATCE \u2014 but banking is a commodity business priced off the rate curve, with no proprietary product, geographic concentration, credit-cycle exposure and regulatory capital capping returns. Moderate/narrow moat: 5/10.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 11.61,
+   "irr": 0.077
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 15.14,
+   "irr": 0.0941
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 18.29,
+   "irr": 0.1093
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 22.32,
+   "irr": 0.1282
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 28.13,
+   "irr": 0.1541
+  }
+ },
+ "iv_at_15": 18.83,
+ "iv_at_12": 24.86,
+ "implied_irr": 0.112,
+ "implied_irr_base_case": 0.1093,
+ "upside_at_15_pct": -30.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Solid, well-capitalized regional bank with a peer-leading deposit franchise, moat 5/10 \u2014 but on growth it actually prints (NII guided +2.5\u20134%) it does not clear 15% at $27.21: weighted IRR 11.2%, IV@15% $18.83; it clears the hurdle only near $18.83.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Sticky low-cost deposit franchise \u2014 peer-leading 1.69% interest-bearing deposit costs (Q2 2026)",
+  "Scale across 15 Southeast/Midwest/Texas states with long-standing local relationships",
+  "Treasury-management and commercial relationships carry real switching friction",
+  "Hedging program supports top-quartile NIM of 3.66% and a mostly neutral rate position",
+  "Top-quartile returns: Q2 2026 reported ROATCE 19% (20% adjusted)"
+ ],
+ "moat_against": [
+  "Commodity banking \u2014 no proprietary product; pricing power is the yield curve",
+  "Money-center banks and nonbanks compete for the same deposits and loans",
+  "Geographic concentration in the Southeast/Texas \u2014 a regional downturn hits the whole book",
+  "Earnings hostage to the credit cycle; current 42 bps charge-offs are the good part of the cycle",
+  "Regulatory capital caps leverage, payouts and achievable ROE growth",
+  "Multi-year record of muted net interest income growth versus peers"
+ ]
+}

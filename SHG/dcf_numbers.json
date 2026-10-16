@@ -1,0 +1,252 @@
+{
+ "ticker": "SHG",
+ "name": "Shinhan Financial Group Co., Ltd.",
+ "cik": 1263043,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 70.71,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 498859764,
+ "market_cap_est": 35274373912.439995,
+ "net_debt_latest": null,
+ "latest_period_end": "2024-12-31",
+ "rev_cagr_5y": 0.04108969785893257,
+ "rev_cagr_3y": 0.04108969785893257,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 2934762360.0,
+ "base_oe_per_share": 5.882940601318971,
+ "base_oe_latest_per_share": 5.882940601318971,
+ "base_oe_normalized_per_share": 5.882940601318971,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.04108969785893257,
+  "rev_cagr_3y": 0.04108969785893257,
+  "rev_yoy_latest": 0.06643749480850114,
+  "oe_ps_cagr_2y": -0.2552516839596023
+ },
+ "g_blend": 0.04108969785893257,
+ "share_cagr": -0.011573417250493434,
+ "share_count_adj": 0.011573417250493434,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "WeightedAverageShares",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-23), Item 7.A Major Shareholders: Citibank, N.A. is the depositary for the company's American depositary shares, 'each representing one share of our common stock effective October 15, 2012, prior to which each American depositary share represented two common shares'",
+  "reason": "20-F filer: EDGAR per-share figures are per ordinary share and the NYSE price is per ADS; at a 1:1 ADS-to-ordinary ratio the two bases are identical, so no scaling applies."
+ },
+ "fx_conversion": {
+  "from_currency": "KRW",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 0.00092,
+   "2015-12-31": 0.00085,
+   "2016-12-31": 0.00083,
+   "2017-12-31": 0.00094,
+   "2018-12-31": 0.0009,
+   "2019-12-31": 0.00087,
+   "2020-12-31": 0.00092,
+   "2021-12-31": 0.00084,
+   "2022-01-01": 0.00084,
+   "2022-12-31": 0.00079,
+   "2023-12-31": 0.00077,
+   "2024-12-31": 0.00068
+  },
+  "rates_by_currency": {
+   "KRW": {
+    "2014-12-31": 0.00092,
+    "2015-12-31": 0.00085,
+    "2016-12-31": 0.00083,
+    "2017-12-31": 0.00094,
+    "2018-12-31": 0.0009,
+    "2019-12-31": 0.00087,
+    "2020-12-31": 0.00092,
+    "2021-12-31": 0.00084,
+    "2022-01-01": 0.00084,
+    "2022-12-31": 0.00079,
+    "2023-12-31": 0.00077,
+    "2024-12-31": 0.00068
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 46636000000.0,
+   "last_filed_value": 28251000000,
+   "last_filed_unit": "KRW",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.052663115109426006,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 46636000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-23), Notes to the Consolidated Financial Statements (in millions of won), Note 42(b) 'Share-based payments': total share-based compensation costs W46,636 million for FY2024 (controlling company W4,950 million + subsidiaries W41,686 million), with W41,874 million for FY2023 and W28,251 million for FY2022 in the same table. Declared in KRW (the reporting currency); the engine FX-converts at period-end ECB rates.",
+   "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2023 and 2024 of the last 3 under the engine's ifrs-full tag (ExpenseFromSharebasedPaymentTransactionsWithEmployees), which the filer stops tagging after FY2022. The filer's own Note 42(b) reports the same performance-share compensation series for all three years; its FY2022 total of W28,251 million converts at the engine's 2022 period-end rate (0.00079) to exactly the engine's last filed SBC value, confirming it is the identical series. The engine applies this single FY2024 value to both missing periods; for FY2023 it overstates the true W41,874 million by W4,762 million (conservative direction - it lowers that year's OE - and immaterial against OE in the billions). In band: W46,636M is ~1.65x the last filed W28,251M.",
+   "periods_filled": [
+    "2023-12-31",
+    "2024-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 28251000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0673,
+   "oe_mult": 0.75,
+   "iv_at_10": 39.07105623142918,
+   "iv_at_12": 31.485705600260058,
+   "iv_at_15": 24.580482592470734,
+   "irr": 0.06470780997364212
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0027,
+   "oe_mult": 0.9,
+   "iv_at_10": 65.21299536744036,
+   "iv_at_12": 51.72429254544757,
+   "iv_at_15": 39.55394389909637,
+   "irr": 0.09406747819446493
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0527,
+   "oe_mult": 1.0,
+   "iv_at_10": 91.36510769039248,
+   "iv_at_12": 71.73451775511262,
+   "iv_at_15": 54.11843525650252,
+   "irr": 0.12134260070422409
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1027,
+   "oe_mult": 1.1,
+   "iv_at_10": 126.27217651475117,
+   "iv_at_12": 98.23038179451899,
+   "iv_at_15": 73.1864603549749,
+   "irr": 0.1540549447299392
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1727,
+   "oe_mult": 1.25,
+   "iv_at_10": 196.25180246765052,
+   "iv_at_12": 150.9243595782375,
+   "iv_at_15": 110.67754213785008,
+   "irr": 0.20930064589993502
+  }
+ },
+ "weighted": {
+  "iv_at_10": 98.81311114757361,
+  "iv_at_12": 77.25003042937519,
+  "iv_at_15": 57.94643411350066,
+  "irr": 0.1283885177524856
+ },
+ "implied_irr_weighted": 0.1283885177524856,
+ "implied_irr_base": 0.12134260070422409,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.18050581086832607,
+ "upside_at_12": 0.09249088430738506,
+ "iv_at_15": 57.94643411350066,
+ "iv_at_12": 77.25003042937519,
+ "diagnostics": {
+  "oe_yield": 0.08319814172421117,
+  "tv_share_at_15": 0.19078576356965662,
+  "scenario_spread_iv15": 4.5026594462287655,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 21.419185282522996,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency KRW converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-23), Item 7.A Major Shareholders: Citibank, N.A. is the depositary for the company's American depositary shares, 'each representing one share of our common stock effective October 15, 2012, prior to which each American depositary share represented two common shares') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-23), Notes to the Consolidated Financial Statements (in millions of won), Note 42(b) 'Share-based payments': total share-based compensation costs W46,636 million for FY2024 (controlling company W4,950 million + subsidiaries W41,686 million), with W41,874 million for FY2023 and W28,251 million for FY2022 in the same table. Declared in KRW (the reporting currency); the engine FX-converts at period-end ECB rates.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 5.946510530763111,
+  "base_oe_per_share_final": 5.882940601318971,
+  "weighted_irr_zero_fill": 0.1294557330192564,
+  "weighted_irr_final": 0.1283885177524856,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "c08f5ec8986926a325348ecfcc9033c24d209f2212048a59b806a17846d39cd3"
+}

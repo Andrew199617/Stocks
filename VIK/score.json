@@ -1,0 +1,93 @@
+{
+ "ticker": "VIK",
+ "name": "Viking Holdings Ltd",
+ "sector": "Consumer Services / Cruise travel",
+ "price": 82.6,
+ "market_cap_b": 36.87,
+ "engine_version": 5,
+ "base_oe_per_share": 2.838883147127559,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Strong premium brand in destination-focused cruising for affluent 55+ travelers: #1-rated river and ocean product, direct distribution, identical-ship fleet design that lowers unit costs, advance-booking visibility (96% of 2026 core capacity booked at Q2 2026, 2027 advance bookings ahead of prior year) and proven pricing power (Q2 2026 net yield +6.2% YoY, revenue +16.5% YoY) with high reported returns on invested capital (45.8% for FY2025 on the company's own non-IFRS calc in the 20-F) \u2014 capped at moderate-strong because cruising has no network effects or switching costs (guests re-shop every voyage against Royal Caribbean, Norwegian, Oceania/Regent and river rivals), the fleet advantage is bought with replicable shipbuilding capital rather than owned, demand is discretionary and cyclical (COVID-era losses, low-water disruption on European rivers in 2026), and growth requires continuous heavy vessel capex funded partly with debt. A 6 gives CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), cover page, securities registered pursuant to Section 12(b): 'Ordinary Shares, par value $0.01 per share', trading symbol VIK, New York Stock Exchange \u2014 the NYSE security is the ordinary share itself; no ADSs are registered) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), Consolidated Statements of Cash Flows (p. F-9): 'Investments in property, plant and equipment and intangible assets' $(1,026,854) thousand for FY2025, with $(917,424) thousand for FY2024 and $(673,932) thousand for FY2023 in the same statement); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 18.47,
+   "irr": 0.0534
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 28.95,
+   "irr": 0.0718
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 43.28,
+   "irr": 0.0958
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 59.31,
+   "irr": 0.1197
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 83.81,
+   "irr": 0.1515
+  }
+ },
+ "iv_at_15": 43.23,
+ "iv_at_12": 59.43,
+ "implied_irr": 0.0961,
+ "implied_irr_base_case": 0.0958,
+ "upside_at_15_pct": -47.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Premium cruise brand with proven pricing power, moat 6/10 \u2014 but on the standardized total-capex OE base ($2.84/sh median) the weighted IRR is 9.61% (IV@15% $43.23 vs $82.60 price), so it clears 15% only below ~$43; confidence low \u2014 the median base is conservatively understated by the single-value capex override and no IFRS TTM pin exists.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Premium brand and product ratings \u2014 #1 for Rivers and Oceans (Conde Nast Readers' Choice, five consecutive years per company reporting), destination-focused 'Thinking Person' positioning for affluent 55+ travelers",
+  "Proven pricing power \u2014 Q2 2026 net yield +6.2% YoY on top of capacity growth; FY2025 revenue +21.9%",
+  "Booking visibility \u2014 96% of 2026 core capacity booked at Q2 2026; 2027 advance bookings pacing ahead of the prior season",
+  "Identical-ship fleet design \u2014 standardized river and ocean ships lower crew training, maintenance and inventory costs; young fleet keeps maintenance capex low (company-defined Ongoing Capex only $135.1M in FY2025)",
+  "High returns on capital \u2014 ROIC 45.8% for FY2025 on the company's own 20-F non-IFRS calculation",
+  "Direct sales channel and loyal repeat-guest base in a demographic (affluent retirees) with growing wealth and leisure time"
+ ],
+ "moat_against": [
+  "No network effects or switching costs \u2014 guests re-shop each voyage; Royal Caribbean, Norwegian, premium lines (Oceania/Regent) and river rivals compete for the same affluent traveler",
+  "Fleet advantage is replicable capital, not owned \u2014 any well-funded rival can order similar ships; growth requires ~$1B/yr of vessel capex",
+  "Discretionary, cyclical demand \u2014 travel spending falls in recessions and stops in crises (COVID-era losses; FY2023 net loss on derivative marks shows the leveraged history)",
+  "Environmental/operational exposure \u2014 historically low European river water levels disrupted over 50% of river capacity PCDs in Q3 2026; fuel and emissions-regulation costs sit outside management control",
+  "Leverage and sponsor history \u2014 net debt $1,698,031,000 at FY2025 (dcf_numbers.json) after a leveraged pre-IPO capital structure; share count rose with preference conversions and equity issuance (diluted shares 446,418,000 in FY2025 vs 221,936,000 in FY2023 on the engine history, a basis break from the Series C conversion at IPO)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 1026854000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-03), Consolidated Statements of Cash Flows (p. F-9): 'Investments in property, plant and equipment and intangible assets' $(1,026,854) thousand for FY2025, with $(917,424) thousand for FY2024 and $(673,932) thousand for FY2023 in the same statement"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 5.6391,
+  "base_oe_with_override": 2.8389,
+  "base_oe_impact_pct": -49.657,
+  "weighted_irr_without_override": 0.1423,
+  "weighted_irr_with_override": 0.0961,
+  "weighted_irr_impact_pp": -4.62,
+  "unblocks_tier": true
+ }
+}

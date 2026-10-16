@@ -1,0 +1,94 @@
+{
+ "ticker": "SQM",
+ "name": "Sociedad Quimica y Minera de Chile S.A. (SQM)",
+ "sector": "Materials / Specialty Chemicals & Mining \u2014 lithium, iodine, specialty plant nutrition",
+ "price": 60.75,
+ "market_cap_b": 17.35,
+ "engine_version": 5,
+ "base_oe_per_share": 1.0603844343970077,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "SQM's moat is a resource moat, not a pricing moat. FOR: the Salar de Atacama brine operation is structurally lower-cost than spodumene rivals, at world-leading lithium scale; SQM is also the world's leading iodine producer and a leader in potassium nitrate, which diversify earnings; resource access runs through the Corfo lease to 2030 and the Codelco/Nova Andino partnership into 2031-2060. AGAINST: SQM is a price-taker in lithium (revenue fell from $10.71B in FY2022 to $4.53B in FY2024 in the filed history), the core asset is state-owned and leased with rates up to 40% of the lithium price and a state majority partner from 2031, new supply from China/Africa/Argentina/Australia caused the last collapse, and capex is heavy ($971.8M in FY2024, ~US$3B guided for 2026-2028). Moderate moat, 5/10, CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-22), cover page: 'Series B common shares, in the form of American Depositary Shares each representing one Series B share' registered on the NYSE; Glossary likewise defines ADR/ADS as 'each representing one series B common share'.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-22), Note 17.6 Executive compensation plan: the share-based compensation plan 'was paid in cash in 2023' and its only stated income-statement expense is ThUS$2,251 for the year ended 2022; Item 16G NYSE-standards comparison states 'SQM does not have equity compensation plans' and that executives participate only in a long-term cash bonus compensation plan; Note 3.29 states compensation plans are share-based payments settled in cash, recognized at fair value through payroll. The other executive plan (Note 17.6 I) is explicitly paid in cash.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "LOW_OE_YIELD: base OE yield 1.7% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 3.86,
+   "irr": 0.0315
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 5.72,
+   "irr": 0.0356
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 8.88,
+   "irr": 0.0434
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 13.05,
+   "irr": 0.0538
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 20.55,
+   "irr": 0.072
+  }
+ },
+ "iv_at_15": 9.34,
+ "iv_at_12": 12.39,
+ "implied_irr": 0.0449,
+ "implied_irr_base_case": 0.0434,
+ "upside_at_15_pct": -84.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "World-scale low-cost lithium/iodine producer, moat 5/10 \u2014 but on the engine's stale trough median base ($1.06/share, history ending FY2024) it screens Tier D: weighted IRR 4.49%, weighted IV@15% $9.34 vs $60.75 per ADS; clears 15% only below ~$9.34 on this base, and the base \u2014 not the franchise \u2014 is the weak link (see analysis method-range note).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Salar de Atacama brine resource: solar-evaporation brine extraction is structurally lower-cost than hard-rock spodumene, and SQM's scale there is world-leading in lithium",
+  "World-leading positions beyond lithium: the largest iodine producer and a leader in potassium nitrate / specialty plant nutrition, which earn through the lithium cycle",
+  "Long-dated resource access: Corfo lease to 2030 plus the Codelco partnership agreement (Nova Andino Litio) extending Salar operations into the 2031-2060 period",
+  "Diversified earnings base across lithium, iodine, specialty plant nutrition, potassium and industrial chemicals \u2014 OE was positive in 3 of the last 5 filed fiscal years despite the 2023-24 lithium collapse",
+  "Proven through-cycle cash generation: FY2022 conservative owner's earnings of $3,172,348,000 in the filed history show what the asset earns when lithium prices are strong"
+ ],
+ "moat_against": [
+  "Commodity price-taker: lithium is priced by the market, not by SQM \u2014 revenue swung from $10,710,578,000 (FY2022) to $4,528,761,000 (FY2024) in the filed history with no change in the asset base",
+  "The core asset is leased from the state: the Corfo Salar de Atacama lease expires December 31, 2030, lease rates already run up to 40% of the lithium price, and the Codelco partnership makes the Chilean state the majority productive actor for 2031-2060",
+  "Supply growth SQM does not control: Chinese, African and Argentine brine/spodumene and Australian restarts drove the 2023-24 price collapse and can repeat it",
+  "Atacama water use, community and environmental scrutiny, plus Chilean resource politics, cap how much of any price upside SQM keeps",
+  "Capex intensity is real and rising: capex was $971,792,000 in FY2024 against OCF of $1,274,678,000, and the company guides to about US$3 billion of capex over 2026-2028"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-22), Note 17.6 Executive compensation plan: the share-based compensation plan 'was paid in cash in 2023' and its only stated income-statement expense is ThUS$2,251 for the year ended 2022; Item 16G NYSE-standards comparison states 'SQM does not have equity compensation plans' and that executives participate only in a long-term cash bonus compensation plan; Note 3.29 states compensation plans are share-based payments settled in cash, recognized at fair value through payroll. The other executive plan (Note 17.6 I) is explicitly paid in cash."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 1.0604,
+  "base_oe_with_override": 1.0604,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.0449,
+  "weighted_irr_with_override": 0.0449,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

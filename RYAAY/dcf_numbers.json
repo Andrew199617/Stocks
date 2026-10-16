@@ -1,0 +1,218 @@
+{
+ "ticker": "RYAAY",
+ "name": "Ryanair Holdings plc",
+ "cik": 1038683,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 51.33,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1107700000,
+ "market_cap_est": 56858241000.0,
+ "net_debt_latest": -1438070550.0,
+ "latest_period_end": "2025-03-31",
+ "rev_cagr_5y": 0.10142647931572601,
+ "rev_cagr_3y": 0.4144536863226218,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 2001207599.9999998,
+ "base_oe_per_share": 3.613266407872167,
+ "base_oe_latest_per_share": 3.613266407872167,
+ "base_oe_normalized_per_share": 3.613266407872167,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.10142647931572601,
+  "rev_cagr_3y": 0.4144536863226218,
+  "rev_yoy_latest": 0.03792535255545615,
+  "oe_ps_cagr_2y": -0.017205706564236256
+ },
+ "g_blend": 0.06967591593559108,
+ "share_cagr": -0.0067668582656215115,
+ "share_count_adj": 0.0067668582656215115,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 2.0,
+  "source": "Ryanair Holdings plc Form 20-F for the fiscal year ended March 31, 2025 (SEC filing, accession 0001558370-25-007966), Item 12 (Description of Securities Other than Equity Securities): during FY25 the Board approved a change to the ADS ratio so that one ADS is now equal to two Ordinary Shares, a 2:1 ratio (previously 5:1); the ratio change was effected in September 2024",
+  "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price ($51.33) is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. Using the pre-September-2024 5:1 ratio would overstate per-ADS owner's earnings 2.5x."
+ },
+ "fx_conversion": {
+  "from_currency": "EUR",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2015-03-31": 1.0759,
+   "2016-03-31": 1.1385,
+   "2017-03-31": 1.0691,
+   "2018-03-31": 1.2321,
+   "2019-03-31": 1.1235,
+   "2020-03-31": 1.0956,
+   "2021-03-31": 1.1725,
+   "2022-03-31": 1.1101,
+   "2023-03-31": 1.0875,
+   "2024-03-31": 1.0811,
+   "2025-03-31": 1.0815
+  },
+  "rates_by_currency": {
+   "EUR": {
+    "2015-03-31": 1.0759,
+    "2016-03-31": 1.1385,
+    "2017-03-31": 1.0691,
+    "2018-03-31": 1.2321,
+    "2019-03-31": 1.1235,
+    "2020-03-31": 1.0956,
+    "2021-03-31": 1.1725,
+    "2022-03-31": 1.1101,
+    "2023-03-31": 1.0875,
+    "2024-03-31": 1.0811,
+    "2025-03-31": 1.0815
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.0764427742012126,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0436,
+   "oe_mult": 0.75,
+   "iv_at_10": 26.195237406711144,
+   "iv_at_12": 21.05774149748766,
+   "iv_at_15": 16.38325981342775,
+   "irr": 0.06171201865551679
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0264,
+   "oe_mult": 0.9,
+   "iv_at_10": 44.76657149331738,
+   "iv_at_12": 35.32940300199535,
+   "iv_at_15": 26.837718433865298,
+   "irr": 0.09042207811467456
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0764,
+   "oe_mult": 1.0,
+   "iv_at_10": 63.86936401205535,
+   "iv_at_12": 49.81368935629497,
+   "iv_at_15": 37.25111060642106,
+   "irr": 0.11733679208978429
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1264,
+   "oe_mult": 1.1,
+   "iv_at_10": 89.96075287443281,
+   "iv_at_12": 69.41570918930078,
+   "iv_at_15": 51.16136831898241,
+   "irr": 0.14963313311939508
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1964,
+   "oe_mult": 1.25,
+   "iv_at_10": 143.70608485875192,
+   "iv_at_12": 109.42302306822538,
+   "iv_at_15": 79.17915799784392,
+   "irr": 0.20390740854740053
+  }
+ },
+ "weighted": {
+  "iv_at_10": 69.83277252210046,
+  "iv_at_12": 54.178461311283826,
+  "iv_at_15": 40.23134665126541,
+  "irr": 0.12487192446297046
+ },
+ "implied_irr_weighted": 0.12487192446297046,
+ "implied_irr_base": 0.11733679208978429,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.21622157312944845,
+ "upside_at_12": 0.055493109512640304,
+ "iv_at_15": 40.23134665126541,
+ "iv_at_12": 54.178461311283826,
+ "diagnostics": {
+  "oe_yield": 0.07039287761293916,
+  "tv_share_at_15": 0.2015028849757416,
+  "scenario_spread_iv15": 4.832930619396547,
+  "net_debt_to_normalized_oe": -0.35930069174232604,
+  "months_since_fy_end": 18.462549277266753,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 18 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Ryanair Holdings plc Form 20-F for the fiscal year ended March 31, 2025 (SEC filing, accession 0001558370-25-007966), Item 12 (Description of Securities Other than Equity Securities): during FY25 the Board approved a change to the ADS ratio so that one ADS is now equal to two Ordinary Shares, a 2:1 ratio (previously 5:1); the ratio change was effected in September 2024) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "af6b3b983b564ea1d18a87d3d9fa86e482de9039913f61007f783495061d8b59"
+}

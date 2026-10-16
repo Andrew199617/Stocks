@@ -1,0 +1,43 @@
+{
+ "ticker": "ROIV",
+ "name": "Roivant Sciences Ltd.",
+ "sector": "Biotechnology",
+ "price": 33.62,
+ "market_cap_b": 23.33,
+ "engine_version": 5,
+ "base_oe_per_share": -1.621017905795653,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "The Vant sourcing/development model and the Genevant LNP patent estate have repeatedly converted into cash (Telavant sold to Roche in 2023, Dermavant to Organon in 2024, a $2.25B Moderna settlement), which is a real organizational capability \u2014 but Roivant owns no commercial product with proven pricing power yet, its revenue base was sold with Dermavant, and pipeline value is concentrated in three binary assets facing entrenched competition. A proven deal machine is not yet a durable earnings moat \u2014 weak, 4/10.",
+ "cap_years": null,
+ "fragility_flags": [
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Proven deal-making platform, moat 4/10, with a large cash pile and three late-stage assets \u2014 but conservative OE is negative on the median (-$1.56/share), latest-FY (-$1.59/share) and TTM (-$1.62/share) bases, so Tier F on this screen and no 15%-clearing price is computable from an OE DCF.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Vant model has repeatedly in-licensed, developed and monetized assets (Telavant to Roche, Dermavant to Organon)",
+  "Genevant foundational LNP patent estate produced a $2.25B Moderna settlement, $950M paid July 2026",
+  "Three late-stage pipeline-in-a-product assets: brepocitinib/Lisraya, IMVT-1402, mosliciguat",
+  "Company-reported $4.3B cash and marketable securities at FY2026 funds the pipeline and buybacks"
+ ],
+ "moat_against": [
+  "No commercial revenue base \u2014 FY2026 revenue $8.26M after the Dermavant sale; no proven pricing power",
+  "Value concentrated in three clinical assets with binary trial/regulatory risk",
+  "IMVT-1402 faces entrenched FcRn competition (argenx Vyvgart, J&J nipocalimab); brepocitinib carries JAK boxed-warning overhang",
+  "Heavy SBC load ($346.2M FY2026) on top of ~$750-816M/yr negative operating cash flow",
+  "Monetization history is one-off asset sales and litigation, not recurring owner's earnings"
+ ]
+}

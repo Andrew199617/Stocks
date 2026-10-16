@@ -1,0 +1,224 @@
+{
+ "ticker": "TECK",
+ "name": "TECK RESOURCES LIMITED",
+ "cik": 886986,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 64.0,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 495352000,
+ "market_cap_est": 31702528000.0,
+ "net_debt_latest": -809238880.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.02264853111329379,
+ "rev_cagr_3y": -0.14993548557758296,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": -310403000.0,
+ "base_oe_per_share": 0.16951224340622525,
+ "base_oe_latest_per_share": -0.6266311632939808,
+ "base_oe_normalized_per_share": 0.16951224340622525,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.02264853111329379,
+  "rev_cagr_3y": -0.14993548557758296,
+  "rev_yoy_latest": 0.24689221001339834,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.02264853111329379,
+ "share_cagr": -0.025851700998943516,
+ "share_count_adj": 0.025851700998943516,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-19), cover page: securities registered under Section 12(b) are 'Class B subordinate voting shares', trading symbol TECK, listed directly on the New York Stock Exchange \u2014 the NYSE security is the Class B share itself, not an ADS",
+  "reason": "Teck is a direct-listed foreign private issuer: one NYSE-traded TECK share is one Class B subordinate voting share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": {
+  "from_currency": "CAD",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2015-12-31": 0.72023,
+   "2016-12-31": 0.74295,
+   "2017-01-01": 0.74295,
+   "2017-12-31": 0.79746,
+   "2018-12-31": 0.73374,
+   "2019-12-31": 0.76956,
+   "2020-12-31": 0.78494,
+   "2021-12-31": 0.78691,
+   "2022-12-31": 0.73864,
+   "2023-12-31": 0.75468,
+   "2024-12-31": 0.69501,
+   "2025-12-31": 0.73036
+  },
+  "rates_by_currency": {
+   "CAD": {
+    "2015-12-31": 0.72023,
+    "2016-12-31": 0.74295,
+    "2017-01-01": 0.74295,
+    "2017-12-31": 0.79746,
+    "2018-12-31": 0.73374,
+    "2019-12-31": 0.76956,
+    "2020-12-31": 0.78494,
+    "2021-12-31": 0.78691,
+    "2022-12-31": 0.73864,
+    "2023-12-31": 0.75468,
+    "2024-12-31": 0.69501,
+    "2025-12-31": 0.73036
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.04850023211223731,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0715,
+   "oe_mult": 0.75,
+   "iv_at_10": 1.1462567836318538,
+   "iv_at_12": 0.9205802109372039,
+   "iv_at_15": 0.7157311705544496,
+   "irr": -0.06351696286981162
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0015,
+   "oe_mult": 0.9,
+   "iv_at_10": 1.8628924206618205,
+   "iv_at_12": 1.4771918680560072,
+   "iv_at_15": 1.1293172859403569,
+   "irr": -0.0281211611053927
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0485,
+   "oe_mult": 1.0,
+   "iv_at_10": 2.5574249373471307,
+   "iv_at_12": 2.0115191005936137,
+   "iv_at_15": 1.5210815161759073,
+   "irr": -0.00443288844785511
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0985,
+   "oe_mult": 1.1,
+   "iv_at_10": 3.4607054168059292,
+   "iv_at_12": 2.701962029790038,
+   "iv_at_15": 2.0226901389076155,
+   "irr": 0.01857613051502993
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1685,
+   "oe_mult": 1.25,
+   "iv_at_10": 5.217484332344768,
+   "iv_at_12": 4.036197896444479,
+   "iv_at_15": 2.983159572721075,
+   "irr": 0.03163678735346481
+  }
+ },
+ "weighted": {
+  "iv_at_10": 2.734501052168739,
+  "iv_at_12": 2.143922015377764,
+  "iv_at_15": 1.6142153853923178,
+  "irr": 0.001093199998927319
+ },
+ "implied_irr_weighted": 0.001093199998927319,
+ "implied_irr_base": -0.00443288844785511,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.974777884603245,
+ "upside_at_12": -0.9665012185097225,
+ "iv_at_15": 1.6142153853923178,
+ "iv_at_12": 2.143922015377764,
+ "diagnostics": {
+  "oe_yield": 0.0026486288032222696,
+  "tv_share_at_15": 0.18682611560460516,
+  "scenario_spread_iv15": 4.167988897856908,
+  "net_debt_to_normalized_oe": -9.63744134663536,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.6%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-19), cover page: securities registered under Section 12(b) are 'Class B subordinate voting shares', trading symbol TECK, listed directly on the New York Stock Exchange \u2014 the NYSE security is the Class B share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share -0.63 vs 3-yr median 0.17 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 9.6x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "content_hash": "419082fd9894c899c24dfab5c5fda2d69ff38a2d4009772b9f0b49d44462ae84"
+}

@@ -1,0 +1,72 @@
+{
+ "ticker": "SSNC",
+ "name": "SS&C Technologies Holdings, Inc.",
+ "sector": "Financial Services Software & Fund Administration",
+ "price": 84.19,
+ "market_cap_b": 21.31,
+ "engine_version": 5,
+ "base_oe_per_share": 6.063368765331153,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Core fund-administration and investment-operations systems are deeply embedded and painful to migrate, with high revenue retention and scale from serial acquisitions, but the moat is assembled by M&A, organic growth is mid-single-digit, and large platform rivals and in-house builds cap pricing power.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 27.32,
+   "irr": 0.0623
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 44.76,
+   "irr": 0.0915
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 62.13,
+   "irr": 0.1188
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 85.33,
+   "irr": 0.1515
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 132.06,
+   "irr": 0.2065
+  }
+ },
+ "iv_at_15": 67.1,
+ "iv_at_12": 90.32,
+ "implied_irr": 0.1264,
+ "implied_irr_base_case": 0.1188,
+ "upside_at_15_pct": -20.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Durable, levered financial-software compounder, moat 6/10 \u2014 does not clear 15% at $84.19 (weighted IRR 12.6%, IV@15 $67.10); it clears the hurdle only at or below ~$67.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "High switching costs \u2014 fund accounting/admin migrations take years and carry operational risk",
+  "Recurring multi-year contract revenue with ~97% reported retention",
+  "Scale as a leading independent fund administrator across alternatives, wealth and healthcare",
+  "Cross-sell across 20,000+ installed clients and acquired networks (e.g. Calastone)",
+  "Pricing/margin discipline \u2014 39.5% adjusted EBITDA margin in Q2 2026"
+ ],
+ "moat_against": [
+  "Moat is bought, not built \u2014 goodwill-heavy roll-up, integration and amortization drag",
+  "Leverage: net debt $6,971,300,000 limits flexibility",
+  "Competition from FIS, Fiserv, Broadridge, custodian outsourcing and client in-sourcing",
+  "Organic growth only mid-single-digit \u2014 no network-effect acceleration",
+  "AI/automation can compress per-transaction services pricing over time"
+ ]
+}

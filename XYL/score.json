@@ -1,0 +1,73 @@
+{
+ "ticker": "XYL",
+ "name": "Xylem Inc.",
+ "sector": "Industrials / Water technology",
+ "price": 102.74,
+ "market_cap_b": 25.07,
+ "engine_version": 5,
+ "base_oe_per_share": 3.779686373543029,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Largest pure-play water technology company after the 2023 Evoqua deal: installed equipment base with recurring aftermarket/service revenue, Sensus AMI metering positions specified into long utility cycles, a global service and distribution network across 50+ countries, and demonstrated pricing power (margins expanded through tariff pressure). Held below strong: the broader water market is fragmented (single-digit share even for the leader), much of the portfolio is engineered equipment contestable by Veralto, Pentair, Ecolab and local players, metering faces credible rivals, and returns are good rather than exceptional.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 15.92,
+   "irr": 0.0419
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.07,
+   "irr": 0.0561
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 36.19,
+   "irr": 0.0705
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 49.71,
+   "irr": 0.089
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 70.49,
+   "irr": 0.1149
+  }
+ },
+ "iv_at_15": 38.44,
+ "iv_at_12": 51.44,
+ "implied_irr": 0.0741,
+ "implied_irr_base_case": 0.0705,
+ "upside_at_15_pct": -62.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality water pure-play, moat 6/10 \u2014 but priced for perfection on owner's earnings: weighted IRR 7.4% at $102.74, weighted IV@15% $38.44; clears the 15% hurdle only below ~$38.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest pure-play water platform post-Evoqua; scale in treatment, transport and metering",
+  "Installed base drives recurring aftermarket, services and outsourced-water revenue",
+  "Sensus AMI metering specified into long utility replacement cycles (switching costs)",
+  "Global service/distribution network in 50+ countries",
+  "Proven pricing power \u2014 operating margin 13.3% \u2192 16.7% YoY in Q2 2026 through tariff pressure",
+  "Regulatory demand drivers (PFAS remediation, IIJA funding) favor the incumbent leader"
+ ],
+ "moat_against": [
+  "Fragmented market \u2014 leader holds only single-digit share in smart water; no network effects",
+  "Much of the portfolio is engineered equipment contestable by Veralto, Pentair, Ecolab and local rivals",
+  "China business in retreat (orders collapsed; headcount cut ~40%)",
+  "Applied Water exposed to residential/commercial construction cycles",
+  "Serial-acquirer model: growth partly bought (Evoqua, now Cornell/Roper pumps) with integration and leverage risk",
+  "Metering (MCS) segment currently declining \u2014 electric-metering headwinds"
+ ]
+}

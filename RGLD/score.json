@@ -1,0 +1,88 @@
+{
+ "ticker": "RGLD",
+ "name": "Royal Gold, Inc.",
+ "sector": "Materials / Precious Metals Royalties & Streams",
+ "price": 233.0,
+ "market_cap_b": 16.21,
+ "engine_version": 5,
+ "base_oe_per_share": 12.126777672157342,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "The royalty/stream model itself is the moat: contractual interests on producing mines deliver an 83% adjusted EBITDA margin with no exposure to mine operating or capital costs, and the Sandstorm/Horizon acquisitions made the portfolio genuinely diversified (no asset above 13% of Q2 2026 revenue) at a scale that competes for large deals. Capped at moderate (5) because the company owns no pricing power and no operating control \u2014 gold was 76% of Q2 2026 revenue, operators decide production, the interests deplete and must be re-bought in competitive auctions against Franco-Nevada/Wheaton/Triple Flag/Osisko, and the latest growth step was bought with a ~29% larger share count rather than earned organically. A 5 gives CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-19, Consolidated Statements of Cash Flows (in thousands): the investing-activities section lists ONLY Sandstorm & Horizon acquisition, net of cash acquired $(411,342) for 2025 (none in 2024/2023), Acquisition of stream and royalty interests $(1,164,753) / $(102,564) / $(2,678) for 2025/2024/2023, Proceeds from the sale of the Versamet Shares and other securities $158,886 (2025 only), Cash calls for Hod Maden equity method investment $(9,330) (2025 only), Proceeds from Khoemacau debt facility $25,000 (2024 only), Proceeds from the sale of inventory - restricted $7,681 (2025 only), and Other $299 / $(116) / $(151) \u2014 net cash used in investing activities $(1,418,559) / $(77,680) / $(2,829). There is no purchases-of-property-and-equipment line anywhere in the statement for any of the three years, and the balance sheet carries no property and equipment asset line (the engine's financials_history.csv ppe_net is blank for every year).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 55.22,
+   "irr": 0.0523
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 88.81,
+   "irr": 0.0726
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 131.89,
+   "irr": 0.0981
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 178.08,
+   "irr": 0.1231
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 258.04,
+   "irr": 0.1614
+  }
+ },
+ "iv_at_15": 137.62,
+ "iv_at_12": 185.03,
+ "implied_irr": 0.1016,
+ "implied_irr_base_case": 0.0981,
+ "upside_at_15_pct": -40.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-margin precious-metals royalty/stream portfolio, moat 5/10 \u2014 on the post-acquisition TTM base of $12.13/share it still does not clear 15% at $233.00: weighted IRR 10.16% (Tier C), weighted IV@15% $137.62; it clears 15% only at ~$138 (~$110 with a margin of safety), and on the pre-deal median base the same scenarios print ~7.6% (Tier D).",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Contractual, long-life stream/royalty interests on producing mines \u2014 revenue with no mine operating or capital-cost exposure; adjusted EBITDA margin 83% in Q2 2026",
+  "Post-Sandstorm/Horizon diversification \u2014 393+ interests, no single asset above 13% of Q2 2026 revenue and only two above 10%",
+  "Scale and deal access in a consolidating sector \u2014 one of the largest precious-metals royalty companies, able to compete for the large transactions that dominate deal flow",
+  "Capital-allocation record \u2014 25 consecutive annual dividend increases (2026 dividend $1.90), $500M of revolver debt repaid in H1 2026 from operating cash flow"
+ ],
+ "moat_against": [
+  "No pricing power and no operating control \u2014 a price-taker on gold (76% of Q2 2026 revenue); operators set mine plans, throughput and closures",
+  "Depletion is real and uncharged in the conservative OE definition \u2014 stream/royalty interests waste with production, and replacing them means winning competitive auctions against Franco-Nevada, Wheaton, Triple Flag and Osisko",
+  "Growth is bought, dilutively \u2014 the Sandstorm/Horizon step-change took diluted shares from 65,781,000 (H1 2025 YTD) to 85,068,765 (H1 2026 YTD), and FY2025 stream acquisitions cost $1,164,753,000 against OCF of $704,846,000",
+  "Principal-property and jurisdiction concentration \u2014 five material properties (Andacollo, Cortez, Kansanshi, Mount Milligan, Pueblo Viejo) across counterparties and countries Royal Gold does not control"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, filed 2026-02-19, Consolidated Statements of Cash Flows (in thousands): the investing-activities section lists ONLY Sandstorm & Horizon acquisition, net of cash acquired $(411,342) for 2025 (none in 2024/2023), Acquisition of stream and royalty interests $(1,164,753) / $(102,564) / $(2,678) for 2025/2024/2023, Proceeds from the sale of the Versamet Shares and other securities $158,886 (2025 only), Cash calls for Hod Maden equity method investment $(9,330) (2025 only), Proceeds from Khoemacau debt facility $25,000 (2024 only), Proceeds from the sale of inventory - restricted $7,681 (2025 only), and Other $299 / $(116) / $(151) \u2014 net cash used in investing activities $(1,418,559) / $(77,680) / $(2,829). There is no purchases-of-property-and-equipment line anywhere in the statement for any of the three years, and the balance sheet carries no property and equipment asset line (the engine's financials_history.csv ppe_net is blank for every year)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 12.1268,
+  "base_oe_with_override": 12.1268,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1016,
+  "weighted_irr_with_override": 0.1016,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,127 @@
+{
+ "ticker": "PUK",
+ "name": "PRUDENTIAL PLC",
+ "cik": 1116578,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 23.81,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 2592000000,
+ "market_cap_est": 61715520000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.12565062554973816,
+ "rev_cagr_3y": 0.08543825640262281,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2346000000,
+ "base_oe_per_share": 1.8101851851851851,
+ "base_oe_latest_per_share": 1.8101851851851851,
+ "base_oe_normalized_per_share": 1.8101851851851851,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.12565062554973816,
+  "rev_cagr_3y": 0.08543825640262281,
+  "rev_yoy_latest": 0.069925512104283,
+  "oe_ps_cagr_2y": 0.7755874262132088
+ },
+ "g_blend": 0.0776818842534529,
+ "share_cagr": -0.01785693723263948,
+ "share_count_adj": 0.01785693723263948,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "DepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 2.0,
+  "source": "Prudential plc Form 20-F cover / registered security title for the NYSE listing: American Depositary Shares, each representing two ordinary shares of 5 pence each (EDGAR security title 'PRUDENTIAL PLC ADS (REP 2 ORD SHARES)'); the same 1 ADS = 2 ordinary shares ratio is stated in the filer's Form S-8/F-6 registrations",
+  "reason": "20-F filer: EDGAR per-share figures are per ordinary share while the Nasdaq/NYSE price ($23.81) is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. This also halves the engine's naive market-cap estimate (ordinary shares x ADS price)."
+ },
+ "fx_conversion": {
+  "from_currency": "GBP",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 1.5587,
+   "2015-12-31": 1.4833,
+   "2016-12-31": 1.2312,
+   "2017-12-31": 1.3517,
+   "2018-12-31": 1.28
+  },
+  "rates_by_currency": {
+   "GBP": {
+    "2014-12-31": 1.5587,
+    "2015-12-31": 1.4833,
+    "2016-12-31": 1.2312,
+    "2017-12-31": 1.3517,
+    "2018-12-31": 1.28
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 85000000.0,
+   "last_filed_value": 181000000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [
+  "sbc"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:sbc \u2014 sbc missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency GBP converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Prudential plc Form 20-F cover / registered security title for the NYSE listing: American Depositary Shares, each representing two ordinary shares of 5 pence each (EDGAR security title 'PRUDENTIAL PLC ADS (REP 2 ORD SHARES)'); the same 1 ADS = 2 ordinary shares ratio is stated in the filer's Form S-8/F-6 registrations) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
+ "content_hash": "bb37cd84a702751bf385291a5afedcec801c7ab838c5f4575d9386346a764789"
+}

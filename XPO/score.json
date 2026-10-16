@@ -1,0 +1,70 @@
+{
+ "ticker": "XPO",
+ "name": "XPO, Inc.",
+ "sector": "Industrials \u2014 Transportation (LTL freight)",
+ "price": 188.83,
+ "market_cap_b": 22.47,
+ "engine_version": 5,
+ "base_oe_per_share": 4.302521008403361,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "LTL density and scarce terminal real estate are genuine advantages and the post-Yellow industry is consolidated and pricing-disciplined, but XPO still trails Old Dominion on efficiency (record 79.9% adjusted OR vs mid-70s benchmark), freight is cyclical with tonnage only +1% YoY in Q2 2026, and the network consumes structural capex every year; leverage is 5.7x TTM OE and the European segment dilutes the story.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 18.14,
+   "irr": 0.0353
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 29.71,
+   "irr": 0.0442
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 47.13,
+   "irr": 0.0585
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 67.63,
+   "irr": 0.0746
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 100.09,
+   "irr": 0.0979
+  }
+ },
+ "iv_at_15": 50.3,
+ "iv_at_12": 67.99,
+ "implied_irr": 0.0615,
+ "implied_irr_base_case": 0.0585,
+ "upside_at_15_pct": -73.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong LTL network, moat 6/10, margins inflecting \u2014 but at $188.83 the OE yield is 2.28% and even the super-bull case returns only 9.8%; it clears 15% only near $50.30, so Tier D.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Scale and density: ~9% U.S. LTL share, ~300 service centers, 99% ZIP coverage",
+  "Scarce terminal footprint: 28 Yellow terminals bought for $870M; dock-door capacity +15% since 2021",
+  "Consolidated, pricing-disciplined industry post-Yellow; yield ex-fuel +4.4% YoY in Q2 2026",
+  "Proprietary tech and insourcing: outsourced linehaul miles 25.2% (2020) to 6.1% (Q2 2026); record <0.2% damage claims ratio"
+ ],
+ "moat_against": [
+  "Efficiency laggard vs Old Dominion (79.9% record OR vs mid-70s benchmark); convergence is execution, not entitlement",
+  "Cyclical industrial freight: Q2 2026 tonnage per day only +1% YoY; volume recovery unproven",
+  "Structural capex intensity: FY2026 guided gross capex $500-600M; conservative OE was negative in FY2023-24",
+  "Leverage and European drag: net debt $2,943M = 5.7x TTM OE; European segment posted a Q2 2026 operating loss"
+ ]
+}

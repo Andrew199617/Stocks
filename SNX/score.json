@@ -1,0 +1,71 @@
+{
+ "ticker": "SNX",
+ "name": "TD SYNNEX CORPORATION",
+ "sector": "Technology / IT distribution",
+ "price": 255.14,
+ "market_cap_b": 21.03,
+ "engine_version": 5,
+ "base_oe_per_share": 12.626226400870193,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Real scale, breadth and Hyve's hyperscaler seat, but distribution is a thin-margin, low-switching-cost business where vendors and cloud marketplaces can route around the middleman and growth itself consumes working capital.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.8%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 70.5,
+   "irr": 0.0589
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 106.53,
+   "irr": 0.0782
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 137.72,
+   "irr": 0.0945
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 189.48,
+   "irr": 0.1203
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 288.22,
+   "irr": 0.1638
+  }
+ },
+ "iv_at_15": 145.24,
+ "iv_at_12": 195.0,
+ "implied_irr": 0.0988,
+ "implied_irr_base_case": 0.0945,
+ "upside_at_15_pct": -43.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real scale distributor, moat 4/10, but thin-margin AI volume is consuming cash (TTM OE negative on a working-capital build) and at $255.14 it does not clear 15% \u2014 it clears 15% only at or below $145.24.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest-scale IT distributor \u2014 purchasing, logistics and credit capacity smaller rivals cannot match",
+  "Breadth: ~1,500 vendors, ~150,000 customers, 100+ countries; kept in Microsoft's consolidated distributor network",
+  "Hyve Solutions \u2014 direct hyperscaler design/build relationships peers do not hold the same way",
+  "Durable vendor/customer operating relationships across regions"
+ ],
+ "moat_against": [
+  "No pricing power \u2014 Q3 FY2026 gross margin contracted 61bp to 6.61% as AI volume surged",
+  "Low switching costs; head-on scale competition from Ingram Micro and Arrow; vendor-direct and cloud-marketplace disintermediation",
+  "Working-capital intensity \u2014 accelerating volume consumed cash in FY2026 (negative TTM OCF, $15.3B inventories)",
+  "Razor-thin earnings margin leaves little buffer against a hardware downcycle"
+ ]
+}

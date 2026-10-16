@@ -1,0 +1,72 @@
+{
+ "ticker": "ROKU",
+ "name": "Roku, Inc.",
+ "sector": "Communication Services / Streaming TV platform",
+ "price": 154.57,
+ "market_cap_b": 23.33,
+ "engine_version": 5,
+ "base_oe_per_share": 2.5212298875618147,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Leading TV operating system in the US (~37% share, ~100M households) with home-screen gatekeeper economics and a high-margin platform (advertising + subscriptions) on top, but no owned must-have content, rival OSes from Amazon/Google/Samsung/Apple that can subsidize distribution, cyclical ad exposure, and SBC still large enough to dilute 3.1%/yr. Moderate moat, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.6% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 17.39,
+   "irr": 0.0396
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 28.48,
+   "irr": 0.0508
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 45.04,
+   "irr": 0.0675
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 67.23,
+   "irr": 0.0879
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 107.72,
+   "irr": 0.1197
+  }
+ },
+ "iv_at_15": 49.95,
+ "iv_at_12": 69.66,
+ "implied_irr": 0.0726,
+ "implied_irr_base_case": 0.0675,
+ "upside_at_15_pct": -67.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Profitability-inflecting CTV platform leader, moat 6/10 \u2014 standalone DCF does not clear 15% even on generous operating-leverage growth (weighted IRR 7.26%, IV@15 $49.95 vs $154.57 price); the price is a Fox-merger price, not standalone value \u2014 it clears 15% only at or below the weighted IV@15 of $49.95.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "#1 TV OS in the US (~37% share) reaching ~100M households \u2014 home-screen gatekeeper for discovery and advertising",
+  "Platform mix is the profit engine: high-margin advertising and subscription revenue; devices are distribution, not the business",
+  "The Roku Channel engagement plus first-party viewing data for ad targeting and measurement",
+  "Asset-light model \u2014 capex is negligible against operating cash flow in the filed history"
+ ],
+ "moat_against": [
+  "Amazon, Google, Samsung and Apple all ship rival TV operating systems and can subsidize hardware and defaults",
+  "No owned must-have content \u2014 The Roku Channel largely aggregates other owners' programming",
+  "Advertising revenue is cyclical and platform mix shifts pressure gross margin",
+  "SBC was $328,038,000 TTM \u2014 share count still growing 3.1%/yr despite buybacks",
+  "Pending Fox acquisition (DOJ second request, Sept 2026) makes standalone economics secondary until the deal closes or breaks"
+ ]
+}

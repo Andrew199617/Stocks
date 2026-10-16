@@ -1,0 +1,224 @@
+{
+ "ticker": "VOD",
+ "name": "VODAFONE GROUP PUBLIC LTD CO",
+ "cik": 839923,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 15.51,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 26149000000,
+ "market_cap_est": 405570990000.0,
+ "net_debt_latest": 45576572999.99999,
+ "latest_period_end": "2025-03-31",
+ "rev_cagr_5y": -0.038463021809870934,
+ "rev_cagr_3y": -0.004766174662549583,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 11830528499.999998,
+ "base_oe_per_share": 4.868951714485654,
+ "base_oe_latest_per_share": 4.524275689318903,
+ "base_oe_normalized_per_share": 4.868951714485654,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.038463021809870934,
+  "rev_cagr_3y": -0.004766174662549583,
+  "rev_yoy_latest": 0.0202863937012403,
+  "oe_ps_cagr_2y": -0.05604599895446427
+ },
+ "g_blend": -0.02161459823621026,
+ "share_cagr": -0.03510629277151678,
+ "share_count_adj": 0.03510629277151678,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 10.0,
+  "source": "Vodafone Group Plc Form 20-F (filed 14 June 2024), cover page: American Depositary Shares 'each representing ten ordinary shares'; same ratio stated in the depositary (BNY) ADR records for CUSIP 92857W209",
+  "reason": "20-F filer: EDGAR per-share figures are per ordinary share while the Nasdaq price ($15.51) is per ADS; engine per-share figures must be scaled by the 10:1 ADS ratio to be comparable to the traded price."
+ },
+ "fx_conversion": {
+  "from_currency": "EUR",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2015-03-31": 1.0759,
+   "2016-03-31": 1.1385,
+   "2017-03-31": 1.0691,
+   "2018-01-04": 1.2065,
+   "2018-03-31": 1.2321,
+   "2018-04-01": 1.2321,
+   "2019-03-31": 1.1235,
+   "2019-04-01": 1.1236,
+   "2020-03-31": 1.0956,
+   "2021-03-31": 1.1725,
+   "2022-03-31": 1.1101,
+   "2023-03-31": 1.0875,
+   "2024-03-31": 1.0811,
+   "2025-03-31": 1.0815
+  },
+  "rates_by_currency": {
+   "EUR": {
+    "2015-03-31": 1.0759,
+    "2016-03-31": 1.1385,
+    "2017-03-31": 1.0691,
+    "2018-01-04": 1.2065,
+    "2018-03-31": 1.2321,
+    "2018-04-01": 1.2321,
+    "2019-03-31": 1.1235,
+    "2019-04-01": 1.1236,
+    "2020-03-31": 1.0956,
+    "2021-03-31": 1.1725,
+    "2022-03-31": 1.1101,
+    "2023-03-31": 1.0875,
+    "2024-03-31": 1.0811,
+    "2025-03-31": 1.0815
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.01349169453530652,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.18,
+   0.07
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 29.03142244974818,
+   "iv_at_12": 23.44828559350472,
+   "iv_at_15": 18.36541401425183,
+   "irr": 0.17648211489526833
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0365,
+   "oe_mult": 0.9,
+   "iv_at_10": 46.024989881850736,
+   "iv_at_12": 36.72137620311369,
+   "iv_at_15": 28.304519307274568,
+   "irr": 0.2622463590085705
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0135,
+   "oe_mult": 1.0,
+   "iv_at_10": 63.37508055338026,
+   "iv_at_12": 50.127323376629654,
+   "iv_at_15": 38.19345175517666,
+   "irr": 0.33606512645700504
+  },
+  "bull": {
+   "prob": 0.18,
+   "g_start": 0.0635,
+   "oe_mult": 1.1,
+   "iv_at_10": 86.02092152725045,
+   "iv_at_12": 67.5043055351401,
+   "iv_at_15": 50.887242868225655,
+   "irr": 0.4174688828975096
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "g_start": 0.1335,
+   "oe_mult": 1.25,
+   "iv_at_10": 130.24263577340167,
+   "iv_at_12": 101.20445085055324,
+   "iv_at_15": 75.2654430751404,
+   "irr": 0.5457738939339187
+  }
+ },
+ "weighted": {
+  "iv_at_10": 61.77548487707472,
+  "iv_at_12": 48.806939268812656,
+  "iv_at_15": 37.132488152413586,
+  "irr": 0.32569825322923396
+ },
+ "implied_irr_weighted": 0.32569825322923396,
+ "implied_irr_base": 0.33606512645700504,
+ "tier_by_numbers": "S",
+ "upside_at_15": 1.3940998164031972,
+ "upside_at_12": 2.146804595023382,
+ "iv_at_15": 37.132488152413586,
+ "iv_at_12": 48.806939268812656,
+ "diagnostics": {
+  "oe_yield": 0.31392338584691515,
+  "tv_share_at_15": 0.17708921112615078,
+  "scenario_spread_iv15": 4.098216518110254,
+  "net_debt_to_normalized_oe": 0.35797369441051624,
+  "months_since_fy_end": 18.462549277266753,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 18 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.5%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Vodafone Group Plc Form 20-F (filed 14 June 2024), cover page: American Depositary Shares 'each representing ten ordinary shares'; same ratio stated in the depositary (BNY) ADR records for CUSIP 92857W209) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "7f5b89861f77d1beb688f6caec727efbdd652a00e5ba795e438dfb221c3160a9"
+}

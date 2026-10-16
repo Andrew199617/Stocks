@@ -1,0 +1,161 @@
+{
+ "ticker": "XYL",
+ "name": "Xylem Inc.",
+ "cik": 1524472,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 102.74,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 243994000,
+ "market_cap_est": 25067943560.0,
+ "net_debt_latest": -71000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.13130635496244114,
+ "rev_cagr_3y": 0.17831387872960391,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 857000000,
+ "base_oe_per_share": 3.779686373543029,
+ "base_oe_latest_per_share": 3.512381452002918,
+ "base_oe_normalized_per_share": 3.512381452002918,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.13130635496244114,
+  "rev_cagr_3y": 0.17831387872960391,
+  "rev_yoy_latest": 0.055244101845363325,
+  "oe_ps_cagr_2y": 0.23047104166606935
+ },
+ "g_blend": 0.15481011684602253,
+ "share_cagr": 0.10469008326038542,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.10481011684602252,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.165,
+   -0.095,
+   -0.045,
+   0.005,
+   0.055
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.779686373543029,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0602,
+   "oe_mult": 0.75,
+   "iv_at_10": 25.18337511730322,
+   "iv_at_12": 20.33988747190553,
+   "iv_at_15": 15.919745335385684,
+   "irr": 0.04186160345677703
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0098,
+   "oe_mult": 0.9,
+   "iv_at_10": 43.068861158412126,
+   "iv_at_12": 34.13186626796912,
+   "iv_at_15": 26.070524059608974,
+   "irr": 0.05612482332116847
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0598,
+   "oe_mult": 1.0,
+   "iv_at_10": 61.4966838123555,
+   "iv_at_12": 48.14588840089153,
+   "iv_at_15": 36.18772448898342,
+   "irr": 0.07052557784638014
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1098,
+   "oe_mult": 1.1,
+   "iv_at_10": 86.70432903017186,
+   "iv_at_12": 67.13387431753365,
+   "iv_at_15": 49.71266241939215,
+   "irr": 0.08902364731021983
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1598,
+   "oe_mult": 1.25,
+   "iv_at_10": 125.89294974591462,
+   "iv_at_12": 96.50548211881224,
+   "iv_at_15": 70.48725947525614,
+   "irr": 0.11488784142187469
+  }
+ },
+ "weighted": {
+  "iv_at_10": 65.99993517717444,
+  "iv_at_12": 51.44473862571493,
+  "iv_at_15": 38.44281444750949,
+  "irr": 0.07408486763742475
+ },
+ "implied_irr_weighted": 0.07408486763742475,
+ "implied_irr_base": 0.07052557784638014,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6258242705128529,
+ "upside_at_12": -0.4992725459829187,
+ "iv_at_15": 38.44281444750949,
+ "iv_at_12": 51.44473862571493,
+ "diagnostics": {
+  "oe_yield": 0.036788849265554105,
+  "tv_share_at_15": 0.19503142892185224,
+  "scenario_spread_iv15": 4.427662502777621,
+  "net_debt_to_normalized_oe": -0.0769880707840711,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "9e040edb028ddb7362cde3e27d81e268f0818af3cc8820cdf3e6d9d9cc4ddc8f"
+}

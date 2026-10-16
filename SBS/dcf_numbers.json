@@ -1,0 +1,122 @@
+{
+ "ticker": "SBS",
+ "name": "COMPANHIA DE SANEAMENTO BASICO DO ESTADO DE SAO PAULO-SABESP",
+ "cik": 1170858,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 6.4,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 683509868,
+ "market_cap_est": 4374463155.2,
+ "net_debt_latest": 3811953477.79,
+ "latest_period_end": "2024-12-31",
+ "rev_cagr_5y": 0.05487066832597676,
+ "rev_cagr_3y": 0.18650666644694258,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1180957889.6000001,
+ "base_oe_per_share": 1.4192726415044639,
+ "base_oe_latest_per_share": 1.727784696153063,
+ "base_oe_normalized_per_share": 1.4192726415044639,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.05487066832597676,
+  "rev_cagr_3y": 0.18650666644694258,
+  "rev_yoy_latest": 0.10895661367904541,
+  "oe_ps_cagr_2y": 0.26601342952878904
+ },
+ "g_blend": 0.147731640062994,
+ "share_cagr": -4.875676529181305e-10,
+ "share_count_adj": 4.875676529181305e-10,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": null,
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": null,
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": null,
+ "fx_conversion": {
+  "from_currency": "BRL",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "ocf",
+   "capex",
+   "da",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 0.37697,
+   "2015-12-31": 0.2525,
+   "2016-12-31": 0.30727,
+   "2017-12-31": 0.30187,
+   "2018-12-31": 0.25765,
+   "2019-12-31": 0.24878,
+   "2020-12-31": 0.19253,
+   "2021-12-31": 0.17949,
+   "2022-12-31": 0.18916,
+   "2023-12-31": 0.20609,
+   "2024-12-31": 0.16169
+  },
+  "rates_by_currency": {
+   "BRL": {
+    "2014-12-31": 0.37697,
+    "2015-12-31": 0.2525,
+    "2016-12-31": 0.30727,
+    "2017-12-31": 0.30187,
+    "2018-12-31": 0.25765,
+    "2019-12-31": 0.24878,
+    "2020-12-31": 0.19253,
+    "2021-12-31": 0.17949,
+    "2022-12-31": 0.18916,
+    "2023-12-31": 0.20609,
+    "2024-12-31": 0.16169
+   }
+  }
+ },
+ "override_checks": {},
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [
+  "sbc"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:sbc \u2014 sbc missing for fiscal year(s) 2022, 2023, 2024 of the last 3 \u2014 no tier emitted",
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
+ "content_hash": "a3b2a9419afa4f6715450dfc2a9c9c5ab2b11225337b8144c39b72cb458f4da8"
+}

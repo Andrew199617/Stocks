@@ -1,0 +1,90 @@
+{
+ "ticker": "RL",
+ "name": "Ralph Lauren Corporation",
+ "sector": "Consumer Cyclical / Luxury apparel & lifestyle",
+ "price": 392.36,
+ "market_cap_b": 24.44,
+ "engine_version": 5,
+ "base_oe_per_share": 12.111278195488723,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Strong, durable brand moat (narrow-wide): proven pricing power and full-price selling through cycles, but no switching costs or network effects and fashion/macro exposure cap it below wide-moat 8+. Score 6/10.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Ralph Lauren FY2026 Form 10-K filed 2026-05-21 (accession 0001628280-26-037074), Consolidated Statements of Cash Flows, period ended 2026-03-28: Capital expenditures (408.1) tagged us-gaap:PaymentsToAcquireMachineryAndEquipment, scale 6 (millions); FY2025 comparative (216.2) on the same line); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 60.63,
+   "irr": 0.043
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 95.02,
+   "irr": 0.0558
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 131.87,
+   "irr": 0.0696
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 181.08,
+   "irr": 0.0873
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 268.08,
+   "irr": 0.1155
+  }
+ },
+ "iv_at_15": 141.46,
+ "iv_at_12": 191.05,
+ "implied_irr": 0.0736,
+ "implied_irr_base_case": 0.0696,
+ "upside_at_15_pct": -63.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality luxury brand, moat 6/10, but priced far above owner's-earnings value - weighted IRR 7.4% and IV@15 $141 vs $392 price (Tier D); clears 15% only near $141.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Nearly 60-year iconic American luxury brand with proven pricing power - AUR up mid-teens in FY2026, gross margin 69.9%",
+  "Full-price DTC model and key-city flagship ecosystem raise direct consumer control and lifetime value",
+  "Balanced global footprint (North America / Europe / Asia) and multi-category lifestyle breadth",
+  "High returns on capital held through cycles; OE positive 5 of last 5 fiscal years",
+  "Net cash balance sheet supports brand investment through downturns"
+ ],
+ "moat_against": [
+  "No switching costs or network effects - consumers can move to rival luxury/premium brands freely",
+  "Aspirational (not ultra-high-net-worth) customer base is macro and discretionary-spending sensitive",
+  "Fashion and brand-heat cyclicality - taste shifts can erode pricing power",
+  "Tariff and Asia sourcing exposure pressures gross margin; sourcing diversified but not immune",
+  "Founder-linked brand identity is a long-term succession / narrative risk"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 408100000.0,
+   "kind": "filing",
+   "source": "Ralph Lauren FY2026 Form 10-K filed 2026-05-21 (accession 0001628280-26-037074), Consolidated Statements of Cash Flows, period ended 2026-03-28: Capital expenditures (408.1) tagged us-gaap:PaymentsToAcquireMachineryAndEquipment, scale 6 (millions); FY2025 comparative (216.2) on the same line"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 14.2344,
+  "base_oe_with_override": 12.1113,
+  "base_oe_impact_pct": -14.915,
+  "weighted_irr_without_override": 0.091,
+  "weighted_irr_with_override": 0.0736,
+  "weighted_irr_impact_pp": -1.746,
+  "unblocks_tier": true
+ }
+}

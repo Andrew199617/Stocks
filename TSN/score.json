@@ -1,0 +1,69 @@
+{
+ "ticker": "TSN",
+ "name": "Tyson Foods, Inc.",
+ "sector": "Consumer Staples / Protein processing & packaged foods",
+ "price": 54.04,
+ "market_cap_b": 19.29,
+ "engine_version": 5,
+ "base_oe_per_share": 3.0168067226890756,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Scale, distribution, and branded Prepared Foods are real, but most of the sales base is raw commodity protein with little brand or pricing power, so returns are driven by cattle/hog/feed cycles Tyson does not control; beef losses, a $343M beef goodwill impairment, and recurring legal accruals confirm the weak moat.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 12.14,
+   "irr": 0.0508
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 18.78,
+   "irr": 0.0673
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 24.89,
+   "irr": 0.0826
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 32.56,
+   "irr": 0.1014
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 46.85,
+   "irr": 0.1344
+  }
+ },
+ "iv_at_15": 24.21,
+ "iv_at_12": 31.89,
+ "implied_irr": 0.0812,
+ "implied_irr_base_case": 0.0826,
+ "upside_at_15_pct": -55.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Weak-moat (3/10) commodity protein processor \u2014 chicken and branded prepared foods are real, but beef-cycle losses and recurring legal accruals cap owner's earnings; at $54.04 it does not clear 15% in any scenario (weighted IRR 8.1%, IV@15% $24.21; hurdle-clearing price $24.21, super-bull IV only $46.85).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest US meat company by volume; procurement, processing, and distribution scale",
+  "Branded Prepared Foods portfolio (Jimmy Dean, Hillshire Farm, Ball Park) with steadier, higher margins",
+  "Vertically integrated chicken operations \u2014 the current profit engine",
+  "Multi-protein diversification \u2014 chicken and prepared foods currently offset beef losses"
+ ],
+ "moat_against": [
+  "Raw beef/pork/chicken are commodities with little to no pricing power; margins set by livestock/feed spreads",
+  "Beef cycle exposure structural \u2014 multi-decade-low cattle herd, FY2026 beef losses guided wider",
+  "Recurring legal contingency accruals ($698M-$738M in FY2025) look systemic, not one-off",
+  "Limited synergies across the three proteins; diversification adds complexity"
+ ]
+}

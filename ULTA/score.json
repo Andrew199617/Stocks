@@ -1,0 +1,70 @@
+{
+ "ticker": "ULTA",
+ "name": "Ulta Beauty, Inc.",
+ "sector": "Consumer Discretionary / Specialty Retail - Beauty",
+ "price": 591.3615,
+ "market_cap_b": 26.61,
+ "engine_version": 5,
+ "base_oe_per_share": 20.016795709331397,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Scale, the broadest mass-plus-prestige assortment in U.S. beauty, and a ~47-million-member loyalty program give Ulta real repeat-purchase and data advantages, but it owns almost no product, switching costs are low, brands can sell through Sephora, Amazon or direct, and pricing is largely set by brands \u2014 a narrow retail moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.5%/yr \u2014 already credited via the growth adjustment"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 115.6,
+   "irr": 0.049
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 163.85,
+   "irr": 0.0604
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 223.85,
+   "irr": 0.0749
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 290.09,
+   "irr": 0.0901
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 403.8,
+   "irr": 0.1145
+  }
+ },
+ "iv_at_15": 232.58,
+ "iv_at_12": 312.93,
+ "implied_irr": 0.0772,
+ "implied_irr_base_case": 0.0749,
+ "upside_at_15_pct": -60.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality narrow-moat beauty retailer, moat 5/10 \u2014 does not clear 15% at $591.36 (weighted IRR 7.72%, weighted IV@15% $232.58); clears 15% only below $232.58.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest U.S. specialty beauty scale with mass + prestige in one destination",
+  "~47M-member loyalty program driving repeat sales and first-party data",
+  "Broad assortment as a discovery destination brands need",
+  "In-store services and trial that pure e-commerce cannot replicate",
+  "Consistently positive owner's earnings (5/5 years) and disciplined buybacks"
+ ],
+ "moat_against": [
+  "No owned product moat \u2014 brands can go direct, to Sephora, or to Amazon",
+  "Sephora in Kohl's invading suburban territory with LVMH-backed exclusives",
+  "Amazon leading online beauty for replenishment purchases",
+  "Low customer switching costs \u2014 loyalty points are weak lock-in",
+  "U.S. store maturity, consumer pressure, shrink and wage/occupancy costs; Target channel ended"
+ ]
+}

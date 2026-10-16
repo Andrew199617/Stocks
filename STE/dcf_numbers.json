@@ -1,0 +1,159 @@
+{
+ "ticker": "STE",
+ "name": "STERIS plc",
+ "cik": 1757898,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 224.33,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 98700000,
+ "market_cap_est": 22141371000.0,
+ "net_debt_latest": 1812800000,
+ "latest_period_end": "2026-03-31",
+ "rev_cagr_5y": 0.13820962305815732,
+ "rev_cagr_3y": 0.0937560654570353,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 910700000,
+ "base_oe_per_share": 8.81511746680286,
+ "base_oe_latest_per_share": 9.22695035460993,
+ "base_oe_normalized_per_share": 7.2714429868819375,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.13820962305815732,
+  "rev_cagr_3y": 0.0937560654570353,
+  "rev_yoy_latest": 0.08726073816283542,
+  "oe_ps_cagr_2y": 0.28399699646712606
+ },
+ "g_blend": 0.11598284425759631,
+ "share_cagr": -0.005166167048999304,
+ "share_count_adj": 0.005166167048999304,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.12114901130659561,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.08,
+   -0.04,
+   -0.01,
+   0.02
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 8.81511746680286,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0011,
+   "oe_mult": 0.75,
+   "iv_at_10": 80.12895644664508,
+   "iv_at_12": 63.643290239824225,
+   "iv_at_15": 48.75325095974128,
+   "irr": 0.05131058485939656
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0411,
+   "oe_mult": 0.9,
+   "iv_at_10": 117.57914753526222,
+   "iv_at_12": 92.46009296793048,
+   "iv_at_15": 69.90450160610385,
+   "irr": 0.06462993715330903
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0811,
+   "oe_mult": 1.0,
+   "iv_at_10": 159.50780257108056,
+   "iv_at_12": 124.2740294471333,
+   "iv_at_15": 92.80159863441924,
+   "irr": 0.07914729094900241
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1111,
+   "oe_mult": 1.1,
+   "iv_at_10": 203.5550720794709,
+   "iv_at_12": 157.56529171976246,
+   "iv_at_15": 116.63247470883519,
+   "irr": 0.09351818443510082
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1411,
+   "oe_mult": 1.25,
+   "iv_at_10": 268.0504873888351,
+   "iv_at_12": 206.224134712175,
+   "iv_at_15": 151.3791639994641,
+   "irr": 0.11309224228080017
+  }
+ },
+ "weighted": {
+  "iv_at_10": 162.95384005855544,
+  "iv_at_12": 126.77529750126315,
+  "iv_at_15": 94.48796516498106,
+  "irr": 0.0803527833465491
+ },
+ "implied_irr_weighted": 0.0803527833465491,
+ "implied_irr_base": 0.07914729094900241,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5787992459101277,
+ "upside_at_12": -0.4348714059587967,
+ "iv_at_15": 94.48796516498106,
+ "iv_at_12": 126.77529750126315,
+ "diagnostics": {
+  "oe_yield": 0.039295312560972046,
+  "tv_share_at_15": 0.19759762910376885,
+  "scenario_spread_iv15": 3.1050065589362994,
+  "net_debt_to_normalized_oe": 2.083553401637275,
+  "months_since_fy_end": 6.504599211563732,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "content_hash": "600f9106dbd9da826e386c0b61f3335f76eda6c9a1ec1e1f8faa8ca5e6efa3c0"
+}

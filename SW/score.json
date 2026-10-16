@@ -1,0 +1,71 @@
+{
+ "ticker": "SW",
+ "name": "Smurfit Westrock plc",
+ "sector": "Materials \u2014 Paper & Corrugated Packaging",
+ "price": 41.28,
+ "market_cap_b": 21.71,
+ "engine_version": 5,
+ "base_oe_per_share": 1.7110266159695817,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Real scale and vertical integration in a commodity product, but only about 6% of global containerboard capacity, limited demonstrated pricing power, cyclical volumes, and a capex bill that consumes most of operating cash flow \u2014 returns are earned by cost position and integration execution, not by a durable pricing moat.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 26.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 14.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 7.86,
+   "irr": 0.0471
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 11.46,
+   "irr": 0.059
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 14.86,
+   "irr": 0.0704
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 19.04,
+   "irr": 0.0842
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 26.1,
+   "irr": 0.1066
+  }
+ },
+ "iv_at_15": 14.54,
+ "iv_at_12": 19.22,
+ "implied_irr": 0.0696,
+ "implied_irr_base_case": 0.0704,
+ "upside_at_15_pct": -64.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Cyclical, capex-heavy packager with a weak-moderate moat 4/10 \u2014 does not clear 15% on any scenario at $41.28 (weighted IRR 6.96%, weighted IV@15 $14.54); it clears 15% only at ~$14.54, and the preliminary Tier B print was a merger basis-break artifact.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Scale and vertical integration \u2014 mills feeding a large converting network across North America, EMEA/APAC and LATAM",
+  "Merger synergy and cost program \u2014 at least $400M synergy target plus footprint rationalization of WestRock assets",
+  "Diversified staple end-markets \u2014 food, beverage, consumer goods and e-commerce packaging demand",
+  "Sustainability positioning \u2014 paper packaging benefits from substitution away from plastic"
+ ],
+ "moat_against": [
+  "Commodity containerboard economics \u2014 about 6% global share, largely a price-taker; $100/ton hike is a test, not proof",
+  "Cyclical volumes and overcapacity \u2014 North America corrugated volumes fell in Q2 2026; new European capacity can blunt pricing",
+  "Capex intensity and leverage \u2014 TTM capex $2.282B vs OCF $3.297B; net debt $12.677B is 14.09x normalized OE",
+  "Input-cost exposure \u2014 higher 2026 freight and energy costs compress margins if pricing does not stick"
+ ]
+}

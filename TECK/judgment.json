@@ -1,0 +1,37 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "Teck is a direct-listed foreign private issuer: one NYSE-traded TECK share is one Class B subordinate voting share, so no ADS conversion applies; per-share figures and the traded price are on the same basis.",
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-19), cover page: securities registered under Section 12(b) are 'Class B subordinate voting shares', trading symbol TECK, listed directly on the New York Stock Exchange — the NYSE security is the Class B share itself, not an ADS"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Pure commodity price-taker: no pricing power; earnings are set by copper/zinc prices it does not control",
+  "Structurally capex-heavy: latest-FY owner's earnings were negative after capex despite positive operating cash flow",
+  "Cyclical and volatile OE: OE/share range over the last 5 years spans >3x (engine OE_VOLATILE flag)",
+  "Quebrada Blanca ramp/tailings execution risk and a 2024 asset impairment show operating risk at the flagship growth asset",
+  "Pending Anglo American merger: China approval and integration risk; consideration is Anglo shares, not cash",
+  "Reserves deplete, decommissioning/restoration liabilities grow, and the dual-class structure concentrates voting control"
+ ],
+ "moat_for": [
+  "Tier-1, long-life copper/zinc reserves (Quebrada Blanca, Highland Valley, Red Dog, Antamina stake) that are scarce and hard to permit or replicate",
+  "Diversified copper + zinc + Trail smelting footprint across Canada, Chile, Peru and the US",
+  "Net-cash balance sheet after the steelmaking-coal sale (engine: net debt -9.6x normalized OE) funds the capex cycle without forced dilution",
+  "Highland Valley life extension sanctioned to 2046 and Quebrada Blanca ramp give visible volume growth"
+ ],
+ "moat_justification": "Scarce, long-life tier-1 copper and zinc assets in mining-friendly jurisdictions (Quebrada Blanca, Highland Valley, Red Dog, Antamina stake, Trail) that cannot be replicated quickly and were hard to permit — but Teck is a pure commodity price-taker with no pricing power, structurally heavy capex and stripping, depleting reserves, and owner's earnings that were negative in the latest fiscal year after capex; returns are set by the copper/zinc cycle, not by the franchise.",
+ "moat_score": 4,
+ "name": "Teck Resources Limited",
+ "one_liner": "Diversified copper/zinc miner, moat 4/10, net cash — but normalized owner's earnings are only $0.17/share against a $64.00 price: weighted IRR 0.1%, weighted IV@15 $1.61, and even the super-bull case clears only 3.2%; on this OE method it clears 15% only below ~$1.61 — the price rests on reserve/NAV value and the Anglo merger exchange terms, not on current owner's earnings.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Materials / Diversified mining (copper, zinc)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

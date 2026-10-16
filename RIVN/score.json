@@ -1,0 +1,44 @@
+{
+ "ticker": "RIVN",
+ "name": "Rivian Automotive, Inc.",
+ "sector": "Automotive / Electric vehicles",
+ "price": 13.02,
+ "market_cap_b": 15.44,
+ "engine_version": 5,
+ "base_oe_per_share": -3.5034550839091807,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Real brand and technology differentiation \u2014 a loyal premium adventure brand, vertically integrated software/electrical architecture that Volkswagen paid billions to access through the JV, and an Amazon commercial-van anchor \u2014 but no durable cost advantage, no network effect, low consumer switching costs, and no proven pricing power or returns on capital: the company has never produced positive owner's earnings at any scale so far, and third-party assessors assign it no moat. Scale is the core gap \u2014 guided 65,000-70,000 deliveries in 2026 against incumbents at millions of units.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 9.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "medium",
+ "one_liner": "Weak-moat EV maker, moat 4/10, R2 ramp and VW software JV are real \u2014 but owner's earnings are negative in all 5 filed years (median -$3.50/sh, TTM -$3.33/sh) with operating cash flow itself negative, so it cannot clear 15% at $13.02; Tier F until OCF turns positive enough to cover capex + SBC.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Software / electrical architecture validated externally \u2014 Volkswagen JV (RV Tech) is a major high-margin software-and-services revenue source and strategic capital partner",
+  "Premium adventure brand with demonstrated demand \u2014 R2 launch demand, record demo drives in Q2 2026, deliveries growing into a shrinking US EV market",
+  "Amazon commercial-van anchor and Uber robotaxi commitment diversify revenue beyond premium consumer SUVs",
+  "Direct sales/service model and vertical integration \u2014 control of customer experience and the vehicle data/autonomy stack"
+ ],
+ "moat_against": [
+  "No scale or cost advantage vs Tesla and legacy OEMs \u2014 automotive gross profit still negative in Q2 2026 while software/services carried consolidated gross profit",
+  "Customer/partner concentration \u2014 VW JV roughly 60% of software and services revenue per research; Amazon dominates commercial vans",
+  "Capital intensity with no self-funding \u2014 negative OCF, ~$1.7B/yr capex, Georgia plant ahead, repeated equity issuance; US EV demand fell after the $7,500 credit expired Sep 2025",
+  "No proven pricing power into profitability \u2014 losses persist at every volume printed so far"
+ ]
+}

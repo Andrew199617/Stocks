@@ -1,0 +1,70 @@
+{
+ "ticker": "TPR",
+ "name": "Tapestry, Inc.",
+ "sector": "Consumer Discretionary \u2014 Apparel, Accessories & Luxury Goods",
+ "price": 119.65,
+ "market_cap_b": 25.15,
+ "engine_version": 5,
+ "base_oe_per_share": 8.125594671741199,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "Coach has demonstrated real pricing power (handbag AUR up mid-teens in Q4 FY2026, gross margin expansion, 23.4% non-GAAP operating margin in FY2026) and is gaining share with Gen Z customers (11M new customers added in FY2026), with direct-to-consumer control protecting price integrity \u2014 but this is a fashion brand moat with no switching costs, no recurring revenue and no structural cost advantage, and the portfolio around it is shrinking: Coach is ~86% of revenue while Kate Spade declines after a ~$855M FY2025 impairment, with tariff exposure and an aspirational, cyclical customer against it.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 4.5%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 8.13 vs 3-yr median 4.55 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 45.09,
+   "irr": 0.0712
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 66.63,
+   "irr": 0.0955
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 91.02,
+   "irr": 0.1218
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 117.96,
+   "irr": 0.1484
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 157.7,
+   "irr": 0.1837
+  }
+ },
+ "iv_at_15": 91.17,
+ "iv_at_12": 122.49,
+ "implied_irr": 0.1221,
+ "implied_irr_base_case": 0.1218,
+ "upside_at_15_pct": -23.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Strong Coach franchise, moat 5/10 \u2014 but at $119.65 the weighted IRR is only 12.2% with IV@15% of $91.17; it clears the 15% hurdle only below ~$91.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Coach pricing power: mid-teens handbag AUR gains with units still growing, margin expansion",
+  "Direct-to-consumer distribution control protects price integrity",
+  "Scale in accessible luxury: top-three handbag position in North America and Greater China",
+  "Gen Z customer flywheel: 11M new customers added in FY2026"
+ ],
+ "moat_against": [
+  "No switching costs or recurring revenue \u2014 fashion heat is re-earned every season",
+  "Single-brand concentration: Coach ~86% of revenue, Kate Spade shrinking post-impairment",
+  "Aspirational-consumer cyclicality: the customer trades down first in a downturn",
+  "Tariff exposure on imported leather goods; FY2027 neutrality is guidance, not a guarantee"
+ ]
+}

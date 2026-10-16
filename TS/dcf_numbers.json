@@ -1,0 +1,208 @@
+{
+ "ticker": "TS",
+ "name": "Tenaris SA",
+ "cik": 1190723,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 58.17,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1011823958,
+ "market_cap_est": 58857799636.86,
+ "net_debt_latest": -266925000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.18414110116712323,
+ "rev_cagr_3y": 0.006156289029483286,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 1982397000.0,
+ "base_oe_per_share": 4.0068573519285255,
+ "base_oe_latest_per_share": 3.918462266733558,
+ "base_oe_normalized_per_share": 4.0068573519285255,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.18414110116712323,
+  "rev_cagr_3y": 0.006156289029483286,
+  "rev_yoy_latest": -0.043339177609846846,
+  "oe_ps_cagr_2y": -0.22138393857811112
+ },
+ "g_blend": -0.01859144429018178,
+ "share_cagr": -0.05009487323353168,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "WeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 2.0,
+  "source": "Tenaris Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Income Statements footnote to earnings per ADS: 'Each ADS equals two shares' (basic and diluted EPS $1.83 per share vs $3.66 per ADS for FY2025); the same ratio is stated in Item 7 share-ownership footnotes ('each ADS represents 2 shares') and on the 20-F cover, where American Depositary Shares are the NYSE-registered class.",
+  "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price, and the market cap halves on the same basis."
+ },
+ "fx_conversion": null,
+ "override_checks": {
+  "sbc": {
+   "value": 0.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.03140855570981822,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Statements of Cash Flows (p. F-7): the adjustments reconciling income to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, bargain purchase gain, income tax accruals less payments, equity in earnings, interest accruals, the Usiminas litigation provision, changes in provisions, CTA reclassification, changes in working capital, others/FX) with no share-based payment addback in any year; the term 'share-based' appears nowhere in the 20-F. Compensation disclosure (Item 6) states directors and the CEO receive cash compensation only with no long-term incentive or pension plan, and the only long-term program (Note II.P.3, employee retention and long-term incentive program) grants units valued on shareholders' equity that are mandatorily redeemed for cash seven years after grant \u2014 an 'other long-term benefit' liability, not an equity award.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees have no facts in this filer's companyfacts for any year 2016-2025). Tenaris has no equity-settled share-based payment expense to subtract: it files no IFRS 2 expense, its cash-flow statement shows no such addback, and its sole long-term incentive is cash-settled (units redeemed for cash, expensed through income and provisions and therefore already inside operating cash flow \u2014 subtracting it again as SBC would double-count it). The filing-sourced figure for equity SBC in the gap years is $0.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0886,
+   "oe_mult": 0.75,
+   "iv_at_10": 23.10836102563966,
+   "iv_at_12": 18.819973067420495,
+   "iv_at_15": 14.885045811732079,
+   "irr": 0.052098483736852025
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0186,
+   "oe_mult": 0.9,
+   "iv_at_10": 39.55792732851426,
+   "iv_at_12": 31.583146306288526,
+   "iv_at_15": 24.357641977951122,
+   "irr": 0.07519628337014925
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0314,
+   "oe_mult": 1.0,
+   "iv_at_10": 56.55180691099722,
+   "iv_at_12": 44.57567689006552,
+   "iv_at_15": 33.80705023005282,
+   "irr": 0.09792629168987188
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0814,
+   "oe_mult": 1.1,
+   "iv_at_10": 79.85653431701995,
+   "iv_at_12": 62.213378821093976,
+   "iv_at_15": 46.45420774480914,
+   "irr": 0.12621128874878906
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1514,
+   "oe_mult": 1.25,
+   "iv_at_10": 128.10497342704585,
+   "iv_at_12": 98.35966678667481,
+   "iv_at_15": 72.00176615962536,
+   "irr": 0.17541055892383361
+  }
+ },
+ "weighted": {
+  "iv_at_10": 61.94049092995127,
+  "iv_at_12": 48.53979833427481,
+  "iv_at_15": 36.53375869684166,
+  "irr": 0.10471622966144001
+ },
+ "implied_irr_weighted": 0.10471622966144001,
+ "implied_irr_base": 0.09792629168987188,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.3719484494268238,
+ "upside_at_12": -0.1655527190257038,
+ "iv_at_15": 36.53375869684166,
+ "iv_at_12": 48.53979833427481,
+ "diagnostics": {
+  "oe_yield": 0.06888185236253266,
+  "tv_share_at_15": 0.18781962451407888,
+  "scenario_spread_iv15": 4.837188079251667,
+  "net_debt_to_normalized_oe": -0.06583857334203494,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Tenaris Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Income Statements footnote to earnings per ADS: 'Each ADS equals two shares' (basic and diluted EPS $1.83 per share vs $3.66 per ADS for FY2025); the same ratio is stated in Item 7 share-ownership footnotes ('each ADS represents 2 shares') and on the 20-F cover, where American Depositary Shares are the NYSE-registered class.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Statements of Cash Flows (p. F-7): the adjustments reconciling income to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, bargain purchase gain, income tax accruals less payments, equity in earnings, interest accruals, the Usiminas litigation provision, changes in provisions, CTA reclassification, changes in working capital, others/FX) with no share-based payment addback in any year; the term 'share-based' appears nowhere in the 20-F. Compensation disclosure (Item 6) states directors and the CEO receive cash compensation only with no long-term incentive or pension plan, and the only long-term program (Note II.P.3, employee retention and long-term incentive program) grants units valued on shareholders' equity that are mandatorily redeemed for cash seven years after grant \u2014 an 'other long-term benefit' liability, not an equity award.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 4.0068573519285255,
+  "base_oe_per_share_final": 4.0068573519285255,
+  "weighted_irr_zero_fill": 0.10471622966144001,
+  "weighted_irr_final": 0.10471622966144001,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "17c358fd66359af48675ce4cc2877c73e62802c6da07d63218a27d0e22e353dc"
+}
