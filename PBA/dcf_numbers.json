@@ -1,0 +1,216 @@
+{
+ "ticker": "PBA",
+ "name": "PEMBINA PIPELINE CORPORATION",
+ "cik": 1546066,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 48.52,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 582000000,
+ "market_cap_est": 28238640000.0,
+ "net_debt_latest": 8442961600.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.03984555083253105,
+ "rev_cagr_3y": -0.12827180551520778,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1769662280.0,
+ "base_oe_per_share": 2.680415172413793,
+ "base_oe_latest_per_share": 3.0406568384879726,
+ "base_oe_normalized_per_share": 2.680415172413793,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.03984555083253105,
+  "rev_cagr_3y": -0.12827180551520778,
+  "rev_yoy_latest": 0.10693514733561993,
+  "oe_ps_cagr_2y": 0.06503515008617566
+ },
+ "g_blend": 0.05244035045935336,
+ "share_cagr": 0.01656724436772894,
+ "share_count_adj": -0.01656724436772894,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F / company disclosure: Pembina's common shares trade on the Toronto Stock Exchange (PPL) and the New York Stock Exchange (PBA) \u2014 the NYSE security is the common share itself, not an ADS; the _system README v5.3 note likewise lists PBA among the direct-listed ordinary-share filers (ratio 1.0)",
+  "reason": "Pembina is a direct-listed foreign private issuer: one NYSE-traded PBA share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": {
+  "from_currency": "CAD",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2017-12-31": 0.79746,
+   "2018-12-31": 0.73374,
+   "2019-01-01": 0.73374,
+   "2019-12-31": 0.76956,
+   "2020-12-31": 0.78494,
+   "2021-12-31": 0.78691,
+   "2022-08-15": 0.77428,
+   "2022-12-31": 0.73864,
+   "2023-12-31": 0.75468,
+   "2024-12-31": 0.69501,
+   "2025-12-31": 0.73036
+  },
+  "rates_by_currency": {
+   "CAD": {
+    "2017-12-31": 0.79746,
+    "2018-12-31": 0.73374,
+    "2019-01-01": 0.73374,
+    "2019-12-31": 0.76956,
+    "2020-12-31": 0.78494,
+    "2021-12-31": 0.78691,
+    "2022-08-15": 0.77428,
+    "2022-12-31": 0.73864,
+    "2023-12-31": 0.75468,
+    "2024-12-31": 0.69501,
+    "2025-12-31": 0.73036
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.03587310609162442,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.086,
+   -0.036,
+   0.014,
+   0.044,
+   0.084
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0501,
+   "oe_mult": 0.75,
+   "iv_at_10": 18.323525986524896,
+   "iv_at_12": 14.81002702889909,
+   "iv_at_15": 11.598394875380222,
+   "irr": 0.0513184201300618
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0001,
+   "oe_mult": 0.9,
+   "iv_at_10": 28.79103146676789,
+   "iv_at_12": 22.901948875988673,
+   "iv_at_15": 17.57617564043603,
+   "irr": 0.06889350961991669
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0499,
+   "oe_mult": 1.0,
+   "iv_at_10": 41.884349582927356,
+   "iv_at_12": 32.831046090495775,
+   "iv_at_15": 24.71917691981863,
+   "irr": 0.08999530884381957
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0799,
+   "oe_mult": 1.1,
+   "iv_at_10": 54.132443393084365,
+   "iv_at_12": 42.085420759842734,
+   "iv_at_15": 31.34456253938268,
+   "irr": 0.10813831442804403
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1199,
+   "oe_mult": 1.25,
+   "iv_at_10": 76.19082588962921,
+   "iv_at_12": 58.63322544563425,
+   "iv_at_15": 43.07312813335827,
+   "irr": 0.1374845944762958
+  }
+ },
+ "weighted": {
+  "iv_at_10": 42.747608777456676,
+  "iv_at_12": 33.440481483559914,
+  "iv_at_15": 25.11308992177411,
+  "irr": 0.09136172947120189
+ },
+ "implied_irr_weighted": 0.09136172947120189,
+ "implied_irr_base": 0.08999530884381957,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.4824177674819845,
+ "upside_at_12": -0.3107897468351214,
+ "iv_at_15": 25.11308992177411,
+ "iv_at_12": 33.440481483559914,
+ "diagnostics": {
+  "oe_yield": 0.05524351138528015,
+  "tv_share_at_15": 0.19034214534593286,
+  "scenario_spread_iv15": 3.7137145782809218,
+  "net_debt_to_normalized_oe": 5.412149215596487,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F / company disclosure: Pembina's common shares trade on the Toronto Stock Exchange (PPL) and the New York Stock Exchange (PBA) \u2014 the NYSE security is the common share itself, not an ADS; the _system README v5.3 note likewise lists PBA among the direct-listed ordinary-share filers (ratio 1.0)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "HIGH_NET_DEBT: net debt is 5.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "ac5b409db1a408868edac45f8706023fa11f1775c9107c102d7bedfb66e3bcdd"
+}

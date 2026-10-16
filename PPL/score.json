@@ -1,0 +1,43 @@
+{
+ "ticker": "PPL",
+ "name": "PPL Corp",
+ "sector": "Utilities",
+ "price": 34.75,
+ "market_cap_b": 25.83,
+ "engine_version": 5,
+ "base_oe_per_share": -0.9008813735663794,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Exclusive regulated electric and natural-gas franchises in Pennsylvania, Kentucky and Rhode Island, with essential inelastic demand, FERC-regulated transmission, and a $23B capital plan guided to ~10.3% rate-base growth through 2029 \u2014 a durable, visible compounding machine. Capped at 6 because regulators (Pennsylvania PUC, Kentucky PSC, Rhode Island PUC, FERC) set the allowed return so there is no pricing power beyond rate cases, the plan is funded with debt (net debt $17,823M) plus about $3B of planned equity issuance that dilutes per-share compounding, Kentucky retains coal-fired generation with transition/recovery risk, and affordability politics rise as data-center load costs are recovered from existing customers.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Durable PA/KY/RI regulated monopoly, moat 6/10, but conservative owner's earnings are negative in 4 of the last 5 years and on TTM (capex exceeds OCF; normalized base -$0.90/share, TTM -$2.21/share) \u2014 Tier F on this screen; guided 6-8% EPS growth does not clear 15% and no hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated electric and gas franchises in Pennsylvania, Kentucky and Rhode Island \u2014 captive, essential-service customers",
+  "$23B regulated infrastructure plan 2026-2029 guided to ~10.3% average annual rate-base growth, with over 60% eligible for contemporaneous recovery",
+  "FERC-regulated transmission earns formula-rate returns; Pennsylvania/Kentucky large-load (data-center) demand adds a visible growth pipeline",
+  "Constructive recent regulatory outcomes \u2014 Pennsylvania settlement for a $275M annual revenue increase effective July 1, 2026 and a $233M Kentucky revenue increase"
+ ],
+ "moat_against": [
+  "Regulators cap returns \u2014 Pennsylvania PUC, Kentucky PSC, Rhode Island PUC and FERC set allowed ROE and recovery; no pricing power beyond rate cases",
+  "Growth is debt- plus equity-funded: net debt $17,823M and about $3B of equity needs projected for 2026-2029 dilute rate-base growth per share",
+  "Kentucky coal-fired generation carries retirement / environmental recovery risk",
+  "Affordability and large-load cost-allocation pushback as data-center spending is recovered in rates; refinancing the debt stack at higher rates"
+ ]
+}

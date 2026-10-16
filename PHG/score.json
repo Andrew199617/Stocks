@@ -1,0 +1,73 @@
+{
+ "ticker": "PHG",
+ "name": "Koninklijke Philips N.V. (Royal Philips)",
+ "sector": "Healthcare / Health technology (medical devices)",
+ "price": 25.18,
+ "market_cap_b": 24.24,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2867001860206013,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate, narrow moat: a top-3 global position in diagnostic imaging, image-guided therapy and hospital patient monitoring with a large installed base, multi-year service contracts and regulatory-clearance barriers \u2014 but GE HealthCare and Siemens Healthineers contest every category, hospital capex is cyclical and price-competitive, the Respironics consent decree bars Philips from the US sleep-therapy device market until FDA conditions are met, and a decade of flat comparable growth shows limited pricing power.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Philips Form 20-F, Exhibit 2 (Description of Securities Registered under Section 12 of the Exchange Act, SEC filing, CIK 313216): the class registered under Section 12(b) and trading on the NYSE under PHG is 'Common Shares - par value Euro (EUR) 0.20 per share'; holders of New York Registry shares hold the common shares themselves in registered form \u2014 the NYSE security is the common share, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.69,
+   "irr": 0.0447
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 7.28,
+   "irr": 0.0588
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 9.97,
+   "irr": 0.074
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 13.5,
+   "irr": 0.0933
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 20.46,
+   "irr": 0.1285
+  }
+ },
+ "iv_at_15": 10.7,
+ "iv_at_12": 14.11,
+ "implied_irr": 0.0785,
+ "implied_irr_base_case": 0.074,
+ "upside_at_15_pct": -57.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid health-tech franchise, moat 5/10, but owner's earnings are still depressed by Respironics settlement outflows and net debt is 5.0x normalized OE \u2014 at $25.18 it does not clear 15% (weighted IRR 7.85%, weighted IV@15 $10.70); clears 15% only below ~$10.70.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Top-3 global franchise in diagnostic imaging, image-guided therapy (Azurion) and hospital patient monitoring, with a large installed base",
+  "Installed base drives recurring service, parts and software revenue and real switching costs for hospital platforms",
+  "Regulatory clearances and clinical validation are genuine entry barriers in imaging and monitoring",
+  "Scale R&D and AI imaging pipeline (e.g. SmartIQ for Azurion) plus a record equipment order backlog"
+ ],
+ "moat_against": [
+  "GE HealthCare and Siemens Healthineers match Philips category by category; no durable technology gap",
+  "Respironics recall fallout: FDA consent decree restricts US sleep/respiratory device sales, DOJ investigation still open, ~$1.1B personal-injury settlement paid in 2025",
+  "Hospital capital budgets are cyclical and price-competitive; China health-system demand is weak",
+  "A decade of roughly flat comparable sales (2026 guide only 3-4.5%) shows weak pricing power",
+  "Net debt 5.0x normalized owner's earnings leaves little room for another recall-scale shock"
+ ]
+}

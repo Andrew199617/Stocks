@@ -1,0 +1,167 @@
+{
+ "ticker": "GFS",
+ "name": "GLOBALFOUNDRIES Inc.",
+ "cik": 1709048,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 48.94,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 558000000,
+ "market_cap_est": 27308520000.0,
+ "net_debt_latest": -658000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.06960762876130966,
+ "rev_cagr_3y": -0.057360032025997376,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 809000000,
+ "base_oe_per_share": 1.449820788530466,
+ "base_oe_latest_per_share": 1.449820788530466,
+ "base_oe_normalized_per_share": 1.449820788530466,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.06960762876130966,
+  "rev_cagr_3y": -0.057360032025997376,
+  "rev_yoy_latest": 0.006074074074074121,
+  "oe_ps_cagr_2y": 1.1700323259010306
+ },
+ "g_blend": 0.03784085141769189,
+ "share_cagr": 0.003609314648917783,
+ "share_count_adj": -0.003609314648917783,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for the fiscal year ended December 31, 2025, cover page, securities registered pursuant to Section 12(b): 'Ordinary shares, par value US$0.02 per share', trading symbol GFS, Nasdaq Global Select Market; the company's prospectus supplement dated March 11, 2026 (Form 424B7, filer's own filing) likewise states the ordinary shares 'are listed and traded on Nasdaq under the symbol \"GFS\"' and quotes prices per ordinary share \u2014 the Nasdaq security is the ordinary share itself, not an ADS",
+  "reason": "GlobalFoundries is a direct-listed foreign private issuer: one Nasdaq-traded GFS share is one ordinary share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.03423153676877411,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0858,
+   "oe_mult": 0.75,
+   "iv_at_10": 8.819560220030327,
+   "iv_at_12": 7.139459098056256,
+   "iv_at_15": 5.605948827142607,
+   "irr": 0.03719705873499535
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0158,
+   "oe_mult": 0.9,
+   "iv_at_10": 14.742520877258727,
+   "iv_at_12": 11.739926861335594,
+   "iv_at_15": 9.024872862527353,
+   "irr": 0.04696720087093979
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0342,
+   "oe_mult": 1.0,
+   "iv_at_10": 20.68032825630594,
+   "iv_at_12": 16.29609552888435,
+   "iv_at_15": 12.354214397029152,
+   "irr": 0.05684244497318193
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0842,
+   "oe_mult": 1.1,
+   "iv_at_10": 28.62012352643609,
+   "iv_at_12": 22.337914386460426,
+   "iv_at_15": 16.717787476068295,
+   "irr": 0.06971996667926994
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1542,
+   "oe_mult": 1.25,
+   "iv_at_10": 44.57104783348815,
+   "iv_at_12": 34.37532929541351,
+   "iv_at_15": 25.30935570591575,
+   "irr": 0.09382575390445855
+  }
+ },
+ "weighted": {
+  "iv_at_10": 22.383820383167333,
+  "iv_at_12": 17.559767809961286,
+  "iv_at_15": 13.233459857063494,
+  "irr": 0.05981618570287195
+ },
+ "implied_irr_weighted": 0.05981618570287195,
+ "implied_irr_base": 0.05684244497318193,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.7295982865332347,
+ "upside_at_12": -0.6411980422974808,
+ "iv_at_15": 13.233459857063494,
+ "iv_at_12": 17.559767809961286,
+ "diagnostics": {
+  "oe_yield": 0.029624454199641725,
+  "tv_share_at_15": 0.18623462006046743,
+  "scenario_spread_iv15": 4.514731847599849,
+  "net_debt_to_normalized_oe": -0.8133498145859085,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025, cover page, securities registered pursuant to Section 12(b): 'Ordinary shares, par value US$0.02 per share', trading symbol GFS, Nasdaq Global Select Market; the company's prospectus supplement dated March 11, 2026 (Form 424B7, filer's own filing) likewise states the ordinary shares 'are listed and traded on Nasdaq under the symbol \"GFS\"' and quotes prices per ordinary share \u2014 the Nasdaq security is the ordinary share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "a2989d42793c18a1834fda742c2c01a29b4893eb07734fd4835fcea49adaadfc"
+}

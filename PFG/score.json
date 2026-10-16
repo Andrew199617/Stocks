@@ -1,0 +1,91 @@
+{
+ "ticker": "PFG",
+ "name": "Principal Financial Group, Inc.",
+ "sector": "Finance / Retirement, Benefits & Asset Management (Insurance)",
+ "price": 107.805,
+ "market_cap_b": 24.33,
+ "engine_version": 5,
+ "base_oe_per_share": 18.683382915427114,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow finance moat: a sticky, scaled U.S. retirement franchise for small and mid-sized employers (defined contribution, defined benefit, pension risk transfer and ESOP services, bundled with group benefits and protection) plus a diversified global asset-management arm \u2014 workplace distribution and long-duration plan relationships are hard to replicate quickly and OE was positive in 5 of the last 5 fiscal years \u2014 against commodity, price-competed products with no structural pricing power: asset-management fees face passive/fee compression and active-equity outflows from much larger rivals (Vanguard, Fidelity, BlackRock), spread and premium earnings are hostage to rates, credit and markets rather than Principal's own pricing, legacy exited annuity/life blocks still inject reinsurance embedded-derivative volatility into GAAP results, and insurance regulation/capital intensity caps returns.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.0%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18), Consolidated Statements of Cash Flows, investing activities line 'Net purchases of property and equipment': $(98.0) million for FY2025, with $(68.8) million for FY2024 and $(102.0) million for FY2023 in the same statement (all in $ millions)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 71.12,
+   "irr": 0.103
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 114.51,
+   "irr": 0.1582
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 156.77,
+   "irr": 0.2064
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 212.17,
+   "irr": 0.2613
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 321.27,
+   "irr": 0.3497
+  }
+ },
+ "iv_at_15": 167.94,
+ "iv_at_12": 222.63,
+ "implied_irr": 0.2171,
+ "implied_irr_base_case": 0.2064,
+ "upside_at_15_pct": 55.8,
+ "tier_by_numbers": "A",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Diversified retirement/benefits/asset-management insurer, moat 5/10 \u2014 engine prints Tier A (weighted IRR 21.71%, IV@15% $167.94 vs $107.81) on an OCF base that capitalizes insurer float, so the final tier is softened to B at low confidence; it clears 15% at ~$168 on engine numbers, with a materially lower true margin of safety.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025 \u2014 FY2025 OCF $4,536,700,000 vs net income $1,185,100,000, and maintenance OE $1,338,500,000 vs conservative OE $4,328,800,000), so tier-by-numbers A overstates distributable owner's earnings; softened one notch to B, confidence low \u2014 same treatment as HIG/ACGL/WRB.",
+ "moat_for": [
+  "Sticky SMB retirement franchise \u2014 leading defined-contribution, pension risk transfer and ESOP provider; workplace plan relationships are long-duration and bundled with other products",
+  "Diversified earnings mix \u2014 retirement fees, benefits & protection premiums, asset-management fees and spread income dampen any single product cycle",
+  "Scale and distribution \u2014 established advisor/employer channels for mid-market employers that larger, scale-focused rivals underserve",
+  "Through-cycle profitability and capital return \u2014 OE positive 5 of last 5 FY; diluted shares shrinking 4.0%/yr on buybacks"
+ ],
+ "moat_against": [
+  "No structural pricing power \u2014 retirement, benefits and asset-management products are price-competed; fees face passive compression and active-equity outflows",
+  "Market and rate hostage \u2014 AUM fees, net investment income and spreads ride equity markets and the yield curve, outside management control",
+  "Legacy exited-block volatility \u2014 funds-withheld reinsurance embedded derivative swung to a large loss in Q2 2026 and drove the exited-business pre-tax loss well above the prior year",
+  "Capital intensity and regulation \u2014 insurance capital rules cap growth and capital return; larger rivals carry bigger technology/compliance budgets"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 98000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18), Consolidated Statements of Cash Flows, investing activities line 'Net purchases of property and equipment': $(98.0) million for FY2025, with $(68.8) million for FY2024 and $(102.0) million for FY2023 in the same statement (all in $ millions)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 19.0999,
+  "base_oe_with_override": 18.6834,
+  "base_oe_impact_pct": -2.181,
+  "weighted_irr_without_override": 0.2213,
+  "weighted_irr_with_override": 0.2171,
+  "weighted_irr_impact_pp": -0.415,
+  "unblocks_tier": true
+ }
+}

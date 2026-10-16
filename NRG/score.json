@@ -1,0 +1,74 @@
+{
+ "ticker": "NRG",
+ "name": "NRG Energy, Inc",
+ "sector": "Utilities / Merchant & retail power",
+ "price": 101.535,
+ "market_cap_b": 20.21,
+ "engine_version": 5,
+ "base_oe_per_share": 3.1758793969849246,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Real scale and a sticky retail book, but the generation half is a commodity price-taker and retail switching costs are low; nothing here earns pricing power through a cycle. FOR: largest US retail electricity customer base plus the Vivint smart-home installed base; integrated generation-plus-retail natural hedge; post-LS Power fleet scale (~25 GW) in ERCOT and PJM; CPower VPP/demand-response platform; contracted BYOP data-center pipeline (1.2 GW hyperscaler CCGT, 15-yr term targeted). AGAINST: merchant generation is a pure commodity with no pricing power; retail churn is high and switching costs near zero; weather/commodity volatility dominates single years (OE negative FY2022 and FY2023); ERCOT/state regulatory exposure; post-LS Power leverage with a <3.0x net debt/EBITDA target 24-36 months out constraining the equity story.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.5%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 19.43,
+   "irr": 0.0489
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 30.45,
+   "irr": 0.0642
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 40.79,
+   "irr": 0.0784
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 53.94,
+   "irr": 0.0956
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 78.92,
+   "irr": 0.1256
+  }
+ },
+ "iv_at_15": 43.17,
+ "iv_at_12": 58.36,
+ "implied_irr": 0.0818,
+ "implied_irr_base_case": 0.0784,
+ "upside_at_15_pct": -57.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real cash-generative power franchise but a weak 4/10 moat and hedge-noise OE; on the normalized base it does not clear 15% (weighted IRR 8.2%, IV@15 $43.17 vs $101.54 price) \u2014 even the super-bull tail falls short; it would need the low-$40s to clear 15% on standardized owner's earnings.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest US retail electricity customer base (Reliant, Green Mountain, Direct Energy) plus Vivint smart-home installed base",
+  "Integrated generation-plus-retail structure is a partial natural hedge",
+  "Post-LS Power fleet scale (~25 GW) concentrated in ERCOT and PJM",
+  "CPower virtual-power-plant / demand-response platform \u2014 contracted, asset-light earnings",
+  "Contracted data-center pipeline (BYOP 1.2 GW hyperscaler CCGT, minimum 15-yr term targeted)"
+ ],
+ "moat_against": [
+  "Merchant generation is a pure commodity \u2014 no pricing power; market and regulators set prices",
+  "Retail electricity churn is high; switching costs near zero",
+  "Weather and commodity volatility dominate single years (OE negative in FY2022 and FY2023)",
+  "Regulatory/political exposure in ERCOT and state retail-choice politics",
+  "Post-acquisition leverage \u2014 targeting <3.0x net debt/Adj. EBITDA only over 24-36 months"
+ ]
+}

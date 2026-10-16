@@ -1,0 +1,69 @@
+{
+ "ticker": "NTNX",
+ "name": "Nutanix, Inc.",
+ "sector": "Technology / Hybrid-cloud infrastructure software",
+ "price": 69.98,
+ "market_cap_b": 0.02,
+ "engine_version": 5,
+ "base_oe_per_share": 1.355341859271022,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "A genuine platform position in enterprise hybrid-cloud infrastructure with real switching costs (hypervisor + storage + management plane embedded in customer data centers) and 86-88% software-like gross margins, plus a Broadcom/VMware-displacement tailwind \u2014 but net dollar-based retention is only 106%, Broadcom/Microsoft/AWS/HPE bundle the same layer, Nutanix owns no distribution channel, and SBC runs ~39% of OCF. Moderate/narrow moat, CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "DILUTION: share count growing 7.8%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.9% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.0,
+   "irr": 0.0368
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 11.25,
+   "irr": 0.0457
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 15.37,
+   "irr": 0.0546
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 20.75,
+   "irr": 0.0659
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 31.27,
+   "irr": 0.0869
+  }
+ },
+ "iv_at_15": 16.44,
+ "iv_at_12": 22.18,
+ "implied_irr": 0.0571,
+ "implied_irr_base_case": 0.0546,
+ "upside_at_15_pct": -76.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality hybrid-cloud platform, moat 5/10 \u2014 but at $69.98 the price pre-pays a super-bull decade: weighted IRR 5.7%, IV@15% $16.44; it clears 15% only below ~$16.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Gartner Leader in distributed hybrid infrastructure; platform migration is a multi-quarter project \u2014 real switching friction",
+  "Subscription model: $2.55B ARR (+16% YoY), 86-88% gross margins, pricing power evidenced by margin expansion",
+  "Broadcom/VMware disruption makes Nutanix the default independent alternative; Dell/Pure/NetApp/Lenovo partnerships widen reach"
+ ],
+ "moat_against": [
+  "Net dollar-based retention only 106% \u2014 weak expansion for a claimed platform",
+  "Broadcom (VMware), Microsoft, AWS and HPE bundle the same layer with economics Nutanix cannot match",
+  "SBC $357,667,000 in FY2026 (~39% of OCF); basic share count keeps climbing",
+  "FY2027 guided headwinds: server supply constraints and elevated hardware prices delaying projects; ~5% workforce restructuring"
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "ticker": "PHM",
+ "name": "PulteGroup, Inc.",
+ "sector": "Homebuilding (Consumer Discretionary)",
+ "price": 113.08,
+ "market_cap_b": 22.56,
+ "engine_version": 5,
+ "base_oe_per_share": 7.575321631334965,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Third-largest US homebuilder with real scale advantages (national purchasing, 47 markets, ~235,000 controlled lots) and the Del Webb active-adult franchise, the segment's margin leader riding a demographic tailwind. But the product is a commodity: no switching costs, no through-cycle pricing power (incentives hit 9.9% of gross sales in Q4 2025; gross margin fell from 27.0% to 25.0% in a year), land is bought in a competitive open market and the land-heavy model consumes the cash the earnings imply, and demand is hostage to mortgage rates and affordability. OE/share has spanned >3x in 5 years. That is a weak-to-moderate moat: 4/10, CAP 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.5%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 31.62,
+   "irr": 0.0571
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 49.9,
+   "irr": 0.0792
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 67.22,
+   "irr": 0.0999
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 89.4,
+   "irr": 0.125
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 131.89,
+   "irr": 0.1685
+  }
+ },
+ "iv_at_15": 64.35,
+ "iv_at_12": 85.11,
+ "implied_irr": 0.0968,
+ "implied_irr_base_case": 0.0999,
+ "upside_at_15_pct": -43.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality cyclical homebuilder, moat 4/10 \u2014 TTM owner's earnings do not clear 15% at $113.08 (weighted IRR 9.7%, weighted IV@15% $64.35); the price only clears the hurdle below ~$64.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "#3 US homebuilder scale \u2014 national purchasing leverage, 47 markets, ~235k controlled lots",
+  "Del Webb active-adult brand leadership \u2014 highest gross margins, demographic tailwind",
+  "Diversified buyer mix (2025 closings: 38% first-time / 40% move-up / 22% active adult)",
+  "Fortress balance sheet \u2014 net cash, 12.3% debt-to-capital, return-focused model with disciplined spec inventory",
+  "Pulte Mortgage capture rate 85% \u2014 financial-services margin on top of homebuilding"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 no switching costs; buyers shop on price and incentives",
+  "No through-cycle pricing power \u2014 incentives 9.9% of gross sales Q4 2025; gross margin 27.0% \u2192 25.0% YoY",
+  "Land bought in competitive open market; land-heavy model traps cash in inventory (vs NVR's land-light model)",
+  "Demand hostage to mortgage rates and affordability \u2014 macro, not company, controlled",
+  "Deeply cyclical \u2014 OE/share range >3x over the last 5 fiscal years"
+ ]
+}

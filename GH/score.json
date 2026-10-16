@@ -1,0 +1,43 @@
+{
+ "ticker": "GH",
+ "name": "Guardant Health, Inc.",
+ "sector": "Healthcare",
+ "price": 165.41,
+ "market_cap_b": 20.74,
+ "engine_version": 5,
+ "base_oe_per_share": -3.2713100231688297,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "A genuine technology and evidence lead in liquid biopsy \u2014 Guardant360 profiling with new FDA Liquid CDx and companion-diagnostic approvals, and Shield as the first FDA-approved blood test for colorectal screening, now in ACS guidelines with first major commercial coverage \u2014 but no demonstrated pricing power or profitability, payer-by-payer reimbursement, and well-funded rivals (Exact Sciences, Natera, Roche/Foundation, Grail, Tempus) in every segment; the lead must be re-earned as sequencing costs and assay sensitivity move.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 7.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "High-growth liquid-biopsy leader, moat 5/10, but owner's earnings are negative in all of the last 5 years and on TTM (base -$3.27/share at $165.41) \u2014 Tier F on this screen; it does not clear 15% and no hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Guardant360 installed oncologist base and clinical-evidence depth, extended by FDA Liquid CDx and companion-diagnostic approvals",
+  "Shield first-mover in blood-based colorectal screening \u2014 FDA-approved, in ACS guidelines, first major commercial coverage",
+  "Reveal MRD / monitoring second growth leg on the same platform, plus biopharma & data partnerships",
+  "Platform scale lowering per-test cost (higher-throughput Shield workflow, sequencer transition)"
+ ],
+ "moat_against": [
+  "Competition in every leg \u2014 Exact Sciences (Cologuard), Natera (MRD), Roche/Foundation Medicine, Grail, Tempus",
+  "Reimbursement is payer-by-payer and policy-dependent; early-stage sensitivity limits keep tissue testing in place",
+  "No profitability at ~$1B revenue scale \u2014 returns on capital unproven and negative",
+  "Growth funded by shareholders \u2014 SBC rising yearly plus repeated equity / convertible issuance"
+ ]
+}

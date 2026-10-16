@@ -1,0 +1,163 @@
+{
+ "ticker": "LYB",
+ "name": "LYONDELLBASELL INDUSTRIES N.V.",
+ "cik": 1489393,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 62.67,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 322084769,
+ "market_cap_est": 20185052473.23,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.022376256202748523,
+ "rev_cagr_3y": -0.15762801907057078,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 293000000,
+ "base_oe_per_share": 5.832230015791295,
+ "base_oe_latest_per_share": 0.909698403031284,
+ "base_oe_normalized_per_share": 5.832230015791295,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.022376256202748523,
+  "rev_cagr_3y": -0.15762801907057078,
+  "rev_yoy_latest": -0.09705336287955924,
+  "oe_ps_cagr_2y": -0.7015748827161414
+ },
+ "g_blend": -0.127340690975065,
+ "share_cagr": -0.0037369124431719802,
+ "share_count_adj": 0.0037369124431719802,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": -0.05,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 34.77502824864736,
+   "iv_at_12": 28.087317984777233,
+   "iv_at_15": 21.998845983147863,
+   "irr": 0.06471063217168707
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.1,
+   "oe_mult": 0.9,
+   "iv_at_10": 41.73003389837683,
+   "iv_at_12": 33.704781581732675,
+   "iv_at_15": 26.398615179777433,
+   "irr": 0.07323808096902387
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": -0.05,
+   "oe_mult": 1.0,
+   "iv_at_10": 57.76889149173156,
+   "iv_at_12": 46.2059767180965,
+   "iv_at_15": 35.73206708495874,
+   "irr": 0.09383889417068925
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.0,
+   "oe_mult": 1.1,
+   "iv_at_10": 78.8413642032568,
+   "iv_at_12": 62.501796887066575,
+   "iv_at_15": 47.76650526252368,
+   "irr": 0.11974014554458157
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.07,
+   "oe_mult": 1.25,
+   "iv_at_10": 120.2997813657438,
+   "iv_at_12": 94.31256158272052,
+   "iv_at_15": 71.00203835990983,
+   "irr": 0.16596870530993113
+  }
+ },
+ "weighted": {
+  "iv_at_10": 58.922114621392524,
+  "iv_at_12": 46.99285087899737,
+  "iv_at_15": 36.20421120226256,
+  "irr": 0.095337903266559
+ },
+ "implied_irr_weighted": 0.095337903266559,
+ "implied_irr_base": 0.09383889417068925,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.42230395400889487,
+ "upside_at_12": -0.2501539671454065,
+ "iv_at_15": 36.20421120226256,
+ "iv_at_12": 46.99285087899737,
+ "diagnostics": {
+  "oe_yield": 0.09306255011634426,
+  "tv_share_at_15": 0.165580943058984,
+  "scenario_spread_iv15": 3.227534681332861,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.91 vs 3-yr median 5.83 \u2014 one of them is distorted; find out which and why"
+ ],
+ "content_hash": "ebf601282e6ef76772128ffec96882060f69f457013ed84be1ceea39a0244778"
+}

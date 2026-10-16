@@ -1,0 +1,219 @@
+{
+ "ticker": "PHG",
+ "name": "KONINKLIJKE PHILIPS NV",
+ "cik": 313216,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 25.18,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 962503162,
+ "market_cap_est": 24235829619.16,
+ "net_debt_latest": 6154650000.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.0027438909829152758,
+ "rev_cagr_3y": 0.03291769924338239,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 895350000.0,
+ "base_oe_per_share": 1.2867001860206013,
+ "base_oe_latest_per_share": 0.9302307102446693,
+ "base_oe_normalized_per_share": 1.2867001860206013,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.0027438909829152758,
+  "rev_cagr_3y": 0.03291769924338239,
+  "rev_yoy_latest": 0.11926776436143482,
+  "oe_ps_cagr_2y": -0.3151547726598586
+ },
+ "g_blend": 0.015086904130233558,
+ "share_cagr": 0.0037295764037696966,
+ "share_count_adj": -0.0037295764037696966,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivitiesContinuingOperations",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Philips Form 20-F, Exhibit 2 (Description of Securities Registered under Section 12 of the Exchange Act, SEC filing, CIK 313216): the class registered under Section 12(b) and trading on the NYSE under PHG is 'Common Shares - par value Euro (EUR) 0.20 per share'; holders of New York Registry shares hold the common shares themselves in registered form \u2014 the NYSE security is the common share, not an ADS",
+  "reason": "Philips trades in New York as New York Registry Shares: one NYSE-traded PHG share is one common (ordinary) share, so EDGAR per-share figures and the traded price are already on the same basis and no ADS scaling applies."
+ },
+ "fx_conversion": {
+  "from_currency": "EUR",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 1.2141,
+   "2015-12-31": 1.0887,
+   "2016-12-31": 1.0541,
+   "2017-12-31": 1.1993,
+   "2018-12-31": 1.145,
+   "2019-12-31": 1.1234,
+   "2020-12-31": 1.2271,
+   "2021-12-31": 1.1326,
+   "2022-12-31": 1.0666,
+   "2023-12-31": 1.105,
+   "2024-12-31": 1.0389,
+   "2025-12-31": 1.175
+  },
+  "rates_by_currency": {
+   "EUR": {
+    "2014-12-31": 1.2141,
+    "2015-12-31": 1.0887,
+    "2016-12-31": 1.0541,
+    "2017-12-31": 1.1993,
+    "2018-12-31": 1.145,
+    "2019-12-31": 1.1234,
+    "2020-12-31": 1.2271,
+    "2021-12-31": 1.1326,
+    "2022-12-31": 1.0666,
+    "2023-12-31": 1.105,
+    "2024-12-31": 1.0389,
+    "2025-12-31": 1.175
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.011357327726463862,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 7.312590130843777,
+   "iv_at_12": 5.940791021394515,
+   "iv_at_15": 4.68600044114273,
+   "irr": 0.044682772299888485
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0386,
+   "oe_mult": 0.9,
+   "iv_at_10": 11.747985128681083,
+   "iv_at_12": 9.403512488426129,
+   "iv_at_15": 7.277471073646341,
+   "irr": 0.05882931257473578
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0114,
+   "oe_mult": 1.0,
+   "iv_at_10": 16.503980514281565,
+   "iv_at_12": 13.066273967171163,
+   "iv_at_15": 9.96764405765127,
+   "irr": 0.07395516673716251
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0614,
+   "oe_mult": 1.1,
+   "iv_at_10": 22.87751655045814,
+   "iv_at_12": 17.932106183520567,
+   "iv_at_15": 13.498081121083228,
+   "irr": 0.0933159327072623
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1314,
+   "oe_mult": 1.25,
+   "iv_at_10": 35.71549178491207,
+   "iv_at_12": 27.64805336681581,
+   "iv_at_15": 20.46106482937255,
+   "irr": 0.12849461190920886
+  }
+ },
+ "weighted": {
+  "iv_at_10": 17.91037776564486,
+  "iv_at_12": 14.112671296959054,
+  "iv_at_15": 10.6988877930293,
+  "irr": 0.07847167331906124
+ },
+ "implied_irr_weighted": 0.07847167331906124,
+ "implied_irr_base": 0.07395516673716251,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5751037413411715,
+ "upside_at_12": -0.4395285426148112,
+ "iv_at_15": 10.6988877930293,
+ "iv_at_12": 14.112671296959054,
+ "diagnostics": {
+  "oe_yield": 0.05110008681575065,
+  "tv_share_at_15": 0.18050989069985363,
+  "scenario_spread_iv15": 4.366424008356026,
+  "net_debt_to_normalized_oe": 4.969627440018105,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Philips Form 20-F, Exhibit 2 (Description of Securities Registered under Section 12 of the Exchange Act, SEC filing, CIK 313216): the class registered under Section 12(b) and trading on the NYSE under PHG is 'Common Shares - par value Euro (EUR) 0.20 per share'; holders of New York Registry shares hold the common shares themselves in registered form \u2014 the NYSE security is the common share, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "841b2e03363526ed2a7a3a5fb6f17b0a319c5f0dd714f10f8056e40b76b9ac39"
+}

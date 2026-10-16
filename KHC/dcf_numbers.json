@@ -1,0 +1,161 @@
+{
+ "ticker": "KHC",
+ "name": "Kraft Heinz Co",
+ "cik": 1637459,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 22.7,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1187000000,
+ "market_cap_est": 26944900000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-27",
+ "rev_cagr_5y": -0.00967561384492166,
+ "rev_cagr_3y": -0.019876974428780114,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 3566000000,
+ "base_oe_per_share": 3.1374367622259696,
+ "base_oe_latest_per_share": 3.004212299915754,
+ "base_oe_normalized_per_share": 2.511111111111111,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": -0.00967561384492166,
+  "rev_cagr_3y": -0.019876974428780114,
+  "rev_yoy_latest": -0.03497639866903968,
+  "oe_ps_cagr_2y": 0.14716090312990926
+ },
+ "g_blend": -0.014776294136850887,
+ "share_cagr": -0.013171811396702093,
+ "share_count_adj": 0.013171811396702093,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerIncludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": -0.0016044827401487938,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.1,
+   -0.04,
+   0.0,
+   0.03,
+   0.06
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 3.1374367622259696,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 18.7071586236041,
+   "iv_at_12": 15.109517930392299,
+   "iv_at_15": 11.834236291640982,
+   "irr": 0.08571339796009173
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0416,
+   "oe_mult": 0.9,
+   "iv_at_10": 29.00903863639172,
+   "iv_at_12": 23.16663403089758,
+   "iv_at_15": 17.87861652784798,
+   "irr": 0.12206185447001111
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": -0.0016,
+   "oe_mult": 1.0,
+   "iv_at_10": 38.29347945710656,
+   "iv_at_12": 30.365588814659702,
+   "iv_at_15": 23.215130438678422,
+   "irr": 0.15290495224956213
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.0284,
+   "oe_mult": 1.1,
+   "iv_at_10": 47.84760924939797,
+   "iv_at_12": 37.753728859339816,
+   "iv_at_15": 28.671639645613766,
+   "irr": 0.18277151526379776
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.0584,
+   "oe_mult": 1.25,
+   "iv_at_10": 61.665532036417204,
+   "iv_at_12": 48.42889189059829,
+   "iv_at_15": 36.54579972065901,
+   "irr": 0.2234016026192306
+  }
+ },
+ "weighted": {
+  "iv_at_10": 36.340523812641514,
+  "iv_at_12": 28.83204306118683,
+  "iv_at_15": 22.058585452612036,
+  "irr": 0.14637579124074107
+ },
+ "implied_irr_weighted": 0.14637579124074107,
+ "implied_irr_base": 0.15290495224956213,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.028256147462024872,
+ "upside_at_12": 0.27013405555889114,
+ "iv_at_15": 22.058585452612036,
+ "iv_at_12": 28.83204306118683,
+ "diagnostics": {
+  "oe_yield": 0.13821307322581364,
+  "tv_share_at_15": 0.1718895381202502,
+  "scenario_spread_iv15": 3.08814179639736,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.559789750328514,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "content_hash": "0588cac9c82c8f6aa30fb22646d740c0d201fad9a83717de034ba4d3f0cfb486"
+}

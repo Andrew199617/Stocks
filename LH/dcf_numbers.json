@@ -1,0 +1,163 @@
+{
+ "ticker": "LH",
+ "name": "LABCORP HOLDINGS INC.",
+ "cik": 920148,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 319.51,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 83800000,
+ "market_cap_est": 26774938000.0,
+ "net_debt_latest": 5052400000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.00038379293507917467,
+ "rev_cagr_3y": 0.0555071943643628,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1080200000,
+ "base_oe_per_share": 12.49635922330097,
+ "base_oe_latest_per_share": 12.890214797136037,
+ "base_oe_normalized_per_share": 11.601895734597157,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": -0.00038379293507917467,
+  "rev_cagr_3y": 0.0555071943643628,
+  "rev_yoy_latest": 0.07247346047705805,
+  "oe_ps_cagr_2y": 0.23062504204421908
+ },
+ "g_blend": 0.06399032742071042,
+ "share_cagr": -0.029223799874722345,
+ "share_count_adj": 0.029223799874722345,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.09321412729543277,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.03,
+   0.07
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 12.49635922330097,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0268,
+   "oe_mult": 0.75,
+   "iv_at_10": 98.63252912442718,
+   "iv_at_12": 78.922793801112,
+   "iv_at_15": 61.04074143406449,
+   "irr": 0.047139354886341134
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0432,
+   "oe_mult": 0.9,
+   "iv_at_10": 168.41431888102005,
+   "iv_at_12": 132.36939867116422,
+   "iv_at_15": 100.01217279336215,
+   "irr": 0.06489173285286476
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0932,
+   "oe_mult": 1.0,
+   "iv_at_10": 240.0692235976514,
+   "iv_at_12": 186.5437659602269,
+   "iv_at_15": 138.80300186162282,
+   "irr": 0.08223000704672134
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1232,
+   "oe_mult": 1.1,
+   "iv_at_10": 306.2276301471307,
+   "iv_at_12": 236.4479767127506,
+   "iv_at_15": 174.4262147958815,
+   "irr": 0.09712438810374302
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1632,
+   "oe_mult": 1.25,
+   "iv_at_10": 423.17713615122983,
+   "iv_at_12": 324.1845907944034,
+   "iv_at_15": 236.57182148733466,
+   "irr": 0.12122087194942657
+  }
+ },
+ "weighted": {
+  "iv_at_10": 242.86222086389878,
+  "iv_at_12": 188.47821209359833,
+  "iv_at_15": 140.01175374793766,
+  "irr": 0.08292739967655877
+ },
+ "implied_irr_weighted": 0.08292739967655877,
+ "implied_irr_base": 0.08223000704672134,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5617922639418558,
+ "upside_at_12": -0.41010230636412526,
+ "iv_at_15": 140.01175374793766,
+ "iv_at_12": 188.47821209359833,
+ "diagnostics": {
+  "oe_yield": 0.03911101130888226,
+  "tv_share_at_15": 0.20102841170349506,
+  "scenario_spread_iv15": 3.875638072694068,
+  "net_debt_to_normalized_oe": 4.824698808165967,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.9%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 4.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "e4e35a3a4786c41da8416fd7102c2b5ea9f69210cb816a6f08f2c548aadbbaab"
+}

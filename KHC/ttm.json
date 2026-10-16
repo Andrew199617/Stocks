@@ -1,0 +1,101 @@
+{
+ "ticker": "KHC",
+ "cik": 1637459,
+ "entity": "Kraft Heinz Co",
+ "fy_end": "2025-12-27",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 4462000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1929000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 2088000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 4621000000
+  },
+  "capex": {
+   "fy": 801000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 425000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 429000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 805000000
+  },
+  "sbc": {
+   "fy": 95000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 53000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 53000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 95000000
+  },
+  "shares_diluted": {
+   "fy": 1187000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 1190000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 1186000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 4621000000,
+ "ttm_capex": 805000000,
+ "ttm_sbc": 95000000,
+ "ttm_shares_diluted": 1186000000,
+ "ttm_oe_total": 3721000000,
+ "ttm_oe_per_share": 3.1374367622259696,
+ "warnings": [],
+ "overrides_used": []
+}

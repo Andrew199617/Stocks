@@ -1,0 +1,70 @@
+{
+ "ticker": "PKG",
+ "name": "Packaging Corporation of America",
+ "sector": "Materials / Containerboard & corrugated packaging",
+ "price": 232.575,
+ "market_cap_b": 20.84,
+ "engine_version": 5,
+ "base_oe_per_share": 7.777777777777778,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Scale, vertical integration and a dense plant network give a real freight / service cost edge in a bulky, low value-to-weight product, and a historically disciplined low-cost operating culture \u2014 but containerboard is a commodity, pricing follows industry supply/demand rather than company-specific pricing power, and larger rivals can match scale.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 32.42,
+   "irr": 0.0404
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 52.16,
+   "irr": 0.0523
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 71.37,
+   "irr": 0.0643
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 96.52,
+   "irr": 0.0796
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 145.97,
+   "irr": 0.1076
+  }
+ },
+ "iv_at_15": 76.42,
+ "iv_at_12": 101.87,
+ "implied_irr": 0.0678,
+ "implied_irr_base_case": 0.0643,
+ "upside_at_15_pct": -67.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality integrated containerboard producer, moat 5/10 \u2014 does not clear 15% at $232.58 (weighted IRR 6.78%, weighted IV@15% $76.42); it would need a price near $76.42 to clear 15% on the weighted case.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Vertical integration \u2014 mills feed its own corrugated plants, insulating volume from the open containerboard market",
+  "Scale as the third-largest North American containerboard producer, enlarged by the Greif mills and plants",
+  "Dense corrugated plant network close to customers \u2014 freight is a major delivered cost for bulky boxes",
+  "Proven through-cycle profitability \u2014 OE positive 5 of the last 5 fiscal years"
+ ],
+ "moat_against": [
+  "Commodity product \u2014 containerboard / box pricing is industry supply/demand driven, no durable pricing power",
+  "Larger, equally integrated rivals can match scale and capacity",
+  "Uncontrolled input costs \u2014 recycled fiber (OCC), freight, energy and chemicals squeezed Q2 2026 margins",
+  "Cyclical end demand and industry capacity additions can pressure prices for years"
+ ]
+}

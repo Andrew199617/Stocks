@@ -1,0 +1,73 @@
+{
+ "ticker": "MKSI",
+ "name": "MKS Inc.",
+ "sector": "Technology / Semiconductor equipment subsystems",
+ "price": 226.7,
+ "market_cap_b": 15.35,
+ "engine_version": 5,
+ "base_oe_per_share": 5.563282336578581,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Core subsystems are designed into fab tools and processes, where re-qualifying a supplier risks yield \u2014 real switching costs \u2014 and MKS holds leading share in several niches, with recurring chemistry/services on top; but it sells to powerful OEM customers into a violently cyclical end market, and the 2023 impairments on the just-closed Atotech deal (~$1.3B Materials Solutions plus ~$0.5B Equipment Solutions) show parts of the portfolio were worth far less than the price paid, with returns on capital since running below the deal's cost.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 4.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 9.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 23.62,
+   "irr": 0.0363
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 38.68,
+   "irr": 0.0459
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 53.69,
+   "irr": 0.0559
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 73.76,
+   "irr": 0.0691
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 114.21,
+   "irr": 0.0939
+  }
+ },
+ "iv_at_15": 53.74,
+ "iv_at_12": 71.85,
+ "implied_irr": 0.0564,
+ "implied_irr_base_case": 0.0559,
+ "upside_at_15_pct": -76.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Entrenched semi-equipment subsystem supplier, moat 6/10, in a strong AI upcycle \u2014 but at $226.70 the weighted IRR is only 5.64% (IV@15% $53.74); it clears the 15% hurdle only at ~$54, and even the super-bull case doesn't reach a 10% IRR at this price.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Design-in / qualification switching costs in RF power, vacuum, plasma and gas-delivery subsystems \u2014 swaps risk process yield",
+  "Leading positions in niches \u2014 at/near #1 share in RF power supplies, strong vacuum and remote-plasma positions",
+  "Breadth and cross-sell \u2014 vacuum, photonics, motion and chemistry under one roof, tools plus recurring chemistry and services",
+  "Recurring chemistry/services mix (former Atotech) with high attach rates on installed chemistry equipment"
+ ],
+ "moat_against": [
+  "Customer concentration and OEM pricing power \u2014 a concentrated set of large equipment customers sets the capex cycle",
+  "Violent end-market cyclicality \u2014 FY2023 OE fell to $178M in the downturn",
+  "Atotech capital allocation \u2014 ~$1.8B of impairments within a year of the Aug 2022 close; returns below the deal's cost of capital",
+  "Leverage \u2014 net debt 9.9x normalized OE amplifies the cycle for equity holders",
+  "Specialist competition in every niche and OEM insourcing risk; no owned end-demand"
+ ]
+}

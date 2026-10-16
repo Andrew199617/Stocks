@@ -4,19 +4,19 @@
  "cik": 1549802,
  "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 26.78,
+ "price": 26.6,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 2978037127,
- "market_cap_est": 79751834261.06,
- "net_debt_latest": 25212000000,
+ "market_cap_est": 79215787578.2,
+ "net_debt_latest": -13250483520.0,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.10371527017708337,
  "rev_cagr_3y": 0.07260635550661942,
  "oe_positive_years_of_last_5": "5/5",
  "base_oe_total_latest_fy": 922000000,
- "base_oe_per_share": 2.2154952828487167,
- "base_oe_latest_per_share": 0.3095999011029119,
- "base_oe_normalized_per_share": 2.2154952828487167,
+ "base_oe_per_share": 4.430990565697433,
+ "base_oe_latest_per_share": 0.6191998022058238,
+ "base_oe_normalized_per_share": 4.430990565697433,
  "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.10371527017708337,
@@ -47,29 +47,143 @@
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
  "filer_annual_form": "20-F",
- "ads_ratio": null,
+ "ads_ratio": {
+  "ratio": 2.0,
+  "source": "JD.com Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-17), Item 9.A Offering and Listing Details: the company's ADSs, each representing two Class A ordinary shares, have been listed on Nasdaq since May 22, 2014 under the symbol JD; the same ratio is stated on the 20-F cover for the registered ADS class",
+  "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price"
+ },
+ "fx_conversion": {
+  "from_currency": "CNY",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "da",
+   "sbc",
+   "debt_current",
+   "debt_lt"
+  ],
+  "rates": {
+   "2012-12-31": 0.1605,
+   "2013-12-31": 0.16518,
+   "2020-12-31": 0.15296,
+   "2021-12-31": 0.15742,
+   "2024-12-31": 0.137,
+   "2025-12-31": 0.14284
+  }
+ },
  "override_checks": {},
- "tier_by_numbers": null,
- "implied_irr_weighted": null,
- "implied_irr_base": null,
+ "g_base": 0.1098815729211925,
  "moat_score": 5.0,
  "cap_years": 8.5,
  "g_terminal": 0.025,
- "data_gap": [
-  "currency"
- ],
- "data_gap_uncovered": [
-  "currency"
- ],
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.2,
+   0.35,
+   0.25,
+   0.13,
+   0.07
+  ],
+  "offsets": [
+   -0.17,
+   -0.1,
+   -0.05,
+   0.0,
+   0.07
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
  "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.2,
+   "g_start": -0.0601,
+   "oe_mult": 0.75,
+   "iv_at_10": 30.454541302803953,
+   "iv_at_12": 24.499607839896406,
+   "iv_at_15": 19.0840293856497,
+   "irr": 0.11185273745322794
+  },
+  "bear": {
+   "prob": 0.35,
+   "g_start": 0.0099,
+   "oe_mult": 0.9,
+   "iv_at_10": 50.800489927715525,
+   "iv_at_12": 40.2314231163494,
+   "iv_at_15": 30.703238210854426,
+   "irr": 0.16963148790415794
+  },
+  "base": {
+   "prob": 0.25,
+   "g_start": 0.0599,
+   "oe_mult": 1.0,
+   "iv_at_10": 71.13732267839144,
+   "iv_at_12": 55.77533840217613,
+   "iv_at_15": 41.99984772164275,
+   "irr": 0.21900293359200662
+  },
+  "bull": {
+   "prob": 0.13,
+   "g_start": 0.1099,
+   "oe_mult": 1.1,
+   "iv_at_10": 98.2632501655702,
+   "iv_at_12": 76.34525176726368,
+   "iv_at_15": 56.78306254608791,
+   "irr": 0.274645408664835
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "g_start": 0.1799,
+   "oe_mult": 1.25,
+   "iv_at_10": 152.59872494309292,
+   "iv_at_12": 117.22493184940038,
+   "iv_at_15": 85.83331801116233,
+   "irr": 0.36342555821273537
+  }
+ },
+ "weighted": {
+  "iv_at_10": 65.11154367239972,
+  "iv_at_12": 51.05538221844792,
+  "iv_at_15": 38.45303157311247,
+  "irr": 0.2033221133591715
+ },
+ "implied_irr_weighted": 0.2033221133591715,
+ "implied_irr_base": 0.21900293359200662,
+ "tier_by_numbers": "A",
+ "upside_at_15": 0.44560269071851377,
+ "upside_at_12": 0.9193752713702223,
+ "iv_at_15": 38.45303157311247,
+ "iv_at_12": 51.05538221844792,
+ "diagnostics": {
+  "oe_yield": 0.1665785926953922,
+  "tv_share_at_15": 0.18685430390080124,
+  "scenario_spread_iv15": 4.4976517420217865,
+  "net_debt_to_normalized_oe": -1.0041550880498962,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
  "fragility_flags": [
-  "DATA_GAP:currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts in the last 3 FY); USD translations and ADS ratios are unverified \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}"
+  "FX_CONVERTED: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (JD.com Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-17), Item 9.A Offering and Listing Details: the company's ADSs, each representing two Class A ordinary shares, have been listed on Nasdaq since May 22, 2014 under the symbol JD; the same ratio is stated on the 20-F cover for the registered ADS class) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 0.62 vs 3-yr median 4.43 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
- "content_hash": "4b542caad87e2f1e85da4e264c5e768b267ee22a074ebf2845ac14d14b4d01ef"
+ "content_hash": "97dfd9c5538b9262347af22c66e3fe84b007da1f39af54a2708d336f3d8e33c4"
 }

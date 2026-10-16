@@ -1,0 +1,168 @@
+{
+ "ticker": "PAAS",
+ "name": "Pan American Silver Corp.",
+ "cik": 771992,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 43.77,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 381577000,
+ "market_cap_est": 16701625290.000002,
+ "net_debt_latest": -501000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.22007245647159301,
+ "rev_cagr_3y": 0.34271028782968704,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 1017000000,
+ "base_oe_per_share": 1.103464217214592,
+ "base_oe_latest_per_share": 2.665254981301284,
+ "base_oe_normalized_per_share": 1.103464217214592,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.22007245647159301,
+  "rev_cagr_3y": 0.34271028782968704,
+  "rev_yoy_latest": 0.2837885775097553,
+  "oe_ps_cagr_2y": 2.636395677074956
+ },
+ "g_blend": 0.31324943266972116,
+ "share_cagr": 0.21920279528919573,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-18, SEC CIK 771992), cover page: securities registered under Section 12(b) are 'Common Shares, No Par Value', trading symbol PAAS, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS",
+  "reason": "Pan American is a direct-listed foreign private issuer: one NYSE-traded PAAS share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.2632494326697212,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.31,
+   -0.26,
+   -0.21,
+   -0.16,
+   -0.08
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0468,
+   "oe_mult": 0.75,
+   "iv_at_10": 8.314232424905107,
+   "iv_at_12": 6.6460556110946,
+   "iv_at_15": 5.135450274626815,
+   "irr": 0.03858901117113567
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0032,
+   "oe_mult": 0.9,
+   "iv_at_10": 12.375155372570855,
+   "iv_at_12": 9.805057218497149,
+   "iv_at_15": 7.48792384722188,
+   "irr": 0.04596052636462067
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0532,
+   "oe_mult": 1.0,
+   "iv_at_10": 16.98193089570919,
+   "iv_at_12": 13.34720680748744,
+   "iv_at_15": 10.082939613220633,
+   "irr": 0.05444126073080435
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.1032,
+   "oe_mult": 1.1,
+   "iv_at_10": 22.97042012531087,
+   "iv_at_12": 17.922337194868348,
+   "iv_at_15": 13.404403619545912,
+   "irr": 0.06526845209770771
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1832,
+   "oe_mult": 1.25,
+   "iv_at_10": 36.00958458959708,
+   "iv_at_12": 27.806864697190818,
+   "iv_at_15": 20.50070592050347,
+   "irr": 0.08760496165651624
+  }
+ },
+ "weighted": {
+  "iv_at_10": 17.100782221976118,
+  "iv_at_12": 13.4116245984089,
+  "iv_at_15": 10.102307714309008,
+  "irr": 0.05481321461927535
+ },
+ "implied_irr_weighted": 0.05481321461927535,
+ "implied_irr_base": 0.05444126073080435,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.7691956199609549,
+ "upside_at_12": -0.6935886543658007,
+ "iv_at_15": 10.102307714309008,
+ "iv_at_12": 13.4116245984089,
+ "diagnostics": {
+  "oe_yield": 0.025210514444016268,
+  "tv_share_at_15": 0.18643497731815484,
+  "scenario_spread_iv15": 3.991997745902276,
+  "net_debt_to_normalized_oe": -1.1898638827106123,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 21.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-18, SEC CIK 771992), cover page: securities registered under Section 12(b) are 'Common Shares, No Par Value', trading symbol PAAS, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 2.67 vs 3-yr median 1.10 \u2014 one of them is distorted; find out which and why"
+ ],
+ "content_hash": "744b4a990963b2118d5f6501f559b072e64846a48e2e535606c12ac37f6e47a1"
+}

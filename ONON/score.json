@@ -1,0 +1,73 @@
+{
+ "ticker": "ONON",
+ "name": "On Holding AG",
+ "sector": "Consumer Discretionary / Premium performance sportswear (footwear & apparel)",
+ "price": 35.13,
+ "market_cap_b": 10.43,
+ "engine_version": 5,
+ "base_oe_per_share": 0.9348430810494467,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: a genuine premium brand with proprietary CloudTec/LightSpray innovation and proven pricing power (Q2 2026 gross margin 65.4%, guidance raised to at least 65% for 2026) and a fast-growing higher-margin DTC channel (45.7% of Q2 sales), at only ~2-3% global running share so the runway is long \u2014 but footwear has no network effects or switching costs, brand heat must be re-earned each season, and Nike (regaining running share under a new CEO), Adidas and Hoka are larger, better-funded and now competing directly in On's premium lane, as the promotional Americas wholesale market in 2026 showed.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "FX_CONVERTED: reporting currency CHF converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (On Holding AG Form 20-F for the fiscal year ended December 31, 2025 (filed March 3, 2026): share capital note shows 306,847,124 Class A Ordinary Shares issued, of which 296,873,353 were outstanding at December 31, 2025 \u2014 exactly the engine's shares_diluted_latest (296,873,353); the NYSE-listed security (ONON) is the Class A ordinary share itself, listed directly, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 8.51,
+   "irr": 0.058
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 12.53,
+   "irr": 0.0741
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 17.03,
+   "irr": 0.0915
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 25.71,
+   "irr": 0.1218
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 43.0,
+   "irr": 0.1707
+  }
+ },
+ "iv_at_15": 18.3,
+ "iv_at_12": 25.37,
+ "implied_irr": 0.0967,
+ "implied_irr_base_case": 0.0915,
+ "upside_at_15_pct": -47.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Premium sportswear brand, moat 5/10 \u2014 does not clear 15% on filing-based numbers: weighted IRR 9.67%, weighted IV@15 $18.30 vs $35.13 price; clears 15% only below ~$18.30, and even the super-bull case (17.07% IRR) barely clears it.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Premium brand with proven pricing power: Q2 2026 gross margin 65.4% and 2026 guidance raised to at least 65%, absorbed US tariffs at full price",
+  "Proprietary product technology: CloudTec cushioning, LightSpray and SURREAL foam franchises that competitors cannot copy directly",
+  "DTC channel compounding fastest (Q2 +26% reported, 45.7% of sales) at structurally higher margins, plus a growing owned-store network",
+  "Small share (~2-3% of global running) against a huge premium TAM, with APAC momentum (Q2 APAC-led growth, >20% of sales) and apparel scaling (+47.7% in Q2)",
+  "Affluent customer base that has held up better than mass-market consumers in a polarized economy"
+ ],
+ "moat_against": [
+  "No network effects and near-zero switching costs: runners switch shoe brands freely and brand heat is fashion-exposed",
+  "Incumbents fighting back: Nike regained running share in North America/Western Europe in FY2026, Hoka gains above $120 price points; both outspend On by multiples",
+  "Wholesale still 54.3% of sales and decelerated sharply in Q2 2026 as On cut shipments to protect full-price positioning \u2014 growth is partly channel-managed",
+  "Guided deceleration is real: FY2026 constant-currency growth trimmed to low-20s from at least 23%, vs +48.6% reported revenue growth in FY2025",
+  "Single-brand, footwear-concentrated model now spending into unproven categories (football/golf via expensive athlete signings); CHF reporting adds FX noise to USD results"
+ ]
+}

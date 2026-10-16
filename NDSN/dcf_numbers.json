@@ -1,0 +1,160 @@
+{
+ "ticker": "NDSN",
+ "name": "NORDSON CORPORATION",
+ "cik": 72331,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 328.8,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 56916000,
+ "market_cap_est": 18713980800.0,
+ "net_debt_latest": 1887812000,
+ "latest_period_end": "2025-10-31",
+ "rev_cagr_5y": 0.05648754842956416,
+ "rev_cagr_3y": 0.025268567575535306,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 642171000,
+ "base_oe_per_share": 12.495756365451822,
+ "base_oe_latest_per_share": 11.282785157073581,
+ "base_oe_normalized_per_share": 10.13324426090125,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.05648754842956416,
+  "rev_cagr_3y": 0.025268567575535306,
+  "rev_yoy_latest": 0.03783233782702178,
+  "oe_ps_cagr_2y": 0.05515908670653391
+ },
+ "g_blend": 0.046495712266777844,
+ "share_cagr": -0.007685364586330956,
+ "share_count_adj": 0.007685364586330956,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.0541810768531088,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 12.495756365451822,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0658,
+   "oe_mult": 0.75,
+   "iv_at_10": 78.50661925093375,
+   "iv_at_12": 63.78742743371208,
+   "iv_at_15": 50.2829203638255,
+   "irr": 0.040962997573939286
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0042,
+   "oe_mult": 0.9,
+   "iv_at_10": 137.37566975885676,
+   "iv_at_12": 109.1322512708598,
+   "iv_at_15": 83.61213461797463,
+   "irr": 0.05581023223950203
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0542,
+   "oe_mult": 1.0,
+   "iv_at_10": 199.8384903687009,
+   "iv_at_12": 156.4546782144592,
+   "iv_at_15": 117.61093830340572,
+   "irr": 0.07121749768416102
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1042,
+   "oe_mult": 1.1,
+   "iv_at_10": 287.4469926813364,
+   "iv_at_12": 222.07307034672533,
+   "iv_at_15": 164.00422956614875,
+   "irr": 0.09123932733645188
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1742,
+   "oe_mult": 1.25,
+   "iv_at_10": 473.778655075489,
+   "iv_at_12": 360.0381546011498,
+   "iv_at_15": 259.96258669835925,
+   "irr": 0.12761503421915033
+  }
+ },
+ "weighted": {
+  "iv_at_10": 221.3857401533008,
+  "iv_at_12": 172.12029207222022,
+  "iv_at_15": 128.21192324327103,
+  "irr": 0.07653509408298775
+ },
+ "implied_irr_weighted": 0.07653509408298775,
+ "implied_irr_base": 0.07121749768416102,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6100610606956478,
+ "upside_at_12": -0.4765197929677001,
+ "iv_at_15": 128.21192324327103,
+ "iv_at_12": 172.12029207222022,
+ "diagnostics": {
+  "oe_yield": 0.03800412519906272,
+  "tv_share_at_15": 0.19896688538639956,
+  "scenario_spread_iv15": 5.169997780904176,
+  "net_debt_to_normalized_oe": 2.6543722150391846,
+  "months_since_fy_end": 11.498028909329829,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 11 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "f58d7e38da83deb3ec61e94e360077022c68ca7e6813a1202829f03c21f270bc"
+}

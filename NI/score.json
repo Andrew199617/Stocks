@@ -1,0 +1,43 @@
+{
+ "ticker": "NI",
+ "name": "NiSource Inc.",
+ "sector": "Utilities / Regulated gas & electric",
+ "price": 41.25,
+ "market_cap_b": 19.57,
+ "engine_version": 5,
+ "base_oe_per_share": -1.6615315918731859,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Exclusive regulated service territories and essential service make the franchise durable, but NiSource owns no pricing power beyond what commissions grant, allowed ROE is under active scrutiny in Indiana, and the equity story depends on regulators continuing to let a very large capex program into rate base.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Regulated utility monopoly, moat 5/10 \u2014 conservative owner's earnings are negative in all of the last 5 fiscal years (capex for rate-base and data-center growth far exceeds OCF), so the OE DCF returns Tier F at $41.25 with no hurdle-clearing price on this method; verdict is method-bound, confidence low.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated monopoly territories (Columbia Gas, NIPSCO) \u2014 customers cannot switch providers",
+  "Essential gas and electric service with inelastic demand",
+  "Rate-base growth engine \u2014 $28.6B 2026\u20132030 plan guided to 9%\u201311% rate-base growth, Amazon/Alphabet data-center agreements approved in Indiana",
+  "Long-lived infrastructure franchise with tracker/modernization cost recovery"
+ ],
+ "moat_against": [
+  "Returns capped by regulators \u2014 no pricing power beyond rate cases and trackers",
+  "Indiana ROE and tracker proceedings under scrutiny (BMO cut target $49 to $45 on 2026-09-28 citing regulatory clarity)",
+  "Perpetual external financing \u2014 ~$400M\u2013$600M/yr planned equity issuance dilutes (share count CAGR +2.34%/yr); heavy debt load makes earnings rate-sensitive",
+  "GenCo data-center build adds large-load, counterparty and execution risk outside the traditional regulated model"
+ ]
+}

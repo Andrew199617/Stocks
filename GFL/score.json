@@ -1,0 +1,76 @@
+{
+ "ticker": "GFL",
+ "name": "GFL Environmental Inc.",
+ "sector": "Utilities / Environmental services \u2014 solid waste management",
+ "price": 43.55,
+ "market_cap_b": 16.49,
+ "engine_version": 5,
+ "base_oe_per_share": 0.044551878304198565,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "North America's fourth-largest diversified environmental services company: route density in its collection markets, scarce permitted landfill assets, and long-term municipal/commercial contracts give real pricing power (core pricing +6.1% in Q2 2026) and moderate switching friction \u2014 but collection itself has low entry barriers, Waste Management / Republic Services / Waste Connections run larger and more profitable networks, growth has been bought via a debt-funded roll-up rather than earned organically (organic growth was 6.4% of Q2 2026's 16.3%), and the fleet/landfill base demands heavy, perpetual capex that consumes nearly all operating cash flow.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F cover (SEC filing, CIK 1780232): the securities registered and listed on the NYSE under symbol GFL are the company's subordinate voting shares themselves (company releases declare dividends 'for each outstanding subordinate voting share'; the same class trades on the TSX as GFL) \u2014 there is no depositary or ADS program, so the NYSE line is the share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "LOW_OE_YIELD: base OE yield 0.1% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 317.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 0.21,
+   "irr": -0.114
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 0.34,
+   "irr": -0.0785
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 0.46,
+   "irr": -0.0545
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 0.62,
+   "irr": -0.0312
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 0.94,
+   "irr": 0.001
+  }
+ },
+ "iv_at_15": 0.49,
+ "iv_at_12": 0.66,
+ "implied_irr": -0.0484,
+ "implied_irr_base_case": -0.0545,
+ "upside_at_15_pct": -98.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Capex-heavy waste roll-up, moat 5/10 \u2014 normalized owner's earnings are only $0.04/share against a $43.55 price (weighted IRR -4.8%, weighted IV@15 $0.49), so it does not come close to clearing 15%; it would clear 15% only below ~$0.49 on this model.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Route density in collection markets \u2014 dense routes lower cost per stop and are hard for entrants to replicate profitably",
+  "Scarce permitted landfill and transfer-station assets; new landfill permits are extremely difficult to obtain",
+  "Long-term municipal and commercial contracts with demonstrated pricing power (core pricing +6.1% in Q2 2026)",
+  "Scale: fourth-largest diversified environmental services company in North America, 19 U.S. states plus Canada"
+ ],
+ "moat_against": [
+  "Larger, more profitable rivals (Waste Management, Republic Services, Waste Connections) with stronger margins and balance sheets",
+  "Growth is acquisition-led: 9.9pp of Q2 2026's 16.3% revenue growth came from M&A, with integration and overpayment risk on every deal (e.g. SECURE, closed Sep 1 2026)",
+  "Capex intensity: capex ran $833.6M against $961.2M of operating cash flow in FY2025 \u2014 the asset base consumes nearly all cash generation",
+  "Leverage and dual-class founder control: net debt $5.36B (engine figure, pre-SECURE) and founder/CEO holds outsized voting power via multiple voting shares",
+  "Recycled-commodity price and diesel exposure; volumes were a slight drag (-0.6pp) in Q2 2026"
+ ]
+}

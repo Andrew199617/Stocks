@@ -1,0 +1,71 @@
+{
+ "ticker": "LVS",
+ "name": "Las Vegas Sands Corp.",
+ "sector": "Consumer Discretionary \u2014 Integrated Resorts / Casinos",
+ "price": 37.885,
+ "market_cap_b": 26.25,
+ "engine_version": 5,
+ "base_oe_per_share": 3.97737556561086,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Singapore duopoly and unmatched Macau scale are real and hard to replicate, but the moat is a government licence, not owned property: concessions are time-limited and repriced at renewal with mandated non-gaming spend (Macau plan ~$4.44B through 2032), and Macau customers have no switching costs, so premium-mass share is defended with reinvestment that is compressing margins. MBS earns ~50% property EBITDA margins as one of only two licensed Singapore resorts; against that, the entire asset base sits in two jurisdictions exposed to Chinese consumer health, capital controls, and hold luck.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.2%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 20.15,
+   "irr": 0.0893
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 31.57,
+   "irr": 0.1295
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 43.82,
+   "irr": 0.168
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 60.17,
+   "irr": 0.2121
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 89.07,
+   "irr": 0.2759
+  }
+ },
+ "iv_at_15": 47.0,
+ "iv_at_12": 63.53,
+ "implied_irr": 0.1768,
+ "implied_irr_base_case": 0.168,
+ "upside_at_15_pct": 24.1,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Premier Asia casino cash machine (Singapore duopoly + Macau scale), moat 6/10 \u2014 clears 15% only on the TTM base (17.7% weighted, IV $47.00 vs $37.89); on the median base it is a C (12.8%, IV $30.71), which is also the price that clears 15% with a margin of safety.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Singapore duopoly: one of only two licensed IRs, MBS dominant with ~50%+ property EBITDA margins",
+  "Largest Macau footprint: five properties, unmatched Cotai scale across segments",
+  "Iconic irreplicable assets (Marina Bay Sands, Venetian/Londoner cluster)",
+  "Proven post-renovation volume/pricing power (Londoner ramp 2025-2026)"
+ ],
+ "moat_against": [
+  "Moat is a time-limited government concession, repriced at renewal with mandated non-gaming capex",
+  "Zero customer switching costs in Macau: six concessionaires in a premium-mass reinvestment war, margins compressing",
+  "Total concentration in two jurisdictions exposed to China policy, capital controls, consumer health",
+  "Hold-luck volatility: low rolling hold cut Q2 2026 Macau EBITDA by ~$87M vs normalized"
+ ]
+}

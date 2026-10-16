@@ -1,0 +1,168 @@
+{
+ "ticker": "KGC",
+ "name": "KINROSS GOLD CORP",
+ "cik": 701818,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 22.24,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 1224607000,
+ "market_cap_est": 27235259679.999996,
+ "net_debt_latest": -1004100000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.10848790797959595,
+ "rev_cagr_3y": 0.2683580289031504,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2553200000,
+ "base_oe_per_share": 1.10319610143021,
+ "base_oe_latest_per_share": 2.084913772336758,
+ "base_oe_normalized_per_share": 1.10319610143021,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.10848790797959595,
+  "rev_cagr_3y": 0.2683580289031504,
+  "rev_yoy_latest": 0.36946472964574273,
+  "oe_ps_cagr_2y": 1.2688833611813455
+ },
+ "g_blend": 0.31891137927444657,
+ "share_cagr": -0.017900049059779155,
+ "share_count_adj": 0.017900049059779155,
+ "used_tags": {
+  "revenue": "RevenueFromContractsWithCustomers",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F filed 2026-03-26 (CIK 701818): 'Our common shares are listed on the Toronto Stock Exchange and the New York Stock Exchange' \u2014 the NYSE security is the common share itself, not an ADS; the _system README v5.3 note likewise lists KGC among the direct-listed ordinary-share filers (ratio 1.0)",
+  "reason": "Kinross is a direct-listed foreign private issuer: one NYSE-traded KGC share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.3368114283342257,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.4368,
+   -0.3368,
+   -0.2568,
+   -0.1868,
+   -0.0868
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 6.931559352249922,
+   "iv_at_12": 5.567823780204377,
+   "iv_at_15": 4.3310520800912045,
+   "irr": 0.047134402851035664
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0,
+   "oe_mult": 0.9,
+   "iv_at_10": 12.33567930850669,
+   "iv_at_12": 9.769326044949192,
+   "iv_at_15": 7.456480451432428,
+   "irr": 0.06635505572083689
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.08,
+   "oe_mult": 1.0,
+   "iv_at_10": 18.517398895719445,
+   "iv_at_12": 14.525536323066438,
+   "iv_at_15": 10.942650389385891,
+   "irr": 0.08770786606759373
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.15,
+   "oe_mult": 1.1,
+   "iv_at_10": 26.240704809608715,
+   "iv_at_12": 20.43489442581068,
+   "iv_at_15": 15.239753342263306,
+   "irr": 0.11271605686749833
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.25,
+   "oe_mult": 1.25,
+   "iv_at_10": 42.17431776311807,
+   "iv_at_12": 32.552304210886575,
+   "iv_at_15": 23.974049525279284,
+   "irr": 0.15860346435408418
+  }
+ },
+ "weighted": {
+  "iv_at_10": 18.449194861858444,
+  "iv_at_12": 14.444096862395604,
+  "iv_at_15": 10.8527650181266,
+  "irr": 0.0875603083337596
+ },
+ "implied_irr_weighted": 0.0875603083337596,
+ "implied_irr_base": 0.08770786606759373,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5120159614151708,
+ "upside_at_12": -0.35053521302178037,
+ "iv_at_15": 10.8527650181266,
+ "iv_at_12": 14.444096862395604,
+ "diagnostics": {
+  "oe_yield": 0.04960414125135837,
+  "tv_share_at_15": 0.18850755915864326,
+  "scenario_spread_iv15": 5.535387033437481,
+  "net_debt_to_normalized_oe": -0.7432373241226959,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F filed 2026-03-26 (CIK 701818): 'Our common shares are listed on the Toronto Stock Exchange and the New York Stock Exchange' \u2014 the NYSE security is the common share itself, not an ADS; the _system README v5.3 note likewise lists KGC among the direct-listed ordinary-share filers (ratio 1.0)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 2.08 vs 3-yr median 1.10 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "1b325ed94f2323cd387a188d64256e857d7a84fb7c6a0a463c7992c41f9fb471"
+}

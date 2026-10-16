@@ -1,0 +1,67 @@
+# OMC — Omnicom Group Inc.
+v5 run, 2026-10-15. All figures below are copied from key_numbers.md / dcf_numbers.json, ttm.py output (ttm.json), financials_history.csv, or cited search results — none are recomputed.
+
+## What it is
+The world's largest advertising and marketing-services holding company after closing the acquisition of Interpublic Group (IPG) on November 26, 2025 (search: Omnicom's Q4/FY2025 release coverage — revenue $5.5B in Q4, +27.9% YoY, including one month of IPG). Agency networks across advertising, media (Omnicom Media — confirmed #1 globally with $75.6B in billings, 31% of global major-group billings, per the June 2026 COMvergence rankings release), public relations, healthcare, and experiential, in 70+ countries. The business is people and client relationships: salary/service costs dominate, capex is trivial, and revenue is a leveraged play on global ad spend. Key competitors are now a "Big Three" — Publicis and WPP alongside Omnicom (search: Reuters, Oct 13, 2026, on the consolidated holdco landscape).
+
+## Owner's earnings
+**FY2025 (10-K via EDGAR, from financials_history.csv):** revenue $17,271,900,000; operating cash flow $2,938,200,000; capex $149,800,000; SBC $100,800,000 (always a real cost).
+- **Conservative owner's earnings FY2025: $2,687,600,000 = $13.12/share on the filed weighted share count (204,900,000)** — see BASE_DIVERGENCE below: this per-share figure is NOT a usable run-rate, because the denominator predates the full IPG share issuance.
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): $2,067,900,000 for FY2025 — below the conservative figure, and FY2025 net income itself was a loss (below), so the OCF-based conservative series is the cleaner one throughout.
+- OE positive 5 of the last 5 fiscal years. Net debt $9,272,900,000 (dcf_numbers.json) — see HIGH_NET_DEBT.
+
+**Base used = TTM owner's earnings through Q1 2026, from ttm.py (filing-direct, no hand math; ttm.json):**
+- OCF: FY $2,938,200,000 − prior YTD −$786,800,000 + current YTD −$553,200,000 = **TTM $3,171,800,000** (both YTD legs are seasonally negative Q1 figures, as filed)
+- Capex: FY $149,800,000 − prior YTD $29,500,000 + current YTD $61,200,000 = **TTM $181,500,000**
+- SBC: FY $100,800,000 − prior YTD $20,800,000 + current YTD $27,100,000 = **TTM $107,100,000**
+- Shares (current-YTD weighted diluted): **299,200,000** — the post-IPG-issuance count, versus 204,900,000 weighted for FY2025
+- **TTM OE total $2,883,200,000 → base OE/share $9.64** (base_source: ttm_json)
+- Two offsetting distortions make this TTM base conservative rather than flattering: the numerator still contains roughly nine standalone-Omnicom months of 2025 (only one month of IPG in FY2025, swapped for one combined quarter in Q1 2026), so it understates a full combined year; the denominator is already the full combined share count. The engine's normalized base (3-yr median) is $7.56/share — rejected as the primary base because all three median years are pre-merger, on the old ~200M share count, for a smaller company.
+- Post-ttm.json evidence (search): Q2 2026 (reported July 28, 2026) revenue $6.56B, +63.4% YoY reported (acquisition-driven), core organic growth +6.1%, non-GAAP adjusted EPS $2.65 (+29.3% YoY), adjusted EBITDA margin 17.8%; management raised FY2026 organic growth guidance to 4.5–5.0% and cited a $900M 2026 synergy target (of a $1.5B total target). ttm.py's latest YTD leg is Q1 2026, so none of Q2 enters the base — a further conservatism, stated here rather than hand-fixed.
+
+## Moat: 5/10 — moderate, scale-based, not structural
+Justification: the IPG combination bought genuine scale — the #1 media-buying position and the data/AI investment budget that now decides holdco pitches — but this remains a people business with low client switching costs, regular account reviews, and a rival (Publicis) that is currently out-executing on the same data/AI playbook. Scale is an advantage that must be re-won account by account; it is not a network effect or a switching-cost lock.
+- FOR: World's largest holdco post-IPG; Omnicom Media #1 globally ($75.6B billings, 31% share) — media-buying leverage and platform access smaller rivals cannot match
+- FOR: Omni data/technology platform with Adobe, Google Cloud and Microsoft AI partnerships — the investment scale the Big Three pitch dynamic now rewards (the Big Three won 91% of major pitches in H1 2026, per COMvergence data cited by Publicis)
+- FOR: Diversified connected capabilities (media, advertising, PR, health, experiential) and blue-chip client roster; Q2 2026 core organic growth +6.1% with margin expansion shows the combined offer is selling
+- FOR: Asset-light model — capex $181.5M TTM against OCF of $3,171.8M; SBC is a modest $107.1M TTM, so owner's earnings convert cleanly
+- AGAINST: People business — the assets walk out the door; talent retention post-merger (network retirements and layoffs were announced at close) is a live risk
+- AGAINST: Low switching costs — accounts are reviewed and moved regularly; Publicis took $2.2B of net new business in Q3 2026 alone while Omnicom's H1 net new business was negative (JPMorgan tally cited in trade coverage)
+- AGAINST: AI/agentic disintermediation and client in-housing, plus Google/Meta selling directly — the platforms Omnicom partners with are also its structural threat
+- AGAINST: Integration complexity — client conflicts, forced/planned dispositions (revenue held for sale), and a $1.5B synergy target that is promised, not yet delivered
+- AGAINST: Cyclical ad-spend exposure and principal-media transparency pressure on the highest-margin buying practices
+- A 5 gives CAP = 8.5 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 8.5 years, 15-year projection.
+
+## DCF — v5 final run (2026-10-15)
+Growth recalibration (written reason): the engine's blended growth is 8.64% (g_base), but its components are merger artifacts — OE/share CAGR 2y of 44.83% off the distorted per-share series, and latest revenue YoY +10.09% including one month of IPG — against real signals of revenue CAGR 5.57% (5y) / 6.52% (3y), Q2 2026 core organic growth of +6.1%, and raised FY2026 organic guidance of 4.5–5.0%. Scenario starts were therefore set via offsets (−0.106 / −0.066 / −0.036 / −0.011 / +0.014 vs g_base) to −1.96% / +2.04% / **+5.04%** / +7.54% / +10.04%. Sanity check: the base start (5.04%) sits at the top of guided organic growth and just below the Q2 organic print (+6.1%) — deliberate, because dispositions of held-for-sale revenue drag reported growth below core organic. Bull (7.54%) and super bull (10.04%) exceed guidance and require delivered synergies plus net new-business recovery — that is why they carry only 20%/10% weight despite the strong Q2 print; the far higher reported revenue growth (+63.4%) is acquisition accounting, not an organic print, and is not used as a growth anchor. Probabilities were skewed slightly bearish vs default (15/25/30/20/10 vs 10/25/30/25/10) for integration and leverage risk (see Flags). OE multipliers are the defaults 0.75/0.90/1.00/1.10/1.25. Price $80.72 (nasdaq_quote_api, final run).
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 15% | -1.96% | 0.75 | Ad recession + integration stalls; synergies slip, accounts defect to Publicis | $49.20 | 9.95% |
+| Bear | 25% | 2.04% | 0.90 | Low-single-digit organic growth; restructuring cash costs persist; dispositions drag | $69.78 | 13.30% |
+| Base | 30% | 5.04% | 1.00 | Guided 4.5–5% organic growth delivered; $900M 2026 synergies land | $87.83 | 16.07% |
+| Bull | 20% | 7.54% | 1.10 | Synergies + media scale convert to share gains and margin expansion | $107.16 | 18.85% |
+| Super bull | 10% | 10.04% | 1.25 | Category consolidator path: Big Three take share, AI platform monetizes | $134.99 | 22.59% |
+
+- **Probability-weighted: IV@15% $86.11 (+6.7% vs price), IV@12% $114.10, IV@10% $145.30, weighted IRR 15.81%, base-case IRR 16.07%**
+- **Tier by numbers: B.** Diagnostics (dcf_numbers.json): OE yield 11.94%, terminal value 18.49% of IV@15%, scenario spread 2.74x, net debt 4.70x normalized OE, 9.46 months since FY end.
+- Scope note: the engine's market cap ($16.54B) uses the FY2025 weighted share count (204,900,000) and understates the post-merger company; search-reported market cap was ~$21.9B on Oct 15, 2026 — either figure is under the $40B scope limit, so in_scope_under_40b is true.
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (FY ended 9.46 months ago): resolved by construction — the base is the TTM figure from ttm.py through Q1 2026, quoted above with all inputs. Caveat stated in the OE section: ttm.py's latest leg is Q1 2026, so Q2 2026 (reported July 28) is evidenced qualitatively, not in the base.
+- **BASE_DIVERGENCE** (latest FY OE/share $13.12 vs 3-yr median $7.56): BOTH are distorted, in opposite directions. The $13.12 divides a full year of OE by a 204,900,000 weighted share count that only fractionally weights the shares issued for IPG on Nov 26, 2025; the post-deal count is 299,200,000 (Q1 2026 YTD). The $7.56 median is all pre-merger years for a smaller company on the old share count. The TTM base ($9.64) is the only one of the three with a combined-company numerator and denominator, so it is used; it is also conservative on the numerator (see OE section).
+- **NI_OCF_DIVERGENCE** (2025): identified. FY2025 net income was a loss of −$54,500,000 and operating income fell to $444,700,000 (from $2,274,600,000 in FY2024) while OCF rose to $2,938,200,000. The cause is the IPG close in Q4 2025 (search: FY2025 release coverage): ~$1.1B of repositioning charges, a $543.4M loss on planned dispositions, and $186.7M of transaction costs hit earnings (Q4 alone: net loss $941M), while the cash-flow statement also reflects a working-capital release (ΔNWC −$1,995,500,000 in financials_history.csv). The OCF-based conservative OE is therefore the right series — but the same WC release flatters FY2025 OCF, which is one more reason the FY2025 per-share figure was rejected as a base.
+- **OE_VOLATILE** (OE/share range >3x over 5 years): real and structural to the series — the low years are the 2022 OCF dip and the high end is the distorted FY2025 per-share figure; the underlying business is also genuinely cyclical (ad spend). Handled by the normalized/TTM base, a bear-tilted probability set (40% on bear-or-worse), and a super-bear OE multiplier of 0.75.
+- **HIGH_NET_DEBT** (net debt $9,272,900,000; 4.70x normalized OE on the final run): folded into the verdict explicitly. The combined company assumed IPG's debt at close and management authorized a $5B buyback (including a $2.5B accelerated repurchase) at the Q4 release — leverage is a choice being added to, not paid down first. At 4.7x normalized OE the equity is a levered claim: the bear cases (IV@15 $69.78 and $49.20, both below the $80.72 price) are what leverage does when OE dips. This is why probabilities tilt bearish and why the verdict below sizes the position to the conservative end despite the B.
+- **WIDE_SCENARIO_SPREAD** (preliminary run: super-bull IV 4.5x super-bear): after the growth recalibration the final spread is 2.74x — still wide in absolute terms ($49.20 to $134.99 at a 15% discount). Confidence is therefore medium, never high, and the verdict is sized accordingly.
+
+## My thoughts / overlay
+- The honest headline is a range: on the pre-merger 3-yr median base ($7.56/share) this recalibrated scenario set would screen a full tier lower (Tier C territory); on the TTM base with the combined share count it is a B at 15.81%. The TTM construction is the defensible one — matched numerator and denominator for the company that actually exists now — so B is the verdict, but it is a low B, and the method range (C to B) belongs in the headline, not a footnote.
+- Quality is decent, not elite: asset-light, SBC is small ($107.1M TTM), OCF conversion is strong, and Q2 2026 showed real organic momentum (+6.1% core) with guidance raised. Against that: $9.27B of net debt, a $1.5B synergy promise still to be delivered, negative H1 net new business while Publicis compounds, and an industry where AI simultaneously cuts Omnicom's costs and arms its clients and platforms to bypass it.
+- Margin of safety is thin: the weighted IV@15% ($86.11) sits only 6.7% above the $80.72 price, and both bear cases sit below the price. The price that clears 15% on the weighted path is $86.11 itself — a buyer at $80.72 is paid for the base case with almost no cushion. A ~20% margin of safety against the weighted IV would mean an entry near the bear-case IV of $69.78.
+- What would change the call: two more quarters of combined-company filings (a clean TTM on the full share count), delivered synergies showing up in OCF rather than adjustments, and net new business turning positive against Publicis.
+
+## Final verdict
+- **Final tier: B** (weighted IRR 15.81% on the v5 final inputs; method range C to B — size it like a low B)
+- Confidence: **Medium** (the TTM base construction is sound and conservative on its numerator, but integration, leverage at 4.70x normalized OE, and a 2.74x scenario spread cap confidence)
+- One-liner: World's largest ad holdco post-IPG, moat 5/10 — clears 15% on the matched TTM base (15.8% weighted, IV $86.11 vs $80.72) but with almost no margin of safety, 4.7x leverage, and a C-to-B method range; a low B, not a bargain.

@@ -1,0 +1,72 @@
+{
+ "ticker": "OMC",
+ "name": "Omnicom Group Inc.",
+ "sector": "Communication Services \u2014 Advertising & Marketing Services",
+ "price": 80.72,
+ "market_cap_b": 16.54,
+ "engine_version": 5,
+ "base_oe_per_share": 9.636363636363637,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate, scale-based moat, not structural: the IPG combination made Omnicom the world's largest holdco and #1 in global media billings ($75.6B, 31% share), with the Omni data/AI platform and Big Three pitch dynamics (91% of major H1 2026 pitches) rewarding scale. Against that, it is a people business with low client switching costs and regular account reviews, Publicis is out-executing on the same data/AI playbook ($2.2B net new business in Q3 2026 while Omnicom's H1 was negative), AI/platforms threaten disintermediation, and the $1.5B synergy target is promised, not delivered. CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 13.12 vs 3-yr median 7.56 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 4.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 49.2,
+   "irr": 0.0995
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 69.78,
+   "irr": 0.133
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 87.83,
+   "irr": 0.1607
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 107.16,
+   "irr": 0.1885
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 134.99,
+   "irr": 0.2259
+  }
+ },
+ "iv_at_15": 86.11,
+ "iv_at_12": 114.1,
+ "implied_irr": 0.1581,
+ "implied_irr_base_case": 0.1607,
+ "upside_at_15_pct": 6.7,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "medium",
+ "one_liner": "World's largest ad holdco post-IPG, moat 5/10 \u2014 clears 15% on the matched TTM base (15.8% weighted, IV $86.11 vs $80.72) but with almost no margin of safety, net debt 4.7x normalized OE, and a C-to-B method range; a low B, not a bargain.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "World's largest holdco post-IPG; Omnicom Media #1 globally with $75.6B billings (31% share) \u2014 media-buying leverage",
+  "Omni data/AI platform with Adobe, Google Cloud and Microsoft partnerships; Big Three won 91% of major H1 2026 pitches",
+  "Diversified connected capabilities and blue-chip roster; Q2 2026 core organic growth +6.1% with margin expansion",
+  "Asset-light: capex $181.5M TTM vs OCF $3,171.8M; SBC a modest $107.1M TTM"
+ ],
+ "moat_against": [
+  "People business \u2014 talent walks; post-merger network retirements and layoffs are a retention risk",
+  "Low switching costs \u2014 accounts reviewed and moved regularly; Publicis took $2.2B net new business in Q3 2026, Omnicom H1 net new business negative",
+  "AI/agentic disintermediation, client in-housing, and Google/Meta selling directly",
+  "Integration complexity \u2014 client conflicts, planned dispositions, $1.5B synergy target not yet delivered",
+  "Cyclical ad-spend exposure and principal-media transparency pressure"
+ ]
+}

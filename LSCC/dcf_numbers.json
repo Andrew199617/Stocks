@@ -1,0 +1,164 @@
+{
+ "ticker": "LSCC",
+ "name": "LATTICE SEMICONDUCTOR CORP",
+ "cik": 855658,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 106.0,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 138238000,
+ "market_cap_est": 14653228000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-01-03",
+ "rev_cagr_5y": 0.05093874240815177,
+ "rev_cagr_3y": -0.07442139368835998,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 16967000,
+ "base_oe_per_share": 0.3955107695823573,
+ "base_oe_latest_per_share": 0.12273759747681534,
+ "base_oe_normalized_per_share": 0.483697459550903,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.05093874240815177,
+  "rev_cagr_3y": -0.07442139368835998,
+  "rev_yoy_latest": 0.02721039024265748,
+  "oe_ps_cagr_2y": -0.688423339874451
+ },
+ "g_blend": -0.023605501722851252,
+ "share_cagr": -0.005772291578627908,
+ "share_count_adj": 0.005772291578627908,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": -0.017833210144223344,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.2,
+   0.3,
+   0.25,
+   0.15
+  ],
+  "offsets": [
+   0.0678,
+   0.1678,
+   0.2678,
+   0.3678,
+   0.4678
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 0.3955107695823573,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.05,
+   "oe_mult": 0.75,
+   "iv_at_10": 4.550029880655627,
+   "iv_at_12": 3.5742876160203387,
+   "iv_at_15": 2.698435684529251,
+   "irr": 0.0008597289266595309
+  },
+  "bear": {
+   "prob": 0.2,
+   "g_start": 0.15,
+   "oe_mult": 0.9,
+   "iv_at_10": 8.589861020535679,
+   "iv_at_12": 6.629420269971256,
+   "iv_at_15": 4.885610913765103,
+   "irr": 0.03167214346565282
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.25,
+   "oe_mult": 1.0,
+   "iv_at_10": 14.77984707152988,
+   "iv_at_12": 11.242144626510798,
+   "iv_at_15": 8.118050752919062,
+   "irr": 0.03698310113855319
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.35,
+   "oe_mult": 1.1,
+   "iv_at_10": 24.7663053596875,
+   "iv_at_12": 18.61472916960801,
+   "iv_at_15": 13.21418698425052,
+   "irr": 0.04537885036864854
+  },
+  "super_bull": {
+   "prob": 0.15,
+   "g_start": 0.45,
+   "oe_mult": 1.25,
+   "iv_at_10": 42.1774638930756,
+   "iv_at_12": 31.39030529076682,
+   "iv_at_15": 21.966036383370582,
+   "irr": 0.05903971719381962
+  }
+ },
+ "weighted": {
+  "iv_at_10": 19.125125237514872,
+  "iv_at_12": 14.41818428956655,
+  "iv_at_15": 10.280833180649882,
+  "irr": 0.0408122784948729
+ },
+ "implied_irr_weighted": 0.0408122784948729,
+ "implied_irr_base": 0.03698310113855319,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.9030110077297181,
+ "upside_at_12": -0.8639793934946551,
+ "iv_at_15": 10.280833180649882,
+ "iv_at_12": 14.41818428956655,
+ "diagnostics": {
+  "oe_yield": 0.0037312336753052575,
+  "tv_share_at_15": 0.24331933908093412,
+  "scenario_spread_iv15": 8.140285317640474,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.395532194480946,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.12 vs 3-yr median 0.48 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 8.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "2a923cfa3b60e791cd6dc38e8eacee4a271a436855c9ab6b6c577375bb2b0b8c"
+}

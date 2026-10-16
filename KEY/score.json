@@ -1,0 +1,74 @@
+{
+ "ticker": "KEY",
+ "name": "KeyCorp",
+ "sector": "Finance / Regional banking",
+ "price": 19.92,
+ "market_cap_b": 22.07,
+ "engine_version": 5,
+ "base_oe_per_share": 1.7770854354806975,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate regional-bank franchise: a real deposit and relationship franchise across 16 states (Ohio, New York, Washington the largest deposit markets) with genuine fee engines (investment banking/debt placement, payments, trust/wealth, commercial mortgage servicing), a NIM rebuild actually printing (2.89% in Q2 2026, +23 bps YoY, guided 3.00-3.05% in 2026 and 3.25%+ in 2027) and capital bolstered by Scotiabank's ~$2.8B strategic minority investment (CET1 11.2% at Q2 2026, buybacks resumed) \u2014 against a commodity banking product with no structural pricing power (the NIM is earned through repricing and mix, not owned), full credit-cycle exposure (NPAs rising in CRE/agriculture/consumer; net charge-offs 42 bps), capital-constrained growth and capital return, money-center scale disadvantage, and per-share dilution from the Scotiabank issuance (diluted shares 949.6M in FY2024 to 1,108.0M in FY2025) that the resumed buyback must first retire. ROTCE >15% by 2027 is guided, not proven through a cycle. A 4 gives CAP 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 5.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 6.7,
+   "irr": 0.063
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 10.19,
+   "irr": 0.0868
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 14.85,
+   "irr": 0.1183
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 19.77,
+   "irr": 0.1491
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 27.12,
+   "irr": 0.1909
+  }
+ },
+ "iv_at_15": 14.85,
+ "iv_at_12": 19.6,
+ "implied_irr": 0.1185,
+ "implied_irr_base_case": 0.1183,
+ "upside_at_15_pct": -25.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Improving super-regional bank, moat 4/10 \u2014 median OE $1.78/sh is an 8.92% yield at $19.92, but on through-cycle starts the weighted IRR is 11.85% (IV@15% $14.85) and even the bull case only reaches ~$19.77, so it clears 15% only below ~$14.85; bank-model mismatch, confidence low.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Deposit/relationship franchise at scale \u2014 16 states, Ohio/New York/Washington largest deposit markets; average C&I loans up 11.7% YoY in Q2 2026",
+  "Diversified fee engines \u2014 investment banking and debt placement, cards/payments, trust/wealth (record AUM), commercial mortgage servicing",
+  "NIM rebuild printing \u2014 2.89% in Q2 2026 (+23 bps YoY), ~$9B fixed-rate assets repricing H2 2026 and ~$21B in 2027, deposit costs down 36 bps YoY",
+  "Capital bolstered \u2014 Scotiabank ~$2.8B strategic stake, CET1 11.2% at Q2 2026, $341M repurchased in Q2 2026 with at least $1.3B expected for 2026"
+ ],
+ "moat_against": [
+  "Commodity product, no pricing power \u2014 deposits and loans are fungible; NIM is earned through repricing/mix, not owned, and deposit repricing is outside management control",
+  "Credit-cycle exposure \u2014 NPAs rose in Q2 2026 (CRE, agriculture, consumer goods); net charge-offs 42 bps; provisions are the swing factor in any downturn",
+  "Capital-constrained \u2014 loan growth, the dividend and the buyback compete for the same CET1; Basel III endgame still evolving",
+  "Scale/efficiency disadvantage vs money-center banks; ~$1B of guided technology investment just to keep pace",
+  "Scotiabank dilution to re-earn \u2014 diluted shares 949.6M (FY2024) to 1,108.0M (FY2025); the buyback must retire that before per-share compounding restarts"
+ ]
+}

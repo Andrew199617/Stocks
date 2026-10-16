@@ -1,0 +1,37 @@
+{
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed capex value for PFG in any period under any tag it reads, so there is no filed tag value to band against and any value is flagged out-of-band. The value is not an estimate — it is the FY2025 net purchases of property and equipment figure printed in the FY2025 10-K Consolidated Statements of Cash Flows, corroborated by the same statement's FY2023/FY2024 figures ($102.0M / $68.8M).",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex — capex missing for fiscal year(s) 2023, 2024 and 2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads; in fact no capex flow tag exists for this filer in companyfacts at all (verified directly: no PaymentsToAcquire* property/equipment concept), because the filer reports capex only as the net line above in its cash-flow statement. The engine applies this single FY2025 filing value to every missing period (all years in the history carry no filed capex tag); for FY2023 it understates true capex by $4.0M (true $102.0M) and for FY2024 it overstates it by $29.2M (true $68.8M, in the conservative direction of lowering that year's OE), each well under 1% of that year's conservative OE, and capex at this level is ~2% of FY2025 OCF — immaterial to the verdict either way. The figure is net of proceeds from sales of property and equipment, as presented by the filer.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18), Consolidated Statements of Cash Flows, investing activities line 'Net purchases of property and equipment': $(98.0) million for FY2025, with $(68.8) million for FY2024 and $(102.0) million for FY2023 in the same statement (all in $ millions)",
+  "value": 98000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No structural pricing power — retirement, benefits and asset-management products are price-competed; fees face passive compression and active-equity outflows",
+  "Market and rate hostage — AUM fees, net investment income and spreads ride equity markets and the yield curve, outside management control",
+  "Legacy exited-block volatility — funds-withheld reinsurance embedded derivative swung to a large loss in Q2 2026 and drove the exited-business pre-tax loss well above the prior year",
+  "Capital intensity and regulation — insurance capital rules cap growth and capital return; larger rivals carry bigger technology/compliance budgets"
+ ],
+ "moat_for": [
+  "Sticky SMB retirement franchise — leading defined-contribution, pension risk transfer and ESOP provider; workplace plan relationships are long-duration and bundled with other products",
+  "Diversified earnings mix — retirement fees, benefits & protection premiums, asset-management fees and spread income dampen any single product cycle",
+  "Scale and distribution — established advisor/employer channels for mid-market employers that larger, scale-focused rivals underserve",
+  "Through-cycle profitability and capital return — OE positive 5 of last 5 FY; diluted shares shrinking 4.0%/yr on buybacks"
+ ],
+ "moat_justification": "Moderate/narrow finance moat: a sticky, scaled U.S. retirement franchise for small and mid-sized employers (defined contribution, defined benefit, pension risk transfer and ESOP services, bundled with group benefits and protection) plus a diversified global asset-management arm — workplace distribution and long-duration plan relationships are hard to replicate quickly and OE was positive in 5 of the last 5 fiscal years — against commodity, price-competed products with no structural pricing power: asset-management fees face passive/fee compression and active-equity outflows from much larger rivals (Vanguard, Fidelity, BlackRock), spread and premium earnings are hostage to rates, credit and markets rather than Principal's own pricing, legacy exited annuity/life blocks still inject reinsurance embedded-derivative volatility into GAAP results, and insurance regulation/capital intensity caps returns.",
+ "moat_score": 5,
+ "name": "Principal Financial Group, Inc.",
+ "one_liner": "Diversified retirement/benefits/asset-management insurer, moat 5/10 — engine prints Tier A (weighted IRR 21.71%, IV@15% $167.94 vs $107.81) on an OCF base that capitalizes insurer float, so the final tier is softened to B at low confidence; it clears 15% at ~$168 on engine numbers, with a materially lower true margin of safety.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Finance / Retirement, Benefits & Asset Management (Insurance)",
+ "tier_override": "B",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025 — FY2025 OCF $4,536,700,000 vs net income $1,185,100,000, and maintenance OE $1,338,500,000 vs conservative OE $4,328,800,000), so tier-by-numbers A overstates distributable owner's earnings; softened one notch to B, confidence low — same treatment as HIG/ACGL/WRB."
+}

@@ -1,0 +1,203 @@
+{
+ "ticker": "PFG",
+ "name": "PRINCIPAL FINANCIAL GROUP,\u00a0INC",
+ "cik": 1126328,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 107.805,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 225700000,
+ "market_cap_est": 24331588500.0,
+ "net_debt_latest": -504700000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.011714474079086656,
+ "rev_cagr_3y": -0.037714121666386435,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 4328800000.0,
+ "base_oe_per_share": 18.683382915427114,
+ "base_oe_latest_per_share": 19.179441736818784,
+ "base_oe_normalized_per_share": 18.683382915427114,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.011714474079086656,
+  "rev_cagr_3y": -0.037714121666386435,
+  "rev_yoy_latest": -0.031138972079093774,
+  "oe_ps_cagr_2y": 0.14223963870788792
+ },
+ "g_blend": -0.009712249000003559,
+ "share_cagr": -0.040236306024589163,
+ "share_count_adj": 0.040236306024589163,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 98000000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.030524057024585605,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 98000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18), Consolidated Statements of Cash Flows, investing activities line 'Net purchases of property and equipment': $(98.0) million for FY2025, with $(68.8) million for FY2024 and $(102.0) million for FY2023 in the same statement (all in $ millions)",
+   "reason": "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024 and 2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads; in fact no capex flow tag exists for this filer in companyfacts at all (verified directly: no PaymentsToAcquire* property/equipment concept), because the filer reports capex only as the net line above in its cash-flow statement. The engine applies this single FY2025 filing value to every missing period (all years in the history carry no filed capex tag); for FY2023 it understates true capex by $4.0M (true $102.0M) and for FY2024 it overstates it by $29.2M (true $68.8M, in the conservative direction of lowering that year's OE), each well under 1% of that year's conservative OE, and capex at this level is ~2% of FY2025 OCF \u2014 immaterial to the verdict either way. The figure is net of proceeds from sales of property and equipment, as presented by the filer.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0895,
+   "oe_mult": 0.75,
+   "iv_at_10": 111.66085962859691,
+   "iv_at_12": 90.4733977897935,
+   "iv_at_15": 71.12394428261112,
+   "irr": 0.10300153929434563
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0195,
+   "oe_mult": 0.9,
+   "iv_at_10": 186.70285179537765,
+   "iv_at_12": 148.79910710800317,
+   "iv_at_15": 114.50965474983681,
+   "irr": 0.15818641435840164
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0305,
+   "oe_mult": 1.0,
+   "iv_at_10": 261.96461748790006,
+   "iv_at_12": 206.5822420729093,
+   "iv_at_15": 156.767944818049,
+   "irr": 0.20635202632627914
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0805,
+   "oe_mult": 1.1,
+   "iv_at_10": 362.63765859275827,
+   "iv_at_12": 283.22953030068027,
+   "iv_at_15": 212.16531101655036,
+   "irr": 0.26127556165372956
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1505,
+   "oe_mult": 1.25,
+   "iv_at_10": 564.974282990772,
+   "iv_at_12": 435.9928369943462,
+   "iv_at_15": 321.26917139510545,
+   "irr": 0.3496931569511669
+  }
+ },
+ "weighted": {
+  "iv_at_10": 283.58802710534087,
+  "iv_at_12": 222.62845545245762,
+  "iv_at_15": 167.93843645478313,
+  "irr": 0.21713982267367415
+ },
+ "implied_irr_weighted": 0.21713982267367415,
+ "implied_irr_base": 0.20635202632627914,
+ "tier_by_numbers": "A",
+ "upside_at_15": 0.5577982139491036,
+ "upside_at_12": 1.0651032461616587,
+ "iv_at_15": 167.93843645478313,
+ "iv_at_12": 222.62845545245762,
+ "diagnostics": {
+  "oe_yield": 0.17330720203540756,
+  "tv_share_at_15": 0.18530831961535327,
+  "scenario_spread_iv15": 4.517032549805475,
+  "net_debt_to_normalized_oe": -0.1196867931838745,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.0%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18), Consolidated Statements of Cash Flows, investing activities line 'Net purchases of property and equipment': $(98.0) million for FY2025, with $(68.8) million for FY2024 and $(102.0) million for FY2023 in the same statement (all in $ millions)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 19.09987250318742,
+  "base_oe_per_share_final": 18.683382915427114,
+  "weighted_irr_zero_fill": 0.2212853476894091,
+  "weighted_irr_final": 0.21713982267367415,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "d5032805e9f68a1ca6631d8f88919765b024f92984953e443ca10780c2798c97"
+}

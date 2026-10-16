@@ -1,0 +1,74 @@
+{
+ "ticker": "NTR",
+ "name": "Nutrien Ltd.",
+ "sector": "Materials / Fertilizers & Agricultural Chemicals",
+ "price": 70.49,
+ "market_cap_b": 34.29,
+ "engine_version": 5,
+ "base_oe_per_share": 4.032738768144242,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: irreplaceable low-cost Saskatchewan potash mines with long-life reserves, North American low-cost nitrogen (cheap gas feedstock), scale as the world's largest fertilizer producer, and the largest ag-retail distribution network give a real cost and distribution advantage \u2014 but Nutrien is fundamentally a commodity price-taker in potash/nitrogen/phosphate, earnings swing with global fertilizer benchmarks it does not control, and returns collapse in down-cycles (OE/share $10.73 in 2022 to $2.98 in 2024), so pricing power is not proven through a cycle.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Nutrien Form F-10 prospectus filed 2026-03-31 (and 40-F annual filing, CIK 1725964): 'Our Common Shares are listed on the TSX and on the NYSE under the symbol NTR' \u2014 the NYSE security is the common share itself, directly listed, not an ADS; system README v5.3 note also lists NTR among direct-listed ordinary shares at ratio 1.0) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 14.69,
+   "irr": 0.0472
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 21.54,
+   "irr": 0.0603
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 29.51,
+   "irr": 0.0763
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 39.98,
+   "irr": 0.0967
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 60.65,
+   "irr": 0.1339
+  }
+ },
+ "iv_at_15": 31.77,
+ "iv_at_12": 41.76,
+ "implied_irr": 0.0812,
+ "implied_irr_base_case": 0.0763,
+ "upside_at_15_pct": -54.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real low-cost potash/retail franchise, moat 5/10, but a cyclical commodity price-taker with 4.7x net debt/OE \u2014 at $70.49 it does not clear 15%: weighted IRR 8.1%, weighted IV@15% $31.77; clears 15% only below ~$31.77.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Low-cost, long-life Saskatchewan potash mines \u2014 among the world's largest reserves, not replicable on any investable timeline",
+  "Scale: world's largest fertilizer company and largest crop-input retailer, with purchasing and logistics advantages",
+  "Low-cost North American nitrogen plants on cheap natural gas feedstock; H1 2026 controllable potash cash cost below $60/tonne",
+  "Retail distribution network provides a steadier, service/proprietary-products margin stream that dampens pure commodity exposure"
+ ],
+ "moat_against": [
+  "Commodity price-taker: potash/nitrogen/phosphate prices are set globally; Nutrien does not control its main earnings driver",
+  "Cyclicality proven in its own history: OE/share spanned $10.73 (2022) to $2.98 (2024), revenue 3-yr CAGR -10.8%",
+  "New global potash supply (e.g. BHP Jansen) and Russian/Belarusian supply normalization can pressure prices and volumes",
+  "Capital-intensive mining/chemical assets: capex ~$1.9-2.4B/yr and net debt 4.7x normalized OE leave little buffer in a down-cycle",
+  "Retail is a low-margin distribution business exposed to farm incomes, weather, and acreage"
+ ]
+}

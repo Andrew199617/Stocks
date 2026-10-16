@@ -1,0 +1,70 @@
+{
+ "ticker": "NDSN",
+ "name": "NORDSON CORPORATION",
+ "sector": "Industrials",
+ "price": 328.8,
+ "market_cap_b": 18.71,
+ "engine_version": 5,
+ "base_oe_per_share": 12.495756365451822,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Proprietary precision-dispensing process technology specified and validated into customer production lines \u2014 swapping risks revalidation and downtime in medical/electronics, making the installed base sticky with recurring parts/service/consumables and durable high segment margins. Not wide: no network effects, customer-capex cyclical demand (ATS guided to moderate in FY2027 after a peak cycle), acquisition-dependent growth with leverage, and competition from larger diversified industrials and niche specialists.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 11 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 50.28,
+   "irr": 0.041
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 83.61,
+   "irr": 0.0558
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 117.61,
+   "irr": 0.0712
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 164.0,
+   "irr": 0.0912
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 259.96,
+   "irr": 0.1276
+  }
+ },
+ "iv_at_15": 128.21,
+ "iv_at_12": 172.12,
+ "implied_irr": 0.0765,
+ "implied_irr_base_case": 0.0712,
+ "upside_at_15_pct": -61.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality precision-dispensing compounder, moat 7/10 \u2014 but at $328.80 it does not clear 15% in any scenario (weighted IRR 7.65%, weighted IV@15% $128.21; clears 15% only at ~$128).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Proprietary dispensing/process technology specified into customer lines",
+  "Validation and requalification switching costs, especially medical and electronics",
+  "Recurring parts, service and consumables on the installed base",
+  "Proven pricing power \u2014 high segment margins held through cycles",
+  "Global service footprint across diversified end markets"
+ ],
+ "moat_against": [
+  "Customer-capex cyclicality \u2014 ATS peak cycle guided to moderate in FY2027",
+  "Latest growth concentrated in ATS; other segments flat on EBITDA in Q3 FY2026",
+  "Acquisition-dependent growth (Atrion, ARAG, CyberOptics) with integration risk",
+  "No network effects or owned platform; technology lead must be re-earned",
+  "Acquisition debt \u2014 interest expense rose in FY2025 on higher average debt"
+ ]
+}

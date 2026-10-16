@@ -1,1 +1,76 @@
-{"analysis_date":"2026-10-13","base_oe_per_share":3.0,"base_source":"TTM through Q2 2026 from JD's interim release (20-F/6-K filer, no EDGAR 10-Q): OCF RMB 51,117M (FY25 18,991 - H1'25 6,147 + H1'26 38,273; ties to reported TTM OCF) - total capex RMB 17,963M - SBC RMB 4,282M (FY25 4,727 - H1'25 2,424 + H1'26 1,979) = RMB 28,872M = US$4,255M / 2,841M diluted ordinary shares = $1.498/ordinary share = $3.00 per ADS (1 ADS = 2 ordinary shares; engine run per ordinary share at --price 13.38, IVs doubled back to per-ADS)","base_year":"TTM Q2 2026","cap_years":8.5,"confidence":"low","engine_version":4,"fragility_flags":["STALE_FY","BASE_DIVERGENCE","WIDE_SCENARIO_SPREAD","HIGH_NET_DEBT","BUYBACK_TAILWIND","OE_VOLATILE","NI_OCF_DIVERGENCE"],"implied_irr":0.1798,"implied_irr_base_case":0.1845,"in_scope_under_40b":true,"iv_at_12":45.57,"iv_at_15":33.83,"market_cap_b":39.8,"moat_justification":"Owned logistics network and 1P supply-chain scale drive record JD Retail margins (gross margin up 17 straight quarters), but consumers multi-home across Alibaba/PDD/Douyin with ~zero switching costs, food delivery is a cash-burning #3 position vs Meituan, group margins are structurally thin, and China regulatory overhang is recurring (RMB 635M SAMR fine in H1 2026).","moat_score":5,"name":"JD.com, Inc.","one_liner":"China's strongest logistics/supply-chain retailer, moat 5/10, core at record margins while management spends group profit on the food-delivery war - on recovered TTM owner's earnings ($3.00/ADS) it clears 15% (weighted IRR 18.0%, IV@15% $33.83 vs $26.76), with a real margin of safety at ~$25.40 or below.","price":26.76,"scenarios":{"base":{"irr":0.1845,"iv_at_15":34.9,"prob":0.3},"bear":{"irr":0.1351,"iv_at_15":23.52,"prob":0.3},"bull":{"irr":0.2362,"iv_at_15":49.04,"prob":0.17},"super_bear":{"irr":0.0945,"iv_at_15":15.26,"prob":0.15},"super_bull":{"irr":0.3025,"iv_at_15":70.96,"prob":0.08}},"sector":"Consumer Discretionary / E-commerce, logistics & services (China)","ticker":"JD","tier_by_numbers":"B","tier_final":"B","upside_at_15_pct":26.4}
+{
+ "ticker": "JD",
+ "name": "JD.com, Inc.",
+ "sector": "Consumer Discretionary / E-commerce, logistics & services (China)",
+ "price": 26.6,
+ "market_cap_b": 79.22,
+ "engine_version": 5,
+ "base_oe_per_share": 4.430990565697433,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Owned logistics network and 1P supply-chain scale drive record JD Retail margins, but consumers multi-home with near-zero switching costs, food delivery is a cash-burning #3 position management chose to buy, group margins are structurally thin, and China regulatory overhang is recurring.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (JD.com Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-17), Item 9.A Offering and Listing Details: the company's ADSs, each representing two Class A ordinary shares, have been listed on Nasdaq since May 22, 2014 under the symbol JD; the same ratio is stated on the 20-F cover for the registered ADS class) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 0.62 vs 3-yr median 4.43 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.2,
+   "iv_at_15": 19.08,
+   "irr": 0.1119
+  },
+  "bear": {
+   "prob": 0.35,
+   "iv_at_15": 30.7,
+   "irr": 0.1696
+  },
+  "base": {
+   "prob": 0.25,
+   "iv_at_15": 42.0,
+   "irr": 0.219
+  },
+  "bull": {
+   "prob": 0.13,
+   "iv_at_15": 56.78,
+   "irr": 0.2746
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "iv_at_15": 85.83,
+   "irr": 0.3634
+  }
+ },
+ "iv_at_15": 38.45,
+ "iv_at_12": 51.06,
+ "implied_irr": 0.2033,
+ "implied_irr_base_case": 0.219,
+ "upside_at_15_pct": 44.6,
+ "tier_by_numbers": "A",
+ "tier_final": "A",
+ "confidence": "low",
+ "one_liner": "China's strongest logistics/supply-chain retailer, moat 5/10 \u2014 Tier A by numbers on the v5 normalized median base ($4.43/ADS): weighted IRR 20.3%, IV@15% $38.45 vs $26.60 \u2014 but that base sits at pre-food-delivery-war FY2024 economics and trough/TTM bases clear less, so size it like a B; the bear case ($30.70) also sits above the current price.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "Owned logistics network (warehouses, employed couriers, full-time delivery rider fleet) sets the same/next-day standard and is increasingly monetized to third parties",
+  "1P supply-chain scale in electronics/appliances: procurement leverage and authenticity trust; JD Retail gross margin expanded 17 straight quarters to a record operating margin in H1 2026",
+  "Mix shift to asset-light services (marketplace, marketing/ads, logistics services) raises the group's structural margin ceiling",
+  "Fortress liquidity (cash, restricted cash and short-term investments of RMB 235.1B at June 2026 per the Q2 2026 release) plus buybacks fund investment without balance-sheet stress"
+ ],
+ "moat_against": [
+  "Almost no consumer lock-in: shoppers multi-home across Alibaba, Pinduoduo and Douyin with near-zero switching costs",
+  "Food delivery is a bought, anti-moat position: #3 vs Meituan's structural density lead, and it burned the group's FY2025 economics",
+  "Structurally thin group economics: net margin 2-3% in good years, modest returns on a huge logistics asset base",
+  "Recurring regulatory/political overhang: SAMR fine in H1 2026, repeated subsidy-war intervention, standing China/VIE ADS tail risk",
+  "Category concentration: electronics/appliances demand now partly driven by fading government trade-in subsidies (Q2 2026 category revenue -11.8% YoY)"
+ ]
+}

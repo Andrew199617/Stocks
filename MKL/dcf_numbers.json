@@ -1,0 +1,202 @@
+{
+ "ticker": "MKL",
+ "name": "MARKEL GROUP INC.",
+ "cik": 1096343,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 1825.0,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 12648000,
+ "market_cap_est": 23082600000.0,
+ "net_debt_latest": 339106000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.3774531436334785,
+ "rev_cagr_3y": 0.43609761111637724,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 2499380000.0,
+ "base_oe_per_share": 163.35476209326262,
+ "base_oe_latest_per_share": 197.61068943706516,
+ "base_oe_normalized_per_share": 184.8711317087756,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.3774531436334785,
+  "rev_cagr_3y": 0.43609761111637724,
+  "rev_yoy_latest": 0.04723305915181397,
+  "oe_ps_cagr_2y": 0.033857705393015136
+ },
+ "g_blend": 0.21234310139264623,
+ "share_cagr": -0.023415762951043084,
+ "share_count_adj": 0.023415762951043084,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "sbc": {
+   "value": 54982000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.2357588643436893,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.2558,
+   -0.2258,
+   -0.1858,
+   -0.1458,
+   -0.1058
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 163.35476209326262,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 54982000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Changes in Equity: 'Equity awards expensed' $54,982 thousand in 2025, $53,302 thousand in 2024 and $35,787 thousand in 2023 ($ in thousands in that statement). The Consolidated Statements of Cash Flows in the same 10-K lists no share-based compensation addback line, and EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact for 2023-2025.",
+   "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags. The filer's own reported FY2025 equity awards expensed from its 10-K equity statement fills the gap; the engine applies this single value to every missing period. The true per-year series in the same statement is $35.787M (FY2023) / $53.302M (FY2024) / $54.982M (FY2025), so applying $54.982M to all three years overstates SBC in the two earlier years and makes the base slightly conservative; SBC at this level is about 2% of OCF and immaterial to the verdict.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.02,
+   "oe_mult": 0.75,
+   "iv_at_10": 1334.1202945726636,
+   "iv_at_12": 1065.5793391541777,
+   "iv_at_15": 822.2117075186345,
+   "irr": 0.07907818589369764
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.01,
+   "oe_mult": 0.9,
+   "iv_at_10": 1862.794340931836,
+   "iv_at_12": 1476.1996192189322,
+   "iv_at_15": 1127.491516943837,
+   "irr": 0.10157721349924953
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.05,
+   "oe_mult": 1.0,
+   "iv_at_10": 2530.157010946108,
+   "iv_at_12": 1985.4467853616147,
+   "iv_at_15": 1496.914342456761,
+   "irr": 0.12811625647487823
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.09,
+   "oe_mult": 1.1,
+   "iv_at_10": 3396.8000019002184,
+   "iv_at_12": 2641.331719779437,
+   "iv_at_15": 1967.2438519869042,
+   "irr": 0.15899876156779513
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.13,
+   "oe_mult": 1.25,
+   "iv_at_10": 4702.202539628101,
+   "iv_at_12": 3625.735134287863,
+   "iv_at_15": 2669.661636047139,
+   "irr": 0.19990855816662456
+  }
+ },
+ "weighted": {
+  "iv_at_10": 2574.443987045545,
+  "iv_at_12": 2015.360698671018,
+  "iv_at_15": 1514.6938721028778,
+  "irr": 0.12951937714587924
+ },
+ "implied_irr_weighted": 0.12951937714587924,
+ "implied_irr_base": 0.12811625647487823,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.17003075501212173,
+ "upside_at_12": 0.10430723214850302,
+ "iv_at_15": 1514.6938721028778,
+ "iv_at_12": 2015.360698671018,
+ "diagnostics": {
+  "oe_yield": 0.08950945868123979,
+  "tv_share_at_15": 0.1891659844743789,
+  "scenario_spread_iv15": 3.246927295773922,
+  "net_debt_to_normalized_oe": 0.16412767509554504,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.3%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Changes in Equity: 'Equity awards expensed' $54,982 thousand in 2025, $53,302 thousand in 2024 and $35,787 thousand in 2023 ($ in thousands in that statement). The Consolidated Statements of Cash Flows in the same 10-K lists no share-based compensation addback line, and EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact for 2023-2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 188.9810136044252,
+  "base_oe_per_share_final": 163.35476209326262,
+  "weighted_irr_zero_fill": 0.14522132547287148,
+  "weighted_irr_final": 0.12951937714587924,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "a4a9c7021cc906176f9c69607c88655af2dddcad5d3efaa2937d86838f844e6f"
+}

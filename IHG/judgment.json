@@ -1,0 +1,37 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "One ADS equals one ordinary share, so the engine's per-ordinary-share owner's earnings are already on the same basis as the NYSE ADS price; no scaling applies (ratio 1.0), but the 20-F gate requires the ratio to be declared and sourced.",
+  "source": "InterContinental Hotels Group PLC Annual Report 2025 (combined UK Annual Report and Form 20-F for the fiscal year ended 31 December 2025), Shareholder Information / American Depositary Receipts section: the company's shares are listed on the NYSE in the form of American Depositary Shares, each ADR represents one ordinary share, with J.P. Morgan Chase Bank, N.A. as ADR depositary; the registered NYSE class title likewise reads 'American Depositary Shares (Each representing one Ordinary Share)'"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Third in scale behind Marriott and Hilton, with smaller loyalty ecosystems and less owner leverage in contested markets",
+  "Owners can reflag at contract end; conversion brands lower switching frictions across the industry",
+  "Cyclical RevPAR: FY2020 revenue fell to $2,394M from $4,627M in FY2019 (filing history) — travel demand tracks the consumer/business cycle and geopolitics",
+  "Owner fee pressure: rivals are cutting fees and granting concessions to hold owners (2026 earnings-season reporting)",
+  "Buyback-funded leverage: net debt 3.4x normalized owner's earnings (engine diagnostics)"
+ ],
+ "moat_for": [
+  "20-brand portfolio (InterContinental, Holiday Inn family, Crowne Plaza, Kimpton, Six Senses) across 100+ countries — distribution owners pay to access",
+  "IHG One Rewards loyalty programme (145m+ members) driving direct bookings and repeat stays",
+  "Asset-light fee model: fee margin 65.9% in H1 2026 and only $28M capex in FY2025 (filing history) — high returns on capital and strong cash conversion",
+  "Development pipeline of 348k rooms, 33% of current system size (H1 2026 release), giving visible multi-year fee growth",
+  "Proven pricing power: fee margin +120bp in H1 2026 with ADR +2.5% alongside occupancy gains"
+ ],
+ "moat_justification": "A strong (not widest) franchisor moat: 20 brands, 145m+ member loyalty programme and global distribution create real owner switching costs and pricing power, proven by a 65.9% fee margin and an asset-light model needing almost no capital. It sits behind Marriott/Hilton on scale and loyalty depth, owners can reflag at contract end, demand is cyclical (FY2020 collapse), and rivals are pressuring owner fees — durable, but contestable.",
+ "moat_score": 7,
+ "name": "InterContinental Hotels Group PLC",
+ "one_liner": "High-quality asset-light hotel franchisor, moat 7/10 - but at $164.25 the 3.0% owner-earnings yield leaves no path to the hurdle: weighted IRR 6.9%, weighted IV@15 $53.81, and even the super-bull case (9.9% IRR) clears neither 10% nor 15%; clears 15% only below ~$53.81.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Consumer Discretionary / Hotels & lodging franchising",
+ "tier_override": null,
+ "tier_override_reason": null
+}

@@ -1,0 +1,75 @@
+{
+ "ticker": "PAAS",
+ "name": "Pan American Silver Corp.",
+ "sector": "Materials / Precious metals mining (silver & gold)",
+ "price": 43.77,
+ "market_cap_b": 16.7,
+ "engine_version": 5,
+ "base_oe_per_share": 1.103464217214592,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate moat: Pan American is one of the world's largest silver producers with a diversified portfolio of operating mines across the Americas, a 44% interest in the high-grade, low-cost Juanicipio mine (added via the MAG Silver acquisition, closed Sept 2025), a large reserve base, and a net-cash balance sheet \u2014 scale, diversification and reserve scarcity that smaller miners cannot replicate. But it is fundamentally a commodity price-taker on depleting assets: it has no pricing power over silver or gold, reserves shrink with every ounce produced and must be replaced by acquisition or exploration, several operations sit in higher-risk jurisdictions, and its flagship growth asset is operated by Fresnillo, not by Pan American. That profile scores 4/10 on the sweep rubric (in line with other diversified price-taking miners), giving CAP = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 21.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-18, SEC CIK 771992), cover page: securities registered under Section 12(b) are 'Common Shares, No Par Value', trading symbol PAAS, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 2.67 vs 3-yr median 1.10 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 5.14,
+   "irr": 0.0386
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.49,
+   "irr": 0.046
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.08,
+   "irr": 0.0544
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 13.4,
+   "irr": 0.0653
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 20.5,
+   "irr": 0.0876
+  }
+ },
+ "iv_at_15": 10.1,
+ "iv_at_12": 13.41,
+ "implied_irr": 0.0548,
+ "implied_irr_base_case": 0.0544,
+ "upside_at_15_pct": -76.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Price-taking silver/gold miner, moat 4/10 \u2014 does not clear 15% at $43.77: weighted IRR 5.48%, weighted IV@15 $10.10 on normalized OE; the price capitalizes spot metal prices (latest-FY OE $2.67/sh) persisting and growing, and clears 15% only below ~$10.10 on the normalized base.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Scale: one of the world's leading silver producers, with operating mines across Canada, Mexico, Peru, Bolivia, Argentina, Chile and Brazil",
+  "44% of Juanicipio (via MAG Silver, closed Sept 2025): large-scale, high-grade, low-cost silver mine adding near-term cash flow and reserves",
+  "Industry-leading silver reserve base, hard to replicate given permitting scarcity for new primary silver mines",
+  "Net-cash balance sheet (engine: net debt -$501M, -1.19x normalized OE) funds capex, dividends and buybacks without forced dilution",
+  "Diversification across many mines and two metals (silver + gold) cushions single-mine outages"
+ ],
+ "moat_against": [
+  "Pure commodity price-taker: earnings are set by silver/gold prices it does not control (Q2 2026 realized silver $70.97/oz vs $32.91 a year earlier \u2014 the price, not the company, did the work)",
+  "Depleting asset base: reserves are consumed by production and must be continually replaced via M&A or exploration success",
+  "Jurisdiction risk: Mexico, Peru, Bolivia, Argentina exposure; Escobal (Guatemala) has been suspended since 2017",
+  "Growth has been bought, not built: Yamana Gold (2023) and MAG Silver (2025) were paid for largely in shares \u2014 diluted share count CAGR +21.9%/yr in the engine blend",
+  "Juanicipio is operated by Fresnillo plc (56% JV partner), not by Pan American \u2014 no operational control of its best asset",
+  "Cyclical, volatile owner's earnings: OE/share spans negative to $2.67 over the last 5 fiscal years"
+ ]
+}

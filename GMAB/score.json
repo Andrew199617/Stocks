@@ -1,0 +1,75 @@
+{
+ "ticker": "GMAB",
+ "name": "Genmab A/S",
+ "sector": "Healthcare / Biotechnology (antibody therapeutics, Denmark)",
+ "price": 38.15,
+ "market_cap_b": 2.39,
+ "engine_version": 5,
+ "base_oe_per_share": 1.5373673212562253,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Proven, repeatable antibody platforms (DuoBody, DuoHexaBody, HexaBody) that have produced eight approved medicines and a high-margin royalty engine (Darzalex via J&J, Kesimpta via Novartis) plus a growing owned late-stage pipeline (Epkinly, Rina-S, petosemtamab) \u2014 but the royalty stream is concentrated in Darzalex, commercialization of the biggest earners is controlled by partners, exclusivity erodes around the turn of the decade, and the $8.0B debt-funded Merus deal makes the next leg depend on a Phase 3 asset not yet approved.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency DKK converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x0.1 ordinary shares per ADS (Genmab A/S Form 20-F for the fiscal year ended December 31, 2023 (SEC filing, CIK 1434265), cover \u2014 securities registered pursuant to Section 12(b): 'American Depositary Shares, each representing one-tenth of one ordinary share', trading symbol GMAB, The NASDAQ Stock Market LLC (the same class title appears on the FY2021 20-F cover)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 36.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 10.27,
+   "irr": 0.0594
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 16.08,
+   "irr": 0.081
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 25.46,
+   "irr": 0.1133
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 36.42,
+   "irr": 0.1454
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 53.66,
+   "irr": 0.1872
+  }
+ },
+ "iv_at_15": 24.49,
+ "iv_at_12": 33.79,
+ "implied_irr": 0.1105,
+ "implied_irr_base_case": 0.1133,
+ "upside_at_15_pct": -35.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Quality antibody-platform franchise, moat 6/10 \u2014 does not clear 15% at $38.15: weighted IRR 11.1%, weighted IV@15% $24.49 on the ADS-corrected median base ($1.54/ADS); clears 15% only below ~$24.49. The pre-ADS preliminary Tier S was a units artifact (per-ordinary-share OE vs per-ADS price).",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Proprietary antibody platforms (DuoBody bispecifics, DuoHexaBody, HexaBody, ADC formats) with a 25-year record of producing approved medicines \u2014 eight approved antibody medicines to date",
+  "High-margin royalty engine: Darzalex (J&J) and Kesimpta (Novartis) royalties were $1,708M of $2,051M H1 2026 revenue; Darzalex net sales $8,171M in H1 2026 (+21% YoY)",
+  "Owned late-stage pipeline diversifying beyond royalties: Epkinly net sales +48% in H1 2026, Rina-S (ProfoundBio), petosemtamab (Merus) in Phase 3 with two FDA Breakthrough Therapy Designations",
+  "Asset-light OE conversion: FY2025 capex $37M against OCF $1,186M (financials_history.csv) \u2014 royalties and product sales need almost no reinvestment"
+ ],
+ "moat_against": [
+  "Royalty concentration: Darzalex is the dominant royalty source and its exclusivity erodes around the turn of the decade; multiple myeloma competition (bispecifics, CAR-T) is intensifying",
+  "Partner dependence: J&J, Novartis and AbbVie control commercialization of the largest earners \u2014 Genmab collects royalties but does not control pricing, promotion or lifecycle strategy",
+  "Binary pipeline risk now levered: petosemtamab was bought for $8.0B before its Phase 3 readouts; a failure hits both the pipeline story and a balance sheet carrying ~$5.5B of new deal debt",
+  "New leverage: net debt $3,559M at FY2025 (engine) vs a historically net-cash balance sheet; interest drag and a sub-3x deleveraging commitment constrain flexibility"
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "ticker": "MTSI",
+ "name": "MACOM Technology Solutions Holdings, Inc.",
+ "sector": "Semiconductors",
+ "price": 282.9,
+ "market_cap_b": 20.93,
+ "engine_version": 5,
+ "base_oe_per_share": 1.5527907066695892,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow: design-win and requalification stickiness in RF/photonics sockets, decades of compound-semiconductor process know-how, a broad catalog serving 6,000+ customers, and premium adjusted gross margins guided to 60-61% \u2014 but no network effects or owned platform, much larger rivals in every socket, technology transitions (silicon photonics, co-packaged optics, CW lasers) that must be re-won each generation, hyperscaler concentration, and SBC-heavy pay with a rising share count keeping GAAP owner's earnings far below adjusted earnings.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 0.5% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 8.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 10.61,
+   "irr": 0.0278
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 19.21,
+   "irr": 0.0348
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.92,
+   "irr": 0.0424
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 51.96,
+   "irr": 0.0542
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 86.36,
+   "irr": 0.0729
+  }
+ },
+ "iv_at_15": 37.07,
+ "iv_at_12": 51.83,
+ "implied_irr": 0.0458,
+ "implied_irr_base_case": 0.0424,
+ "upside_at_15_pct": -86.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real AI-optical growth story, moat 5/10 \u2014 but owner's earnings of $1.55/share TTM cannot support $282.90 (weighted IRR 4.58%, IV@15% $37.07); it clears 15% only at or below ~$37.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Design-win / requalification stickiness in defense, telecom and data-center sockets",
+  "Deep RF/microwave/mmWave and InP photonics process know-how, broad catalog, 6,000+ customers",
+  "Premium positioning \u2014 adjusted gross margin guided to 60-61%",
+  "Diversified across Data Center, Industrial & Defense and Telecom, all growing"
+ ],
+ "moat_against": [
+  "Much larger rivals (Broadcom, Marvell, Coherent, Lumentum class) contest every socket",
+  "Technology transitions can strand the product lead; CW lasers still pre-revenue until late 2027/2028",
+  "Hyperscaler customer concentration and AI-capex cyclicality",
+  "SBC-heavy pay and rising diluted share count keep OE/share far below adjusted EPS"
+ ]
+}

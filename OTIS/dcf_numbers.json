@@ -1,0 +1,161 @@
+{
+ "ticker": "OTIS",
+ "name": "OTIS WORLDWIDE CORPORATION",
+ "cik": 1781335,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 69.76,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 394900000,
+ "market_cap_est": 27548224000.000004,
+ "net_debt_latest": 6860000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.024985803857876743,
+ "rev_cagr_3y": 0.01784611252806889,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1364000000,
+ "base_oe_per_share": 4.236542443064182,
+ "base_oe_latest_per_share": 3.4540389972144845,
+ "base_oe_normalized_per_share": 3.4370477568740956,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.024985803857876743,
+  "rev_cagr_3y": 0.01784611252806889,
+  "rev_yoy_latest": 0.011920622677231707,
+  "oe_ps_cagr_2y": 0.002467040335495607
+ },
+ "g_blend": 0.0148833676026503,
+ "share_cagr": -0.02264758149511492,
+ "share_count_adj": 0.02264758149511492,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.03753094909776522,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.1,
+   -0.04,
+   0.0,
+   0.03,
+   0.06
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 4.236542443064182,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0625,
+   "oe_mult": 0.75,
+   "iv_at_10": 27.100480361297944,
+   "iv_at_12": 21.99452528578459,
+   "iv_at_15": 17.31370596467364,
+   "irr": 0.051734835527333586
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0025,
+   "oe_mult": 0.9,
+   "iv_at_10": 44.934478330459086,
+   "iv_at_12": 35.769064889924444,
+   "iv_at_15": 27.476478607333586,
+   "irr": 0.07267973575474684
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0375,
+   "oe_mult": 1.0,
+   "iv_at_10": 61.94419195195269,
+   "iv_at_12": 48.72553899970794,
+   "iv_at_15": 36.855801535770595,
+   "irr": 0.09170629050945112
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0675,
+   "oe_mult": 1.1,
+   "iv_at_10": 80.07383061518371,
+   "iv_at_12": 62.46032840389408,
+   "iv_at_15": 46.72521719889586,
+   "irr": 0.11053115348555026
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.0975,
+   "oe_mult": 1.25,
+   "iv_at_10": 106.87489615960891,
+   "iv_at_12": 82.70833966500668,
+   "iv_at_15": 61.2208220454295,
+   "irr": 0.13600405917509079
+  }
+ },
+ "weighted": {
+  "iv_at_10": 60.5842049613929,
+  "iv_at_12": 47.62200636254067,
+  "iv_at_15": 35.990041651587745,
+  "irr": 0.09028604301740162
+ },
+ "implied_irr_weighted": 0.09028604301740162,
+ "implied_irr_base": 0.09170629050945112,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.48408770568251513,
+ "upside_at_12": -0.31734509228009367,
+ "iv_at_15": 35.990041651587745,
+ "iv_at_12": 47.62200636254067,
+ "diagnostics": {
+  "oe_yield": 0.0607302529108971,
+  "tv_share_at_15": 0.18383884130206876,
+  "scenario_spread_iv15": 3.535974456903831,
+  "net_debt_to_normalized_oe": 4.100392403882552,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.3%/yr \u2014 already credited via the growth adjustment",
+  "HIGH_NET_DEBT: net debt is 4.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "ce0646b78a99ad438f94b60f74ae07253d4401bb7a5451feb8ecf5e8f40120ea"
+}

@@ -1,0 +1,164 @@
+{
+ "ticker": "NRG",
+ "name": "NRG Energy, Inc",
+ "cik": 1013871,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 101.535,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 199000000,
+ "market_cap_est": 20205465000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.28420414941328165,
+ "rev_cagr_3y": -0.012224807765235934,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": 632000000,
+ "base_oe_per_share": 3.1758793969849246,
+ "base_oe_latest_per_share": 3.1758793969849246,
+ "base_oe_normalized_per_share": 3.1758793969849246,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.28420414941328165,
+  "rev_cagr_3y": -0.012224807765235934,
+  "rev_yoy_latest": 0.09366440824563926,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.09366440824563926,
+ "share_cagr": -0.05524473220602666,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": null,
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.14366440824563925,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0237,
+   "oe_mult": 0.75,
+   "iv_at_10": 32.36942554698222,
+   "iv_at_12": 25.56034469959662,
+   "iv_at_15": 19.431530545938443,
+   "irr": 0.04889447504200117
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0937,
+   "oe_mult": 0.9,
+   "iv_at_10": 52.006620766347055,
+   "iv_at_12": 40.63218088301795,
+   "iv_at_15": 30.44584336760881,
+   "irr": 0.06422624294430823
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1437,
+   "oe_mult": 1.0,
+   "iv_at_10": 70.80685555232225,
+   "iv_at_12": 54.947259027509666,
+   "iv_at_15": 40.78902581180538,
+   "irr": 0.07836524608210726
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1937,
+   "oe_mult": 1.1,
+   "iv_at_10": 95.02643044125567,
+   "iv_at_12": 73.28960208182633,
+   "iv_at_15": 53.939588511133806,
+   "irr": 0.09557209066400615
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2637,
+   "oe_mult": 1.25,
+   "iv_at_10": 141.63514482058474,
+   "iv_at_12": 108.39953884726427,
+   "iv_at_15": 78.91723649283895,
+   "irr": 0.1255829573833661
+  }
+ },
+ "weighted": {
+  "iv_at_10": 75.40077650435404,
+  "iv_at_12": 58.360611804150054,
+  "iv_at_15": 43.167942417105,
+  "irr": 0.0817836882399613
+ },
+ "implied_irr_weighted": 0.0817836882399613,
+ "implied_irr_base": 0.07836524608210726,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5748466793016693,
+ "upside_at_12": -0.4252168040168409,
+ "iv_at_15": 43.167942417105,
+ "iv_at_12": 58.360611804150054,
+ "diagnostics": {
+  "oe_yield": 0.03127866643999532,
+  "tv_share_at_15": 0.2039038633782547,
+  "scenario_spread_iv15": 4.061298017995507,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.5%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "570c62111133455826471a5dce6d4f5fd2ed98f939377c1d5de271f4ba1189d2"
+}

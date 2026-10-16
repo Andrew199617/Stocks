@@ -1,0 +1,71 @@
+{
+ "ticker": "PPG",
+ "name": "PPG Industries, Inc.",
+ "sector": "Materials \u2014 Coatings & Specialty Chemicals",
+ "price": 107.505,
+ "market_cap_b": 24.41,
+ "engine_version": 5,
+ "base_oe_per_share": 5.316399286987522,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate, not wide: top-tier global scale alongside Sherwin-Williams/AkzoNobel, qualification and technical-service switching costs in aerospace and automotive OEM/refinish coatings, and demonstrated pricing power (+2% price in Q2 2026 after the 2022-23 pass-through cycle). Against that, Sherwin-Williams holds the stronger US architectural position and PPG exited US/Canada architectural coatings, raw-material costs (resins, TiO2) are passed through only with a lag (2022 conservative OE fell to $443M), end markets are cyclical, and long-run revenue growth is low-single-digit (3y CAGR 0.55%). CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 19.36,
+   "irr": 0.044
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 30.95,
+   "irr": 0.059
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 42.39,
+   "irr": 0.074
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 57.39,
+   "irr": 0.0933
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 86.96,
+   "irr": 0.1282
+  }
+ },
+ "iv_at_15": 45.43,
+ "iv_at_12": 60.04,
+ "implied_irr": 0.0784,
+ "implied_irr_base_case": 0.074,
+ "upside_at_15_pct": -57.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Moderate-moat (5/10) global coatings leader, but at $107.50 owner's earnings clear only 7.8% weighted \u2014 IV@15% $45.43, and even the super-bull case ($86.96) sits below the price; it would need to fall to ~$45 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Top-tier global scale with broad distribution incl. Comex network in Mexico",
+  "Qualification/technical-service switching costs in aerospace and auto OEM/refinish coatings",
+  "Demonstrated pricing power through raw-material cycles",
+  "Diversified end markets cushion single-cycle downturns"
+ ],
+ "moat_against": [
+  "Sherwin-Williams stronger in US architectural; PPG exited US/Canada architectural coatings",
+  "Raw-material cost pass-through lags \u2014 2022 OE collapsed",
+  "Cyclical end markets: auto builds, housing, industrial production",
+  "Low-single-digit long-run growth; AkzoNobel/Axalta/regional rivals contest every segment"
+ ]
+}

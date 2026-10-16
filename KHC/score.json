@@ -1,0 +1,70 @@
+{
+ "ticker": "KHC",
+ "name": "Kraft Heinz Co",
+ "sector": "Consumer Staples",
+ "price": 22.7,
+ "market_cap_b": 26.94,
+ "engine_version": 5,
+ "base_oe_per_share": 3.1374367622259696,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "A handful of genuinely strong brands (Heinz above all, Philadelphia) sit inside a broad portfolio that has lost volume and share to private label for a decade; the $9.3B of 2025 goodwill/intangible impairments are the filer's own admission that much of the brand equity was worth less than carried. Pricing power survives only in select categories and is bought back with volume losses, and only 21% of revenue was gaining or holding share in 2025 (36% YTD 2026). Weak-to-narrow and eroding: 4/10, CAP 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 11.83,
+   "irr": 0.0857
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 17.88,
+   "irr": 0.1221
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 23.22,
+   "irr": 0.1529
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 28.67,
+   "irr": 0.1828
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 36.55,
+   "irr": 0.2234
+  }
+ },
+ "iv_at_15": 22.06,
+ "iv_at_12": 28.83,
+ "implied_irr": 0.1464,
+ "implied_irr_base_case": 0.1529,
+ "upside_at_15_pct": -2.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Cash-generative packaged-food giant with an eroding narrow moat (4/10) \u2014 the OE is real but growth is negative, so at $22.70 it just misses the 15% hurdle (14.6% weighted, IV@15% $22.06); clears 15% only below ~$22.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Heinz and Philadelphia 'win-big' brands gaining/holding share across regions and categories",
+  "Global distribution scale and shelf presence built over decades",
+  "Demonstrated pricing in select categories (Q2 2026 price +1.3pp)",
+  "Cash-generative core \u2014 OCF positive every filed year, $4.62B TTM"
+ ],
+ "moat_against": [
+  "Private-label share up from ~11% to ~17% since 2019, eroding pricing power",
+  "Volume/mix declining (-2.6pp in Q2 2026; meats and spoonables weakest)",
+  "Repeated goodwill/intangible impairments ($9.3B in 2025) \u2014 brands failing carrying-value tests",
+  "Only 21% of revenue gaining/holding share in 2025 (36% YTD 2026, still a minority)",
+  "Low returns on capital; dividend frozen at $0.40 since the 2019 cut"
+ ]
+}

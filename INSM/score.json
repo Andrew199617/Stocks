@@ -1,0 +1,44 @@
+{
+ "ticker": "INSM",
+ "name": "INSMED INC",
+ "sector": "Biotechnology",
+ "price": 98.495,
+ "market_cap_b": 19.6,
+ "engine_version": 5,
+ "base_oe_per_share": -4.459713975463808,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate, launch-proven but unprofitable: BRINSUPRI is the first and only FDA-approved treatment for non-cystic fibrosis bronchiectasis (patent-protected DPP1 inhibitor, ASPEN Phase 3 data, now also approved in Europe and Japan per search reports) and ARIKAYCE is the only approved inhaled therapy for refractory MAC lung disease, giving Insmed a specialized pulmonary commercial platform and rare-disease pricing power; offset by zero positive owner's-earnings years in its history, growth concentrated in one launch, a binary Phase 3 TPIP pipeline, payer pressure, and 17.4%/yr share dilution funding the burn.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 17.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Real launch, no owner's earnings, moat 6/10 \u2014 BRINSUPRI is the first-and-only bronchiectasis drug and revenue is exploding (Q2 2026 total revenue $425.5M, search-cited), but OE is negative on every base (TTM -$4.46/share, 0/5 positive years), so it cannot clear the 15% hurdle at any price on an OE DCF; the $98.50 price is a peak-sales option, not an earnings stream.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "BRINSUPRI first-and-only approved treatment for non-CF bronchiectasis \u2014 patent-protected DPP1 inhibitor, ASPEN data",
+  "ARIKAYCE only approved inhaled therapy for refractory MAC lung disease (liposomal delivery)",
+  "Specialized pulmonary/rare-disease commercial platform reused across products and geographies (US/EU/Japan)",
+  "Rare-disease pricing power \u2014 FY2026 BRINSUPRI guidance raised to $1.25\u2013$1.40B within a year of launch (search-cited)"
+ ],
+ "moat_against": [
+  "No positive owner's earnings in any of the last 5 fiscal years \u2014 moat has never converted to cash profit",
+  "Growth concentration: the story now rides on one launch (BRINSUPRI) plus a niche base product (ARIKAYCE)",
+  "TPIP and other pipeline value is binary Phase 3 risk, not an earnings stream",
+  "Payer / gross-to-net pressure on high-cost specialty drugs, and eventual patent expiry",
+  "Dilution funding the burn: share count growing 17.4%/yr, SBC $157,480,000 TTM"
+ ]
+}

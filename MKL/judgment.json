@@ -1,0 +1,37 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Core insurance product has no switching costs or network effect - specialty cover is re-bid at renewal and pricing is cyclical across P&C",
+  "Earnings and OCF are hostage to investment markets and reserve estimates - net investment gains were $1,076,081,000 in FY2025 in the 10-K income statement, and H1 2026 carried a $205 million State National reserve charge",
+  "Reserve and legacy risk is recurring, not theoretical - CATCo run-off, State National collateral shortfall, social inflation in US casualty",
+  "Conglomerate complexity and key-person capital allocation - the Gayner investment edge and Ventures deal flow are people and reputation, not a structural barrier"
+ ],
+ "moat_for": [
+  "Specialty underwriting niche - hard-to-place risks (equine, museums, camps, specialty casualty) with less direct competition and a long disciplined record; Q2 2026 Markel Insurance combined ratio 93%",
+  "Permanent-capital three-engine model - insurance float funds a public equity portfolio and Markel Ventures' majority-owned businesses, diversifying cash flow beyond underwriting",
+  "Conservative reserving and low leverage culture - reserves set to be more likely redundant than deficient per the FY2025 10-K, net debt $339,106,000 in dcf_numbers.json",
+  "Buyback and capital discipline - share count shrinking 2.3%/yr in dcf_numbers.json, with repurchases funded from earnings"
+ ],
+ "moat_justification": "Specialty-insurance-led conglomerate (a 'mini-Berkshire' structure) with disciplined niche underwriting, conservative reserving, permanent float that funds equities and Markel Ventures, and a decades-long compounding culture - one notch above the plain P&C peers scored 5 in this sweep because of that three-engine model. Capped at 6, not 7-8: the core product is re-shopped at renewal with no switching costs or network effect, pricing is cyclical, and earnings are driven by investment markets and reserve estimates that have produced recurring charges. A 6 gives CAP = 9.8 years.",
+ "moat_score": 6,
+ "name": "Markel Group Inc.",
+ "one_liner": "High-quality specialty-insurance conglomerate, moat 6/10 - but sector-mismatched for an OE DCF and priced above value on current TTM cash flow: Tier C, weighted IRR 12.95%, weighted IV@15% $1,514.69 vs $1,825.00 price; it clears 15% only at or below $1,514.69.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out of band by construction: the engine has no filed SBC value for Markel in any period (last_filed_value is null - companyfacts carries no ShareBasedCompensation or AllocatedShareBasedCompensationExpense fact after FY2019, and the FY2025 10-K cash-flow statement lists no SBC addback), so any filing-sourced value flags out-of-band. The value is not an estimate with no anchor - it is the exact 'Equity awards expensed' figure printed in the filer's own FY2025 10-K Consolidated Statements of Changes in Equity (see source).",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags. The filer's own reported FY2025 equity awards expensed from its 10-K equity statement fills the gap; the engine applies this single value to every missing period. The true per-year series in the same statement is $35.787M (FY2023) / $53.302M (FY2024) / $54.982M (FY2025), so applying $54.982M to all three years overstates SBC in the two earlier years and makes the base slightly conservative; SBC at this level is about 2% of OCF and immaterial to the verdict.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Changes in Equity: 'Equity awards expensed' $54,982 thousand in 2025, $53,302 thousand in 2024 and $35,787 thousand in 2023 ($ in thousands in that statement). The Consolidated Statements of Cash Flows in the same 10-K lists no share-based compensation addback line, and EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact for 2023-2025.",
+  "value": 54982000
+ },
+ "sector": "Finance / Property-Casualty Insurance",
+ "tier_override": null,
+ "tier_override_reason": null
+}

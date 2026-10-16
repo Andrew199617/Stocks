@@ -1,0 +1,72 @@
+{
+ "ticker": "JBHT",
+ "name": "J.B. Hunt Transport Services, Inc.",
+ "sector": "Transportation / Freight & Logistics",
+ "price": 230.0,
+ "market_cap_b": 22.47,
+ "engine_version": 5,
+ "base_oe_per_share": 10.812659745669118,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Intermodal scale and rail partnerships built since 1990 plus sticky dedicated contracts give real network and retention advantages, but JBHT owns no railroad, pricing power is cyclical, and truckload/brokerage are near-commodity.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.5%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 8.97 vs 3-yr median 5.37 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 38.2,
+   "irr": 0.0418
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 61.75,
+   "irr": 0.0561
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 85.69,
+   "irr": 0.0712
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 117.75,
+   "irr": 0.0908
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 182.57,
+   "irr": 0.1268
+  }
+ },
+ "iv_at_15": 85.88,
+ "iv_at_12": 113.25,
+ "implied_irr": 0.072,
+ "implied_irr_base_case": 0.0712,
+ "upside_at_15_pct": -62.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality intermodal leader, moat 6/10, but priced for a supercycle \u2014 weighted IRR 7.2%, IV@15 $85.88 vs $230.00 price; clears 15% only at or below $85.88.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Intermodal leadership \u2014 20%-plus share, network density cuts empty moves and improves asset turns",
+  "Class I rail partnerships since 1990 (BNSF West, Norfolk Southern East) hard to replicate at scale",
+  "Dedicated Contract Services stickiness \u2014 contract-based, embedded, ~96% retention",
+  "Scale cost-to-serve program, 360 platform, and buybacks shrinking shares 2.5%/yr"
+ ],
+ "moat_against": [
+  "Owns no railroad \u2014 line-haul depends on Class I service and pricing",
+  "Freight pricing power is cyclical; highway capacity loosening compresses intermodal pricing",
+  "Hub Group, Schneider, Knight-Swift and STG compete in intermodal; truckload/brokerage near-commodity",
+  "Purchased transportation, driver, insurance and claims cost inflation outside its control"
+ ]
+}

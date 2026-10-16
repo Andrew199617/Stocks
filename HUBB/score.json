@@ -1,0 +1,69 @@
+{
+ "ticker": "HUBB",
+ "name": "Hubbell Incorporated",
+ "sector": "Industrials / Electrical & utility solutions",
+ "price": 470.53,
+ "market_cap_b": 25.17,
+ "engine_version": 5,
+ "base_oe_per_share": 16.440900562851784,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Spec-in, code-certified products embedded in utility standards with real switching friction and proven pricing power, held through cycles; capped at 7 because the products are ultimately manufactured components exposed to large diversified rivals (Eaton, ABB, Legrand, AMETEK) and to utility/construction capex cycles, with no network effect.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 74.79,
+   "irr": 0.0426
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 124.61,
+   "irr": 0.0584
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 175.42,
+   "irr": 0.0744
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 244.72,
+   "irr": 0.095
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 387.85,
+   "irr": 0.1317
+  }
+ },
+ "iv_at_15": 191.22,
+ "iv_at_12": 259.07,
+ "implied_irr": 0.0798,
+ "implied_irr_base_case": 0.0744,
+ "upside_at_15_pct": -59.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong-moat (7/10) grid/electrical compounder with clean owner's earnings \u2014 but at $470.53 it does not clear 15% (weighted IRR 7.98%, weighted IV@15 $191.22); it would need to fall to about $191 to clear the hurdle.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Spec-in position in utility standards and certified products \u2014 displacement is slow and risky for the buyer",
+  "Switching costs: low-cost, failure-critical components are not bought on price alone",
+  "Proven pricing power through cost inflation",
+  "Breadth across utility T&D and electrical (front- and behind-the-meter), 75+ brands",
+  "High cash conversion; OE positive 5 of last 5 years"
+ ],
+ "moat_against": [
+  "Large diversified rivals (Eaton, ABB, Legrand, AMETEK) with greater scale",
+  "Cyclical utility, construction and industrial end markets",
+  "Manufactured components \u2014 no network effect or recurring-revenue lock-in",
+  "Acquisition-led growth adds integration and leverage risk (NSI, $3.0B, closed Q2 2026)"
+ ]
+}

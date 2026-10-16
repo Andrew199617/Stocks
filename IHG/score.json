@@ -1,0 +1,72 @@
+{
+ "ticker": "IHG",
+ "name": "InterContinental Hotels Group PLC",
+ "sector": "Consumer Discretionary / Hotels & lodging franchising",
+ "price": 164.25,
+ "market_cap_b": 25.59,
+ "engine_version": 5,
+ "base_oe_per_share": 4.876470588235295,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "A strong (not widest) franchisor moat: 20 brands, 145m+ member loyalty programme and global distribution create real owner switching costs and pricing power, proven by a 65.9% fee margin and an asset-light model needing almost no capital. It sits behind Marriott/Hilton on scale and loyalty depth, owners can reflag at contract end, demand is cyclical (FY2020 collapse), and rivals are pressuring owner fees \u2014 durable, but contestable.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.0%/yr \u2014 already credited via the growth adjustment",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (InterContinental Hotels Group PLC Annual Report 2025 (combined UK Annual Report and Form 20-F for the fiscal year ended 31 December 2025), Shareholder Information / American Depositary Receipts section: the company's shares are listed on the NYSE in the form of American Depositary Shares, each ADR represents one ordinary share, with J.P. Morgan Chase Bank, N.A. as ADR depositary; the registered NYSE class title likewise reads 'American Depositary Shares (Each representing one Ordinary Share)') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 27.59,
+   "irr": 0.0454
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 39.99,
+   "irr": 0.0564
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 51.88,
+   "irr": 0.0671
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 65.8,
+   "irr": 0.0793
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 90.44,
+   "irr": 0.0994
+  }
+ },
+ "iv_at_15": 53.81,
+ "iv_at_12": 72.52,
+ "implied_irr": 0.0691,
+ "implied_irr_base_case": 0.0671,
+ "upside_at_15_pct": -67.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality asset-light hotel franchisor, moat 7/10 - but at $164.25 the 3.0% owner-earnings yield leaves no path to the hurdle: weighted IRR 6.9%, weighted IV@15 $53.81, and even the super-bull case (9.9% IRR) clears neither 10% nor 15%; clears 15% only below ~$53.81.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "20-brand portfolio (InterContinental, Holiday Inn family, Crowne Plaza, Kimpton, Six Senses) across 100+ countries \u2014 distribution owners pay to access",
+  "IHG One Rewards loyalty programme (145m+ members) driving direct bookings and repeat stays",
+  "Asset-light fee model: fee margin 65.9% in H1 2026 and only $28M capex in FY2025 (filing history) \u2014 high returns on capital and strong cash conversion",
+  "Development pipeline of 348k rooms, 33% of current system size (H1 2026 release), giving visible multi-year fee growth",
+  "Proven pricing power: fee margin +120bp in H1 2026 with ADR +2.5% alongside occupancy gains"
+ ],
+ "moat_against": [
+  "Third in scale behind Marriott and Hilton, with smaller loyalty ecosystems and less owner leverage in contested markets",
+  "Owners can reflag at contract end; conversion brands lower switching frictions across the industry",
+  "Cyclical RevPAR: FY2020 revenue fell to $2,394M from $4,627M in FY2019 (filing history) \u2014 travel demand tracks the consumer/business cycle and geopolitics",
+  "Owner fee pressure: rivals are cutting fees and granting concessions to hold owners (2026 earnings-season reporting)",
+  "Buyback-funded leverage: net debt 3.4x normalized owner's earnings (engine diagnostics)"
+ ]
+}

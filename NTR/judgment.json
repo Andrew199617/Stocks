@@ -1,0 +1,36 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "Direct-listed foreign private issuer: one NYSE-traded NTR share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis.",
+  "source": "Nutrien Form F-10 prospectus filed 2026-03-31 (and 40-F annual filing, CIK 1725964): 'Our Common Shares are listed on the TSX and on the NYSE under the symbol NTR' \u2014 the NYSE security is the common share itself, directly listed, not an ADS; system README v5.3 note also lists NTR among direct-listed ordinary shares at ratio 1.0"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity price-taker: potash/nitrogen/phosphate prices are set globally; Nutrien does not control its main earnings driver",
+  "Cyclicality proven in its own history: OE/share spanned $10.73 (2022) to $2.98 (2024), revenue 3-yr CAGR -10.8%",
+  "New global potash supply (e.g. BHP Jansen) and Russian/Belarusian supply normalization can pressure prices and volumes",
+  "Capital-intensive mining/chemical assets: capex ~$1.9-2.4B/yr and net debt 4.7x normalized OE leave little buffer in a down-cycle",
+  "Retail is a low-margin distribution business exposed to farm incomes, weather, and acreage"
+ ],
+ "moat_for": [
+  "Low-cost, long-life Saskatchewan potash mines \u2014 among the world's largest reserves, not replicable on any investable timeline",
+  "Scale: world's largest fertilizer company and largest crop-input retailer, with purchasing and logistics advantages",
+  "Low-cost North American nitrogen plants on cheap natural gas feedstock; H1 2026 controllable potash cash cost below $60/tonne",
+  "Retail distribution network provides a steadier, service/proprietary-products margin stream that dampens pure commodity exposure"
+ ],
+ "moat_justification": "Moderate/narrow moat: irreplaceable low-cost Saskatchewan potash mines with long-life reserves, North American low-cost nitrogen (cheap gas feedstock), scale as the world's largest fertilizer producer, and the largest ag-retail distribution network give a real cost and distribution advantage \u2014 but Nutrien is fundamentally a commodity price-taker in potash/nitrogen/phosphate, earnings swing with global fertilizer benchmarks it does not control, and returns collapse in down-cycles (OE/share $10.73 in 2022 to $2.98 in 2024), so pricing power is not proven through a cycle.",
+ "moat_score": 5,
+ "name": "Nutrien Ltd.",
+ "one_liner": "Real low-cost potash/retail franchise, moat 5/10, but a cyclical commodity price-taker with 4.7x net debt/OE \u2014 at $70.49 it does not clear 15%: weighted IRR 8.1%, weighted IV@15% $31.77; clears 15% only below ~$31.77.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Materials / Fertilizers & Agricultural Chemicals",
+ "tier_override": null,
+ "tier_override_reason": null
+}

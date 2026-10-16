@@ -1,0 +1,73 @@
+{
+ "ticker": "LYB",
+ "name": "LyondellBasell Industries N.V.",
+ "sector": "Materials / Petrochemicals",
+ "price": 62.67,
+ "market_cap_b": 20.19,
+ "engine_version": 5,
+ "base_oe_per_share": 5.832230015791295,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Scale and a U.S. Gulf Coast NGL feedstock cost advantage are real but are commodity cost-curve positions, not franchises: products are undifferentiated, margins are market-set spreads, and the edge depends on the oil-to-gas spread and Chinese capacity decisions. Technology licensing is a genuine niche; the European naphtha footprint is a structural disadvantage being exited at a loss.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.91 vs 3-yr median 5.83 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 22.0,
+   "irr": 0.0647
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 26.4,
+   "irr": 0.0732
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 35.73,
+   "irr": 0.0938
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 47.77,
+   "irr": 0.1197
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 71.0,
+   "irr": 0.166
+  }
+ },
+ "iv_at_15": 36.2,
+ "iv_at_12": 46.99,
+ "implied_irr": 0.0953,
+ "implied_irr_base_case": 0.0938,
+ "upside_at_15_pct": -42.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Commodity petrochemical leader, moat 4/10 \u2014 does not clear 15% at $62.67 (weighted IRR 9.5%, IV@15 $36.20); it would need ~$36 to clear 15% on the weighted path.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "U.S. Gulf Coast NGL feedstock cost advantage vs naphtha-based rivals",
+  "Global scale and vertical integration from olefins through polymers",
+  "Technology licensing and catalyst business (differentiated, higher-margin)",
+  "Advanced Polymer Solutions specialty compounding mix",
+  "Cash conversion and cost discipline through the trough (Cash Improvement Plan)"
+ ],
+ "moat_against": [
+  "Commodity products with no pricing power \u2014 margins are market-set spreads",
+  "Chinese capacity additions depressing global polyethylene/polypropylene margins",
+  "European naphtha-based footprint structurally high-cost, exited at a loss",
+  "NGL advantage narrows when oil falls relative to gas",
+  "Plastics regulation (single-use bans, recycled content) caps terminal growth"
+ ]
+}

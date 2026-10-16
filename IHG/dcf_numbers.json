@@ -1,0 +1,166 @@
+{
+ "ticker": "IHG",
+ "name": "InterContinental Hotels Group PLC",
+ "cik": 858446,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 164.25,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 155800000,
+ "market_cap_est": 25590150000.0,
+ "net_debt_latest": 2594000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.16735004463985992,
+ "rev_cagr_3y": 0.10059478055373727,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 823000000,
+ "base_oe_per_share": 4.876470588235295,
+ "base_oe_latest_per_share": 5.282413350449294,
+ "base_oe_normalized_per_share": 4.876470588235295,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.16735004463985992,
+  "rev_cagr_3y": 0.10059478055373727,
+  "rev_yoy_latest": 0.054032094251472707,
+  "oe_ps_cagr_2y": 0.04076219862117325
+ },
+ "g_blend": 0.07731343740260499,
+ "share_cagr": -0.05048064668763641,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": null,
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "InterContinental Hotels Group PLC Annual Report 2025 (combined UK Annual Report and Form 20-F for the fiscal year ended 31 December 2025), Shareholder Information / American Depositary Receipts section: the company's shares are listed on the NYSE in the form of American Depositary Shares, each ADR represents one ordinary share, with J.P. Morgan Chase Bank, N.A. as ADR depositary; the registered NYSE class title likewise reads 'American Depositary Shares (Each representing one Ordinary Share)'",
+  "reason": "One ADS equals one ordinary share, so the engine's per-ordinary-share owner's earnings are already on the same basis as the NYSE ADS price; no scaling applies (ratio 1.0), but the 20-F gate requires the ratio to be declared and sourced."
+ },
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.12731343740260498,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.08,
+   -0.0473,
+   -0.0173,
+   0.0227
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0073,
+   "oe_mult": 0.75,
+   "iv_at_10": 45.43696840144045,
+   "iv_at_12": 36.06113331224091,
+   "iv_at_15": 27.594524818913463,
+   "irr": 0.045370300186185264
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0473,
+   "oe_mult": 0.9,
+   "iv_at_10": 67.64171643023599,
+   "iv_at_12": 53.05919022072091,
+   "iv_at_15": 39.98728432833278,
+   "irr": 0.056412235797805965
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.08,
+   "oe_mult": 1.0,
+   "iv_at_10": 89.59740505011553,
+   "iv_at_12": 69.65516136064943,
+   "iv_at_15": 51.875494859710614,
+   "irr": 0.06712339604754558
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.11,
+   "oe_mult": 1.1,
+   "iv_at_10": 115.72744910761955,
+   "iv_at_12": 89.2765676594049,
+   "iv_at_15": 65.80157745877466,
+   "irr": 0.07926592396244306
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.15,
+   "oe_mult": 1.25,
+   "iv_at_10": 162.709290745125,
+   "iv_at_12": 124.32045588646216,
+   "iv_at_15": 90.43926396954184,
+   "irr": 0.09937606187266923
+  }
+ },
+ "weighted": {
+  "iv_at_10": 93.5361388141551,
+  "iv_at_12": 72.5186467980966,
+  "iv_at_15": 53.81324278353558,
+  "irr": 0.06910332245960982
+ },
+ "implied_irr_weighted": 0.06910332245960982,
+ "implied_irr_base": 0.06712339604754558,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.672369906949555,
+ "upside_at_12": -0.5584861686569461,
+ "iv_at_15": 53.81324278353558,
+ "iv_at_12": 72.5186467980966,
+ "diagnostics": {
+  "oe_yield": 0.029689318649834366,
+  "tv_share_at_15": 0.20281170203609433,
+  "scenario_spread_iv15": 3.2774350913103674,
+  "net_debt_to_normalized_oe": 3.4142625090780143,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.0%/yr \u2014 already credited via the growth adjustment",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (InterContinental Hotels Group PLC Annual Report 2025 (combined UK Annual Report and Form 20-F for the fiscal year ended 31 December 2025), Shareholder Information / American Depositary Receipts section: the company's shares are listed on the NYSE in the form of American Depositary Shares, each ADR represents one ordinary share, with J.P. Morgan Chase Bank, N.A. as ADR depositary; the registered NYSE class title likewise reads 'American Depositary Shares (Each representing one Ordinary Share)') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "536c0c8de770ad5fa1979b117786037dda60d4826f70d3fd3a550b6711b6d48c"
+}

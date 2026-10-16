@@ -1,0 +1,70 @@
+{
+ "ticker": "OVV",
+ "name": "Ovintiv Inc.",
+ "sector": "Energy / Oil & Gas E&P",
+ "price": 66.16,
+ "market_cap_b": 17.18,
+ "engine_version": 5,
+ "base_oe_per_share": 8.051805910251733,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Weak moat (4/10): real cost and inventory advantages \u2014 deep premium drilling inventory in the Permian (Midland) and Montney, cost leadership in the Montney and top-2 lowest costs in the Midland Basin, highest-productivity oil wells in both plays \u2014 but Ovintiv is a pure commodity price-taker: oil, gas and NGL prices are set by the market, reserves deplete and must be re-drilled just to hold production flat, and returns are capped by basis differentials, takeaway and the energy transition. Cost leadership survives a cycle; it does not compound like a wide moat. CAP = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.9x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 24.3,
+   "irr": 0.0667
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 41.88,
+   "irr": 0.1018
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.88,
+   "irr": 0.1379
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 79.84,
+   "irr": 0.1753
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 118.22,
+   "irr": 0.2384
+  }
+ },
+ "iv_at_15": 57.97,
+ "iv_at_12": 76.1,
+ "implied_irr": 0.1344,
+ "implied_irr_base_case": 0.1379,
+ "upside_at_15_pct": -12.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality Permian/Montney E&P, moat 4/10 \u2014 does not clear 15% at $66.16 (weighted IRR 13.4%, weighted IV@15 $57.97) because the TTM base embeds an acquisition-overlap period and strong H1 2026 prices; clears 15% at ~$57.97.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Deep premium inventory in Permian (Midland) and Montney \u2014 3,200+ locations added since 2023, plus 930 NuVista locations",
+  "Cost leadership: undisputed lowest-cost Montney operator, top-2 lowest cost in the Midland Basin",
+  "Highest-productivity oil wells in the Midland Basin and Montney",
+  "Infrastructure/processing access adjacent to the Montney position; ~$100M/yr of expected NuVista cost synergies"
+ ],
+ "moat_against": [
+  "Pure commodity price-taker \u2014 no pricing power over oil, gas or NGL prices",
+  "Reserves deplete \u2014 continuous capex required just to hold production flat",
+  "AECO/NYMEX basis and takeaway exposure on Montney gas volumes",
+  "Long-term energy-transition demand risk for oil and gas"
+ ]
+}

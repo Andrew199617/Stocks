@@ -1,0 +1,89 @@
+{
+ "ticker": "MKL",
+ "name": "Markel Group Inc.",
+ "sector": "Finance / Property-Casualty Insurance",
+ "price": 1825.0,
+ "market_cap_b": 23.08,
+ "engine_version": 5,
+ "base_oe_per_share": 163.35476209326262,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Specialty-insurance-led conglomerate (a 'mini-Berkshire' structure) with disciplined niche underwriting, conservative reserving, permanent float that funds equities and Markel Ventures, and a decades-long compounding culture - one notch above the plain P&C peers scored 5 in this sweep because of that three-engine model. Capped at 6, not 7-8: the core product is re-shopped at renewal with no switching costs or network effect, pricing is cyclical, and earnings are driven by investment markets and reserve estimates that have produced recurring charges. A 6 gives CAP = 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.3%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Changes in Equity: 'Equity awards expensed' $54,982 thousand in 2025, $53,302 thousand in 2024 and $35,787 thousand in 2023 ($ in thousands in that statement). The Consolidated Statements of Cash Flows in the same 10-K lists no share-based compensation addback line, and EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact for 2023-2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 822.21,
+   "irr": 0.0791
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 1127.49,
+   "irr": 0.1016
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1496.91,
+   "irr": 0.1281
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 1967.24,
+   "irr": 0.159
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 2669.66,
+   "irr": 0.1999
+  }
+ },
+ "iv_at_15": 1514.69,
+ "iv_at_12": 2015.36,
+ "implied_irr": 0.1295,
+ "implied_irr_base_case": 0.1281,
+ "upside_at_15_pct": -17.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality specialty-insurance conglomerate, moat 6/10 - but sector-mismatched for an OE DCF and priced above value on current TTM cash flow: Tier C, weighted IRR 12.95%, weighted IV@15% $1,514.69 vs $1,825.00 price; it clears 15% only at or below $1,514.69.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Specialty underwriting niche - hard-to-place risks (equine, museums, camps, specialty casualty) with less direct competition and a long disciplined record; Q2 2026 Markel Insurance combined ratio 93%",
+  "Permanent-capital three-engine model - insurance float funds a public equity portfolio and Markel Ventures' majority-owned businesses, diversifying cash flow beyond underwriting",
+  "Conservative reserving and low leverage culture - reserves set to be more likely redundant than deficient per the FY2025 10-K, net debt $339,106,000 in dcf_numbers.json",
+  "Buyback and capital discipline - share count shrinking 2.3%/yr in dcf_numbers.json, with repurchases funded from earnings"
+ ],
+ "moat_against": [
+  "Core insurance product has no switching costs or network effect - specialty cover is re-bid at renewal and pricing is cyclical across P&C",
+  "Earnings and OCF are hostage to investment markets and reserve estimates - net investment gains were $1,076,081,000 in FY2025 in the 10-K income statement, and H1 2026 carried a $205 million State National reserve charge",
+  "Reserve and legacy risk is recurring, not theoretical - CATCo run-off, State National collateral shortfall, social inflation in US casualty",
+  "Conglomerate complexity and key-person capital allocation - the Gayner investment edge and Ventures deal flow are people and reputation, not a structural barrier"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 54982000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Changes in Equity: 'Equity awards expensed' $54,982 thousand in 2025, $53,302 thousand in 2024 and $35,787 thousand in 2023 ($ in thousands in that statement). The Consolidated Statements of Cash Flows in the same 10-K lists no share-based compensation addback line, and EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact for 2023-2025."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 167.7077,
+  "base_oe_with_override": 163.3548,
+  "base_oe_impact_pct": -2.596,
+  "weighted_irr_without_override": 0.1322,
+  "weighted_irr_with_override": 0.1295,
+  "weighted_irr_impact_pp": -0.268,
+  "unblocks_tier": true
+ }
+}

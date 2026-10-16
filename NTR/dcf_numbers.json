@@ -1,0 +1,169 @@
+{
+ "ticker": "NTR",
+ "name": "NUTRIEN LTD.",
+ "cik": 1725964,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 70.49,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 486518000,
+ "market_cap_est": 34294653819.999996,
+ "net_debt_latest": 9162000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.05158044138029494,
+ "rev_cagr_3y": -0.10800436480970732,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1962000000,
+ "base_oe_per_share": 4.032738768144242,
+ "base_oe_latest_per_share": 4.032738768144242,
+ "base_oe_normalized_per_share": 4.032738768144242,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.05158044138029494,
+  "rev_cagr_3y": -0.10800436480970732,
+  "rev_yoy_latest": 0.035153241952872394,
+  "oe_ps_cagr_2y": -0.132700028532166
+ },
+ "g_blend": -0.03642556142841746,
+ "share_cagr": -0.0341660184267597,
+ "share_count_adj": 0.0341660184267597,
+ "used_tags": {
+  "revenue": "RevenueFromContractsWithCustomers",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Nutrien Form F-10 prospectus filed 2026-03-31 (and 40-F annual filing, CIK 1725964): 'Our Common Shares are listed on the TSX and on the NYSE under the symbol NTR' \u2014 the NYSE security is the common share itself, directly listed, not an ADS; system README v5.3 note also lists NTR among direct-listed ordinary shares at ratio 1.0",
+  "reason": "Direct-listed foreign private issuer: one NYSE-traded NTR share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": -0.00225954300165776,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 22.918909965658866,
+   "iv_at_12": 18.619456595801957,
+   "iv_at_15": 14.68672799759333,
+   "irr": 0.04715554265710942
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0523,
+   "oe_mult": 0.9,
+   "iv_at_10": 34.52361824778231,
+   "iv_at_12": 27.721455396441502,
+   "iv_at_15": 21.54197240555272,
+   "irr": 0.060290153844721917
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": -0.0023,
+   "oe_mult": 1.0,
+   "iv_at_10": 48.540595006481325,
+   "iv_at_12": 38.54097429973043,
+   "iv_at_15": 29.513519646332337,
+   "irr": 0.07625513393316444
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0477,
+   "oe_mult": 1.1,
+   "iv_at_10": 67.34921683651584,
+   "iv_at_12": 52.929339687676645,
+   "iv_at_15": 39.98271697784129,
+   "irr": 0.09671480850105396
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1177,
+   "oe_mult": 1.25,
+   "iv_at_10": 105.29384884675304,
+   "iv_at_12": 81.69713940433664,
+   "iv_at_15": 60.651185988155696,
+   "irr": 0.13387702117399425
+  }
+ },
+ "weighted": {
+  "iv_at_10": 52.85166315426012,
+  "iv_at_12": 41.75665066096252,
+  "iv_at_15": 31.769019638323105,
+  "irr": 0.08119109891387744
+ },
+ "implied_irr_weighted": 0.08119109891387744,
+ "implied_irr_base": 0.07625513393316444,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5493116805458489,
+ "upside_at_12": -0.4076230577250316,
+ "iv_at_15": 31.769019638323105,
+ "iv_at_12": 41.75665066096252,
+ "diagnostics": {
+  "oe_yield": 0.057210083247896754,
+  "tv_share_at_15": 0.1770954353051541,
+  "scenario_spread_iv15": 4.129659512867293,
+  "net_debt_to_normalized_oe": 4.669724770642201,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Nutrien Form F-10 prospectus filed 2026-03-31 (and 40-F annual filing, CIK 1725964): 'Our Common Shares are listed on the TSX and on the NYSE under the symbol NTR' \u2014 the NYSE security is the common share itself, directly listed, not an ADS; system README v5.3 note also lists NTR among direct-listed ordinary shares at ratio 1.0) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "c90fd46c50717c56002f3c6e4c960e99ded372b2c2eee000509778f7c08ea2b7"
+}

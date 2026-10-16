@@ -1,0 +1,72 @@
+{
+ "ticker": "L",
+ "name": "Loews Corporation",
+ "sector": "Finance",
+ "price": 108.785,
+ "market_cap_b": 22.75,
+ "engine_version": 5,
+ "base_oe_per_share": 12.716403634624582,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak moat: a collection of mostly price-competitive businesses. Boardwalk's contracted/regulated natural gas pipeline network is the one hard-to-replicate asset; CNA is a mid-tier commercial P&C insurer whose combined ratio worsened to 96.5% in Q2 2026 and 99.4% in H1 2026, showing no pricing-power cushion and carrying legacy asbestos/environmental exposure; hotels are cyclical and packaging is commodity. Diversification, parent balance-sheet discipline and buybacks compound per-share value but are not a business moat. CAP 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.9%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 65.64,
+   "irr": 0.0991
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 88.48,
+   "irr": 0.1264
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 110.34,
+   "irr": 0.1518
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 136.1,
+   "irr": 0.1801
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 173.23,
+   "irr": 0.2183
+  }
+ },
+ "iv_at_15": 107.23,
+ "iv_at_12": 141.59,
+ "implied_irr": 0.1482,
+ "implied_irr_base_case": 0.1518,
+ "upside_at_15_pct": -1.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Disciplined, diversified holdco (CNA insurance, Boardwalk pipelines, hotels, Altium), moat 4/10 \u2014 just misses the 15% hurdle on recalibrated numbers (14.8% weighted, IV $107.23 vs $108.78 price) and the insurer OCF base flatters even that; clears 15% only at or below $107.23, with real margin of safety only toward the $88.48 bear case.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Boardwalk contracted/regulated gas pipeline and storage network \u2014 hard to replicate",
+  "CNA established commercial/specialty insurance franchise and investment scale",
+  "Loews Hotels established luxury/upper-upscale portfolio",
+  "Diversification across insurance, energy, hospitality and packaging",
+  "Disciplined parent balance sheet and long buyback record"
+ ],
+ "moat_against": [
+  "P&C underwriting price-competitive and cyclical \u2014 combined ratio 96.5% Q2 2026, 99.4% H1 2026 and deteriorating",
+  "CNA legacy asbestos/environmental reserve exposure",
+  "Pipeline volume, recontracting, regulatory and energy-transition risk",
+  "Hotels discretionary-cyclical; Altium packaging commodity",
+  "Holding-company complexity/discount; no business with durable pricing control"
+ ]
+}

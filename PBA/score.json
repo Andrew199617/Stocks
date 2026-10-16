@@ -1,0 +1,73 @@
+{
+ "ticker": "PBA",
+ "name": "PEMBINA PIPELINE CORPORATION",
+ "sector": "Energy / Midstream pipelines & facilities",
+ "price": 48.52,
+ "market_cap_b": 28.24,
+ "engine_version": 5,
+ "base_oe_per_share": 2.680415172413793,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Irreplaceable Western Canadian midstream infrastructure with predominantly fee-based, long-term contracted cash flows, a leading NGL/fractionation franchise at Redwater, and strategic export corridors (Alliance, Cedar LNG) \u2014 a strong 7/10. It is not a 9-10: Enbridge/TC Energy are larger rivals, Marketing & New Ventures keeps commodity exposure, growth depends on regulatory approvals and producer volumes, and long-term hydrocarbon demand declines.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F / company disclosure: Pembina's common shares trade on the Toronto Stock Exchange (PPL) and the New York Stock Exchange (PBA) \u2014 the NYSE security is the common share itself, not an ADS; the _system README v5.3 note likewise lists PBA among the direct-listed ordinary-share filers (ratio 1.0)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "HIGH_NET_DEBT: net debt is 5.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 11.6,
+   "irr": 0.0513
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 17.58,
+   "irr": 0.0689
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 24.72,
+   "irr": 0.09
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 31.34,
+   "irr": 0.1081
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 43.07,
+   "irr": 0.1375
+  }
+ },
+ "iv_at_15": 25.11,
+ "iv_at_12": 33.44,
+ "implied_irr": 0.0914,
+ "implied_irr_base_case": 0.09,
+ "upside_at_15_pct": -48.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong fee-based midstream franchise, moat 7/10 \u2014 but at $48.52 the price is nearly double the 15%-hurdle value: weighted IRR 9.1%, weighted IV@15 $25.11; clears 15% only below ~$25.11.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Irreplaceable integrated midstream network in Western Canada \u2014 pipelines, gathering/processing, fractionation and export terminals that cannot be replicated on an investable timeline",
+  "Predominantly fee-based, long-term contracted toll-road cash flows \u2014 producers pay for capacity, insulating the core from direct commodity prices",
+  "Leading NGL franchise: Redwater fractionation (RFS IV added 55,000 bpd in May 2026) and Montney/Duvernay basin position",
+  "Strategic corridors and export optionality: Alliance (rich gas to Chicago), Cochin, Cedar LNG and LPG export terminals diversify end markets beyond the US",
+  "Proven through-cycle OE: owner's earnings positive in 5 of the last 5 fiscal years (engine), including the 2020 downturn"
+ ],
+ "moat_against": [
+  "Larger rivals Enbridge and TC Energy compete for the same Western Canadian volumes and growth projects",
+  "Marketing & New Ventures retains commodity-margin exposure \u2014 not all earnings are fee-based",
+  "New pipeline/facility growth needs Canadian regulatory approvals and producer volume growth; long-term hydrocarbon demand is in structural decline",
+  "Levered balance sheet: net debt 5.4x normalized OE (engine) constrains flexibility if volumes or margins fall",
+  "Share count is rising (~1.7%/yr engine share CAGR), diluting per-share growth"
+ ]
+}

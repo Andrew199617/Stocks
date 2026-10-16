@@ -1,0 +1,160 @@
+{
+ "ticker": "HUBB",
+ "name": "HUBBELL INC",
+ "cik": 48898,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 470.53,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 53500000,
+ "market_cap_est": 25173355000.0,
+ "net_debt_latest": 1842900000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.0968011593749123,
+ "rev_cagr_3y": 0.05707497978377596,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 841700000,
+ "base_oe_per_share": 16.440900562851784,
+ "base_oe_latest_per_share": 15.732710280373832,
+ "base_oe_normalized_per_share": 14.448148148148148,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.0968011593749123,
+  "rev_cagr_3y": 0.05707497978377596,
+  "rev_yoy_latest": 0.03839388824731271,
+  "oe_ps_cagr_2y": 0.11066719037461281
+ },
+ "g_blend": 0.07693806957934413,
+ "share_cagr": -0.003709764435900431,
+ "share_count_adj": 0.003709764435900431,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.08064783401524456,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 16.440900562851784,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0394,
+   "oe_mult": 0.75,
+   "iv_at_10": 119.10679561653231,
+   "iv_at_12": 95.92792104596424,
+   "iv_at_15": 74.7922097536421,
+   "irr": 0.042600870754880754
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0306,
+   "oe_mult": 0.9,
+   "iv_at_10": 208.47358703842866,
+   "iv_at_12": 164.31282827080568,
+   "iv_at_15": 124.60929977790018,
+   "irr": 0.05836750562162718
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0806,
+   "oe_mult": 1.0,
+   "iv_at_10": 303.10519097870986,
+   "iv_at_12": 235.6015757291226,
+   "iv_at_15": 175.42423765191708,
+   "irr": 0.07441212112360243
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1306,
+   "oe_mult": 1.1,
+   "iv_at_10": 435.54944718069635,
+   "iv_at_12": 334.3060617138891,
+   "iv_at_15": 244.71669861275416,
+   "irr": 0.09495058551466004
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2006,
+   "oe_mult": 1.25,
+   "iv_at_10": 716.4334136851644,
+   "iv_at_12": 541.3797980316639,
+   "iv_at_15": 387.84526704751465,
+   "irr": 0.13171615567300055
+  }
+ },
+ "weighted": {
+  "iv_at_10": 335.4913367785639,
+  "iv_at_12": 259.0659671226733,
+  "iv_at_15": 191.2225185733544,
+  "irr": 0.07981903663352452
+ },
+ "implied_irr_weighted": 0.07981903663352452,
+ "implied_irr_base": 0.07441212112360243,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5936018562613342,
+ "upside_at_12": -0.44941668517911004,
+ "iv_at_15": 191.2225185733544,
+ "iv_at_12": 259.0659671226733,
+ "diagnostics": {
+  "oe_yield": 0.03494123767422223,
+  "tv_share_at_15": 0.20866433487547573,
+  "scenario_spread_iv15": 5.185637225120602,
+  "net_debt_to_normalized_oe": 2.095185044169357,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "b756703d58292cd7ba6237de9f8e867d60d29c21b5b2458d649a1e14a2a98d0b"
+}

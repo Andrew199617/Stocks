@@ -1,0 +1,42 @@
+{
+ "ticker": "IOT",
+ "name": "Samsara Inc.",
+ "sector": "Technology \u2014 Connected operations / IoT platform",
+ "price": 40.5,
+ "market_cap_b": 23.23,
+ "engine_version": 5,
+ "base_oe_per_share": -0.2990882327902573,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "A broad, scaled connected-operations platform \u2014 installed telematics/camera hardware, years of operational data, and workflow integration create real switching costs, and multi-product expansion inside large accounts is visible in the prints ($1M+ ARR cohort ARR over $500M, up over 50% YoY). Not 7+: the fleet-management market is fragmented (top-10 vendors ~13% of revenue), Geotab and Motive contest the same fleets, hardware is commoditizing / OEM-embedding, and Samsara has never converted its position into positive owner's earnings or proven returns on capital through a cycle.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "medium",
+ "one_liner": "Strong connected-operations platform, moat 6/10, revenue +30% at $2.125B ARR \u2014 but SBC ($330.6M TTM) exceeds TTM operating cash flow ($288.4M), so owner's earnings are negative on every basis (median -$0.30/sh, TTM -$0.13/sh) and it cannot clear 15% at $40.50; Tier F until SBC normalizes.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Installed hardware + cloud platform in vehicles/assets \u2014 replacing it means re-instrumenting fleets, retraining, and losing historical data",
+  "Multi-product platform breadth (telematics, video safety, equipment, sites, workflows) driving expansion inside large accounts \u2014 $1M+ ARR cohort over $500M ARR, +50%+ YoY",
+  "Scale data asset \u2014 ARR $2.125B growing +30% at 77% GAAP gross margin (Q2 FY2027), funding AI features smaller rivals cannot match as easily"
+ ],
+ "moat_against": [
+  "Fragmented market with strong direct rivals \u2014 Geotab (ABI Research's top-ranked commercial telematics vendor, Samsara second), Motive, Verizon Connect, PowerFleet",
+  "Hardware commoditization and OEM-embedded telematics erode the installed-base advantage over time",
+  "No proven pricing power into profitability \u2014 SBC-funded talent model has kept owner's earnings negative at every scale so far; physical-operations customers are cost-sensitive and cyclical"
+ ]
+}

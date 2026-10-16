@@ -1,0 +1,72 @@
+{
+ "ticker": "LPLA",
+ "name": "LPL Financial Holdings Inc.",
+ "sector": "Finance \u2014 Wealth management / independent broker-dealer platform",
+ "price": 323.46,
+ "market_cap_b": 25.57,
+ "engine_version": 5,
+ "base_oe_per_share": 13.694275696433388,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "Largest independent broker-dealer platform in the US (~32,000 advisors, $2.56T client assets at Q2 2026): scale in technology, compliance, custody and clearing that a small firm cannot replicate, real advisor switching costs (moving a practice means repapering every client account), a recruiting flywheel (TTM recruited assets $89B) and recurring advisory fees (60.4% of client assets) \u2014 against the structural weakness that advisors are independent contractors who own the client relationship and can walk (Commonwealth teams have already left for Cetera), credible scaled rivals (Schwab, Fidelity, Raymond James, Cetera, Osaic), and earnings geared to equity-market levels (asset-based fees) and policy rates (client cash sweep).",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 82.37,
+   "irr": 0.0566
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 118.1,
+   "irr": 0.0722
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 171.31,
+   "irr": 0.095
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 245.66,
+   "irr": 0.1237
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 363.1,
+   "irr": 0.1622
+  }
+ },
+ "iv_at_15": 180.5,
+ "iv_at_12": 245.89,
+ "implied_irr": 0.0992,
+ "implied_irr_base_case": 0.095,
+ "upside_at_15_pct": -44.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality advisor-platform compounder, moat 6/10 \u2014 the engine's mechanical Tier F is a sector artifact (broker-dealer OCF is advisor-loan and client-balance plumbing, not cash earnings); on the corrected maintenance-earnings base of $13.69/share the $323.46 price yields a 9.9% weighted IRR with IV@15% of $180.50, so it clears the 15% hurdle only below ~$181 (~$144 with a margin of safety).",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest US independent advisor platform \u2014 ~32,000 advisors, $2.56T client assets (Q2 2026); scale in tech/compliance/custody small rivals cannot match",
+  "Advisor switching costs are real: moving a practice means repapering every client account and changing custodian/clearing",
+  "Recruiting flywheel: $89B recruited assets TTM, $23.1B organic net new assets in Q2 2026 alone (4.0% annualized)",
+  "Recurring revenue mix: advisory assets 60.4% of client assets and rising; multiple affiliation models widen the funnel"
+ ],
+ "moat_against": [
+  "Advisors are independent contractors who own the client relationship \u2014 the asset base can walk; Commonwealth teams have already defected to Cetera",
+  "Scaled, credible rivals on both sides: Schwab/Fidelity custody economics and Cetera/Osaic/Raymond James competing for the same advisors",
+  "Earnings geared to exogenous variables: equity-market levels drive asset-based fees; Fed cuts compress client cash-sweep economics (Q2 2026 net interest income fell sharply YoY)",
+  "Growth is increasingly bought, not built: Commonwealth ($2.7B) and Atria were debt-funded, and retention (~90% targeted) is not yet proven through the Q4 2026 onboarding"
+ ]
+}

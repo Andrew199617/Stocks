@@ -1,0 +1,91 @@
+{
+ "ticker": "IOT",
+ "name": "SAMSARA INC.",
+ "cik": 1642896,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 40.5,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 573483155,
+ "market_cap_est": 23226067777.5,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-01-31",
+ "rev_cagr_5y": 0.4528078607888131,
+ "rev_cagr_3y": 0.3524583702558448,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -107539000,
+ "base_oe_per_share": -0.2990882327902573,
+ "base_oe_latest_per_share": -0.18751902137387105,
+ "base_oe_normalized_per_share": -0.2990882327902573,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.4528078607888131,
+  "rev_cagr_3y": 0.3524583702558448,
+  "rev_yoy_latest": 0.29573830910847665,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.3524583702558448,
+ "share_cagr": 0.036877013026290095,
+ "share_count_adj": -0.036877013026290095,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 6.0,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   1.0
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "content_hash": "cfafdbe923d992763e5a8550e4355854efc3a2cb6b2d65be1c726db51e1d8651"
+}

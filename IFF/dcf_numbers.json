@@ -1,0 +1,165 @@
+{
+ "ticker": "IFF",
+ "name": "INTERNATIONAL FLAVORS\u00a0& FRAGRANCES INC",
+ "cik": 51253,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 90.29,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 256000000,
+ "market_cap_est": 23114240000.0,
+ "net_debt_latest": 5404000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.16459125929384855,
+ "rev_cagr_3y": -0.043378301868751024,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 168000000,
+ "base_oe_per_share": 1.7587548638132295,
+ "base_oe_latest_per_share": 0.65625,
+ "base_oe_normalized_per_share": 2.0703125,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.16459125929384855,
+  "rev_cagr_3y": -0.043378301868751024,
+  "rev_yoy_latest": -0.051724137931034475,
+  "oe_ps_cagr_2y": -0.5653990693728175
+ },
+ "g_blend": -0.04755121989989275,
+ "share_cagr": 0.0013051865329107848,
+ "share_count_adj": -0.0013051865329107848,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": -0.048856406432803534,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.0011,
+   0.0489,
+   0.0789,
+   0.1189,
+   0.1589
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 1.7587548638132295,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.05,
+   "oe_mult": 0.75,
+   "iv_at_10": 12.684620493830629,
+   "iv_at_12": 10.179880264858326,
+   "iv_at_15": 7.905128206642714,
+   "irr": 0.03483333941840694
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0,
+   "oe_mult": 0.9,
+   "iv_at_10": 19.258812562243925,
+   "iv_at_12": 15.283847071094783,
+   "iv_at_15": 11.696294511181842,
+   "irr": 0.040693552544057265
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.03,
+   "oe_mult": 1.0,
+   "iv_at_10": 24.60512555203466,
+   "iv_at_12": 19.405199770253535,
+   "iv_at_15": 14.727826290429965,
+   "irr": 0.04550757028848275
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.07,
+   "oe_mult": 1.1,
+   "iv_at_10": 32.54065204012224,
+   "iv_at_12": 25.464548670006142,
+   "iv_at_15": 19.125585118922004,
+   "irr": 0.052699034627037816
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.11,
+   "oe_mult": 1.25,
+   "iv_at_10": 44.35379139322204,
+   "iv_at_12": 34.45953888469201,
+   "iv_at_15": 25.628875599977242,
+   "irr": 0.06309807985920662
+  }
+ },
+ "weighted": {
+  "iv_at_10": 25.042443427592627,
+  "iv_at_12": 19.708367361048936,
+  "iv_at_15": 14.916195329702983,
+  "irr": 0.046017578120646455
+ },
+ "implied_irr_weighted": 0.046017578120646455,
+ "implied_irr_base": 0.04550757028848275,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.8347968177018166,
+ "upside_at_12": -0.7817214823230819,
+ "iv_at_15": 14.916195329702983,
+ "iv_at_12": 19.708367361048936,
+ "diagnostics": {
+  "oe_yield": 0.01947895518676741,
+  "tv_share_at_15": 0.18204739301302028,
+  "scenario_spread_iv15": 3.24205691925922,
+  "net_debt_to_normalized_oe": 12.002454369469026,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.66 vs 3-yr median 2.07 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.9% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "HIGH_NET_DEBT: net debt is 12.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "0c967e30c9a7c1607d46d5fd8f8061f4cfc94ba20d657f801623225e646cdf06"
+}
