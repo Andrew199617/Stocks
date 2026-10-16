@@ -38,7 +38,7 @@ def old_entry_reasons(tier_final, tier_by_numbers, override, conf, model_fit, un
     """make_score.py's alert reasons before the fix, verbatim."""
     reasons = []
     if tier_final in ("S", "A"):
-        if conf == "low": reasons.append("confidence low")
+        # Live-port policy (Andrew 2026-10-15): confidence never suppresses.
         if model_fit == "misfit": reasons.append("sector model misfit")
         if unblocks: reasons.append("tier exists only because of a judgment override")
         if override and tier_by_numbers not in ("S", "A"):
@@ -64,7 +64,7 @@ def test_exit_reasons():
     # The reviewer's case: a clean A -> B downgrade (numbers say B, medium confidence).
     assert R("B", "B", None, "medium", "modeled", False, False) == ([], [])
     assert R("D", "D", None, "high", "modeled", False, False) == ([], [])
-    assert R("B", "B", None, "low", "modeled", False, False) == ([], ["confidence low"])
+    assert R("B", "B", None, "low", "modeled", False, False) == ([], [])  # confidence never suppresses (Andrew 2026-10-15)
     assert R("C", "C", None, "medium", "misfit", False, False) == ([], ["sector model misfit"])
     assert R("B", "B", None, "medium", "modeled", True, False) == ([], ["tier exists only because of a judgment override"])
     # A judgment override pushing an S/A numeric tier below A (EXPE's real
@@ -138,7 +138,7 @@ def test_make_score_end_to_end():
     assert s["tier_final"] == "B" and s["alert_eligible"] is False and s["exit_alert_eligible"] is True, s
     assert "alert_suppressed_reason" not in s and "exit_alert_suppressed_reason" not in s
     s = _score(tier_by_numbers="B", confidence="low")
-    assert s["exit_alert_eligible"] is False and s["exit_alert_suppressed_reason"] == "confidence low", s
+    assert s["exit_alert_eligible"] is True and "exit_alert_suppressed_reason" not in s, s  # confidence never suppresses
     s = _score(tier_by_numbers="A", override="B")  # a judgment downgrade still warns
     assert s["tier_final"] == "B" and s["exit_alert_eligible"] is True, s
     assert "exit_alert_suppressed_reason" not in s, s
@@ -146,7 +146,7 @@ def test_make_score_end_to_end():
     assert s["alert_eligible"] is True and s["exit_alert_eligible"] is False, s
     assert "alert_suppressed_reason" not in s and "exit_alert_suppressed_reason" not in s
     s = _score(tier_by_numbers="A", confidence="low")
-    assert s["alert_eligible"] is False and s["alert_suppressed_reason"] == "confidence low", s
+    assert s["alert_eligible"] is True and "alert_suppressed_reason" not in s, s  # S/A alerts fire regardless of confidence
     assert "exit_alert_suppressed_reason" not in s
 
 

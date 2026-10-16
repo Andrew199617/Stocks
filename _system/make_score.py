@@ -32,11 +32,13 @@ cik, ads_ratio.
 
 Alert gates (v5.4; the exit gate added after the Codex review of PR #2):
 alert_eligible gates ENTRIES into Tier S/A — false unless the final tier is
-S/A and no suppression reason applies (low confidence, sector misfit, tier
+S/A and no suppression reason applies (sector misfit, tier
 existing only because of an override, an override lifting a sub-A numeric
-tier into S/A, IRR at the solver floor). exit_alert_eligible gates EXITS from
+tier into S/A, IRR at the solver floor; confidence NEVER suppresses an
+alert — Andrew's decision 2026-10-15, applied at the 2026-10-16 live port).
+exit_alert_eligible gates EXITS from
 S/A — false unless the final tier is below A and the quality checks pass
-(low confidence, sector misfit, tier existing only because of an override).
+(sector misfit, tier existing only because of an override).
 The IRR floor does not suppress an exit, since a floor IRR reads "at most
 terminal growth", which confirms the drop; nor does a tier_override pushing an
 S/A numeric tier below A, since a judgment downgrade is still a warning a
@@ -461,7 +463,9 @@ def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unbloc
     sa = ("S", "A")
     entry, exit_ = [], []
     if tier_final in sa:
-        if conf == "low": entry.append("confidence low")
+        # Andrew's decision (2026-10-15, applied at the 2026-10-16 live port):
+        # Tier S/A alerts fire regardless of confidence — confidence alone never
+        # suppresses an alert, so there is deliberately no conf check here.
         if model_fit == "misfit": entry.append("sector model misfit")
         if unblocks: entry.append("tier exists only because of a judgment override")
         # Codex review of PR #2: a tier_override that lifts a C/B numeric tier into
@@ -470,7 +474,7 @@ def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unbloc
             entry.append(f"tier rests on a judgment tier override (numeric tier {tier_by_numbers})")
         if irr_at_floor: entry.append("IRR at solver floor")
     else:
-        if conf == "low": exit_.append("confidence low")
+        # Confidence never suppresses an exit alert either (same decision).
         if model_fit == "misfit": exit_.append("sector model misfit")
         if unblocks: exit_.append("tier exists only because of a judgment override")
         # No tier-override rule here: a judgment downgrade out of S/A is a valid
