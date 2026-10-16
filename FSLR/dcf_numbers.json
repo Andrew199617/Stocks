@@ -1,0 +1,160 @@
+{
+ "ticker": "FSLR",
+ "name": "First Solar, Inc.",
+ "cik": 1274494,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 178.81,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 107537000,
+ "market_cap_est": 19228690970.0,
+ "net_debt_latest": -2304942000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.13997405020415976,
+ "rev_cagr_3y": 0.2583089822875453,
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": 1168007000,
+ "base_oe_per_share": 13.71197191600806,
+ "base_oe_latest_per_share": 10.861443038210105,
+ "base_oe_normalized_per_share": -3.126538014415252,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.13997405020415976,
+  "rev_cagr_3y": 0.2583089822875453,
+  "rev_yoy_latest": 0.24085054545705242,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.24085054545705242,
+ "share_cagr": 0.003074426226735927,
+ "share_count_adj": -0.003074426226735927,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.2377761192303165,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.25,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.2578,
+   -0.2078,
+   -0.1578,
+   -0.0978,
+   -0.0378
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 13.71197191600806,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.02,
+   "oe_mult": 0.75,
+   "iv_at_10": 111.99561563981584,
+   "iv_at_12": 89.45194925321894,
+   "iv_at_15": 69.021608612557,
+   "irr": 0.0710685435884254
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.03,
+   "oe_mult": 0.9,
+   "iv_at_10": 172.9265258948755,
+   "iv_at_12": 136.35333079183462,
+   "iv_at_15": 103.46095561585697,
+   "irr": 0.09754385598359094
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.08,
+   "oe_mult": 1.0,
+   "iv_at_10": 246.67343192633297,
+   "iv_at_12": 192.23589828939038,
+   "iv_at_15": 143.60267272728618,
+   "irr": 0.1267176135875795
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.14,
+   "oe_mult": 1.1,
+   "iv_at_10": 364.8193975717056,
+   "iv_at_12": 280.73828590966673,
+   "iv_at_15": 206.14217123637323,
+   "irr": 0.1666400365833106
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2,
+   "oe_mult": 1.25,
+   "iv_at_10": 554.7020448072478,
+   "iv_at_12": 422.10784871231607,
+   "iv_at_15": 305.1743529094155,
+   "irr": 0.21900877940358787
+  }
+ },
+ "weighted": {
+  "iv_at_10": 262.46708739265705,
+  "iv_at_12": 203.53533662592355,
+  "iv_at_15": 151.04515155224985,
+  "irr": 0.1320617073050384
+ },
+ "implied_irr_weighted": 0.1320617073050384,
+ "implied_irr_base": 0.1267176135875795,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.15527570296823534,
+ "upside_at_12": 0.13827714683699766,
+ "iv_at_15": 151.04515155224985,
+ "iv_at_12": 203.53533662592355,
+ "diagnostics": {
+  "oe_yield": 0.07668459211458006,
+  "tv_share_at_15": 0.20216428616427876,
+  "scenario_spread_iv15": 4.421432056480579,
+  "net_debt_to_normalized_oe": -1.5631554525631686,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "12e0b3f032544755a9c9cdebbca21d35740e614b00c03e2f9f2a261819eed5f8"
+}

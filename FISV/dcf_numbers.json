@@ -1,0 +1,161 @@
+{
+ "ticker": "FISV",
+ "name": "FISERV, INC.",
+ "cik": 798354,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 46.19,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 549000000,
+ "market_cap_est": 25358310000.0,
+ "net_debt_latest": 441000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.07370685920710707,
+ "rev_cagr_3y": 0.06112092553822568,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 3942000000,
+ "base_oe_per_share": 6.639850327408793,
+ "base_oe_latest_per_share": 7.180327868852459,
+ "base_oe_normalized_per_share": 7.180327868852459,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.07370685920710707,
+  "rev_cagr_3y": 0.06112092553822568,
+  "rev_yoy_latest": 0.03602854908095421,
+  "oe_ps_cagr_2y": 0.13505248501476474
+ },
+ "g_blend": 0.06741389237266637,
+ "share_cagr": -0.05370417417366191,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.11741389237266638,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.18,
+   0.07
+  ],
+  "offsets": [
+   -0.1374,
+   -0.1074,
+   -0.0724,
+   -0.0374,
+   0.0026
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 6.639850327408793,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.02,
+   "oe_mult": 0.75,
+   "iv_at_10": 54.242837129512885,
+   "iv_at_12": 43.32382343686997,
+   "iv_at_15": 33.42845922837435,
+   "irr": 0.11379722648148391
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.01,
+   "oe_mult": 0.9,
+   "iv_at_10": 75.73764724809297,
+   "iv_at_12": 60.0186051082817,
+   "iv_at_15": 45.84016026787068,
+   "irr": 0.14903499609274762
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.045,
+   "oe_mult": 1.0,
+   "iv_at_10": 100.32883778043865,
+   "iv_at_12": 78.82197122563073,
+   "iv_at_15": 59.52020328763508,
+   "irr": 0.1850432900781135
+  },
+  "bull": {
+   "prob": 0.18,
+   "g_start": 0.08,
+   "oe_mult": 1.1,
+   "iv_at_10": 131.41803512125028,
+   "iv_at_12": 102.41496482232792,
+   "iv_at_15": 76.50441902893762,
+   "irr": 0.22509323533432235
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "g_start": 0.12,
+   "oe_mult": 1.25,
+   "iv_at_10": 182.0116252282119,
+   "iv_at_12": 140.62943244670123,
+   "iv_at_15": 103.83476631447127,
+   "irr": 0.2815413015456919
+  }
+ },
+ "weighted": {
+  "iv_at_10": 97.3524311657863,
+  "iv_at_12": 76.42950035499234,
+  "iv_at_15": 57.66160701812964,
+  "irr": 0.18006200819551677
+ },
+ "implied_irr_weighted": 0.18006200819551677,
+ "implied_irr_base": 0.1850432900781135,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.2483569391238285,
+ "upside_at_12": 0.6546763445549328,
+ "iv_at_15": 57.66160701812964,
+ "iv_at_12": 76.42950035499234,
+ "diagnostics": {
+  "oe_yield": 0.14375081895234454,
+  "tv_share_at_15": 0.1853338063854197,
+  "scenario_spread_iv15": 3.106178648710661,
+  "net_debt_to_normalized_oe": 0.12097843308435995,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.4%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "content_hash": "21cc174a919a86eaa22785c161b591191242554925e88881e597d358cc8f6ea6"
+}

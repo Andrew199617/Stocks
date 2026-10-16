@@ -1,0 +1,45 @@
+{
+ "ticker": "AWK",
+ "name": "American Water Works Company, Inc.",
+ "sector": "Utilities / Regulated Water",
+ "price": 131.71,
+ "market_cap_b": 25.68,
+ "engine_version": 5,
+ "base_oe_per_share": -4.343589743589743,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 8,
+ "moat_justification": "Exclusive regulated water/wastewater franchises across 14 states, inelastic essential demand, and irreplaceable long-lived infrastructure give a strong durable moat, but regulators cap allowed returns, affordability and rate-case lag limit pricing power, and the model requires continuous debt and equity funding for rate-base capex.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Strong regulated moat 8/10, but Tier F on owner's earnings \u2014 conservative OE is negative in 0/5 last years because rate-base capex exceeds OCF, so the OE DCF supports no hurdle at $131.71; F is a sector-model verdict, not a business-quality verdict.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated franchises \u2014 no competing water provider in served territories",
+  "Essential, inelastic demand for water and wastewater service",
+  "Irreplaceable infrastructure \u2014 mains and plants last generations, replacement cost is prohibitive",
+  "14-state diversification spreads single-state rate-case risk",
+  "Rate-base model: authorized returns on invested capital drive 7-9% long-term EPS guidance"
+ ],
+ "moat_against": [
+  "Regulators cap allowed returns and impose rate-case lag \u2014 pricing power is granted, not owned",
+  "Affordability and political pressure as bills rise with PFAS, lead-line and main-replacement capex",
+  "Capex permanently exceeds operating cash flow \u2014 funded by rising debt and share issuance (share count +2.33%/yr)",
+  "Rising interest expense on debt-funded capital program",
+  "Essential Utilities merger needs remaining state approvals, expected close by end of Q1 2027"
+ ]
+}

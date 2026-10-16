@@ -1,0 +1,101 @@
+{
+ "ticker": "DT",
+ "cik": 1773383,
+ "entity": "Dynatrace, Inc.",
+ "fy_end": "2026-03-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 561850000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 269692000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 306240000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 598398000
+  },
+  "capex": {
+   "fy": 32173000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 7482000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 3151000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 27842000
+  },
+  "sbc": {
+   "fy": 299626000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 71895000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 73576000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 301307000
+  },
+  "shares_diluted": {
+   "fy": 303727000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 304160000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 293744000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 598398000,
+ "ttm_capex": 27842000,
+ "ttm_sbc": 301307000,
+ "ttm_shares_diluted": 293744000,
+ "ttm_oe_total": 269249000,
+ "ttm_oe_per_share": 0.9166110626940465,
+ "warnings": [],
+ "overrides_used": []
+}

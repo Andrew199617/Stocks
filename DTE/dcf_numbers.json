@@ -1,0 +1,164 @@
+{
+ "ticker": "DTE",
+ "name": "DTE ENERGY CO",
+ "cik": 936340,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 128.31,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 207000000,
+ "market_cap_est": 26560170000.0,
+ "net_debt_latest": 25098000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.18612163346907828,
+ "rev_cagr_3y": 0.18612163346907828,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -1290000000.0,
+ "base_oe_per_share": -6.75,
+ "base_oe_latest_per_share": -6.231884057971015,
+ "base_oe_normalized_per_share": -6.231884057971015,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.18612163346907828,
+  "rev_cagr_3y": 0.18612163346907828,
+  "rev_yoy_latest": 0.18598306679209786,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.18612163346907828,
+ "share_cagr": 0.018363804646373216,
+ "share_count_adj": -0.018363804646373216,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "AllocatedShareBasedCompensationExpense",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 4639000000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  },
+  "sbc": {
+   "value": 60000000.0,
+   "last_filed_value": 99000000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 6.0,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -6.75,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "sbc",
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 4639000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures and acquisitions': $4,639M for FY2025, with $4,467M for FY2024 and $3,934M for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under the filer's extension tag dte:PaymentsToAcquireProductiveAssetsIncludingPaymentsToAcquireBusinessesNetOfCashAcquired, which EDGAR companyfacts does not carry, so no candidate tag the engine reads has any value in any year.",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) in EDGAR companyfacts under every candidate tag the engine reads, because the filer reports capex only under its own extension tag (same dead end as TKO in the system README). The engine applies this single FY2025 filing value to every missing period; against the same statement's true per-year values it overstates FY2023 capex by $705M (true $3,934M) and FY2024 by $172M (true $4,467M) \u2014 both in the conservative direction of lowering owner's earnings. The line includes acquisitions as the filer presents it; that is the filer's own capex line, not an estimate.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  },
+  {
+   "field": "sbc",
+   "value": 60000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Note 21 \u2014 Stock-Based Compensation: 'Stock-based compensation expense $60M for FY2025, $54M for FY2024, $48M for FY2023' (in millions). The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no companyfacts values after 2014 for this filer.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 in EDGAR companyfacts under both tags the engine reads (the allocated tag's facts stop in 2014). The filing's own Note 21 table reports stock-based compensation expense for all three years ($48M / $54M / $60M). The engine applies this single FY2025 value ($60M) to every missing period, overstating FY2023 SBC by $12M and FY2024 by $6M \u2014 immaterial against OCF of $3.2-3.6B and in the conservative direction.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 99000000
+  }
+ ],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Note 21 \u2014 Stock-Based Compensation: 'Stock-based compensation expense $60M for FY2025, $54M for FY2024, $48M for FY2023' (in millions). The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no companyfacts values after 2014 for this filer.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures and acquisitions': $4,639M for FY2025, with $4,467M for FY2024 and $3,934M for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under the filer's extension tag dte:PaymentsToAcquireProductiveAssetsIncludingPaymentsToAcquireBusinessesNetOfCashAcquired, which EDGAR companyfacts does not carry, so no candidate tag the engine reads has any value in any year.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 16.468599033816425,
+  "base_oe_per_share_final": -6.75,
+  "weighted_irr_zero_fill": 0.2590156280817052,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "700786881611a2e6e6c16f77b35b8a9c8c8f275aa2b198d11c9debc3d30f6854"
+}

@@ -1,0 +1,44 @@
+{
+ "ticker": "EVRG",
+ "name": "Evergy, Inc.",
+ "sector": "Utilities / Regulated electric",
+ "price": 81.57,
+ "market_cap_b": 19.05,
+ "engine_version": 5,
+ "base_oe_per_share": -1.6117136659436009,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Exclusive regulated KS/MO service territory with captive, essential demand and ~3.0 GW of signed large-load ESAs under premium LLPS tariffs \u2014 but pricing and returns are set by the KS/MO commissions, not the company, so the franchise yields allowed-ROE earnings, not pricing power; the $21.6B capex plan also needs continuous debt/ATM equity funding.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Regulated KS/MO franchise, moat 5/10, with real regulated earnings growth (6\u20138%+ guided EPS, ~12% rate-base CAGR on signed data-center load) that the conservative OE screen structurally cannot credit \u2014 capex for rate base runs ~$3B/yr against ~$2B OCF, so OE is negative 0/5 years and no 15%-clearing price is computable; Tier F on the numbers, read with the utility-model caveat.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated service territory \u2014 no competitor can serve its Kansas/Missouri customers",
+  "Essential service with captive demand; load inflecting up on signed large-load contracts",
+  "~3.0 GW signed ESAs with 16\u201317-year minimum billing under LLPS tariffs \u2014 large customers pay premium rates and their share of system costs",
+  "Rate-base growth converts to earnings growth once assets enter rates (~12% guided rate-base CAGR)"
+ ],
+ "moat_against": [
+  "No pricing power \u2014 allowed ROE and cost recovery decided by KS/MO regulators; Kansas outcomes historically less constructive",
+  "Returns capped by design at the allowed ROE \u2014 no wide-moat compounder economics",
+  "$21.6B+ capex plan needs continuous external capital (debt + ATM equity); mild dilution and financing drag",
+  "Weather exposure and coal-fleet/environmental transition spend",
+  "Growth concentrated in a few data-center/industrial projects \u2014 delays or tougher rate treatment hit the plan directly"
+ ]
+}

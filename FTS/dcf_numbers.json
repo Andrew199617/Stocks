@@ -4,27 +4,27 @@
  "cik": 1666175,
  "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 54.7,
+ "price": 54.69,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 503700000,
- "market_cap_est": 27552390000.0,
- "net_debt_latest": 33502000000,
+ "market_cap_est": 27547353000.0,
+ "net_debt_latest": 24468520720.0,
  "latest_period_end": "2025-12-31",
- "rev_cagr_5y": 0.06358211876844178,
- "rev_cagr_3y": 0.029306398676974155,
+ "rev_cagr_5y": 0.04835959404135726,
+ "rev_cagr_3y": 0.025446712925187187,
  "oe_positive_years_of_last_5": "0/5",
- "base_oe_total_latest_fy": -1880000000,
- "base_oe_per_share": -2.2819063004846525,
- "base_oe_latest_per_share": -3.7323803851498907,
- "base_oe_normalized_per_share": -2.2819063004846525,
+ "base_oe_total_latest_fy": -1482630800.0,
+ "base_oe_per_share": -1.7964717285945073,
+ "base_oe_latest_per_share": -2.9434798491165375,
+ "base_oe_normalized_per_share": -1.7964717285945073,
  "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
-  "rev_cagr_5y": 0.06358211876844178,
-  "rev_cagr_3y": 0.029306398676974155,
-  "rev_yoy_latest": 0.05843636040202793,
+  "rev_cagr_5y": 0.04835959404135726,
+  "rev_cagr_3y": 0.025446712925187187,
+  "rev_yoy_latest": 0.11227116182965013,
   "oe_ps_cagr_2y": null
  },
- "g_blend": 0.05843636040202793,
+ "g_blend": 0.04835959404135726,
  "share_cagr": 0.016897435672768246,
  "share_count_adj": -0.016897435672768246,
  "used_tags": {
@@ -47,31 +47,140 @@
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
  "filer_annual_form": "40-F",
- "ads_ratio": null,
- "override_checks": {},
- "tier_by_numbers": null,
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Fortis Inc. Form 40-F / FY2025 annual report: the Corporation's common shares are listed directly on the TSX and NYSE under the symbol FTS (release header: TSX/NYSE: FTS); there is no depositary or ADS program \u2014 the NYSE line is the same common shares.",
+  "reason": "Direct-listed ordinary (common) shares on both exchanges, so per-share figures from the filings and the NYSE price are on the same share basis: ratio 1.0."
+ },
+ "fx_conversion": {
+  "from_currency": "CAD",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "equity"
+  ],
+  "rates": {
+   "2015-12-31": 0.72023,
+   "2016-12-31": 0.74295,
+   "2017-12-31": 0.79746,
+   "2018-12-31": 0.73374,
+   "2019-12-31": 0.76956,
+   "2020-12-31": 0.78494,
+   "2021-12-31": 0.78691,
+   "2022-12-31": 0.73864,
+   "2023-12-31": 0.75468,
+   "2024-12-31": 0.69501,
+   "2025-12-31": 0.73036
+  },
+  "rates_by_currency": {
+   "CAD": {
+    "2015-12-31": 0.72023,
+    "2016-12-31": 0.74295,
+    "2017-12-31": 0.79746,
+    "2018-12-31": 0.73374,
+    "2019-12-31": 0.76956,
+    "2020-12-31": 0.78494,
+    "2021-12-31": 0.78691,
+    "2022-12-31": 0.73864,
+    "2023-12-31": 0.75468,
+    "2024-12-31": 0.69501,
+    "2025-12-31": 0.73036
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 150000000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
  "implied_irr_weighted": null,
  "implied_irr_base": null,
  "moat_score": 5.0,
- "cap_years": 8.5,
- "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   1.0
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
  "data_gap": [
-  "sbc",
-  "currency"
+  "sbc"
  ],
- "data_gap_uncovered": [
-  "sbc",
-  "currency"
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 150000000.0,
+   "kind": "filing",
+   "source": "Fortis Inc. FY2025 consolidated financial statements (filed with the Form 40-F for the year ended Dec 31, 2025), Note 20 Stock-Based Compensation Plans: PSU compensation expense recognized C$109M (2025) and RSU compensation expense recognized C$41M (2025); DSU expense stated not material; stock options fully vested at Dec 31, 2025 with no expense figure disclosed. Total disclosed stock-based compensation expense FY2025 = C$150M (CAD, as filed; the engine FX-converts at period-end rates).",
+   "reason": "EDGAR companyfacts carries no SBC figure for Fortis under any candidate tag (ShareBasedCompensation, AllocatedShareBasedCompensationExpense, ifrs AdjustmentsForSharebasedPayments) for any filed year \u2014 sbc_tag is blank for 2016-2025 \u2014 so the v5 data gate gaps SBC for FY2023-2025. Fortis discloses the expense only in Note 20 of its financial statements. A single override value fills every untagged year, so the latest filed year (FY2025, C$150M) is used for all years: it overstates FY2024 (disclosed total C$82M = PSU C$53M + RSU C$29M), i.e. it errs in the conservative direction (more SBC = lower owner's earnings), and the amount is immaterial against the deeply negative OE base either way.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
  ],
- "overrides_applied": [],
  "fragility_flags": [
-  "DATA_GAP:sbc \u2014 sbc missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
-  "DATA_GAP:currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts in the last 3 FY); USD translations and ADS ratios are unverified \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "ADS_RATIO_MISSING: 40-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}",
-  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Fortis Inc. Form 40-F / FY2025 annual report: the Corporation's common shares are listed directly on the TSX and NYSE under the symbol FTS (release header: TSX/NYSE: FTS); there is no depositary or ADS program \u2014 the NYSE line is the same common shares.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Fortis Inc. FY2025 consolidated financial statements (filed with the Form 40-F for the year ended Dec 31, 2025), Note 20 Stock-Based Compensation Plans: PSU compensation expense recognized C$109M (2025) and RSU compensation expense recognized C$41M (2025); DSU expense stated not material; stock options fully vested at Dec 31, 2025 with no expense figure disclosed. Total disclosed stock-based compensation expense FY2025 = C$150M (CAD, as filed; the engine FX-converts at period-end rates).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
- "content_hash": "a6bfc2076559071c031c6a9da1c26f68d50e575d413331c2d75fd0601cc8dd29"
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -1.5859476978998384,
+  "base_oe_per_share_final": -1.7964717285945073,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "569a3ba4ff726387bab675c40a35206ff89496ea0a29bca78da43bc57e647cd5"
 }

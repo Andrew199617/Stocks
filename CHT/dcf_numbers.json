@@ -1,0 +1,207 @@
+{
+ "ticker": "CHT",
+ "name": "Chunghwa Telecom Co., Ltd.",
+ "cik": 1132924,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 46.51,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 7775000000,
+ "market_cap_est": 361615250000.0,
+ "net_debt_latest": -788000000,
+ "latest_period_end": "2024-12-31",
+ "rev_cagr_5y": 0.002151833318490448,
+ "rev_cagr_3y": -0.025919668141406116,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1540000000,
+ "base_oe_per_share": 1.8609143593045718,
+ "base_oe_latest_per_share": 1.9807073954983923,
+ "base_oe_normalized_per_share": 1.8609143593045718,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.002151833318490448,
+  "rev_cagr_3y": -0.025919668141406116,
+  "rev_yoy_latest": -0.03786527644395665,
+  "oe_ps_cagr_2y": 0.031662636320706206
+ },
+ "g_blend": -0.011883917411457834,
+ "share_cagr": 0.0004289946241504694,
+ "share_count_adj": -0.0004289946241504694,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "DepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 10.0,
+  "source": "Chunghwa Telecom Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-15), share capital note (Global depositary receipts) in the consolidated financial statements: one ADS represents 10 common stocks; the same statement appears in the company's Q1 2026 financial statements furnished on Form 6-K (filed 2026-05-11), and the Form F-6 registration describes each ADS as representing ten common shares",
+  "reason": "EDGAR diluted share counts and per-share figures are per ordinary (common) share while the Nasdaq/NYSE price ($46.51) is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
+ },
+ "fx_conversion": {
+  "from_currency": "TWD",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 0.03158,
+   "2015-12-31": 0.03042,
+   "2016-12-31": 0.03084,
+   "2017-12-31": 0.03372,
+   "2018-12-31": 0.03266,
+   "2019-01-01": 0.03266,
+   "2019-12-31": 0.03343
+  },
+  "rates_by_currency": {
+   "TWD": {
+    "2014-12-31": 0.03158,
+    "2015-12-31": 0.03042,
+    "2016-12-31": 0.03084,
+    "2017-12-31": 0.03372,
+    "2018-12-31": 0.03266,
+    "2019-01-01": 0.03266,
+    "2019-12-31": 0.03343
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": -0.012312912035608303,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.068,
+   -0.008,
+   0.042,
+   0.072,
+   0.112
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0803,
+   "oe_mult": 0.75,
+   "iv_at_10": 11.193692390895702,
+   "iv_at_12": 9.093973893770352,
+   "iv_at_15": 7.170466586039058,
+   "irr": 0.041143993477697594
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0203,
+   "oe_mult": 0.9,
+   "iv_at_10": 18.212670244582757,
+   "iv_at_12": 14.547760491840496,
+   "iv_at_15": 11.22625552488374,
+   "irr": 0.05340155115683444
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0297,
+   "oe_mult": 1.0,
+   "iv_at_10": 26.038457396283818,
+   "iv_at_12": 20.53289760119607,
+   "iv_at_15": 15.581227324450436,
+   "irr": 0.0670811122136934
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0597,
+   "oe_mult": 1.1,
+   "iv_at_10": 33.28497710554461,
+   "iv_at_12": 26.059626302099375,
+   "iv_at_15": 19.587852456525443,
+   "irr": 0.07919303739227967
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.0997,
+   "oe_mult": 1.25,
+   "iv_at_10": 46.14314499159655,
+   "iv_at_12": 35.80498048580275,
+   "iv_at_15": 26.591239336773786,
+   "irr": 0.09944581685723566
+  }
+ },
+ "weighted": {
+  "iv_at_10": 26.419632794666214,
+  "iv_at_12": 20.801611416801098,
+  "iv_at_15": 15.75406578496871,
+  "irr": 0.06781932075827976
+ },
+ "implied_irr_weighted": 0.06781932075827976,
+ "implied_irr_base": 0.0670811122136934,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6612757302737323,
+ "upside_at_12": -0.5527497007783035,
+ "iv_at_15": 15.75406578496871,
+ "iv_at_12": 20.801611416801098,
+ "diagnostics": {
+  "oe_yield": 0.04001105911211722,
+  "tv_share_at_15": 0.1815433005791741,
+  "scenario_spread_iv15": 3.7084391953721796,
+  "net_debt_to_normalized_oe": -0.05446273323023176,
+  "months_since_fy_end": 21.419185282522996,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "FX_CONVERTED: reporting currency TWD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Chunghwa Telecom Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-15), share capital note (Global depositary receipts) in the consolidated financial statements: one ADS represents 10 common stocks; the same statement appears in the company's Q1 2026 financial statements furnished on Form 6-K (filed 2026-05-11), and the Form F-6 registration describes each ADS as representing ten common shares) so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "content_hash": "9c4a06f7c322587abecb50ca21bd6fabe73c9d90d4042fb52ad2ce8d4bfa6bcb"
+}

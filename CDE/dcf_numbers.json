@@ -1,0 +1,163 @@
+{
+ "ticker": "CDE",
+ "name": "COEUR MINING, INC.",
+ "cik": 215466,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 15.545,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 614666000,
+ "market_cap_est": 9554982970.0,
+ "net_debt_latest": -536601000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.2139085076964502,
+ "rev_cagr_3y": 0.3811042916336449,
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": 646508000,
+ "base_oe_per_share": 1.3009809584087009,
+ "base_oe_latest_per_share": 1.051803743821848,
+ "base_oe_normalized_per_share": -0.05278016818394553,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.2139085076964502,
+  "rev_cagr_3y": 0.3811042916336449,
+  "rev_yoy_latest": 0.9640552330821646,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.3811042916336449,
+ "share_cagr": 0.3071194866593918,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.3311042916336449,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.461,
+   -0.381,
+   -0.301,
+   -0.231,
+   -0.161
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 1.3009809584087009,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 8.173895736730422,
+   "iv_at_12": 6.565750884493651,
+   "iv_at_15": 5.107323243373308,
+   "irr": 0.06301796153346151
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0499,
+   "oe_mult": 0.9,
+   "iv_at_10": 11.980643980050282,
+   "iv_at_12": 9.552273663144701,
+   "iv_at_15": 7.357320952227129,
+   "irr": 0.0822561428132792
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0301,
+   "oe_mult": 1.0,
+   "iv_at_10": 18.126888457569024,
+   "iv_at_12": 14.301782307275232,
+   "iv_at_15": 10.860106553350509,
+   "irr": 0.1124224932338439
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.1001,
+   "oe_mult": 1.1,
+   "iv_at_10": 25.856491159386742,
+   "iv_at_12": 20.238291301652986,
+   "iv_at_15": 15.200325056408012,
+   "irr": 0.14735021954188426
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1701,
+   "oe_mult": 1.25,
+   "iv_at_10": 37.75464796333829,
+   "iv_at_12": 29.345004506296377,
+   "iv_at_15": 21.82591254639066,
+   "irr": 0.19547515283756056
+  }
+ },
+ "weighted": {
+  "iv_at_10": 17.674319425958164,
+  "iv_at_12": 13.929189305584744,
+  "iv_at_15": 10.561455001479901,
+  "irr": 0.11019620805221131
+ },
+ "implied_irr_weighted": 0.11019620805221131,
+ "implied_irr_base": 0.1124224932338439,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.3205882919601222,
+ "upside_at_12": -0.1039440781225639,
+ "iv_at_15": 10.561455001479901,
+ "iv_at_12": 13.929189305584744,
+ "diagnostics": {
+  "oe_yield": 0.08369128069531688,
+  "tv_share_at_15": 0.18017337995105132,
+  "scenario_spread_iv15": 4.273454313805089,
+  "net_debt_to_normalized_oe": -0.6710290880998458,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 30.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "62b3cb3797e2b0447b0bdfc1f2ced81cd2f688828ae26669cd60e30ae2e370d9"
+}

@@ -1,0 +1,72 @@
+{
+ "ticker": "CHT",
+ "name": "Chunghwa Telecom Co., Ltd.",
+ "sector": "Telecommunications / Integrated telecom & ICT services (Taiwan)",
+ "price": 46.51,
+ "market_cap_b": 361.62,
+ "engine_version": 5,
+ "base_oe_per_share": 1.8609143593045718,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Taiwan's incumbent and clear #1 operator: mobile revenue share 41.2% (record high, Q2 2026) above its 39.8% subscriber share, ~54.6% share of broadband access/internet, leading 5G share (~39%) and the incumbent fiber/last-mile network \u2014 scarce spectrum, sunk nationwide infrastructure and 0.36% postpaid churn support premium ARPU (5G migration fee uplift ~36%, postpaid ARPU +2.4% YoY, broadband ARPU rising). That is a real but narrow telecom moat, not a wide one: returns are capped by capital intensity and regulation, the market is saturated, and two capable rivals (Taiwan Mobile, Far EasTone) plus OTT erosion of legacy voice/SMS keep pricing power modest \u2014 hence 6/10, the top of moderate/narrow.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "FX_CONVERTED: reporting currency TWD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Chunghwa Telecom Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-15), share capital note (Global depositary receipts) in the consolidated financial statements: one ADS represents 10 common stocks; the same statement appears in the company's Q1 2026 financial statements furnished on Form 6-K (filed 2026-05-11), and the Form F-6 registration describes each ADS as representing ten common shares) so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.17,
+   "irr": 0.0411
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 11.23,
+   "irr": 0.0534
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 15.58,
+   "irr": 0.0671
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 19.59,
+   "irr": 0.0792
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 26.59,
+   "irr": 0.0994
+  }
+ },
+ "iv_at_15": 15.75,
+ "iv_at_12": 20.8,
+ "implied_irr": 0.0678,
+ "implied_irr_base_case": 0.0671,
+ "upside_at_15_pct": -66.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Taiwan's dominant incumbent telecom, moat 6/10 \u2014 quality is not the issue, price is: Tier D, weighted IRR 6.8%, IV@15% $15.75 per ADS vs $46.51, and even the super-bull case ($26.59) sits far below the price; it clears 15% only under ~$15.75 per ADS.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "Taiwan's #1 operator: mobile revenue share 41.2% > subscriber share 39.8% (Q2 2026), ~54.6% of broadband access/internet, leading 5G share",
+  "Scarce licensed spectrum + sunk incumbent fiber/last-mile network rivals cannot replicate",
+  "Very low churn (postpaid 0.36%) and premium mix: 5G migration fee uplift ~36%, ARPU rising in mobile (+2.4% YoY) and broadband",
+  "Scale and enterprise/ICT bundling (cloud, cybersecurity, IDC, AIDC) anchored to the incumbent network and government/enterprise relationships",
+  "Fortress, defensive cash generation: net cash balance sheet, OE positive 5/5 years, minimal SBC"
+ ],
+ "moat_against": [
+  "Saturated, mature Taiwan market: core growth is low-single-digit; smartphone penetration already >90%",
+  "Capital-intensive and regulated: spectrum/network capex never stops and the NCC caps the return the moat can earn",
+  "Two capable, consolidated rivals (Taiwan Mobile, Far EasTone) contest every segment; entry-tier price competition persists",
+  "OTT erosion of legacy fixed voice/SMS; the fast-growing ICT revenue is project-based, lumpy and lower-margin than core telecom",
+  "State influence (Ministry of Transportation and Communications is the largest shareholder) and TWD/USD exposure for ADS holders"
+ ]
+}

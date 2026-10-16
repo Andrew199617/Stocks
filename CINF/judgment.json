@@ -1,0 +1,38 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "P&C policies are re-shopped at renewal \u2014 low policyholder switching costs and agents can place business elsewhere",
+  "Pricing power is cyclical: Q2 2026 combined ratio rose to 100.8% and operating income fell 28% YoY as competition intensified",
+  "Catastrophe exposure is structural \u2014 Q2 2026 Ohio catastrophe losses were nearly 4x the state's 5-year Q2 average",
+  "Net income is dominated by equity-portfolio fair-value swings, not underwriting (2022 net loss on revenue of $6.56B in the filed history)",
+  "Capable national rivals (Travelers, Progressive, Chubb and others) contest the same agency business"
+ ],
+ "moat_for": [
+  "Independent-agent distribution network built since 1950, with local-agent relationships competitors cannot replicate quickly",
+  "Disciplined underwriting: 14 consecutive years of P&C underwriting profit through FY2025, FY2025 combined ratio 94.9%",
+  "Conservative balance sheet and long dividend-growth record supporting agent and policyholder trust through cycles",
+  "Diversified P&C, life, excess & surplus and reinsurance lines across 46 states smooths single-line cycles",
+  "Large investment portfolio and rising investment income (+14% in FY2025) provide a second earnings engine"
+ ],
+ "moat_justification": "Disciplined P&C underwriter with a loyal independent-agent network, 14 consecutive years of underwriting profit through FY2025 (FY2025 combined ratio 94.9%) and a long dividend-growth record \u2014 but P&C cover is re-shopped at renewal with low policyholder switching costs, pricing is cyclical, catastrophe losses are a permanent tail, and earnings are dominated by a large equity-investment portfolio rather than a defensible underwriting franchise; moderate/narrow moat, CAP 8.5y.",
+ "moat_score": 5,
+ "name": "Cincinnati Financial Corporation",
+ "one_liner": "Disciplined P&C insurer with a loyal agency network, moat 5/10 \u2014 clears 15% on TTM owner's earnings (18.4% weighted, IV@15% $214.99 vs $166.67) but the Finance sector-model mismatch and a TTM base well above the 3-yr median keep confidence low; a margin of safety against the bear case needs ~$161 or below.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags (ShareBasedCompensation last filed FY2021, $33M). The filer's own Note 17 pre-tax series is $40M/$46M/$46M for 2023/2024/2025. The engine applies a single override value to every missing period; $46M is the FY2024 and FY2025 filed figure, and FY2024 is the median year of the 3-yr normalized base, so the base is built from the exact filed figure, with at most a $6M overstatement in FY2023 (conservative direction, ~$0.04/share).",
+  "source": "Form 10-K for fiscal year ended December 31, 2025, Note 17 \u2014 Share-Based Associate Compensation Plans: share-based compensation cost after tax was $37 million (2025), $37 million (2024) and $32 million (2023), with related income tax benefit of $9 million, $9 million and $8 million respectively \u2014 pre-tax cost $46 million (2025), $46 million (2024) and $40 million (2023). The FY2024 10-K Note 17 corroborates the 2023 figure (after tax $32 million + $8 million benefit).",
+  "value": 46000000
+ },
+ "sector": "Finance / Property & Casualty Insurance",
+ "tier_override": null,
+ "tier_override_reason": null
+}

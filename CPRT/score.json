@@ -1,0 +1,69 @@
+{
+ "ticker": "CPRT",
+ "name": "Copart, Inc.",
+ "sector": "Industrials \u2014 Salvage Vehicle Auctions / Remarketing",
+ "price": 26.41,
+ "market_cap_b": 25.27,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2201321040178486,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 8,
+ "moat_justification": "Dominant salvage-auction marketplace in a structural duopoly with RB Global's IAA: long-term insurer seller relationships, a scarce permitted land bank of 250+ yards near metro areas, and a global buyer network (~1M members in 185+ countries) whose bidding depth raises seller proceeds and locks in assignments. Proven pricing power (revenue per unit rose even as FY2026 volumes fell), asset-light service model, debt-free balance sheet, and high returns on capital held through cycles. Not a 9-10: volume is hostage to insurance claims activity and insurer total-loss behavior, international buyers (38.2% of US units in FY2026) are FX/tariff-sensitive, and RB Global is a credible, consolidating rival.",
+ "cap_years": 12.4,
+ "fragility_flags": [
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 5.83,
+   "irr": 0.05
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 9.4,
+   "irr": 0.07
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 12.76,
+   "irr": 0.0883
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 18.06,
+   "irr": 0.1148
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 29.3,
+   "irr": 0.1607
+  }
+ },
+ "iv_at_15": 13.77,
+ "iv_at_12": 18.69,
+ "implied_irr": 0.0943,
+ "implied_irr_base_case": 0.0883,
+ "upside_at_15_pct": -47.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Wide-moat (8/10) salvage-auction compounder, but at $26.41 the weighted IRR is 9.4% (IV@15% $13.77) \u2014 it only clears Andrew's 15% hurdle at roughly $13.77 or below.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Salvage duopoly with RB Global/IAA; dominant share of insurer salvage assignments",
+  "Scarce, permitted land bank \u2014 250+ locations near metro areas, hard to replicate",
+  "Global buyer network (~1M members, 185+ countries) deepens bids and seller proceeds",
+  "Proven pricing power \u2014 revenue per unit rose while FY2026 volumes fell",
+  "Asset-light service model; debt-free with large net cash"
+ ],
+ "moat_against": [
+  "Volumes hostage to insurance claims activity and insurer total-loss thresholds",
+  "Insurer concentration \u2014 a few large carriers drive assignment flow",
+  "International buyers bought 38.2% of US units in FY2026 \u2014 FX/tariff sensitive",
+  "RB Global/IAA is a credible consolidating rival",
+  "ACV integration and dealer-channel expansion is unproven for Copart"
+ ]
+}

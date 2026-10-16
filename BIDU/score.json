@@ -1,0 +1,95 @@
+{
+ "ticker": "BIDU",
+ "name": "Baidu, Inc.",
+ "sector": "Communication Services / Internet Search, AI Cloud & Autonomous Driving (China)",
+ "price": 81.86,
+ "market_cap_b": 224.62,
+ "engine_version": 5,
+ "base_oe_per_share": 3.323615160349854,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "China's incumbent search engine with a full AI stack (ERNIE models, AI Cloud/GPU cloud, Apollo Go robotaxis) and fortress liquidity, but the search-ad moat is eroding fast: advertisers and attention are shifting to short-video and super-app platforms, AI search itself cannibalizes ad monetization (management deliberately delayed it), cloud competes with Alibaba/Tencent/Huawei on price, and China/VIE/regulatory overhang is structural. AI-powered business reached 50% of Baidu General Business revenue in Q2 2026 and AI Cloud Infra grew 50% YoY, yet total revenue fell 4% YoY and online marketing fell 19% YoY in the same quarter \u2014 the new engines are not yet outrunning the legacy decline. A 5 gives CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x8.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17): cover page registers American depositary shares each representing eight Class A ordinary shares, the Introduction defines ADSs the same way, and the EPS table states 1 ADS equals 8 Class A ordinary shares) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17), Consolidated Statements of Comprehensive Income, EPS section: weighted average number of Class A and Class B ordinary shares outstanding (in millions) \u2014 diluted 2,744 for FY2025, with 2,798 for FY2024 and 2,837 for FY2023 in the same table); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share -7.80 vs 3-yr median 3.32 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 12.1,
+   "irr": 0.0405
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 18.85,
+   "irr": 0.0518
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 25.82,
+   "irr": 0.064
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 34.97,
+   "irr": 0.0798
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 53.0,
+   "irr": 0.109
+  }
+ },
+ "iv_at_15": 24.86,
+ "iv_at_12": 32.64,
+ "implied_irr": 0.0627,
+ "implied_irr_base_case": 0.064,
+ "upside_at_15_pct": -69.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "China search incumbent in an AI transition, moat 5/10 \u2014 does not clear 15% on any scenario: weighted IRR 6.27% (Tier D), IV@15% $24.86 vs $81.86 price on the normalized median base OE of $3.32/ADS (FY2025 OE/share was -$7.80 after operating cash flow turned negative); even the super-bull case yields only 10.90% \u2014 it clears 15% only below ~$24.86.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": false,
+ "moat_for": [
+  "Incumbent China search distribution and advertiser base, now being rebuilt as AI search (ERNIE Assistant daily users +83% YoY in Q2 2026)",
+  "Full-stack AI position: ERNIE foundation models, AI Cloud Infra revenue +50% YoY in Q2 2026 with GPU Cloud +283% YoY, plus Kunlunxin chips",
+  "Apollo Go robotaxi scale: 1 million fully driverless rides in Q2 2026, cumulative rides over 23 million, expanding internationally",
+  "Fortress liquidity: cash and investments of RMB283.1 billion at June 30, 2026 (Q2 2026 results), funding AI capex, a $5B buyback through 2028 and a first dividend policy without balance-sheet stress",
+  "Buyback tailwind: diluted weighted-average ordinary shares fell from 2,837M (FY2023) to 2,744M (FY2025) in the 20-F EPS table"
+ ],
+ "moat_against": [
+  "Legacy search advertising is in structural decline: online marketing services revenue -19% YoY in Q2 2026 (-22% in Q1 2026), as budgets shift to Douyin/short video, Xiaohongshu and super-apps",
+  "AI search cannibalizes its own ad model: management deliberately delayed AI-search monetization, and total revenue fell in FY2025 (-3% in RMB) and again in Q1/Q2 2026",
+  "Cloud and models are contested, not owned: Alibaba, Tencent, Huawei and ByteDance compete on price and distribution; ERNIE's model lead must be re-earned each generation",
+  "China/VIE/regulatory overhang: VIE structure, PRC data and platform regulation, US ADS delisting tail risk, and a 2026 US securities class action over AI-revenue disclosures",
+  "Controlled, cash-hungry subsidiaries and investments: iQIYI revenue -5% YoY in Q2 2026 with a working-capital deficit disclosed in the 20-F; FY2025 group operating cash flow turned negative"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 2744000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17), Consolidated Statements of Comprehensive Income, EPS section: weighted average number of Class A and Class B ordinary shares outstanding (in millions) \u2014 diluted 2,744 for FY2025, with 2,798 for FY2024 and 2,837 for FY2023 in the same table"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": null,
+  "base_oe_with_override": 3.3236,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.0627,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

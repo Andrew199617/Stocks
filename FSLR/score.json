@@ -1,0 +1,70 @@
+{
+ "ticker": "FSLR",
+ "name": "First Solar, Inc.",
+ "sector": "Energy \u2014 solar module manufacturing",
+ "price": 178.81,
+ "market_cap_b": 19.23,
+ "engine_version": 5,
+ "base_oe_per_share": 13.71197191600806,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Only scaled CdTe thin-film platform, fully US-integrated and independent of Chinese crystalline silicon, with a 45.1 GW / $13.6B contracted backlog and a net-cash balance sheet \u2014 but the largest pillar (Section 45X credits of $2.10\u20132.19B in the FY2026 guide, tariff protection, domestic-content adders) is conferred by policy and can be legislated away, capping the score at 6.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 69.02,
+   "irr": 0.0711
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 103.46,
+   "irr": 0.0975
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 143.6,
+   "irr": 0.1267
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 206.14,
+   "irr": 0.1666
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 305.17,
+   "irr": 0.219
+  }
+ },
+ "iv_at_15": 151.05,
+ "iv_at_12": 203.54,
+ "implied_irr": 0.1321,
+ "implied_irr_base_case": 0.1267,
+ "upside_at_15_pct": -15.5,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Dominant US CdTe module maker, moat 6/10, net cash \u2014 but the moat is substantially policy-rented (45X) and at $178.81 the guidance-calibrated weighted IRR is 13.2% vs the 15% hurdle; it clears 15% at $151.05.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Only scaled CdTe thin-film platform \u2014 differentiated, vertically integrated technology",
+  "US-integrated supply chain independent of Chinese crystalline silicon and its tariff exposure",
+  "Contracted backlog 45.1 GW / $13.6B through 2030; US capacity substantially sold out through 2028",
+  "Domestic-content requirements on ~41 GW of backlog that only FSLR fills at scale",
+  "Net-cash balance sheet \u2014 survives policy or demand downturns"
+ ],
+ "moat_against": [
+  "Moat substantially policy-conferred: 45X credits, tariffs and domestic-content adders can be legislated down",
+  "Global module pricing set by Chinese crystalline-silicon oversupply",
+  "Single product family, utility-scale only \u2014 no market diversification",
+  "Backlog shrinking at the margin (47.9 GW Q1 2026 \u2192 45.1 GW Q2 2026); bookings pace is the swing factor",
+  "Tellurium supply constrains ultimate CdTe scale; concentrated utility-developer customer base"
+ ]
+}

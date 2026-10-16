@@ -1,0 +1,67 @@
+{
+ "ticker": "DRI",
+ "name": "Darden Restaurants, Inc.",
+ "sector": "Consumer Discretionary \u2014 Restaurants",
+ "price": 214.285,
+ "market_cap_b": 24.92,
+ "engine_version": 5,
+ "base_oe_per_share": 8.30489864864865,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat (5/10): the largest US full-service operator with genuine scale in purchasing, talent and data, and two proven anchor brands (Olive Garden, LongHorn Steakhouse) that have compounded same-restaurant sales through cycles \u2014 LongHorn posted its 22nd consecutive positive-comp quarter in Q1 FY27. But restaurants have no switching costs, pricing power is capped by consumer elasticity and value rivals (Brinker's Chili's, Texas Roadhouse, fast-casual), and returns depend on re-earning traffic every quarter against beef and labor inflation. That earns a mid-range fade, not a wide-moat one: CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 42.32,
+   "irr": 0.0484
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 58.79,
+   "irr": 0.059
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 75.56,
+   "irr": 0.07
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 92.18,
+   "irr": 0.0806
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 118.54,
+   "irr": 0.0968
+  }
+ },
+ "iv_at_15": 76.5,
+ "iv_at_12": 101.45,
+ "implied_irr": 0.0707,
+ "implied_irr_base_case": 0.07,
+ "upside_at_15_pct": -64.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality, narrow-moat restaurant operator (moat 5/10) that does not come close to the 15% hurdle at $214.28 \u2014 weighted IRR 7.07%, weighted IV@15% $76.50; it would need to fall to about $76.50 to clear 15% on these inputs.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Scale: largest US full-service operator (~2,200 restaurants) \u2014 purchasing, talent and data advantages",
+  "Anchor brands Olive Garden and LongHorn with long positive-comp records; LongHorn +6.2-6.8% comps in Q1 FY27",
+  "Diversified portfolio across casual, steakhouse and fine dining dampens single-concept slumps",
+  "Disciplined capital return: buybacks shrinking share count ~1.8%/yr, dividend raised 8% in June 2026",
+  "Proven through-cycle operator: owner's earnings positive 5 of last 5 fiscal years"
+ ],
+ "moat_against": [
+  "No switching costs; guests can trade down to fast-casual, QSR or home meals at any time",
+  "Pricing power limited by value competition \u2014 Chili's value resurgence pressures Olive Garden directly",
+  "Beef inflation at cyclical highs hits LongHorn, the fastest-growing brand; ~3.5% labor inflation guided for FY27",
+  "Olive Garden comps slowed to +1.0-1.1% in Q1 FY27; younger-guest softness flagged by management",
+  "Mature US casual-dining market: underlying unit and comp growth is low-single-digit"
+ ]
+}

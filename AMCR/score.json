@@ -1,0 +1,72 @@
+{
+ "ticker": "AMCR",
+ "name": "Amcor plc",
+ "sector": "Materials \u2014 Consumer Packaging",
+ "price": 43.74,
+ "market_cap_b": 20.29,
+ "engine_version": 5,
+ "base_oe_per_share": 2.4708926261319535,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Largest consumer-packaging supplier globally with real qualification switching costs in food/health packaging and a dense plant network, but largely commoditized products sold to powerful FMCG customers, contractual pass-through rather than structural pricing power, low returns on capital through the cycle, and high post-Berry leverage \u2014 a moderate/narrow moat.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 32.0%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 11.58,
+   "irr": 0.0559
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 18.62,
+   "irr": 0.0784
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 25.46,
+   "irr": 0.0996
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 34.39,
+   "irr": 0.1254
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 47.9,
+   "irr": 0.1603
+  }
+ },
+ "iv_at_15": 26.84,
+ "iv_at_12": 35.98,
+ "implied_irr": 0.104,
+ "implied_irr_base_case": 0.0996,
+ "upside_at_15_pct": -38.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Narrow-moat global packaging leader (moat 5/10) mid-Berry-integration \u2014 at $43.74 it prices in the synergy bull case and does not clear 15% on the weighted case (10.4% weighted IRR, IV@15% $26.84); it clears 15% only at or below $26.84.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Global scale: largest consumer packaging supplier, 400+ locations in 40+ countries",
+  "Customer qualification switching costs in food and healthcare packaging",
+  "Dense plant network located close to FMCG customers",
+  "Materials-science and sustainability innovation; Berry adds dispensing and closures",
+  "$650M Berry synergy program, $285M delivered in FY2026"
+ ],
+ "moat_against": [
+  "Largely commoditized products; customers are powerful global FMCG groups",
+  "Resin/raw-material costs passed through \u2014 pricing power is contractual, not structural",
+  "Low returns on capital through the cycle for a capital-intensive plant base",
+  "High leverage: reported net debt $12.9B at ~3.5x (FY2026 earnings reporting)",
+  "Organic volumes negative in FY2026 (-2%); regulatory pressure on plastics packaging"
+ ]
+}

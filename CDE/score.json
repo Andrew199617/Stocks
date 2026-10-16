@@ -1,0 +1,71 @@
+{
+ "ticker": "CDE",
+ "name": "COEUR MINING, INC.",
+ "sector": "Materials \u2014 Gold & Silver Mining",
+ "price": 15.545,
+ "market_cap_b": 9.55,
+ "engine_version": 5,
+ "base_oe_per_share": 1.3009809584087009,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 3,
+ "moat_justification": "Pure price-taker on gold/silver with zero pricing power; what passes for a moat in mining is cost-curve position and reserve quality. Las Chispas is a genuinely high-grade, low-cost asset and the seven-mine portfolio is diversified across the U.S., Mexico and Canada, but reserves deplete, the acquired Canadian mines are still ramping, and growth has been bought with dilutive all-stock deals.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 30.7%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 5.11,
+   "irr": 0.063
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.36,
+   "irr": 0.0823
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.86,
+   "irr": 0.1124
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 15.2,
+   "irr": 0.1474
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 21.83,
+   "irr": 0.1955
+  }
+ },
+ "iv_at_15": 10.56,
+ "iv_at_12": 13.93,
+ "implied_irr": 0.1102,
+ "implied_irr_base_case": 0.1124,
+ "upside_at_15_pct": -32.1,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Price-taking precious-metals miner, moat 3/10 \u2014 TTM OE inflected on the SilverCrest and New Gold deals plus high metal prices, but at $15.55 the weighted IRR is only 11.0% (IV@15 $10.56); it clears 15% only below ~$10.56.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Las Chispas: high-grade, low-cost silver-gold mine (real cost-curve asset)",
+  "Seven-mine diversification across U.S., Mexico and Canada",
+  "Leading silver-producer scale post-New Gold, plus copper from New Afton",
+  "Net-cash balance sheet; record FCF funds exploration and buybacks"
+ ],
+ "moat_against": [
+  "Zero pricing power \u2014 revenue is the gold/silver spot price",
+  "Reserves deplete yearly; replacement needs capex or dilutive M&A",
+  "New Afton/Rainy River still ramping; 2026 guidance trimmed in Q2",
+  "Cost inflation and Mexico permitting/jurisdiction exposure"
+ ]
+}

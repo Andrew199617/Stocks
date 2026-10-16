@@ -1,0 +1,71 @@
+{
+ "ticker": "FOXA",
+ "name": "Fox Corporation",
+ "sector": "Media / Communication Services",
+ "price": 62.21,
+ "market_cap_b": 27.31,
+ "engine_version": 5,
+ "base_oe_per_share": 3.0432801822323463,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong (6/10): Fox News is the top-rated US cable news network with a loyal, highly engaged audience and proven affiliate-fee pricing power, and live sports rights (NFL through 2033, MLB, college football, marquee soccer) are scarce, DVR-proof inventory distributors must carry. Tubi adds scale in free ad-supported streaming (110M monthly active users at FY2026 close, record revenue quarter in Q4 FY26). Against that, the core content is rented not owned \u2014 sports rights reprice upward at renewal and leagues keep the leverage \u2014 the linear distribution base shrinks secularly with cord-cutting, the audience/event calendar is cyclical (Super Bowl, elections, World Cup rotate through Fox years), and the announced Roku acquisition would materially change the risk and leverage profile. Real pricing power in news/sports, but no durable ownership of the underlying rights.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 6.1%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 15.25,
+   "irr": 0.0538
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 24.98,
+   "irr": 0.0763
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 34.67,
+   "irr": 0.0977
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 47.6,
+   "irr": 0.1238
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 73.6,
+   "irr": 0.1684
+  }
+ },
+ "iv_at_15": 37.43,
+ "iv_at_12": 50.73,
+ "implied_irr": 0.1039,
+ "implied_irr_base_case": 0.0977,
+ "upside_at_15_pct": -39.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Quality live news/sports cash generator, moat 6/10, but at $62.21 it does not clear 15% \u2014 weighted IRR 10.4%, weighted IV@15% $37.43; it would need to trade near $37 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Fox News: #1 cable news, loyal engaged audience, affiliate-fee pricing power",
+  "Scarce live sports rights (NFL to 2033, MLB, college, soccer) \u2014 must-carry, DVR-proof",
+  "Tubi scale in free AVOD streaming \u2014 110M MAU, record Q4 FY26 revenue",
+  "Live news/sports mix is resilient to time-shifting and subscription fatigue",
+  "Aggressive buybacks compounding per-share value (shares -6.1%/yr)"
+ ],
+ "moat_against": [
+  "Sports rights are rented, not owned \u2014 renewal costs escalate, leagues hold leverage",
+  "Cord-cutting shrinks the linear cable/broadcast distribution base secularly",
+  "Event cyclicality: Super Bowl / elections / World Cup rotate, making OE lumpy",
+  "Announced Roku acquisition adds integration, price and leverage risk",
+  "Murdoch family control / governance concentration; news-brand advertiser and litigation exposure"
+ ]
+}

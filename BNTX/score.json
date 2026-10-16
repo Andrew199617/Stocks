@@ -1,0 +1,73 @@
+{
+ "ticker": "BNTX",
+ "name": "BioNTech SE",
+ "sector": "Biotechnology / mRNA vaccines & oncology",
+ "price": 88.77,
+ "market_cap_b": 21.46,
+ "engine_version": 5,
+ "base_oe_per_share": 0.8492863053371948,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Proven mRNA platform, manufacturing know-how and the Pfizer COVID-19 partnership, funded by a very large cash and investments balance, but no durable commercial franchise beyond the shrinking COVID vaccine: oncology pipeline (pumitamig/BMS, ADCs, mRNA immunotherapies) is unapproved and binary, the COVID economics are shared with Pfizer and commoditising, and leadership is in transition.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F/A for fiscal year ended December 31, 2025, cover page (SEC filing, CIK 1776985): securities registered under Section 12(b) are 'American Depositary Shares, each Representing one ordinary share', trading symbol BNTX on Nasdaq) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "LOW_OE_YIELD: base OE yield 1.0% \u2014 valuation rests almost entirely on growth; tier is fragile"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 3.2,
+   "irr": 0.0117
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.84,
+   "irr": 0.0245
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.2,
+   "irr": 0.0317
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 6.96,
+   "irr": 0.0345
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 10.34,
+   "irr": 0.0402
+  }
+ },
+ "iv_at_15": 5.27,
+ "iv_at_12": 6.84,
+ "implied_irr": 0.0319,
+ "implied_irr_base_case": 0.0317,
+ "upside_at_15_pct": -94.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Proven mRNA platform, moat 4/10, huge cash pile funding an unapproved oncology pivot \u2014 but current owner's earnings do not support the price: weighted IRR 3.19%, weighted IV@15 $5.27 vs $88.77; clears 15% only below ~$5.27 on this OE base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Proven mRNA platform and manufacturing that delivered a commercial COVID-19 vaccine at global scale with Pfizer",
+  "Large cash and security investments balance funding years of oncology R&D without dilution",
+  "BMS collaboration on pumitamig and a broad late-stage oncology pipeline (14 pivotal trials in Q2 2026 reporting)",
+  "Deep mRNA / immunotherapy know-how and CureVac acquisition consolidating mRNA IP"
+ ],
+ "moat_against": [
+  "COVID-19 vaccine demand collapsing: Q2 2026 revenue -59.5% YoY and FY2026 guidance cut to \u20ac1.6-1.9B",
+  "No approved oncology product yet: pipeline value is binary clinical/regulatory risk, not a commercial moat",
+  "COVID economics shared with Pfizer; competition from Moderna and other vaccine/oncology platforms",
+  "Founder/CEO leadership transition (incoming CEO by Feb 1, 2027) and heavy R&D/SG&A burn widening losses"
+ ]
+}

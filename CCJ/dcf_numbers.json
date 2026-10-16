@@ -1,0 +1,204 @@
+{
+ "ticker": "CCJ",
+ "name": "CAMECO CORPORATION",
+ "cik": 1009001,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 81.4,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 435580000,
+ "market_cap_est": 35456212000.0,
+ "net_debt_latest": -86556424.32000005,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.12474261694582278,
+ "rev_cagr_3y": 0.22601412971668067,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 778381900.36,
+ "base_oe_per_share": 1.095035000734019,
+ "base_oe_latest_per_share": 1.7870010109738739,
+ "base_oe_normalized_per_share": 1.095035000734019,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.12474261694582278,
+  "rev_cagr_3y": 0.22601412971668067,
+  "rev_yoy_latest": 0.16686834601528688,
+  "oe_ps_cagr_2y": 0.39326390570356473
+ },
+ "g_blend": 0.19644123786598378,
+ "share_cagr": 0.0227612545703888,
+ "share_count_adj": -0.0227612545703888,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "DepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F cover (SEC filing, CIK 1009001): securities registered under Section 12(b) are 'Common Shares, no par value', trading symbol CCJ, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS",
+  "reason": "Cameco is a direct-listed foreign private issuer: one NYSE-traded CCJ share is one ordinary (common) share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": {
+  "from_currency": "CAD",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2015-12-31": 0.72023,
+   "2016-12-31": 0.74295,
+   "2017-12-31": 0.79746,
+   "2018-12-31": 0.73374,
+   "2019-12-31": 0.76956,
+   "2020-12-31": 0.78494,
+   "2021-12-31": 0.78691,
+   "2022-12-31": 0.73864,
+   "2023-12-31": 0.75468,
+   "2024-12-31": 0.69501,
+   "2025-12-31": 0.73036
+  }
+ },
+ "override_checks": {},
+ "g_base": 0.17367998329559498,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": 0.0537,
+   "oe_mult": 0.75,
+   "iv_at_10": 12.959432691423908,
+   "iv_at_12": 10.160511851040217,
+   "iv_at_15": 7.651508508875851,
+   "irr": 0.037269503528630746
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.1237,
+   "oe_mult": 0.9,
+   "iv_at_10": 22.005615899895997,
+   "iv_at_12": 16.989605578846884,
+   "iv_at_15": 12.531492328780857,
+   "irr": 0.046757597155837494
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1737,
+   "oe_mult": 1.0,
+   "iv_at_10": 31.212425927202464,
+   "iv_at_12": 23.86424703457869,
+   "iv_at_15": 17.367598134352804,
+   "irr": 0.05616984127770355
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.2237,
+   "oe_mult": 1.1,
+   "iv_at_10": 43.67172115935874,
+   "iv_at_12": 33.098131291619524,
+   "iv_at_15": 23.793367736194426,
+   "irr": 0.0682332249784233
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2937,
+   "oe_mult": 1.25,
+   "iv_at_10": 69.05175719841989,
+   "iv_at_12": 51.76734829625563,
+   "iv_at_15": 36.64364134067474,
+   "irr": 0.09032184080591599
+  }
+ },
+ "weighted": {
+  "iv_at_10": 33.984181031958805,
+  "iv_at_12": 25.87399434271979,
+  "iv_at_15": 18.72100944150472,
+  "irr": 0.05906569214702699
+ },
+ "implied_irr_weighted": 0.05906569214702699,
+ "implied_irr_base": 0.05616984127770355,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.7700121690232835,
+ "upside_at_12": -0.682137661637349,
+ "iv_at_15": 18.72100944150472,
+ "iv_at_12": 25.87399434271979,
+ "diagnostics": {
+  "oe_yield": 0.01345251843653586,
+  "tv_share_at_15": 0.22894418888234463,
+  "scenario_spread_iv15": 4.789074115015049,
+  "net_debt_to_normalized_oe": -0.1814693885436345,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F cover (SEC filing, CIK 1009001): securities registered under Section 12(b) are 'Common Shares, no par value', trading symbol CCJ, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 1.79 vs 3-yr median 1.10 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "57438108e13ce89c9d319d0d259b863d381f2a13defeeabb250b0575b88271d1"
+}

@@ -1,0 +1,160 @@
+{
+ "ticker": "FOX",
+ "name": "Fox Corporation",
+ "cik": 1754301,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 56.8529,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 439000000,
+ "market_cap_est": 24958423100.0,
+ "net_debt_latest": 6606000000,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": 0.05817142428050781,
+ "rev_cagr_3y": 0.047190607616725444,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1336000000,
+ "base_oe_per_share": 3.0432801822323463,
+ "base_oe_latest_per_share": 3.0432801822323463,
+ "base_oe_normalized_per_share": 3.0432801822323463,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.05817142428050781,
+  "rev_cagr_3y": 0.047190607616725444,
+  "rev_yoy_latest": 0.050674846625766934,
+  "oe_ps_cagr_2y": 0.01966899873370065
+ },
+ "g_blend": 0.04893272712124619,
+ "share_cagr": -0.06143803817918514,
+ "share_count_adj": 0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "ProfitLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": null,
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.09893272712124619,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.09,
+   -0.05,
+   -0.02,
+   0.01
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.0211,
+   "oe_mult": 0.75,
+   "iv_at_10": 25.154060140688806,
+   "iv_at_12": 20.054456224789256,
+   "iv_at_15": 15.440219717813887,
+   "irr": 0.057367294983349706
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0089,
+   "oe_mult": 0.9,
+   "iv_at_10": 34.73665430465776,
+   "iv_at_12": 27.515164483481453,
+   "iv_at_15": 21.00417221336957,
+   "irr": 0.0705699149824458
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0489,
+   "oe_mult": 1.0,
+   "iv_at_10": 46.458783026367,
+   "iv_at_12": 36.503172639520045,
+   "iv_at_15": 27.565806583138702,
+   "irr": 0.08650252501643285
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.0789,
+   "oe_mult": 1.1,
+   "iv_at_10": 58.64165192551076,
+   "iv_at_12": 45.81407152859211,
+   "iv_at_15": 34.332626063823035,
+   "irr": 0.10226439425374978
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1089,
+   "oe_mult": 1.25,
+   "iv_at_10": 76.36388401911711,
+   "iv_at_12": 59.34039188938051,
+   "iv_at_15": 44.14535546169054,
+   "irr": 0.12386854371102873
+  }
+ },
+ "weighted": {
+  "iv_at_10": 44.56437641114907,
+  "iv_at_12": 35.019819488845705,
+  "iv_at_15": 26.451456052367075,
+  "irr": 0.0840272015622513
+ },
+ "implied_irr_weighted": 0.0840272015622513,
+ "implied_irr_base": 0.08650252501643285,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.5347386667634004,
+ "upside_at_12": -0.384027560795567,
+ "iv_at_15": 26.451456052367075,
+ "iv_at_12": 35.019819488845705,
+ "diagnostics": {
+  "oe_yield": 0.053529022833177314,
+  "tv_share_at_15": 0.18396847163926733,
+  "scenario_spread_iv15": 2.8591144600590495,
+  "net_debt_to_normalized_oe": 4.9446107784431135,
+  "months_since_fy_end": 3.515111695137976,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 6.1%/yr \u2014 already credited via the growth adjustment",
+  "HIGH_NET_DEBT: net debt is 4.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "deebfde7874075d5560ceb05b9280bac432deda2a084218c5c56db5818dbdfa7"
+}

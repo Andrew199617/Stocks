@@ -1,0 +1,159 @@
+{
+ "ticker": "CPRT",
+ "name": "COPART, INC.",
+ "cik": 900075,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 26.41,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 956860000,
+ "market_cap_est": 25270672600.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2026-07-31",
+ "rev_cagr_5y": 0.11626646860124801,
+ "rev_cagr_3y": 0.0643788996333241,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1228311000,
+ "base_oe_per_share": 1.2201321040178486,
+ "base_oe_latest_per_share": 1.2836893589448821,
+ "base_oe_normalized_per_share": 1.2201321040178486,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.11626646860124801,
+  "rev_cagr_3y": 0.0643788996333241,
+  "rev_yoy_latest": 0.004142710134242611,
+  "oe_ps_cagr_2y": 0.16237645399309164
+ },
+ "g_blend": 0.09032268411728606,
+ "share_cagr": -0.0033855795496432473,
+ "share_count_adj": 0.0033855795496432473,
+ "used_tags": {
+  "revenue": "SalesRevenueNet",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.0937082636669293,
+ "moat_score": 8.0,
+ "cap_years": 12.4,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 8.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.06,
+   -0.02,
+   0.03,
+   0.1
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0263,
+   "oe_mult": 0.75,
+   "iv_at_10": 9.326026571408232,
+   "iv_at_12": 7.498293989452095,
+   "iv_at_15": 5.832142056131227,
+   "irr": 0.04995375519159999
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.0337,
+   "oe_mult": 0.9,
+   "iv_at_10": 15.777016676937414,
+   "iv_at_12": 12.418776292282896,
+   "iv_at_15": 9.402354215939773,
+   "irr": 0.07003762340077124
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0737,
+   "oe_mult": 1.0,
+   "iv_at_10": 22.06158464205331,
+   "iv_at_12": 17.141104391430332,
+   "iv_at_15": 12.758849344272031,
+   "irr": 0.08829627206733648
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.1237,
+   "oe_mult": 1.1,
+   "iv_at_10": 32.343087897388145,
+   "iv_at_12": 24.756754730469684,
+   "iv_at_15": 18.06308684185062,
+   "irr": 0.11475079873769267
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1937,
+   "oe_mult": 1.25,
+   "iv_at_10": 54.82081746094051,
+   "iv_at_12": 41.19318025601841,
+   "iv_at_15": 29.301907705826846,
+   "irr": 0.16072670668936084
+  }
+ },
+ "weighted": {
+  "iv_at_10": 24.234882378409722,
+  "iv_at_12": 18.688462575754958,
+  "iv_at_15": 13.774383412629472,
+  "irr": 0.09431895793120171
+ },
+ "implied_irr_weighted": 0.09431895793120171,
+ "implied_irr_base": 0.08829627206733648,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.47844061292580564,
+ "upside_at_12": -0.2923717313231746,
+ "iv_at_15": 13.774383412629472,
+ "iv_at_12": 18.688462575754958,
+ "diagnostics": {
+  "oe_yield": 0.046199625294125274,
+  "tv_share_at_15": 0.2112792813766076,
+  "scenario_spread_iv15": 5.0242102170714915,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 2.4967148488830486,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "c6bf26180a40633263a40ea493f69cfabd0338905fdb530261a76a8526b18eba"
+}

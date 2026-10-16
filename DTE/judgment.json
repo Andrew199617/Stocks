@@ -1,0 +1,43 @@
+{
+ "capex_override": {
+  "value": 4639000000,
+  "kind": "filing",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures and acquisitions': $4,639M for FY2025, with $4,467M for FY2024 and $3,934M for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under the filer's extension tag dte:PaymentsToAcquireProductiveAssetsIncludingPaymentsToAcquireBusinessesNetOfCashAcquired, which EDGAR companyfacts does not carry, so no candidate tag the engine reads has any value in any year.",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) in EDGAR companyfacts under every candidate tag the engine reads, because the filer reports capex only under its own extension tag (same dead end as TKO in the system README). The engine applies this single FY2025 filing value to every missing period; against the same statement's true per-year values it overstates FY2023 capex by $705M (true $3,934M) and FY2024 by $172M (true $4,467M) \u2014 both in the conservative direction of lowering owner's earnings. The line includes acquisitions as the filer presents it; that is the filer's own capex line, not an estimate.",
+  "ack_reason": "The out-of-band flag is mechanical only: the band is computed against the last FILED capex value and DTE has never filed one under a standard tag companyfacts carries (last_filed_value is null), so every value flags out-of-band. This is not an estimate lacking an anchor \u2014 it is the exact figure from the filer's own FY2025 10-K cash-flow statement (see source)."
+ },
+ "sbc_override": {
+  "value": 60000000,
+  "kind": "filing",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Note 21 \u2014 Stock-Based Compensation: 'Stock-based compensation expense $60M for FY2025, $54M for FY2024, $48M for FY2023' (in millions). The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no companyfacts values after 2014 for this filer.",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 in EDGAR companyfacts under both tags the engine reads (the allocated tag's facts stop in 2014). The filing's own Note 21 table reports stock-based compensation expense for all three years ($48M / $54M / $60M). The engine applies this single FY2025 value ($60M) to every missing period, overstating FY2023 SBC by $12M and FY2024 by $6M \u2014 immaterial against OCF of $3.2-3.6B and in the conservative direction."
+ },
+ "name": "DTE Energy Company",
+ "sector": "Utilities",
+ "moat_score": 6,
+ "moat_justification": "Franchised regulated monopolies \u2014 DTE Electric (approximately 2.3 million customers in southeastern Michigan, per the FY2025 10-K) and DTE Gas \u2014 with captive, essential-service demand, plus DTE Vantage (renewable natural gas / custom energy solutions) and Energy Trading. The rate-base model converts the $36.5B 2026-2030 capital plan into regulated earnings (management guides 6-8% operating EPS growth through 2030, search results), and large-load data-center agreements (1.4 GW Oracle approved and under construction; 1.0 GW Google executed, pending MPSC approval) add visible load growth. Capped at 6 because the MPSC sets the allowed return and has disallowed previously recorded capex (write-offs recorded in the FY2025 10-K), there is no pricing power beyond rate cases, and the plan is funded with debt (net debt $25,098M, dcf_numbers.json) plus planned equity issuance of $500-600M per year through 2028 (search results) that dilutes per-share compounding (share-count CAGR +1.84%/yr, dcf_numbers.json).",
+ "moat_for": [
+  "Franchised regulated electric and gas monopolies in Michigan \u2014 DTE Electric serves ~2.3M customers in southeastern Michigan; captive, essential-service demand",
+  "Rate-base model: the $36.5B 2026-2030 capital plan enters rate base and earns an authorized return; management guides 6-8% operating EPS growth through 2030",
+  "Large-load growth: 1.4 GW Oracle data-center project approved and under construction, plus an executed 1.0 GW Google agreement (pending MPSC approval)",
+  "Recovery mechanisms (including the Infrastructure Recovery Mechanism for distribution spend) shorten the lag between capex and rate recovery"
+ ],
+ "moat_against": [
+  "Regulator caps economics: the MPSC sets allowed ROE and recovery, and the FY2025 10-K records disallowances of previously recorded capex written off in 2023 and 2024 \u2014 no pricing power beyond rate cases",
+  "Affordability politics: data-center and clean-energy transition costs recovered from existing customers invite rate-case pushback",
+  "Balance sheet and dilution: net debt $25,098M, and planned $500-600M/yr of equity issuance through 2028 on top of a +1.84%/yr share-count CAGR",
+  "Coal retirement (all coal by 2032 per the 2026 IRP, search results) and clean-energy mandates force transition capex whose full recovery is not guaranteed"
+ ],
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "one_liner": "Durable Michigan regulated monopoly, moat 6/10, but conservative owner's earnings are negative on every base (normalized -$6.23/share, TTM -$6.75/share) because capex ($4,639M in FY2025) exceeds operating cash flow ($3,409M) \u2014 Tier F on this screen; guided 6-8% operating EPS growth does not clear 15% and no hurdle-clearing price is computable on a negative OE base.",
+ "confidence": "low",
+ "tier_override": null,
+ "tier_override_reason": null,
+ "in_scope_under_40b": true
+}

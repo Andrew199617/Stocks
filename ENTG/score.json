@@ -1,0 +1,72 @@
+{
+ "ticker": "ENTG",
+ "name": "Entegris, Inc.",
+ "sector": "Semiconductor Equipment & Materials",
+ "price": 150.47,
+ "market_cap_b": 22.9,
+ "engine_version": 5,
+ "base_oe_per_share": 3.2777053455019556,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Genuine qualification lock-in in yield-critical consumables and an effective duopoly in CMP slurry at advanced nodes, but the moat did not protect earnings through the 2023-25 downcycle, giant foundry customers hold real pricing power, strong rivals contest the core niches, and the CMC acquisition debt load limits flexibility.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 6.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 16.5,
+   "irr": 0.0377
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 24.74,
+   "irr": 0.0457
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 35.89,
+   "irr": 0.0571
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 49.29,
+   "irr": 0.0704
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 72.96,
+   "irr": 0.0921
+  }
+ },
+ "iv_at_15": 38.22,
+ "iv_at_12": 51.62,
+ "implied_irr": 0.0598,
+ "implied_irr_base_case": 0.0571,
+ "upside_at_15_pct": -74.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real-moat semi materials name (6/10) in a genuine recovery, but at $150.47 it prices in a decade of supercycle \u2014 weighted IRR 5.98%, IV@15% $38.22; it clears 15% only at $38.22, less than a third of the price.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Qualification lock-in \u2014 switching a qualified yield-critical consumable means costly, risky re-qualification",
+  "CMP slurry/pads effectively a two-supplier market at advanced nodes (with Fujimi)",
+  "Leading filtration/purification positions in advanced fabs, with sole-source niches",
+  "Deep patent portfolio and decades of materials-purity know-how",
+  "Content per wafer rises as nodes shrink and purity requirements tighten"
+ ],
+ "moat_against": [
+  "Semiconductor cyclicality \u2014 revenue fell in FY2024 and FY2025 despite the moat",
+  "Concentrated giant foundry customers with pricing power",
+  "Large capable rivals in filtration/purification and materials (Pall and others)",
+  "CMC-acquisition leverage still on the balance sheet; share count dilutes about 2%/yr",
+  "Heavy Asia fab exposure \u2014 Taiwan/China demand and export controls"
+ ]
+}

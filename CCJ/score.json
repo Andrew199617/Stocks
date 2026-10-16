@@ -1,0 +1,76 @@
+{
+ "ticker": "CCJ",
+ "name": "Cameco Corporation",
+ "sector": "Energy / Uranium mining & nuclear fuel services",
+ "price": 81.4,
+ "market_cap_b": 35.46,
+ "engine_version": 5,
+ "base_oe_per_share": 1.095035000734019,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Scarce tier-1 high-grade, low-cost uranium assets (Cigar Lake, McArthur River/Key Lake) that cannot be replicated on any investable timeline, plus a long-term contract book and an integrated fuel-cycle position (fuel services, 49% of Westinghouse) \u2014 but Cameco is ultimately a uranium price-taker, its reserves deplete (Cigar Lake ~2036, McArthur River shortly after 2040), and production is concentrated in northern Saskatchewan with Kazakhstan JV exposure.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F cover (SEC filing, CIK 1009001): securities registered under Section 12(b) are 'Common Shares, no par value', trading symbol CCJ, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 1.79 vs 3-yr median 1.10 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.65,
+   "irr": 0.0373
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 12.53,
+   "irr": 0.0468
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 17.37,
+   "irr": 0.0562
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 23.79,
+   "irr": 0.0682
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 36.64,
+   "irr": 0.0903
+  }
+ },
+ "iv_at_15": 18.72,
+ "iv_at_12": 25.87,
+ "implied_irr": 0.0591,
+ "implied_irr_base_case": 0.0562,
+ "upside_at_15_pct": -77.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Tier-1 uranium franchise, moat 6/10, net cash \u2014 but the price capitalizes a decade of flawless contract repricing: weighted IRR 5.9%, weighted IV@15 $18.72 vs $81.40, and even the super-bull case (9.0% IRR) clears neither 10% nor 15%; clears 15% only below ~$18.72.",
+ "analysis_date": "2026-10-14",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "World's largest high-grade uranium reserves; tier-1 low-cost assets (Cigar Lake, McArthur River/Key Lake) with decade-plus permitting barriers to any replacement supply",
+  "Long-term contract book: five-year average contracted deliveries exceeding 28M lb/yr with floors in the high $70s/lb and escalated ceilings around $160/lb",
+  "Integrated nuclear fuel cycle: uranium, conversion/fuel services, and 49% of Westinghouse (AP1000 pipeline of 91 reactor opportunities)",
+  "Western supply-security premium as utilities bifurcate away from Russian/Kazakh supply",
+  "Net-cash balance sheet (engine: net debt -0.18x normalized OE) funds opportunistic stake increases (Cigar Lake to 57.4% in July 2026)"
+ ],
+ "moat_against": [
+  "Commodity price-taker: earnings are driven by the uranium price, which Cameco does not control",
+  "Finite reserves: Cigar Lake mine life ~2036 (extension work ongoing), McArthur River concludes shortly after 2040",
+  "Geographic/operational concentration: Saskatchewan flooding and the McClean Lake mill disruption both hit 2026 operations; Inkai JV is in Kazakhstan",
+  "Kazatomprom and new supply can undercut on cost; enrichment/substitution and reactor-policy shifts sit outside Cameco's control",
+  "Westinghouse earnings are lumpy and equity-accounted (a ~US$170M Dukovany milestone flattered 2025 and did not recur in 2026)"
+ ]
+}

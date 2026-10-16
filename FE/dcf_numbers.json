@@ -1,0 +1,131 @@
+{
+ "ticker": "FE",
+ "name": "FIRSTENERGY CORP",
+ "cik": 1031296,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 45.41,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 578000000,
+ "market_cap_est": 26246979999.999996,
+ "net_debt_latest": 666000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.07116669830099465,
+ "rev_cagr_3y": 0.06593083318427895,
+ "oe_positive_years_of_last_5": "1/5",
+ "base_oe_total_latest_fy": -1048000000.0,
+ "base_oe_per_share": -3.081034482758621,
+ "base_oe_latest_per_share": -1.8131487889273357,
+ "base_oe_normalized_per_share": -2.048526863084922,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.07116669830099465,
+  "rev_cagr_3y": 0.06593083318427895,
+  "rev_yoy_latest": 0.12010095011876487,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.07116669830099465,
+ "share_cagr": 0.0034835525394698585,
+ "share_count_adj": -0.0034835525394698585,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "sbc": {
+   "value": 43000000.0,
+   "last_filed_value": 0,
+   "last_filed_unit": "USD",
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -3.081034482758621,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 43000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001031296-26-000046), Note 5 \u2014 Stock-Based Compensation Plans (p.117), table 'Components of Stock-based Compensation Plan Costs': stock-based compensation costs, net of amounts capitalized, were $39M for FY2025, $43M for FY2024 and $44M for FY2023 (total costs $85M / $86M / $83M in the same table). EDGAR companyfacts carries the same series under SharebasedCompensationArrangementBySharebasedPaymentAwardCompensationCost1 (total) and the capitalized-amount tag, neither of which the engine reads; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no annual values after FY2020.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags. The expensed (net-of-capitalized) figure is the correct OE deduction: the capitalized portion is already inside capex, so subtracting the $83-86M total would double-count it. The engine applies a single override value to every missing period; $43M is the median of the three filed expensed figures ($44M / $43M / $39M) and is exactly the FY2024 figure \u2014 and FY2024 is the median year of the 3-yr normalized base, so the base is built from the filed figure with at most $5M of error in the non-median years, immaterial against OCF of $1.4-3.7B and a deeply negative OE base either way.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": 0
+  }
+ ],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001031296-26-000046), Note 5 \u2014 Stock-Based Compensation Plans (p.117), table 'Components of Stock-based Compensation Plan Costs': stock-based compensation costs, net of amounts capitalized, were $39M for FY2025, $43M for FY2024 and $44M for FY2023 (total costs $85M / $86M / $83M in the same table). EDGAR companyfacts carries the same series under SharebasedCompensationArrangementBySharebasedPaymentAwardCompensationCost1 (total) and the capitalized-amount tag, neither of which the engine reads; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no annual values after FY2020.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -1.974003466204506,
+  "base_oe_per_share_final": -3.081034482758621,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "424f9c1dec2f3280dd583dc2bb6271b98102bef32ae874d9c9f17c8017ee5721"
+}

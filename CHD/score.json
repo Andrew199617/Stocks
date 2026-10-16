@@ -1,0 +1,72 @@
+{
+ "ticker": "CHD",
+ "name": "Church & Dwight Co., Inc.",
+ "sector": "Consumer Staples \u2014 Household & Personal Care",
+ "price": 104.63,
+ "market_cap_b": 25.56,
+ "engine_version": 5,
+ "base_oe_per_share": 4.386649874055416,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "A portfolio of #1/#2 niche brands (ARM & HAMMER, OxiClean, Trojan, TheraBreath, Hero) with decades of shelf presence, proven pricing power, and a repeatable acquisition playbook, run asset-light \u2014 but the categories are low-switching-cost staples where shelf space is rented from powerful retailers, larger rivals can out-promote, category growth is ~3%, and the $357.1M VMS impairment in 2024 proved acquired brands can decay. Moderate-strong, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 17.8,
+   "irr": 0.0433
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 29.14,
+   "irr": 0.0588
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 40.45,
+   "irr": 0.0745
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 55.58,
+   "irr": 0.0945
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 86.1,
+   "irr": 0.1307
+  }
+ },
+ "iv_at_15": 43.71,
+ "iv_at_12": 58.43,
+ "implied_irr": 0.0794,
+ "implied_irr_base_case": 0.0745,
+ "upside_at_15_pct": -58.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality staples compounder, moat 6/10 \u2014 at $104.63 the weighted IRR is only 7.94% (IV@15 $43.71); it clears 15% only at or below $43.71.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "#1/#2 niche positions \u2014 ARM & HAMMER cat litter 24.5% share, TheraBreath #2 mouthwash at 25.3%",
+  "Proven pricing power \u2014 Q2 2026 price/mix +1.5% while holding laundry share vs P&G/Henkel promo wave",
+  "Decades-old brand equity with national distribution and growing e-commerce",
+  "Repeatable acquisition playbook \u2014 TheraBreath, Hero, Touchland scaled internationally",
+  "Asset-light cash conversion \u2014 capex ~2% of sales, OE positive 5 of last 5 years"
+ ],
+ "moat_against": [
+  "Near-zero switching costs and private-label exposure in commoditized categories",
+  "Retailer power \u2014 shelf space is rented, not owned",
+  "Larger rivals (P&G, Henkel, Colgate) with deeper promo/marketing budgets",
+  "Slow category growth (~3% weighted average) caps the organic runway",
+  "Brand durability not guaranteed \u2014 $357.1M VMS impairment 2024 and 2025 business exits",
+  "Growth depends on continued acquisitions at full prices"
+ ]
+}

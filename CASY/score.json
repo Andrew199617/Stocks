@@ -1,0 +1,71 @@
+{
+ "ticker": "CASY",
+ "name": "Casey's General Stores, Inc.",
+ "sector": "Consumer Defensive / Convenience Stores",
+ "price": 664.1871,
+ "market_cap_b": 24.76,
+ "engine_version": 5,
+ "base_oe_per_share": 14.377469069715104,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Rural/small-town store density that national rivals can't economically replicate, plus a prepared-food program (pizza, 59.3% Q1 FY27 segment margin) that turns a commodity fuel stop into a food destination; scale in distribution, private brand, and a 10M+ member rewards program; OE positive 5/5 years. Against: zero switching costs, fuel is ~60% of revenue at commodity street-priced margins and the recent earnings driver (fuel margin per gallon) is cyclical and outside management's control, long-run EV erosion of the fuel hook, labor/credit-card fee pressure, and acquisition integration risk from Fikes/CEFCO.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 3.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 72.37,
+   "irr": 0.0377
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 108.48,
+   "irr": 0.0456
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 150.56,
+   "irr": 0.0552
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 197.81,
+   "irr": 0.0658
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 268.31,
+   "irr": 0.0808
+  }
+ },
+ "iv_at_15": 155.81,
+ "iv_at_12": 209.3,
+ "implied_irr": 0.0566,
+ "implied_irr_base_case": 0.0552,
+ "upside_at_15_pct": -76.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality rural convenience compounder, moat 6/10 \u2014 but priced for perfection: weighted IRR 5.66% and IV@15% $155.81 vs the $664.19 price; it only clears the 15% hurdle at or below ~$156.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Rural/small-town density rivals can't replicate store-by-store",
+  "Prepared-food brand with ~59% segment margins (pizza destination)",
+  "Scale: own distribution, private brand, 10M+ rewards members",
+  "OE positive 5/5 years; compounding through cycles",
+  "Owns much of its real estate"
+ ],
+ "moat_against": [
+  "No switching costs \u2014 loyalty is habit/location only",
+  "Fuel ~60% of revenue at commodity, street-priced margins",
+  "Fuel margin (recent earnings driver) is cyclical, not controlled",
+  "Long-run EV adoption erodes the fuel-traffic hook",
+  "Labor and credit-card fee inflation on store opex",
+  "Acquisition-led growth: Fikes/CEFCO integration and debt load"
+ ]
+}

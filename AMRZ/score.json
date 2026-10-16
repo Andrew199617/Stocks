@@ -1,0 +1,74 @@
+{
+ "ticker": "AMRZ",
+ "name": "Amrize Ltd",
+ "sector": "Building Materials",
+ "price": 37.32,
+ "market_cap_b": 20.66,
+ "engine_version": 5,
+ "base_oe_per_share": 2.3154665222883954,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Cement and aggregates are local oligopolies by physics \u2014 transport costs wall off each market, permitted reserves are scarce and slow to replicate, and Amrize is North America's largest cement producer holding #1/#2 positions in 85% of its aggregates markets with ~46 years of aggregates and ~71 years of cement reserves. That earns real aggregates pricing power (+4.0% constant-currency in Q2 2026). Against: commodity products, equally scaled national rivals (CRH, Vulcan, Martin Marietta, Heidelberg), construction cyclicality, unproven standalone cement pricing (Q2 2026 cement price \u22120.2% constant-currency against oil-driven cost inflation that forced an EBITDA guidance cut), and structural energy/carbon costs. CAP = 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 8.76,
+   "irr": 0.0499
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 13.71,
+   "irr": 0.0685
+  },
+  "base": {
+   "prob": 0.35,
+   "iv_at_15": 20.34,
+   "irr": 0.0938
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 26.73,
+   "irr": 0.1163
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 37.09,
+   "irr": 0.1493
+  }
+ },
+ "iv_at_15": 20.48,
+ "iv_at_12": 27.14,
+ "implied_irr": 0.0946,
+ "implied_irr_base_case": 0.0938,
+ "upside_at_15_pct": -45.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Strong NA building-materials franchise, moat 6/10, but at $37.32 the weighted IRR is 9.5% with IV@15% of $20.48 \u2014 clears the 15% hurdle only below ~$20.48.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Largest cement producer in North America",
+  "#1/#2 position in 85% of aggregates markets served",
+  "Transport-cost local oligopolies in cement and aggregates",
+  "Scarce permitted reserves (~46 yrs aggregates, ~71 yrs cement)",
+  "Vertical integration: cement/aggregates to ready-mix to roofing",
+  "Demonstrated aggregates pricing power (+4.0% cc Q2 2026)"
+ ],
+ "moat_against": [
+  "Commodity products, no switching costs or brand protection",
+  "Equally scaled national rivals (CRH, Vulcan, Martin Marietta, Heidelberg)",
+  "Construction-cycle demand exposure; residential roofing soft",
+  "Cement pricing power unproven standalone (Q2 2026 price \u22120.2% cc vs cost inflation)",
+  "Energy and carbon-compliance cost headwinds on kilns",
+  "Growth capex step-up and bolt-on M&A consume moat cash flows"
+ ]
+}

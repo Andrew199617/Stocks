@@ -4,29 +4,29 @@
  "cik": 1167379,
  "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 63.58,
+ "price": 63.87,
  "price_source": "nasdaq_quote_api",
- "shares_diluted_latest": 304104272,
- "market_cap_est": 19334949613.76,
- "net_debt_latest": -2463000000,
- "latest_period_end": "2010-12-31",
- "rev_cagr_5y": 0.08636630543661483,
- "rev_cagr_3y": 0.08636630543661483,
- "oe_positive_years_of_last_5": "4/4",
- "base_oe_total_latest_fy": 1988000000,
- "base_oe_per_share": 6.537231413835581,
- "base_oe_latest_per_share": 6.537231413835581,
- "base_oe_normalized_per_share": 6.537231413835581,
+ "shares_diluted_latest": 496200000,
+ "market_cap_est": 31692294000.0,
+ "net_debt_latest": 3210000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.08767145600160142,
+ "rev_cagr_3y": 0.060629049247570954,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1557000000,
+ "base_oe_per_share": 2.898492462311558,
+ "base_oe_latest_per_share": 3.1378476420798065,
+ "base_oe_normalized_per_share": 2.898492462311558,
  "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
-  "rev_cagr_5y": 0.08636630543661483,
-  "rev_cagr_3y": 0.08636630543661483,
-  "rev_yoy_latest": 0.10463148176642556,
-  "oe_ps_cagr_2y": 0.09415808546607107
+  "rev_cagr_5y": 0.08767145600160142,
+  "rev_cagr_3y": 0.060629049247570954,
+  "rev_yoy_latest": 0.04944001614367877,
+  "oe_ps_cagr_2y": 0.6512332183729064
  },
- "g_blend": 0.09026219545134295,
- "share_cagr": -0.9899680919718528,
- "share_count_adj": 0.05,
+ "g_blend": 0.07415025262458619,
+ "share_cagr": 0.0012118457434311392,
+ "share_count_adj": -0.0012118457434311392,
  "used_tags": {
   "revenue": "SalesRevenueNet",
   "net_income": "ProfitLoss",
@@ -43,18 +43,23 @@
   "debt_current": "LongTermDebtCurrent",
   "debt_lt": "LongTermDebtNoncurrent",
   "ppe_net": "PropertyPlantAndEquipmentNet",
-  "equity": null,
+  "equity": "Equity",
   "shares_out_inst": "CommonStockSharesOutstanding"
  },
  "filer_annual_form": "20-F",
- "ads_ratio": null,
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-24), cover page: securities registered under Section 12(b) are 'Ordinary Shares, nominal value CHF 0.04 per share', trading symbol ALC, listed on the New York Stock Exchange and SIX Swiss Exchange \u2014 the NYSE security is the ordinary share itself, not an ADS",
+  "reason": "Alcon is a direct-listed foreign private issuer: one NYSE-traded ALC share is one ordinary share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
  "override_checks": {},
- "g_base": 0.14026219545134294,
- "moat_score": 5.0,
- "cap_years": 8.5,
+ "g_base": 0.07293840688115505,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
  "g_terminal": 0.025,
  "inputs": {
-  "moat": 5.0,
+  "moat": 7.0,
   "probs": [
    0.1,
    0.25,
@@ -86,77 +91,77 @@
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "g_start": 0.0203,
+   "g_start": -0.0471,
    "oe_mult": 0.75,
-   "iv_at_10": 65.54840711518331,
-   "iv_at_12": 51.79905157669896,
-   "iv_at_15": 39.41818985222898,
-   "irr": 0.10233111114522031
+   "iv_at_10": 20.144074071313916,
+   "iv_at_12": 16.264999986862435,
+   "iv_at_15": 12.721694709412485,
+   "irr": 0.046880975989603155
   },
   "bear": {
    "prob": 0.25,
-   "g_start": 0.0903,
+   "g_start": 0.0229,
    "oe_mult": 0.9,
-   "iv_at_10": 108.52275253770141,
-   "iv_at_12": 84.60915929269221,
-   "iv_at_15": 63.227876912082074,
-   "irr": 0.1493503261827286
+   "iv_at_10": 35.25742882299989,
+   "iv_at_12": 27.85171158413523,
+   "iv_at_15": 21.184017201302712,
+   "irr": 0.06635165233861812
   },
   "base": {
    "prob": 0.3,
-   "g_start": 0.1403,
+   "g_start": 0.0729,
    "oe_mult": 1.0,
-   "iv_at_10": 151.06878804430755,
-   "iv_at_12": 116.7738756844384,
-   "iv_at_15": 86.24444296488764,
-   "irr": 0.18912370348080565
+   "iv_at_10": 51.27096672476234,
+   "iv_at_12": 39.93468080294596,
+   "iv_at_15": 29.81626860916144,
+   "irr": 0.08583942466281547
   },
   "bull": {
    "prob": 0.25,
-   "g_start": 0.1903,
+   "g_start": 0.1229,
    "oe_mult": 1.1,
-   "iv_at_10": 207.37301265645505,
-   "iv_at_12": 159.05516535617016,
-   "iv_at_15": 116.20983521295285,
-   "irr": 0.23385754267175718
+   "iv_at_10": 73.69741934057724,
+   "iv_at_12": 56.67194750668715,
+   "iv_at_15": 41.5900010744714,
+   "irr": 0.11034345677452906
   },
   "super_bull": {
    "prob": 0.1,
-   "g_start": 0.2603,
+   "g_start": 0.1929,
    "oe_mult": 1.25,
-   "iv_at_10": 319.12870816631124,
-   "iv_at_12": 242.4172213178523,
-   "iv_at_15": 174.71917118501096,
-   "irr": 0.3051786986606616
+   "iv_at_10": 121.29904269912473,
+   "iv_at_12": 91.80833751061809,
+   "iv_at_15": 65.91951911680528,
+   "irr": 0.15326928718901317
   }
  },
  "weighted": {
-  "iv_at_10": 162.76228923998082,
-  "iv_at_12": 125.36987115700225,
-  "iv_at_15": 92.14649702444902,
-  "irr": 0.19800891410146504
+  "iv_at_10": 56.76431373536685,
+  "iv_at_12": 43.918652763337434,
+  "iv_at_15": 32.50250653431374,
+  "irr": 0.09222156612336418
  },
- "implied_irr_weighted": 0.19800891410146504,
- "implied_irr_base": 0.18912370348080565,
- "tier_by_numbers": "B",
- "upside_at_15": 0.44930004756918884,
- "upside_at_12": 0.9718444661371854,
- "iv_at_15": 92.14649702444902,
- "iv_at_12": 125.36987115700225,
+ "implied_irr_weighted": 0.09222156612336418,
+ "implied_irr_base": 0.08583942466281547,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.4911146620586545,
+ "upside_at_12": -0.31237431089185164,
+ "iv_at_15": 32.50250653431374,
+ "iv_at_12": 43.918652763337434,
  "diagnostics": {
-  "oe_yield": 0.10281899046611484,
-  "tv_share_at_15": 0.21115515517479955,
-  "scenario_spread_iv15": 4.4324503951094325,
-  "net_debt_to_normalized_oe": -1.2389336016096577,
-  "months_since_fy_end": 189.42181340341654,
+  "oe_yield": 0.04538112513404663,
+  "tv_share_at_15": 0.20586070439257284,
+  "scenario_spread_iv15": 5.181661769326453,
+  "net_debt_to_normalized_oe": 2.231907014810479,
+  "months_since_fy_end": 9.42838370565046,
   "irr_capped": false
  },
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 189 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "BUYBACK_TAILWIND: share count shrinking 99.0%/yr \u2014 already credited via the growth adjustment",
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
-  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-24), cover page: securities registered under Section 12(b) are 'Ordinary Shares, nominal value CHF 0.04 per share', trading symbol ALC, listed on the New York Stock Exchange and SIX Swiss Exchange \u2014 the NYSE security is the ordinary share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
  ],
- "content_hash": "5f735331926669e461ccba2f01239a0d95514b4ee64efdb1d0ff142cfa77a8f0"
+ "content_hash": "fbc03c95c789a7cdc0c9c0a327560a2dc7bec5d3c2cb2b3fb42056b9a908ce97"
 }

@@ -1,0 +1,73 @@
+{
+ "ticker": "CRCL",
+ "name": "Circle Internet Group, Inc.",
+ "sector": "Finance",
+ "price": 86.3,
+ "market_cap_b": 13.7,
+ "engine_version": 5,
+ "base_oe_per_share": 2.0063670971112937,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "USDC's compliance stack (GENIUS Act framework, OCC national trust charter, NYDFS charter, audited reserves) and institutional distribution are real advantages, but the float is a commodity, Tether's USDT is ~2.5x USDC and keeps ~100% of its reserve income while Circle keeps ~37% after distribution (Coinbase 50/50 share through Aug 2029), Tether's GENIUS-compliant USAT attacks the compliance home field, and revenue is the Fed-set Treasury yield on float with no pricing power.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 53.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share -0.23 vs 3-yr median 0.46 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 11.12,
+   "irr": 0.0406
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 17.12,
+   "irr": 0.0507
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 24.36,
+   "irr": 0.0632
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 37.09,
+   "irr": 0.0842
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 57.97,
+   "irr": 0.1148
+  }
+ },
+ "iv_at_15": 25.06,
+ "iv_at_12": 33.96,
+ "implied_irr": 0.0649,
+ "implied_irr_base_case": 0.0632,
+ "upside_at_15_pct": -71.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real regulatory moat (5/10) on a commodity float \u2014 TTM OE of $2.01/share is a 2.3% yield at $86.30 and even the super-bull case returns only 11.5%; clears 15% only at ~$25.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Regulatory moat: GENIUS Act, OCC national trust charter, NYDFS charter, audited reserves",
+  "USDC network/distribution: $73.3B circulation, ~27% stablecoin share, Coinbase + institutional partners",
+  "Trust lead with regulated institutions that cannot use non-compliant tokens"
+ ],
+ "moat_against": [
+  "Tether USDT ~$184B (~60% share, ~2.5x USDC) keeps ~100% of reserve income vs Circle ~37%",
+  "Coinbase 50/50 revenue share through Aug 2029 hands core economics to a partner",
+  "Tether USAT (Jan 2026, GENIUS-compliant) plus PayPal/bank coins attack the compliance edge",
+  "No pricing power: ~95% of revenue is Fed-set reserve yield; GENIUS bars holder interest"
+ ]
+}

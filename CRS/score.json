@@ -1,0 +1,68 @@
+{
+ "ticker": "CRS",
+ "name": "Carpenter Technology Corporation",
+ "sector": "Materials / Specialty Alloys \u2014 Aerospace & Defense",
+ "price": 380.56,
+ "market_cap_b": 19.18,
+ "engine_version": 5,
+ "base_oe_per_share": 5.193293885601578,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Moderate moat (6/10): real qualification and certification barriers in aerospace alloys \u2014 alloys are certified per engine/airframe program and re-qualifying a supplier takes years \u2014 plus scarce high-purity melt capacity and proven pricing power (record SAO margin, long run of margin expansion). But it is not wide: owner's earnings were negative in FY2022 and FY2023, so returns were not held through the cycle; the business is capital-intensive, aerospace/defense-concentrated, and exposed to raw-material prices and OEM build rates.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "LOW_OE_YIELD: base OE yield 1.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 28.05,
+   "irr": 0.0338
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 45.96,
+   "irr": 0.041
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 63.77,
+   "irr": 0.0484
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 87.52,
+   "irr": 0.0582
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 135.21,
+   "irr": 0.0769
+  }
+ },
+ "iv_at_15": 68.83,
+ "iv_at_12": 93.72,
+ "implied_irr": 0.0508,
+ "implied_irr_base_case": 0.0484,
+ "upside_at_15_pct": -81.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Good cyclical alloy franchise, moat 6/10, at a scarcity price \u2014 weighted IRR 5.08% and weighted IV@15% $68.83 vs price $380.56; every scenario, including super bull, is Tier D, and it clears 15% only at about $68.83.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Qualification/certification barriers \u2014 alloys certified per jet engine and airframe program, re-qualification takes years",
+  "Proven pricing power \u2014 record SAO operating margin and a long run of consecutive margin expansion",
+  "Scarce high-purity melt capacity, being added to by the brownfield expansion",
+  "Long OEM relationships in aerospace and defense with multi-year order visibility"
+ ],
+ "moat_against": [
+  "Cyclical \u2014 conservative owner's earnings were negative in FY2022 and FY2023",
+  "Aerospace and defense concentration; tied to OEM build rates and defense budgets",
+  "Capital-intensive \u2014 FY2026 capex $242.7M vs D&A $147.1M, plus brownfield execution risk",
+  "Raw-material (nickel, titanium, cobalt) price volatility and capable rivals such as ATI"
+ ]
+}

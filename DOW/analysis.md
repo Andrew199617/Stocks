@@ -1,0 +1,49 @@
+# DOW — Dow Inc.
+v5 run, 2026-10-15. Price $29.66 (nasdaq_quote_api), market cap $21.106B — in scope under $40B.
+
+All figures below are copied from dcf_numbers.json, financials_history.csv, or ttm.py output — none are recomputed.
+
+## What it is
+One of the world's largest commodity and semi-specialty chemical producers, in its current form since the 2019 DowDuPont separation. Three segments: Packaging & Specialty Plastics (polyethylene/polyolefins, the largest), Industrial Intermediates & Infrastructure (polyurethanes, industrial chemicals), and Performance Materials & Coatings (silicones, acrylics, coatings). Vertically integrated megasites (Freeport, Texas; Terneuzen, Netherlands) crack low-cost U.S. Gulf Coast ethane/propane into ethylene and downstream resins. This is a pure play on the chemical cycle: feedstock costs, global capacity additions (notably China), and end-market demand in packaging, construction, and autos.
+
+## Owner's earnings
+Conservative definition (OCF − total capex − SBC), from financials_history.csv:
+
+| FY | Revenue | Net income | OCF | Capex | SBC | OE conservative | OE maintenance |
+|---|---|---|---|---|---|---|---|
+| 2023 | $44,622M | $660M | $5,196M | $2,356M | $212M | $2,628M | $1,505M |
+| 2024 | $42,964M | $1,201M | $2,914M | $2,940M | $159M | −$185M | $1,758M |
+| 2025 | $39,968M | −$2,444M | $1,032M | $2,479M | $154M | −$1,601M | −$3,039M |
+
+- **Base used = the engine's normalized base: median of last 3 FY OE/share = −$0.262/share** (base_source: median_of_last_3_fy_oe_per_share). The latest FY alone is worse: −$2.250/share, OE total −$1,601M.
+- OE positive in 3 of the last 5 fiscal years (oe_positive_years_of_last_5: 3/5) — the two negative years are the two most recent, and the trend is deteriorating, not recovering, on the annual filing basis: OCF fell from $5,196M (2023) to $1,032M (2025) while capex stayed near D&A ($2,479M capex vs $2,834M D&A in FY2025), so this is not a growth-capex story — at trough volumes the plant base consumes essentially all operating cash flow.
+- Revenue trajectory confirms a downcycle, not a share story: rev CAGR 5y +0.73%, rev CAGR 3y −11.11%, latest FY revenue YoY −6.97%; blended growth g_blend −6.97%. Share count is roughly flat (share CAGR −0.65%/yr; 711.6M diluted shares latest).
+- Balance sheet (raw filed figures, FY2025 row of financials_history.csv): long-term debt $22,250M against cash $3,816M. The engine's net_debt_latest is null (no current-debt tag), so no net-debt figure is quoted here — but the gross long-term debt load against a negative-OE trough is itself the point: leverage is being carried through the trough, and Dow halved its quarterly dividend in 2025 to defend its investment-grade rating.
+- 2026 interim color (research, not filing-engine data): Q2 2026 showed a price-driven snapback — net sales $12.09B, up 20% YoY on +20% local price with volume −1%, GAAP net income $802M, operating EBIT $1.6B — helped by global supply tightness, and H1 2026 absorbed large "Transform to Outperform" restructuring charges (a ~4,500-role reduction program targeting at least $2B of near-term Operating EBITDA improvement). That is a cyclical price spike plus self-help, not yet a restored owner's-earnings run rate, and it does not change the annual normalized base this screen is built on.
+
+## Moat: 4/10 — weak-to-moderate
+Justification: real scale and integration advantages that lower Dow's position on the cost curve, but the products are commodities sold on price, returns are set by the global capacity cycle and Chinese additions, and the feedstock edge is a spread that can narrow — not a durable pricing-power moat.
+- FOR: Vertical integration on megasites that cannot be replicated quickly (permitting alone takes years) — every internal conversion step avoids an intermediary margin and freight; U.S. Gulf Coast ethane/propane feedstock advantage vs naphtha-based international peers (higher ethylene yields, costs less tied to crude); scale as a top-tier global producer (with LyondellBasell and ExxonMobil Chemical) and supply reliability for large customers; specialty pockets with more stickiness (silicones, polyolefin elastomers, coatings) inside Performance Materials & Coatings.
+- AGAINST: Core products are undifferentiated commodities — customers buy on price, switching costs are low outside specialty grades; no pricing power through the cycle: FY2025 polyethylene prices fell faster than feedstock costs and operating margins compressed to trough levels; global overcapacity, especially Chinese capacity additions, sets the marginal price; the ethane advantage is a commodity spread that narrows when oil/gas ratios move; heavy sustaining capex (capex ≈ D&A) and recurring restructuring/impairment charges ($1,856M of restructuring, goodwill impairment and asset-related charges in FY2025) are structural features of the asset base, not one-offs; legacy liabilities keep surfacing (Sadara guarantee, DuPont/Corteva indemnifications, litigation).
+- A 4 gives CAP = 7.2 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 7.2 years, 15-year projection. (Moot here — with a negative base the engine emits no scenario DCF.)
+
+## DCF — v5 final run (2026-10-15)
+Final engine pass: `--moat 4 --probs 0.10,0.25,0.30,0.25,0.10`, default offsets (−12/−5/0/+5/+12pp) and multipliers (0.75/0.90/1.00/1.10/1.25). Because the normalized base OE/share is negative (−$0.262), the engine emits **no scenario table, no IV, and no IRR** — an owner's-earnings DCF cannot be run on a negative base, and no scenario growth start is meaningful against it. The sanity check against recent prints is therefore about the base, not the starts: FY2025 revenue −6.97% YoY and negative OE in both FY2024 (−$185M) and FY2025 (−$1,601M) say the trough is the current print, not a stale artifact; the Q2 2026 price-led rebound is noted above but is one quarter, price- not volume-driven, and not a filing-derived TTM base (see STALE_FY below).
+
+- **Tier by numbers: F** (no positive normalized conservative owner's earnings)
+- Weighted IV@15% / weighted IRR: not computable on a negative base.
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (latest FY ended 2025-12-31, ~9 months ago): `ttm.py DOW` was run and exited non-zero with: "ttm.py: cannot compute TTM for DOW (CIK 1751788): sbc: no post-FY YTD fact (no 10-Q since the 2025-12-31 fiscal year end)". No TTM base is available from the code path, so the engine's median base is used, with the reason stated here. The verdict does not hinge on it: the latest FY base is also negative (−$2.250/share), so a TTM pin would have to overturn both the median and the latest year to change the tier, and the only post-FY evidence (Q2 2026) is a price-driven quarter with volume down.
+- **NI_OCF_DIVERGENCE** (2023, 2025): resolved both years. **2025:** net income −$2,444M vs OCF $1,032M — the gap is non-cash charges inside net income: $1,856M of restructuring, goodwill impairment and asset-related charges (FY2025 cash-flow statement, including the Polyurethanes & Construction Chemicals goodwill impairment) plus D&A of $2,834M, partly offset by working-capital drag (accounts payable −$999M in FY2025 per the filed cash-flow statement). **2023:** net income $660M vs OCF $5,196M — net income was depressed by ~$1,605M of significant items (2023 Restructuring Program charges, non-cash pension settlement charges, Argentine peso devaluation losses, legacy matters, partly offset by the Nova legal gain), while OCF carried D&A of $2,611M and a working-capital release (accounts receivable +$1,161M). In both years the divergence sits in net income, not in OCF — the conservative OE series used for the base is the clean one, and it is still negative on the normalized basis.
+
+## My thoughts / overlay
+- This is a trough cyclical, and the screen is doing what it is designed to do: on normalized filing numbers Dow destroys owner's earnings at current operating rates (OCF $1,032M does not cover $2,479M capex + $154M SBC in FY2025). A through-cycle investor would argue mid-cycle OE is far higher — FY2021-22 conservative OE was $5,232M and $5,441M — but underwriting that requires calling the cycle turn and the Chinese capacity overhang, which is exactly the speculation this standardized screen refuses to price.
+- The self-help is real but unproven in OE terms: "Transform to Outperform" (~4,500 roles, ≥$2B targeted Operating EBITDA improvement) plus the 2025 restructuring could lift the OE run rate materially if volumes merely stabilize — and Q2 2026 showed pricing can snap back hard when supply tightens. Those are reasons to re-run this name after FY2026 filings, not reasons to override a negative normalized base today.
+- Method range: there is no defensible positive-base variant inside this run's code outputs — median base −$0.262/share, latest FY −$2.250/share, TTM unavailable via ttm.py. The verdict is F under every base the engine can produce.
+- Hurdle-clearing price: not computable — no positive OE base means no IV@15% at any scenario, so no price "clears 15%" on this screen. That is a statement about the screen, not a claim the equity is worthless: the value case here is asset/cycle value, which this method deliberately does not underwrite.
+
+## Final verdict
+- **Final tier: F** (tier by numbers F; no override)
+- Confidence: **Low** (high confidence in the filing arithmetic and the negative normalized base; low confidence that a trough-year screen captures through-cycle value — the F is a screen result, not a cycle call)
+- One-liner: Dow Inc. — integrated commodity-chemical giant, moat 4/10, but normalized conservative owner's earnings are negative (−$0.26/share median base; FY2025 OE −$1,601M as OCF no longer covers capex through the downcycle) — Tier F on this screen; no hurdle-clearing price is computable on a negative OE base.

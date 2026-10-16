@@ -1,0 +1,137 @@
+{
+ "ticker": "CNP",
+ "cik": 1130310,
+ "entity": "CENTERPOINT ENERGY INC",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 2486000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 410000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 282000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2358000000
+  },
+  "capex": {
+   "fy": 4870000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 1038000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 1198000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 5030000000
+  },
+  "sbc": {
+   "fy": 48000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 11835616.438356165,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 11835616.438356165,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 48000000.0
+  },
+  "shares_diluted": {
+   "fy": 655650000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 653319000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 659393000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2358000000,
+ "ttm_capex": 5030000000,
+ "ttm_sbc": 48000000.0,
+ "ttm_shares_diluted": 659393000,
+ "ttm_oe_total": -2720000000.0,
+ "ttm_oe_per_share": -4.125005876616828,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 48000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-19), Note 8(a) Stock-Based Incentive Compensation Plans, table summarizing expenses related to LTIPs: 'LTIP compensation expense' $48 million for FY2025, with $34 million for FY2024 and $65 million for FY2023 in the same table (in millions), stated as included in Operation and maintenance expense, net of any amounts capitalized. The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no values for CNP in EDGAR companyfacts for any period, and the 10-K Consolidated Statements of Cash Flows present no separate stock-compensation line \u2014 the Note 8(a) table is the filer's own reported stock-based compensation expense.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 48000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-03-31"
+     ],
+     "amount": 11835616.438356165,
+     "days": 90,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-03-31"
+     ],
+     "amount": 11835616.438356165,
+     "days": 90,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

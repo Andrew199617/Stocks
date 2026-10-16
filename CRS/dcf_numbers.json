@@ -1,0 +1,160 @@
+{
+ "ticker": "CRS",
+ "name": "CARPENTER TECHNOLOGY CORPORATION",
+ "cik": 17843,
+ "engine_version": 5,
+ "as_of": "2026-10-16",
+ "price": 380.56,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 50400000,
+ "market_cap_est": 19180224000.0,
+ "net_debt_latest": 297400000,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": 0.16188449609332656,
+ "rev_cagr_3y": 0.06998038651252436,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": 335900000,
+ "base_oe_per_share": 5.193293885601578,
+ "base_oe_latest_per_share": 6.6646825396825395,
+ "base_oe_normalized_per_share": 5.193293885601578,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.16188449609332656,
+  "rev_cagr_3y": 0.06998038651252436,
+  "rev_yoy_latest": 0.08588509262799349,
+  "oe_ps_cagr_2y": 0.4546901672067998
+ },
+ "g_blend": 0.12388479436066002,
+ "share_cagr": 0.008063017401310324,
+ "share_count_adj": -0.008063017401310324,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquireProductiveAssets",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.1158217769593497,
+ "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0042,
+   "oe_mult": 0.75,
+   "iv_at_10": 45.954414755223254,
+   "iv_at_12": 36.5504113770169,
+   "iv_at_15": 28.049572715820275,
+   "irr": 0.033771051995194534
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0658,
+   "oe_mult": 0.9,
+   "iv_at_10": 78.36224913503833,
+   "iv_at_12": 61.26485275134433,
+   "iv_at_15": 45.962915474926966,
+   "irr": 0.04100009835517
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.1158,
+   "oe_mult": 1.0,
+   "iv_at_10": 111.56001149404601,
+   "iv_at_12": 86.27061791408157,
+   "iv_at_15": 63.774057017193144,
+   "irr": 0.04842199609346565
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1658,
+   "oe_mult": 1.1,
+   "iv_at_10": 156.73634540462342,
+   "iv_at_12": 120.01247846189816,
+   "iv_at_15": 87.51880390015509,
+   "irr": 0.05822936273772694
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2358,
+   "oe_mult": 1.25,
+   "iv_at_10": 249.37681803171986,
+   "iv_at_12": 188.62114590449093,
+   "iv_at_15": 135.21248496486388,
+   "irr": 0.07686454313730734
+  }
+ },
+ "weighted": {
+  "iv_at_10": 121.77577536182355,
+  "iv_at_12": 93.71767390568587,
+  "iv_at_15": 68.82885271699688,
+  "irr": 0.0508333986540902
+ },
+ "implied_irr_weighted": 0.0508333986540902,
+ "implied_irr_base": 0.04842199609346565,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.819137973730826,
+ "upside_at_12": -0.7537374555768187,
+ "iv_at_15": 68.82885271699688,
+ "iv_at_12": 93.71767390568587,
+ "diagnostics": {
+  "oe_yield": 0.013646452295568576,
+  "tv_share_at_15": 0.21297667778978185,
+  "scenario_spread_iv15": 4.820482876325689,
+  "net_debt_to_normalized_oe": 1.136233338758975,
+  "months_since_fy_end": 3.54796320630749,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "LOW_OE_YIELD: base OE yield 1.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "9b87633732d3ec42f6eed1c8176dda014aac520276eaf08c6f4ed3d2193580cd"
+}

@@ -1,0 +1,73 @@
+{
+ "ticker": "BBY",
+ "name": "Best Buy Co., Inc.",
+ "sector": "Consumer Discretionary \u2014 Specialty Retail (Consumer Electronics)",
+ "price": 94.18,
+ "market_cap_b": 19.98,
+ "engine_version": 5,
+ "base_oe_per_share": 7.685054219707685,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Durable #1 US specialty consumer-electronics position held for over a decade, with a Geek Squad service/installation network and ~1,000-store showroom/pickup footprint nobody would fund building today, plus growing ads and marketplace adjuncts. But it sells identical manufacturer-branded SKUs against Amazon (which passed it to ~31% of US CE spending in 2025 vs BBY ~27%), Walmart and Costco with full price transparency and no pricing power; manufacturers set product economics; the category is replacement-driven with negative 3y/5y revenue CAGRs; and operating margins are structurally capped around 4%. Real position, no pricing power \u2014 4/10.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.0%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 28.99,
+   "irr": 0.0596
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 44.07,
+   "irr": 0.0813
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.48,
+   "irr": 0.1035
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 79.27,
+   "irr": 0.1307
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 117.27,
+   "irr": 0.1779
+  }
+ },
+ "iv_at_15": 58.27,
+ "iv_at_12": 76.56,
+ "implied_irr": 0.1022,
+ "implied_irr_base_case": 0.1035,
+ "upside_at_15_pct": -38.1,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Durable #1 specialty CE retailer, moat 4/10, quality cash generation \u2014 but at $94.18 it prices in a recovery the numbers don't pay for: weighted IRR 10.2%, IV@15% $58.27; clears 15% only at ~$58 or below (method range D\u2013C across median/TTM bases).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Geek Squad services/installation and in-store expertise online rivals cannot match",
+  "~1,068-store showroom + same-day pickup network, prohibitively expensive to replicate",
+  "Vendor partnerships and store-within-store concepts with exclusive launches/demos",
+  "Membership program driving repeat purchase",
+  "High-margin adjuncts growing: Best Buy Ads (~10% guided growth) and Marketplace (FY27 GMV forecast raised to $1.3B)"
+ ],
+ "moat_against": [
+  "Identical SKUs sold by Amazon/Walmart/Costco \u2014 price transparency, price-matching, no pricing power",
+  "Amazon took #1 US consumer-electronics spending share in 2025 (~31% vs ~27%)",
+  "Manufacturers set product economics and can sell direct",
+  "Replacement-driven category: revenue CAGR \u22123.42% (3y) / \u22122.47% (5y)",
+  "Structurally thin ~4% operating margin leaves no downturn buffer; appliances contested by Home Depot/Lowe's"
+ ]
+}

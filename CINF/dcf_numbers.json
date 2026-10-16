@@ -1,0 +1,194 @@
+{
+ "ticker": "CINF",
+ "name": "CINCINNATI FINANCIAL CORPORATION",
+ "cik": 20286,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 166.67,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 157700000,
+ "market_cap_est": 26283858999.999996,
+ "net_debt_latest": 790000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.10883138720212981,
+ "rev_cagr_3y": 0.24381796279821777,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 3046000000.0,
+ "base_oe_per_share": 21.45873320537428,
+ "base_oe_latest_per_share": 19.315155358275206,
+ "base_oe_normalized_per_share": 16.35614702154626,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.10883138720212981,
+  "rev_cagr_3y": 0.24381796279821777,
+  "rev_yoy_latest": 0.11413954308900065,
+  "oe_ps_cagr_2y": 0.2392048223249108
+ },
+ "g_blend": 0.17667218270695573,
+ "share_cagr": -0.0023138087725524947,
+ "share_count_adj": 0.0023138087725524947,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAmortizationAndAccretionNet",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": null,
+  "liab_current": null,
+  "debt_current": null,
+  "debt_lt": "LongTermDebt",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "sbc": {
+   "value": 46000000.0,
+   "last_filed_value": 33000000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.17898599147950822,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.18,
+   -0.15,
+   -0.11,
+   -0.08,
+   -0.05
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 21.45873320537428,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 46000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Note 17 \u2014 Share-Based Associate Compensation Plans: share-based compensation cost after tax was $37 million (2025), $37 million (2024) and $32 million (2023), with related income tax benefit of $9 million, $9 million and $8 million respectively \u2014 pre-tax cost $46 million (2025), $46 million (2024) and $40 million (2023). The FY2024 10-K Note 17 corroborates the 2023 figure (after tax $32 million + $8 million benefit).",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags (ShareBasedCompensation last filed FY2021, $33M). The filer's own Note 17 pre-tax series is $40M/$46M/$46M for 2023/2024/2025. The engine applies a single override value to every missing period; $46M is the FY2024 and FY2025 filed figure, and FY2024 is the median year of the 3-yr normalized base, so the base is built from the exact filed figure, with at most a $6M overstatement in FY2023 (conservative direction, ~$0.04/share).",
+   "periods_filled": [
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 33000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.001,
+   "oe_mult": 0.75,
+   "iv_at_10": 194.84975492607887,
+   "iv_at_12": 154.66832712994164,
+   "iv_at_15": 118.39863598700218,
+   "irr": 0.11299684555785008
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.029,
+   "oe_mult": 0.9,
+   "iv_at_10": 268.8673942241484,
+   "iv_at_12": 212.0916932032355,
+   "iv_at_15": 161.01568134805908,
+   "irr": 0.14577662654468793
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.069,
+   "oe_mult": 1.0,
+   "iv_at_10": 359.1946128792858,
+   "iv_at_12": 281.14196949338213,
+   "iv_at_15": 211.21309538047257,
+   "irr": 0.1817223055600946
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.099,
+   "oe_mult": 1.1,
+   "iv_at_10": 452.9831800713906,
+   "iv_at_12": 352.6159963615456,
+   "iv_at_15": 262.94897515310004,
+   "irr": 0.2155826919349969
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.129,
+   "oe_mult": 1.25,
+   "iv_at_10": 589.3376699465373,
+   "iv_at_12": 456.3979098865639,
+   "iv_at_15": 337.94298360909653,
+   "irr": 0.2605022402029088
+  }
+ },
+ "weighted": {
+  "iv_at_10": 366.6397699249321,
+  "iv_at_12": 286.62613694086053,
+  "iv_at_15": 214.98925469904142,
+  "irr": 0.18415215091710635
+ },
+ "implied_irr_weighted": 0.18415215091710635,
+ "implied_irr_base": 0.1817223055600946,
+ "tier_by_numbers": "B",
+ "upside_at_15": 0.2899097299996487,
+ "upside_at_12": 0.7197224271966194,
+ "iv_at_15": 214.98925469904142,
+ "iv_at_12": 286.62613694086053,
+ "diagnostics": {
+  "oe_yield": 0.12874982423576098,
+  "tv_share_at_15": 0.1907660154941891,
+  "scenario_spread_iv15": 2.8542810547766444,
+  "net_debt_to_normalized_oe": 0.23344862360656257,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, Note 17 \u2014 Share-Based Associate Compensation Plans: share-based compensation cost after tax was $37 million (2025), $37 million (2024) and $32 million (2023), with related income tax benefit of $9 million, $9 million and $8 million respectively \u2014 pre-tax cost $46 million (2025), $46 million (2024) and $40 million (2023). The FY2024 10-K Note 17 corroborates the 2023 figure (after tax $32 million + $8 million benefit).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 16.64765525982256,
+  "base_oe_per_share_final": 21.45873320537428,
+  "weighted_irr_zero_fill": 0.1488898719735129,
+  "weighted_irr_final": 0.18415215091710635,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "4847eae6fc7889d728991f423192ac6d36dd2093cc313f2c17b134d548922049"
+}

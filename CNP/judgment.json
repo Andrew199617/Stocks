@@ -1,0 +1,39 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No true pricing power \u2014 prices and ROE are set by state regulators (PUCT etc.), not the company",
+  "Political / regulatory backlash risk is live: Hurricane Beryl (2024) restoration cost recovery and reliability scrutiny in Texas",
+  "Texas / Houston concentration \u2014 storm, hurricane and ERCOT-system exposure in one metro",
+  "High leverage (net debt $22,942M per dcf_numbers.json) plus a $66.7B capex plan needs continuous debt and equity funding \u2014 dilution / rate pressure",
+  "Gas LDC long-term transition risk and rate-case lag if regulators disallow or defer recovery"
+ ],
+ "moat_for": [
+  "Exclusive regulated electric T&D franchise in the Houston metro \u2014 no competing wires, customers cannot switch delivery providers",
+  "Regulated natural-gas LDC monopolies across multiple states \u2014 essential, non-discretionary service",
+  "Allowed return on rate base: earnings compound with the $66.7B 2026-2035 capital plan as it enters rate base",
+  "Large-load / population growth in the Houston service territory supports durable volume and rate-base growth",
+  "Cost recovery riders / trackers shorten the lag between capex and recovery in key jurisdictions"
+ ],
+ "moat_justification": "Durable regulated monopoly franchises \u2014 exclusive electric transmission & distribution in the Houston metro and natural-gas LDCs across multiple states, essential service with no customer switching option and allowed returns on a growing rate base \u2014 but pricing power is capped by state commissions (PUCT and others), returns are set politically, and storm/regulatory backlash (Hurricane Beryl restoration fight), Texas concentration, high leverage and a $66.7B funding-hungry capex plan erode the franchise; in line with scored regulated-utility peers at 5-6/10.",
+ "moat_score": 6,
+ "name": "CenterPoint Energy, Inc.",
+ "one_liner": "Durable regulated Houston electric + multi-state gas monopoly, moat 6/10, but conservative owner's earnings are negative in all of the last 5 years and on TTM (FY2025 capex $4,870M vs OCF $2,486M; normalized base -$3.71/share, TTM -$4.13/share) \u2014 Tier F on this screen; guided ~8% 2026 non-GAAP EPS growth and 7-9% long-term EPS growth do not clear 15%, and no hurdle-clearing price is computable on a negative OE base.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed SBC value for CNP in any period under any tag it reads, so there is no filed anchor to band against and make_score flags any value as out-of-band. The value is not an estimate \u2014 it is the FY2025 LTIP compensation expense printed in Note 8(a) of the FY2025 10-K, corroborated by the same table's FY2023/FY2024 figures ($65M / $34M).",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 (in fact all years in the filed history under the engine's tags). The filer's own reported FY2025 LTIP (stock-based) compensation expense fills the gap; the engine applies this single value to every missing period. The true per-year filing series is $65M (FY2023) / $34M (FY2024) / $48M (FY2025); the median year of the last-3 base is FY2025 itself, so the normalized base is unchanged versus the true series, and any difference on the other years is at most $17M (~$0.03/share) \u2014 immaterial against FY2025 OCF of $2,486M and capex of $4,870M. The note figure is net of amounts capitalized, so if anything it understates total stock-comp cost \u2014 a floor, not an overstatement.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-19), Note 8(a) Stock-Based Incentive Compensation Plans, table summarizing expenses related to LTIPs: 'LTIP compensation expense' $48 million for FY2025, with $34 million for FY2024 and $65 million for FY2023 in the same table (in millions), stated as included in Operation and maintenance expense, net of any amounts capitalized. The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no values for CNP in EDGAR companyfacts for any period, and the 10-K Consolidated Statements of Cash Flows present no separate stock-compensation line \u2014 the Note 8(a) table is the filer's own reported stock-based compensation expense.",
+  "value": 48000000
+ },
+ "sector": "Utilities",
+ "tier_override": null,
+ "tier_override_reason": null
+}

@@ -1,0 +1,72 @@
+{
+ "ticker": "DGX",
+ "name": "Quest Diagnostics Inc",
+ "sector": "Healthcare \u2014 Diagnostic Laboratories",
+ "price": 233.43,
+ "market_cap_b": 26.38,
+ "engine_version": 5,
+ "base_oe_per_share": 11.258928571428571,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "National scale and cost advantage in a Labcorp duopoly, embedded health-system relationships and an advanced-test menu \u2014 but payers/CMS set the price, routine testing is commoditized, and Labcorp bids for every contract. Narrow moat, weak pricing power.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 11.25 vs 3-yr median 7.27 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 4.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 54.69,
+   "irr": 0.0522
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 81.97,
+   "irr": 0.0688
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 113.77,
+   "irr": 0.088
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 149.49,
+   "irr": 0.1082
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 202.8,
+   "irr": 0.1355
+  }
+ },
+ "iv_at_15": 113.01,
+ "iv_at_12": 151.23,
+ "implied_irr": 0.0879,
+ "implied_irr_base_case": 0.088,
+ "upside_at_15_pct": -51.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Durable duopoly cash generator, moat 6/10 \u2014 but priced past its super-bull case: weighted IRR 8.8%, IV@15% $113 vs $233 price; it clears 15% only at $113 or below.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "National scale \u2014 one of two national labs, ~2,400 patient service centers, dense logistics network",
+  "Payer and health-plan access built over decades steers volume",
+  "Health-system embedding \u2014 Co-Lab partnerships and the Corewell joint venture raise switching costs",
+  "Advanced diagnostics breadth (Haystack MRD, AD-Detect, esoteric testing)",
+  "Automation / Invigorate program targeting ~3% annual productivity gains"
+ ],
+ "moat_against": [
+  "No pricing power: CMS/PAMA sets rates, cuts of up to 15% proposed from Jan 1, 2027",
+  "Routine testing commoditized; Labcorp is a near-equal rival for the same contracts",
+  "Low switching costs for physicians and patients on routine tests",
+  "Wage/labor inflation \u2014 Q2 2026 operating margin fell to 15.1% from 15.9%",
+  "Hospital customers can insource or re-bid outreach work at renewal"
+ ]
+}

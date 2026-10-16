@@ -1,0 +1,172 @@
+{
+ "ticker": "DTE",
+ "cik": 936340,
+ "entity": "DTE ENERGY CO",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 3409000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1020000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 906000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 3295000000
+  },
+  "capex": {
+   "fy": 4639000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 1143863013.69863,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 1143863013.69863,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 4639000000.0
+  },
+  "sbc": {
+   "fy": 60000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 14794520.547945205,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 14794520.547945205,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 60000000.0
+  },
+  "shares_diluted": {
+   "fy": 207000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 207000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 208000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 3295000000,
+ "ttm_capex": 4639000000.0,
+ "ttm_sbc": 60000000.0,
+ "ttm_shares_diluted": 208000000,
+ "ttm_oe_total": -1404000000.0,
+ "ttm_oe_per_share": -6.75,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 60000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Note 21 \u2014 Stock-Based Compensation: 'Stock-based compensation expense $60M for FY2025, $54M for FY2024, $48M for FY2023' (in millions). The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no companyfacts values after 2014 for this filer.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 60000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-03-31"
+     ],
+     "amount": 14794520.547945205,
+     "days": 90,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-03-31"
+     ],
+     "amount": 14794520.547945205,
+     "days": 90,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 4639000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000936340-26-000054), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures and acquisitions': $4,639M for FY2025, with $4,467M for FY2024 and $3,934M for FY2023 in the same statement. The line is tagged in the filing's inline XBRL only under the filer's extension tag dte:PaymentsToAcquireProductiveAssetsIncludingPaymentsToAcquireBusinessesNetOfCashAcquired, which EDGAR companyfacts does not carry, so no candidate tag the engine reads has any value in any year.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 4639000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-03-31"
+     ],
+     "amount": 1143863013.69863,
+     "days": 90,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-03-31"
+     ],
+     "amount": 1143863013.69863,
+     "days": 90,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,162 @@
+{
+ "ticker": "BRO",
+ "name": "BROWN & BROWN, INC.",
+ "cik": 79282,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 67.98,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 313000000,
+ "market_cap_est": 21277740000.0,
+ "net_debt_latest": 6534000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.17697801687179315,
+ "rev_cagr_3y": 0.182058100392545,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1289000000,
+ "base_oe_per_share": 4.04776119402985,
+ "base_oe_latest_per_share": 4.118210862619808,
+ "base_oe_normalized_per_share": 3.48943661971831,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.17697801687179315,
+  "rev_cagr_3y": 0.182058100392545,
+  "rev_yoy_latest": 0.22830385015608745,
+  "oe_ps_cagr_2y": 0.16531188350309
+ },
+ "g_blend": 0.17951805863216908,
+ "share_cagr": 0.03906547380814174,
+ "share_count_adj": -0.03906547380814174,
+ "used_tags": {
+  "revenue": "Revenues",
+  "net_income": "NetIncomeLoss",
+  "operating_income": null,
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "Depreciation",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.14045258482402734,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.1405,
+   -0.1005,
+   -0.0605,
+   -0.0205,
+   0.0295
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 4.04776119402985,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0,
+   "oe_mult": 0.75,
+   "iv_at_10": 36.92096879850766,
+   "iv_at_12": 29.30115372210647,
+   "iv_at_15": 22.423917427093354,
+   "irr": 0.06530848056013525
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.04,
+   "oe_mult": 0.9,
+   "iv_at_10": 53.35677670223817,
+   "iv_at_12": 41.997155036569524,
+   "iv_at_15": 31.78985756105155,
+   "irr": 0.0840213611800743
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.08,
+   "oe_mult": 1.0,
+   "iv_at_10": 71.23729719010265,
+   "iv_at_12": 55.644039350718856,
+   "iv_at_15": 41.6885044379899,
+   "irr": 0.10344419249992975
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.12,
+   "oe_mult": 1.1,
+   "iv_at_10": 93.93478792490242,
+   "iv_at_12": 72.85622967478352,
+   "iv_at_15": 54.05982524992621,
+   "irr": 0.12627980569381647
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.17,
+   "oe_mult": 1.25,
+   "iv_at_10": 133.42314113064634,
+   "iv_at_12": 102.64967554593878,
+   "iv_at_15": 75.31982772143917,
+   "irr": 0.16174857074243382
+  }
+ },
+ "weighted": {
+  "iv_at_10": 73.19959074559813,
+  "iv_at_12": 57.058687177947746,
+  "iv_at_15": 42.62984816455093,
+  "irr": 0.10546894706668952
+ },
+ "implied_irr_weighted": 0.10546894706668952,
+ "implied_irr_base": 0.10344419249992975,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.3729060287650643,
+ "upside_at_12": -0.16065479291044804,
+ "iv_at_15": 42.62984816455093,
+ "iv_at_12": 57.058687177947746,
+ "diagnostics": {
+  "oe_yield": 0.05954341268063916,
+  "tv_share_at_15": 0.1946693951084492,
+  "scenario_spread_iv15": 3.3589058631849555,
+  "net_debt_to_normalized_oe": 5.157270491108033,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 5.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "content_hash": "e579722541c1354a8291bf7c995601b88a6eaff37889cfefb1a061b4e7889ad8"
+}

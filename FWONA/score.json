@@ -1,0 +1,94 @@
+{
+ "ticker": "FWONA",
+ "name": "Liberty Media Corporation \u2014 Formula One Group",
+ "sector": "Media & Entertainment \u2014 live sports rights (Formula 1, MotoGP)",
+ "price": 83.32,
+ "market_cap_b": 21.5,
+ "engine_version": 5,
+ "base_oe_per_share": 2.9767441860465116,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Strong, contract-backed sports-rights moat: Formula 1 is the exclusive FIA world championship with all 11 teams locked into the ninth Concorde Agreement through 2030, a scarce 24-race calendar, long-dated race-promotion/media/sponsorship contracts and demonstrated pricing power (Las Vegas GP extended through 2037, Pirelli through 2028, MotoGP team/manufacturer agreements through 2031); MotoGP (acquired July 2025) adds the second global motorcycle championship under the same playbook. Capped at 7, not higher: the teams capture the majority of the economics through prize payments, so OE margins stay thin (OE yield 3.57% at the current price); growth depends on periodic media-rights and Concorde renegotiations; and the group carries real leverage (net debt 5.3x normalized OE) plus calendar/geopolitical and promoter-economics risk.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), EPS note, 'Series A, Series B and Series C Liberty Formula One Common Stock' WASO table: Diluted WASO 258M for 2025 (basic 250M + 8M potentially dilutive shares); same table shows 243M for 2024 and 240M for 2023. EDGAR companyfacts carries no undimensioned diluted share series after Q1 2016 for CIK 1560385 (the filer tags share counts with class/group dimensions the aggregated facts drop).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 14.82,
+   "irr": 0.0455
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 22.49,
+   "irr": 0.059
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 34.82,
+   "irr": 0.081
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 50.94,
+   "irr": 0.1069
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 76.97,
+   "irr": 0.1423
+  }
+ },
+ "iv_at_15": 34.23,
+ "iv_at_12": 46.48,
+ "implied_irr": 0.0807,
+ "implied_irr_base_case": 0.081,
+ "upside_at_15_pct": -58.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Elite sports-rights franchise, moat 7/10 \u2014 but at $83.32 the OE yield is only 3.57% (base OE $2.98/share, net debt 5.3x normalized OE), so even the super-bull case earns just 14.2% IRR; weighted IRR is 8.07% with IV@15% $34.23, and it clears the 15% hurdle only below ~$34.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive commercial rights to the FIA Formula 1 World Championship; all 11 teams signed the ninth Concorde Agreement (commercial + governance) through 2030",
+  "Scarce, global calendar with long-dated contracted revenue: race promotion fees, media rights and sponsorship (Las Vegas GP extended through 2037; Pirelli through 2028)",
+  "Proven pricing power \u2014 media rights, hosting fees and sponsorship have compounded through successive renewals; U.S. audience growth still scaling",
+  "Second championship under the same model: MotoGP (closed July 3, 2025), with all manufacturers/teams re-signed through 2031",
+  "Asset-light rights model: promoters and teams fund the venues and the cars; Liberty funds neither"
+ ],
+ "moat_against": [
+  "Teams take the majority of the prize fund \u2014 the rights holder's OE margin is structurally thin (base OE $2.98/share on $4,482M FY2025 revenue)",
+  "Economics reset at each Concorde / media-rights cycle; teams and manufacturers hold real bargaining power (next reset into 2031)",
+  "Leverage: net debt $4,045M is 5.3x normalized OE (engine diagnostics), including MotoGP acquisition debt \u2014 levered OE can shrink fast in a downturn",
+  "Calendar and geopolitical exposure: the 2026 Bahrain GP had to be rescheduled (to Malaysia in October) and H1 2026 F1 revenue fell 15% on race timing",
+  "Diluted WASO is rising (240M in 2023 to 258M in 2025 per the FY2025 10-K) \u2014 per-share growth trails group growth",
+  "Single-franchise concentration post-Liberty Live split-off (Dec 15, 2025): no diversification left inside the tracker"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 258000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), EPS note, 'Series A, Series B and Series C Liberty Formula One Common Stock' WASO table: Diluted WASO 258M for 2025 (basic 250M + 8M potentially dilutive shares); same table shows 243M for 2024 and 240M for 2023. EDGAR companyfacts carries no undimensioned diluted share series after Q1 2016 for CIK 1560385 (the filer tags share counts with class/group dimensions the aggregated facts drop)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": null,
+  "base_oe_with_override": 2.9767,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.0807,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "ticker": "EIX",
+ "name": "Edison International",
+ "sector": "Utilities / Regulated Electric",
+ "price": 55.68,
+ "market_cap_b": 21.49,
+ "engine_version": 5,
+ "base_oe_per_share": -2.0,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "SCE's exclusive California franchise, inelastic essential demand, and irreplaceable grid give a real regulated moat, but it is concentrated in one state and one regulator, allowed returns are capped, and California's inverse-condemnation wildfire liability sits outside the franchise's protection.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Regulated SCE franchise, moat 6/10, but Tier F on owner's earnings \u2014 conservative OE is negative in 0/5 last years because grid/wildfire capex exceeds OCF, so the OE DCF supports no hurdle at $55.68; F is a sector-model verdict, with Eaton Fire liability the real open risk.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated franchise \u2014 no competing wires provider in SCE's territory",
+  "Essential, inelastic demand for electricity",
+  "Irreplaceable long-lived grid infrastructure with prohibitive replacement cost",
+  "Rate-base model: authorized returns underpin guided 5-7% core EPS growth 2025-2030",
+  "AB 1054 Wildfire Fund and self-insurance provide a structured wildfire recovery framework"
+ ],
+ "moat_against": [
+  "Single-state, single-regulator (CPUC) concentration \u2014 no rate-case diversification",
+  "Regulators cap allowed returns; affordability pressure after double-digit rate increases",
+  "Catastrophic wildfire liability under inverse condemnation \u2014 $1.6B Eaton Fire settlement losses recorded, more probable",
+  "Capex permanently exceeds OCF \u2014 $37.5-40.6B 2026-2030 program funded with debt (net debt $37.84B)"
+ ]
+}

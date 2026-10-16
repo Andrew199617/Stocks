@@ -1,0 +1,154 @@
+{
+ "ticker": "CMS",
+ "cik": 811156,
+ "entity": "CMS ENERGY CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 2235000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1414000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1327000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2148000000
+  },
+  "capex": {
+   "fy": 3018000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 1772000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 2006000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 3252000000.0
+  },
+  "sbc": {
+   "fy": 27000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 13389041.09589041,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 13389041.09589041,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 27000000.0
+  },
+  "shares_diluted": {
+   "fy": 301000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 299000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 308900000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2148000000,
+ "ttm_capex": 3252000000.0,
+ "ttm_sbc": 27000000.0,
+ "ttm_shares_diluted": 308900000,
+ "ttm_oe_total": -1131000000.0,
+ "ttm_oe_per_share": -3.6613790870831986,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 27000000.0,
+   "kind": "filing",
+   "source": "CMS Energy FY2025 Form 10-K (filed 2026-02-10, accession 0000811156-26-000004), Note 12 Stock-based Compensation, table 'amounts related to restricted stock awards and restricted stock units': compensation expense recognized for CMS Energy including Consumers was $25M in 2025, $27M in 2024, $28M in 2023. Override value is the filed FY2024 figure.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 27000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 13389041.09589041,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 13389041.09589041,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 3018000000.0,
+   "kind": "filing",
+   "source": "CMS Energy FY2025 Form 10-K (filed 2026-02-10, accession 0000811156-26-000004), Consolidated Statements of Cash Flows, line 'Capital expenditures (excludes assets placed under finance lease)': $3,824M for 2025, $3,018M for 2024, $2,407M for 2023. Override value is the filed FY2024 (median-year) figure.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 3018000000.0,
+     "days": 365,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

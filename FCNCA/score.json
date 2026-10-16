@@ -1,0 +1,73 @@
+{
+ "ticker": "FCNCA",
+ "name": "First Citizens BancShares, Inc.",
+ "sector": "Finance",
+ "price": 2080.19,
+ "market_cap_b": 27.05,
+ "engine_version": 5,
+ "base_oe_per_share": 170.19862787450523,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4.0,
+ "moat_justification": "Weak-to-moderate moat: a genuinely differentiated innovation/fund banking franchise inherited from SVB and a disciplined, family-led relationship-banking culture with a proven record of discount-priced acquisitions (CIT, SVB, BMO branches), against commodity banking products with low switching costs, rate-hostage NIM, a flight-proven venture-concentrated deposit base, fading SVB purchase-accounting accretion, and no structural cost advantage.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.8%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 16.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 845.86,
+   "irr": 0.0741
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 1140.65,
+   "irr": 0.0928
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1478.56,
+   "irr": 0.1142
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 1823.61,
+   "irr": 0.1351
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 2321.19,
+   "irr": 0.1636
+  }
+ },
+ "iv_at_15": 1393.43,
+ "iv_at_12": 1837.71,
+ "implied_irr": 0.109,
+ "implied_irr_base_case": 0.1142,
+ "upside_at_15_pct": -33.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Quality regional bank with a real innovation-banking niche, moat 4/10 \u2014 but at $2,080.19 it doesn't clear 15% (weighted IRR 10.9%, IV@15% $1,393.43); it clears the hurdle only at or below ~$1,393.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "SVB innovation/fund banking franchise \u2014 sticky venture/tech relationships few regionals can replicate",
+  "Conservative family-led underwriting culture; proven opportunistic acquirer at discounts (CIT, SVB, BMO branches)",
+  "Large diversified deposit base ($173.43B at Q2 2026) funding loan growth",
+  "Capital building (CET1 10.77% at Q2 2026) plus heavy buybacks shrinking share count 5.8%/yr"
+ ],
+ "moat_against": [
+  "Commodity loans/deposits \u2014 price competition, low switching costs outside the innovation niche",
+  "Earnings hostage to rates, deposit repricing and the credit cycle (CRE and venture exposures)",
+  "SVB deposit base is venture-concentrated and already proved flight-prone under stress",
+  "SVB purchase-accounting accretion fades, removing a reported-earnings tailwind",
+  "No cost leadership \u2014 mid-pack efficiency, integration load from serial deals"
+ ]
+}

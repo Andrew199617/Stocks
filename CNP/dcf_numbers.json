@@ -1,0 +1,134 @@
+{
+ "ticker": "CNP",
+ "name": "CENTERPOINT ENERGY INC",
+ "cik": 1130310,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 39.68,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 655650000,
+ "market_cap_est": 26016192000.0,
+ "net_debt_latest": 22942000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.04902744261426406,
+ "rev_cagr_3y": 0.00035717621454489645,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -2432000000.0,
+ "base_oe_per_share": -3.70929611835583,
+ "base_oe_latest_per_share": -3.70929611835583,
+ "base_oe_normalized_per_share": -3.70929611835583,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.04902744261426406,
+  "rev_cagr_3y": 0.00035717621454489645,
+  "rev_yoy_latest": 0.09179139382600554,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.04902744261426406,
+ "share_cagr": 0.012133737746909068,
+ "share_count_adj": -0.012133737746909068,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "sbc": {
+   "value": 48000000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 6.0,
+ "inputs": {
+  "moat": 6.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 48000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-19), Note 8(a) Stock-Based Incentive Compensation Plans, table summarizing expenses related to LTIPs: 'LTIP compensation expense' $48 million for FY2025, with $34 million for FY2024 and $65 million for FY2023 in the same table (in millions), stated as included in Operation and maintenance expense, net of any amounts capitalized. The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no values for CNP in EDGAR companyfacts for any period, and the 10-K Consolidated Statements of Cash Flows present no separate stock-compensation line \u2014 the Note 8(a) table is the filer's own reported stock-based compensation expense.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 (in fact all years in the filed history under the engine's tags). The filer's own reported FY2025 LTIP (stock-based) compensation expense fills the gap; the engine applies this single value to every missing period. The true per-year filing series is $65M (FY2023) / $34M (FY2024) / $48M (FY2025); the median year of the last-3 base is FY2025 itself, so the normalized base is unchanged versus the true series, and any difference on the other years is at most $17M (~$0.03/share) \u2014 immaterial against FY2025 OCF of $2,486M and capex of $4,870M. The note figure is net of amounts capitalized, so if anything it understates total stock-comp cost \u2014 a floor, not an overstatement.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-19), Note 8(a) Stock-Based Incentive Compensation Plans, table summarizing expenses related to LTIPs: 'LTIP compensation expense' $48 million for FY2025, with $34 million for FY2024 and $65 million for FY2023 in the same table (in millions), stated as included in Operation and maintenance expense, net of any amounts capitalized. The engine's SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no values for CNP in EDGAR companyfacts for any period, and the 10-K Consolidated Statements of Cash Flows present no separate stock-compensation line \u2014 the Note 8(a) table is the filer's own reported stock-based compensation expense.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -3.6360863265461756,
+  "base_oe_per_share_final": -3.70929611835583,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "f52270fcf1b5b41a293079dc01cc5e65f1c4c4ab2132e9d54db518f2b7369706"
+}

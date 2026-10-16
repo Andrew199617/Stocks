@@ -1,0 +1,204 @@
+{
+ "ticker": "FWONK",
+ "name": "LIBERTY MEDIA CORPORATION",
+ "cik": 1560385,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 91.43,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 258000000.0,
+ "market_cap_est": 23588940000.0,
+ "net_debt_latest": 4045000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.13701627587626375,
+ "rev_cagr_3y": 0.12340819705248962,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 768000000,
+ "base_oe_per_share": 2.9767441860465116,
+ "base_oe_latest_per_share": 2.9767441860465116,
+ "base_oe_normalized_per_share": 2.9767441860465116,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.13701627587626375,
+  "rev_cagr_3y": 0.12340819705248962,
+  "rev_yoy_latest": 0.22693676430331244,
+  "oe_ps_cagr_2y": -0.37636927424502864
+ },
+ "g_blend": -0.006804039411887064,
+ "share_cagr": 0.0,
+ "share_count_adj": -0.0,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "DebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "shares": {
+   "value": 258000000.0,
+   "last_filed_value": 340000000,
+   "last_filed_unit": "shares",
+   "out_of_band": false,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": -0.006804039411887064,
+ "moat_score": 7.0,
+ "cap_years": 11.1,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 7.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.02,
+   0.09,
+   0.16
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "shares"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 258000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Notes to Consolidated Financial Statements, EPS note (Series A, Series B and Series C Liberty Formula One Common Stock WASO table): Diluted WASO 258M for FY2025 (Basic WASO 250M + potentially dilutive shares 8M); same table gives FY2024 diluted WASO 243M and FY2023 diluted WASO 240M. EDGAR companyfacts carries no non-dimensional weighted-average share series for CIK 1560385 after Q1 2016 (share counts are tagged with class/group dimensions the aggregated facts drop), so the engine filed no share value for any period.",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2023/2024/2025 (in fact all years since 2016) in companyfacts. The filer's own reported FY2025 Formula One Group diluted WASO fills the gap. The engine applies this single value to every missing period: it is the exact filed denominator for FY2025, and a slightly higher (conservative) denominator than the filed 243M/240M for FY2024/FY2023. Formula One Group is the correct denominator basis: the FY2025 10-K presents the Liberty Live Group (Live Nation) as discontinued operations, so the continuing-operations OCF/capex/SBC legs the engine uses for FY2024/FY2025 are Formula One Group legs, and post-split-off (December 15, 2025) Liberty Media is the Formula One Group only.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 340000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 15.569739977041287,
+   "iv_at_12": 12.800903685744755,
+   "iv_at_15": 10.238341254073402,
+   "irr": 0.03560171551721347
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0568,
+   "oe_mult": 0.9,
+   "iv_at_10": 23.557111421195522,
+   "iv_at_12": 19.082440829137308,
+   "iv_at_15": 14.98585283787906,
+   "irr": 0.04250478416342235
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0132,
+   "oe_mult": 1.0,
+   "iv_at_10": 38.173574885628625,
+   "iv_at_12": 30.242845513207854,
+   "iv_at_15": 23.089325464394083,
+   "irr": 0.05602002322446842
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0832,
+   "oe_mult": 1.1,
+   "iv_at_10": 61.19798375863863,
+   "iv_at_12": 47.53674118924785,
+   "iv_at_15": 35.363069876530155,
+   "irr": 0.07629715257559916
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1532,
+   "oe_mult": 1.25,
+   "iv_at_10": 101.01224010769404,
+   "iv_at_12": 77.12354078723943,
+   "iv_at_15": 56.04866949729424,
+   "irr": 0.10688322378706852
+  }
+ },
+ "weighted": {
+  "iv_at_10": 39.33930333618753,
+  "iv_at_12": 30.968850720716553,
+  "iv_at_15": 23.45392011758662,
+  "irr": 0.05752478053183532
+ },
+ "implied_irr_weighted": 0.05752478053183532,
+ "implied_irr_base": 0.05602002322446842,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.7434767568895699,
+ "upside_at_12": -0.6612834876876676,
+ "iv_at_15": 23.45392011758662,
+ "iv_at_12": 30.968850720716553,
+ "diagnostics": {
+  "oe_yield": 0.03255763082190213,
+  "tv_share_at_15": 0.18203219309877608,
+  "scenario_spread_iv15": 5.474389660043305,
+  "net_debt_to_normalized_oe": 5.266927083333333,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Notes to Consolidated Financial Statements, EPS note (Series A, Series B and Series C Liberty Formula One Common Stock WASO table): Diluted WASO 258M for FY2025 (Basic WASO 250M + potentially dilutive shares 8M); same table gives FY2024 diluted WASO 243M and FY2023 diluted WASO 240M. EDGAR companyfacts carries no non-dimensional weighted-average share series for CIK 1560385 after Q1 2016 (share counts are tagged with class/group dimensions the aggregated facts drop), so the engine filed no share value for any period.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": null,
+  "base_oe_per_share_final": 2.9767441860465116,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": 0.05752478053183532,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "28d816b5ea781eb40b9f1fcbc37d828a60240269d78ac0e1a1219a77506e14a4"
+}

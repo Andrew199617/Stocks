@@ -1,0 +1,37 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "Cameco is a direct-listed foreign private issuer: one NYSE-traded CCJ share is one ordinary (common) share, so no ADS conversion applies; per-share figures and the traded price are on the same basis.",
+  "source": "Form 40-F cover (SEC filing, CIK 1009001): securities registered under Section 12(b) are 'Common Shares, no par value', trading symbol CCJ, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity price-taker: earnings are driven by the uranium price, which Cameco does not control",
+  "Finite reserves: Cigar Lake mine life ~2036 (extension work ongoing), McArthur River concludes shortly after 2040",
+  "Geographic/operational concentration: Saskatchewan flooding and the McClean Lake mill disruption both hit 2026 operations; Inkai JV is in Kazakhstan",
+  "Kazatomprom and new supply can undercut on cost; enrichment/substitution and reactor-policy shifts sit outside Cameco's control",
+  "Westinghouse earnings are lumpy and equity-accounted (a ~US$170M Dukovany milestone flattered 2025 and did not recur in 2026)"
+ ],
+ "moat_for": [
+  "World's largest high-grade uranium reserves; tier-1 low-cost assets (Cigar Lake, McArthur River/Key Lake) with decade-plus permitting barriers to any replacement supply",
+  "Long-term contract book: five-year average contracted deliveries exceeding 28M lb/yr with floors in the high $70s/lb and escalated ceilings around $160/lb",
+  "Integrated nuclear fuel cycle: uranium, conversion/fuel services, and 49% of Westinghouse (AP1000 pipeline of 91 reactor opportunities)",
+  "Western supply-security premium as utilities bifurcate away from Russian/Kazakh supply",
+  "Net-cash balance sheet (engine: net debt -0.18x normalized OE) funds opportunistic stake increases (Cigar Lake to 57.4% in July 2026)"
+ ],
+ "moat_justification": "Scarce tier-1 high-grade, low-cost uranium assets (Cigar Lake, McArthur River/Key Lake) that cannot be replicated on any investable timeline, plus a long-term contract book and an integrated fuel-cycle position (fuel services, 49% of Westinghouse) \u2014 but Cameco is ultimately a uranium price-taker, its reserves deplete (Cigar Lake ~2036, McArthur River shortly after 2040), and production is concentrated in northern Saskatchewan with Kazakhstan JV exposure.",
+ "moat_score": 6,
+ "name": "Cameco Corporation",
+ "one_liner": "Tier-1 uranium franchise, moat 6/10, net cash \u2014 but the price capitalizes a decade of flawless contract repricing: weighted IRR 5.9%, weighted IV@15 $18.72 vs $81.40, and even the super-bull case (9.0% IRR) clears neither 10% nor 15%; clears 15% only below ~$18.72.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Energy / Uranium mining & nuclear fuel services",
+ "tier_override": null,
+ "tier_override_reason": null
+}

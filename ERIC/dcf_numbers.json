@@ -1,0 +1,259 @@
+{
+ "ticker": "ERIC",
+ "name": "ERICSSON LM TELEPHONE CO",
+ "cik": 717826,
+ "engine_version": 5,
+ "as_of": "2026-10-14",
+ "price": 9.58,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 3342000000,
+ "market_cap_est": 32016360000.0,
+ "net_debt_latest": -1546504940.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": -0.019923955891135048,
+ "rev_cagr_3y": -0.004401632699370439,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 3098221720.0,
+ "base_oe_per_share": 0.9270561699581089,
+ "base_oe_latest_per_share": 0.9270561699581089,
+ "base_oe_normalized_per_share": 0.9270561699581089,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": -0.019923955891135048,
+  "rev_cagr_3y": -0.004401632699370439,
+  "rev_yoy_latest": 0.14355229722856788,
+  "oe_ps_cagr_2y": 2.8476325372841833
+ },
+ "g_blend": 0.06957533226459872,
+ "share_cagr": 0.0007990187670354754,
+ "share_count_adj": -0.0007990187670354754,
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "DepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentPortionOfLongtermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Ericsson Form 20-F for FY2025 (filed 2026-03-12), cover page: 'American Depositary Shares (each representing one B share)'; the FY2025 annual report states the same: 'Each ADS represents one Class B share.'",
+  "reason": "EDGAR share counts are ordinary (A+B) shares and the Nasdaq price is per ADS; at a 1:1 ratio per-share figures are directly comparable to the ADS price with no scaling."
+ },
+ "fx_conversion": {
+  "from_currency": "SEK",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2015-12-31": 0.11847,
+   "2016-01-01": 0.11847,
+   "2016-12-31": 0.11035,
+   "2017-12-31": 0.12183,
+   "2018-01-01": 0.12183,
+   "2018-12-31": 0.11166,
+   "2019-12-31": 0.10754,
+   "2020-12-31": 0.12229,
+   "2021-12-31": 0.11049,
+   "2022-12-31": 0.0959,
+   "2023-12-31": 0.09959,
+   "2024-12-31": 0.09066,
+   "2025-12-31": 0.10858
+  },
+  "rates_by_currency": {
+   "SEK": {
+    "2015-12-31": 0.11847,
+    "2016-01-01": 0.11847,
+    "2016-12-31": 0.11035,
+    "2017-12-31": 0.12183,
+    "2018-01-01": 0.12183,
+    "2018-12-31": 0.11166,
+    "2019-12-31": 0.10754,
+    "2020-12-31": 0.12229,
+    "2021-12-31": 0.11049,
+    "2022-12-31": 0.0959,
+    "2023-12-31": 0.09959,
+    "2024-12-31": 0.09066,
+    "2025-12-31": 0.10858
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 1790000000.0,
+   "last_filed_value": 256000000,
+   "last_filed_unit": "SEK",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "g_base": 0.06877631349756325,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.3,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.1,
+   -0.05,
+   0.01,
+   0.05
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 1790000000.0,
+   "kind": "filing",
+   "source": "Ericsson Form 20-F for FY2025 (filed 2026-03-12), Financial Report Note G3 'Share-based compensation', table 'Compensation expense for LTV 2022-2025': total compensation expense SEK 1,206M (2023), SEK 2,080M (2024), SEK 1,790M (2025). The engine's ifrs-full tag ExpenseFromSharebasedPaymentTransactionsWithEmployees is filed only through FY2019 (SEK 256M), so EDGAR companyfacts carries no SBC for 2020-2025.",
+   "reason": "The engine accepts a single override value applied to every unfilled period; SEK 1,790M is both the filed FY2025 expense and the median of the three filed gap-year figures (1,206 / 2,080 / 1,790), so the median-of-3-FY base is built from filed figures with offsetting errors of ~1% of OE in the non-median years. It is ~7.0x the last engine-filed value (FY2019 SEK 256M) \u2014 inside the 0.1x-10x band \u2014 and the step-up is real: the Key Contributor cash-settled plans scaled up from 2022 (Note G3). ~90% of the expense is cash-settled plans (a real cash cost through provisions); only SEK 175M of FY2025's total is share-settled.",
+   "periods_filled": [
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 256000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0512,
+   "oe_mult": 0.75,
+   "iv_at_10": 6.646177480909094,
+   "iv_at_12": 5.33538861933442,
+   "iv_at_15": 4.144756478142512,
+   "irr": 0.07585484627138406
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0312,
+   "oe_mult": 0.9,
+   "iv_at_10": 8.76580478711464,
+   "iv_at_12": 7.004613878288809,
+   "iv_at_15": 5.409025638313111,
+   "irr": 0.09332884590935075
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0188,
+   "oe_mult": 1.0,
+   "iv_at_10": 12.308737146850227,
+   "iv_at_12": 9.729853237453305,
+   "iv_at_15": 7.40726736904254,
+   "irr": 0.12149475871388982
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0788,
+   "oe_mult": 1.1,
+   "iv_at_10": 17.850907252219308,
+   "iv_at_12": 13.94650855990906,
+   "iv_at_15": 10.45178794947454,
+   "irr": 0.16074953016938787
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1188,
+   "oe_mult": 1.25,
+   "iv_at_10": 24.318404087779786,
+   "iv_at_12": 18.86523485163584,
+   "iv_at_15": 14.001979376437008,
+   "irr": 0.20149623756509938
+  }
+ },
+ "weighted": {
+  "iv_at_10": 12.989002187502209,
+  "iv_at_12": 10.229704193801473,
+  "iv_at_15": 7.749919077559555,
+  "irr": 0.1263700666486377
+ },
+ "implied_irr_weighted": 0.1263700666486377,
+ "implied_irr_base": 0.12149475871388982,
+ "tier_by_numbers": "C",
+ "upside_at_15": -0.19103141152823022,
+ "upside_at_12": 0.06781880937384899,
+ "iv_at_15": 7.749919077559555,
+ "iv_at_12": 10.229704193801473,
+ "diagnostics": {
+  "oe_yield": 0.09676995511044978,
+  "tv_share_at_15": 0.18113855583488297,
+  "scenario_spread_iv15": 3.378239336925301,
+  "net_debt_to_normalized_oe": -0.49915889815658515,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency SEK converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Ericsson Form 20-F for FY2025 (filed 2026-03-12), cover page: 'American Depositary Shares (each representing one B share)'; the FY2025 annual report states the same: 'Each ADS represents one Class B share.') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Ericsson Form 20-F for FY2025 (filed 2026-03-12), Financial Report Note G3 'Share-based compensation', table 'Compensation expense for LTV 2022-2025': total compensation expense SEK 1,206M (2023), SEK 2,080M (2024), SEK 1,790M (2025). The engine's ifrs-full tag ExpenseFromSharebasedPaymentTransactionsWithEmployees is filed only through FY2019 (SEK 256M), so EDGAR companyfacts carries no SBC for 2020-2025.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 0.9852124236983842,
+  "base_oe_per_share_final": 0.9270561699581089,
+  "weighted_irr_zero_fill": 0.13265554955299985,
+  "weighted_irr_final": 0.1263700666486377,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "e69c01f5b261031c48f914084f5d0c7e83b5b02ab4d09a1a1186de14e95b1fb2"
+}

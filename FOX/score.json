@@ -1,0 +1,69 @@
+{
+ "ticker": "FOX",
+ "name": "Fox Corporation",
+ "sector": "Communication Services / Media",
+ "price": 56.8529,
+ "market_cap_b": 24.96,
+ "engine_version": 5,
+ "base_oe_per_share": 3.0432801822323463,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "FOX News' loyal #1-rated cable-news audience and long-dated live sports rights give genuine affiliate and ad pricing power, and Tubi is a scaled free-streaming asset; against that, the cable-bundle distribution base shrinks secularly, sports rights are rented at auction against deeper-pocketed tech bidders, and Fox owns no scaled subscription streaming surface \u2014 a strong position inside a declining channel.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 6.1%/yr \u2014 already credited via the growth adjustment",
+  "HIGH_NET_DEBT: net debt is 4.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 15.44,
+   "irr": 0.0574
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 21.0,
+   "irr": 0.0706
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 27.57,
+   "irr": 0.0865
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 34.33,
+   "irr": 0.1023
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 44.15,
+   "irr": 0.1239
+  }
+ },
+ "iv_at_15": 26.45,
+ "iv_at_12": 35.02,
+ "implied_irr": 0.084,
+ "implied_irr_base_case": 0.0865,
+ "upside_at_15_pct": -53.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Durable live news/sports assets, moat 5/10, but at $56.85 on a $3.04 normalized OE base it clears only 8.4% weighted \u2014 it needs ~$26.45 to clear 15%, and the Roku deal reverses the buyback tailwind the growth math was crediting.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "FOX News is the top-rated cable network with a loyal audience supporting affiliate and ad pricing power",
+  "Long-dated live sports rights (NFL through 2033) \u2014 appointment viewing advertisers cannot replicate",
+  "Tubi \u2014 scaled free ad-supported streaming that monetizes cord-cutters",
+  "Owned broadcast stations capture political-cycle advertising windfalls"
+ ],
+ "moat_against": [
+  "Cord-cutting shrinks the cable bundle and affiliate-fee base every year",
+  "Sports rights are rented, not owned \u2014 renewal inflation against tech-scale bidders compresses margins",
+  "Advertising cyclicality plus political-cycle lumpiness",
+  "No scaled subscription streaming business; FOX One is new and unproven",
+  "Pending Roku acquisition adds leverage and share issuance, with DOJ Second Request and integration risk"
+ ]
+}

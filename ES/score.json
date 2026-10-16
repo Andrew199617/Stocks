@@ -1,0 +1,43 @@
+{
+ "ticker": "ES",
+ "name": "Eversource Energy",
+ "sector": "Utilities",
+ "price": 67.43,
+ "market_cap_b": 25.03,
+ "engine_version": 5,
+ "base_oe_per_share": -6.570506707306084,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Exclusive regulated electric and natural-gas franchises across Connecticut, Massachusetts and New Hampshire plus New England's largest transmission network, with essential inelastic demand and a $26.5B 2026-2030 capital plan that grows rate base at regulated returns \u2014 a durable, visible compounding machine. Capped at 6 because regulators (PURA, DPU, NH PUC, FERC) set the allowed return so there is no pricing power beyond rate cases \u2014 FERC lowered transmission ROE to 9.57% in March 2026 \u2014 the plan is funded with debt (net debt $28,130M) plus recurring equity issuance (share count +2.25%/yr), and offshore-wind contingent liabilities and affordability pushback in CT/MA sit with the equity.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Durable New England regulated monopoly, moat 6/10, but conservative owner's earnings are negative in all of the last 5 years (capex exceeds OCF; normalized base -$6.57/share, latest FY -$0.21/share) \u2014 Tier F on this screen; guided 5-7% EPS growth does not clear 15% and no hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Exclusive regulated electric and gas franchises in Connecticut, Massachusetts and New Hampshire \u2014 captive, essential-service customers",
+  "Largest electric transmission network in New England, FERC-regulated formula-rate returns",
+  "$26.5B 2026-2030 regulated capital plan grows rate base, recovered through rates",
+  "Essential, inelastic demand through cycles; pure-play regulated pivot after offshore-wind exit"
+ ],
+ "moat_against": [
+  "Regulators cap returns \u2014 CT PURA, MA DPU, NH PUC and FERC set allowed ROE; FERC cut transmission ROE to 9.57% in March 2026",
+  "Growth is debt- plus equity-funded: net debt $28,130M and share count +2.25%/yr dilutes rate-base growth per share",
+  "Lingering offshore-wind contingent liabilities to GIP and Aquarion sale losses \u2014 charges recurred in 2024, 2025 and H1 2026",
+  "High customer rates and affordability politics in CT/MA constrain rate recovery for a $26.5B capital plan"
+ ]
+}

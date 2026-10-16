@@ -1,0 +1,62 @@
+{
+ "ticker": "FE",
+ "name": "FirstEnergy Corp.",
+ "sector": "Utilities",
+ "price": 45.41,
+ "market_cap_b": 26.25,
+ "engine_version": 5,
+ "base_oe_per_share": -3.081034482758621,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Regulated franchise monopolies \u2014 ten electric utilities serving more than six million customers across Ohio, Pennsylvania, West Virginia, Maryland, New Jersey and New York, plus one of the largest US transmission systems (over 24,000 miles of lines) \u2014 give durable, regulator-granted exclusivity and a visible rate-base growth runway (Energize365: $36B of capital investment planned 2026-2030, ~10% annual rate-base growth and 9.8% consolidated ROE cited in Q1 2026 reporting). Capped at 5 because earned returns are set by regulators at allowed ROEs with no pricing power beyond rate cases, the Ohio regulatory history includes the HB6 scandal and ESP V order drag, and the growth plan is funded with heavy leverage (long-term debt $26,390M per the FY2025 10-K contractual-obligations table) while shareholders were diluted by the 30% FET stake sale to Brookfield in March 2024.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001031296-26-000046), Note 5 \u2014 Stock-Based Compensation Plans (p.117), table 'Components of Stock-based Compensation Plan Costs': stock-based compensation costs, net of amounts capitalized, were $39M for FY2025, $43M for FY2024 and $44M for FY2023 (total costs $85M / $86M / $83M in the same table). EDGAR companyfacts carries the same series under SharebasedCompensationArrangementBySharebasedPaymentAwardCompensationCost1 (total) and the capitalized-amount tag, neither of which the engine reads; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no annual values after FY2020.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Durable six-state regulated monopoly, moat 5/10, but conservative owner's earnings are negative on every base (normalized -$2.05/share, TTM -$3.08/share) because capex ($4,705M in FY2025) runs well ahead of operating cash flow ($3,700M) \u2014 Tier F on this screen; ~10% guided rate-base growth does not clear 15% and no hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Regulated franchise monopolies: ten electric utilities serving 6M+ customers in OH, PA, WV, MD, NJ and NY \u2014 captive, essential-service demand",
+  "Visible rate-base growth: Energize365 plans $36B of investment 2026-2030 (~$6B in 2026), supporting ~10% annual rate-base growth",
+  "Formula-rate transmission investment (FERC-regulated, ~50% of 2025 investment) recovers capital faster than traditional rate cases",
+  "Constructive recent regulatory outcomes: base rate cases settled/filed across PA, NJ, WV and MD, Ohio base rate case resolved Nov 2025, S&P upgrade to BBB"
+ ],
+ "moat_against": [
+  "Returns are capped at regulator-allowed ROEs \u2014 no pricing power; Ohio's ESP V order already cost earnings and Ohio regulatory risk has a scandal history (HB6)",
+  "Heavy leverage: long-term debt $26,390M (FY2025 10-K) against equity of $12,510M (financials_history.csv) \u2014 funding costs and rate sensitivity are structural",
+  "Growth is bought with dilutive capital: the 30% FET stake sale to Brookfield (closed March 2024) diluted transmission earnings to fund the plan",
+  "Storm costs and recovery lag are recurring earnings hits across a six-state footprint"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 43000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001031296-26-000046), Note 5 \u2014 Stock-Based Compensation Plans (p.117), table 'Components of Stock-based Compensation Plan Costs': stock-based compensation costs, net of amounts capitalized, were $39M for FY2025, $43M for FY2024 and $44M for FY2023 (total costs $85M / $86M / $83M in the same table). EDGAR companyfacts carries the same series under SharebasedCompensationArrangementBySharebasedPaymentAwardCompensationCost1 (total) and the capitalized-amount tag, neither of which the engine reads; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no annual values after FY2020."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": -3.0069,
+  "base_oe_with_override": -3.081,
+  "base_oe_impact_pct": 2.466,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

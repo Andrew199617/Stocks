@@ -1,0 +1,157 @@
+{
+ "ticker": "DRI",
+ "name": "DARDEN RESTAURANTS, INC.",
+ "cik": 940944,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 214.285,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 116300000,
+ "market_cap_est": 24921345500.0,
+ "net_debt_latest": 2111800000,
+ "latest_period_end": "2026-05-31",
+ "rev_cagr_5y": 0.12913373175965748,
+ "rev_cagr_3y": 0.07973501099960911,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 1040000000,
+ "base_oe_per_share": 8.30489864864865,
+ "base_oe_latest_per_share": 8.942390369733449,
+ "base_oe_normalized_per_share": 8.30489864864865,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.12913373175965748,
+  "rev_cagr_3y": 0.07973501099960911,
+  "rev_yoy_latest": 0.09391638444276995,
+  "oe_ps_cagr_2y": 0.06481410210914085
+ },
+ "g_blend": 0.08682569772118953,
+ "share_cagr": -0.018177664354204537,
+ "share_count_adj": 0.018177664354204537,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": "LongTermDebtCurrent",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.10500336207539407,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.125,
+   -0.09,
+   -0.055,
+   -0.03,
+   0.0
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.02,
+   "oe_mult": 0.75,
+   "iv_at_10": 68.9899604544953,
+   "iv_at_12": 54.99021552765139,
+   "iv_at_15": 42.32459948857658,
+   "irr": 0.04842896358969495
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.015,
+   "oe_mult": 0.9,
+   "iv_at_10": 97.51287783833263,
+   "iv_at_12": 77.14263521618986,
+   "iv_at_15": 58.78913639910355,
+   "irr": 0.05896105161069096
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.05,
+   "oe_mult": 1.0,
+   "iv_at_10": 127.40960342770676,
+   "iv_at_12": 100.08622726173701,
+   "iv_at_15": 75.56013776497421,
+   "irr": 0.06997175431888517
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.075,
+   "oe_mult": 1.1,
+   "iv_at_10": 157.1830747868868,
+   "iv_at_12": 122.88925482576548,
+   "iv_at_15": 92.1826894576472,
+   "irr": 0.08058648539913665
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.105,
+   "oe_mult": 1.25,
+   "iv_at_10": 204.7221945553133,
+   "iv_at_12": 159.19331318515563,
+   "iv_at_15": 118.54034922317899,
+   "irr": 0.09683385824176349
+  }
+ },
+ "weighted": {
+  "iv_at_10": 129.26808468559776,
+  "iv_at_12": 101.45219356029064,
+  "iv_at_15": 76.49749266485551,
+  "irr": 0.07068820292898748
+ },
+ "implied_irr_weighted": 0.07068820292898748,
+ "implied_irr_base": 0.06997175431888517,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6430105109323774,
+ "upside_at_12": -0.5265548519014833,
+ "iv_at_15": 76.49749266485551,
+ "iv_at_12": 101.45219356029064,
+ "diagnostics": {
+  "oe_yield": 0.038756322881436635,
+  "tv_share_at_15": 0.18562681356222646,
+  "scenario_spread_iv15": 2.800743554706833,
+  "net_debt_to_normalized_oe": 2.186445890568539,
+  "months_since_fy_end": 4.50065703022339,
+  "irr_capped": false
+ },
+ "fragility_flags": [],
+ "content_hash": "1be2485d24f3a2828712fac48b2d746e331eac5aa730a9faded00278aff18f95"
+}

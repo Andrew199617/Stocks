@@ -1,0 +1,137 @@
+{
+ "ticker": "FE",
+ "cik": 1031296,
+ "entity": "FIRSTENERGY CORP",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 3700000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 637000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 148000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 3211000000
+  },
+  "capex": {
+   "fy": 4705000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 1005000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 1255000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 4955000000
+  },
+  "sbc": {
+   "fy": 43000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 10602739.726027397,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 10602739.726027397,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 43000000.0
+  },
+  "shares_diluted": {
+   "fy": 578000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 578000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 580000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 3211000000,
+ "ttm_capex": 4955000000,
+ "ttm_sbc": 43000000.0,
+ "ttm_shares_diluted": 580000000,
+ "ttm_oe_total": -1787000000.0,
+ "ttm_oe_per_share": -3.081034482758621,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 43000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001031296-26-000046), Note 5 \u2014 Stock-Based Compensation Plans (p.117), table 'Components of Stock-based Compensation Plan Costs': stock-based compensation costs, net of amounts capitalized, were $39M for FY2025, $43M for FY2024 and $44M for FY2023 (total costs $85M / $86M / $83M in the same table). EDGAR companyfacts carries the same series under SharebasedCompensationArrangementBySharebasedPaymentAwardCompensationCost1 (total) and the capitalized-amount tag, neither of which the engine reads; the engine's own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) have no annual values after FY2020.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 43000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-03-31"
+     ],
+     "amount": 10602739.726027397,
+     "days": 90,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-03-31"
+     ],
+     "amount": 10602739.726027397,
+     "days": 90,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

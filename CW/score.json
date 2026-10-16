@@ -1,0 +1,70 @@
+{
+ "ticker": "CW",
+ "name": "Curtiss-Wright Corporation",
+ "sector": "Aerospace & Defense",
+ "price": 501.49,
+ "market_cap_b": 18.87,
+ "engine_version": 5,
+ "base_oe_per_share": 16.177645948496696,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Qualified, often sole-source positions on naval nuclear propulsion, reactor coolant pumps and flight/mission-critical electronics on platforms that run for decades, with aftermarket and spares annuity and high-20s Defense Electronics margins; bounded by US government/prime customer concentration, program/budget timing risk, no network effects, and slow policy-dependent commercial nuclear upside.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 90.27,
+   "irr": 0.0467
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 150.77,
+   "irr": 0.0649
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 212.43,
+   "irr": 0.0828
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 296.39,
+   "irr": 0.105
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 469.36,
+   "irr": 0.1437
+  }
+ },
+ "iv_at_15": 231.48,
+ "iv_at_12": 318.12,
+ "implied_irr": 0.0885,
+ "implied_irr_base_case": 0.0828,
+ "upside_at_15_pct": -53.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality defense/nuclear compounder, moat 7/10 \u2014 but at $501.49 it does not clear 15% in any scenario (weighted IRR 8.85%, IV@15 $231.48); it would need to fall to ~$231 to clear the hurdle on the weighted case.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Sole-source/qualified status on naval nuclear propulsion and reactor coolant pumps \u2014 slow, safety-critical requalification",
+  "Embedded content on long-life platforms (submarines, carriers, F-35) = decades of spares, upgrades, service",
+  "Defense Electronics margins in the high-20s \u2014 proven pricing power in mission computing",
+  "$4.5B backlog, up 10% since Dec 2025, 1.16x book-to-bill \u2014 multi-year visibility",
+  "Diversified across naval, defense electronics, commercial aero and nuclear \u2014 no single program decides it"
+ ],
+ "moat_against": [
+  "Customer concentration: US DoD/Navy and a few primes set budgets, timing and terms",
+  "Program/budget risk: ground defense sales -8% in Q2 2026, Defense Electronics shipment timing slips",
+  "No network effects \u2014 moat is qualification/engineering depth, erodible by competitors and in-housing primes",
+  "Commercial nuclear/SMR upside is slow and policy-dependent",
+  "CEO transition in January adds execution uncertainty"
+ ]
+}

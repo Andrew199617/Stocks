@@ -4,20 +4,20 @@
  "cik": 1329099,
  "engine_version": 5,
  "as_of": "2026-10-14",
- "price": 81.51,
+ "price": 81.86,
  "price_source": "nasdaq_quote_api",
- "shares_diluted_latest": null,
- "market_cap_est": 29033759392.0,
+ "shares_diluted_latest": 2744000000.0,
+ "market_cap_est": 224623840000.0,
  "net_debt_latest": 2596000000,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": 0.023803501864013032,
  "rev_cagr_3y": 0.009700149386182133,
  "oe_positive_years_of_last_5": "4/5",
  "base_oe_total_latest_fy": -2674000000,
- "base_oe_per_share": null,
- "base_oe_latest_per_share": null,
- "base_oe_normalized_per_share": null,
- "base_source": "none",
+ "base_oe_per_share": 3.323615160349854,
+ "base_oe_latest_per_share": -7.795918367346939,
+ "base_oe_normalized_per_share": 3.323615160349854,
+ "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.023803501864013032,
   "rev_cagr_3y": 0.009700149386182133,
@@ -25,7 +25,7 @@
   "oe_ps_cagr_2y": null
  },
  "g_blend": 0.012062726176115701,
- "share_cagr": null,
+ "share_cagr": 0.0,
  "share_count_adj": -0.0,
  "used_tags": {
   "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
@@ -47,30 +47,208 @@
   "shares_out_inst": null
  },
  "filer_annual_form": "20-F",
- "ads_ratio": null,
- "override_checks": {},
- "tier_by_numbers": null,
- "implied_irr_weighted": null,
- "implied_irr_base": null,
+ "ads_ratio": {
+  "ratio": 8.0,
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17): cover page registers American depositary shares each representing eight Class A ordinary shares, the Introduction defines ADSs the same way, and the EPS table states 1 ADS equals 8 Class A ordinary shares",
+  "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq price is per ADS; per-share figures must be scaled x8 ordinary shares per ADS to be comparable to the ADS price"
+ },
+ "fx_conversion": {
+  "from_currency": "CNY",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2006-12-31": 0.12812,
+   "2007-12-31": 0.13691,
+   "2008-12-31": 0.14656,
+   "2011-12-31": 0.15859,
+   "2015-12-31": 0.15419,
+   "2016-12-31": 0.144,
+   "2017-12-31": 0.15367,
+   "2018-12-31": 0.14539,
+   "2019-12-31": 0.14365
+  },
+  "rates_by_currency": {
+   "CNY": {
+    "2006-12-31": 0.12812,
+    "2007-12-31": 0.13691,
+    "2008-12-31": 0.14656,
+    "2011-12-31": 0.15859,
+    "2015-12-31": 0.15419,
+    "2016-12-31": 0.144,
+    "2017-12-31": 0.15367,
+    "2018-12-31": 0.14539,
+    "2019-12-31": 0.14365
+   }
+  }
+ },
+ "override_checks": {
+  "shares": {
+   "value": 2744000000.0,
+   "last_filed_value": 34917835,
+   "last_filed_unit": "shares",
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "g_base": 0.012062726176115701,
  "moat_score": 5.0,
  "cap_years": 8.5,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.2,
+   0.05
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
  "data_gap": [
-  "shares",
-  "currency"
+  "shares"
  ],
- "data_gap_uncovered": [
-  "shares",
-  "currency"
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 2744000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17), Consolidated Statements of Comprehensive Income, EPS section: weighted average number of Class A and Class B ordinary shares outstanding (in millions) \u2014 diluted 2,744 for FY2025, with 2,798 for FY2024 and 2,837 for FY2023 in the same table",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2023, FY2024 and FY2025 in EDGAR companyfacts (the filer tags recent share counts with Class A/Class B dimensions that the aggregated facts drop, so the engine filed no share value for any period in its 2016-2025 history). The filer's own FY2025 diluted weighted-average count fills the gap; the engine applies this single value to every missing period, so the 3-yr median base is the FY2024 OE total divided by this count \u2014 within ~2% of the FY2024 figure on its own filed count (2,798M) \u2014 and the direction is conservative (a shrinking count applied to earlier years understates their OE/share).",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": 34917835
+  }
  ],
- "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 18.888810061855363,
+   "iv_at_12": 15.345379846600078,
+   "iv_at_15": 12.104188898701786,
+   "irr": 0.040492855661099586
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0379,
+   "oe_mult": 0.9,
+   "iv_at_10": 30.446905419829726,
+   "iv_at_12": 24.36686408076879,
+   "iv_at_15": 18.853793704386156,
+   "irr": 0.05180306581406956
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0121,
+   "oe_mult": 1.0,
+   "iv_at_10": 42.770987556305116,
+   "iv_at_12": 33.85697918907575,
+   "iv_at_15": 25.822840424108712,
+   "irr": 0.06396909663802519
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.0621,
+   "oe_mult": 1.1,
+   "iv_at_10": 59.28544418215254,
+   "iv_at_12": 46.46352750868248,
+   "iv_at_15": 34.96828142618409,
+   "irr": 0.0797604226324965
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "g_start": 0.1321,
+   "oe_mult": 1.25,
+   "iv_at_10": 92.5472068502808,
+   "iv_at_12": 71.63419307522665,
+   "iv_at_15": 53.00465243916065,
+   "irr": 0.10902211693956743
+  }
+ },
+ "weighted": {
+  "iv_at_10": 41.2831385810633,
+  "iv_at_12": 32.6433751134412,
+  "iv_at_15": 24.86250748054858,
+  "irr": 0.06269936148093905
+ },
+ "implied_irr_weighted": 0.06269936148093905,
+ "implied_irr_base": 0.06396909663802519,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.6962801431645667,
+ "upside_at_12": -0.6012292314507549,
+ "iv_at_15": 24.86250748054858,
+ "iv_at_12": 32.6433751134412,
+ "diagnostics": {
+  "oe_yield": 0.04060121134070186,
+  "tv_share_at_15": 0.17605898746381,
+  "scenario_spread_iv15": 4.379033810753365,
+  "net_debt_to_normalized_oe": 0.28464912280701754,
+  "months_since_fy_end": 9.42838370565046,
+  "irr_capped": false
+ },
  "fragility_flags": [
-  "DATA_GAP:shares \u2014 shares missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
-  "DATA_GAP:currency \u2014 filer reports in a non-USD currency (non-USD unit on revenue/NI/OCF facts in the last 3 FY); USD translations and ADS ratios are unverified \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}"
+  "FX_CONVERTED: reporting currency CNY converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x8.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17): cover page registers American depositary shares each representing eight Class A ordinary shares, the Introduction defines ADSs the same way, and the EPS table states 1 ADS equals 8 Class A ordinary shares) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-17), Consolidated Statements of Comprehensive Income, EPS section: weighted average number of Class A and Class B ordinary shares outstanding (in millions) \u2014 diluted 2,744 for FY2025, with 2,798 for FY2024 and 2,837 for FY2023 in the same table); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share -7.80 vs 3-yr median 3.32 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
- "content_hash": "89267d0ad6ac51a2ae90614d9e88719a236b8452a978cba0f9968510a9208bfe"
+ "override_impact": {
+  "base_oe_per_share_zero_fill": null,
+  "base_oe_per_share_final": 3.323615160349854,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": 0.06269936148093905,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "506831f476e71fc40cb50d359f6296eece322fc8ad460838271fa78e1fee3ebd"
 }

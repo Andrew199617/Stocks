@@ -1,0 +1,166 @@
+{
+ "ticker": "CRCL",
+ "name": "CIRCLE INTERNET GROUP, INC.",
+ "cik": 1876042,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 86.3,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 158699000,
+ "market_cap_est": 13695723700.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 1.350158188450064,
+ "rev_cagr_3y": 1.350158188450064,
+ "oe_positive_years_of_last_5": "2/3",
+ "base_oe_total_latest_fy": -36480000,
+ "base_oe_per_share": 2.0063670971112937,
+ "base_oe_latest_per_share": -0.22986912330890555,
+ "base_oe_normalized_per_share": 0.45766776710239976,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 1.350158188450064,
+  "rev_cagr_3y": 1.350158188450064,
+  "rev_yoy_latest": 6.2397653108313005,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 1.350158188450064,
+ "share_cagr": 0.5323245772076934,
+ "share_count_adj": -0.05,
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_lt": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {},
+ "g_base": 0.35,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.35,
+   -0.29,
+   -0.23,
+   -0.15,
+   -0.07
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 2.0063670971112937,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": 0.0,
+   "oe_mult": 0.75,
+   "iv_at_10": 18.3047943419039,
+   "iv_at_12": 14.526871034754029,
+   "iv_at_15": 11.117138976052791,
+   "irr": 0.040604711314230824
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": 0.06,
+   "oe_mult": 0.9,
+   "iv_at_10": 29.005860240351396,
+   "iv_at_12": 22.74157938335474,
+   "iv_at_15": 17.124302372494792,
+   "irr": 0.05072058116604786
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.12,
+   "oe_mult": 1.0,
+   "iv_at_10": 42.3371848382686,
+   "iv_at_12": 32.83663995065394,
+   "iv_at_15": 24.36474401754467,
+   "irr": 0.06317733277774595
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.2,
+   "oe_mult": 1.1,
+   "iv_at_10": 66.41981896267697,
+   "iv_at_12": 50.871420648614745,
+   "iv_at_15": 37.093832976609015,
+   "irr": 0.08421906712408495
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.28,
+   "oe_mult": 1.25,
+   "iv_at_10": 106.533031259007,
+   "iv_at_12": 80.72334804941978,
+   "iv_at_15": 57.974215019068744,
+   "irr": 0.11479194102447232
+  }
+ },
+ "weighted": {
+  "iv_at_10": 43.962644399247225,
+  "iv_at_12": 33.9585058096338,
+  "iv_at_15": 25.05817357096879,
+  "irr": 0.06488833919954959
+ },
+ "implied_irr_weighted": 0.06488833919954959,
+ "implied_irr_base": 0.06317733277774595,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.7096387766979282,
+ "upside_at_12": -0.606506305797986,
+ "iv_at_15": 25.05817357096879,
+ "iv_at_12": 33.9585058096338,
+ "diagnostics": {
+  "oe_yield": 0.02324874967684002,
+  "tv_share_at_15": 0.20722066118404964,
+  "scenario_spread_iv15": 5.214850254543894,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 53.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share -0.23 vs 3-yr median 0.46 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "content_hash": "15b1dba4f0c04fe7a06bc885f8dfe1f7fb2009fc569d7de428a605533f8cb9c1"
+}

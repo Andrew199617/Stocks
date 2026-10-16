@@ -1,0 +1,42 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "EDGAR share counts are ordinary (A+B) shares and the Nasdaq price is per ADS; at a 1:1 ratio per-share figures are directly comparable to the ADS price with no scaling.",
+  "source": "Ericsson Form 20-F for FY2025 (filed 2026-03-12), cover page: 'American Depositary Shares (each representing one B share)'; the FY2025 annual report states the same: 'Each ADS represents one Class B share.'"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "RAN is a re-bid, price-competitive product business \u2014 carriers squeeze vendors and no end user is locked in",
+  "Global RAN market flat between cycles; growth is hostage to carrier capex timing (India rollouts, North America digestion)",
+  "Huawei remains the global share leader and price aggressor outside restricted markets",
+  "IPR licensing income is lumpy and settlement-driven; margins exposed to component (memory) cost inflation not immediately passable to customers",
+  "Enterprise/Vonage capital allocation destroyed value \u2014 SEK 32B (2023) and SEK 15.1B (2024) impairments"
+ ],
+ "moat_for": [
+  "One of two Western RAN suppliers (with Nokia); EU/US high-risk-vendor phase-outs structurally exclude Huawei/ZTE from much of its market",
+  "Deep installed base with the world's largest carriers plus multi-year managed-services/software contracts \u2014 real switching friction in live networks",
+  "Top-tier cellular SEP portfolio generating a high-margin IPR licensing annuity",
+  "Scale R&D and standards leadership in 5G/early 6G that smaller vendors cannot match"
+ ],
+ "moat_justification": "One of only two Western RAN vendors with a top-tier cellular patent portfolio, deep carrier installed base and scale R&D \u2014 but RAN is a re-bid, capex-cycle product business with no end-customer lock-in, Huawei leads globally on price, the market is flat between 5G/6G cycles, and the Vonage excursion (SEK 32B + SEK 15.1B impairments) showed capital allocation can destroy the moat's earnings.",
+ "moat_score": 5,
+ "name": "Telefonaktiebolaget LM Ericsson",
+ "one_liner": "Western RAN duopolist with a top-tier patent annuity, net cash and a first-ever SEK 15B buyback, moat 5/10 \u2014 but a flat capex-cycle market, lumpy IPR and H2 2026 component-cost pressure leave weighted IRR at 12.6% (IV@15% $7.75 vs $9.58 price); Tier C \u2014 clears 15% only at ~$7.75 or below.",
+ "probs_used": [
+  0.1,
+  0.3,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "The engine accepts a single override value applied to every unfilled period; SEK 1,790M is both the filed FY2025 expense and the median of the three filed gap-year figures (1,206 / 2,080 / 1,790), so the median-of-3-FY base is built from filed figures with offsetting errors of ~1% of OE in the non-median years. It is ~7.0x the last engine-filed value (FY2019 SEK 256M) \u2014 inside the 0.1x-10x band \u2014 and the step-up is real: the Key Contributor cash-settled plans scaled up from 2022 (Note G3). ~90% of the expense is cash-settled plans (a real cash cost through provisions); only SEK 175M of FY2025's total is share-settled.",
+  "source": "Ericsson Form 20-F for FY2025 (filed 2026-03-12), Financial Report Note G3 'Share-based compensation', table 'Compensation expense for LTV 2022-2025': total compensation expense SEK 1,206M (2023), SEK 2,080M (2024), SEK 1,790M (2025). The engine's ifrs-full tag ExpenseFromSharebasedPaymentTransactionsWithEmployees is filed only through FY2019 (SEK 256M), so EDGAR companyfacts carries no SBC for 2020-2025.",
+  "value": 1790000000
+ },
+ "sector": "Technology / Telecom equipment (RAN, cloud software & services, enterprise)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

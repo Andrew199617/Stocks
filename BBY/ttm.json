@@ -1,0 +1,101 @@
+{
+ "ticker": "BBY",
+ "cik": 764478,
+ "entity": "Best Buy Co., Inc.",
+ "fy_end": "2026-01-31",
+ "ytd_end": "2026-08-01",
+ "inputs": {
+  "ocf": {
+   "fy": 1962000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 783000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1296000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2475000000
+  },
+  "capex": {
+   "fy": 704000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 341000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 344000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 707000000
+  },
+  "sbc": {
+   "fy": 139000000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 75000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 74000000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 138000000
+  },
+  "shares_diluted": {
+   "fy": 212100000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 212500000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 212100000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2475000000,
+ "ttm_capex": 707000000,
+ "ttm_sbc": 138000000,
+ "ttm_shares_diluted": 212100000,
+ "ttm_oe_total": 1630000000,
+ "ttm_oe_per_share": 7.685054219707685,
+ "warnings": [],
+ "overrides_used": []
+}

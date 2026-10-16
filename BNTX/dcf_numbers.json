@@ -1,0 +1,215 @@
+{
+ "ticker": "BNTX",
+ "name": "BioNTech SE",
+ "cik": 1776985,
+ "engine_version": 5,
+ "as_of": "2026-10-15",
+ "price": 88.77,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 241700000,
+ "market_cap_est": 21455709000.0,
+ "net_debt_latest": null,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.4163225686197367,
+ "rev_cagr_3y": -0.4325602079314307,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 205272500.0,
+ "base_oe_per_share": 0.8492863053371948,
+ "base_oe_latest_per_share": 0.8492863053371948,
+ "base_oe_normalized_per_share": 0.8492863053371948,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.4163225686197367,
+  "rev_cagr_3y": -0.4325602079314307,
+  "rev_yoy_latest": 0.17984378103605025,
+  "oe_ps_cagr_2y": -0.8079821248155026
+ },
+ "g_blend": -0.12635821344769022,
+ "share_cagr": -0.010925145988311291,
+ "share_count_adj": 0.010925145988311291,
+ "used_tags": {
+  "revenue": "RevenueFromContractsWithCustomers",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": null,
+  "debt_lt": "LongtermBorrowings",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F/A for fiscal year ended December 31, 2025, cover page (SEC filing, CIK 1776985): securities registered under Section 12(b) are 'American Depositary Shares, each Representing one ordinary share', trading symbol BNTX on Nasdaq",
+  "reason": "One ADS represents one ordinary share, so per-share figures in EUR-converted USD and the ADS price are on the same 1:1 basis; no scaling applies."
+ },
+ "fx_conversion": {
+  "from_currency": "EUR",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_lt",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2016-12-31": 1.0541,
+   "2017-12-31": 1.1993,
+   "2018-12-31": 1.145,
+   "2019-12-31": 1.1234,
+   "2020-12-31": 1.2271,
+   "2021-12-31": 1.1326,
+   "2022-12-31": 1.0666,
+   "2023-12-31": 1.105,
+   "2024-12-31": 1.0389,
+   "2025-12-31": 1.175
+  },
+  "rates_by_currency": {
+   "EUR": {
+    "2016-12-31": 1.0541,
+    "2017-12-31": 1.1993,
+    "2018-12-31": 1.145,
+    "2019-12-31": 1.1234,
+    "2020-12-31": 1.2271,
+    "2021-12-31": 1.1326,
+    "2022-12-31": 1.0666,
+    "2023-12-31": 1.105,
+    "2024-12-31": 1.0389,
+    "2025-12-31": 1.175
+   }
+  }
+ },
+ "override_checks": {},
+ "g_base": -0.05,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.15,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 5.063921549617286,
+   "iv_at_12": 4.090060654935599,
+   "iv_at_15": 3.2034605247260224,
+   "irr": 0.011654860103801457
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.1,
+   "oe_mult": 0.9,
+   "iv_at_10": 6.0767058595407395,
+   "iv_at_12": 4.908072785922718,
+   "iv_at_15": 3.8441526296712256,
+   "irr": 0.02449640244245732
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": -0.05,
+   "oe_mult": 1.0,
+   "iv_at_10": 8.412275970871736,
+   "iv_at_12": 6.728490327911801,
+   "iv_at_15": 5.20328504782541,
+   "irr": 0.031718544846393984
+  },
+  "bull": {
+   "prob": 0.15,
+   "g_start": 0.0,
+   "oe_mult": 1.1,
+   "iv_at_10": 11.48083850099033,
+   "iv_at_12": 9.101479196024233,
+   "iv_at_15": 6.955733683931938,
+   "irr": 0.034539385715902954
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.07,
+   "oe_mult": 1.25,
+   "iv_at_10": 17.517991672542593,
+   "iv_at_12": 13.733746226846632,
+   "iv_at_15": 10.339279943834002,
+   "irr": 0.04017240635146313
+  }
+ },
+ "weighted": {
+  "iv_at_10": 8.580207723969146,
+  "iv_at_12": 6.843074534478993,
+  "iv_at_15": 5.272038428931085,
+  "irr": 0.03194314831784548
+ },
+ "implied_irr_weighted": 0.03194314831784548,
+ "implied_irr_base": 0.031718544846393984,
+ "tier_by_numbers": "D",
+ "upside_at_15": -0.940610133728387,
+ "upside_at_12": -0.9229123066973189,
+ "iv_at_15": 5.272038428931085,
+ "iv_at_12": 6.843074534478993,
+ "diagnostics": {
+  "oe_yield": 0.009567267154863071,
+  "tv_share_at_15": 0.165580943058984,
+  "scenario_spread_iv15": 3.227534681332861,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.461235216819974,
+  "irr_capped": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F/A for fiscal year ended December 31, 2025, cover page (SEC filing, CIK 1776985): securities registered under Section 12(b) are 'American Depositary Shares, each Representing one ordinary share', trading symbol BNTX on Nasdaq) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "LOW_OE_YIELD: base OE yield 1.0% \u2014 valuation rests almost entirely on growth; tier is fragile"
+ ],
+ "content_hash": "929678178f04708b06e8d661dcfcfb8a73e9c10dbb021dff0c45492718577da7"
+}

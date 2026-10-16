@@ -1,0 +1,70 @@
+{
+ "ticker": "FISV",
+ "name": "Fiserv, Inc.",
+ "sector": "Financial Services \u2014 Payments & Banking Processing",
+ "price": 46.19,
+ "market_cap_b": 25.36,
+ "engine_version": 5,
+ "base_oe_per_share": 6.639850327408793,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Core bank/payment processing is mission-critical infrastructure embedded in 10,000+ financial institutions with high switching costs, long contracts and 84% recurring revenue, and Clover holds a leading small-merchant POS position with GPV still growing \u2014 but Clover competition from Toast/Block is structural, pricing power is visibly eroding (fee concessions, adjusted operating margin down to 31.8% from 39.6%), Financial Solutions is shrinking, and repeated guidance resets plus CEO turnover show the moat did not protect growth or margins. Moderate-strong, not wide: 6/10, CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.4%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 33.43,
+   "irr": 0.1138
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 45.84,
+   "irr": 0.149
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.52,
+   "irr": 0.185
+  },
+  "bull": {
+   "prob": 0.18,
+   "iv_at_15": 76.5,
+   "irr": 0.2251
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "iv_at_15": 103.83,
+   "irr": 0.2815
+  }
+ },
+ "iv_at_15": 57.66,
+ "iv_at_12": 76.43,
+ "implied_irr": 0.1801,
+ "implied_irr_base_case": 0.185,
+ "upside_at_15_pct": 24.8,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "medium",
+ "one_liner": "High-quality cash machine (TTM OE $6.64/sh, 14.4% OE yield, net debt 0.12x OE) with a moderate-strong 6/10 moat, priced for failure after two years of guidance resets \u2014 clears 15% on recalibrated, bear-skewed inputs (weighted IRR 18.0%, weighted IV@15% $57.66 vs $46.19 price; $57.66 is the highest price clearing 15%), but only the super-bear case is insured against.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Core processing embedded in 10,000+ FIs \u2014 high switching costs, long contracts",
+  "Recurring revenue 84% of adjusted revenue (Q2 2026)",
+  "Scale in merchant acquiring; Clover leading SMB POS position, GPV +9% in Q2 2026",
+  "Net debt only 0.12x normalized OE; buybacks shrinking share count 5.4%/yr"
+ ],
+ "moat_against": [
+  "Clover competition from Toast and Block is structural",
+  "Pricing power eroding \u2014 fee concessions and margin compression",
+  "Large clients can renegotiate, in-source or leave at renewal",
+  "Financial Solutions shrinking (organic -8% in Q2 2026)",
+  "Management credibility: repeated guidance resets, CEO turnover, Clover litigation, activist pressure"
+ ]
+}

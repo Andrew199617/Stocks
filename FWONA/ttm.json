@@ -1,0 +1,101 @@
+{
+ "ticker": "FWONA",
+ "cik": 1560385,
+ "entity": "LIBERTY MEDIA CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 908000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+   "ytd_prior": 629000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+   "ytd_current": 673000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+   "ttm": 952000000
+  },
+  "capex": {
+   "fy": 119000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 55000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 65000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 129000000
+  },
+  "sbc": {
+   "fy": 21000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 8000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 11000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 24000000
+  },
+  "shares_diluted": {
+   "fy": 340000000,
+   "fy_period": [
+    "2015-01-01",
+    "2015-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 345000000,
+   "ytd_prior_period": [
+    "2015-01-01",
+    "2015-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 337000000,
+   "ytd_current_period": [
+    "2016-01-01",
+    "2016-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 952000000,
+ "ttm_capex": 129000000,
+ "ttm_sbc": 24000000,
+ "ttm_shares_diluted": 337000000,
+ "ttm_oe_total": 799000000,
+ "ttm_oe_per_share": 2.370919881305638,
+ "warnings": [],
+ "overrides_used": []
+}

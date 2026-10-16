@@ -1,0 +1,35 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "One ADS represents one ordinary share, so per-share figures in EUR-converted USD and the ADS price are on the same 1:1 basis; no scaling applies.",
+  "source": "Form 20-F/A for fiscal year ended December 31, 2025, cover page (SEC filing, CIK 1776985): securities registered under Section 12(b) are 'American Depositary Shares, each Representing one ordinary share', trading symbol BNTX on Nasdaq"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "COVID-19 vaccine demand collapsing: Q2 2026 revenue -59.5% YoY and FY2026 guidance cut to \u20ac1.6-1.9B",
+  "No approved oncology product yet: pipeline value is binary clinical/regulatory risk, not a commercial moat",
+  "COVID economics shared with Pfizer; competition from Moderna and other vaccine/oncology platforms",
+  "Founder/CEO leadership transition (incoming CEO by Feb 1, 2027) and heavy R&D/SG&A burn widening losses"
+ ],
+ "moat_for": [
+  "Proven mRNA platform and manufacturing that delivered a commercial COVID-19 vaccine at global scale with Pfizer",
+  "Large cash and security investments balance funding years of oncology R&D without dilution",
+  "BMS collaboration on pumitamig and a broad late-stage oncology pipeline (14 pivotal trials in Q2 2026 reporting)",
+  "Deep mRNA / immunotherapy know-how and CureVac acquisition consolidating mRNA IP"
+ ],
+ "moat_justification": "Proven mRNA platform, manufacturing know-how and the Pfizer COVID-19 partnership, funded by a very large cash and investments balance, but no durable commercial franchise beyond the shrinking COVID vaccine: oncology pipeline (pumitamig/BMS, ADCs, mRNA immunotherapies) is unapproved and binary, the COVID economics are shared with Pfizer and commoditising, and leadership is in transition.",
+ "moat_score": 4,
+ "name": "BioNTech SE",
+ "one_liner": "Proven mRNA platform, moat 4/10, huge cash pile funding an unapproved oncology pivot \u2014 but current owner's earnings do not support the price: weighted IRR 3.19%, weighted IV@15 $5.27 vs $88.77; clears 15% only below ~$5.27 on this OE base.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.15,
+  0.1
+ ],
+ "sector": "Biotechnology / mRNA vaccines & oncology",
+ "tier_override": null,
+ "tier_override_reason": null
+}

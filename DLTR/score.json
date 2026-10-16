@@ -1,0 +1,71 @@
+{
+ "ticker": "DLTR",
+ "name": "Dollar Tree, Inc.",
+ "sector": "Consumer Defensive \u2014 Discount Retail",
+ "price": 123.73,
+ "market_cap_b": 25.53,
+ "engine_version": 5,
+ "base_oe_per_share": 4.83664566165778,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Store density, purchasing scale and a proven ability to move the price architecture (the $1.25 reset, then multi-price) are real, but there are no switching costs, Walmart and Dollar General contest the same basket with deeper pockets, the mix is import- and tariff-exposed, and the core customer is financially squeezed.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 8 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.7%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 19.18,
+   "irr": 0.0418
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 30.88,
+   "irr": 0.0551
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 42.26,
+   "irr": 0.0682
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 57.17,
+   "irr": 0.0851
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 86.53,
+   "irr": 0.1158
+  }
+ },
+ "iv_at_15": 42.05,
+ "iv_at_12": 55.74,
+ "implied_irr": 0.0685,
+ "implied_irr_base_case": 0.0682,
+ "upside_at_15_pct": -66.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Narrow-moat discounter (5/10) genuinely improving after the Family Dollar exit, but at $123.73 the price capitalizes a tariff-refund-flattered TTM run-rate \u2014 weighted IRR 6.8%, IV@15 $42.05 on the normalized base; clears 15% only below ~$42, and below ~$92 even on the TTM base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Store density and proximity across roughly nine and a half thousand stores \u2014 the closest, fastest trip for fill-in consumables",
+  "Purchasing scale across the fleet and a low-cost small-box operating model",
+  "Multi-price format broadens the ticket and is drawing higher-income shoppers, reducing dependence on the most squeezed cohort",
+  "Demonstrated pricing flexibility \u2014 the base price point was reset and higher price tiers added without breaking traffic"
+ ],
+ "moat_against": [
+  "No switching costs and no pricing power against Walmart; Dollar General and Five Below contest the same value customer",
+  "Import-heavy assortment \u2014 tariff costs and refunds have swung reported results in both directions within a year",
+  "Core low-income customer squeezed by cumulative food/fuel inflation; traffic growth is thin and ticket-led",
+  "Thin operating margins leave little buffer for shrink, wage or freight shocks"
+ ]
+}

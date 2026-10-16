@@ -1,0 +1,44 @@
+{
+ "ticker": "DOW",
+ "name": "Dow Inc.",
+ "sector": "Materials \u2014 Commodity & Diversified Chemicals",
+ "price": 29.66,
+ "market_cap_b": 21.11,
+ "engine_version": 5,
+ "base_oe_per_share": -0.26237413132888954,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Real scale and integration advantages that lower Dow's position on the cost curve \u2014 vertically integrated megasites (Freeport, Terneuzen) that cannot be replicated quickly, and a U.S. Gulf Coast ethane/propane feedstock advantage over naphtha-based peers \u2014 but the core products are undifferentiated commodities sold on price, returns are set by the global capacity cycle and Chinese additions, sustaining capex runs at roughly D&A, and the feedstock edge is a spread that can narrow. No durable pricing power through the cycle: FY2025 prices fell faster than feedstock costs and normalized owner's earnings went negative.",
+ "cap_years": null,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Integrated commodity-chemical giant, moat 4/10, but normalized conservative owner's earnings are negative (\u2212$0.26/share median base; FY2025 OE \u2212$1,601M as OCF no longer covers capex through the downcycle) \u2014 Tier F on this screen; no hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-15",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Vertically integrated megasites (Freeport TX, Terneuzen) \u2014 internal conversion avoids intermediary margins and freight; permitting alone blocks quick replication",
+  "U.S. Gulf Coast ethane/propane feedstock advantage vs naphtha-based international peers \u2014 higher ethylene yields, costs less tied to crude",
+  "Top-tier global scale and supply reliability for large customers (alongside LyondellBasell, ExxonMobil Chemical)",
+  "Specialty pockets with more customer stickiness \u2014 silicones, polyolefin elastomers, coatings in Performance Materials & Coatings"
+ ],
+ "moat_against": [
+  "Core products are undifferentiated commodities bought on price; low switching costs outside specialty grades",
+  "No pricing power through the cycle \u2014 FY2025 polyethylene prices fell faster than feedstock costs, margins compressed to trough",
+  "Global overcapacity, especially Chinese capacity additions, sets the marginal price",
+  "Ethane advantage is a commodity spread that narrows when oil/gas ratios move",
+  "Heavy sustaining capex (capex \u2248 D&A) plus recurring restructuring/impairment charges are structural, not one-offs",
+  "Legacy liabilities keep surfacing \u2014 Sadara guarantee, DuPont/Corteva indemnifications, litigation"
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "ticker": "BR",
+ "name": "Broadridge Financial Solutions, Inc.",
+ "sector": "Business Services / Financial technology infrastructure",
+ "price": 174.11,
+ "market_cap_b": 20.39,
+ "engine_version": 5,
+ "base_oe_per_share": 8.910397295012679,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Dominant, regulation-embedded position in proxy/investor communications and mission-critical trade processing with high operational and regulatory switching costs and proven through-cycle compounding \u2014 but contested by in-house operations and many vendors, exposed to financial-services volumes, and facing a print-to-digital shift.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 42.35,
+   "irr": 0.0528
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 70.6,
+   "irr": 0.0765
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 99.41,
+   "irr": 0.0995
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 138.69,
+   "irr": 0.1276
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 219.78,
+   "irr": 0.1756
+  }
+ },
+ "iv_at_15": 108.36,
+ "iv_at_12": 147.27,
+ "implied_irr": 0.1067,
+ "implied_irr_base_case": 0.0995,
+ "upside_at_15_pct": -37.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Strong-moat (7/10) financial-infrastructure compounder, but at $174.11 it prices in the bull case \u2014 weighted IRR 10.67%, IV@15% $108.36 vs $174.11 price; clears 15% only at or below ~$108.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "moat_for": [
+  "Dominant scale in proxy processing and investor communications \u2014 de facto standard workflow",
+  "Mission-critical, regulated workflows with high operational/regulatory switching costs",
+  "Large recurring-revenue base \u2014 fiscal 2026 recurring revenues grew 8%, closed sales $305M",
+  "Proven durability \u2014 revenue CAGR 8.41% over 5 years, OE positive 5/5 years",
+  "Embedded with the 15 largest U.S. wealth providers and 22 of 26 U.S. primary dealers (10-K)"
+ ],
+ "moat_against": [
+  "Competition from clients' in-house operations, transfer agents, proxy firms and many tech vendors",
+  "Customer base concentrated in financial services; largest client a high-single-digit share of revenue",
+  "SEC electronic-default shift could erode print/distribution economics",
+  "Event-driven and position-count revenues are cyclical with equity markets and volumes",
+  "Net debt 2.73x normalized owner's earnings limits flexibility if volumes fall"
+ ]
+}
