@@ -58,6 +58,12 @@ file" and "folder no longer qualifies" cases run on the copies.
    analysis is withheld (record.live null, record.live_withheld, row flag),
    and the ranking / history CSV use the scored figures.
 17. record.profile carries street_fetched_at (null) without street.json.
+18. Pre-render (2026-10-16): with the real app shell in the site dir and Node
+    available, --attachment inlines the static layer prerender.js renders
+    with the app's own code (ranking rows + company pages as plain HTML that
+    reads with JavaScript off, CSS-radio tier filter, JS-on cleanup script),
+    SITE_DATA stays inlined, and prerender=False keeps the old JS-only file.
+    Skipped when Node or the shell is unavailable.
 
 The Nasdaq caches (prices.json, live.json, street.json) are gitignored, so
 a fresh clone has none: TempBase removes whatever the copies carried and
@@ -68,6 +74,7 @@ import datetime
 import glob
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -324,6 +331,32 @@ def test_attachment_trimmed():
         full = tb.record("APP")
         assert "judgment" in full and "ttm" in full and "daily_1y" in full["prices"]  # the site record is untrimmed
         assert "<title>" in doc and "<!doctype html>" in doc.lower()
+
+
+def test_attachment_prerendered():
+    node = shutil.which("node") or ("/usr/bin/node" if os.path.isfile("/usr/bin/node") else None)
+    shell = os.path.join(BASE, "_daily", "site")
+    if not node or not os.path.isfile(os.path.join(shell, "app.js")):
+        print("  (skipped: needs node and the app shell)")
+        return
+    with TempBase() as tb:
+        os.makedirs(tb.site, exist_ok=True)
+        for f in ("index.html", "app.css", "app.js"):
+            shutil.copy(os.path.join(shell, f), os.path.join(tb.site, f))
+        res = tb.build(attachment=True, top=2)
+        assert res["prerender"] and "sections" in res["prerender"], res["prerender"]
+        with open(res["attachment"][0], encoding="utf-8") as f:
+            doc = f.read()
+        assert 'id="static"' in doc and "getElementById('static')" in doc  # the layer + its JS-on cleanup script
+        assert "window.SITE_DATA=" in doc  # the interactive app still boots from the same payload
+        static_only = re.sub(r"<script>.*?</script>", "", doc, flags=re.S)  # what a no-JS viewer is left with
+        assert 'data-ticker="APP"' in static_only and "$376.12" in static_only  # ranking row + IV@15 as plain text
+        assert 'id="c-APP"' in static_only and 'data-pane="forecast"' in static_only  # company page, every tab pane
+        assert 'name="prtf"' in static_only and "Loading the ranking" not in static_only  # CSS tier filter, no dead card
+        res2 = tb.build(attachment=True, top=2, prerender=False)
+        assert res2["prerender"] is None
+        with open(res2["attachment"][0], encoding="utf-8") as f:
+            assert 'id="static"' not in f.read()
 
 
 def test_incremental_skip_touch_remove():

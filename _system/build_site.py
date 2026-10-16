@@ -2,7 +2,7 @@
 """Site data layer (v6 presentation, 2026-10-14) — see _system/SITE_CONTRACT.md.
 
 Usage: python3 build_site.py [--only T,T] [--force] [--attachment] [--top N]
-                             [--site-dir PATH] [--quiet]
+                             [--site-dir PATH] [--quiet] [--no-prerender]
 
 Reads every <TICKER>/ folder (the files Muse's scripts write) and derives the
 JSON the static app renders:
@@ -79,6 +79,20 @@ the columns the daily chat message quotes (HISTORY_COLUMNS), ordered by live
 IRR desc, then scored IRR desc, then ticker. A --site-dir build writes both
 next to that directory instead (its parent), never into the real _daily/.
 
+Pre-rendered attachment (2026-10-16): --attachment also runs the app's own
+renderers in Node (_system/prerender.js) over the exact SITE_DATA payload
+and inlines the finished HTML as a static layer inside #app — the ranking
+with a CSS-radio tier filter, one :target section per company with every
+tab pane stacked visible, charts as inline SVG — because the iOS chat
+attachment viewer never runs the app's script and the file otherwise sits
+on "Loading the ranking…". A one-line cleanup script removes the layer
+during parsing when JavaScript does run, so the interactive app boots into
+the pristine shell; app.js and SITE_DATA are inlined unchanged either way.
+Node missing or the pre-render failing aborts the build BEFORE the previous
+attachment is overwritten (an unrendered file must never ship silently);
+--no-prerender is the emergency opt-out. Data-layer builds (no --attachment)
+never invoke Node.
+
 Dividends at the last close (2026-10-16): fundamentals.json is committed and
 no longer rewritten for a new close alone — its price leaves are volatile
 (fundamentals.PRICE_LEAVES). When <T>/prices.json's close is not older than
@@ -136,7 +150,10 @@ import json
 import math
 import os
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -1035,7 +1052,88 @@ def write_history_csv(out_dir, index, date):
     return path, len(rows)
 
 
-def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date):
+# ---------------------------------------------------------------- pre-render
+class PrerenderError(Exception):
+    """The attachment's static layer could not be built: the build fails and
+    the previous attachment stays in place (an unrendered file must never
+    replace a good one silently — the iOS chat viewer cannot run the app)."""
+
+
+def find_node():
+    """Node for _system/prerender.js: the PATH first, then the system install."""
+    return shutil.which("node") or ("/usr/bin/node" if os.path.isfile("/usr/bin/node") else None)
+
+
+def prerender_fragment(site_dir, payload):
+    """Run the app's own renderers in Node (prerender.js) over the exact
+    SITE_DATA payload. Returns (fragment_html, node_stdout_line). Raises
+    PrerenderError on any failure; temp files live in the site dir (a
+    gitignored cache) and are always removed."""
+    node = find_node()
+    if node is None:
+        raise PrerenderError("node not found (PATH or /usr/bin/node) — cannot pre-render the attachment; "
+                             "install node or pass --no-prerender")
+    script = os.path.join(HERE, "prerender.js")
+    if not os.path.isfile(script):
+        raise PrerenderError(f"pre-render script missing: {script}")
+    pf = ff = None
+    try:
+        fd, pf = tempfile.mkstemp(prefix=".prerender-payload-", suffix=".json", dir=site_dir)
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write(dump(payload))
+        fd, ff = tempfile.mkstemp(prefix=".prerender-fragment-", suffix=".html", dir=site_dir)
+        os.close(fd)
+        try:
+            r = subprocess.run([node, script, "--payload", pf, "--app", os.path.join(site_dir, "app.js"), "--out", ff],
+                               capture_output=True, text=True, errors="replace", timeout=900)
+        except subprocess.TimeoutExpired:
+            raise PrerenderError("prerender.js timed out after 900 s")
+        except OSError as e:
+            raise PrerenderError(f"could not run node: {e}")
+        if r.returncode != 0:
+            lines = [ln.strip() for ln in (r.stderr or "").splitlines() if ln.strip()]
+            why = next((ln for ln in lines if "Error" in ln), lines[0] if lines else "no stderr")
+            raise PrerenderError(f"prerender.js failed (exit {r.returncode}): {why}")
+        for line in (r.stderr or "").splitlines():
+            print(f"build_site: {line}", file=sys.stderr)
+        with open(ff, encoding="utf-8") as f:
+            fragment = f.read()
+        if '<div id="static">' not in fragment:
+            raise PrerenderError("prerender.js output has no static layer")
+        return fragment, (r.stdout or "").strip()
+    finally:
+        for p in (pf, ff):
+            if p:
+                try:
+                    os.remove(p)
+                except OSError:
+                    pass
+
+
+STATIC_CLEANUP = ("<script>(function(){var s=document.getElementById('static');"
+                  "if(s&&s.parentNode)s.parentNode.removeChild(s);})();</script>")
+
+
+def apply_static_layer(doc, fragment):
+    """Splice the pre-rendered layer into the attachment document: it replaces
+    the shell's "Loading…" card inside #app (with JavaScript on, the cleanup
+    script removes it during parsing — before the app boots into the pristine
+    shell — and boot would replace #app's content anyway; with JavaScript off
+    it simply stays and IS the page), the shell's <noscript> "JavaScript is
+    required" block goes (no longer true), and the cleanup script lands just
+    before the SITE_DATA script."""
+    out, k = re.subn(r'(<div id="app">)<div class="card loading"[^>]*>.*?</div>',
+                     lambda m: m.group(1) + fragment.rstrip("\n"), doc, count=1, flags=re.S)
+    if not k:
+        raise PrerenderError("the attachment shell has no #app loading card to replace — index.html shape changed")
+    out = re.sub(r"<noscript>.*?</noscript>", "", out, count=1, flags=re.S)
+    i = out.find("<script>window.SITE_DATA=")
+    if i < 0:
+        raise PrerenderError("the attachment has no SITE_DATA script to anchor the cleanup script to")
+    return out[:i] + STATIC_CLEANUP + out[i:]
+
+
+def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date, prerender=True, info=None):
     """records_by_ticker and data/<T>.json are both keyed by row.ticker (the
     served key), so every top-N row with a record is embedded."""
     recs = {}
@@ -1050,6 +1148,19 @@ def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date):
     payload = {"meta": meta, "index": rows, "records": recs, "embedded_top": top, "embedded": sorted(recs)}
     data_js = "<script>window.SITE_DATA=" + script_json(payload) + ";</script>"
     doc = inline_shell(site_dir, data_js)
+    if prerender:
+        # Only the real app shell can be pre-rendered; the placeholder shell
+        # (no index.html / app.js in the site dir) keeps its data-only page.
+        if os.path.isfile(os.path.join(site_dir, "index.html")) and os.path.isfile(os.path.join(site_dir, "app.js")):
+            fragment, note = prerender_fragment(site_dir, payload)
+            doc = apply_static_layer(doc, fragment)
+            if info is not None:
+                info["prerender"] = note
+        else:
+            print("build_site: pre-render skipped — the app shell (index.html + app.js) is not in the site dir; "
+                  "placeholder attachment as before", file=sys.stderr)
+            if info is not None:
+                info["prerender"] = "skipped (no app shell)"
     out_dir = attachment_dir(base, site_dir)  # next to the site directory, never the real _daily/ for a --site-dir build
     path = os.path.join(out_dir, f"ranking-{date}.html")
     size = write_atomic(path, doc)
@@ -1058,7 +1169,7 @@ def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date):
 
 
 # ---------------------------------------------------------------- build
-def build(base=None, site_dir=None, only=None, force=False, attachment=False, top=150, quiet=False, now=None):
+def build(base=None, site_dir=None, only=None, force=False, attachment=False, top=150, quiet=False, now=None, prerender=True):
     base = os.path.abspath(base or os.environ.get("STOCKS_BASE") or os.path.dirname(HERE))
     site_dir = os.path.abspath(site_dir or os.path.join(base, "_daily", "site"))
     data_dir = os.path.join(site_dir, "data")
@@ -1296,10 +1407,13 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     write_atomic(os.path.join(site_dir, "meta.json"), dump(meta, compact=False))
     write_atomic(os.path.join(site_dir, "state.json"), dump({"built_at": built_at, "builder_mtime": builder_mtime, "records": state}))
 
-    # 6. attachment + the committed daily history snapshot (same date)
+    # 6. attachment + the committed daily history snapshot (same date). A
+    #    pre-render failure raises out of build_attachment BEFORE any file is
+    #    written — the previous attachment and history snapshot stay in place.
     att = hist = None
+    info = {}
     if attachment:
-        att = build_attachment(base, site_dir, meta, index, records, top, date)
+        att = build_attachment(base, site_dir, meta, index, records, top, date, prerender=prerender, info=info)
         hist = write_history_csv(attachment_dir(base, site_dir), index, date)
 
     largest = max(sizes.items(), key=lambda kv: kv[1]) if sizes else None
@@ -1310,6 +1424,7 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                + f" | statements {len(statements_written)} written / {len(statements_removed)} removed"
                + (f" | largest record {largest[0]} {largest[1]:,} B" if largest else " | no record written")
                + (f" | attachment {att[1]:,} B ({att[2]} records) -> {att[0]}" if att else "")
+               + (f" | {info['prerender']}" if info.get("prerender") else "")
                + (f" | history {hist[1]} rows -> {hist[0]}" if hist else "")
                + f" | {len(index)} rows, {len(stale)} stale -> {site_dir}")  # ASCII only: Windows consoles
     if not quiet:
@@ -1318,7 +1433,8 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
             "statements_written": statements_written, "statements_removed": statements_removed,
             "missing_outside_only": missing_outside_only,
             "rows": index, "meta": meta, "records": records, "watchlist": watchlist, "watchlist_outside": watchlist_outside,
-            "largest": largest, "attachment": att, "history": hist, "site_dir": site_dir, "summary": summary}
+            "largest": largest, "attachment": att, "history": hist, "site_dir": site_dir, "summary": summary,
+            "prerender": info.get("prerender")}
 
 
 def main(argv=None):
@@ -1330,6 +1446,9 @@ def main(argv=None):
     ap.add_argument("--top", type=int, default=150, help="records embedded in the attachment (default 150)")
     ap.add_argument("--site-dir", help="output directory (default <base>/_daily/site)")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--no-prerender", action="store_true",
+                    help="emergency opt-out: write the attachment without the pre-rendered static layer "
+                         "(the file then needs JavaScript to read, like before 2026-10-16)")
     a = ap.parse_args(argv)
     # One builder at a time: WORKER_SPEC step 10, the second pass and the daily
     # cron all call this from workers that fire concurrently (re-verification
@@ -1339,8 +1458,12 @@ def main(argv=None):
     site_dir = os.path.abspath(a.site_dir or os.path.join(base, "_daily", "site"))
     os.makedirs(site_dir, exist_ok=True)
     with locked(site_dir + ".lock"):
-        build(site_dir=a.site_dir, only=(a.only.split(",") if a.only else None), force=a.force, attachment=a.attachment,
-              top=a.top, quiet=a.quiet)
+        try:
+            build(site_dir=a.site_dir, only=(a.only.split(",") if a.only else None), force=a.force, attachment=a.attachment,
+                  top=a.top, quiet=a.quiet, prerender=not a.no_prerender)
+        except PrerenderError as e:
+            print(f"build_site: {e} — the previous attachment was NOT overwritten", file=sys.stderr)
+            return 1
     return 0
 
 

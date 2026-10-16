@@ -223,6 +223,29 @@ Choices made where the text above was silent or ambiguous; each is additive to t
 - **Output hygiene**: every file is written atomically (`.tmp` then `os.replace`); records are compact JSON, `meta.json` indented;
   the one-line summary is ASCII only (Windows consoles).
 
+## Decisions (pre-rendered attachment, 2026-10-16)
+The chat attachment must read with JavaScript OFF (the iOS chat viewer never runs the file's script); the fix is a build-time
+pre-render with the app's own code, not a second renderer.
+- **`--attachment` pre-renders by default.** `_system/prerender.js` (Node, no dependencies) loads the site's own `app.js` through
+  the `module.exports` its test suite uses — the renderers are pure string functions — and renders, over the exact `SITE_DATA`
+  payload: the ranking (`renderListHTML` at its default state) with a CSS-radio tier filter injected (`name="prtf"`, rows hidden
+  by `#static:has(…:checked)`), and one section per index row: embedded records get `renderCompanyHTML` at the default tab with
+  every pane and forecast subpane in the markup and the charts drawn into `{clientWidth, clientHeight, innerHTML}` stubs (fixed
+  828×280 price / 828×260 fan sizes) so they land as inline SVG; rows without an embedded record get the app's own missing-record
+  page. The fragment replaces the shell's "Loading…" card inside `#app`; row links `#T[.tab…]` are rewritten to `#c-<T>` and the
+  company article ids `d-<T>` to `c-<T>`, so CSS `:target` shows one company at a time and the list returns at `#`; a `<style>`
+  block stacks all panes visible in the static layer and hides the app's interactive chrome (controls, tab bars, the price-chart
+  range bar). Statements parity is automatic: embedded records render the same "full statements are on the site" note the app
+  shows, in both layers.
+- **JavaScript-on behavior is unchanged.** `app.js` and `SITE_DATA` are inlined exactly as before; a one-line cleanup script
+  placed just before `SITE_DATA` removes `#static` during parsing, before the app boots into the pristine shell; the shell's
+  `<noscript>` "JavaScript is required" block is dropped (no longer true).
+- **Failure is loud and non-destructive.** Node is located via PATH, then `/usr/bin/node`. A missing Node, a failing
+  `prerender.js`, or a shell without the expected `#app` loading card aborts the `--attachment` build (exit 1) BEFORE the
+  previous `ranking-<date>.html` / `latest.html` — and the day's history CSV — are touched. `--no-prerender` is the emergency
+  opt-out (the old JS-only file). Data-layer builds (no `--attachment`) never invoke Node. When the site dir carries no app shell
+  (the placeholder attachment), the pre-render is skipped with a note, as before.
+
 ## Decisions (owner, 2026-10-14 evening — layout and profile)
 - **Layout change (Andrew):** the company page is header → tab bar → tab content. The header is compact (tier tile, ticker, name, sector line; last close with 1-day change; live expected return with the scored figure beside it). The tab bar sits directly under the header and becomes a sticky condensed bar on scroll (ticker · last close · change · expected return · the tabs). The price-vs-value chart moves INSIDE the Overview tab as its first card, followed by: the verdict gauge + chips + one-liner, "About" (profile), "Financial performance" (generated prose from the filed numbers), "Street consensus" (Nasdaq analyst data, clearly labelled as the Street's view next to our hurdle prices), "Filings" (the 8-K / 10-Q / 10-K feed from EDGAR with links), then the existing key numbers, overrides, scenarios, moat and flags cards. Nothing that exists today is removed.
 - **`<T>/profile.json`** (new, `_system/profile.py`), copied into the record as `record.profile` (kept in the attachment; it is small): {"ticker","as_of","sources":{...},"about":{"description" (10-K Item 1 Business first paragraphs, cleaned, ≤1,500 chars, with the filing accession and a link), "description_short" (Nasdaq company-profile description), "industry","sector" (Nasdaq), "sic","sic_description","state_of_incorporation","fiscal_year_end_mmdd","filer_category","exchange","website","headquarters" (EDGAR submissions business address, city/state), "employees" (from the 10-K human-capital text, with the sentence quoted as evidence) | null, "first_sec_filing" (earliest filing date in submissions, the IPO-date proxy), "edgar_url"}, "street":{"source":"Nasdaq analyst endpoints","as_of","consensus":"Buy"|...,"analysts":16,"buy":16,"hold":4,"sell":0,"target_mean","target_low","target_high","target_1y_nasdaq_summary","history":[{"date","mean_target","buy","hold","sell"}...],"eps_forecast":{"quarterly":[{"period","consensus","low","high","estimates","revisions_up","revisions_down"}],"annual":[...]}} | null, "filings":[{"form","filed","period","items" (8-K items),"description" (e.g. "Results of operations" for 2.02),"url"}...] (latest 20), "market":{"exchange","average_volume","volume","market_cap_nasdaq","high_52w","low_52w","dividend_yield_nasdaq"} }. Refresh policy: profile.py --all skips files younger than --max-age-days (default 7) unless the company has a newer filing; the Street block is third-party data and is never used by the valuation. (Since 2026-10-16 `street` and `market` live in `<T>/street.json` and build_site.py puts them back on `record.profile`; each file has its own refresh rule — "Data policy, 2026-10-16" and the profile.py section's "Refresh and failure policy".)
