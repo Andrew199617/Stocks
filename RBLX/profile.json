@@ -1,0 +1,292 @@
+{
+ "ticker": "RBLX",
+ "cik": 1315098,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:20-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001315098.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RBLX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RBLX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Roblox Corp",
+  "cik": 1315098,
+  "description": {
+   "text": "Roblox is an immersive gaming and creation platform (the “Roblox Platform” or “Platform”) that offers people millions of ways to be together, inviting its community to explore, create, and share endless unique experiences. Our vision is to reimagine the way people come together– in a world that’s safe, civil, and optimistic. To achieve this vision, we are building an innovative company that, together with the Roblox community, has the ability to strengthen our social fabric and support economic growth for people around the world. Our Platform consists of the Roblox Client, the Roblox Studio, and the Roblox Cloud. Roblox Client is the application that allows users to seamlessly explore immersive experiences. Roblox Studio is the free toolset that allows creators to build, publish, and operate immersive experiences and other content accessed with the Roblox Client. Roblox Cloud includes the services and infrastructure that power our Platform. Our mission is to connect a billion users with optimism and civility. We are constantly improving the ways in which our Platform supports shared experiences, ranging from how these experiences are built by an engaged community of creators to how they are enjoyed and safely accessed by users across the globe. We also believe there is a strong potential to capture a greater percentage of the global gaming market within the Roblox ecosystem.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001315098-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+  },
+  "description_short": "Roblox is an immersive gaming and creation platform that offers people millions of ways to be together, inviting its community to explore, create and share endless unique games. Our vision is to reimagine the way people come together- in a world that's safe, civil, and optimistic. To achieve this vision, we are building an innovative company that, together with the Roblox community, has the ability to strengthen our social fabric and support economic growth for people around the world.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "NV",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.corp.roblox.com",
+  "headquarters": "San Mateo, CA",
+  "address": {
+   "street": "3150 South Delaware Street",
+   "city": "San Mateo",
+   "state": "CA",
+   "zip": "94403",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "(888) 858-2569",
+  "employees": {
+   "count": 3065,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 3,065 full time employees, the majority of whom work from our San Mateo, California headquarters.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-11-19",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001315098&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026051082/rblx-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-051059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026051059/rblx-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001315098-26-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000124/rblx-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001315098-26-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000108/rblx-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026028904/rblx-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-028882",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000162828026028882/rblx-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-16",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-044362",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000110465926044362/rblx-20260528xdef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000075/rblx-20260319.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-02-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000062/rblx-20260224.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001315098-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001315098-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000009/rblx-20260205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001315098-25-000327",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000327/rblx-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001315098-25-000326",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000326/rblx-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-17",
+   "period": "2025-09-15",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-25-000304",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000304/rblx-20250915.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001315098-25-000262",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000262/rblx-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-28",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD; Other events",
+   "accession": "0001315098-25-000261",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000261/rblx-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-01",
+   "period": "2025-06-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-25-000222",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000222/rblx-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-10",
+   "period": "2025-06-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001315098-25-000199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000199/rblx-20250604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-02",
+   "period": "2025-05-29",
+   "items": [
+    "3.03",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Shareholder vote; Other events",
+   "accession": "0001315098-25-000178",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000178/rblx-20250529.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001315098-25-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509825000118/rblx-20250331.htm"
+  }
+ ],
+ "warnings": []
+}

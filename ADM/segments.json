@@ -1,0 +1,791 @@
+{
+ "ticker": "ADM",
+ "cik": 7084,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000007084-26-000011",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000011/adm-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000007084-26-000023",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000023/adm-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000007084-26-000042",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000042/adm-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "adm:AgServicesandOilseedsMember",
+     "label": "Ag Services and Oilseeds",
+     "values": [
+      73426000000,
+      66516000000,
+      61571000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7817,
+      0.7777,
+      0.7671
+     ],
+     "growth_yoy": [
+      null,
+      -0.0941,
+      -0.0743
+     ]
+    },
+    {
+     "member": "adm:CarbohydrateSolutionsMember",
+     "label": "Carbohydrate Solutions",
+     "values": [
+      12874000000,
+      11234000000,
+      10737000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1371,
+      0.1313,
+      0.1338
+     ],
+     "growth_yoy": [
+      null,
+      -0.1274,
+      -0.0442
+     ]
+    },
+    {
+     "member": "adm:NutritionMember",
+     "label": "Nutrition",
+     "values": [
+      7211000000,
+      7349000000,
+      7512000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0768,
+      0.0859,
+      0.0936
+     ],
+     "growth_yoy": [
+      null,
+      0.0191,
+      0.0222
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      424000000,
+      431000000,
+      449000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0045,
+      0.005,
+      0.0056
+     ],
+     "growth_yoy": [
+      null,
+      0.0165,
+      0.0418
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     93935000000,
+     85530000000,
+     80269000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "adm:AgServicesandOilseedsMember",
+     "label": "Ag Services and Oilseeds",
+     "values": [
+      15675000000,
+      16269000000,
+      16001000000,
+      17916000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.777,
+      0.7686,
+      0.7809,
+      0.7899
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0208,
+      0.1012
+     ]
+    },
+    {
+     "member": "adm:CarbohydrateSolutionsMember",
+     "label": "Carbohydrate Solutions",
+     "values": [
+      2571000000,
+      2792000000,
+      2559000000,
+      2757000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1274,
+      0.1319,
+      0.1249,
+      0.1216
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0047,
+      -0.0125
+     ]
+    },
+    {
+     "member": "adm:NutritionMember",
+     "label": "Nutrition",
+     "values": [
+      1817000000,
+      1993000000,
+      1805000000,
+      1902000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0901,
+      0.0942,
+      0.0881,
+      0.0839
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0066,
+      -0.0457
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      112000000,
+      112000000,
+      125000000,
+      106000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0056,
+      0.0053,
+      0.0061,
+      0.0047
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1161,
+      -0.0536
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20175000000,
+     21166000000,
+     20490000000,
+     22681000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "adm:CarbohydrateSolutionsMember",
+     "label": "Carbohydrate Solutions",
+     "values": [
+      10420000000,
+      8982000000,
+      8503000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4056,
+      0.3685,
+      0.3407
+     ],
+     "growth_yoy": [
+      null,
+      -0.138,
+      -0.0533
+     ]
+    },
+    {
+     "member": "adm:AgServicesandOilseedsMember",
+     "label": "Ag Services and Oilseeds",
+     "values": [
+      7636000000,
+      7611000000,
+      8492000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2972,
+      0.3123,
+      0.3403
+     ],
+     "growth_yoy": [
+      null,
+      -0.0033,
+      0.1158
+     ]
+    },
+    {
+     "member": "adm:NutritionMember",
+     "label": "Nutrition",
+     "values": [
+      7211000000,
+      7349000000,
+      7512000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2807,
+      0.3015,
+      0.301
+     ],
+     "growth_yoy": [
+      null,
+      0.0191,
+      0.0222
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      424000000,
+      431000000,
+      449000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0165,
+      0.0177,
+      0.018
+     ],
+     "growth_yoy": [
+      null,
+      0.0165,
+      0.0418
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     25691000000,
+     24373000000,
+     24956000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "adm:AgServicesandOilseedsMember",
+     "label": "Ag Services and Oilseeds",
+     "values": [
+      2199000000,
+      2005000000,
+      2172000000,
+      2198000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3578,
+      0.3162,
+      0.3538,
+      0.3442
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0123,
+      0.0963
+     ]
+    },
+    {
+     "member": "adm:CarbohydrateSolutionsMember",
+     "label": "Carbohydrate Solutions",
+     "values": [
+      2018000000,
+      2231000000,
+      2037000000,
+      2180000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3283,
+      0.3518,
+      0.3318,
+      0.3414
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0094,
+      -0.0229
+     ]
+    },
+    {
+     "member": "adm:NutritionMember",
+     "label": "Nutrition",
+     "values": [
+      1817000000,
+      1993000000,
+      1805000000,
+      1902000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2956,
+      0.3143,
+      0.294,
+      0.2978
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0066,
+      -0.0457
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      112000000,
+      112000000,
+      125000000,
+      106000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0182,
+      0.0177,
+      0.0204,
+      0.0166
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1161,
+      -0.0536
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6146000000,
+     6341000000,
+     6139000000,
+     6386000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      38783000000,
+      33550000000,
+      31175000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4129,
+      0.3923,
+      0.3884
+     ],
+     "growth_yoy": [
+      null,
+      -0.1349,
+      -0.0708
+     ]
+    },
+    {
+     "member": "country:CH",
+     "label": "SWITZERLAND",
+     "values": [
+      19898000000,
+      19877000000,
+      17793000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2118,
+      0.2324,
+      0.2217
+     ],
+     "growth_yoy": [
+      null,
+      -0.0011,
+      -0.1048
+     ]
+    },
+    {
+     "member": "adm:OtherForeignMember",
+     "label": "Other Foreign",
+     "values": [
+      16443000000,
+      15697000000,
+      15227000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.175,
+      0.1835,
+      0.1897
+     ],
+     "growth_yoy": [
+      null,
+      -0.0454,
+      -0.0299
+     ]
+    },
+    {
+     "member": "country:KY",
+     "label": "CAYMAN ISLANDS",
+     "values": [
+      7646000000,
+      5603000000,
+      6093000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0814,
+      0.0655,
+      0.0759
+     ],
+     "growth_yoy": [
+      null,
+      -0.2672,
+      0.0875
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      3361000000,
+      3353000000,
+      3358000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0358,
+      0.0392,
+      0.0418
+     ],
+     "growth_yoy": [
+      null,
+      -0.0024,
+      0.0015
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      3185000000,
+      3209000000,
+      2741000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0339,
+      0.0375,
+      0.0341
+     ],
+     "growth_yoy": [
+      null,
+      0.0075,
+      -0.1458
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      2219000000,
+      2186000000,
+      2115000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0236,
+      0.0256,
+      0.0263
+     ],
+     "growth_yoy": [
+      null,
+      -0.0149,
+      -0.0325
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      2400000000,
+      2055000000,
+      1767000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0255,
+      0.024,
+      0.022
+     ],
+     "growth_yoy": [
+      null,
+      -0.1438,
+      -0.1401
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     93935000000,
+     85530000000,
+     80269000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

@@ -1,0 +1,197 @@
+{
+ "ticker": "PCG",
+ "cik": 1004980,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001004980-26-000009",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000009/pcg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001004980-26-000033",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000033/pcg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001004980-26-000048",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000048/pcg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ElectricityMember",
+     "label": "Electricity",
+     "values": [
+      17424000000,
+      17811000000,
+      18318000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7133,
+      0.7294,
+      0.7346
+     ],
+     "growth_yoy": [
+      null,
+      0.0222,
+      0.0285
+     ]
+    },
+    {
+     "member": "us-gaap:NaturalGasUsRegulatedMember",
+     "label": "Natural Gas, US Regulated",
+     "values": [
+      7004000000,
+      6608000000,
+      6617000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2867,
+      0.2706,
+      0.2654
+     ],
+     "growth_yoy": [
+      null,
+      -0.0565,
+      0.0014
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24428000000,
+     24419000000,
+     24935000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ElectricityMember",
+     "label": "Electricity",
+     "values": [
+      4135000000,
+      4414000000,
+      4967000000,
+      4388000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6911,
+      0.7484,
+      0.7218,
+      0.7435
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2012,
+      -0.0059
+     ]
+    },
+    {
+     "member": "us-gaap:NaturalGasUsRegulatedMember",
+     "label": "Natural Gas, US Regulated",
+     "values": [
+      1848000000,
+      1484000000,
+      1914000000,
+      1514000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3089,
+      0.2516,
+      0.2782,
+      0.2565
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0357,
+      0.0202
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5983000000,
+     5898000000,
+     6881000000,
+     5902000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

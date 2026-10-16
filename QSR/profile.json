@@ -1,0 +1,290 @@
+{
+ "ticker": "QSR",
+ "cik": 1618756,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:13-04:00",
+ "newest_filing_date": "2026-08-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001618756.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000017/qsr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/QSR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/QSR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Restaurant Brands International Inc.",
+  "cik": 1618756,
+  "description": {
+   "text": "We are one of the world’s largest quick service restaurant (“QSR”) companies with nearly $47 billion in annual system-wide sales and over 33,000 restaurants in more than 120 countries and territories as of December 31, 2025. As of the date of this Annual Report on Form 10-K, over 95% of system-wide restaurants were franchised restaurants. Our remaining restaurants are Company restaurants, primarily restaurants we acquired as a part of the Carrols Acquisition, the vast majority of which we plan to refranchise over the coming years. We also operate some other Company restaurants as test locations for new initiatives and to develop operational talent.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001618756-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000017/qsr-20251231.htm"
+  },
+  "description_short": "Restaurant Brands International Inc. is one of the world's largest quick service restaurant companies with nearly $49 billion in annual system-wide sales and over 33,000 restaurants in more than 120 countries and territories. RBI owns four of the world's most prominent and iconic quick service restaurant brands - TIM HORTONS®, BURGER KING®, POPEYES®, and FIREHOUSE SUBS®. These independently operated brands have been serving their respective guests, franchisees and communities for decades. Through its Restaurant Brands for Good framework, RBI is improving sustainable outcomes related to its food, the planet, and people and communities.",
+  "industry": "Restaurants",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5812",
+  "sic_description": "Retail-Eating  Places",
+  "state_of_incorporation": "A6",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.rbi.com",
+  "headquarters": "Miami, Florida",
+  "address": {
+   "street": "5707 Waterford District Drive",
+   "city": "Miami",
+   "state": "Florida",
+   "zip": "33126",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "(905) 845-6511",
+  "employees": {
+   "count": 53500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 53,500 employees, including approximately 3,400 corporate employees in our restaurant support centers and serving our franchisees from the field, approximately 1,300 employees in our distribution centers and manufacturing facilities, and approximately 48,900 employees in Company restaurants.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000017/qsr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-09-16",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "9060669 Canada Inc.",
+   "1011773 B.C. Unlimited Liability Co"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001618756&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001618756-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000047/qsr-20260810.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001618756-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000045/qsr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001618756-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000041/qsr-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001618756-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000037/qsr-20260603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001618756-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000029/qsr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001618756-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000025/qsr-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-23",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-171760",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000119312526171760/d22888ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001618756-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000017/qsr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001618756-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875626000006/qsr-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-14",
+   "period": "2025-11-13",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001618756-25-000306",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000306/qsr-20251113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-07",
+   "items": [
+    "2.06",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Impairment; Reg FD; Other events",
+   "accession": "0001618756-25-000302",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000302/qsr-20251107.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001618756-25-000300",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000300/qsr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001618756-25-000297",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000297/qsr-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001618756-25-000292",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000292/qsr-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001618756-25-000289",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000289/qsr-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-06-03",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001618756-25-000249",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000249/qsr-20250603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001618756-25-000242",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000242/qsr-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001618756-25-000238",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000238/qsr-20250508.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001618756-25-000231",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000161875625000231/qsr-20250428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-24",
+   "period": "2025-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-091549",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618756/000119312525091549/d875129ddef14a.htm"
+  }
+ ],
+ "warnings": []
+}

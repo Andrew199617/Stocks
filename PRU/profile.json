@@ -1,0 +1,300 @@
+{
+ "ticker": "PRU",
+ "cik": 1137774,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:03-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001137774.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000048/pru-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PRU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PRU/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "PRUDENTIAL FINANCIAL INC",
+  "cik": 1137774,
+  "description": {
+   "text": "Prudential Financial, Inc. (“Prudential Financial” or “PFI”), a global financial services leader and premier active global investment manager with approximately $1.609 trillion of assets under management as of December 31, 2025, has operations in the United States, Asia, Europe and Latin America. Through our subsidiaries and affiliates we offer a wide array of financial products and services, including life insurance, annuities, retirement-related products and services, mutual funds and investment management. We offer these products and services to individual and institutional customers through proprietary and third-party distribution networks. Our principal executive offices are located in Newark, New Jersey, and Prudential Financial’s Common Stock is publicly traded on the New York Stock Exchange under the ticker symbol “PRU.” On December 18, 2001, The Prudential Insurance Company of America (“PICA”) converted from a mutual life insurance company owned by its policyholders to a stock life insurance company and became a wholly-owned subsidiary of Prudential Financial. The demutualization was carried out under PICA’s Plan of Reorganization, which required us to establish and operate a regulatory mechanism known as the “Closed Block.”",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001137774-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000048/pru-20251231.htm"
+  },
+  "description_short": "Prudential Financial, Inc. ( NYSE: PRU ), a global financial services leader and premier active global investment manager with approximately $1.6 trillion in assets under management as of June 30, 2026, has operations in the United States, Asia, Europe, and Latin America. Prudential's diverse and talented employees help make lives better and create financial opportunity for more people by expanding access to investing, insurance, and retirement security. Prudential's iconic Rock symbol has stood for strength, stability, expertise, and innovation for over 150 years.",
+  "industry": "Life Insurance",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6311",
+  "sic_description": "Life Insurance",
+  "state_of_incorporation": "NJ",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.prudential.com",
+  "headquarters": "Newark, NJ",
+  "address": {
+   "street": "751 Broad Street",
+   "city": "Newark",
+   "state": "NJ",
+   "zip": "07102",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "9738026000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-04-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001137774&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001137774-26-000210",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000210/pru-20261015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-418407",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526418407/d11107d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-417354",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526417354/d44271d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001137774-26-000176",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000176/pru-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001137774-26-000170",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000170/pru-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-314987",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526314987/d41476d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001137774-26-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000157/pru-20260715.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-257475",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526257475/d225577d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-219846",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526219846/d117087d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001137774-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000095/pru-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001137774-26-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000093/pru-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-166839",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526166839/d143575d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001137774-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000087/pru-20260414.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-13",
+   "period": "2026-04-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-152952",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526152952/d197760d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-035162",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000110465926035162/tm2524217-6_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-100276",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526100276/d110533d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-095001",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526095001/d29547d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001137774-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000048/pru-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-09",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-045632",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526045632/d920291d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-09",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-043795",
+   "url": "https://www.sec.gov/Archives/edgar/data/1137774/000119312526043795/d33481d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-12"
+ ]
+}

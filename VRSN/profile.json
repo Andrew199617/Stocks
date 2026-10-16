@@ -1,0 +1,289 @@
+{
+ "ticker": "VRSN",
+ "cik": 1014473,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:06-04:00",
+ "newest_filing_date": "2026-08-27",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001014473.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VRSN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VRSN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "VERISIGN INC/CA",
+  "cik": 1014473,
+  "description": {
+   "text": "We are a global provider of critical internet infrastructure and domain name registry services, enabling internet navigation for many of the world’s most recognized domain names. We help enable the security, stability, and resiliency of the Domain Name System (“DNS”) and the internet by providing Root Zone Maintainer services, operating two of the thirteen global internet root servers, and providing registration services and authoritative resolution for the .com and .net top-level domains (“TLDs”), which support the majority of global e-commerce. We were incorporated in Delaware on April 12, 1995. Our principal executive offices are located at 12061 Bluemont Way, Reston, Virginia 20190. Our telephone number at that address is (703) 948-3200. Our common stock is traded on the Nasdaq Global Select Market under the ticker symbol VRSN. VERISIGN, the VERISIGN logo, and certain other product or service names are registered or unregistered trademarks in the U.S. and other countries. Other names used in this Form 10-K may be trademarks of their respective owners. Our primary website is https://www.verisign.com. The information available on, or accessible through, this website is not incorporated in this Form 10-K by reference.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "accession": "0001014473-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm"
+  },
+  "description_short": "Verisign (NASDAQ: VRSN), a global provider of critical internet infrastructure and domain name registry services, enables internet navigation for many of the world's most recognized domain names. Verisign helps enable the security, stability, and resiliency of the Domain Name System and the internet by providing root zone maintainer services, operating two of the 13 global internet root servers, and providing registration services and authoritative resolution for the. com and. net top-level domains, which support the majority of global e-commerce.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7371",
+  "sic_description": "Services-Computer Programming Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.verisign.com",
+  "headquarters": "Reston, Virginia",
+  "address": {
+   "street": "12061 Bluemont Way",
+   "city": "Reston",
+   "state": "Virginia",
+   "zip": "20190",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-05"
+  },
+  "phone": "7039483200",
+  "employees": {
+   "count": 928,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 928 employees, of which 926 were full-time.",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-11-21",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001014473&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001014473-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000030/vrsn-20260827.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000028/vrsn-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001014473-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000026/vrsn-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001140361-26-026574",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000114036126026574/ef20076830_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-026514",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000114036126026514/ef20076829_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001014473-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000023/vrsn-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000020/vrsn-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001014473-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000019/vrsn-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-10",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001014473-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000013/vrsn-20260409.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001014473-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000006/vrsn-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001014473-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447326000005/vrsn-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-21",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001014473-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000051/vrsn-20251121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-24",
+   "period": "2025-10-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001014473-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000048/vrsn-20251024.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000046/vrsn-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001014473-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000045/vrsn-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-08",
+   "period": "2025-10-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001014473-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000042/vrsn-20251006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-027935",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000114036125027935/ny20052578x3_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001014473-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000036/vrsn-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001014473-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000034/vrsn-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001014473-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1014473/000101447325000030/vrsn-20250610.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,864 @@
+{
+ "ticker": "IRM",
+ "cik": 1020569,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001020569-26-000013",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000013/irm-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001020569-26-000039",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000039/irm-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001020569-26-000071",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000071/irm-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "irm:GlobalRecordsandInformationManagementBusinessMember",
+     "label": "Global Records and Information Management Business",
+     "values": [
+      4661776000,
+      4979438000,
+      5291481000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8506,
+      0.8097,
+      0.7667
+     ],
+     "growth_yoy": [
+      null,
+      0.0681,
+      0.0627
+     ]
+    },
+    {
+     "member": "irm:GlobalDataCenterBusinessMember",
+     "label": "Global Data Center Business",
+     "values": [
+      495026000,
+      620028000,
+      803429000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0903,
+      0.1008,
+      0.1164
+     ],
+     "growth_yoy": [
+      null,
+      0.2525,
+      0.2958
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      323487000,
+      550443000,
+      806827000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.059,
+      0.0895,
+      0.1169
+     ],
+     "growth_yoy": [
+      null,
+      0.7016,
+      0.4658
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5480289000,
+     6149909000,
+     6901737000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "irm:GlobalRecordsandInformationManagementBusinessMember",
+     "label": "Global Records and Information Management Business",
+     "values": [
+      1255942000,
+      1323798000,
+      1404086000,
+      1433562000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7886,
+      0.7733,
+      0.7252,
+      0.7065
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.118,
+      0.0829
+     ]
+    },
+    {
+     "member": "irm:GlobalDataCenterBusinessMember",
+     "label": "Global Data Center Business",
+     "values": [
+      173197000,
+      189401000,
+      254725000,
+      262871000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1088,
+      0.1106,
+      0.1316,
+      0.1296
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4707,
+      0.3879
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      163390000,
+      198749000,
+      277338000,
+      332629000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1026,
+      0.1161,
+      0.1432,
+      0.1639
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6974,
+      0.6736
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1592529000,
+     1711948000,
+     1936149000,
+     2029062000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "irm:GlobalRecordsandInformationManagementBusinessMember",
+     "label": "Global Records and Information Management Business",
+     "values": [
+      10876225000,
+      10408885000,
+      10891324000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6224,
+      0.5561,
+      0.5156
+     ],
+     "growth_yoy": [
+      null,
+      -0.043,
+      0.0463
+     ]
+    },
+    {
+     "member": "irm:GlobalDataCenterBusinessMember",
+     "label": "Global Data Center Business",
+     "values": [
+      4788600000,
+      6060608000,
+      7968990000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.274,
+      0.3238,
+      0.3772
+     ],
+     "growth_yoy": [
+      null,
+      0.2656,
+      0.3149
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      1808977000,
+      2247622000,
+      2264705000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1035,
+      0.1201,
+      0.1072
+     ],
+     "growth_yoy": [
+      null,
+      0.2425,
+      0.0076
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17473802000,
+     18717115000,
+     21125019000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "irm:GlobalRecordsandInformationManagementBusinessMember",
+     "label": "Global Records and Information Management Business",
+     "values": [
+      10263140000,
+      10706096000,
+      10941270000,
+      10898848000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5301,
+      0.5306,
+      0.5092,
+      0.4964
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0661,
+      0.018
+     ]
+    },
+    {
+     "member": "irm:GlobalDataCenterBusinessMember",
+     "label": "Global Data Center Business",
+     "values": [
+      6641688000,
+      7156801000,
+      8276221000,
+      8782891000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.343,
+      0.3547,
+      0.3852,
+      0.4
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2461,
+      0.2272
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      2457259000,
+      2313892000,
+      2269324000,
+      2273703000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1269,
+      0.1147,
+      0.1056,
+      0.1036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0765,
+      -0.0174
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19362087000,
+     20176789000,
+     21486815000,
+     21955442000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "irm:RecordsManagementMember",
+     "label": "Records Management",
+     "values": [
+      3771653000,
+      4061475000,
+      4383195000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6882,
+      0.6604,
+      0.6351
+     ],
+     "growth_yoy": [
+      null,
+      0.0768,
+      0.0792
+     ]
+    },
+    {
+     "member": "irm:InformationDestructionMember",
+     "label": "Information Destruction",
+     "values": [
+      693416000,
+      953100000,
+      1210451000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1265,
+      0.155,
+      0.1754
+     ],
+     "growth_yoy": [
+      null,
+      0.3745,
+      0.27
+     ]
+    },
+    {
+     "member": "irm:DataCenterMember",
+     "label": "Data Center",
+     "values": [
+      495026000,
+      620028000,
+      803429000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0903,
+      0.1008,
+      0.1164
+     ],
+     "growth_yoy": [
+      null,
+      0.2525,
+      0.2958
+     ]
+    },
+    {
+     "member": "irm:DataManagementMember",
+     "label": "Data Management",
+     "values": [
+      520194000,
+      515306000,
+      504662000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0949,
+      0.0838,
+      0.0731
+     ],
+     "growth_yoy": [
+      null,
+      -0.0094,
+      -0.0207
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5480289000,
+     6149909000,
+     6901737000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "irm:RecordsManagementMember",
+     "label": "Records Management",
+     "values": [
+      1034614000,
+      1101181000,
+      1175590000,
+      1198027000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6497,
+      0.6432,
+      0.6072,
+      0.5904
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1363,
+      0.0879
+     ]
+    },
+    {
+     "member": "irm:InformationDestructionMember",
+     "label": "Information Destruction",
+     "values": [
+      262631000,
+      297420000,
+      382877000,
+      445016000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1649,
+      0.1737,
+      0.1978,
+      0.2193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4579,
+      0.4963
+     ]
+    },
+    {
+     "member": "irm:DataCenterMember",
+     "label": "Data Center",
+     "values": [
+      173197000,
+      189401000,
+      254725000,
+      262871000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1088,
+      0.1106,
+      0.1316,
+      0.1296
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4707,
+      0.3879
+     ]
+    },
+    {
+     "member": "irm:DataManagementMember",
+     "label": "Data Management",
+     "values": [
+      122087000,
+      123946000,
+      122957000,
+      123148000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0767,
+      0.0724,
+      0.0635,
+      0.0607
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0071,
+      -0.0064
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1592529000,
+     1711948000,
+     1936149000,
+     2029062000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3507134000,
+      4008402000,
+      4573462000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.64,
+      0.6518,
+      0.6627
+     ],
+     "growth_yoy": [
+      null,
+      0.1429,
+      0.141
+     ]
+    },
+    {
+     "member": "irm:OtherInternationalMember",
+     "label": "Other International",
+     "values": [
+      1299913000,
+      1411861000,
+      1553243000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2372,
+      0.2296,
+      0.2251
+     ],
+     "growth_yoy": [
+      null,
+      0.0861,
+      0.1001
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      393917000,
+      426462000,
+      472611000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0719,
+      0.0693,
+      0.0685
+     ],
+     "growth_yoy": [
+      null,
+      0.0826,
+      0.1082
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      279325000,
+      303184000,
+      302421000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.051,
+      0.0493,
+      0.0438
+     ],
+     "growth_yoy": [
+      null,
+      0.0854,
+      -0.0025
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5480289000,
+     6149909000,
+     6901737000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Global Data Center Business, Global Records and Information Management Business in the filing's definition linkbase",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Global Data Center Business, Global Records and Information Management Business in the filing's definition linkbase",
+  "business_segments/Assets/annual: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Global Data Center Business, Global Records and Information Management Business in the filing's definition linkbase",
+  "business_segments/Assets/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Global Data Center Business, Global Records and Information Management Business in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Storage Rental' (irm:StorageRentalMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Records Management, Data Management, Information Destruction, Data Center)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Service' (us-gaap:ServiceMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Records Management, Data Management, Information Destruction, Data Center)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Storage Rental' (irm:StorageRentalMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Records Management, Data Management, Information Destruction, Data Center)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Service' (us-gaap:ServiceMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Records Management, Data Management, Information Destruction, Data Center)"
+ ],
+ "complete": true
+}

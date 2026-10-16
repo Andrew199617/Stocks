@@ -1,0 +1,293 @@
+{
+ "ticker": "FFIV",
+ "cik": 1048695,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:17-04:00",
+ "newest_filing_date": "2026-08-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001048695.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FFIV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FFIV/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "F5, INC.",
+  "cik": 1048695,
+  "description": {
+   "text": "F5 is a multicloud application delivery and security provider committed to bringing a better digital world to life. F5 partners with the world’s largest, most advanced organizations to optimize and secure every application and Application Programming Interface (\"API\") anywhere, including on-premises, in the cloud, and at the network edge. F5 enables businesses to continuously stay ahead of threats while delivering exceptional, secure digital experiences for their customers. Our application delivery and security solutions are available in a range of deployment and consumption models. We sell packaged software in perpetual, subscription, and usage-based consumption models. We also sell our solutions in software-as-a-service (\"SaaS\") and managed services deployment models with subscription and usage-based consumption models. In addition, we sell high-performance systems, or hardware, as well as a broad range of global services including maintenance, consulting, training and other technical support services. Our customers include large enterprise businesses, public sector institutions, governments, and service providers. We conduct our business globally and manage our business by geography. Our business is organized into three primary geographic regions: Americas; Europe, the Middle East, and Africa (\"EMEA\"); and the Asia Pacific region (\"APAC\"). F5 was incorporated in 1996 and is headquartered in Seattle, Washington.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-09-30",
+   "accession": "0001048695-25-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm"
+  },
+  "description_short": "F5, Inc. (NASDAQ: FFIV) is the global leader that delivers and secures every app. Backed by three decades of expertise, F5 has built the industry's premier platform-F5 Application Delivery and Security Platform (ADSP)-to deliver and secure every app, every API, anywhere: on-premises, in the cloud, at the edge, and across hybrid, multicloud environments. F5 is committed to innovating and partnering with the world's largest and most advanced organizations to deliver fast, available, and secure digital experiences. Together, we help each other thrive and bring a better digital world to life.",
+  "industry": "Computer Communications Equipment",
+  "sector": "Telecommunications",
+  "region": "North America",
+  "sic": "3576",
+  "sic_description": "Computer Communications Equipment",
+  "state_of_incorporation": "WA",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.f5.com",
+  "headquarters": "Seattle, Washington",
+  "address": {
+   "street": "801 5th Avenue",
+   "city": "Seattle",
+   "state": "Washington",
+   "zip": "98104",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-25"
+  },
+  "phone": "2062725555",
+  "employees": {
+   "count": 6578,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we had 6,578 employees – over 99% of whom were full-time employees.",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-04-07",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "F5 NETWORKS, INC.",
+   "F5 NETWORKS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001048695&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000067/ffiv-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048695-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000063/ffiv-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001048695-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000059/ffiv-20260617.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000051/ffiv-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-24",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001048695-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000044/ffiv-20260424.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048695-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000042/ffiv-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-13",
+   "period": "2026-03-12",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001048695-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000036/ffiv-20260312.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000023/ffiv-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048695-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000018/ffiv-20260127.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-26",
+   "period": "2026-03-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001048695-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869526000012/ffiv-20260126.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001048695-25-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000157/ffiv-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-24",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001048695-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000153/ffiv-20251024.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "1.05",
+    "5.02",
+    "7.01"
+   ],
+   "description": "Material cybersecurity incident; Officer/director change; Reg FD",
+   "accession": "0001048695-25-000149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000149/ffiv-20251015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-11",
+   "period": "2025-09-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001048695-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000143/ffiv-20250911.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-25-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000129/ffiv-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001048695-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000113/ffiv-20250724.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000091/ffiv-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-25",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001048695-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000075/ffiv-20250425.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-17",
+   "period": "2025-03-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001048695-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000068/ffiv-20250313.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-02-07",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048695-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048695/000104869525000026/ffiv-20241231.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,294 @@
+{
+ "ticker": "HAL",
+ "cik": 45012,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:41-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000045012.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000015/hal-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HAL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HAL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HALLIBURTON CO",
+  "cik": 45012,
+  "description": {
+   "text": "Halliburton Company (Halliburton) is one of the world's largest providers of products and services to the energy industry. Its predecessor was established in 1919 and incorporated under the laws of the State of Delaware in 1924. Inspired by the past and leading into the future, what started with a single product from a single location is now a global enterprise. Our value proposition is to collaborate and engineer solutions to maximize asset value for our customers. We strive to achieve strong cash flows and returns for our shareholders by delivering technology and services that improve efficiency, increase recovery, and maximize production for our customers. Halliburton has fostered a culture of unparalleled service to the world's major, national, and independent oil and natural gas producers. With over 46,000 employees, representing 146 nationalities in more than 70 countries, we help our customers maximize asset value throughout the lifecycle of the reservoir - from locating hydrocarbons and managing geological data, to drilling and formation evaluation, well construction and completion, and optimizing production throughout the life of the asset.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "accession": "0000045012-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000015/hal-20251231.htm"
+  },
+  "description_short": "Halliburton is one of the world's leading providers of products and services to the energy industry. Founded in 1919, we create innovative technologies, products, and services that help our customers maximize their value throughout the life cycle of an asset and advance a sustainable energy future.",
+  "industry": "Oilfield Services/Equipment",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "1389",
+  "sic_description": "Oil & Gas Field Services, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.halliburton.com",
+  "headquarters": "Houston, Texas",
+  "address": {
+   "street": "3000 North Sam Houston Parkway East",
+   "city": "Houston",
+   "state": "Texas",
+   "zip": "77032",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-06"
+  },
+  "phone": "2818712699",
+  "employees": {
+   "count": 46000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed over 46,000 people worldwide representing 146 nationalities and operated in more than 70 countries, with approximately 22% of our employees subject to collective bargaining agreements.",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000015/hal-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-25",
+  "first_sec_filing_form": "8-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000045012&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000045012-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000069/hal-20261015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-15",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000045012-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000064/hal-20260915.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-24",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000045012-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000061/hal-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000045012-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000057/hal-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000045012-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000055/hal-20260624.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000045012-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000045/hal-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000045012-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000039/hal-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000045012-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000036/hal-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000045012-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000033/hal-20260330.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-11",
+   "period": "2025-12-02",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0000045012-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000019/hal-20251202.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000045012-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000015/hal-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000045012-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000008/hal-20260121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-14",
+   "period": "2026-01-13",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000045012-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501226000003/hal-20260113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000045012-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000077/hal-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000045012-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000074/hal-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-24",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000045012-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000069/hal-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000045012-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000068/hal-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-14",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000045012-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000067/hal-20251014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-20",
+   "period": "2025-08-18",
+   "items": [
+    "1.01",
+    "1.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement",
+   "accession": "0000045012-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000062/hal-20250818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-25",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000045012-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/45012/000004501225000057/hal-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

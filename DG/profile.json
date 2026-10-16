@@ -1,0 +1,300 @@
+{
+ "ticker": "DG",
+ "cik": 29534,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:09:05-04:00",
+ "newest_filing_date": "2026-08-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000029534.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DOLLAR GENERAL CORP",
+  "cik": 29534,
+  "description": {
+   "text": "We are the largest discount retailer in the United States by number of stores, with 20,959 stores located in 48 U.S. states and Mexico as of February 27, 2026, with the greatest concentration of stores in the southern, southwestern, midwestern and eastern United States. Our first stores in Mexico opened in 2023. We offer a broad selection of merchandise, including consumable items, seasonal items, home products and apparel. Our merchandise includes national brands from leading manufacturers, as well as our own private brand selections with prices at substantial discounts to national brands. We offer our customers these national brand and private brand products at everyday low prices (typically $10 or less) in our convenient small-box locations.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-20",
+   "period": "2026-01-30",
+   "accession": "0001104659-26-032325",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm"
+  },
+  "description_short": "Dollar General Corporation (NYSE: DG) is proud to serve as America's neighborhood general store. Founded in 1939, Dollar General lives its mission of Serving Others every day by providing access to affordable products and services for its customers, career opportunities for its employees, and literacy and education support for its hometown communities. As of July 31, 2026, the Company's 21,148 Dollar General, DG Market, DGX and pOpshelf stores across the United States and Mi Súper Dollar General stores in Mexico provide everyday essentials including food, health and wellness products, cleaning and laundry supplies, self-care and beauty items, and seasonal decor from our high-quality private brands alongside many of the world's most trusted brands such as Coca Cola, PepsiCo/Frito-Lay, General Mills, Hershey, J.M. Smucker, Kraft, Mars, Nestle, Procter & Gamble and Unilever.",
+  "industry": "Department/Specialty Retail Stores",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5331",
+  "sic_description": "Retail-Variety Stores",
+  "state_of_incorporation": "TN",
+  "fiscal_year_end_mmdd": "0129",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.dollargeneral.com",
+  "headquarters": "Goodlettsville, TN",
+  "address": {
+   "street": "100 MISSION RIDGE",
+   "city": "Goodlettsville",
+   "state": "TN",
+   "zip": "37072",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-20"
+  },
+  "phone": "6158554000",
+  "employees": {
+   "count": 194000,
+   "as_of": "2026-02-27",
+   "evidence": "As of February 27, 2026, we employed approximately 194,000 full-time and part-time employees, including divisional and regional managers, district managers, store managers, other store employees, and distribution center, fleet and administrative employees.",
+   "form": "10-K",
+   "filed": "2026-03-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-16",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000029534&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-28",
+   "period": "2026-08-25",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-102689",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926102689/tm2624201d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-27",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-101932",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926101932/dg-20260731x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-101918",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926101918/tm2623914d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-02",
+   "period": "2026-05-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-069205",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926069205/dg-20260501x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-05-28",
+   "items": [
+    "2.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Reg FD",
+   "accession": "0001104659-26-069198",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926069198/tm2616084d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-040394",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926040394/tm261322-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-20",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-033643",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926033643/tm269511d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-20",
+   "period": "2026-01-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-032325",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-026697",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926026697/tm268519d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-01-28",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-009777",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926009777/tm264806d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-04",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-118289",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925118289/dg-20251031x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-25-118286",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925118286/tm2532496d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-11-17",
+   "period": "2025-11-12",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-25-113199",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925113199/tm2531391d1_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-111359",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925111359/tm2530935d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-08-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-011786",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837025011786/dg-20250801x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-28",
+   "period": "2025-08-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-25-084297",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925084297/tm2524307d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-20",
+   "period": "2025-08-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-080921",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925080921/tm2523805d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-16",
+   "period": "2025-07-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-068367",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925068367/tm2521005d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-03",
+   "period": "2025-05-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-008354",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837025008354/dg-20250502x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-05-29",
+   "items": [
+    "2.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Reg FD",
+   "accession": "0001104659-25-055706",
+   "url": "https://www.sec.gov/Archives/edgar/data/29534/000110465925055706/tm2516684d1_8k.htm"
+  }
+ ],
+ "warnings": []
+}

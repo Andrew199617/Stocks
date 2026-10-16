@@ -1,0 +1,293 @@
+{
+ "ticker": "AEE",
+ "cik": 1002910,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:07:24-04:00",
+ "newest_filing_date": "2026-09-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001002910.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000009/aee-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AEE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AEE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AMEREN CORP",
+  "cik": 1002910,
+  "description": {
+   "text": "Ameren, formed in 1997 and headquartered in St. Louis, Missouri, is a public utility holding company whose primary assets are its equity interests in its subsidiaries. Ameren’s subsidiaries are separate, independent legal entities with separate businesses, assets, and liabilities. Dividends on Ameren’s common stock and the payment of expenses by Ameren depend on distributions made to it by its subsidiaries. Below is a summary description of Ameren’s principal subsidiaries – Ameren Missouri, Ameren Illinois, and ATXI. Ameren also has other subsidiaries that conduct other activities, such as providing shared services. A more detailed description can be found in Note 1 – Summary of Significant Accounting Policies under Part II, Item 8, of this report. •Ameren Missouri operates a rate-regulated electric generation, transmission, and distribution business and a rate-regulated natural gas distribution business in Missouri. •Ameren Illinois operates rate-regulated electric transmission, electric distribution, and natural gas distribution businesses in Illinois. •ATXI operates a FERC rate-regulated electric transmission business in the MISO.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0001002910-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000009/aee-20251231.htm"
+  },
+  "description_short": "St. Louis-based Ameren Corporation powers the quality of life for 2.5 million electric customers and more than 900,000 natural gas customers in a 64,000-square-mile area through its Ameren Missouri and Ameren Illinois rate-regulated utility subsidiaries. Ameren Illinois provides electric transmission and distribution service and natural gas distribution service. Ameren Missouri provides electric generation, transmission and distribution services, as well as natural gas distribution service. Ameren Transmission Company of Illinois develops, owns and operates rate-regulated regional electric transmission projects in the Midcontinent Independent System Operator, Inc.",
+  "industry": "Power Generation",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4931",
+  "sic_description": "Electric & Other Services Combined",
+  "state_of_incorporation": "MO",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.amereninvestors.com",
+  "headquarters": "St. Louis, Missouri",
+  "address": {
+   "street": "1901 Chouteau Avenue",
+   "city": "St. Louis",
+   "state": "Missouri",
+   "zip": "63103",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "314-621-3222",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-11-13",
+  "first_sec_filing_form": "S-4",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001002910&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-111420",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926111420/tm2626189d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-108859",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926108859/tm2625603d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-100236",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926100236/tm2623767d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-07-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-090493",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926090493/tm2621886d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001002910-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000023/aee-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001002910-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000020/aee-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-078757",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926078757/tm2619063d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-078317",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926078317/tm2619084d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-063184",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926063184/tm2614913d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001002910-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000015/aee-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001002910-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000013/aee-20260505.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-037756",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926037756/tm261401-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-023352",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926023352/tm267933d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-021486",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926021486/tm267523d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001002910-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000009/aee-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001002910-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000100291026000005/aee-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-06",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-012085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465926012085/tm265625d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-121146",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465925121146/tm2533374d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-119977",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465925119977/tm2533090d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-115502",
+   "url": "https://www.sec.gov/Archives/edgar/data/1002910/000110465925115502/tm2532033d1_8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-18"
+ ]
+}

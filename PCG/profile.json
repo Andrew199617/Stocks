@@ -1,0 +1,314 @@
+{
+ "ticker": "PCG",
+ "cik": 1004980,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:49-04:00",
+ "newest_filing_date": "2026-08-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001004980.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000009/pcg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PCG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PCG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "PG&E Corp",
+  "cik": 1004980,
+  "description": {
+   "text": "PG&E Corporation, incorporated in California in 1995, is a holding company whose primary operating subsidiary is Pacific Gas and Electric Company, a public utility operating in Northern and Central California. The Utility was incorporated in California in 1905. PG&E Corporation became the holding company of the Utility and its subsidiaries in 1997. The Utility generates revenues mainly through the sale and delivery of electricity and natural gas to customers. The Utility’s service area is shown in the graphic below. PG&E Corporation’s and the Utility’s operating revenues, income, and total assets for the most recently completed year can be found below in Item 8. Financial Statements and Supplementary Data. The principal executive offices of PG&E Corporation and the Utility are located at 300 Lakeside Drive, Oakland, California 94612. PG&E Corporation’s telephone number is (415) 973-1000 and the Utility’s telephone number is (415) 973-7000. This is a combined Annual Report on Form 10-K for PG&E Corporation and the Utility. PG&E Corporation and the Utility are separate entities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001004980-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000009/pcg-20251231.htm"
+  },
+  "description_short": "Pacific Gas and Electric Company, a subsidiary of PG&E Corporation (NYSE:PCG), is a combined natural gas and electric utility serving more than 16 million people across 70,000 square miles in Northern and Central California.",
+  "industry": "Power Generation",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4931",
+  "sic_description": "Electric & Other Services Combined",
+  "state_of_incorporation": "CA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.pgecorp.com",
+  "headquarters": "Oakland, California",
+  "address": {
+   "street": "300 Lakeside Drive",
+   "city": "Oakland",
+   "state": "California",
+   "zip": "94612",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "4159731000",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "separate headcounts for the registrant and another entity with no filed total",
+   "evidence": "As of December 31, 2025, PG&E Corporation had 10 employees, and the Utility had approximately 29,000 regular employees.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000009/pcg-20251231.htm"
+  },
+  "first_sec_filing": "1996-02-21",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "PG&E CORP",
+   "PG&E Corp",
+   "PG&E PARENT CO INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001004980&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001999371-26-019256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000199937126019256/pcg-8k_083126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-07-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-332848",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312526332848/d173171d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001004980-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000048/pcg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001004980-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000047/pcg-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-22",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-279461",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312526279461/d110415d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-255485",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312526255485/d111141d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001999371-26-011451",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000199937126011451/pcg-8k_052626.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001004980-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000033/pcg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001004980-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000032/pcg-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001004980-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000020/pcg-20260409.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-061381",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312526061381/d116136d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-059497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312526059497/d76092d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001004980-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000009/pcg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001004980-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000008/pcg-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-11",
+   "items": [
+    "5.02",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment; Other events",
+   "accession": "0001999371-25-020477",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000199937125020477/pcg-8k_121725.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001004980-25-000148",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498025000148/pcg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001004980-25-000147",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498025000147/pcg-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-09-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-228354",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312525228354/d13665d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-26",
+   "period": "2025-09-26",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001999371-25-014049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000199937125014049/pcg-8k_092625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-24",
+   "period": "2025-09-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-215416",
+   "url": "https://www.sec.gov/Archives/edgar/data/1004980/000119312525215416/d38565d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - separate headcounts for the registrant and another entity with no filed total in the 10-K filed 2026-02-12: \"As of December 31, 2025, PG&E Corporation had 10 employees, and the Utility had approximately 29,000 regular employees.\""
+ ]
+}

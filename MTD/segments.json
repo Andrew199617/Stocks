@@ -1,0 +1,1806 @@
+{
+ "ticker": "MTD",
+ "cik": 1037646,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001037646-26-000011",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1037646/000103764626000011/mtd-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001037646-26-000021",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1037646/000103764626000021/mtd-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001037646-26-000051",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1037646/000103764626000051/mtd-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtd:USOperationsMember",
+     "label": "US Operations",
+     "values": [
+      1403919000,
+      1429502000,
+      1496202000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3706,
+      0.3692,
+      0.3716
+     ],
+     "growth_yoy": [
+      null,
+      0.0182,
+      0.0467
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsMember",
+     "label": "Western European Operations",
+     "values": [
+      792907000,
+      858002000,
+      895971000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2093,
+      0.2216,
+      0.2225
+     ],
+     "growth_yoy": [
+      null,
+      0.0821,
+      0.0443
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsMember",
+     "label": "Other Operations",
+     "values": [
+      683986000,
+      737830000,
+      788535000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1806,
+      0.1905,
+      0.1958
+     ],
+     "growth_yoy": [
+      null,
+      0.0787,
+      0.0687
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsMember",
+     "label": "Chinese Operations",
+     "values": [
+      718818000,
+      628447000,
+      634833000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1897,
+      0.1623,
+      0.1577
+     ],
+     "growth_yoy": [
+      null,
+      -0.1257,
+      0.0102
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsMember",
+     "label": "Swiss Operations",
+     "values": [
+      188679000,
+      218580000,
+      210858000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0498,
+      0.0564,
+      0.0524
+     ],
+     "growth_yoy": [
+      null,
+      0.1585,
+      -0.0353
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3788309000,
+     3872361000,
+     4026399000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtd:USOperationsMember",
+     "label": "US Operations",
+     "values": [
+      null,
+      372516000,
+      null,
+      352477000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3789,
+      null,
+      0.3431
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0538
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsMember",
+     "label": "Western European Operations",
+     "values": [
+      null,
+      211916000,
+      null,
+      226977000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.2155,
+      null,
+      0.2209
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0711
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsMember",
+     "label": "Other Operations",
+     "values": [
+      159147000,
+      187217000,
+      178915000,
+      204135000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1801,
+      0.1904,
+      0.1889,
+      0.1987
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1242,
+      0.0904
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsMember",
+     "label": "Chinese Operations",
+     "values": [
+      null,
+      162017000,
+      null,
+      187249000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.1648,
+      null,
+      0.1823
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1557
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsMember",
+     "label": "Swiss Operations",
+     "values": [
+      null,
+      49555000,
+      null,
+      56476000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0504,
+      null,
+      0.055
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1397
+     ]
+    },
+    {
+     "member": "mtd:UsOperationsSegmentMemberMember",
+     "label": "Us Operations segment Member",
+     "values": [
+      345758000,
+      null,
+      348547000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3912,
+      null,
+      0.368,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0081,
+      null
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsSegmentMemberMember",
+     "label": "Swiss Operations segment Member",
+     "values": [
+      47302000,
+      null,
+      50759000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0535,
+      null,
+      0.0536,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0731,
+      null
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsSegmentMember",
+     "label": "Western European Operations Segment",
+     "values": [
+      190369000,
+      null,
+      215383000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2154,
+      null,
+      0.2274,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1314,
+      null
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsSegmentMember",
+     "label": "Chinese Operations Segment",
+     "values": [
+      141168000,
+      null,
+      153523000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1597,
+      null,
+      0.1621,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0875,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     883744000,
+     983221000,
+     947127000,
+     1027314000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      2906661000,
+      2930228000,
+      3007805000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7673,
+      0.7567,
+      0.747
+     ],
+     "growth_yoy": [
+      null,
+      0.0081,
+      0.0265
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      881648000,
+      942133000,
+      1018594000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2327,
+      0.2433,
+      0.253
+     ],
+     "growth_yoy": [
+      null,
+      0.0686,
+      0.0812
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3788309000,
+     3872361000,
+     4026399000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      649950000,
+      734244000,
+      684254000,
+      753003000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7355,
+      0.7468,
+      0.7225,
+      0.733
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0528,
+      0.0255
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      233794000,
+      248977000,
+      262873000,
+      274311000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2645,
+      0.2532,
+      0.2775,
+      0.267
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1244,
+      0.1018
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     883744000,
+     983221000,
+     947127000,
+     1027314000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtd:LaboratoryproductsandservicesMember",
+     "label": "Laboratory products and services",
+     "values": [
+      2241106000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      0.5566
+     ],
+     "growth_yoy": [
+      null
+     ]
+    },
+    {
+     "member": "mtd:IndustrialproductsandservicesMember",
+     "label": "Industrial products and services",
+     "values": [
+      1579353000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      0.3922
+     ],
+     "growth_yoy": [
+      null
+     ]
+    },
+    {
+     "member": "mtd:RetailproductsandservicesMember",
+     "label": "Retail products and services",
+     "values": [
+      205940000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      0.0511
+     ],
+     "growth_yoy": [
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4026399000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtd:LaboratoryproductsandservicesMember",
+     "label": "Laboratory products and services",
+     "values": [
+      null,
+      537916000,
+      null,
+      552553000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.5471,
+      null,
+      0.5379
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0272
+     ]
+    },
+    {
+     "member": "mtd:IndustrialproductsandservicesMember",
+     "label": "Industrial products and services",
+     "values": [
+      null,
+      394628000,
+      null,
+      417697000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.4014,
+      null,
+      0.4066
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0585
+     ]
+    },
+    {
+     "member": "mtd:RetailproductsandservicesMember",
+     "label": "Retail products and services",
+     "values": [
+      null,
+      50677000,
+      null,
+      57064000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0515,
+      null,
+      0.0555
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.126
+     ]
+    },
+    {
+     "member": "mtd:LaboratoryRelatedProductsandServicesMember",
+     "label": "Laboratory Related Products and Services",
+     "values": [
+      500224000,
+      null,
+      524581000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.566,
+      null,
+      0.5539,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0487,
+      null
+     ]
+    },
+    {
+     "member": "mtd:IndustrialRelatedProductsandServicesMember",
+     "label": "Industrial Related Products and Services",
+     "values": [
+      341200000,
+      null,
+      374640000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3861,
+      null,
+      0.3956,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.098,
+      null
+     ]
+    },
+    {
+     "member": "mtd:RetailRelatedProductsandServicesMember",
+     "label": "Retail Related Products and Services",
+     "values": [
+      42320000,
+      null,
+      47906000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0479,
+      null,
+      0.0506,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.132,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     883744000,
+     983221000,
+     947127000,
+     1027314000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtd:UsOperationsSegmentMemberMember",
+     "label": "Us Operations segment Member",
+     "values": [
+      1403919000,
+      1429502000,
+      1496202000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3706,
+      0.3692,
+      0.3716
+     ],
+     "growth_yoy": [
+      null,
+      0.0182,
+      0.0467
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsSegmentMember",
+     "label": "Western European Operations Segment",
+     "values": [
+      792907000,
+      858002000,
+      895971000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2093,
+      0.2216,
+      0.2225
+     ],
+     "growth_yoy": [
+      null,
+      0.0821,
+      0.0443
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsSegmentMember",
+     "label": "Other Operations Segment",
+     "values": [
+      683986000,
+      737830000,
+      788535000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1806,
+      0.1905,
+      0.1958
+     ],
+     "growth_yoy": [
+      null,
+      0.0787,
+      0.0687
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsSegmentMember",
+     "label": "Chinese Operations Segment",
+     "values": [
+      718818000,
+      628447000,
+      634833000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1897,
+      0.1623,
+      0.1577
+     ],
+     "growth_yoy": [
+      null,
+      -0.1257,
+      0.0102
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsSegmentMember",
+     "label": "Swiss Operations segment Member",
+     "values": [
+      188679000,
+      218580000,
+      210858000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0498,
+      0.0564,
+      0.0524
+     ],
+     "growth_yoy": [
+      null,
+      0.1585,
+      -0.0353
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3788309000,
+     3872361000,
+     4026399000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtd:UsOperationsSegmentMemberMember",
+     "label": "Us Operations segment Member",
+     "values": [
+      345758000,
+      372516000,
+      348547000,
+      352477000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3912,
+      0.3789,
+      0.368,
+      0.3431
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0081,
+      -0.0538
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsSegmentMember",
+     "label": "Western European Operations Segment",
+     "values": [
+      190369000,
+      211916000,
+      215383000,
+      226977000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2154,
+      0.2155,
+      0.2274,
+      0.2209
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1314,
+      0.0711
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsMember",
+     "label": "Other Operations",
+     "values": [
+      159147000,
+      187217000,
+      178915000,
+      204135000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1801,
+      0.1904,
+      0.1889,
+      0.1987
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1242,
+      0.0904
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsSegmentMember",
+     "label": "Chinese Operations Segment",
+     "values": [
+      141168000,
+      162017000,
+      153523000,
+      187249000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1597,
+      0.1648,
+      0.1621,
+      0.1823
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0875,
+      0.1557
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsSegmentMemberMember",
+     "label": "Swiss Operations segment Member",
+     "values": [
+      47302000,
+      49555000,
+      50759000,
+      56476000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0535,
+      0.0504,
+      0.0536,
+      0.055
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0731,
+      0.1397
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     883744000,
+     983221000,
+     947127000,
+     1027314000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      377916000,
+      414092000,
+      389339000,
+      402294000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4276,
+      0.4212,
+      0.4111,
+      0.3916
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0302,
+      -0.0285
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      null,
+      295026000,
+      null,
+      331283000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3001,
+      null,
+      0.3225
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1229
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      247975000,
+      274103000,
+      278686000,
+      293737000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2806,
+      0.2788,
+      0.2942,
+      0.2859
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1238,
+      0.0716
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     883744000,
+     983221000,
+     947127000,
+     1027314000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "mtd:UsOperationsSegmentMember",
+     "label": "Us Operations segment Member",
+     "values": [
+      3848003000,
+      4081688000,
+      4368650000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1468,
+      1.2598,
+      1.1767
+     ],
+     "growth_yoy": [
+      null,
+      0.0607,
+      0.0703
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsSegmentMember",
+     "label": "Swiss Operations segment Member",
+     "values": [
+      3554911000,
+      3780506000,
+      4254653000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0594,
+      1.1668,
+      1.146
+     ],
+     "growth_yoy": [
+      null,
+      0.0635,
+      0.1254
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsSegmentMember",
+     "label": "Western European Operations Segment",
+     "values": [
+      1533297000,
+      1505017000,
+      1793515000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4569,
+      0.4645,
+      0.4831
+     ],
+     "growth_yoy": [
+      null,
+      -0.0184,
+      0.1917
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsSegmentMember",
+     "label": "Chinese Operations Segment",
+     "values": [
+      989955000,
+      854023000,
+      1048600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.295,
+      0.2636,
+      0.2824
+     ],
+     "growth_yoy": [
+      null,
+      -0.1373,
+      0.2278
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsSegmentMember",
+     "label": "Other Operations Segment",
+     "values": [
+      408200000,
+      416314000,
+      559453000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1216,
+      0.1285,
+      0.1507
+     ],
+     "growth_yoy": [
+      null,
+      0.0199,
+      0.3438
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3355555000,
+     3239999000,
+     3712646000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtd:UsOperationsSegmentMember",
+     "label": "Us Operations segment Member",
+     "values": [
+      4142103000,
+      4201913000,
+      4403924000,
+      4484213000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2805,
+      1.2357,
+      1.2003,
+      1.2215
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0632,
+      0.0672
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsSegmentMember",
+     "label": "Swiss Operations segment Member",
+     "values": [
+      3941300000,
+      4465399000,
+      4292328000,
+      4124208000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2185,
+      1.3132,
+      1.1699,
+      1.1235
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0891,
+      -0.0764
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsSegmentMember",
+     "label": "Western European Operations Segment",
+     "values": [
+      1556180000,
+      1644299000,
+      1761738000,
+      1742841000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4811,
+      0.4836,
+      0.4802,
+      0.4748
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1321,
+      0.0599
+     ]
+    },
+    {
+     "member": "mtd:ChineseOperationsSegmentMember",
+     "label": "Chinese Operations Segment",
+     "values": [
+      891977000,
+      1005376000,
+      1071854000,
+      1159390000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2758,
+      0.2957,
+      0.2921,
+      0.3158
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2017,
+      0.1532
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsSegmentMember",
+     "label": "Other Operations Segment",
+     "values": [
+      411336000,
+      442946000,
+      525135000,
+      532821000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1272,
+      0.1303,
+      0.1431,
+      0.1451
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2767,
+      0.2029
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3234679000,
+     3400465000,
+     3668915000,
+     3670944000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+   "label": "Capital expenditures by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtd:ChineseOperationsSegmentMember",
+     "label": "Chinese Operations Segment",
+     "values": [
+      10133000,
+      14355000,
+      19489000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0962,
+      0.1382,
+      0.1819
+     ],
+     "growth_yoy": [
+      null,
+      0.4167,
+      0.3576
+     ]
+    },
+    {
+     "member": "mtd:UsOperationsSegmentMember",
+     "label": "Us Operations segment Member",
+     "values": [
+      36269000,
+      16542000,
+      15010000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3444,
+      0.1592,
+      0.1401
+     ],
+     "growth_yoy": [
+      null,
+      -0.5439,
+      -0.0926
+     ]
+    },
+    {
+     "member": "mtd:SwissOperationsSegmentMember",
+     "label": "Swiss Operations segment Member",
+     "values": [
+      8030000,
+      9504000,
+      8314000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0762,
+      0.0915,
+      0.0776
+     ],
+     "growth_yoy": [
+      null,
+      0.1836,
+      -0.1252
+     ]
+    },
+    {
+     "member": "mtd:WesternEuropeanOperationsSegmentMember",
+     "label": "Western European Operations Segment",
+     "values": [
+      5052000,
+      6340000,
+      7084000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.048,
+      0.061,
+      0.0661
+     ],
+     "growth_yoy": [
+      null,
+      0.2549,
+      0.1174
+     ]
+    },
+    {
+     "member": "mtd:OtherOperationsSegmentMember",
+     "label": "Other Operations Segment",
+     "values": [
+      12380000,
+      11683000,
+      5685000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1175,
+      0.1124,
+      0.0531
+     ],
+     "growth_yoy": [
+      null,
+      -0.0563,
+      -0.5134
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     105323000,
+     103898000,
+     107124000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "product/Revenues/annual: row 'Laboratory products and services' (mtd:LaboratoryproductsandservicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Service)",
+  "product/Revenues/annual: row 'Industrial products and services' (mtd:IndustrialproductsandservicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Service)",
+  "product/Revenues/annual: row 'Retail products and services' (mtd:RetailproductsandservicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Service)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Total Asia Rest of World' (mtd:TotalAsiaRestOfWorldMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/Assets/annual: rows sum to 323.9% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/Assets/quarterly: rows sum to 328.1% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/PaymentsToAcquirePropertyPlantAndEquipment/annual: rows sum to 51.9% of the consolidated total for 2025-12-31 (ties_to_total: false)"
+ ],
+ "complete": true
+}

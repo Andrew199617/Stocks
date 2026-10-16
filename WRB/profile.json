@@ -1,0 +1,287 @@
+{
+ "ticker": "WRB",
+ "cik": 11544,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:24-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000011544.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000005/wrb-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WRB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WRB/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BERKLEY W R CORP",
+  "cik": 11544,
+  "description": {
+   "text": "W. R. Berkley Corporation is an insurance holding company that is among the largest commercial lines writers in the United States and operates worldwide in two segments of the property casualty insurance business: •Insurance - Our Insurance businesses underwrite predominantly commercial insurance business, including excess and surplus lines, admitted lines and specialty personal lines throughout the United States, as well as insurance business in Asia, Australia, Canada, Continental Europe, Mexico, Scandinavia, South America and the United Kingdom. •Reinsurance & Monoline Excess - Our Reinsurance businesses provide facultative and treaty reinsurance in the United States, the Asia Pacific region, Australia, Continental Europe, South Africa and the United Kingdom, as well as operations that solely retain risk on an excess basis and certain program management business. Our two reporting segments are each composed of individual businesses that serve a market defined by geography, products, services or industry served. Each of our businesses is positioned close to its customer base and participates in a niche market requiring specialized knowledge.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0000011544-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000005/wrb-20251231.htm"
+  },
+  "description_short": "Founded in 1967, W. R. Berkley Corporation is an insurance holding company that is among the largest commercial lines writers in the United States and operates worldwide in two segments of the property casualty business: Insurance and Reinsurance & Monoline Excess.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6331",
+  "sic_description": "Fire, Marine & Casualty Insurance",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.wrberkley.com",
+  "headquarters": "Greenwich, CT",
+  "address": {
+   "street": "475 Steamboat Road",
+   "city": "Greenwich",
+   "state": "CT",
+   "zip": "06830",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "2036293000",
+  "employees": {
+   "count": 8804,
+   "as_of": "2026-01-15",
+   "evidence": "As of January 15, 2026, we employed 8,804 individuals.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000005/wrb-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-27",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000011544&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000011544-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000036/wrb-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000011544-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000033/wrb-20260720.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000011544-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000030/wrb-20260626.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-09",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000011544-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000020/wrb-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000011544-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000016/wrb-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-03",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000011544-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000013/wrb-20260603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000011544-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000011/wrb-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-22",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-170583",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000119312526170583/d82252ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000011544-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000008/wrb-20260421.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000011544-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000005/wrb-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000011544-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000003/wrb-20260126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-308800",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000119312525308800/d53561d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000011544-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000032/wrb-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000011544-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000030/wrb-20251020.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000011544-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000024/wrb-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-21",
+   "period": "2025-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000011544-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000021/wrb-20250721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-11",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000011544-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000013/wrb-20250611.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000011544-25-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000009/wrb-20250331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-25",
+   "period": "2025-06-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-096949",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000119312525096949/d840791ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-21",
+   "period": "2025-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000011544-25-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/11544/000001154425000007/wrb-20250421.htm"
+  }
+ ],
+ "warnings": []
+}

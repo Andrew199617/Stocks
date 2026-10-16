@@ -1,0 +1,285 @@
+{
+ "ticker": "RDDT",
+ "cik": 1713445,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:25-04:00",
+ "newest_filing_date": "2026-08-12",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001713445.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RDDT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RDDT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Reddit, Inc.",
+  "cik": 1713445,
+  "description": {
+   "text": "Our mission is to empower communities and make their knowledge accessible to everyone. We built Reddit with the belief that communities unlock the power of human creativity and create a sense of belonging and empowerment for their members. Our over 100,000 active communities have channeled the power of human creativity to grow Reddit since our founding. We believe the world needs community more than ever, and that this represents our greatest opportunity to further enrich the lives of everyone in the world. Overview: The Power of Reddit’s Communities Reddit is a global, digital city where anyone in the world can join a community to learn from one another, engage in authentic conversations, explore passions, research new hobbies, exchange goods and services, create new communities and experiences, share a few laughs, and find belonging. People are diverse and have multiple interests. Just like in a city, where citizens are part of multiple sub-communities, on Reddit, users often belong to multiple communities. At Reddit, users can dive into anything, and if a community does not already exist around a particular topic, they can create one. In the three months ended December 31, 2025, an average of 121.4 million daily active uniques (“DAUq”) around the world came together on Reddit – continuously adding to our longstanding and constantly evolving human archive of information.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "accession": "0001713445-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm"
+  },
+  "description_short": "Reddit is a community of communities. Built on shared interests and passions, it is home to the most open and authentic conversations online. Every day, millions of people post, vote, comment, and search for answers across nearly every topic imaginable, and brands build trusted relationships with their audiences. With 26+ billion posts and comments and more than 130 million daily active uniques, Reddit is one of the internet's largest sources of information. Learn more at www.redditinc.com . The Reddit app is available on the App Store and Google Play.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7374",
+  "sic_description": "Services-Computer Processing & Data Preparation",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.reddit.com",
+  "headquarters": "San Francisco, California",
+  "address": {
+   "street": "303 2nd Street South Tower 5th Floor",
+   "city": "San Francisco",
+   "state": "California",
+   "zip": "94107",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-06"
+  },
+  "phone": "(415) 494-8016",
+  "employees": {
+   "count": 2555,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 2,555 employees, including 1,981 in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2024-02-22",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Reddit, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001713445&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001713445-26-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000107/rddt-20260812.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001713445-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000100/rddt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001713445-26-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000098/rddt-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-08",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001713445-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000088/rddt-20260608.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001713445-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000069/rddt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001713445-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000067/rddt-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-23",
+   "period": "2026-06-08",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001713445-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000060/rddt-20260423.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001713445-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001713445-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000020/rddt-20260205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001713445-25-000227",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000227/rddt-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001713445-25-000225",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000225/rddt-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001713445-25-000196",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000196/rddt-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001713445-25-000194",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000194/rddt-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-02",
+   "period": "2025-07-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001713445-25-000173",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000173/rddt-20250701.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-10",
+   "period": "2025-06-09",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001713445-25-000144",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000144/rddt-20250609.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001713445-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000102/rddt-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001713445-25-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000100/rddt-20250501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-28",
+   "period": "2025-06-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001713445-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000092/rddt-20250428.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-13",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001713445-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000018/rddt-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-12",
+   "period": "2025-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001713445-25-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344525000016/rddt-20250212.htm"
+  }
+ ],
+ "warnings": []
+}

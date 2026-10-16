@@ -1,0 +1,305 @@
+{
+ "ticker": "CCI",
+ "cik": 1051470,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:08:15-04:00",
+ "newest_filing_date": "2026-09-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001051470.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000016/cci-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CCI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CCI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CROWN CASTLE INC.",
+  "cik": 1051470,
+  "description": {
+   "text": "We own, operate and lease shared communications infrastructure that is geographically dispersed throughout the U.S., including (1) more than 40,000 towers and other structures, such as rooftops (collectively, \"towers\"), (2) approximately 105,000 small cell nodes either currently generating revenue or under contract and (3) approximately 90,000 route miles of fiber primarily supporting small cells and fiber solutions. We refer to our towers, small cells and fiber assets collectively as \"communications infrastructure,\" and, at times, to our customers on our communications infrastructure as \"tenants.\" Our operating segments historically consisted of (1) Towers and (2) Fiber, which includes both small cells and fiber solutions. On March 13, 2025, management signed a definitive agreement (\"Strategic Fiber Agreement\") to sell our Fiber segment, together with certain supporting assets and personnel (\"Fiber Business\"), with Zayo Group Holdings Inc. (\"Zayo\") acquiring the fiber solutions business and EQT Active Core Infrastructure fund (\"EQT\") acquiring the small cell business (\"Strategic Fiber Transaction\"). Under the agreement, we will receive $8.5 billion in aggregate, subject to certain closing adjustments. The Strategic Fiber Transaction is expected to close in the first half of 2026, subject to certain closing conditions and regulatory approvals.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001051470-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000016/cci-20251231.htm"
+  },
+  "description_short": "Crown Castle owns, operates and leases approximately 40,000 cell towers across the U.S. This nationwide portfolio serves as the foundation of wireless connectivity that provides cities and communities access to essential data, technology and wireless service - bringing information, ideas, innovations and the connectivity of modern life to help people and businesses thrive.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.crowncastle.com",
+  "headquarters": "Houston, Texas",
+  "address": {
+   "street": "8020 Katy Freeway",
+   "city": "Houston",
+   "state": "Texas",
+   "zip": "77024-1908",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "7135703000",
+  "employees": {
+   "count": 4000,
+   "as_of": "2026-01-31",
+   "evidence": "As of January 31, 2026, we employed approximately 4,000 people, including approximately 2,500 people recorded in our discontinued operations.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000016/cci-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-04-17",
+  "first_sec_filing_form": "424B1",
+  "former_names": [
+   "CROWN CASTLE INTERNATIONAL CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001051470&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001051470-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000081/cci-20260914.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001051470-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000076/cci-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001051470-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000074/cci-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001051470-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000069/cci-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001051470-26-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000065/cci-20260520.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001051470-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000064/cci-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001051470-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000059/cci-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001051470-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000055/cci-20260501.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.01",
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Results of operations; Officer/director change; Reg FD",
+   "accession": "0001051470-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000052/cci-20260501.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001051470-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000046/cci-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-06",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001051470-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000039/cci-20260406.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001051470-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000019/cci-20260225.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001051470-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000016/cci-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Reg FD",
+   "accession": "0001051470-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000008/cci-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001051470-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000003/cci-20260112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001051470-25-000194",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147025000194/cci-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001051470-25-000190",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147025000190/cci-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001051470-25-000185",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147025000185/cci-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-15",
+   "period": "2025-09-15",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001051470-25-000176",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147025000176/cci-20250915.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001051470-25-000169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147025000169/cci-20250806.htm"
+  }
+ ],
+ "warnings": []
+}

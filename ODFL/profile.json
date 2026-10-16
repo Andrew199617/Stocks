@@ -1,0 +1,291 @@
+{
+ "ticker": "ODFL",
+ "cik": 878927,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:33-04:00",
+ "newest_filing_date": "2026-09-22",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000878927.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ODFL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ODFL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "OLD DOMINION FREIGHT LINE, INC.",
+  "cik": 878927,
+  "description": {
+   "text": "We are one of the largest North American less-than-truckload (“LTL”) motor carriers. We provide regional, inter-regional and national LTL services through a single integrated, union-free organization. Our service offerings, which include expedited transportation, are provided through an expansive network of service centers located throughout the continental United States. Through strategic alliances, we also provide LTL services throughout North America. In addition to our core LTL services, we offer a range of value-added services including container drayage, truckload brokerage and supply chain consulting. More than 98% of our revenue has historically been derived from transporting LTL shipments for our customers, whose demand for our services is generally tied to industrial production and the overall health of the U.S. domestic economy. We have increased our revenue and customer base over the past ten years primarily through organic market share growth. Our infrastructure allows us to provide service through each of our regions covering the continental United States. In addition to numerous service center renovations, expansions, and existing service center relocations, we opened a net 16 and 35 service centers over the past five and ten years, respectively, for a total of 260 service centers at December 31, 2025. We believe these actions produced increased capacity within our service center network and provide us with opportunities for future growth.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-067161",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm"
+  },
+  "description_short": "Old Dominion Freight Line, Inc. is one of the largest North American less-than-truckload ('LTL') motor carriers and provides regional, inter-regional and national LTL services through a single integrated, union-free organization. Our service offerings, which include expedited transportation, are provided through an expansive network of service centers located throughout the continental United States. The Company also maintains strategic alliances with other carriers to provide LTL services throughout North America. In addition to its core LTL services, the Company offers a range of value-added services including container drayage, truckload brokerage, and supply chain consulting.",
+  "industry": "Trucking Freight/Courier Services",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "4213",
+  "sic_description": "Trucking (No Local)",
+  "state_of_incorporation": "VA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.odfl.com",
+  "headquarters": "Thomasville, North Carolina",
+  "address": {
+   "street": "500 Old Dominion Way",
+   "city": "Thomasville",
+   "state": "North Carolina",
+   "zip": "27360",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "3368895000",
+  "employees": {
+   "count": 20591,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 20,591 active full-time employees, none of which were represented under a collective bargaining agreement.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-07",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "OLD DOMINION FREIGHT LINE INC/VA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000878927&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000878927-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000027/odfl-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000878927-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000025/odfl-20260903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000878927-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000023/odfl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000878927-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000021/odfl-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000878927-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000019/odfl-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000878927-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000015/odfl-20260603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0000878927-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000013/odfl-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000878927-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000011/odfl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000878927-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000009/odfl-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000878927-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000006/odfl-20260417.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000878927-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000087892726000002/odfl-20260303.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-067161",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526067161/odfl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-036791",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312526036791/odfl-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-312744",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525312744/odfl-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-305457",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525305457/odfl-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-268415",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525268415/odfl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-255040",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525255040/odfl-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-247937",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000119312525247937/odfl-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950170-25-112956",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000095017025112956/odfl-20250904.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-103916",
+   "url": "https://www.sec.gov/Archives/edgar/data/878927/000095017025103916/odfl-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

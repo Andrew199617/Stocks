@@ -1,0 +1,420 @@
+{
+ "ticker": "SNAP",
+ "cik": 1564408,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001564408-26-000013",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001564408-26-000027",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000027/snap-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001564408-26-000052",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000052/snap-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "snap:AdvertisingRevenueMember",
+     "label": "Advertising Revenue",
+     "values": [
+      4408306000,
+      4903703000,
+      5186077000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9571,
+      0.9146,
+      0.8743
+     ],
+     "growth_yoy": [
+      null,
+      0.1124,
+      0.0576
+     ]
+    },
+    {
+     "member": "snap:OtherRevenueMember",
+     "label": "Other Revenue",
+     "values": [
+      197809000,
+      457695000,
+      745370000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0429,
+      0.0854,
+      0.1257
+     ],
+     "growth_yoy": [
+      null,
+      1.3138,
+      0.6285
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4606115000,
+     5361398000,
+     5931447000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "snap:AdvertisingRevenueMember",
+     "label": "Advertising Revenue",
+     "values": [
+      1210869000,
+      1173548000,
+      1243462000,
+      1282522000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8882,
+      0.8726,
+      0.8134,
+      0.8021
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0269,
+      0.0929
+     ]
+    },
+    {
+     "member": "snap:OtherRevenueMember",
+     "label": "Other Revenue",
+     "values": [
+      152348000,
+      171382000,
+      285329000,
+      316471000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1118,
+      0.1274,
+      0.1866,
+      0.1979
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8729,
+      0.8466
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1363217000,
+     1344930000,
+     1528791000,
+     1598993000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2900000000,
+      3100000000,
+      3400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6296,
+      0.5782,
+      0.5732
+     ],
+     "growth_yoy": [
+      null,
+      0.069,
+      0.0968
+     ]
+    },
+    {
+     "member": "snap:RestOfWorldMember",
+     "label": "Rest Of World",
+     "values": [
+      881736000,
+      1168106000,
+      1366181000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1914,
+      0.2179,
+      0.2303
+     ],
+     "growth_yoy": [
+      null,
+      0.3248,
+      0.1696
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      772078000,
+      957075000,
+      1092092000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1676,
+      0.1785,
+      0.1841
+     ],
+     "growth_yoy": [
+      null,
+      0.2396,
+      0.1411
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4606115000,
+     5361398000,
+     5931447000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      778900000,
+      775700000,
+      796500000,
+      872700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5714,
+      0.5768,
+      0.521,
+      0.5458
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0226,
+      0.125
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      223257000,
+      254209000,
+      315431000,
+      353745000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1638,
+      0.189,
+      0.2063,
+      0.2212
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4129,
+      0.3916
+     ]
+    },
+    {
+     "member": "snap:RestOfWorldMember",
+     "label": "Rest Of World",
+     "values": [
+      335026000,
+      286326000,
+      388820000,
+      340302000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2458,
+      0.2129,
+      0.2543,
+      0.2128
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1606,
+      0.1885
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1363217000,
+     1344930000,
+     1528791000,
+     1598993000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (snap:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (snap:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (snap:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (snap:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'North America' (srt:NorthAmericaMember) dropped: it is the parent of UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'North America' (srt:NorthAmericaMember) dropped: it is the parent of UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 98.0% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

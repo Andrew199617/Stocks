@@ -1,0 +1,310 @@
+{
+ "ticker": "MLM",
+ "cik": 916076,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:11-04:00",
+ "newest_filing_date": "2026-09-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000916076.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/916076/000119312526059193/mlm-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MLM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MLM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MARTIN MARIETTA MATERIALS INC",
+  "cik": 916076,
+  "description": {
+   "text": "Martin Marietta Materials, Inc. (the Company or Martin Marietta) is a leading natural resource-based building materials company. The Company supplies aggregates (crushed stone, sand and gravel) through its network of approximately 400 quarries, mines and distribution yards in 28 states, Canada and The Bahamas. In 2025, aggregates generated 88% of the Company’s total reportable segment gross profit. As of December 31, 2025, Martin Marietta also provides other building materials, namely, cement, ready mixed concrete, asphalt and paving services in targeted markets where the Company has a notable aggregates position. The Company’s heavy-side building materials are used in infrastructure, nonresidential and residential construction projects. Aggregates are also used in agricultural, utility and environmental applications and as railroad ballast. The aggregates, cement, ready mixed concrete, asphalt and paving operations are reported collectively as the “Building Materials business”. The Company also operates a Specialties business (formerly known as the Magnesia Specialties business) with production facilities located in Michigan, Ohio, Nevada, North Carolina, Indiana and Pennsylvania. The Specialties business produces high-purity natural and synthetic magnesia-based products, including magnesium sulfate, magnesium oxide and magnesium hydroxide, that are used in environmental, industrial, agricultural, construction, consumer and specialty applications.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-059193",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526059193/mlm-20251231.htm"
+  },
+  "description_short": "Martin Marietta, a member of the S&P 500 Index, is an American-based company and a leading supplier of aggregates, lime and limestone products, magnesia-based products and other building materials. Supported by industry-leading reserves and a network of operations spanning 29 states, Canada and The Bahamas, Martin Marietta supplies the essential materials that help build, connect and sustain communities across North America.",
+  "industry": "Mining & Quarrying of Nonmetallic Minerals (No Fuels)",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "1400",
+  "sic_description": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+  "state_of_incorporation": "NC",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.martinmarietta.com",
+  "headquarters": "Raleigh, North Carolina",
+  "address": {
+   "street": "4123 Parklake Avenue",
+   "city": "Raleigh",
+   "state": "North Carolina",
+   "zip": "27612",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "919-781-4550",
+  "employees": {
+   "count": 9600,
+   "as_of": "2026-01-31",
+   "evidence": "As of January 31, 2026, the Company has approximately 9,600 employees, of which approximately 7,100 are hourly employees and approximately 2,500 are salaried employees.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526059193/mlm-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-05-14",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000916076&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-15",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950157-26-001024",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726001024/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-21",
+   "items": [
+    "1.01",
+    "2.01",
+    "3.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Unregistered sale of equity; Officer/director change; Reg FD",
+   "accession": "0000950157-26-000946",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000946/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0000950157-26-000922",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000922/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-14",
+   "period": "2026-08-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-352270",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526352270/d103352d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-11",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-346914",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526346914/d149482d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-341412",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526341412/d129878d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950157-26-000850",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000850/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950157-26-000837",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000837/form8-k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-326001",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526326001/mlm-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-324863",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526324863/mlm-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000950157-26-000802",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000802/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-27",
+   "items": [
+    "1.01",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Other events",
+   "accession": "0000950157-26-000770",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000770/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950157-26-000758",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000758/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-224306",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526224306/mlm-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-196029",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526196029/mlm-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-193931",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526193931/mlm-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950157-26-000549",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000549/form8-k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-15",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-157039",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526157039/d28378ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0000950157-26-000175",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000095015726000175/form8-k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-059193",
+   "url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526059193/mlm-20251231.htm"
+  }
+ ],
+ "warnings": []
+}

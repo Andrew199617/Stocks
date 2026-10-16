@@ -1,0 +1,820 @@
+{
+ "ticker": "MLM",
+ "cik": 916076,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-059193",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526059193/mlm-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-196029",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526196029/mlm-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-326001",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/916076/000119312526326001/mlm-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mlm:BuildingMaterialsBusinessEastGroupMember",
+     "label": "Building Materials Business East Group",
+     "values": [
+      2763000000,
+      2941000000,
+      3194000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4722,
+      0.5194,
+      0.5193
+     ],
+     "growth_yoy": [
+      null,
+      0.0644,
+      0.086
+     ]
+    },
+    {
+     "member": "mlm:BuildingMaterialsBusinessWestGroupMember",
+     "label": "Building Materials Business West Group",
+     "values": [
+      2773000000,
+      2401000000,
+      2515000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4739,
+      0.4241,
+      0.4089
+     ],
+     "growth_yoy": [
+      null,
+      -0.1342,
+      0.0475
+     ]
+    },
+    {
+     "member": "mlm:SpecialtiesMember",
+     "label": "Specialties",
+     "values": [
+      315000000,
+      320000000,
+      441000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0538,
+      0.0565,
+      0.0717
+     ],
+     "growth_yoy": [
+      null,
+      0.0159,
+      0.3781
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5851000000,
+     5662000000,
+     6150000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mlm:BuildingMaterialsBusinessEastGroupMember",
+     "label": "Building Materials Business East Group",
+     "values": [
+      758000000,
+      878000000,
+      835000000,
+      972000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6523,
+      0.5457,
+      0.6131,
+      0.4992
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1016,
+      0.1071
+     ]
+    },
+    {
+     "member": "mlm:BuildingMaterialsBusinessWestGroupMember",
+     "label": "Building Materials Business West Group",
+     "values": [
+      317000000,
+      641000000,
+      384000000,
+      823000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2728,
+      0.3984,
+      0.2819,
+      0.4227
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2114,
+      0.2839
+     ]
+    },
+    {
+     "member": "mlm:SpecialtiesMember",
+     "label": "Specialties",
+     "values": [
+      87000000,
+      90000000,
+      143000000,
+      152000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0749,
+      0.0559,
+      0.105,
+      0.0781
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6437,
+      0.6889
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1162000000,
+     1609000000,
+     1362000000,
+     1947000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mlm:BuildingMaterialsBusinessEastGroupMember",
+     "label": "Building Materials Business East Group",
+     "values": [
+      857000000,
+      891000000,
+      992000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6429,
+      0.3594,
+      0.6903
+     ],
+     "growth_yoy": [
+      null,
+      0.0397,
+      0.1134
+     ]
+    },
+    {
+     "member": "mlm:BuildingMaterialsBusinessWestGroupMember",
+     "label": "Building Materials Business West Group",
+     "values": [
+      534000000,
+      1682000000,
+      455000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4006,
+      0.6785,
+      0.3166
+     ],
+     "growth_yoy": [
+      null,
+      2.1498,
+      -0.7295
+     ]
+    },
+    {
+     "member": "mlm:SpecialtiesMember",
+     "label": "Specialties",
+     "values": [
+      76000000,
+      90000000,
+      110000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.057,
+      0.0363,
+      0.0765
+     ],
+     "growth_yoy": [
+      null,
+      0.1842,
+      0.2222
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -134000000,
+      -184000000,
+      -120000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1005,
+      -0.0742,
+      -0.0835
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1333000000,
+     2479000000,
+     1437000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mlm:BuildingMaterialsBusinessEastGroupMember",
+     "label": "Building Materials Business East Group",
+     "values": [
+      237000000,
+      302000000,
+      230000000,
+      295000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.324,
+      0.7312,
+      1.4198,
+      0.793
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0295,
+      -0.0232
+     ]
+    },
+    {
+     "member": "mlm:BuildingMaterialsBusinessWestGroupMember",
+     "label": "Building Materials Business West Group",
+     "values": [
+      -42000000,
+      92000000,
+      -43000000,
+      81000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2346,
+      0.2228,
+      -0.2654,
+      0.2177
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.1196
+     ]
+    },
+    {
+     "member": "mlm:SpecialtiesMember",
+     "label": "Specialties",
+     "values": [
+      33000000,
+      31000000,
+      35000000,
+      42000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1844,
+      0.0751,
+      0.216,
+      0.1129
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0606,
+      0.3548
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -49000000,
+      -12000000,
+      -60000000,
+      -46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2737,
+      -0.0291,
+      -0.3704,
+      -0.1237
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     179000000,
+     413000000,
+     162000000,
+     372000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "mlm:BuildingMaterialsBusinessEastGroupMember",
+     "label": "Building Materials Business East Group",
+     "values": [
+      8452000000,
+      10880000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4652,
+      0.5815
+     ],
+     "growth_yoy": [
+      null,
+      0.2873
+     ]
+    },
+    {
+     "member": "mlm:BuildingMaterialsBusinessWestGroupMember",
+     "label": "Building Materials Business West Group",
+     "values": [
+      7941000000,
+      5875000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.437,
+      0.314
+     ],
+     "growth_yoy": [
+      null,
+      -0.2602
+     ]
+    },
+    {
+     "member": "mlm:SpecialtiesMember",
+     "label": "Specialties",
+     "values": [
+      269000000,
+      883000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0148,
+      0.0472
+     ],
+     "growth_yoy": [
+      null,
+      2.2825
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1508000000,
+      1073000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.083,
+      0.0573
+     ],
+     "growth_yoy": [
+      null,
+      -0.2885
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     18170000000,
+     18711000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mlm:BuildingMaterialsBusinessEastGroupMember",
+     "label": "Building Materials Business East Group",
+     "values": [
+      10880000000,
+      10397000000,
+      10381000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5815,
+      0.5072,
+      0.4873
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mlm:BuildingMaterialsBusinessWestGroupMember",
+     "label": "Building Materials Business West Group",
+     "values": [
+      5875000000,
+      7988000000,
+      8829000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.314,
+      0.3897,
+      0.4144
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mlm:SpecialtiesMember",
+     "label": "Specialties",
+     "values": [
+      883000000,
+      895000000,
+      900000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0472,
+      0.0437,
+      0.0422
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1073000000,
+      1217000000,
+      1195000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0573,
+      0.0594,
+      0.0561
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     18711000000,
+     20497000000,
+     21305000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024"
+   ],
+   "rows": [
+    {
+     "member": "mlm:CementAndReadyMixedConcreteMember",
+     "label": "Cement and Ready Mixed Concrete",
+     "values": [
+      1500000000,
+      1100000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2564,
+      0.1943
+     ],
+     "growth_yoy": [
+      null,
+      -0.2667
+     ]
+    },
+    {
+     "member": "mlm:AsphaltAndPavingServicesMember",
+     "label": "Asphalt and Paving Services",
+     "values": [
+      887000000,
+      869000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1516,
+      0.1535
+     ],
+     "growth_yoy": [
+      null,
+      -0.0203
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5851000000,
+     5662000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segments' (mlm:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Building Materials Business' (mlm:BuildingMaterialsBusinessMember) dropped: its values equal the sum of Building Materials Business East Group, Building Materials Business West Group",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segments' (mlm:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Building Materials Business' (mlm:BuildingMaterialsBusinessMember) dropped: its values equal the sum of Building Materials Business East Group, Building Materials Business West Group",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segments' (mlm:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segments' (mlm:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Assets/annual: row 'Reportable Segments' (mlm:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Assets/quarterly: row 'Reportable Segments' (mlm:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 34.8% of the consolidated total for 2024-12-31 (ties_to_total: false)"
+ ],
+ "complete": true
+}

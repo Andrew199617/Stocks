@@ -1,0 +1,276 @@
+{
+ "ticker": "UI",
+ "cik": 1511737,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:48-04:00",
+ "newest_filing_date": "2026-08-21",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001511737.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000056/ubnt-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/UI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/UI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Ubiquiti Inc.",
+  "cik": 1511737,
+  "description": {
+   "text": "The Company was founded by Robert Pera in 2005. We sell equipment, and provide the related software platforms, worldwide through a network of over 100 distributors, on-line retailers and direct to customers through our webstores. Ubiquiti is focused on democratizing network technology on a global scale. Our devices play a role in creating networking infrastructure in over 200 countries and territories around the world. Our professional networking products are powered by our UISP and UniFi OS software platforms to provide high-capacity distributed Internet access and unified information technology management, respectively. We develop technology platforms for high-capacity distributed internet access, unified information for secure and easily managed network infrastructure, connected sensors, cameras, access devices, appliances and other endpoint devices for enterprises, industrial and service-provider environments. We categorize our solutions into two main categories: high performance networking technology for enterprises and service providers. We target the enterprise and service provider markets through our highly engaged community of service providers, distributors, value added resellers, webstores, systems integrators and corporate IT professionals, which we refer to as the Ubiquiti Community.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "period": "2026-06-30",
+   "accession": "0001511737-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000056/ubnt-20260630.htm"
+  },
+  "description_short": "Ubiquiti Inc. is focused on democratizing network technology on a global scale - creating networking infrastructure in over 200 countries and territories around the world. Our professional networking products are powered by our UISP and UniFi software platforms to provide high-capacity distributed Internet access and unified information technology management, respectively.",
+  "industry": "Radio And Television Broadcasting And Communications Equipment",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3663",
+  "sic_description": "Radio & Tv Broadcasting & Communications Equipment",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ui.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "685 Third Avenue 27th Floor",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10017",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-21"
+  },
+  "phone": "646-780-7958",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2011-06-17",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Ubiquiti Networks, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001511737&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-20",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001511737-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000057/ui-20260820.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001511737-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000056/ubnt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001511737-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000035/ui-20260508.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001511737-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000034/ubnt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001511737-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000016/ui-20260206.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001511737-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000014/ubnt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-03",
+   "items": [
+    "3.01",
+    "5.07"
+   ],
+   "description": "Listing notice; Shareholder vote",
+   "accession": "0001511737-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000083/ui-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001511737-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000078/ui-20251107.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001511737-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000076/ubnt-20250930.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001511737-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000063/ubnt-20251024.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-22",
+   "period": "2025-08-21",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001511737-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000055/ui-20250821.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-08-22",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001511737-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000053/ubnt-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-09",
+   "period": "2025-05-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001511737-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000036/ui-20250509.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001511737-25-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000033/ubnt-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-07",
+   "period": "2025-02-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001511737-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000015/ui-20250207.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-02-07",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001511737-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000013/ubnt-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-12-06",
+   "period": "2024-12-05",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001511737-24-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173724000086/ui-20241205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-11-08",
+   "period": "2024-11-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001511737-24-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173724000081/ui-20241108.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2024-11-08",
+   "period": "2024-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001511737-24-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173724000078/ubnt-20240930.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2024-10-28",
+   "period": "2024-06-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001511737-24-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173724000065/ubnt-20241025.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-08-21"
+ ]
+}

@@ -1,0 +1,469 @@
+{
+ "ticker": "CNC",
+ "cik": 1071739,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001071739-26-000049",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000049/cnc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001071739-26-000098",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000098/cnc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001071739-26-000153",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000153/cnc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cnc:MedicaidSegmentMember",
+     "label": "Medicaid Segment",
+     "values": [
+      100759000000,
+      101417000000,
+      110434000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6543,
+      0.6219,
+      0.567
+     ],
+     "growth_yoy": [
+      null,
+      0.0065,
+      0.0889
+     ]
+    },
+    {
+     "member": "cnc:CommercialSegmentMember",
+     "label": "Commercial Segment",
+     "values": [
+      24845000000,
+      33702000000,
+      42003000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1613,
+      0.2067,
+      0.2156
+     ],
+     "growth_yoy": [
+      null,
+      0.3565,
+      0.2463
+     ]
+    },
+    {
+     "member": "cnc:MedicareSegmentMember",
+     "label": "Medicare Segment",
+     "values": [
+      22261000000,
+      23032000000,
+      37210000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1446,
+      0.1412,
+      0.191
+     ],
+     "growth_yoy": [
+      null,
+      0.0346,
+      0.6156
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      6134000000,
+      4920000000,
+      5130000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0398,
+      0.0302,
+      0.0263
+     ],
+     "growth_yoy": [
+      null,
+      -0.1979,
+      0.0427
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     153999000000,
+     163071000000,
+     194777000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cnc:MedicaidSegmentMember",
+     "label": "Medicaid Segment",
+     "values": [
+      26430000000,
+      27998000000,
+      28885000000,
+      31970000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5669,
+      0.5744,
+      0.5783,
+      0.5967
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0929,
+      0.1419
+     ]
+    },
+    {
+     "member": "cnc:MedicareSegmentMember",
+     "label": "Medicare Segment",
+     "values": [
+      8759000000,
+      9450000000,
+      10326000000,
+      11057000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1879,
+      0.1939,
+      0.2068,
+      0.2064
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1789,
+      0.1701
+     ]
+    },
+    {
+     "member": "cnc:CommercialSegmentMember",
+     "label": "Commercial Segment",
+     "values": [
+      10149000000,
+      10070000000,
+      9556000000,
+      9356000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2177,
+      0.2066,
+      0.1913,
+      0.1746
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0584,
+      -0.0709
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      1282000000,
+      1224000000,
+      1177000000,
+      1196000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0275,
+      0.0251,
+      0.0236,
+      0.0223
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0819,
+      -0.0229
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     46620000000,
+     48742000000,
+     49944000000,
+     53579000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:HealthCarePremiumMember",
+     "label": "Health Care, Premium",
+     "values": [
+      135636000000,
+      142303000000,
+      171556000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9682,
+      0.978,
+      0.9827
+     ],
+     "growth_yoy": [
+      null,
+      0.0492,
+      0.2056
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      4459000000,
+      3202000000,
+      3025000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0318,
+      0.022,
+      0.0173
+     ],
+     "growth_yoy": [
+      null,
+      -0.2819,
+      -0.0553
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     140095000000,
+     145505000000,
+     174581000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:HealthCarePremiumMember",
+     "label": "Health Care, Premium",
+     "values": [
+      41712000000,
+      41740000000,
+      43887000000,
+      43582000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9817,
+      0.9829,
+      0.9828,
+      0.9821
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0521,
+      0.0441
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      777000000,
+      727000000,
+      768000000,
+      793000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0183,
+      0.0171,
+      0.0172,
+      0.0179
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0116,
+      0.0908
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     42489000000,
+     42467000000,
+     44655000000,
+     44375000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Premium and Service' (cnc:TotalPremiumAndServiceMember) dropped: its name marks it as a subtotal of the other rows",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Total Premium and Service' (cnc:TotalPremiumAndServiceMember) dropped: its name marks it as a subtotal of the other rows"
+ ],
+ "complete": true
+}

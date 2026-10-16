@@ -1,0 +1,1002 @@
+{
+ "ticker": "RMD",
+ "cik": 943819,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0000943819-26-000007",
+   "filed": "2026-01-30",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/943819/000094381926000007/rmd-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000943819-26-000025",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/943819/000094381926000025/rmd-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0000943819-26-000047",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/943819/000094381926000047/rmd-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      4101172000,
+      4504890000,
+      4977630000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8753,
+      0.8754,
+      0.8805
+     ],
+     "growth_yoy": [
+      null,
+      0.0984,
+      0.1049
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      584125000,
+      641437000,
+      675813000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1247,
+      0.1246,
+      0.1195
+     ],
+     "growth_yoy": [
+      null,
+      0.0981,
+      0.0536
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4685297000,
+     5146327000,
+     5653443000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      1125593000,
+      1130575000,
+      1180985000,
+      1255938000,
+      1260516000,
+      1291730000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.8779,
+      0.8752,
+      0.8761,
+      0.8827,
+      0.8806,
+      0.8825
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1158,
+      0.1149,
+      0.0938
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      156496000,
+      161161000,
+      167008000,
+      166870000,
+      170890000,
+      171917000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1221,
+      0.1248,
+      0.1239,
+      0.1173,
+      0.1194,
+      0.1175
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0663,
+      0.0604,
+      0.0294
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1282089000,
+     1291736000,
+     1347993000,
+     1422808000,
+     1431406000,
+     1463647000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      1681354000,
+      1964385000,
+      2204498000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2739,
+      1.1656,
+      1.1684
+     ],
+     "growth_yoy": [
+      null,
+      0.1683,
+      0.1222
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      154450000,
+      205000000,
+      217731000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.117,
+      0.1216,
+      0.1154
+     ],
+     "growth_yoy": [
+      null,
+      0.3273,
+      0.0621
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1319893000,
+     1685363000,
+     1886715000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      488721000,
+      494796000,
+      519893000,
+      571850000,
+      575406000,
+      526618000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      1.1713,
+      1.1608,
+      1.1438,
+      1.1631,
+      1.1512,
+      1.1736
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1701,
+      0.1629,
+      0.0129
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      48882000,
+      53179000,
+      55318000,
+      50047000,
+      58243000,
+      55423000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1172,
+      0.1248,
+      0.1217,
+      0.1018,
+      0.1165,
+      0.1235
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0238,
+      0.0952,
+      0.0019
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     417243000,
+     426268000,
+     454540000,
+     491660000,
+     499810000,
+     448712000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      86070000,
+      110543000,
+      112224000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4866,
+      0.557,
+      0.5574
+     ],
+     "growth_yoy": [
+      null,
+      0.2843,
+      0.0152
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      10241000,
+      9467000,
+      10794000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0579,
+      0.0477,
+      0.0536
+     ],
+     "growth_yoy": [
+      null,
+      -0.0756,
+      0.1402
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      80559000,
+      78463000,
+      78324000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4555,
+      0.3953,
+      0.389
+     ],
+     "growth_yoy": [
+      null,
+      -0.026,
+      -0.0018
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     176870000,
+     198473000,
+     201342000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      25249000,
+      22818000,
+      39456000,
+      27311000,
+      36862000,
+      23017000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.5437,
+      0.5224,
+      0.6201,
+      0.5475,
+      0.625,
+      0.514
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0817,
+      0.6155,
+      -0.4166
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      2240000,
+      2251000,
+      2608000,
+      2733000,
+      2752000,
+      2692000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0482,
+      0.0515,
+      0.041,
+      0.0548,
+      0.0467,
+      0.0601
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2201,
+      0.2226,
+      0.0322
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      18950000,
+      18606000,
+      21564000,
+      19841000,
+      19367000,
+      19069000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.4081,
+      0.426,
+      0.3389,
+      0.3977,
+      0.3284,
+      0.4259
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.047,
+      0.0409,
+      -0.1157
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     46439000,
+     43675000,
+     63628000,
+     49885000,
+     58981000,
+     44778000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      4101172000,
+      4504890000,
+      4977630000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8753,
+      0.8754,
+      0.8805
+     ],
+     "growth_yoy": [
+      null,
+      0.0984,
+      0.1049
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      584125000,
+      641437000,
+      675813000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1247,
+      0.1246,
+      0.1195
+     ],
+     "growth_yoy": [
+      null,
+      0.0981,
+      0.0536
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4685297000,
+     5146327000,
+     5653443000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:SleepAndBreathingHealthMember",
+     "label": "Sleep and Breathing Health",
+     "values": [
+      1125593000,
+      1130575000,
+      1180985000,
+      1255938000,
+      1260516000,
+      1291730000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.8779,
+      0.8752,
+      0.8761,
+      0.8827,
+      0.8806,
+      0.8825
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1158,
+      0.1149,
+      0.0938
+     ]
+    },
+    {
+     "member": "rmd:ResidentialCareSoftwareMember",
+     "label": "Residential Care Software",
+     "values": [
+      156496000,
+      161161000,
+      167008000,
+      166870000,
+      170890000,
+      171917000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1221,
+      0.1248,
+      0.1239,
+      0.1173,
+      0.1194,
+      0.1175
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0663,
+      0.0604,
+      0.0294
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1282089000,
+     1291736000,
+     1347993000,
+     1422808000,
+     1431406000,
+     1463647000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2980053000,
+      3285581000,
+      3562024000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.636,
+      0.6384,
+      0.6301
+     ],
+     "growth_yoy": [
+      null,
+      0.1025,
+      0.0841
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1705244000,
+      1860746000,
+      2091419000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.364,
+      0.3616,
+      0.3699
+     ],
+     "growth_yoy": [
+      null,
+      0.0912,
+      0.124
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4685297000,
+     5146327000,
+     5653443000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-12-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rmd:UsCanadaAndLatinAmericaMember",
+     "label": "Us Canada And Latin America",
+     "values": [
+      748949000,
+      749316000,
+      835031000,
+      818672000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5842,
+      0.5801,
+      0.5869,
+      0.5719
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1149,
+      0.0926
+     ]
+    },
+    {
+     "member": "rmd:CombinedEuropeAsiaAndOtherMarketsMember",
+     "label": "Combined Europe Asia And Other Markets",
+     "values": [
+      376644000,
+      381259000,
+      420907000,
+      441844000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2938,
+      0.2952,
+      0.2958,
+      0.3087
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1175,
+      0.1589
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1282089000,
+     1291736000,
+     1422808000,
+     1431406000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 128.4% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 129.7% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Global' (rmd:GlobalMember) dropped: its values equal the consolidated total",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 88.1% of the consolidated total for 2026-03-31 (ties_to_total: false)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,221 @@
+{
+ "ticker": "PAYX",
+ "cik": 723531,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-126204",
+   "filed": "2026-03-26",
+   "period": "2026-02-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526126204/payx-20260228_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-307785",
+   "filed": "2026-07-17",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526307785/payx-20260531_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000723531-26-000006",
+   "filed": "2026-09-24",
+   "period": "2026-08-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/723531/000072353126000006/payx-20260831_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-31",
+    "2025-05-31",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "payx:ManagementSolutionsMember",
+     "label": "Management Solutions",
+     "values": [
+      3866400000,
+      4067100000,
+      4867900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7534,
+      0.7518,
+      0.7725
+     ],
+     "growth_yoy": [
+      null,
+      0.0519,
+      0.1969
+     ]
+    },
+    {
+     "member": "payx:PeoAndInsuranceSolutionsMember",
+     "label": "Peo And Insurance Solutions",
+     "values": [
+      1265600000,
+      1342900000,
+      1433200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2466,
+      0.2482,
+      0.2275
+     ],
+     "growth_yoy": [
+      null,
+      0.0611,
+      0.0672
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5132000000,
+     5410000000,
+     6301100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-02-28",
+    "2025-05-31",
+    "2025-08-31",
+    "2026-02-28",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "payx:ManagementSolutionsMember",
+     "label": "Management Solutions",
+     "values": [
+      1100700000,
+      1041800000,
+      1163300000,
+      1354600000,
+      1183600000,
+      1213100000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.7508,
+      0.7538,
+      0.7795,
+      0.7731,
+      0.762,
+      0.7674
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2307,
+      0.1361,
+      0.0428
+     ]
+    },
+    {
+     "member": "payx:PeoAndInsuranceSolutionsMember",
+     "label": "Peo And Insurance Solutions",
+     "values": [
+      365400000,
+      340300000,
+      329100000,
+      397500000,
+      369700000,
+      367600000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.2492,
+      0.2462,
+      0.2205,
+      0.2269,
+      0.238,
+      0.2326
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0878,
+      0.0864,
+      0.117
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1466100000,
+     1382100000,
+     1492400000,
+     1752100000,
+     1553300000,
+     1580700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/quarterly: row 'Single Reportable Segment' (payx:SingleReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

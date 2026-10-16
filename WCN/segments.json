@@ -1,0 +1,1687 @@
+{
+ "ticker": "WCN",
+ "cik": 1318220,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-013700",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926013700/wcn-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-047074",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926047074/wcn-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-086006",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926086006/wcn-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SouthernMember",
+     "label": "Southern",
+     "values": [
+      1642274000,
+      1757193000,
+      1907809000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2047,
+      0.197,
+      0.2015
+     ],
+     "growth_yoy": [
+      null,
+      0.07,
+      0.0857
+     ]
+    },
+    {
+     "member": "wcn:WesternMember",
+     "label": "Western",
+     "values": [
+      1669289000,
+      1798669000,
+      1849419000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2081,
+      0.2017,
+      0.1954
+     ],
+     "growth_yoy": [
+      null,
+      0.0775,
+      0.0282
+     ]
+    },
+    {
+     "member": "wcn:EasternMember",
+     "label": "Eastern",
+     "values": [
+      1380233000,
+      1564211000,
+      1702247000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1721,
+      0.1754,
+      0.1798
+     ],
+     "growth_yoy": [
+      null,
+      0.1333,
+      0.0882
+     ]
+    },
+    {
+     "member": "wcn:CentralMember",
+     "label": "Central",
+     "values": [
+      1440157000,
+      1514902000,
+      1589885000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1795,
+      0.1698,
+      0.1679
+     ],
+     "growth_yoy": [
+      null,
+      0.0519,
+      0.0495
+     ]
+    },
+    {
+     "member": "wcn:CanadaMember",
+     "label": "Canada",
+     "values": [
+      995842000,
+      1260980000,
+      1324877000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1241,
+      0.1414,
+      0.1399
+     ],
+     "growth_yoy": [
+      null,
+      0.2662,
+      0.0507
+     ]
+    },
+    {
+     "member": "wcn:MidSouthMember",
+     "label": "Mid South",
+     "values": [
+      894156000,
+      1023636000,
+      1092678000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1115,
+      0.1148,
+      0.1154
+     ],
+     "growth_yoy": [
+      null,
+      0.1448,
+      0.0674
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8021951000,
+     8919591000,
+     9466915000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SouthernMember",
+     "label": "Southern",
+     "values": [
+      453403000,
+      476945000,
+      493039000,
+      518650000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2035,
+      0.1981,
+      0.208,
+      0.2025
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0874,
+      0.0874
+     ]
+    },
+    {
+     "member": "wcn:WesternMember",
+     "label": "Western",
+     "values": [
+      438401000,
+      461665000,
+      462448000,
+      492725000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1968,
+      0.1918,
+      0.1951,
+      0.1923
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0549,
+      0.0673
+     ]
+    },
+    {
+     "member": "wcn:EasternMember",
+     "label": "Eastern",
+     "values": [
+      403270000,
+      442213000,
+      405722000,
+      443954000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.181,
+      0.1837,
+      0.1711,
+      0.1733
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0061,
+      0.0039
+     ]
+    },
+    {
+     "member": "wcn:CentralMember",
+     "label": "Central",
+     "values": [
+      373383000,
+      402087000,
+      396762000,
+      423761000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1676,
+      0.167,
+      0.1674,
+      0.1654
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0626,
+      0.0539
+     ]
+    },
+    {
+     "member": "wcn:CanadaMember",
+     "label": "Canada",
+     "values": [
+      302731000,
+      343416000,
+      344828000,
+      385767000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1359,
+      0.1427,
+      0.1455,
+      0.1506
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1391,
+      0.1233
+     ]
+    },
+    {
+     "member": "wcn:MidSouthMember",
+     "label": "Mid South",
+     "values": [
+      256988000,
+      280729000,
+      267832000,
+      296750000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1153,
+      0.1166,
+      0.113,
+      0.1158
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0422,
+      0.0571
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2228176000,
+     2407055000,
+     2370631000,
+     2561607000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SolidWasteCollectionMember",
+     "label": "Solid Waste Collection",
+     "values": [
+      1616541000,
+      1685454000,
+      1704446000,
+      1783723000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7255,
+      0.7002,
+      0.719,
+      0.6963
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0544,
+      0.0583
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -309713000,
+      -358959000,
+      -344188000,
+      -395069000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.139,
+      -0.1491,
+      -0.1452,
+      -0.1542
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2228176000,
+     2407055000,
+     2370631000,
+     2561607000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SouthernMember",
+     "label": "Southern",
+     "values": [
+      3501953000,
+      3885522000,
+      4537419000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1955,
+      0.1961,
+      0.2147
+     ],
+     "growth_yoy": [
+      null,
+      0.1095,
+      0.1678
+     ]
+    },
+    {
+     "member": "wcn:EasternMember",
+     "label": "Eastern",
+     "values": [
+      3228244000,
+      3544234000,
+      3777611000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1802,
+      0.1788,
+      0.1788
+     ],
+     "growth_yoy": [
+      null,
+      0.0979,
+      0.0658
+     ]
+    },
+    {
+     "member": "wcn:CanadaMember",
+     "label": "Canada",
+     "values": [
+      2794795000,
+      3564052000,
+      3730214000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.156,
+      0.1798,
+      0.1765
+     ],
+     "growth_yoy": [
+      null,
+      0.2752,
+      0.0466
+     ]
+    },
+    {
+     "member": "wcn:WesternMember",
+     "label": "Western",
+     "values": [
+      3432529000,
+      3512253000,
+      3565600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1916,
+      0.1772,
+      0.1688
+     ],
+     "growth_yoy": [
+      null,
+      0.0232,
+      0.0152
+     ]
+    },
+    {
+     "member": "wcn:CentralMember",
+     "label": "Central",
+     "values": [
+      2811016000,
+      2827108000,
+      2922791000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1569,
+      0.1427,
+      0.1383
+     ],
+     "growth_yoy": [
+      null,
+      0.0057,
+      0.0338
+     ]
+    },
+    {
+     "member": "wcn:MidSouthMember",
+     "label": "Mid South",
+     "values": [
+      1705180000,
+      2022594000,
+      2051747000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0952,
+      0.1021,
+      0.0971
+     ],
+     "growth_yoy": [
+      null,
+      0.1861,
+      0.0144
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      442159000,
+      462046000,
+      543981000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0247,
+      0.0233,
+      0.0257
+     ],
+     "growth_yoy": [
+      null,
+      0.045,
+      0.1773
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17915876000,
+     19817809000,
+     21129363000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SouthernMember",
+     "label": "Southern",
+     "values": [
+      4214215000,
+      4268552000,
+      4537768000,
+      4743442000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2081,
+      0.2064,
+      0.2142,
+      0.2217
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0768,
+      0.1113
+     ]
+    },
+    {
+     "member": "wcn:EasternMember",
+     "label": "Eastern",
+     "values": [
+      3678666000,
+      3702434000,
+      3758775000,
+      3783675000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1816,
+      0.179,
+      0.1774,
+      0.1768
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0218,
+      0.0219
+     ]
+    },
+    {
+     "member": "wcn:WesternMember",
+     "label": "Western",
+     "values": [
+      3485974000,
+      3491149000,
+      3629318000,
+      3659006000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1721,
+      0.1688,
+      0.1713,
+      0.171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0411,
+      0.0481
+     ]
+    },
+    {
+     "member": "wcn:CanadaMember",
+     "label": "Canada",
+     "values": [
+      3547500000,
+      3793960000,
+      3690824000,
+      3616417000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1751,
+      0.1835,
+      0.1742,
+      0.169
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0404,
+      -0.0468
+     ]
+    },
+    {
+     "member": "wcn:CentralMember",
+     "label": "Central",
+     "values": [
+      2835804000,
+      2874475000,
+      2913215000,
+      2929482000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.14,
+      0.139,
+      0.1375,
+      0.1369
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0273,
+      0.0191
+     ]
+    },
+    {
+     "member": "wcn:MidSouthMember",
+     "label": "Mid South",
+     "values": [
+      2009776000,
+      2022400000,
+      2063877000,
+      2074085000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0992,
+      0.0978,
+      0.0974,
+      0.0969
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0269,
+      0.0256
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      482562000,
+      525640000,
+      592578000,
+      593345000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0238,
+      0.0254,
+      0.028,
+      0.0277
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.228,
+      0.1288
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20254497000,
+     20678610000,
+     21186355000,
+     21399452000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SouthernMember",
+     "label": "Southern",
+     "values": [
+      179948000,
+      203445000,
+      243697000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1794,
+      0.1748,
+      0.1978
+     ],
+     "growth_yoy": [
+      null,
+      0.1306,
+      0.1979
+     ]
+    },
+    {
+     "member": "wcn:EasternMember",
+     "label": "Eastern",
+     "values": [
+      207909000,
+      230466000,
+      235110000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2072,
+      0.198,
+      0.1908
+     ],
+     "growth_yoy": [
+      null,
+      0.1085,
+      0.0202
+     ]
+    },
+    {
+     "member": "wcn:WesternMember",
+     "label": "Western",
+     "values": [
+      199426000,
+      211111000,
+      214829000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1988,
+      0.1814,
+      0.1744
+     ],
+     "growth_yoy": [
+      null,
+      0.0586,
+      0.0176
+     ]
+    },
+    {
+     "member": "wcn:CanadaMember",
+     "label": "Canada",
+     "values": [
+      121326000,
+      200274000,
+      198531000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1209,
+      0.1721,
+      0.1611
+     ],
+     "growth_yoy": [
+      null,
+      0.6507,
+      -0.0087
+     ]
+    },
+    {
+     "member": "wcn:CentralMember",
+     "label": "Central",
+     "values": [
+      169370000,
+      170424000,
+      179093000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1688,
+      0.1464,
+      0.1454
+     ],
+     "growth_yoy": [
+      null,
+      0.0062,
+      0.0509
+     ]
+    },
+    {
+     "member": "wcn:MidSouthMember",
+     "label": "Mid South",
+     "values": [
+      117397000,
+      138671000,
+      148130000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.117,
+      0.1192,
+      0.1202
+     ],
+     "growth_yoy": [
+      null,
+      0.1812,
+      0.0682
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7835000,
+      9378000,
+      12716000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0078,
+      0.0081,
+      0.0103
+     ],
+     "growth_yoy": [
+      null,
+      0.1969,
+      0.3559
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1003211000,
+     1163769000,
+     1232106000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SouthernMember",
+     "label": "Southern",
+     "values": [
+      55860000,
+      60892000,
+      65839000,
+      67774000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1927,
+      0.1979,
+      0.2092,
+      0.208
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1786,
+      0.113
+     ]
+    },
+    {
+     "member": "wcn:EasternMember",
+     "label": "Eastern",
+     "values": [
+      56202000,
+      59725000,
+      57322000,
+      60357000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1938,
+      0.1941,
+      0.1821,
+      0.1852
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0199,
+      0.0106
+     ]
+    },
+    {
+     "member": "wcn:WesternMember",
+     "label": "Western",
+     "values": [
+      51998000,
+      53370000,
+      55527000,
+      57230000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1793,
+      0.1735,
+      0.1764,
+      0.1756
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0679,
+      0.0723
+     ]
+    },
+    {
+     "member": "wcn:CanadaMember",
+     "label": "Canada",
+     "values": [
+      45825000,
+      48883000,
+      51510000,
+      52747000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.158,
+      0.1589,
+      0.1637,
+      0.1619
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1241,
+      0.079
+     ]
+    },
+    {
+     "member": "wcn:CentralMember",
+     "label": "Central",
+     "values": [
+      42427000,
+      44603000,
+      45337000,
+      46341000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1463,
+      0.145,
+      0.144,
+      0.1422
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0686,
+      0.039
+     ]
+    },
+    {
+     "member": "wcn:MidSouthMember",
+     "label": "Mid South",
+     "values": [
+      35171000,
+      37537000,
+      35502000,
+      37414000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1213,
+      0.122,
+      0.1128,
+      0.1148
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0094,
+      -0.0033
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2466000,
+      2647000,
+      3712000,
+      4014000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0085,
+      0.0086,
+      0.0118,
+      0.0123
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5053,
+      0.5164
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     289949000,
+     307657000,
+     314749000,
+     325877000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wcn:SolidWasteCollectionMember",
+     "label": "Solid Waste Collection",
+     "values": [
+      5934979000,
+      6332773000,
+      6748096000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7398,
+      0.71,
+      0.7128
+     ],
+     "growth_yoy": [
+      null,
+      0.067,
+      0.0656
+     ]
+    },
+    {
+     "member": "us-gaap:LandfillMember",
+     "label": "Landfill",
+     "values": [
+      1483397000,
+      1557872000,
+      1541904000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1849,
+      0.1747,
+      0.1629
+     ],
+     "growth_yoy": [
+      null,
+      0.0502,
+      -0.0102
+     ]
+    },
+    {
+     "member": "wcn:TransferMember",
+     "label": "Transfer",
+     "values": [
+      1198385000,
+      1349080000,
+      1461636000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1494,
+      0.1512,
+      0.1544
+     ],
+     "growth_yoy": [
+      null,
+      0.1257,
+      0.0834
+     ]
+    },
+    {
+     "member": "wcn:ExplorationAndProductionWasteTreatmentRecoveryAndDisposalMember",
+     "label": "Exploration And Production Waste Treatment Recovery And Disposal",
+     "values": [
+      232211000,
+      521504000,
+      688761000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0289,
+      0.0585,
+      0.0728
+     ],
+     "growth_yoy": [
+      null,
+      1.2458,
+      0.3207
+     ]
+    },
+    {
+     "member": "wcn:SolidWasteRecyclingMember",
+     "label": "Solid Waste Recycling",
+     "values": [
+      147039000,
+      241873000,
+      240057000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0183,
+      0.0271,
+      0.0254
+     ],
+     "growth_yoy": [
+      null,
+      0.645,
+      -0.0075
+     ]
+    },
+    {
+     "member": "wcn:IntermodalAndOtherMember",
+     "label": "Intermodal and Other",
+     "values": [
+      171721000,
+      191887000,
+      175465000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0214,
+      0.0215,
+      0.0185
+     ],
+     "growth_yoy": [
+      null,
+      0.1174,
+      -0.0856
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8021951000,
+     8919591000,
+     9466915000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:LandfillMember",
+     "label": "Landfill",
+     "values": [
+      202163000,
+      244422000,
+      213361000,
+      251992000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0907,
+      0.1015,
+      0.09,
+      0.0984
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0554,
+      0.031
+     ]
+    },
+    {
+     "member": "wcn:TransferMember",
+     "label": "Transfer",
+     "values": [
+      159578000,
+      197197000,
+      172748000,
+      212264000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0716,
+      0.0819,
+      0.0729,
+      0.0829
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0825,
+      0.0764
+     ]
+    },
+    {
+     "member": "wcn:ExplorationAndProductionWasteTreatmentRecoveryAndDisposalMember",
+     "label": "Exploration And Production Waste Treatment Recovery And Disposal",
+     "values": [
+      144525000,
+      169835000,
+      179559000,
+      200955000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0649,
+      0.0706,
+      0.0757,
+      0.0784
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2424,
+      0.1832
+     ]
+    },
+    {
+     "member": "wcn:SolidWasteRecyclingMember",
+     "label": "Solid Waste Recycling",
+     "values": [
+      59257000,
+      66805000,
+      51588000,
+      61397000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0266,
+      0.0278,
+      0.0218,
+      0.024
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1294,
+      -0.081
+     ]
+    },
+    {
+     "member": "wcn:OtherMember",
+     "label": "Other",
+     "values": [
+      46112000,
+      43342000,
+      48929000,
+      51276000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0207,
+      0.018,
+      0.0206,
+      0.02
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0611,
+      0.1831
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2228176000,
+     2407055000,
+     2370631000,
+     2561607000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 54.2% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 114.7% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 30.4% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

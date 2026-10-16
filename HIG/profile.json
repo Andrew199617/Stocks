@@ -1,0 +1,295 @@
+{
+ "ticker": "HIG",
+ "cik": 874766,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:54-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000874766.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000012/hig-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HIG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HIG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HARTFORD INSURANCE GROUP, INC.",
+  "cik": 874766,
+  "description": {
+   "text": "The Hartford Insurance Group, Inc. (\"HIG\") (together with its subsidiaries, “The Hartford”, the “Company”, “we”, or “our”) is a holding company for a group of subsidiaries that provide property and casualty (\"P&C\") insurance, employee group benefits insurance and services, and mutual funds and exchange-traded funds (\"ETF\") to individual and business customers in the United States, as well as in the United Kingdom and other international locations. The Hartford is headquartered in Connecticut and its oldest subsidiary, Hartford Fire Insurance Company, dates back to 1810. As of December 31, 2025, total assets and total stockholders’ equity of The Hartford were $86.0 billion and $19.0 billion, respectively.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0000874766-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000012/hig-20251231.htm"
+  },
+  "description_short": "The Hartford is a leader in property and casualty insurance and employee benefits. By anticipating challenges and reducing risks our customers face, the company helps people and businesses thrive with confidence. Built on a foundation of trust, The Hartford is committed to strong performance, exceptional customer experiences and bold innovation, hallmarks of its sustained success since 1810.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6331",
+  "sic_description": "Fire, Marine & Casualty Insurance",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.thehartford.com",
+  "headquarters": "Hartford, Connecticut",
+  "address": {
+   "street": "One Hartford Plaza",
+   "city": "Hartford",
+   "state": "Connecticut",
+   "zip": "06155",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "8605475000",
+  "employees": {
+   "count": 19200,
+   "as_of": "2025-12-31",
+   "evidence": "The Hartford has approximately 19,200 employees as of December 31, 2025.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000012/hig-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-03-12",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "HARTFORD INSURANCE GROUP, INC.",
+   "HARTFORD FINANCIAL SERVICES GROUP, INC.",
+   "HARTFORD FINANCIAL SERVICES GROUP INC/DE",
+   "ITT HARTFORD GROUP INC /DE"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000874766&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000874766-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000067/hig-20260930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-23",
+   "items": [
+    "1.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Termination of agreement; Reg FD",
+   "accession": "0000874766-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000064/hig-20260923.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000874766-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000062/hig-20260811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874766-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000060/hig-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000874766-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000059/hig-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000874766-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000050/hig-20260715.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000874766-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000043/hig-20260603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000874766-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000041/hig-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874766-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000037/hig-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000874766-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000036/hig-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2026-04-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000874766-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000025/hig-20260409.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000874766-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000012/hig-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000874766-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000006/hig-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-12",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001193125-25-317144",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000119312525317144/d933241d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-27",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874766-25-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476625000107/hig-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000874766-25-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476625000106/hig-20251027.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-25",
+   "period": "2025-09-24",
+   "items": [
+    "1.01",
+    "2.03"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000874766-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476625000094/hig-20250924.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-08-01",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001193125-25-171070",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000119312525171070/d141293d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-28",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874766-25-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476625000084/hig-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-28",
+   "period": "2025-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000874766-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/874766/000087476625000083/hig-20250728.htm"
+  }
+ ],
+ "warnings": []
+}

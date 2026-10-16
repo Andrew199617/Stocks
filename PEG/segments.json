@@ -1,0 +1,612 @@
+{
+ "ticker": "PEG",
+ "cik": 788784,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-077446",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526077446/peg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-206545",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526206545/peg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-332943",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526332943/peg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "peg:PublicServiceElectricandGasCompanyMember",
+     "label": "Public Service Electric and Gas Company",
+     "values": [
+      7807000000,
+      8449000000,
+      9558000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6948,
+      0.8211,
+      0.7855
+     ],
+     "growth_yoy": [
+      null,
+      0.0822,
+      0.1313
+     ]
+    },
+    {
+     "member": "peg:PSEGPowerOtherMember",
+     "label": "PSEG Power & Other",
+     "values": [
+      4533000000,
+      2807000000,
+      3722000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4034,
+      0.2728,
+      0.3059
+     ],
+     "growth_yoy": [
+      null,
+      -0.3808,
+      0.326
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -1103000000,
+      -966000000,
+      -1112000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0982,
+      -0.0939,
+      -0.0914
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11237000000,
+     10290000000,
+     12168000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "peg:PublicServiceElectricandGasCompanyMember",
+     "label": "Public Service Electric and Gas Company",
+     "values": [
+      2664000000,
+      2031000000,
+      3085000000,
+      2137000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8268,
+      0.7241,
+      0.8017,
+      0.8367
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.158,
+      0.0522
+     ]
+    },
+    {
+     "member": "peg:PSEGPowerOtherMember",
+     "label": "PSEG Power & Other",
+     "values": [
+      1092000000,
+      920000000,
+      1416000000,
+      534000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3389,
+      0.328,
+      0.368,
+      0.2091
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2967,
+      -0.4196
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -534000000,
+      -146000000,
+      -653000000,
+      -117000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1657,
+      -0.052,
+      -0.1697,
+      -0.0458
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3222000000,
+     2805000000,
+     3848000000,
+     2554000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "peg:PublicServiceElectricandGasCompanyMember",
+     "label": "Public Service Electric and Gas Company",
+     "values": [
+      1515000000,
+      1547000000,
+      1745000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5911,
+      0.873,
+      0.8266
+     ],
+     "growth_yoy": [
+      null,
+      0.0211,
+      0.128
+     ]
+    },
+    {
+     "member": "peg:PSEGPowerOtherMember",
+     "label": "PSEG Power & Other",
+     "values": [
+      1048000000,
+      225000000,
+      366000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4089,
+      0.127,
+      0.1734
+     ],
+     "growth_yoy": [
+      null,
+      -0.7853,
+      0.6267
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2563000000,
+     1772000000,
+     2111000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "peg:PublicServiceElectricandGasCompanyMember",
+     "label": "Public Service Electric and Gas Company",
+     "values": [
+      546000000,
+      332000000,
+      577000000,
+      342000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.927,
+      0.5675,
+      0.7787,
+      1.024
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0568,
+      0.0301
+     ]
+    },
+    {
+     "member": "peg:PSEGPowerOtherMember",
+     "label": "PSEG Power & Other",
+     "values": [
+      43000000,
+      253000000,
+      164000000,
+      -8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.073,
+      0.4325,
+      0.2213,
+      -0.024
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.814,
+      -1.0316
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     589000000,
+     585000000,
+     741000000,
+     334000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "peg:PublicServiceElectricandGasCompanyMember",
+     "label": "Public Service Electric and Gas Company",
+     "values": [
+      42873000000,
+      46364000000,
+      49024000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8449,
+      0.8485,
+      0.8515
+     ],
+     "growth_yoy": [
+      null,
+      0.0814,
+      0.0574
+     ]
+    },
+    {
+     "member": "peg:PSEGPowerOtherMember",
+     "label": "PSEG Power & Other",
+     "values": [
+      8407000000,
+      8673000000,
+      9067000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1657,
+      0.1587,
+      0.1575
+     ],
+     "growth_yoy": [
+      null,
+      0.0316,
+      0.0454
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -539000000,
+      -397000000,
+      -515000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0106,
+      -0.0073,
+      -0.0089
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     50741000000,
+     54640000000,
+     57576000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "peg:PublicServiceElectricandGasCompanyMember",
+     "label": "Public Service Electric and Gas Company",
+     "values": [
+      49024000000,
+      49703000000,
+      50429000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8515,
+      0.8578,
+      0.8574
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "peg:PSEGPowerOtherMember",
+     "label": "PSEG Power & Other",
+     "values": [
+      9067000000,
+      8754000000,
+      8582000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1575,
+      0.1511,
+      0.1459
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -515000000,
+      -512000000,
+      -198000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0089,
+      -0.0088,
+      -0.0034
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     57576000000,
+     57945000000,
+     58813000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

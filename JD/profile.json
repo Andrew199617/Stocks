@@ -1,0 +1,251 @@
+{
+ "ticker": "JD",
+ "cik": 1549802,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:11:43-04:00",
+ "newest_filing_date": "2026-08-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001549802.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526157870/d53690d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JD/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JD/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "JD.com, Inc.",
+  "cik": 1549802,
+  "description": {
+   "text": "We are a leading supply chain-based technology and service provider. Our cutting-edge retail infrastructure seeks to enable consumers to buy whatever they want, and whenever and wherever they want it. We opened our technology and infrastructure to partners, brands and other sectors, as part of our retail as a service offering to help drive productivity and innovation across a range of industries.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-16",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-157870",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526157870/d53690d20f.htm"
+  },
+  "description_short": "JD.com is a leading supply chain-based technology and service provider. The Company's cutting-edge retail infrastructure seeks to enable consumers to buy whatever they want, whenever and wherever they want it. The Company has opened its technology and infrastructure to partners, brands and other sectors, as part of its Retail as a Service offering to help drive productivity and innovation across a range of industries.",
+  "industry": "Other Specialty Stores",
+  "sector": "Consumer Discretionary",
+  "region": "Asia",
+  "sic": "5990",
+  "sic_description": "Retail-Retail Stores, NEC",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "OTC"
+  ],
+  "website": "https://www.jd.com",
+  "headquarters": "Daxing District, Beijing, People’s Republic of China",
+  "address": {
+   "street": "20th Floor, Building A No. 18 Kechuang 11 Street Yizhuang Economic and Technological Development Zone",
+   "city": "Daxing District",
+   "state": null,
+   "zip": "101111",
+   "country": "People’s Republic of China",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-16",
+   "metro": "Beijing",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "86-10-5895-5500",
+  "employees": {
+   "count": 776682,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2023, 2024 and 2025, we had a total of 517,124, 570,895 and 776,682 employees, respectively.",
+   "form": "20-F",
+   "filed": "2026-04-16",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526157870/d53690d20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-01-30",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001549802&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-347753",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526347753/d143720d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-326847",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526326847/d169158d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-258509",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526258509/d155742d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-227912",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526227912/d156670d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-218013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526218013/d128173d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-183510",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526183510/d375457d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-157947",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526157947/d104262d6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-04-16",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-26-157870",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526157870/d53690d20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-150439",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526150439/d117323d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2026-04-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-139016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526139016/d89746d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-133138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526133138/d140452d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-092445",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526092445/d150586d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-060216",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526060216/d67497d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-006987",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312526006987/d38973d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-314940",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312525314940/d85472d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-278771",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312525278771/d812079d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-278665",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312525278665/d715997d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-257295",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312525257295/d68715d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-02",
+   "period": "2025-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-193272",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312525193272/d52298d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-180226",
+   "url": "https://www.sec.gov/Archives/edgar/data/1549802/000119312525180226/d79311d6k.htm"
+  }
+ ],
+ "warnings": []
+}

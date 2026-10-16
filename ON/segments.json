@@ -1,0 +1,568 @@
+{
+ "ticker": "ON",
+ "cik": 1097864,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001097864-26-000006",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000006/on-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001097864-26-000014",
+   "filed": "2026-05-04",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000014/on-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001097864-26-000017",
+   "filed": "2026-08-03",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000017/on-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "on:PowerSolutionsGroupMember",
+     "label": "Power Solutions Group",
+     "values": [
+      3880400000,
+      3348200000,
+      2805100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4702,
+      0.4728,
+      0.4679
+     ],
+     "growth_yoy": [
+      null,
+      -0.1372,
+      -0.1622
+     ]
+    },
+    {
+     "member": "on:AnalogMixedSignalGroupMember",
+     "label": "Analog & Mixed-Signal Group",
+     "values": [
+      3057100000,
+      2609100000,
+      2261900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3704,
+      0.3684,
+      0.3773
+     ],
+     "growth_yoy": [
+      null,
+      -0.1465,
+      -0.1331
+     ]
+    },
+    {
+     "member": "on:IntelligentSensingGroupMember",
+     "label": "Intelligent Sensing Group",
+     "values": [
+      1315500000,
+      1125000000,
+      928400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1594,
+      0.1588,
+      0.1549
+     ],
+     "growth_yoy": [
+      null,
+      -0.1448,
+      -0.1748
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8253000000,
+     7082300000,
+     5995400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "on:PowerSolutionsGroupMember",
+     "label": "Power Solutions Group",
+     "values": [
+      645100000,
+      698200000,
+      736600000,
+      829000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4462,
+      0.4754,
+      0.4868,
+      0.517
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1418,
+      0.1873
+     ]
+    },
+    {
+     "member": "on:AnalogMixedSignalGroupMember",
+     "label": "Analog & Mixed-Signal Group",
+     "values": [
+      566400000,
+      555900000,
+      540400000,
+      545700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3918,
+      0.3785,
+      0.3571,
+      0.3403
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0459,
+      -0.0183
+     ]
+    },
+    {
+     "member": "on:IntelligentSensingGroupMember",
+     "label": "Intelligent Sensing Group",
+     "values": [
+      234200000,
+      214600000,
+      236300000,
+      228800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.162,
+      0.1461,
+      0.1561,
+      0.1427
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.009,
+      0.0662
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1445700000,
+     1468700000,
+     1513300000,
+     1603500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:HK",
+     "label": "HONG KONG",
+     "values": [
+      2168600000,
+      1779300000,
+      1634800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2628,
+      0.2512,
+      0.2727
+     ],
+     "growth_yoy": [
+      null,
+      -0.1795,
+      -0.0812
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      1753400000,
+      1637800000,
+      1347000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2125,
+      0.2313,
+      0.2247
+     ],
+     "growth_yoy": [
+      null,
+      -0.0659,
+      -0.1776
+     ]
+    },
+    {
+     "member": "country:SG",
+     "label": "SINGAPORE",
+     "values": [
+      1938800000,
+      1733200000,
+      1252400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2349,
+      0.2447,
+      0.2089
+     ],
+     "growth_yoy": [
+      null,
+      -0.106,
+      -0.2774
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1573700000,
+      1307500000,
+      1230600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1907,
+      0.1846,
+      0.2053
+     ],
+     "growth_yoy": [
+      null,
+      -0.1692,
+      -0.0588
+     ]
+    },
+    {
+     "member": "on:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      818500000,
+      624500000,
+      530600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0992,
+      0.0882,
+      0.0885
+     ],
+     "growth_yoy": [
+      null,
+      -0.237,
+      -0.1504
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8253000000,
+     7082300000,
+     5995400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:HK",
+     "label": "HONG KONG",
+     "values": [
+      370100000,
+      413300000,
+      368900000,
+      444200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.256,
+      0.2814,
+      0.2438,
+      0.277
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0032,
+      0.0748
+     ]
+    },
+    {
+     "member": "country:SG",
+     "label": "SINGAPORE",
+     "values": [
+      273800000,
+      326900000,
+      322200000,
+      386400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1894,
+      0.2226,
+      0.2129,
+      0.241
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1768,
+      0.182
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      367500000,
+      327400000,
+      392200000,
+      353900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2542,
+      0.2229,
+      0.2592,
+      0.2207
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0672,
+      0.0809
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      292600000,
+      277900000,
+      296500000,
+      300600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2024,
+      0.1892,
+      0.1959,
+      0.1875
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0133,
+      0.0817
+     ]
+    },
+    {
+     "member": "on:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      141700000,
+      123200000,
+      133500000,
+      118400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.098,
+      0.0839,
+      0.0882,
+      0.0738
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0579,
+      -0.039
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1445700000,
+     1468700000,
+     1513300000,
+     1603500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

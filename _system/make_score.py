@@ -30,6 +30,20 @@ registry is rewritten wholesale for the ticker on every run and also records
 judgment-call events: tier_override, manual_price, base_override, gterm,
 cik, ads_ratio.
 
+Alert gates (v5.4; the exit gate added after the Codex review of PR #2):
+alert_eligible gates ENTRIES into Tier S/A — false unless the final tier is
+S/A and no suppression reason applies (low confidence, sector misfit, tier
+existing only because of an override, an override lifting a sub-A numeric
+tier into S/A, IRR at the solver floor). exit_alert_eligible gates EXITS from
+S/A — false unless the final tier is below A and the quality checks pass
+(low confidence, sector misfit, tier existing only because of an override).
+The IRR floor does not suppress an exit, since a floor IRR reads "at most
+terminal growth", which confirms the drop; nor does a tier_override pushing an
+S/A numeric tier below A, since a judgment downgrade is still a warning a
+holder needs (only a judgment-only upgrade is kept from alerting). Before it,
+the S/A tier condition inside alert_eligible meant a qualifying A -> B exit
+could never alert.
+
 Overrides (v5.1): judgment.json may carry capex_override / sbc_override /
 shares_override ({value, source, reason, kind: "filing"|"estimate"}). They
 are validated for shape, cross-checked against dcf_numbers.json's
@@ -69,10 +83,15 @@ If judgment.json is absent but score.json exists, judgment.json is seeded
 from the existing score.json first (the v5 re-run path), then score.json is
 rebuilt from the current dcf_numbers.json.
 """
-import json, sys, os, datetime, fcntl, subprocess, hashlib
+import json, sys, os, datetime, subprocess, hashlib
+# Every file is read and written as UTF-8 (most judgment.json files carry raw
+# UTF-8 text; Windows Python otherwise defaults to cp1252 and mangles it).
 from zoneinfo import ZoneInfo
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
 
-BASE = "/home/hatch/workspace/stocks"
+# v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYS_DIR = f"{BASE}/_system"
 ENGINE = f"{SYS_DIR}/dcf_engine.py"
 TTM_PY = f"{SYS_DIR}/ttm.py"
@@ -110,7 +129,7 @@ def seed_judgment(folder, score):
         j["moat_for"] = score["moat_for"]
     if isinstance(score.get("moat_against"), list):
         j["moat_against"] = score["moat_against"]
-    with open(f"{folder}/judgment.json", "w") as f:
+    with open(f"{folder}/judgment.json", "w", encoding="utf-8") as f:
         json.dump(j, f, indent=1)
     print(f"make_score.py: seeded judgment.json from existing score.json in {folder}")
 
@@ -179,6 +198,33 @@ def validate_ads_ratio(j):
     if not str(a.get("reason") or "").strip():
         fail("judgment.json: ads_ratio.reason must be a non-empty string")
     return a
+
+
+def validate_second_pass(j):
+    """v5.4: pass 2 goes through make_score like everything else — the old
+    pass-2 spec told workers to hand-edit score.json, which the v5 mechanics
+    forbid. judgment.json may carry second_pass {date, verdict
+    "changed"|"no_change", prior_tier, prior_weighted_irr, prior_iv_at_15,
+    summary}; it is shape-checked and copied into score.json verbatim."""
+    sp = j.get("second_pass")
+    if sp is None:
+        return None
+    if not isinstance(sp, dict):
+        fail("judgment.json: second_pass must be an object {date, verdict, prior_tier, prior_weighted_irr, prior_iv_at_15, summary}")
+    if sp.get("verdict") not in ("changed", "no_change"):
+        fail("judgment.json: second_pass.verdict must be \"changed\" or \"no_change\"")
+    if not str(sp.get("date") or "").strip():
+        fail("judgment.json: second_pass.date is required (YYYY-MM-DD)")
+    if not str(sp.get("summary") or "").strip():
+        fail("judgment.json: second_pass.summary is required (evidence + sources, 2-4 sentences)")
+    if sp["verdict"] == "changed":
+        if sp.get("prior_tier") not in TIERS:
+            fail("judgment.json: second_pass.prior_tier must be a tier when verdict is \"changed\"")
+        for k in ("prior_weighted_irr", "prior_iv_at_15"):
+            v = sp.get(k)
+            if v is not None and (not isinstance(v, (int, float)) or isinstance(v, bool)):
+                fail(f"judgment.json: second_pass.{k} must be a number or null")
+    return {k: sp.get(k) for k in ("date", "verdict", "prior_tier", "prior_weighted_irr", "prior_iv_at_15", "summary")}
 
 
 def _run_json(cmd, env_extra=None, timeout=600):
@@ -331,7 +377,7 @@ def _default_cik(ticker):
     """The CIK the tickers-exchange mapping assigns (what the engine uses
     unless a --cik override or the CIK-fallback probe intervened)."""
     try:
-        sec = json.load(open(f"{SYS_DIR}/sec_tickers_exchange.json"))
+        sec = json.load(open(f"{SYS_DIR}/sec_tickers_exchange.json", encoding="utf-8"))
         m = {}
         for rec in sec["data"]:
             m.setdefault(rec[2].upper(), rec[0])
@@ -354,11 +400,9 @@ def update_registry(ticker, applied, j_over, impact, j, n):
     (non-default / fallback), ads_ratio. make_score.py is the single
     writer; the write is atomic under an fcntl lock."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
-    lock_fd = os.open(REGISTRY + ".lock", os.O_CREAT | os.O_RDWR)
-    try:
-        fcntl.flock(lock_fd, fcntl.LOCK_EX)
+    with locked(REGISTRY + ".lock"):
         try:
-            reg = json.load(open(REGISTRY))
+            reg = json.load(open(REGISTRY, encoding="utf-8"))
         except Exception:
             reg = {"entries": []}
         entries = [e for e in reg.get("entries", []) if e.get("ticker") != ticker]
@@ -404,12 +448,34 @@ def update_registry(ticker, applied, j_over, impact, j, n):
                             "ratio": a["ratio"], "source": a["source"], "reason": a["reason"]})
         reg["entries"] = entries
         tmp = REGISTRY + ".tmp"
-        with open(tmp, "w") as f:
+        with open(tmp, "w", encoding="utf-8") as f:
             json.dump(reg, f, indent=1)
-        os.rename(tmp, REGISTRY)
-    finally:
-        fcntl.flock(lock_fd, fcntl.LOCK_UN)
-        os.close(lock_fd)
+        os.replace(tmp, REGISTRY)
+
+
+def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor):
+    """(entry_reasons, exit_reasons): why an alert for this score is
+    suppressed. Entry reasons apply only to a final S/A tier (alert_eligible),
+    exit reasons only to a final tier below A (exit_alert_eligible); both are
+    empty when the score clears its gate."""
+    sa = ("S", "A")
+    entry, exit_ = [], []
+    if tier_final in sa:
+        if conf == "low": entry.append("confidence low")
+        if model_fit == "misfit": entry.append("sector model misfit")
+        if unblocks: entry.append("tier exists only because of a judgment override")
+        # Codex review of PR #2: a tier_override that lifts a C/B numeric tier into
+        # S/A rests entirely on judgment — the weighted IRR never crossed the line.
+        if override and tier_by_numbers not in sa:
+            entry.append(f"tier rests on a judgment tier override (numeric tier {tier_by_numbers})")
+        if irr_at_floor: entry.append("IRR at solver floor")
+    else:
+        if conf == "low": exit_.append("confidence low")
+        if model_fit == "misfit": exit_.append("sector model misfit")
+        if unblocks: exit_.append("tier exists only because of a judgment override")
+        # No tier-override rule here: a judgment downgrade out of S/A is a valid
+        # exit warning (the entry rule stops judgment-only upgrades).
+    return entry, exit_
 
 
 def _usd(v):
@@ -455,6 +521,15 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
         L.append(f"- Weighted IRR: {_pct(n['implied_irr_weighted'])} · base-case IRR: {_pct(n.get('implied_irr_base'))}")
         L.append(f"- Weighted IV: @15% {_money(w.get('iv_at_15'))} · @12% {_money(w.get('iv_at_12'))} · @10% {_money(w.get('iv_at_10'))}")
         L.append(f"- Upside vs price: @15% {_pct(n.get('upside_at_15'), 1)} · @12% {_pct(n.get('upside_at_12'), 1)}")
+        if n.get("irr_bear") is not None:
+            L.append(f"- IRR band: bear {_pct(n.get('irr_bear'))} (tier {n.get('tier_bear')}) → bull {_pct(n.get('irr_bull'))} (tier {n.get('tier_bull')}); scenario range {_pct(n.get('irr_low'))} – {_pct(n.get('irr_high'))}")
+        if n.get("hurdle_prices"):
+            hp = n["hurdle_prices"]
+            L.append(f"- Hurdle-clearing prices (weighted path): 15% at {_money(hp.get('15'))} · 20% at {_money(hp.get('20'))} · 25% at {_money(hp.get('25'))}")
+        if (n.get("diagnostics") or {}).get("irr_at_floor"):
+            L.append("- IRR AT FLOOR: the solver converged onto terminal growth — read the weighted IRR as '<= g_terminal', not as a solution")
+    if n.get("f_subtype"):
+        L.append(f"- Tier F sub-type: {n['f_subtype']}")
     if n.get("note"):
         L.append(f"- Note: {n['note']}")
     L += ["", "## Base owner's earnings",
@@ -522,7 +597,7 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
             if impact.get("unblocks_tier"):
                 L.append("- Unblocks tier: YES — this override is the only reason this company has a tier; "
                          "without it the filing gap blocks scoring entirely.")
-    with open(f"{folder}/key_numbers.md", "w") as f:
+    with open(f"{folder}/key_numbers.md", "w", encoding="utf-8") as f:
         f.write("\n".join(L) + "\n")
 
 
@@ -532,7 +607,7 @@ def main():
     npath, jpath, spath = f"{folder}/dcf_numbers.json", f"{folder}/judgment.json", f"{folder}/score.json"
     if not os.path.exists(npath):
         fail(f"no dcf_numbers.json in {folder} — run dcf_engine.py first")
-    n = json.load(open(npath))
+    n = json.load(open(npath, encoding="utf-8"))
     # Round-2 audit (NOW item): never build a score from pre-v5, gate-less
     # engine output. Before this check, make_score happily rebuilt HIG's v4
     # Tier B score.json from a v4 dcf_numbers.json (SBC missing in every
@@ -572,10 +647,10 @@ def main():
 
     if not os.path.exists(jpath):
         if os.path.exists(spath):
-            seed_judgment(folder, json.load(open(spath)))
+            seed_judgment(folder, json.load(open(spath, encoding="utf-8")))
         else:
             fail(f"no judgment.json in {folder} and no score.json to seed from")
-    j = json.load(open(jpath))
+    j = json.load(open(jpath, encoding="utf-8"))
 
     for field in ("name", "sector", "moat_score", "moat_justification", "probs_used",
                   "one_liner", "confidence", "in_scope_under_40b"):
@@ -633,6 +708,7 @@ def main():
 
     j_base_override = validate_base_override(j)
     j_ads = validate_ads_ratio(j)
+    j_second_pass = validate_second_pass(j)
 
     # ADS gate (round-2): a 20-F/40-F filer's per-share figures are per
     # ordinary share; the traded price is per ADS. Without an applied
@@ -659,7 +735,7 @@ def main():
         score_base = n.get("base_oe_per_share")
         ttm_val = None
         try:
-            with open(f"{folder}/ttm.json") as f:
+            with open(f"{folder}/ttm.json", encoding="utf-8") as f:
                 ttm_val = json.load(f).get("ttm_oe_per_share")
         except Exception:
             ttm_val = None
@@ -717,6 +793,38 @@ def main():
              "tier_final": override or n["tier_by_numbers"],
              "confidence": conf, "one_liner": j["one_liner"],
              "analysis_date": n.get("as_of"), "in_scope_under_40b": scope_val}
+    # v5.4 additions — every one copied from the engine or derived by rule here.
+    flags_all = n.get("fragility_flags") or []
+    diag = n.get("diagnostics") or {}
+    model_fit = "misfit" if any(str(f).startswith("SECTOR_MODEL_MISMATCH") for f in flags_all) else "modeled"
+    score.update({
+        "engine_release": n.get("engine_release"),
+        "irr_bear": round(n["irr_bear"], 4) if isinstance(n.get("irr_bear"), (int, float)) else None,
+        "irr_bull": round(n["irr_bull"], 4) if isinstance(n.get("irr_bull"), (int, float)) else None,
+        "tier_bear": n.get("tier_bear"), "tier_bull": n.get("tier_bull"),
+        "iv_at_20": round(n["iv_at_20"], 2) if isinstance(n.get("iv_at_20"), (int, float)) else None,
+        "iv_at_25": round(n["iv_at_25"], 2) if isinstance(n.get("iv_at_25"), (int, float)) else None,
+        "f_subtype": n.get("f_subtype"),
+        "irr_at_floor": bool(diag.get("irr_at_floor")),
+        "net_debt_latest": n.get("net_debt_latest"),
+        "shares_diluted_latest": n.get("shares_diluted_latest"),
+        "model_fit": model_fit,
+    })
+    # Alert eligibility (audit round-1: "alert only at medium+ confidence with
+    # no data-gap flags" — S/A alerts had been firing on misfits and gaps).
+    # Entries and exits get separate gates (see the module docstring).
+    tier_final = override or n["tier_by_numbers"]
+    reasons, exit_reasons = alert_reasons(
+        tier_final, n.get("tier_by_numbers"), override, conf, model_fit,
+        bool(applied and impact and impact.get("unblocks_tier")), bool(diag.get("irr_at_floor")))
+    score["alert_eligible"] = tier_final in ("S", "A") and not reasons
+    if reasons:
+        score["alert_suppressed_reason"] = "; ".join(reasons)
+    score["exit_alert_eligible"] = tier_final not in ("S", "A") and not exit_reasons
+    if exit_reasons:
+        score["exit_alert_suppressed_reason"] = "; ".join(exit_reasons)
+    if j_second_pass:
+        score["second_pass"] = j_second_pass
     if conf_capped:
         score["confidence_capped"] = True
     if override:
@@ -730,7 +838,7 @@ def main():
                                "source": applied[f]["source"]}
                               for f in ("capex", "sbc", "shares") if f in applied]
         score["override_impact"] = impact
-    with open(spath, "w") as f:
+    with open(spath, "w", encoding="utf-8") as f:
         json.dump(score, f, indent=1)
     # Every run: the ticker's registry entries are replaced wholesale and
     # re-derived from THIS run (applied overrides + judgment-call events).

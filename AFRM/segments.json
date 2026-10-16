@@ -1,0 +1,319 @@
+{
+ "ticker": "AFRM",
+ "cik": 1820953,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-005855",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026005855/afrm-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-032294",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026032294/afrm-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-059279",
+   "filed": "2026-08-27",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1820953/000162828026059279/afrm-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "afrm:MerchantNetworkMember",
+     "label": "Merchant Network",
+     "values": [
+      674607000,
+      882658000,
+      1149932000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8167,
+      0.7924,
+      0.7964
+     ],
+     "growth_yoy": [
+      null,
+      0.3084,
+      0.3028
+     ]
+    },
+    {
+     "member": "afrm:VirtualCardNetworkMember",
+     "label": "Virtual Card Network",
+     "values": [
+      151401000,
+      231308000,
+      293990000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1833,
+      0.2076,
+      0.2036
+     ],
+     "growth_yoy": [
+      null,
+      0.5278,
+      0.271
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     826008000,
+     1113966000,
+     1443922000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "afrm:MerchantNetworkMember",
+     "label": "Merchant Network",
+     "values": [
+      244895000,
+      213973000,
+      239451000,
+      328380000,
+      268027000,
+      302379000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.8081,
+      0.7851,
+      0.7811,
+      0.8181,
+      0.8013,
+      0.7803
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3409,
+      0.2526,
+      0.2628
+     ]
+    },
+    {
+     "member": "afrm:VirtualCardNetworkMember",
+     "label": "Virtual Card Network",
+     "values": [
+      58142000,
+      58572000,
+      67114000,
+      73035000,
+      66467000,
+      85158000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1919,
+      0.2149,
+      0.2189,
+      0.1819,
+      0.1987,
+      0.2197
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2561,
+      0.1348,
+      0.2689
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     303037000,
+     272545000,
+     306565000,
+     401415000,
+     334494000,
+     387537000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2225605000,
+      3105121000,
+      4111957000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9581,
+      0.963,
+      0.965
+     ],
+     "growth_yoy": [
+      null,
+      0.3952,
+      0.3243
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      97394000,
+      119009000,
+      142821000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0419,
+      0.0369,
+      0.0335
+     ],
+     "growth_yoy": [
+      null,
+      0.2219,
+      0.2001
+     ]
+    },
+    {
+     "member": "afrm:OtherGeographicalMember",
+     "label": "Other Geographical",
+     "values": [
+      0,
+      282000,
+      6304000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0001,
+      0.0015
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      21.3546
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2322999000,
+     3224412000,
+     4261082000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

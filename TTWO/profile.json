@@ -1,0 +1,280 @@
+{
+ "ticker": "TTWO",
+ "cik": 946581,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:33-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000946581.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/ttwo-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TTWO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TTWO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TAKE TWO INTERACTIVE SOFTWARE INC",
+  "cik": 946581,
+  "description": {
+   "text": "We are a leading developer, publisher, and marketer of interactive entertainment for consumers around the globe. We develop, operate, and publish products principally through Rockstar Games, 2K, and Zynga. Our products are currently designed for console gaming systems, mobile, including smartphones and tablets, and personal computer (\"PC\"). We deliver our products through physical retail, digital download, online platforms, and cloud streaming services. Our website address is www.take2games.com. We make all of our filings with the Securities and Exchange Commission (\"SEC\") available free of charge on our website under the caption \"Investors—Financial Information—SEC Filings.\" Included in these filings are our annual reports on Form 10-K, quarterly reports on Form 10-Q, current reports on Form 8-K, and amendments to those reports, which are available as soon as reasonably practicable after we electronically file or furnish such materials with the SEC pursuant to Section 13(a) or 15(d) of the Securities Exchange Act of 1934, as amended (the \"Exchange Act\"). Our website and the information contained therein or connected thereto are not intended to be incorporated into this Annual Report on Form 10-K. The SEC maintains a website that contains annual, quarterly, and current reports, proxy and information statements and other information that issuers (including the Company) file electronically with the SEC. The SEC's website is www.sec.gov.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "accession": "0001628280-26-037434",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/ttwo-20260331.htm"
+  },
+  "description_short": "Headquartered in New York City, Take-Two Interactive Software, Inc. is a leading developer, publisher, and marketer of interactive entertainment for consumers around the globe. We develop and publish products principally through Rockstar Games, 2K, and Zynga. Our strategy is to create hit entertainment experiences, delivered on every platform relevant to our audience through a variety of sound business models. Our pillars - creativity, innovation, and efficiency - guide us as we strive to create the highest quality, most captivating experiences for our consumers. The Company's common stock is publicly traded on NASDAQ under the symbol TTWO. For more corporate and product information please visit our website at http://www.take2games.com.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.take2games.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "110 West 44th Street",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10036",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-22"
+  },
+  "phone": "646 536 2842",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-06-16",
+  "first_sec_filing_form": "10QSB",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000946581&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-28",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001628280-26-064001",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026064001/ttwo-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-17",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001628280-26-063032",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026063032/ttwo-20260917.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-054870",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026054870/ttwo-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-054580",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026054580/ttwo-20260807.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-27",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-049813",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026049813/ttwo-20260727.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-037434",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/ttwo-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-037260",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026037260/ttwo-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-005119",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026005119/ttwo-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005010",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026005010/ttwo-20260203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-050326",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025050326/ttwo-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-050182",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025050182/ttwo-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-19",
+   "period": "2025-09-18",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001628280-25-042186",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025042186/ttwo-20250918.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-10",
+   "period": "2025-09-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-200136",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000119312525200136/d924232d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-08-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-197270",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000119312525197270/d64275d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-038963",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025038963/ttwo-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-038919",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025038919/ttwo-20250807.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-07-28",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-25-036188",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025036188/ttwo-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-125066",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000119312525125066/d60207d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-05-20",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-25-026694",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025026694/ttwo-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-15",
+   "period": "2025-05-15",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-025900",
+   "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828025025900/ttwo-20250515.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-05-22"
+ ]
+}

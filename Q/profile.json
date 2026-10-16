@@ -1,0 +1,276 @@
+{
+ "ticker": "Q",
+ "cik": 2058873,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:08-04:00",
+ "newest_filing_date": "2026-09-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002058873.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000010/q-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/Q/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/Q/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Qnity Electronics, Inc.",
+  "cik": 2058873,
+  "description": {
+   "text": "Qnity is one of the largest global leaders in materials and solutions for the semiconductor and electronics industries. We empower our customers’ technology roadmaps to enable advancements in megatrends such as artificial intelligence, high-performance computing and advanced connectivity. We partner with leading semiconductor and advanced device manufacturers to address complex challenges and develop solutions that facilitate next-generation technological innovations. With over 50 years of experience in systems engineering and material science, a global manufacturing footprint and major application labs across the world, we are well-positioned to capitalize on emerging opportunities across various sectors including data centers, communications infrastructure, industrials, automotive, and consumer electronics. On May 22, 2024, DuPont de Nemours, Inc. (\"DuPont\" or \"Parent\") announced its plan to separate Qnity from DuPont into an independent publicly traded company (the “Separation”). On November 1, 2025 (the \"Separation and Distribution Date\"), DuPont completed the Separation through a pro-rata distribution of one share of Qnity common stock for every two shares of DuPont common stock held at the close of business on the record date of October 22, 2025 (the \"Distribution\").",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0002058873-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000010/q-20251231.htm"
+  },
+  "description_short": "Qnity is a premier technology provider across the semiconductor value chain, empowering AI, high performance computing, and advanced connectivity. From groundbreaking solutions for semiconductor chip manufacturing, to enabling high-speed transmission within complex electronic systems, our high-performance materials and integration expertise make tomorrow's technologies possible.",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.qnityelectronics.com",
+  "headquarters": "Wilmington, Delaware",
+  "address": {
+   "street": "974 Centre Road Building 735",
+   "city": "Wilmington",
+   "state": "Delaware",
+   "zip": "19805",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "3024505700",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-04-24",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "Novus SpinCo 1, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002058873&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0002058873-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000037/q-20260910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-21",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0002058873-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000033/q-20260821.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002058873-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000030/q-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002058873-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000028/q-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0002058873-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000025/q-20260701.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0002058873-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000019/q-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-12",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002058873-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000015/q-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002058873-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000013/q-20260512.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-024259",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000162828026024259/q-20260408.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0002058873-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000010/q-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002058873-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000007/q-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-12",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0002058873-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000002/q-20260112.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-09",
+   "items": [
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD; Other events",
+   "accession": "0002058873-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887325000027/q-20251209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-02",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0002058873-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887325000025/q-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-18",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002058873-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887325000023/q-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002058873-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887325000018/q-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-31",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.03",
+    "5.01",
+    "5.02",
+    "5.03",
+    "5.05",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Change to security holders' rights; Change in control; Officer/director change; Charter or bylaw amendment; Code of ethics change; Other events",
+   "accession": "0001193125-25-261603",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000119312525261603/d65598d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-13",
+   "items": [
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Other events",
+   "accession": "0001193125-25-240313",
+   "url": "https://www.sec.gov/Archives/edgar/data/2058873/000119312525240313/d21160d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-26"
+ ]
+}

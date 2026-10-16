@@ -1,0 +1,365 @@
+{
+ "ticker": "EXR",
+ "cik": 1289490,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001289490-26-000011",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000011/exr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001289490-26-000037",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000037/exr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001289490-26-000053",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000053/exr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "exr:SelfStorageOperationsMember",
+     "label": "Self Storage Operations",
+     "values": [
+      2222578000,
+      2803252000,
+      2895190000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8681,
+      0.8607,
+      0.8572
+     ],
+     "growth_yoy": [
+      null,
+      0.2613,
+      0.0328
+     ]
+    },
+    {
+     "member": "exr:TenantReinsuranceMember",
+     "label": "Tenant Reinsurance",
+     "values": [
+      235680000,
+      332795000,
+      352876000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0921,
+      0.1022,
+      0.1045
+     ],
+     "growth_yoy": [
+      null,
+      0.4121,
+      0.0603
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2560244000,
+     3256902000,
+     3377542000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "exr:SelfStorageOperationsMember",
+     "label": "Self Storage Operations",
+     "values": [
+      704380000,
+      721004000,
+      733213000,
+      746164000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.859,
+      0.8567,
+      0.8565,
+      0.8536
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0409,
+      0.0349
+     ]
+    },
+    {
+     "member": "exr:TenantReinsuranceMember",
+     "label": "Tenant Reinsurance",
+     "values": [
+      84712000,
+      88572000,
+      89119000,
+      93084000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1033,
+      0.1052,
+      0.1041,
+      0.1065
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.052,
+      0.0509
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     819997000,
+     841618000,
+     856027000,
+     874152000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "exr:SelfStorageOperationsMember",
+     "label": "Self Storage Operations",
+     "values": [
+      1610542000,
+      1971686000,
+      1977042000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3764,
+      1.4899,
+      1.3995
+     ],
+     "growth_yoy": [
+      null,
+      0.2242,
+      0.0027
+     ]
+    },
+    {
+     "member": "exr:TenantReinsuranceMember",
+     "label": "Tenant Reinsurance",
+     "values": [
+      176806000,
+      258909000,
+      284003000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1511,
+      0.1956,
+      0.201
+     ],
+     "growth_yoy": [
+      null,
+      0.4644,
+      0.0969
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1170141000,
+     1323360000,
+     1412691000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "exr:SelfStorageOperationsMember",
+     "label": "Self Storage Operations",
+     "values": [
+      480798000,
+      493383000,
+      494910000,
+      514446000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2368,
+      1.3193,
+      1.3465,
+      1.3117
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0294,
+      0.0427
+     ]
+    },
+    {
+     "member": "exr:TenantReinsuranceMember",
+     "label": "Tenant Reinsurance",
+     "values": [
+      67596000,
+      71627000,
+      71252000,
+      75759000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1739,
+      0.1915,
+      0.1939,
+      0.1932
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0541,
+      0.0577
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     388730000,
+     373970000,
+     367553000,
+     392184000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: rows sum to 96.2% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/Revenues/quarterly: rows sum to 96.0% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 160.1% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 150.5% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

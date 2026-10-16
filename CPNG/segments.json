@@ -1,0 +1,415 @@
+{
+ "ticker": "CPNG",
+ "cik": 1834584,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001834584-26-000024",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1834584/000183458426000024/cpng-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001834584-26-000042",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1834584/000183458426000042/cpng-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001834584-26-000073",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1834584/000183458426000073/cpng-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cpng:ProductCommerceSegmentMember",
+     "label": "Product Commerce Segment",
+     "values": [
+      23594000000,
+      26699000000,
+      29592000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9676,
+      0.8821,
+      0.8569
+     ],
+     "growth_yoy": [
+      null,
+      0.1316,
+      0.1084
+     ]
+    },
+    {
+     "member": "cpng:DevelopingOfferingsMember",
+     "label": "Developing Offerings",
+     "values": [
+      789000000,
+      3569000000,
+      4942000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0324,
+      0.1179,
+      0.1431
+     ],
+     "growth_yoy": [
+      null,
+      3.5234,
+      0.3847
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24383000000,
+     30268000000,
+     34534000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cpng:ProductCommerceSegmentMember",
+     "label": "Product Commerce Segment",
+     "values": [
+      6870000000,
+      7334000000,
+      7176000000,
+      7425000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8687,
+      0.8604,
+      0.8438,
+      0.8384
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0445,
+      0.0124
+     ]
+    },
+    {
+     "member": "cpng:DevelopingOfferingsMember",
+     "label": "Developing Offerings",
+     "values": [
+      1038000000,
+      1190000000,
+      1328000000,
+      1431000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1313,
+      0.1396,
+      0.1562,
+      0.1616
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2794,
+      0.2025
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7908000000,
+     8524000000,
+     8504000000,
+     8856000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      21223000000,
+      23866000000,
+      26312000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8704,
+      0.7885,
+      0.7619
+     ],
+     "growth_yoy": [
+      null,
+      0.1245,
+      0.1025
+     ]
+    },
+    {
+     "member": "cpng:ThirdPartyMerchantServicesMember",
+     "label": "Third-Party Merchant Services",
+     "values": [
+      2576000000,
+      5580000000,
+      7113000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1056,
+      0.1844,
+      0.206
+     ],
+     "growth_yoy": [
+      null,
+      1.1661,
+      0.2747
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      584000000,
+      822000000,
+      1109000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.024,
+      0.0272,
+      0.0321
+     ],
+     "growth_yoy": [
+      null,
+      0.4075,
+      0.3491
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24383000000,
+     30268000000,
+     34534000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      6088000000,
+      6507000000,
+      6476000000,
+      6744000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7699,
+      0.7634,
+      0.7615,
+      0.7615
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0637,
+      0.0364
+     ]
+    },
+    {
+     "member": "cpng:ThirdPartyMerchantServicesMember",
+     "label": "Third-Party Merchant Services",
+     "values": [
+      1562000000,
+      1755000000,
+      1767000000,
+      1832000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1975,
+      0.2059,
+      0.2078,
+      0.2069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1312,
+      0.0439
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      258000000,
+      262000000,
+      261000000,
+      280000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0326,
+      0.0307,
+      0.0307,
+      0.0316
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0116,
+      0.0687
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7908000000,
+     8524000000,
+     8504000000,
+     8856000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product and Service, Other' (us-gaap:ProductAndServiceOtherMember) dropped: its values equal the sum of Third-Party Merchant Services, Service, Other",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product and Service, Other' (us-gaap:ProductAndServiceOtherMember) dropped: its values equal the sum of Third-Party Merchant Services, Service, Other"
+ ],
+ "complete": true
+}

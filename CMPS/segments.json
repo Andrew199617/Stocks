@@ -1,0 +1,38 @@
+{
+ "ticker": "CMPS",
+ "cik": 1816590,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001816590-26-000020",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000020/cmps-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001816590-26-000042",
+   "filed": "2026-05-13",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000042/cmps-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001816590-26-000058",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000058/cmps-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: row 'Single Operating Segment' (cmps:SingleOperatingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Single Operating Segment' (cmps:SingleOperatingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Single Operating Segment' (cmps:SingleOperatingSegmentMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}

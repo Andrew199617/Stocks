@@ -1,0 +1,305 @@
+{
+ "ticker": "WCN",
+ "cik": 1318220,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:12-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001318220.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926013700/wcn-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WCN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WCN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Waste Connections, Inc.",
+  "cik": 1318220,
+  "description": {
+   "text": "Waste Connections, Inc. is the third largest solid waste services company in North America, providing non-hazardous waste collection, transfer and disposal services, including by rail, along with resource recovery primarily through recycling and renewable fuels generation, in 46 states in the U.S. and six provinces in Canada. Waste Connections also provides non-hazardous oil and natural gas exploration and production, or E&P, waste treatment, recovery and disposal services in several basins across the U.S and Canada, as well as intermodal services for the movement of cargo and solid waste containers in the Pacific Northwest. Our senior management team has extensive experience in operating, acquiring and integrating non-hazardous waste services businesses, and we intend to continue to focus our efforts on both internal and acquisition-based growth. We anticipate that a part of our future growth will come from acquiring additional waste businesses and, therefore, we expect that additional acquisitions could continue to affect period-to-period comparisons of our operating results. Waste Connections, Inc. is a corporation organized under the laws of Ontario, Canada.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-013700",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926013700/wcn-20251231x10k.htm"
+  },
+  "description_short": "Waste Connections ( wasteconnections.com ) is an integrated solid waste services company that provides non-hazardous waste collection, transfer and disposal services, including by rail, along with resource recovery primarily through recycling and renewable fuels generation. The Company serves approximately nine million residential, commercial and industrial customers in mostly exclusive and secondary markets across 46 states in the U.S. and six provinces in Canada. Waste Connections also provides non-hazardous oilfield waste treatment, recovery and disposal services in several basins across the U.S. and Canada, as well as intermodal services for the movement of cargo and solid waste containers in the Pacific Northwest.",
+  "industry": "Environmental Services",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4953",
+  "sic_description": "Refuse Systems",
+  "state_of_incorporation": "A6",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.wasteconnections.com",
+  "headquarters": "Woodbridge, Ontario",
+  "address": {
+   "street": "6220 Hwy 7 Suite 600",
+   "city": "Woodbridge",
+   "state": "Ontario",
+   "zip": "L4H 4G3",
+   "country": "Canada",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "(905) 532-7510",
+  "employees": {
+   "count": 24214,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Waste Connections employed approximately 24,214 active employees, including 11,347 commercial truck drivers and 2,020 mechanics, with 20,471 employees in the U.S. and 3,743 in Canada.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926013700/wcn-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2009-05-28",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "Progressive Waste Solutions Ltd.",
+   "IESI-BFC Ltd",
+   "BFI Canada Ltd",
+   "BFI Canada Income Fund"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001318220&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-092680",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926092680/tm2622609d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-090339",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926090339/tm2622128d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-27",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001104659-26-087330",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926087330/tm2621340d6_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-086006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926086006/wcn-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-085802",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926085802/wcn-20260722x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-15",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001104659-26-062507",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926062507/tm2614785d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-047074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926047074/wcn-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-046820",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926046820/wcn-20260422x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-039146",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926039146/tm2529435-2_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-031042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926031042/tm269110d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-028475",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926028475/tm268779d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-05",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001104659-26-024304",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926024304/tm267178d2_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-013700",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926013700/wcn-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-013370",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465926013370/wcn-20260211x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-22",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-101349",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465925101349/wcn-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-25-101248",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465925101248/wcn-20251021x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-07-31",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-074170",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465925074170/tm2522551d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-24",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-072155",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000110465925072155/tm2522038d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-009490",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000155837025009490/wcn-20250630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001558370-25-009445",
+   "url": "https://www.sec.gov/Archives/edgar/data/1318220/000155837025009445/wcn-20250723x8k.htm"
+  }
+ ],
+ "warnings": []
+}

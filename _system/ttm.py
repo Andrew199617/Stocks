@@ -40,7 +40,7 @@ denominator. DCF_NO_OVERRIDES=1 disables override loading.
 import json, sys, os, csv, time, urllib.request, urllib.error, datetime
 
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
-BASE = "/home/hatch/workspace/stocks"
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # v5.4: runs anywhere
 SYS = f"{BASE}/_system"
 
 OCF_TAGS = ["NetCashProvidedByUsedInOperatingActivities",
@@ -72,14 +72,14 @@ def get_json(url, headers=UA, timeout=90):
 def resolve_cik(ticker):
     if "--cik" in sys.argv:
         return int(sys.argv[sys.argv.index("--cik") + 1])
-    sec = json.load(open(f"{SYS}/sec_tickers_exchange.json"))
+    sec = json.load(open(f"{SYS}/sec_tickers_exchange.json", encoding="utf-8"))
     cik_by_ticker = {}
     for rec in sec["data"]:
         cik_by_ticker.setdefault(rec[2].upper(), rec[0])
     for cand in (ticker, ticker.replace("/", "-"), ticker.replace("/", ".")):
         if cand in cik_by_ticker:
             return cik_by_ticker[cand]
-    with open(f"{SYS}/universe.csv") as f:
+    with open(f"{SYS}/universe.csv", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             if row["ticker"] == ticker and row.get("cik"):
                 return int(row["cik"])
@@ -115,7 +115,7 @@ def load_overrides(ticker):
     if os.environ.get("DCF_NO_OVERRIDES"):
         return {}
     try:
-        j = json.load(open(f"{BASE}/{ticker}/judgment.json"))
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
     except Exception:
         return {}
     out = {}
@@ -297,7 +297,7 @@ def main():
         # Machine-readable provenance for the base pin: the engine's --ttm
         # reads this file, and make_score.py refuses a pinned base that
         # differs from it by >0.1%.
-        with open(f"{BASE}/{ticker}/ttm.json", "w") as f:
+        with open(f"{BASE}/{ticker}/ttm.json", "w", encoding="utf-8") as f:
             json.dump(out, f, indent=1)
     print(json.dumps(out, indent=1))
 

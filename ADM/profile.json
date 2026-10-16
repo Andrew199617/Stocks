@@ -1,0 +1,284 @@
+{
+ "ticker": "ADM",
+ "cik": 7084,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:07:18-04:00",
+ "newest_filing_date": "2026-08-12",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000007084.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000011/adm-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ADM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ADM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Archer-Daniels-Midland Co",
+  "cik": 7084,
+  "description": {
+   "text": "Archer-Daniels-Midland Company and its subsidiaries (the \"Company\" or \"ADM\") unlocks the power of nature to enrich the quality of life. The Company is an essential global agricultural supply chain manager and processor, providing food security by connecting local needs with global capabilities. ADM is also a premier human and animal nutrition provider, as well as a leader in health and well-being products. The Company partners with thousands of farmers around the world to purchase their crops and uses its integrated global origination, logistics, and manufacturing network to transform many of those raw commodities into an expansive array of products serving the food, feed, fuel, and industrial and consumer products sectors. The Company offers a broad portfolio of food and beverage products, from staple foods to innovative alternatives, such as natural colors and flavors, plant-based proteins, and lower-sugar, fat, and salt solutions. ADM provides human and animal nutrition ingredients and solutions that support health, productivity, and sustainability. It offers a wide range of health and well-being products, such as probiotics, enzymes, and supplements to meet the needs of consumers looking for new ways to live healthier lives. ADM is a key producer of biofuels, converting agricultural feedstocks into renewable fuels used in transportation and industrial applications.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0000007084-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000011/adm-20251231.htm"
+  },
+  "description_short": "ADM unlocks the power of nature to enrich the quality of life. We're an essential global agricultural supply chain manager and processor, providing food security by connecting local needs with global capabilities. We're a premier human and animal nutrition provider, offering one of the industry's broadest portfolios of ingredients and solutions from nature. We're a trailblazer in health and well-being, with an industry-leading range of products for consumers looking for new ways to live healthier lives. We're a cutting-edge innovator, guiding the way to a future of new bio-based consumer and industrial solutions. And we're leading in business-driven sustainability efforts that support a strong agricultural sector, resilient supply chains, and a vast and growing bioeconomy. Around the globe, our expertise and innovation are meeting critical needs from harvest to home.",
+  "industry": "Packaged Foods",
+  "sector": "Consumer Staples",
+  "region": "North America",
+  "sic": "2070",
+  "sic_description": "Fats & Oils",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.adm.com",
+  "headquarters": "Chicago, IL",
+  "address": {
+   "street": "77 West Wacker Drive, Suite 4600",
+   "city": "Chicago",
+   "state": "IL",
+   "zip": "60601",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "312-634-8233",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-09",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "Archer-Daniels-Midland Co",
+   "ARCHER DANIELS MIDLAND CO"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000007084&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-345800",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312526345800/d176752d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001193125-26-342579",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312526342579/d102470d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000007084-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000042/adm-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007084-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000040/adm-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-314103",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312526314103/d168542d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-07",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000007084-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000027/adm-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000007084-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000023/adm-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007084-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000021/adm-20260505.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-126218",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312526126218/d911479ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-09",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-100440",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312526100440/d119393d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000007084-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000011/adm-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007084-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000005/adm-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-025560",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312526025560/d884185d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000007084-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708425000052/adm-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007084-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708425000049/adm-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-23",
+   "period": "2025-09-23",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-213422",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312525213422/d72799d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000007084-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708425000042/adm-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007084-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708425000040/adm-20250805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-14",
+   "period": "2025-05-08",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-119567",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000119312525119567/d947064d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000007084-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708425000022/adm-20250331.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-17"
+ ]
+}

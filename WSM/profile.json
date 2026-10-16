@@ -1,0 +1,278 @@
+{
+ "ticker": "WSM",
+ "cik": 719955,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:29-04:00",
+ "newest_filing_date": "2026-08-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000719955.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WSM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WSM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WILLIAMS SONOMA INC",
+  "cik": 719955,
+  "description": {
+   "text": "Williams-Sonoma, Inc., (the “Company”, “we”, or “us”) incorporated in 1973, is an omni-channel specialty retailer of high-quality products for the home. In 1956, our founder, Chuck Williams, turned a passion for cooking and eating with friends into a small business with a big idea. He opened a store in Sonoma, California to sell the French cookware that intrigued him while visiting Europe but that could not be found in America. Chuck’s business, which set a standard for customer service, took off and helped fuel a revolution in American cooking and entertaining that continues today. In the decades that followed, our commitment to product quality, our ability to identify new market opportunities and our people-first business approach have driven our expansion beyond the kitchen into nearly every area of the home, as well as the places where our customers work, stay and play. Our in-house design capabilities and vertically integrated sourcing organization allow us to deliver high-quality, lasting products at competitive prices. Through our e-commerce platform, our in-house marketing and data analytics teams optimize our digital spend and customer connections. We have expanded our in-store services to not only provide world-class customer service but to also serve as design centers and omni-fulfillment hubs. We are the world’s largest digital-first, design-led and sustainable home retailer.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-26",
+   "period": "2026-02-01",
+   "accession": "0000719955-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm"
+  },
+  "description_short": "Williams-Sonoma, Inc. is the world's largest digital-first, design-led and sustainable home retailer. The company's brands - Williams Sonoma, Pottery Barn, Pottery Barn Kids, Pottery Barn Teen, West Elm, Williams Sonoma Home, Rejuvenation, Mark and Graham, GreenRow, and Dormify - represent distinct merchandise strategies that are marketed through e-commerce, direct-mail catalogs, retail stores, and business-to-business. These brands collectively support The Key Rewards, our loyalty and credit card program that offers members exclusive benefits. We operate in the U.S., Puerto Rico, Canada, Australia and the United Kingdom, and have unaffiliated franchisees that operate stores in Mexico, South Korea, India and the Philippines.",
+  "industry": "Home Furnishings",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5700",
+  "sic_description": "Retail-Home Furniture, Furnishings & Equipment Stores",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0131",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.williams-sonomainc.com",
+  "headquarters": "San Francisco, CA",
+  "address": {
+   "street": "3250 Van Ness Avenue",
+   "city": "San Francisco",
+   "state": "CA",
+   "zip": "94109",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-26"
+  },
+  "phone": "415-421-7900",
+  "employees": {
+   "count": 19800,
+   "as_of": "2026-02-01",
+   "evidence": "As of February 1, 2026, we had approximately 19,800 employees, who we refer to as associates, who are a mix of full-time, part-time and seasonal team members.",
+   "form": "10-K",
+   "filed": "2026-03-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-08",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000719955&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-28",
+   "period": "2026-08-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000719955-26-000208",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000208/wsm-20260802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000719955-26-000203",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000203/wsm-20260826.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000719955-26-000164",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000164/wsm-20260618.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-22",
+   "period": "2026-05-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000719955-26-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000131/wsm-20260503.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000719955-26-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000126/wsm-20260521.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-06",
+   "period": "2026-06-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000719955-26-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000109/wsm-20260506.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-26",
+   "period": "2026-02-01",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000719955-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000719955-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000030/wsm-20260318.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-25",
+   "period": "2025-11-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000719955-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995525000049/wsm-20251102.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-19",
+   "period": "2025-11-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000719955-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995525000043/wsm-20251119.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-29",
+   "period": "2025-08-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000719955-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995525000010/wsm-20250803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000719955-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000071995525000006/wsm-20250827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-27",
+   "period": "2025-06-26",
+   "items": [
+    "1.01",
+    "2.03"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-25-033311",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025033311/wsm-20250626.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-25-031294",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025031294/wsm-20250611.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-28",
+   "period": "2025-05-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-028196",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025028196/wsm-20250504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-027155",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025027155/wsm-20250522.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-29",
+   "period": "2025-06-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-25-020659",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025020659/wsm-20250429.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-03-27",
+   "period": "2025-02-02",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-25-015037",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025015037/wsm-20250202.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-19",
+   "period": "2025-03-19",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-25-013687",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828025013687/wsm-20250319.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2024-11-22",
+   "period": "2024-10-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-24-048978",
+   "url": "https://www.sec.gov/Archives/edgar/data/719955/000162828024048978/wsm-20241027.htm"
+  }
+ ],
+ "warnings": []
+}

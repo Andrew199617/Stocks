@@ -1,0 +1,744 @@
+{
+ "ticker": "ATO",
+ "cik": 731802,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000731802-25-000056",
+   "filed": "2025-11-14",
+   "period": "2025-09-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000056/ato-20250930_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000731802-26-000089",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000089/ato-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000731802-26-000102",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000102/ato-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      4096661000,
+      3912134000,
+      4422355000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9582,
+      0.9392,
+      0.9404
+     ],
+     "growth_yoy": [
+      null,
+      -0.045,
+      0.1304
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      178696000,
+      253053000,
+      280400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0418,
+      0.0608,
+      0.0596
+     ],
+     "growth_yoy": [
+      null,
+      0.4161,
+      0.1081
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4275357000,
+     4165187000,
+     4702755000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      1881742000,
+      766380000,
+      665664000,
+      1876911000,
+      773909000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9647,
+      0.9137,
+      0.9026,
+      0.9564,
+      0.8804
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0026,
+      0.0098
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      68760000,
+      72394000,
+      71816000,
+      85491000,
+      105150000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0353,
+      0.0863,
+      0.0974,
+      0.0436,
+      0.1196
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2433,
+      0.4525
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1950502000,
+     838774000,
+     737480000,
+     1962402000,
+     879059000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      4051778000,
+      3847167000,
+      4361803000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.831,
+      0.7939,
+      0.794
+     ],
+     "growth_yoy": [
+      null,
+      -0.0505,
+      0.1338
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      824148000,
+      998687000,
+      1131764000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.169,
+      0.2061,
+      0.206
+     ],
+     "growth_yoy": [
+      null,
+      0.2118,
+      0.1333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4875926000,
+     4845854000,
+     5493567000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      1899179000,
+      762378000,
+      662191000,
+      1796554000,
+      752247000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8752,
+      0.7253,
+      0.6857,
+      0.848,
+      0.6493
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.054,
+      -0.0133
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      270773000,
+      288759000,
+      303539000,
+      322131000,
+      406263000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1248,
+      0.2747,
+      0.3143,
+      0.152,
+      0.3507
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1897,
+      0.4069
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2169952000,
+     1051137000,
+     965730000,
+     2118685000,
+     1158510000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      580397000,
+      671413000,
+      746781000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6552,
+      0.6438,
+      0.623
+     ],
+     "growth_yoy": [
+      null,
+      0.1568,
+      0.1123
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      305465000,
+      371482000,
+      451973000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3448,
+      0.3562,
+      0.377
+     ],
+     "growth_yoy": [
+      null,
+      0.2161,
+      0.2167
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     885862000,
+     1042895000,
+     1198754000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      104933000,
+      115948000,
+      119447000,
+      144596000,
+      153304000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2161,
+      0.6219,
+      0.683,
+      0.2485,
+      0.6317
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.378,
+      0.3222
+     ]
+    },
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      380643000,
+      70481000,
+      55444000,
+      437303000,
+      89385000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7839,
+      0.3781,
+      0.317,
+      0.7515,
+      0.3683
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1489,
+      0.2682
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     485576000,
+     186429000,
+     174891000,
+     581899000,
+     242689000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      24328877000,
+      27296805000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9656,
+      0.9663
+     ],
+     "growth_yoy": [
+      null,
+      0.122
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      6181558000,
+      6896646000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2454,
+      0.2441
+     ],
+     "growth_yoy": [
+      null,
+      0.1157
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -5315970000,
+      -5943929000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.211,
+      -0.2104
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     25194465000,
+     28249522000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ato:DistributionSegmentMember",
+     "label": "Distribution Segment",
+     "values": [
+      27296805000,
+      29384731000,
+      30490005000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9663,
+      0.9672,
+      0.9653
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ato:PipelineandStorageSegmentMember",
+     "label": "Pipeline and Storage Segment",
+     "values": [
+      6896646000,
+      7408408000,
+      7539119000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2441,
+      0.2439,
+      0.2387
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -5943929000,
+      -6413043000,
+      -6443585000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2104,
+      -0.2111,
+      -0.204
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     28249522000,
+     30380096000,
+     31585539000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

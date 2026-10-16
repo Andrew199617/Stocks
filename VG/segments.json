@@ -1,0 +1,1571 @@
+{
+ "ticker": "VG",
+ "cik": 2007855,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0002007855-26-000013",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000013/vg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002007855-26-000040",
+   "filed": "2026-05-12",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000040/vg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002007855-26-000062",
+   "filed": "2026-08-11",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000062/vg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      0,
+      23000000,
+      9175000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0046,
+      0.6664
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      397.913
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      7897000000,
+      4916000000,
+      4125000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      0.9887,
+      0.2996
+     ],
+     "growth_yoy": [
+      null,
+      -0.3775,
+      -0.1609
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      0,
+      329000000,
+      2518000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0662,
+      0.1829
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      6.6535
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      0,
+      2000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0004,
+      0.0001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      0,
+      -298000000,
+      -2050000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      -0.0599,
+      -0.1489
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7897000000,
+     4972000000,
+     13769000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      1186000000,
+      2095000000,
+      3393000000,
+      3766000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4098,
+      0.6756,
+      0.7378,
+      0.8226
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8609,
+      0.7976
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      481000000,
+      488000000,
+      818000000,
+      1843000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1662,
+      0.1574,
+      0.1779,
+      0.4026
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.7006,
+      2.7766
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      1638000000,
+      935000000,
+      1085000000,
+      717000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.566,
+      0.3015,
+      0.2359,
+      0.1566
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3376,
+      -0.2332
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      1000000,
+      0,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0003,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      null
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      -412000000,
+      -417000000,
+      -697000000,
+      -1748000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1424,
+      -0.1345,
+      -0.1516,
+      -0.3818
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2894000000,
+     3101000000,
+     4599000000,
+     4578000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      -187000000,
+      -217000000,
+      4228000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0386,
+      -0.1231,
+      0.82
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      5598000000,
+      2813000000,
+      1316000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1542,
+      1.5956,
+      0.2552
+     ],
+     "growth_yoy": [
+      null,
+      -0.4975,
+      -0.5322
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      -7000000,
+      -20000000,
+      248000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0014,
+      -0.0113,
+      0.0481
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      -362000000,
+      -500000000,
+      -278000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0746,
+      -0.2836,
+      -0.0539
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      -192000000,
+      -313000000,
+      -358000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0396,
+      -0.1775,
+      -0.0694
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4850000000,
+     1763000000,
+     5156000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      415000000,
+      921000000,
+      1041000000,
+      2212000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3843,
+      0.8873,
+      0.9044,
+      1.011
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.5084,
+      1.4017
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      32000000,
+      64000000,
+      99000000,
+      211000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0296,
+      0.0617,
+      0.086,
+      0.0964
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.0938,
+      2.2969
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      902000000,
+      183000000,
+      182000000,
+      67000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8352,
+      0.1763,
+      0.1581,
+      0.0306
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.7982,
+      -0.6339
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      -163000000,
+      -28000000,
+      -50000000,
+      -55000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1509,
+      -0.027,
+      -0.0434,
+      -0.0251
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      -106000000,
+      -102000000,
+      -121000000,
+      -247000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0981,
+      -0.0983,
+      -0.1051,
+      -0.1129
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1080000000,
+     1038000000,
+     1151000000,
+     2188000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      24627000000,
+      26256000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5663,
+      0.4913
+     ],
+     "growth_yoy": [
+      null,
+      0.0661
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      3643000000,
+      10857000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0838,
+      0.2031
+     ],
+     "growth_yoy": [
+      null,
+      1.9802
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      7181000000,
+      6955000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1651,
+      0.1301
+     ],
+     "growth_yoy": [
+      null,
+      -0.0315
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      1473000000,
+      2485000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0339,
+      0.0465
+     ],
+     "growth_yoy": [
+      null,
+      0.687
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      6567000000,
+      6893000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.151,
+      0.129
+     ],
+     "growth_yoy": [
+      null,
+      0.0496
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     43491000000,
+     53446000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      26256000000,
+      26145000000,
+      26658000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4913,
+      0.4644,
+      0.4334
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      10857000000,
+      14381000000,
+      17637000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2031,
+      0.2554,
+      0.2867
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      6955000000,
+      6910000000,
+      6882000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1301,
+      0.1227,
+      0.1119
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      2485000000,
+      2693000000,
+      3182000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0465,
+      0.0478,
+      0.0517
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      6893000000,
+      6171000000,
+      7156000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.129,
+      0.1096,
+      0.1163
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     53446000000,
+     56300000000,
+     61515000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      0,
+      16000000,
+      613000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0497,
+      0.6514
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      37.3125
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      256000000,
+      267000000,
+      221000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9242,
+      0.8292,
+      0.2349
+     ],
+     "growth_yoy": [
+      null,
+      0.043,
+      -0.1723
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      0,
+      12000000,
+      42000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0373,
+      0.0446
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.5
+     ]
+    },
+    {
+     "member": "vg:CP2ProjectSegmentMember",
+     "label": "CP2 Project Segment",
+     "values": [
+      0,
+      1000000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0031,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      21000000,
+      26000000,
+      65000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0758,
+      0.0807,
+      0.0691
+     ],
+     "growth_yoy": [
+      null,
+      0.2381,
+      1.5
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     277000000,
+     322000000,
+     941000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vg:PlaqueminesProjectSegmentMember",
+     "label": "Plaquemines Project Segment",
+     "values": [
+      131000000,
+      177000000,
+      168000000,
+      168000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6065,
+      0.6629,
+      0.6693,
+      0.6462
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2824,
+      -0.0508
+     ]
+    },
+    {
+     "member": "vg:CalcasieuProjectSegmentMember",
+     "label": "Calcasieu Project Segment",
+     "values": [
+      65000000,
+      65000000,
+      45000000,
+      46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3009,
+      0.2434,
+      0.1793,
+      0.1769
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3077,
+      -0.2923
+     ]
+    },
+    {
+     "member": "vg:SalesAndShippingSegmentMember",
+     "label": "Sales And Shipping Segment",
+     "values": [
+      6000000,
+      8000000,
+      18000000,
+      19000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0278,
+      0.03,
+      0.0717,
+      0.0731
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.0,
+      1.375
+     ]
+    },
+    {
+     "member": "vg:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      14000000,
+      17000000,
+      20000000,
+      27000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0648,
+      0.0637,
+      0.0797,
+      0.1038
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4286,
+      0.5882
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     216000000,
+     267000000,
+     251000000,
+     260000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vg:LiquefiedNaturalGasMember",
+     "label": "Liquefied Natural Gas",
+     "values": [
+      7875000000,
+      4947000000,
+      13687000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9972,
+      0.995,
+      0.994
+     ],
+     "growth_yoy": [
+      null,
+      -0.3718,
+      1.7667
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      22000000,
+      25000000,
+      82000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0028,
+      0.005,
+      0.006
+     ],
+     "growth_yoy": [
+      null,
+      0.1364,
+      2.28
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7897000000,
+     4972000000,
+     13769000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vg:LiquefiedNaturalGasMember",
+     "label": "Liquefied Natural Gas",
+     "values": [
+      2880000000,
+      3080000000,
+      4575000000,
+      4556000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9952,
+      0.9932,
+      0.9948,
+      0.9952
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5885,
+      0.4792
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      14000000,
+      21000000,
+      24000000,
+      22000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0048,
+      0.0068,
+      0.0052,
+      0.0048
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.7143,
+      0.0476
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2894000000,
+     3101000000,
+     4599000000,
+     4578000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      7897000000,
+      4673000000,
+      11375000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      0.9399,
+      0.8261
+     ],
+     "growth_yoy": [
+      null,
+      -0.4083,
+      1.4342
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      0,
+      179000000,
+      772000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.036,
+      0.0561
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.3128
+     ]
+    },
+    {
+     "member": "country:FR",
+     "label": "FRANCE",
+     "values": [
+      0,
+      81000000,
+      682000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0163,
+      0.0495
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      7.4198
+     ]
+    },
+    {
+     "member": "country:NL",
+     "label": "NETHERLANDS",
+     "values": [
+      0,
+      0,
+      456000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0331
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "vg:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      0,
+      39000000,
+      320000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0078,
+      0.0232
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      7.2051
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      0,
+      0,
+      164000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0119
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7897000000,
+     4972000000,
+     13769000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

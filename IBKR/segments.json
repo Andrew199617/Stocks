@@ -1,0 +1,568 @@
+{
+ "ticker": "IBKR",
+ "cik": 1381197,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001381197-26-000062",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000062/ibkr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001381197-26-000093",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000093/ibkr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001381197-26-000147",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000147/ibkr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ibkr:CommissionsMember",
+     "label": "Commissions",
+     "values": [
+      1360000000,
+      1697000000,
+      2149000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8735,
+      0.8584,
+      0.8807
+     ],
+     "growth_yoy": [
+      null,
+      0.2478,
+      0.2664
+     ]
+    },
+    {
+     "member": "ibkr:RiskExposureFeesMember",
+     "label": "Risk Exposure Fees",
+     "values": [
+      46000000,
+      100000000,
+      80000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0295,
+      0.0506,
+      0.0328
+     ],
+     "growth_yoy": [
+      null,
+      1.1739,
+      -0.2
+     ]
+    },
+    {
+     "member": "ibkr:MarketDataFeesMember",
+     "label": "Market Data Fees",
+     "values": [
+      70000000,
+      71000000,
+      79000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.045,
+      0.0359,
+      0.0324
+     ],
+     "growth_yoy": [
+      null,
+      0.0143,
+      0.1127
+     ]
+    },
+    {
+     "member": "ibkr:PaymentsForOrderFlowMember",
+     "label": "Payments For Order Flow",
+     "values": [
+      31000000,
+      45000000,
+      51000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0199,
+      0.0228,
+      0.0209
+     ],
+     "growth_yoy": [
+      null,
+      0.4516,
+      0.1333
+     ]
+    },
+    {
+     "member": "ibkr:OthersMember",
+     "label": "Others",
+     "values": [
+      31000000,
+      36000000,
+      44000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0199,
+      0.0182,
+      0.018
+     ],
+     "growth_yoy": [
+      null,
+      0.1613,
+      0.2222
+     ]
+    },
+    {
+     "member": "ibkr:FdicSweepFeesMember",
+     "label": "Fdic Sweep Fees",
+     "values": [
+      19000000,
+      28000000,
+      37000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0122,
+      0.0142,
+      0.0152
+     ],
+     "growth_yoy": [
+      null,
+      0.4737,
+      0.3214
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1557000000,
+     1977000000,
+     2440000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ibkr:CommissionsMember",
+     "label": "Commissions",
+     "values": [
+      514000000,
+      516000000,
+      613000000,
+      673000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8682,
+      0.8927,
+      0.877,
+      0.8855
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1926,
+      0.3043
+     ]
+    },
+    {
+     "member": "ibkr:RiskExposureFeesMember",
+     "label": "Risk Exposure Fees",
+     "values": [
+      28000000,
+      17000000,
+      26000000,
+      25000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0473,
+      0.0294,
+      0.0372,
+      0.0329
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0714,
+      0.4706
+     ]
+    },
+    {
+     "member": "ibkr:MarketDataFeesMember",
+     "label": "Market Data Fees",
+     "values": [
+      19000000,
+      20000000,
+      21000000,
+      23000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0321,
+      0.0346,
+      0.03,
+      0.0303
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1053,
+      0.15
+     ]
+    },
+    {
+     "member": "ibkr:PaymentsForOrderFlowMember",
+     "label": "Payments For Order Flow",
+     "values": [
+      13000000,
+      9000000,
+      15000000,
+      18000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.022,
+      0.0156,
+      0.0215,
+      0.0237
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1538,
+      1.0
+     ]
+    },
+    {
+     "member": "ibkr:OthersMember",
+     "label": "Others",
+     "values": [
+      10000000,
+      7000000,
+      14000000,
+      11000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0169,
+      0.0121,
+      0.02,
+      0.0145
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4,
+      0.5714
+     ]
+    },
+    {
+     "member": "ibkr:FdicSweepFeesMember",
+     "label": "Fdic Sweep Fees",
+     "values": [
+      8000000,
+      9000000,
+      10000000,
+      10000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0135,
+      0.0156,
+      0.0143,
+      0.0132
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.25,
+      0.1111
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     592000000,
+     578000000,
+     699000000,
+     760000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "U [S]",
+     "values": [
+      968000000,
+      1230000000,
+      1482000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6217,
+      0.6222,
+      0.6074
+     ],
+     "growth_yoy": [
+      null,
+      0.2707,
+      0.2049
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non Us",
+     "values": [
+      589000000,
+      747000000,
+      958000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3783,
+      0.3778,
+      0.3926
+     ],
+     "growth_yoy": [
+      null,
+      0.2683,
+      0.2825
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1557000000,
+     1977000000,
+     2440000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "U [S]",
+     "values": [
+      362000000,
+      351000000,
+      413000000,
+      457000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6115,
+      0.6073,
+      0.5908,
+      0.6013
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1409,
+      0.302
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non Us",
+     "values": [
+      230000000,
+      227000000,
+      286000000,
+      303000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3885,
+      0.3927,
+      0.4092,
+      0.3987
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2435,
+      0.3348
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     592000000,
+     578000000,
+     699000000,
+     760000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

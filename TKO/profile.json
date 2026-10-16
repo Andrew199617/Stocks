@@ -1,0 +1,292 @@
+{
+ "ticker": "TKO",
+ "cik": 1973266,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:27-04:00",
+ "newest_filing_date": "2026-08-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001973266.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526071651/tko-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TKO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TKO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TKO Group Holdings, Inc.",
+  "cik": 1973266,
+  "description": {
+   "text": "TKO is a premium sports and entertainment company. TKO's businesses include UFC, the world’s premier mixed martial arts (“MMA”) organization; WWE, the global leader in sports entertainment; Professional Bull Riders (“PBR”), the world’s premier bull riding organization; and its joint venture Zuffa Boxing, a professional boxing promotion. Together, these properties reach more than 1 billion households across 210 countries and territories and organize more than 500 live events year-round, attracting more than three million fans. TKO also services and partners with major sports rights holders through IMG, an industry-leading global sports marketing agency; and On Location, a global leader in premium experiential hospitality. TKO was initially established through the combination of UFC and WWE in September 2023. The combination of these two businesses united two complementary sports and sports entertainment properties in a single company. We significantly expanded our portfolio on February 28, 2025, when we completed the Endeavor Asset Acquisition, pursuant to which we acquired the IMG business, including certain businesses operating under the IMG brand, On Location, and PBR (collectively, the “Acquired Businesses”) from EGH and its subsidiaries.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-071651",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526071651/tko-20251231.htm"
+  },
+  "description_short": "TKO Group Holdings, Inc. (NYSE: TKO) is a premium sports and entertainment company. TKO's businesses include UFC, the world's premier mixed martial arts organization; WWE, the global leader in sports entertainment; PBR, the world's premier bull riding organization; and its joint venture Zuffa Boxing, a professional boxing promotion. Together, these properties reach more than 1 billion households across 210 countries and territories and organize more than 500 live events year-round, attracting more than three million fans. TKO also services and partners with major sports rights holders through IMG, an industry-leading global sports marketing agency; and On Location, a global leader in premium experiential hospitality.",
+  "industry": "Services-Misc. Amusement & Recreation",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7900",
+  "sic_description": "Services-Amusement & Recreation Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.tkogrp.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "200 Fifth Ave, 7th Floor",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10010",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "646-558-8333",
+  "employees": {
+   "count": 4000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had over 4,000 employees in more than 30 countries.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526071651/tko-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2023-09-12",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "New Whale Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001973266&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-330592",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526330592/tko-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-330561",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526330561/tko-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-10",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-269552",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526269552/d80456d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-11",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-219498",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526219498/d105349d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-208992",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526208992/tko-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-208955",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526208955/tko-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-23",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-173833",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526173833/d913980ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-099425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526099425/d124117d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-071651",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526071651/tko-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-071552",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312526071552/tko-20260225.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-267014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312525267014/tko-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-266943",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312525266943/tko-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-15",
+   "period": "2025-09-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-202794",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312525202794/d947346d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-11",
+   "period": "2025-08-11",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-25-177480",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312525177480/d432978d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-104095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000095017025104095/tko-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-104031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000095017025104031/tko-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-140800",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000119312525140800/d935262d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-067220",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000095017025067220/tko-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000950170-25-067188",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000095017025067188/tko-20250508.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-067002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973266/000095017025067002/tko-20250508.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,297 @@
+{
+ "ticker": "UAL",
+ "cik": 100517,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:43-04:00",
+ "newest_filing_date": "2026-07-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000100517.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/UAL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/UAL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "United Airlines Holdings, Inc.",
+  "cik": 100517,
+  "description": {
+   "text": "United Airlines Holdings, Inc. (together with its consolidated subsidiaries, \"UAL\" or the \"Company\") is a holding company and its wholly-owned subsidiary is United Airlines, Inc. (together with its consolidated subsidiaries, \"United\"). United's shared purpose is \"Connecting People. Uniting the World.\" United has the most comprehensive route network among North American carriers, including U.S. mainland hubs in Chicago, Denver, Houston, Los Angeles, New York/Newark, San Francisco and Washington, D.C. As UAL consolidates United for financial statement purposes, disclosures that relate to activities of United also apply to UAL, unless otherwise noted. United's operating revenues and operating expenses comprise nearly 100% of UAL's revenues and operating expenses. In addition, United comprises approximately the entire balance of UAL's assets, liabilities and operating cash flows. When appropriate, UAL and United are named specifically for their individual contractual obligations and related disclosures and any significant differences between the operations and results of UAL and United are separately disclosed and explained. We sometimes use the words \"we,\" \"our,\" \"us,\" and the \"Company\" in this report for disclosures that relate to all of UAL and United. The Company's principal executive office is located at 233 South Wacker Drive, Chicago, Illinois 60606 (telephone number (872) 825-4000).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0000100517-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm"
+  },
+  "description_short": "At United, Good Leads The Way. With U.S. hubs in Chicago, Denver, Houston, Los Angeles, New York/Newark, San Francisco and Washington, D.C., United operates the most comprehensive global route network among North American carriers and is now the largest airline in the world as measured by available seat miles. For more about how to join the United team, please visit www.united.com/careers and more information about the company is at www.united.com. United Airlines Holdings, Inc., the parent company of United Airlines, Inc., is traded on the Nasdaq under the symbol 'UAL'.",
+  "industry": "Air Freight/Delivery Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4512",
+  "sic_description": "Air Transportation, Scheduled",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.united.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "233 South Wacker Drive",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60606",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "872-825-4000",
+  "employees": {
+   "count": 113200,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company and its subsidiaries had approximately 113,200 employees, of whom approximately 83% were represented by various U.S. labor organizations.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-22",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "United Continental Holdings, Inc.",
+   "UAL CORP /DE/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000100517&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-16",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-26-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000139/ual-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000135/ual-20260715.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-19",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-065739",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926065739/tm2615419d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-048992",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926048992/tm2612792d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-26-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000091/ual-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-26-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000089/ual-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-040467",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926040467/tmb-20260519xdef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000100517-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-011544",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926011544/tm263646d10_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-02-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-009237",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465926009237/tm263646d5_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000014/ual-20260120.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-16",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-25-000193",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000193/ual-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-25-000190",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000190/ual-20251015.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-17",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-25-000147",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000147/ual-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-16",
+   "period": "2025-07-16",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000143/ual-20250716.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-09",
+   "period": "2025-07-07",
+   "items": [
+    "1.02",
+    "2.02"
+   ],
+   "description": "Termination of agreement; Results of operations",
+   "accession": "0000100517-25-000140",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000140/ual-20250707.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-05-28",
+   "period": "2025-01-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-25-053608",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465925053608/tm2516249d2_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-25-053607",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000110465925053607/tm2516249d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-16",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000100517-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000091/ual-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-15",
+   "period": "2025-04-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000100517-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051725000087/ual-20250415.htm"
+  }
+ ],
+ "warnings": []
+}

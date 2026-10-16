@@ -1,0 +1,304 @@
+{
+ "ticker": "UAL",
+ "cik": 100517,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000100517-26-000023",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000100517-26-000091",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000091/ual-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000100517-26-000139",
+   "filed": "2026-07-16",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000139/ual-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:PassengerMember",
+     "label": "Passenger",
+     "values": [
+      49046000000,
+      51829000000,
+      53438000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.913,
+      0.9083,
+      0.9047
+     ],
+     "growth_yoy": [
+      null,
+      0.0567,
+      0.031
+     ]
+    },
+    {
+     "member": "ual:PassengerAncillaryFeesMember",
+     "label": "Passenger, Ancillary Fees",
+     "values": [
+      4100000000,
+      4500000000,
+      4800000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0763,
+      0.0789,
+      0.0813
+     ],
+     "growth_yoy": [
+      null,
+      0.0976,
+      0.0667
+     ]
+    },
+    {
+     "member": "us-gaap:CargoAndFreightMember",
+     "label": "Cargo and Freight",
+     "values": [
+      1495000000,
+      1743000000,
+      1779000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0278,
+      0.0305,
+      0.0301
+     ],
+     "growth_yoy": [
+      null,
+      0.1659,
+      0.0207
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      3176000000,
+      3491000000,
+      3853000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0591,
+      0.0612,
+      0.0652
+     ],
+     "growth_yoy": [
+      null,
+      0.0992,
+      0.1037
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     53717000000,
+     57063000000,
+     59070000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:PassengerMember",
+     "label": "Passenger",
+     "values": [
+      11860000000,
+      13836000000,
+      13166000000,
+      16100000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8976,
+      0.9081,
+      0.9013,
+      0.911
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1101,
+      0.1636
+     ]
+    },
+    {
+     "member": "ual:PassengerAncillaryFeesMember",
+     "label": "Passenger, Ancillary Fees",
+     "values": [
+      1000000000,
+      1200000000,
+      1200000000,
+      1400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0757,
+      0.0788,
+      0.0821,
+      0.0792
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2,
+      0.1667
+     ]
+    },
+    {
+     "member": "us-gaap:CargoAndFreightMember",
+     "label": "Cargo and Freight",
+     "values": [
+      429000000,
+      430000000,
+      422000000,
+      527000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0325,
+      0.0282,
+      0.0289,
+      0.0298
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0163,
+      0.2256
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      923000000,
+      970000000,
+      1020000000,
+      1045000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0699,
+      0.0637,
+      0.0698,
+      0.0591
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1051,
+      0.0773
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13213000000,
+     15236000000,
+     14608000000,
+     17672000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 108.1% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 107.9% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

@@ -2,3 +2,24 @@
 __pycache__/
 *.pyc
 .DS_Store
+.claude/
+_daily/preview-*.html
+_daily/site/state.json
+
+# Generated or re-fetchable files stay out of git (2026-10-16).
+# Committed: the code and specs; each company's judgment record (score.json,
+# dcf_numbers.json, judgment.json, analysis.md, key_numbers.md, ttm.json,
+# financials_history.csv, second_pass.md); its SEC files (fundamentals.json,
+# statements.json, segments.json, profile.json), which are rewritten only when
+# their content changes; and the compact daily ranking in _daily/history/.
+# Not committed: Nasdaq data (re-fetched in minutes) and everything
+# build_site.py derives (rebuilt in seconds, no network). After a fresh clone,
+# `python _system/refresh.py` recreates all of it.
+/*/prices.json
+/*/live.json
+/*/street.json
+_daily/site/data/
+_daily/site/index.json
+_daily/site/meta.json
+_daily/latest.html
+_daily/ranking-*.html

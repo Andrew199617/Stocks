@@ -1,0 +1,1219 @@
+{
+ "ticker": "CBOE",
+ "cik": 1374310,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-010013",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026010013/cboe-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-029112",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026029112/cboe-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-051239",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026051239/cboe-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cboe:OptionsMember",
+     "label": "Options",
+     "values": [
+      851300000,
+      878400000,
+      1113300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8047,
+      0.7997,
+      0.7588
+     ],
+     "growth_yoy": [
+      null,
+      0.0318,
+      0.2674
+     ]
+    },
+    {
+     "member": "cboe:NorthAmericanEquitiesMember",
+     "label": "North American Equities",
+     "values": [
+      118000000,
+      168600000,
+      188100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1115,
+      0.1535,
+      0.1282
+     ],
+     "growth_yoy": [
+      null,
+      0.4288,
+      0.1157
+     ]
+    },
+    {
+     "member": "cboe:FuturesMember",
+     "label": "Futures",
+     "values": [
+      86100000,
+      98900000,
+      73900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0814,
+      0.09,
+      0.0504
+     ],
+     "growth_yoy": [
+      null,
+      0.1487,
+      -0.2528
+     ]
+    },
+    {
+     "member": "cboe:EuropeAndAsiaPacificMember",
+     "label": "Europe And Asia Pacific",
+     "values": [
+      32700000,
+      41700000,
+      53900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0309,
+      0.038,
+      0.0367
+     ],
+     "growth_yoy": [
+      null,
+      0.2752,
+      0.2926
+     ]
+    },
+    {
+     "member": "cboe:GlobalFXMember",
+     "label": "Global FX",
+     "values": [
+      24700000,
+      33200000,
+      46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0233,
+      0.0302,
+      0.0314
+     ],
+     "growth_yoy": [
+      null,
+      0.3441,
+      0.3855
+     ]
+    },
+    {
+     "member": "cboe:DigitalMember",
+     "label": "Digital",
+     "values": [
+      -46700000,
+      -112400000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0441,
+      -0.1023,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -8200000,
+      -10000000,
+      -8100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0078,
+      -0.0091,
+      -0.0055
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1057900000,
+     1098400000,
+     1467100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cboe:OptionsMember",
+     "label": "Options",
+     "values": [
+      257900000,
+      259900000,
+      359600000,
+      341000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7287,
+      0.7664,
+      0.7112,
+      0.7164
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3943,
+      0.312
+     ]
+    },
+    {
+     "member": "cboe:NorthAmericanEquitiesMember",
+     "label": "North American Equities",
+     "values": [
+      44400000,
+      47300000,
+      66500000,
+      66100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1255,
+      0.1395,
+      0.1315,
+      0.1389
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4977,
+      0.3975
+     ]
+    },
+    {
+     "member": "cboe:EuropeAndAsiaPacificMember",
+     "label": "Europe And Asia Pacific",
+     "values": [
+      22000000,
+      4800000,
+      39700000,
+      41600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0622,
+      0.0142,
+      0.0785,
+      0.0874
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8045,
+      7.6667
+     ]
+    },
+    {
+     "member": "cboe:FuturesMember",
+     "label": "Futures",
+     "values": [
+      20600000,
+      17100000,
+      24100000,
+      16100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0582,
+      0.0504,
+      0.0477,
+      0.0338
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1699,
+      -0.0585
+     ]
+    },
+    {
+     "member": "cboe:GlobalFXMember",
+     "label": "Global FX",
+     "values": [
+      10300000,
+      12500000,
+      17800000,
+      15500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0291,
+      0.0369,
+      0.0352,
+      0.0326
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.7282,
+      0.24
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -1300000,
+      -2500000,
+      -2100000,
+      -4300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0037,
+      -0.0074,
+      -0.0042,
+      -0.009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     353900000,
+     339100000,
+     505600000,
+     476000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cboe:OptionsMember",
+     "label": "Options",
+     "values": [
+      575600000,
+      580700000,
+      739300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.756,
+      0.7592,
+      0.6721
+     ],
+     "growth_yoy": [
+      null,
+      0.0089,
+      0.2731
+     ]
+    },
+    {
+     "member": "cboe:NorthAmericanEquitiesMember",
+     "label": "North American Equities",
+     "values": [
+      104600000,
+      148600000,
+      163900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1374,
+      0.1943,
+      0.149
+     ],
+     "growth_yoy": [
+      null,
+      0.4207,
+      0.103
+     ]
+    },
+    {
+     "member": "cboe:FuturesMember",
+     "label": "Futures",
+     "values": [
+      52700000,
+      70500000,
+      63400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0692,
+      0.0922,
+      0.0576
+     ],
+     "growth_yoy": [
+      null,
+      0.3378,
+      -0.1007
+     ]
+    },
+    {
+     "member": "cboe:GlobalFXMember",
+     "label": "Global FX",
+     "values": [
+      24000000,
+      33200000,
+      46400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0315,
+      0.0434,
+      0.0422
+     ],
+     "growth_yoy": [
+      null,
+      0.3833,
+      0.3976
+     ]
+    },
+    {
+     "member": "cboe:EuropeAndAsiaPacificMember",
+     "label": "Europe And Asia Pacific",
+     "values": [
+      20500000,
+      24600000,
+      32600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0269,
+      0.0322,
+      0.0296
+     ],
+     "growth_yoy": [
+      null,
+      0.2,
+      0.3252
+     ]
+    },
+    {
+     "member": "cboe:DigitalMember",
+     "label": "Digital",
+     "values": [
+      -34300000,
+      -78600000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.045,
+      -0.1028,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      18300000,
+      -14100000,
+      54400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.024,
+      -0.0184,
+      0.0495
+     ],
+     "growth_yoy": [
+      null,
+      -1.7705,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     761400000,
+     764900000,
+     1100000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "ProfitLoss",
+   "tag": "us-gaap:ProfitLoss",
+   "label": "Net income incl. noncontrolling interests by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cboe:OptionsMember",
+     "label": "Options",
+     "values": [
+      258000000,
+      258700000,
+      359800000,
+      341000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0295,
+      1.1004,
+      0.9328,
+      0.9657
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3946,
+      0.3181
+     ]
+    },
+    {
+     "member": "cboe:NorthAmericanEquitiesMember",
+     "label": "North American Equities",
+     "values": [
+      43900000,
+      47100000,
+      65900000,
+      66300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1752,
+      0.2003,
+      0.1709,
+      0.1878
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5011,
+      0.4076
+     ]
+    },
+    {
+     "member": "cboe:EuropeAndAsiaPacificMember",
+     "label": "Europe And Asia Pacific",
+     "values": [
+      21100000,
+      2700000,
+      38000000,
+      38900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0842,
+      0.0115,
+      0.0985,
+      0.1102
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8009,
+      13.4074
+     ]
+    },
+    {
+     "member": "cboe:FuturesMember",
+     "label": "Futures",
+     "values": [
+      21200000,
+      17700000,
+      24600000,
+      16600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0846,
+      0.0753,
+      0.0638,
+      0.047
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1604,
+      -0.0621
+     ]
+    },
+    {
+     "member": "cboe:GlobalFXMember",
+     "label": "Global FX",
+     "values": [
+      10600000,
+      12600000,
+      17800000,
+      15500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0423,
+      0.0536,
+      0.0461,
+      0.0439
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6792,
+      0.2302
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -104200000,
+      -103700000,
+      -120400000,
+      -125200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.4158,
+      -0.4411,
+      -0.3122,
+      -0.3546
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     250600000,
+     235100000,
+     385700000,
+     353100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cboe:NorthAmericanEquitiesMember",
+     "label": "North American Equities",
+     "values": [
+      69400000,
+      58200000,
+      47000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4392,
+      0.4376,
+      0.384
+     ],
+     "growth_yoy": [
+      null,
+      -0.1614,
+      -0.1924
+     ]
+    },
+    {
+     "member": "cboe:EuropeAndAsiaPacificMember",
+     "label": "Europe And Asia Pacific",
+     "values": [
+      30700000,
+      29300000,
+      32400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1943,
+      0.2203,
+      0.2647
+     ],
+     "growth_yoy": [
+      null,
+      -0.0456,
+      0.1058
+     ]
+    },
+    {
+     "member": "cboe:OptionsMember",
+     "label": "Options",
+     "values": [
+      30100000,
+      27000000,
+      29300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1905,
+      0.203,
+      0.2394
+     ],
+     "growth_yoy": [
+      null,
+      -0.103,
+      0.0852
+     ]
+    },
+    {
+     "member": "cboe:GlobalFXMember",
+     "label": "Global FX",
+     "values": [
+      18400000,
+      13500000,
+      11200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1165,
+      0.1015,
+      0.0915
+     ],
+     "growth_yoy": [
+      null,
+      -0.2663,
+      -0.1704
+     ]
+    },
+    {
+     "member": "cboe:FuturesMember",
+     "label": "Futures",
+     "values": [
+      2000000,
+      2300000,
+      2300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0127,
+      0.0173,
+      0.0188
+     ],
+     "growth_yoy": [
+      null,
+      0.15,
+      0.0
+     ]
+    },
+    {
+     "member": "cboe:DigitalMember",
+     "label": "Digital",
+     "values": [
+      7400000,
+      2800000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0468,
+      0.0211,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -0.6216,
+      -1.0
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      0,
+      -100000,
+      200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      -0.0008,
+      0.0016
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     158000000,
+     133000000,
+     122400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cboe:NorthAmericanEquitiesMember",
+     "label": "North American Equities",
+     "values": [
+      12000000,
+      11500000,
+      11400000,
+      10200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.396,
+      0.3846,
+      0.3864,
+      0.363
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.05,
+      -0.113
+     ]
+    },
+    {
+     "member": "cboe:OptionsMember",
+     "label": "Options",
+     "values": [
+      6900000,
+      7000000,
+      8200000,
+      8600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2277,
+      0.2341,
+      0.278,
+      0.306
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1884,
+      0.2286
+     ]
+    },
+    {
+     "member": "cboe:EuropeAndAsiaPacificMember",
+     "label": "Europe And Asia Pacific",
+     "values": [
+      7900000,
+      8100000,
+      6700000,
+      6100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2607,
+      0.2709,
+      0.2271,
+      0.2171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1519,
+      -0.2469
+     ]
+    },
+    {
+     "member": "cboe:GlobalFXMember",
+     "label": "Global FX",
+     "values": [
+      2900000,
+      2700000,
+      2600000,
+      2400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0957,
+      0.0903,
+      0.0881,
+      0.0854
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1034,
+      -0.1111
+     ]
+    },
+    {
+     "member": "cboe:FuturesMember",
+     "label": "Futures",
+     "values": [
+      600000,
+      500000,
+      600000,
+      700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0198,
+      0.0167,
+      0.0203,
+      0.0249
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.4
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      0,
+      100000,
+      0,
+      100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0033,
+      0.0,
+      0.0036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     30300000,
+     29900000,
+     29500000,
+     28100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

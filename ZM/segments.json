@@ -1,0 +1,254 @@
+{
+ "ticker": "ZM",
+ "cik": 1585521,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001585521-26-000030",
+   "filed": "2026-02-27",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001585521-26-000071",
+   "filed": "2026-05-22",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000071/zm-20260430_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001585521-26-000121",
+   "filed": "2026-08-26",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/zm-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-31",
+    "2025-01-31",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      3228914000,
+      3351286000,
+      3508148000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7132,
+      0.7183,
+      0.7205
+     ],
+     "growth_yoy": [
+      null,
+      0.0379,
+      0.0468
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      726714000,
+      742704000,
+      769911000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1605,
+      0.1592,
+      0.1581
+     ],
+     "growth_yoy": [
+      null,
+      0.022,
+      0.0366
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      571596000,
+      571443000,
+      590710000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1263,
+      0.1225,
+      0.1213
+     ],
+     "growth_yoy": [
+      null,
+      -0.0003,
+      0.0337
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4527224000,
+     4665433000,
+     4868769000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      847696000,
+      873974000,
+      893572000,
+      923461000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7216,
+      0.718,
+      0.7212,
+      0.723
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0541,
+      0.0566
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      185249000,
+      194916000,
+      194924000,
+      199142000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1577,
+      0.1601,
+      0.1573,
+      0.1559
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0522,
+      0.0217
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      141770000,
+      148337000,
+      150510000,
+      154614000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1207,
+      0.1219,
+      0.1215,
+      0.1211
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0616,
+      0.0423
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1174715000,
+     1217227000,
+     1239006000,
+     1277217000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (zm:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (zm:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (zm:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (zm:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

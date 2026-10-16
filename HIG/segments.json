@@ -1,0 +1,1093 @@
+{
+ "ticker": "HIG",
+ "cik": 874766,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000874766-26-000012",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000012/hig-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000874766-26-000037",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000037/hig-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000874766-26-000060",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000060/hig-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hig:PCBusinessInsuranceMember",
+     "label": "P&C Business Insurance",
+     "values": [
+      13059000000,
+      14406000000,
+      15807000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5324,
+      0.5429,
+      0.5572
+     ],
+     "growth_yoy": [
+      null,
+      0.1031,
+      0.0973
+     ]
+    },
+    {
+     "member": "hig:EmployeeBenefitsMember",
+     "label": "Employee Benefits",
+     "values": [
+      6939000000,
+      7066000000,
+      7140000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2829,
+      0.2663,
+      0.2517
+     ],
+     "growth_yoy": [
+      null,
+      0.0183,
+      0.0105
+     ]
+    },
+    {
+     "member": "hig:PCPersonalInsuranceMember",
+     "label": "P&C Personal Insurance",
+     "values": [
+      3353000000,
+      3779000000,
+      4088000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1367,
+      0.1424,
+      0.1441
+     ],
+     "growth_yoy": [
+      null,
+      0.1271,
+      0.0818
+     ]
+    },
+    {
+     "member": "hig:HartfordFundsMember",
+     "label": "Hartford Funds",
+     "values": [
+      1000000000,
+      1067000000,
+      1113000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0408,
+      0.0402,
+      0.0392
+     ],
+     "growth_yoy": [
+      null,
+      0.067,
+      0.0431
+     ]
+    },
+    {
+     "member": "hig:PropertyCasualtyOtherOperationsMember",
+     "label": "Property & Casualty Other Operations",
+     "values": [
+      62000000,
+      70000000,
+      73000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0025,
+      0.0026,
+      0.0026
+     ],
+     "growth_yoy": [
+      null,
+      0.129,
+      0.0429
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      114000000,
+      147000000,
+      147000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0046,
+      0.0055,
+      0.0052
+     ],
+     "growth_yoy": [
+      null,
+      0.2895,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24527000000,
+     26535000000,
+     28368000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hig:PCBusinessInsuranceMember",
+     "label": "P&C Business Insurance",
+     "values": [
+      3749000000,
+      3865000000,
+      4070000000,
+      4244000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5505,
+      0.5755,
+      0.5632,
+      0.5843
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0856,
+      0.0981
+     ]
+    },
+    {
+     "member": "hig:EmployeeBenefitsMember",
+     "label": "Employee Benefits",
+     "values": [
+      1790000000,
+      1765000000,
+      1843000000,
+      1913000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2628,
+      0.2628,
+      0.2551,
+      0.2634
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0296,
+      0.0839
+     ]
+    },
+    {
+     "member": "hig:PCPersonalInsuranceMember",
+     "label": "P&C Personal Insurance",
+     "values": [
+      982000000,
+      1017000000,
+      995000000,
+      1008000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1442,
+      0.1514,
+      0.1377,
+      0.1388
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0132,
+      -0.0088
+     ]
+    },
+    {
+     "member": "hig:PropertyCasualtyOtherOperationsMember",
+     "label": "Property & Casualty Other Operations",
+     "values": [
+      18000000,
+      17000000,
+      19000000,
+      23000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0026,
+      0.0025,
+      0.0026,
+      0.0032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0556,
+      0.3529
+     ]
+    },
+    {
+     "member": "hig:HartfordFundsMember",
+     "label": "Hartford Funds",
+     "values": [
+      264000000,
+      null,
+      285000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0388,
+      null,
+      0.0394,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0795,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7000000,
+      52000000,
+      14000000,
+      75000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.001,
+      0.0077,
+      0.0019,
+      0.0103
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0,
+      0.4423
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6810000000,
+     6716000000,
+     7226000000,
+     7263000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hig:PCBusinessInsuranceMember",
+     "label": "P&C Business Insurance",
+     "values": [
+      2085000000,
+      2349000000,
+      2780000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8327,
+      0.7551,
+      0.7247
+     ],
+     "growth_yoy": [
+      null,
+      0.1266,
+      0.1835
+     ]
+    },
+    {
+     "member": "hig:EmployeeBenefitsMember",
+     "label": "Employee Benefits",
+     "values": [
+      535000000,
+      561000000,
+      557000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2137,
+      0.1803,
+      0.1452
+     ],
+     "growth_yoy": [
+      null,
+      0.0486,
+      -0.0071
+     ]
+    },
+    {
+     "member": "hig:PCPersonalInsuranceMember",
+     "label": "P&C Personal Insurance",
+     "values": [
+      -39000000,
+      208000000,
+      447000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0156,
+      0.0669,
+      0.1165
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.149
+     ]
+    },
+    {
+     "member": "hig:HartfordFundsMember",
+     "label": "Hartford Funds",
+     "values": [
+      174000000,
+      192000000,
+      213000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0695,
+      0.0617,
+      0.0555
+     ],
+     "growth_yoy": [
+      null,
+      0.1034,
+      0.1094
+     ]
+    },
+    {
+     "member": "hig:PropertyCasualtyOtherOperationsMember",
+     "label": "Property & Casualty Other Operations",
+     "values": [
+      -130000000,
+      -127000000,
+      -103000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0519,
+      -0.0408,
+      -0.0269
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -121000000,
+      -72000000,
+      -58000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0483,
+      -0.0231,
+      -0.0151
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2504000000,
+     3111000000,
+     3836000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hig:PCBusinessInsuranceMember",
+     "label": "P&C Business Insurance",
+     "values": [
+      477000000,
+      696000000,
+      536000000,
+      704000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7571,
+      0.6995,
+      0.6262,
+      0.5424
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1237,
+      0.0115
+     ]
+    },
+    {
+     "member": "hig:EmployeeBenefitsMember",
+     "label": "Employee Benefits",
+     "values": [
+      133000000,
+      150000000,
+      118000000,
+      147000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2111,
+      0.1508,
+      0.1379,
+      0.1133
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1128,
+      -0.02
+     ]
+    },
+    {
+     "member": "hig:PCPersonalInsuranceMember",
+     "label": "P&C Personal Insurance",
+     "values": [
+      5000000,
+      91000000,
+      139000000,
+      130000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0079,
+      0.0915,
+      0.1624,
+      0.1002
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      26.8,
+      0.4286
+     ]
+    },
+    {
+     "member": "hig:PropertyCasualtyOtherOperationsMember",
+     "label": "Property & Casualty Other Operations",
+     "values": [
+      13000000,
+      13000000,
+      42000000,
+      17000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0206,
+      0.0131,
+      0.0491,
+      0.0131
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.2308,
+      0.3077
+     ]
+    },
+    {
+     "member": "hig:HartfordFundsMember",
+     "label": "Hartford Funds",
+     "values": [
+      43000000,
+      null,
+      49000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0683,
+      null,
+      0.0572,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1395,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -41000000,
+      45000000,
+      -28000000,
+      300000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0651,
+      0.0452,
+      -0.0327,
+      0.2311
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      5.6667
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     630000000,
+     995000000,
+     856000000,
+     1298000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "hig:PCBusinessInsuranceMember",
+     "label": "P&C Business Insurance",
+     "values": [
+      53296000000,
+      57468000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6587,
+      0.668
+     ],
+     "growth_yoy": [
+      null,
+      0.0783
+     ]
+    },
+    {
+     "member": "hig:EmployeeBenefitsMember",
+     "label": "Employee Benefits",
+     "values": [
+      13502000000,
+      13564000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1669,
+      0.1577
+     ],
+     "growth_yoy": [
+      null,
+      0.0046
+     ]
+    },
+    {
+     "member": "hig:PCPersonalInsuranceMember",
+     "label": "P&C Personal Insurance",
+     "values": [
+      6034000000,
+      6445000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0746,
+      0.0749
+     ],
+     "growth_yoy": [
+      null,
+      0.0681
+     ]
+    },
+    {
+     "member": "hig:PropertyCasualtyOtherOperationsMember",
+     "label": "Property & Casualty Other Operations",
+     "values": [
+      4312000000,
+      4354000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0533,
+      0.0506
+     ],
+     "growth_yoy": [
+      null,
+      0.0097
+     ]
+    },
+    {
+     "member": "hig:HartfordFundsMember",
+     "label": "Hartford Funds",
+     "values": [
+      761000000,
+      812000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0094,
+      0.0094
+     ],
+     "growth_yoy": [
+      null,
+      0.067
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      3012000000,
+      4198000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0372,
+      0.0488
+     ],
+     "growth_yoy": [
+      null,
+      0.3938
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     80917000000,
+     86029000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hig:PCBusinessInsuranceMember",
+     "label": "P&C Business Insurance",
+     "values": [
+      57468000000,
+      57895000000,
+      59398000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.668,
+      0.6707,
+      0.6751
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hig:EmployeeBenefitsMember",
+     "label": "Employee Benefits",
+     "values": [
+      13564000000,
+      13412000000,
+      13261000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1577,
+      0.1554,
+      0.1507
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hig:PCPersonalInsuranceMember",
+     "label": "P&C Personal Insurance",
+     "values": [
+      6445000000,
+      6053000000,
+      6067000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0749,
+      0.0701,
+      0.069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hig:PropertyCasualtyOtherOperationsMember",
+     "label": "Property & Casualty Other Operations",
+     "values": [
+      4354000000,
+      4374000000,
+      4339000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0506,
+      0.0507,
+      0.0493
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hig:HartfordFundsMember",
+     "label": "Hartford Funds",
+     "values": [
+      812000000,
+      830000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0094,
+      0.0096,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      4198000000,
+      3758000000,
+      4918000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0488,
+      0.0435,
+      0.0559
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     86029000000,
+     86322000000,
+     87983000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

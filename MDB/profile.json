@@ -1,0 +1,290 @@
+{
+ "ticker": "MDB",
+ "cik": 1441816,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:05-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001441816.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026016799/mdb-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MDB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MDB/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MongoDB, Inc.",
+  "cik": 1441816,
+  "description": {
+   "text": "MongoDB is the developer data platform company whose mission is to empower developers to create, transform, and disrupt industries by unleashing the power of software and data. Our developer data platform is a globally distributed operational database integrated with a set of data services that allow development teams to address the growing variety of application requirements, all in a unified and consistent user experience. The foundation of our platform is the world’s leading, modern general purpose database. Built on our unique document-based architecture, our database is designed to handle unstructured data and meet the needs of organizations for performance, scalability, flexibility and reliability while maintaining the strengths of relational databases.Every software application requires a database to store, organize and process data. Large organizations can have tens of thousands of applications and associated databases. A database directly impacts an application's performance, scalability, flexibility and reliability. As a result, selecting a database is a highly strategic decision that directly affects developer productivity, application performance and organizational competitiveness. The global database market is dominated by legacy relational databases, which were first developed in the 1970s. Their underlying architecture remains largely unchanged even though the nature of applications, how they are deployed and their role in business has evolved dramatically.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-11",
+   "period": "2026-01-31",
+   "accession": "0001628280-26-016799",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026016799/mdb-20260131.htm"
+  },
+  "description_short": "MongoDB is the intelligent data platform for the AI era. Headquartered in New York, MongoDB helps organizations move faster, build smarter, and simplify complex architectures with a unified platform for operational data, search, real-time analytics, and AI-powered retrieval, coupled with MongoDB Voyage AI's industry-leading embedding and reranking models. The platform is available as a fully managed service with MongoDB Atlas or self-managed with MongoDB Enterprise Advanced or Community Edition. Millions of developers and more than 70,000 customers, including approximately 75% of the Fortune 100, rely on MongoDB for their most important customer-facing applications.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0131",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GM",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.mongodb.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "1633 Broadway 38th Floor",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10019",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-11"
+  },
+  "phone": "866-237-8815",
+  "employees": {
+   "count": 5636,
+   "as_of": "2026-01-31",
+   "evidence": "As of January 31, 2026, we had a total of 5,636 employees, including 2,927 employees located outside the United States.",
+   "form": "10-K",
+   "filed": "2026-03-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026016799/mdb-20260131.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-09-21",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "10GEN INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001441816&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-12",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-065934",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026065934/mdb-20261012.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-25",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001628280-26-063850",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026063850/mdb-20260925.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-24",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-063657",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026063657/mdb-20260924.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-09-01",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-059830",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026059830/mdb-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-059794",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026059794/mdb-20260901.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-06",
+   "period": "2026-06-30",
+   "items": [
+    "5.03",
+    "5.07"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001628280-26-047228",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026047228/mdb-20260630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-29",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-039150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026039150/mdb-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-038798",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026038798/mdb-20260528.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-19",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-036415",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026036415/mdb-20260513.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-11",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-016799",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026016799/mdb-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [
+    "2.02",
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Charter or bylaw amendment",
+   "accession": "0001628280-26-013199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026013199/mdb-20260302.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-02",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-054768",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828025054768/mdb-20251031.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-02",
+   "period": "2025-12-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Amendment: Results of operations",
+   "accession": "0001628280-25-054569",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828025054569/mdb-20251201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-01",
+   "period": "2025-12-01",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-054425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828025054425/mdb-20251201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "5.02"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001628280-25-047941",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828025047941/mdb-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-17",
+   "period": "2025-09-17",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001441816-25-000197",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000144181625000197/mdb-20250917.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-27",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001441816-25-000181",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000144181625000181/mdb-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-26",
+   "period": "2025-08-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001441816-25-000176",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000144181625000176/mdb-20250826.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-03",
+   "period": "2025-06-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001441816-25-000151",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000144181625000151/mdb-20250630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-04",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001441816-25-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1441816/000144181625000118/mdb-20250430.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,289 @@
+{
+ "ticker": "WEC",
+ "cik": 783325,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:18-04:00",
+ "newest_filing_date": "2026-09-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000783325.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000018/wec-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WEC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WEC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WEC ENERGY GROUP, INC.",
+  "cik": 783325,
+  "description": {
+   "text": "We were incorporated in the state of Wisconsin in 1981 and became a diversified holding company in 1986. We maintain our principal executive offices in Milwaukee, Wisconsin. On June 29, 2015, we acquired 100% of the outstanding common shares of Integrys and changed our name to WEC Energy Group, Inc. Our wholly owned subsidiaries provide or invest in regulated natural gas and electricity, and renewable energy, as well as nonregulated renewable energy. We have an approximately 60% equity interest in ATC (an electric transmission company operating in Illinois, Michigan, Minnesota, and Wisconsin). At December 31, 2025, we had six reportable segments, which are discussed below. For additional information about our reportable segments, see Note 22, Segment Information.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0000783325-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000018/wec-20251231.htm"
+  },
+  "description_short": "WEC Energy Group's electric and gas utility businesses serve electric and gas customers in its Illinois, Michigan, Minnesota, and Wisconsin service territories. The company also owns a 60% stake in American Transmission Co. WEC's asset mix is approximately 47% electric generation and distribution, 36% gas distribution, 12% electric transmission, and 5% unregulated renewable generation.",
+  "industry": "Power Generation",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4931",
+  "sic_description": "Electric & Other Services Combined",
+  "state_of_incorporation": "WI",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.wecenergygroup.com",
+  "headquarters": "Milwaukee, WI",
+  "address": {
+   "street": "231 West Michigan Street P.O. Box 1331",
+   "city": "Milwaukee",
+   "state": "WI",
+   "zip": "53201",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "414-221-2345",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-17",
+  "first_sec_filing_form": "S-3",
+  "former_names": [
+   "WISCONSIN ENERGY CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000783325&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000783325-26-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000099/wec-20260904.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-14",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000783325-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000095/wec-20260814.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000783325-26-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000092/wec-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000783325-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000087/wec-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000783325-26-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000084/wec-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000783325-26-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000080/wec-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000783325-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000077/wec-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000783325-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000062/wec-20260507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000783325-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000060/wec-20260511.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000783325-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000056/wec-20260504.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000783325-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000052/wec-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000783325-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000049/wec-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-04-01",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0000783325-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000040/wec-20260401.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000783325-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000035/wec-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000783325-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000027/wec-20260302.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-020174",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000110465926020174/tm267324d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000783325-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000018/wec-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000783325-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000014/wec-20260206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000783325-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000011/wec-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000783325-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/783325/000078332526000006/wec-20260203.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-20"
+ ]
+}

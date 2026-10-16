@@ -1,0 +1,294 @@
+{
+ "ticker": "GEHC",
+ "cik": 1932393,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:35-04:00",
+ "newest_filing_date": "2026-09-22",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001932393.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000007/gehc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GEHC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GEHC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GE HealthCare Technologies Inc.",
+  "cik": 1932393,
+  "description": {
+   "text": "GE HealthCare Technologies Inc. (“GE HealthCare,” the “Company,” “our,” “us,” or “we”) is a leading global healthcare solutions provider of advanced medical technology, pharmaceutical diagnostics, and AI, cloud and software solutions that help clinicians tackle the world’s most complex diseases. We have approximately 54,000 colleagues dedicated to our purpose to create a world where healthcare has no limits. Serving patients and providers for nearly 130 years, GE HealthCare is delivering bold innovations designed for the next era of medicine to help clinicians deliver more personalized, precise patient care. This is complemented by our broad service capabilities and dedication to quality and integrity with a strong operational culture, supported by our lean business system, Heartbeat. We generate revenue from the sale of medical devices, consumable products, service capabilities, and AI-enabled cloud and software solutions. We serve customers in over 160 countries with a global team of approximately 9,700 sales professionals and 8,900 field service engineers. Our customers are hospitals, health systems, and researchers, including public, private, academic, and government institutions. Our comprehensive portfolio of solutions addresses the biggest challenges facing healthcare today, and is designed to advance care delivery for customers, reduce disease burden, enable better patient outcomes, and drive sustainable growth for the company.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "accession": "0001932393-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000007/gehc-20251231.htm"
+  },
+  "description_short": "GE HealthCare is a leading global healthcare solutions provider of advanced medical technology, pharmaceutical diagnostics, and AI, cloud and software solutions that help clinicians tackle the world's most complex diseases. Serving patients and providers for 130 years, GE HealthCare is delivering bold innovations designed for the next era of medicine across its Advanced Imaging Solutions, Pharmaceutical Diagnostics and Patient Care Solutions segments to help clinicians deliver more personalized, precise patient care. We are a $20.6 billion business with approximately 54,000 colleagues working to create a world where healthcare has no limits.",
+  "industry": "Medical Electronics",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3844",
+  "sic_description": "X-Ray Apparatus & Tubes & Related Irradiation Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.gehealthcare.com",
+  "headquarters": "Chicago, IL",
+  "address": {
+   "street": "500 W. Monroe Street",
+   "city": "Chicago",
+   "state": "IL",
+   "zip": "60661",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-04"
+  },
+  "phone": "833-735-1139",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2022-10-11",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "GE Healthcare Holding LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001932393&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001932393-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000053/gehc-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001932393-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000050/gehc-20260813.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001932393-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000047/gehc-20260729.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000046/gehc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000045/gehc-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001932393-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000039/gehc-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-07",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001932393-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000034/gehc-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000031/gehc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000030/gehc-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001932393-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000021/gehc-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-13",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001932393-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000013/gehc-20260313.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-26",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001932393-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000010/gehc-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001932393-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000007/gehc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239326000006/gehc-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-319383",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000119312525319383/d75788d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-305400",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000119312525305400/d84660d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000053/gehc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000052/gehc-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001932393-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000049/gehc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001932393-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1932393/000193239325000048/gehc-20250730.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-04"
+ ]
+}

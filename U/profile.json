@@ -1,0 +1,287 @@
+{
+ "ticker": "U",
+ "cik": 1810806,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:37-04:00",
+ "newest_filing_date": "2026-08-19",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001810806.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000011/unity-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/U/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/U/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Unity Software Inc.",
+  "cik": 1810806,
+  "description": {
+   "text": "Unity is the leading platform to develop, deploy, and grow games and interactive experiences. We offer a suite of tools across all major platforms from mobile, PC, and console, to extended reality (XR). Our comprehensive set of software, including AI solutions, supports developers through the entire development lifecycle – from prototyping to live service operation, user acquisition, and monetization. Our platform is used by creators of all types - such as developers, artists, and designers - to build content in gaming and non-gaming industries, including automotive, retail, manufacturing, healthcare, public sector, robotics, architecture, civil and mechanical engineering, design and construction. Our platform consists of two complementary sets of solutions: Create Solutions and Grow Solutions.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001810806-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000011/unity-20251231.htm"
+  },
+  "description_short": "Unity [NYSE: U] offers a suite of tools to develop, deploy, and grow games and interactive experiences across all major platforms from mobile, PC, and console, to extended reality (XR).",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.unity.com",
+  "headquarters": "San Francisco, California",
+  "address": {
+   "street": "116 New Montgomery Street",
+   "city": "San Francisco",
+   "state": "California",
+   "zip": "94105-3607",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "(415) 638-9950",
+  "employees": {
+   "count": 4412,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had a total of 4,412 full-time employees, across 25 offices and in 16 countries.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000011/unity-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-08-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001810806&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001810806-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000046/unity-20260817.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001810806-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000043/unity-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001810806-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000041/unity-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001810806-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000037/unity-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001810806-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000035/unity-20260713.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-034957",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000162828026034957/unity-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001810806-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000032/unity-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001810806-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000030/unity-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001810806-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000021/unity-20260327.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001810806-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000016/unity-20260326.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001810806-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000011/unity-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001810806-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000010/unity-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-09",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001810806-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000006/unity-20260209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-04",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001810806-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000004/unity-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-277998",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000119312525277998/d894826d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001810806-25-000169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080625000169/unity-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001810806-25-000167",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080625000167/unity-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001810806-25-000151",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080625000151/unity-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001810806-25-000148",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080625000148/unity-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001810806-25-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080625000124/unity-20250611.htm"
+  }
+ ],
+ "warnings": []
+}

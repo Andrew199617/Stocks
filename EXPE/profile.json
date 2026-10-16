@@ -1,0 +1,295 @@
+{
+ "ticker": "EXPE",
+ "cik": 1324424,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:05-04:00",
+ "newest_filing_date": "2026-08-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001324424.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EXPE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EXPE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Expedia Group, Inc.",
+  "cik": 1324424,
+  "description": {
+   "text": "Expedia Group, Inc. is the global travel marketplace with one purpose: to help travelers explore the world, one journey at a time. We connect travelers, partners, and advertisers throughout our trusted brands, leading technology, and rich first-party data, delivering predictive, personalized experiences that shape the future of travel. We leverage our supply portfolio, platform and technology capabilities across an extensive portfolio of consumer brands, and provide solutions to our business partners, to empower travelers to efficiently research, plan, book and experience travel. At the end of 2025, we had approximately 3.6 million lodging properties available, including approximately 2.4 million online bookable alternative accommodations through Vrbo, approximately 1.2 million hotels and alternative accommodations through our other brands, over 500 airlines, packages, rental cars, cruises, insurance, as well as activities and experiences. Travel suppliers distribute and market products via our apps, desktop and mobile offerings, as well as through alternative distribution channels, our business partnerships and our call centers in order to reach our extensive global audience. In addition, our advertising and media businesses help other businesses, primarily travel providers, reach a large multi-platform audience of travelers around the globe.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001324424-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm"
+  },
+  "description_short": "Expedia Group, Inc. (NASDAQ: EXPE) is the global travel marketplace with one purpose: to help travelers explore the world, one journey at a time. Expedia Group connects travelers, partners, and advertisers through its trusted brands, leading technology, and rich first-party data, delivering predictive, personalized experiences that shape the future of travel. Expedia Group's ecosystem includes three flagship consumer brands - Expedia®, Hotels.com®, and Vrbo® - the largest B2B travel business, and a premier advertising network. Guided by an experienced and passionate global team, Expedia Group helps millions of travelers in more than 70 countries explore the world with confidence and ease.",
+  "industry": "Transportation Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4700",
+  "sic_description": "Transportation Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.expediagroup.com",
+  "headquarters": "Seattle, WA",
+  "address": {
+   "street": "1111 Expedia Group Way W",
+   "city": "Seattle",
+   "state": "WA",
+   "zip": "98119",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "(206) 481-7200",
+  "employees": {
+   "count": 16000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we have a team of approximately 16,000 employees across nearly 50 countries focused on using our extensive data and technology to create amazing travel experiences.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-04-25",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "Expedia, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001324424&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324424-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000053/expe-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD; Other events",
+   "accession": "0001324424-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000051/expe-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001324424-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000042/expe-20260617.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324424-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000035/expe-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001324424-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000031/expe-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-29",
+   "period": "2026-06-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001324424-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000022/expe-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001324424-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000016/expe-20260417.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-042073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000110465926042073/tm2611456d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-27",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-036875",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000110465926036875/tm269986d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001324424-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001324424-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000005/expe-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-041645",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000114036125041645/ef20058758_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324424-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000051/expe-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001324424-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000049/expe-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324424-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000042/expe-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001324424-25-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000039/expe-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-06",
+   "period": "2025-06-03",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001324424-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000032/expe-20250603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324424-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000028/expe-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001324424-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000025/expe-20250508.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-21",
+   "period": "2025-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001324424-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442425000019/expe-20250421.htm"
+  }
+ ],
+ "warnings": []
+}

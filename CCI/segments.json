@@ -1,0 +1,35 @@
+{
+ "ticker": "CCI",
+ "cik": 1051470,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001051470-26-000016",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000016/cci-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001051470-26-000059",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000059/cci-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001051470-26-000074",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000074/cci-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

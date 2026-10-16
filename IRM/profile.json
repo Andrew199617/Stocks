@@ -1,0 +1,299 @@
+{
+ "ticker": "IRM",
+ "cik": 1020569,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:11:24-04:00",
+ "newest_filing_date": "2026-08-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001020569.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000013/irm-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IRM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IRM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "IRON MOUNTAIN INC",
+  "cik": 1020569,
+  "description": {
+   "text": "Iron Mountain Incorporated, a Delaware corporation (\"IMI\"), was founded in an underground facility near Hudson, New York in 1951 where it stored business records. Today, we are a global leader in information management services, and we are trusted by more than 240,000 customers in 61 countries, including approximately 95% of the Fortune 1000, to help unlock value and intelligence from their assets through services that transcend the physical and digital worlds. Our broad range of solutions address their information management, digital transformation, information security, data center and asset lifecycle management (“ALM”) needs. Our longstanding commitment to safety, security, sustainability and innovation in support of our customers underpins everything we do. We currently serve customers across an array of market verticals — commercial, legal, financial, healthcare, technology, insurance, life sciences, energy, business services, entertainment and government organizations. We are listed on the New York Stock Exchange (the \"NYSE\") and are a constituent of the Standard & Poor’s 500 Index, the Morgan Stanley Capital International (\"MSCI\") REIT index and the FTSE EPRA Nareit Global Real Estate Index. As of December 31, 2025, we were number 567 on the Fortune 1000. We have been organized and have operated as a REIT beginning with our taxable year ended December 31, 2014.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001020569-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000013/irm-20251231.htm"
+  },
+  "description_short": "Iron Mountain Incorporated (NYSE: IRM) partners with more than 240,000 customers across 61 countries, including approximately 95% of the Fortune 1000. We serve as the trusted guardians of what matters most, helping unlock what's possible. By connecting physical, digital, and intelligent workflows, our lifecycle solutions help organizations realize enterprise value at scale. From complex challenges across information management and digital transformation to data security, data centers, and asset lifecycle management, we empower organizations to navigate an ever-changing landscape to prepare for tomorrow's possibilities. Our longstanding commitment to safety, security, sustainability, and continuous innovation defines everything we do.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ironmountain.com",
+  "headquarters": "Portsmouth, New Hampshire",
+  "address": {
+   "street": "85 New Hampshire Avenue Suite 150",
+   "city": "Portsmouth",
+   "state": "New Hampshire",
+   "zip": "03801",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "617-535-4781",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-function / per-location breakdown with no filed total",
+   "evidence": "As of December 31, 2025, we employed approximately 11,700 employees in the United States and approximately 17,700 employees outside of the United States.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000013/irm-20251231.htm"
+  },
+  "first_sec_filing": "1996-08-12",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "IRON MOUNTAIN INC/PA",
+   "PIERCE LEAHY CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001020569&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001020569-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000071/irm-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001020569-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000068/irm-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-078307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000110465926078307/tm2618739d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-07",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001020569-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000055/irm-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001020569-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000039/irm-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001020569-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000036/irm-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001020569-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000026/irm-20260323.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001020569-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000016/irm-20260309.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001020569-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000013/irm-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001020569-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056926000009/irm-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-13",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001020569-25-000208",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000208/irm-20251113.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001020569-25-000206",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000206/irm-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001020569-25-000203",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000203/irm-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001020569-25-000195",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000195/irm-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-10",
+   "period": "2025-09-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001020569-25-000187",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000187/irm-20250910.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001020569-25-000176",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000176/irm-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001020569-25-000173",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000173/irm-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-20",
+   "period": "2025-06-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001020569-25-000150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000150/irm-20250618.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-04",
+   "period": "2025-05-29",
+   "items": [
+    "5.02",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote; Other events",
+   "accession": "0001020569-25-000145",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000145/irm-20250529.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001020569-25-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1020569/000102056925000110/irm-20250331.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a per-function / per-location breakdown with no filed total in the 10-K filed 2026-02-12: \"As of December 31, 2025, we employed approximately 11,700 employees in the United States and approximately 17,700 employees outside of the United States.\""
+ ]
+}

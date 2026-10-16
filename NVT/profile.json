@@ -1,0 +1,289 @@
+{
+ "ticker": "NVT",
+ "cik": 1720635,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:27-04:00",
+ "newest_filing_date": "2026-09-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001720635.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026008608/nvt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NVT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NVT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "nVent Electric plc",
+  "cik": 1720635,
+  "description": {
+   "text": "nVent is a leading global provider of electrical connection and protection solutions. We believe our inventive electrical solutions enable safer systems and ensure a more secure world. We connect and protect some of the world's most critical electrical systems to make them safer, more efficient and resilient. We design, manufacture, market, install and service high performance products and solutions that connect and protect mission critical equipment, buildings and essential processes. We have a comprehensive portfolio of bus systems, cable management, control buildings, cooling solutions, both liquid and air, electrical connections, enclosures, equipment protection, power connections and power management solutions, and switchgear systems, and we are recognized globally for quality, reliability and innovation. Our broad range of products and solutions support infrastructure, industrial, commercial and residential, and energy applications around the world. Our solutions help our customers improve energy efficiency, ensure resiliency and protection, increase customer productivity, enhance safety and contribute to more sustainable operations. At nVent, we operate across two segments: Systems Protection and Electrical Connections. In 2025, we renamed our Enclosures segment to Systems Protection and our Electrical & Fastening Solutions segment to Electrical Connections.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-008608",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026008608/nvt-20251231.htm"
+  },
+  "description_short": "nVent is a leading global provider of electrical connection and protection solutions. We believe our inventive electrical solutions enable safer systems and ensure a more secure world. We design, manufacture, market, install and service high-performance products and solutions that connect and protect some of the world's most sensitive equipment, buildings and critical processes. We offer a comprehensive range of systems protection and electrical connections solutions across industry-leading brands that are recognized globally for quality, reliability and innovation. Our principal office is in London and our management office in the United States is in Minneapolis. Our robust portfolio of leading electrical product brands dates back more than 100 years and includes nVent CADDY, ERICO, HOFFMAN, ILSCO, SCHROFF and TRACHTE. Learn more at www.nvent.com.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "Europe",
+  "sic": "3550",
+  "sic_description": "Special Industry Machinery (No Metalworking Machinery)",
+  "state_of_incorporation": "L2",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.nvent.com",
+  "headquarters": "London, United Kingdom",
+  "address": {
+   "street": "The Mille, 1000 Great West Road, 8th Floor (East)",
+   "city": "London",
+   "state": null,
+   "zip": "TW8 9DW",
+   "country": "United Kingdom",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "44-20-3966-0279",
+  "employees": {
+   "count": 12000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 12,000 people worldwide, of which approximately 48% are located in the U.S.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026008608/nvt-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-10-30",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001720635&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-29",
+   "items": [
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Debt obligation; Other events",
+   "accession": "0001104659-26-111938",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926111938/tm2626249d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-17",
+   "items": [
+    "2.03",
+    "9.01"
+   ],
+   "description": "Debt obligation",
+   "accession": "0001104659-26-108580",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926108580/tm2625610d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-108250",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926108250/tm2625115d7_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-107974",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926107974/tm2625115d3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-098350",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926098350/tm2623440d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051428",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026051428/nvt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-051203",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026051203/nvt-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-075152",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926075152/tm2618033d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-035972",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026035972/nvt-20260515.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-029370",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026029370/nvt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-029098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026029098/nvt-20260501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-037751",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926037751/tm261516-1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-008608",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026008608/nvt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-015527",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926015527/tm266212d3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005930",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828026005930/nvt-20260206.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047847",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828025047847/nvt-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047661",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828025047661/nvt-20251031.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-037259",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828025037259/nvt-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-08-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-037127",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000162828025037127/nvt-20250801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-17",
+   "period": "2025-07-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-068682",
+   "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465925068682/tm2521047d2_8k.htm"
+  }
+ ],
+ "warnings": []
+}

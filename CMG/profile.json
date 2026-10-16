@@ -1,0 +1,288 @@
+{
+ "ticker": "CMG",
+ "cik": 1058090,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:08:30-04:00",
+ "newest_filing_date": "2026-09-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001058090.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CMG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CMG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CHIPOTLE MEXICAN GRILL INC",
+  "cik": 1058090,
+  "description": {
+   "text": "Chipotle Mexican Grill, Inc., a Delaware corporation, together with its subsidiaries (“Chipotle,” “we,” “us,” or “our”) owns and operates Chipotle Mexican Grill restaurants, which feature a relevant menu of burritos, burrito bowls (a burrito without the tortilla), quesadillas, tacos, and salads. We strive to cultivate a better world by serving responsibly sourced, classically cooked, real food with wholesome ingredients and without artificial colors, flavors or preservatives. We are passionate about providing a great guest experience and making our food more accessible to everyone while continuing to be a brand with a demonstrated purpose. Our first Chipotle restaurant opened in Denver, Colorado in 1993. Over 30 years later, our devotion to seeking out high-quality ingredients, raised with respect for animals, farmers, and the environment, remains at the core of our commitment to Food with Integrity. As of December 31, 2025, we owned 3,938 Chipotle restaurants throughout the United States (“U.S.”) and 104 international Chipotle restaurants. Additionally, we had 14 international partner-operated restaurants. Partner-operated restaurants represent Chipotle restaurants over which Chipotle does not have a controlling financial interest and for which Chipotle does not directly manage day-to-day operations.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "accession": "0001058090-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm"
+  },
+  "description_short": "Chipotle Mexican Grill, Inc. (NYSE: CMG) is cultivating a better world by serving responsibly sourced, classically-cooked, real food with wholesome ingredients without artificial colors, flavors or preservatives. There are over 4,200 restaurants as of June 30, 2026, in the United States, Canada, the United Kingdom, France, Germany, and the Middle East and it is the only restaurant company of its size that owns and operates all its restaurants in the United States, Canada and Europe. With nearly 140,000 employees passionate about providing a great guest experience, Chipotle is a longtime leader and innovator in the food industry. Chipotle is committed to making its food more accessible to everyone while continuing to be a brand with a demonstrated purpose as it leads the way in digital, technology and sustainable business practices.",
+  "industry": "Restaurants",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5812",
+  "sic_description": "Retail-Eating  Places",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.chipotle.com",
+  "headquarters": "Newport Beach, CA",
+  "address": {
+   "street": "610 Newport Center Drive Suite 1100",
+   "city": "Newport Beach",
+   "state": "CA",
+   "zip": "92660",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-04"
+  },
+  "phone": "949-524-4000",
+  "employees": {
+   "count": 130301,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Chipotle employed 130,301 people worldwide and 1,233 contract workers.",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-10-25",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001058090&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001058090-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000088/cmg-20260914.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-04",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001058090-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000069/cmg-20260804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058090-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000066/cmg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001058090-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000063/cmg-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-07",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001058090-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000058/cmg-20260707.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001058090-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000056/cmg-20260611.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058090-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000028/cmg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001058090-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000027/cmg-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-28",
+   "period": "2026-06-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-017294",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000114036126017294/ny20063214x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001058090-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000024/cmg-20260427.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001058090-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001058090-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000007/cmg-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001058090-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000002/cmg-20260112.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-04",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001058090-25-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000101/cmg-20251204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-24",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001058090-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000092/cmg-20251124.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058090-25-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000088/cmg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001058090-25-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000086/cmg-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-15",
+   "period": "2025-09-03",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001058090-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000075/cmg-20250903.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001058090-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000070/cmg-20250904.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-26",
+   "period": "2025-08-25",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001058090-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809025000067/cmg-20250825.htm"
+  }
+ ],
+ "warnings": []
+}

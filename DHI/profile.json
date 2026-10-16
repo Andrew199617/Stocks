@@ -1,0 +1,288 @@
+{
+ "ticker": "DHI",
+ "cik": 882184,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:09:10-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000882184.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000081/dhi-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DHI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DHI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HORTON D R INC /DE/",
+  "cik": 882184,
+  "description": {
+   "text": "D.R. Horton, Inc. is the largest homebuilding company in the United States as measured by number of homes closed. We construct and sell homes through our operating divisions in 126 markets across 36 states. Our common stock is included in the S&P 500 Index and listed on the New York Stock Exchange (NYSE) and NYSE Texas under the ticker symbol “DHI.” Our listing on NYSE Texas became effective in June 2025. Unless the context otherwise requires, the terms “D.R. Horton,” the “Company,” “we” and “our” used herein refer to D.R. Horton, Inc., a Delaware corporation, and its predecessors and subsidiaries. Our homebuilding business began in 1978 in Fort Worth, Texas, and our common stock has been publicly traded since 1992. We have expanded and diversified our homebuilding operations geographically over the years by investing capital and building teams of people in our existing markets, starting new operations in additional markets and acquiring other homebuilding companies. We have closed more than 1.2 million homes during our 47-year history, and we have been the largest volume homebuilder in the United States every year since 2002. Our business operations consist of homebuilding, rental, a majority-owned residential lot development company, financial services and other activities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-19",
+   "period": "2025-09-30",
+   "accession": "0000882184-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000081/dhi-20250930.htm"
+  },
+  "description_short": "D.R. Horton, Inc., Americas Builder, has been the largest homebuilder by volume in the United States since 2002 and has closed 1.3 million homes in its 47-year history. D.R. Horton has operations in 126 markets in 36 states across the United States and is engaged in the construction and sale of high-quality homes through its diverse product portfolio with sales prices generally ranging from $200,000 to over $1,000,000. The Company also constructs and sells both single-family and multi-family rental properties. During the twelve-month period ended June 30, 2026, D.R. Horton closed 84,655 homes in its homebuilding operations, in addition to 3,129 single-family rental homes and 2,370 multi-family rental units in its rental operations. D.R. Horton also provides mortgage financing, title services and insurance agency services for its homebuyers and is the majority-owner of Forestar Group Inc., a publicly traded national residential lot development company.",
+  "industry": "Homebuilding",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "1531",
+  "sic_description": "Operative Builders",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.drhorton.com",
+  "headquarters": "Arlington, Texas",
+  "address": {
+   "street": "1341 Horton Circle",
+   "city": "Arlington",
+   "state": "Texas",
+   "zip": "76011",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-19"
+  },
+  "phone": "(817) 390-8200",
+  "employees": {
+   "count": 14341,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we employed 14,341 people, of whom 9,972 work in our homebuilding operations, 2,967 in our financial services operations, 586 at our corporate office, 330 in our rental operations, 433 at Forestar and 53 in our other businesses.",
+   "form": "10-K",
+   "filed": "2025-11-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000081/dhi-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-15",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000882184&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000882184-26-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000108/dhi-20260915.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882184-26-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000096/dhi-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882184-26-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000092/dhi-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000882184-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000087/dhi-20260506.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882184-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000081/dhi-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882184-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000062/dhi-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-27",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000882184-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000053/dhi-20260327.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-22",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882184-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000014/dhi-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882184-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000007/dhi-20260120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000882184-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218426000004/dhi-20260115.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-12-10",
+   "period": "2026-01-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000882184-25-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000114/dhi-20251210.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-19",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000882184-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000081/dhi-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882184-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000044/dhi-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-23",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882184-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000040/dhi-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882184-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000036/dhi-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-09",
+   "period": "2025-05-08",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000882184-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000028/dhi-20250508.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-05-05",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-112839",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000119312525112839/d936431d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-04-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-112166",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000119312525112166/d934713d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-23",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000882184-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000024/dhi-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-17",
+   "period": "2025-04-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000882184-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/882184/000088218425000018/dhi-20250417.htm"
+  }
+ ],
+ "warnings": []
+}

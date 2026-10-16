@@ -1,0 +1,1871 @@
+{
+ "ticker": "CBRE",
+ "cik": 1138118,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001138118-26-000005",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000005/cbre-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001138118-26-000015",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000015/cbre-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001138118-26-000024",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1138118/000113811826000024/cbre-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cbre:BuildingOperationsExperienceMember",
+     "label": "Building Operations & Experience",
+     "values": [
+      17807000000,
+      20208000000,
+      23224000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5574,
+      0.565,
+      0.5727
+     ],
+     "growth_yoy": [
+      null,
+      0.1348,
+      0.1492
+     ]
+    },
+    {
+     "member": "cbre:AdvisoryServicesSegmentMember",
+     "label": "Advisory Services Segment",
+     "values": [
+      6907000000,
+      7729000000,
+      8840000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2162,
+      0.2161,
+      0.218
+     ],
+     "growth_yoy": [
+      null,
+      0.119,
+      0.1437
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementSegmentMember",
+     "label": "Project Management Segment",
+     "values": [
+      6300000000,
+      6809000000,
+      7657000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1972,
+      0.1904,
+      0.1888
+     ],
+     "growth_yoy": [
+      null,
+      0.0808,
+      0.1245
+     ]
+    },
+    {
+     "member": "cbre:RealEstateInvestmentsSegmentMember",
+     "label": "Real Estate Investments Segment",
+     "values": [
+      952000000,
+      1038000000,
+      879000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0298,
+      0.029,
+      0.0217
+     ],
+     "growth_yoy": [
+      null,
+      0.0903,
+      -0.1532
+     ]
+    },
+    {
+     "member": "cbre:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -17000000,
+      -17000000,
+      -50000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0005,
+      -0.0005,
+      -0.0012
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     31949000000,
+     35767000000,
+     40550000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cbre:BuildingOperationsExperienceMember",
+     "label": "Building Operations & Experience",
+     "values": [
+      5393000000,
+      5833000000,
+      6491000000,
+      6686000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6077,
+      0.6003,
+      0.6166,
+      0.5956
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2036,
+      0.1462
+     ]
+    },
+    {
+     "member": "cbre:AdvisoryServicesSegmentMember",
+     "label": "Advisory Services Segment",
+     "values": [
+      1659000000,
+      1959000000,
+      2024000000,
+      2306000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1869,
+      0.2016,
+      0.1923,
+      0.2054
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.22,
+      0.1771
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementSegmentMember",
+     "label": "Project Management Segment",
+     "values": [
+      1594000000,
+      1717000000,
+      1838000000,
+      2045000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1796,
+      0.1767,
+      0.1746,
+      0.1822
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1531,
+      0.191
+     ]
+    },
+    {
+     "member": "cbre:RealEstateInvestmentsSegmentMember",
+     "label": "Real Estate Investments Segment",
+     "values": [
+      233000000,
+      215000000,
+      199000000,
+      193000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0263,
+      0.0221,
+      0.0189,
+      0.0172
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1459,
+      -0.1023
+     ]
+    },
+    {
+     "member": "cbre:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -4000000,
+      -7000000,
+      -25000000,
+      -4000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0005,
+      -0.0007,
+      -0.0024,
+      -0.0004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8875000000,
+     9717000000,
+     10527000000,
+     11226000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cbre:BuildingOperationsExperienceMember",
+     "label": "Building Operations & Experience",
+     "values": [
+      17807000000,
+      20208000000,
+      23224000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5652,
+      0.5744,
+      0.5821
+     ],
+     "growth_yoy": [
+      null,
+      0.1348,
+      0.1492
+     ]
+    },
+    {
+     "member": "cbre:AdvisoryServicesSegmentMember",
+     "label": "Advisory Services Segment",
+     "values": [
+      6478000000,
+      7158000000,
+      8201000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2056,
+      0.2035,
+      0.2055
+     ],
+     "growth_yoy": [
+      null,
+      0.105,
+      0.1457
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementSegmentMember",
+     "label": "Project Management Segment",
+     "values": [
+      6300000000,
+      6809000000,
+      7657000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2,
+      0.1935,
+      0.1919
+     ],
+     "growth_yoy": [
+      null,
+      0.0808,
+      0.1245
+     ]
+    },
+    {
+     "member": "cbre:RealEstateInvestmentsSegmentMember",
+     "label": "Real Estate Investments Segment",
+     "values": [
+      937000000,
+      1023000000,
+      868000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0297,
+      0.0291,
+      0.0218
+     ],
+     "growth_yoy": [
+      null,
+      0.0918,
+      -0.1515
+     ]
+    },
+    {
+     "member": "cbre:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -17000000,
+      -17000000,
+      -50000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0005,
+      -0.0005,
+      -0.0013
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     31505000000,
+     35181000000,
+     39900000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cbre:BuildingOperationsExperienceMember",
+     "label": "Building Operations & Experience",
+     "values": [
+      5393000000,
+      5833000000,
+      6491000000,
+      6686000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6144,
+      0.6079,
+      0.6227,
+      0.6016
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2036,
+      0.1462
+     ]
+    },
+    {
+     "member": "cbre:AdvisoryServicesSegmentMember",
+     "label": "Advisory Services Segment",
+     "values": [
+      1567000000,
+      1838000000,
+      1921000000,
+      2194000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1785,
+      0.1915,
+      0.1843,
+      0.1974
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2259,
+      0.1937
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementSegmentMember",
+     "label": "Project Management Segment",
+     "values": [
+      1594000000,
+      1717000000,
+      1838000000,
+      2045000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1816,
+      0.1789,
+      0.1763,
+      0.184
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1531,
+      0.191
+     ]
+    },
+    {
+     "member": "cbre:RealEstateInvestmentsSegmentMember",
+     "label": "Real Estate Investments Segment",
+     "values": [
+      228000000,
+      215000000,
+      199000000,
+      193000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.026,
+      0.0224,
+      0.0191,
+      0.0174
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1272,
+      -0.1023
+     ]
+    },
+    {
+     "member": "cbre:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -4000000,
+      -7000000,
+      -25000000,
+      -4000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0005,
+      -0.0007,
+      -0.0024,
+      -0.0004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8778000000,
+     9596000000,
+     10424000000,
+     11114000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cbre:AdvisoryServicesSegmentMember",
+     "label": "Advisory Services Segment",
+     "values": [
+      1226000000,
+      1502000000,
+      1834000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0976,
+      1.063,
+      1.0462
+     ],
+     "growth_yoy": [
+      null,
+      0.2251,
+      0.221
+     ]
+    },
+    {
+     "member": "cbre:BuildingOperationsExperienceMember",
+     "label": "Building Operations & Experience",
+     "values": [
+      715000000,
+      894000000,
+      1094000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6401,
+      0.6327,
+      0.6241
+     ],
+     "growth_yoy": [
+      null,
+      0.2503,
+      0.2237
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementSegmentMember",
+     "label": "Project Management Segment",
+     "values": [
+      429000000,
+      500000000,
+      561000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3841,
+      0.3539,
+      0.32
+     ],
+     "growth_yoy": [
+      null,
+      0.1655,
+      0.122
+     ]
+    },
+    {
+     "member": "cbre:RealEstateInvestmentsSegmentMember",
+     "label": "Real Estate Investments Segment",
+     "values": [
+      239000000,
+      261000000,
+      324000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.214,
+      0.1847,
+      0.1848
+     ],
+     "growth_yoy": [
+      null,
+      0.0921,
+      0.2414
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -368000000,
+      -570000000,
+      -504000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3295,
+      -0.4034,
+      -0.2875
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1117000000,
+     1413000000,
+     1753000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cbre:AdvisoryServicesSegmentMember",
+     "label": "Advisory Services Segment",
+     "values": [
+      279000000,
+      347000000,
+      375000000,
+      449000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0109,
+      0.9278,
+      0.7339,
+      1.2301
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3441,
+      0.2939
+     ]
+    },
+    {
+     "member": "cbre:BuildingOperationsExperienceMember",
+     "label": "Building Operations & Experience",
+     "values": [
+      218000000,
+      267000000,
+      280000000,
+      335000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7899,
+      0.7139,
+      0.5479,
+      0.9178
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2844,
+      0.2547
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementSegmentMember",
+     "label": "Project Management Segment",
+     "values": [
+      112000000,
+      115000000,
+      135000000,
+      147000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4058,
+      0.3075,
+      0.2642,
+      0.4027
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2054,
+      0.2783
+     ]
+    },
+    {
+     "member": "cbre:RealEstateInvestmentsSegmentMember",
+     "label": "Real Estate Investments Segment",
+     "values": [
+      25000000,
+      25000000,
+      180000000,
+      42000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0906,
+      0.0668,
+      0.3523,
+      0.1151
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      6.2,
+      0.68
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -96000000,
+      -126000000,
+      -144000000,
+      -138000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3478,
+      -0.3369,
+      -0.2818,
+      -0.3781
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     276000000,
+     374000000,
+     511000000,
+     365000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cbre:FacilitiesManagementMember",
+     "label": "Facilities Management",
+     "values": [
+      16131000000,
+      18232000000,
+      20645000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.512,
+      0.5182,
+      0.5174
+     ],
+     "growth_yoy": [
+      null,
+      0.1302,
+      0.1323
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementMember",
+     "label": "Project Management",
+     "values": [
+      6300000000,
+      6809000000,
+      7657000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2,
+      0.1935,
+      0.1919
+     ],
+     "growth_yoy": [
+      null,
+      0.0808,
+      0.1245
+     ]
+    },
+    {
+     "member": "cbre:AdvisoryLeasingMember",
+     "label": "Advisory Leasing",
+     "values": [
+      3468000000,
+      3895000000,
+      4497000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1101,
+      0.1107,
+      0.1127
+     ],
+     "growth_yoy": [
+      null,
+      0.1231,
+      0.1546
+     ]
+    },
+    {
+     "member": "cbre:PropertyManagementMember",
+     "label": "Property Management",
+     "values": [
+      1659000000,
+      1959000000,
+      2529000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0527,
+      0.0557,
+      0.0634
+     ],
+     "growth_yoy": [
+      null,
+      0.1808,
+      0.291
+     ]
+    },
+    {
+     "member": "cbre:AdvisorySalesMember",
+     "label": "Advisory Sales",
+     "values": [
+      1606000000,
+      1767000000,
+      2120000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.051,
+      0.0502,
+      0.0531
+     ],
+     "growth_yoy": [
+      null,
+      0.1002,
+      0.1998
+     ]
+    },
+    {
+     "member": "cbre:ValuationMember",
+     "label": "Valuation",
+     "values": [
+      716000000,
+      751000000,
+      815000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0227,
+      0.0213,
+      0.0204
+     ],
+     "growth_yoy": [
+      null,
+      0.0489,
+      0.0852
+     ]
+    },
+    {
+     "member": "cbre:InvestmentManagementPropertyManagementBrokerageAndOtherProfessionalServicesMember",
+     "label": "Investment Management Property Management Brokerage And Other Professional Services",
+     "values": [
+      592000000,
+      650000000,
+      602000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0188,
+      0.0185,
+      0.0151
+     ],
+     "growth_yoy": [
+      null,
+      0.098,
+      -0.0738
+     ]
+    },
+    {
+     "member": "cbre:OtherPortfolioServicesMember",
+     "label": "Other Portfolio Services",
+     "values": [
+      376000000,
+      389000000,
+      354000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0119,
+      0.0111,
+      0.0089
+     ],
+     "growth_yoy": [
+      null,
+      0.0346,
+      -0.09
+     ]
+    },
+    {
+     "member": "cbre:RealEstateDevelopmentServicesMember",
+     "label": "Real Estate Development Services",
+     "values": [
+      345000000,
+      373000000,
+      266000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.011,
+      0.0106,
+      0.0067
+     ],
+     "growth_yoy": [
+      null,
+      0.0812,
+      -0.2869
+     ]
+    },
+    {
+     "member": "cbre:CommercialMortgageOriginationMember",
+     "label": "Commercial Mortgage Origination",
+     "values": [
+      138000000,
+      196000000,
+      251000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0044,
+      0.0056,
+      0.0063
+     ],
+     "growth_yoy": [
+      null,
+      0.4203,
+      0.2806
+     ]
+    },
+    {
+     "member": "cbre:LoanServicingMember",
+     "label": "Loan Servicing",
+     "values": [
+      174000000,
+      160000000,
+      164000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0055,
+      0.0045,
+      0.0041
+     ],
+     "growth_yoy": [
+      null,
+      -0.0805,
+      0.025
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     31505000000,
+     35181000000,
+     39900000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cbre:FacilitiesManagementMember",
+     "label": "Facilities Management",
+     "values": [
+      4469000000,
+      4784000000,
+      5229000000,
+      5311000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5091,
+      0.4985,
+      0.5016,
+      0.4779
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1701,
+      0.1102
+     ]
+    },
+    {
+     "member": "cbre:ProjectManagementMember",
+     "label": "Project Management",
+     "values": [
+      1594000000,
+      1717000000,
+      1838000000,
+      2045000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1816,
+      0.1789,
+      0.1763,
+      0.184
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1531,
+      0.191
+     ]
+    },
+    {
+     "member": "cbre:AdvisoryLeasingMember",
+     "label": "Advisory Leasing",
+     "values": [
+      862000000,
+      995000000,
+      1035000000,
+      1229000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0982,
+      0.1037,
+      0.0993,
+      0.1106
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2007,
+      0.2352
+     ]
+    },
+    {
+     "member": "cbre:PropertyManagementMember",
+     "label": "Property Management",
+     "values": [
+      582000000,
+      639000000,
+      659000000,
+      695000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0663,
+      0.0666,
+      0.0632,
+      0.0625
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1323,
+      0.0876
+     ]
+    },
+    {
+     "member": "cbre:CriticalInfrastructureMember",
+     "label": "Critical Infrastructure",
+     "values": [
+      338000000,
+      403000000,
+      578000000,
+      676000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0385,
+      0.042,
+      0.0554,
+      0.0608
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.7101,
+      0.6774
+     ]
+    },
+    {
+     "member": "cbre:AdvisorySalesMember",
+     "label": "Advisory Sales",
+     "values": [
+      360000000,
+      459000000,
+      513000000,
+      551000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.041,
+      0.0478,
+      0.0492,
+      0.0496
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.425,
+      0.2004
+     ]
+    },
+    {
+     "member": "cbre:ValuationMember",
+     "label": "Valuation",
+     "values": [
+      183000000,
+      196000000,
+      200000000,
+      220000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0208,
+      0.0204,
+      0.0192,
+      0.0198
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0929,
+      0.1224
+     ]
+    },
+    {
+     "member": "cbre:InvestmentManagementPropertyManagementBrokerageAndOtherProfessionalServicesMember",
+     "label": "Investment Management Property Management Brokerage And Other Professional Services",
+     "values": [
+      154000000,
+      145000000,
+      154000000,
+      149000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0175,
+      0.0151,
+      0.0148,
+      0.0134
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0276
+     ]
+    },
+    {
+     "member": "cbre:OtherPortfolioServicesMember",
+     "label": "Other Portfolio Services",
+     "values": [
+      81000000,
+      97000000,
+      75000000,
+      88000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0092,
+      0.0101,
+      0.0072,
+      0.0079
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0741,
+      -0.0928
+     ]
+    },
+    {
+     "member": "cbre:CommercialMortgageOriginationMember",
+     "label": "Commercial Mortgage Origination",
+     "values": [
+      42000000,
+      54000000,
+      61000000,
+      67000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0048,
+      0.0056,
+      0.0059,
+      0.006
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4524,
+      0.2407
+     ]
+    },
+    {
+     "member": "cbre:RealEstateDevelopmentServicesMember",
+     "label": "Real Estate Development Services",
+     "values": [
+      74000000,
+      70000000,
+      45000000,
+      44000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0084,
+      0.0073,
+      0.0043,
+      0.004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3919,
+      -0.3714
+     ]
+    },
+    {
+     "member": "cbre:LoanServicingMember",
+     "label": "Loan Servicing",
+     "values": [
+      39000000,
+      37000000,
+      37000000,
+      39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0044,
+      0.0039,
+      0.0035,
+      0.0035
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0513,
+      0.0541
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8778000000,
+     9596000000,
+     10424000000,
+     11114000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      17458000000,
+      20162000000,
+      22848000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5464,
+      0.5637,
+      0.5635
+     ],
+     "growth_yoy": [
+      null,
+      0.1549,
+      0.1332
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      4393000000,
+      4968000000,
+      5709000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1375,
+      0.1389,
+      0.1408
+     ],
+     "growth_yoy": [
+      null,
+      0.1309,
+      0.1492
+     ]
+    },
+    {
+     "member": "cbre:AllOtherCountriesMember",
+     "label": "All Other Countries",
+     "values": [
+      10098000000,
+      10637000000,
+      11993000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3161,
+      0.2974,
+      0.2958
+     ],
+     "growth_yoy": [
+      null,
+      0.0534,
+      0.1275
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     31949000000,
+     35767000000,
+     40550000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5134000000,
+      5489000000,
+      5981000000,
+      6400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5785,
+      0.5649,
+      0.5682,
+      0.5701
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.165,
+      0.166
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      1234000000,
+      1386000000,
+      1447000000,
+      1524000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.139,
+      0.1426,
+      0.1375,
+      0.1358
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1726,
+      0.0996
+     ]
+    },
+    {
+     "member": "cbre:AllOtherCountriesMember",
+     "label": "All Other Countries",
+     "values": [
+      2507000000,
+      2842000000,
+      3099000000,
+      3302000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2825,
+      0.2925,
+      0.2944,
+      0.2941
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2361,
+      0.1619
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8875000000,
+     9717000000,
+     10527000000,
+     11226000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Corporate And Reconciling Items' (cbre:CorporateAndReconcilingItemsMember)",
+  "business_segments/Revenues/quarterly: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Corporate And Reconciling Items' (cbre:CorporateAndReconcilingItemsMember)",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 188.8% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 228.8% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Bank Servicing' (us-gaap:BankServicingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Facilities Management, Property Management, Project Management, Advisory Leasing, Advisory Sales, Valuation, Other Portfolio Services, Commercial Mortgage Origination, Loan Servicing, Investment Management Property Management Brokerage And Other Professional Services, Real Estate Development Services)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,916 @@
+{
+ "ticker": "ECHO",
+ "cik": 1415404,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-021817",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926021817/tmb-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-058150",
+   "filed": "2026-05-11",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926058150/sats-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-089370",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926089370/sats-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sats:PayTvMember",
+     "label": "Pay Tv",
+     "values": [
+      2699810000,
+      2647954000,
+      2425228000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -9.7147,
+      -8.7084,
+      -0.1368
+     ],
+     "growth_yoy": [
+      null,
+      -0.0192,
+      -0.0841
+     ]
+    },
+    {
+     "member": "sats:RetailWirelessMember",
+     "label": "Retail Wireless",
+     "values": [
+      -643184000,
+      -477991000,
+      -495028000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      2.3144,
+      1.572,
+      0.0279
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sats:BroadbandAndSatelliteServicesMember",
+     "label": "Broadband and Satellite Services",
+     "values": [
+      -458609000,
+      -117901000,
+      -1607404000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.6502,
+      0.3877,
+      0.0907
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      5443000,
+      -2217000,
+      1958000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0196,
+      0.0073,
+      -0.0001
+     ],
+     "growth_yoy": [
+      null,
+      -1.4073,
+      null
+     ]
+    },
+    {
+     "member": "sats:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      -1881369000,
+      -2353915000,
+      -18047900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      6.7697,
+      7.7414,
+      1.0183
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -277909000,
+     -304070000,
+     -17723146000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sats:PayTvMember",
+     "label": "Pay Tv",
+     "values": [
+      653430000,
+      595552000,
+      471567000,
+      542341000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -7.4142,
+      -2.7907,
+      1.2004,
+      1.0573
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2783,
+      -0.0893
+     ]
+    },
+    {
+     "member": "sats:BroadbandAndSatelliteServicesMember",
+     "label": "Broadband and Satellite Services",
+     "values": [
+      -19195000,
+      -36738000,
+      44184000,
+      50457000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2178,
+      0.1721,
+      0.1125,
+      0.0984
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sats:RetailWirelessMember",
+     "label": "Retail Wireless",
+     "values": [
+      -93894000,
+      -118159000,
+      -35782000,
+      -97000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0654,
+      0.5537,
+      -0.0911,
+      -0.0002
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -63000,
+      725000,
+      173000,
+      709000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0007,
+      -0.0034,
+      0.0004,
+      0.0014
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0221
+     ]
+    },
+    {
+     "member": "sats:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      -628410000,
+      -654788000,
+      -87295000,
+      -80472000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      7.1303,
+      3.0682,
+      -0.2222,
+      -0.1569
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -88132000,
+     -213408000,
+     392847000,
+     512938000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sats:BroadbandAndSatelliteServicesMember",
+     "label": "Broadband and Satellite Services",
+     "values": [
+      419262000,
+      459796000,
+      404645000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2624,
+      0.2382,
+      0.2552
+     ],
+     "growth_yoy": [
+      null,
+      0.0967,
+      -0.1199
+     ]
+    },
+    {
+     "member": "sats:PayTvMember",
+     "label": "Pay Tv",
+     "values": [
+      381292000,
+      337331000,
+      262866000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2386,
+      0.1748,
+      0.1658
+     ],
+     "growth_yoy": [
+      null,
+      -0.1153,
+      -0.2207
+     ]
+    },
+    {
+     "member": "sats:RetailWirelessMember",
+     "label": "Retail Wireless",
+     "values": [
+      221968000,
+      153192000,
+      117509000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1389,
+      0.0794,
+      0.0741
+     ],
+     "growth_yoy": [
+      null,
+      -0.3098,
+      -0.2329
+     ]
+    },
+    {
+     "member": "sats:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      620685000,
+      1039920000,
+      844487000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3884,
+      0.5388,
+      0.5326
+     ],
+     "growth_yoy": [
+      null,
+      0.6754,
+      -0.1879
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -45284000,
+      -60046000,
+      -43958000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0283,
+      -0.0311,
+      -0.0277
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1597923000,
+     1930193000,
+     1585549000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sats:PayTvMember",
+     "label": "Pay Tv",
+     "values": [
+      76443000,
+      67825000,
+      55866000,
+      58315000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1565,
+      0.1376,
+      0.3353,
+      0.3419
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2692,
+      -0.1402
+     ]
+    },
+    {
+     "member": "sats:RetailWirelessMember",
+     "label": "Retail Wireless",
+     "values": [
+      20187000,
+      19250000,
+      49499000,
+      50857000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0413,
+      0.039,
+      0.2971,
+      0.2982
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.452,
+      1.6419
+     ]
+    },
+    {
+     "member": "sats:BroadbandAndSatelliteServicesMember",
+     "label": "Broadband and Satellite Services",
+     "values": [
+      104898000,
+      104437000,
+      49940000,
+      50017000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2148,
+      0.2118,
+      0.2998,
+      0.2933
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5239,
+      -0.5211
+     ]
+    },
+    {
+     "member": "sats:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      303929000,
+      317713000,
+      11305000,
+      11354000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6224,
+      0.6444,
+      0.0679,
+      0.0666
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.9628,
+      -0.9643
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -17124000,
+      -16170000,
+      -9000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0351,
+      -0.0328,
+      -0.0001,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     488333000,
+     493055000,
+     166601000,
+     170543000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service revenue",
+     "values": [
+      16145763000,
+      14956126000,
+      14023730000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9489,
+      0.9451,
+      0.9346
+     ],
+     "growth_yoy": [
+      null,
+      -0.0737,
+      -0.0623
+     ]
+    },
+    {
+     "member": "sats:EquipmentSalesAndOtherRevenueMember",
+     "label": "Equipment sales and other revenue",
+     "values": [
+      869835000,
+      869390000,
+      981259000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0511,
+      0.0549,
+      0.0654
+     ],
+     "growth_yoy": [
+      null,
+      -0.0005,
+      0.1287
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17015598000,
+     15825516000,
+     15004989000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service revenue",
+     "values": [
+      3606156000,
+      3540107000,
+      3375540000,
+      3301538000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9319,
+      0.9504,
+      0.9204,
+      0.9232
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.064,
+      -0.0674
+     ]
+    },
+    {
+     "member": "sats:EquipmentSalesAndOtherRevenueMember",
+     "label": "Equipment sales and other revenue",
+     "values": [
+      263602000,
+      184852000,
+      291949000,
+      274626000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0681,
+      0.0496,
+      0.0796,
+      0.0768
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1075,
+      0.4857
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3869758000,
+     3724959000,
+     3667489000,
+     3576164000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      16670377000,
+      15508769000,
+      14717241000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9797,
+      0.98,
+      0.9808
+     ],
+     "growth_yoy": [
+      null,
+      -0.0697,
+      -0.051
+     ]
+    },
+    {
+     "member": "sats:OtherExcludingNorthAmericaMember",
+     "label": "Other Excluding North America",
+     "values": [
+      345221000,
+      316747000,
+      287748000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0203,
+      0.02,
+      0.0192
+     ],
+     "growth_yoy": [
+      null,
+      -0.0825,
+      -0.0916
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17015598000,
+     15825516000,
+     15004989000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: row 'Reporting Segments Including Other Segment' (sats:ReportingSegmentsIncludingOtherSegmentMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reporting Segments Including Other Segment' (sats:ReportingSegmentsIncludingOtherSegmentMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Reporting Segments Including Other Segment' (sats:ReportingSegmentsIncludingOtherSegmentMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Reporting Segments Including Other Segment' (sats:ReportingSegmentsIncludingOtherSegmentMember) dropped: its name marks it as a subtotal of the other rows"
+ ],
+ "complete": true
+}

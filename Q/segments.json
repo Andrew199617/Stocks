@@ -1,0 +1,679 @@
+{
+ "ticker": "Q",
+ "cik": 2058873,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0002058873-26-000010",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000010/q-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002058873-26-000015",
+   "filed": "2026-05-12",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000015/q-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002058873-26-000030",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000030/q-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "q:SemiconductorTechnologiesMember",
+     "label": "Semiconductor Technologies",
+     "values": [
+      2251000000,
+      2450000000,
+      2642000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5579,
+      0.5652,
+      0.5557
+     ],
+     "growth_yoy": [
+      null,
+      0.0884,
+      0.0784
+     ]
+    },
+    {
+     "member": "q:InterconnectSolutionsMember",
+     "label": "Interconnect Solutions",
+     "values": [
+      1784000000,
+      1885000000,
+      2112000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4421,
+      0.4348,
+      0.4443
+     ],
+     "growth_yoy": [
+      null,
+      0.0566,
+      0.1204
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4035000000,
+     4335000000,
+     4754000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "q:SemiconductorTechnologiesMember",
+     "label": "Semiconductor Technologies",
+     "values": [
+      644000000,
+      644000000,
+      722000000,
+      744000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.576,
+      0.5504,
+      0.549,
+      0.5206
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1211,
+      0.1553
+     ]
+    },
+    {
+     "member": "q:InterconnectSolutionsMember",
+     "label": "Interconnect Solutions",
+     "values": [
+      474000000,
+      526000000,
+      593000000,
+      685000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.424,
+      0.4496,
+      0.451,
+      0.4794
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2511,
+      0.3023
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1118000000,
+     1170000000,
+     1315000000,
+     1429000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "q:SemiconductorTechnologiesSegmentMember",
+     "label": "Semiconductor Technologies Segment",
+     "values": [
+      7022000000,
+      7401000000,
+      7194000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4991,
+      0.5263,
+      0.502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "q:InterconnectSolutionsSegmentMember",
+     "label": "Interconnect Solutions Segment",
+     "values": [
+      5594000000,
+      5613000000,
+      5689000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3976,
+      0.3991,
+      0.397
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1454000000,
+      1049000000,
+      1448000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1033,
+      0.0746,
+      0.101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14070000000,
+     14063000000,
+     14331000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      1202000000,
+      1457000000,
+      1570000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2979,
+      0.3361,
+      0.3302
+     ],
+     "growth_yoy": [
+      null,
+      0.2121,
+      0.0776
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      677000000,
+      699000000,
+      725000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1678,
+      0.1612,
+      0.1525
+     ],
+     "growth_yoy": [
+      null,
+      0.0325,
+      0.0372
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      512000000,
+      595000000,
+      707000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1269,
+      0.1373,
+      0.1487
+     ],
+     "growth_yoy": [
+      null,
+      0.1621,
+      0.1882
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      555000000,
+      528000000,
+      591000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1375,
+      0.1218,
+      0.1243
+     ],
+     "growth_yoy": [
+      null,
+      -0.0486,
+      0.1193
+     ]
+    },
+    {
+     "member": "q:AmericasExcludingTheUnitedStatesMember",
+     "label": "Americas, Excluding The United States",
+     "values": [
+      27000000,
+      31000000,
+      38000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0067,
+      0.0072,
+      0.008
+     ],
+     "growth_yoy": [
+      null,
+      0.1481,
+      0.2258
+     ]
+    },
+    {
+     "member": "q:OtherMember",
+     "label": "Other",
+     "values": [
+      695000000,
+      667000000,
+      745000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1722,
+      0.1539,
+      0.1567
+     ],
+     "growth_yoy": [
+      null,
+      -0.0403,
+      0.1169
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4035000000,
+     4335000000,
+     4754000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      396000000,
+      388000000,
+      435000000,
+      478000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3542,
+      0.3316,
+      0.3308,
+      0.3345
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0985,
+      0.232
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      157000000,
+      177000000,
+      204000000,
+      222000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1404,
+      0.1513,
+      0.1551,
+      0.1554
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2994,
+      0.2542
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      163000000,
+      174000000,
+      194000000,
+      202000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1458,
+      0.1487,
+      0.1475,
+      0.1414
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1902,
+      0.1609
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      136000000,
+      151000000,
+      161000000,
+      172000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1216,
+      0.1291,
+      0.1224,
+      0.1204
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1838,
+      0.1391
+     ]
+    },
+    {
+     "member": "q:AmericasExcludingTheUnitedStatesMember",
+     "label": "Americas, Excluding The United States",
+     "values": [
+      8000000,
+      9000000,
+      10000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0072,
+      0.0077,
+      0.0076,
+      0.0091
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.25,
+      0.4444
+     ]
+    },
+    {
+     "member": "q:OtherMember",
+     "label": "Other",
+     "values": [
+      166000000,
+      176000000,
+      209000000,
+      237000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1485,
+      0.1504,
+      0.1589,
+      0.1659
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.259,
+      0.3466
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1118000000,
+     1170000000,
+     1315000000,
+     1429000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Americas' (srt:AmericasMember) dropped: it is the parent of UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'EMEA' (us-gaap:EMEAMember) dropped: it is the parent of Asia Pacific, CHINA, KOREA, REPUBLIC OF, Other, South Korea, Taiwan And Other Asia Pacific, TAIWAN in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Asia Pacific' (srt:AsiaPacificMember) dropped: it is the parent of CHINA, KOREA, REPUBLIC OF, Other, South Korea, Taiwan And Other Asia Pacific, TAIWAN in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'South Korea, Taiwan And Other Asia Pacific' (q:SouthKoreaTaiwanAndOtherAsiaPacificMember) dropped: it is the parent of KOREA, REPUBLIC OF, Other, TAIWAN in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 92.0% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Americas' (srt:AmericasMember) dropped: it is the parent of UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'EMEA' (us-gaap:EMEAMember) dropped: it is the parent of Asia Pacific, CHINA, KOREA, REPUBLIC OF, Other, South Korea, Taiwan And Other Asia Pacific, TAIWAN in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Asia Pacific' (srt:AsiaPacificMember) dropped: it is the parent of CHINA, KOREA, REPUBLIC OF, Other, South Korea, Taiwan And Other Asia Pacific, TAIWAN in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'South Korea, Taiwan And Other Asia Pacific' (q:SouthKoreaTaiwanAndOtherAsiaPacificMember) dropped: it is the parent of KOREA, REPUBLIC OF, Other, TAIWAN in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 92.7% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

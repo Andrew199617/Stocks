@@ -1,0 +1,1518 @@
+{
+ "ticker": "RJF",
+ "cik": 720005,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000720005-25-000093",
+   "filed": "2025-11-25",
+   "period": "2025-09-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/720005/000072000525000093/rjf-20250930_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000720005-26-000051",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000051/rjf-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000720005-26-000070",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000070/rjf-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      8754000000,
+      9578000000,
+      10282000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6738,
+      0.6418,
+      0.6462
+     ],
+     "growth_yoy": [
+      null,
+      0.0941,
+      0.0735
+     ]
+    },
+    {
+     "member": "rjf:RjBankMember",
+     "label": "RJ Bank",
+     "values": [
+      3154000000,
+      3554000000,
+      3376000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2428,
+      0.2382,
+      0.2122
+     ],
+     "growth_yoy": [
+      null,
+      0.1268,
+      -0.0501
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      1299000000,
+      1575000000,
+      1869000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1,
+      0.1055,
+      0.1175
+     ],
+     "growth_yoy": [
+      null,
+      0.2125,
+      0.1867
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      885000000,
+      1027000000,
+      1188000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0681,
+      0.0688,
+      0.0747
+     ],
+     "growth_yoy": [
+      null,
+      0.1605,
+      0.1568
+     ]
+    },
+    {
+     "member": "rjf:OtherOperatingSegmentsAndIntersegmentEliminationsMember",
+     "label": "Other Operating Segments And Intersegment Eliminations",
+     "values": [
+      -1100000000,
+      -811000000,
+      -803000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0847,
+      -0.0543,
+      -0.0505
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12992000000,
+     14923000000,
+     15912000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      2510000000,
+      2511000000,
+      2686000000,
+      2827000000,
+      2861000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6528,
+      0.6536,
+      0.6411,
+      0.6633,
+      0.6559
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1263,
+      0.1394
+     ]
+    },
+    {
+     "member": "rjf:RjBankMember",
+     "label": "RJ Bank",
+     "values": [
+      817000000,
+      841000000,
+      860000000,
+      816000000,
+      847000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2125,
+      0.2189,
+      0.2053,
+      0.1915,
+      0.1942
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0012,
+      0.0071
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      420000000,
+      405000000,
+      538000000,
+      489000000,
+      500000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1092,
+      0.1054,
+      0.1284,
+      0.1147,
+      0.1146
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1643,
+      0.2346
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      289000000,
+      291000000,
+      314000000,
+      327000000,
+      362000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0752,
+      0.0757,
+      0.0749,
+      0.0767,
+      0.083
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1315,
+      0.244
+     ]
+    },
+    {
+     "member": "rjf:OtherOperatingSegmentsAndIntersegmentEliminationsMember",
+     "label": "Other Operating Segments And Intersegment Eliminations",
+     "values": [
+      -191000000,
+      -206000000,
+      -208000000,
+      -197000000,
+      -208000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0497,
+      -0.0536,
+      -0.0496,
+      -0.0462,
+      -0.0477
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3845000000,
+     3842000000,
+     4190000000,
+     4262000000,
+     4362000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "rjf:BankSegmentMember",
+     "label": "Bank Segment",
+     "values": [
+      62367000000,
+      65263000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7515,
+      0.7397
+     ],
+     "growth_yoy": [
+      null,
+      0.0464
+     ]
+    },
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      13413000000,
+      14007000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1616,
+      0.1588
+     ],
+     "growth_yoy": [
+      null,
+      0.0443
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      3518000000,
+      3426000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0424,
+      0.0388
+     ],
+     "growth_yoy": [
+      null,
+      -0.0262
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      616000000,
+      632000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0074,
+      0.0072
+     ],
+     "growth_yoy": [
+      null,
+      0.026
+     ]
+    },
+    {
+     "member": "rjf:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      3078000000,
+      4902000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0371,
+      0.0556
+     ],
+     "growth_yoy": [
+      null,
+      0.5926
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     82992000000,
+     88230000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rjf:BankSegmentMember",
+     "label": "Bank Segment",
+     "values": [
+      65263000000,
+      68986000000,
+      70054000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7397,
+      0.7503,
+      0.7434
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      14007000000,
+      14563000000,
+      14975000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1588,
+      0.1584,
+      0.1589
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      3426000000,
+      3775000000,
+      3912000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0388,
+      0.0411,
+      0.0415
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      632000000,
+      595000000,
+      1263000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0072,
+      0.0065,
+      0.0134
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      4902000000,
+      4025000000,
+      4033000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0556,
+      0.0438,
+      0.0428
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     88230000000,
+     91944000000,
+     94237000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rjf:BankSegmentMember",
+     "label": "Bank Segment",
+     "values": [
+      1957000000,
+      1656000000,
+      1715000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.824,
+      0.7775,
+      0.7988
+     ],
+     "growth_yoy": [
+      null,
+      -0.1538,
+      0.0356
+     ]
+    },
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      355000000,
+      361000000,
+      368000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1495,
+      0.1695,
+      0.1714
+     ],
+     "growth_yoy": [
+      null,
+      0.0169,
+      0.0194
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      10000000,
+      14000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0042,
+      0.0066,
+      0.0061
+     ],
+     "growth_yoy": [
+      null,
+      0.4,
+      -0.0714
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      3000000,
+      6000000,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0013,
+      0.0028,
+      0.0056
+     ],
+     "growth_yoy": [
+      null,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "member": "rjf:OtherOperatingSegmentsAndIntersegmentEliminationsMember",
+     "label": "Other Operating Segments And Intersegment Eliminations",
+     "values": [
+      50000000,
+      93000000,
+      39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0211,
+      0.0437,
+      0.0182
+     ],
+     "growth_yoy": [
+      null,
+      0.86,
+      -0.5806
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2375000000,
+     2130000000,
+     2147000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rjf:BankSegmentMember",
+     "label": "Bank Segment",
+     "values": [
+      419000000,
+      440000000,
+      442000000,
+      472000000,
+      472000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8042,
+      0.8059,
+      0.8022,
+      0.8474,
+      0.8429
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1265,
+      0.0727
+     ]
+    },
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      86000000,
+      91000000,
+      92000000,
+      90000000,
+      95000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1651,
+      0.1667,
+      0.167,
+      0.1616,
+      0.1696
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0465,
+      0.044
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      4000000,
+      3000000,
+      2000000,
+      2000000,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0077,
+      0.0055,
+      0.0036,
+      0.0036,
+      0.0036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.5,
+      -0.3333
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      3000000,
+      3000000,
+      3000000,
+      3000000,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0058,
+      0.0055,
+      0.0054,
+      0.0054,
+      0.0036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0,
+      -0.3333
+     ]
+    },
+    {
+     "member": "rjf:OtherOperatingSegmentsAndIntersegmentEliminationsMember",
+     "label": "Other Operating Segments And Intersegment Eliminations",
+     "values": [
+      9000000,
+      9000000,
+      12000000,
+      -10000000,
+      -11000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0173,
+      0.0165,
+      0.0218,
+      -0.018,
+      -0.0196
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -2.1111,
+      -2.2222
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     521000000,
+     546000000,
+     551000000,
+     557000000,
+     560000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      8299000000,
+      9098000000,
+      9814000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8978,
+      0.851,
+      0.8235
+     ],
+     "growth_yoy": [
+      null,
+      0.0963,
+      0.0787
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      1211000000,
+      1466000000,
+      1758000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.131,
+      0.1371,
+      0.1475
+     ],
+     "growth_yoy": [
+      null,
+      0.2106,
+      0.1992
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      875000000,
+      1013000000,
+      1175000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0947,
+      0.0948,
+      0.0986
+     ],
+     "growth_yoy": [
+      null,
+      0.1577,
+      0.1599
+     ]
+    },
+    {
+     "member": "rjf:BankSegmentMember",
+     "label": "Bank Segment",
+     "values": [
+      56000000,
+      60000000,
+      61000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0061,
+      0.0056,
+      0.0051
+     ],
+     "growth_yoy": [
+      null,
+      0.0714,
+      0.0167
+     ]
+    },
+    {
+     "member": "rjf:OtherOperatingSegmentsAndIntersegmentEliminationsMember",
+     "label": "Other Operating Segments And Intersegment Eliminations",
+     "values": [
+      -1197000000,
+      -946000000,
+      -890000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1295,
+      -0.0885,
+      -0.0747
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9244000000,
+     10691000000,
+     11918000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rjf:PrivateClientGroupMember",
+     "label": "Private Client Group",
+     "values": [
+      2400000000,
+      2397000000,
+      2568000000,
+      2720000000,
+      2746000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8328,
+      0.8405,
+      0.8086,
+      0.8237,
+      0.8153
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1333,
+      0.1456
+     ]
+    },
+    {
+     "member": "rjf:CapitalMarketsMember",
+     "label": "Capital Markets",
+     "values": [
+      392000000,
+      378000000,
+      511000000,
+      462000000,
+      475000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.136,
+      0.1325,
+      0.1609,
+      0.1399,
+      0.141
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1786,
+      0.2566
+     ]
+    },
+    {
+     "member": "rjf:AssetManagementSegmentMember",
+     "label": "Asset Management Segment",
+     "values": [
+      286000000,
+      288000000,
+      311000000,
+      324000000,
+      360000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0992,
+      0.101,
+      0.0979,
+      0.0981,
+      0.1069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1329,
+      0.25
+     ]
+    },
+    {
+     "member": "rjf:BankSegmentMember",
+     "label": "Bank Segment",
+     "values": [
+      15000000,
+      18000000,
+      17000000,
+      14000000,
+      16000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0052,
+      0.0063,
+      0.0054,
+      0.0042,
+      0.0048
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0667,
+      -0.1111
+     ]
+    },
+    {
+     "member": "rjf:OtherOperatingSegmentsAndIntersegmentEliminationsMember",
+     "label": "Other Operating Segments And Intersegment Eliminations",
+     "values": [
+      -211000000,
+      -229000000,
+      -231000000,
+      -218000000,
+      -229000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0732,
+      -0.0803,
+      -0.0727,
+      -0.066,
+      -0.068
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2882000000,
+     2852000000,
+     3176000000,
+     3302000000,
+     3368000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      77033000000,
+      82289000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9282,
+      0.9327
+     ],
+     "growth_yoy": [
+      null,
+      0.0682
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      3347000000,
+      3182000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0403,
+      0.0361
+     ],
+     "growth_yoy": [
+      null,
+      -0.0493
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      2612000000,
+      2759000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0315,
+      0.0313
+     ],
+     "growth_yoy": [
+      null,
+      0.0563
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     82992000000,
+     88230000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      82289000000,
+      85384000000,
+      87770000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9327,
+      0.9287,
+      0.9314
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      3182000000,
+      3492000000,
+      3596000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0361,
+      0.038,
+      0.0382
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      2759000000,
+      3068000000,
+      2871000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0313,
+      0.0334,
+      0.0305
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     88230000000,
+     91944000000,
+     94237000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

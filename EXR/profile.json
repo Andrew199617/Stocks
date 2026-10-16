@@ -1,0 +1,294 @@
+{
+ "ticker": "EXR",
+ "cik": 1289490,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:11-04:00",
+ "newest_filing_date": "2026-08-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001289490.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000011/exr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EXR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EXR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Extra Space Storage Inc.",
+  "cik": 1289490,
+  "description": {
+   "text": "Extra Space Storage Inc. (“we,” “our,” “us” or the “Company”) is a fully integrated, self-administered and self-managed real estate investment trust (“REIT”) formed as a Maryland corporation on April 30, 2004. We closed our initial public offering (“IPO”) on August 17, 2004. Our common stock is traded on the New York Stock Exchange under the symbol “EXR.” We were formed to continue the business of Extra Space Storage LLC and its subsidiaries, which had engaged in the self-storage business since 1977. These companies were reorganized after the consummation of our IPO and various formation transactions. Our executive management team and board of directors have extensive experience and ownership positions in the Company. Substantially all of our business is conducted through Extra Space Storage LP (the “Operating Partnership”). Our primary assets are general partner and limited partner interests in the Operating Partnership. This structure is commonly referred to as an umbrella partnership REIT, or UPREIT. We have elected to be taxed as a REIT under the Internal Revenue Code of 1986, as amended (the “Internal Revenue Code”). To the extent we continue to qualify as a REIT, we will not be subject to U.S. federal tax, with certain exceptions, on our REIT taxable income that is distributed to our stockholders. Our principal offices are located at 2795 East Cottonwood Parkway, Suite 300, Salt Lake City, Utah 84121, telephone number (801) 365-4600.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001289490-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000011/exr-20251231.htm"
+  },
+  "description_short": "Extra Space Storage Inc., headquartered in Salt Lake City, Utah, is a self-administered and self-managed REIT and a member of the S&P 500. As of June 30, 2026, the Company owned and/or operated 4,410 self-storage stores in 42 states and Washington, D.C. The Company's stores comprise approximately 3 million units and approximately 341 million square feet of rentable space operating under the Extra Space brand. The Company offers customers a wide selection of conveniently located and secure storage units across the country, including boat storage, RV storage and business storage. It is the largest operator of self-storage properties in the United States.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "http://www.extraspace.com",
+  "headquarters": "Salt Lake City, Utah",
+  "address": {
+   "street": "2795 East Cottonwood Parkway, Suite 300",
+   "city": "Salt Lake City",
+   "state": "Utah",
+   "zip": "84121",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "801-562-5556",
+  "employees": {
+   "count": 8393,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 8,393 employees and believe our relationship with our employees is good.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000011/exr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2004-05-13",
+  "first_sec_filing_form": "S-11",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001289490&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001289490-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000058/exr-20260824.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001289490-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000053/exr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001289490-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000048/exr-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-296159",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000119312526296159/d152545d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-282771",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000119312526282771/d32600d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001289490-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000039/exr-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001289490-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000037/exr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001289490-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000034/exr-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-01",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001289490-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000027/exr-20260330.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001289490-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000011/exr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001289490-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000007/exr-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-05",
+   "period": "2026-01-05",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001289490-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000003/exr-20260105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001289490-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949025000024/exr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001289490-25-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949025000020/exr-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-26",
+   "period": "2025-08-21",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001289490-25-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949025000017/exr-20250821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-08",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-176975",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000119312525176975/d847619d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-175552",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000119312525175552/d90865d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-174047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000119312525174047/d949064d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001289490-25-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949025000011/exr-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001289490-25-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1289490/000128949025000007/exr-20250730.htm"
+  }
+ ],
+ "warnings": []
+}

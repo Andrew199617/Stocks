@@ -1,0 +1,281 @@
+{
+ "ticker": "PEG",
+ "cik": 788784,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:56-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000788784.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/788784/000119312526077446/peg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PEG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PEG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "PUBLIC SERVICE ENTERPRISE GROUP INC",
+  "cik": 788784,
+  "description": {
+   "text": "We are a public utility holding company that, acting through our wholly owned subsidiaries, is a predominantly regulated electric and gas utility and a nuclear generation business. Our business plan focuses on achieving growth by allocating capital primarily toward regulated investments in an effort to continue to improve the sustainability and predictability of our business and realizing the value of the consistent and reliable carbon-free generation from our nuclear units. As a holding company, our profitability depends on our subsidiaries’ operating results. We principally conduct our business through two direct wholly owned subsidiaries, PSE&G and PSEG Power LLC (PSEG Power), described below, each of which also has its principal executive offices at 80 Park Plaza, Newark, New Jersey 07102.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-077446",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526077446/peg-20251231.htm"
+  },
+  "description_short": "Public Service Enterprise Group (PSEG) (NYSE: PEG) is a predominantly regulated infrastructure company operating New Jersey's largest transmission and distribution utility, serving approximately 2.4 million electric and 1.9 million natural gas customers. PSEG also owns an independent fleet of 3,758 MW of carbon-free, baseload nuclear power generating units in NJ and PA. PSEG aims to power a future where people use energy more efficiently, and it's safer and delivered more reliably than ever. PSEG is a member of the S&P 500 Index and has been named to the Dow Jones Best in Class North America Index for 18 consecutive years. PSEG's businesses include Public Service Electric and Gas Co. (PSE&G), PSEG Power and PSEG Long Island ( https://corporate.pseg.com ).",
+  "industry": "Power Generation",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4931",
+  "sic_description": "Electric & Other Services Combined",
+  "state_of_incorporation": "NJ",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://investor.pseg.com",
+  "headquarters": "Newark, New Jersey",
+  "address": {
+   "street": "80 Park Plaza",
+   "city": "Newark",
+   "state": "New Jersey",
+   "zip": "07102",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "973-430-7000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-21",
+  "first_sec_filing_form": "8-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000788784&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-332943",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526332943/peg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-331660",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526331660/d101695d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-292587",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526292587/d913061d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-255562",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526255562/d38824d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-206545",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526206545/peg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-205254",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526205254/d63722d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-173855",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526173855/d125718d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-23",
+   "period": "2026-01-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-173838",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526173838/d224958d8ka.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-104270",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526104270/peg-20260310.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-077446",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526077446/peg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-073678",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526073678/d57788d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-018045",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526018045/d78622d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-262643",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312525262643/peg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-25-261789",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312525261789/d36283d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-103096",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000095017025103096/peg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-25-173127",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312525173127/d206274d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-30",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-061108",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000095017025061108/peg-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-25-105862",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312525105862/d629044d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-25",
+   "period": "2025-04-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-097067",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312525097067/d854626d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-13",
+   "period": "2025-04-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-053984",
+   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312525053984/d796078ddef14a.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-26"
+ ]
+}

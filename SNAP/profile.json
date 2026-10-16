@@ -1,0 +1,300 @@
+{
+ "ticker": "SNAP",
+ "cik": 1564408,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:00-04:00",
+ "newest_filing_date": "2026-09-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001564408.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SNAP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SNAP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Snap Inc",
+  "cik": 1564408,
+  "description": {
+   "text": "Snap Inc. is a technology company. We believe the camera presents the greatest opportunity to improve the way people live and communicate. We contribute to human progress by empowering people to express themselves, live in the moment, learn about the world, and have fun together. Our flagship product, Snapchat, is a visual messaging application that enhances your relationships with friends, family, and the world. Visual messaging is a fast, fun way to communicate with friends and family using augmented reality, video, voice, messaging, and creative tools. Snaps are deleted by default to mimic real-life conversations, so there is less pressure to look popular or perfect when creating and sending images on Snapchat. By reducing the friction typically associated with creating and sharing content, Snapchat has become one of the most used cameras in the world. The camera is a powerful tool for communication and the entry point for augmented reality experiences. By opening directly to the camera, Snapchat empowers our community to express themselves instantly and offers millions of augmented reality Lenses for self expression, learning, and play. In the way that the flashing cursor became the starting point for most products on desktop computers, we believe the camera screen will be the starting point for most products on smartphones.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "accession": "0001564408-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+  },
+  "description_short": "Snap Inc. is a technology company. We believe the camera presents the greatest opportunity to improve the way people live and communicate. Snap contributes to human progress by empowering people to express themselves, live in the moment, learn about the world, and have fun together. Snap Inc. operates Snapchat, a visual messaging app that enhances your relationships with friends, family, and the world, and Specs Inc., a wholly-owned subsidiary dedicated to making computing more human, in addition to Bitmoji, Saturn, and other digital services. For more information, visit snap.com.",
+  "industry": "Computer Software: Programming, Data Processing",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7370",
+  "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.snap.com",
+  "headquarters": "Santa Monica, California",
+  "address": {
+   "street": "3000 31st Street",
+   "city": "Santa Monica",
+   "state": "California",
+   "zip": "90405",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-05"
+  },
+  "phone": "(310) 399-3339",
+  "employees": {
+   "count": 5261,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 5,261 full-time employees, of whom approximately 54% are in engineering roles involved in the design, development, support, and manufacture of new and existing products and processes.",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-02-02",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Snap Inc",
+   "Snapchat Inc"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001564408&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-385199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526385199/d129201d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000052/snap-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001564408-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000047/snap-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-09",
+   "period": "2026-07-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564408-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000041/snap-20260709.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-232814",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526232814/d100806d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-07",
+   "period": "2026-05-05",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-212461",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526212461/d135064d8ka.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000027/snap-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001564408-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000024/snap-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-164232",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526164232/d139401d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [
+    "2.02",
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Reg FD",
+   "accession": "0001193125-26-155861",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312526155861/d36756d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001564408-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001564408-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000011/snap-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001564408-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000069/snap-20251204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-25-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000065/snap-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001564408-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000063/snap-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-196218",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312525196218/d913466d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-07",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-179072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000119312525179072/d427483d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001564408-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000052/snap-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-04",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001564408-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000047/snap-20250804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-10",
+   "period": "2025-07-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564408-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440825000038/snap-20250710.htm"
+  }
+ ],
+ "warnings": []
+}

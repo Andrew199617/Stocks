@@ -1,0 +1,284 @@
+{
+ "ticker": "PAYX",
+ "cik": 723531,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:12:44-04:00",
+ "newest_filing_date": "2026-09-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000723531.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/723531/000119312526307785/payx-20260531.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PAYX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PAYX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "PAYCHEX INC",
+  "cik": 723531,
+  "description": {
+   "text": "We are an industry-leading human capital management (“HCM”) company providing comprehensive technology and advisory solutions in human resources (“HR”), payroll processing, employee benefits, and insurance. As of May 31, 2026, we served approximately 840,000 total customers across the U.S. and parts of Europe, of which approximately 800,000 are payroll clients. Paychex was incorporated in Delaware in 1979, maintains dual corporate headquarters in Rochester, New York and Cincinnati, Ohio, and has a fiscal year that ends on May 31st. Effective human capital management requires significant resources and expertise. Organizations face a rapidly evolving employment landscape including an increasing number and complexity of federal, state, and local regulations; the integration of AI into HCM processes; changing workforce dynamics; increasing medical inflation; and challenges attracting and retaining talent. Changing workplace dynamics include increasingly distributed, mobile workforces as well as employee expectations for user experiences similar to customer-oriented applications. We specialize in helping customers succeed in this rapidly evolving environment. What sets us apart in the industry is our comprehensive suite of solutions, deep advisory expertise, and differentiated access to a large and growing proprietary dataset.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-07-17",
+   "period": "2026-05-31",
+   "accession": "0001193125-26-307785",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526307785/payx-20260531.htm"
+  },
+  "description_short": "Paychex, Inc. (Nasdaq: PAYX) provides a comprehensive suite of expert-enabled technology and advisory solutions that help businesses manage HR, payroll, and benefits. Serving approximately 840,000 customers and paying 1 in 11 U.S. private sector workers, Paychex combines scale, trusted expertise, and innovation to help businesses succeed. Built on more than 50 years of workforce experience and one of the industry's largest proprietary HR datasets, Paychex's WISE agentic AI engine embeds intelligence directly into workflows to improve productivity, enhance decision-making, and deliver better outcomes.",
+  "industry": "Diversified Commercial Services",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "8700",
+  "sic_description": "Services-Engineering, Accounting, Research, Management",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0531",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.paychex.com",
+  "headquarters": "Rochester, NY",
+  "address": {
+   "street": "911 Panorama Trail South",
+   "city": "Rochester",
+   "state": "NY",
+   "zip": "14625-2396",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-07-17"
+  },
+  "phone": "5853856666",
+  "employees": {
+   "count": 17600,
+   "as_of": "2026-05-31",
+   "evidence": "As of May 31, 2026, we employed approximately 17,600 people, primarily in the U.S. and on a full-time basis.",
+   "form": "10-K",
+   "filed": "2026-07-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526307785/payx-20260531.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-06",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000723531&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-09-24",
+   "period": "2026-08-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000723531-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000072353126000006/payx-20260831.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000723531-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000072353126000004/payx-20260923.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-04",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-382805",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526382805/d111983ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-16",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-310277",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526310277/payx-20260716.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-07-17",
+   "period": "2026-05-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-307785",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526307785/payx-20260531.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-280314",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526280314/payx-20260624.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-03-26",
+   "period": "2026-02-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-126204",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526126204/payx-20260228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-122887",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526122887/payx-20260325.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-23",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-26-021794",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526021794/payx-20260123.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-16",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001193125-26-016044",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312526016044/payx-20260116.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-22",
+   "period": "2025-11-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-328698",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312525328698/payx-20251130.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-325838",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312525325838/payx-20251219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-09",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-239171",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312525239171/payx-20251009.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-09-30",
+   "period": "2025-08-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-224997",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312525224997/payx-20250831.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-30",
+   "period": "2025-09-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-224146",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312525224146/payx-20250930.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-08-29",
+   "period": "2025-10-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-191789",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000119312525191789/d946290ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-14",
+   "period": "2025-07-08",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000950170-25-095576",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000095017025095576/payx-20250708.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-07-11",
+   "period": "2025-05-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000950170-25-095300",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000095017025095300/payx-20250531.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-06-27",
+   "period": "2025-04-14",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0000950103-25-007996",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000095010325007996/dp230646_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-25",
+   "period": "2025-06-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-089743",
+   "url": "https://www.sec.gov/Archives/edgar/data/723531/000095017025089743/payx-20250625.htm"
+  }
+ ],
+ "warnings": []
+}

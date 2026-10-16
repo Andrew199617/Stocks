@@ -1,0 +1,299 @@
+{
+ "ticker": "STLD",
+ "cik": 1022671,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:05-04:00",
+ "newest_filing_date": "2026-09-18",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001022671.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926021395/stld-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/STLD/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/STLD/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "STEEL DYNAMICS INC",
+  "cik": 1022671,
+  "description": {
+   "text": "Steel Dynamics, Inc. is a leading industrial metals solutions company, with facilities located throughout the United States and Mexico. The company operates a circular manufacturing model, producing high-quality, lower-carbon-emission products with recycled scrap as the primary input. Steel Dynamics is one of the largest domestic steel producers and metals recyclers in North America based on estimated steelmaking and steel coating capacity of approximately 16 million tons and actual metals recycling volumes as of December 31, 2025, with one of the most diversified product and end market portfolios in the domestic steel industry, combined with a meaningful downstream steel fabrication platform. The company also has aluminum operations, further diversifying its product offerings to supply aluminum flat rolled products with higher recycled content to the countercyclical, sustainable beverage can industry, as well as the automotive and industrial sectors. The company’s primary sources of revenue are currently derived from the manufacture and sale of steel products, the processing and sale of recycled ferrous and nonferrous metals, and the fabrication and sale of steel joist and deck products. We refer to our founding principles as our six core strategic pillars. These pillars unify our teams around a common focus and provide the foundation for how we operate and grow.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-021395",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926021395/stld-20251231x10k.htm"
+  },
+  "description_short": "Steel Dynamics is a leading industrial metals solutions company, with facilities located throughout the United States, and in Mexico. The company operates using a circular manufacturing model, producing lower-carbon-emission, quality products with recycled scrap as the primary input. Steel Dynamics is one of the largest domestic steel producers and metal recyclers in North America, combined with a meaningful downstream steel fabrication platform. The company has also recently added aluminum operations, further diversifying its product offerings to supply aluminum flat rolled products with higher recycled content to the countercyclical sustainable beverage can industry, in addition to the automotive and industrial sectors. Steel Dynamics is committed to operating with the highest integrity and to being the safest, most efficient producer of high-quality, broadly diversified, value-added metal products.",
+  "industry": "Steel/Iron Ore",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3312",
+  "sic_description": "Steel Works, Blast Furnaces & Rolling Mills (Coke Ovens)",
+  "state_of_incorporation": "IN",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.steeldynamics.com",
+  "headquarters": "Fort Wayne, IN",
+  "address": {
+   "street": "7575 West Jefferson Blvd",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "zip": "46804",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "260 459 3553",
+  "employees": {
+   "count": 14400,
+   "as_of": "2025-12-31",
+   "evidence": "The Steel Dynamics team consisted of approximately 14,400 full-time team members at December 31, 2025.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926021395/stld-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-09-23",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "STEEL DYNAMICS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001022671&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-108777",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926108777/tm2625690d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-08-18",
+   "period": "2026-08-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-26-098390",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926098390/tm2623531d1_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-14",
+   "period": "2026-08-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-096861",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926096861/tm2623292d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-090129",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926090129/tm2622182d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-087414",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926087414/stld-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-085277",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926085277/tm2620920d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-075470",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926075470/tm2618235d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-06",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001104659-26-057616",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926057616/tm2613966d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-27",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-049415",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926049415/stld-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-045938",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926045938/tm2612296d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-27",
+   "period": "2026-03-25",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-035891",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926035891/tm2610089d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-035826",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926035826/stld-20260506xdef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-030153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926030153/tm269098d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-021395",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926021395/stld-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-018398",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926018398/tm266978d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-016583",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926016583/tm266672d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-006889",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926006889/tm264071d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-06",
+   "period": "2026-01-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-000833",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465926000833/tm261963d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-23",
+   "period": "2025-12-21",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001104659-25-124210",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465925124210/tm2534279d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-25-121880",
+   "url": "https://www.sec.gov/Archives/edgar/data/1022671/000110465925121880/tm2533755d1_8k.htm"
+  }
+ ],
+ "warnings": []
+}

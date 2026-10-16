@@ -1,0 +1,303 @@
+{
+ "ticker": "CFG",
+ "cik": 759944,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:08:25-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000759944.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000028/cfg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CFG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CFG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CITIZENS FINANCIAL GROUP INC/RI",
+  "cik": 759944,
+  "description": {
+   "text": "Citizens Financial Group, Inc. is headquartered in Providence, Rhode Island. We offer a broad range of retail and commercial banking products and services to individuals, small businesses, middle-market companies, large corporations, and institutions. Our products and services are offered through more than 1,000 branches in 14 states and the District of Columbia and 75 retail and commercial non-branch offices, though certain lines of business serve national markets. At December 31, 2025, we had total assets of $226.4 billion, total deposits of $183.3 billion, and total stockholders’ equity of $26.3 billion. In addition, we had total client assets of $61.9 billion, including assets under management of $35.9 billion, representing assets for which continuous and regular supervisory or management services are provided, and transactional assets of $26.0 billion, representing assets for which execution, custody, recordkeeping, reporting, and other services are provided. We are a BHC incorporated under Delaware state law in 1984, and our primary federal regulator is the FRB. CBNA is our banking subsidiary, whose primary federal regulator is the OCC.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0000759944-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000028/cfg-20251231.htm"
+  },
+  "description_short": "Citizens Financial Group, Inc. is one of the nation's oldest and largest financial institutions, with $233.8 billion in assets as of June 30, 2026. Headquartered in Providence, Rhode Island, Citizens offers a broad range of retail, private banking, wealth management and commercial banking products and services to individuals, small businesses, middle-market companies, large corporations and institutions. Citizens helps its customers reach their potential by listening to them and by understanding their needs in order to offer tailored advice, ideas and solutions. In Consumer Banking, Citizens provides an integrated experience that includes mobile and online banking, a full-service customer contact center and the convenience of approximately 3,000 ATMs and approximately 1,000 branches in 14 states and the District of Columbia. Consumer Banking products and services include a full range of banking, lending, savings, wealth management and small business offerings.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6022",
+  "sic_description": "State Commercial Banks",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.citizensbank.com",
+  "headquarters": "Providence, RI",
+  "address": {
+   "street": "One Citizens Plaza",
+   "city": "Providence",
+   "state": "RI",
+   "zip": "02903",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "2039006715",
+  "employees": {
+   "count": 17398,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Citizens had 17,398 full-time equivalent employees, primarily across New England and the Mid-Atlantic.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000028/cfg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-05-12",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "CITIZENS FINANCIAL GROUP INC/DE"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000759944&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-06",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000759944-26-000192",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000192/cfg-20261006.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000759944-26-000148",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000148/cfg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-27",
+   "items": [
+    "3.03",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-26-326411",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000119312526326411/d144911d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000759944-26-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000139/cfg-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000759944-26-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000133/cfg-20260716.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000759944-26-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000101/cfg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-23",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000759944-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000073/cfg-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-16",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000759944-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000070/cfg-20260416.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-09",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000759944-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000064/cfg-20260309.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000759944-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000028/cfg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-029534",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000119312526029534/d66853d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000759944-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000020/cfg-20260122.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000759944-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994426000017/cfg-20260121.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000759944-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994425000153/cfg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000759944-25-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994425000139/cfg-20251015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-07",
+   "period": "2025-10-07",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000759944-25-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994425000135/cfg-20251007.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-06",
+   "period": "2025-10-06",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000759944-25-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994425000133/cfg-20251006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-178517",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000119312525178517/d948553d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000759944-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000075994425000108/cfg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-25",
+   "items": [
+    "3.03",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-25-170524",
+   "url": "https://www.sec.gov/Archives/edgar/data/759944/000119312525170524/d870391d8k.htm"
+  }
+ ],
+ "warnings": []
+}

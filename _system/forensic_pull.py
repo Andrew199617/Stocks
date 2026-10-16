@@ -17,7 +17,12 @@ Missing tags print as n/a — never crash, never invent.
 import json, os, sys, urllib.request, datetime, time
 
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
-BASE = "/home/hatch/workspace/stocks"
+BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # v5.4: runs anywhere
+# v5.4 (audit round-1 battery bugs): items 2.02 (results) and 7.01 (Reg FD)
+# are routine and no longer count as material; STALE_PASS1 is now computed
+# BEFORE the flag list prints; candidate tags merge per period (pick() took
+# the first tag with any data — the truncation bug v4 fixed in the engine).
+MATERIAL_8K_ITEMS = ("1.01", "1.02", "1.03", "2.01", "2.03", "2.04", "2.05", "2.06", "4.01", "4.02", "5.02", "8.01")
 
 def get_json(url, timeout=90):
     last = None
@@ -42,41 +47,62 @@ def pick(facts, tags):
                     return t, units[u]
     return None, []
 
+def _rows_for(facts, tag):
+    us = facts.get("facts", {}).get("us-gaap", {})
+    units = (us.get(tag) or {}).get("units", {})
+    for u in ("USD", "USD/shares"):
+        if u in units and units[u]:
+            return units[u]
+    return []
+
 def annual_series(facts, tags):
-    """{end_date: value} from ~annual-duration facts, latest filing wins."""
-    tag, rows = pick(facts, tags)
-    if not rows:
-        return tag, {}
-    out = {}
-    for r in rows:
-        if r.get("form") not in ("10-K", "10-K/A", "20-F", "40-F"):
+    """{end_date: value} from ~annual-duration facts, MERGED across the
+    candidate tags per period (priority order), latest filing wins per tag."""
+    out, used = {}, []
+    for tag in tags:
+        rows = _rows_for(facts, tag)
+        if not rows:
             continue
-        s, e = r.get("start"), r.get("end")
-        if not s or not e:
-            continue
-        days = (datetime.date.fromisoformat(e) - datetime.date.fromisoformat(s)).days
-        if not (300 <= days <= 400):
-            continue
-        prev = out.get(e)
-        if prev is None or r.get("filed", "") > prev[1]:
-            out[e] = (r["val"], r.get("filed", ""))
-    return tag, {k: v[0] for k, v in out.items()}
+        best = {}
+        for r in rows:
+            if r.get("form") not in ("10-K", "10-K/A", "20-F", "40-F"):
+                continue
+            s, e = r.get("start"), r.get("end")
+            if not s or not e:
+                continue
+            days = (datetime.date.fromisoformat(e) - datetime.date.fromisoformat(s)).days
+            if not (300 <= days <= 400):
+                continue
+            prev = best.get(e)
+            if prev is None or r.get("filed", "") > prev[1]:
+                best[e] = (r["val"], r.get("filed", ""))
+        for e, (v, _) in best.items():
+            if e not in out:
+                out[e] = v
+                if tag not in used: used.append(tag)
+    return ("+".join(used) if used else None), out
 
 def instant_series(facts, tags, limit=8):
-    """Latest balance per period end (any form), most recent `limit` ends."""
-    tag, rows = pick(facts, tags)
-    if not rows:
-        return tag, {}
-    out = {}
-    for r in rows:
-        e = r.get("end")
-        if not e or "val" not in r:
+    """Latest balance per period end (any form), merged across tags, most recent `limit` ends."""
+    out, used = {}, []
+    for tag in tags:
+        rows = _rows_for(facts, tag)
+        if not rows:
             continue
-        prev = out.get(e)
-        if prev is None or r.get("filed", "") > prev[1]:
-            out[e] = (r["val"], r.get("filed", ""))
+        best = {}
+        for r in rows:
+            e = r.get("end")
+            if not e or "val" not in r:
+                continue
+            prev = best.get(e)
+            if prev is None or r.get("filed", "") > prev[1]:
+                best[e] = (r["val"], r.get("filed", ""))
+        for e, (v, _) in best.items():
+            if e not in out:
+                out[e] = v
+                if tag not in used: used.append(tag)
     ends = sorted(out)[-limit:]
-    return tag, {k: out[k][0] for k in ends}
+    return ("+".join(used) if used else None), {k: out[k] for k in ends}
 
 def fmt(v):
     if v is None:
@@ -99,11 +125,11 @@ def main():
     folder = f"{BASE}/{ticker}"
     nums, score = {}, {}
     try:
-        nums = json.load(open(f"{folder}/dcf_numbers.json"))
+        nums = json.load(open(f"{folder}/dcf_numbers.json", encoding="utf-8"))
     except Exception:
         pass
     try:
-        score = json.load(open(f"{folder}/score.json"))
+        score = json.load(open(f"{folder}/score.json", encoding="utf-8"))
     except Exception:
         pass
     if cik is None:
@@ -188,10 +214,9 @@ def main():
             print(f"- Prepaids / latest FY SG&A: {pp[last]/sga_latest*100:.0f}%")
     else:
         print("- No prepaid tag found (n/a).")
-    print("\n## Battery flags")
-    print("\n".join(f"- {f}" for f in flags) if flags else "- None tripped.")
-
-    print("\n## Filing freshness")
+    # v5.4: freshness is computed BEFORE the flag list prints so STALE_PASS1
+    # actually appears in it (audit round-1: it was appended after printing).
+    fresh_lines = []
     try:
         subs = get_json(f"https://data.sec.gov/submissions/CIK{int(cik):010d}.json")
         rec = subs["filings"]["recent"]
@@ -208,15 +233,20 @@ def main():
                 newer_periodic.append(f"{form} filed {fd}, period {period}")
             if form == "8-K":
                 items = rec["items"][i] if i < len(rec["items"]) else ""
-                if any(k in items for k in ("1.01", "1.02", "2.01", "2.02", "5.02", "7.01", "8.01")):
+                if any(k in items for k in MATERIAL_8K_ITEMS):
                     material_8k.append(f"8-K filed {fd}, items {items}")
-        print(f"- Pass 1 analysis date: {pass1_date}; latest period pass 1 used: {pass1_period or 'n/a'}")
-        print(f"- Newer periodic filing since pass 1: {'; '.join(newer_periodic) if newer_periodic else 'NONE — pass 1 data is filing-current.'}")
-        print(f"- Material 8-Ks since pass 1: {'; '.join(material_8k[:5]) if material_8k else 'none'}")
+        fresh_lines.append(f"- Pass 1 analysis date: {pass1_date}; latest period pass 1 used: {pass1_period or 'n/a'}")
+        fresh_lines.append(f"- Newer periodic filing since pass 1: {'; '.join(newer_periodic) if newer_periodic else 'NONE — pass 1 data is filing-current.'}")
+        fresh_lines.append(f"- Material 8-Ks since pass 1 (items 2.02 / 7.01 excluded as routine): {'; '.join(material_8k[:5]) if material_8k else 'none'}")
         if newer_periodic:
-            flags.append("STALE_PASS1: a newer periodic filing exists — recompute the TTM base filing-direct before concluding.")
+            flags.append("STALE_PASS1: a newer periodic filing exists — recompute the TTM base filing-direct (ttm.py) before concluding.")
     except Exception as e:
-        print(f"- Submissions check failed: {e}")
+        fresh_lines.append(f"- Submissions check failed: {e}")
+
+    print("\n## Battery flags")
+    print("\n".join(f"- {f}" for f in flags) if flags else "- None tripped.")
+    print("\n## Filing freshness")
+    print("\n".join(fresh_lines))
     print("\n(Worker: paste this battery into second_pass.md and resolve every tripped flag in writing.)")
 
 if __name__ == "__main__":

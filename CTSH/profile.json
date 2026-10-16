@@ -1,0 +1,290 @@
+{
+ "ticker": "CTSH",
+ "cik": 1058290,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:08:53-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001058290.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000008/ctsh-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CTSH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CTSH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "COGNIZANT TECHNOLOGY SOLUTIONS CORP",
+  "cik": 1058290,
+  "description": {
+   "text": "Cognizant is one of the world’s leading professional services companies, engineering modern businesses and delivering strategic outcomes for our clients. We help clients modernize technology, reimagine processes and transform experiences so they can stay ahead in today's fast-changing world, where AI is reshaping organizations in every field. As an AI builder, we provide deep expertise at the intersection of industry and technology, combining our perspective with extensive knowledge of our clients' organizations to build industry-specific platforms and incorporate context into systems, AI models and custom solutions. We tailor our services and solutions to specific industries with an integrated global delivery model that employs client service and delivery teams based at client locations and dedicated global and regional delivery centers. Our services include consulting, application development, systems integration, quality engineering and assurance, engineering research and development, application maintenance, infrastructure and security as well as business process services and automation. Our purpose, vision and values are central to Cognizant's strategic approach. Our values support our vision and enhance our ability to innovate and co-create with our clients. In order to achieve this vision and support our clients, we are focusing on accelerating growth, becoming an employer of choice and simplifying our operations through modernization and an AI-enabled IT roadmap.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001058290-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000008/ctsh-20251231.htm"
+  },
+  "description_short": "Cognizant is an AI Builder and technology services provider, building the bridge between AI investment and enterprise value by building full-stack AI solutions for our clients. Our deep industry, process and engineering expertise enables us to build an organization's unique context into technology systems that amplify human potential, realize tangible returns and keep global enterprises ahead in a fast-changing world.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7371",
+  "sic_description": "Services-Computer Programming Services",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.cognizant.com",
+  "headquarters": "Teaneck, New Jersey",
+  "address": {
+   "street": "300 Frank W. Burr Blvd., Suite 36, 6th Floor",
+   "city": "Teaneck",
+   "state": "New Jersey",
+   "zip": "07666",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "2018010233",
+  "employees": {
+   "count": 351600,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 351,600 employees, with 256,900 in India, 41,600 in North America, 14,600 in Continental Europe, 7,800 in the United Kingdom and 30,700 in various other locations throughout the rest of the world.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000008/ctsh-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-04-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001058290&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-05",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001058290-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000033/ctsh-20261005.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058290-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000031/ctsh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001058290-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000030/ctsh-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-06-30",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001058290-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000025/ctsh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-02",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001058290-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000022/ctsh-20260602.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-15",
+   "items": [
+    "2.03"
+   ],
+   "description": "Debt obligation",
+   "accession": "0001058290-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000020/ctsh-20260515.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001058290-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000018/ctsh-20260517.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058290-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000016/ctsh-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001058290-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000015/ctsh-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-06-02",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001308179-26-000290",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000130817926000290/ctsh014861-def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-23",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001058290-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000010/ctsh-20260223.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001058290-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000008/ctsh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001058290-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829026000003/ctsh-20260204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058290-25-000341",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000341/ctsh-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001058290-25-000338",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000338/ctsh-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058290-25-000267",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000267/ctsh-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001058290-25-000266",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000266/ctsh-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-06",
+   "period": "2025-06-03",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001058290-25-000228",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000228/ctsh-20250603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001058290-25-000144",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000144/ctsh-20250523.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001058290-25-000125",
+   "url": "https://www.sec.gov/Archives/edgar/data/1058290/000105829025000125/ctsh-20250331.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -12,11 +12,84 @@ Method (documented, reproducible):
 - Attach SEC CIK from SEC company_tickers_exchange.json so each company can be pulled from EDGAR.
 - Queue order: Andrew's watchlist first, then descending market cap (largest under-$40B first).
 Outputs: universe.csv, queue.json (with status per ticker), universe_notes.md
-"""
-import json, csv, re, sys, datetime, urllib.request
 
-BASE = "/home/hatch/workspace/stocks/_system"
-WATCHLIST = ["U","META","NFLX","RDDT","CMPS","ADBE","MSFT","AMZN","APP","LFTO","NTDOY","SONY","SNAP","GOOGL","DUOL","SE","NVO","TTWO","OTLY","STZ","INTC","DFTX","XIACY","FIG"]
+A rebuild keeps the queue's progress (2026-10-16): every ticker still in the
+universe keeps its queue.json entry dict verbatim — status, claimed_at (pass
+2's scoring generation), completed, note, v5_rerun, started, blocked_date,
+last_done, refresh_reason (WORKER_SPEC step 2's re-score path keys on it),
+refresh_date and any field added later; only the list order and its
+queue_pos change. A ticker new to the universe gets
+{ticker, queue_pos, status: "pending"}; one that left it is dropped. The
+read-merge-write runs under queue.py's lock (<queue.json>.lock), so it cannot
+interleave with a claim or done, and the file is swapped in atomically (the
+swap retried on a Windows PermissionError). An unreadable queue.json stops
+the rebuild instead of resetting every name to pending. Before this,
+a rebuild kept only ticker, queue_pos and status.
+"""
+import json, csv, re, sys, os, datetime, urllib.request
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from _lock import locked  # noqa: E402  (queue.py's lock: one queue.json writer at a time)
+from _stable import _replace  # noqa: E402  (os.replace, retried on a Windows PermissionError)
+
+BASE = os.environ.get("STOCKS_SYS") or HERE
+def _load_watchlist():
+    """v5.4: the canonical watchlist lives in _system/watchlist.json (Andrew edits it or
+    asks Muse to); the old hard-coded list is the fallback."""
+    try:
+        return [x["ticker"].upper() for x in json.load(open(f"{BASE}/watchlist.json", encoding="utf-8"))["tickers"]]
+    except Exception:
+        return ["U","META","NFLX","RDDT","CMPS","ADBE","MSFT","AMZN","APP","LFTO","NTDOY","SONY","SNAP","GOOGL","DUOL","SE","NVO","TTWO","OTLY","STZ","INTC","DFTX","XIACY","FIG"]
+WATCHLIST = _load_watchlist()
+
+def merge_queue(old_entries, tickers):
+    """The rebuilt queue list, one entry per ticker in universe order: a
+    surviving ticker keeps its old entry dict verbatim except queue_pos (its
+    new position); a new ticker gets {ticker, queue_pos, status: "pending"};
+    a ticker no longer in the universe is dropped."""
+    old = {e["ticker"]: e for e in old_entries if isinstance(e, dict) and e.get("ticker")}
+    queue = []
+    for pos, t in enumerate(tickers, 1):
+        if t in old:
+            e = dict(old[t])
+            e["queue_pos"] = pos
+            e.setdefault("status", "pending")  # queue.py needs one; every entry it wrote has it
+        else:
+            e = {"ticker": t, "queue_pos": pos, "status": "pending"}
+        queue.append(e)
+    return queue
+
+
+def write_queue(path, tickers, built, cutoff_b=40):
+    """Rebuild queue.json at path for the new universe order, keeping each
+    surviving entry (merge_queue), under queue.py's lock with an atomic swap.
+    A missing file starts a fresh queue; an unreadable one stops the rebuild
+    (SystemExit) and is left as it is. Returns the written object."""
+    with locked(f"{path}.lock"):
+        try:
+            with open(path, encoding="utf-8") as f:
+                old = json.load(f)["queue"]
+        except FileNotFoundError:
+            old = []
+        except (OSError, ValueError, KeyError, TypeError) as e:
+            raise SystemExit(f"build_universe.py: cannot read {path} ({type(e).__name__}: {e}); "
+                             "not rebuilding over it, so no queue progress is lost. Restore it (git) and rerun.")
+        data = {"built": built, "cutoff_market_cap_b": cutoff_b, "universe_size": len(tickers),
+                "queue": merge_queue(old, tickers)}
+        tmp = f"{path}.tmp.{os.getpid()}"
+        try:
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=1)
+            _replace(tmp, path, attempts=50)
+        except BaseException:
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+            raise
+    return data
+
 
 def fetch(url, out, ua="Mozilla/5.0"):
     req = urllib.request.Request(url, headers={"User-Agent": ua})
@@ -47,8 +120,8 @@ def main():
     fetch("https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=9999&download=true", f"{BASE}/nasdaq_screener.json")
     fetch("https://www.sec.gov/files/company_tickers_exchange.json", f"{BASE}/sec_tickers_exchange.json", ua="Muse research andrew@example.com")
 
-    rows = json.load(open(f"{BASE}/nasdaq_screener.json"))["data"]["rows"]
-    sec = json.load(open(f"{BASE}/sec_tickers_exchange.json"))
+    rows = json.load(open(f"{BASE}/nasdaq_screener.json", encoding="utf-8"))["data"]["rows"]
+    sec = json.load(open(f"{BASE}/sec_tickers_exchange.json", encoding="utf-8"))
     cik_by_ticker = {}
     for rec in sec["data"]:
         cik, name, ticker, exch = rec[0], rec[1], rec[2], rec[3]
@@ -86,7 +159,8 @@ def main():
 
     under.sort(key=queue_key)
 
-    today = datetime.date.today().isoformat()
+    from zoneinfo import ZoneInfo
+    today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()  # Codex review of PR #2: the VM runs UTC
     out_rows = []
     for i, r in enumerate(under, 1):
         sym = (r["symbol"] or "").strip().upper()
@@ -98,20 +172,14 @@ def main():
             "sector": r.get("sector") or "", "industry": r.get("industry") or "", "country": r.get("country") or "",
             "watchlist": "yes" if sym in WATCHLIST else "",
         })
-    with open(f"{BASE}/universe.csv", "w", newline="") as f:
+    with open(f"{BASE}/universe.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(out_rows[0].keys())); w.writeheader(); w.writerows(out_rows)
 
-    # preserve existing progress if queue.json exists
-    status = {}
-    try:
-        old = json.load(open(f"{BASE}/queue.json"))
-        status = {e["ticker"]: e.get("status", "pending") for e in old.get("queue", [])}
-    except Exception: pass
-    queue = [{"ticker": r["ticker"], "queue_pos": r["queue_pos"], "status": status.get(r["ticker"], "pending")} for r in out_rows]
-    json.dump({"built": today, "cutoff_market_cap_b": 40, "universe_size": len(out_rows), "queue": queue}, open(f"{BASE}/queue.json", "w"), indent=1)
+    # preserve existing progress: surviving entries are kept verbatim (module docstring)
+    write_queue(f"{BASE}/queue.json", [r["ticker"] for r in out_rows], today)
 
     no_cik = [r["ticker"] for r in out_rows if not r["cik"]]
-    with open(f"{BASE}/universe_notes.md", "w") as f:
+    with open(f"{BASE}/universe_notes.md", "w", encoding="utf-8") as f:
         f.write(f"# Universe — built {today}\n\n")
         f.write(f"- Approximation: top 3,000 US-listed operating companies by market cap (Nasdaq screener), Russell 3000 equivalent for screening purposes. Official Russell list is licensed; iShares IWV download is bot-blocked.\n")
         f.write(f"- After <$40B filter: **{len(out_rows)} companies**. Smallest: ${out_rows[-1]['market_cap_b']}B ({out_rows[-1]['ticker']}). Largest under cutoff: ${out_rows[0]['market_cap_b']}B among non-watchlist ordering.\n")

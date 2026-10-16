@@ -1,0 +1,295 @@
+{
+ "ticker": "EL",
+ "cik": 1001250,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:09:40-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001001250.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ESTEE LAUDER COMPANIES INC",
+  "cik": 1001250,
+  "description": {
+   "text": "The Estée Lauder Companies Inc., founded in 1946 by Estée and Joseph Lauder, is one of the world’s leading manufacturers, marketers and sellers of quality skin care, makeup, fragrance and hair care products. We are a steward of over 20 luxury and prestige brands globally. Since the initial launch of the Estée Lauder brand in the United States, we have significantly expanded our consumer reach to approximately 150 countries and territories. We operate as a wholesaler, with our products sold in brick-and-mortar locations and on various e-commerce platforms, including those operated by department stores, duty-free retailers, specialty-multi retailers, online pure players, upscale perfumeries and pharmacies, and top-tier salons and spas. Additionally, we operate a direct-to-consumer business across freestanding stores, our brands' websites and third-party online platforms. In February 2025, we embarked on “Beauty Reimagined,” a strategic vision which focuses on accelerating best-in-class consumer coverage, creating transformative innovation, boosting consumer-facing investments, fueling sustainable growth through bold efficiencies and reimagining the way we work. As part of reimagining the way we work, we created our \"One ELC\" operating model, a scalable, integrated system designed to operate faster, execute with greater discipline, and drive growth. One ELC is built on three elements: One Team, One Culture, and One Operating Ecosystem.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-19",
+   "period": "2026-06-30",
+   "accession": "0001001250-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm"
+  },
+  "description_short": "The Estee Lauder Companies Charitable Foundation (ELCCF) is the global philanthropic arm of The Estee Lauder Companies, a leader in prestige beauty. Turning The Estee Lauder Companies' and Mrs. Estee Lauder's legacy into action, the ELCCF supports nonprofit organizations that enable women and girls to thrive and advance through the transformative power of health, education, and entrepreneurship. The Foundation invests in programs worldwide that strengthen career readiness, workforce participation, and leadership development for women and girls, and supports scientists and practitioners advancing breakthroughs in breast cancer and women's health.",
+  "industry": "Package Goods/Cosmetics",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2844",
+  "sic_description": "Perfumes, Cosmetics & Other Toilet Preparations",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.elcompanies.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "767 Fifth Avenue",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10153",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-19"
+  },
+  "phone": "2125724200",
+  "employees": {
+   "count": 55000,
+   "as_of": "2026-06-30",
+   "evidence": "As of June 30, 2026 and 2025, we had approximately 55,000 and 57,000 employees worldwide, respectively, including approximately 35,000 demonstrators at points of sale who are employed by us as of June 30, 2026 and 2025.",
+   "form": "10-K",
+   "filed": "2026-08-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-06-07",
+  "first_sec_filing_form": "4",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001001250&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-30",
+   "period": "2026-11-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-112176",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000110465926112176/tm2623505-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001001250-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000045/el-20260908.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-19",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001001250-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000038/el-20260819.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001001250-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000033/el-20260720.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-07-07",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000031/el-20240201.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-06-03",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000028/el-20240201.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-22",
+   "period": "2026-03-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Amendment: Other events",
+   "accession": "0001001250-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000022/el-20260323.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001001250-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000019/el-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000017/el-20260501.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-01",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000013/el-20240201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001001250-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000010/el-20260323.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001001250-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000006/el-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000004/el-20260205.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-01",
+   "period": "2024-02-01",
+   "items": [
+    "2.05",
+    "9.01"
+   ],
+   "description": "Amendment: Exit costs",
+   "accession": "0001001250-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000115/el-20240201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-18",
+   "period": "2025-11-13",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001001250-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000112/el-20251113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-04",
+   "items": [
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Other events",
+   "accession": "0001104659-25-107826",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000110465925107826/tm2530418d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001001250-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000109/el-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001001250-25-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000107/el-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-10-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001001250-25-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000103/el-20251002.htm"
+  }
+ ],
+ "warnings": []
+}

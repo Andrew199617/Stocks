@@ -1,0 +1,1220 @@
+{
+ "ticker": "VMC",
+ "cik": 1396009,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-009546",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026009546/vmc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028318",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026028318/vmc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050486",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026050486/vmc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vmc:AggregatesMember",
+     "label": "Aggregates",
+     "values": [
+      5391900000,
+      5518600000,
+      5800100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6929,
+      0.744,
+      0.7304
+     ],
+     "growth_yoy": [
+      null,
+      0.0235,
+      0.051
+     ]
+    },
+    {
+     "member": "vmc:AsphaltMember",
+     "label": "Asphalt",
+     "values": [
+      1140700000,
+      1245600000,
+      1294400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1466,
+      0.1679,
+      0.163
+     ],
+     "growth_yoy": [
+      null,
+      0.092,
+      0.0392
+     ]
+    },
+    {
+     "member": "vmc:ConcreteMember",
+     "label": "Concrete",
+     "values": [
+      1249300000,
+      653500000,
+      846600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1605,
+      0.0881,
+      0.1066
+     ],
+     "growth_yoy": [
+      null,
+      -0.4769,
+      0.2955
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7781900000,
+     7417700000,
+     7941100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vmc:AggregatesMember",
+     "label": "Aggregates",
+     "values": [
+      1248900000,
+      1512900000,
+      1352600000,
+      1639000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.764,
+      0.7196,
+      0.7703,
+      0.7603
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.083,
+      0.0833
+     ]
+    },
+    {
+     "member": "vmc:AsphaltMember",
+     "label": "Asphalt",
+     "values": [
+      208700000,
+      368900000,
+      215800000,
+      330000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1277,
+      0.1755,
+      0.1229,
+      0.1531
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.034,
+      -0.1054
+     ]
+    },
+    {
+     "member": "vmc:ConcreteMember",
+     "label": "Concrete",
+     "values": [
+      177000000,
+      220600000,
+      187500000,
+      186800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1083,
+      0.1049,
+      0.1068,
+      0.0866
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0593,
+      -0.1532
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1634600000,
+     2102400000,
+     1755900000,
+     2155800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "vmc:AggregatesMember",
+     "label": "Aggregates",
+     "values": [
+      11753200000,
+      14294600000,
+      14381200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.808,
+      0.8357,
+      0.8611
+     ],
+     "growth_yoy": [
+      null,
+      0.2162,
+      0.0061
+     ]
+    },
+    {
+     "member": "vmc:ConcreteMember",
+     "label": "Concrete",
+     "values": [
+      962300000,
+      1065800000,
+      1013000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0662,
+      0.0623,
+      0.0607
+     ],
+     "growth_yoy": [
+      null,
+      0.1076,
+      -0.0495
+     ]
+    },
+    {
+     "member": "vmc:AsphaltMember",
+     "label": "Asphalt",
+     "values": [
+      613400000,
+      805700000,
+      718900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0422,
+      0.0471,
+      0.043
+     ],
+     "growth_yoy": [
+      null,
+      0.3135,
+      -0.1077
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      267600000,
+      337900000,
+      397900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0184,
+      0.0198,
+      0.0238
+     ],
+     "growth_yoy": [
+      null,
+      0.2627,
+      0.1776
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14545700000,
+     17104800000,
+     16700400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vmc:AggregatesMember",
+     "label": "Aggregates",
+     "values": [
+      14351900000,
+      14441400000,
+      14415200000,
+      14607100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8588,
+      0.8508,
+      0.8646,
+      0.8884
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0044,
+      0.0115
+     ]
+    },
+    {
+     "member": "vmc:AsphaltMember",
+     "label": "Asphalt",
+     "values": [
+      815000000,
+      830600000,
+      733800000,
+      775000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0488,
+      0.0489,
+      0.044,
+      0.0471
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0996,
+      -0.0669
+     ]
+    },
+    {
+     "member": "vmc:ConcreteMember",
+     "label": "Concrete",
+     "values": [
+      1043300000,
+      1025200000,
+      1037300000,
+      405400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0624,
+      0.0604,
+      0.0622,
+      0.0247
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0058,
+      -0.6046
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      309000000,
+      326500000,
+      342900000,
+      365800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0185,
+      0.0192,
+      0.0206,
+      0.0222
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1097,
+      0.1204
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16712100000,
+     16974700000,
+     16672900000,
+     16442000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vmc:AggregatesMember",
+     "label": "Aggregates",
+     "values": [
+      482300000,
+      515700000,
+      603500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7817,
+      0.8157,
+      0.8063
+     ],
+     "growth_yoy": [
+      null,
+      0.0693,
+      0.1703
+     ]
+    },
+    {
+     "member": "vmc:ConcreteMember",
+     "label": "Concrete",
+     "values": [
+      72800000,
+      45500000,
+      62000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.118,
+      0.072,
+      0.0828
+     ],
+     "growth_yoy": [
+      null,
+      -0.375,
+      0.3626
+     ]
+    },
+    {
+     "member": "vmc:AsphaltMember",
+     "label": "Asphalt",
+     "values": [
+      35600000,
+      44100000,
+      49800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0577,
+      0.0698,
+      0.0665
+     ],
+     "growth_yoy": [
+      null,
+      0.2388,
+      0.1293
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      26300000,
+      26900000,
+      33200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0426,
+      0.0425,
+      0.0444
+     ],
+     "growth_yoy": [
+      null,
+      0.0228,
+      0.2342
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     617000000,
+     632200000,
+     748500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vmc:AggregatesMember",
+     "label": "Aggregates",
+     "values": [
+      150400000,
+      144300000,
+      145900000,
+      152800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8069,
+      0.7779,
+      0.8567,
+      0.8608
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0299,
+      0.0589
+     ]
+    },
+    {
+     "member": "vmc:AsphaltMember",
+     "label": "Asphalt",
+     "values": [
+      12000000,
+      14000000,
+      11200000,
+      11200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0644,
+      0.0755,
+      0.0658,
+      0.0631
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0667,
+      -0.2
+     ]
+    },
+    {
+     "member": "vmc:ConcreteMember",
+     "label": "Concrete",
+     "values": [
+      15400000,
+      19000000,
+      4000000,
+      3900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0826,
+      0.1024,
+      0.0235,
+      0.022
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.7403,
+      -0.7947
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      8600000,
+      8200000,
+      9200000,
+      9600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0461,
+      0.0442,
+      0.054,
+      0.0541
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0698,
+      0.1707
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     186400000,
+     185500000,
+     170300000,
+     177500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vmc:RevenueExcludingFreightDeliveryMember",
+     "label": "Revenue Excluding Freight Delivery",
+     "values": [
+      6778500000,
+      6429500000,
+      6932800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8711,
+      0.8668,
+      0.873
+     ],
+     "growth_yoy": [
+      null,
+      -0.0515,
+      0.0783
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      239600000,
+      275700000,
+      313700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0308,
+      0.0372,
+      0.0395
+     ],
+     "growth_yoy": [
+      null,
+      0.1507,
+      0.1378
+     ]
+    },
+    {
+     "member": "us-gaap:CargoAndFreightMember",
+     "label": "Cargo and Freight",
+     "values": [
+      -1003400000,
+      -988200000,
+      -1008300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1289,
+      -0.1332,
+      -0.127
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7781900000,
+     7417700000,
+     7941100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vmc:RevenueExcludingFreightDeliveryMember",
+     "label": "Revenue Excluding Freight Delivery",
+     "values": [
+      1414800000,
+      1842200000,
+      1517200000,
+      1883600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8655,
+      0.8762,
+      0.8641,
+      0.8737
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0724,
+      0.0225
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      44800000,
+      87900000,
+      43700000,
+      71800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0274,
+      0.0418,
+      0.0249,
+      0.0333
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0246,
+      -0.1832
+     ]
+    },
+    {
+     "member": "us-gaap:CargoAndFreightMember",
+     "label": "Cargo and Freight",
+     "values": [
+      -219800000,
+      -260200000,
+      -238700000,
+      -272200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1345,
+      -0.1238,
+      -0.1359,
+      -0.1263
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1634600000,
+     2102400000,
+     1755900000,
+     2155800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vmc:GulfCoastMember",
+     "label": "Gulf Coast",
+     "values": [
+      4105200000,
+      3529100000,
+      3687700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5275,
+      0.4758,
+      0.4644
+     ],
+     "growth_yoy": [
+      null,
+      -0.1403,
+      0.0449
+     ]
+    },
+    {
+     "member": "vmc:EastMember",
+     "label": "East",
+     "values": [
+      2229600000,
+      2296900000,
+      2452700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2865,
+      0.3097,
+      0.3089
+     ],
+     "growth_yoy": [
+      null,
+      0.0302,
+      0.0678
+     ]
+    },
+    {
+     "member": "vmc:WestMember",
+     "label": "West",
+     "values": [
+      1974100000,
+      2022700000,
+      2297800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2537,
+      0.2727,
+      0.2894
+     ],
+     "growth_yoy": [
+      null,
+      0.0246,
+      0.136
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7781900000,
+     7417700000,
+     7941100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vmc:GulfCoastMember",
+     "label": "Gulf Coast",
+     "values": [
+      792600000,
+      946100000,
+      877900000,
+      984100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4849,
+      0.45,
+      0.5,
+      0.4565
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1076,
+      0.0402
+     ]
+    },
+    {
+     "member": "vmc:EastMember",
+     "label": "East",
+     "values": [
+      490500000,
+      667700000,
+      469800000,
+      685800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3001,
+      0.3176,
+      0.2676,
+      0.3181
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0422,
+      0.0271
+     ]
+    },
+    {
+     "member": "vmc:WestMember",
+     "label": "West",
+     "values": [
+      438500000,
+      625300000,
+      506100000,
+      609900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2683,
+      0.2974,
+      0.2882,
+      0.2829
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1542,
+      -0.0246
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1634600000,
+     2102400000,
+     1755900000,
+     2155800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 78.6% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 78.1% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 106.3% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 105.8% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,298 @@
+{
+ "ticker": "WTW",
+ "cik": 1140536,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:35-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001140536.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526069307/wtw-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WTW/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WTW/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WILLIS TOWERS WATSON PLC",
+  "cik": 1140536,
+  "description": {
+   "text": "WTW is a leading global advisory, broking and solutions company that provides data-driven, insight-led solutions in the areas of people, risk and capital. Utilizing the global view and local expertise of our approximately 47,000 colleagues serving more than 140 countries and markets, we help organizations sharpen strategies, enhance resilience, motivate workforces and maximize performance. We design and deliver solutions that manage risk, optimize benefits, cultivate talent and expand the power of capital to protect and strengthen institutions and individuals. Working closely with our clients, we uncover opportunities for sustainable success. Our clients operate on a global and local scale in a multitude of businesses and industries throughout the world and generally range in size from large, major multinational corporations to middle-market domestic and international companies. Our clients include many of the world’s leading corporations, including approximately 93% of the FTSE 100, 89% of the Fortune 1000, and 92% of the Fortune Global 500 companies. We also advise the majority of the world’s leading insurance companies. We work with major corporations, emerging growth companies, governmental agencies and not-for-profit institutions in a wide variety of industries, with many of our client relationships spanning decades.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-069307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526069307/wtw-20251231.htm"
+  },
+  "description_short": "At WTW (NASDAQ: WTW), we provide data-driven, insight-led solutions in the areas of people, risk and capital. Leveraging the global view and local expertise of our colleagues serving 140 countries and markets, we help organizations sharpen their strategy, enhance organizational resilience, motivate their workforce and maximize performance. Working shoulder to shoulder with our clients, we uncover opportunities for sustainable success, and provide perspective that moves you.",
+  "industry": "Specialty Insurers",
+  "sector": "Finance",
+  "region": "Europe",
+  "sic": "6411",
+  "sic_description": "Insurance Agents, Brokers & Service",
+  "state_of_incorporation": "L2",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.willistowerswatson.com",
+  "headquarters": "London, England, England",
+  "address": {
+   "street": "c/o Willis Group Limited 51 Lime Street",
+   "city": "London",
+   "state": null,
+   "zip": "EC3M 7DQ",
+   "country": "England",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "metro": "England",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "44-20-3124-6000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-05-15",
+  "first_sec_filing_form": "F-1",
+  "former_names": [
+   "WILLIS GROUP HOLDINGS PLC",
+   "WILLIS GROUP HOLDINGS LTD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001140536&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-325374",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526325374/wtw-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-26-005042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184326005042/f8k_073026.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-234740",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526234740/d125692d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-195310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526195310/wtw-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-26-002866",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184326002866/f8k_042926.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-127613",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526127613/wtw-20260327.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-069307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526069307/wtw-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-26-000577",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184326000577/f8k_020326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-023799",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526023799/d29347d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-09",
+   "period": "2026-01-07",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-009009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312526009009/d80722d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-25-328864",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525328864/d62193d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-321190",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525321190/d15891d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-313445",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525313445/d44393d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-10-31",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Amendment: Results of operations",
+   "accession": "0001171843-25-006847",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184325006847/f8ka_103025.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-257944",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525257944/wtw-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-25-006785",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184325006785/f8k_103025.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-17",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-243617",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525243617/d35058d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-101355",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000095017025101355/wtw-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001171843-25-004852",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000117184325004852/f8k_073125.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-20",
+   "period": "2025-05-15",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001193125-25-123217",
+   "url": "https://www.sec.gov/Archives/edgar/data/1140536/000119312525123217/d94652d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

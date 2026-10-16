@@ -1,0 +1,134 @@
+{
+ "ticker": "EL",
+ "cik": 1001250,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001001250-26-000006",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000006/el-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001001250-26-000019",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000019/el-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001001250-26-000041",
+   "filed": "2026-08-19",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000041/el-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "el:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      7702000000,
+      6912000000,
+      7370000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4935,
+      0.4825,
+      0.4897
+     ],
+     "growth_yoy": [
+      null,
+      -0.1026,
+      0.0663
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      4019000000,
+      3652000000,
+      3930000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2575,
+      0.2549,
+      0.2611
+     ],
+     "growth_yoy": [
+      null,
+      -0.0913,
+      0.0761
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3887000000,
+      3762000000,
+      3749000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.249,
+      0.2626,
+      0.2491
+     ],
+     "growth_yoy": [
+      null,
+      -0.0322,
+      -0.0035
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15608000000,
+     14326000000,
+     15049000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

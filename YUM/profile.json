@@ -1,0 +1,292 @@
+{
+ "ticker": "YUM",
+ "cik": 1041061,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:40-04:00",
+ "newest_filing_date": "2026-09-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001041061.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/YUM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/YUM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "YUM BRANDS INC",
+  "cik": 1041061,
+  "description": {
+   "text": "YUM has over 63,000 restaurants in 155 countries and territories primarily operating under the four concepts of KFC, Taco Bell, Pizza Hut and Habit Burger & Grill (the “Concepts”). The Company’s KFC, Taco Bell and Pizza Hut brands are global leaders of the chicken, Mexican-inspired food and pizza categories, respectively. Habit Burger & Grill is a fast-casual restaurant concept specializing in made-to-order chargrilled burgers, sandwiches and more. At December 31, 2025, 97% of our Concepts’ units are operated by independent franchisees or licensees under the terms of franchise or license agreements. The terms franchise or franchisee within this Form 10-K are meant to describe third parties that operate units under either franchise or license agreements. In 2025, we began a review of strategic options for the Pizza Hut brand. The objective of the review is to create value for YUM, Pizza Hut and its franchise partners by determining the optimal approach to best capitalize on Pizza Hut's structural advantages — strong brand equity, experienced franchise partners and meaningful scale — in the highly fragmented pizza market. We currently intend to complete this strategic options review in 2026, and there can be no assurance this review will result in any specific outcome or transaction. The following is a brief description of each Concept and a summary of our Concepts’ operations as of and for the year ended December 31, 2025:",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001041061-26-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm"
+  },
+  "description_short": "Yum! Brands, Inc., and its subsidiaries franchise or operate more than 44,000 restaurants in 151 countries and territories under its iconic brands - KFC, Taco Bell and Habit Burger & Grill. KFC and Taco Bell are global leaders in the chicken and Mexican-inspired food categories, respectively. Habit is a fast-casual concept known for fresh, cooked-to-order food. Fueled by Yum!'s Recipe for Good Growth and its Raising the B.A.R priorities, Yum! combines the strength of its global brands, franchise system, scale and leading digital and technology capabilities to drive growth, create long-term value, and build the world's most loved, trusted and connected restaurant brands.",
+  "industry": "Restaurants",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5812",
+  "sic_description": "Retail-Eating  Places",
+  "state_of_incorporation": "NC",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.yum.com",
+  "headquarters": "Louisville, Kentucky",
+  "address": {
+   "street": "1441 Gardiner Lane",
+   "city": "Louisville",
+   "state": "Kentucky",
+   "zip": "40213",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "5028748300",
+  "employees": {
+   "count": 49000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company and its subsidiaries employed approximately 49,000 persons (collectively referred to throughout this filing as “our employees” or “YUM employees”), including approximately 28,000 employees in the U.S. and approximately 21,000 employees outside the U.S.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-07-02",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "TRICON GLOBAL RESTAURANTS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001041061&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD; Other events",
+   "accession": "0001041061-26-000187",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000187/yum-20260901.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-08-28",
+   "period": "2026-08-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001041061-26-000180",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000180/yum-20260820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001041061-26-000171",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000171/yum-20260820.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-08-07",
+   "period": "2026-03-26",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001041061-26-000165",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000165/yum-20260326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "1.01",
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Reg FD",
+   "accession": "0001104659-26-092305",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000110465926092305/tm2622152d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001041061-26-000160",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000160/yum-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001041061-26-000149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000149/yum-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "1.01",
+    "8.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-272881",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000119312526272881/d47355d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-271893",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000119312526271893/d158986d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-05-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001041061-26-000136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000136/yum-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001041061-26-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000128/yum-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001041061-26-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000119/yum-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001041061-26-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000108/yum-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-03",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-142078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000119312526142078/yum-20260402.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-03-26",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001041061-26-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000096/yum-20260326.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001041061-26-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001041061-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000069/yum-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001041061-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000003/yum-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-26",
+   "period": "2025-11-21",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001041061-25-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106125000120/yum-20251121.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001041061-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106125000109/yum-20250930.htm"
+  }
+ ],
+ "warnings": []
+}

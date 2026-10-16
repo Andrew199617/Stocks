@@ -1,0 +1,301 @@
+{
+ "ticker": "HBAN",
+ "cik": 49196,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:10:47-04:00",
+ "newest_filing_date": "2026-09-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000049196.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000015/hban-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HBAN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HBAN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HUNTINGTON BANCSHARES INC /MD/",
+  "cik": 49196,
+  "description": {
+   "text": "We are a multi-state diversified regional bank holding company organized under Maryland law in 1966 and headquartered in Columbus, Ohio. Through the Bank, we are committed to making people’s lives better, helping businesses thrive, and strengthening the communities we serve, and we have been servicing the financial needs of our customers since 1866. Through our subsidiaries, we provide full-service commercial and consumer deposit, lending, and other banking and financial services. These include, but are not limited to, payments, mortgage banking, direct and indirect consumer financing, investment banking, capital markets, advisory, equipment financing, distribution finance, investment management, trust, brokerage, insurance, and other financial products and services. As of December 31, 2025, we operated more than 1,000 branches in 14 states. Following the completion of our merger with Cadence Bank on February 1, 2026, as further discussed below, we operate nearly 1,400 branches in 21 states, with certain businesses operating in extended geographies.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0000049196-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000015/hban-20251231.htm"
+  },
+  "description_short": "Huntington Bancshares Incorporated is a $284 billion asset regional bank holding company headquartered in Columbus, Ohio. A top 10 U.S. commercial bank, The Huntington National Bank and its affiliates provide consumers, small and middle-market businesses, corporations, municipalities, and other organizations with a comprehensive suite of banking, payments, wealth management, and risk management products and services. Founded in 1866, Huntington operates over 1,400 branches in 21 states, with certain businesses operating nationally. Visit Huntington.com for more information.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6021",
+  "sic_description": "National Commercial Banks",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.huntington.com",
+  "headquarters": "Columbus, Ohio",
+  "address": {
+   "street": "41 South High Street",
+   "city": "Columbus",
+   "state": "Ohio",
+   "zip": "43287",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "6144802265",
+  "employees": {
+   "count": 20424,
+   "as_of": "2025",
+   "evidence": "Huntington had 20,424 average full-time equivalent colleagues during 2025, whom we encourage to support a shared purpose of making our colleagues’ and customers’ lives better, helping businesses thrive, and strengthening the communities we serve.",
+   "basis": "average full-time equivalent for the period",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000015/hban-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "HUNTINGTON BANCSHARES INC /MD/",
+   "HUNTINGTON BANCSHARES INC/MD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000049196&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-18",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000049196-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000081/hban-20260918.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000049196-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000079/hban-20260918.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000049196-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000077/hban-20260916.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000049196-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000073/hban-20260903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049196-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000066/hban-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000049196-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000062/hban-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049196-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000060/hban-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000049196-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000056/hban-20260625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000049196-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000050/hban-20260608.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000049196-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000048/hban-20260527.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049196-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000043/hban-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000049196-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000038/hban-20260422.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000049196-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000035/hban-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049196-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000032/hban-20260423.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-15",
+   "period": "2026-02-01",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0000049196-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000029/hban-20260201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000049196-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000026/hban-20260330.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-103196",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000119312526103196/hban-20260312.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000049196-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000023/hban-20260310.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000049196-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000015/hban-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000049196-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/49196/000004919626000010/hban-20260209.htm"
+  }
+ ],
+ "warnings": []
+}

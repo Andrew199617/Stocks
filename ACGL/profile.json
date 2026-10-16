@@ -1,0 +1,303 @@
+{
+ "ticker": "ACGL",
+ "cik": 947484,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:07:13-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000947484.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000017/acgl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ACGL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ACGL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ARCH CAPITAL GROUP LTD.",
+  "cik": 947484,
+  "description": {
+   "text": "Arch Capital is a publicly listed Bermuda exempted company with approximately $26.9 billion in capital at December 31, 2025 and is part of the S&P 500 index. Arch provides insurance, reinsurance and mortgage insurance on a worldwide basis through its wholly owned subsidiaries. While we are positioned to provide a full range of property, casualty and mortgage insurance and reinsurance lines, we focus on writing specialty lines of insurance and reinsurance. For 2025, we wrote $16.5 billion of net premiums and reported net income available to Arch common shareholders of $4.4 billion. Book value per share was $65.11 at December 31, 2025, compared to $53.11 per share at December 31, 2024. Arch Capital’s registered office is located at Clarendon House, 2 Church Street, Hamilton HM 11, Bermuda (telephone number: (441) 295-1422), and its principal executive offices are located at Waterloo House, Ground Floor, 100 Pitts Bay Road, Pembroke HM 08, Bermuda (telephone number: (441) 278-9250). Arch Capital makes available free of charge through its website, located at www.archgroup.com, its annual reports on Form 10-K, quarterly reports on Form 10-Q, current reports on Form 8-K, and all amendments to those reports as soon as reasonably practicable after such material is electronically filed with, or furnished to, the U.S. Securities and Exchange Commission (“SEC”).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000947484-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000017/acgl-20251231.htm"
+  },
+  "description_short": "Arch Capital Group Ltd. (Nasdaq: ACGL) is a publicly listed Bermuda exempted company with approximately $28.3 billion in capital at June 30, 2026. Arch, which is part of the S&P 500 Index, provides insurance, reinsurance and mortgage insurance on a worldwide basis through its wholly owned subsidiaries.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "Caribbean",
+  "sic": "6331",
+  "sic_description": "Fire, Marine & Casualty Insurance",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.archgroup.com",
+  "headquarters": "Pembroke, Bermuda",
+  "address": {
+   "street": "Waterloo House, Ground Floor 100 Pitts Bay Road",
+   "city": "Pembroke",
+   "state": null,
+   "zip": "HM 08",
+   "country": "Bermuda",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "441-278-9250",
+  "employees": {
+   "count": 8000,
+   "as_of": "2026-02-19",
+   "evidence": "As of February 19, 2026, we had approximately 8,000 employees globally, compared to around 7,200 last year, which directly speaks to our ability to sustain our strong and unique culture as we grow, which is a key enabler to top talent retention.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000017/acgl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-13",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "ARCH CAPITAL GROUP LTD",
+   "RISK CAPITAL HOLDINGS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000947484&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000947484-26-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000124/acgl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000947484-26-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000118/acgl-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000947484-26-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000114/acgl-20260615.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0000947484-26-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000111/acgl-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000947484-26-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000094/acgl-20260603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-02",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0000947484-26-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000090/acgl-20260602.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-06-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000947484-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000075/acgl-20260602.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-05",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0000947484-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000063/acgl-20260505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000947484-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000058/acgl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000947484-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000051/acgl-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-19",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000947484-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000044/acgl-20260419.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-24",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000947484-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000038/acgl-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000947484-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000019/acgl-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000947484-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000017/acgl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000947484-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000010/acgl-20260209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-15",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000947484-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000004/acgl-20260115.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-07",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000947484-25-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748425000089/acgl-20251107.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000947484-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748425000085/acgl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-29",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000947484-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748425000081/acgl-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000947484-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/947484/000094748425000076/acgl-20251027.htm"
+  }
+ ],
+ "warnings": []
+}

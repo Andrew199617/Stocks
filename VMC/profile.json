@@ -1,0 +1,291 @@
+{
+ "ticker": "VMC",
+ "cik": 1396009,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:15:01-04:00",
+ "newest_filing_date": "2026-07-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001396009.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026009546/vmc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VMC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VMC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Vulcan Materials CO",
+  "cik": 1396009,
+  "description": {
+   "text": "Vulcan Materials Company operates primarily in the U.S. and is the nation’s largest supplier of construction aggregates (mainly crushed stone, sand and gravel) and a major producer of aggregates-intensive downstream products such as asphalt mix and ready-mixed concrete. Delivered by trucks, ships, barges and trains, we provide the materials needed for the infrastructure that maintains and expands the U.S. economy. Our products are essential for building homes, offices, data centers, places of worship, schools, hospitals and factories, as well as vital infrastructure including highways, bridges, roads, ports and harbors, water systems, campuses, dams, airports and rail networks. During the year ended December 31, 2025, we had 425 active aggregates facilities as shown below. Production and sales are currently halted at our Calica operations in Mexico and our Puerto Cortés operations in Honduras. For additional information regarding our Calica operations, see Note 12 “Commitments and Contingencies” in Item 8 “Financial Statements and Supplementary Data.” Additionally, we further serve our customers through our 71 asphalt facilities and 76 concrete facilities located in Alabama, Arizona, California, Maryland, New Mexico, Tennessee, Texas, Virginia, the U.S. Virgin Islands and Washington D.C. Our top ten revenue producing states accounted for 90% of our 2025 revenues while our top five accounted for 63%.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-009546",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026009546/vmc-20251231.htm"
+  },
+  "description_short": "Vulcan Materials Company, a member of the S&P 500 Index with headquarters in Birmingham, Alabama, is the nation's largest producer of construction aggregates-primarily crushed stone, sand and gravel-and a major producer of asphalt and ready-mixed concrete.",
+  "industry": "Mining & Quarrying of Nonmetallic Minerals (No Fuels)",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "1400",
+  "sic_description": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+  "state_of_incorporation": "NJ",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.vulcanmaterials.com",
+  "headquarters": "Birmingham, Alabama",
+  "address": {
+   "street": "1200 Urban Center Drive",
+   "city": "Birmingham",
+   "state": "Alabama",
+   "zip": "35242",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "(205) 298-3000",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a single function's or location's headcount, not the company total",
+   "evidence": "As of January 1, 2026, we employed 11,172 people in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026009546/vmc-20251231.htm"
+  },
+  "first_sec_filing": "2007-04-12",
+  "first_sec_filing_form": "CORRESP",
+  "former_names": [
+   "Virginia Holdco, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001396009&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050486",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026050486/vmc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-26-029958",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036126029958/ef20078928_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-029775",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036126029775/ef20078709_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-08",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001140361-26-020591",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036126020591/ef20072943_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028318",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026028318/vmc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-26-017638",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036126017638/ef20071724_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-020812",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026020812/vmc-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001140361-26-009178",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036126009178/ef20067657_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-009546",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000162828026009546/vmc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-26-005605",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036126005605/ef20065685_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-25-045396",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125045396/ef20061182_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-12",
+   "period": "2025-10-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001140361-25-045395",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125045395/ef20061181_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-05",
+   "items": [
+    "1.04"
+   ],
+   "description": "Item 1.04",
+   "accession": "0001140361-25-044864",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125044864/ef20060777_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001396009-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000139600925000031/vmc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-25-039792",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125039792/ef20057945_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-25-037980",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125037980/ef20056957_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001396009-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000139600925000021/vmc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-25-028104",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125028104/ef20052989_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-20",
+   "period": "2025-06-18",
+   "items": [
+    "1.04"
+   ],
+   "description": "Item 1.04",
+   "accession": "0001140361-25-023183",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125023183/ef20050812_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-12",
+   "period": "2025-05-09",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001140361-25-018381",
+   "url": "https://www.sec.gov/Archives/edgar/data/1396009/000114036125018381/ef20048753_8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a single function's or location's headcount, not the company total in the 10-K filed 2026-02-19: \"As of January 1, 2026, we employed 11,172 people in the United States.\""
+ ]
+}

@@ -1,0 +1,906 @@
+{
+ "ticker": "ROP",
+ "cik": 882835,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000882835-26-000009",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000009/rop-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000882835-26-000019",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000019/rop-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000882835-26-000036",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000036/rop-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rop:ApplicationSoftwareSegmentMember",
+     "label": "Application Software Segment",
+     "values": [
+      3186900000,
+      3868300000,
+      4483000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5159,
+      0.5495,
+      0.5673
+     ],
+     "growth_yoy": [
+      null,
+      0.2138,
+      0.1589
+     ]
+    },
+    {
+     "member": "rop:TechnologyEnabledProductsSegmentMember",
+     "label": "Technology Enabled Products Segment",
+     "values": [
+      1551500000,
+      1695300000,
+      1818700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2511,
+      0.2408,
+      0.2301
+     ],
+     "growth_yoy": [
+      null,
+      0.0927,
+      0.0728
+     ]
+    },
+    {
+     "member": "rop:NetworkSoftwareAndSystemsSegmentMember",
+     "label": "Network Software And Systems Segment",
+     "values": [
+      1439400000,
+      1475600000,
+      1600800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.233,
+      0.2096,
+      0.2026
+     ],
+     "growth_yoy": [
+      null,
+      0.0251,
+      0.0848
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6177800000,
+     7039200000,
+     7902500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rop:ApplicationSoftwareSegmentMember",
+     "label": "Application Software Segment",
+     "values": [
+      1068200000,
+      1094900000,
+      1191500000,
+      1180800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5673,
+      0.5633,
+      0.5687,
+      0.5599
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1154,
+      0.0785
+     ]
+    },
+    {
+     "member": "rop:TechnologyEnabledProductsSegmentMember",
+     "label": "Technology Enabled Products Segment",
+     "values": [
+      438700000,
+      463300000,
+      476200000,
+      497200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.233,
+      0.2384,
+      0.2273,
+      0.2358
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0855,
+      0.0732
+     ]
+    },
+    {
+     "member": "rop:NetworkSoftwareSegmentMember",
+     "label": "Network Software Segment",
+     "values": [
+      375900000,
+      385400000,
+      427600000,
+      430900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1996,
+      0.1983,
+      0.2041,
+      0.2043
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1375,
+      0.1181
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1882800000,
+     1943600000,
+     2095300000,
+     2108900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rop:ApplicationSoftwareSegmentMember",
+     "label": "Application Software Segment",
+     "values": [
+      563000000,
+      628800000,
+      702200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7455,
+      0.7736,
+      0.7818
+     ],
+     "growth_yoy": [
+      null,
+      0.1169,
+      0.1167
+     ]
+    },
+    {
+     "member": "rop:NetworkSoftwareAndSystemsSegmentMember",
+     "label": "Network Software And Systems Segment",
+     "values": [
+      162500000,
+      161000000,
+      169600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2152,
+      0.1981,
+      0.1888
+     ],
+     "growth_yoy": [
+      null,
+      -0.0092,
+      0.0534
+     ]
+    },
+    {
+     "member": "rop:TechnologyEnabledProductsSegmentMember",
+     "label": "Technology Enabled Products Segment",
+     "values": [
+      29100000,
+      21700000,
+      23100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0385,
+      0.0267,
+      0.0257
+     ],
+     "growth_yoy": [
+      null,
+      -0.2543,
+      0.0645
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      600000,
+      1300000,
+      3300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0008,
+      0.0016,
+      0.0037
+     ],
+     "growth_yoy": [
+      null,
+      1.1667,
+      1.5385
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     755200000,
+     812800000,
+     898200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rop:ApplicationSoftwareSegmentMember",
+     "label": "Application Software Segment",
+     "values": [
+      165600000,
+      175700000,
+      181000000,
+      181100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.78,
+      0.7882,
+      0.7887,
+      0.7877
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.093,
+      0.0307
+     ]
+    },
+    {
+     "member": "rop:NetworkSoftwareSegmentMember",
+     "label": "Network Software Segment",
+     "values": [
+      41300000,
+      41300000,
+      42800000,
+      42800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1945,
+      0.1853,
+      0.1865,
+      0.1862
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0363,
+      0.0363
+     ]
+    },
+    {
+     "member": "rop:TechnologyEnabledProductsSegmentMember",
+     "label": "Technology Enabled Products Segment",
+     "values": [
+      5400000,
+      5900000,
+      5700000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0254,
+      0.0265,
+      0.0248,
+      0.0261
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0556,
+      0.0169
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     212300000,
+     222900000,
+     229500000,
+     229900000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rop:SoftwareRelatedRecurringMember",
+     "label": "Software Related, Recurring",
+     "values": [
+      3511100000,
+      3976200000,
+      4482900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5683,
+      0.5649,
+      0.5673
+     ],
+     "growth_yoy": [
+      null,
+      0.1325,
+      0.1274
+     ]
+    },
+    {
+     "member": "rop:ProductRevenueMember",
+     "label": "Product Revenue",
+     "values": [
+      1532700000,
+      1669200000,
+      1772600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2481,
+      0.2371,
+      0.2243
+     ],
+     "growth_yoy": [
+      null,
+      0.0891,
+      0.0619
+     ]
+    },
+    {
+     "member": "rop:SoftwareRelatedReoccurringMember",
+     "label": "Software Related, Reoccurring",
+     "values": [
+      401200000,
+      624200000,
+      833100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0649,
+      0.0887,
+      0.1054
+     ],
+     "growth_yoy": [
+      null,
+      0.5558,
+      0.3347
+     ]
+    },
+    {
+     "member": "rop:SoftwareRelatedNonRecurringMember",
+     "label": "Software Related, Non-recurring",
+     "values": [
+      732800000,
+      769600000,
+      813900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1186,
+      0.1093,
+      0.103
+     ],
+     "growth_yoy": [
+      null,
+      0.0502,
+      0.0576
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6177800000,
+     7039200000,
+     7902500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rop:SoftwareRelatedRecurringMember",
+     "label": "Software Related, Recurring",
+     "values": [
+      1053600000,
+      1097300000,
+      1204500000,
+      1216400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5596,
+      0.5646,
+      0.5749,
+      0.5768
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1432,
+      0.1085
+     ]
+    },
+    {
+     "member": "rop:ProductRevenueMember",
+     "label": "Product Revenue",
+     "values": [
+      429800000,
+      451600000,
+      462700000,
+      482800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2283,
+      0.2324,
+      0.2208,
+      0.2289
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0765,
+      0.0691
+     ]
+    },
+    {
+     "member": "rop:SoftwareRelatedNonRecurringMember",
+     "label": "Software Related, Non-recurring",
+     "values": [
+      197800000,
+      207300000,
+      204200000,
+      207500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1051,
+      0.1067,
+      0.0975,
+      0.0984
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0324,
+      0.001
+     ]
+    },
+    {
+     "member": "rop:SoftwareRelatedReoccurringMember",
+     "label": "Software Related, Reoccurring",
+     "values": [
+      201600000,
+      187400000,
+      223900000,
+      202200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1071,
+      0.0964,
+      0.1069,
+      0.0959
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1106,
+      0.079
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1882800000,
+     1943600000,
+     2095300000,
+     2108900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5304400000,
+      6063300000,
+      6872800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8586,
+      0.8614,
+      0.8697
+     ],
+     "growth_yoy": [
+      null,
+      0.1431,
+      0.1335
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      453200000,
+      495100000,
+      541400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0734,
+      0.0703,
+      0.0685
+     ],
+     "growth_yoy": [
+      null,
+      0.0925,
+      0.0935
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      254600000,
+      288300000,
+      291700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0412,
+      0.041,
+      0.0369
+     ],
+     "growth_yoy": [
+      null,
+      0.1324,
+      0.0118
+     ]
+    },
+    {
+     "member": "rop:RestOfWorldMember",
+     "label": "Rest of the World",
+     "values": [
+      90500000,
+      118400000,
+      125500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0146,
+      0.0168,
+      0.0159
+     ],
+     "growth_yoy": [
+      null,
+      0.3083,
+      0.06
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      75100000,
+      74100000,
+      71100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0122,
+      0.0105,
+      0.009
+     ],
+     "growth_yoy": [
+      null,
+      -0.0133,
+      -0.0405
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6177800000,
+     7039200000,
+     7902500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Software Related' (rop:SoftwareRelatedMember) dropped: it is the parent of Software Related, Non-recurring, Software Related, Recurring, Software Related, Reoccurring in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Software Related' (rop:SoftwareRelatedMember) dropped: it is the parent of Software Related, Non-recurring, Software Related, Recurring, Software Related, Reoccurring in the filing's definition linkbase"
+ ],
+ "complete": true
+}

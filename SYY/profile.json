@@ -1,0 +1,303 @@
+{
+ "ticker": "SYY",
+ "cik": 96021,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:14:16-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000096021.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SYY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SYY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SYSCO CORP",
+  "cik": 96021,
+  "description": {
+   "text": "Sysco Corporation is the global leader in selling, marketing and distributing food and related products to customers who prepare meals away from home. This includes restaurants, healthcare and educational facilities, lodging establishments, entertainment venues, and more. Founded in 1969, Sysco commenced operations as a public company in March 1970 when the stockholders of nine companies exchanged their stock for Sysco common stock. Since our formation, we have grown from $115 million to our all-time high of $84.6 billion in annual sales in fiscal 2026, both through internal expansion of existing operations and acquisitions. Sysco’s fiscal year ends on the Saturday nearest to June 30th. This resulted in a 52-week year ended June 27, 2026 for fiscal 2026, a 52-week year ended June 28, 2025 for fiscal 2025 and a 52-week year ended June 29, 2024 for fiscal 2024. We will have a 53-week year ending July 3, 2027 for fiscal 2027.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "period": "2026-06-27",
+   "accession": "0000096021-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm"
+  },
+  "description_short": "Sysco is the global leader in selling, marketing and distributing food and related products to customers who prepare meals away from home. This includes restaurants, healthcare and educational facilities, lodging establishments, entertainment venues, and more. Sysco operates 333 distribution centers, in 10 countries, with 75,000 colleagues serving approximately 670,000 customer locations. The company generated sales of more than $84 billion in fiscal year 2026 that ended June 27, 2026. As the world's largest food-away-from-home distributor, Sysco offers customized supply chain solutions, bespoke specialty product offerings, and culinary support to drive customers to innovate and optimize their operations. We act as a trusted business partner to our customers, helping them grow through our industry-leading portfolio that includes fresh produce, premium proteins, specialty products, sustainably focused items, equipment and supplies, and innovative culinary solutions.",
+  "industry": "Food Distributors",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5140",
+  "sic_description": "Wholesale-Groceries & Related Products",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0627",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.sysco.com",
+  "headquarters": "Houston, Texas",
+  "address": {
+   "street": "1390 Enclave Parkway",
+   "city": "Houston",
+   "state": "Texas",
+   "zip": "77077-2099",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-21"
+  },
+  "phone": "281-584-1390",
+  "employees": {
+   "count": 75000,
+   "as_of": "2026-06-27",
+   "evidence": "As of June 27, 2026, we employed approximately 75,000 employees, including 52,000 U.S. employees and 23,000 employees outside the U.S., as compared to approximately 75,000 employees as of June 28, 2025.",
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-11",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000096021&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-114079",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926114079/tm2625144d27_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000096021-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000037/syy-20261001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-110977",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926110977/tm2625144d26_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-110464",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926110464/tm2625144d25_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-108285",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926108285/tm2625144d7_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-107510",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926107510/tm2625144d3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-002526",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002526/eh260827982_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-002525",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002525/eh260827503_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Officer/director change",
+   "accession": "0000950142-26-002498",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002498/eh260826448_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-21",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000096021-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000033/syy-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-14",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000096021-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000030/syy-20260814.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-002314",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226002314/eh260819217_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000096021-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000026/syy-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-01",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-079979",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000110465926079979/tm2619427d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-001434",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226001434/eh260780816_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000096021-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000022/syy-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000096021-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000009602126000019/syy-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-164087",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000119312526164087/d290779d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-02",
+   "period": "2026-03-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-140436",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000119312526140436/d103940d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950142-26-000922",
+   "url": "https://www.sec.gov/Archives/edgar/data/96021/000095014226000922/eh260755710_8k.htm"
+  }
+ ],
+ "warnings": []
+}

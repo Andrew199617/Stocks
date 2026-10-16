@@ -1,0 +1,298 @@
+{
+ "ticker": "CBOE",
+ "cik": 1374310,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:08:04-04:00",
+ "newest_filing_date": "2026-09-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001374310.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026010013/cboe-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CBOE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CBOE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Cboe Global Markets, Inc.",
+  "cik": 1374310,
+  "description": {
+   "text": "Cboe Global Markets, Inc., the world's leading derivatives and securities exchange network, delivers cutting-edge trading, clearing, and investment solutions to people around the world. Cboe provides trading solutions and products in multiple asset classes, including equities, derivatives, and FX, across North America, Europe, and Asia Pacific. Above all, the Company is committed to building a trusted, inclusive global marketplace that enables people to pursue a sustainable financial future. Cboe’s subsidiaries include the largest options exchange and the third largest equities exchange operator in the U.S. In addition, the Company operates Cboe Europe Equities (Cboe Europe and Cboe NL equities exchanges), one of the largest equities exchanges by value traded in Europe, and owns Cboe Clear Europe, a leading pan-European equities and derivatives clearinghouse, BIDS Holdings, which owns a leading block-trading ATS by volume in the U.S., and provides block-trading services with Cboe market operators in Europe and Canada, Cboe Australia, an operator of a regulated stock exchange in Australia, Cboe Clear U.S., an operator of a regulated clearinghouse, and Cboe Canada, a recognized Canadian securities exchange. Cboe subsidiaries also serve collectively as a leading market globally for exchange-traded products (“ETPs”) listings and trading.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-010013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026010013/cboe-20251231.htm"
+  },
+  "description_short": "Cboe Global Markets (Cboe: CBOE) is a leading global markets operator with a long history of innovation in equity and index derivatives. Since launching the world's first listed options exchange in 1973, Cboe has pioneered landmark products, including the introduction of S&P 500 index options and the creation of the VIX Index, the world's leading gauge of market volatility, reshaping how investors manage risk and access opportunity. Today, Cboe operates derivatives, equities, and FX markets, providing trading, clearing, and investment solutions for customers worldwide.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": null,
+  "sic": "6200",
+  "sic_description": "Security & Commodity Brokers, Dealers, Exchanges & Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "BATS",
+  "exchanges": [
+   "CBOE"
+  ],
+  "website": null,
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "433 West Van Buren Street",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60607",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "312 786 7200",
+  "employees": {
+   "count": 1661,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 1,661 individuals in the following locations:",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026010013/cboe-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2010-03-11",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "CBOE Holdings, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001374310&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-28",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001104659-26-111989",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465926111989/tm2626203d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051239",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026051239/cboe-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-051217",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026051217/cboe-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-087625",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465926087625/tm2621346d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-078295",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465926078295/tm2618643d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-063250",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465926063250/tm2614804d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-029112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026029112/cboe-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.02",
+    "2.05",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs",
+   "accession": "0001628280-26-029103",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026029103/cboe-20260501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-022939",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026022939/cboe-20260401.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-010013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026010013/cboe-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005944",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828026005944/cboe-20260206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-26",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001104659-26-006416",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465926006416/tm263772d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047680",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828025047680/cboe-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047668",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828025047668/cboe-20251031.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-037149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828025037149/cboe-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-08-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-037143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000162828025037143/cboe-20250801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-17",
+   "period": "2025-07-14",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-068685",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465925068685/tm2521107d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-27",
+   "period": "2025-06-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-063674",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465925063674/tm2519024d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-053355",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465925053355/tm2516070d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-06",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001104659-25-045577",
+   "url": "https://www.sec.gov/Archives/edgar/data/1374310/000110465925045577/tm2514232d1_8k.htm"
+  }
+ ],
+ "warnings": []
+}

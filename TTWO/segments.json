@@ -1,0 +1,477 @@
+{
+ "ticker": "TTWO",
+ "cik": 946581,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-005119",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026005119/ttwo-20251231_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-037434",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/ttwo-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-054870",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026054870/ttwo-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ttwo:MobileMember",
+     "label": "Mobile",
+     "values": [
+      2748000000,
+      2942000000,
+      3333000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5137,
+      0.5222,
+      0.5007
+     ],
+     "growth_yoy": [
+      null,
+      0.0706,
+      0.1329
+     ]
+    },
+    {
+     "member": "ttwo:ConsoleMember",
+     "label": "Console",
+     "values": [
+      2167300000,
+      2099100000,
+      2597300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4051,
+      0.3726,
+      0.3902
+     ],
+     "growth_yoy": [
+      null,
+      -0.0315,
+      0.2373
+     ]
+    },
+    {
+     "member": "ttwo:PCAndOtherProductsMember",
+     "label": "P C And Other Products",
+     "values": [
+      434300000,
+      592500000,
+      726100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0812,
+      0.1052,
+      0.1091
+     ],
+     "growth_yoy": [
+      null,
+      0.3643,
+      0.2255
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5349600000,
+     5633600000,
+     6656400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "ttwo:MobileMember",
+     "label": "Mobile",
+     "values": [
+      731600000,
+      747700000,
+      801700000,
+      865800000,
+      843900000,
+      762300000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.538,
+      0.4725,
+      0.5331,
+      0.5096,
+      0.5024,
+      0.497
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1834,
+      0.1287,
+      -0.0491
+     ]
+    },
+    {
+     "member": "ttwo:ConsoleMember",
+     "label": "Console",
+     "values": [
+      507900000,
+      591200000,
+      550600000,
+      652100000,
+      674600000,
+      640500000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3735,
+      0.3736,
+      0.3661,
+      0.3838,
+      0.4016,
+      0.4176
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2839,
+      0.1411,
+      0.1633
+     ]
+    },
+    {
+     "member": "ttwo:PCAndOtherProductsMember",
+     "label": "P C And Other Products",
+     "values": [
+      120300000,
+      243600000,
+      151500000,
+      181100000,
+      161300000,
+      131100000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0885,
+      0.1539,
+      0.1007,
+      0.1066,
+      0.096,
+      0.0855
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.5054,
+      -0.3378,
+      -0.1347
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1359800000,
+     1582500000,
+     1503800000,
+     1699000000,
+     1679800000,
+     1533900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3279200000,
+      3406800000,
+      3940400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.613,
+      0.6047,
+      0.592
+     ],
+     "growth_yoy": [
+      null,
+      0.0389,
+      0.1566
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      2070400000,
+      2226800000,
+      2716000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.387,
+      0.3953,
+      0.408
+     ],
+     "growth_yoy": [
+      null,
+      0.0755,
+      0.2197
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5349600000,
+     5633600000,
+     6656400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      825700000,
+      946100000,
+      900400000,
+      1012200000,
+      991700000,
+      920000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.6072,
+      0.5979,
+      0.5987,
+      0.5958,
+      0.5904,
+      0.5998
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2259,
+      0.0482,
+      0.0218
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      534100000,
+      636400000,
+      603400000,
+      686800000,
+      688100000,
+      613900000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3928,
+      0.4021,
+      0.4013,
+      0.4042,
+      0.4096,
+      0.4002
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2859,
+      0.0812,
+      0.0174
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1359800000,
+     1582500000,
+     1503800000,
+     1699000000,
+     1679800000,
+     1533900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Game' (ttwo:GameMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Advertising' (us-gaap:AdvertisingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Recurrent Customer Spending' (ttwo:RecurrentCustomerSpendingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Digital Online' (ttwo:DigitalOnlineMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Full Game And Other' (ttwo:FullGameAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Physical Retail And Other' (ttwo:PhysicalRetailAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Game' (ttwo:GameMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Advertising' (us-gaap:AdvertisingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Recurrent Customer Spending' (ttwo:RecurrentCustomerSpendingMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Digital Online' (ttwo:DigitalOnlineMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Mobile, Console, P C And Other Products)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Full Game And Other' (ttwo:FullGameAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Physical Retail And Other' (ttwo:PhysicalRetailAndOtherMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

@@ -1,0 +1,132 @@
+{
+  "ticker": "SYN", "name": "Synthetic Payer Corp", "sector": "Consumer / Test fixtures", "folder": "SYN",
+  "built_at": "2026-10-14T19:07:00-04:00", "built_from_mtime": 0,
+  "row": {
+    "ticker": "SYN", "name": "Synthetic Payer Corp", "sector": "Consumer / Test fixtures", "fit": "modeled",
+    "tier": "C", "tier_by_numbers": "C", "tier_override": false, "tier_live": "B", "tier_bear": "D", "tier_bull": "A",
+    "irr": 0.142, "irr_live": 0.161, "irr_bear": 0.08, "irr_bull": 0.21, "irr_at_floor": false, "irr_capped": false, "f_subtype": null,
+    "price": 50.0, "price_live": 45.0, "price_date": "2026-10-14", "ret_1y_pct": 12.5,
+    "iv15": 60.0, "iv12": 80.0, "iv20": 45.5, "iv25": 36.0, "upside15": 20.0, "upside15_live": 33.3,
+    "market_cap_b": 5.0, "market_cap_b_live": 4.5, "moat": 5, "cap_years": 8.5, "confidence": "medium", "confidence_capped": false,
+    "one_liner": "A steady payer used to exercise the dividend and segment tabs.", "analysis_date": "2026-10-14", "engine_release": "5.4.0",
+    "flags": ["TIER_BAND: bear D → bull A"], "overrides": [], "override_unblocks_tier": false,
+    "second_pass": {"date": "2026-10-14", "verdict": "no_change", "prior_tier": "C"}, "alert_eligible": false,
+    "dividend_yield": 0.028, "shareholder_yield": 0.041,
+    "has": {"prices": false, "fundamentals": true, "dividends": true, "segments": true, "live": true, "analysis": true, "second_pass": false}
+  },
+  "score": {
+    "ticker": "SYN", "name": "Synthetic Payer Corp", "sector": "Consumer / Test fixtures", "price": 50.0, "market_cap_b": 5.0, "engine_version": 5,
+    "base_oe_per_share": 3.2, "base_source": "median_of_last_3_fy_oe_per_share", "moat_score": 5, "moat_justification": "Regional brand with modest switching costs.",
+    "moat_for": ["Brand loyalty in its home region"], "moat_against": ["Private-label pressure"], "cap_years": 8.5,
+    "fragility_flags": ["TIER_BAND: bear D → bull A"],
+    "scenarios": {"super_bear": {"prob": 0.1, "iv_at_15": 30.0, "irr": 0.05}, "bear": {"prob": 0.25, "iv_at_15": 42.0, "irr": 0.08}, "base": {"prob": 0.3, "iv_at_15": 58.0, "irr": 0.14}, "bull": {"prob": 0.25, "iv_at_15": 80.0, "irr": 0.21}, "super_bull": {"prob": 0.1, "iv_at_15": 110.0, "irr": 0.29}},
+    "iv_at_15": 60.0, "iv_at_12": 80.0, "iv_at_20": 45.5, "iv_at_25": 36.0, "implied_irr": 0.142, "implied_irr_base_case": 0.14, "upside_at_15_pct": 20.0,
+    "tier_by_numbers": "C", "tier_final": "C", "tier_bear": "D", "tier_bull": "A", "irr_bear": 0.08, "irr_bull": 0.21, "confidence": "medium",
+    "one_liner": "A steady payer used to exercise the dividend and segment tabs.", "analysis_date": "2026-10-14", "engine_release": "5.4.0", "model_fit": "modeled",
+    "second_pass": {"date": "2026-10-14", "verdict": "no_change", "prior_tier": "C", "summary": "Numbers re-checked; nothing material."}
+  },
+  "numbers": {
+    "ticker": "SYN", "name": "Synthetic Payer Corp", "cik": 1234567, "engine_version": 5, "engine_release": "5.4.0", "as_of": "2026-10-14", "price": 50.0, "price_source": "nasdaq_quote_api",
+    "shares_diluted_latest": 100000000, "market_cap_est": 5000000000, "net_debt_latest": 400000000, "base_oe_per_share": 3.2, "base_oe_latest_per_share": 3.4, "base_oe_normalized_per_share": 3.2, "base_source": "median_of_last_3_fy_oe_per_share",
+    "g_blend": 0.06, "g_base": 0.06, "g_terminal": 0.025, "share_cagr": -0.01, "share_count_adj": 0.01, "share_adj_basis": "applied to the revenue components",
+    "growth_components": {"rev_cagr_5y": 0.05, "rev_cagr_3y": 0.06, "rev_yoy_latest": 0.07, "oe_ps_cagr_2y": 0.04}, "growth_components_adjusted": {"rev_cagr_5y": 0.06, "rev_cagr_3y": 0.07, "rev_yoy_latest": 0.08, "oe_ps_cagr_2y": 0.04},
+    "inputs": {"moat": 5, "probs": [0.1, 0.25, 0.3, 0.25, 0.1], "offsets": [-0.12, -0.05, 0, 0.05, 0.12], "mults": [0.75, 0.9, 1.0, 1.1, 1.25], "g_terminal": 0.025, "base_pin_source": "median"},
+    "diagnostics": {"oe_yield": 0.064, "tv_share_at_15": 0.55, "scenario_spread_iv15": 3.7, "net_debt_to_normalized_oe": 1.25, "irr_at_floor": false},
+    "data_gap": [], "data_gap_uncovered": [], "overrides_applied": [], "used_tags": {"revenue": "Revenues", "ocf": "NetCashProvidedByUsedInOperatingActivities"},
+    "scenarios": {"super_bear": {"prob": 0.1, "g_start": -0.06, "oe_mult": 0.75, "iv_at_10": 45.0, "iv_at_12": 38.0, "iv_at_15": 30.0, "iv_at_20": 22.0, "iv_at_25": 17.0, "irr": 0.05},
+                  "bear": {"prob": 0.25, "g_start": 0.01, "oe_mult": 0.9, "iv_at_10": 62.0, "iv_at_12": 52.0, "iv_at_15": 42.0, "iv_at_20": 31.0, "iv_at_25": 24.0, "irr": 0.08},
+                  "base": {"prob": 0.3, "g_start": 0.06, "oe_mult": 1.0, "iv_at_10": 85.0, "iv_at_12": 72.0, "iv_at_15": 58.0, "iv_at_20": 43.0, "iv_at_25": 34.0, "irr": 0.14},
+                  "bull": {"prob": 0.25, "g_start": 0.11, "oe_mult": 1.1, "iv_at_10": 118.0, "iv_at_12": 99.0, "iv_at_15": 80.0, "iv_at_20": 60.0, "iv_at_25": 47.0, "irr": 0.21},
+                  "super_bull": {"prob": 0.1, "g_start": 0.18, "oe_mult": 1.25, "iv_at_10": 160.0, "iv_at_12": 135.0, "iv_at_15": 110.0, "iv_at_20": 82.0, "iv_at_25": 64.0, "irr": 0.29}},
+    "weighted": {"iv_at_10": 88.0, "iv_at_12": 80.0, "iv_at_15": 60.0, "iv_at_20": 45.5, "iv_at_25": 36.0, "irr": 0.142}, "tier_by_numbers": "C", "content_hash": "abcdef0123456789abcdef0123456789"
+  },
+  "forecast": {
+    "paths": {"super_bear": [2.4, 2.3, 2.2, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1], "bear": [2.9, 2.9, 2.9, 3.0, 3.0, 3.0, 3.1, 3.1, 3.2, 3.2, 3.3, 3.3, 3.4, 3.5, 3.6],
+              "base": [3.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6, 4.7, 4.9, 5.0, 5.1, 5.3, 5.4, 5.5, 5.7], "bull": [3.9, 4.3, 4.8, 5.3, 5.8, 6.3, 6.7, 7.1, 7.5, 7.8, 8.0, 8.2, 8.4, 8.6, 8.8],
+              "super_bull": [4.7, 5.6, 6.6, 7.7, 8.8, 9.9, 11.0, 12.0, 12.9, 13.6, 14.1, 14.5, 14.9, 15.3, 15.6], "weighted": [3.4, 3.7, 4.0, 4.3, 4.6, 4.9, 5.2, 5.4, 5.7, 5.9, 6.0, 6.2, 6.4, 6.5, 6.7]},
+    "growth_paths": {"super_bear": [-0.06, -0.06, -0.05, -0.04, -0.03, -0.02, -0.01, 0.0, 0.01, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025], "bear": [0.01, 0.01, 0.012, 0.014, 0.016, 0.018, 0.02, 0.022, 0.024, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025],
+                     "base": [0.06, 0.06, 0.055, 0.05, 0.045, 0.04, 0.035, 0.03, 0.027, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025], "bull": [0.11, 0.11, 0.1, 0.09, 0.08, 0.07, 0.06, 0.05, 0.04, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025],
+                     "super_bull": [0.18, 0.18, 0.16, 0.14, 0.12, 0.1, 0.08, 0.06, 0.04, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025]},
+    "sensitivity": {"super_bear": {"10": 45.0, "12": 38.0, "15": 30.0, "20": 22.0, "25": 17.0, "irr": 0.05, "irr_live": 0.06}, "bear": {"10": 62.0, "12": 52.0, "15": 42.0, "20": 31.0, "25": 24.0, "irr": 0.08, "irr_live": 0.09},
+                    "base": {"10": 85.0, "12": 72.0, "15": 58.0, "20": 43.0, "25": 34.0, "irr": 0.14, "irr_live": 0.155}, "bull": {"10": 118.0, "12": 99.0, "15": 80.0, "20": 60.0, "25": 47.0, "irr": 0.21, "irr_live": 0.23},
+                    "super_bull": {"10": 160.0, "12": 135.0, "15": 110.0, "20": 82.0, "25": 64.0, "irr": 0.29, "irr_live": 0.31}, "weighted": {"10": 88.0, "12": 80.0, "15": 60.0, "20": 45.5, "25": 36.0, "irr": 0.142, "irr_live": 0.161}},
+    "hurdle_prices": {"15": 60.0, "20": 45.5, "25": 36.0},
+    "inputs": {"moat": 5, "probs": [0.1, 0.25, 0.3, 0.25, 0.1], "offsets": [-0.12, -0.05, 0, 0.05, 0.12], "mults": [0.75, 0.9, 1.0, 1.1, 1.25], "g_terminal": 0.025, "base_pin_source": "median"},
+    "g_base": 0.06, "g_blend": 0.06, "g_terminal": 0.025, "cap_years": 8.5,
+    "growth_components": {"rev_cagr_5y": 0.05, "rev_cagr_3y": 0.06, "rev_yoy_latest": 0.07, "oe_ps_cagr_2y": 0.04}, "growth_components_adjusted": {"rev_cagr_5y": 0.06, "rev_cagr_3y": 0.07, "rev_yoy_latest": 0.08, "oe_ps_cagr_2y": 0.04},
+    "share_cagr": -0.01, "share_count_adj": 0.01, "share_adj_basis": "applied to the revenue components", "replayed": false
+  },
+  "live": {
+    "ticker": "SYN", "as_of": "2026-10-15", "price": 45.0, "price_date": "2026-10-14", "price_source": "prices.json (Nasdaq last close)", "scored_price": 50.0, "scored_date": "2026-10-14", "price_change_pct": -10.0,
+    "irr_weighted": 0.161, "tier": "B", "irr_base": 0.155, "irr_bear": 0.09, "irr_bull": 0.23, "tier_bear": "D", "tier_bull": "A", "irr_at_floor": false, "irr_capped": false,
+    "scenarios": {"super_bear": {"irr": 0.06, "tier": "D"}, "bear": {"irr": 0.09, "tier": "D"}, "base": {"irr": 0.155, "tier": "B"}, "bull": {"irr": 0.23, "tier": "A"}, "super_bull": {"irr": 0.31, "tier": "S"}},
+    "iv_at_15": 60.0, "iv_at_12": 80.0, "iv_at_20": 45.5, "iv_at_25": 36.0, "upside_at_15": 0.333, "market_cap_est": 4500000000,
+    "scored": {"irr_weighted": 0.142, "tier_by_numbers": "C", "tier_final": "C", "upside_at_15": 0.2}, "delta": {"irr_pp": 1.9, "tier_changed": true}
+  },
+  "history": [{"period_end": "2024-12-31", "fy_label": 2024, "revenue": 2000000000, "net_income": 150000000, "ocf": 400000000, "capex": 60000000, "sbc": 20000000, "oe_conservative": 320000000, "oe_maintenance": 300000000, "shares_diluted": 100000000}],
+  "fundamentals": {
+    "currency": "USD", "warnings": ["one quarter's gross profit is missing (fixture)"],
+    "profile": {"sic": "5411", "sic_description": "Retail-Grocery Stores", "fiscal_year_end_mmdd": "1231", "state_of_incorporation": "DE", "exchanges": ["NYSE"], "filer_category": "Large accelerated filer",
+                "latest_filings": {"10-K": {"filed": "2026-02-20", "period": "2025-12-31", "url": "https://www.sec.gov/Archives/edgar/data/1234567/syn-20251231.htm"}}, "eight_k_count_12m": 4},
+    "annual": [
+      {"fy": "2023", "period_end": "2023-12-31", "revenue": 1800000000, "cogs": 1200000000, "gross_profit": 600000000, "gross_margin": 0.333, "operating_income": 200000000, "operating_margin": 0.111, "net_income": 130000000, "net_margin": 0.072, "eps_diluted": 1.25, "shares_diluted": 104000000, "ocf": 360000000, "capex": 55000000, "sbc": 18000000, "fcf": 305000000, "oe_conservative": 287000000, "oe_margin": 0.159, "oe_per_share": 2.76, "dividends_paid": 90000000, "buybacks": 40000000, "cash": 150000000, "total_debt": 600000000, "net_debt": 450000000, "equity": 900000000, "assets": 2500000000},
+      {"fy": "2024", "period_end": "2024-12-31", "revenue": 2000000000, "revenue_growth": 0.111, "cogs": 1320000000, "gross_profit": 680000000, "gross_margin": 0.34, "operating_income": 230000000, "operating_margin": 0.115, "net_income": 150000000, "net_margin": 0.075, "net_income_growth": 0.154, "eps_diluted": 1.5, "eps_diluted_growth": 0.2, "shares_diluted": 100000000, "shares_diluted_growth": -0.038, "ocf": 400000000, "ocf_growth": 0.111, "capex": 60000000, "sbc": 20000000, "fcf": 340000000, "oe_conservative": 320000000, "oe_margin": 0.16, "oe_conservative_growth": 0.115, "oe_per_share": 3.2, "oe_per_share_growth": 0.159, "dividends_paid": 100000000, "buybacks": 60000000, "acquisitions": 10000000, "cash": 180000000, "total_debt": 580000000, "net_debt": 400000000, "equity": 980000000, "assets": 2600000000, "roe": 0.153}
+    ],
+    "quarterly": [
+      {"period_end": "2025-03-31", "fq": 1, "fy": "2025", "label": "Q1 FY2025", "revenue": 520000000, "net_income": 38000000, "ocf": 95000000, "ocf_derived": false, "capex": 15000000, "sbc": 5000000, "oe_conservative": 75000000, "eps_diluted": 0.38, "shares_diluted": 100000000, "dividends_paid": 26000000, "buybacks": 15000000},
+      {"period_end": "2025-06-30", "fq": 2, "fy": "2025", "label": "Q2 FY2025", "revenue": 540000000, "revenue_yoy": 0.08, "net_income": 40000000, "ocf": 110000000, "ocf_derived": true, "capex": 15000000, "capex_derived": true, "sbc": 5000000, "oe_conservative": 90000000, "eps_diluted": 0.4, "shares_diluted": 99500000, "dividends_paid": 26000000, "buybacks": 15000000},
+      {"period_end": "2025-09-30", "fq": 3, "fy": "2025", "label": "Q3 FY2025", "revenue": 530000000, "revenue_yoy": 0.06, "net_income": 39000000, "ocf": 100000000, "ocf_derived": true, "capex": 16000000, "capex_derived": true, "sbc": 5000000, "oe_conservative": 79000000, "eps_diluted": 0.39, "shares_diluted": 99000000, "dividends_paid": 27000000, "buybacks": 15000000},
+      {"period_end": "2025-12-31", "fq": 4, "fy": "2025", "label": "Q4 FY2025", "revenue": 560000000, "revenue_yoy": 0.07, "net_income": 43000000, "ocf": 120000000, "ocf_derived": true, "capex": 16000000, "capex_derived": true, "sbc": 5000000, "oe_conservative": 99000000, "eps_diluted": 0.43, "shares_diluted": 98500000, "dividends_paid": 27000000, "buybacks": 15000000}
+    ],
+    "ttm": {"period_end": "2025-12-31", "quarters": ["2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31"], "revenue": 2150000000, "revenue_yoy": 0.075, "net_income": 160000000, "net_income_yoy": 0.067, "ocf": 425000000, "ocf_yoy": 0.0625, "oe_conservative": 343000000, "oe_margin": 0.16, "oe_per_share": 3.48, "sbc": 20000000},
+    "dividends": {
+      "dps_ttm": 1.26, "dps_basis": "declared", "frequency": "quarterly",
+      "annual_dps": [{"fy": "2021", "period_end": "2021-12-31", "dps": 0.9}, {"fy": "2022", "period_end": "2022-12-31", "dps": 1.0}, {"fy": "2023", "period_end": "2023-12-31", "dps": 1.1}, {"fy": "2024", "period_end": "2024-12-31", "dps": 1.2}, {"fy": "2025", "period_end": "2025-12-31", "dps": 1.26}],
+      "dps_growth_yoy": 0.05, "dps_cagr_3y": 0.08, "dps_cagr_5y": 0.088, "growth_years": 5, "last_cut_fy": null,
+      "payout_ratio_eps": 0.84, "payout_ratio_oe": 0.31, "payout_ratio_fcf": 0.29, "payout_fy": "2025",
+      "dividends_paid_ttm": 106000000, "buybacks_ttm": 60000000, "issuance_ttm": 5000000, "ttm_period_end": "2025-12-31",
+      "price": 45.0, "price_date": "2026-10-14", "price_source": "prices.json", "shares_diluted": 98500000, "shares_source": "latest quarterly diluted", "market_cap": 4432500000,
+      "dividend_yield": 0.028, "buyback_yield": 0.0135, "net_buyback_yield": 0.0124, "shareholder_yield": 0.0375,
+      "history": [{"period_end": "2025-12-31", "dps": 0.32, "kind": "declared"}, {"period_end": "2025-09-30", "dps": 0.32, "kind": "declared"}, {"period_end": "2025-06-30", "dps": 0.31, "kind": "declared"}, {"period_end": "2025-03-31", "dps": 0.31, "kind": "declared"}],
+      "notes": ["annual_dps: FY2025 = sum of the four filed quarterly DPS facts (no FY fact)"]
+    },
+    "tags_used": {"revenue": ["Revenues"], "ocf": ["NetCashProvidedByUsedInOperatingActivities"]}
+  },
+  "prices": null,
+  "profile": {
+    "ticker": "SYN", "as_of": "2026-10-14", "street_fetched_at": "2026-10-14T18:05:00-04:00", "sources": {"about": "SEC EDGAR submissions + 10-K Item 1", "street": "Nasdaq analyst endpoints"},
+    "about": {"description": {"text": "Synthetic Payer Corp operates 1,200 grocery and pharmacy stores in 14 states; revenue is 65% grocery and 35% pharmacy.", "accession": "0001234567-26-000012", "url": "https://www.sec.gov/Archives/edgar/data/1234567/syn-20251231.htm"},
+              "description_short": "Regional grocer and pharmacy operator.", "industry": "Food Chains", "sector": "Consumer Staples", "sic": "5411", "sic_description": "Retail-Grocery Stores", "state_of_incorporation": "DE", "fiscal_year_end_mmdd": "1231",
+              "filer_category": "Large accelerated filer", "exchange": "NYSE", "website": "https://www.synthetic-payer.example/", "headquarters": "Cincinnati, OH",
+              "employees": {"count": 42000, "as_of": "2025-12-31", "evidence": "As of December 31, 2025 we employed approximately 42,000 associates."}, "first_sec_filing": "1998-03-12", "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1234567"},
+    "street": {"source": "Nasdaq analyst endpoints", "as_of": "2026-10-14", "consensus": "Buy", "analysts": 16, "buy": 12, "hold": 4, "sell": 0, "target_mean": 58.0, "target_low": 44.0, "target_high": 72.0,
+               "target_1y_nasdaq_summary": "The average 12-month price target is $58.00, 28.9% above the last close.",
+               "history": [{"date": "2026-10-01", "mean_target": 58.0, "buy": 12, "hold": 4, "sell": 0}, {"date": "2026-07-01", "mean_target": 55.0, "buy": 11, "hold": 5, "sell": 0}],
+               "eps_forecast": {"quarterly": [{"period": "Q1 2026", "consensus": 0.41, "low": 0.38, "high": 0.45, "estimates": 9, "revisions_up": 2, "revisions_down": 1}], "annual": [{"period": "FY2026", "consensus": 1.7, "low": 1.55, "high": 1.9, "estimates": 12, "revisions_up": 3, "revisions_down": 0}]}},
+    "filings": [{"form": "8-K", "filed": "2026-10-02", "period": "2026-10-02", "items": ["2.02", "9.01"], "description": "Results of operations", "url": "https://www.sec.gov/Archives/edgar/data/1234567/syn-8k-20261002.htm"},
+                {"form": "10-Q", "filed": "2026-08-05", "period": "2026-06-30", "items": [], "description": "Quarterly report", "url": "https://www.sec.gov/Archives/edgar/data/1234567/syn-20260630.htm"},
+                {"form": "10-K", "filed": "2026-02-20", "period": "2025-12-31", "items": [], "description": "Annual report", "url": "javascript:alert(1)"}],
+    "market": {"exchange": "NYSE", "average_volume": 2100000, "volume": 1800000, "market_cap_nasdaq": 4450000000, "high_52w": 55.2, "low_52w": 38.4, "dividend_yield_nasdaq": 0.028}
+  },
+  "segments": {
+    "source": "SEC EDGAR XBRL segment axis", "as_of": "2026-10-14", "currency": "USD", "filings": [{"form": "10-K", "period": "2025-12-31"}], "warnings": [],
+    "tables": [
+      {"label": "Revenue by segment", "concept": "Revenues", "periodicity": "annual", "periods": ["2023-12-31", "2024-12-31", "2025-12-31"], "period_labels": ["FY2023", "FY2024", "FY2025"],
+       "rows": [
+         {"label": "Grocery", "member": "GroceryMember", "values": [1200000000, 1300000000, 1400000000], "growth_yoy": [null, 0.083, 0.077], "share_of_total": [0.667, 0.65, 0.651], "derived": [false, false, false]},
+         {"label": "Corporate &amp; eliminations", "member": "CorporateMember", "values": [-20000000, -25000000, -30000000], "growth_yoy": [null, null, null], "share_of_total": [null, null, null], "derived": [false, false, true]},
+         {"label": "Pharmacy", "member": "PharmacyMember", "values": [620000000, 725000000, 780000000], "growth_yoy": [null, 0.169, 0.076], "share_of_total": [0.344, 0.363, 0.363], "derived": [false, false, false]}
+       ],
+       "total": {"basis": "Revenues (consolidated)", "values": [1800000000, 2000000000, 2150000000]}},
+      {"label": "Revenue by segment", "concept": "Revenues", "periodicity": "quarterly", "periods": ["2025-09-30", "2025-12-31"], "period_labels": ["Q3 FY2025", "Q4 FY2025"],
+       "rows": [{"label": "Grocery", "member": "GroceryMember", "values": [340000000, 360000000], "growth_yoy": [0.05, 0.06], "share_of_total": [0.64, 0.64], "derived": [true, true]},
+                {"label": "Pharmacy", "member": "PharmacyMember", "values": [190000000, 200000000], "growth_yoy": [0.08, 0.09], "share_of_total": [0.36, 0.36], "derived": [true, true]}],
+       "total": {"basis": "Revenues", "values": [530000000, 560000000]}}
+    ]
+  },
+  "ttm": null, "judgment": {"moat_score": 5, "one_liner": "A steady payer used to exercise the dividend and segment tabs.", "tier_override": null},
+  "registry": [{"ticker": "SYN", "event": "gterm", "date": "2026-10-14", "value": 0.025, "reason": "default kept"}],
+  "analysis_md": "# Synthetic Payer Corp\n\n## What it is\n\nA **fixture** with `code`, a [link](https://example.com/?a=1&b=2) and a list:\n\n- first point\n  continued line\n- second point\n\n1. ordered one\n2. ordered two\n\n| Scenario | IRR |\n|---|---|\n| Bear | 8% |\n| Bull | 21% |\n\n---\n\n```\nraw <block>\n```\n\nFinal paragraph with <angle> brackets that must be escaped.",
+  "second_pass_md": null,
+  "files": ["analysis.md", "dcf_numbers.json", "fundamentals.json", "judgment.json", "live.json", "score.json", "segments.json"]
+}

@@ -1,0 +1,284 @@
+{
+ "ticker": "EME",
+ "cik": 105634,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:09:46-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000105634.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000025/eme-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EME/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EME/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EMCOR Group, Inc.",
+  "cik": 105634,
+  "description": {
+   "text": "We are one of the largest specialty contractors in the United States and a leading provider of electrical and mechanical construction and facilities services, building services, and industrial services. In 2025, we had revenues of $16.99 billion. Our services are provided to a broad range of commercial, technology, manufacturing, industrial, healthcare, utility, and institutional customers through approximately 100 operating subsidiaries, which specialize principally in providing construction services relating to electrical and mechanical systems in all types of facilities and in providing various services relating to the operation, maintenance, and management of those facilities. Such operating subsidiaries are organized into the following reportable segments:",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000105634-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000025/eme-20251231.htm"
+  },
+  "description_short": "A Fortune 500 company and a member of the S&P 500, EMCOR Group, Inc. is a leader in mechanical and electrical construction services, industrial and energy infrastructure, and building services.",
+  "industry": "Engineering & Construction",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "1731",
+  "sic_description": "Electrical Work",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.emcorgroup.com",
+  "headquarters": "Norwalk, Connecticut",
+  "address": {
+   "street": "301 Merritt Seven",
+   "city": "Norwalk",
+   "state": "Connecticut",
+   "zip": "06851-1092",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "203-849-7800",
+  "employees": {
+   "count": 44000,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we employed approximately 44,000 people, all of whom were located within the United States.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000025/eme-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-06",
+  "first_sec_filing_form": "SC 13D",
+  "former_names": [
+   "EMCOR GROUP INC",
+   "JWP INC/DE/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000105634&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-28",
+   "items": [
+    "1.04"
+   ],
+   "description": "Item 1.04",
+   "accession": "0000105634-26-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000115/eme-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-26-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000112/eme-20260730.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000105634-26-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000110/eme-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000105634-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000085/eme-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000048/eme-20260429.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000105634-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000046/eme-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-21",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-015809",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000114036126015809/ny20062562x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000027/eme-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000105634-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000025/eme-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000082/eme-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000105634-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000078/eme-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-27",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000105634-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000073/eme-20251027.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000049/eme-20250731.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000105634-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000046/eme-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-05",
+   "period": "2025-06-05",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000105634-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000036/eme-20250605.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000032/eme-20250430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-30",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000105634-25-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000029/eme-20250331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-23",
+   "period": "2025-06-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-015031",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000114036125015031/ny20044392x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-26",
+   "period": "2025-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000105634-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000019/eme-20250226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-26",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000105634-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563425000015/eme-20241231.htm"
+  }
+ ],
+ "warnings": []
+}

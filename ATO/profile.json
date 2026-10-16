@@ -1,0 +1,292 @@
+{
+ "ticker": "ATO",
+ "cik": 731802,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:07:47-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000731802.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000056/ato-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ATO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ATO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ATMOS ENERGY CORP",
+  "cik": 731802,
+  "description": {
+   "text": "Atmos Energy Corporation, a natural gas-only distributor, is an S&P 500 company headquartered in Dallas and incorporated in Texas and Virginia. We safely deliver reliable, efficient, and abundant natural gas through regulated sales and transportation arrangements to approximately 3.4 million residential, commercial, public authority, and industrial customers in eight states located primarily in the South. We also operate one of the largest intrastate pipelines in Texas based on miles of pipe. Atmos Energy's vision is to be the safest provider of natural gas services. We will be recognized for exceptional customer service, for being a great employer, and for achieving superior financial results. Our operating strategy is focused on modernizing our business and infrastructure while reducing regulatory lag. This operating strategy supports continued investment in safety, innovation, environmental sustainability, and our communities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-14",
+   "period": "2025-09-30",
+   "accession": "0000731802-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000056/ato-20250930.htm"
+  },
+  "description_short": "Atmos Energy Corporation, a natural gas-only distributor, is an S&P 500 company headquartered in Dallas. We safely deliver reliable, efficient, and abundant natural gas to approximately 3.4 million distribution customers in over 1,400 communities across eight states located primarily in the South. As part of our vision to be the safest provider of natural gas services, we are modernizing our business and infrastructure while continuing to invest in safety, innovation, environmental sustainability, and our communities. Atmos Energy manages proprietary pipeline and storage assets, including one of the largest intrastate natural gas pipeline systems in Texas.",
+  "industry": "Oil/Gas Transmission",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4924",
+  "sic_description": "Natural Gas Distribution",
+  "state_of_incorporation": "TX",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.atmosenergy.com",
+  "headquarters": "Dallas, Texas",
+  "address": {
+   "street": "1800 Three Lincoln Centre 5430 LBJ Freeway",
+   "city": "Dallas",
+   "state": "Texas",
+   "zip": "75240",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-14"
+  },
+  "phone": "9729349227",
+  "employees": {
+   "count": 5487,
+   "as_of": "2025-09-30",
+   "evidence": "At September 30, 2025, we had 5,487 employees.",
+   "form": "10-K",
+   "filed": "2025-11-14",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000056/ato-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-05",
+  "first_sec_filing_form": "8-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000731802&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-09",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-419084",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526419084/d174816d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-418579",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526418579/d174432d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-04",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-341096",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526341096/d138079d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000731802-26-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000102/ato-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000731802-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000100/ato-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-276088",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526276088/d138781d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-275070",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526275070/d134202d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000731802-26-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000089/ato-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000731802-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000086/ato-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-27",
+   "items": [
+    "1.01",
+    "2.03"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-130403",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526130403/d125285d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-04",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001193125-26-044926",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312526044926/d97547d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-03",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000731802-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000013/ato-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000731802-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180226000011/ato-20260203.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-12-19",
+   "period": "2026-02-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000731802-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000076/ato-20251218.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-14",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000731802-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000056/ato-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000731802-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000053/ato-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-01",
+   "period": "2025-10-01",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-226779",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312525226779/d80338d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-01",
+   "period": "2025-09-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-225956",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000119312525225956/d32832d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000731802-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000026/ato-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000731802-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/731802/000073180225000024/ato-20250806.htm"
+  }
+ ],
+ "warnings": []
+}

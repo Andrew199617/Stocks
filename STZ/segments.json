@@ -1,0 +1,633 @@
+{
+ "ticker": "STZ",
+ "cik": 16918,
+ "as_of": "2026-10-15",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000016918-26-000011",
+   "filed": "2026-04-22",
+   "period": "2026-02-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/16918/000001691826000011/stz-20260228_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000016918-26-000029",
+   "filed": "2026-07-01",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/16918/000001691826000029/stz-20260531_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000016918-26-000040",
+   "filed": "2026-10-07",
+   "period": "2026-08-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/16918/000001691826000040/stz-20260831_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-29",
+    "2025-02-28",
+    "2026-02-28"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "stz:BeerMember",
+     "label": "Beer",
+     "values": [
+      8162600000,
+      8539800000,
+      8315200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8194,
+      0.8365,
+      0.9099
+     ],
+     "growth_yoy": [
+      null,
+      0.0462,
+      -0.0263
+     ]
+    },
+    {
+     "member": "stz:ConstellationWinesAndSpiritsMember",
+     "label": "Constellation Wines And Spirits",
+     "values": [
+      1799200000,
+      1668900000,
+      823800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1806,
+      0.1635,
+      0.0901
+     ],
+     "growth_yoy": [
+      null,
+      -0.0724,
+      -0.5064
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9961800000,
+     10208700000,
+     9139000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "stz:BeerMember",
+     "label": "Beer",
+     "values": [
+      2234500000,
+      2345000000,
+      2283500000,
+      2473600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8885,
+      0.9452,
+      0.9387,
+      0.9395
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0219,
+      0.0548
+     ]
+    },
+    {
+     "member": "stz:ConstellationWinesAndSpiritsMember",
+     "label": "Constellation Wines And Spirits",
+     "values": [
+      280500000,
+      136000000,
+      149200000,
+      159400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1115,
+      0.0548,
+      0.0613,
+      0.0605
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4681,
+      0.1721
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2515000000,
+     2481000000,
+     2432700000,
+     2633000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-29",
+    "2025-02-28",
+    "2026-02-28"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "stz:BeerMember",
+     "label": "Beer",
+     "values": [
+      3094400000,
+      3394400000,
+      3161000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9762,
+      9.5644,
+      1.1615
+     ],
+     "growth_yoy": [
+      null,
+      0.0969,
+      -0.0688
+     ]
+    },
+    {
+     "member": "stz:ConstellationWinesAndSpiritsMember",
+     "label": "Constellation Wines And Spirits",
+     "values": [
+      398700000,
+      325100000,
+      10500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1258,
+      0.916,
+      0.0039
+     ],
+     "growth_yoy": [
+      null,
+      -0.1846,
+      -0.9677
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      -247600000,
+      -244600000,
+      -228300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0781,
+      -0.6892,
+      -0.0839
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3169700000,
+     354900000,
+     2721400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "stz:BeerMember",
+     "label": "Beer",
+     "values": [
+      873400000,
+      951600000,
+      891400000,
+      964200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2236,
+      1.0888,
+      1.0545,
+      1.1978
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0206,
+      0.0132
+     ]
+    },
+    {
+     "member": "stz:ConstellationWinesAndSpiritsMember",
+     "label": "Constellation Wines And Spirits",
+     "values": [
+      -6000000,
+      -19800000,
+      -1100000,
+      6100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0084,
+      -0.0227,
+      -0.0013,
+      0.0076
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      -57500000,
+      -45600000,
+      -56100000,
+      -73700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0806,
+      -0.0522,
+      -0.0664,
+      -0.0916
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     713800000,
+     874000000,
+     845300000,
+     805000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-29",
+    "2025-02-28",
+    "2026-02-28"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "stz:BeerMember",
+     "label": "Beer",
+     "values": [
+      323900000,
+      341100000,
+      330900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7547,
+      0.7631,
+      0.7879
+     ],
+     "growth_yoy": [
+      null,
+      0.0531,
+      -0.0299
+     ]
+    },
+    {
+     "member": "stz:ConstellationWinesAndSpiritsMember",
+     "label": "Constellation Wines And Spirits",
+     "values": [
+      88800000,
+      84200000,
+      67100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2069,
+      0.1884,
+      0.1598
+     ],
+     "growth_yoy": [
+      null,
+      -0.0518,
+      -0.2031
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      16500000,
+      21700000,
+      22000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0384,
+      0.0485,
+      0.0524
+     ],
+     "growth_yoy": [
+      null,
+      0.3152,
+      0.0138
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     429200000,
+     447000000,
+     420000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "stz:BeerMember",
+     "label": "Beer",
+     "values": [
+      76800000,
+      82600000,
+      77300000,
+      76500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.728,
+      0.8012,
+      0.7896,
+      0.7878
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0065,
+      -0.0738
+     ]
+    },
+    {
+     "member": "stz:ConstellationWinesAndSpiritsMember",
+     "label": "Constellation Wines And Spirits",
+     "values": [
+      22200000,
+      14300000,
+      15500000,
+      15400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2104,
+      0.1387,
+      0.1583,
+      0.1586
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3018,
+      0.0769
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      6500000,
+      6200000,
+      5100000,
+      5200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0616,
+      0.0601,
+      0.0521,
+      0.0536
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2154,
+      -0.1613
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     105500000,
+     103100000,
+     97900000,
+     97100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Geographical Components' (srt:ReportableGeographicalComponentsMember) dropped: its values equal the sum of Beer, Constellation Wines And Spirits",
+  "business_segments/OperatingIncomeLoss/annual: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the sum of Beer, Constellation Wines And Spirits, Corporate Segment and Other Operating Segment",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 108.2% of the consolidated total for 2026-02-28 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the sum of Beer, Constellation Wines And Spirits, Corporate Segment and Other Operating Segment",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 111.4% of the consolidated total for 2026-08-31 (ties_to_total: false)"
+ ],
+ "complete": true
+}

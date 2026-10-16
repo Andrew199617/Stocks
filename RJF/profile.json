@@ -1,0 +1,298 @@
+{
+ "ticker": "RJF",
+ "cik": 720005,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T00:13:34-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000720005.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/720005/000072000525000093/rjf-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RJF/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RJF/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RAYMOND JAMES FINANCIAL INC",
+  "cik": 720005,
+  "description": {
+   "text": "Raymond James Financial, Inc. (“RJF” or the “firm”) is a leading diversified financial services company providing private client group, capital markets, asset management, banking and other services to individuals, corporations, and municipalities. The firm, together with its subsidiaries, is engaged in various financial services activities, including providing investment management services to retail and institutional clients, merger & acquisition and advisory services, the underwriting, distribution, trading, and brokerage of equity and debt securities, and the sale of mutual funds and other investment products. The firm also provides corporate and retail banking services and trust services. The firm operates predominantly in the United States (“U.S.”) and, to a lesser extent, in Canada, the United Kingdom (“UK”), and other parts of Europe. As used herein, the terms “our,” “we,” or “us” refer to RJF and/or one or more of its subsidiaries. Established in 1962 and public since 1983, RJF is listed on the New York Stock Exchange (the “NYSE”) under the symbol “RJF.” As a bank holding company (“BHC”) and financial holding company (“FHC”), RJF is subject to supervision, examination and regulation by the Board of Governors of the Federal Reserve System (“the Fed”). Among the keys to our historical and continued success, our emphasis on putting the client first is at the core of our corporate values. We also believe in maintaining a long-term focus on our decision making.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-09-30",
+   "accession": "0000720005-25-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000525000093/rjf-20250930.htm"
+  },
+  "description_short": "Raymond James Financial, Inc. (NYSE: RJF) is a leading diversified financial services company providing private client group, capital markets, asset management, banking and other services to individuals, corporations and municipalities. Total client assets are $1.93 trillion. Public since 1983, the firm is listed on the New York Stock Exchange under the symbol RJF. Additional information is available at www.raymondjames.com.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6211",
+  "sic_description": "Security Brokers, Dealers & Flotation Companies",
+  "state_of_incorporation": "FL",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.raymondjames.com",
+  "headquarters": "St. Petersburg, Florida",
+  "address": {
+   "street": "880 Carillon Parkway",
+   "city": "St. Petersburg",
+   "state": "Florida",
+   "zip": "33716",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-25"
+  },
+  "phone": "727-567-1000",
+  "employees": {
+   "count": 19500,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we had approximately 19,500 associates (including 3,878 employee financial advisors) and 5,065 independent advisors.",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000525000093/rjf-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-13",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000720005&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000077/rjf-20260923.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-08-26",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000720005-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000075/rjf-20260826.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000073/rjf-20260819.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000720005-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000070/rjf-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000720005-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000066/rjf-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000063/rjf-20260624.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000060/rjf-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000058/rjf-20260520.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-13",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000056/rjf-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000720005-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000051/rjf-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000720005-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000046/rjf-20260422.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000043/rjf-20260325.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-19",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0000720005-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000041/rjf-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000038/rjf-20260218.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000720005-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000035/rjf-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000720005-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000030/rjf-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-15",
+   "period": "2026-01-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000720005-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000028/rjf-20260115.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-07",
+   "period": "2026-02-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000720005-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000526000019/rjf-20260106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000720005-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000525000097/rjf-20251217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-03",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0000720005-25-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/720005/000072000525000095/rjf-20251203.htm"
+  }
+ ],
+ "warnings": []
+}
