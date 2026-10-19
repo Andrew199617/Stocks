@@ -1,0 +1,101 @@
+{
+ "ticker": "TWST",
+ "cik": 1581280,
+ "entity": "Twist Bioscience Corporation",
+ "fy_end": "2025-09-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": -47628000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -35814000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -41258000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": -53072000
+  },
+  "capex": {
+   "fy": 28004000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 15577000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 27624000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 40051000
+  },
+  "sbc": {
+   "fy": 64459000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 48376000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 50385000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 66468000
+  },
+  "shares_diluted": {
+   "fy": 59808000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 59600000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 61726000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": -53072000,
+ "ttm_capex": 40051000,
+ "ttm_sbc": 66468000,
+ "ttm_shares_diluted": 61726000,
+ "ttm_oe_total": -159591000,
+ "ttm_oe_per_share": -2.585474516411237,
+ "warnings": [],
+ "overrides_used": []
+}
