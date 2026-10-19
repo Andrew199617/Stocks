@@ -4,7 +4,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 
 ## Headline
 - Price: $71.95 (source: nasdaq_quote_api)
-- Tier: D · confidence low
+- Tier: F (agent override of D: The as-filed TTM base (+$0.1759/share) is entirely attributable to non-recurring working-capital inflows. Cash-flow bridge for the TTM window (statements.json quarterly lines): net income -$75,125,000 + SBC $98,741,000 + D&A $39,983,000 + other non-cash -$1,443,000 = $62,156,000 against OCF of $127,085,000 - i.e. +$64,929,000 of TTM OCF came from working-capital / other operating movements, dominated by collection of the Q2 2025 patent-litigation settlement receivable (other current assets $69,090,000 at Q2 2025 -> $3,084,000 at Q2 2026; engine-construction delta-NWC over the window -$92,078,000). Ex-release TTM OE is approx. -$42,234,000, about -$0.33/share, and the normalized 3-yr median base is -$1.22/share: no positive normalized owner's earnings on any adjusted basis, so the final tier is F. Tier by numbers on the as-filed TTM base remains D (weighted IRR 2.81%, at the solver floor; IV@15 $1.68 vs price $71.95).) · confidence low
 - Weighted IRR: 2.81% · base-case IRR: 2.78%
 - Weighted IV: @15% $1.68 · @12% $2.23 · @10% $2.85
 - Upside vs price: @15% -97.7% · @12% -96.9%
