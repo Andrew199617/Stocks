@@ -87,7 +87,17 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    **Bounded override authority (Andrew, 2026-10-14):** (a) kind "filing" — a figure from
    the company's own filings for the missing period(s); source cites form, period and
    location. (b) kind "estimate" — ONLY within 0.1×–10× of the last engine-filed value for
-   that field; name the anchor. (c) `base_override` — ONLY built exclusively from figures
+   that field; name the anchor. **Depreciation-anchor exception (Andrew, 2026-10-18):** for
+   capex only, when no capex value was ever filed for the company — so no last-filed capex
+   exists to anchor the band — a capex estimate may anchor on the filer's filed
+   depreciation instead (the estimate still sits within 0.1×–10× of that depreciation
+   anchor), and analysis.md must state the anchor explicitly: that the estimate anchors
+   on filed depreciation because no capex was ever filed. With no filed capex the engine
+   marks the estimate out-of-band by construction, so the override must also carry an
+   `ack_reason` saying exactly that (the existing out-of-band acknowledgment — ALLY's
+   scored capex override is the worked example); without it make_score refuses. Any
+   other field, or any capex case where a capex value was filed at some point, follows
+   the plain rule above or escalates. (c) `base_override` — ONLY built exclusively from figures
    THIS run's dcf_numbers.json / ttm.json / financials_history.csv printed, construction
    quoted in analysis.md. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
    Anything outside: block with a reason starting `NEEDS_MAIN_AGENT: <field> — <detail>` and
