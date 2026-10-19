@@ -1,0 +1,101 @@
+{
+ "ticker": "HRL",
+ "cik": 48465,
+ "entity": "HORMEL FOODS CORPORATION",
+ "fy_end": "2025-10-26",
+ "ytd_end": "2026-07-26",
+ "inputs": {
+  "ocf": {
+   "fy": 845251000,
+   "fy_period": [
+    "2024-10-28",
+    "2025-10-26"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 522345000,
+   "ytd_prior_period": [
+    "2024-10-28",
+    "2025-07-27"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 768752000,
+   "ytd_current_period": [
+    "2025-10-27",
+    "2026-07-26"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1091658000
+  },
+  "capex": {
+   "fy": 310902000,
+   "fy_period": [
+    "2024-10-28",
+    "2025-10-26"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 219444000,
+   "ytd_prior_period": [
+    "2024-10-28",
+    "2025-07-27"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 219331000,
+   "ytd_current_period": [
+    "2025-10-27",
+    "2026-07-26"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 310789000
+  },
+  "sbc": {
+   "fy": 25602000,
+   "fy_period": [
+    "2024-10-28",
+    "2025-10-26"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 21387000,
+   "ytd_prior_period": [
+    "2024-10-28",
+    "2025-07-27"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 21293000,
+   "ytd_current_period": [
+    "2025-10-27",
+    "2026-07-26"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 25508000
+  },
+  "shares_diluted": {
+   "fy": 550496000,
+   "fy_period": [
+    "2024-10-28",
+    "2025-10-26"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 550396000,
+   "ytd_prior_period": [
+    "2024-10-28",
+    "2025-07-27"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 550898000,
+   "ytd_current_period": [
+    "2025-10-27",
+    "2026-07-26"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1091658000,
+ "ttm_capex": 310789000,
+ "ttm_sbc": 25508000,
+ "ttm_shares_diluted": 550898000,
+ "ttm_oe_total": 755361000,
+ "ttm_oe_per_share": 1.371144930640518,
+ "warnings": [],
+ "overrides_used": []
+}
