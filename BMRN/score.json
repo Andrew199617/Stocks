@@ -1,0 +1,87 @@
+{
+ "ticker": "BMRN",
+ "name": "BioMarin Pharmaceutical Inc",
+ "sector": "Biotechnology / Rare disease pharmaceuticals",
+ "price": 54.68,
+ "market_cap_b": 10.79,
+ "engine_version": 5,
+ "base_oe_per_share": 2.6930676240168534,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Narrow-to-moderate moat: orphan-drug exclusivity, eight approved rare-disease therapies, a global commercial footprint in 75+ countries and ~78% gross margins give real pricing power, but measured ROIC was negative through 2021 and only 3.9% (2022-23), 8.1% (2024) and 6.2% (2025) since \u2014 below the cost of capital through most of the cycle \u2014 and the lead Voxzogo franchise now faces a U.S. competitor, so a 7+ score is not earned on the ROIC evidence.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 2.75 vs 3-yr median 1.45 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (8.1%) vs bull-case tier C (13.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 14.43,
+   "irr": 0.0567
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 23.65,
+   "irr": 0.0808
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 32.81,
+   "irr": 0.1034
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 45.03,
+   "irr": 0.1306
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 69.58,
+   "irr": 0.1768
+  }
+ },
+ "iv_at_15": 33.89,
+ "iv_at_12": 46.05,
+ "implied_irr": 0.1063,
+ "implied_irr_base_case": 0.1034,
+ "upside_at_15_pct": -38.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Real rare-disease franchise, moat 6/10, now genuinely cash-generative on a TTM base \u2014 but at $54.68 it does not clear 15%: weighted IRR 10.6%, weighted IV@15% $33.89; it clears 15% only below ~$33.89.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0808,
+ "irr_bull": 0.1306,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 23.13,
+ "iv_at_25": 17.34,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 197394000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Orphan-drug exclusivity (7y US / 10y EU) and patent protection across eight approved rare-disease therapies; Galafold exclusivity extended to 2037 via the Amicus deal",
+  "Global rare-disease commercial infrastructure in 75+ countries \u2014 reimbursement and specialist-channel scale smaller rivals cannot replicate",
+  "Proven pricing power: gross margin 71.8-81.2% over the last decade, 77.7% in FY2025, on chronic therapies with few alternatives",
+  "Diversifying installed base: Voxzogo heading to ~$1B, Palynziq +27% YoY in Q2 2026, plus Galafold and Pombiliti+Opfolda from Amicus (combined peak potential cited at $2.6B)"
+ ],
+ "moat_against": [
+  "ROIC history is weak: roic_proxy negative 2016-2021, 3.9% in 2022-23, 8.1% in 2024, 6.2% in 2025 \u2014 heavy R&D has not yet earned the cost of capital through a cycle",
+  "Voxzogo, the growth engine, faced its first U.S. competitor in 2026 (~90% of U.S. children remained on therapy through July 2026 \u2014 retention so far, share of new starts is the open question)",
+  "Gene therapy disappointment (Roctavian) and substitute modalities (oral/long-acting, RNA, gene editing) threaten the enzyme-therapy base",
+  "U.S. drug-pricing / IRA pressure on orphan pricing, government-order timing concentration outside the U.S. (Vimizim/Naglazymes), and post-Amicus leverage (pro forma long-term debt $4,132M at deal close)"
+ ]
+}
