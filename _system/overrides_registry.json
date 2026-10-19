@@ -1774,31 +1774,6 @@
    "unblocks_tier": true
   },
   {
-   "ticker": "HTHT",
-   "field": "capex",
-   "value": 828000000.0,
-   "kind": "filing",
-   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property and equipment': RMB828M for FY2025 (US$119M in the filing's own convenience-translation column), with RMB883M for FY2024 and RMB894M for FY2023 in the same statement",
-   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads (the 20-F cash-flow line 'Purchases of property and equipment' is not carried in EDGAR companyfacts under PaymentsToAcquirePropertyPlantAndEquipment or any candidate). The engine applies this single FY2025 filing value to every missing period; against the true per-year figures in the same statement it understates FY2023 capex by RMB66M (RMB894M filed) and FY2024 by RMB55M (RMB883M filed) \u2014 slightly aggressive in direction but immaterial (~0.8% of those years' operating cash flow of RMB7,674M / RMB7,518M), and FY2025 is exact. Declared in RMB (the reporting currency); the engine FX-converts at period-end ECB rates.",
-   "date": "2026-10-17",
-   "base_used": "median_3y",
-   "base_oe_without_override": 3.1628,
-   "base_oe_with_override": 2.8151,
-   "base_oe_impact_pct": -10.994,
-   "weighted_irr_without_override": 0.1407,
-   "weighted_irr_with_override": 0.1294,
-   "weighted_irr_impact_pp": -1.13,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "HTHT",
-   "event": "ads_ratio",
-   "date": "2026-10-17",
-   "ratio": 10.0,
-   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24): cover page registers American Depositary Shares, each representing ten ordinary shares (NASDAQ: HTHT); ordinary shares listed on HKEX (1179)",
-   "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
-  },
-  {
    "ticker": "MAA",
    "field": "capex",
    "value": 341224000.0,
@@ -2596,6 +2571,37 @@
    "value": 4.206421171780802,
    "source": "Median of the last 3 fiscal years' maintenance owner's earnings totals, divided by the post-split diluted share count \u2014 built exclusively from this run's printed outputs: financials_history.csv oe_maintenance totals FY2023 $531,093,000, FY2024 $731,379,000, FY2025 $683,779,000 (median = $683,779,000, the FY2025 figure) \u00f7 ttm.json's current-YTD diluted shares 162,556,000 (the only post-split diluted count the run prints; H1 2026 10-Q basis, retroactively adjusted for the February 26, 2026 3-for-2 split) = $4.2064/share.",
    "reason": "Two defects make the engine's conservative base unusable as printed. (1) Share-basis break: the FY2025 10-K (filed 2026-02-24) reports diluted shares on the pre-split basis (110,052,000 for FY2025), while the $67.56 price and ttm.json's share count are post-split (3-for-2 stock dividend distributed February 26, 2026; ~103M shares became ~155M) \u2014 so the printed median conservative OE/share of $2.7068 compares a pre-split numerator basis to a post-split price, and the engine's market_cap_est of $7,435,113,120 understates the post-split diluted market cap (~$11.0B at the ttm share count). Split-corrected, the conservative median is $1.8045/share. (2) Sector plumbing: for a broker-dealer/bank holding company, OCF is balance-sheet flow, not distributable cash \u2014 conservative OE/share swung $2.71 \u2192 $2.37 \u2192 $8.10 (pre-split) over FY2023-2025 while net income stayed in a $522,536,000-$731,379,000 band, NI_OCF_DIVERGENCE fires for 2024, and ttm.py's TTM conservative OE is $1.0987/share only because H1 2026 OCF was -$266,453,000 in a half when the company grew its loan book by $2.6B in Q2 alone toward ~$4B of guided 2026 balance-sheet growth and posted record common earnings. The maintenance definition (the engine's own second definition, NI-based) is the defensible owner's-earnings proxy for this sector \u2014 the same treatment this sweep applied to IBKR and LPLA \u2014 and the median-of-3-FY normalization mirrors the engine's own base method applied to that definition. The resulting $4.2064/share is conservative: it is built on GAAP maintenance totals that include the $180.0M Q1 2025 legal provision year, it makes no add-back for that provision, and it sits below the company's non-GAAP FY2025 EPS on the post-split basis ($7.92 pre-split \u00f7 1.5 = $5.28). One known upward bias is retained and disclosed, not adjusted: the CSV's net income is total net income (before preferred dividends on the SF-PB/SF-PC/SF-PD preferred shares), so the base overstates earnings available to common holders by the preferred dividend (FY2025 net income $683,779,000 vs net income available to common shareholders $646.5M per the company's FY2025 reporting) \u2014 roughly 5%, absorbed by the widened bear-side probabilities and the low confidence grade. Declared under bounded authority (c): every input is a figure printed by this run's engine/TTM outputs."
+  },
+  {
+   "ticker": "HTHT",
+   "field": "capex",
+   "value": 828000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property and equipment': RMB828M for FY2025 (US$119M in the filing's own convenience-translation column), with RMB883M for FY2024 and RMB894M for FY2023 in the same statement",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads (the 20-F cash-flow line 'Purchases of property and equipment' is not carried in EDGAR companyfacts under PaymentsToAcquirePropertyPlantAndEquipment or any candidate). The engine applies this single FY2025 filing value to every missing period; against the true per-year figures in the same statement it understates FY2023 capex by RMB66M (RMB894M filed) and FY2024 by RMB55M (RMB883M filed) \u2014 slightly aggressive in direction but immaterial (~0.8% of those years' operating cash flow of RMB7,674M / RMB7,518M), and FY2025 is exact. Declared in RMB (the reporting currency); the engine FX-converts at period-end ECB rates.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 3.1628,
+   "base_oe_with_override": 2.8151,
+   "base_oe_impact_pct": -10.994,
+   "weighted_irr_without_override": 0.1407,
+   "weighted_irr_with_override": 0.1294,
+   "weighted_irr_impact_pp": -1.13,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "HTHT",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 46.5
+  },
+  {
+   "ticker": "HTHT",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 10.0,
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24): cover page registers American Depositary Shares, each representing ten ordinary shares (NASDAQ: HTHT); ordinary shares listed on HKEX (1179)",
+   "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
   }
  ]
 }
