@@ -2,7 +2,7 @@
  "ticker": "TLK",
  "cik": 1001807,
  "entity": "PERUSAHAAN PERSEROAN PERSERO PT TELEKOMUNIKASI INDONESIA TBK",
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "IDR",
  "profile": {
@@ -1032,22 +1032,23 @@
     "complete": true
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 11.03,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 11.03 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 8400000000,
   "shares_as_of": "1995-11-13",
   "shares_source": "ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15)",
   "shares_basis": "instant",
   "shares_diluted": 99062216600,
   "shares_diluted_source": "latest annual weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
+  "ads_ratio": 100.0,
+  "market_cap": 926520000.0,
+  "market_cap_basis": "11.03 \u00d7 8,400,000,000 shares (ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15) \u00f7 ADS ratio 100.0, as of 1995-11-13)",
   "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "buyback_yield": 0.047489530717091916,
+  "net_buyback_yield": 0.047489530717091916,
+  "shareholder_yield": 1.2336484911280923,
   "shareholder_yield_basis": "dividends_paid (FY2024 annual fact) + buybacks (FY2024 annual fact) \u2212 share_issuance (never filed in any period \u2014 zero by the filer's own statements); FY2024 annual flows (period ended 2024-12-31) \u2014 no quarterly filings (20-F/40-F filer)",
   "shareholder_yield_complete": true,
   "yield_basis": {
@@ -1064,7 +1065,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 44000000.0,
-    "denominator": null
+    "denominator": "11.03 \u00d7 8,400,000,000 shares (ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15) \u00f7 ADS ratio 100.0, as of 1995-11-13)"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1082,7 +1083,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 44000000.0,
-    "denominator": null
+    "denominator": "11.03 \u00d7 8,400,000,000 shares (ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15) \u00f7 ADS ratio 100.0, as of 1995-11-13)"
    },
    "shareholder_yield": {
     "legs": {
@@ -1102,14 +1103,14 @@
     "bound": "exact",
     "complete": true,
     "numerator": 1143000000.0,
-    "denominator": null
+    "denominator": "11.03 \u00d7 8,400,000,000 shares (ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15) \u00f7 ADS ratio 100.0, as of 1995-11-13)"
    },
    "dividend_yield": {
     "numerator": null,
     "basis": null,
     "bound": null,
     "complete": false,
-    "denominator": null
+    "denominator": "price 11.03 (score.json price); DPS \u00d7 ADS ratio 100.0 (per-ADS basis)"
    }
   },
   "yields_display": {
@@ -1121,24 +1122,24 @@
     "note": "no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) although cash dividends paid are filed (1.10B for the period ended 2024-12-31) \u2014 per-share rate not tagged; dps_ttm, dividend_yield and frequency null"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.047489530717091916,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "4.75%",
     "note": null
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.047489530717091916,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "4.75%",
     "note": null
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
+    "value": 1.2336484911280923,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "123.36%",
     "note": null
    }
   },

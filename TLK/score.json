@@ -1,0 +1,116 @@
+{
+ "ticker": "TLK",
+ "name": "PT Telkom Indonesia (Persero) Tbk",
+ "sector": "Telecom / Integrated telecommunications (Indonesia)",
+ "price": 11.03,
+ "market_cap_b": 10.93,
+ "engine_version": 5,
+ "base_oe_per_share": 2.2319306753731576,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Indonesia's dominant integrated carrier: Telkomsel is the largest mobile operator and IndiHome the leading fixed-broadband brand, on a nationwide fibre, tower and spectrum base that rivals cannot replicate, with the state (Danantara, 54.5% per UOB Kay Hian 2Q26 update) as controlling holder. The measured franchise supports a real moat: roic_proxy in fundamentals.json (IDR, as filed) ran 22.3% / 22.8% / 18.8% / 19.8% / 18.6% over FY2020-FY2024 \u2014 well above the cost of capital through the cycle \u2014 and company-reported EBITDA margin was ~50% in FY2024 (Rp75,029B on revenue of Rp149,967B, Telkom financial highlights). Gross margin is not meaningful for this filer (fundamentals.json carries no COGS split; expenses are presented by nature). Capped at 6 because the moat does not convert into growth or pricing power: IDR revenue grew only +1.3% (FY2023) and +0.5% (FY2024) and fell -2.2% in FY2025, mobile subscribers are shrinking (-3.1% YoY in 2Q26), competition from Indosat/XLSmart caps ARPU, and state control now carries an active governance overhang (SEC and DOJ investigations, an auditor material weakness and a March 2026 non-reliance 6-K). A 6 gives CAP = 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 22 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2022 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency IDR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x100.0 ordinary shares per ADS (PT Telkom Indonesia FY2024 audited consolidated financial statements (Form 6-K filed 2025-04-18; Form 20-F for FY2024 filed 2025-04-28), Note 2t: 'Income per ADS is computed by multiplying the basic earnings per share by 100, the number of shares represented by each ADS'; the face of the income statement reads 'Profit per ADS (100 Series B shares per ADS)', and Note 1 records the ratio change effective October 26, 2016 from 1 ADS = 200 Series B shares to 1 ADS = 100 Series B shares. The company's financial highlights state the same: 'Net income per ADS (1 ADS : 100 common stock)') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2015, 2016, 2017, 2018, 2019, 2020, 2021 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: PT Telkom Indonesia FY2024 audited consolidated financial statements (furnished on Form 6-K filed 2025-04-18 and included in the Form 20-F for the fiscal year ended December 31, 2024, filed 2025-04-28): the words 'share-based' and 'stock option' appear nowhere in the 138-page statements; the Consolidated Statements of Cash Flows are presented on the direct method (cash receipts/payments) with no share-based compensation add-back or line for FY2024 or FY2023, and the Consolidated Statements of Changes in Equity show capital stock (Rp4,953B) and additional paid-in capital (Rp2,711B) unchanged across FY2023-FY2024 with movements only from dividends, non-controlling-interest transactions, restructuring differences, OCI and profit \u2014 no stock-compensation credit to APIC in either year); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: PT Telkom Indonesia FY2024 audited consolidated financial statements (Form 6-K filed 2025-04-18; Form 20-F for FY2024 filed 2025-04-28), Note 28 Basic Earnings Per Share: basic EPS is computed on a weighted average of 99,062,216,600 shares for the years ended December 31, 2024 and 2023, and 'The Company does not have potentially dilutive financial investments for the years ended December 31, 2024 and 2023' \u2014 so the diluted weighted count equals the basic count the engine found under WeightedAverageShares); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "TIER_BAND: bear-case tier C (12.9%) vs bull-case tier A (23.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.88,
+   "irr": 0.1089
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 9.46,
+   "irr": 0.1291
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 13.11,
+   "irr": 0.1765
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 18.01,
+   "irr": 0.2327
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 27.95,
+   "irr": 0.3251
+  }
+ },
+ "iv_at_15": 14.39,
+ "iv_at_12": 18.62,
+ "implied_irr": 0.1911,
+ "implied_irr_base_case": 0.1765,
+ "upside_at_15_pct": 30.4,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Dominant Indonesian integrated carrier (Telkomsel mobile + IndiHome broadband), moat 6/10 on ~19-23% ROIC through the cycle \u2014 the weighted case clears 15% (weighted IRR 19.11%, weighted IV@15% $14.39 vs $11.03 ADS price, base OE $2.23 per ADS for a 20.24% OE yield), but the band spans bear Tier C to bull Tier A and sized to the bear end it clears 15% only at or below the bear IV@15% of $9.46; confidence low \u2014 FY2025 20-F is not yet in EDGAR companyfacts (base stops at FY2024), FY2023/FY2024 were restated, and SEC/DOJ investigations with an ICFR material weakness are open.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1291,
+ "irr_bull": 0.2327,
+ "tier_bear": "C",
+ "tier_bull": "A",
+ "iv_at_20": 10.51,
+ "iv_at_25": 8.32,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1181000000,
+ "shares_diluted_latest": 99062216600.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Market leadership at scale: Telkomsel is Indonesia's largest mobile operator (153.5M subscribers at 2Q26, Bina Artha company update) and IndiHome leads fixed broadband (~9.5-10.3M B2C subscribers) \u2014 convergence bundling across both raises switching friction",
+  "Irreplicable physical base: nationwide fibre backbone, 301,000 BTS on air at 2Q26 (Bina Artha) and licensed spectrum; the FY2024 statements put telecommunication infrastructure at Rp161,035B, 54% of total assets (auditor key audit matter)",
+  "Returns well above the cost of capital through the cycle: roic_proxy 18.6-22.8% over FY2020-FY2024 (fundamentals.json) and ~50% EBITDA margin in FY2024 (company highlights)",
+  "State anchor shareholder (Danantara 54.5%) and universal-service licences granted for unlimited periods (FY2024 statements, Note 1) \u2014 incumbency is structurally protected",
+  "Self-funding dividend payer: cash dividend of Rp17,683B paid for FY2023 (FY2024 statements, Note 29) while net debt stayed modest (engine net debt $1,181M)"
+ ],
+ "moat_against": [
+  "No growth conversion: IDR revenue +1.3% FY2023, +0.5% FY2024, -2.2% FY2025 (company highlights); mobile subscriber base -3.1% YoY at 2Q26 \u2014 a saturated, price-competitive market (Indosat, XLSmart)",
+  "Governance overhang: SEC and DOJ investigations into revenue recognition, financial reporting and FCPA matters, an ICFR material weakness, restated FY2023/FY2024 figures and a March 2026 non-reliance 6-K (company 6-K disclosures, April 2025 and March 2026)",
+  "State control: the government is ultimate parent (FY2024 statements, Note 1) \u2014 policy, dividend and management decisions are not purely commercial, and control moved to Danantara in 2025",
+  "Currency drag: reporting in IDR with period-end USD translation falling from 6.5e-05 (2022) to 6.2e-05 (2024) in dcf_numbers.json \u2014 USD per-share economics shrink even when IDR operations are flat",
+  "Capex intensity is structural: FY2024 cash capex Rp26,005B for property and equipment plus Rp3,658B of intangibles (FY2024 cash-flow statement) against OCF of Rp61,600B, before lease principal repayments of Rp7,387B that sit in financing"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "PT Telkom Indonesia FY2024 audited consolidated financial statements (furnished on Form 6-K filed 2025-04-18 and included in the Form 20-F for the fiscal year ended December 31, 2024, filed 2025-04-28): the words 'share-based' and 'stock option' appear nowhere in the 138-page statements; the Consolidated Statements of Cash Flows are presented on the direct method (cash receipts/payments) with no share-based compensation add-back or line for FY2024 or FY2023, and the Consolidated Statements of Changes in Equity show capital stock (Rp4,953B) and additional paid-in capital (Rp2,711B) unchanged across FY2023-FY2024 with movements only from dividends, non-controlling-interest transactions, restructuring differences, OCI and profit \u2014 no stock-compensation credit to APIC in either year"
+  },
+  {
+   "field": "shares",
+   "value": 99062216600.0,
+   "kind": "filing",
+   "source": "PT Telkom Indonesia FY2024 audited consolidated financial statements (Form 6-K filed 2025-04-18; Form 20-F for FY2024 filed 2025-04-28), Note 28 Basic Earnings Per Share: basic EPS is computed on a weighted average of 99,062,216,600 shares for the years ended December 31, 2024 and 2023, and 'The Company does not have potentially dilutive financial investments for the years ended December 31, 2024 and 2023' \u2014 so the diluted weighted count equals the basic count the engine found under WeightedAverageShares"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 2.2319,
+  "base_oe_with_override": 2.2319,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1911,
+  "weighted_irr_with_override": 0.1911,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

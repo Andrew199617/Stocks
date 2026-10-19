@@ -1,0 +1,252 @@
+{
+ "ticker": "TLK",
+ "cik": 1001807,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T00:57:53-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001001807.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1001807/000110465926062051/tmb-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TLK/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TLK/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "PERUSAHAAN PERSEROAN PERSERO PT TELEKOMUNIKASI INDONESIA TBK",
+  "cik": 1001807,
+  "description": {
+   "text": "As the largest telecommunications company in Indonesia in terms of revenue and number of subscribers, our objective is to be the preferred digital telecommunications company in Indonesia, contribute to national development, and deliver value to our stakeholders. Our strategy focuses on developing sustainable and efficient digital infrastructure and smart platforms that are accessible and affordable to a wide range of customers. We also aim to support Indonesia’s digital growth by fostering digital talent through workforce planning, skill development, and strategic partnerships. We expect these efforts to promote the wider adoption of digital technologies across different sectors. In addition, we seek to improve customer experience by building a comprehensive digital ecosystem, which includes offering services such as gaming and IPTV and collaborating with strategic partners to deliver innovative solutions. We aim to continue transforming to meet the evolving needs of Indonesian consumers and businesses as Indonesia’s leading digital telecommunications company.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-05-15",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-062051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000110465926062051/tmb-20251231x20f.htm"
+  },
+  "description_short": "PT Telkom Indonesia (Persero) Tbk is the largest integrated telecommunications provider in Indonesia. It is the principal provider of fixed-line services in Indonesia, and its 65%-owned subsidiary, Telkomsel, is the largest wireless carrier in the country, with about 48% market share. It also provides a wide range of other communication services, including telephone network, interconnection services, multimedia, data and internet communication-related services, satellite transponder leasing, leased line, intelligent network and related services, cable television and VoIP services.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Telecommunications",
+  "region": null,
+  "sic": "4813",
+  "sic_description": "Telephone Communications (No Radiotelephone)",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": null,
+  "headquarters": "Bandung, Indonesia",
+  "address": {
+   "street": "Jl. Japati No. 1",
+   "city": "Bandung",
+   "state": null,
+   "zip": "40133",
+   "country": "Indonesia",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-05-15"
+  },
+  "phone": "62-224527101",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-type / per-location breakdown with no filed total",
+   "evidence": "In comparison, we had a total of 21,673 employees as of December 31, 2024, and 23,064 employees as of December 31, 2023.",
+   "form": "20-F",
+   "filed": "2026-05-15",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000110465926062051/tmb-20251231x20f.htm"
+  },
+  "first_sec_filing": "2002-01-29",
+  "first_sec_filing_form": "6-K",
+  "former_names": [
+   "TELECOMMUNICATIONS INDONESIA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001001807&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000072/tmb-20261002x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000070/tmb-20261002x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000068/tmb-20261002x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000066/tmb-20260930x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000064/tmb-20260930x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000062/tmb-20260918x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000060/tmb-20260908x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000058/tmb-20260807x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000056/tmb-20260807x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000054/tmb-20260807x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000052/tmb-20260731x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000050/tmb-20260701x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000048/tmb-20260625x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000046/tmb-20260624x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000044/tmb-20260618x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000042/tmb-20260610x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000040/tmb-20260608x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000038/tmb-20260604x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000036/tmb-20260604x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001001807-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1001807/000100180726000034/tmb-20260603x6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a per-type / per-location breakdown with no filed total in the 20-F filed 2026-05-15: \"In comparison, we had a total of 21,673 employees as of December 31, 2024, and 23,064 employees as of December 31, 2023.\""
+ ]
+}
