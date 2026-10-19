@@ -157,14 +157,219 @@ stays 5 for the data-gate check):
     so the engine runs anywhere; the math is in module-level functions
     (project_path / present_value / solve_irr / tier_for_irr) that the HTML
     builder and the test-suite import — one implementation, no drift.
+
+v5.5 (2026-10-19, Andrew's rulings on the seven 5.5 spec drafts — engine_release
+"5.5.0"; engine_version stays 5; the valuation math functions are untouched):
+(1) ADS market cap: market_cap_est = price x shares / ads_ratio when a ratio
+    applies (the engine had multiplied the ADS price by the ORDINARY count),
+    and the normalized-OE total behind net_debt_to_normalized_oe /
+    HIGH_NET_DEBT / BIG_NET_CASH uses the same basis (per-ADS OE x ADS count).
+    Helpers market_cap_est (the one cap formula) / normalized_oe_total; record market_cap_basis.
+(2) Share basis: (a) share-scale guard — base OE/share > 20x price, or the
+    latest diluted count outside 1/100-100x a recent cover-page (dei) count,
+    is DATA_GAP:shares (gap key share_scale, never coverable by an override)
+    unless a declared base_override pin carries the base (then flagged
+    SHARE_SCALE_SUSPECT); the market cap is rescaled by a power of ten read
+    from the dei count (or the pin). (b) split basis — a filed split ratio
+    dated after the latest FY end and confirmed by a post-event dei count
+    (which must itself differ from the latest diluted count by more than
+    15%: a dei that shows no basis change confirms nothing)
+    rescales the history share counts filed before it (SHARE_BASIS_ADJUSTED);
+    with no confirmed split, a 10-K filer whose post-FY dei count and latest
+    diluted count sit with one more than 25% below the other (dei / diluted
+    outside DIVERGENCE_BAND 0.75x-1.333x) prices its market cap on the dei
+    count (SHARE_BASIS_DIVERGENCE).
+    (c) a declared judgment.json share_class_mismatch (true, or {value: true,
+    ...}) is DATA_GAP:shares (gap key share_class) — nothing rescues it; any
+    other non-false shape is recorded as {"malformed": ...} without a gap
+    (M5, below). Records share_scale, share_basis, share_class_mismatch; CSV
+    column shares_split_factor.
+(3-5) Capex assembly (capex_for_period): the PP&E roll-up
+    (PaymentsToAcquirePropertyPlantAndEquipment or an IFRS PP&E tag) is
+    authoritative when filed; otherwise the filed additive components (E&P,
+    other PP&E, construction in process, productive assets, capital
+    improvements) are SUMMED (one unit, older-filed identical-value re-tags
+    dropped, and a value filed twice under two tags in ONE filing counted
+    once). Zero-guard: a $0 from a non-primary candidate never blocks a
+    non-zero later candidate. Intangible purchases (us-gaap
+    PaymentsToAcquire(Other)IntangibleAssets, IFRS
+    PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities) are ADDED on
+    top of any PP&E leg — never on the IFRS combined PP&E+intangibles tag,
+    never on an OVERRIDE-filled period. capex_tag is the '+'-joined list of
+    tags summed; CSV columns capex_ppe / capex_intangibles / capex_source;
+    record capex_provenance and used_tags.capex_components. New flags
+    CAPEX_COVERAGE_LOW (capex < 50% of D&A in each of the last 3 FY at a
+    filer with positive PP&E) and OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex.
+(6) SBC: when ShareBasedCompensation and AllocatedShareBasedCompensationExpense
+    report the same period in the SAME unit and Allocated is larger, Allocated
+    is used (sbc_tag records it) and SBC_TAG_RECONCILED is raised; record
+    sbc_provenance.
+(7) USD overrides: an override declared currency "USD" (kind filing), or one
+    whose field's last filed unit is USD, is used verbatim — not FX-converted;
+    override_checks.<field>.currency_basis and
+    fx_conversion.overrides_usd_verbatim record which rule fired.
+[ADDITION — ECHO, after the retro-scan; not in the rulings — it stops an
+    approved change (the decision-5 intangible leg) from producing a wrong
+    number silently] An intangible capex fact is dropped for a period when the
+    same tag carries the identical non-zero value (same unit) on a context
+    longer than 380 days: a cumulative total filed on an annual context (ECHO:
+    PaymentsToAcquireIntangibleAssets 30,000,000,000 on FY2024 and on
+    2008-01-01..2023-12-31 / 2018-01-01..2025-12-31, which made FY2024 capex
+    31,544,877,000 against 1,252,697,000 of OCF). Helper
+    cumulative_context_values -> capex_for_period(cumulative=...); recorded in
+    capex_provenance.<period>.dropped with reason 'cumulative_duplicate'.
+    Intangible leg only (new in 5.5, so no 5.4 number can move); ttm.py
+    applies the same helper per leg.
+    Two make_score.py refusals ride on this release's records ([ADDITION]s,
+    make_score docstring): a capex_override still declared beside
+    OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex (WY), and an override used verbatim
+    under currency_basis 'last_filed_unit_usd' at a filer whose
+    fx_conversion.from_currency is not USD without an explicit currency "USD"
+    (HTHT). The engine's behaviour for both is unchanged.
+[ADDITION — verifier round 1 (2026-10-19), the main agent's rulings E1-E11 on the
+    round-1 findings; each stops an approved 5.5 change from producing a wrong number
+    or a wrong record]
+    E1  Share-scale rescue: a defect is carried by a pin only when the pin came from
+        --base-oe-ps, judgment.json declares a base_override WITHOUT `basis` whose
+        value equals the pin within 0.1%, and the pin itself passes test (a)
+        (|pin| <= 20x price) — share_scale_pin_rescue / load_declared_base_override.
+        5.5 rescued any --base-oe-ps number (a mis-scaled TTM figure scored where the
+        same figure through --ttm gapped). A rejected pin is named in
+        share_scale.pin_rejected and in the DATA_GAP:shares — SHARE_SCALE text; the
+        pin feeds the cap's power-of-ten factor only when it rescues.
+    E2  A share-scale defect whose share series breaks scale inside the growth window
+        (two adjacent counts among the last 4 more than 100x apart — VIV) drops the
+        share-count CAGR and the OE/share CAGR from the growth blend (share
+        adjustment 0): share_scale.scale_breaks / growth_inputs_dropped(_values),
+        named in SHARE_SCALE_SUSPECT / DATA_GAP:shares — SHARE_SCALE. A consistently
+        scaled series (NTNX) keeps them.
+    E3  A rescued defect with no power-of-ten factor and no usable dei (test (b) not
+        evaluable): net_debt_to_normalized_oe is not computed and HIGH_NET_DEBT /
+        BIG_NET_CASH are not tested (share_scale.leverage_unverifiable; the flag
+        says so). With a dei that passed test (b) (VIV) they stand.
+    E4  A filed share count <= 0 (any share tag, diluted or fallback, and a dei
+        cover count) is treated as not filed: the next candidate tag with a positive
+        count fills the period, else raw_missing shares (DATA_GAP:shares in the last
+        3 FY — TLN FY2022's diluted 0). share_basis.nonpositive_counts. The median
+        window itself is unchanged (it still skips a year with no OE/share — a
+        listed follow-up).
+    E5  Capex components: a component equal within 0.5% to the sum of two or more
+        other components of its period (same unit) is the total — kept, the parts
+        dropped ('parts_of_total'; GLPI FY2024). No other near-equal rule.
+    E6  Intangible leg: a negative fact is dropped ('negative'); a $0 fact contributes
+        nothing and joins nothing (capex_tag, intangible_tags, the OVERRIDE_APPLIED
+        'not added' note, ttm.py's warning). PP&E legs unchanged.
+    E7  An assumed-zero row (no PP&E leg) does not add the intangible leg: capex 0,
+        capex_tag blank, capex_intangibles records the amount, capex_provenance
+        intangibles_not_added 'no_ppe_leg'.
+    E8  used_tags.sbc = the latest CSV row's filed sbc_tag (after reconciliation).
+    E9  SHARE_BASIS_ADJUSTED names the split from its ratio (split_label: 1-for-20,
+        1-for-15) and lists the adjusted years one by one, plus "except FY<y>
+        (OVERRIDE count, not rescaled)" (share_basis.split.periods_override_not_rescaled).
+    E10 (ttm.py) an override-backed capex leg now filled off-band by a tag outside the
+        5.4 list warns and is recorded in ttm.json capex_override_superseded_legs.
+    E11 share_basis.in_history_split_facts lists split facts dated on or before the
+        latest FY end (informational; nothing is rescaled — TPL's in-history split
+        is a listed limitation).
+    M5 (engine half) load_share_class_mismatch: only bool true, an object whose
+        `value` is bool true, or an object without `value` carrying a non-empty
+        source declares (DATA_GAP:shares — SHARE_CLASS_MISMATCH); false, null,
+        {value: false} and {} declare nothing; strings ("false", "no", "true"),
+        numbers and other shapes are recorded as {"malformed": <repr>} with NO gap
+        (make_score refuses them).
+[ADDITION — verifier round 2 (2026-10-19); each stops an approved 5.5 change from
+    producing a wrong number or record, inside the round-1 rulings' own reasons]
+    R2-E3 (extends E3) leverage_unverifiable also when a usable dei EXISTS but test
+        (b) failed (the latest diluted count is more than 100x off the cover page)
+        and no power-of-ten factor was found: the cover page then proves the cap's
+        count wrong, which E3's "unverified" covers a fortiori (a synthetic filer
+        printed HIGH_NET_DEBT 666.7x). With a dei that passed test (b) (VIV) the
+        diagnostics still stand. Put to Andrew beside E3.
+    R2-CAP scale_factor_for_cap: a usable dei within 25% of the latest diluted count
+        (k = 0) confirms that count — no factor, and the pin is never consulted (a
+        VIV-shaped pin equal to native/1000 multiplied a confirmed count by 1,000:
+        a $19.76T cap). DESIGN §2a's own VIV line ("dei ratio 1 -> no factor").
+        WITHDRAWN in round 3 — replaced by R3-CAP below.
+    R2-PIN test (a) is evaluated on the base actually used as well: a pin
+        (--ttm, --base-oe-ps, --base-judgment) whose |value| exceeds 20x the price
+        is a share-scale defect (share_scale.pin_over_price; gap key share_scale —
+        the pin fails E1 (3), so nothing rescues it), whether or not the native
+        median shows one. Ruling 2's text is "base OE/share > 20x price"; with a pin
+        the base IS the pin (a TTM leg filed in thousands scored Tier S at 73x).
+    R2-E2 (refines E2 by its own reason) the OE/share CAGR leaves the growth blend
+        only when a scale break lies between its two endpoints (oe_ps_hist[-3] ..
+        oe_ps_hist[-1]); a break before FY t-2 leaves both endpoints on one scale and
+        the CAGR valid. share_cagr still drops on any break in the last four counts
+        (its window always spans the break); share_scale.growth_inputs_dropped lists
+        what was dropped, share_scale.growth_inputs_kept a kept OE/share CAGR, and
+        the flag text says it stays in the blend (R4-E2 compares the two endpoint
+        counts only).
+    R2-E4 a cover-page (dei) count <= 0 that dei_for_period skips for a fallback year
+        is recorded in share_basis.nonpositive_counts too (series "dei", its cover
+        date, replaced_by the positive cover count used, or null) — LTM 2017.
+[ADDITION — verifier round 3 (2026-10-19); each stops an approved 5.5 change from
+    producing a wrong number]
+    R3-CAP (replaces R2-CAP) the pin's power of ten measures the scale of the count
+        behind the native median, but the cap factor multiplies the LATEST count:
+        scale_factor_for_cap's pin path applies only when the median's defining
+        year's count and the latest count (the endpoints of median_window_counts)
+        are on one scale — no more than 100x apart (round 3 tested every adjacent
+        pair of the window; R4-CAP below narrows it to the endpoints). The dei
+        path stays first; R2-CAP's "dei within 25% -> no factor"
+        return is withdrawn (the window test handles VIV; the return had kept a
+        1,000x-small cap when every count, the dei included, was in thousands).
+        A power-of-ten pin ratio withheld by a break is recorded in
+        share_scale.pin_factor_withheld and named in SHARE_SCALE_SUSPECT; E3 /
+        R2-E3 then decide the leverage diagnostics (no dei -> unverifiable). A
+        correct latest count beside thousands-scaled median years had taken
+        x1,000: a $3.0T cap for a $3.0B synthetic filer (no dei, a dei 0.67x the
+        count, or a 20-F cover count in other units).
+    R3-SPLIT confirm_split tests the post-event dei against the latest FILED count
+        (the most recent history row whose count is not an OVERRIDE), not against an
+        override in the latest FY: a shares_override must be on the post-split basis
+        (D7), so it equals the post-event dei and confirmed nothing — the filed
+        history stayed pre-split (base 0.6509 for 1.9526, Tier C -> D, no flag).
+        share_basis.split.confirmed_against_period names the row; the
+        SHARE_BASIS_ADJUSTED text adds "against the FY<y> filed count" when it is
+        not the latest FY. Overrides are still never rescaled.
+[ADDITION — verifier round 4 (2026-10-19); each completes a round-2/3 fix by its own
+    stated rule, so it stops an approved 5.5 change from producing a wrong number]
+    R4-CAP "the median year's count and the latest count on one scale" is tested on
+        those two counts (median_latest_scale_breaks: the endpoints of
+        median_window_counts), not on every adjacent pair of the window. A year
+        between them on another scale — filed on the true scale, or filled by a
+        true-scale shares_override — had withheld a correct x1,000 (FY2023 and FY2025
+        both 2,000,000, FY2024 2,000,000,000: cap $60M for $60B, in_scope_under_40b
+        forced true, leverage suppressed, and SHARE_SCALE_SUSPECT saying the two
+        equal counts were "on another scale"). pin_factor_withheld.breaks and the
+        flag name the endpoint pair.
+    R4-E2 (refines R2-E2) the OE/share CAGR reads only oe_ps_hist[-3] and
+        oe_ps_hist[-1], so it leaves the growth blend only when THOSE two counts
+        are more than 100x apart; an alternating series between them no longer
+        drops it (dropping it had cut a synthetic filer's g_base from 7.68% to
+        6.66%). share_cagr is
+        unchanged (ruling E2: any break among the last four counts drops it).
+    R4-E3 (extends E3 / R2-E3) a rescued defect with no cap factor whose dei PASSED
+        test (b) is unverifiable too when test (a) fired on the native median and
+        the latest count is on the median year's scale (no endpoint break): the
+        latest count then carries the scale test (a) found wrong, so the agreeing
+        dei is filed on the same basis (every count and the cover page in
+        thousands, a TTM pin 2.4% off native/1,000: cap 1,000x small, a false
+        HIGH_NET_DEBT 500x). net_debt_to_normalized_oe is not computed, the leverage
+        flags are not tested and the flag says why (no "agrees within 25%"
+        reassurance). The cap itself is still price x the filed count (no factor
+        is invented) — a listed follow-up. VIV keeps its diagnostics (endpoint
+        break). Put to Andrew beside E3 / R2-E3.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics
+from fractions import Fraction
+from itertools import combinations
 from zoneinfo import ZoneInfo
 
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYS = f"{BASE}/_system"
-ENGINE_RELEASE = "5.4.0"
+ENGINE_RELEASE = "5.5.0"
 ET_TODAY = datetime.datetime.now(ZoneInfo("America/New_York")).date()
 MEASURE = "--measure" in sys.argv   # compute + print JSON only: no file writes, no gate exit
 HOLD_YEARS = 2          # v4: growth holds at g0 for 2 years before the fade starts
@@ -333,6 +538,10 @@ def load_overrides(ticker):
             out[field] = {"value": float(o["value"]), "kind": o["kind"],
                           "source": o["source"], "reason": o["reason"],
                           "ack_reason": str(o["ack_reason"]).strip() if isinstance(o.get("ack_reason"), str) and o["ack_reason"].strip() else None}
+            # v5.5 (decision 7): an explicit currency declaration is passed
+            # through upper-cased; make_score validates it ("USD", kind filing).
+            if isinstance(o.get("currency"), str) and o["currency"].strip():
+                out[field]["currency"] = o["currency"].strip().upper()
     return out
 
 PAYABLE_BASIS = "payable_earnings_5y"
@@ -385,6 +594,61 @@ def load_payable_base(ticker):
     o = dict(o); o["value"] = per_ord  # the recomputed figure is the one recorded and pinned
     return o
 
+def load_declared_base_override(ticker):
+    """[ADDITION — verifier round 1, ruling E1] judgment.json's base_override object as declared (None when absent or
+    unreadable) — read for the share-scale rescue test (share_scale_pin_rescue), never applied here: the pin itself
+    still arrives through --base-oe-ps and make_score validates the declaration."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        return None
+    o = j.get("base_override") if isinstance(j, dict) else None
+    return o if isinstance(o, dict) else None
+
+
+def load_share_class_mismatch(ticker):
+    """v5.5 (decision 2 §5, flag route): judgment.json `share_class_mismatch`
+    declares that the filed share count is a different class from the traded
+    security. [ADDITION — M5, round-1 verification] Strict shapes (the same
+    rule as make_score.share_class_status):
+      - declared: bool true, an object whose `value` is bool true, or an
+        object without `value` that carries a non-empty source ->
+        {"declared": True, "source", "reason"} (truthy: DATA_GAP:shares —
+        SHARE_CLASS_MISMATCH; a bare `true` counts, and make_score refuses a
+        declaration lacking source/reason — it never ignores one);
+      - not declared: absent, null, false, {value: false}, an empty object ->
+        None;
+      - malformed: anything else (strings such as "false" / "no" / "true",
+        numbers, lists, an object whose `value` is not a bool, a non-empty
+        object with neither `value` nor a source) -> {"malformed": repr(value)},
+        recorded in dcf_numbers.json without a gap (the caller raises the
+        share_class gap only for a record with "declared": a typo is not a
+        declaration); make_score refuses it, naming the accepted shapes."""
+    def _text(x):
+        return x.strip() if isinstance(x, str) and x.strip() else None
+
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        return None
+    v = j.get("share_class_mismatch") if isinstance(j, dict) else None
+    if v is None or v is False:
+        return None
+    if v is True:
+        return {"declared": True, "source": None, "reason": None}
+    if isinstance(v, dict):
+        src, why = _text(v.get("source")), _text(v.get("reason"))
+        if "value" in v:
+            if v["value"] is True:
+                return {"declared": True, "source": src, "reason": why}
+            if v["value"] is False:
+                return None
+        elif src:
+            return {"declared": True, "source": src, "reason": why}
+        elif not v:
+            return None
+    return {"malformed": repr(v)}
+
 def load_ads_ratio(ticker):
     """ads_ratio from judgment.json ({ratio, source, reason}) for foreign-form
     filers: ratio = ordinary shares per ADS. Per-share EDGAR figures for a
@@ -408,9 +672,15 @@ def market_cap_est(price, shares, ads_ratio=None, fallback=None):
     it (ordinary shares / shares-per-ADS = ADS count; x per-ADS price =
     traded cap). No ratio (or ratio 1) is the identity — bit-identical to
     the pre-fix price * shares. Missing price/shares returns `fallback`
-    (the universe screener cap, already a traded cap, never rescaled)."""
+    (the universe screener cap, already a traded cap, never rescaled).
+    v5.5: `ads_ratio` may be the engine's {ratio, ...} dict or a plain number
+    (make_score / reprice pass the recorded ratio); a missing, zero, negative
+    or boolean ratio is no ratio. This is the one market-cap formula — the
+    engine, make_score's pre-5.5 ADS correction and reprice's live cap all
+    call it."""
     if price and shares:
-        ratio = ads_ratio["ratio"] if ads_ratio else 1.0
+        r = _ratio_value(ads_ratio)
+        ratio = r if (r is not None and r > 0) else 1.0
         return price * shares / ratio
     return fallback
 
@@ -546,7 +816,789 @@ def debt_from_total_tag(tot, tot_tag, st=None, st_tag=None, same_unit=True):
         return tot, f"TOTAL:{tot_tag} (short-term {st_tag} filed in another unit, not added)"
     return tot, f"TOTAL:{tot_tag}"
 
-def period_series(facts, tags, duration=True):
+
+# ---------------------------------------------------------------------------
+# v5.5 pure helpers — module level so ttm.py and the tests share ONE
+# implementation (ttm.py imports the tag lists and capex_for_period /
+# reconcile_sbc / the split helpers from here). None of them touch the
+# network or the file system.
+# ---------------------------------------------------------------------------
+IF = "ifrs-full"
+
+# Capex (decisions 3, 4, 5). A ROLL-UP is a PP&E total and is authoritative
+# when filed; COMPONENTS are additive PP&E lines summed only when no roll-up
+# reports the period; INTANGIBLE purchases are added on top of any PP&E leg
+# except the IFRS COMBINED PP&E+intangibles tag, which already contains them.
+CAPEX_ROLLUP_TAGS = ["PaymentsToAcquirePropertyPlantAndEquipment",
+                     (IF, "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"),
+                     (IF, "PurchaseOfPropertyPlantAndEquipment"),
+                     (IF, "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets")]
+CAPEX_COMPONENT_TAGS = ["PaymentsToExploreAndDevelopOilAndGasProperties", "PaymentsToAcquireOilAndGasProperty",
+                        "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsForConstructionInProcess",
+                        "PaymentsToAcquireProductiveAssets", "PaymentsToAcquireOtherProductiveAssets",
+                        "PaymentsForCapitalImprovements"]
+CAPEX_INTANGIBLE_TAGS = ["PaymentsToAcquireIntangibleAssets", "PaymentsToAcquireOtherIntangibleAssets",
+                         (IF, "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities")]
+CAPEX_COMBINED_TAGS = {"PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets"}
+PRIMARY_ROLLUP = "PaymentsToAcquirePropertyPlantAndEquipment"
+# The 5.4 first-tag-wins capex candidates: a period whose PP&E leg uses none of
+# them had NO filed capex under 5.4 (an override filled it), so a value there
+# is "now filed" for OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex (WY: capital
+# improvements newly read beneath a total-capex override).
+CAPEX_TAGS_54 = frozenset({"PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsForConstructionInProcess",
+                           "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets",
+                           "PaymentsToAcquireOtherProductiveAssets",
+                           "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment",
+                           "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets"})
+# Share basis (decision 2).
+SPLIT_RATIO_TAGS = ["StockholdersEquityNoteStockSplitConversionRatio1", "StockholdersEquityNoteStockSplitConversionRatio"]
+DEI_MIN_COUNT = 10_000          # dei placeholders (FOX/FOXA 1, WMG 1,069, VOD 0) are not share counts
+DEI_MAX_AGE_DAYS = 548          # a dei count older than 18 months before the latest FY end is stale
+SHARE_SCALE_PRICE_MULT = 20     # ruling: base OE/share > 20x price is a scale defect
+SHARE_SCALE_DEI_BAND = (1 / 100, 100)
+SPLIT_CONFIRM_TOL = 0.15        # post-event dei / latest diluted within ±15% of the ratio (or its inverse)
+SPLIT_COLLAPSE_DAYS = 180
+DIVERGENCE_BAND = (0.75, 1.333)  # SHARE_BASIS_DIVERGENCE: dei / latest diluted outside 0.75x-1.333x (25% fewer or a third more)
+# PP&E positivity for CAPEX_COVERAGE_LOW (sign only; not an engine series).
+PPE_POSITIVE_TAGS = ["PropertyPlantAndEquipmentNet", "RealEstateInvestmentPropertyNet",
+                     (IF, "PropertyPlantAndEquipment"), (IF, "InvestmentProperty")]
+
+
+def _tag_name(t):
+    """'Tag' or ('taxonomy', 'Tag') -> 'Tag'."""
+    return t if isinstance(t, str) else t[1]
+
+
+def _ratio_value(ads_ratio):
+    """The ads_ratio as a float (accepts the engine's {ratio, ...} dict too); None when it does not apply."""
+    if isinstance(ads_ratio, dict):
+        ads_ratio = ads_ratio.get("ratio")
+    if isinstance(ads_ratio, bool) or not isinstance(ads_ratio, (int, float)) or not ads_ratio:
+        return None
+    return ads_ratio
+
+
+def normalized_oe_total(oe_ps, shares, ads_ratio):
+    """oe_ps × shares ÷ ratio (per-ADS OE × ADS count) when a ratio applies, oe_ps × shares otherwise; None when shares
+    is falsy or oe_ps is None. Same operation order as market_cap_est; ads_ratio is the dict or a plain number."""
+    if oe_ps is None or not shares:
+        return None
+    r = _ratio_value(ads_ratio)
+    return (oe_ps * shares) / r if r else oe_ps * shares
+
+
+def latest_dei_count(dei_entries, latest_fy_end):
+    """(value, date) of the latest usable dei EntityCommonStockSharesOutstanding: entries with val >= 10,000 and a date
+    no earlier than latest_fy_end − 548 days (18 months); the latest (end, filed) wins; several facts sharing that
+    (end, filed) are summed (class counts). (None, None) when nothing qualifies."""
+    cutoff = None
+    if latest_fy_end:
+        try:
+            cutoff = datetime.date.fromisoformat(str(latest_fy_end)) - datetime.timedelta(days=DEI_MAX_AGE_DAYS)
+        except ValueError:
+            cutoff = None
+    groups = {}
+    for e in dei_entries or []:
+        try:
+            v, end = e["val"], e["end"]
+            d = datetime.date.fromisoformat(end)
+        except (KeyError, TypeError, ValueError):
+            continue
+        if isinstance(v, bool) or not isinstance(v, (int, float)) or v < DEI_MIN_COUNT:
+            continue
+        if cutoff is not None and d < cutoff:
+            continue
+        groups.setdefault((end, e.get("filed") or ""), []).append(e)
+    if not groups:
+        return None, None
+    key = max(groups)
+    seen, total = set(), 0
+    for e in groups[key]:
+        sig = (e.get("accn"), e["val"])   # the same fact repeated in one filing is not a second class
+        if sig not in seen:
+            seen.add(sig)
+            total += e["val"]
+    return total, key[0]
+
+
+PIN_LABELS = {"ttm_json": "the --ttm pin (ttm.json ttm_oe_per_share)", "base_oe_ps_arg": "the --base-oe-ps pin",
+              "judgment_base_override": "the --base-judgment pin (payable-earnings base)"}
+
+
+def share_scale_check(oe_ps_norm, price, shares_latest, dei_count, pin=None, pin_source=None):
+    """{'defect': bool, 'tests': {'a': bool, 'b': bool}, 'reasons': [str], 'dei_ratio': shares_latest/dei or None,
+        'pin_over_price': bool}
+    (a) price and oe_ps_norm not None and abs(oe_ps_norm) > 20 × price        (VIV 168×, TEM 61×)
+    (b) dei_count and shares_latest and not (1/100 <= shares_latest/dei_count <= 100)   (NTNX 0.00108, NVMI 0.00112)
+    [ADDITION — verifier round 2, R2-PIN] test (a) on the base actually used: when a pin carries the base (`pin`, with
+    `pin_source` 'ttm_json' / 'base_oe_ps_arg' / 'judgment_base_override'), price known and abs(pin) > 20 × price ->
+    pin_over_price, a defect whatever the native median says (ruling 2: "base OE/share > 20x price"; a TTM leg filed in
+    thousands made ttm.py's pin 73x the price on clean FY counts). No pin -> pin_over_price False, and the result is
+    the 5.5 one."""
+    tests, reasons = {"a": False, "b": False}, []
+    dei_ratio = (shares_latest / dei_count) if (dei_count and shares_latest) else None
+    if price and oe_ps_norm is not None and abs(oe_ps_norm) > SHARE_SCALE_PRICE_MULT * price:
+        tests["a"] = True
+        reasons.append(f"base OE/share {oe_ps_norm:,.2f} is {abs(oe_ps_norm) / price:,.0f}x the price {price:,.2f} "
+                       f"(limit {SHARE_SCALE_PRICE_MULT}x)")
+    if dei_ratio is not None and not (SHARE_SCALE_DEI_BAND[0] <= dei_ratio <= SHARE_SCALE_DEI_BAND[1]):
+        tests["b"] = True
+        reasons.append(f"latest diluted count {shares_latest:,.0f} is {dei_ratio:.6g}x the cover-page count "
+                       f"{dei_count:,.0f} (outside 1/100-100x)")
+    pin_over = bool(price and pin is not None and abs(pin) > SHARE_SCALE_PRICE_MULT * price)
+    if pin_over:
+        reasons.append(f"{PIN_LABELS.get(pin_source, 'the pinned base')} {pin:,.2f} is {abs(pin) / price:,.0f}x the price "
+                       f"{price:,.2f} (limit {SHARE_SCALE_PRICE_MULT}x) — the base actually used")
+    return {"defect": tests["a"] or tests["b"] or pin_over, "tests": tests, "reasons": reasons, "dei_ratio": dei_ratio,
+            "pin_over_price": pin_over}
+
+
+def pin_power_of_ten(native_base, pinned_base):
+    """[ADDITION — verifier round 3, R3-CAP] 10^k (integer k != 0, |k| <= 9) when native_base / pinned_base is within
+    2% of it, else None: DESIGN §2a's pin test, shared by scale_factor_for_cap and the engine's
+    share_scale.pin_factor_withheld record."""
+    if native_base is None or not pinned_base:
+        return None
+    ratio = native_base / pinned_base
+    for k in range(-9, 10):
+        if k and abs(ratio / 10 ** k - 1) <= 0.02:
+            return 10 ** k
+    return None
+
+
+def scale_factor_for_cap(shares_latest, dei_count, native_base, pinned_base, window_counts=None):
+    """(factor, basis): basis 'dei' when dei_count exists and shares_latest × 10^k is within 25% of dei_count for some
+    integer k ≠ 0 (factor 10^k); else basis 'pin' when native_base / pinned_base is within 2% of 10^k, k ≠ 0
+    (factor 10^k); else (None, None).
+    [ADDITION — verifier round 3, R3-CAP; replaces round 2's R2-CAP] the pin's 10^k measures the scale of the count
+    behind the native MEDIAN, while the factor multiplies the LATEST count, so the pin path applies only when
+    `window_counts` — [(period, count)] from the earliest fiscal year whose OE/share defines the native median through
+    the latest fiscal year (median_window_counts) — has the median year's count and the latest count on one scale
+    (no more than 100x apart; see R4-CAP below). No window (None or
+    empty) -> the pin is not consulted. Round 2's early return (a dei within 25% of the latest count -> no factor and
+    the pin never consulted) is withdrawn: the window test withholds VIV's factor by itself (break FY2024 -> FY2025),
+    and that return had "confirmed" a mis-scaled latest count when every count, the dei included, was filed in
+    thousands (cap 1,000x small, a false HIGH_NET_DEBT 512.8x). Without the window test a correct latest count beside
+    thousands-scaled median years (no dei, a dei 0.67x the count, a 20-F cover count in other units) took the pin's
+    x1,000: a $3.0T cap for a $3.0B filer, in_scope_under_40b refused and net debt / OE 1,000x too small.
+    [ADDITION — verifier round 4, R4-CAP] "on one scale" is tested on the window's two ENDPOINTS only — the median
+    year's count and the latest count (median_latest_scale_breaks) — not on every adjacent pair: a year between them
+    on another scale (filed on the true scale, or filled by a true-scale shares_override) says nothing about the
+    latest count, and the round-3 adjacent-pair test withheld a correct x1,000 there (cap 1,000x too small)."""
+    ks = [k for k in range(-9, 10) if k != 0]
+    if dei_count and shares_latest:
+        for k in ks:
+            if abs(shares_latest * 10 ** k / dei_count - 1) <= 0.25:
+                return 10 ** k, "dei"
+    fac = pin_power_of_ten(native_base, pinned_base)
+    if fac and window_counts and not median_latest_scale_breaks(window_counts):
+        return fac, "pin"
+    return None, None
+
+
+def median_window_counts(oe_ps_hist, counts, latest_period):
+    """[ADDITION — verifier round 3, R3-CAP] [(period, count)] of `counts` (the history's [(period, diluted count)])
+    from the earliest fiscal year whose OE/share defines the native median through `latest_period` (the year whose
+    count a cap factor multiplies). The defining years of oe_ps_hist[-3:]: with three values the year(s) holding the
+    middle value, with two both (their mean is the median), with one that year. [] when oe_ps_hist is empty."""
+    last3 = list(oe_ps_hist[-3:])
+    if not last3 or not latest_period:
+        return []
+    if len(last3) == 3:
+        med = statistics.median([v for _, v in last3])
+        start = min(p for p, v in last3 if v == med)
+    else:
+        start = last3[0][0]
+    return [(p, c) for p, c in counts if start <= p <= latest_period]
+
+
+def _snap_pq(xf):
+    """(p, q): the integers 1 <= p, q <= 10 with p/q within 1% of xf (the closest; the first found on a tie, so lowest
+    terms), else None. The grid snap_split_ratio and split_label share."""
+    best = None
+    for p in range(1, 11):
+        for q in range(1, 11):
+            err = abs(xf / (p / q) - 1)
+            if err <= 0.01 and (best is None or err < best[0]):
+                best = (err, p, q)
+    return (best[1], best[2]) if best else None
+
+
+def snap_split_ratio(x):
+    """p/q with integers 1 <= p, q <= 10 within 1% of x (0.333 → 1/3), else x."""
+    try:
+        xf = float(x)
+    except (TypeError, ValueError):
+        return x
+    pq = _snap_pq(xf)
+    return pq[0] / pq[1] if pq else x
+
+
+def split_events_post_fy(split_entries, latest_fy_end):
+    """[(event_date, ratio_filed)] from StockholdersEquityNoteStockSplitConversionRatio1 / …Ratio entries (unit pure,
+    any form) whose context end is AFTER latest_fy_end, ratio != 1 and 0.01 <= ratio <= 100; same ratio within 180 days
+    collapses to its first date. Facts dated on or before the latest FY end describe splits the annual filing already
+    reflects (or annual re-disclosures — MLI, CSGP, DXCM, CFG, BWA, COKE) and are never events."""
+    return _split_facts(split_entries, latest_fy_end, post_fy=True)
+
+
+def _split_facts(split_entries, latest_fy_end, post_fy):
+    """[(date, ratio_filed)]: split-ratio entries (unit pure, any form, ratio != 1, 0.01 <= ratio <= 100) whose context
+    end is AFTER latest_fy_end (post_fy True) or ON / BEFORE it (post_fy False); the same ratio within 180 days
+    collapses to its first date. Shared by split_events_post_fy and split_facts_in_history."""
+    if not latest_fy_end:
+        return []
+    fy = datetime.date.fromisoformat(str(latest_fy_end))
+    cands = []
+    for e in split_entries or []:
+        if e.get("unit") not in (None, "pure"):
+            continue
+        try:
+            r, end = float(e["val"]), datetime.date.fromisoformat(e["end"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if (end <= fy if post_fy else end > fy) or r == 1 or not (0.01 <= r <= 100):
+            continue
+        cands.append((end, r))
+    events = []
+    for end, r in sorted(cands):
+        if any(abs(snap_split_ratio(r) - snap_split_ratio(er)) <= 1e-9 * max(1.0, abs(er))
+               and 0 <= (end - ed).days <= SPLIT_COLLAPSE_DAYS for ed, er in events):
+            continue
+        events.append((end, r))
+    return [(d.isoformat(), r) for d, r in events]
+
+
+def confirm_split(events, shares_latest, dei_count, dei_date):
+    """(event_date, ratio_used, evidence) for the latest event that a post-event dei confirms: dei_date > event_date and
+    dei_count / shares_latest within ±15% of r (ratio_used = snap(r)) or of 1/r (ratio_used = snap(1/r)); else None.
+    [READING — the ruling's "split-basis check against the latest dei"]: a dei count that sits within ±15% of the
+    latest diluted count shows NO basis change, so it confirms nothing — a ratio near 1 (BWA's 1.13 spin-off
+    conversion ratio, a small stock dividend) would otherwise be "confirmed" by ordinary buyback / issuance drift
+    (BWA: dei / shares 0.941 vs 1/1.13 = 0.885) and rescale an already-consistent history. DD (0.322) and MLI
+    (1.984) are unaffected."""
+    if not events or not shares_latest or not dei_count or not dei_date:
+        return None
+    obs = dei_count / shares_latest
+    if abs(obs - 1) <= SPLIT_CONFIRM_TOL:
+        return None
+    for ev_date, r in sorted(events, key=lambda ev: ev[0], reverse=True):
+        if not datetime.date.fromisoformat(str(dei_date)) > datetime.date.fromisoformat(str(ev_date)):
+            continue
+        if abs(obs / r - 1) <= SPLIT_CONFIRM_TOL:
+            used, matched = snap_split_ratio(r), "ratio"
+        elif abs(obs * r - 1) <= SPLIT_CONFIRM_TOL:
+            used, matched = snap_split_ratio(1 / r), "inverse"
+        else:
+            continue
+        return ev_date, used, {"ratio_filed": r, "matched": matched, "dei_count": dei_count, "dei_date": dei_date,
+                               "shares_latest": shares_latest, "dei_to_shares": obs}
+    return None
+
+
+def split_facts_in_history(split_entries, latest_fy_end):
+    """[ADDITION — verifier round 1, ruling E11] [(date, ratio_filed)] for the split-ratio facts split_events_post_fy
+    ignores: context end ON OR BEFORE latest_fy_end (same unit / ratio filters, same 180-day collapse of one ratio).
+    Informational only (share_basis.in_history_split_facts) — nothing is rescaled: a history row sourced from a filing
+    older than such a split can sit on the pre-split basis (TPL), a known limitation."""
+    return _split_facts(split_entries, latest_fy_end, post_fy=False)
+
+
+def split_label(ratio):
+    """[ADDITION — verifier round 1, ruling E9] 'p-for-q' naming the split behind a multiplier: p/q (integers <= 10,
+    lowest terms) within 1% of the ratio — snap_split_ratio's grid — else '1-for-round(1/r)' for a reverse split
+    (0.05 -> '1-for-20', 1/15 -> '1-for-15') or 'round(r)-for-1'. The 5.5 text used limit_denominator(10), which
+    printed '1-for-10' for a 1-for-20."""
+    r = float(ratio)
+    pq = _snap_pq(r)
+    if pq:
+        fr = Fraction(*pq)
+        return f"{fr.numerator}-for-{fr.denominator}"
+    return f"1-for-{round(1 / r)}" if r < 1 else f"{round(r)}-for-1"
+
+
+SCALE_BREAK_MULT = 100   # [ADDITION — ruling E2] two adjacent fiscal-year share counts more than 100x apart
+
+
+def share_series_scale_breaks(counts, limit=SCALE_BREAK_MULT):
+    """[ADDITION — verifier round 1, ruling E2] [(period_from, count_from, period_to, count_to)] for every pair of
+    ADJACENT entries of `counts` ([(period, count)], the share_cagr window — the last 4 fiscal-year counts) whose
+    larger / smaller exceeds `limit` (VIV: 1,663,556,731,000 -> 1,658,604 -> 1,643,132 -> 3,195,606,352). A
+    consistently scaled series (NTNX: every count in thousands) has none. Non-positive counts are skipped."""
+    out = []
+    for (p0, c0), (p1, c1) in zip(counts, counts[1:]):
+        if not c0 or not c1 or c0 <= 0 or c1 <= 0:
+            continue
+        if max(c0, c1) / min(c0, c1) > limit:
+            out.append((p0, c0, p1, c1))
+    return out
+
+
+def median_latest_scale_breaks(window_counts, limit=SCALE_BREAK_MULT):
+    """[ADDITION — verifier round 4, R4-CAP] share_series_scale_breaks over the two ENDPOINTS of `window_counts`
+    (median_window_counts: the earliest year whose OE/share defines the native median ... the latest year): [] when
+    the median year's count and the latest count are within `limit`x of each other (one scale) or the window has
+    fewer than two entries, else [(period_from, count_from, period_to, count_to)] for that one pair. The years between
+    the endpoints do not enter: the pin's power of ten measures the median year's count and multiplies the latest
+    (an alternating FY2023 2,000,000 -> FY2024 2,000,000,000 -> FY2025 2,000,000 series has both endpoints in
+    thousands, so x1,000 is right for the latest count). Tied median years share one OE/share value, so they share
+    the scale of the earliest."""
+    if not window_counts or len(window_counts) < 2:
+        return []
+    return share_series_scale_breaks([window_counts[0], window_counts[-1]], limit)
+
+
+def share_scale_pin_rescue(pin_source, pin, price, declared):
+    """[ADDITION — verifier round 1, ruling E1] (rescues: bool, why_not: [str]). A share-scale defect is carried by a
+    pin only when ALL hold: (1) the pin came from --base-oe-ps (pin_source 'base_oe_ps_arg' — a --ttm pin divides by
+    the same mis-scaled counts, a --base-judgment pin is the payable shape); (2) judgment.json declares a base_override
+    WITHOUT `basis` (`declared`: the judgment's base_override object, None when absent) whose value equals the pin
+    within 0.1%; (3) the pin itself passes test (a): |pin| <= 20 x price when the price is known. 5.5 rescued ANY
+    --base-oe-ps pin, so a mis-scaled TTM figure passed as a number scored where the same figure through --ttm gapped."""
+    why = []
+    if pin_source != "base_oe_ps_arg" or pin is None:
+        return False, ["no --base-oe-ps pin"]
+    ok_decl = (isinstance(declared, dict) and not declared.get("basis")
+               and isinstance(declared.get("value"), (int, float)) and not isinstance(declared.get("value"), bool)
+               and abs(float(declared["value"]) - pin) <= 0.001 * abs(pin))
+    if not ok_decl:
+        if not isinstance(declared, dict):
+            why.append("judgment.json declares no base_override")
+        elif declared.get("basis"):
+            why.append(f"judgment.json's base_override has basis {declared.get('basis')!r} (the payable shape is pinned "
+                       "through --base-judgment, never --base-oe-ps)")
+        else:
+            why.append(f"judgment.json's base_override value {declared.get('value')!r} does not equal the pin {pin:.6g} "
+                       "within 0.1%")
+    if price and abs(pin) > SHARE_SCALE_PRICE_MULT * price:
+        why.append(f"the pin itself is {abs(pin) / price:,.0f}x the price {price:,.2f} (limit {SHARE_SCALE_PRICE_MULT}x) — "
+                   "it inherits the mis-scaled counts")
+    return not why, why
+
+
+def _majority_unit(facts):
+    """The unit carried by most facts (USD on a tie, else the first tied unit in list order)."""
+    counts = {}
+    for f in facts:
+        counts[f[2]] = counts.get(f[2], 0) + 1
+    if not counts:
+        return None
+    top = max(counts.values())
+    tied = [u for u in counts if counts[u] == top]
+    return "USD" if "USD" in tied else tied[0]
+
+
+def _drop_equal_value_duplicates(facts, dropped):
+    """The facts (tag, value, unit, filed) of one leg, one unit, minus the duplicates among DIFFERENT tags with
+    non-zero values: a fact is dropped when a twin within 0.5% was filed LATER ('retag_duplicate' — the line was
+    re-tagged, the newer filing wins; DESIGN §3-5), or when a twin with the IDENTICAL value sits in the SAME filing
+    earlier in list order ('same_filing_duplicate' — one line tagged twice, IP FY2022 931,000,000 under both
+    tags). Within one filing only identity counts: two different values the filer reports side by side are two
+    disclosures (GLPI FY2022 23,865,000 / 23,864,000), never merged. Dropped facts are appended to `dropped`."""
+    kept = []
+    for i, f in enumerate(facts):
+        reason = None
+        if f[1] != 0:
+            for k, g in enumerate(facts):
+                if k == i or g[0] == f[0] or g[1] == 0 or abs(g[1] - f[1]) > 0.005 * max(abs(g[1]), abs(f[1])):
+                    continue
+                gf, ff = g[3] or "", f[3] or ""
+                if gf > ff:
+                    reason = "retag_duplicate"
+                    break
+                if gf == ff and k < i and g[1] == f[1]:
+                    reason = "same_filing_duplicate"
+            if reason:
+                dropped.append((f[0], f[1], reason))
+                continue
+        kept.append(f)
+    return kept
+
+
+PARTS_OF_TOTAL_TOL = 0.005   # [ADDITION — ruling E5] a component within 0.5% of the sum of two or more others
+
+
+def _drop_parts_of_total(facts, dropped):
+    """[ADDITION — verifier round 1, ruling E5] The PP&E component facts (tag, value, unit, filed) of one period, one
+    unit, minus the PARTS of a total: a component whose value equals the sum of two or more of the OTHER non-zero
+    components within 0.5% is the filer's total line — it is kept and the parts are dropped (reason
+    'parts_of_total'). GLPI FY2024: other PP&E 39,688,000 = construction in process 39,542,000 + capital improvements
+    134,000 (+ an untagged 12,000) -> 39,688,000, not the 79,364,000 sum. Candidates are tried largest first; among
+    the subsets that match, the closest sum wins (then the larger subset). No other near-equal rule is added: two
+    components with no third (GLPI FY2025) stay summed."""
+    live = list(range(len(facts)))
+    for i in sorted(live, key=lambda k: -abs(facts[k][1])):
+        if i not in live or facts[i][1] == 0:
+            continue
+        total = facts[i][1]
+        others = [k for k in live if k != i and facts[k][1] != 0]
+        best = None
+        for size in range(2, len(others) + 1):
+            for combo in combinations(others, size):
+                diff = abs(sum(facts[k][1] for k in combo) - total)
+                if diff <= PARTS_OF_TOTAL_TOL * abs(total) and (best is None or (diff, -size) < best[0]):
+                    best = ((diff, -size), combo)
+        if best:
+            for k in best[1]:
+                live.remove(k)
+                dropped.append((facts[k][0], facts[k][1], "parts_of_total"))
+    return [facts[k] for k in live]
+
+
+CUMULATIVE_CONTEXT_DAYS = 380   # [ADDITION — ECHO] a context longer than this spans more than one fiscal year
+
+
+def cumulative_context_values(facts, tags, units=None):
+    """[ADDITION — ECHO] {(tag, unit, value)}: every NON-ZERO value a tag in `tags` ('Tag' or (taxonomy, 'Tag'))
+    carries on a context longer than CUMULATIVE_CONTEXT_DAYS (end - start), from any filing; `units` limits the
+    units read (ttm.py passes ('USD',)). capex_for_period drops an intangible fact whose (tag, unit, value) is in
+    this set (reason 'cumulative_duplicate'): ECHO files PaymentsToAcquireIntangibleAssets 30,000,000,000 on its
+    FY2024 annual context AND on 2008-01-01..2023-12-31 / 2018-01-01..2025-12-31 contexts — a cumulative spectrum
+    total tagged as one year's purchases (capex 1,544,877,000 -> 31,544,877,000 against 1,252,697,000 of OCF).
+    Shared by dcf_engine.py and ttm.py so the two never drift."""
+    out = set()
+    for t in tags:
+        taxonomy, name = t if isinstance(t, tuple) else ("us-gaap", t)
+        for unit_key, entries in ((facts.get("facts", {}).get(taxonomy, {}).get(name) or {}).get("units") or {}).items():
+            if units is not None and unit_key not in units:
+                continue
+            for e in entries:
+                start, end, val = e.get("start"), e.get("end"), e.get("val")
+                if not start or not end or isinstance(val, bool) or not isinstance(val, (int, float)) or val == 0:
+                    continue
+                try:
+                    span = (datetime.date.fromisoformat(end) - datetime.date.fromisoformat(start)).days
+                except ValueError:
+                    continue
+                if span > CUMULATIVE_CONTEXT_DAYS:
+                    out.add((name, unit_key, val))
+    return out
+
+
+def capex_for_period(rollups, components, intangibles, cumulative=None):
+    """Per fiscal period. Each argument is a list of facts (tag, value, unit, filed) — the latest filing per tag for
+    this period, in list order. Returns
+    {'ppe': float|None, 'ppe_unit', 'ppe_tags': [...], 'ppe_source': 'rollup'|'components'|'components_mixed_filings'|None,
+     'intangibles': float (0.0 when none), 'intangibles_unit', 'intangible_tags': [...],
+     'dropped': [(tag, value, reason)], 'provenance': '+'.join(tags actually summed)}
+    PP&E leg:
+      - roll-up: the first roll-up fact in priority order with a non-zero value; a $0 roll-up is used only when no later
+        candidate (roll-up or component) is non-zero — EXCEPT a $0 under PRIMARY_ROLLUP, which stays authoritative
+        (ruling 3(a): the zero-guard covers non-primary candidates). When a roll-up is used, components are never added.
+      - else components: sum the per-tag latest facts in ONE unit (the unit carried by most components, USD on a tie;
+        other-unit facts dropped with reason 'unit'); drop an older-filed component whose value equals a newer-filed
+        component of a DIFFERENT tag within 0.5% (reason 'retag_duplicate': IP 1,141M OtherPPE 2025 = ProductiveAssets
+        2026). A $0 component contributes 0 and never blocks the others (zero-guard). Source 'components_mixed_filings'
+        when the summed facts come from more than one filing date.
+      - nothing → ppe None.
+    Intangible leg: sum of intangible facts in one unit (same unit rule), added unless the PP&E leg's tag is in
+    CAPEX_COMBINED_TAGS (then intangible_tags = [] and dropped gets reason 'combined_tag').
+    [READING — design silent; ruling 5's "never double-counted"] the equal-value rule also covers two DIFFERENT tags
+    carrying the IDENTICAL non-zero value in the SAME filing: one cash-flow line tagged twice (IP FY2022:
+    PaymentsToAcquireOtherPropertyPlantAndEquipment and PaymentsToAcquireProductiveAssets both 931,000,000 in the
+    2024-02-16 and 2025-02-21 10-Ks) counts once — the first in list order is kept, the other dropped with reason
+    'same_filing_duplicate'. Applied to the component and the intangible legs alike.
+    [ADDITION — ECHO] `cumulative` (cumulative_context_values over the intangible tags; None = no check): an
+    intangible fact whose (tag, unit, value) the same tag also carries on a context longer than 380 days is a
+    cumulative figure on an annual context — dropped with reason 'cumulative_duplicate' before the unit rule.
+    Intangible leg only (new in 5.5, so no 5.4 number moves); the PP&E legs are never checked.
+    [ADDITION — ruling E5] after the equal-value rule, a component equal within 0.5% to the sum of two or more other
+    non-zero components is the total: kept, the parts dropped ('parts_of_total' — _drop_parts_of_total).
+    [ADDITION — ruling E6] a negative intangible fact is dropped ('negative'); a $0 intangible fact is ignored — it
+    joins neither intangible_tags nor the provenance string."""
+    def norm(fs):
+        return [(_tag_name(f[0]), f[1], f[2], f[3] if len(f) > 3 else None)
+                for f in (fs or []) if f is not None and f[1] is not None]
+    rollups, components, intangibles = norm(rollups), norm(components), norm(intangibles)
+    out = {"ppe": None, "ppe_unit": None, "ppe_tags": [], "ppe_source": None,
+           "intangibles": 0.0, "intangibles_unit": None, "intangible_tags": [],
+           "dropped": [], "provenance": ""}
+    # ---- PP&E leg: roll-up first ----
+    chosen = None
+    for i, f in enumerate(rollups):
+        if f[1] != 0 or f[0] == PRIMARY_ROLLUP:
+            chosen = f
+            break
+        later_nonzero = any(g[1] != 0 for g in rollups[i + 1:]) or any(c[1] != 0 for c in components)
+        if not later_nonzero:
+            chosen = f
+            break
+        out["dropped"].append((f[0], f[1], "zero_guard"))
+    if chosen is not None:
+        out.update(ppe=chosen[1], ppe_unit=chosen[2], ppe_tags=[chosen[0]], ppe_source="rollup")
+    elif components:
+        unit = _majority_unit(components)
+        same_unit = []
+        for f in components:
+            if f[2] != unit:
+                out["dropped"].append((f[0], f[1], "unit"))
+            else:
+                same_unit.append(f)
+        summed = _drop_equal_value_duplicates(same_unit, out["dropped"])
+        summed = _drop_parts_of_total(summed, out["dropped"])   # [ADDITION — ruling E5]
+        total = 0
+        for f in summed:
+            total += f[1]
+        out.update(ppe=total, ppe_unit=unit, ppe_tags=[f[0] for f in summed],
+                   ppe_source="components_mixed_filings" if len({f[3] for f in summed}) > 1 else "components")
+    # ---- intangible leg ----
+    # [ADDITION — verifier round 1, ruling E6] a NEGATIVE intangible fact is dropped (reason 'negative': FTAI FY2019
+    # -606,000, PHG FY2016 EUR -95M lowered capex); a $0 fact contributes nothing and joins nothing — not
+    # intangible_tags, not the provenance string, not an 'intangibles not added' note (169 periods / 67 folders
+    # carried a $0 tag in capex_tag). The PP&E legs keep their 5.4 semantics.
+    _neg = [f for f in intangibles if f[1] < 0]
+    out["dropped"].extend((f[0], f[1], "negative") for f in _neg)
+    intangibles = [f for f in intangibles if f[1] > 0]
+    if intangibles:
+        if out["ppe_tags"] and out["ppe_tags"][0] in CAPEX_COMBINED_TAGS:
+            out["dropped"].extend((f[0], f[1], "combined_tag") for f in intangibles)
+        else:
+            live = []
+            for f in intangibles:
+                if cumulative and (f[0], f[2], f[1]) in cumulative:
+                    out["dropped"].append((f[0], f[1], "cumulative_duplicate"))   # [ADDITION — ECHO]
+                    continue
+                live.append(f)
+            if live:
+                unit = _majority_unit(live)
+                same_unit = []
+                for f in live:
+                    if f[2] != unit:
+                        out["dropped"].append((f[0], f[1], "unit"))
+                        continue
+                    same_unit.append(f)
+                total = 0.0
+                for f in _drop_equal_value_duplicates(same_unit, out["dropped"]):
+                    total += f[1]
+                    out["intangible_tags"].append(f[0])
+                out.update(intangibles=total, intangibles_unit=unit)
+    out["provenance"] = "+".join(out["ppe_tags"] + out["intangible_tags"])
+    return out
+
+
+SBC_SHARE_TAG, SBC_ALLOCATED_TAG = "ShareBasedCompensation", "AllocatedShareBasedCompensationExpense"
+
+
+def reconcile_sbc(share, allocated):
+    """share, allocated: (value, unit) or None. Returns (value, unit, tag_used, reconciled: bool, note).
+    Both present, SAME unit, allocated > share → (allocated, unit, 'AllocatedShareBasedCompensationExpense', True, …).
+    Different units → share kept, note 'unit_mismatch' (JD/BEKE/LI/HTHT: USD translation vs CNY — never reconciled).
+    Otherwise share kept (or allocated when share is absent — today's fallback)."""
+    if share is None or share[0] is None:
+        if allocated is not None and allocated[0] is not None:
+            return allocated[0], allocated[1], SBC_ALLOCATED_TAG, False, "allocated_only"
+        return None, None, None, False, None
+    sv, su = share[0], share[1]
+    if allocated is None or allocated[0] is None:
+        return sv, su, SBC_SHARE_TAG, False, None
+    av, au = allocated[0], allocated[1]
+    if au != su:
+        return sv, su, SBC_SHARE_TAG, False, "unit_mismatch"
+    if av > sv:
+        pct = f", +{(av / sv - 1) * 100:.1f}%" if sv else ""
+        return av, au, SBC_ALLOCATED_TAG, True, f"allocated {av:,.0f} > share {sv:,.0f} {au}{pct}"
+    return sv, su, SBC_SHARE_TAG, False, "share_ge_allocated"
+
+
+def override_currency_basis(o, fx_info, last_filed_unit):
+    """'shares' | 'no_fx' (no fx_info: used verbatim as today) | 'declared_usd' (o.currency == 'USD' and kind 'filing') |
+    'last_filed_unit_usd' (last_filed_unit == 'USD') | 'converted'."""
+    o = o or {}
+    if o.get("field") == "shares" or last_filed_unit == "shares":
+        return "shares"
+    if not fx_info:
+        return "no_fx"
+    if str(o.get("currency") or "").strip().upper() == "USD" and o.get("kind") == "filing":
+        return "declared_usd"
+    if last_filed_unit == "USD":
+        return "last_filed_unit_usd"
+    return "converted"
+
+
+def _num(x):
+    """float(x) for a number or numeric CSV string; None for blanks / non-numbers."""
+    if isinstance(x, bool) or x is None:
+        return None
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def capex_coverage_low(rows_last3, ppe_positive):
+    """(bool, detail_str). True when, for EACH of the last 3 fiscal-year rows, total capex and D&A are present,
+    D&A > 0 and capex / D&A < 0.5, at a filer whose latest PP&E is positive (ppe_positive True; None = unknown → no
+    flag). detail_str lists the ratios ('FY2023 12%, FY2024 9%, FY2025 11%')."""
+    rows = list(rows_last3 or [])[-3:]
+    if len(rows) < 3 or not ppe_positive:
+        return False, ""
+    parts = []
+    for r in rows:
+        capex, da = _num(r.get("capex")), _num(r.get("da"))
+        if capex is None or da is None or da <= 0 or capex / da >= 0.5:
+            return False, ""
+        label = r.get("fy_label") or str(r.get("period_end") or "")[:4]
+        parts.append(f"FY{label} {capex / da * 100:.0f}%")
+    return True, ", ".join(parts)
+
+
+def _ppe_positive(facts):
+    """True when the latest annual instant value of any PP&E tag in PPE_POSITIVE_TAGS is > 0, False when they are all
+    <= 0, None when none is filed (unknown PP&E → CAPEX_COVERAGE_LOW stays silent). Sign only: no FX needed."""
+    latest = []
+    for t in PPE_POSITIVE_TAGS:
+        vals = period_series(facts, [t], False)[0]
+        if vals:
+            latest.append(vals[max(vals)])
+    if not latest:
+        return None
+    return any(v is not None and v > 0 for v in latest)
+
+
+def scale_growth_note(share_scale):
+    """[ADDITION — ruling E2] '' or the clause SHARE_SCALE_SUSPECT / DATA_GAP:shares — SHARE_SCALE append when the
+    share-derived growth inputs were dropped (share_scale.growth_inputs_dropped / .scale_breaks)."""
+    brk = share_scale.get("scale_breaks") or []
+    if not brk:
+        return ""
+    vals = share_scale.get("growth_inputs_dropped_values") or {}
+    names = {"share_cagr": "the share-count CAGR", "oe_ps_cagr_2y": "the OE/share CAGR"}
+    dropped = [f"{names.get(k, k)} ({vals[k] * 100:+.1f}%/yr)" if isinstance(vals.get(k), (int, float)) else names.get(k, k)
+               for k in share_scale.get("growth_inputs_dropped") or []]
+    where = ", ".join(f"FY{b['from_period'][:4]} {b['from_count']:,.0f} -> FY{b['to_period'][:4]} {b['to_count']:,.0f}" for b in brk)
+    # [ADDITION — verifier round 2, R2-E2] an OE/share CAGR whose endpoints share one scale stays
+    # ([ADDITION — verifier round 4, R4-E2] the endpoints' counts are compared, so a break between them that the
+    # CAGR never reads — an alternating series — does not drop it)
+    kept = ("; the OE/share CAGR reads only its two endpoints, whose counts are on one scale, so it stays in the blend"
+            if "oe_ps_cagr_2y" in (share_scale.get("growth_inputs_kept") or []) else "")
+    if not dropped:
+        return (f"; the share-count series breaks scale inside the growth window ({where}) (no share-derived growth "
+                f"input to drop){kept}")
+    return (f"; the share-count series breaks scale inside the growth window ({where}), so " + " and ".join(dropped)
+            + (" was" if len(dropped) == 1 else " were") + f" dropped from the growth blend (share adjustment 0){kept}")
+
+
+def _v55_flags(share_scale, share_basis, pin, market_cap_basis, sbc_recon, periods, hist, facts, overrides,
+               capex_assembly, raw_missing, last3_periods, override_checks):
+    """The v5.5 fragility flags that do not depend on the scenario math (main() appends them to flags_pre, so Tier F
+    and DATA_GAP runs carry them too): SHARE_SCALE_SUSPECT, SHARE_BASIS_ADJUSTED, SHARE_BASIS_DIVERGENCE,
+    SBC_TAG_RECONCILED, CAPEX_COVERAGE_LOW, OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex. The last one fires only for a
+    last-3-FY period whose PP&E leg is NOW filed (none of its tags was a 5.4 candidate, so 5.4 filled it from the
+    override) and records override_checks['capex']['superseded_periods']."""
+    flags = []
+    if share_scale["defect"] and share_scale["rescued_by_pin"]:
+        if not market_cap_basis.get("shares_used"):
+            # no price (or no count): the cap is universe.csv's — no share count was multiplied
+            basis = (f"universe.csv's market cap (no price × shares; the scale factor found was "
+                     f"{share_scale['scale_factor'] or 'none'})")
+        elif share_scale["scale_factor"]:
+            basis = (f"the latest diluted count x {share_scale['scale_factor']:g} ({share_scale['factor_basis']} basis: "
+                     f"{market_cap_basis['shares_used']:,.0f} shares)")
+        else:
+            _dr = share_scale.get("dei_ratio")
+            _wh = share_scale.get("pin_factor_withheld")
+            # [ADDITION — verifier round 4, R4-E3] no "agrees" reassurance when that agreement verifies nothing
+            agree = ("the cover-page count agrees with it within 25%; "
+                     if (_dr is not None and abs(_dr - 1) <= 0.25 and not share_scale.get("leverage_unverifiable"))
+                     else "")
+            if _wh:   # [ADDITION — verifier round 3, R3-CAP] a power-of-ten pin ratio withheld by a scale break
+                brk = ", ".join(f"FY{b['from_period'][:4]} {b['from_count']:,.0f} -> FY{b['to_period'][:4]} "
+                                f"{b['to_count']:,.0f}" for b in _wh["breaks"])
+                why = (f"the pin's x{_wh['factor']:g} ratio to the native base measures the count behind the "
+                       f"FY{_wh['window'][0]['period'][:4]} median, which is on another scale than the latest count "
+                       f"({brk}), so it does not apply")
+            else:
+                why = "no power-of-ten factor found in the dei count or the pin"
+            basis = f"the latest diluted count as filed ({agree}{why})"
+        # [ADDITION — ruling E3] no factor and no cover-page count to test the latest diluted count against;
+        # [ADDITION — verifier round 2, R2-E3] or a cover-page count that the latest diluted count fails (test (b))
+        if not share_scale.get("leverage_unverifiable"):
+            lev = ""
+        elif share_scale.get("dei_ratio") is not None and not share_scale["tests"].get("b"):
+            # [ADDITION — verifier round 4, R4-E3] a dei that passed test (b) against a latest count on the median
+            # year's (mis-scaled) basis
+            lev = (f"; the cover-page count {share_scale['dei_count']:,.0f} ({share_scale['dei_date']}) agrees with the "
+                   f"latest diluted count ({share_scale['dei_ratio']:.6g}x), but that count is on the same scale as the "
+                   "count behind the native median, which test (a) found mis-scaled, so the cover page is filed on the "
+                   "same basis and verifies nothing; with no power-of-ten factor the cap basis and the leverage "
+                   "diagnostics are unverifiable — net_debt_to_normalized_oe was not computed and HIGH_NET_DEBT / "
+                   "BIG_NET_CASH were not tested")
+        elif share_scale.get("dei_ratio") is not None:
+            lev = (f"; the cover-page count {share_scale['dei_count']:,.0f} ({share_scale['dei_date']}) puts the latest "
+                   f"diluted count at {share_scale['dei_ratio']:.6g}x it (test (b) failed) and no power-of-ten factor "
+                   "reconciles them, so the cap basis and the leverage diagnostics are unverifiable — "
+                   "net_debt_to_normalized_oe was not computed and HIGH_NET_DEBT / BIG_NET_CASH were not tested")
+        else:
+            lev = ("; with no cover-page count to test the latest diluted count and no power-of-ten factor, the cap basis "
+                   "and the leverage diagnostics are unverifiable — net_debt_to_normalized_oe was not computed and "
+                   "HIGH_NET_DEBT / BIG_NET_CASH were not tested")
+        flags.append(f"SHARE_SCALE_SUSPECT: {'; '.join(share_scale['reasons'])}; the declared base_override pin "
+                     f"{pin:.6g} carries the base; market cap uses {basis}{lev}{scale_growth_note(share_scale)}")
+    split = share_basis.get("split")
+    if split and split["periods_adjusted"]:
+        # [ADDITION — ruling E9] the split named from its own ratio (a 1-for-20 printed as 1-for-10 under
+        # limit_denominator(10)) and the adjusted years listed one by one, OVERRIDE counts named as not rescaled
+        ov = split.get("periods_override_not_rescaled") or []
+        ov_s = (f" except {', '.join('FY' + p[:4] for p in ov)} (OVERRIDE count{'s' if len(ov) > 1 else ''}, not rescaled)"
+                if ov else "")
+        flags.append(f"SHARE_BASIS_ADJUSTED: {split_label(split['ratio_used'])} split (filed ratio {split['ratio_filed']:g}, "
+                     f"effective {split['event_date']}) post-dates the filings behind "
+                     f"{', '.join('FY' + p[:4] for p in split['periods_adjusted'])}{ov_s}; their share "
+                     f"counts were multiplied by {split['ratio_used']:.6g} so the history and the current price share one basis "
+                     f"(dei {split['dei_count']:,.0f} on {split['dei_date']} confirms"
+                     # [ADDITION — verifier round 3, R3-SPLIT] confirmed against an earlier filed year when the latest
+                     # FY's count is an OVERRIDE
+                     + (f" against the FY{split['confirmed_against_period'][:4]} filed count"
+                        if (split.get("confirmed_against_period") and hist
+                            and split["confirmed_against_period"] != hist[-1]["period_end"]) else "") + ")")
+    div = share_basis.get("divergence")
+    if div and div["applied"]:
+        flags.append(f"SHARE_BASIS_DIVERGENCE: the latest cover-page share count {div['dei_count']:,.0f} ({div['dei_date']}) differs "
+                     f"from the latest diluted count {div['shares_latest']:,.0f} by x{div['dei_to_shares']:.3f} and no filed split "
+                     "ratio explains it (issuance, a merger or an unfiled split since the fiscal year end); market cap uses the "
+                     "cover-page count, per-share history stays on the filed basis — check the latest 10-Q")
+    parts = []
+    for p in periods:
+        r = sbc_recon.get(p)
+        if r and r["reconciled"]:
+            s, a, u = r["share"][0], r["allocated"][0], r["share"][1]
+            pct = f", +{(a / s - 1) * 100:.1f}%" if s else ""
+            parts.append(f"FY{p[:4]} ({s:,.0f} vs {a:,.0f}{'' if u == 'USD' else ' ' + str(u)}{pct})")
+    if parts:
+        flags.append("SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for "
+                     + ", ".join(parts) + "; the Allocated figure was used — the Share tag carries only part of stock "
+                     "compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)")
+    low, detail = capex_coverage_low(hist[-3:], _ppe_positive(facts))
+    if low:
+        flags.append(f"CAPEX_COVERAGE_LOW: capex is below 50% of D&A in each of the last 3 fiscal years ({detail}) at a filer "
+                     "with positive PP&E — reconcile total capex against the cash-flow statement's investing section "
+                     "(construction in progress, capitalised software, land-use rights, spectrum, intangible purchases) "
+                     "before trusting the owner's-earnings base")
+    o = overrides.get("capex")
+    if o:
+        sup = []
+        for p in last3_periods:
+            asm = capex_assembly.get(p)
+            if p in raw_missing["capex"] or not asm or asm["ppe"] is None:
+                continue
+            if any(t in CAPEX_TAGS_54 for t in asm["ppe_tags"]):
+                continue   # filed under 5.4 as well: the override never filled this period, nothing was superseded
+            filed = asm["ppe"]
+            off = (o["value"] != 0) if filed == 0 else not (0.5 <= o["value"] / filed <= 2)
+            if off:
+                sup.append({"period": p, "override": o["value"], "filed_ppe": filed, "filed_unit": asm["ppe_unit"],
+                            "filed_tags": "+".join(asm["ppe_tags"])})
+        if sup:
+            override_checks.setdefault("capex", {})["superseded_periods"] = sup
+            flags.append("OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex — judgment.json capex_override "
+                         f"{o['value']:,.0f} is outside 0.5x-2x of the PP&E capex now FILED for "
+                         + ", ".join(f"FY{s['period'][:4]} ({s['filed_ppe']:,.0f} {s['filed_unit']}, {s['filed_tags']})" for s in sup)
+                         + "; the filed value is used there (an override never replaces a filed value), so the override fills "
+                         "nothing — reconcile it against the cash-flow statement and remove it or justify it in analysis.md")
+    return flags
+
+
+def period_series(facts, tags, duration=True, with_filed=False):
     """({period_end: value}, first_used_tag, {period_end: tag}, {period_end: unit}) —
     annual periods only, latest filing wins. v4: MERGES across candidate tags per
     period (in priority order). v3 returned only the first tag that had any data,
@@ -555,8 +1607,11 @@ def period_series(facts, tags, duration=True):
     that were silently zero-filled). v5.3: `tags` items are either "Tag" (us-gaap)
     or ("taxonomy", "Tag") pairs, merged across taxonomies in priority order;
     values stay in their filed unit and the unit used per period is returned so
-    the caller can FX-convert non-USD periods."""
-    merged, used, tag_by_period, unit_by_period = {}, None, {}, {}
+    the caller can FX-convert non-USD periods. v5.5: with_filed=True returns a
+    5th dict {period_end: filed date of the supplying fact} (the share series
+    for the split-basis cutoff and the capex / SBC leg builders use it); the
+    default keeps the 4-tuple API."""
+    merged, used, tag_by_period, unit_by_period, filed_by_period = {}, None, {}, {}, {}
     pairs = [(t if isinstance(t, tuple) else ("us-gaap", t)) for t in tags]
     for taxonomy, tag in pairs:
         tax_facts = facts.get("facts", {}).get(taxonomy, {})
@@ -590,8 +1645,43 @@ def period_series(facts, tags, duration=True):
                     merged[k] = v["val"]
                     tag_by_period[k] = tag
                     unit_by_period[k] = unit_key
+                    filed_by_period[k] = v.get("filed")
                     if used is None: used = tag
+    if with_filed:
+        return merged, used, tag_by_period, unit_by_period, filed_by_period
     return merged, used, tag_by_period, unit_by_period
+
+
+def annual_facts_by_unit(facts, tag, duration=True):
+    """{(period_end, unit): (value, filed)} for ONE tag ('Tag' or (taxonomy, 'Tag')) under period_series' filters
+    (fp FY, annual forms, 330-380 day durations / instants, latest filing per period) but keeping EVERY unit —
+    v5.5 SBC reconciliation compares two tags only within the same unit (JD files Share in USD translations and
+    Allocated in CNY only)."""
+    taxonomy, name = tag if isinstance(tag, tuple) else ("us-gaap", tag)
+    units = (facts.get("facts", {}).get(taxonomy, {}).get(name) or {}).get("units", {})
+    out = {}
+    for unit_key, entries in units.items():
+        best = {}
+        for e in entries:
+            if e.get("fp") != "FY" or e.get("form", "") not in ("10-K", "10-K/A", "20-F", "40-F"):
+                continue
+            end, start = e.get("end"), e.get("start")
+            if not end:
+                continue
+            if duration:
+                if not start:
+                    continue
+                days = (datetime.date.fromisoformat(end) - datetime.date.fromisoformat(start)).days
+                if not (330 <= days <= 380):
+                    continue
+            elif start and start != end:
+                continue
+            prev = best.get(end)
+            if prev is None or e.get("filed", "") > prev.get("filed", ""):
+                best[end] = e
+        for end, e in best.items():
+            out[(end, unit_key)] = (e["val"], e.get("filed"))
+    return out
 
 def main():
     ticker = sys.argv[1].upper()
@@ -656,9 +1746,11 @@ def main():
                 (IF, "CashFlowsFromUsedInOperatingActivities"), (IF, "CashFlowsFromUsedInOperatingActivitiesContinuingOperations")],
         # v5: construction-in-process (ED files capex there FY23+) and other-productive-assets
         # (ROP) added as fallbacks — both verified against real companyfacts pulls 2026-10-13.
-        "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsForConstructionInProcess", "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets", "PaymentsToAcquireOtherProductiveAssets",
-                  (IF, "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"), (IF, "PurchaseOfPropertyPlantAndEquipment"),
-                  (IF, "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets")],
+        # v5.5: capex is no longer a first-tag-wins merge. The PP&E leg is assembled per
+        # period by capex_for_period (roll-up authoritative, else the additive components
+        # SUMMED, zero-guarded) and intangible purchases ride on top — see the assembly
+        # below the series loop. This entry only lists the PP&E candidates.
+        "capex": CAPEX_ROLLUP_TAGS + CAPEX_COMPONENT_TAGS,
         "da": ["DepreciationDepletionAndAmortization", "DepreciationAmortizationAndAccretionNet", "DepreciationAndAmortization", "Depreciation",
                (IF, "AdjustmentsForDepreciationAndAmortisationExpense"), (IF, "DepreciationAndAmortisationExpense")],
         # v5: DFTX and many others file SBC only under the allocated tag.
@@ -707,10 +1799,99 @@ def main():
     # shares (diluted) gap, never a silent swap (v5.2 rule, extended to IFRS).
     BASIC_SHARE_TAGS = {"WeightedAverageNumberOfSharesOutstandingBasic", "WeightedAverageShares"}
     series, used, series_tags, series_units = {}, {}, {}, {}
-    for k, tags in dur_defs.items(): series[k], used[k], series_tags[k], series_units[k] = period_series(facts, tags, True)
+    for k, tags in dur_defs.items():
+        if k == "capex":   # v5.5: assembled per period below (slot reserved so key order is unchanged)
+            series[k], used[k], series_tags[k], series_units[k] = {}, None, {}, {}
+            continue
+        series[k], used[k], series_tags[k], series_units[k] = period_series(facts, tags, True)
     for k, tags in inst_defs.items(): series[k], used[k], series_tags[k], series_units[k] = period_series(facts, tags, False)
+    # v5.5: filing dates of the share counts (the split-basis cutoff rescales only
+    # counts filed BEFORE a split event).
+    share_filed = period_series(facts, dur_defs["shares_diluted"], True, with_filed=True)[4]
+    out_inst_filed = period_series(facts, inst_defs["shares_out_inst"], False, with_filed=True)[4]
+    # [ADDITION — verifier round 1, ruling E4] a filed share count <= 0 is not a share count: the fact is treated as
+    # not filed, so the period takes the next candidate tag that files a positive count (a basic-only count then
+    # gaps / falls back exactly as v5.4 rules), else no count at all (raw_missing shares -> the fallback chain ->
+    # DATA_GAP:shares in the last 3 FY). TLN files WeightedAverageNumberOfDilutedSharesOutstanding 0 (and basic 0) for
+    # FY2022: the row used to vanish from the median window with no gap. Recorded in share_basis.nonpositive_counts.
+    nonpositive_counts = []
+    for _k, _tags, _dur, _filed_map in (("shares_diluted", dur_defs["shares_diluted"], True, share_filed),
+                                        ("shares_out_inst", inst_defs["shares_out_inst"], False, out_inst_filed)):
+        _bad = sorted(p for p, v in series[_k].items() if isinstance(v, (int, float)) and not isinstance(v, bool) and v <= 0)
+        if not _bad:
+            continue
+        _per_tag = [(_tag_name(t), period_series(facts, [t], _dur, with_filed=True)) for t in _tags]
+        for p in _bad:
+            _rec = {"period": p, "series": _k, "tag": series_tags[_k].get(p), "value": series[_k][p], "replaced_by": None}
+            nonpositive_counts.append(_rec)
+            for _name, (_vals, _, _, _units, _filed) in _per_tag:
+                _v = _vals.get(p)
+                if isinstance(_v, (int, float)) and not isinstance(_v, bool) and _v > 0:
+                    series[_k][p], series_tags[_k][p], series_units[_k][p] = _v, _name, _units.get(p)
+                    _filed_map[p] = _filed.get(p)
+                    _rec["replaced_by"] = _name
+                    break
+            else:
+                del series[_k][p]
+                series_tags[_k].pop(p, None)
+                series_units[_k].pop(p, None)
+                _filed_map.pop(p, None)
+
+    # ---- v5.5 capex assembly (decisions 3, 4, 5) ----
+    # Per tag, period_series semantics (FY, annual forms, 330-380 days, latest
+    # filing per period, USD preferred then other units); per period,
+    # capex_for_period builds the PP&E leg (series "capex" — drives the gate,
+    # the override fill and the band anchor exactly as the 5.4 merged value
+    # did) and the intangible leg (pseudo-series "capex_intang", added on top
+    # in the per-period loop).
+    def _per_tag(tags):
+        out = []
+        for t in tags:
+            vals, _, _, units, filed = period_series(facts, [t], True, with_filed=True)
+            out.append((_tag_name(t), vals, units, filed))
+        return out
+    capex_groups = (_per_tag(CAPEX_ROLLUP_TAGS), _per_tag(CAPEX_COMPONENT_TAGS), _per_tag(CAPEX_INTANGIBLE_TAGS))
+    # [ADDITION — ECHO] intangible values the same tag also files on a multi-year (>380-day) context: an annual
+    # fact repeating one of them is a cumulative total, dropped from the intangible leg (capex_provenance.dropped).
+    capex_cumulative = cumulative_context_values(facts, CAPEX_INTANGIBLE_TAGS)
+    capex_legs, capex_assembly = {}, {}
+    for p in sorted({p for grp in capex_groups for _, vals, _, _ in grp for p in vals}):
+        capex_legs[p] = tuple([(name, vals[p], units[p], filed.get(p)) for name, vals, units, filed in grp if p in vals]
+                              for grp in capex_groups)
+        capex_assembly[p] = capex_for_period(*capex_legs[p], cumulative=capex_cumulative)
+    series["capex"] = {p: a["ppe"] for p, a in capex_assembly.items() if a["ppe"] is not None}
+    series_units["capex"] = {p: a["ppe_unit"] for p, a in capex_assembly.items() if a["ppe"] is not None}
+    series_tags["capex"] = {p: "+".join(a["ppe_tags"]) for p, a in capex_assembly.items() if a["ppe"] is not None}
+    series["capex_intang"] = {p: a["intangibles"] for p, a in capex_assembly.items() if a["intangible_tags"]}
+    series_units["capex_intang"] = {p: a["intangibles_unit"] for p, a in capex_assembly.items() if a["intangible_tags"]}
+    # used["capex"] is set to the latest FY's provenance once the periods are known (v5.5)
+
+    # ---- v5.5 SBC reconciliation (decision 6) ----
+    # Where the priority merge picked ShareBasedCompensation and
+    # AllocatedShareBasedCompensationExpense reports the same period in the
+    # SAME unit with a larger value, the Allocated figure is used. Units must
+    # match: JD/BEKE/LI/HTHT file Share as USD translations and Allocated in
+    # CNY only — a cross-currency compare would 'reconcile' the FX rate.
+    _alloc = annual_facts_by_unit(facts, SBC_ALLOCATED_TAG)
+    sbc_recon = {}
+    for p in sorted(series["sbc"]):
+        if series_tags["sbc"].get(p) != SBC_SHARE_TAG:
+            continue
+        u = series_units["sbc"].get(p)
+        alloc_units = [uu for (pp, uu) in _alloc if pp == p]
+        if not alloc_units:
+            continue
+        au = u if u in alloc_units else ("USD" if "USD" in alloc_units else alloc_units[0])
+        share_v = series["sbc"][p]
+        v, vu, tag_used, reconciled, note = reconcile_sbc((share_v, u), (_alloc[(p, au)][0], au))
+        if reconciled:
+            series["sbc"][p], series_tags["sbc"][p] = v, tag_used
+        sbc_recon[p] = {"share": [share_v, u], "allocated": [_alloc[(p, au)][0], au], "used": tag_used,
+                        "reconciled": reconciled, "note": note}
+
     annual_form = filer_annual_form(cik)
     ads_ratio = load_ads_ratio(ticker)
+    share_class = load_share_class_mismatch(ticker)
     # Currency handling is v5.3 (see the FX conversion pass below and the gate):
     # filed units are tracked per period in series_units; the issuer's own USD
     # translations are used as filed, and a single foreign reporting currency
@@ -718,17 +1899,19 @@ def main():
     # on core facts in the last 3 FY = gap) is gone.
     # v4.2 share-count fallback: some filers (XOM) stopped tagging weighted diluted shares in
     # XBRL years ago. Fill missing years from dei EntityCommonStockSharesOutstanding (instant).
-    dei_shares = {}
+    dei_shares, dei_entries = {}, []
     try:
         dei = facts.get("facts", {}).get("dei", {}).get("EntityCommonStockSharesOutstanding", {})
         for unit_vals in dei.get("units", {}).values():
             for e in unit_vals:
+                dei_entries.append(e)   # v5.5: every cover-page fact, for latest_dei_count's hygiene rules
                 end = e.get("end")
                 if end and (end not in dei_shares or e.get("filed", "") > dei_shares[end][0]):
                     dei_shares[end] = (e.get("filed", ""), e["val"])
+        dei_filed = {k: v[0] for k, v in dei_shares.items()}
         dei_shares = {k: v[1] for k, v in dei_shares.items()}
     except Exception:
-        dei_shares = {}
+        dei_shares, dei_filed = {}, {}
 
     def dei_for_period(p):
         """v5.4: dei EntityCommonStockSharesOutstanding is dated by the COVER
@@ -738,15 +1921,28 @@ def main():
             pe = datetime.date.fromisoformat(p)
         except Exception:
             return None, None
-        best = None
+        best, skipped = None, []
         for d, v in dei_shares.items():
             try:
                 dd = datetime.date.fromisoformat(d)
             except Exception:
                 continue
             lag = (dd - pe).days
+            if isinstance(v, bool) or not isinstance(v, (int, float)) or v <= 0:
+                # [ADDITION — ruling E4] a cover-page count <= 0 (VOD 0) is not a share count
+                if 0 <= lag <= 90 and not isinstance(v, bool) and isinstance(v, (int, float)):
+                    skipped.append((d, v))
+                continue
             if 0 <= lag <= 90 and (best is None or lag < best[0]):
                 best = (lag, v, d)
+        # [ADDITION — verifier round 2, R2-E4] the skipped zero is recorded beside the series' zero counts, so a
+        # fallback year that lost its cover count says why (LTM 2017: dei 0 on 2017-12-31)
+        for d, v in sorted(skipped):
+            if not any(x["series"] == "dei" and x["period"] == p and x.get("date") == d for x in nonpositive_counts):
+                nonpositive_counts.append({"period": p, "series": "dei", "tag": "EntityCommonStockSharesOutstanding",
+                                           "value": v, "date": d,
+                                           "replaced_by": (f"dei:EntityCommonStockSharesOutstanding@{best[2]}"
+                                                           if best else None)})
         return (best[1], best[2]) if best else (None, None)
     latest_dei = max(dei_shares.items(), key=lambda kv: kv[0]) if dei_shares else None
 
@@ -792,8 +1988,8 @@ def main():
     else:
         conv_ccys = set()
     fx_info, fx_unconverted_dates, fx_converted_periods = None, set(), set()
+    rates_by_ccy = {}
     if conv_ccys:
-        rates_by_ccy = {}
         for ccy in sorted(conv_ccys):
             need_dates = sorted({p for k in monetary_keys for p, u in series_units.get(k, {}).items() if u == ccy})
             rates = {}
@@ -817,6 +2013,24 @@ def main():
                        "converted_fields": converted_fields,
                        "rates": rates_by_ccy.get(primary, {}),
                        "rates_by_currency": rates_by_ccy}
+    # v5.5: the intangible capex leg converts at its OWN unit's period-end rate
+    # (JD: PP&E as a USD translation, intangibles in CNY), using only rates the
+    # pass above already holds — it never enters the conversion-eligibility
+    # decision. A non-USD leg with no rate for its date is dropped for that
+    # period (capex_provenance records intangibles_dropped: no_rate).
+    intang_dropped = {}
+    for p, u in list(series_units["capex_intang"].items()):
+        if u == "USD":
+            continue
+        r = (rates_by_ccy.get(u) or {}).get(p) if fx_info else None
+        if r is None:
+            intang_dropped[p] = "no_rate"
+            del series["capex_intang"][p]
+        else:
+            series["capex_intang"][p] = series["capex_intang"][p] * r
+            fx_converted_periods.add(("capex_intang", p))
+            if "capex_intang" not in fx_info["converted_fields"]:
+                fx_info["converted_fields"].append("capex_intang")   # the record names every converted series
     # Did the engine rely on the issuer's own USD convenience translations?
     # (A core tag whose filed units include both USD and a foreign currency,
     # with USD the unit actually used — e.g. JD's CNY + USD.)
@@ -842,7 +2056,12 @@ def main():
             print(f"dcf_engine.py: REFUSED — judgment.json {field}_override value {o['value']} is negative; "
                   "an override can never be negative (capex / SBC / share counts are >= 0). Fix judgment.json.", file=sys.stderr)
             sys.exit(1)
-    ov_fx_fields = set()
+    ov_fx_fields, ov_usd_verbatim = set(), {}
+    OV_SERIES_KEY = {"capex": "capex", "sbc": "sbc", "shares": "shares_diluted"}
+    def _ov_basis(field):
+        """v5.5 (decision 7): which currency rule applies to this override."""
+        return override_currency_basis(dict(overrides[field], field=field), fx_info,
+                                       last_filed_unit.get(OV_SERIES_KEY[field]))
     def _override_usd(field, p):
         """The judgment override for `field` expressed in USD for period p.
         v5.3.1 (Codex review of Stocks PR #1): override values are declared
@@ -852,17 +2071,26 @@ def main():
         Monetary overrides convert at the same period-end rate as the filed
         series; share counts are never converted. None when there is no
         override, or when that period's rate is unavailable (the fill does
-        not happen and the gap stands)."""
+        not happen and the gap stands). v5.5 (decision 7): an override
+        declared currency "USD" (kind filing), or one whose field's last
+        filed unit is USD (the issuer's USD statements / translations), is
+        already a dollar figure — used verbatim, never converted. The sanity
+        band (override_checks, filed unit) is computed separately and is
+        untouched by this branch."""
         o = overrides.get(field)
         if o is None: return None
-        if field == "shares" or not fx_info: return o["value"]
+        basis = _ov_basis(field)
+        if basis in ("shares", "no_fx"): return o["value"]
+        if basis in ("declared_usd", "last_filed_unit_usd"):
+            ov_usd_verbatim[field] = basis
+            return o["value"]
         r = (fx_info.get("rates_by_currency", {}).get(fx_info["from_currency"]) or {}).get(p)
         if r is None: return None
         ov_fx_fields.add(field)
         return o["value"] * r
 
     override_checks = {}
-    for field, key in (("capex", "capex"), ("sbc", "sbc"), ("shares", "shares_diluted")):
+    for field, key in OV_SERIES_KEY.items():
         _lf = last_filed_raw.get(key)
         _o = overrides.get(field)
         if _o is None:
@@ -876,27 +2104,60 @@ def main():
         override_checks[field] = {"value": _o["value"], "last_filed_value": _lf,
                                   "last_filed_unit": last_filed_unit.get(key),
                                   "out_of_band": bool(_oob),
-                                  "ack_reason_present": bool(_o.get("ack_reason"))}
+                                  "ack_reason_present": bool(_o.get("ack_reason")),
+                                  "currency_basis": _ov_basis(field)}
     filled = {"capex": [], "sbc": [], "shares": []}        # period ends an override filled
     raw_missing = {"capex": set(), "sbc": set(), "shares": set(), "ocf": set()}  # periods with NO filed value
     basic_only = set()  # periods where only BASIC shares are filed (no diluted figure)
     share_fallback = {}  # v5.4: period -> (fallback count, source tag) when no diluted figure is filed
     debt_blank = []      # v5.4: periods with no debt tag at all (net debt unknown, not zero)
     cash_restricted_periods = []  # periods whose only cash tag includes restricted cash (Codex review of PR #2)
+    share_filed_used = {}  # v5.5: period -> filing date of the fact that supplied its share count
+    intang_not_added = {}  # v5.5: OVERRIDE-filled capex periods whose filed intangible purchases were not stacked on it
+    intang_no_ppe = {}     # [ADDITION — ruling E7] assumed-zero (no PP&E leg) periods whose intangible purchases were not added
     hist, prev_nwc = [], None
     for p in periods:
         g = lambda k: series[k].get(p)
+        # v5.5: capex_raw is the PP&E LEG (roll-up, or summed components) —
+        # it drives raw_missing / the gate / the override fill exactly as the
+        # 5.4 merged value did; intangible purchases are added on top below.
         capex_raw = g("capex")
         if capex_raw is None:
             raw_missing["capex"].add(p)
+        asm = capex_assembly.get(p)
         capex_tag_p = series_tags["capex"].get(p)
         capex_ov = _override_usd("capex", p)
         if capex_raw is None and capex_ov is not None:
             capex = capex_ov; capex_tag_p = "OVERRIDE"
             capex_assumed_zero = False; filled["capex"].append(p)
+            capex_source_p = "override"
         else:
             capex_assumed_zero = capex_raw is None and g("ocf") is not None
             capex = 0 if capex_assumed_zero else capex_raw
+            capex_source_p = "assumed_zero" if capex_assumed_zero else (asm["ppe_source"] if asm and capex_raw is not None else None)
+        capex_ppe = capex
+        intang = g("capex_intang")
+        capex_intang_added = None
+        if intang is not None and capex is not None:
+            if capex_tag_p == "OVERRIDE":
+                # [READING] an override is the filer's TOTAL capex line (FMS:
+                # 'PP&E and capitalized development costs') — intangibles are
+                # not stacked on it; the OVERRIDE_APPLIED flag says so.
+                intang_not_added[p] = asm["intangibles"]
+            elif capex_assumed_zero:
+                # [ADDITION — verifier round 1, ruling E7] no PP&E leg (an
+                # assumed-zero row): the intangible leg is NOT added — capex
+                # stays 0 and capex_tag blank, so the row stays an assumed-zero
+                # row (the last-3-FY gate is unchanged); capex_intangibles
+                # records the filed amount and capex_provenance notes
+                # intangibles_not_added 'no_ppe_leg'.
+                intang_no_ppe[p] = intang
+                capex_intang_added = intang
+            else:
+                if intang:
+                    capex = capex + intang
+                capex_intang_added = intang
+                capex_tag_p = "+".join(([capex_tag_p] if capex_tag_p else []) + asm["intangible_tags"])
         sbc_raw = g("sbc")
         if sbc_raw is None:
             raw_missing["sbc"].add(p)
@@ -920,21 +2181,23 @@ def main():
         shares_src = None
         if sh_diluted is not None:
             shares_val, shares_src = sh_diluted, sh_tag_p
+            share_filed_used[p] = share_filed.get(p)
         else:
             raw_missing["shares"].add(p)
-            fb = None
+            fb, fb_filed = None, None
             if sh_merged is not None:
-                basic_only.add(p); fb = (sh_merged, sh_tag_p)
+                basic_only.add(p); fb = (sh_merged, sh_tag_p); fb_filed = share_filed.get(p)
             elif g("shares_out_inst") is not None:
-                fb = (g("shares_out_inst"), series_tags["shares_out_inst"].get(p))
+                fb = (g("shares_out_inst"), series_tags["shares_out_inst"].get(p)); fb_filed = out_inst_filed.get(p)
             else:
                 dv, dd = dei_for_period(p)
-                if dv is not None: fb = (dv, f"dei:EntityCommonStockSharesOutstanding@{dd}")
+                if dv is not None: fb = (dv, f"dei:EntityCommonStockSharesOutstanding@{dd}"); fb_filed = dei_filed.get(dd)
             if fb: share_fallback[p] = fb
             if "shares" in overrides:
                 shares_val = overrides["shares"]["value"]; shares_src = "OVERRIDE"; filled["shares"].append(p)
             elif fb:
                 shares_val, shares_src = fb[0], f"FALLBACK:{fb[1]}"
+                share_filed_used[p] = fb_filed
             else:
                 shares_val = None
         if g("ocf") is None:
@@ -1001,7 +2264,11 @@ def main():
                      "assets": g("assets"), "liabilities": g("liabilities"),
                      "ppe_net": g("ppe_net"), "equity": g("equity"), "tax": g("tax"),
                      "oe_per_share": (oe_cons / shares_val) if (oe_cons is not None and shares_val) else None,
-                     "fcf_per_share": (fcf / shares_val) if (fcf is not None and shares_val) else None})
+                     "fcf_per_share": (fcf / shares_val) if (fcf is not None and shares_val) else None,
+                     # v5.5 trailing provenance columns (capex = capex_ppe + capex_intangibles, except on an
+                     # assumed-zero row, where capex_intangibles records the purchases NOT added — ruling E7)
+                     "capex_ppe": capex_ppe, "capex_intangibles": capex_intang_added,
+                     "capex_source": capex_source_p, "shares_split_factor": None})
 
     if fx_info and ov_fx_fields:
         # v5.3.1: monetary override values were converted from the reporting
@@ -1021,6 +2288,95 @@ def main():
         # sweep marks blocked_no_data instead of publishing a fake F (the XOM trap).
         print(f"NO_DATA for {ticker}: only {len(hist)} usable fiscal years under CIK {cik} ({name}) — possible entity/CIK change (e.g. a 2026 holding-company reorganization). The analyzing agent should find the operating parent's CIK (web search the company + 'CIK 10-K') and rerun with --cik <CIK>; if none exists, mark blocked_no_data.")
         sys.exit(3)
+
+    # ---- v5.5 capex provenance (decisions 3-5): used_tags and the per-period record ----
+    def _leg_detail(p, group_idx, tags):
+        legs = capex_legs.get(p, ([], [], []))[group_idx]
+        return {name: val for name, val, _, _ in legs if name in tags}
+    capex_provenance, capex_tags_used = {}, set()
+    for h in hist:
+        p = h["period_end"]
+        asm = capex_assembly.get(p)
+        rec = {"ppe_source": h["capex_source"], "ppe": {}, "ppe_unit": None, "intangibles": {},
+               "intangibles_unit": None, "dropped": [], "filed": {}}
+        if asm:
+            used_ppe = asm["ppe_tags"] if h["capex_tag"] != "OVERRIDE" and h["capex_source"] != "assumed_zero" else []
+            used_int = asm["intangible_tags"] if (h["capex_intangibles"] is not None and p not in intang_no_ppe) else []
+            rec.update(ppe={**_leg_detail(p, 0, used_ppe), **_leg_detail(p, 1, used_ppe)}, ppe_unit=asm["ppe_unit"] if used_ppe else None,
+                       intangibles=_leg_detail(p, 2, used_int), intangibles_unit=asm["intangibles_unit"] if used_int else None,
+                       dropped=[list(d) for d in asm["dropped"]],
+                       filed={name: fd for grp in capex_legs[p] for name, _, _, fd in grp if name in used_ppe or name in used_int})
+            capex_tags_used.update(used_ppe + used_int)
+            if p in intang_not_added:
+                rec["intangibles_not_added"] = "override_present"
+                rec["intangibles_filed"] = _leg_detail(p, 2, asm["intangible_tags"])
+            elif p in intang_no_ppe:   # [ADDITION — ruling E7]
+                rec["intangibles_not_added"] = "no_ppe_leg"
+                rec["intangibles_filed"] = _leg_detail(p, 2, asm["intangible_tags"])
+            if p in intang_dropped:
+                rec["intangibles_dropped"] = intang_dropped[p]
+        capex_provenance[p] = rec
+    _filed_capex = [h for h in hist if h["capex_tag"] and h["capex_tag"] != "OVERRIDE"]
+    used["capex"] = (hist[-1]["capex_tag"] if hist[-1]["capex_tag"] and hist[-1]["capex_tag"] != "OVERRIDE"
+                     else (_filed_capex[-1]["capex_tag"] if _filed_capex else None))
+    used["capex_components"] = "+".join(sorted(capex_tags_used)) or None
+    # [ADDITION — verifier round 1, ruling E8] used_tags.sbc names the tag the latest period actually used after the
+    # SBC reconciliation (as used_tags.capex does): period_series' first-used tag kept reading ShareBasedCompensation
+    # at JLL while every row used AllocatedShareBasedCompensationExpense. An OVERRIDE row yields the latest filed
+    # tag; with no filed tag in the CSV years the first-used tag stands.
+    _filed_sbc = [h for h in hist if h["sbc_tag"] and h["sbc_tag"] != "OVERRIDE"]
+    if _filed_sbc:
+        used["sbc"] = _filed_sbc[-1]["sbc_tag"]
+
+    # ---- v5.5 share basis (decision 2b, Option B: the engine handles splits) ----
+    # A split ratio filed for a context AFTER the latest FY end, confirmed by a
+    # post-event cover-page (dei) count, means the annual history counts and
+    # the current price sit on different bases: every count filed before the
+    # event (never an OVERRIDE) is multiplied by the confirmed ratio. In-history
+    # ratio facts are re-disclosures the annual filing already reflects
+    # (MLI/CSGP/DXCM/CFG/BWA/COKE) and never adjust anything.
+    latest_fy_end = hist[-1]["period_end"]
+    dei_count, dei_date = latest_dei_count(dei_entries, latest_fy_end)
+    _split_entries = [e for t in SPLIT_RATIO_TAGS
+                      for e in ((facts.get("facts", {}).get("us-gaap", {}).get(t) or {}).get("units", {}).get("pure") or [])]
+    split_events = split_events_post_fy(_split_entries, latest_fy_end)
+    # [ADDITION — verifier round 3, R3-SPLIT] the split is confirmed against the latest FILED count (the most recent
+    # row whose count is not an OVERRIDE): a shares_override must already be on the post-split basis (ruling D7,
+    # WORKER_SPEC step 8), so a post-split override in the latest FY equals the post-event dei and, used here, had
+    # confirmed nothing — the filed history stayed on the pre-split basis (base 1/3 of the right figure, Tier C ->
+    # D, no flag). Overrides are still never rescaled, so the rescaled history and the override share one basis.
+    _filed_sh = [h for h in hist if h.get("shares_diluted") and h["shares_tag"] != "OVERRIDE"]
+    split_confirm_row = _filed_sh[-1] if _filed_sh else None
+    split_conf = confirm_split(split_events, split_confirm_row["shares_diluted"] if split_confirm_row else None,
+                               dei_count, dei_date)
+    share_basis = {"split": None, "divergence": None,
+                   "unconfirmed_split_facts": [{"date": d, "ratio_filed": r} for d, r in split_events
+                                               if not split_conf or d != split_conf[0]],
+                   # [ADDITION — ruling E11] split facts dated on or before the latest FY end: informational only
+                   "in_history_split_facts": [{"date": d, "ratio_filed": r}
+                                              for d, r in split_facts_in_history(_split_entries, latest_fy_end)],
+                   # [ADDITION — ruling E4] filed share counts <= 0 treated as not filed
+                   "nonpositive_counts": [x for x in nonpositive_counts if x["period"] in periods]}
+    split_adjusted = []
+    if split_conf:
+        ev_date, ratio_used, evidence = split_conf
+        for h in hist:
+            fd = share_filed_used.get(h["period_end"])
+            if h["shares_diluted"] and h["shares_tag"] != "OVERRIDE" and fd and fd < ev_date:
+                h["shares_diluted"] = h["shares_diluted"] * ratio_used
+                h["shares_split_factor"] = ratio_used
+                h["oe_per_share"] = (h["oe_conservative"] / h["shares_diluted"]) if h["oe_conservative"] is not None else None
+                h["fcf_per_share"] = (h["fcf"] / h["shares_diluted"]) if h["fcf"] is not None else None
+                split_adjusted.append(h["period_end"])
+        share_basis["split"] = {"event_date": ev_date, "ratio_filed": evidence["ratio_filed"], "ratio_used": ratio_used,
+                                "matched": evidence["matched"], "dei_count": dei_count, "dei_date": dei_date,
+                                "dei_to_shares": evidence["dei_to_shares"], "periods_adjusted": split_adjusted,
+                                # [ADDITION — verifier round 3, R3-SPLIT] the filed row the dei was tested against
+                                "confirmed_against_period": split_confirm_row["period_end"],
+                                # [ADDITION — ruling E9] OVERRIDE counts are never rescaled; the flag names them
+                                "periods_override_not_rescaled": [h["period_end"] for h in hist
+                                                                  if h["shares_tag"] == "OVERRIDE" and h["shares_diluted"]]}
+
     latest = hist[-1] if hist else {}
     shares = latest.get("shares_diluted")
     net_debt = latest.get("net_debt")  # v5.4: per-period basis (see debt_tag); None = unknown, never zero
@@ -1032,8 +2388,8 @@ def main():
     if price is None and ticker in uni:
         try: price = float(uni[ticker]["price"]); price_source = "universe_screener"
         except Exception: price = None
-    mktcap = market_cap_est(price, shares, ads_ratio,
-                            float(uni[ticker]["market_cap"]) if ticker in uni and uni[ticker].get("market_cap") else None)
+    # v5.5: the market cap is computed after the share-basis checks below
+    # (market_cap_est: price × shares ÷ ads_ratio).
 
     def cagr(key, periods_n):
         vals = [(h["period_end"], h[key]) for h in hist if h.get(key)]
@@ -1143,6 +2499,141 @@ def main():
     comp_vals = [v for v in growth_components_adjusted.values() if v is not None]
     g_blend = statistics.median(comp_vals) if comp_vals else 0.03
 
+    # v5.3: the currency gap is judged on the periods actually used. Not a gap:
+    # facts filed in USD (including the issuer's own USD convenience
+    # translations) or FX-converted above. Still a gap: mixed reporting
+    # currencies in the last 3 FY, or a last-3-FY core fact whose period-end
+    # rate was unavailable and so stayed unconverted.
+    # v5.3.1: a last-3-FY core period is a currency gap iff it was filed in a
+    # non-USD unit and the FX pass did not convert it (mixed filer, or no ECB
+    # rate for its currency) — one rule for every filer shape.
+    # (v5.5: computed here, ahead of the gate, because the share-scale guard
+    # is skipped on a currency gap — KSPI's 26x is unconverted KZT.)
+    last3_periods = [h["period_end"] for h in hist[-3:]]
+    currency_gap = any(series_units.get(k, {}).get(p) not in (None, "USD", "shares", "USD/shares")
+                       and (k, p) not in fx_converted_periods
+                       for k in ("revenue", "net_income", "ocf") for p in last3_periods)
+
+    # ---- v5.5 share-scale guard (decision 2a) and the market-cap share basis ----
+    ads_r = ads_ratio["ratio"] if ads_ratio else None
+    shares_for_cap = shares
+    shares_source = "diluted_latest_split_adjusted" if (split_adjusted and latest.get("period_end") in split_adjusted) else "diluted_latest"
+    share_scale = {"defect": False, "tests": {"a": False, "b": False}, "reasons": [], "dei_count": dei_count,
+                   "dei_date": dei_date, "dei_ratio": None, "scale_factor": None, "factor_basis": None,
+                   "rescued_by_pin": False, "skipped": "currency_gap" if currency_gap else None,
+                   # [ADDITION — verifier round 1, rulings E1-E3] see share_scale_pin_rescue /
+                   # share_series_scale_breaks and the leverage note below
+                   "pin_rejected": None, "leverage_unverifiable": False, "scale_breaks": [],
+                   "growth_inputs_dropped": [], "growth_inputs_dropped_values": {},
+                   # [ADDITION — verifier round 2, R2-PIN / R2-E2] test (a) on the pin actually used; a share-derived
+                   # growth input kept beside a scale break (the OE/share CAGR whose endpoints share one scale)
+                   "pin_over_price": False, "growth_inputs_kept": [],
+                   # [ADDITION — verifier round 3, R3-CAP] a power-of-ten pin ratio the window test withheld
+                   "pin_factor_withheld": None}
+    if not currency_gap:
+        _chk = share_scale_check(oe_ps_norm, price, shares, dei_count,
+                                 pin=base_override if pin_source else None, pin_source=pin_source)
+        share_scale.update(defect=_chk["defect"], tests=_chk["tests"], reasons=_chk["reasons"], dei_ratio=_chk["dei_ratio"],
+                           pin_over_price=_chk["pin_over_price"])
+        if _chk["defect"]:
+            # [ADDITION — ruling E1] only a --base-oe-ps pin that judgment.json declares as a (non-payable)
+            # base_override, and that is not itself mis-scaled, carries a share-scale defect.
+            _rescue, _why = share_scale_pin_rescue(pin_source, base_override if pin_source == "base_oe_ps_arg" else None,
+                                                   price, load_declared_base_override(ticker))
+            share_scale["rescued_by_pin"] = _rescue
+            if pin_source == "base_oe_ps_arg" and not _rescue:
+                share_scale["pin_rejected"] = _why
+            # [ADDITION — verifier round 3, R3-CAP] the pin factor needs the median year's count and the latest count
+            # on one scale (scale_factor_for_cap's window test); a power-of-ten pin ratio withheld by a scale break is
+            # recorded in share_scale.pin_factor_withheld and named in SHARE_SCALE_SUSPECT
+            _win = median_window_counts(oe_ps_hist, sh, latest.get("period_end"))
+            _factor, _basis = scale_factor_for_cap(shares, dei_count, oe_ps_norm, base_override if _rescue else None,
+                                                   window_counts=_win)
+            _pin_pow = pin_power_of_ten(oe_ps_norm, base_override) if _rescue else None
+            # [ADDITION — verifier round 4, R4-CAP] the median year's count vs the latest count (the window's
+            # endpoints), not every adjacent pair of the window
+            _end_breaks = median_latest_scale_breaks(_win)
+            if _pin_pow and not _factor and _win:
+                share_scale["pin_factor_withheld"] = {
+                    "factor": _pin_pow, "window": [{"period": p, "count": c} for p, c in _win],
+                    "breaks": [{"from_period": a, "from_count": b, "to_period": c, "to_count": d}
+                               for a, b, c, d in _end_breaks]}
+            share_scale.update(scale_factor=_factor, factor_basis=_basis)
+            if _factor and shares:
+                shares_for_cap, shares_source = shares * _factor, "diluted_latest_scale_corrected"
+            # [ADDITION — ruling E3] a rescued defect with no power-of-ten factor and no usable cover-page count
+            # (test (b) not evaluable): the cap's count is unverified, so the normalized-OE total and the leverage
+            # diagnostics built on it are not computed (a 1,000x-small total printed HIGH_NET_DEBT 400x).
+            # [ADDITION — verifier round 2, R2-E3] likewise when a dei EXISTS and test (b) failed (the latest count is
+            # more than 100x off the cover page) with no factor: the cover page proves the count wrong (HIGH_NET_DEBT
+            # 666.7x). Only a dei that passed test (b) (VIV) keeps the diagnostics.
+            # [ADDITION — verifier round 4, R4-E3] ... and only when that agreement is evidence: when test (a) fired on
+            # the native median and the latest count is on the median year's scale (no endpoint break), the latest
+            # count carries the scale test (a) found wrong, so a dei that agrees with it is filed on the same basis
+            # (every count and the cover page in thousands, a TTM pin no power of ten off the native base: cap
+            # 1,000x small, a false HIGH_NET_DEBT 500x). VIV (its latest count on another scale than its median
+            # year) keeps the diagnostics.
+            share_scale["leverage_unverifiable"] = bool(
+                _rescue and not _factor
+                and (_chk["dei_ratio"] is None or _chk["tests"]["b"]
+                     or (_chk["tests"]["a"] and bool(_win) and not _end_breaks)))
+            # [ADDITION — ruling E2] a scale break inside the growth window (two adjacent counts among the last 4
+            # more than 100x apart) makes the share-count CAGR an artefact of the units: it leaves the growth blend
+            # and the share adjustment is 0. A consistently scaled series keeps it.
+            # [ADDITION — verifier round 2, R2-E2] the OE/share CAGR (oe_ps_hist[-3] -> oe_ps_hist[-1]) leaves the
+            # blend only when a break lies between its own endpoints — "computed on the same broken series" (E2's
+            # reason); a break before FY t-2 leaves both endpoints on one scale and the CAGR valid.
+            _breaks = share_series_scale_breaks(sh[-4:])
+            if _breaks:
+                _gone = {}
+                if share_cagr is not None:
+                    _gone["share_cagr"] = share_cagr
+                # [ADDITION — verifier round 4, R4-E2] the CAGR reads only its two endpoints, so their two counts
+                # are compared (not every adjacent pair between them: an alternating series kept a valid CAGR out)
+                _shd = dict(sh)
+                _oe_break = bool(len(oe_ps_hist) >= 3 and share_series_scale_breaks(
+                    [(p, _shd.get(p)) for p in (oe_ps_hist[-3][0], oe_ps_hist[-1][0])]))
+                if oe_ps_cagr is not None and _oe_break:
+                    _gone["oe_ps_cagr_2y"] = oe_ps_cagr
+                share_scale.update(scale_breaks=[{"from_period": a, "from_count": b, "to_period": c, "to_count": d}
+                                                 for a, b, c, d in _breaks],
+                                   growth_inputs_dropped=list(_gone), growth_inputs_dropped_values=_gone,
+                                   growth_inputs_kept=["oe_ps_cagr_2y"] if (oe_ps_cagr is not None and not _oe_break) else [])
+                share_cagr, share_adj = None, 0.0
+                growth_components_adjusted = {"rev_cagr_5y": rev_cagr5, "rev_cagr_3y": rev_cagr3,
+                                              "rev_yoy_latest": rev_yoy_latest,
+                                              "oe_ps_cagr_2y": None if _oe_break else oe_ps_cagr}
+                comp_vals = [v for v in growth_components_adjusted.values() if v is not None]
+                g_blend = statistics.median(comp_vals) if comp_vals else 0.03
+    # SHARE_BASIS_DIVERGENCE fallback (2b): no confirmed split, a cover-page
+    # count dated after the latest FY end that differs from the latest diluted
+    # count with one more than 25% below the other (dei / diluted outside
+    # DIVERGENCE_BAND 0.75x-1.333x: issuance, a merger or an unfiled split). Only a
+    # 10-K filer's dei count is in the traded share's units — at 20-F / 40-F /
+    # ADS filers it may count CPOs, ADSs or one class (CX: 3x), so there it is
+    # recorded with no switch and no flag.
+    if (not split_conf and not share_scale["defect"] and dei_count and shares and dei_date
+            and dei_date > latest_fy_end and not (DIVERGENCE_BAND[0] <= dei_count / shares <= DIVERGENCE_BAND[1])):
+        _foreign = annual_form in ("20-F", "40-F") or bool(ads_r and ads_r != 1)
+        share_basis["divergence"] = {"dei_count": dei_count, "dei_date": dei_date, "shares_latest": shares,
+                                     "dei_to_shares": dei_count / shares, "applied": not _foreign,
+                                     "note": ("foreign-form / ADS filer: the cover-page count may be in other units — recorded, not applied"
+                                              if _foreign else "market cap uses the cover-page count")}
+        if not _foreign:
+            shares_for_cap, shares_source = dei_count, "dei_latest"
+    mktcap = market_cap_est(price, shares_for_cap, ads_r)
+    if mktcap is None:
+        # The 5.4 fallback (no price or no share count): universe.csv's cap, or none. The
+        # basis record then names no share count — none was used (make_score / reprice read it).
+        mktcap = float(uni[ticker]["market_cap"]) if ticker in uni and uni[ticker].get("market_cap") else None
+        market_cap_basis = {"shares_used": None,
+                            "shares_source": "universe_market_cap" if mktcap is not None else None,
+                            "ads_ratio": ads_r,
+                            "formula": "universe.csv market_cap (no price or no share count)" if mktcap is not None else None}
+    else:
+        market_cap_basis = {"shares_used": shares_for_cap, "shares_source": shares_source, "ads_ratio": ads_r,
+                            "formula": "price × shares ÷ ads_ratio" if ads_r else "price × shares"}
+
     result = {"ticker": ticker, "name": name, "cik": cik, "engine_version": 5, "engine_release": ENGINE_RELEASE,
               "as_of": ET_TODAY.isoformat(),
               "price": price, "price_source": price_source, "shares_diluted_latest": shares,
@@ -1162,7 +2653,15 @@ def main():
               "used_tags": used,
               "filer_annual_form": annual_form, "ads_ratio": ads_ratio, "fx_conversion": fx_info,
               "payable_base": payable_base,
-              "override_checks": override_checks}
+              "override_checks": override_checks,
+              # v5.5 records (decisions 1-6): see the module docstring
+              "market_cap_basis": market_cap_basis, "share_scale": share_scale, "share_basis": share_basis,
+              "share_class_mismatch": share_class, "capex_provenance": capex_provenance,
+              "sbc_provenance": {p: sbc_recon[p] for p in periods if p in sbc_recon}}
+    if fx_info:
+        # v5.5 (decision 7): overrides used verbatim as USD figures, and which rule fired
+        # ({} when every override was converted, or none is declared).
+        fx_info["overrides_usd_verbatim"] = dict(sorted(ov_usd_verbatim.items()))
 
     # ---- v3 scenario / moat inputs ----
     def arglist(flag, default):
@@ -1224,46 +2723,62 @@ def main():
         flags_pre.append("DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year — net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md")
     if cash_restricted_periods and latest.get("period_end") in cash_restricted_periods:
         flags_pre.append("CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it — net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence")
+    flags_pre.extend(_v55_flags(share_scale, share_basis, base_override, market_cap_basis, sbc_recon, periods,
+                                hist, facts, overrides, capex_assembly, raw_missing, last3_periods, override_checks))
     sector_u = (uni.get(ticker) or {}).get("sector", "")
     if sector_u in ("Finance", "Real Estate", "Utilities"):  # v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged
         flags_pre.append(f"SECTOR_MODEL_MISMATCH: {sector_u} sector — OE/capex DCF fits {sector_u.lower()} names poorly; grade confidence low")
 
     # ---- v5 DATA GATE: missing data must never silently become zero again. ----
     # Gaps are judged on the FILED values (raw_missing), before any override fill.
-    last3_periods = [h["period_end"] for h in hist[-3:]]
-    # v5.3: the currency gap is judged on the periods actually used. Not a gap:
-    # facts filed in USD (including the issuer's own USD convenience
-    # translations) or FX-converted above. Still a gap: mixed reporting
-    # currencies in the last 3 FY, or a last-3-FY core fact whose period-end
-    # rate was unavailable and so stayed unconverted.
-    # v5.3.1: a last-3-FY core period is a currency gap iff it was filed in a
-    # non-USD unit and the FX pass did not convert it (mixed filer, or no ECB
-    # rate for its currency) — one rule for every filer shape.
-    currency_gap = any(series_units.get(k, {}).get(p) not in (None, "USD", "shares", "USD/shares")
-                       and (k, p) not in fx_converted_periods
-                       for k in ("revenue", "net_income", "ocf") for p in last3_periods)
+    # (last3_periods / currency_gap are computed above, ahead of the share-scale guard.)
     gap_fields, gap_years = [], {}
     for field in ("sbc", "capex", "shares", "ocf"):
         missing = [p[:4] for p in last3_periods if p in raw_missing[field]]
         if missing: gap_fields.append(field); gap_years[field] = missing
+    # v5.5 (decision 2): two share gaps no override can cover — a declared
+    # share-class mismatch, and mis-scaled share counts not carried by a
+    # declared base_override pin.
+    if share_class and share_class.get("declared"): gap_fields.append("share_class")  # M5: a {"malformed"} record raises no gap
+    if share_scale["defect"] and not share_scale["rescued_by_pin"]: gap_fields.append("share_scale")
     if currency_gap: gap_fields.append("currency")
     if price is None: gap_fields.append("price")
     # A gap is covered only if a judgment override actually filled that field.
     covered = [f for f in gap_fields if f in ("capex", "sbc", "shares") and filled[f]]
     uncovered = [f for f in gap_fields if f not in covered]
     for f in covered:
+        _ov_note = ""
+        _ina = {p: v for p, v in intang_not_added.items() if v}   # [ADDITION — ruling E6] a $0 leg is never listed
+        if f == "capex" and _ina:
+            _ov_note = (" — intangible purchases filed for " + ", ".join(f"FY{p[:4]} ({v:,.0f})" for p, v in sorted(_ina.items()))
+                        + " were not added on top of the override; if the override excludes them, revise it to the total")
         flags_pre.append(f"OVERRIDE_APPLIED:{f} — filing gap in the last 3 FY filled by a judgment override "
                          f"({overrides[f]['kind']}: {overrides[f]['source']}); an override never replaces a filed "
-                         f"value — see overrides_applied and override_impact")
+                         f"value — see overrides_applied and override_impact{_ov_note}")
     if uncovered and not MEASURE:
         gap_flags = []
+        # [ADDITION — ruling E4] name the filed counts <= 0 that the gate treated as not filed
+        _np = [x for x in nonpositive_counts if x["period"] in last3_periods and x["series"] == "shares_diluted"]
+        _nonpos_note = ("; a filed count <= 0 is not a share count and was treated as not filed ("
+                        + ", ".join(f"FY{x['period'][:4]} {x['tag']} {x['value']:,.0f}" for x in _np) + ")") if _np else ""
         for f in uncovered:
             if f == "currency": gap_flags.append("DATA_GAP:currency — last-3-FY core facts are filed in a non-USD currency that could not be converted to USD (mixed reporting currencies, or no ECB reference rate for the currency) — no tier emitted")
             elif f == "price": gap_flags.append("DATA_GAP:price — no price available from Nasdaq, --price, or the universe file — no tier emitted")
+            elif f == "share_class":
+                gap_flags.append("DATA_GAP:shares — SHARE_CLASS_MISMATCH: judgment.json declares that the filed share count is a different class "
+                                 f"from the traded security ({share_class.get('source') or 'no source given'}); no per-share base can be priced "
+                                 "against the traded share — NEEDS_MAIN_AGENT — no tier emitted")
+            elif f == "share_scale":
+                _rej = (f"; the --base-oe-ps pin {base_override:.6g} does not carry it: {'; '.join(share_scale['pin_rejected'])}"
+                        if share_scale.get("pin_rejected") else "")   # [ADDITION — ruling E1]
+                gap_flags.append(f"DATA_GAP:shares — SHARE_SCALE: {'; '.join(share_scale['reasons'])}; the filed diluted share counts look "
+                                 "mis-scaled (thousands filed as units or a mixed basis), so no per-share figure is reliable — NEEDS_MAIN_AGENT; "
+                                 "an already-declared base_override pin is honoured (judgment.json base_override equal to the --base-oe-ps "
+                                 f"pin within 0.1%, the pin itself within 20x the price){_rej}{scale_growth_note(share_scale)} — no tier emitted")
             elif f == "shares" and any(p in share_fallback for p in last3_periods if p[:4] in gap_years[f]):
                 _fbs = "; ".join(f"{p[:4]}: {share_fallback[p][0]:,.0f} ({share_fallback[p][1]})" for p in last3_periods if p in share_fallback)
-                gap_flags.append(f"DATA_GAP:shares — DILUTED shares missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3; only a non-diluted count is filed ({_fbs}) — no silent swap (v5.4). Declare shares_override kind \"filing\" from the 10-K EPS note — no tier emitted")
-            else: gap_flags.append(f"DATA_GAP:{f} — {f} missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3 — no tier emitted")
+                gap_flags.append(f"DATA_GAP:shares — DILUTED shares missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3; only a non-diluted count is filed ({_fbs}) — no silent swap (v5.4). Declare shares_override kind \"filing\" from the 10-K EPS note{_nonpos_note} — no tier emitted")
+            else: gap_flags.append(f"DATA_GAP:{f} — {f} missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3{_nonpos_note if f == 'shares' else ''} — no tier emitted")
         result.update({"tier_by_numbers": None, "implied_irr_weighted": None, "implied_irr_base": None,
                        "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
@@ -1333,7 +2848,10 @@ def main():
         ivsb, ivsbu = scenarios["super_bear"]["iv_at_15"], scenarios["super_bull"]["iv_at_15"]
         spread = (ivsbu / ivsb) if ivsb and ivsb > 0 else None
         if spread and spread > 4: flags.append(f"WIDE_SCENARIO_SPREAD: super-bull IV is {spread:.1f}x super-bear IV — uncertainty is huge; confidence should not be high")
-        base_oe_total_norm = oe_ps * shares if shares else None
+        # v5.5 (decision 1): per-ADS OE × the ADS count (shares ÷ ads_ratio) — the
+        # same basis as market_cap_est; the 5.4 product was per-ADS OE × ordinary shares.
+        base_oe_total_norm = (None if share_scale.get("leverage_unverifiable")   # [ADDITION — ruling E3]
+                              else normalized_oe_total(oe_ps, shares_for_cap, ads_r))
         nd_ratio = (net_debt / base_oe_total_norm) if (net_debt is not None and base_oe_total_norm) else None
         if nd_ratio is not None and nd_ratio > 3: flags.append(f"HIGH_NET_DEBT: net debt is {nd_ratio:.1f}x normalized OE — levered OE can vanish fast; stress the bear cases")
         if nd_ratio is not None and nd_ratio < -2: flags.append(f"BIG_NET_CASH: net cash is {-nd_ratio:.1f}x normalized OE — part of the price is a cash pile, not the operating business; note it in the verdict")
