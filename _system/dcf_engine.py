@@ -340,6 +340,20 @@ def load_ads_ratio(ticker):
         return {"ratio": float(a["ratio"]), "source": a["source"], "reason": a["reason"]}
     return None
 
+
+def market_cap_est(price, shares, ads_ratio=None, fallback=None):
+    """Traded market cap. `price` is per traded unit — per ADS for a
+    foreign-form filer — while `shares` is the ordinary share count from
+    EDGAR, so when an ads_ratio applies the ordinary count is divided by
+    it (ordinary shares / shares-per-ADS = ADS count; x per-ADS price =
+    traded cap). No ratio (or ratio 1) is the identity — bit-identical to
+    the pre-fix price * shares. Missing price/shares returns `fallback`
+    (the universe screener cap, already a traded cap, never rescaled)."""
+    if price and shares:
+        ratio = ads_ratio["ratio"] if ads_ratio else 1.0
+        return price * shares / ratio
+    return fallback
+
 def _content_hash(payload):
     """sha256 over the canonical dcf_numbers payload (everything except the
     hash itself). make_score.py recomputes it and refuses on mismatch or
@@ -947,7 +961,8 @@ def main():
     if price is None and ticker in uni:
         try: price = float(uni[ticker]["price"]); price_source = "universe_screener"
         except Exception: price = None
-    mktcap = (price * shares) if (price and shares) else (float(uni[ticker]["market_cap"]) if ticker in uni and uni[ticker].get("market_cap") else None)
+    mktcap = market_cap_est(price, shares, ads_ratio,
+                            float(uni[ticker]["market_cap"]) if ticker in uni and uni[ticker].get("market_cap") else None)
 
     def cagr(key, periods_n):
         vals = [(h["period_end"], h[key]) for h in hist if h.get(key)]

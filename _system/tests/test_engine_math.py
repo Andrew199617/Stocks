@@ -75,6 +75,27 @@ def test_tiers_and_cap():
     assert E.cap_years_for_moat(99) == 15.0 and E.cap_years_for_moat(-3) == 2.0
 
 
+def test_market_cap_ads_ratio():
+    # Foreign-form filer: the price is per ADS while `shares` is the ordinary
+    # share count from EDGAR, so the traded cap divides the ordinary count by
+    # the ADS ratio. TLK shape (ratio 100): the pre-fix formula printed a
+    # $1,092.66B cap for a ~$10.9B company and blocked the name on scope.
+    assert close(E.market_cap_est(11.03, 99_062_216_600, {"ratio": 100.0}),
+                 11.03 * 99_062_216_600 / 100)
+    # JD shape: ratio 2.
+    assert close(E.market_cap_est(26.60, 2_978_037_127, {"ratio": 2.0}),
+                 26.60 * 2_978_037_127 / 2)
+    # Ratio below 1 (FMS: 1 ADS = 1/2 ordinary share) corrects an
+    # UNDERstatement — the formula divides, never special-cases ratio > 1.
+    assert close(E.market_cap_est(10.0, 1000, {"ratio": 0.5}), 20000.0)
+    # No ratio / ratio 1: bit-identical to the pre-fix price * shares.
+    assert E.market_cap_est(50.0, 1_000_000, None) == 50.0 * 1_000_000
+    assert E.market_cap_est(50.0, 1_000_000, {"ratio": 1.0}) == 50.0 * 1_000_000
+    # Missing price or shares: the universe-screener fallback, untouched.
+    assert E.market_cap_est(None, 1_000_000, {"ratio": 10.0}, fallback=123.0) == 123.0
+    assert E.market_cap_est(50.0, None, None, fallback=None) is None
+
+
 # ---------------- regression over the repo ----------------
 def test_regression_recorded_folders():
     checked, skipped, floor_hits = 0, [], []

@@ -1,6 +1,9 @@
 # Engine-fix decision sheet — one ruling pass (prepared 2026-10-18)
 
 Status: PREPARED, not implemented. Engine untouched (v5.4.0 live).
+Update 2026-10-19: item 2 (ADS market cap) was ruled and implemented on
+2026-10-18 (Andrew) — see ADS_MARKET_CAP_SPEC_DRAFT.md, now marked
+IMPLEMENTED; the other five items remain unimplemented.
 Sweep state at preparation: 432 scored folders of 2,617 (checked 2026-10-18
 ~17:55 UTC from ~/workspace/stocks/*/score.json count).
 
@@ -14,7 +17,7 @@ PUK, CX.
 | # | Spec file | One-line fix | Cases | Blocked | Risk if not fixed |
 |---|-----------|--------------|-------|---------|-------------------|
 | 1 | CAPEX_TAG_CAPITAL_IMPROVEMENTS_SPEC_DRAFT.md (2026-10-18) | Append `PaymentsForCapitalImprovements` to the capex tag list in BOTH dcf_engine.py (~line 574) and ttm.py CAPEX_TAGS — append at end, so it only fills gaps, never displaces a filed PPE value | 6: ELS blocked; CR, IT, MAA, RBC, SNA scored via single-value overrides with disclosed per-year distortions | ELS | Every REIT / capital-improvements filer hits the same hole; overrides distort per-year capex |
-| 2 | ADS_MARKET_CAP_SPEC_DRAFT.md (2026-10-18) | `market_cap_est = price * shares / ads_ratio` in dcf_engine.py (line 950 area) — one formula, handles ratio >1 and <1 (FMS 0.5 proves direction) | 8: TLK blocked; JD, CHT, VOD, PAC, TS, WF scored with falsified scope flags; FMS understated 2x | TLK | Scope flags keep lying; VOD's corrected cap lands near the $40B line, so its in/out-of-sweep call is currently being made on a 10x-wrong number |
+| 2 | ADS_MARKET_CAP_SPEC_DRAFT.md (2026-10-18) | `market_cap_est = price * shares / ads_ratio` in dcf_engine.py (line 950 area) — one formula, handles ratio >1 and <1 (FMS 0.5 proves direction) — **IMPLEMENTED 2026-10-18** | 8: TLK blocked; JD, CHT, VOD, PAC, TS, WF scored with falsified scope flags; FMS understated 2x | TLK | Scope flags keep lying; VOD's corrected cap lands near the $40B line, so its in/out-of-sweep call is currently being made on a 10x-wrong number |
 | 3 | USD_OVERRIDE_FX_SPEC_DRAFT.md (2026-10-17) | Fix `_override_usd()` (~line 761): a filing override already in USD should not demand a foreign-currency ECB rate for every fill period | 2, both blocked | PUK, CX | USD-reporting filers with stray historical FX facts stay unscoreable despite clean filing overrides on file |
 | 4 | SBC_TAG_PRIORITY_SPEC_DRAFT.md (2026-10-17) | SBC tag merge: `ShareBasedCompensation` is not always the total (JLL: $2.7M slice vs $114.7M total, ~40x). Needs a merge/priority rule, not just a reorder — see spec for the 6-name EDGAR retro-check | 1 blocked + silent-understatement risk wherever both tags are filed | JLL | SBC understated ~40x on exposed filers = OE overstated; this one can corrupt scored names silently, not just block |
 | 5 | SHARE_BASIS_SPEC_DRAFT.md (updated 2026-10-18, 7 cases) | Share-basis guard: sanity-check OE/share and implied share count against price / latest dei outstanding / ADS ratio; refuse or flag scale breaks (thousands filing, post-filing splits) instead of trusting filed counts | 7: NTNX, VIV (fake Tier S, worker-caught, corrected), DD (blocked), WF, TEM, BNT, IESC (blocked, 2-for-1 split 2026-08-21 post-dates filings) | DD, IESC | The recurring class: 7 verified instances, 2 fake Tier S prints. Workers have caught every one so far — that is the current guard, and it is human |

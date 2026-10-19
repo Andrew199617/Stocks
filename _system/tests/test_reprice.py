@@ -167,6 +167,21 @@ def test_reprice_at_scored_price_reproduces_run():
     _check_reproduces(n, s)
 
 
+def test_ads_ratio_divides_live_market_cap():
+    """ADS runs: the live cap is on the scored basis — price x ordinary
+    shares / ads_ratio (2026-10-18 engine fix) — and the scope flag follows
+    it. APP's numbers with a ratio-10 ads_ratio recorded: $93.11B / 10 =
+    $9.31B, in scope; without the division the live cap (and the flag)
+    would contradict the scored run's market_cap_est."""
+    n, s = _app54()
+    n["ads_ratio"] = {"ratio": 10.0, "source": "test fixture", "reason": "ADS shape"}
+    n["market_cap_est"] = n["price"] * n["shares_diluted_latest"] / 10.0
+    live = R.reprice(n, n["price"], "scored-day", s, today="2026-10-14")
+    assert close(live["market_cap_est"], n["market_cap_est"]), \
+        f"live cap {live['market_cap_est']} vs scored {n['market_cap_est']}"
+    assert live["in_scope_under_40b"] is True
+
+
 def test_reprice_reproduces_run_with_stored_rounded_paths():
     """Engine 5.4 stores the paths rounded to 6 dp; the live IRR must still
     equal the scored one bit-for-bit, because the replay from the recorded

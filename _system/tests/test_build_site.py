@@ -987,6 +987,25 @@ def test_dividends_block_repriced_at_a_newer_close():
     assert d["market_cap_basis"].startswith("70 × ") and d["yield_basis"]["dividend_yield"]["denominator"] == "price 70 (prices.json stats.last)"
 
 
+def test_priced_fundamentals_backfills_ads_ratio_into_legacy_blocks():
+    """A dividends block written before blocks carried ads_ratio reprices on
+    the traded-cap basis when the caller passes the run's recorded ratio
+    (2026-10-18 ADS fix): KR's block with a passed ratio of 0.5 serves a
+    market cap of price x shares / 0.5; without the pass it is the legacy
+    price x shares, and a block that already carries a ratio keeps its own."""
+    fund = B.jload(os.path.join(BASE, "KR", "fundamentals.json"))
+    div = fund["dividends"]
+    assert "ads_ratio" not in div, "the committed KR block is a legacy block for this test"
+    legacy = B.priced_fundamentals(fund, {"stats": {"last": 70, "last_date": "2099-01-01"}})["dividends"]
+    served = B.priced_fundamentals(fund, {"stats": {"last": 70, "last_date": "2099-01-01"}}, ads_ratio=0.5)["dividends"]
+    assert served["market_cap"] == legacy["market_cap"] * 2, "ratio 0.5 doubles the traded cap"
+    assert "ADS ratio 0.5" in served["market_cap_basis"]
+    assert "ads_ratio" not in fund["dividends"], "the input is not modified"
+    own = dict(fund, dividends=dict(div, ads_ratio=4.0))
+    kept = B.priced_fundamentals(own, {"stats": {"last": 70, "last_date": "2099-01-01"}}, ads_ratio=0.5)["dividends"]
+    assert kept["ads_ratio"] == 4.0 and kept["market_cap"] == legacy["market_cap"] / 4, "the block's own ratio wins"
+
+
 def test_repriced_block_equals_what_fundamentals_writes_on_every_committed_folder():
     """Offline, on the committed SEC files themselves (no caches needed): for every folder whose
     fundamentals.json carries a dividends block, (1) price_dividends reproduces the committed block at
