@@ -1,0 +1,172 @@
+{
+ "ticker": "VNOM",
+ "cik": 2074176,
+ "entity": "Viper Energy, Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1053000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 373000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 815000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1495000000
+  },
+  "capex": {
+   "fy": 0.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 0.0,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 0.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 0.0
+  },
+  "sbc": {
+   "fy": 7000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 3471232.8767123288,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 3471232.8767123288,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 7000000.0
+  },
+  "shares_diluted": {
+   "fy": 142530000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 126160000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 187553000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1495000000,
+ "ttm_capex": 0.0,
+ "ttm_sbc": 7000000.0,
+ "ttm_shares_diluted": 187553000,
+ "ttm_oe_total": 1488000000.0,
+ "ttm_oe_per_share": 7.933757391244075,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 7000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Changes in Stockholders' Equity (pp. 51-52), row 'Equity-based compensation' credited to additional paid-in capital: $7M for FY2025, with $3M for FY2024 and $1M for FY2023 in the same statement. The cash-flow statement (p. 50) carries no separate equity-compensation addback line \u2014 it is inside the 'Other' operating adjustment of $13M / $6M / $3M \u2014 which is why EDGAR companyfacts has no ShareBasedCompensation fact for this filer.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 7000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 3471232.8767123288,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 3471232.8767123288,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Cash Flows (p. 50): the investing-activities section for 2025/2024/2023 lists ONLY 'Acquisitions of oil and natural gas interests' $(1,549)M / $(696)M / $(830)M, 'Acquisitions of oil and natural gas interests\u2014related party' $(875)M / $\u2014 / $(75)M and 'Proceeds from sale of oil and natural gas interests' $\u2014 / $88M / $(3)M, netting to $(2,424)M / $(608)M / $(908)M. There is no purchases-of-property-plant-and-equipment, fixed-asset or capital-expenditure line anywhere in the statement for any of the three years (the balance sheet carries only $8M of other property, equipment and land at FY2025).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 0.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

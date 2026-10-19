@@ -1,0 +1,90 @@
+{
+ "ticker": "JHX",
+ "name": "James Hardie Industries plc",
+ "sector": "Building Products / Fiber cement & exterior solutions",
+ "price": 25.82,
+ "market_cap_b": 14.08,
+ "engine_version": 5,
+ "base_oe_per_share": 0.5361971589936676,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "~90% North American fiber-cement share, the Hardie brand, national builder agreements and proven pricing power (ASP +2% in a weak Q2 FY26 market), with repair/remodel ~60-65% of demand softening the cycle and AZEK adding the leading composite decking brand \u2014 against housing cyclicality, cheaper vinyl/wood substitutes, Trex competition in decking, a legacy asbestos funding obligation, and pre-AZEK ROIC already fading from 23.4% (FY22) to 15.9% (FY25) before collapsing to 2.1% in the FY26 acquisition trough.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "DILUTION: share count growing 7.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.31 vs 3-yr median 0.83 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.6x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 14.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.22,
+   "irr": 0.0342
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.48,
+   "irr": 0.0411
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.29,
+   "irr": 0.0519
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 7.26,
+   "irr": 0.0635
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 10.3,
+   "irr": 0.0804
+  }
+ },
+ "iv_at_15": 5.02,
+ "iv_at_12": 6.7,
+ "implied_irr": 0.0507,
+ "implied_irr_base_case": 0.0519,
+ "upside_at_15_pct": -80.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Dominant fiber-cement franchise, moat 6/10, transformed and levered by the $8.75B AZEK deal \u2014 at $25.82 the market is paying for synergies and a housing recovery, but TTM owner's earnings of $0.54/share support only a 5.1% weighted IRR (weighted IV@15% $5.02); it clears the 15% hurdle only below ~$5.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0411,
+ "irr_bull": 0.0635,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 3.52,
+ "iv_at_25": 2.7,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4265800000,
+ "shares_diluted_latest": 545500000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "~90% share of North American fiber cement; Hardie brand is the category",
+  "National multi-year builder agreements and deep dealer/channel partnerships",
+  "Proven pricing power \u2014 ASP +2% in a weak housing market (Q2 FY26)",
+  "Repair & remodel ~60-65% of demand \u2014 less cyclical than new construction",
+  "Material-conversion runway: fiber cement on only ~8% of existing US homes; $23B conversion opportunity cited at Sept 2026 Investor Day",
+  "AZEK adds leading composite deck/rail brand and exterior cross-sell; $125M cost synergies tracking a year ahead of schedule"
+ ],
+ "moat_against": [
+  "Housing-cycle beta: volumes and plant utilization swing with US housing; FY26 Siding & Trim EBITDA margin compressed ~400bp on underutilization",
+  "Cheaper substitutes (vinyl ~25-30% of siding, wood, stucco) cap pricing in a downturn",
+  "ROIC fading pre-deal: 23.4% FY22 \u2192 20.5% FY23 \u2192 19.8% FY24 \u2192 15.9% FY25 \u2192 2.1% FY26 (fundamentals.json roic_proxy); gross margin 40.4% FY24 \u2192 35.8% FY26",
+  "AZEK leverage and integration: net debt $4.27B (was $0.56B pre-deal); decking faces Trex head-on",
+  "Legacy asbestos funding obligation (AICF) is a permanent cash drag unique to Hardie",
+  "Capital-intensive: capex $258-591M/yr over the last five fiscal years"
+ ]
+}

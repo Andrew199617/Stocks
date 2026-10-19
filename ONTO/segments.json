@@ -1,0 +1,674 @@
+{
+ "ticker": "ONTO",
+ "cik": 704532,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-066937",
+   "filed": "2026-02-24",
+   "period": "2026-01-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526066937/onto-20260103_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-206707",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526206707/onto-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-338401",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526338401/onto-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "onto:SystemsAndSoftwareRevenueMember",
+     "label": "Systems And Software Revenue",
+     "values": [
+      683316000,
+      850443000,
+      847835000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8375,
+      0.8614,
+      0.8434
+     ],
+     "growth_yoy": [
+      null,
+      0.2446,
+      -0.0031
+     ]
+    },
+    {
+     "member": "onto:PartsRevenueMember",
+     "label": "Parts Revenue",
+     "values": [
+      74604000,
+      76584000,
+      84200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0914,
+      0.0776,
+      0.0838
+     ],
+     "growth_yoy": [
+      null,
+      0.0265,
+      0.0994
+     ]
+    },
+    {
+     "member": "onto:ServiceRevenueMember",
+     "label": "Service Revenue",
+     "values": [
+      57948000,
+      60294000,
+      73228000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.071,
+      0.0611,
+      0.0728
+     ],
+     "growth_yoy": [
+      null,
+      0.0405,
+      0.2145
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     815868000,
+     987321000,
+     1005263000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "onto:SystemsAndSoftwareRevenueMember",
+     "label": "Systems And Software Revenue",
+     "values": [
+      231150000,
+      214506000,
+      247157000,
+      294040000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.867,
+      0.8459,
+      0.8466,
+      0.8569
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0692,
+      0.3708
+     ]
+    },
+    {
+     "member": "onto:PartsRevenueMember",
+     "label": "Parts Revenue",
+     "values": [
+      18176000,
+      19849000,
+      26550000,
+      28713000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0682,
+      0.0783,
+      0.0909,
+      0.0837
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4607,
+      0.4466
+     ]
+    },
+    {
+     "member": "onto:ServiceRevenueMember",
+     "label": "Service Revenue",
+     "values": [
+      17281000,
+      19242000,
+      18242000,
+      20376000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0648,
+      0.0759,
+      0.0625,
+      0.0594
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0556,
+      0.0589
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     266607000,
+     253597000,
+     291949000,
+     343129000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      141915000,
+      307538000,
+      318770000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1739,
+      0.3115,
+      0.3171
+     ],
+     "growth_yoy": [
+      null,
+      1.1671,
+      0.0365
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      169323000,
+      285695000,
+      279416000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2075,
+      0.2894,
+      0.278
+     ],
+     "growth_yoy": [
+      null,
+      0.6873,
+      -0.022
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      130292000,
+      104109000,
+      121072000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1597,
+      0.1054,
+      0.1204
+     ],
+     "growth_yoy": [
+      null,
+      -0.201,
+      0.1629
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      93831000,
+      56999000,
+      95428000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.115,
+      0.0577,
+      0.0949
+     ],
+     "growth_yoy": [
+      null,
+      -0.3925,
+      0.6742
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      136940000,
+      116387000,
+      70658000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1678,
+      0.1179,
+      0.0703
+     ],
+     "growth_yoy": [
+      null,
+      -0.1501,
+      -0.3929
+     ]
+    },
+    {
+     "member": "onto:SoutheastAsiaMember",
+     "label": "Southeast Asia",
+     "values": [
+      87585000,
+      64912000,
+      64344000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1074,
+      0.0657,
+      0.064
+     ],
+     "growth_yoy": [
+      null,
+      -0.2589,
+      -0.0088
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      55982000,
+      51681000,
+      55575000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0686,
+      0.0523,
+      0.0553
+     ],
+     "growth_yoy": [
+      null,
+      -0.0768,
+      0.0753
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     815868000,
+     987321000,
+     1005263000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      102581000,
+      65616000,
+      84962000,
+      106407000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3848,
+      0.2587,
+      0.291,
+      0.3101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1718,
+      0.6217
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      93314000,
+      82650000,
+      69844000,
+      100612000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.35,
+      0.3259,
+      0.2392,
+      0.2932
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2515,
+      0.2173
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      25597000,
+      27556000,
+      59241000,
+      84366000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.096,
+      0.1087,
+      0.2029,
+      0.2459
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.3144,
+      2.0616
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      16544000,
+      12846000,
+      16551000,
+      16307000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0621,
+      0.0507,
+      0.0567,
+      0.0475
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0004,
+      0.2694
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      12176000,
+      17337000,
+      27778000,
+      14707000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0457,
+      0.0684,
+      0.0951,
+      0.0429
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.2814,
+      -0.1517
+     ]
+    },
+    {
+     "member": "onto:SoutheastAsiaMember",
+     "label": "Southeast Asia",
+     "values": [
+      8026000,
+      13824000,
+      16697000,
+      11251000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0301,
+      0.0545,
+      0.0572,
+      0.0328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0804,
+      -0.1861
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      8369000,
+      33768000,
+      16876000,
+      9479000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0314,
+      0.1332,
+      0.0578,
+      0.0276
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0165,
+      -0.7193
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     266607000,
+     253597000,
+     291949000,
+     343129000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: row 'Single Reportable Segment (member)' (onto:SingleReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

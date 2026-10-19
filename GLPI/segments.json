@@ -1,0 +1,35 @@
+{
+ "ticker": "GLPI",
+ "cik": 1575965,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001575965-26-000032",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000032/glpi-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001575965-26-000048",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000048/glpi-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001575965-26-000060",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000060/glpi-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

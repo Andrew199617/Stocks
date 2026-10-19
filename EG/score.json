@@ -1,0 +1,107 @@
+{
+ "ticker": "EG",
+ "name": "Everest Group, Ltd.",
+ "sector": "Finance / Property & Casualty Insurance & Reinsurance",
+ "price": 389.1,
+ "market_cap_b": 16.19,
+ "engine_version": 5,
+ "base_oe_per_share": 48.98218829516539,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Global reinsurance treaty franchise (CR 87-88% in H1 2026) and a growing wholesale/specialty book are real, but (re)insurance capacity is close to a commodity: no network effects, low switching costs, price set by the cycle. Returns confirm it - net income on year-end equity was ~19% in the clean year 2023 but only ~10% in 2024 and 2025 after casualty reserve charges (~$1.7B in 2024, $478M more in Q3 2025), i.e. returns through the recent cycle sit near the cost of capital, not well above it. roic_proxy and gross margin are not computable for this filer (no operating-income/COGS tags for an insurer); ROE on filing net income and equity is the substitute evidence.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Cash Flows: the investing-activities section lists only fixed-maturity/equity/other-invested-asset flows, the net change in short-term investments and unsettled securities transactions, and proceeds from sale of renewal rights - there is no purchases-of-property-and-equipment (or any capex) line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one: FY2025 operating $3,068M + investing $(2,096)M + financing $(1,175)M + FX $(28)M = the reported net decrease in cash of $(231)M exactly; FY2024: $4,957M - $4,478M - $383M + $16M = reported $112M exactly; FY2023: $4,553M - $5,902M + $1,409M - $23M = $37M vs reported $38M (rounding). EDGAR companyfacts for CIK 1095073 contains no capex fact under any candidate tag in any year.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (12.9%) vs bull-case tier A (20.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 205.22,
+   "irr": 0.0875
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 323.85,
+   "irr": 0.1286
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 436.24,
+   "irr": 0.1649
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 580.16,
+   "irr": 0.207
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 855.79,
+   "irr": 0.2764
+  }
+ },
+ "iv_at_15": 444.23,
+ "iv_at_12": 589.11,
+ "implied_irr": 0.1671,
+ "implied_irr_base_case": 0.1649,
+ "upside_at_15_pct": 14.2,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Global reinsurer mid-cleanup: quality treaty core (91.7% FY2025 CR, 87-88% in H1 2026) but the OCF base capitalizes float and the exited U.S. casualty book still sits on $34.3B of reserves after ~$2.2B of 2024-25 charges - B by numbers (16.7% weighted IRR, IV@15% $444 vs $389 price), sized down to C per the insurer-float rule and the bear end (C) of the tier band; clears 15% only below ~$444 on these inputs.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1286,
+ "irr_bull": 0.207,
+ "tier_bear": "C",
+ "tier_bull": "A",
+ "iv_at_20": 313.8,
+ "iv_at_25": 241.86,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 41600000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "tier_override_reason": "Insurer-float softening (Andrew's standing rule, 2026-10-15; same treatment as PFG/HIG/ACGL/WRB): the OCF-based OE base capitalizes float - the engine-native median base ($109.06/share) capitalizes the 2023-24 premium-growth years outright (zero-fill weighted IRR 33.3%, a fake Tier S), and even the TTM base used ($48.98/share) is OCF on a book whose loss reserves grew to $34,312M while the exited casualty book is still paying out. NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025. Tier by numbers B (16.7% weighted) therefore overstates distributable owner's earnings; softened one notch to C, which is also the bear end of the TIER_BAND (bear C 12.9% / bull A 20.7%). Confidence low (SECTOR_MODEL_MISMATCH + WIDE_SCENARIO_SPREAD 4.2x).",
+ "moat_for": [
+  "Top-tier global reinsurance treaty franchise - 87.2%/88.5% combined ratio in Q1/Q2 2026, 91.7% for FY2025",
+  "Scale: $45.4B investments and cash, $15.5B equity, S&P 500 member, A+ range financial strength ratings",
+  "Mt. Logan Re sidecar gives fee income and third-party capital leverage on cat business",
+  "Wholesale & specialty pivot is working - specialty premiums +32.9% in Q1 2026, mid-80s attritional CR"
+ ],
+ "moat_against": [
+  "Reserve credibility damaged: ~$1.7B casualty reserve charge in 2024 and $478M more in Q3 2025; $34.3B loss reserves still carry the exited retail book's tail",
+  "Reinsurance pricing is cyclical and capacity-driven - no durable pricing power; property cat pricing softening in 2026 renewals",
+  "Social inflation on U.S. casualty is an industry-wide, unmodelable drag that Everest under-reserved for years",
+  "Returns through the cycle (~10% ROE 2024-25) sit near the cost of capital, not above it"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Cash Flows: the investing-activities section lists only fixed-maturity/equity/other-invested-asset flows, the net change in short-term investments and unsettled securities transactions, and proceeds from sale of renewal rights - there is no purchases-of-property-and-equipment (or any capex) line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one: FY2025 operating $3,068M + investing $(2,096)M + financing $(1,175)M + FX $(28)M = the reported net decrease in cash of $(231)M exactly; FY2024: $4,957M - $4,478M - $383M + $16M = reported $112M exactly; FY2023: $4,553M - $5,902M + $1,409M - $23M = $37M vs reported $38M (rounding). EDGAR companyfacts for CIK 1095073 contains no capex fact under any candidate tag in any year."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 48.9822,
+  "base_oe_with_override": 48.9822,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1671,
+  "weighted_irr_with_override": 0.1671,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

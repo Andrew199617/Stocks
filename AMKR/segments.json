@@ -1,0 +1,327 @@
+{
+ "ticker": "AMKR",
+ "cik": 1047127,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001047127-26-000014",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000014/amkr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001047127-26-000020",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000020/amkr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001047127-26-000046",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000046/amkr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "amkr:AdvancedProductsMember",
+     "label": "Advanced Products",
+     "values": [
+      5032859000,
+      5174459000,
+      5555555000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7739,
+      0.819,
+      0.8282
+     ],
+     "growth_yoy": [
+      null,
+      0.0281,
+      0.0736
+     ]
+    },
+    {
+     "member": "amkr:MainstreamProductsMember",
+     "label": "Mainstream Products",
+     "values": [
+      1470206000,
+      1143233000,
+      1152426000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2261,
+      0.181,
+      0.1718
+     ],
+     "growth_yoy": [
+      null,
+      -0.2224,
+      0.008
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6503065000,
+     6317692000,
+     6707981000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "amkr:AdvancedProductsMember",
+     "label": "Advanced Products",
+     "values": [
+      1063617000,
+      1228678000,
+      1372001000,
+      1556676000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8048,
+      0.8129,
+      0.8144,
+      0.8202
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2899,
+      0.267
+     ]
+    },
+    {
+     "member": "amkr:MainstreamProductsMember",
+     "label": "Mainstream Products",
+     "values": [
+      257958000,
+      282714000,
+      312700000,
+      341289000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1952,
+      0.1871,
+      0.1856,
+      0.1798
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2122,
+      0.2072
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1321575000,
+     1511392000,
+     1684701000,
+     1897965000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3819045000,
+      3982760000,
+      4397109000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5873,
+      0.6304,
+      0.6555
+     ],
+     "growth_yoy": [
+      null,
+      0.0429,
+      0.104
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1043880000,
+      817875000,
+      852805000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1605,
+      0.1295,
+      0.1271
+     ],
+     "growth_yoy": [
+      null,
+      -0.2165,
+      0.0427
+     ]
+    },
+    {
+     "member": "amkr:AsiaPacificExcludingJapanMember",
+     "label": "Asia Pacific (Excluding Japan)",
+     "values": [
+      704520000,
+      716344000,
+      733454000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1083,
+      0.1134,
+      0.1093
+     ],
+     "growth_yoy": [
+      null,
+      0.0168,
+      0.0239
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      935620000,
+      800713000,
+      724613000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1439,
+      0.1267,
+      0.108
+     ],
+     "growth_yoy": [
+      null,
+      -0.1442,
+      -0.095
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6503065000,
+     6317692000,
+     6707981000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (amkr:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (amkr:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/annual: row 'Reportable Segment' (amkr:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/quarterly: row 'Reportable Segment' (amkr:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Non-US' (us-gaap:NonUsMember) dropped: its values equal the sum of EMEA, Asia Pacific (Excluding Japan), JAPAN"
+ ],
+ "complete": true
+}

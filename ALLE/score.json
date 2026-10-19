@@ -1,0 +1,83 @@
+{
+ "ticker": "ALLE",
+ "name": "Allegion plc",
+ "sector": "Industrials / Security products \u2014 locks, access control & door hardware",
+ "price": 156.54,
+ "market_cap_b": 13.56,
+ "engine_version": 5,
+ "base_oe_per_share": 7.422943221320973,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Spec-driven security hardware leader (Schlage, Von Duprin, LCN) with trusted brands, code/specification placement in commercial buildings, installed-base and professional-channel stickiness, and proven pricing power. ROIC proxy stayed 19.5-27.1% over 2020-2025 and gross margin rose from 40.4% (2022) to 45.2% (2025) in fundamentals.json, supporting a moderate-strong moat. Capped at 6 because ASSA ABLOY is larger globally, mechanical hardware faces smart-lock/biometric substitution and tech entrants, and growth is tied to cyclical non-residential construction with only mid-single-digit organic guide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.2%) vs bull-case tier C (11.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 35.35,
+   "irr": 0.051
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 57.91,
+   "irr": 0.0718
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 80.38,
+   "irr": 0.0918
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 110.37,
+   "irr": 0.1165
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 170.73,
+   "irr": 0.1593
+  }
+ },
+ "iv_at_15": 86.79,
+ "iv_at_12": 117.25,
+ "implied_irr": 0.0977,
+ "implied_irr_base_case": 0.0918,
+ "upside_at_15_pct": -44.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality security-hardware compounder, moat 6/10 \u2014 but at $156.54 it does not clear 15%: weighted IRR 9.8%, weighted IV@15 $86.79 vs $156.54, bear-to-bull tier D to C; clears 15% only below ~$86.79.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0718,
+ "irr_bull": 0.1165,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 59.76,
+ "iv_at_25": 45.13,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1623900000,
+ "shares_diluted_latest": 86600000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Schlage / Von Duprin / LCN brands specified into commercial buildings \u2014 spec placement and code compliance create installed-base stickiness",
+  "ROIC proxy 19.5-27.1% through 2020-2025 and gross margin expanding to 45.2% in FY2025 (fundamentals.json) \u2014 pricing power proven, including 2026 price actions for inflation",
+  "Professional / institutional channel and trusted-brand position in North American commercial and premium residential locks",
+  "Electronic access control growth and recurring specification / replacement demand"
+ ],
+ "moat_against": [
+  "ASSA ABLOY is the larger global rival; Spectrum/Kwikset, dormakaba and smart-lock tech entrants contest every category",
+  "Smart locks, mobile credentials and biometrics can commoditize or bypass mechanical hardware",
+  "Demand tied to cyclical non-residential construction; International organic revenue fell 1.2% in Q2 2026 despite reported growth from acquisitions/FX",
+  "Organic growth guide is only 3.5-4.5% for FY2026 \u2014 reported growth leans on acquisitions, pricing and FX"
+ ]
+}

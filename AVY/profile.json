@@ -1,0 +1,287 @@
+{
+ "ticker": "AVY",
+ "cik": 8818,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T22:42:09-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000008818.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000015/avy-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AVY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AVY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Avery Dennison Corp",
+  "cik": 8818,
+  "description": {
+   "text": "We are a global leader in materials science and digital identification solutions. We are Making PossibleTM products and solutions that help advance the industries we serve, providing branding and information solutions that optimize labor and supply chain efficiency, reduce waste and mitigate loss, advance sustainability, circularity and transparency, and better connect brands and consumers. We design and develop labeling and functional materials, radio-frequency identification (\"RFID\") inlays and tags, software applications that connect the physical and digital, and offerings that enhance branded packaging and carry or display information that improves the customer experience. We serve an array of industries worldwide, including home and personal care, apparel, general retail, e-commerce, logistics, food and grocery, pharmaceuticals and automotive. We believe that our exposure to diverse and growing markets, the size and scale of operations, our innovation capabilities, productivity culture, and brand strength are the primary advantages in maintaining and further developing our competitive position. Our reportable segments for fiscal year 2025 were Materials Group and Solutions Group, which comprised approximately 69% and 31%, respectively, of our total net sales. In 2025, international operations constituted a substantial majority of our business, representing approximately 69% of our net sales.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0000008818-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000015/avy-20251231.htm"
+  },
+  "description_short": "Avery Dennison Corporation (NYSE: AVY) is a global materials science and digital identification solutions company. We are Making Possible products and solutions that help advance the industries we serve, providing branding and information solutions that optimize labor and supply chain efficiency, reduce waste and mitigate loss, advance sustainability, circularity and transparency and better connect brands and consumers. We design and develop labeling and functional materials, radio-frequency identification (RFID) inlays and tags, software applications that connect the physical and digital and offerings that enhance branded packaging and carry or display information that improves the customer experience. Serving industries worldwide - including home and personal care, apparel, general retail, e-commerce, logistics, food and grocery, pharmaceuticals and automotive - we employ approximately 35,000 employees in more than 50 countries. Our reported sales in 2025 were $8.9 billion.",
+  "industry": "Containers/Packaging",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2670",
+  "sic_description": "Converted Paper & Paperboard Prods (No Contaners/Boxes)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.averydennison.com",
+  "headquarters": "Mentor, Ohio",
+  "address": {
+   "street": "8080 Norton Parkway",
+   "city": "Mentor",
+   "state": "Ohio",
+   "zip": "44060",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "440-534-6000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-10",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [
+   "AVERY DENNISON CORPORATION"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000008818&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-09",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000008818-26-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000157/avy-20261009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-09-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000008818-26-000154",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000154/avy-20260930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-18",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000008818-26-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000141/avy-20260818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000008818-26-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000131/avy-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000008818-26-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000127/avy-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-05-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000008818-26-000116",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000116/avy-20260529.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000008818-26-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-30",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000008818-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000078/avy-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000008818-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000075/avy-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-102965",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000119312526102965/d47885ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000008818-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000017/avy-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000008818-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000015/avy-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000008818-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000004/avy-20260204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000008818-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881825000049/avy-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-245839",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000119312525245839/d79220d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-10-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000008818-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881825000045/avy-20251001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-11",
+   "period": "2025-09-08",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-201336",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000119312525201336/d918827d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-29",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000008818-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881825000040/avy-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000008818-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881825000034/avy-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-162209",
+   "url": "https://www.sec.gov/Archives/edgar/data/8818/000119312525162209/d83231d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

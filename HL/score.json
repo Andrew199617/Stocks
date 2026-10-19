@@ -1,0 +1,83 @@
+{
+ "ticker": "HL",
+ "name": "Hecla Mining Company",
+ "sector": "Materials \u2014 Silver & Precious Metals Mining",
+ "price": 15.3,
+ "market_cap_b": 10.03,
+ "engine_version": 5,
+ "base_oe_per_share": 0.6982326352156126,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "No pricing power \u2014 a pure silver price-taker. The mining version of a moat (cost-curve position, reserve life, jurisdiction) is genuinely above average: Greens Creek's by-product credits make its silver cash cost negative, Lucky Friday is long-life and at record output, and Hecla is North America's largest primary silver producer in U.S./Canadian jurisdictions only. But the measured history caps it: ROIC (fundamentals.json roic_proxy) was 3.2% / -0.4% / -1.4% / 2.2% / 13.2% over 2021-25 \u2014 near zero through the cycle, spiking only with the silver price \u2014 and gross margin swung 16-44% on price alone. An asset-quality edge, not a franchise.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 5.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.63,
+   "irr": 0.0438
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.7,
+   "irr": 0.053
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.2,
+   "irr": 0.0667
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 7.2,
+   "irr": 0.0849
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 10.26,
+   "irr": 0.111
+  }
+ },
+ "iv_at_15": 5.11,
+ "iv_at_12": 6.7,
+ "implied_irr": 0.0663,
+ "implied_irr_base_case": 0.0667,
+ "upside_at_15_pct": -66.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Largest North American primary silver producer, moat 4/10 \u2014 TTM OE is real but struck at peak silver prices and the through-cycle median OE is negative; at $15.30 the weighted IRR is only 6.6% (IV@15 $5.11), and it clears 15% only below ~$5.11.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.053,
+ "irr_bull": 0.0849,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 3.67,
+ "iv_at_25": 2.86,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 27069000,
+ "shares_diluted_latest": 655768000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Greens Creek: one of the world's largest, lowest-cost silver mines \u2014 gold/zinc/lead by-product credits cover production costs (negative consolidated silver cash costs in Q2 2026)",
+  "Lucky Friday: long reserve life (17 years per company reporting), high-grade, record 1.5 Moz in Q2 2026",
+  "Largest primary silver producer in the U.S. and Canada; all assets in tier-1 U.S./Canadian jurisdictions with decades-old permits and infrastructure",
+  "Effectively debt-free balance sheet after the Casa Berardi sale and senior-note redemption funds exploration and the Keno Hill ramp internally"
+ ],
+ "moat_against": [
+  "Pure commodity price-taker: earnings are the silver spot price, which struck the current base at $63-83/oz realized vs ~$35 a year earlier",
+  "Through-cycle ROIC near zero (2021-25 roic_proxy: 3.2% / -0.4% / -1.4% / 2.2% / 13.2%) \u2014 no demonstrated above-cost-of-capital returns at mid-cycle prices",
+  "Reserves deplete yearly and must be replaced with capex or M&A; share count has grown 5.6%/yr on issuance",
+  "Three-mine concentration after the Casa Berardi sale, Greens Creek roughly half of silver output; Keno Hill still ramping with power/permitting issues"
+ ]
+}

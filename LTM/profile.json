@@ -1,0 +1,246 @@
+{
+ "ticker": "LTM",
+ "cik": 1047716,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T06:11:22-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001047716.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000046/ltm-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LTM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LTM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "LATAM AIRLINES GROUP S.A.",
+  "cik": 1047716,
+  "description": {
+   "text": "LATAM group is the leading airline group in South America, as measured by ASK, and the 13th largest airline groups in the world, based on available seats flown as of December 31, 2025. LATAM Airlines Group and its affiliates provide domestic services in Brazil, Chile, Peru, Colombia and Ecuador, as well as regional flights and long-haul operations. LATAM group carries out cargo operations using both belly space on passenger flights and dedicated freighter aircraft. The group also offers complementary services, such as ground handling, courier, logistics, and maintenance. As of December 31, 2025, LATAM group has a consolidated fleet of 371 aircraft, including 20 dedicated cargo freighters, and employs 41,125 people. In 2025, LATAM group transported approximately 87 million passengers and was ranked as the number one carrier by domestic market share in every domestic aviation market in South America in which it operates, with the exception of Colombia, where it ranked second. It also maintains the largest overall passenger network to and from South America for aircraft with more than 20 seats, offering passenger service to 134 destinations in South America (60 destinations in Brazil, 17 in Colombia, 17 in Chile, 19 in Peru, 7 in Ecuador, and 14 in other South American countries), as well as 25 international long-haul destinations across the world (14 in North and Central America, 8 in Europe, 3 in Oceania and 1 in Africa).",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-05",
+   "period": "2025-12-31",
+   "accession": "0001047716-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000046/ltm-20251231.htm"
+  },
+  "description_short": "LATAM Airlines Group S.A. and its affiliates are the leading airline group in Latin America, with presence in five domestic markets in the region: Brazil, Chile, Colombia, Ecuador and Peru, in addition to international operations within Latin America and to Europe, Oceania, Africa, the United States and the Caribbean. The LATAM group has a fleet of Boeing 767, 777, 787, Airbus A321, A321neo A320, A320neo and A319 aircraft. LATAM Cargo Chile, LATAM Cargo Colombia and LATAM Cargo Brazil are the LATAM group's cargo subsidiaries, in addition to having access to the bellies of the passenger affiliates' aircraft, they have a fleet of 20 freighters. These cargo subsidiaries have access to the group's passenger aircraft, and operate within the LATAM group network, as well as on exclusive international routes for cargo transportation.",
+  "industry": "Air Freight/Delivery Services",
+  "sector": "Consumer Discretionary",
+  "region": null,
+  "sic": "4512",
+  "sic_description": "Air Transportation, Scheduled",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": null,
+  "headquarters": "Las Condes, Chile",
+  "address": {
+   "street": "Presidente Riesco 5711, 20th Floor",
+   "city": "Las Condes",
+   "state": null,
+   "zip": "7550000",
+   "country": "Chile",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-05"
+  },
+  "phone": "(56) (2) 25653844",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-02-19",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "Lan Airlines SA",
+   "LAN CHILE SA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001047716&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000102/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000100/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000096/latamairlinesgroupsa6-kxbo.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-10",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000090/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000087/latamairlinesgroupsa6-kx2q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000085/latamairlinesgroupsa6-kx2q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000083/latamairlinesgroupsa6-kxbo.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000080/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000076/latamairlinesgroupsa6-kxbo.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-08",
+   "period": "2026-05-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000069/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000066/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000064/latamairlinesgroupsa6-kx1q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000063/latamairlinesgroupsa6-kx1q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000060/latamairlinesgroupsa6-kxbo.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000056/latamairlinesgroupsa6-kxdi.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-09",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000054/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000052/latamairlinesgroupsa6-kxdi.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-09",
+   "period": "2026-02-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000048/latamairlinesgroupsa6-kxop.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001047716-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000046/ltm-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001047716-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000032/latamairlinesgroupsa6-kxla.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-05"
+ ]
+}

@@ -1,0 +1,280 @@
+{
+ "ticker": "WSO",
+ "cik": 105016,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T11:59:39-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000105016.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/105016/000119312526082486/wso-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WSO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WSO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WATSCO INC",
+  "cik": 105016,
+  "description": {
+   "text": "Watsco, Inc. and its subsidiaries (collectively, “Watsco,” the “Company”, or “we,” “us,” or “our”) was incorporated in Florida in 1956 and is the largest distributor of air conditioning, heating and refrigeration equipment and related parts and supplies (“HVAC/R”) in the HVAC/R distribution industry in North America. At December 31, 2025, we operated from 695 locations in 43 U.S. States, Canada, Mexico and Puerto Rico with additional market coverage on an export basis to portions of Latin America and the Caribbean, through which we serve more than 130,000 active contractors that service the replacement and new construction markets. Our revenues in HVAC/R distribution have increased from $64.1 million in 1989 to $7.2 billion in 2025, resulting from our strategic acquisition of companies with established market positions and subsequent building of revenues and profit through a combination of additional locations, introduction of new products, expansion with industry Original Equipment Manufacturers (“OEMs”) and vendors, technology innovation, and other initiatives. Our principal executive office is located at 2665 South Bayshore Drive, Suite 901, Miami, Florida 33133, and our telephone number is (305) 714-4100. Our website address on the Internet is www.watsco.com and e-mails may be sent to info@watsco.com. Information contained on, or available through, our website is not incorporated by reference in, or made a part of, this report.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-082486",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526082486/wso-20251231.htm"
+  },
+  "description_short": "Watsco is the largest distributor in the highly fragmented North American HVAC market. Since entering distribution in 1989, Watsco has achieved a 17% compounded annual total shareholder return through a combination of organic growth and the acquisition of more than 70 market-leading businesses. Watsco maintains a solid balance sheet, enabling sustained investments in growth, including the Company's industry-leading technologies. Today, more than 70,000 contractors and technicians engage digitally, empowering them to adopt and integrate Watsco's tools into their daily operations. The Company is also introducing AI-driven initiatives to leverage its extensive data assets and enrich the customer experience. The Company believes its technology ecosystem represents a durable and widening competitive advantage in its highly fragmented industry.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5070",
+  "sic_description": "Wholesale-Hardware & Plumbing & Heating Equipment & Supplies",
+  "state_of_incorporation": "FL",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.watsco.com",
+  "headquarters": "Miami, FL",
+  "address": {
+   "street": "2665 South Bayshore Drive Suite 901",
+   "city": "Miami",
+   "state": "FL",
+   "zip": "33133",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "305-714-4100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000105016&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K/A",
+   "filed": "2026-10-14",
+   "period": "2026-09-12",
+   "items": [
+    "3.02"
+   ],
+   "description": "Amendment: Unregistered sale of equity",
+   "accession": "0001193125-26-421671",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526421671/wso-20260912.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001193125-26-421662",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526421662/wso-20261014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-12",
+   "items": [
+    "3.02"
+   ],
+   "description": "Unregistered sale of equity",
+   "accession": "0001193125-26-394393",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526394393/wso-20260912.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-340204",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526340204/wso-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-322168",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526322168/wso-20260729.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-06-04",
+   "period": "2026-04-23",
+   "items": [
+    "3.02"
+   ],
+   "description": "Amendment: Unregistered sale of equity",
+   "accession": "0001193125-26-257478",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526257478/wso-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001193125-26-257467",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526257467/wso-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-255386",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526255386/wso-20260601.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-214570",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526214570/wso-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-23",
+   "items": [
+    "3.02"
+   ],
+   "description": "Unregistered sale of equity",
+   "accession": "0001193125-26-191427",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526191427/wso-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-183549",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526183549/wso-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-01",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-174970",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526174970/wso-20260423.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-082486",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526082486/wso-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-053048",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312526053048/wso-20260217.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-272272",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312525272272/wso-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-25-254667",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312525254667/wso-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-176973",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312525176973/d896049d10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-25-168635",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312525168635/d941916d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-05",
+   "period": "2025-06-02",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-135304",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312525135304/d65670d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-116461",
+   "url": "https://www.sec.gov/Archives/edgar/data/105016/000119312525116461/d938508d10q.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-27"
+ ]
+}

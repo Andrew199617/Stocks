@@ -1,0 +1,251 @@
+{
+ "ticker": "SUZ",
+ "cik": 909327,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T20:14:39-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000909327.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000045/suz-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SUZ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SUZ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Suzano S.A.",
+  "cik": 909327,
+  "description": {
+   "text": "Pulp can be either recycled or virgin pulp. Recycled pulp is made from used materials, such as printing and writing papers, newsprint, packaging and other types of carton board, and then processed by chemicals in order to remove printing inks and other elements. Virgin pulp can be manufactured from a number of raw materials, such as wood, bagasse and bamboo, and it is classified based on the type of wood or fiber derived from the corresponding raw material as well as the processing system used and whether the pulp will be bleached. Bleached pulp is used for several purposes, including printing and writing, specialty, packaging paperboard and tissue papers. Unbleached pulp has a brown color and is used in the production of packages, corrugated board, paperboard, packaging papers, bags and tissue. The most common raw material that we use to produce paper is wood pulp. Different tree species yield different fiber characteristics and, consequently, different paper attributes such as strength, softness and opacity. There are two types of wood pulp: hardwood pulp and softwood pulp. Hardwood pulp is produced using hardwood trees, such as eucalyptus, aspen, birch, acacia, maple, oaks, beech trees and poplars, which have shorter fibers.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "accession": "0000909327-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000045/suz-20251231.htm"
+  },
+  "description_short": "Suzano is the world's largest pulp supplier, a major paper and packaging producer in the Americas, and one of Brazil's biggest employers. Driven by a deep commitment to sustainability and innovation, Suzano produces responsibly-grown raw materials that are exported to more than 100 countries around the world. These are used to make everyday items that reach more than two billion people, including toilet paper and tissue, packaging, printing and writing paper, personal hygiene products, and textiles. Founded in Brazil over 100 years ago, today Suzano operates across Latin America, North America, Europe and Asia. The company's shares are listed on the B3 in São Paulo (SUZB3) and the New York Stock Exchange (SUZ).",
+  "industry": "Paper",
+  "sector": "Basic Materials",
+  "region": "South America",
+  "sic": "2621",
+  "sic_description": "Paper Mills",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.suzano.com.br",
+  "headquarters": "Salvador, Brazil",
+  "address": {
+   "street": "Av. Professor Magalhães Neto, 1,752 10th Floor, Rooms 1009, 1010 and 1011",
+   "city": "Salvador",
+   "state": null,
+   "zip": "41810-012",
+   "country": "Brazil",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-24"
+  },
+  "phone": "551121384588",
+  "employees": {
+   "count": 23094,
+   "as_of": "2024-12-31",
+   "evidence": "As of December 31, 2024, we employed a total of 23,094 employees (Suzano + Portocel + Ecofuturo + Futuragene + Veracel), distributed as follows:",
+   "form": "20-F",
+   "filed": "2026-03-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000045/suz-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-01-23",
+  "first_sec_filing_form": "SUPPL",
+  "former_names": [
+   "Suzano Papel e Celulose S.A.",
+   "COMPANHIA SUZANO DE PAPEL E CELULOSE                    /FI"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000909327&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-066040",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026066040/a20261510-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000074/a20260831-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000072/a20260812-suzano_6kxminute.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000069/a20262008-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000066/a2026-06xresultpresentatio.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000064/a2026-06xearnigsreleasexse.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000063/suz-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000057/a20260804-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-046329",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026046329/a20260701-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-042290",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026042290/a20260602-suzano_6kxminute.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-038610",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026038610/a20260528-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-033642",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026033642/a20260511-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-032302",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026032302/a20260429-suzano_6kxminute.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000053/a2026-03xresultpresentatio.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000051/a2026-03xearnigsreleasexse.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000050/suz-20260331.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000909327-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000047/a20260424-suzano_6ka.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-026943",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026026943/suzano_6kxnoticetosharehol.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-026938",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026026938/a20260423-suzano_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2026-04-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-023293",
+   "url": "https://www.sec.gov/Archives/edgar/data/909327/000162828026023293/a20260402-suzano_6k.htm"
+  }
+ ],
+ "warnings": []
+}

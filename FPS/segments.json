@@ -1,0 +1,326 @@
+{
+ "ticker": "FPS",
+ "cik": 2080126,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0002080126-26-000011",
+   "filed": "2026-03-16",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000011/fps-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002080126-26-000018",
+   "filed": "2026-05-14",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000018/fps-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0002080126-26-000035",
+   "filed": "2026-09-15",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000035/fps-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fps:CustomProductsMember",
+     "label": "Custom Products",
+     "values": [
+      590646000,
+      990484000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7842,
+      0.6975
+     ],
+     "growth_yoy": [
+      null,
+      0.677
+     ]
+    },
+    {
+     "member": "fps:PowertrainSolutionsMember",
+     "label": "Powertrain Solutions",
+     "values": [
+      99479000,
+      357409000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1321,
+      0.2517
+     ],
+     "growth_yoy": [
+      null,
+      2.5928
+     ]
+    },
+    {
+     "member": "fps:StandardProductsMember",
+     "label": "Standard Products",
+     "values": [
+      34624000,
+      42452000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.046,
+      0.0299
+     ],
+     "growth_yoy": [
+      null,
+      0.2261
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      28439000,
+      29714000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0378,
+      0.0209
+     ],
+     "growth_yoy": [
+      null,
+      0.0448
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     753188000,
+     1420059000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fps:CustomProductsMember",
+     "label": "Custom Products",
+     "values": [
+      147099000,
+      142170000,
+      168299000,
+      234517000,
+      259283000,
+      291513000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.8389,
+      0.7634,
+      0.7083,
+      0.7912,
+      0.6846,
+      0.6314
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.5943,
+      0.8238,
+      0.7321
+     ]
+    },
+    {
+     "member": "fps:PowertrainSolutionsMember",
+     "label": "Powertrain Solutions",
+     "values": [
+      14063000,
+      28427000,
+      51157000,
+      46373000,
+      98924000,
+      146702000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0802,
+      0.1526,
+      0.2153,
+      0.1565,
+      0.2612,
+      0.3178
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      2.2975,
+      2.4799,
+      1.8677
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      6176000,
+      7009000,
+      8118000,
+      6455000,
+      7295000,
+      12297000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0352,
+      0.0376,
+      0.0342,
+      0.0218,
+      0.0193,
+      0.0266
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0452,
+      0.0408,
+      0.5148
+     ]
+    },
+    {
+     "member": "fps:StandardProductsMember",
+     "label": "Standard Products",
+     "values": [
+      8000000,
+      8618000,
+      10039000,
+      9059000,
+      13207000,
+      11160000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0456,
+      0.0463,
+      0.0422,
+      0.0306,
+      0.0349,
+      0.0242
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1324,
+      0.5325,
+      0.1117
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     175338000,
+     186224000,
+     237613000,
+     296404000,
+     378709000,
+     461672000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (fps:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (fps:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (fps:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment' (fps:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/annual: row 'Reportable Segment' (fps:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

@@ -1,0 +1,296 @@
+{
+ "ticker": "PFGC",
+ "cik": 1618673,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T01:10:18-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001618673.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526346886/pfgc-20260627.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PFGC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PFGC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Performance Food Group Co",
+  "cik": 1618673,
+  "description": {
+   "text": "Performance Food Group Company, through its subsidiaries, markets and distributes more than 300,000 food and food-related products to customers across North America, from our over 150 distribution centers to over 350,000 customer locations in the food-away-from-home industry. Our over 44,000 employees serve a diverse mix of customers, from independent and chain restaurants to schools, business and industry locations, vending distributors, office coffee service distributors, retailers, convenience stores, and theaters. We source our products from various suppliers and serve as an important partner to our suppliers by providing them access to our broad customer base. In addition to the products we offer to our customers, we provide value-added services by allowing our customers to benefit from our industry knowledge, scale, and expertise in the areas of product selection and procurement, menu development, and operational strategy. The Company had no customers that comprised more than 10% of consolidated net sales for fiscal 2026, fiscal 2025, or fiscal 2024.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-12",
+   "period": "2026-06-27",
+   "accession": "0001193125-26-346886",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526346886/pfgc-20260627.htm"
+  },
+  "description_short": "Performance Food Group is an industry leader and one of the largest food and foodservice distribution companies in North America with more than 150 locations. Founded and headquartered in Richmond, Virginia, PFG and our family of companies market and deliver quality food and food-related products to over 350,000 locations, including independent and chain restaurants, schools, business and industry locations, vending and office coffee service distributors, retailers, convenience stores, and theaters, and direct to consumers. PFG's success as a Fortune 100 company is achieved through our over 44,000 dedicated associates committed to building strong relationships with the valued customers, suppliers and communities we serve. To learn more about PFG, visit pfgc.com.",
+  "industry": "Food Distributors",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5141",
+  "sic_description": "Wholesale-Groceries, General Line",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0627",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.pfgc.com",
+  "headquarters": "Richmond, Virginia",
+  "address": {
+   "street": "12500 West Creek Parkway",
+   "city": "Richmond",
+   "state": "Virginia",
+   "zip": "23238",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-12"
+  },
+  "phone": "(804) 484-7700",
+  "employees": {
+   "count": 44000,
+   "as_of": "2026-06-27",
+   "evidence": "As of June 27, 2026, we had over 44,000 employees of whom approximately 2,800 were members of local unions associated with the International Brotherhood of Teamsters or other unions.",
+   "form": "10-K",
+   "filed": "2026-08-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526346886/pfgc-20260627.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-09-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001618673&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-10-09",
+   "period": "2026-11-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-419150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526419150/pfgc-20261008.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-363739",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526363739/pfgc-20260824.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-18",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001193125-26-357838",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526357838/d134405d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-12",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-346886",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526346886/pfgc-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-345718",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526345718/pfgc-20260812.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-209011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526209011/pfgc-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-207521",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526207521/pfgc-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-059455",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526059455/d59092d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-043019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526043019/d51098d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-041923",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526041923/d48626d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-04",
+   "period": "2025-12-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-037614",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526037614/pfgc-20251227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-036704",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312526036704/pfgc-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-25-323612",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525323612/d26294d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-24",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-25-291981",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525291981/d87007d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-19",
+   "period": "2025-11-19",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-288162",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525288162/pfgc-20251119.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-266975",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525266975/pfgc-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-265687",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525265687/pfgc-20251105.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-10",
+   "period": "2025-11-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-237108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525237108/pfgc-20251009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-23",
+   "period": "2025-09-23",
+   "items": [
+    "1.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change; Reg FD",
+   "accession": "0001193125-25-213333",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525213333/pfgc-20250923.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-16",
+   "period": "2025-09-15",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-25-204256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1618673/000119312525204256/d45145d8k.htm"
+  }
+ ],
+ "warnings": []
+}

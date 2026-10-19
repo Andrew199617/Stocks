@@ -1,0 +1,115 @@
+{
+ "ticker": "NLY",
+ "name": "Annaly Capital Management, Inc.",
+ "sector": "Real Estate / Mortgage REIT",
+ "price": 18.23,
+ "market_cap_b": 11.69,
+ "engine_version": 5,
+ "base_oe_per_share": 1.1722330013095505,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 3,
+ "moat_justification": "Weak: scale ($135.6B assets, largest U.S. mortgage REIT), deep repo/swap market access and a diversified three-engine platform (Agency MBS, Residential Credit, MSR) are real but replicable advantages \u2014 the assets are commodity securities anyone with financing can buy, spreads are set by the market, and there is no pricing power. Measured returns confirm no durable franchise: fundamentals.json roic_proxy is null for every year (no operating-income tag is filed) and gross margin is null (no revenue tag), while ROE swung from -14.6% (2023) to +7.9% (2024) to +12.6% (2025) \u2014 rate/spread-driven, not franchise-driven.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 15.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Note 14 Long-Term Stock Incentive Plan (p. F-30): 'The Company recognized equity-based compensation expense of $28.0 million for the year ended December 31, 2025.' The same note in the FY2024 10-K reports $23.2 million for FY2024 and in the FY2023 10-K $17.3 million for FY2023 \u2014 EDGAR companyfacts carries no ShareBasedCompensation annual fact for 2023-2025 (the tag was last filed for FY2009), so the expense is disclosed only in this note.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows (p. F-6): the investing-activities section lists only payments/proceeds on securities, loans, MSR and interests in MSR, reverse repurchase agreements and JV distributions for FY2025, FY2024 and FY2023 \u2014 there is no purchases-of-property-and-equipment (or any PPE capex) line in any of the three years, and the balance sheet carries no property-and-equipment line (engine ppe_net is blank for every year). The statement fully reconciles without one (dollars in thousands): FY2025 operating 692,911 + investing (27,362,734) + financing 27,219,634 = the reported net increase in cash 549,811 exactly; FY2024: 3,310,659 - 14,984,830 + 11,750,050 = reported 75,879 exactly; FY2023: 2,367,203 - 8,415,890 + 5,884,121 = reported (164,566) exactly. EDGAR companyfacts for CIK 1043219 contains no PaymentsToAcquirePropertyPlantAndEquipment fact in any year.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 1.04 vs 3-yr median 4.73 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier D (6.3%) vs bull-case tier C (10.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 4.6,
+   "irr": 0.0539
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 5.94,
+   "irr": 0.0632
+  },
+  "base": {
+   "prob": 0.25,
+   "iv_at_15": 8.8,
+   "irr": 0.0848
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 11.54,
+   "irr": 0.1046
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 15.56,
+   "irr": 0.1324
+  }
+ },
+ "iv_at_15": 8.54,
+ "iv_at_12": 11.19,
+ "implied_irr": 0.083,
+ "implied_irr_base_case": 0.0848,
+ "upside_at_15_pct": -53.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified mortgage REIT with scale but no pricing power, moat 3/10 \u2014 on filing-direct TTM owner's earnings ($1.17/share) it cannot clear the 15% hurdle at $18.23 (weighted IRR 8.3%, weighted IV@15% $8.54; clears 15% only below ~$8.54); the 3-yr median base prints a fake Tier S off noncash mark-to-market addbacks and the company's own EAD ($2.92/share FY2025) reaches only Tier B \u2014 sector model misfit, confidence low.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0632,
+ "irr_bull": 0.1046,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 6.13,
+ "iv_at_25": 4.79,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 641042741,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale and liquidity: largest U.S. mREIT, $9.4B of assets available for financing at YE2025, preferred access to repo and securitization markets",
+  "Diversified three-engine platform (Agency MBS / Residential Credit / MSR) \u2014 MSR and credit partly offset Agency spread risk across rate cycles",
+  "Internally managed (no external-manager fee drag) with a 25+ year operating history through multiple rate cycles"
+ ],
+ "moat_against": [
+  "No pricing power: Agency MBS spreads and repo funding costs are market-set; the product is a commodity financial asset",
+  "Structural leverage (GAAP 7.2x / economic 5.6x at YE2025) makes book value hostage to rate and spread moves",
+  "Persistent equity dilution: diluted share count +15.9%/yr CAGR in the engine history (ATM issuance), DPS cut in 2023 and 5-yr DPS CAGR -5.1% (fundamentals.json)",
+  "ROE is cyclical and sign-flipping (-14.6% in 2023) \u2014 no through-cycle return on capital above the cost of equity is demonstrated"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows (p. F-6): the investing-activities section lists only payments/proceeds on securities, loans, MSR and interests in MSR, reverse repurchase agreements and JV distributions for FY2025, FY2024 and FY2023 \u2014 there is no purchases-of-property-and-equipment (or any PPE capex) line in any of the three years, and the balance sheet carries no property-and-equipment line (engine ppe_net is blank for every year). The statement fully reconciles without one (dollars in thousands): FY2025 operating 692,911 + investing (27,362,734) + financing 27,219,634 = the reported net increase in cash 549,811 exactly; FY2024: 3,310,659 - 14,984,830 + 11,750,050 = reported 75,879 exactly; FY2023: 2,367,203 - 8,415,890 + 5,884,121 = reported (164,566) exactly. EDGAR companyfacts for CIK 1043219 contains no PaymentsToAcquirePropertyPlantAndEquipment fact in any year."
+  },
+  {
+   "field": "sbc",
+   "value": 28000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Note 14 Long-Term Stock Incentive Plan (p. F-30): 'The Company recognized equity-based compensation expense of $28.0 million for the year ended December 31, 2025.' The same note in the FY2024 10-K reports $23.2 million for FY2024 and in the FY2023 10-K $17.3 million for FY2023 \u2014 EDGAR companyfacts carries no ShareBasedCompensation annual fact for 2023-2025 (the tag was last filed for FY2009), so the expense is disclosed only in this note."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 1.2105,
+  "base_oe_with_override": 1.1722,
+  "base_oe_impact_pct": -3.159,
+  "weighted_irr_without_override": 0.0849,
+  "weighted_irr_with_override": 0.083,
+  "weighted_irr_impact_pp": -0.191,
+  "unblocks_tier": true
+ }
+}

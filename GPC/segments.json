@@ -1,0 +1,850 @@
+{
+ "ticker": "GPC",
+ "cik": 40987,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000040987-26-000003",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000003/gpc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000040987-26-000017",
+   "filed": "2026-04-21",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000017/gpc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000040987-26-000033",
+   "filed": "2026-07-21",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000033/gpc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gpc:NorthAmericaAutomotiveMember",
+     "label": "North America Automotive",
+     "values": [
+      9010337000,
+      9212238000,
+      9520042000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3902,
+      0.3922,
+      0.3918
+     ],
+     "growth_yoy": [
+      null,
+      0.0224,
+      0.0334
+     ]
+    },
+    {
+     "member": "gpc:IndustrialPartsMember",
+     "label": "Industrial Parts",
+     "values": [
+      8843827000,
+      8717436000,
+      8921533000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.383,
+      0.3712,
+      0.3671
+     ],
+     "growth_yoy": [
+      null,
+      -0.0143,
+      0.0234
+     ]
+    },
+    {
+     "member": "gpc:InternationalAutomotiveMember",
+     "label": "International Automotive",
+     "values": [
+      5236446000,
+      5556895000,
+      5858566000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2268,
+      0.2366,
+      0.2411
+     ],
+     "growth_yoy": [
+      null,
+      0.0612,
+      0.0543
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     23090610000,
+     23486569000,
+     24300141000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gpc:NorthAmericaAutomotiveMember",
+     "label": "North America Automotive",
+     "values": [
+      2264781000,
+      2444377000,
+      2363032000,
+      2537236000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3861,
+      0.3965,
+      0.3772,
+      0.3881
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0434,
+      0.038
+     ]
+    },
+    {
+     "member": "gpc:IndustrialPartsMember",
+     "label": "Industrial Parts",
+     "values": [
+      2201181000,
+      2252144000,
+      2316392000,
+      2411603000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3752,
+      0.3653,
+      0.3697,
+      0.3689
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0523,
+      0.0708
+     ]
+    },
+    {
+     "member": "gpc:InternationalAutomotiveMember",
+     "label": "International Automotive",
+     "values": [
+      1400107000,
+      1467904000,
+      1585516000,
+      1588112000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2387,
+      0.2381,
+      0.2531,
+      0.2429
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1324,
+      0.0819
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5866069000,
+     6164425000,
+     6264940000,
+     6536951000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "gpc:NorthAmericaAutomotiveMember",
+     "label": "North America Automotive",
+     "values": [
+      3627766000,
+      4022330000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1881,
+      0.1934
+     ],
+     "growth_yoy": [
+      null,
+      0.1088
+     ]
+    },
+    {
+     "member": "gpc:IndustrialPartsMember",
+     "label": "Industrial Parts",
+     "values": [
+      2765504000,
+      2729639000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1434,
+      0.1313
+     ],
+     "growth_yoy": [
+      null,
+      -0.013
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      4696301000,
+      5044528000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2435,
+      0.2426
+     ],
+     "growth_yoy": [
+      null,
+      0.0741
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      977171000,
+      1160311000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0507,
+      0.0558
+     ],
+     "growth_yoy": [
+      null,
+      0.1874
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19282705000,
+     20795540000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gpc:NorthAmericaAutomotiveMember",
+     "label": "North America Automotive",
+     "values": [
+      6846904000,
+      7149458000,
+      6654273000,
+      6817795000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3455,
+      0.3499,
+      0.3172,
+      0.3238
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0281,
+      -0.0464
+     ]
+    },
+    {
+     "member": "gpc:InternationalAutomotiveMember",
+     "label": "International Automotive",
+     "values": [
+      4082999000,
+      4188295000,
+      3968127000,
+      3994000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.206,
+      0.205,
+      0.1892,
+      0.1897
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0281,
+      -0.0464
+     ]
+    },
+    {
+     "member": "gpc:IndustrialPartsMember",
+     "label": "Industrial Parts",
+     "values": [
+      3133547000,
+      3464425000,
+      2810722000,
+      2771155000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1581,
+      0.1696,
+      0.134,
+      0.1316
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.103,
+      -0.2001
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      4826115000,
+      4972172000,
+      4987717000,
+      4964973000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2435,
+      0.2434,
+      0.2378,
+      0.2358
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0335,
+      -0.0014
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      927640000,
+      656717000,
+      2555738000,
+      2510370000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0468,
+      0.0321,
+      0.1218,
+      0.1192
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.7551,
+      2.8226
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19817205000,
+     20431067000,
+     20976577000,
+     21058293000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      15247740000,
+      15318989000,
+      15788840000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6603,
+      0.6522,
+      0.6497
+     ],
+     "growth_yoy": [
+      null,
+      0.0047,
+      0.0307
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      3611453000,
+      3839134000,
+      4010876000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1564,
+      0.1635,
+      0.1651
+     ],
+     "growth_yoy": [
+      null,
+      0.063,
+      0.0447
+     ]
+    },
+    {
+     "member": "gpc:AustralasiaMember",
+     "label": "Australasia",
+     "values": [
+      2149376000,
+      2258729000,
+      2377182000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0931,
+      0.0962,
+      0.0978
+     ],
+     "growth_yoy": [
+      null,
+      0.0509,
+      0.0524
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      2011343000,
+      1982719000,
+      2022110000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0871,
+      0.0844,
+      0.0832
+     ],
+     "growth_yoy": [
+      null,
+      -0.0142,
+      0.0199
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      70698000,
+      86998000,
+      101133000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0031,
+      0.0037,
+      0.0042
+     ],
+     "growth_yoy": [
+      null,
+      0.2306,
+      0.1625
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     23090610000,
+     23486569000,
+     24300141000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3853778000,
+      3991977000,
+      4014203000,
+      4185683000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.657,
+      0.6476,
+      0.6407,
+      0.6403
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0416,
+      0.0485
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      972865000,
+      1013110000,
+      1091974000,
+      1075576000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1658,
+      0.1643,
+      0.1743,
+      0.1645
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1224,
+      0.0617
+     ]
+    },
+    {
+     "member": "gpc:AustralasiaMember",
+     "label": "Australasia",
+     "values": [
+      552354000,
+      586697000,
+      628483000,
+      654141000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0942,
+      0.0952,
+      0.1003,
+      0.1001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1378,
+      0.115
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      463474000,
+      547322000,
+      500572000,
+      589295000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.079,
+      0.0888,
+      0.0799,
+      0.0901
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.08,
+      0.0767
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      23598000,
+      25319000,
+      29708000,
+      32256000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.004,
+      0.0041,
+      0.0047,
+      0.0049
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2589,
+      0.274
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5866069000,
+     6164425000,
+     6264940000,
+     6536951000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: rows sum to 62.3% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: its values equal the consolidated total",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'North America' (srt:NorthAmericaMember) dropped: its values equal the sum of UNITED STATES, CANADA, MEXICO",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'North America' (srt:NorthAmericaMember) dropped: its values equal the sum of UNITED STATES, CANADA, MEXICO"
+ ],
+ "complete": true
+}

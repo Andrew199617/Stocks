@@ -1,0 +1,287 @@
+{
+ "ticker": "LFUS",
+ "cik": 889331,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T20:38:48-04:00",
+ "newest_filing_date": "2026-09-17",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000889331.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/889331/000162828026009585/lfus-20251227.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LFUS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LFUS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "LITTELFUSE INC /DE",
+  "cik": 889331,
+  "description": null,
+  "description_short": "Littelfuse, Inc. (NASDAQ: LFUS) is a diversified, industrial technology manufacturing company empowering a sustainable, connected, and safer world. Across more than 20 countries, and with approximately 18,000 global associates, we partner with customers to design and deliver innovative, reliable solutions. Serving over 100,000 end customers, our products are found in a variety of industrial, transportation, and electronics end markets-everywhere, every day.",
+  "industry": "Electrical Products",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "3613",
+  "sic_description": "Switchgear & Switchboard Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1226",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.littelfuse.com",
+  "headquarters": "Rosemont, Illinois",
+  "address": {
+   "street": "6133 North River Road Suite 500",
+   "city": "Rosemont",
+   "state": "Illinois",
+   "zip": "60018",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "773-628-1000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-13",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000889331&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-15",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000889331-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933126000014/lfus-20260915.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000889331-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933126000012/lfus-20260910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-06",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000889331-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933126000010/lfus-20260806.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050481",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026050481/lfus-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-050382",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026050382/lfus-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001140361-26-021160",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000114036126021160/ef20073358_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-031041",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026031041/lfus-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-030892",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026030892/lfus-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-22",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000889331-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933126000005/lfus-20260422.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-13",
+   "period": "2026-03-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001140361-26-009393",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000114036126009393/ef20067854_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-009256",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000114036126009256/ny20057422x2_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-04",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000889331-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933126000002/lfus-20260304.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-009585",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026009585/lfus-20251227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-003710",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026003710/lfus-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-07",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-000720",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000114036126000720/ef20062451_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047026",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828025047026/lfus-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-25-046908",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828025046908/lfus-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-24",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0000889331-25-000186",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933125000186/lfus-20251024.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000889331-25-000151",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000088933125000151/lfus-20250807.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-036650",
+   "url": "https://www.sec.gov/Archives/edgar/data/889331/000162828025036650/lfus-20250628.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-19)",
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

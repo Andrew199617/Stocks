@@ -1,0 +1,284 @@
+{
+ "ticker": "AUR",
+ "cik": 1828108,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T10:41:11-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001828108.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AUR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AUR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Aurora Innovation, Inc.",
+  "cik": 1828108,
+  "description": {
+   "text": "Our mission is to deliver the benefits of self-driving technology safely, quickly, and broadly. Aurora was founded in 2017 by Chris Urmson, Sterling Anderson, and Drew Bagnell, three of the most prominent leaders in the self-driving space. Led by a team with deep experience, including Chris and Drew, we have launched and are continuing to develop the Aurora Driver based on what we believe to be the most advanced and scalable suite of self-driving hardware, software, and data services in the world to fundamentally transform the global transportation market. The Aurora Driver is designed as a platform to adapt and interoperate amongst a multitude of vehicle types and applications. To date, we have successfully integrated the Aurora Driver into numerous different vehicle platforms designed to meet its requirements: from passenger vehicles to light commercial vehicles to Class 8 trucks. By creating a common driver platform for multiple vehicle types and use cases, the capabilities we develop in one market reinforce and strengthen our competitive advantages in other areas. For example, highway driving capabilities developed for trucking will carry over to highway segments driven by passenger vehicles in ride hailing applications. We believe this is the right approach to bring self-driving to market and will enable us to target and transform multiple massive markets, including trucking, passenger mobility, and local goods delivery.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001828108-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231.htm"
+  },
+  "description_short": "Aurora (Nasdaq: AUR) is delivering the benefits of self-driving technology safely, quickly, and broadly to make transportation safer, increasingly accessible, and more reliable and efficient than ever before. The Aurora Driver is a self-driving system designed to operate multiple vehicle types, from freight-hauling trucks to ride-hailing passenger vehicles, and underpins Aurora's driver as a service product for trucking. Aurora is working with industry leaders across the transportation ecosystem, including AUMOVIO, FedEx, Hirschbach, McLane, NVIDIA, PACCAR, Ryder, Schneider, Toyota, Uber, Uber Freight, Volvo Trucks, Volvo Autonomous Solutions, and Werner.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7373",
+  "sic_description": "Services-Computer Integrated Systems Design",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.aurora.tech",
+  "headquarters": "Pittsburgh, Pennsylvania",
+  "address": {
+   "street": "1654 Smallman St.",
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "zip": "15222",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "(888) 583-9506",
+  "employees": {
+   "count": 1900,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 1,900 employees.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-02-12",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Reinvent Technology Partners Y"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001828108&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001828108-26-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000082/aur-20260923.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001828108-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000077/aur-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001828108-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000075/aur-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-21",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001828108-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000057/aur-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001828108-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000052/aur-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001828108-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000050/aur-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001828108-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000044/aur-20260402.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-012827",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000162828026012827/aur-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001828108-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001828108-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000014/aur-20260211.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001828108-25-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000157/aur-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001828108-25-000155",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000155/aur-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001828108-25-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000139/aur-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001828108-25-000137",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000137/aur-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-23",
+   "period": "2025-05-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001828108-25-000117",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000117/aur-20250522.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001828108-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000087/aur-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-06",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001828108-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000083/aur-20250506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001828108-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000078/aur-20250501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-04",
+   "period": "2025-05-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001828108-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000057/aur-20250404.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-14",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001828108-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810825000028/aur-20241231.htm"
+  }
+ ],
+ "warnings": []
+}

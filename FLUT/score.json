@@ -1,0 +1,87 @@
+{
+ "ticker": "FLUT",
+ "name": "Flutter Entertainment plc",
+ "sector": "Consumer Discretionary / Online sports betting & iGaming",
+ "price": 75.6,
+ "market_cap_b": 13.38,
+ "engine_version": 5,
+ "base_oe_per_share": 5.725714285714286,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "FanDuel's #1 US share, global scale and local-hero brands are real, but filing-direct ROIC was -0.7% / -2.8% / +4.7% / +0.1% over 2022-2025 and gross margin fell from 49.1% to 45.2% (42.5% TTM) - no demonstrated pricing power against taxes, promos and now prediction markets; part of the weak ROIC is acquisition-intangible amortization, which keeps the score at 5 rather than lower.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 10.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.3%) vs bull-case tier B (16.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 31.73,
+   "irr": 0.0765
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 46.89,
+   "irr": 0.1034
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 64.05,
+   "irr": 0.1321
+  },
+  "bull": {
+   "prob": 0.18,
+   "iv_at_15": 86.46,
+   "irr": 0.1658
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "iv_at_15": 120.3,
+   "irr": 0.2103
+  }
+ },
+ "iv_at_15": 62.02,
+ "iv_at_12": 83.29,
+ "implied_irr": 0.129,
+ "implied_irr_base_case": 0.1321,
+ "upside_at_15_pct": -18.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Global betting leader, moat 5/10 with near-zero historical ROIC - at $75.60 it does not clear 15% on current filings (12.9% weighted, IV@15 $62.02 vs $75.60, levered 10.3x net debt/OE); clears 15% only at $62.02 or below.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1034,
+ "irr_bull": 0.1658,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 43.05,
+ "iv_at_25": 32.7,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 10438000000,
+ "shares_diluted_latest": 177000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 US sportsbook (39% GGR share) and #1 US iGaming (27%) - FanDuel scale, liquidity and brand",
+  "Global diversification with local-hero brands (Paddy Power, Betfair, Sky Bet, Snai, Sisal)",
+  "Product edge in parlays and proprietary iGaming content; US iGaming revenue +14% in Q2 2026",
+  "iGaming compounding diversifies away from volatile sportsbook hold"
+ ],
+ "moat_against": [
+  "ROIC near zero 2022-2025 and gross margin down ~7pts - pricing power not demonstrated",
+  "Prediction markets (Kalshi/Polymarket) compete for handle without the sportsbook tax/licensing burden",
+  "Regulatory hostage everywhere: India ban closed Junglee, Brazil ban, rising UK/US gambling taxes",
+  "Sports-results (hold) swings whipsaw quarters - Q2 2026 US sportsbook revenue -15%",
+  "Leverage 4.3x at Q2 2026 limits stamina in a marketing war"
+ ]
+}

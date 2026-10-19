@@ -1,0 +1,342 @@
+{
+ "ticker": "TX",
+ "cik": 1342874,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001342874-26-000020",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000020/tx-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tx:HotRolledMember",
+     "label": "Hot rolled",
+     "values": [
+      7913232000,
+      7633699000,
+      6425471000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4494,
+      0.4325,
+      0.4116
+     ],
+     "growth_yoy": [
+      null,
+      -0.0353,
+      -0.1583
+     ]
+    },
+    {
+     "member": "tx:CoatedMember",
+     "label": "Coated",
+     "values": [
+      5708328000,
+      5889062000,
+      5304344000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3242,
+      0.3337,
+      0.3398
+     ],
+     "growth_yoy": [
+      null,
+      0.0317,
+      -0.0993
+     ]
+    },
+    {
+     "member": "tx:ColdRolledMember",
+     "label": "Cold rolled",
+     "values": [
+      2379499000,
+      2623498000,
+      2361856000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1351,
+      0.1486,
+      0.1513
+     ],
+     "growth_yoy": [
+      null,
+      0.1025,
+      -0.0997
+     ]
+    },
+    {
+     "member": "tx:OtherProductsMember",
+     "label": "Other products",
+     "values": [
+      597187000,
+      757520000,
+      873988000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0339,
+      0.0429,
+      0.056
+     ],
+     "growth_yoy": [
+      null,
+      0.2685,
+      0.1537
+     ]
+    },
+    {
+     "member": "tx:RollFormedAndTubularMember",
+     "label": "Roll-formed and tubular",
+     "values": [
+      789255000,
+      620993000,
+      506879000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0448,
+      0.0352,
+      0.0325
+     ],
+     "growth_yoy": [
+      null,
+      -0.2132,
+      -0.1838
+     ]
+    },
+    {
+     "member": "tx:SlabsMember",
+     "label": "Slabs",
+     "values": [
+      177240000,
+      102723000,
+      79886000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0101,
+      0.0058,
+      0.0051
+     ],
+     "growth_yoy": [
+      null,
+      -0.4204,
+      -0.2223
+     ]
+    },
+    {
+     "member": "tx:BilletsRoundBarsAndOthersMember",
+     "label": "Billets, round bars and others",
+     "values": [
+      45351000,
+      21565000,
+      56670000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0026,
+      0.0012,
+      0.0036
+     ],
+     "growth_yoy": [
+      null,
+      -0.5245,
+      1.6279
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17610092000,
+     17649060000,
+     15609094000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      9419873000,
+      8701272000,
+      7266741000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5349,
+      0.493,
+      0.4655
+     ],
+     "growth_yoy": [
+      null,
+      -0.0763,
+      -0.1649
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      2518764000,
+      4280784000,
+      3994894000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.143,
+      0.2426,
+      0.2559
+     ],
+     "growth_yoy": [
+      null,
+      0.6996,
+      -0.0668
+     ]
+    },
+    {
+     "member": "tx:SouthernregionMember",
+     "label": "Southern region",
+     "values": [
+      3588651000,
+      2415303000,
+      2331202000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2038,
+      0.1369,
+      0.1493
+     ],
+     "growth_yoy": [
+      null,
+      -0.327,
+      -0.0348
+     ]
+    },
+    {
+     "member": "tx:OtherMarketsMember",
+     "label": "Other Markets",
+     "values": [
+      2082804000,
+      2251701000,
+      2016257000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1183,
+      0.1276,
+      0.1292
+     ],
+     "growth_yoy": [
+      null,
+      0.0811,
+      -0.1046
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17610092000,
+     17649060000,
+     15609094000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

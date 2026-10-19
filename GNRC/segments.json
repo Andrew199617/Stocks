@@ -1,0 +1,609 @@
+{
+ "ticker": "GNRC",
+ "cik": 1474735,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001437749-26-004568",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1474735/000143774926004568/gnrc20251231_10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001437749-26-014882",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1474735/000143774926014882/gnrc20260331_10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001437749-26-025669",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1474735/000143774926025669/gnrc20260630_10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gnrc:DomesticMember",
+     "label": "Domestic",
+     "values": [
+      3276324000,
+      3599149000,
+      3470966000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8145,
+      0.8378,
+      0.8246
+     ],
+     "growth_yoy": [
+      null,
+      0.0985,
+      -0.0356
+     ]
+    },
+    {
+     "member": "gnrc:InternationalMember",
+     "label": "International",
+     "values": [
+      746343000,
+      696685000,
+      738181000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1855,
+      0.1622,
+      0.1754
+     ],
+     "growth_yoy": [
+      null,
+      -0.0665,
+      0.0596
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4022667000,
+     4295834000,
+     4209147000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gnrc:ResidentialSegmentMember",
+     "label": "Residential Segment",
+     "values": [
+      548663000,
+      634718000,
+      552183000,
+      621263000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5824,
+      0.5981,
+      0.5212,
+      0.5294
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0064,
+      -0.0212
+     ]
+    },
+    {
+     "member": "gnrc:CommercialAndIndustrialSegmentMember",
+     "label": "Commercial and Industrial Segment",
+     "values": [
+      399006000,
+      430575000,
+      510098000,
+      556490000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4235,
+      0.4058,
+      0.4815,
+      0.4742
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2784,
+      0.2924
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      5548000,
+      -4124000,
+      2916000,
+      -4243000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0059,
+      -0.0039,
+      0.0028,
+      -0.0036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4744,
+      null
+     ]
+    },
+    {
+     "member": "gnrc:CorporateAndEliminationsMember",
+     "label": "Corporate and Eliminations",
+     "values": [
+      null,
+      null,
+      -2916000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      -0.0028,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     942121000,
+     1061169000,
+     1059365000,
+     1173510000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "gnrc:DomesticMember",
+     "label": "Domestic",
+     "values": [
+      3770883000,
+      3873904000,
+      4186567000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7404,
+      0.7582,
+      0.7511
+     ],
+     "growth_yoy": [
+      null,
+      0.0273,
+      0.0807
+     ]
+    },
+    {
+     "member": "gnrc:InternationalMember",
+     "label": "International",
+     "values": [
+      1322429000,
+      1235427000,
+      1387112000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2596,
+      0.2418,
+      0.2489
+     ],
+     "growth_yoy": [
+      null,
+      -0.0658,
+      0.1228
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5093312000,
+     5109331000,
+     5573679000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gnrc:ResidentialSegmentMember",
+     "label": "Residential Segment",
+     "values": [
+      3144332000,
+      3039205000,
+      2905028000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5641,
+      0.5434,
+      0.5033
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "gnrc:CommercialAndIndustrialSegmentMember",
+     "label": "Commercial and Industrial Segment",
+     "values": [
+      2367764000,
+      2497864000,
+      2808887000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4248,
+      0.4466,
+      0.4866
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      61583000,
+      56194000,
+      58236000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.011,
+      0.01,
+      0.0101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5573679000,
+     5593263000,
+     5772151000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+   "label": "Capital expenditures by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gnrc:DomesticMember",
+     "label": "Domestic",
+     "values": [
+      103036000,
+      117836000,
+      143056000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7984,
+      0.8618,
+      0.8422
+     ],
+     "growth_yoy": [
+      null,
+      0.1436,
+      0.214
+     ]
+    },
+    {
+     "member": "gnrc:InternationalMember",
+     "label": "International",
+     "values": [
+      26024000,
+      18897000,
+      26794000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2016,
+      0.1382,
+      0.1578
+     ],
+     "growth_yoy": [
+      null,
+      -0.2739,
+      0.4179
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     129060000,
+     136733000,
+     169850000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gnrc:ResidentialPowerProductsMember",
+     "label": "Residential Power Products",
+     "values": [
+      2062929000,
+      2433474000,
+      2266912000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5128,
+      0.5665,
+      0.5386
+     ],
+     "growth_yoy": [
+      null,
+      0.1796,
+      -0.0684
+     ]
+    },
+    {
+     "member": "gnrc:CommercialAndIndustrialPowerProductsMember",
+     "label": "Commercial and Industrial Power Products",
+     "values": [
+      1494799000,
+      1389469000,
+      1457385000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3716,
+      0.3234,
+      0.3462
+     ],
+     "growth_yoy": [
+      null,
+      -0.0705,
+      0.0489
+     ]
+    },
+    {
+     "member": "gnrc:OtherProductsAndServicesMember",
+     "label": "Other Products and Services",
+     "values": [
+      464939000,
+      472891000,
+      484850000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1156,
+      0.1101,
+      0.1152
+     ],
+     "growth_yoy": [
+      null,
+      0.0171,
+      0.0253
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4022667000,
+     4295834000,
+     4209147000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'External Net Sales' (gnrc:ExternalNetSalesMember) dropped: its values equal the sum of Residential Power Products, Commercial and Industrial Power Products, Other Products and Services",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Sales' (gnrc:IntersegmentSalesMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'External Net Sales' (gnrc:ExternalNetSalesMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

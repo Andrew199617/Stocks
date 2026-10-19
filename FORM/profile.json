@@ -1,0 +1,293 @@
+{
+ "ticker": "FORM",
+ "cik": 1039399,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T19:28:44-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001039399.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000009/form-20251227.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FORM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FORM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FORMFACTOR INC",
+  "cik": 1039399,
+  "description": {
+   "text": "FormFactor, Inc. is a leading provider of electrical and optical test and measurement technologies along the full semiconductor product lifecycle - from characterization, modeling, reliability, and design de-bug, to qualification and production test. We provide a broad range of high-performance probe cards, analytical probes, probe stations, thermal systems, and cryogenic systems to both semiconductor companies and scientific institutions. Our products provide electrical and optical information from a variety of semiconductor and electro-optical devices and integrated circuits from early research, through development, to high-volume production. Customers use our products and services to accelerate profitability by optimizing device performance, reducing scrap, and improving yields. Founded in 1993, we introduced our first product in 1995. From time to time, we have acquired businesses to help transform our business into a semiconductor test and measurement market leader with greater scale, diversification, breadth and market opportunities from Lab to Fab. We continue to evaluate opportunities to acquire businesses and technologies to further these goals. As of December 27, 2025, we operate in two reportable segments consisting of the Probe Cards segment and the Systems segment. Sales of our probe cards and analytical probes are included in the Probe Cards segment, while sales of our probe stations, thermal systems and cryogenic systems are included in the Systems segment.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-27",
+   "accession": "0001039399-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000009/form-20251227.htm"
+  },
+  "description_short": "FormFactor, Inc. (Nasdaq: FORM) is a leading provider of essential test and measurement technologies along the full IC life cycle - from characterization, modeling, reliability, and design de-bug to qualification and production test. Semiconductor companies rely upon FormFactor's products and services to accelerate profitability by optimizing device performance and advancing yield knowledge. The Company serves customers through its network of facilities in Asia, Europe, and North America.",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1226",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.formfactor.com",
+  "headquarters": "Livermore, California",
+  "address": {
+   "street": "7005 Southfront Road",
+   "city": "Livermore",
+   "state": "California",
+   "zip": "94551",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "9252904000",
+  "employees": {
+   "count": 2153,
+   "as_of": "2025-12-27",
+   "evidence": "As of December 27, 2025, we had 2,153 regular full-time employees, including 1,298 in operations, 422 in research and development, 235 in sales and marketing and 198 in general and administrative functions.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000009/form-20251227.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-04-22",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001039399&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-06",
+   "items": [
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD",
+   "accession": "0001039399-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000037/form-20261006.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001039399-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000033/form-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001039399-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000030/form-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-15",
+   "items": [
+    "5.02",
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001039399-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000025/form-20260515.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001039399-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000023/form-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001039399-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000020/form-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001039399-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000016/form-20260401.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001039399-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000009/form-20251227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-13",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001039399-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000007/form-20260213.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001039399-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000004/form-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-09",
+   "period": "2026-01-05",
+   "items": [
+    "2.05",
+    "2.06"
+   ],
+   "description": "Exit costs; Impairment",
+   "accession": "0001039399-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000002/form-20260105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001039399-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000113/form-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001039399-25-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000110/form-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-076856",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000110465925076856/tm2523206d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001039399-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000083/form-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-29",
+   "items": [
+    "1.01",
+    "2.02",
+    "2.03",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Debt obligation; Charter or bylaw amendment",
+   "accession": "0001039399-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000077/form-20250729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-21",
+   "period": "2025-05-16",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001039399-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000063/form-20250516.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001039399-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000038/form-20250329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001039399-25-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939925000033/form-20250430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-02",
+   "period": "2025-05-16",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-011850",
+   "url": "https://www.sec.gov/Archives/edgar/data/1039399/000114036125011850/ny20036714x1_def14a.htm"
+  }
+ ],
+ "warnings": []
+}

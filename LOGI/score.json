@@ -1,0 +1,86 @@
+{
+ "ticker": "LOGI",
+ "name": "Logitech International S.A.",
+ "sector": "Technology / Computer peripherals",
+ "price": 104.41,
+ "market_cap_b": 15.47,
+ "engine_version": 5,
+ "base_oe_per_share": 5.824604609737666,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Durable #1 share in mice/keyboards/gaming/video collaboration and high measured ROIC through the cycle (roic_proxy 0.33 trough FY23 to 1.42 FY26), but the capital base is tiny by construction so ROIC overstates the franchise; gross margin is hardware-like (37.9%-43.2%), switching costs are low, there are no network effects, and leadership must be re-won every product cycle.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 3.3%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.7%) vs bull-case tier C (10.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 22.63,
+   "irr": 0.0486
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 36.43,
+   "irr": 0.0671
+  },
+  "base": {
+   "prob": 0.25,
+   "iv_at_15": 49.86,
+   "irr": 0.0851
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 67.47,
+   "irr": 0.1076
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 102.14,
+   "irr": 0.1476
+  }
+ },
+ "iv_at_15": 50.5,
+ "iv_at_12": 66.91,
+ "implied_irr": 0.0864,
+ "implied_irr_base_case": 0.0851,
+ "upside_at_15_pct": -51.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality debt-free peripherals leader, moat 5/10 \u2014 but at $104.41 it prices in the bull case: weighted IRR 8.6%, IV@15% $50.50; it only clears 15% at/below ~$50.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0671,
+ "irr_bull": 0.1076,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 35.73,
+ "iv_at_25": 27.58,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 148208000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 global share in most core categories, with share gains again in Q4 FY26",
+  "Brand, industrial design and 100+ country retail/enterprise distribution",
+  "Gross margin recovered 37.88% (FY23) to 43.20% (FY26) \u2014 some pricing power",
+  "Debt-free asset-light model: capex ~$62M on $4.84B revenue, $1.74B cash"
+ ],
+ "moat_against": [
+  "Low switching costs \u2014 no lock-in or network effects in peripherals",
+  "Platform owners (Apple, Microsoft) and PC OEMs (HP, Dell) compete adjacently, plus Razer/Corsair and low-cost rivals",
+  "Tariff exposure on China-made hardware \u2014 policy swings hit results both ways (Q1 FY27 $61M refund)",
+  "Cyclical demand: OE/share fell from $7.55 (FY21) to $0.68 (FY22); supplier incident pressures Q2/Q3 FY27 revenue"
+ ]
+}

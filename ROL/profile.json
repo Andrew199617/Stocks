@@ -1,0 +1,289 @@
+{
+ "ticker": "ROL",
+ "cik": 84839,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T22:55:17-04:00",
+ "newest_filing_date": "2026-07-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000084839.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000008/rol-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ROL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ROL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ROLLINS INC",
+  "cik": 84839,
+  "description": {
+   "text": "Rollins, Inc. (“Rollins,” “we,” “us,” “our,” or the “Company”), is an international services company headquartered in Atlanta, Georgia. Through our family of leading brands, we provide essential pest and wildlife control services and protection against termite damage, rodents and insects to more than two million residential and commercial customers from more than 800 Company-owned and franchised locations in approximately 70 countries. Over the course of our lengthy operating history, we have garnered a reputation for providing great customer service. The contracted and recurring nature of our services provide us with visibility into a significant portion of our future revenue. In 1964, brothers O. Wayne and John Rollins acquired Orkin Exterminating Company and in 1965 we changed our name from Rollins Broadcasting, Inc to Rollins, Inc. In 1968, Rollins began trading on the New York Stock Exchange under the symbol “ROL.” Since then, we have grown into a premier global consumer and commercial services company with numerous industry leading brands including Aardwolf Pestkare, Clark Pest Control, Crane Pest Control, Critter Control, Fox Pest Control, HomeTeam Pest Defense, Industrial Fumigant Company, McCall Service, MissQuito, Northwest Exterminating, OPC Pest Services, Orkin, Orkin Australia, Orkin Canada, PermaTreat, Safeguard, Saela Pest Control, Trutech, Waltham Services, Western Pest Services, and more.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0000084839-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000008/rol-20251231.htm"
+  },
+  "description_short": "Rollins, Inc. (ROL) is a premier global consumer and commercial services company. Through its family of leading brands, the Company and its franchises provide essential pest control services and protection against termite damage, rodents, and insects to more than 2.8 million customers in North America, South America, Europe, Asia, Africa, and Australia, with approximately 22,000 employees from more than 850 locations. Rollins is parent to Aardwolf Pestkare, Clark Pest Control, Crane Pest Control, Critter Control, Fox Pest Control, HomeTeam Pest Defense, Industrial Fumigant Company, McCall Service, MissQuito, Northwest Exterminating, OPC Pest Services, Orkin, Orkin Australia, Orkin Canada, PermaTreat, Safeguard, Saela Pest Control, Trutech, Waltham Services, Western Pest Services, and more.",
+  "industry": "Diversified Commercial Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7340",
+  "sic_description": "Services-To Dwellings & Other Buildings",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.rollins.com",
+  "headquarters": "Atlanta, Georgia",
+  "address": {
+   "street": "2170 Piedmont Road, N.E.",
+   "city": "Atlanta",
+   "state": "Georgia",
+   "zip": "30324",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "4048882000",
+  "employees": {
+   "count": 21946,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company had 21,946 employees.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000008/rol-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-22",
+  "first_sec_filing_form": "S-8",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000084839&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000084839-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000040/rol-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000084839-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000038/rol-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000084839-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000032/rol-20260526.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-28",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000084839-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000029/rol-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000084839-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000022/rol-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000084839-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000019/rol-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000084839-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000014/rol-20260317.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000084839-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000008/rol-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000084839-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483926000003/rol-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-051604",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000162828025051604/rol-20251110.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000084839-25-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000105/rol-20251110.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000084839-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000102/rol-20251110.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000084839-25-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000100/rol-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000084839-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000097/rol-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000084839-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000087/rol-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000084839-25-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000084/rol-20250723.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000084839-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000069/rol-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-22",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000084839-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000067/rol-20250422.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000084839-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000008483925000063/rol-20250423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-21",
+   "period": "2025-03-21",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000950142-25-000808",
+   "url": "https://www.sec.gov/Archives/edgar/data/84839/000095014225000808/eh250606258_8k.htm"
+  }
+ ],
+ "warnings": []
+}

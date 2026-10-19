@@ -1,0 +1,491 @@
+{
+ "ticker": "BWXT",
+ "cik": 1486957,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001486957-26-000007",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000007/bwxt-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001486957-26-000028",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000028/bwxt-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001486957-26-000042",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": null
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bwxt:GovernmentOperationsSegmentMember",
+     "label": "Government Operations Segment",
+     "values": [
+      2031337000,
+      2183040000,
+      2350090000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8137,
+      0.8074,
+      0.7348
+     ],
+     "growth_yoy": [
+      null,
+      0.0747,
+      0.0765
+     ]
+    },
+    {
+     "member": "bwxt:CommercialOperationsSegmentMember",
+     "label": "Commercial Operations Segment",
+     "values": [
+      466344000,
+      523972000,
+      853070000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1868,
+      0.1938,
+      0.2667
+     ],
+     "growth_yoy": [
+      null,
+      0.1236,
+      0.6281
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -1372000,
+      -3358000,
+      -4735000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0005,
+      -0.0012,
+      -0.0015
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2496309000,
+     2703654000,
+     3198425000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q1 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwxt:GovernmentOperationsSegmentMember",
+     "label": "Government Operations Segment",
+     "values": [
+      555286000,
+      577901000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8139,
+      0.6718
+     ],
+     "growth_yoy": [
+      null,
+      0.0407
+     ]
+    },
+    {
+     "member": "bwxt:CommercialOperationsSegmentMember",
+     "label": "Commercial Operations Segment",
+     "values": [
+      128310000,
+      283645000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1881,
+      0.3297
+     ],
+     "growth_yoy": [
+      null,
+      1.2106
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -1338000,
+      -1329000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.002,
+      -0.0015
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     682258000,
+     860217000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q1 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwxt:GovernmentOperationsSegmentMember",
+     "label": "Government Operations Segment",
+     "values": [
+      97746000,
+      99141000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0115,
+      0.9292
+     ],
+     "growth_yoy": [
+      null,
+      0.0143
+     ]
+    },
+    {
+     "member": "bwxt:CommercialOperationsSegmentMember",
+     "label": "Commercial Operations Segment",
+     "values": [
+      6466000,
+      24029000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0669,
+      0.2252
+     ],
+     "growth_yoy": [
+      null,
+      2.7162
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -7582000,
+      -16479000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0785,
+      -0.1545
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     96630000,
+     106691000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2065929000,
+      2230205000,
+      2431324000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8276,
+      0.8249,
+      0.7602
+     ],
+     "growth_yoy": [
+      null,
+      0.0795,
+      0.0902
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      390257000,
+      431259000,
+      688609000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1563,
+      0.1595,
+      0.2153
+     ],
+     "growth_yoy": [
+      null,
+      0.1051,
+      0.5967
+     ]
+    },
+    {
+     "member": "bwxt:OtherGeographicLocationMember",
+     "label": "Other Geographic Location",
+     "values": [
+      41495000,
+      45548000,
+      83227000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0166,
+      0.0168,
+      0.026
+     ],
+     "growth_yoy": [
+      null,
+      0.0977,
+      0.8272
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2496309000,
+     2703654000,
+     3198425000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q1 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      565630000,
+      598852000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8291,
+      0.6962
+     ],
+     "growth_yoy": [
+      null,
+      0.0587
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      101776000,
+      232618000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1492,
+      0.2704
+     ],
+     "growth_yoy": [
+      null,
+      1.2856
+     ]
+    },
+    {
+     "member": "bwxt:OtherGeographicLocationMember",
+     "label": "Other Geographic Location",
+     "values": [
+      16190000,
+      30076000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0237,
+      0.035
+     ],
+     "growth_yoy": [
+      null,
+      0.8577
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     682258000,
+     860217000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "10-Q 0001486957-26-000042 (2026-06-30): no XBRL instance document found"
+ ],
+ "complete": false
+}

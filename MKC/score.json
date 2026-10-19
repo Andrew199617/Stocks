@@ -1,0 +1,85 @@
+{
+ "ticker": "MKC",
+ "name": "McCormick & Company, Incorporated",
+ "sector": "Consumer Staples / Spices, seasonings & flavorings",
+ "price": 46.35,
+ "market_cap_b": 12.49,
+ "engine_version": 5,
+ "base_oe_per_share": 3.2770144819903453,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Category-defining brands and demonstrated pricing power (Q3 FY26 price +2.2%, gross margin +190bp), but ROIC ran only 7.2-9.5% across FY2020-FY2025 (fundamentals.json roic_proxy) \u2014 at roughly the cost of capital \u2014 gross margin is recovering (35.8% FY22 trough to 39.1% TTM) rather than at new highs, organic growth is 1-3% with negative volume/mix, and goodwill is ~40% of assets because growth has been acquired, not compounded.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 11 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 4.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (11.9%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 13.1,
+   "irr": 0.0565
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 19.4,
+   "irr": 0.0751
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 26.56,
+   "irr": 0.0965
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 34.5,
+   "irr": 0.119
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 46.24,
+   "irr": 0.1497
+  }
+ },
+ "iv_at_15": 25.55,
+ "iv_at_12": 33.61,
+ "implied_irr": 0.0939,
+ "implied_irr_base_case": 0.0965,
+ "upside_at_15_pct": -44.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Durable spice/flavor franchise, moat 5/10, but at $46.35 it doesn't clear 15% on any defensible standalone base (weighted IRR 9.4%, IV@15% $25.55; clears 15% only below ~$26) \u2014 and the pending Unilever Foods combination, not standalone DCF value, is what the price is really trading on.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0751,
+ "irr_bull": 0.119,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 18.26,
+ "iv_at_25": 14.21,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3900400000,
+ "shares_diluted_latest": 269400000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 global spices/seasonings position with unmatched retail shelf presence and distribution",
+  "Proven pricing power \u2014 Q3 FY26 price +2.2% and gross margin +190bp despite 6-7% guided cost inflation",
+  "Flavor Solutions B2B embeddedness with packaged-food makers and foodservice",
+  "Brand portfolio breadth across consumer and foodservice channels (McCormick, Frank's RedHot, French's, Cholula, Lawry's)"
+ ],
+ "moat_against": [
+  "ROIC ~8-9% through the cycle \u2014 at/barely above the cost of capital, no wide surplus",
+  "Organic growth only 1-3% (FY26 guided) with volume/mix negative (-0.3% Q3 FY26); growth comes from pricing and M&A",
+  "Private-label/retailer pressure in a low-switching-cost category",
+  "Commodity and freight cost exposure (6-7% cost inflation guided FY26)",
+  "Goodwill ~40% of assets \u2014 balance sheet carries the acquisition strategy"
+ ]
+}

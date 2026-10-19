@@ -1,0 +1,251 @@
+{
+ "ticker": "TME",
+ "cik": 1744676,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T17:40:29-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001744676.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526160257/tme-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TME/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TME/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Tencent Music Entertainment Group",
+  "cik": 1744676,
+  "description": {
+   "text": "QQ Music: In 2003, QQ, the social network operated by Tencent, launched its online music services. In 2005, QQ Music commenced operations. Kugou: In 2004, Kugou Music was launched. In February 2006, Guangzhou Kugou Computer Technology Co., Ltd., or Guangzhou Kugou, was incorporated in China and commenced the operations of Kugou Music. In September 2012, Guangzhou Kugou commenced offering its live streaming services through Fanxing Live, which was rebranded to Kugou Live in December 2016.",
+   "source": "20-F Item 4 Information on the Company",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-160257",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526160257/tme-20251231.htm"
+  },
+  "description_short": "Tencent Music Entertainment Group (NYSE: TME and HKEX: 1698) is the leading all-in-one music and audio entertainment platform in China, operating the country's highly popular and innovative music and audio apps: QQ Music, Kugou Music, Kuwo Music, WeSing and Ximalaya. TME's mission is to create endless possibilities with music and technology. Powered by its content-and-platform dual-engine strategy, TME's expansive offerings extend the value of IP beyond online streaming into offline concerts, artist merchandise, and other IP-centric experiences.",
+  "industry": "Broadcasting",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4832",
+  "sic_description": "Radio Broadcasting Stations",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.tencentmusic.com",
+  "headquarters": "Shenzhen, Nanshan District, China",
+  "address": {
+   "street": "Unit 3, Building D, Kexing Science Park, Kejizhongsan Avenue Hi-TechPark, Nanshan District",
+   "city": "Shenzhen",
+   "state": null,
+   "zip": "518057",
+   "country": "China",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "metro": "Nanshan District",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "86 755 86013388",
+  "employees": {
+   "count": 5690,
+   "as_of": "2025-12-31",
+   "evidence": "We had 5,185, 5,353 and 5,690 full-time employees as of December 31, 2023, 2024 and 2025, respectively.",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526160257/tme-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2018-10-02",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001744676&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-015462",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326015462/dp254872_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-388551",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526388551/d548784d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-388222",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526388222/d127461d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-382837",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526382837/d103245d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-381951",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526381951/d124958d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-378527",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526378527/d894888d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-378354",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526378354/d18190d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-012141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326012141/dp251620_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-14",
+   "period": "2026-07-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-010575",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326010575/dp249944_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-009743",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326009743/dp248818_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-008111",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326008111/dp246535_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007511",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326007511/dp246684_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326007307/dp246808_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326007081/dp246528_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-006882",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326006882/dp246385_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-005853",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326005853/dp245349_6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-26-160257",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526160257/tme-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-005672",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326005672/dp245189_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-003848",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326003848/dp243494_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-001873",
+   "url": "https://www.sec.gov/Archives/edgar/data/1744676/000095010326001873/dp241299_6k.htm"
+  }
+ ],
+ "warnings": []
+}

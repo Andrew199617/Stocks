@@ -1,0 +1,87 @@
+{
+ "ticker": "SKM",
+ "name": "SK Telecom Co., Ltd.",
+ "sector": "Communication Services / Telecommunications (South Korea)",
+ "price": 31.96,
+ "market_cap_b": 6.82,
+ "engine_version": 5,
+ "base_oe_per_share": 4.359670202184438,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "South Korea's largest mobile carrier with spectrum/network scale, the leading brand, SK Broadband fixed-line/IPTV and a fast-growing AI data-center business (AIDC revenue +34.9% YoY in FY2025), and ROIC proxy that recovered to 11.9%/12.6%/13.6% in FY2022-24 (fundamentals.json) after the SK Square spin-off shrank the equity base. Against: a saturated, three-player market (KT, LG U+) with government tariff pressure and no real pricing power, KRW revenue CAGR negative over 5 and 3 years, the April 2025 cybersecurity breach (FY2025 operating income -41.1% on USIM replacement, fee waivers and the customer appreciation package) showing trust is fragile, and a chaebol governance / Korea discount. Gross margin is not presented in its IFRS filings (no cost-of-revenue tag in fundamentals.json); FY2024 operating margin was ~9.4% on KRW figures. A 5 gives CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 22 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 13.8%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2022, 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency KRW converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x0.5555555555555556 ordinary shares per ADS (SK Telecom Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-29), cover page: the registered American Depositary Shares are 'each representing five-ninths of one share of Common Stock' (NYSE: SKM) \u2014 i.e. 5/9 ordinary share per ADS, the ratio in place since the October 2021 5-for-1 stock split (par W500 to W100)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2017, 2018, 2019 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "TIER_BAND: bear-case tier C (11.5%) vs bull-case tier B (19.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 15.88,
+   "irr": 0.0814
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 23.51,
+   "irr": 0.1146
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 32.21,
+   "irr": 0.151
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 43.64,
+   "irr": 0.1943
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 60.97,
+   "irr": 0.2518
+  }
+ },
+ "iv_at_15": 31.4,
+ "iv_at_12": 41.1,
+ "implied_irr": 0.1478,
+ "implied_irr_base_case": 0.151,
+ "upside_at_15_pct": -1.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Korea's #1 carrier, moat 5/10 \u2014 at $31.96 the ADS sits essentially at the 15% hurdle on the pre-breach FY2022-24 median base ($4.36/ADS): weighted IRR 14.8%, weighted IV@15% $31.40 vs $31.96 price, Tier C sized to the bear end (bear IRR 11.5%); clears 15% only below ~$31.40, and the breach-hit FY2025 is not yet in the engine's base.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1146,
+ "irr_bull": 0.1943,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 22.59,
+ "iv_at_25": 17.67,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -1375922880.0,
+ "shares_diluted_latest": 213428916,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Korea's #1 mobile carrier: spectrum, network scale and brand in a concentrated three-player market",
+  "ROIC proxy recovered to 13.6% by FY2024 (11.9% FY2022, 12.6% FY2023) after the SK Square spin-off",
+  "SK Broadband fixed-line/IPTV bundle plus enterprise ICT \u2014 recurring, contracted revenue",
+  "AIDC growth engine: AI data-center revenue +34.9% YoY in FY2025, Ulsan AIDC with AWS under construction"
+ ],
+ "moat_against": [
+  "Saturated market, government tariff pressure \u2014 no demonstrated pricing power; KRW revenue CAGR negative over 3 and 5 years",
+  "April 2025 cybersecurity breach: FY2025 operating income -41.1% YoY, net income -73.0% \u2014 trust and remediation costs are live",
+  "KT and LG U+ contest every segment; share gains are bought with subsidies/marketing",
+  "Chaebol governance and KRW depreciation \u2014 USD revenue fell ~10% in FY2024 on FX alone in the engine's converted series"
+ ]
+}

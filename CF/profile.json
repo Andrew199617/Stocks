@@ -1,0 +1,284 @@
+{
+ "ticker": "CF",
+ "cik": 1324404,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T16:54:49-04:00",
+ "newest_filing_date": "2026-09-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001324404.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000007/cf-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CF/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CF/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CF Industries Holdings, Inc.",
+  "cik": 1324404,
+  "description": {
+   "text": "Our mission is to provide clean energy to feed and fuel the world sustainably. With our employees focused on safe and reliable operations, environmental stewardship, and disciplined capital and corporate management, we are on a path to decarbonize our ammonia production network – the world’s largest – to enable low-carbon hydrogen and nitrogen products for energy, fertilizer, emissions abatement and other industrial activities. Our value chain consists of manufacturing complexes in the United States, Canada and the United Kingdom, an extensive storage, transportation and distribution network in North America, and logistics capabilities enabling a global reach. In July 2025, we completed a significant decarbonization project at our Donaldsonville, Louisiana, complex to enable the production of low-carbon ammonia. Additionally, we are executing further decarbonization projects in our existing network and constructing a greenfield low-carbon ammonia plant at our Blue Point complex to drive our strategy to leverage our unique capabilities to accelerate the world’s transition to clean energy. Our principal customers are cooperatives, retailers, independent fertilizer distributors, traders, wholesalers and industrial users. Our core product is anhydrous ammonia (ammonia), which contains 82% nitrogen and 18% hydrogen. Products derived from ammonia that are most often used as nitrogen fertilizers include granular urea, urea ammonium nitrate solution (UAN) and ammonium nitrate (AN).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001324404-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000007/cf-20251231.htm"
+  },
+  "description_short": "At CF Industries, our mission is to provide clean energy to feed and fuel the world sustainably. With our employees focused on safe and reliable operations, environmental stewardship, and disciplined capital and corporate management, we are on a path to decarbonize our ammonia production network - the world's largest - to enable low-carbon hydrogen and nitrogen products for energy, fertilizer, emissions abatement and other industrial activities. Our manufacturing complexes in the United States, Canada, and the United Kingdom, an unparalleled storage, transportation and distribution network in North America, and logistics capabilities enabling a global reach underpin our strategy to leverage our unique capabilities to accelerate the world's transition to clean energy.",
+  "industry": "Agricultural Chemicals",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "2870",
+  "sic_description": "Agricultural Chemicals",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.cfindustries.com",
+  "headquarters": "Northbrook, Illinois",
+  "address": {
+   "street": "2375 Waterview Drive",
+   "city": "Northbrook",
+   "state": "Illinois",
+   "zip": "60062",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(847) 405-2400",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-05-16",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001324404&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-08-31",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-105054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926105054/tm2624720d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324404-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000019/cf-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-091275",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926091275/tm2622111d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001324404-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000017/cf-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324404-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000013/cf-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-056338",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926056338/tm2613543d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001324404-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000011/cf-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-055680",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926055680/tm2613451d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-04-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-055000",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926055000/tm2613451d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-029482",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926029482/tm261459-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-15",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-028018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926028018/tm268875d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001324404-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000007/cf-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-017110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926017110/tm266764d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001324404-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000003/cf-20260218.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-01-13",
+   "period": "2026-01-05",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-26-003338",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926003338/tm263052d1_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-09",
+   "period": "2026-01-09",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-002476",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926002476/tm262708d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-001551",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465926001551/tm261965d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-12-19",
+   "period": "2025-09-05",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-25-123145",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465925123145/tm2533938d1_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-26",
+   "period": "2025-11-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-116446",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000110465925116446/tm2532058d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001324404-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440425000030/cf-20250930.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

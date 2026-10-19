@@ -1,0 +1,137 @@
+{
+ "ticker": "RBC",
+ "cik": 1324948,
+ "entity": "RBC BEARINGS INCORPORATED",
+ "fy_end": "2026-03-28",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 415700000,
+   "fy_period": [
+    "2025-03-30",
+    "2026-03-28"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 120000000,
+   "ytd_prior_period": [
+    "2025-03-30",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 171800000,
+   "ytd_current_period": [
+    "2026-03-29",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 467500000
+  },
+  "capex": {
+   "fy": 72899726.02739726,
+   "fy_period": [
+    "2025-03-30",
+    "2026-03-28"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 18224931.506849315,
+   "ytd_prior_period": [
+    "2025-03-30",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 18224931.506849315,
+   "ytd_current_period": [
+    "2026-03-29",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 72899726.02739726
+  },
+  "sbc": {
+   "fy": 34500000,
+   "fy_period": [
+    "2025-03-30",
+    "2026-03-28"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 6600000,
+   "ytd_prior_period": [
+    "2025-03-30",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 6700000,
+   "ytd_current_period": [
+    "2026-03-29",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 34600000
+  },
+  "shares_diluted": {
+   "fy": 31634888,
+   "fy_period": [
+    "2025-03-30",
+    "2026-03-28"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 31553214,
+   "ytd_prior_period": [
+    "2025-03-30",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 31714686,
+   "ytd_current_period": [
+    "2026-03-29",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 467500000,
+ "ttm_capex": 72899726.02739726,
+ "ttm_sbc": 34600000,
+ "ttm_shares_diluted": 31714686,
+ "ttm_oe_total": 360000273.9726027,
+ "ttm_oe_per_share": 11.351216719364736,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 73100000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended March 28, 2026 (filed 2026-05-15), Consolidated Statements of Cash Flows, investing line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $73.1M for FY2026, with $49.8M for FY2025 and $33.2M for FY2024 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-03-30",
+      "2026-03-28"
+     ],
+     "amount": 72899726.02739726,
+     "days": 364,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-03-30",
+      "2025-06-28"
+     ],
+     "amount": 18224931.506849315,
+     "days": 91,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-03-29",
+      "2026-06-27"
+     ],
+     "amount": 18224931.506849315,
+     "days": 91,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

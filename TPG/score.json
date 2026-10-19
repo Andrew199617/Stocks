@@ -1,0 +1,110 @@
+{
+ "ticker": "TPG",
+ "name": "TPG Inc.",
+ "sector": "Finance / Alternative Asset Management",
+ "price": 42.2,
+ "market_cap_b": 15.79,
+ "engine_version": 5,
+ "base_oe_per_share": 0.11572460118951076,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Top-tier diversified alternative manager: $327B AUM (+25% YoY), fee-earning AUM $181B with a $39B not-yet-fee-earning pipeline, record fundraising momentum ($26B in H1 2026 toward a >$50B year) and FRE margin expanding to 50% in Q2 2026 \u2014 capped at moderate-strong because LPs re-bid every vintage against equally scaled rivals, the earnings mix still leans on cyclical PE realizations, recent growth is partly acquired (Angelo Gordon, Peppertree), and unit count creeps +6.6%/yr. The filing-derived ROIC and gross-margin series are null for this filer (no operating-income or COGS tags; the consolidated balance sheet mixes fund assets), so the moat rests on the observable franchise margins \u2014 FRE margin and fee-related EBITDA margin \u2014 instead. A 6 gives CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 6.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0001880661-26-000011), Consolidated Statements of Cash Flows, investing activities line 'Purchases of fixed assets': $(28,802) thousand for FY2025, with $(28,131) thousand for FY2024 and $(16,728) thousand for FY2023 in the same statement (all in $ thousands). The line is tagged in the filing's inline XBRL under us-gaap:PaymentsForProceedsFromProductiveAssets, which the engine does not read, with identical values in EDGAR companyfacts.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear, bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "BASE_DIVERGENCE: latest FY OE/share 0.51 vs 3-yr median 0.12 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.3% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 20.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 0.85,
+   "irr": 0.0277
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 1.4,
+   "irr": 0.0299
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1.94,
+   "irr": 0.0322
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 2.65,
+   "irr": 0.0352
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 4.08,
+   "irr": 0.0414
+  }
+ },
+ "iv_at_15": 1.93,
+ "iv_at_12": 2.68,
+ "implied_irr": 0.0323,
+ "implied_irr_base_case": 0.0322,
+ "upside_at_15_pct": -95.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Top-tier diversified alt manager, moat 6/10 \u2014 standardized Tier D (weighted IRR 3.23%, IV@15% $1.93 at $42.20) is a definition artifact: consolidated-fund OCF plumbing plus a full equity-comp charge crush the engine base to $0.12/share, while on the manager's distributable-earnings definition (~$2.78/unit TTM) the same scenarios print Tier B and clear 15% at ~$46 (~$37 with a 20% margin of safety); sector misfit, confidence low.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0299,
+ "irr_bull": 0.0352,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 1.29,
+ "iv_at_25": 0.94,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 896442000,
+ "shares_diluted_latest": 374125608,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale and brand in buyout \u2014 a founding mega-fund franchise (1992) with $327B AUM (+25% YoY at Q2 2026) and LP relationships re-upped through many cycles",
+  "Durable, growing fee core \u2014 fee-earning AUM $181B plus $39B of AUM not yet earning fees as a visible pipeline; perpetual capital rose to 14% of fee-earning AUM",
+  "FRE margin expansion proves operating leverage \u2014 fee-related earnings +43% YoY in Q2 2026 at a 50% quarterly margin; Fitch TTM fee-related EBITDA margin 47.9%",
+  "Diversification and distribution \u2014 Capital, Credit (Angelo Gordon / Twin Brook), Real Estate and Market Solutions, plus wealth and insurance channels (Jackson Financial partnership: $12B of fee-earning AUM over five years)"
+ ],
+ "moat_against": [
+  "No structural pricing power \u2014 LPs re-bid every vintage against Blackstone/KKR/Apollo/Ares/Brookfield, and the mix shift toward credit compresses fee rates",
+  "Carry and realization cyclicality \u2014 PE-heavy earnings depend on exit windows; the 2026 sector selloff took the stock from ~$70 to $42 on exit/credit/AI-software fears, not on TPG's own prints",
+  "Growth partly bought, not only earned \u2014 Angelo Gordon (closed Nov 2023) and Peppertree (closed Jul 2025) stepped AUM and revenue up inorganically; integration and contingent-consideration risk",
+  "Partner economics dilute the per-share claim \u2014 diluted units +6.6%/yr (308.9M in FY2022 to 374.1M in FY2025, 384.6M TTM) and equity comp of $813,741,000 in FY2025"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 28802000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0001880661-26-000011), Consolidated Statements of Cash Flows, investing activities line 'Purchases of fixed assets': $(28,802) thousand for FY2025, with $(28,131) thousand for FY2024 and $(16,728) thousand for FY2023 in the same statement (all in $ thousands). The line is tagged in the filing's inline XBRL under us-gaap:PaymentsForProceedsFromProductiveAssets, which the engine does not read, with identical values in EDGAR companyfacts."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.2063,
+  "base_oe_with_override": 0.1157,
+  "base_oe_impact_pct": -43.908,
+  "weighted_irr_without_override": 0.0378,
+  "weighted_irr_with_override": 0.0323,
+  "weighted_irr_impact_pp": -0.55,
+  "unblocks_tier": true
+ }
+}

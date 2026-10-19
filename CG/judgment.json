@@ -1,0 +1,30 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No structural pricing power \u2014 LPs re-bid every vintage competitively among Blackstone, KKR, Apollo, Brookfield, Blue Owl and Ares; Carlyle wins allocations, it does not set the fee rate, and credit spreads have compressed as rivals scaled",
+  "No measurable ROIC or gross margin in the filings \u2014 operating income and COGS are not captioned (roic_proxy and gross_margin are null throughout fundamentals.json), so there is no filed return-on-capital series that stayed above the cost of capital through a cycle to underwrite a higher score",
+  "Earnings geared to the fundraising / exit cycle \u2014 performance revenues and marks swing GAAP revenue violently (FY2021 $8,782,100,000 to FY2023 $2,963,900,000 in financials_history.csv) and a closed exit market hits realizations, fundraising and marks at once",
+  "Consolidated balance-sheet opacity \u2014 GAAP OCF is dominated by consolidated fund / insurance-entity flows (FY2025 OCF -$3,275,500,000 vs net income +$808,700,000), consolidated-fund liabilities sit inside total liabilities of $22,058,900,000 with no engine-readable debt tag (the 10-K face shows corporate Debt obligations of $2,997,000,000 and Loans payable of Consolidated Funds of $10,426,000,000, neither captured by the engine's debt tags), and SBC is heavy and recurring ($374,700,000 in FY2025, $414,100,000 TTM)"
+ ],
+ "moat_for": [
+  "Scale and diversification \u2014 $485.5B total AUM and $334.4B fee-earning AUM at June 30, 2026 across Global Private Equity ($162.7B), Global Credit ($211.1B) and Carlyle AlpInvest ($111.7B), so no single strategy or vintage carries the firm",
+  "Recurring fee engine is growing \u2014 record fee-related earnings of $358M in Q2 2026 (+11% YoY, 47% FRE margin) and record FRE of $1.2B in FY2025 (+12% YoY) on the company's segment basis, with distributable earnings of $472M ($1.07/share) in Q2 2026",
+  "Sticky long-dated capital and fundraising momentum \u2014 $56B of inflows over the twelve months to Q2 2026 ($16.8B in the quarter), $28B of pending fee-earning AUM, and a rapidly growing wealth channel (Evergreen wealth assets +60% YoY to $20B)",
+  "Sustained capital return on the manager's own cash earnings \u2014 $0.35/share quarterly dividend ($1.40 TTM DPS in fundamentals.json), dividends paid TTM $504,500,000 and buybacks TTM $915,300,000"
+ ],
+ "moat_justification": "Diversified top-tier alternative manager ($485.5B AUM, $334.4B fee-earning AUM at June 30, 2026; Global Credit $211.1B, Global Private Equity $162.7B, AlpInvest $111.7B) with a growing recurring fee engine \u2014 record segment fee-related earnings of $358M in Q2 2026 (+11% YoY at a 47% FRE margin) and $1.2B in FY2025 (+12% YoY) \u2014 and sticky long-dated capital ($56B of LTM inflows). Capped at moderate because the product is competitively allocated risk capital with no structural pricing power (LPs re-bid every vintage among Blackstone/KKR/Apollo/Brookfield/Blue Owl), earnings are geared to the fundraising and exit cycle, and the filed evidence the rubric asks for does not exist: roic_proxy is null in every year of fundamentals.json (the filer captions no operating income) and gross_margin is null from FY2018 onward (no COGS caption), so no ROIC-above-cost-of-capital history can be quoted. A 5 gives CAP 8.5 years.",
+ "moat_score": 5,
+ "name": "Carlyle Group Inc.",
+ "one_liner": "Diversified alt manager with a record fee engine, moat 5/10 \u2014 Tier F on this screen: standardized owner's earnings are negative in 4 of the last 5 years (normalized base -$3.55/share, FY2025 -$10.11/share, TTM -$12.33/share) because consolidated GAAP OCF capitalizes consolidated-fund flows, not the manager's distributable earnings (segment FRE was a record $1.2B in FY2025); it does not clear 15% at any price on current OE numbers and no hurdle-clearing price is computed on a negative base.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Finance / Alternative Asset Management",
+ "tier_override": null,
+ "tier_override_reason": null
+}

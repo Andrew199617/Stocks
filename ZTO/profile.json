@@ -1,0 +1,249 @@
+{
+ "ticker": "ZTO",
+ "cik": 1677250,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T22:07:00-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001677250.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926044613/zto-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ZTO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ZTO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ZTO Express (Cayman) Inc.",
+  "cik": 1677250,
+  "description": {
+   "text": "We are a leading express delivery company in China. Through our network and together with our network partners, we provide domestic and international express delivery services supplemented by other value-added services. We have developed an extensive and reliable delivery network in China. As of December 31, 2025, our network infrastructure consists of 93 sorting hubs with 596 automation lines, approximately 3,800 line-haul routes serviced by over 10,000 line-haul vehicles that we own and operate, and over 6,000 direct network partners operating over 31,000 pickup/delivery outlets and approximately 100,000 last-mile posts. Our network covers over 99% of cities and counties in China.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-044613",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926044613/zto-20251231x20f.htm"
+  },
+  "description_short": "ZTO Express (Cayman) Inc. (NYSE: ZTO and SEHK: 2057) ('ZTO' or the 'Company') is a leading and fast-growing express delivery company in China. ZTO provides express delivery service as well as other value-added logistics services through its extensive and reliable nationwide network coverage in China. ZTO operates a highly scalable network partner model, which the Company believes is best suited to support the significant growth of e-commerce in China. The Company leverages its network partners to provide pickup and last-mile delivery services, while controlling the mission-critical line-haul transportation and sorting network within the express delivery service value chain.",
+  "industry": "Trucking Freight/Courier Services",
+  "sector": "Industrials",
+  "region": "Asia",
+  "sic": "4210",
+  "sic_description": "Trucking & Courier Services (No Air)",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://ir.zto.com",
+  "headquarters": "Shanghai, People’s Republic of China",
+  "address": {
+   "street": "Building One, No. 1685 Huazhi Road Qingpu District",
+   "city": "Shanghai",
+   "state": null,
+   "zip": "201708",
+   "country": "People’s Republic of China",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-17"
+  },
+  "phone": "8621 59139988",
+  "employees": {
+   "count": 23399,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had a total of 23,399 employees.",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926044613/zto-20251231x20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2016-09-30",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001677250&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-116379",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926116379/tm2627652d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-115248",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926115248/tm2627434d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-113482",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926113482/tm2627018d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-111134",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926111134/tm2626456d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-109097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926109097/tm2625818d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-107237",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926107237/tm2625367d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-106860",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926106860/tm2625086d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-105669",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926105669/tm2624922d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-103533",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926103533/tm2624345d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-099864",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926099864/tm2623865d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-098506",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926098506/tm2623526d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-097536",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926097536/tm2623375d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-090001",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926090001/tm2622171d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-087762",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926087762/tm2621565d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-086058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926086058/tm2621184d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-13",
+   "period": "2026-07-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-082789",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926082789/tm2620222d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-080574",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926080574/tm2619776d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-078479",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926078479/tm2619261d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-076469",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926076469/tm2618493d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-076148",
+   "url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926076148/tm2618446d1_6k.htm"
+  }
+ ],
+ "warnings": []
+}

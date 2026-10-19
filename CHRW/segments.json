@@ -1,0 +1,918 @@
+{
+ "ticker": "CHRW",
+ "cik": 1043277,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001043277-26-000009",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000009/chrw-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001043277-26-000016",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000016/chrw-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001043277-26-000031",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000031/chrw-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "chrw:NorthAmericanServiceTransportationNASTMember",
+     "label": "North American Service Transportation (NAST)",
+     "values": [
+      12471075000,
+      11727539000,
+      11562714000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7087,
+      0.6616,
+      0.7123
+     ],
+     "growth_yoy": [
+      null,
+      -0.0596,
+      -0.0141
+     ]
+    },
+    {
+     "member": "chrw:GlobalForwardingMember",
+     "label": "Global Forwarding",
+     "values": [
+      2997704000,
+      3805018000,
+      3090018000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1704,
+      0.2147,
+      0.1904
+     ],
+     "growth_yoy": [
+      null,
+      0.2693,
+      -0.1879
+     ]
+    },
+    {
+     "member": "chrw:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      2127664000,
+      2192399000,
+      1580031000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1209,
+      0.1237,
+      0.0973
+     ],
+     "growth_yoy": [
+      null,
+      0.0304,
+      -0.2793
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17596443000,
+     17724956000,
+     16232763000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "chrw:NorthAmericanServiceTransportationNASTMember",
+     "label": "North American Service Transportation (NAST)",
+     "values": [
+      2868420000,
+      2918227000,
+      2947323000,
+      3593269000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7088,
+      0.7055,
+      0.7345,
+      0.7283
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0275,
+      0.2313
+     ]
+    },
+    {
+     "member": "chrw:GlobalForwardingMember",
+     "label": "Global Forwarding",
+     "values": [
+      774888000,
+      797800000,
+      664730000,
+      896604000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1915,
+      0.1929,
+      0.1656,
+      0.1817
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1422,
+      0.1238
+     ]
+    },
+    {
+     "member": "chrw:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      403432000,
+      420516000,
+      400881000,
+      444225000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0997,
+      0.1017,
+      0.0999,
+      0.09
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0063,
+      0.0564
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4046740000,
+     4136543000,
+     4012934000,
+     4934098000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "chrw:NorthAmericanServiceTransportationNASTMember",
+     "label": "North American Service Transportation (NAST)",
+     "values": [
+      459960000,
+      531292000,
+      621836000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8938,
+      0.794,
+      0.7822
+     ],
+     "growth_yoy": [
+      null,
+      0.1551,
+      0.1704
+     ]
+    },
+    {
+     "member": "chrw:GlobalForwardingMember",
+     "label": "Global Forwarding",
+     "values": [
+      85830000,
+      212476000,
+      183783000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1668,
+      0.3175,
+      0.2312
+     ],
+     "growth_yoy": [
+      null,
+      1.4755,
+      -0.135
+     ]
+    },
+    {
+     "member": "chrw:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -31183000,
+      -74627000,
+      -10658000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0606,
+      -0.1115,
+      -0.0134
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     514607000,
+     669141000,
+     794961000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "chrw:NorthAmericanServiceTransportationNASTMember",
+     "label": "North American Service Transportation (NAST)",
+     "values": [
+      143671000,
+      163991000,
+      145130000,
+      189845000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8124,
+      0.7595,
+      0.8261,
+      0.7423
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0102,
+      0.1577
+     ]
+    },
+    {
+     "member": "chrw:GlobalForwardingMember",
+     "label": "Global Forwarding",
+     "values": [
+      42943000,
+      51330000,
+      31684000,
+      60970000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2428,
+      0.2377,
+      0.1803,
+      0.2384
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2622,
+      0.1878
+     ]
+    },
+    {
+     "member": "chrw:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -9761000,
+      598000,
+      -1128000,
+      4928000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0552,
+      0.0028,
+      -0.0064,
+      0.0193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      7.2408
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     176853000,
+     215919000,
+     175686000,
+     255743000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "chrw:NorthAmericanServiceTransportationNASTMember",
+     "label": "North American Service Transportation (NAST)",
+     "values": [
+      3008459000,
+      2874701000,
+      2853372000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5758,
+      0.5426,
+      0.5641
+     ],
+     "growth_yoy": [
+      null,
+      -0.0445,
+      -0.0074
+     ]
+    },
+    {
+     "member": "chrw:GlobalForwardingMember",
+     "label": "Global Forwarding",
+     "values": [
+      1094895000,
+      1335178000,
+      1142015000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2095,
+      0.252,
+      0.2258
+     ],
+     "growth_yoy": [
+      null,
+      0.2195,
+      -0.1447
+     ]
+    },
+    {
+     "member": "chrw:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      1121926000,
+      1088047000,
+      1062994000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2147,
+      0.2054,
+      0.2101
+     ],
+     "growth_yoy": [
+      null,
+      -0.0302,
+      -0.023
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5225280000,
+     5297926000,
+     5058381000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "chrw:NorthAmericanServiceTransportationNASTMember",
+     "label": "North American Service Transportation (NAST)",
+     "values": [
+      2989401000,
+      2971926000,
+      3095674000,
+      3453880000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.572,
+      0.5584,
+      0.5913,
+      0.5911
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0355,
+      0.1622
+     ]
+    },
+    {
+     "member": "chrw:GlobalForwardingMember",
+     "label": "Global Forwarding",
+     "values": [
+      1292915000,
+      1332889000,
+      1098418000,
+      1275412000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2474,
+      0.2505,
+      0.2098,
+      0.2183
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1504,
+      -0.0431
+     ]
+    },
+    {
+     "member": "chrw:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      943798000,
+      1017096000,
+      1041327000,
+      1114214000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1806,
+      0.1911,
+      0.1989,
+      0.1907
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1033,
+      0.0955
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5226114000,
+     5321911000,
+     5235419000,
+     5843506000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "chrw:TransportationCustomersFreightMember",
+     "label": "Transportation Customer\u2019s Freight",
+     "values": [
+      16372660000,
+      16353745000,
+      14823804000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9305,
+      0.9226,
+      0.9132
+     ],
+     "growth_yoy": [
+      null,
+      -0.0012,
+      -0.0936
+     ]
+    },
+    {
+     "member": "chrw:SourcingMember",
+     "label": "Sourcing",
+     "values": [
+      1223783000,
+      1371211000,
+      1408959000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0695,
+      0.0774,
+      0.0868
+     ],
+     "growth_yoy": [
+      null,
+      0.1205,
+      0.0275
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17596443000,
+     17724956000,
+     16232763000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "chrw:TransportationCustomersFreightMember",
+     "label": "Transportation Customer\u2019s Freight",
+     "values": [
+      3721915000,
+      3746660000,
+      3643711000,
+      4524773000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9197,
+      0.9057,
+      0.908,
+      0.917
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.021,
+      0.2077
+     ]
+    },
+    {
+     "member": "chrw:SourcingMember",
+     "label": "Sourcing",
+     "values": [
+      324825000,
+      389883000,
+      369223000,
+      409325000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0803,
+      0.0943,
+      0.092,
+      0.083
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1367,
+      0.0499
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4046740000,
+     4136543000,
+     4012934000,
+     4934098000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      14795659000,
+      14872311000,
+      14339494000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8408,
+      0.8391,
+      0.8834
+     ],
+     "growth_yoy": [
+      null,
+      0.0052,
+      -0.0358
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      2800784000,
+      2852645000,
+      1893269000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1592,
+      0.1609,
+      0.1166
+     ],
+     "growth_yoy": [
+      null,
+      0.0185,
+      -0.3363
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     17596443000,
+     17724956000,
+     16232763000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

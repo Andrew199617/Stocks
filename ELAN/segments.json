@@ -1,0 +1,547 @@
+{
+ "ticker": "ELAN",
+ "cik": 1739104,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001739104-26-000012",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000012/elan-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001739104-26-000030",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000030/elan-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001739104-26-000043",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000043/elan-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "elan:PetHealthMember",
+     "label": "Pet Health",
+     "values": [
+      2104000000,
+      2143000000,
+      2300000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4763,
+      0.4828,
+      0.4878
+     ],
+     "growth_yoy": [
+      null,
+      0.0185,
+      0.0733
+     ]
+    },
+    {
+     "member": "elan:CattleMember",
+     "label": "Cattle",
+     "values": [
+      949000000,
+      1007000000,
+      1125000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2149,
+      0.2269,
+      0.2386
+     ],
+     "growth_yoy": [
+      null,
+      0.0611,
+      0.1172
+     ]
+    },
+    {
+     "member": "elan:PoultryMember",
+     "label": "Poultry",
+     "values": [
+      765000000,
+      796000000,
+      858000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1732,
+      0.1793,
+      0.182
+     ],
+     "growth_yoy": [
+      null,
+      0.0405,
+      0.0779
+     ]
+    },
+    {
+     "member": "elan:SwineMember",
+     "label": "Swine",
+     "values": [
+      382000000,
+      366000000,
+      379000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0865,
+      0.0825,
+      0.0804
+     ],
+     "growth_yoy": [
+      null,
+      -0.0419,
+      0.0355
+     ]
+    },
+    {
+     "member": "elan:ContractManufacturingMember",
+     "label": "Contract Manufacturing",
+     "values": [
+      42000000,
+      46000000,
+      53000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0095,
+      0.0104,
+      0.0112
+     ],
+     "growth_yoy": [
+      null,
+      0.0952,
+      0.1522
+     ]
+    },
+    {
+     "member": "elan:AquaMember",
+     "label": "Aqua",
+     "values": [
+      175000000,
+      81000000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0396,
+      0.0182,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -0.5371,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4417000000,
+     4439000000,
+     4715000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "elan:PetHealthMember",
+     "label": "Pet Health",
+     "values": [
+      635000000,
+      643000000,
+      710000000,
+      718000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5323,
+      0.5181,
+      0.5179,
+      0.5249
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1181,
+      0.1166
+     ]
+    },
+    {
+     "member": "elan:CattleMember",
+     "label": "Cattle",
+     "values": [
+      272000000,
+      268000000,
+      316000000,
+      313000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.228,
+      0.216,
+      0.2305,
+      0.2288
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1618,
+      0.1679
+     ]
+    },
+    {
+     "member": "elan:PoultryMember",
+     "label": "Poultry",
+     "values": [
+      189000000,
+      215000000,
+      230000000,
+      223000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1584,
+      0.1732,
+      0.1678,
+      0.163
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2169,
+      0.0372
+     ]
+    },
+    {
+     "member": "elan:SwineMember",
+     "label": "Swine",
+     "values": [
+      85000000,
+      100000000,
+      96000000,
+      97000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0712,
+      0.0806,
+      0.07,
+      0.0709
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1294,
+      -0.03
+     ]
+    },
+    {
+     "member": "elan:ContractManufacturingMember",
+     "label": "Contract Manufacturing",
+     "values": [
+      12000000,
+      15000000,
+      19000000,
+      17000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0101,
+      0.0121,
+      0.0139,
+      0.0124
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5833,
+      0.1333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1193000000,
+     1241000000,
+     1371000000,
+     1368000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      2434000000,
+      2403000000,
+      2481000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5511,
+      0.5413,
+      0.5262
+     ],
+     "growth_yoy": [
+      null,
+      -0.0127,
+      0.0325
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1983000000,
+      2036000000,
+      2234000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4489,
+      0.4587,
+      0.4738
+     ],
+     "growth_yoy": [
+      null,
+      0.0267,
+      0.0972
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4417000000,
+     4439000000,
+     4715000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      639000000,
+      648000000,
+      766000000,
+      705000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5356,
+      0.5222,
+      0.5587,
+      0.5154
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1987,
+      0.088
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      554000000,
+      593000000,
+      605000000,
+      663000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4644,
+      0.4778,
+      0.4413,
+      0.4846
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0921,
+      0.118
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1193000000,
+     1241000000,
+     1371000000,
+     1368000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (elan:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (elan:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (elan:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (elan:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Farm Animal' (elan:FarmAnimalMember) dropped: it is the parent of Aqua, Cattle, Poultry, Swine in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Farm Animal' (elan:FarmAnimalMember) dropped: it is the parent of Cattle, Poultry, Swine in the filing's definition linkbase"
+ ],
+ "complete": true
+}

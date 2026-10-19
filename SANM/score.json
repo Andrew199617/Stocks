@@ -1,0 +1,88 @@
+{
+ "ticker": "SANM",
+ "name": "Sanmina Corporation",
+ "sector": "Industrials / EMS \u2014 AI infrastructure manufacturing",
+ "price": 175.67,
+ "market_cap_b": 9.69,
+ "engine_version": 5,
+ "base_oe_per_share": 9.147084373981974,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Weak moat: mid-teens ROIC through a cycle and sticky complex/regulated programs plus ZT rack-scale integration, but 8-9% gross margins, no pricing power, re-biddable programs and rising hyperscaler concentration cap it.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 7.43 vs 3-yr median 3.01 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.8%) vs bull-case tier C (11.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 28.68,
+   "irr": 0.0441
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 60.21,
+   "irr": 0.0679
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 91.1,
+   "irr": 0.0913
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 120.95,
+   "irr": 0.1133
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 177.98,
+   "irr": 0.1515
+  }
+ },
+ "iv_at_15": 84.5,
+ "iv_at_12": 112.65,
+ "implied_irr": 0.0869,
+ "implied_irr_base_case": 0.0913,
+ "upside_at_15_pct": -51.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real but thin-moat EMS cash generator, moat 4/10, transformed by ZT Systems \u2014 even on a cyclically flattering TTM base of $9.15/sh the weighted IRR is only 8.7% at $175.67; it clears 15% only below ~$85.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0679,
+ "irr_bull": 0.1133,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 59.23,
+ "iv_at_25": 45.36,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -625793000,
+ "shares_diluted_latest": 55178000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "ROIC proxy mid-teens through a cycle (FY21-FY25: 14.8% / 17.0% / 18.2% / 12.2% / 14.5%) on an asset-light, working-capital-disciplined model",
+  "Vertically integrated components (PCBs, backplanes, optical transceivers, enclosures) plus design/NPI services raise switching friction vs pure assembly rivals",
+  "Qualified, sticky programs in regulated markets \u2014 medical, defense, industrial/energy were 62% of FY2025 revenue",
+  "ZT Systems adds rack-scale AI integration (liquid cooling, power) and preferred-manufacturer status with AMD; US/Mexico footprint suits defense and reshoring demand"
+ ],
+ "moat_against": [
+  "Structurally thin economics: gross margin 7.8-8.8% FY21-FY25, operating margin ~4-5% \u2014 cost pass-through, no real pricing power",
+  "Programs are re-biddable and insourceable; Jabil, Flex and Celestica offer near-identical capabilities at greater scale",
+  "Customer concentration: top 10 were 51.7% of FY2025 revenue pre-ZT; post-ZT exposure concentrates further in a few hyperscale/AI programs",
+  "ZT revenue is lumpy and platform-dependent (Q2 FY26 $1.88B vs Q3 FY26 $1.1B) and rides the NVIDIA-to-AMD platform transition",
+  "Working capital absorbs cash exactly when growth accelerates \u2014 FY2023 OE/share was -$0.11 in a WC-build year"
+ ]
+}

@@ -1,0 +1,177 @@
+{
+ "ticker": "FDXF",
+ "cik": 2082247,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T14:10:17-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002082247.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2082247/000162828026053359/fdxf-20260531.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FDXF/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FDXF/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FedEx Freight Holding Company, Inc.",
+  "cik": 2082247,
+  "description": {
+   "text": "Headquartered in Memphis, Tennessee, FedEx Freight is the largest North American less-than-truckload (“LTL”) freight carrier, with industry-leading transit times and service levels, offering choice, simplicity, and reliability to meet the needs of LTL shippers while operating ethically with a commitment to “Safety Above All.” As of June 1, 2026, we had approximately 40,000 employees, over 365 locations, including approximately 355 shipping terminals (over 320 of which are in the United States) and approximately 10 linehaul relay sites, and nearly 30,000 motorized vehicles, of which nearly 17,000 are tractors, across all 50 U.S. states, Canada, and Mexico. We also offer freight delivery service to most points in Puerto Rico and the U.S. Virgin Islands. Our robust network established through almost 60 years of operations and consisting of more than 26,000 service center doors strategically positioned in high-demand regions provides critical services that facilitate the transport of goods in North America and powers the supply chains of our customers. Our services and solutions support companies of all sizes, industries, and specialties, and our proximity to our customers allows us to transport their goods quickly, reliably, and efficiently.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-05",
+   "period": "2026-05-31",
+   "accession": "0001628280-26-053359",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000162828026053359/fdxf-20260531.htm"
+  },
+  "description_short": "FedEx Freight is North America's largest less-than-truckload (LTL) carrier, delivering industry-leading published transit times, service levels, and reliability. FedEx Freight's service offerings - including Priority, Economy, and Direct - allow customers to balance speed and cost to meet their unique needs. FedEx Custom Critical, a subsidiary, provides expedited, time- and temperature-specific freight solutions, including Surface Expedite and White Glove Services, available 24/7/365. With nearly 30,000 vehicles, of which nearly 17,000 are tractors, and 40,000 dedicated team members to support its network of over 365 locations, we ensure freight arrives safely, securely, and on time across all 50 U.S. states, Canada, Mexico, Puerto Rico, and the U.S. Virgin Islands. FedEx Freight leverages operational efficiency, data-driven technology, and a focused sales organization to provide outstanding service.",
+  "industry": "Air Freight/Delivery Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4513",
+  "sic_description": "Air Courier Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0531",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.fedex.com",
+  "headquarters": "Memphis, Tennessee",
+  "address": {
+   "street": "8285 Tournament Drive",
+   "city": "Memphis",
+   "state": "Tennessee",
+   "zip": "38125",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-05"
+  },
+  "phone": "901-818-7167",
+  "employees": {
+   "count": 40000,
+   "as_of": "2026-06-01",
+   "evidence": "As of June 1, 2026, we had approximately 40,000 employees, and our exceptional network shapes our identity, reputation, and the type of business we strive to be.",
+   "form": "10-K",
+   "filed": "2026-08-05",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000162828026053359/fdxf-20260531.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2026-01-16",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002082247&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-01",
+   "items": [
+    "5.08",
+    "8.01"
+   ],
+   "description": "Shareholder nominations; Other events",
+   "accession": "0001104659-26-113295",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000110465926113295/tm2626881d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-104793",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000110465926104793/tm2624680d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-054314",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000162828026054314/fdxf-20260806.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-05",
+   "period": "2026-05-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-053359",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000162828026053359/fdxf-20260531.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-078270",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000110465926078270/tm2619027d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-045515",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000162828026045515/fdxf-20260625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-27",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.03",
+    "5.01",
+    "5.02",
+    "5.03",
+    "5.05",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Change to security holders' rights; Change in control; Officer/director change; Charter or bylaw amendment; Code of ethics change; Other events",
+   "accession": "0001104659-26-068521",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000110465926068521/tm2615735d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-063207",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000110465926063207/tm2614907d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-060223",
+   "url": "https://www.sec.gov/Archives/edgar/data/2082247/000110465926060223/tm2520565d14_8k.htm"
+  }
+ ],
+ "warnings": []
+}

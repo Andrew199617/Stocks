@@ -1,0 +1,101 @@
+{
+ "ticker": "BURL",
+ "cik": 1579298,
+ "entity": "BURLINGTON STORES, INC.",
+ "fy_end": "2026-01-31",
+ "ytd_end": "2026-08-01",
+ "inputs": {
+  "ocf": {
+   "fy": 1231382000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 150532000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 334624000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1415474000
+  },
+  "capex": {
+   "fy": 1059793000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 589241000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 532384000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 1002936000
+  },
+  "sbc": {
+   "fy": 106732000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 54264000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 68416000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 120884000
+  },
+  "shares_diluted": {
+   "fy": 64126000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 63966000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 64022000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1415474000,
+ "ttm_capex": 1002936000,
+ "ttm_sbc": 120884000,
+ "ttm_shares_diluted": 64022000,
+ "ttm_oe_total": 291654000,
+ "ttm_oe_per_share": 4.555527787323108,
+ "warnings": [],
+ "overrides_used": []
+}

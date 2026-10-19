@@ -1,0 +1,90 @@
+{
+ "ticker": "HALO",
+ "name": "Halozyme Therapeutics, Inc.",
+ "sector": "Healthcare / Biotechnology",
+ "price": 121.84,
+ "market_cap_b": 15.1,
+ "engine_version": 5,
+ "base_oe_per_share": 6.08686891852046,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Contractual royalties on already-approved blockbusters (DARZALEX SC, VYVGART Hytrulo, Phesgo, Ocrevus, Opdivo, Rybrevant SC versions) with clinical/regulatory/commercial switching costs once a co-formulated SC version wins share; gross margins 76.8-84.3% over the last five fiscal years and roic_proxy above the cost of capital through the cycle (15.1-25.1%, 2021-2025; denominator distorted by convertible-funded buybacks that shrank book equity). Capped at 7 because the core ENHANZE patent expires ~2027-2029, a large share of royalties rolls off by 2035, and Alteogen's competing hyaluronidase already powers Merck's Keytruda SC.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.1%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 4.79 vs 3-yr median 3.28 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier B (18.1%) vs bull-case tier S (26.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 99.01,
+   "irr": 0.1309
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 165.25,
+   "irr": 0.1815
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 231.9,
+   "irr": 0.221
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 321.45,
+   "irr": 0.2634
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 502.7,
+   "irr": 0.328
+  }
+ },
+ "iv_at_15": 243.61,
+ "iv_at_12": 354.56,
+ "implied_irr": 0.2264,
+ "implied_irr_base_case": 0.221,
+ "upside_at_15_pct": 99.9,
+ "tier_by_numbers": "A",
+ "tier_final": "A",
+ "confidence": "medium",
+ "one_liner": "Contractual royalty toll-booth on approved blockbusters, moat 7/10 \u2014 clears 15% at $121.84 on TTM numbers (22.6% weighted IRR, IV@15% $243.61) and on the bear case, but duration past the 2027-29 ENHANZE patent cliff is the bet; clears 15% up to $243.61, not the 25% hurdle (up to $103.09).",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1815,
+ "irr_bull": 0.2634,
+ "tier_bear": "B",
+ "tier_bull": "S",
+ "iv_at_20": 150.17,
+ "iv_at_25": 103.09,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2008810000,
+ "shares_diluted_latest": 123904000,
+ "model_fit": "modeled",
+ "alert_eligible": true,
+ "exit_alert_eligible": false,
+ "moat_for": [
+  "Contractual royalties on approved blockbusters running past the core patent date (DARZALEX SC through ~2032)",
+  "Clinical/regulatory/commercial switching costs on co-formulated SC products (~96% US conversion for DARZALEX SC)",
+  "Six material royalty contributors and broadening deal flow (five new agreements through July 2026, incl. ADCs and nucleic acids)",
+  "Near-zero-capex royalty economics (TTM capex $12.4M on TTM OCF $818.6M) with ~84% gross margin",
+  "Hypercon/SurfBio second platform with IP guided into the mid-2040s"
+ ],
+ "moat_against": [
+  "Single-platform concentration: ENHANZE is the business until Hypercon royalties arrive in the 2030s",
+  "Core ENHANZE patent expiry 2027-2029 weakens pricing power on new deals; royalty roll-off into 2035",
+  "Alteogen competition is live via Merck's Keytruda Qlex, with costly multi-country Mdase litigation",
+  "Partner concentration in a handful of blockbusters whose patent cycles Halozyme does not control",
+  "Acquisition appetite (Elektrofi, Surf Bio) converts a pure royalty stream into balance-sheet and integration risk"
+ ]
+}

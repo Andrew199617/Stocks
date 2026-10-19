@@ -1,0 +1,483 @@
+{
+ "ticker": "IREN",
+ "cik": 1878848,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001878848-26-000015",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/iren-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001878848-26-000026",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/iren-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001878848-26-000052",
+   "filed": "2026-08-27",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/iren-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iren:BitcoinMiningMember",
+     "label": "Bitcoin Mining",
+     "values": [
+      184087000,
+      484629000,
+      578212000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9834,
+      0.9673,
+      0.8178
+     ],
+     "growth_yoy": [
+      null,
+      1.6326,
+      0.1931
+     ]
+    },
+    {
+     "member": "iren:AICloudServicesMember",
+     "label": "AI Cloud Services",
+     "values": [
+      3105000,
+      16394000,
+      128795000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0166,
+      0.0327,
+      0.1822
+     ],
+     "growth_yoy": [
+      null,
+      4.2799,
+      6.8562
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     187192000,
+     501023000,
+     707007000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iren:AICloudServicesMember",
+     "label": "AI Cloud Services",
+     "values": [
+      2661000,
+      3581000,
+      6963000,
+      17298000,
+      33635000,
+      70515000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0229,
+      0.0247,
+      0.0372,
+      0.0937,
+      0.2323,
+      0.5139
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      5.5006,
+      8.3926,
+      9.1271
+     ]
+    },
+    {
+     "member": "iren:BitcoinMiningRevenueMember",
+     "label": "Bitcoin Mining Revenue",
+     "values": [
+      113483000,
+      141242000,
+      null,
+      167394000,
+      111160000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9771,
+      0.9753,
+      null,
+      0.9063,
+      0.7677,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.4751,
+      -0.213,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     116144000,
+     144823000,
+     187292000,
+     184692000,
+     144795000,
+     137225000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iren:BitcoinMiningMember",
+     "label": "Bitcoin Mining",
+     "values": [
+      184087000,
+      484629000,
+      578212000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9834,
+      0.9673,
+      0.8178
+     ],
+     "growth_yoy": [
+      null,
+      1.6326,
+      0.1931
+     ]
+    },
+    {
+     "member": "iren:AICloudServicesMember",
+     "label": "AI Cloud Services",
+     "values": [
+      3105000,
+      16394000,
+      128795000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0166,
+      0.0327,
+      0.1822
+     ],
+     "growth_yoy": [
+      null,
+      4.2799,
+      6.8562
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     187192000,
+     501023000,
+     707007000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iren:AICloudServicesMember",
+     "label": "AI Cloud Services",
+     "values": [
+      2661000,
+      3581000,
+      6963000,
+      17298000,
+      33635000,
+      70515000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0229,
+      0.0247,
+      0.0372,
+      0.0937,
+      0.2323,
+      0.5139
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      5.5006,
+      8.3926,
+      9.1271
+     ]
+    },
+    {
+     "member": "iren:BitcoinMiningRevenueMember",
+     "label": "Bitcoin Mining Revenue",
+     "values": [
+      113483000,
+      141242000,
+      null,
+      167394000,
+      111160000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9771,
+      0.9753,
+      null,
+      0.9063,
+      0.7677,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.4751,
+      -0.213,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     116144000,
+     144823000,
+     187292000,
+     184692000,
+     144795000,
+     137225000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      184087000,
+      484629000,
+      578212000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9834,
+      0.9673,
+      0.8178
+     ],
+     "growth_yoy": [
+      null,
+      1.6326,
+      0.1931
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      3105000,
+      16394000,
+      128795000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0166,
+      0.0327,
+      0.1822
+     ],
+     "growth_yoy": [
+      null,
+      4.2799,
+      6.8562
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     187192000,
+     501023000,
+     707007000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 51.4% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 51.4% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

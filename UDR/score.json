@@ -1,0 +1,105 @@
+{
+ "ticker": "UDR",
+ "name": "UDR, Inc.",
+ "sector": "Real Estate / Apartment REIT",
+ "price": 34.26,
+ "market_cap_b": 11.34,
+ "engine_version": 5,
+ "base_oe_per_share": 1.7984068738760013,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Coastal high-barrier locations, scale and a data-driven operating platform are real but modest advantages in a commodity business: apartments have no network effects, no lock-in beyond a 12-month lease and no pricing power against new supply. Filed returns confirm it \u2014 roic_proxy ran only 2.6%-6.5% over FY2020-25 and ROE 2.0%-11.5% (fundamentals.json), with the better years flattered by gains on property sales. No evidence of sustained returns well above the cost of capital, so a 7+ moat is not available. Moat 4/10 (weak), in line with apartment-REIT peers scored in this sweep (MAA 4, AMH 4).",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000074208-26-000013), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $295,440,000 FY2023, $249,886,000 FY2024, $252,857,000 FY2025; the override value is the median of the three filed years (the FY2025 figure).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 9.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 8.59,
+   "irr": 0.0546
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 11.59,
+   "irr": 0.0663
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 14.47,
+   "irr": 0.0776
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 17.52,
+   "irr": 0.0895
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 21.89,
+   "irr": 0.106
+  }
+ },
+ "iv_at_15": 14.67,
+ "iv_at_12": 19.3,
+ "implied_irr": 0.0785,
+ "implied_irr_base_case": 0.0776,
+ "upside_at_15_pct": -57.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality coastal apartment REIT, moat 4/10 \u2014 a high-barrier coastal footprint (~75% of NOI) and a record-retention operating platform are real, but apartments are a commodity and filed ROIC ran only 2.6%-6.5% over FY2020-25; on a TTM owner's-earnings base of $1.80/share after charging filed capital-improvements capex, weighted IRR is 7.9% (IV@15% $14.67) at $34.26, so it clears the 15% hurdle only below ~$15 \u2014 the REIT lens (FY2026 FFOA guided at $2.53/share, DPS $1.74) is kinder, but neither supports 15% at this price.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0663,
+ "irr_bull": 0.0895,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 10.48,
+ "iv_at_25": 8.15,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5820147000,
+ "shares_diluted_latest": 331053000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "High-barrier coastal footprint: ~75% of NOI from coastal markets (West, Northeast, Mid-Atlantic \u2014 San Francisco, Orange County, NYC, D.C.) where entitlement and land scarcity structurally limit new supply (Q2 2026 supplement / call coverage)",
+  "Scale and operating platform: 60,259 homes in 186 communities at Q2 2026, in-house development/redevelopment, and the Orion data-analytics platform \u2014 Q2 2026 resident retention hit a record 60% and blended lease-rate growth was 2.1%",
+  "Occupancy durability through a record supply wave: physical occupancy held at 96.6% in Q2 2026 with same-store revenue +1.8% and NOI +1.4%",
+  "Balance-sheet access as a competitive tool: investment-grade, ~$1B liquidity, 5.2x interest coverage (Q2 2026 supplement) \u2014 cheaper, longer capital than private landlords, funding buybacks (~11.5M shares, ~$420M since Sep 2025) below NAV"
+ ],
+ "moat_against": [
+  "Apartments are a commodity product \u2014 12-month leases, low tenant switching costs, and rent is a market price set against new supply (Sun Belt same-store NOI fell ~2% in Q2 2026 under the supply wave)",
+  "Measured returns are low: roic_proxy 2.6%-6.5% over FY2020-25 and ROE 2.0%-11.5% (fundamentals.json) \u2014 no record of returns well above the cost of capital, and the higher years are flattered by gains on property sales inside operating income",
+  "Returns are capped by replacement cost / cap-rate arbitrage \u2014 new supply is the permanent competitor, and dispositions in 2026 are clearing at only a mid-5% cap rate",
+  "Leverage is real: consolidated net debt / EBITDAre 5.6x at Q2 2026 (supplement) on $5,820,147,000 of net debt (dcf_numbers.json) \u2014 the equity is a levered claim on slow-growing rent",
+  "Mid-Atlantic / Washington D.C. exposure (~19% of same-store revenue per sector coverage) carries federal-workforce demand risk; Southeast/Southwest NOI was negative in Q2 2026"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 252857000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000074208-26-000013), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $295,440,000 FY2023, $249,886,000 FY2024, $252,857,000 FY2025; the override value is the median of the three filed years (the FY2025 figure)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 2.5405,
+  "base_oe_with_override": 1.7984,
+  "base_oe_impact_pct": -29.209,
+  "weighted_irr_without_override": 0.1006,
+  "weighted_irr_with_override": 0.0785,
+  "weighted_irr_impact_pp": -2.208,
+  "unblocks_tier": true
+ }
+}

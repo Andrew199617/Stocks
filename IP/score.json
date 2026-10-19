@@ -1,0 +1,105 @@
+{
+ "ticker": "IP",
+ "name": "International Paper Company",
+ "sector": "Materials / Paper & Packaging",
+ "price": 34.05,
+ "market_cap_b": 17.22,
+ "engine_version": 5,
+ "base_oe_per_share": 0.7803685596088755,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 3,
+ "moat_justification": "Scale and network density in North American containerboard/corrugated packaging plus integrated recycled fiber give a narrow cost advantage, but the product is a commodity priced off indices, gross margin has stayed at 28.0-29.6% for five years, returns on capital are low to negative (FY2025 net loss $3,516M on the DS Smith goodwill impairment), and the EMEA acquisition destroyed value within a year \u2014 no durable pricing power. Moat 3/10.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 11.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-27), Note 19 Stock-Based Compensation: total stock-based compensation expense (included in selling and administrative expense) $93 million for 2025, $77 million for 2024 and $53 million for 2023. EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense annual fact for 2023-2025 under the engine's tags.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share -0.47 vs 3-yr median 1.76 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 22.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 3.06,
+   "irr": 0.0351
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 4.59,
+   "irr": 0.0411
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 6.1,
+   "irr": 0.0472
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 7.98,
+   "irr": 0.0549
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 11.5,
+   "irr": 0.0693
+  }
+ },
+ "iv_at_15": 5.84,
+ "iv_at_12": 7.67,
+ "implied_irr": 0.0463,
+ "implied_irr_base_case": 0.0472,
+ "upside_at_15_pct": -82.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Commodity packaging, moat 3/10 \u2014 does not clear 15% on any defensible base: 4.6% weighted IRR on the current-perimeter TTM base (IV@15% $5.84 vs $34.05 price); it clears 15% only below ~$5.84 on TTM numbers and below ~$13.18 even on the flattering pre-deal median base.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0411,
+ "irr_bull": 0.0549,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 4.18,
+ "iv_at_25": 3.26,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 8686000000,
+ "shares_diluted_latest": 505700000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Largest North American containerboard/corrugated packaging scale \u2014 mill and box-plant network density lowers delivered cost and service lead times regionally",
+  "Integrated recycled-fiber collection and mill system \u2014 a real, if modest, input-cost and supply-security advantage",
+  "Long-standing relationships with large national food, beverage and e-commerce shippers; multi-plant supply agreements are sticky at the contract level, if not the price level"
+ ],
+ "moat_against": [
+  "Commodity containerboard/corrugated product \u2014 pricing follows published indices, customers can dual-source from Smurfit Westrock, Packaging Corp and regional mills",
+  "Gross margin stuck at 28.0-29.6% over the last five fiscal years (fundamentals.json) \u2014 no pricing-power expansion through a cycle",
+  "DS Smith EMEA business took a ~$2.5B goodwill impairment within a year of acquisition and is now reported to be saleable for under $6B vs ~$9.9B paid \u2014 the acquired franchise destroyed value",
+  "Low/negative returns on capital in the filed history: FY2025 net loss $3.516B, TTM net income -$3.438B (fundamentals.json); operating-income history is thin against a ~$38B asset base",
+  "Cyclical end demand (e-commerce, food/beverage, industrial) plus OCC/energy/transport cost exposure management cannot pass through reliably"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 77000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-27), Note 19 Stock-Based Compensation: total stock-based compensation expense (included in selling and administrative expense) $93 million for 2025, $77 million for 2024 and $53 million for 2023. EDGAR companyfacts carries no ShareBasedCompensation / AllocatedShareBasedCompensationExpense annual fact for 2023-2025 under the engine's tags."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 0.9252,
+  "base_oe_with_override": 0.7804,
+  "base_oe_impact_pct": -15.65,
+  "weighted_irr_without_override": 0.0502,
+  "weighted_irr_with_override": 0.0463,
+  "weighted_irr_impact_pp": -0.395,
+  "unblocks_tier": true
+ }
+}

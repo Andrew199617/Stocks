@@ -1,0 +1,1787 @@
+{
+ "ticker": "BWA",
+ "cik": 908255,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000908255-26-000011",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000011/bwa-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000908255-26-000027",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000027/bwa-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000908255-26-000051",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000051/bwa-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      6007000000,
+      5885000000,
+      5769000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4231,
+      0.4178,
+      0.403
+     ],
+     "growth_yoy": [
+      null,
+      -0.0203,
+      -0.0197
+     ]
+    },
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      5543000000,
+      5564000000,
+      5635000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3904,
+      0.395,
+      0.3936
+     ],
+     "growth_yoy": [
+      null,
+      0.0038,
+      0.0128
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      2102000000,
+      1908000000,
+      2322000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.148,
+      0.1355,
+      0.1622
+     ],
+     "growth_yoy": [
+      null,
+      -0.0923,
+      0.217
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      546000000,
+      729000000,
+      590000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0385,
+      0.0518,
+      0.0412
+     ],
+     "growth_yoy": [
+      null,
+      0.3352,
+      -0.1907
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14198000000,
+     14086000000,
+     14316000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      1356000000,
+      1424000000,
+      1418000000,
+      1450000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3858,
+      0.3914,
+      0.4014,
+      0.3975
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0457,
+      0.0183
+     ]
+    },
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      1454000000,
+      1480000000,
+      1432000000,
+      1440000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4137,
+      0.4068,
+      0.4053,
+      0.3947
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0151,
+      -0.027
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      555000000,
+      575000000,
+      581000000,
+      658000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1579,
+      0.1581,
+      0.1644,
+      0.1804
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0468,
+      0.1443
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      150000000,
+      159000000,
+      102000000,
+      100000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0427,
+      0.0437,
+      0.0289,
+      0.0274
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.32,
+      -0.3711
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3515000000,
+     3638000000,
+     3533000000,
+     3648000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      958000000,
+      1010000000,
+      1041000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8259,
+      1.8498,
+      1.9422
+     ],
+     "growth_yoy": [
+      null,
+      0.0543,
+      0.0307
+     ]
+    },
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      874000000,
+      877000000,
+      879000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7534,
+      1.6062,
+      1.6399
+     ],
+     "growth_yoy": [
+      null,
+      0.0034,
+      0.0023
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      -116000000,
+      -47000000,
+      -39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1,
+      -0.0861,
+      -0.0728
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      -90000000,
+      -144000000,
+      -83000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0776,
+      -0.2637,
+      -0.1549
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1160000000,
+     546000000,
+     536000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      243000000,
+      260000000,
+      260000000,
+      277000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0253,
+      0.8997,
+      0.7738,
+      0.7486
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.07,
+      0.0654
+     ]
+    },
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      235000000,
+      227000000,
+      214000000,
+      225000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9916,
+      0.7855,
+      0.6369,
+      0.6081
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0894,
+      -0.0088
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      -22000000,
+      -12000000,
+      -2000000,
+      -2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0928,
+      -0.0415,
+      -0.006,
+      -0.0054
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      -43000000,
+      -33000000,
+      -36000000,
+      -29000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1814,
+      -0.1142,
+      -0.1071,
+      -0.0784
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     237000000,
+     289000000,
+     336000000,
+     370000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      4262000000,
+      3872000000,
+      3795000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2949,
+      0.2767,
+      0.2756
+     ],
+     "growth_yoy": [
+      null,
+      -0.0915,
+      -0.0199
+     ]
+    },
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      3938000000,
+      3693000000,
+      3743000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2725,
+      0.2639,
+      0.2718
+     ],
+     "growth_yoy": [
+      null,
+      -0.0622,
+      0.0135
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      3185000000,
+      2792000000,
+      3163000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2204,
+      0.1995,
+      0.2297
+     ],
+     "growth_yoy": [
+      null,
+      -0.1234,
+      0.1329
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      1335000000,
+      1082000000,
+      460000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0924,
+      0.0773,
+      0.0334
+     ],
+     "growth_yoy": [
+      null,
+      -0.1895,
+      -0.5749
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1733000000,
+      2554000000,
+      2608000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1199,
+      0.1825,
+      0.1894
+     ],
+     "growth_yoy": [
+      null,
+      0.4737,
+      0.0211
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14453000000,
+     13993000000,
+     13769000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      3743000000,
+      3843000000,
+      3861000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2718,
+      0.2815,
+      0.2771
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      3795000000,
+      3843000000,
+      3806000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2756,
+      0.2815,
+      0.2731
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      3163000000,
+      3164000000,
+      3254000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2297,
+      0.2317,
+      0.2335
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      460000000,
+      448000000,
+      428000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0334,
+      0.0328,
+      0.0307
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2608000000,
+      2355000000,
+      2585000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1894,
+      0.1725,
+      0.1855
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13769000000,
+     13653000000,
+     13934000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      215000000,
+      246000000,
+      214000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3694,
+      0.3655,
+      0.2976
+     ],
+     "growth_yoy": [
+      null,
+      0.1442,
+      -0.1301
+     ]
+    },
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      127000000,
+      164000000,
+      184000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2182,
+      0.2437,
+      0.2559
+     ],
+     "growth_yoy": [
+      null,
+      0.2913,
+      0.122
+     ]
+    },
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      170000000,
+      177000000,
+      171000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2921,
+      0.263,
+      0.2378
+     ],
+     "growth_yoy": [
+      null,
+      0.0412,
+      -0.0339
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      39000000,
+      57000000,
+      120000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.067,
+      0.0847,
+      0.1669
+     ],
+     "growth_yoy": [
+      null,
+      0.4615,
+      1.1053
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      31000000,
+      29000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0533,
+      0.0431,
+      0.0417
+     ],
+     "growth_yoy": [
+      null,
+      -0.0645,
+      0.0345
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     582000000,
+     673000000,
+     719000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwa:PowerDriveSystemsMember",
+     "label": "PowerDrive Systems",
+     "values": [
+      43000000,
+      45000000,
+      46000000,
+      51000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2774,
+      0.2514,
+      0.3172,
+      0.3423
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0698,
+      0.1333
+     ]
+    },
+    {
+     "member": "bwa:DrivetrainMorseSystemsMember",
+     "label": "Drivetrain & Morse Systems",
+     "values": [
+      49000000,
+      70000000,
+      46000000,
+      46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3161,
+      0.3911,
+      0.3172,
+      0.3087
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0612,
+      -0.3429
+     ]
+    },
+    {
+     "member": "bwa:TurbosThermalTechnologiesMember",
+     "label": "Turbos & Thermal Technologies",
+     "values": [
+      40000000,
+      42000000,
+      40000000,
+      39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2581,
+      0.2346,
+      0.2759,
+      0.2617
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.0714
+     ]
+    },
+    {
+     "member": "bwa:BatteryChargingSystemsMember",
+     "label": "Battery & Charging Systems",
+     "values": [
+      16000000,
+      15000000,
+      6000000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1032,
+      0.0838,
+      0.0414,
+      0.0403
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.625,
+      -0.6
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7000000,
+      7000000,
+      7000000,
+      7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0452,
+      0.0391,
+      0.0483,
+      0.047
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     155000000,
+     179000000,
+     145000000,
+     149000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bwa:FoundationalProductsMember",
+     "label": "Foundational Products",
+     "values": [
+      2878000000,
+      2980000000,
+      2936000000,
+      2985000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8188,
+      0.8191,
+      0.831,
+      0.8183
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0202,
+      0.0017
+     ]
+    },
+    {
+     "member": "bwa:EProductsMember",
+     "label": "eProducts",
+     "values": [
+      637000000,
+      658000000,
+      597000000,
+      663000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1812,
+      0.1809,
+      0.169,
+      0.1817
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0628,
+      0.0076
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3515000000,
+     3638000000,
+     3533000000,
+     3648000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      2998000000,
+      2862000000,
+      2968000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2112,
+      0.2032,
+      0.2073
+     ],
+     "growth_yoy": [
+      null,
+      -0.0454,
+      0.037
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2334000000,
+      2240000000,
+      2293000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1644,
+      0.159,
+      0.1602
+     ],
+     "growth_yoy": [
+      null,
+      -0.0403,
+      0.0237
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      1759000000,
+      1644000000,
+      1741000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1239,
+      0.1167,
+      0.1216
+     ],
+     "growth_yoy": [
+      null,
+      -0.0654,
+      0.059
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      1669000000,
+      1680000000,
+      1624000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1176,
+      0.1193,
+      0.1134
+     ],
+     "growth_yoy": [
+      null,
+      0.0066,
+      -0.0333
+     ]
+    },
+    {
+     "member": "bwa:OtherEuropeMember",
+     "label": "Other Europe",
+     "values": [
+      1387000000,
+      1586000000,
+      1508000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0977,
+      0.1126,
+      0.1053
+     ],
+     "growth_yoy": [
+      null,
+      0.1435,
+      -0.0492
+     ]
+    },
+    {
+     "member": "country:PL",
+     "label": "POLAND",
+     "values": [
+      1121000000,
+      1160000000,
+      1245000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.079,
+      0.0824,
+      0.087
+     ],
+     "growth_yoy": [
+      null,
+      0.0348,
+      0.0733
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      1163000000,
+      1181000000,
+      1150000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0819,
+      0.0838,
+      0.0803
+     ],
+     "growth_yoy": [
+      null,
+      0.0155,
+      -0.0262
+     ]
+    },
+    {
+     "member": "bwa:OtherForeignMember",
+     "label": "Other Foreign",
+     "values": [
+      863000000,
+      913000000,
+      1016000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0608,
+      0.0648,
+      0.071
+     ],
+     "growth_yoy": [
+      null,
+      0.0579,
+      0.1128
+     ]
+    },
+    {
+     "member": "country:HU",
+     "label": "HUNGARY",
+     "values": [
+      904000000,
+      820000000,
+      771000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0637,
+      0.0582,
+      0.0539
+     ],
+     "growth_yoy": [
+      null,
+      -0.0929,
+      -0.0598
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14198000000,
+     14086000000,
+     14316000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      5081000000,
+      5246000000,
+      5148000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3579,
+      0.3724,
+      0.3596
+     ],
+     "growth_yoy": [
+      null,
+      0.0325,
+      -0.0187
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      4810000000,
+      4719000000,
+      4858000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3388,
+      0.335,
+      0.3393
+     ],
+     "growth_yoy": [
+      null,
+      -0.0189,
+      0.0295
+     ]
+    },
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      4093000000,
+      3884000000,
+      4034000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2883,
+      0.2757,
+      0.2818
+     ],
+     "growth_yoy": [
+      null,
+      -0.0511,
+      0.0386
+     ]
+    },
+    {
+     "member": "bwa:OtherForeignMember",
+     "label": "Other Foreign",
+     "values": [
+      214000000,
+      237000000,
+      276000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0151,
+      0.0168,
+      0.0193
+     ],
+     "growth_yoy": [
+      null,
+      0.1075,
+      0.1646
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14198000000,
+     14086000000,
+     14316000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1317000000,
+      1360000000,
+      1341000000,
+      1310000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3747,
+      0.3738,
+      0.3796,
+      0.3591
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0182,
+      -0.0368
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      1161000000,
+      1204000000,
+      1107000000,
+      1186000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3303,
+      0.331,
+      0.3133,
+      0.3251
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0465,
+      -0.015
+     ]
+    },
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      969000000,
+      1002000000,
+      1011000000,
+      1061000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2757,
+      0.2754,
+      0.2862,
+      0.2908
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0433,
+      0.0589
+     ]
+    },
+    {
+     "member": "bwa:OtherForeignMember",
+     "label": "Other Foreign",
+     "values": [
+      68000000,
+      72000000,
+      74000000,
+      91000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0193,
+      0.0198,
+      0.0209,
+      0.0249
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0882,
+      0.2639
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3515000000,
+     3638000000,
+     3533000000,
+     3648000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 335.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 127.3% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/Revenues/annual: row 'Europe' (srt:EuropeMember) dropped: it is the parent of GERMANY, HUNGARY, Other Europe, POLAND in the filing's definition linkbase"
+ ],
+ "complete": true
+}

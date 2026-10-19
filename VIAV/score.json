@@ -1,0 +1,88 @@
+{
+ "ticker": "VIAV",
+ "name": "Viavi Solutions Inc.",
+ "sector": "Technology / Network test & measurement",
+ "price": 33.38,
+ "market_cap_b": 7.66,
+ "engine_version": 5,
+ "base_oe_per_share": 0.11938997821350762,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Real #2 position in network test (14-16% share vs Keysight 18-20%) plus a strong OSP niche (3D sensing, anti-counterfeiting at 55% gross / 40% operating margin) and a 40-45% share in AI data-center Ethernet validation via Spirent \u2014 but consolidated ROIC was only ~8% in FY24-26 (at the cost of capital) and gross margin has been flat at ~57-60% for a decade, so no demonstrated pricing power or durable wide moat.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear, bear, base, weighted) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 14.7x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 0.56,
+   "irr": 0.0269
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 0.88,
+   "irr": 0.0283
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1.19,
+   "irr": 0.0297
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 1.58,
+   "irr": 0.0315
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 2.32,
+   "irr": 0.0351
+  }
+ },
+ "iv_at_15": 1.18,
+ "iv_at_12": 1.57,
+ "implied_irr": 0.0297,
+ "implied_irr_base_case": 0.0297,
+ "upside_at_15_pct": -96.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real AI data-center test franchise, moat 4/10 \u2014 but owner's earnings are $0.12/share against a $33.38 price (weighted IRR at most ~3.0%, IV@15% $1.18); clears 15% only below ~$1.18.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0283,
+ "irr_bull": 0.0315,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 0.82,
+ "iv_at_25": 0.63,
+ "f_subtype": null,
+ "irr_at_floor": true,
+ "net_debt_latest": -403000000,
+ "shares_diluted_latest": 229500000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#2 share in network test & measurement (14-16%) in a concentrated oligopoly with high R&D/IP barriers",
+  "Spirent deal gives a 40-45% high-share position in AI data-center Ethernet validation",
+  "OSP niche: anti-counterfeiting and 3D sensing at 55.2% gross margin and 40% operating margin (Q4 FY26)",
+  "Tools embedded in carrier and hyperscaler lab/field workflows, with calibration and service attach"
+ ],
+ "moat_against": [
+  "Keysight is larger, broader and better resourced in every overlapping category",
+  "Consolidated ROIC ~8% in FY24-26, at the cost of capital, per fundamentals.json roic_proxy",
+  "Gross margin flat at ~57-60% for ten years \u2014 no demonstrated pricing power",
+  "Cyclical capex end demand: revenue fell from $1,292M (FY22) to $1,000M (FY24) before the AI snap-back",
+  "SBC runs 49-59% of operating cash flow (FY25-26), a persistent transfer to employees",
+  "Growth partly bought (Spirent, Inertial Labs) with amortization and restructuring charges attached"
+ ]
+}

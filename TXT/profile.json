@@ -1,0 +1,289 @@
+{
+ "ticker": "TXT",
+ "cik": 217346,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T21:55:09-04:00",
+ "newest_filing_date": "2026-07-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000217346.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000006/txt-20260103.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TXT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TXT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TEXTRON INC",
+  "cik": 217346,
+  "description": {
+   "text": "Textron Inc. is a multi-industry company that leverages its global network of aircraft, defense, industrial and finance businesses to provide customers with innovative products and services around the world. References to “Textron,” the “Company,” “we,” “our” and “us” in this Annual Report on Form 10-K, unless otherwise indicated, refer to Textron Inc. and its consolidated subsidiaries. Through 2025, we conducted our business through six operating segments: Textron Aviation, Bell, Textron Systems, Industrial and Textron eAviation, which represent our manufacturing businesses, and Finance, which represents our captive finance business. Our segments include numerous separately incorporated subsidiaries. Effective January 4, 2026, the beginning of our 2026 fiscal year, the business activities of the Textron eAviation segment were realigned within Textron's other operating segments resulting in the elimination of the Textron eAviation segment as a separate reporting segment. For additional information regarding this segment change, see the Textron eAviation Segment section below. We will begin to report under the new segment reporting structure with the filing of our Quarterly Report on Form 10-Q for the first quarter of 2026. Total revenues for 2025 were $14.8 billion and are presented below by segment and customer type. The following description of our business and operating segments should be read in conjunction with Item 7.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2026-01-03",
+   "accession": "0000217346-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000006/txt-20260103.htm"
+  },
+  "description_short": "Textron Inc. is a multi-industry company that leverages its global network of aircraft, defense, industrial and finance businesses to provide customers with innovative solutions and services. Textron is known around the world for its powerful brands such as Bell, Cessna, Beechcraft, Pipistrel, Jacobsen, Kautex, Lycoming, E-Z-GO, and Textron Systems. For more information, visit: www.textron.com.",
+  "industry": "Aerospace",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3720",
+  "sic_description": "Aircraft & Parts",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0102",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.textron.com",
+  "headquarters": "Providence, RI",
+  "address": {
+   "street": "40 Westminster Street",
+   "city": "Providence",
+   "state": "RI",
+   "zip": "02903",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "4014212800",
+  "employees": {
+   "count": 34000,
+   "as_of": "2026-01-03",
+   "evidence": "At January 3, 2026, we employed approximately 34,000 employees worldwide, with approximately 80% located in the U.S. and the remainder located outside of the U.S.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000006/txt-20260103.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-10",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000217346&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-07-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000217346-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000036/txt-20260704.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000217346-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000034/txt-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-054116",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000110465926054116/tm2613360d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-04-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000217346-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000012/txt-20260404.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD; Other events",
+   "accession": "0000217346-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000009/txt-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-05",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001552781-26-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000155278126000084/e26011_txt-def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2026-01-03",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000217346-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000006/txt-20260103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-01-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000217346-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000004/txt-20260130.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000217346-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000002/txt-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-104807",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000110465925104807/tm2529285d4_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000217346-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000077/txt-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000217346-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000074/txt-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment",
+   "accession": "0001104659-25-101558",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000110465925101558/tm2529295d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-16",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001104659-25-100886",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000110465925100886/tm2529107d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-17",
+   "period": "2025-10-16",
+   "items": [
+    "7.01",
+    "8.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0000217346-25-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000072/txt-20251016.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000217346-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000068/txt-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000217346-25-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000066/txt-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-23",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000217346-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000048/txt-20250423.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000217346-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000046/txt-20250329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000217346-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/217346/000021734625000044/txt-20250424.htm"
+  }
+ ],
+ "warnings": []
+}

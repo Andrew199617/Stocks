@@ -1,0 +1,295 @@
+{
+ "ticker": "EHC",
+ "cik": 785161,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T05:09:49-04:00",
+ "newest_filing_date": "2026-08-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000785161.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000081/ehc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EHC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EHC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Encompass Health Corp",
+  "cik": 785161,
+  "description": {
+   "text": "We are the nation’s largest owner and operator of inpatient rehabilitation hospitals in terms of patients treated, revenues, and number of hospitals. We provide specialized rehabilitative treatment, using advanced technology and intensive therapy, on an inpatient basis for patients recovering from a major injury or illness and seeking to regain functional ability, independence and quality of life. We operate hospitals in 39 states and Puerto Rico, with concentrations in Florida and Texas. As of December 31, 2025, we operated 173 inpatient rehabilitation hospitals. We are committed to delivering high-quality, cost-effective patient care. For 2025, we were named America’s Most Awarded Leader in Inpatient Rehabilitation by Newsweek and Statista and ranked among Fortune’s World’s Most Admired Companies™ and Forbes’ Most Trusted Companies in America. Our common stock is traded on the New York Stock Exchange (symbol “EHC”). Our principal executive offices are located at 9001 Liberty Parkway, Birmingham, Alabama 35242, and the telephone number of the principal executive offices is (205) 967-7116. Our website address is www.encompasshealth.com. In addition to the discussion here, we encourage the reader to review Item 1A, Risk Factors, Item 2, Properties, and Item 7, Management’s Discussion and Analysis of Financial Condition and Results of Operations, which highlight additional considerations about our Company. The table below provides selected operating and financial data.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000785161-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000081/ehc-20251231.htm"
+  },
+  "description_short": "Encompass Health (NYSE: EHC) is the largest owner and operator of inpatient rehabilitation hospitals in the United States. With a national footprint that includes 178 hospitals in 39 states and Puerto Rico, the Company provides high-quality, compassionate rehabilitative care for patients recovering from major injuries or illnesses, using advanced technology and innovative treatments to maximize recovery. Encompass Health is recognized by Newsweek as America's Most Awarded Leader in Inpatient Rehabilitation and is ranked among Fortune's World's Most Admired Companies and Forbes' America's Best Companies. It is also recognized by Becker's Healthcare and Modern Healthcare as a top healthcare employer.",
+  "industry": "Hospital/Nursing Management",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "8060",
+  "sic_description": "Services-Hospitals",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.encompasshealth.com",
+  "headquarters": "Birmingham, Alabama",
+  "address": {
+   "street": "9001 Liberty Parkway",
+   "city": "Birmingham",
+   "state": "Alabama",
+   "zip": "35242",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "205-967-7116",
+  "employees": {
+   "count": 42000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed over 42,000 individuals.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000081/ehc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-04-22",
+  "first_sec_filing_form": "S-11",
+  "former_names": [
+   "HEALTHSOUTH CORP",
+   "HEALTHSOUTH REHABILITATION CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000785161&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000785161-26-000195",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000195/ehc-20260813.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000785161-26-000186",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000186/ehc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000785161-26-000183",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000183/ehc-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-29",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000785161-26-000161",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000161/ehc-20260529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-14",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0000785161-26-000156",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000156/ehc-20260514.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000785161-26-000151",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000151/ehc-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000785161-26-000130",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000130/ehc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000785161-26-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000128/ehc-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000785161-26-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000105/ehc-20260406.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-09",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0000785161-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000100/ehc-20260309.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000785161-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000081/ehc-20251231.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-20",
+   "period": "2026-02-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0000785161-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000049/ehc-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000785161-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000028/ehc-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-01-30",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000785161-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000025/ehc-20260130.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-01",
+   "period": "2025-12-01",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000785161-25-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516125000118/ehc-20251201.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000785161-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516125000115/ehc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000785161-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516125000113/ehc-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000785161-25-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516125000086/ehc-20250917.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-12",
+   "period": "2025-09-12",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000785161-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516125000070/ehc-20250912.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000785161-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/785161/000078516125000052/ehc-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

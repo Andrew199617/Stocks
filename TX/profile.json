@@ -1,0 +1,243 @@
+{
+ "ticker": "TX",
+ "cik": 1342874,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T13:45:53-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001342874.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000020/tx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Ternium S.A.",
+  "cik": 1342874,
+  "description": {
+   "text": "Three main drivers compose Ternium’s business strategy: a focus on sophisticated value-added products, the pursuit of strategic growth opportunities and a relentless quest for competitive industrial operations. Ternium aims to enhance stakeholder value by further consolidating its position as a leading steel producer in Latin America and a strong player in the Americas, while increasing its differentiation and strengthening its competitiveness. We believe Ternium has built competitive advantages in its main steel markets. Our industrial presence and network of distribution centers and commercial offices increase Ternium’s ability to offer differentiated logistics and stock management services. In addition, our integrated connectivity platform covering the entire customer relationship process enables Ternium to provide a better and faster response to its customers’ needs. Ternium works together with small and medium-sized customers and suppliers in Argentina and Mexico, through the ProPymes program, to help them prosper. The development of SMEs and a collaborative industrial network have strengthened Ternium’s value chain. This effort has led to a virtuous cycle of improved competitiveness, increased exports and import substitution of manufactured products. Ternium’s differentiation initiatives have also included investments in state-of-the-art technologies.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "accession": "0001342874-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000020/tx-20251231.htm"
+  },
+  "description_short": "Ternium is a leading steel producer in the Americas, providing advanced steel products to a wide range of manufacturing industries and the construction sector. We invest in low carbon emissions steelmaking technologies to support the energy transition and the mobility of the future. We also support the development of our communities, especially through educational programs in Latin America. More information about Ternium is available at www.ternium.com.",
+  "industry": "Steel/Iron Ore",
+  "sector": "Industrials",
+  "region": "Europe",
+  "sic": "3312",
+  "sic_description": "Steel Works, Blast Furnaces & Rolling Mills (Coke Ovens)",
+  "state_of_incorporation": "N4",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ternium.com",
+  "headquarters": "Luxembourg",
+  "address": {
+   "street": "26, Boulevard Royal– 4th floor",
+   "city": "Luxembourg",
+   "state": null,
+   "zip": "-2449",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-31"
+  },
+  "phone": "(352) 4661-11-3815",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2006-01-11",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001342874&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000048/analystdaypresentation8oct.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000046/a2026junternium6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000044/prternium2q2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001554855-26-001510",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000155485526001510/MainDocument.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001554855-26-001509",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000155485526001509/MainDocument.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000041/a2026-05x12pragsmresolutio.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000040/a2026may12agsmresolutions.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000034/a2026marternium6-k.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001342874-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000032/prternium1q2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000030/prternium1q2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-16",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000028/supplementtothebrochureand.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-15",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000025/prnewdividendproposal.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000023/pr20-f2026x03x31.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001342874-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000020/tx-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000015/a2025terniumannualreport.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000013/agsmdocuments2026-03x20.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000011/a2026-03x20agsmannouncement.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000006/a2025ternium6-kfsdec.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000004/prternium4q2025.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001342874-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1342874/000134287426000002/terniumprnsc.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-31"
+ ]
+}

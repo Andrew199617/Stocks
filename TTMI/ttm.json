@@ -1,0 +1,101 @@
+{
+ "ticker": "TTMI",
+ "cik": 1116942,
+ "entity": "TTM TECHNOLOGIES, INC.",
+ "fy_end": "2025-12-29",
+ "ytd_end": "2026-06-29",
+ "inputs": {
+  "ocf": {
+   "fy": 291882000,
+   "fy_period": [
+    "2024-12-31",
+    "2025-12-29"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 87149000,
+   "ytd_prior_period": [
+    "2024-12-31",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 118172000,
+   "ytd_current_period": [
+    "2025-12-30",
+    "2026-06-29"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 322905000
+  },
+  "capex": {
+   "fy": 292565000,
+   "fy_period": [
+    "2024-12-31",
+    "2025-12-29"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 123726000,
+   "ytd_prior_period": [
+    "2024-12-31",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 169205000,
+   "ytd_current_period": [
+    "2025-12-30",
+    "2026-06-29"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 338044000
+  },
+  "sbc": {
+   "fy": 41668000,
+   "fy_period": [
+    "2024-12-31",
+    "2025-12-29"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 17975000,
+   "ytd_prior_period": [
+    "2024-12-31",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 37648000,
+   "ytd_current_period": [
+    "2025-12-30",
+    "2026-06-29"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 61341000
+  },
+  "shares_diluted": {
+   "fy": 105453000,
+   "fy_period": [
+    "2024-12-31",
+    "2025-12-29"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 104701000,
+   "ytd_prior_period": [
+    "2024-12-31",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 107334000,
+   "ytd_current_period": [
+    "2025-12-30",
+    "2026-06-29"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 322905000,
+ "ttm_capex": 338044000,
+ "ttm_sbc": 61341000,
+ "ttm_shares_diluted": 107334000,
+ "ttm_oe_total": -76480000,
+ "ttm_oe_per_share": -0.7125421581232415,
+ "warnings": [],
+ "overrides_used": []
+}

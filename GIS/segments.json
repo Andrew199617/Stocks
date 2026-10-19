@@ -1,0 +1,1448 @@
+{
+ "ticker": "GIS",
+ "cik": 40704,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-019398",
+   "filed": "2026-03-18",
+   "period": "2026-02-22",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40704/000162828026019398/gis-20260222_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-046466",
+   "filed": "2026-07-01",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40704/000162828026046466/gis-20260531_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-063201",
+   "filed": "2026-09-23",
+   "period": "2026-08-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40704/000162828026063201/gis-20260830_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-26",
+    "2025-05-25",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gis:NorthAmericaRetailSegmentMember",
+     "label": "North America Retail Segment",
+     "values": [
+      12473400000,
+      11907000000,
+      10571800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6282,
+      0.611,
+      0.5738
+     ],
+     "growth_yoy": [
+      null,
+      -0.0454,
+      -0.1121
+     ]
+    },
+    {
+     "member": "gis:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      2746500000,
+      2797800000,
+      3043800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1383,
+      0.1436,
+      0.1652
+     ],
+     "growth_yoy": [
+      null,
+      0.0187,
+      0.0879
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaPetSegmentMember",
+     "label": "North America Pet Segment",
+     "values": [
+      2375800000,
+      2470800000,
+      2613300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1196,
+      0.1268,
+      0.1418
+     ],
+     "growth_yoy": [
+      null,
+      0.04,
+      0.0577
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaFoodserviceMember",
+     "label": "North America Foodservice Segment",
+     "values": [
+      2258700000,
+      2300900000,
+      2169500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1137,
+      0.1181,
+      0.1178
+     ],
+     "growth_yoy": [
+      null,
+      0.0187,
+      -0.0571
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2800000,
+      10100000,
+      26200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0001,
+      0.0005,
+      0.0014
+     ],
+     "growth_yoy": [
+      null,
+      2.6071,
+      1.5941
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19857200000,
+     19486600000,
+     18424600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-02-23",
+    "2025-05-25",
+    "2025-08-24",
+    "2026-02-22",
+    "2026-05-31",
+    "2026-08-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "gis:NorthAmericaRetailSegmentMember",
+     "label": "North America Retail Segment",
+     "values": [
+      3009100000,
+      2559800000,
+      2625500000,
+      2596400000,
+      2466600000,
+      2451800000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.6214,
+      0.5618,
+      0.5812,
+      0.5852,
+      0.5351,
+      0.5586
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.1372,
+      -0.0364,
+      -0.0662
+     ]
+    },
+    {
+     "member": "gis:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      651300000,
+      738900000,
+      760200000,
+      696300000,
+      858400000,
+      794300000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1345,
+      0.1622,
+      0.1683,
+      0.1569,
+      0.1862,
+      0.181
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0691,
+      0.1617,
+      0.0449
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaPetSegmentMember",
+     "label": "North America Pet Segment",
+     "values": [
+      623700000,
+      675200000,
+      610000000,
+      640500000,
+      702400000,
+      612800000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1288,
+      0.1482,
+      0.135,
+      0.1444,
+      0.1524,
+      0.1396
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0269,
+      0.0403,
+      0.0046
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaFoodserviceMember",
+     "label": "North America Foodservice Segment",
+     "values": [
+      555300000,
+      579400000,
+      516700000,
+      496400000,
+      574600000,
+      523100000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1147,
+      0.1272,
+      0.1144,
+      0.1119,
+      0.1247,
+      0.1192
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.1061,
+      -0.0083,
+      0.0124
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2800000,
+      2900000,
+      5100000,
+      7100000,
+      7600000,
+      7500000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0006,
+      0.0006,
+      0.0011,
+      0.0016,
+      0.0016,
+      0.0017
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.5357,
+      1.6207,
+      0.4706
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4842200000,
+     4556200000,
+     4517500000,
+     4436700000,
+     4609600000,
+     4389500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-26",
+    "2025-05-25",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gis:NorthAmericaRetailSegmentMember",
+     "label": "North America Retail Segment",
+     "values": [
+      3080400000,
+      2729900000,
+      2189000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8976,
+      0.826,
+      2.4712
+     ],
+     "growth_yoy": [
+      null,
+      -0.1138,
+      -0.1981
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaPetSegmentMember",
+     "label": "North America Pet Segment",
+     "values": [
+      485900000,
+      501000000,
+      498800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1416,
+      0.1516,
+      0.5631
+     ],
+     "growth_yoy": [
+      null,
+      0.0311,
+      -0.0044
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaFoodserviceMember",
+     "label": "North America Foodservice Segment",
+     "values": [
+      315500000,
+      355400000,
+      333000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0919,
+      0.1075,
+      0.3759
+     ],
+     "growth_yoy": [
+      null,
+      0.1265,
+      -0.063
+     ]
+    },
+    {
+     "member": "gis:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      125200000,
+      96400000,
+      188700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0365,
+      0.0292,
+      0.213
+     ],
+     "growth_yoy": [
+      null,
+      -0.23,
+      0.9575
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      333900000,
+      395500000,
+      402300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0973,
+      0.1197,
+      0.4542
+     ],
+     "growth_yoy": [
+      null,
+      0.1845,
+      0.0172
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3431700000,
+     3304800000,
+     885800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-02-23",
+    "2025-05-25",
+    "2025-08-24",
+    "2026-02-22",
+    "2026-05-31",
+    "2026-08-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "gis:NorthAmericaRetailSegmentMember",
+     "label": "North America Retail Segment",
+     "values": [
+      648100000,
+      473800000,
+      564200000,
+      436100000,
+      506400000,
+      478600000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.7271,
+      0.9401,
+      0.3269,
+      0.8313,
+      -0.242,
+      0.7554
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.3271,
+      0.0688,
+      -0.1517
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaPetSegmentMember",
+     "label": "North America Pet Segment",
+     "values": [
+      102200000,
+      140100000,
+      112900000,
+      102800000,
+      160000000,
+      99500000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1147,
+      0.278,
+      0.0654,
+      0.196,
+      -0.0765,
+      0.157
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0059,
+      0.142,
+      -0.1187
+     ]
+    },
+    {
+     "member": "gis:NorthAmericaFoodserviceMember",
+     "label": "North America Foodservice Segment",
+     "values": [
+      82300000,
+      83100000,
+      70600000,
+      56300000,
+      101300000,
+      79400000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0923,
+      0.1649,
+      0.0409,
+      0.1073,
+      -0.0484,
+      0.1253
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.3159,
+      0.219,
+      0.1246
+     ]
+    },
+    {
+     "member": "gis:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      18000000,
+      33700000,
+      65700000,
+      33600000,
+      61000000,
+      75200000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0202,
+      0.0669,
+      0.0381,
+      0.064,
+      -0.0292,
+      0.1187
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.8667,
+      0.8101,
+      0.1446
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      55900000,
+      151000000,
+      125700000,
+      74800000,
+      113300000,
+      77700000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0627,
+      0.2996,
+      0.0728,
+      0.1426,
+      -0.0541,
+      0.1226
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3381,
+      -0.2497,
+      -0.3819
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     891400000,
+     504000000,
+     1725800000,
+     524600000,
+     -2092600000,
+     633600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-26",
+    "2025-05-25",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gis:SnacksMember",
+     "label": "Snacks",
+     "values": [
+      4327300000,
+      4187400000,
+      4138500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2179,
+      0.2149,
+      0.2246
+     ],
+     "growth_yoy": [
+      null,
+      -0.0323,
+      -0.0117
+     ]
+    },
+    {
+     "member": "gis:CerealMember",
+     "label": "Cereal",
+     "values": [
+      3187500000,
+      3078600000,
+      3089700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1605,
+      0.158,
+      0.1677
+     ],
+     "growth_yoy": [
+      null,
+      -0.0342,
+      0.0036
+     ]
+    },
+    {
+     "member": "gis:ConvenientMealsMember",
+     "label": "Convenient meals",
+     "values": [
+      2906500000,
+      2816100000,
+      2870900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1464,
+      0.1445,
+      0.1558
+     ],
+     "growth_yoy": [
+      null,
+      -0.0311,
+      0.0195
+     ]
+    },
+    {
+     "member": "gis:PetMember",
+     "label": "Pet",
+     "values": [
+      2382700000,
+      2585800000,
+      2766400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.12,
+      0.1327,
+      0.1501
+     ],
+     "growth_yoy": [
+      null,
+      0.0852,
+      0.0698
+     ]
+    },
+    {
+     "member": "gis:DoughMember",
+     "label": "Dough",
+     "values": [
+      2423600000,
+      2384200000,
+      2396000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1221,
+      0.1224,
+      0.13
+     ],
+     "growth_yoy": [
+      null,
+      -0.0163,
+      0.0049
+     ]
+    },
+    {
+     "member": "gis:BakingMixesAndIngredientsMember",
+     "label": "Baking mixes and ingredients",
+     "values": [
+      1996000000,
+      1940200000,
+      1926100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1005,
+      0.0996,
+      0.1045
+     ],
+     "growth_yoy": [
+      null,
+      -0.028,
+      -0.0073
+     ]
+    },
+    {
+     "member": "gis:SuperPremiumIceCreamMember",
+     "label": "Super-premium ice cream",
+     "values": [
+      728700000,
+      721600000,
+      782700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0367,
+      0.037,
+      0.0425
+     ],
+     "growth_yoy": [
+      null,
+      -0.0097,
+      0.0847
+     ]
+    },
+    {
+     "member": "gis:OtherProductMember",
+     "label": "Other Product",
+     "values": [
+      422400000,
+      381100000,
+      352300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0213,
+      0.0196,
+      0.0191
+     ],
+     "growth_yoy": [
+      null,
+      -0.0978,
+      -0.0756
+     ]
+    },
+    {
+     "member": "gis:YogurtMember",
+     "label": "Yogurt",
+     "values": [
+      1482500000,
+      1391600000,
+      102000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0747,
+      0.0714,
+      0.0055
+     ],
+     "growth_yoy": [
+      null,
+      -0.0613,
+      -0.9267
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19857200000,
+     19486600000,
+     18424600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-02-23",
+    "2025-05-25",
+    "2025-08-24",
+    "2026-02-22",
+    "2026-05-31",
+    "2026-08-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "gis:SnacksMember",
+     "label": "Snacks",
+     "values": [
+      996000000,
+      1029600000,
+      1049700000,
+      962600000,
+      1108300000,
+      1032300000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.2057,
+      0.226,
+      0.2324,
+      0.217,
+      0.2404,
+      0.2352
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0335,
+      0.0764,
+      -0.0166
+     ]
+    },
+    {
+     "member": "gis:CerealMember",
+     "label": "Cereal",
+     "values": [
+      762800000,
+      693200000,
+      767200000,
+      762700000,
+      768600000,
+      755900000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1575,
+      0.1521,
+      0.1698,
+      0.1719,
+      0.1667,
+      0.1722
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0001,
+      0.1088,
+      -0.0147
+     ]
+    },
+    {
+     "member": "gis:PetMember",
+     "label": "Pet",
+     "values": [
+      651700000,
+      705700000,
+      643000000,
+      678100000,
+      746600000,
+      651200000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1346,
+      0.1549,
+      0.1423,
+      0.1528,
+      0.162,
+      0.1484
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0405,
+      0.058,
+      0.0128
+     ]
+    },
+    {
+     "member": "gis:ConvenientMealsMember",
+     "label": "Convenient meals",
+     "values": [
+      754100000,
+      588000000,
+      650800000,
+      730300000,
+      662800000,
+      646600000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1557,
+      0.1291,
+      0.1441,
+      0.1646,
+      0.1438,
+      0.1473
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0316,
+      0.1272,
+      -0.0065
+     ]
+    },
+    {
+     "member": "gis:DoughMember",
+     "label": "Dough",
+     "values": [
+      647500000,
+      496300000,
+      515100000,
+      618600000,
+      541400000,
+      516400000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1337,
+      0.1089,
+      0.114,
+      0.1394,
+      0.1175,
+      0.1176
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0446,
+      0.0909,
+      0.0025
+     ]
+    },
+    {
+     "member": "gis:BakingMixesAndIngredientsMember",
+     "label": "Baking mixes and ingredients",
+     "values": [
+      467500000,
+      438400000,
+      448000000,
+      476100000,
+      446000000,
+      469000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0965,
+      0.0962,
+      0.0992,
+      0.1073,
+      0.0968,
+      0.1068
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0184,
+      0.0173,
+      0.0469
+     ]
+    },
+    {
+     "member": "gis:SuperPremiumIceCreamMember",
+     "label": "Super-premium ice cream",
+     "values": [
+      137500000,
+      207600000,
+      221400000,
+      147700000,
+      237800000,
+      231600000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0284,
+      0.0456,
+      0.049,
+      0.0333,
+      0.0516,
+      0.0528
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0742,
+      0.1455,
+      0.0461
+     ]
+    },
+    {
+     "member": "gis:OtherProductMember",
+     "label": "Other Product",
+     "values": [
+      92000000,
+      88600000,
+      120300000,
+      60600000,
+      98100000,
+      86500000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.019,
+      0.0194,
+      0.0266,
+      0.0137,
+      0.0213,
+      0.0197
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.3413,
+      0.1072,
+      -0.281
+     ]
+    },
+    {
+     "member": "gis:YogurtMember",
+     "label": "Yogurt",
+     "values": [
+      333100000,
+      308800000,
+      102000000,
+      0,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0688,
+      0.0678,
+      0.0226,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -1.0,
+      -1.0,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4842200000,
+     4556200000,
+     4517500000,
+     4436700000,
+     4609600000,
+     4389500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-26",
+    "2025-05-25",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      16062200000,
+      15780400000,
+      14704700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8089,
+      0.8098,
+      0.7981
+     ],
+     "growth_yoy": [
+      null,
+      -0.0175,
+      -0.0682
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      3795000000,
+      3706200000,
+      3719900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1911,
+      0.1902,
+      0.2019
+     ],
+     "growth_yoy": [
+      null,
+      -0.0234,
+      0.0037
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19857200000,
+     19486600000,
+     18424600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 407.7% of the consolidated total for 2026-05-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 127.9% of the consolidated total for 2026-08-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

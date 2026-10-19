@@ -1,0 +1,289 @@
+{
+ "ticker": "SOLV",
+ "cik": 1964738,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T01:55:35-04:00",
+ "newest_filing_date": "2026-08-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001964738.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000007/solv-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SOLV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SOLV/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Solventum Corp",
+  "cik": 1964738,
+  "description": {
+   "text": "Solventum Corporation (\"Solventum,\" \"we,\" \"our,\" \"us,\" or the \"Company\"), is a leading global healthcare company developing, manufacturing, and commercializing a broad portfolio of solutions that leverages deep material science, data science, and digital capabilities to address critical customer and patient needs. We constantly seek to enable the improvement of standards of care and move healthcare forward with innovation powered by insights, clinical intelligence, technology, and manufacturing expertise. Our 70+ year history of discovering and innovating advanced solutions has helped us solve our customers’ toughest challenges. Our solutions are relied on every day within the global healthcare industry to deliver higher-quality patient care, more efficient processes and workflows, and improved standards of safety and accuracy. Additionally, our products and services are present along a patient’s journey through prevention, diagnosis, treatment, and recovery. Our business possesses strong customer relationships, a broad, wide-ranging, and well-known portfolio of brands, differentiated technology, and manufacturing expertise. We serve a diverse customer base, ranging from multidisciplinary hospitals to local clinics/practices. Our long-tenured and collaborative customer relationships globally give us unique insights into their needs and preferences.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001964738-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000007/solv-20251231.htm"
+  },
+  "description_short": "At Solventum, we enable better, smarter, safer healthcare to improve lives. As a new company with a long legacy of creating breakthrough solutions for our customers' toughest challenges, we pioneer game-changing innovations at the intersection of health, material and data science that change patients' lives for the better - while empowering healthcare professionals to perform at their best.",
+  "industry": "Medical/Dental Instruments",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3841",
+  "sic_description": "Surgical & Medical Instruments & Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.solventum.com",
+  "headquarters": "Maplewood, Minnesota",
+  "address": {
+   "street": "3M Center, Building 275-6W 2510 Conway Avenue East",
+   "city": "Maplewood",
+   "state": "Minnesota",
+   "zip": "55144",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "651-733-1110",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2024-02-20",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "3M Health Care Co"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001964738&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001964738-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000047/solv-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001964738-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000045/solv-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001964738-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000043/solv-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-16",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001964738-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000038/solv-20260716.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001964738-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000036/solv-20260602.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001964738-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000031/solv-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001964738-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000027/solv-20260515.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001964738-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000024/solv-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001964738-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000022/solv-20260505.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001964738-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000017/solv-20260327.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001964738-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000013/solv-20260320.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001964738-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000007/solv-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001964738-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000005/solv-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-16",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001964738-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473825000094/solv-20251216.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001964738-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473825000091/solv-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001964738-25-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473825000089/solv-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-045731",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000162828025045731/solv-20251017.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001964738-25-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473825000084/solv-20250908.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-02",
+   "period": "2025-09-01",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001964738-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473825000078/solv-20250901.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-22",
+   "period": "2025-08-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001964738-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473825000073/solv-20250822.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-27"
+ ]
+}

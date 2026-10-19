@@ -1,0 +1,819 @@
+{
+ "ticker": "AIT",
+ "cik": 109563,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0000109563-26-000015",
+   "filed": "2026-01-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000015/ait-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000109563-26-000021",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000021/ait-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0000109563-26-000033",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000033/ait-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ait:ServiceCenterBasedDistributionSegmentMember",
+     "label": "Service Center Based Distribution Segment",
+     "values": [
+      3056555000,
+      3014348000,
+      3184231000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6824,
+      0.6605,
+      0.6411
+     ],
+     "growth_yoy": [
+      null,
+      -0.0138,
+      0.0564
+     ]
+    },
+    {
+     "member": "ait:EngineeredSolutionsSegmentMember",
+     "label": "Engineered Solutions Segment",
+     "values": [
+      1422851000,
+      1549076000,
+      1782455000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3176,
+      0.3395,
+      0.3589
+     ],
+     "growth_yoy": [
+      null,
+      0.0887,
+      0.1507
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4479406000,
+     4563424000,
+     4966686000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ait:ServiceCenterBasedDistributionSegmentMember",
+     "label": "Service Center Based Distribution Segment",
+     "values": [
+      723827000,
+      761602000,
+      779180000,
+      747323000,
+      804937000,
+      849497000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.6746,
+      0.6528,
+      0.6362,
+      0.6426,
+      0.6432,
+      0.628
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0325,
+      0.0569,
+      0.0902
+     ]
+    },
+    {
+     "member": "ait:EngineeredSolutionsSegmentMember",
+     "label": "Engineered Solutions Segment",
+     "values": [
+      349174000,
+      405147000,
+      445550000,
+      415700000,
+      446516000,
+      503190000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.3254,
+      0.3472,
+      0.3638,
+      0.3574,
+      0.3568,
+      0.372
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1905,
+      0.1021,
+      0.1294
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1073001000,
+     1166749000,
+     1224730000,
+     1163023000,
+     1251453000,
+     1352687000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ait:ServiceCenterBasedDistributionSegmentMember",
+     "label": "Service Center Based Distribution Segment",
+     "values": [
+      396994000,
+      393470000,
+      426124000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8007,
+      0.7893,
+      0.7755
+     ],
+     "growth_yoy": [
+      null,
+      -0.0089,
+      0.083
+     ]
+    },
+    {
+     "member": "ait:EngineeredSolutionsSegmentMember",
+     "label": "Engineered Solutions Segment",
+     "values": [
+      181109000,
+      188738000,
+      210524000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3653,
+      0.3786,
+      0.3831
+     ],
+     "growth_yoy": [
+      null,
+      0.0421,
+      0.1154
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     495823000,
+     498529000,
+     549469000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ait:ServiceCenterBasedDistributionSegmentMember",
+     "label": "Service Center Based Distribution Segment",
+     "values": [
+      91972000,
+      106386000,
+      101286000,
+      94270000,
+      109410000,
+      118391000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.7609,
+      0.8221,
+      0.7498,
+      0.7651,
+      0.7933,
+      0.7432
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.025,
+      0.0284,
+      0.1689
+     ]
+    },
+    {
+     "member": "ait:EngineeredSolutionsSegmentMember",
+     "label": "Engineered Solutions Segment",
+     "values": [
+      48779000,
+      44518000,
+      54095000,
+      47881000,
+      51636000,
+      65147000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.4036,
+      0.344,
+      0.4005,
+      0.3886,
+      0.3744,
+      0.4089
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0184,
+      0.1599,
+      0.2043
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     120870000,
+     129402000,
+     135085000,
+     123209000,
+     137925000,
+     159305000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end",
+    "FY2026 end"
+   ],
+   "rows": [
+    {
+     "member": "ait:ServiceCenterBasedDistributionSegmentMember",
+     "label": "Service Center Based Distribution Segment",
+     "values": [
+      1865269000,
+      1765631000,
+      1621621000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6319,
+      0.556,
+      0.5387
+     ],
+     "growth_yoy": [
+      null,
+      -0.0534,
+      -0.0816
+     ]
+    },
+    {
+     "member": "ait:EngineeredSolutionsSegmentMember",
+     "label": "Engineered Solutions Segment",
+     "values": [
+      1086641000,
+      1409913000,
+      1388352000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3681,
+      0.444,
+      0.4613
+     ],
+     "growth_yoy": [
+      null,
+      0.2975,
+      -0.0153
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2951910000,
+     3175544000,
+     3009973000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-12-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ait:ServiceCenterBasedDistributionSegmentMember",
+     "label": "Service Center Based Distribution Segment",
+     "values": [
+      1588471000,
+      1666452000,
+      1781661000,
+      1595462000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5217,
+      0.5349,
+      0.5639,
+      0.5338
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1216,
+      -0.0426
+     ]
+    },
+    {
+     "member": "ait:EngineeredSolutionsSegmentMember",
+     "label": "Engineered Solutions Segment",
+     "values": [
+      1456170000,
+      1449211000,
+      1377661000,
+      1393249000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4783,
+      0.4651,
+      0.4361,
+      0.4662
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0539,
+      -0.0386
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3044641000,
+     3115663000,
+     3159322000,
+     2988711000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3932189000,
+      4000954000,
+      4385330000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8778,
+      0.8767,
+      0.8829
+     ],
+     "growth_yoy": [
+      null,
+      0.0175,
+      0.0961
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      310210000,
+      296661000,
+      300817000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0693,
+      0.065,
+      0.0606
+     ],
+     "growth_yoy": [
+      null,
+      -0.0437,
+      0.014
+     ]
+    },
+    {
+     "member": "ait:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      237007000,
+      265809000,
+      280539000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0529,
+      0.0582,
+      0.0565
+     ],
+     "growth_yoy": [
+      null,
+      0.1215,
+      0.0554
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4479406000,
+     4563424000,
+     4966686000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      929549000,
+      1032283000,
+      1081889000,
+      1024050000,
+      1107122000,
+      1197671000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.8663,
+      0.8848,
+      0.8834,
+      0.8805,
+      0.8847,
+      0.8854
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1017,
+      0.0725,
+      0.107
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      77777000,
+      71555000,
+      75853000,
+      74528000,
+      70783000,
+      80189000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0725,
+      0.0613,
+      0.0619,
+      0.0641,
+      0.0566,
+      0.0593
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0418,
+      -0.0108,
+      0.0572
+     ]
+    },
+    {
+     "member": "ait:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      65675000,
+      62911000,
+      66988000,
+      64445000,
+      73548000,
+      74827000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0612,
+      0.0539,
+      0.0547,
+      0.0554,
+      0.0588,
+      0.0553
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0187,
+      0.1691,
+      0.117
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1073001000,
+     1166749000,
+     1224730000,
+     1163023000,
+     1251453000,
+     1352687000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segments, Total' (ait:ReportableSegmentsTotalMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 115.9% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segments, Total' (ait:ReportableSegmentsTotalMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 115.2% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

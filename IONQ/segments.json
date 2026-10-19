@@ -1,0 +1,440 @@
+{
+ "ticker": "IONQ",
+ "cik": 1824920,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-071562",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-211876",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526211876/ionq-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-341001",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/ionq-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ionq:QuantumHardwareMember",
+     "label": "Quantum Hardware",
+     "values": [
+      7083000,
+      21594000,
+      69946000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3213,
+      0.5013,
+      0.538
+     ],
+     "growth_yoy": [
+      null,
+      2.0487,
+      2.2391
+     ]
+    },
+    {
+     "member": "ionq:PlatformConsultingAndSupportServicesMember",
+     "label": "Platform, consulting and support services",
+     "values": [
+      14959000,
+      21479000,
+      60070000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6787,
+      0.4987,
+      0.462
+     ],
+     "growth_yoy": [
+      null,
+      0.4359,
+      1.7967
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     22042000,
+     43073000,
+     130016000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ionq:QuantumHardwareMember",
+     "label": "Quantum Hardware",
+     "values": [
+      3063000,
+      14066000,
+      35709000,
+      46467000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4048,
+      0.6797,
+      0.5522,
+      0.5805
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      10.6582,
+      2.3035
+     ]
+    },
+    {
+     "member": "ionq:PlatformConsultingAndSupportServicesMember",
+     "label": "Platform, consulting and support services",
+     "values": [
+      4503000,
+      6628000,
+      28959000,
+      33583000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5952,
+      0.3203,
+      0.4478,
+      0.4195
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      5.431,
+      4.0668
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7566000,
+     20694000,
+     64668000,
+     80050000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      18703000,
+      40714000,
+      86957000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8485,
+      0.9452,
+      0.6688
+     ],
+     "growth_yoy": [
+      null,
+      1.1769,
+      1.1358
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      2693000,
+      812000,
+      26429000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1222,
+      0.0189,
+      0.2033
+     ],
+     "growth_yoy": [
+      null,
+      -0.6985,
+      31.548
+     ]
+    },
+    {
+     "member": "country:CH",
+     "label": "SWITZERLAND",
+     "values": [
+      646000,
+      1547000,
+      16630000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0293,
+      0.0359,
+      0.1279
+     ],
+     "growth_yoy": [
+      null,
+      1.3947,
+      9.7498
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     22042000,
+     43073000,
+     130016000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5289000,
+      15990000,
+      40727000,
+      38239000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.699,
+      0.7727,
+      0.6298,
+      0.4777
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      6.7003,
+      1.3914
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      null,
+      556000,
+      null,
+      17774000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0269,
+      null,
+      0.222
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      30.9676
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      538000,
+      2111000,
+      11335000,
+      15201000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0711,
+      0.102,
+      0.1753,
+      0.1899
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      20.0688,
+      6.2009
+     ]
+    },
+    {
+     "member": "country:CH",
+     "label": "SWITZERLAND",
+     "values": [
+      1739000,
+      2037000,
+      12606000,
+      8836000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2298,
+      0.0984,
+      0.1949,
+      0.1104
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      6.249,
+      3.3378
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7566000,
+     20694000,
+     64668000,
+     80050000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

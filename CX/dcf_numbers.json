@@ -1,0 +1,150 @@
+{
+ "ticker": "CX",
+ "name": "CEMEX SAB DE CV",
+ "cik": 1076378,
+ "engine_version": 5,
+ "engine_release": "5.4.0",
+ "as_of": "2026-10-17",
+ "price": 10.25,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 44065652000,
+ "shares_outstanding_dei_latest": 14507429244,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 451672933000.0,
+ "net_debt_latest": 4665000000,
+ "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+ "lease_liabilities_latest": null,
+ "latest_period_end": "2024-12-31",
+ "rev_cagr_5y": 0.04563652637916382,
+ "rev_cagr_3y": 0.04053854547384761,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 894000000,
+ "base_oe_per_share": 0.6086373123447715,
+ "base_oe_latest_per_share": 0.6086373123447715,
+ "base_oe_normalized_per_share": 0.6086373123447715,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.04563652637916382,
+  "rev_cagr_3y": 0.04053854547384761,
+  "rev_yoy_latest": -0.021384559623051858,
+  "oe_ps_cagr_2y": 0.21134997938177436
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.05152068643737118,
+  "rev_cagr_3y": 0.046422705532054964,
+  "rev_yoy_latest": -0.015500399564844503,
+  "oe_ps_cagr_2y": 0.21134997938177436
+ },
+ "g_blend": 0.04897169598471307,
+ "share_cagr": -0.005884160058207355,
+ "share_count_adj": 0.005884160058207355,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": null,
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": "CurrentPortionOfLongtermBorrowings",
+  "debt_cur_st": "ShorttermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": null,
+  "lease_liab_lt": null,
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 30.0,
+  "source": "Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 1 Description of Business: each CPO represents two series A shares and one series B share of common stock (3 ordinary shares per CPO), and each ADS represents ten CPOs - 30 ordinary shares per ADS. Corroborated in the same statements, Note 21: 662 million own shares cancelled in 2022 were stated as 22.1 million ADSs (662/22.1 is about 30).",
+  "reason": "DATA_GAP:ads_ratio - EDGAR diluted share counts (44,065,652 thousand shares for FY2024, Note 23 Earnings Per Share) are in underlying ordinary shares while the Nasdaq price ($10.25) is per ADS; per-share figures must be scaled x30 ordinary shares per ADS to be comparable to the ADS price."
+ },
+ "fx_conversion": {
+  "from_currency": "MXN",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_cur_ltd",
+   "debt_cur_st",
+   "debt_total",
+   "assets",
+   "liabilities",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 0.06795,
+   "2015-12-31": 0.05756,
+   "2016-12-31": 0.04842,
+   "2017-12-31": 0.05069
+  },
+  "rates_by_currency": {
+   "MXN": {
+    "2014-12-31": 0.06795,
+    "2015-12-31": 0.05756,
+    "2016-12-31": 0.04842,
+    "2017-12-31": 0.05069
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 55000000.0,
+   "last_filed_value": 77000000,
+   "last_filed_unit": "USD",
+   "out_of_band": false,
+   "ack_reason_present": false
+  }
+ },
+ "tier_by_numbers": null,
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [
+  "sbc"
+ ],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "DATA_GAP:sbc \u2014 sbc missing for fiscal year(s) 2022, 2023, 2024 of the last 3 \u2014 no tier emitted",
+  "STALE_FY: latest fiscal year ended 22 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency MXN converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x30.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 1 Description of Business: each CPO represents two series A shares and one series B share of common stock (3 ordinary shares per CPO), and each ADS represents ten CPOs - 30 ordinary shares per ADS. Corroborated in the same statements, Note 21: 662 million own shares cancelled in 2022 were stated as 22.1 million ADSs (662/22.1 is about 30).) so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
+ "content_hash": "1dce2b39a89cca7cc26f92b41fcfd48654fb0cbe053ee1f5ea09b1b44127a389"
+}

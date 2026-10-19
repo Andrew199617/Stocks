@@ -1,0 +1,1421 @@
+{
+ "ticker": "ALLY",
+ "cik": 40729,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000040729-26-000005",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40729/000004072926000005/ally-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000040729-26-000009",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40729/000004072926000009/ally-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000040729-26-000017",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/40729/000004072926000017/ally-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      5838000000,
+      5834000000,
+      5572000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.709,
+      0.7131,
+      0.7041
+     ],
+     "growth_yoy": [
+      null,
+      -0.0007,
+      -0.0449
+     ]
+    },
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      1532000000,
+      1621000000,
+      1725000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1861,
+      0.1981,
+      0.218
+     ],
+     "growth_yoy": [
+      null,
+      0.0581,
+      0.0642
+     ]
+    },
+    {
+     "member": "ally:CorporateFinanceOperationsSegmentMember",
+     "label": "Corporate Finance Operations Segment",
+     "values": [
+      534000000,
+      579000000,
+      538000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0649,
+      0.0708,
+      0.068
+     ],
+     "growth_yoy": [
+      null,
+      0.0843,
+      -0.0708
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      330000000,
+      147000000,
+      79000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0401,
+      0.018,
+      0.01
+     ],
+     "growth_yoy": [
+      null,
+      -0.5545,
+      -0.4626
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8234000000,
+     8181000000,
+     7914000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      1363000000,
+      1391000000,
+      1396000000,
+      1420000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8845,
+      0.6681,
+      0.6641,
+      0.6212
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0242,
+      0.0208
+     ]
+    },
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      394000000,
+      452000000,
+      378000000,
+      487000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2557,
+      0.2171,
+      0.1798,
+      0.213
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0406,
+      0.0774
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      -349000000,
+      112000000,
+      180000000,
+      234000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2265,
+      0.0538,
+      0.0856,
+      0.1024
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.0893
+     ]
+    },
+    {
+     "member": "ally:CorporateFinanceOperationsSegmentMember",
+     "label": "Corporate Finance Operations Segment",
+     "values": [
+      133000000,
+      127000000,
+      148000000,
+      145000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0863,
+      0.061,
+      0.0704,
+      0.0634
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1128,
+      0.1417
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1541000000,
+     2082000000,
+     2102000000,
+     2286000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      700000000,
+      932000000,
+      982000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7231,
+      0.778,
+      0.7894
+     ],
+     "growth_yoy": [
+      null,
+      0.3314,
+      0.0536
+     ]
+    },
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      135000000,
+      131000000,
+      138000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1395,
+      0.1093,
+      0.1109
+     ],
+     "growth_yoy": [
+      null,
+      -0.0296,
+      0.0534
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      133000000,
+      135000000,
+      124000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1374,
+      0.1127,
+      0.0997
+     ],
+     "growth_yoy": [
+      null,
+      0.015,
+      -0.0815
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     968000000,
+     1198000000,
+     1244000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      247000000,
+      249000000,
+      244000000,
+      248000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7647,
+      0.7981,
+      0.7948,
+      0.8
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0121,
+      -0.004
+     ]
+    },
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      36000000,
+      36000000,
+      38000000,
+      37000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1115,
+      0.1154,
+      0.1238,
+      0.1194
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0556,
+      0.0278
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      40000000,
+      27000000,
+      25000000,
+      25000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1238,
+      0.0865,
+      0.0814,
+      0.0806
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.375,
+      -0.0741
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     323000000,
+     312000000,
+     307000000,
+     310000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      115301000000,
+      113057000000,
+      115753000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5873,
+      0.5893,
+      0.5906
+     ],
+     "growth_yoy": [
+      null,
+      -0.0195,
+      0.0238
+     ]
+    },
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      9081000000,
+      9325000000,
+      9931000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0463,
+      0.0486,
+      0.0507
+     ],
+     "growth_yoy": [
+      null,
+      0.0269,
+      0.065
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      60735000000,
+      59750000000,
+      57329000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3094,
+      0.3115,
+      0.2925
+     ],
+     "growth_yoy": [
+      null,
+      -0.0162,
+      -0.0405
+     ]
+    },
+    {
+     "member": "ally:CorporateFinanceOperationsSegmentMember",
+     "label": "Corporate Finance Operations Segment",
+     "values": [
+      11212000000,
+      9704000000,
+      12989000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0571,
+      0.0506,
+      0.0663
+     ],
+     "growth_yoy": [
+      null,
+      -0.1345,
+      0.3385
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     196329000000,
+     191836000000,
+     196002000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      111672000000,
+      111709000000,
+      117612000000,
+      121539000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5776,
+      0.5896,
+      0.5962,
+      0.6084
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0532,
+      0.088
+     ]
+    },
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      9489000000,
+      9705000000,
+      9888000000,
+      10031000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0491,
+      0.0512,
+      0.0501,
+      0.0502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.042,
+      0.0336
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      61168000000,
+      57019000000,
+      55966000000,
+      54309000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3164,
+      0.3009,
+      0.2837,
+      0.2719
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.085,
+      -0.0475
+     ]
+    },
+    {
+     "member": "ally:CorporateFinanceOperationsSegmentMember",
+     "label": "Corporate Finance Operations Segment",
+     "values": [
+      11002000000,
+      11040000000,
+      13803000000,
+      13893000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0569,
+      0.0583,
+      0.07,
+      0.0695
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2546,
+      0.2584
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     193331000000,
+     189473000000,
+     197269000000,
+     199772000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      1428000000,
+      1507000000,
+      1596000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7094,
+      0.6954,
+      0.9183
+     ],
+     "growth_yoy": [
+      null,
+      0.0553,
+      0.0591
+     ]
+    },
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      321000000,
+      363000000,
+      389000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1595,
+      0.1675,
+      0.2238
+     ],
+     "growth_yoy": [
+      null,
+      0.1308,
+      0.0716
+     ]
+    },
+    {
+     "member": "ally:CorporateFinanceOperationsSegmentMember",
+     "label": "Corporate Finance Operations Segment",
+     "values": [
+      104000000,
+      123000000,
+      104000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0517,
+      0.0568,
+      0.0598
+     ],
+     "growth_yoy": [
+      null,
+      0.1827,
+      -0.1545
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      160000000,
+      174000000,
+      -351000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0795,
+      0.0803,
+      -0.202
+     ],
+     "growth_yoy": [
+      null,
+      0.0875,
+      -3.0172
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2013000000,
+     2167000000,
+     1738000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ally:InsuranceOperationsSegmentMember",
+     "label": "Insurance Operations Segment",
+     "values": [
+      364000000,
+      422000000,
+      342000000,
+      449000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      5.7778,
+      0.7456,
+      0.6667,
+      0.7458
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0604,
+      0.064
+     ]
+    },
+    {
+     "member": "ally:AutomotiveFinanceOperationsSegmentMember",
+     "label": "Automotive Finance Operations Segment",
+     "values": [
+      97000000,
+      97000000,
+      105000000,
+      104000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.5397,
+      0.1714,
+      0.2047,
+      0.1728
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0825,
+      0.0722
+     ]
+    },
+    {
+     "member": "ally:CorporateFinanceOperationsSegmentMember",
+     "label": "Corporate Finance Operations Segment",
+     "values": [
+      29000000,
+      19000000,
+      35000000,
+      29000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4603,
+      0.0336,
+      0.0682,
+      0.0482
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2069,
+      0.5263
+     ]
+    },
+    {
+     "member": "ally:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate, Reconciling Items And Eliminations",
+     "values": [
+      -427000000,
+      28000000,
+      31000000,
+      20000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -6.7778,
+      0.0495,
+      0.0604,
+      0.0332
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.2857
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     63000000,
+     566000000,
+     513000000,
+     602000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ally:NoninsuranceContractsMember",
+     "label": "Noninsurance Contracts",
+     "values": [
+      686000000,
+      909000000,
+      966000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7087,
+      0.7588,
+      0.7765
+     ],
+     "growth_yoy": [
+      null,
+      0.3251,
+      0.0627
+     ]
+    },
+    {
+     "member": "ally:RemarketingActivitiesMember",
+     "label": "Remarketing Activities",
+     "values": [
+      117000000,
+      112000000,
+      116000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1209,
+      0.0935,
+      0.0932
+     ],
+     "growth_yoy": [
+      null,
+      -0.0427,
+      0.0357
+     ]
+    },
+    {
+     "member": "ally:BankingFeesAndInterchangeIncomeMember",
+     "label": "Banking Fees And Interchange Income",
+     "values": [
+      44000000,
+      47000000,
+      39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0455,
+      0.0392,
+      0.0314
+     ],
+     "growth_yoy": [
+      null,
+      0.0682,
+      -0.1702
+     ]
+    },
+    {
+     "member": "ally:BrokeredAgentCommissionsMember",
+     "label": "Brokered/Agent Commissions",
+     "values": [
+      13000000,
+      20000000,
+      14000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0134,
+      0.0167,
+      0.0113
+     ],
+     "growth_yoy": [
+      null,
+      0.5385,
+      -0.3
+     ]
+    },
+    {
+     "member": "ally:BrokerageCommissionsandOtherMember",
+     "label": "Brokerage Commissions and Other",
+     "values": [
+      89000000,
+      88000000,
+      82000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0919,
+      0.0735,
+      0.0659
+     ],
+     "growth_yoy": [
+      null,
+      -0.0112,
+      -0.0682
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      19000000,
+      22000000,
+      27000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0196,
+      0.0184,
+      0.0217
+     ],
+     "growth_yoy": [
+      null,
+      0.1579,
+      0.2273
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     968000000,
+     1198000000,
+     1244000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ally:NoninsuranceContractsMember",
+     "label": "Noninsurance Contracts",
+     "values": [
+      241000000,
+      241000000,
+      242000000,
+      245000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7461,
+      0.7724,
+      0.7883,
+      0.7903
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0041,
+      0.0166
+     ]
+    },
+    {
+     "member": "ally:RemarketingActivitiesMember",
+     "label": "Remarketing Activities",
+     "values": [
+      31000000,
+      31000000,
+      32000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.096,
+      0.0994,
+      0.1042,
+      0.0968
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0323,
+      -0.0323
+     ]
+    },
+    {
+     "member": "ally:BankingFeesAndInterchangeIncomeMember",
+     "label": "Banking Fees And Interchange Income",
+     "values": [
+      19000000,
+      6000000,
+      5000000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0588,
+      0.0192,
+      0.0163,
+      0.0194
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.7368,
+      0.0
+     ]
+    },
+    {
+     "member": "ally:BrokeredAgentCommissionsMember",
+     "label": "Brokered/Agent Commissions",
+     "values": [
+      5000000,
+      7000000,
+      2000000,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0155,
+      0.0224,
+      0.0065,
+      0.0065
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.6,
+      -0.7143
+     ]
+    },
+    {
+     "member": "ally:BrokerageCommissionsandOtherMember",
+     "label": "Brokerage Commissions and Other",
+     "values": [
+      20000000,
+      20000000,
+      19000000,
+      18000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0619,
+      0.0641,
+      0.0619,
+      0.0581
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.05,
+      -0.1
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      7000000,
+      7000000,
+      7000000,
+      9000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0217,
+      0.0224,
+      0.0228,
+      0.029
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.2857
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     323000000,
+     312000000,
+     307000000,
+     310000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

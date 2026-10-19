@@ -1,0 +1,545 @@
+{
+ "ticker": "CACI",
+ "cik": 16058,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-003026",
+   "filed": "2026-01-22",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026003026/caci-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-026802",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026026802/caci-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-054195",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026054195/caci-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "caci:DomesticSegmentMember",
+     "label": "Domestic Segment",
+     "values": [
+      7432745000,
+      8370361000,
+      9260288000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9704,
+      0.9702,
+      0.9679
+     ],
+     "growth_yoy": [
+      null,
+      0.1261,
+      0.1063
+     ]
+    },
+    {
+     "member": "caci:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      227087000,
+      257463000,
+      307491000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0296,
+      0.0298,
+      0.0321
+     ],
+     "growth_yoy": [
+      null,
+      0.1338,
+      0.1943
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7659832000,
+     8627824000,
+     9567779000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-12-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "caci:DomesticOperationsMember",
+     "label": "Domestic Operations",
+     "values": [
+      2039156000,
+      2105120000,
+      2144983000,
+      2273695000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9711,
+      0.9715,
+      0.9662,
+      0.9671
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0519,
+      0.0801
+     ]
+    },
+    {
+     "member": "caci:InternationalOperationsMember",
+     "label": "International Operations",
+     "values": [
+      60653000,
+      61862000,
+      75114000,
+      77307000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0289,
+      0.0285,
+      0.0338,
+      0.0329
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2384,
+      0.2497
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2099809000,
+     2166982000,
+     2220097000,
+     2351002000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "caci:DomesticSegmentMember",
+     "label": "Domestic Segment",
+     "values": [
+      606014000,
+      709552000,
+      859873000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9327,
+      0.9285,
+      0.9348
+     ],
+     "growth_yoy": [
+      null,
+      0.1709,
+      0.2119
+     ]
+    },
+    {
+     "member": "caci:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      43694000,
+      54633000,
+      59942000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0673,
+      0.0715,
+      0.0652
+     ],
+     "growth_yoy": [
+      null,
+      0.2504,
+      0.0972
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     649708000,
+     764185000,
+     919815000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-12-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "caci:DomesticOperationsMember",
+     "label": "Domestic Operations",
+     "values": [
+      170977000,
+      185870000,
+      192937000,
+      216707000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9431,
+      0.9465,
+      0.9345,
+      0.9468
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1284,
+      0.1659
+     ]
+    },
+    {
+     "member": "caci:InternationalOperationsMember",
+     "label": "International Operations",
+     "values": [
+      10321000,
+      10499000,
+      13532000,
+      12170000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0569,
+      0.0535,
+      0.0655,
+      0.0532
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3111,
+      0.1592
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     181298000,
+     196369000,
+     206469000,
+     228877000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:TechnologyServiceMember",
+     "label": "Technology Service",
+     "values": [
+      4102843000,
+      4777983000,
+      5583122000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5356,
+      0.5538,
+      0.5835
+     ],
+     "growth_yoy": [
+      null,
+      0.1646,
+      0.1685
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      3556989000,
+      3849841000,
+      3984657000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4644,
+      0.4462,
+      0.4165
+     ],
+     "growth_yoy": [
+      null,
+      0.0823,
+      0.035
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7659832000,
+     8627824000,
+     9567779000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:TechnologyServiceMember",
+     "label": "Technology Service",
+     "values": [
+      1173909000,
+      1193945000,
+      1341505000,
+      1295896000,
+      1327274000,
+      1659220000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.5591,
+      0.551,
+      0.5822,
+      0.5837,
+      0.5646,
+      0.6125
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1039,
+      0.1117,
+      0.2368
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      925900000,
+      973037000,
+      962639000,
+      924201000,
+      1023728000,
+      1049837000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.4409,
+      0.449,
+      0.4178,
+      0.4163,
+      0.4354,
+      0.3875
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0018,
+      0.0521,
+      0.0906
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2099809000,
+     2166982000,
+     2304144000,
+     2220097000,
+     2351002000,
+     2709057000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

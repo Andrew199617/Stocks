@@ -1,0 +1,108 @@
+{
+ "ticker": "JBS",
+ "name": "JBS N.V.",
+ "sector": "Consumer Staples / Food \u2014 meat packing and protein processing",
+ "price": 13.03,
+ "market_cap_b": 13.92,
+ "engine_version": 5,
+ "base_oe_per_share": 0.8139604814906933,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Scale and multi-protein, multi-geography diversification give real cost and resilience advantages, but this is commodity protein processing: gross margin only 10.9%-15.0% over FY2023-25, roic_proxy in fundamentals.json fell from 16.7% (FY2023) to 14.5% (FY2024) to 13.6% (FY2025), pricing is set by cattle/hog/chicken cycles and powerful retailers, and Q2 2026 showed the cycle can erase a quarter's profit. No durable pricing power or switching costs support a higher score.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (JBS N.V. Form 20-F for the fiscal year ended December 31, 2025, Note 1 Background information: 'The Class A common shares of JBS N.V. are listed on the New York Stock Exchange (NYSE) under the ticker symbol \"JBS,\" and its Level II Brazilian Depositary Receipts (BDRs) are traded on B3 under the code \"JBSS32\"' \u2014 the NYSE security is the Class A common share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: JBS N.V. Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), Earnings per share note: net income attributable to Company shareholders with 'Weighted average - common shares outstanding' 1,068,508,877 for 2025, 2024 and 2023 (2024/2023 retrospectively adjusted to the 2025 share structure) and a single line 'Basic and diluted earnings (loss) per share - (US$)' of 1.89 / 1.65 / (0.19) \u2014 basic and diluted use the same denominator); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 19.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (8.6%) vs bull-case tier C (13.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 4.0,
+   "irr": 0.0617
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 6.29,
+   "irr": 0.0857
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 8.46,
+   "irr": 0.1077
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 11.22,
+   "irr": 0.1339
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 16.5,
+   "irr": 0.1786
+  }
+ },
+ "iv_at_15": 8.36,
+ "iv_at_12": 11.16,
+ "implied_irr": 0.107,
+ "implied_irr_base_case": 0.1077,
+ "upside_at_15_pct": -35.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Global protein scale, moat 4/10, but a commodity cyclical \u2014 weighted IRR 10.7% (Tier C, bear D to bull C) at $13.03 vs weighted IV@15% $8.36; clears 15% only below ~$8.36, with net debt 19.0x normalized OE.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0857,
+ "irr_bull": 0.1339,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 5.84,
+ "iv_at_25": 4.47,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 16525432000,
+ "shares_diluted_latest": 1068508877.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "World's largest protein processor \u2014 scale in procurement, plant utilization and distribution across beef, pork, poultry and lamb",
+  "Multi-protein, multi-geography platform (US, Brazil, Australia, Europe) diversifies single-protein and single-country cycles",
+  "Branded and value-added businesses (Seara, Pilgrim's, Moy Park, Swift, Primo) sit above pure commodity slaughter",
+  "ROIC proxy stayed above cost of capital in all three filed years (16.7% / 14.5% / 13.6%, fundamentals.json)"
+ ],
+ "moat_against": [
+  "Commodity processing with thin gross margins (10.9%-15.0%) and no control over livestock input prices or meat cutout prices",
+  "Cattle-cycle exposure: tight US cattle supply drove a Q2 2026 net loss and an 18% YoY fall in adjusted EBITDA despite record sales",
+  "Powerful retail/foodservice buyers and low consumer switching costs limit pricing power",
+  "Leverage and governance: net debt $16.525B filed for FY2025, Q2 2026 leverage 3.1x, Batista family control, antitrust / food-safety / ESG exposure"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 1068508877.0,
+   "kind": "filing",
+   "source": "JBS N.V. Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), Earnings per share note: net income attributable to Company shareholders with 'Weighted average - common shares outstanding' 1,068,508,877 for 2025, 2024 and 2023 (2024/2023 retrospectively adjusted to the 2025 share structure) and a single line 'Basic and diluted earnings (loss) per share - (US$)' of 1.89 / 1.65 / (0.19) \u2014 basic and diluted use the same denominator"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.814,
+  "base_oe_with_override": 0.814,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.107,
+  "weighted_irr_with_override": 0.107,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

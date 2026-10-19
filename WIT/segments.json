@@ -1,0 +1,253 @@
+{
+ "ticker": "WIT",
+ "cik": 1123799,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-253514",
+   "filed": "2026-06-02",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526253514/wit-20260331_htm.xml"
+  }
+ ],
+ "currency": "INR",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wit:InformationTechnologyServicesMember",
+     "label": "Information Technology services",
+     "values": [
+      893816000000,
+      888224000000,
+      921153000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9958,
+      0.997,
+      0.9945
+     ],
+     "growth_yoy": [
+      null,
+      -0.0063,
+      0.0371
+     ]
+    },
+    {
+     "member": "wit:InformationTechnologyProductsMember",
+     "label": "Information Technology products",
+     "values": [
+      4127000000,
+      2692000000,
+      6940000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0046,
+      0.003,
+      0.0075
+     ],
+     "growth_yoy": [
+      null,
+      -0.3477,
+      1.578
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     897603000000,
+     890884000000,
+     926240000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wit:RenderingOfServicesMember",
+     "label": "Rendering of Services",
+     "values": [
+      893476000000,
+      888192000000,
+      919300000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9954,
+      0.997,
+      0.9925
+     ],
+     "growth_yoy": [
+      null,
+      -0.0059,
+      0.035
+     ]
+    },
+    {
+     "member": "wit:SalesOfProductsMember",
+     "label": "Sales of Products",
+     "values": [
+      4127000000,
+      2692000000,
+      6940000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0046,
+      0.003,
+      0.0075
+     ],
+     "growth_yoy": [
+      null,
+      -0.3477,
+      1.578
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     897603000000,
+     890884000000,
+     926240000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wit:InformationTechnologyServicesMember",
+     "label": "Information Technology services",
+     "values": [
+      144196000000,
+      151639000000,
+      158646000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0595,
+      1.0024,
+      1.0489
+     ],
+     "growth_yoy": [
+      null,
+      0.0516,
+      0.0462
+     ]
+    },
+    {
+     "member": "wit:InformationTechnologyProductsMember",
+     "label": "Information Technology products",
+     "values": [
+      -371000000,
+      -173000000,
+      559000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0027,
+      -0.0011,
+      0.0037
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     136099000000,
+     151271000000,
+     151251000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "8 facts in a currency other than INR were ignored",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Products' (wit:ProductsMember) dropped: same numbers as 'Sales of Products' (wit:SalesOfProductsMember)",
+  "product/OperatingIncomeLoss/annual: rows sum to 105.3% of the consolidated total for 2026-03-31 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

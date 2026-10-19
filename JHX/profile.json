@@ -1,0 +1,285 @@
+{
+ "ticker": "JHX",
+ "cik": 1159152,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T03:40:50-04:00",
+ "newest_filing_date": "2026-10-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001159152.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000045/jhx-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JHX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JHX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "James Hardie Industries plc",
+  "cik": 1159152,
+  "description": {
+   "text": "James Hardie Industries plc is a leading provider of exterior home and outdoor living solutions, serving the new home construction, repair and remodel and outdoor living markets. Our current primary geographic markets include the United States of America (“US,” “USA” or the “United States”), Australia and Europe. On July 1, 2025, we completed the acquisition of The AZEK Company Inc. (\"AZEK\"), an industry-leading designer and manufacturer of low maintenance and environmentally sustainable outdoor living products, which has manufacturing and recycling facilities in the United States. Our corporate domicile is in Ireland, and our registered office is located at 1st Floor, Block A, One Park Place, Upper Hatch Street, Dublin 2, D02 FD79, Ireland. The telephone number is +353 1411 6924 and our corporate website is www.jameshardie.com. We are registered at the Companies Registration Office of the Department of Jobs, Enterprise and Innovation in Dublin, Ireland under number 485719. The SEC maintains a website at www.sec.gov, which contains reports and other information regarding issuers, including the Company, that file electronically with the SEC. In addition, such reports may be obtained, upon written request, from our company secretary at our corporate headquarters in Ireland or our Investor Relations department.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "accession": "0001159152-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000045/jhx-20260331.htm"
+  },
+  "description_short": "James Hardie Industries plc is the industry leader in exterior home and outdoor living solutions, with a portfolio that includes fiber cement, fiber gypsum, and composite and PVC decking and railing products. Products offered by James Hardie are engineered for beauty, durability, and climate resilience, and include trusted brands like Hardie, TimberTech, AZEK Exteriors, Versatex, fermacell and StruXure. With a global footprint, the James Hardie portfolio is marketed and sold throughout North America, Europe, Australia and New Zealand.",
+  "industry": "Building Materials",
+  "sector": "Industrials",
+  "region": "Europe",
+  "sic": "3272",
+  "sic_description": "Concrete Products, Except Block & Brick",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.jameshardie.com",
+  "headquarters": "Dublin 2, Ireland",
+  "address": {
+   "street": "1st Floor, Block A One Park Place Upper Hatch Street",
+   "city": "Dublin 2",
+   "state": null,
+   "zip": "D02 FD79",
+   "country": "Ireland",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-19"
+  },
+  "phone": "353 1411 6924",
+  "employees": {
+   "count": 7500,
+   "as_of": "2026-03-31",
+   "evidence": "As of March 31, 2026, the Company employed approximately 7,500 people, of which approximately 27% were located outside the United States.",
+   "form": "10-K",
+   "filed": "2026-05-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000045/jhx-20260331.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-02-20",
+  "first_sec_filing_form": "6-K",
+  "former_names": [
+   "JAMES HARDIE INDUSTRIES SE",
+   "JAMES HARDIE INDUSTRIES N.V.",
+   "HARDIE JAMES INDUSTRIES NV"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001159152&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-064309",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026064309/jhx-20261001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-20",
+   "items": [
+    "3.03",
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001628280-26-058414",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026058414/jhx-20260820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-20",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001628280-26-058265",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026058265/jhx-20260820.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001159152-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000051/jhx-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-054382",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026054382/jhx-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-049246",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026049246/jhx-20260722.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-01",
+   "period": "2026-08-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-046522",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026046522/jhx-20260701.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-045625",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026045625/jhx-20260625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001159152-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000048/jhx-20260520.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001159152-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000045/jhx-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-036497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026036497/jhx-20260519.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-14",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-035264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000162828026035264/jhx-20260514.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000031/jhxform6k31mar2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000029/jhxform6k20mar2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000026/jhxform6k17mar2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-13",
+   "period": "2026-03-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000024/jhxform6k13mar2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000022/jhxform6k06mar2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000020/jhxform6k27feb2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000017/jhxform6k20feb2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001159152-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000015/q3266kintro.htm"
+  }
+ ],
+ "warnings": []
+}

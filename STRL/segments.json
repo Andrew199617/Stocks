@@ -1,0 +1,724 @@
+{
+ "ticker": "STRL",
+ "cik": 874238,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000874238-26-000024",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000024/strl-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000874238-26-000055",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000055/strl-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000874238-26-000103",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000103/strl-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "strl:EInfrastructureSolutionsSegmentMember",
+     "label": "E-Infrastructure Solutions Segment",
+     "values": [
+      937408000,
+      923728000,
+      1466777000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4753,
+      0.4366,
+      0.5891
+     ],
+     "growth_yoy": [
+      null,
+      -0.0146,
+      0.5879
+     ]
+    },
+    {
+     "member": "strl:TransportationSolutionsSegmentMember",
+     "label": "Transportation Solutions Segment",
+     "values": [
+      630908000,
+      783659000,
+      640674000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3199,
+      0.3704,
+      0.2573
+     ],
+     "growth_yoy": [
+      null,
+      0.2421,
+      -0.1825
+     ]
+    },
+    {
+     "member": "strl:BuildingSolutionsSegmentMember",
+     "label": "Building Solutions Segment",
+     "values": [
+      403913000,
+      408369000,
+      382598000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2048,
+      0.193,
+      0.1537
+     ],
+     "growth_yoy": [
+      null,
+      0.011,
+      -0.0631
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1972229000,
+     2115756000,
+     2490049000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "strl:EInfrastructureSolutionsSegmentMember",
+     "label": "E-Infrastructure Solutions Segment",
+     "values": [
+      218263000,
+      310406000,
+      597732000,
+      905001000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5065,
+      0.5052,
+      0.7239,
+      0.7747
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.7386,
+      1.9155
+     ]
+    },
+    {
+     "member": "strl:TransportationSolutionsSegmentMember",
+     "label": "Transportation Solutions Segment",
+     "values": [
+      120661000,
+      196797000,
+      132863000,
+      156692000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.28,
+      0.3203,
+      0.1609,
+      0.1341
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1011,
+      -0.2038
+     ]
+    },
+    {
+     "member": "strl:BuildingSolutionsSegmentMember",
+     "label": "Building Solutions Segment",
+     "values": [
+      92025000,
+      107265000,
+      95080000,
+      106486000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2135,
+      0.1746,
+      0.1152,
+      0.0912
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0332,
+      -0.0073
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     430949000,
+     614468000,
+     825675000,
+     1168179000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "strl:EInfrastructureSolutionsSegmentMember",
+     "label": "E-Infrastructure Solutions Segment",
+     "values": [
+      140997000,
+      203359000,
+      346041000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6851,
+      0.7685,
+      0.8525
+     ],
+     "growth_yoy": [
+      null,
+      0.4423,
+      0.7016
+     ]
+    },
+    {
+     "member": "strl:TransportationSolutionsSegmentMember",
+     "label": "Transportation Solutions Segment",
+     "values": [
+      41911000,
+      50869000,
+      77810000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2037,
+      0.1922,
+      0.1917
+     ],
+     "growth_yoy": [
+      null,
+      0.2137,
+      0.5296
+     ]
+    },
+    {
+     "member": "strl:BuildingSolutionsSegmentMember",
+     "label": "Building Solutions Segment",
+     "values": [
+      45524000,
+      53839000,
+      39067000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2212,
+      0.2035,
+      0.0962
+     ],
+     "growth_yoy": [
+      null,
+      0.1827,
+      -0.2744
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     205795000,
+     264622000,
+     405916000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "strl:EInfrastructureSolutionsSegmentMember",
+     "label": "E-Infrastructure Solutions Segment",
+     "values": [
+      46642000,
+      83767000,
+      133764000,
+      210849000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8318,
+      0.8011,
+      0.9706,
+      0.9616
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8679,
+      1.5171
+     ]
+    },
+    {
+     "member": "strl:TransportationSolutionsSegmentMember",
+     "label": "Transportation Solutions Segment",
+     "values": [
+      11253000,
+      25975000,
+      14754000,
+      28176000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2007,
+      0.2484,
+      0.1071,
+      0.1285
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3111,
+      0.0847
+     ]
+    },
+    {
+     "member": "strl:BuildingSolutionsSegmentMember",
+     "label": "Building Solutions Segment",
+     "values": [
+      12352000,
+      9855000,
+      6215000,
+      8490000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2203,
+      0.0942,
+      0.0451,
+      0.0387
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4968,
+      -0.1385
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      null,
+      11195000,
+      null,
+      13238000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.1071,
+      null,
+      0.0604
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1825
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     56076000,
+     104564000,
+     137814000,
+     219261000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "strl:EInfrastructureSolutionsSegmentMember",
+     "label": "E-Infrastructure Solutions Segment",
+     "values": [
+      958107000,
+      1870246000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4751,
+      0.7101
+     ],
+     "growth_yoy": [
+      null,
+      0.952
+     ]
+    },
+    {
+     "member": "strl:BuildingSolutionsSegmentMember",
+     "label": "Building Solutions Segment",
+     "values": [
+      238776000,
+      240174000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1184,
+      0.0912
+     ],
+     "growth_yoy": [
+      null,
+      0.0059
+     ]
+    },
+    {
+     "member": "strl:TransportationSolutionsSegmentMember",
+     "label": "Transportation Solutions Segment",
+     "values": [
+      178143000,
+      181867000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0883,
+      0.0691
+     ],
+     "growth_yoy": [
+      null,
+      0.0209
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      641748000,
+      341544000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3182,
+      0.1297
+     ],
+     "growth_yoy": [
+      null,
+      -0.4678
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2016774000,
+     2633831000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "strl:EInfrastructureSolutionsSegmentMember",
+     "label": "E-Infrastructure Solutions Segment",
+     "values": [
+      1870246000,
+      1936497000,
+      2453058000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7101,
+      0.6957,
+      0.768
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "strl:BuildingSolutionsSegmentMember",
+     "label": "Building Solutions Segment",
+     "values": [
+      240174000,
+      232017000,
+      238368000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0912,
+      0.0833,
+      0.0746
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "strl:TransportationSolutionsSegmentMember",
+     "label": "Transportation Solutions Segment",
+     "values": [
+      181867000,
+      185967000,
+      177564000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0691,
+      0.0668,
+      0.0556
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      341544000,
+      429191000,
+      325250000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1297,
+      0.1542,
+      0.1018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2633831000,
+     2783672000,
+     3194240000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 114.0% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 118.9% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

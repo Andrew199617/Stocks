@@ -1,0 +1,673 @@
+{
+ "ticker": "AIZ",
+ "cik": 1267238,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001267238-26-000010",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000010/aiz-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001267238-26-000027",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000027/aiz-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001267238-26-000041",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000041/aiz-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aiz:GlobalLifestyleMember",
+     "label": "Global Lifestyle",
+     "values": [
+      8908900000,
+      9323900000,
+      9940000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8003,
+      0.785,
+      0.7757
+     ],
+     "growth_yoy": [
+      null,
+      0.0466,
+      0.0661
+     ]
+    },
+    {
+     "member": "aiz:GlobalHousingMember",
+     "label": "Global Housing",
+     "values": [
+      2252600000,
+      2584300000,
+      2910600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2024,
+      0.2176,
+      0.2271
+     ],
+     "growth_yoy": [
+      null,
+      0.1473,
+      0.1263
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      21600000,
+      27600000,
+      25600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0019,
+      0.0023,
+      0.002
+     ],
+     "growth_yoy": [
+      null,
+      0.2778,
+      -0.0725
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11131600000,
+     11877500000,
+     12814300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aiz:GlobalLifestyleMember",
+     "label": "Global Lifestyle",
+     "values": [
+      2390600000,
+      2438500000,
+      2659900000,
+      2670200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7777,
+      0.7721,
+      0.7777,
+      0.773
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1126,
+      0.095
+     ]
+    },
+    {
+     "member": "aiz:GlobalHousingMember",
+     "label": "Global Housing",
+     "values": [
+      690500000,
+      732100000,
+      769800000,
+      783400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2246,
+      0.2318,
+      0.2251,
+      0.2268
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1148,
+      0.0701
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      6200000,
+      6900000,
+      9300000,
+      8800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.002,
+      0.0022,
+      0.0027,
+      0.0025
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5,
+      0.2754
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3074000000,
+     3158400000,
+     3420100000,
+     3454200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aiz:GlobalLifestyleMember",
+     "label": "Global Lifestyle",
+     "values": [
+      1160000000,
+      1410000000,
+      1640000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9323,
+      0.9169,
+      0.9216
+     ],
+     "growth_yoy": [
+      null,
+      0.2155,
+      0.1631
+     ]
+    },
+    {
+     "member": "aiz:GlobalHousingMember",
+     "label": "Global Housing",
+     "values": [
+      84300000,
+      127800000,
+      139600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0677,
+      0.0831,
+      0.0784
+     ],
+     "growth_yoy": [
+      null,
+      0.516,
+      0.0923
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1244300000,
+     1537800000,
+     1779600000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aiz:GlobalLifestyleMember",
+     "label": "Global Lifestyle",
+     "values": [
+      349700000,
+      402100000,
+      441600000,
+      490300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9193,
+      0.9172,
+      0.9322,
+      0.93
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2628,
+      0.2193
+     ]
+    },
+    {
+     "member": "aiz:GlobalHousingMember",
+     "label": "Global Housing",
+     "values": [
+      30700000,
+      36300000,
+      32100000,
+      36900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0807,
+      0.0828,
+      0.0678,
+      0.07
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0456,
+      0.0165
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     380400000,
+     438400000,
+     473700000,
+     527200000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "aiz:GlobalLifestyleMember",
+     "label": "Global Lifestyle",
+     "values": [
+      27468000000,
+      28846700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7843,
+      0.7949
+     ],
+     "growth_yoy": [
+      null,
+      0.0502
+     ]
+    },
+    {
+     "member": "aiz:GlobalHousingMember",
+     "label": "Global Housing",
+     "values": [
+      5773400000,
+      5159200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1649,
+      0.1422
+     ],
+     "growth_yoy": [
+      null,
+      -0.1064
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1779200000,
+      2283700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0508,
+      0.0629
+     ],
+     "growth_yoy": [
+      null,
+      0.2836
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     35020600000,
+     36289600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aiz:GlobalLifestyleMember",
+     "label": "Global Lifestyle",
+     "values": [
+      28846700000,
+      29083400000,
+      29304700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7949,
+      0.8131,
+      0.8122
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "aiz:GlobalHousingMember",
+     "label": "Global Housing",
+     "values": [
+      5159200000,
+      5158000000,
+      5157600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1422,
+      0.1442,
+      0.1429
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2283700000,
+      1527100000,
+      1619100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0629,
+      0.0427,
+      0.0449
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     36289600000,
+     35768500000,
+     36081400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      9295700000,
+      9815500000,
+      10549000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8351,
+      0.8264,
+      0.8232
+     ],
+     "growth_yoy": [
+      null,
+      0.0559,
+      0.0747
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1835900000,
+      2062000000,
+      2265300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1649,
+      0.1736,
+      0.1768
+     ],
+     "growth_yoy": [
+      null,
+      0.1232,
+      0.0986
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11131600000,
+     11877500000,
+     12814300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

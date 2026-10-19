@@ -1,0 +1,116 @@
+{
+ "ticker": "VNOM",
+ "name": "Viper Energy, Inc.",
+ "sector": "Energy / Oil & gas mineral and royalty interests",
+ "price": 45.02,
+ "market_cap_b": 6.42,
+ "engine_version": 5,
+ "base_oe_per_share": 4.143427182330288,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "The largest pure-play mineral and royalty owner in the Permian: perpetual royalty interests that bear no drilling, completion or operating capex, a symbiotic Diamondback relationship supplying a disproportionate share of development on its acreage, and scale that gives it the lowest cost of capital in a fragmented minerals market \u2014 a moderate-strong asset moat (6). It is not wider: Viper is a pure commodity price-taker, its reserves deplete and must be replenished by buying acreage at market prices, volumes depend on third-party operators' drilling pace, and essentially all value sits in one basin facing long-run hydrocarbon decline.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 38.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Changes in Stockholders' Equity (pp. 51-52), row 'Equity-based compensation' credited to additional paid-in capital: $7M for FY2025, with $3M for FY2024 and $1M for FY2023 in the same statement. The cash-flow statement (p. 50) carries no separate equity-compensation addback line \u2014 it is inside the 'Other' operating adjustment of $13M / $6M / $3M \u2014 which is why EDGAR companyfacts has no ShareBasedCompensation fact for this filer.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Cash Flows (p. 50): the investing-activities section for 2025/2024/2023 lists ONLY 'Acquisitions of oil and natural gas interests' $(1,549)M / $(696)M / $(830)M, 'Acquisitions of oil and natural gas interests\u2014related party' $(875)M / $\u2014 / $(75)M and 'Proceeds from sale of oil and natural gas interests' $\u2014 / $88M / $(3)M, netting to $(2,424)M / $(608)M / $(908)M. There is no purchases-of-property-plant-and-equipment, fixed-asset or capital-expenditure line anywhere in the statement for any of the three years (the balance sheet carries only $8M of other property, equipment and land at FY2025).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.9x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (10.0%) vs bull-case tier B (19.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 14.64,
+   "irr": 0.0594
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 27.34,
+   "irr": 0.0998
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 43.37,
+   "irr": 0.1457
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 65.07,
+   "irr": 0.1969
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 100.6,
+   "irr": 0.2633
+  }
+ },
+ "iv_at_15": 45.11,
+ "iv_at_12": 60.85,
+ "implied_irr": 0.1502,
+ "implied_irr_base_case": 0.1457,
+ "upside_at_15_pct": 0.2,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Largest Permian mineral/royalty owner, moat 6/10, zero-capex royalty cash flow \u2014 on the corrected per-unit TTM base it barely clears 15%: weighted IRR 15.02% (Tier B), weighted IV@15% $45.11 vs the $45.02 price, but the bear case is Tier D (9.98% IRR), so size it like the conservative end of B.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0998,
+ "irr_bull": 0.1969,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 31.14,
+ "iv_at_25": 23.57,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2173000000,
+ "shares_diluted_latest": 142530000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Perpetual mineral/royalty interests (96,003 net royalty acres at FY2025) that bear no well capex or lease operating expense \u2014 a structural cost advantage no producer can match",
+  "Scale: largest pure-play mineral company after the Aug 2025 Sitio acquisition (~$4.0B all-equity); proved reserves 406,035 MBOE, ~78% proved developed producing",
+  "Diamondback symbiosis: parent-operator develops Viper acreage preferentially; ~1,388 gross horizontal wells in active development on its Permian acreage at YE2025 plus ~1,370 line-of-sight wells",
+  "Cash ROIC history well above cost of capital before the FY2025 non-cash impairment (fundamentals.json roic_proxy 19.9% FY2023, 16.3% FY2024); operating margin 86.5% / 66.4% in FY2023/FY2024",
+  "Royalty breakeven far below current commodity prices \u2014 cash generation survives troughs that force producers to cut rigs"
+ ],
+ "moat_against": [
+  "No pricing power: royalty revenue is a price-taker claim on oil, gas and NGL prices (FY2025 ceiling-test impairment of $768M when prices fell)",
+  "Reserves deplete: maintaining per-unit production requires continuous acreage acquisition at market prices (FY2025 acquisitions of oil and gas interests $1,549M + $875M related-party)",
+  "Volumes depend on third-party operators' (mainly Diamondback's) drilling and completion pace",
+  "Single-basin concentration: essentially all value in the Permian Basin; long-run hydrocarbon demand decline caps the terminal story",
+  "Up-C structure: a large noncontrolling interest (OpCo units / Class B) shares consolidated economics ahead of Class A holders, and net debt was $2,173M at FY2025 (being paid toward a ~$1.5B target)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Cash Flows (p. 50): the investing-activities section for 2025/2024/2023 lists ONLY 'Acquisitions of oil and natural gas interests' $(1,549)M / $(696)M / $(830)M, 'Acquisitions of oil and natural gas interests\u2014related party' $(875)M / $\u2014 / $(75)M and 'Proceeds from sale of oil and natural gas interests' $\u2014 / $88M / $(3)M, netting to $(2,424)M / $(608)M / $(908)M. There is no purchases-of-property-plant-and-equipment, fixed-asset or capital-expenditure line anywhere in the statement for any of the three years (the balance sheet carries only $8M of other property, equipment and land at FY2025)."
+  },
+  {
+   "field": "sbc",
+   "value": 7000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Changes in Stockholders' Equity (pp. 51-52), row 'Equity-based compensation' credited to additional paid-in capital: $7M for FY2025, with $3M for FY2024 and $1M for FY2023 in the same statement. The cash-flow statement (p. 50) carries no separate equity-compensation addback line \u2014 it is inside the 'Other' operating adjustment of $13M / $6M / $3M \u2014 which is why EDGAR companyfacts has no ShareBasedCompensation fact for this filer."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 7.9711,
+  "base_oe_with_override": 4.1434,
+  "base_oe_impact_pct": -48.019,
+  "weighted_irr_without_override": 0.2514,
+  "weighted_irr_with_override": 0.1502,
+  "weighted_irr_impact_pp": -10.118,
+  "unblocks_tier": true
+ }
+}

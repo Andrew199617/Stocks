@@ -1,0 +1,248 @@
+{
+ "ticker": "AS",
+ "cik": 1988894,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T21:09:49-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001988894.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000004/as-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Amer Sports, Inc.",
+  "cik": 1988894,
+  "description": {
+   "text": "Amer Sports is a global group of iconic sports and outdoor brands, including Arc’teryx, Salomon, Wilson, Atomic and Peak Performance, united by a shared purpose of elevating the world through sport. Our brands are known for their detailed craftsmanship, unwavering authenticity, premium market positioning and compelling market shares in their categories. We pride ourselves on cutting-edge innovation, technical performance and ground-breaking designs that allow athletes and everyday consumers to perform better every day. Through partnerships with industry influencers and elite athletes, and in collaboration with the various communities we serve, we develop next-generation products that define winning moments in sports. Our brands are creators of exceptional apparel, footwear, equipment, protective gear and accessories that we believe give our consumers the confidence and comfort to excel. Select Pinnacle Moments in Sports where Amer Sports’ Brands are Delivering at the Highest Levels Courtney Dauwalter claims first place at the Lavaredo 120km trail race wearing Salomon footwear, apparel and packs. Marta Kostyuk head-to-toe in Wilson playing in her 2025 US Open kit Mountain guide and professional climber Will Gadd trusts his Arc’teryx gear as he climbs in Banff National Park Winning her 106th World Cup race in 2025, Mikaela Shiffrin has the record for most Alpine World Cup victories in history.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001988894-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000004/as-20251231.htm"
+  },
+  "description_short": "Amer Sports is a global group of iconic sports and outdoor brands, including Arc'teryx, Salomon, Wilson, Peak Performance, and Atomic. Our brands are known for their detailed craftsmanship, unwavering authenticity, and premium market positioning. As creators of exceptional apparel, footwear, and equipment, we pride ourselves on cutting-edge innovation, performance, and designs that allow elite athletes and everyday consumers to perform their best. With over 15,400 employees globally, Amer Sports' purpose is to elevate the world through sport. Our vision is to be the global leader in premium sports and outdoor brands. With corporate offices in Helsinki, Munich, Kraków, New York, and Shanghai, we have operations in 40 countries and our products are sold in 100+ countries. Amer Sports generated revenue of $6.6 billion in 2025. Amer Sports, Inc. shares are listed on the New York Stock Exchange. For more information, visit www.amersports.com.",
+  "industry": "Apparel",
+  "sector": "Consumer Discretionary",
+  "region": null,
+  "sic": "2300",
+  "sic_description": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": null,
+  "headquarters": "Grand Cayman, Cayman Islands",
+  "address": {
+   "street": "Cricket Square, Hutchins Drive P.O. Box 2681",
+   "city": "Grand Cayman",
+   "state": null,
+   "zip": "KY1-1111",
+   "country": "Cayman Islands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-26"
+  },
+  "phone": "358 207 122 500",
+  "employees": {
+   "count": 15400,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed nearly 15,400 people across approximately 496 locations and in 40 countries across our three segments.",
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000004/as-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2024-01-04",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001988894&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000091/as-20261015x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000086/as-2026q3x6kxpreliminaryre.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000085/as-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000083/as-2026q2x6ker.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000075/as-20260331.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000073/as-2026q1x6ker.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000064/as-20260514x6k_agmresults.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-01",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000036/as-2026x04x01x6xkagmproxy.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000035/as-2025q4x6kannualreport.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-023473",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000110465926023473/tm267992d1_6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001988894-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000004/as-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000002/as-2025q4x6ker.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-26-000001",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000001/as-2025q3x6kxdebtpaydownja.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-18",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889425000022/as-20250930.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-18",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889425000019/as-20250930.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889425000018/as-2025q3x6kxdirectorchange.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-25-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889425000017/as-2025q3x6kxpreliminaryre.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-20",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-25-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889425000014/as-20250630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-19",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001988894-25-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889425000011/as-20250630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-05-30",
+   "period": "2025-05-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-054865",
+   "url": "https://www.sec.gov/Archives/edgar/data/1988894/000110465925054865/tm2516125d5_6k.htm"
+  }
+ ],
+ "warnings": []
+}

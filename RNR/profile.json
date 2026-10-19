@@ -1,0 +1,287 @@
+{
+ "ticker": "RNR",
+ "cik": 913144,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T12:05:47-04:00",
+ "newest_filing_date": "2026-07-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000913144.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000012/rnr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RNR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RNR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RENAISSANCERE HOLDINGS LTD",
+  "cik": 913144,
+  "description": {
+   "text": "Defined terms used throughout this Form 10-K are included in the “Glossary of Defined Terms” at the end of “Part I, Item 1. Business” of this Form 10-K. We have also included a “Glossary of Selected Insurance and Reinsurance Terms” at the end of “Part I, Item 1. Business” of this Form 10-K. All dollar amounts referred to in this Form 10-K are in U.S. dollars unless otherwise indicated. Due to rounding, numbers presented in the tables included in this Form 10-K may not add up precisely to the totals provided.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0000913144-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000012/rnr-20251231.htm"
+  },
+  "description_short": "RenaissanceRe is a global provider of reinsurance and insurance that specializes in matching desirable risk with efficient capital. The Company provides property, casualty and specialty reinsurance and certain insurance solutions to customers, principally through intermediaries. Established in 1993, and headquartered in Bermuda, RenaissanceRe has offices across North America, Europe, and the Asia-Pacific region.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "Caribbean",
+  "sic": "6331",
+  "sic_description": "Fire, Marine & Casualty Insurance",
+  "state_of_incorporation": "D0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.renre.com",
+  "headquarters": "Pembroke, Bermuda",
+  "address": {
+   "street": "Renaissance House 12 Crow Lane",
+   "city": "Pembroke",
+   "state": null,
+   "zip": "HM 19",
+   "country": "Bermuda",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "4412954513",
+  "employees": {
+   "count": 1040,
+   "as_of": "2026-02-06",
+   "evidence": "At February 6, 2026, we employed 1,040 people worldwide (February 7, 2025 - 945, February 14, 2024 - 925).",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000012/rnr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-05-14",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000913144&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000913144-26-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000084/rnr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000913144-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000081/rnr-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-11",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-26-021333",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000114036126021333/ef20073592_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-05",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000913144-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000070/rnr-20260505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000913144-26-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000065/rnr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000913144-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000063/rnr-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-18",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000913144-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000060/rnr-20260318.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000913144-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000012/rnr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000913144-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000003/rnr-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000913144-25-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000099/rnr-20251222.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000913144-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000094/rnr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000913144-25-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000090/rnr-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000913144-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000082/rnr-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000913144-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000079/rnr-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-06-03",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000913144-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000073/rnr-20250603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-06",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000913144-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000070/rnr-20250506.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000913144-25-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000065/rnr-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000913144-25-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000060/rnr-20250423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-20",
+   "period": "2025-05-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000913144-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000091314425000057/rnr-20250320.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-27",
+   "period": "2025-02-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-039216",
+   "url": "https://www.sec.gov/Archives/edgar/data/913144/000119312525039216/d855792d8k.htm"
+  }
+ ],
+ "warnings": []
+}

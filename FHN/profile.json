@@ -1,0 +1,301 @@
+{
+ "ticker": "FHN",
+ "cik": 36966,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T19:12:08-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000036966.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000051/fhn-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FHN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FHN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FIRST HORIZON CORP",
+  "cik": 36966,
+  "description": {
+   "text": "First Horizon Corporation is a Tennessee corporation. We incorporated in 1968, and are headquartered in Memphis, Tennessee. We are registered as a bank holding company and have elected to be treated as a financial holding company. Our common stock is listed on the New York Stock Exchange under the symbol “FHN.” At December 31, 2025, we had total consolidated assets of $84 billion. We provide commercial, private banking, consumer, small business, wealth and trust management, retail brokerage, capital markets, fixed income, and mortgage banking services principally through our wholly-owned subsidiary, First Horizon Bank. Founded in 1864 as First National Bank of Memphis, the Bank is a Tennessee banking corporation headquartered in Memphis, Tennessee. At December 31, 2025, the Bank had $84 billion in total assets, $68 billion in total deposits, and $64 billion in total loans (including certain leases, before considering the allowance for loan and lease losses). In addition to the Bank, as of December 31, 2025, First Horizon's consolidated operating subsidiaries include, but are not limited to: two subsidiaries which are registered with the SEC as investment advisors; two subsidiaries which are registered with the SEC as broker-dealers; and three subsidiaries which are licensed as insurance agencies. At December 31, 2025, First Horizon had over 450 business locations in 23 U.S. states, excluding off-premises ATMs.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000036966-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000051/fhn-20251231.htm"
+  },
+  "description_short": "First Horizon Corp. (NYSE: FHN ), with $84.4 billion in assets as of June 30, 2026, is a leading regional financial services company, dedicated to helping our clients, communities and associates unlock their full potential with capital and counsel. Headquartered in Memphis, TN, the banking subsidiary First Horizon Bank operates in 12 states concentrated in the southern U.S. The Company and its subsidiaries offer commercial, private banking, consumer, small business, wealth and trust management, retail brokerage, capital markets, fixed income, and mortgage banking services. First Horizon has been recognized as one of the nation's best employers by Fortune and Forbes magazines and a Top 10 Most Reputable U.S. Bank.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6021",
+  "sic_description": "National Commercial Banks",
+  "state_of_incorporation": "TN",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.firsthorizon.com",
+  "headquarters": "Memphis, Tennessee",
+  "address": {
+   "street": "165 Madison Avenue",
+   "city": "Memphis",
+   "state": "Tennessee",
+   "zip": "38103",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "9018186232",
+  "employees": {
+   "count": 7404,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, First Horizon had 7,404 associates, including 7,277 full-time associates and 127 part-time associates, or 7,338 full-time-equivalent associates, not including contract labor for certain services.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000051/fhn-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-05",
+  "first_sec_filing_form": "S-4/A",
+  "former_names": [
+   "FIRST HORIZON NATIONAL CORP",
+   "FIRST TENNESSEE NATIONAL CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000036966&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036966-26-000178",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000178/fhn-20261015.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036966-26-000155",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000155/fhn-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-27",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000036966-26-000149",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000149/fhn-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036966-26-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000143/fhn-20260715.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036966-26-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000112/fhn-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-27",
+   "items": [
+    "5.03",
+    "5.07"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0000036966-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000070/fhn-20260427.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036966-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000067/fhn-20260415.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-16",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000036966-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000063/fhn-20260316.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-06",
+   "items": [
+    "3.03",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Other events",
+   "accession": "0000930413-26-000749",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000093041326000749/c115798_8k-ixbrl.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000036966-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000051/fhn-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-15",
+   "period": "2026-01-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036966-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696626000012/fhn-20260115.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036966-25-000155",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000155/fhn-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-27",
+   "items": [
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment",
+   "accession": "0000036966-25-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000138/fhn-20251027.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036966-25-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000133/fhn-20251015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-21",
+   "period": "2025-08-20",
+   "items": [
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment",
+   "accession": "0000036966-25-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000114/fhn-20250820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000036966-25-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000111/fhn-20250804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036966-25-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000110/fhn-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-16",
+   "period": "2025-07-16",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000036966-25-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000098/fhn-20250716.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000036966-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000053/fhn-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000036966-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/36966/000003696625000047/fhn-20250429.htm"
+  }
+ ],
+ "warnings": []
+}

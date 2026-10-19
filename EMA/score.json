@@ -1,0 +1,82 @@
+{
+ "ticker": "EMA",
+ "name": "Emera Inc.",
+ "sector": "Utilities",
+ "price": 47.72,
+ "market_cap_b": 14.3,
+ "engine_version": 5,
+ "base_oe_per_share": -2.163710007304602,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Regulated franchise monopolies \u2014 Tampa Electric and Peoples Gas in Florida, Nova Scotia Power, Barbados Light & Power and other regulated electric/gas utilities \u2014 give durable, regulator-granted exclusivity and a visible rate-base growth runway ($20B 2026-2030 capital plan, 7-8% rate-base CAGR guided, ~80% directed to Florida), but earned returns are capped at regulator-allowed ROEs and the measured franchise earns little above its cost of capital: the roic_proxy series in fundamentals.json runs 2.8% / 4.5% / 5.0% / 2.6% / 5.3% for FY2021-FY2025 (after-tax operating income over equity + debt - cash, CAD as filed; gross margin is not meaningful for this filer \u2014 fundamentals.json carries no COGS split, gross_margin null). That is a moderate/narrow moat: durable cash flows, capped economics.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 4.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Emera Inc. Form 40-F / FY2025 reporting: the Corporation's common shares are listed directly on the TSX and NYSE under the symbol EMA (every earnings release header reads TSX/NYSE: EMA); there is no depositary or ADS program \u2014 the NYSE line is the same common shares. The FY2025 statements' EPS note (Note 13) denominator \u2014 weighted average diluted shares 299.7M \u2014 matches the engine's shares_diluted_latest exactly, confirming filed per-share figures and the NYSE price are on the same share basis.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Emera Inc. FY2025 consolidated financial statements (filed as Exhibit 99.3 to the Form 40-F for the year ended Dec 31, 2025, filed 2026-02-23, accession 0001193125-26-062876), Note 32 Stock-Based Compensation: compensation cost recognized FY2025 \u2014 ECSPP C$3M + stock options C$3M + employee/director DSUs C$29M + PSU plan C$31M + RSU plan C$23M = C$89M (CAD, as filed; the engine FX-converts at period-end rates).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "High-quality regulated utility, moat 5/10, but conservative owner's earnings are negative in every filed year (rate-base growth capex runs well ahead of operating cash flow) \u2014 no positive normalized OE, so it cannot clear any hurdle on this model; Tier F by construction, confidence low (utility sector-model mismatch).",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": "no_cash_generation",
+ "irr_at_floor": false,
+ "net_debt_latest": 15674255960.0,
+ "shares_diluted_latest": 299700000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Regulated franchise monopolies \u2014 exclusive electric and gas service territories in Florida (Tampa Electric, Peoples Gas), Nova Scotia, New Mexico, Barbados and Grand Bahama; ~2.6 million customers",
+  "Visible rate-base growth: $20B 2026-2030 capital plan driving guided 7-8% rate-base CAGR and 5-7% adjusted EPS growth through 2030, ~80% of the plan directed to Florida",
+  "Florida weight: Florida operations contribute roughly 70% of adjusted earnings, riding population and customer growth in one of the fastest-growing U.S. utility territories",
+  "Essential-service, low-cyclicality demand; Q2 2026 year-to-date operating cash flow up 8% year over year even in a softer EPS quarter",
+  "Regulatory clarity into 2028 at Peoples Gas (2025 rate case complete) and a consensus settlement path at Nova Scotia Power filed September 2025"
+ ],
+ "moat_against": [
+  "Returns are capped at regulator-allowed ROEs \u2014 no pricing power; measured ROIC proxy has run only ~2.6-5.3% over the last five fiscal years",
+  "Nova Scotia political/regulatory risk: provincial rate-cap politics around Nova Scotia Power and fuel-cost recovery have repeatedly overridden normal rate-making",
+  "Heavy leverage (net debt $15.67B per dcf_numbers.json) plus a $20B funding plan \u2014 rate-sensitive financing costs and perpetual equity issuance (share count +4.1%/yr per the engine blend: DRIP and ATM issuance)",
+  "Storm and climate exposure concentrated in Florida and the Caribbean (hurricane hardening is a large, ongoing share of capex)",
+  "Pending all-share merger with Canadian Utilities (announced October 6, 2026; ~$72B combined enterprise value, close targeted Q3-Q4 2027) \u2014 approval, integration and leverage risk sits on top of the standalone plan; CAD/USD translation exposure on U.S.-dollar earnings"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 89000000.0,
+   "kind": "filing",
+   "source": "Emera Inc. FY2025 consolidated financial statements (filed as Exhibit 99.3 to the Form 40-F for the year ended Dec 31, 2025, filed 2026-02-23, accession 0001193125-26-062876), Note 32 Stock-Based Compensation: compensation cost recognized FY2025 \u2014 ECSPP C$3M + stock options C$3M + employee/director DSUs C$29M + PSU plan C$31M + RSU plan C$23M = C$89M (CAD, as filed; the engine FX-converts at period-end rates)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": -1.9184,
+  "base_oe_with_override": -2.1637,
+  "base_oe_impact_pct": 12.787,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

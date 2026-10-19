@@ -1,0 +1,99 @@
+{
+ "ticker": "LI",
+ "cik": 1791706,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-041705",
+   "filed": "2026-04-10",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1791706/000110465926041705/li-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "CNY",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:VehiclesMember",
+     "label": "Vehicle sales",
+     "values": [
+      120294667000,
+      138538092000,
+      106683100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9713,
+      0.959,
+      0.9499
+     ],
+     "growth_yoy": [
+      null,
+      0.1517,
+      -0.2299
+     ]
+    },
+    {
+     "member": "li:OtherSalesAndServicesMember",
+     "label": "Other Sales And Services",
+     "values": [
+      3556665000,
+      5921854000,
+      5629411000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0287,
+      0.041,
+      0.0501
+     ],
+     "growth_yoy": [
+      null,
+      0.665,
+      -0.0494
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     123851332000,
+     144459946000,
+     112312511000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "9 facts in a currency other than CNY were ignored",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

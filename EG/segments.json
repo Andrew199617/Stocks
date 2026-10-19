@@ -1,0 +1,35 @@
+{
+ "ticker": "EG",
+ "cik": 1095073,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001095073-26-000006",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1095073/000109507326000006/eg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001095073-26-000022",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1095073/000109507326000022/eg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001095073-26-000032",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1095073/000109507326000032/eg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

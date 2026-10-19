@@ -1,0 +1,894 @@
+{
+ "ticker": "EWBC",
+ "cik": 1069157,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001069157-26-000009",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000009/ewbc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001069157-26-000020",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000020/ewbc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001069157-26-000044",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000044/ewbc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      594965000,
+      563218000,
+      502687000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5124,
+      0.4832,
+      0.3793
+     ],
+     "growth_yoy": [
+      null,
+      -0.0534,
+      -0.1075
+     ]
+    },
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      570153000,
+      535652000,
+      493508000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.491,
+      0.4596,
+      0.3724
+     ],
+     "growth_yoy": [
+      null,
+      -0.0605,
+      -0.0787
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      -3957000,
+      66716000,
+      328993000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0034,
+      0.0572,
+      0.2483
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.9312
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1161161000,
+     1165586000,
+     1325188000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      114025000,
+      123207000,
+      127639000,
+      133182000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3928,
+      0.3971,
+      0.3567,
+      0.3662
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1194,
+      0.081
+     ]
+    },
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      123088000,
+      128295000,
+      120864000,
+      123668000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.424,
+      0.4135,
+      0.3378,
+      0.34
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0181,
+      -0.0361
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      53157000,
+      58751000,
+      109293000,
+      106850000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1831,
+      0.1894,
+      0.3055,
+      0.2938
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.056,
+      0.8187
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     290270000,
+     310253000,
+     357796000,
+     363700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      35020106000,
+      35646939000,
+      37393886000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5031,
+      0.4692,
+      0.4649
+     ],
+     "growth_yoy": [
+      null,
+      0.0179,
+      0.049
+     ]
+    },
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      19165172000,
+      20084814000,
+      21384121000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2753,
+      0.2644,
+      0.2659
+     ],
+     "growth_yoy": [
+      null,
+      0.048,
+      0.0647
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      15427606000,
+      20244722000,
+      21656990000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2216,
+      0.2665,
+      0.2692
+     ],
+     "growth_yoy": [
+      null,
+      0.3122,
+      0.0698
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     69612884000,
+     75976475000,
+     80434997000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      35790014000,
+      36134621000,
+      38707909000,
+      38935480000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4699,
+      0.4623,
+      0.467,
+      0.4593
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0815,
+      0.0775
+     ]
+    },
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      20404813000,
+      20735714000,
+      21626337000,
+      22179346000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2679,
+      0.2653,
+      0.2609,
+      0.2617
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0599,
+      0.0696
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      19970186000,
+      21287732000,
+      22551906000,
+      23648646000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2622,
+      0.2724,
+      0.2721,
+      0.279
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1293,
+      0.1109
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     76165013000,
+     78158067000,
+     82886152000,
+     84763472000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      1225954000,
+      1152033000,
+      1079288000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5302,
+      0.5056,
+      0.4228
+     ],
+     "growth_yoy": [
+      null,
+      -0.0603,
+      -0.0631
+     ]
+    },
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      1116013000,
+      1125931000,
+      1028314000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4827,
+      0.4941,
+      0.4028
+     ],
+     "growth_yoy": [
+      null,
+      0.0089,
+      -0.0867
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      -29713000,
+      752000,
+      445027000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0129,
+      0.0003,
+      0.1743
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      590.7912
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2312254000,
+     2278716000,
+     2552629000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      269733000,
+      273073000,
+      269247000,
+      274251000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4494,
+      0.4425,
+      0.4011,
+      0.4006
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0018,
+      0.0043
+     ]
+    },
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      253001000,
+      254144000,
+      261286000,
+      258824000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4215,
+      0.4119,
+      0.3893,
+      0.378
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0327,
+      0.0184
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      77467000,
+      89857000,
+      140660000,
+      151576000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1291,
+      0.1456,
+      0.2096,
+      0.2214
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8157,
+      0.6869
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     600201000,
+     617074000,
+     671193000,
+     684651000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      168502000,
+      197780000,
+      218177000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5749,
+      0.59,
+      0.5753
+     ],
+     "growth_yoy": [
+      null,
+      0.1738,
+      0.1031
+     ]
+    },
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      103210000,
+      108773000,
+      120779000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3521,
+      0.3245,
+      0.3185
+     ],
+     "growth_yoy": [
+      null,
+      0.0539,
+      0.1104
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      21400000,
+      28665000,
+      40271000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.073,
+      0.0855,
+      0.1062
+     ],
+     "growth_yoy": [
+      null,
+      0.3395,
+      0.4049
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     293112000,
+     335218000,
+     379227000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ewbc:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      53579000,
+      49751000,
+      54331000,
+      55560000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5817,
+      0.5773,
+      0.5298,
+      0.5217
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.014,
+      0.1168
+     ]
+    },
+    {
+     "member": "ewbc:ConsumerandBusinessBankingMember",
+     "label": "Consumer and Business Banking",
+     "values": [
+      32285000,
+      27729000,
+      39962000,
+      38205000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3505,
+      0.3218,
+      0.3897,
+      0.3588
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2378,
+      0.3778
+     ]
+    },
+    {
+     "member": "ewbc:TreasuryAndOtherMember",
+     "label": "Treasury And Other",
+     "values": [
+      6238000,
+      8698000,
+      8263000,
+      12727000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0677,
+      0.1009,
+      0.0806,
+      0.1195
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3246,
+      0.4632
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     92102000,
+     86178000,
+     102556000,
+     106492000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

@@ -1,0 +1,85 @@
+{
+ "ticker": "GNRC",
+ "name": "Generac Holdings Inc.",
+ "sector": "Industrials / Capital Goods \u2014 backup power generation",
+ "price": 192.68,
+ "market_cap_b": 11.42,
+ "engine_version": 5,
+ "base_oe_per_share": 5.5221230754989294,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Dominant >70% US home standby share, brand and dealer network are genuine, but ROIC proxy fell from 23.1% (2020) to 6.6% (2025), gross margin oscillates 33\u201339% with no through-cycle pricing power, and the C&I/data-center growth leg is contested by Cummins/Caterpillar where Generac holds no share dominance.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.9%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 3.68 vs 3-yr median 5.75 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 24.82,
+   "irr": 0.0396
+  },
+  "bear": {
+   "prob": 0.2,
+   "iv_at_15": 39.91,
+   "irr": 0.0508
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 61.77,
+   "irr": 0.0675
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 86.84,
+   "irr": 0.0858
+  },
+  "super_bull": {
+   "prob": 0.15,
+   "iv_at_15": 136.17,
+   "irr": 0.1181
+  }
+ },
+ "iv_at_15": 71.13,
+ "iv_at_12": 96.3,
+ "implied_irr": 0.0749,
+ "implied_irr_base_case": 0.0675,
+ "upside_at_15_pct": -63.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real home-standby franchise (70%+ share, moat 5/10) but fading returns \u2014 ROIC 23.1%\u21926.6% in five years \u2014 and at $192.68 (~35x TTM OE) even the super-bull case earns 11.8%; Tier D, clears 15% only below $71.13.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0508,
+ "irr_bull": 0.0858,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 48.8,
+ "iv_at_25": 36.71,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 925147000,
+ "shares_diluted_latest": 59275781,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  ">70% share of the US home standby generator category \u2014 the default brand for a dealer-installed, infrequent purchase",
+  "Extensive dealer/installer and retail distribution network that is expensive to replicate",
+  "Installed base feeds parts, service and monitoring attach",
+  "Scale in large-megawatt gensets converting into hyperscale data-center agreements ($1.6B backlog at Q2 2026)"
+ ],
+ "moat_against": [
+  "ROIC proxy fell 23.1% (2020) \u2192 6.6% (2025); gross margin band 33.3\u201338.8% shows no through-cycle pricing power",
+  "C&I/data-center faces Cummins and Caterpillar with deeper diesel franchises and no Generac share dominance",
+  "Residential demand is hostage to exogenous outage/weather activity",
+  "Clean-energy (PWRcell) capital consumption without a second established moat"
+ ]
+}

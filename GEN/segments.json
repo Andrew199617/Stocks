@@ -1,0 +1,899 @@
+{
+ "ticker": "GEN",
+ "cik": 849399,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0000849399-26-000004",
+   "filed": "2026-02-06",
+   "period": "2026-01-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000004/gen-20260102_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0000849399-26-000017",
+   "filed": "2026-05-21",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/gen-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000849399-26-000031",
+   "filed": "2026-08-07",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000031/gen-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-29",
+    "2025-03-28",
+    "2026-04-03"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gen:CyberSafetyPlatformMember",
+     "label": "Cyber Safety Platform",
+     "values": [
+      3057000000,
+      3176000000,
+      3339000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8045,
+      0.8071,
+      0.6678
+     ],
+     "growth_yoy": [
+      null,
+      0.0389,
+      0.0513
+     ]
+    },
+    {
+     "member": "gen:TrustBasedSolutionsMember",
+     "label": "Trust-Based Solutions",
+     "values": [
+      743000000,
+      759000000,
+      1661000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1955,
+      0.1929,
+      0.3322
+     ],
+     "growth_yoy": [
+      null,
+      0.0215,
+      1.1884
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3800000000,
+     3935000000,
+     5000000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-27",
+    "2025-03-28",
+    "2025-07-04",
+    "2026-01-02",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "gen:CyberSafetyPlatformMember",
+     "label": "Cyber Safety Platform",
+     "values": [
+      799000000,
+      808000000,
+      869000000,
+      819000000,
+      837000000,
+      846000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.8103,
+      0.8,
+      0.6913,
+      0.6605,
+      0.6524,
+      0.6332
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.025,
+      0.0359,
+      -0.0265
+     ]
+    },
+    {
+     "member": "gen:TrustBasedSolutionsMember",
+     "label": "Trust-Based Solutions",
+     "values": [
+      187000000,
+      202000000,
+      388000000,
+      421000000,
+      446000000,
+      490000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1897,
+      0.2,
+      0.3087,
+      0.3395,
+      0.3476,
+      0.3668
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.2513,
+      1.2079,
+      0.2629
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     986000000,
+     1010000000,
+     1257000000,
+     1240000000,
+     1283000000,
+     1336000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-29",
+    "2025-03-28",
+    "2026-04-03"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gen:CyberSafetyPlatformMember",
+     "label": "Cyber Safety Platform",
+     "values": [
+      1832000000,
+      1911000000,
+      2041000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.6505,
+      1.187,
+      0.9627
+     ],
+     "growth_yoy": [
+      null,
+      0.0431,
+      0.068
+     ]
+    },
+    {
+     "member": "gen:TrustBasedSolutionsMember",
+     "label": "Trust-Based Solutions",
+     "values": [
+      377000000,
+      387000000,
+      502000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3396,
+      0.2404,
+      0.2368
+     ],
+     "growth_yoy": [
+      null,
+      0.0265,
+      0.2972
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1099000000,
+      688000000,
+      423000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9901,
+      0.4273,
+      0.1995
+     ],
+     "growth_yoy": [
+      null,
+      -0.374,
+      -0.3852
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1110000000,
+     1610000000,
+     2120000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-27",
+    "2025-03-28",
+    "2025-07-04",
+    "2026-01-02",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "gen:CyberSafetyPlatformMember",
+     "label": "Cyber Safety Platform",
+     "values": [
+      479000000,
+      496000000,
+      530000000,
+      503000000,
+      508000000,
+      519000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      1.2807,
+      1.1894,
+      1.1883,
+      1.1617,
+      0.6326,
+      1.1716
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0501,
+      0.0242,
+      -0.0208
+     ]
+    },
+    {
+     "member": "gen:TrustBasedSolutionsMember",
+     "label": "Trust-Based Solutions",
+     "values": [
+      98000000,
+      94000000,
+      120000000,
+      126000000,
+      133000000,
+      149000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.262,
+      0.2254,
+      0.2691,
+      0.291,
+      0.1656,
+      0.3363
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2857,
+      0.4149,
+      0.2417
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      203000000,
+      173000000,
+      204000000,
+      196000000,
+      -162000000,
+      225000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.5428,
+      0.4149,
+      0.4574,
+      0.4527,
+      -0.2017,
+      0.5079
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0345,
+      -1.9364,
+      0.1029
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     374000000,
+     417000000,
+     446000000,
+     433000000,
+     803000000,
+     443000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-29",
+    "2025-03-28",
+    "2026-04-03"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gen:SubscriptionAndServiceRevenueMember",
+     "label": "Subscription And Service Revenue",
+     "values": [
+      3800000000,
+      3935000000,
+      4982000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0,
+      0.9964
+     ],
+     "growth_yoy": [
+      null,
+      0.0355,
+      0.2661
+     ]
+    },
+    {
+     "member": "gen:NetInterestIncomeOnNotesReceivableMember",
+     "label": "Net Interest Income On Notes Receivable",
+     "values": [
+      0,
+      0,
+      18000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3800000000,
+     3935000000,
+     5000000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-27",
+    "2025-03-28",
+    "2025-07-04",
+    "2026-01-02",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "gen:SubscriptionAndServiceRevenueMember",
+     "label": "Subscription And Service Revenue",
+     "values": [
+      986000000,
+      1010000000,
+      1253000000,
+      1236000000,
+      1277000000,
+      1331000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0,
+      0.9968,
+      0.9968,
+      0.9953,
+      0.9963
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2535,
+      0.2644,
+      0.0623
+     ]
+    },
+    {
+     "member": "gen:NetInterestIncomeOnNotesReceivableMember",
+     "label": "Net Interest Income On Notes Receivable",
+     "values": [
+      0,
+      0,
+      4000000,
+      4000000,
+      6000000,
+      5000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0032,
+      0.0032,
+      0.0047,
+      0.0037
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0.25
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     986000000,
+     1010000000,
+     1257000000,
+     1240000000,
+     1283000000,
+     1336000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-29",
+    "2025-03-28",
+    "2026-04-03"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      2484000000,
+      2587000000,
+      3533000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6537,
+      0.6574,
+      0.7066
+     ],
+     "growth_yoy": [
+      null,
+      0.0415,
+      0.3657
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      917000000,
+      953000000,
+      1061000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2413,
+      0.2422,
+      0.2122
+     ],
+     "growth_yoy": [
+      null,
+      0.0393,
+      0.1133
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      399000000,
+      395000000,
+      406000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.105,
+      0.1004,
+      0.0812
+     ],
+     "growth_yoy": [
+      null,
+      -0.01,
+      0.0278
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3800000000,
+     3935000000,
+     5000000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-27",
+    "2025-03-28",
+    "2025-07-04",
+    "2026-01-02",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      647000000,
+      663000000,
+      879000000,
+      880000000,
+      910000000,
+      961000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.6562,
+      0.6564,
+      0.6993,
+      0.7097,
+      0.7093,
+      0.7193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3601,
+      0.3725,
+      0.0933
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      240000000,
+      247000000,
+      268000000,
+      263000000,
+      273000000,
+      274000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.2434,
+      0.2446,
+      0.2132,
+      0.2121,
+      0.2128,
+      0.2051
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0958,
+      0.1053,
+      0.0224
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      99000000,
+      100000000,
+      110000000,
+      97000000,
+      100000000,
+      101000000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1004,
+      0.099,
+      0.0875,
+      0.0782,
+      0.0779,
+      0.0756
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0202,
+      0.0,
+      -0.0818
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     986000000,
+     1010000000,
+     1257000000,
+     1240000000,
+     1283000000,
+     1336000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 139.9% of the consolidated total for 2026-04-03 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 201.6% of the consolidated total for 2026-07-03 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, EMEA, Asia Pacific)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, EMEA, Asia Pacific)"
+ ],
+ "complete": true
+}

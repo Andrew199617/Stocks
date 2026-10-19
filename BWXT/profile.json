@@ -1,0 +1,292 @@
+{
+ "ticker": "BWXT",
+ "cik": 1486957,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T17:47:20-04:00",
+ "newest_filing_date": "2026-08-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001486957.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000007/bwxt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BWXT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BWXT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BWX Technologies, Inc.",
+  "cik": 1486957,
+  "description": {
+   "text": "BWX Technologies, Inc. is a specialty manufacturer of nuclear components, a developer of nuclear technologies and a service provider with an operating history of more than 100 years. Our core businesses focus on the design, engineering and manufacture of precision naval nuclear components, nuclear reactors and nuclear fuel for the U.S. Government. We also provide special nuclear materials processing, environmental site restoration services, products and services to customers in the nuclear power industry, critical medical radioisotopes and radiopharmaceuticals and other advanced nuclear technologies. While we provide a wide range of products and services, our business segments are heavily focused on major projects. At any given time, a relatively small number of projects can represent a significant part of our operations.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001486957-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000007/bwxt-20251231.htm"
+  },
+  "description_short": "At BWX Technologies, Inc. (NYSE: BWXT), we are People Strong, Innovation Driven. A U.S.-based company with more than 11,000 employees, BWXT is a Fortune 1000 and Defense News Top 100 manufacturing and engineering innovator that provides safe and effective nuclear solutions for global security, clean energy, nuclear medicine, space exploration and environmental restoration. BWXT owns and operates 19 manufacturing facilities globally, and its 14 strategic partnerships support the U.S. and Canadian governments at more than two dozen additional locations.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3510",
+  "sic_description": "Engines & Turbines",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.bwxt.com",
+  "headquarters": "Lynchburg, Virginia",
+  "address": {
+   "street": "800 Main Street, 4th Floor",
+   "city": "Lynchburg",
+   "state": "Virginia",
+   "zip": "24504",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "980-365-4300",
+  "employees": {
+   "count": 10400,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we employed approximately 10,400 persons worldwide, predominantly in the U.S. (6,700 employees) and Canada (3,500 employees) with approximately 200 additional employees resident in Denmark, Germany, India, Poland, Romania, and the United Kingdom.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000007/bwxt-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2010-03-12",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "Babcock & Wilcox Co"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001486957&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q/A",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Amendment: Quarterly report",
+   "accession": "0001486957-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000044/bwxt-20260630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001486957-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000042/bwxt_63026x10qdocument.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001486957-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000041/bwxt_63026x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-04-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001486957-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000031/bwxt-20260430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001486957-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000028/bwxt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001486957-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000027/bwxt-20260504.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001486957-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000021/bwxt-20260318.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001486957-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000007/bwxt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001486957-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000005/bwxt-20260223.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-18",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-017868",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000110465926017868/tm266839d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001104659-25-109152",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000110465925109152/tm2530675d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-106665",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000110465925106665/tm2530134d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-106427",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000110465925106427/tm2530254d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001486957-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695725000059/bwxt-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001486957-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695725000058/bwxt-20251103.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001486957-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695725000052/bwxt-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-04",
+   "period": "2025-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001486957-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695725000051/bwxt-20250804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-072738",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000110465925072738/tm2522211d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-16",
+   "period": "2025-06-13",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001486957-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695725000043/bwxt-20250613.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-12",
+   "period": "2025-05-06",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-047051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1486957/000110465925047051/tm2514756d1_8k.htm"
+  }
+ ],
+ "warnings": []
+}

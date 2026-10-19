@@ -1,0 +1,593 @@
+{
+ "ticker": "HTHT",
+ "cik": 1483994,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-048058",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926048058/htht-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "CNY",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "htht:LegacyHuazhuMember",
+     "label": "Legacy Huazhu",
+     "values": [
+      17444000000,
+      19029000000,
+      20535000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7972,
+      0.7965,
+      0.8114
+     ],
+     "growth_yoy": [
+      null,
+      0.0909,
+      0.0791
+     ]
+    },
+    {
+     "member": "htht:LegacyDhMember",
+     "label": "Legacy DH",
+     "values": [
+      4465000000,
+      4881000000,
+      4794000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.204,
+      0.2043,
+      0.1894
+     ],
+     "growth_yoy": [
+      null,
+      0.0932,
+      -0.0178
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -27000000,
+      -19000000,
+      -22000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0012,
+      -0.0008,
+      -0.0009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21882000000,
+     23891000000,
+     25307000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "htht:LeasedAndOwnedHotelsMember",
+     "label": "Leased And Owned Hotels",
+     "values": [
+      13796000000,
+      13843000000,
+      12943000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6305,
+      0.5794,
+      0.5114
+     ],
+     "growth_yoy": [
+      null,
+      0.0034,
+      -0.065
+     ]
+    },
+    {
+     "member": "htht:ManachisedAndFranchisedHotelsMember",
+     "label": "Manachised And Franchised Hotels",
+     "values": [
+      7694000000,
+      9498000000,
+      11696000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3516,
+      0.3976,
+      0.4622
+     ],
+     "growth_yoy": [
+      null,
+      0.2345,
+      0.2314
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      392000000,
+      550000000,
+      668000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0179,
+      0.023,
+      0.0264
+     ],
+     "growth_yoy": [
+      null,
+      0.4031,
+      0.2145
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21882000000,
+     23891000000,
+     25307000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "htht:RoomRevenuesMember",
+     "label": "Room Revenues",
+     "values": [
+      11789000000,
+      11806000000,
+      11002000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5388,
+      0.4942,
+      0.4347
+     ],
+     "growth_yoy": [
+      null,
+      0.0014,
+      -0.0681
+     ]
+    },
+    {
+     "member": "htht:CentralReservationSystemUsageFeesOtherSystemMaintenanceAndSupportFeesMember",
+     "label": "Central Reservation System Usage Fees Other System Maintenance And Support Fees",
+     "values": [
+      2628000000,
+      3318000000,
+      4301000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1201,
+      0.1389,
+      0.17
+     ],
+     "growth_yoy": [
+      null,
+      0.2626,
+      0.2963
+     ]
+    },
+    {
+     "member": "htht:OnGoingManagementAndServiceFeesMember",
+     "label": "On Going Management And Service Fees",
+     "values": [
+      2785000000,
+      3306000000,
+      3957000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1273,
+      0.1384,
+      0.1564
+     ],
+     "growth_yoy": [
+      null,
+      0.1871,
+      0.1969
+     ]
+    },
+    {
+     "member": "htht:ReimbursementsForHotelManagerFeesMember",
+     "label": "Reimbursements For Hotel Manager Fees",
+     "values": [
+      1400000000,
+      1752000000,
+      2179000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.064,
+      0.0733,
+      0.0861
+     ],
+     "growth_yoy": [
+      null,
+      0.2514,
+      0.2437
+     ]
+    },
+    {
+     "member": "htht:FoodAndBeverageRevenuesMember",
+     "label": "Food and Beverage Revenues",
+     "values": [
+      1333000000,
+      1342000000,
+      1319000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0609,
+      0.0562,
+      0.0521
+     ],
+     "growth_yoy": [
+      null,
+      0.0068,
+      -0.0171
+     ]
+    },
+    {
+     "member": "htht:OtherFeesMember",
+     "label": "Other Fees",
+     "values": [
+      767000000,
+      985000000,
+      1078000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0351,
+      0.0412,
+      0.0426
+     ],
+     "growth_yoy": [
+      null,
+      0.2842,
+      0.0944
+     ]
+    },
+    {
+     "member": "htht:OtherLeasedAndOwnedHotelsRevenuesMember",
+     "label": "Other Leased And Owned Hotels Revenues",
+     "values": [
+      674000000,
+      695000000,
+      622000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0308,
+      0.0291,
+      0.0246
+     ],
+     "growth_yoy": [
+      null,
+      0.0312,
+      -0.105
+     ]
+    },
+    {
+     "member": "htht:LoyaltyProgramMember",
+     "label": "Loyalty Program",
+     "values": [
+      288000000,
+      338000000,
+      411000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0132,
+      0.0141,
+      0.0162
+     ],
+     "growth_yoy": [
+      null,
+      0.1736,
+      0.216
+     ]
+    },
+    {
+     "member": "htht:InitialOneTimeFranchiseFeeMember",
+     "label": "Initial One Time Franchise Fee",
+     "values": [
+      114000000,
+      137000000,
+      181000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0052,
+      0.0057,
+      0.0072
+     ],
+     "growth_yoy": [
+      null,
+      0.2018,
+      0.3212
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      392000000,
+      550000000,
+      668000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0179,
+      0.023,
+      0.0264
+     ],
+     "growth_yoy": [
+      null,
+      0.4031,
+      0.2145
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21882000000,
+     23891000000,
+     25307000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      17393000000,
+      18984000000,
+      20499000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7949,
+      0.7946,
+      0.81
+     ],
+     "growth_yoy": [
+      null,
+      0.0915,
+      0.0798
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      3324000000,
+      3544000000,
+      3400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1519,
+      0.1483,
+      0.1344
+     ],
+     "growth_yoy": [
+      null,
+      0.0662,
+      -0.0406
+     ]
+    },
+    {
+     "member": "htht:CountriesOtherThanChinaAndGermanyMember",
+     "label": "Countries Other Than China And Germany",
+     "values": [
+      1165000000,
+      1363000000,
+      1408000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0532,
+      0.0571,
+      0.0556
+     ],
+     "growth_yoy": [
+      null,
+      0.17,
+      0.033
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21882000000,
+     23891000000,
+     25307000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "10 facts in a currency other than CNY were ignored",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Leased And Owned Hotels' (htht:LeasedAndOwnedHotelsMember) dropped: it is the parent of Food and Beverage Revenues, Other Leased And Owned Hotels Revenues, Room Revenues in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Manachised And Franchised Hotels' (htht:ManachisedAndFranchisedHotelsMember) dropped: it is the parent of Central Reservation System Usage Fees Other System Maintenance And Support Fees, Initial One Time Franchise Fee, On Going Management And Service Fees, Other Fees, Reimbursements For Hotel Manager Fees in the filing's definition linkbase",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

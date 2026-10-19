@@ -1,0 +1,105 @@
+{
+ "ticker": "IT",
+ "name": "Gartner, Inc.",
+ "sector": "Professional services / technology research & advisory",
+ "price": 205.35,
+ "market_cap_b": 15.53,
+ "engine_version": 5,
+ "base_oe_per_share": 16.546816424554827,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Strong moat, 7/10: the Magic Quadrant standard and the buyer/vendor two-sided flywheel, multiyear prepaid subscriptions at a 77% Insights contribution margin, 98%+ wallet retention even in the current stall, and measured returns on capital far above the cost of capital through the cycle (roic_proxy 36-55% over 2021-25 in fundamentals.json; management cited 31% rolling four-quarter ROIC on the Q2 2026 call) with gross margin pinned at 68-70% for five years. Not 8+: contract value growth has been stuck at 1-2% for two years, wallet retention has slipped below 100%, and generative AI is a credible substitution path for exactly the synthesis work Gartner sells \u2014 the moat is real but its growth engine is impaired.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.3%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows, line 'Capital expenditures' tagged us-gaap PaymentsForCapitalImprovements in EDGAR companyfacts: $103,124,000 FY2023, $101,737,000 FY2024, $115,142,000 FY2025; the override value is the median of the three filed years (which equals the FY2023 figure)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "TIER_BAND: bear-case tier C (10.3%) vs bull-case tier B (15.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 91.95,
+   "irr": 0.0797
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 127.08,
+   "irr": 0.1028
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 162.72,
+   "irr": 0.1252
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 216.42,
+   "irr": 0.156
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 297.44,
+   "irr": 0.1965
+  }
+ },
+ "iv_at_15": 173.63,
+ "iv_at_12": 233.14,
+ "implied_irr": 0.1319,
+ "implied_irr_base_case": 0.1252,
+ "upside_at_15_pct": -15.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Elite subscription research franchise, moat 7/10 \u2014 but contract value growth has stalled at ~2% for two years and per-share growth now leans on debt-funded buybacks; at $205.35 the weighted IRR is 13.2% (Tier C) and it clears 15% only under ~$174.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1028,
+ "irr_bull": 0.156,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 120.64,
+ "iv_at_25": 91.81,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1259153000,
+ "shares_diluted_latest": 75605000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Standard-setting brand: the Magic Quadrant is the enterprise tech-buying shortlist format \u2014 vendors must engage Gartner to be placed, buyers budget-hold around its advice; a two-sided flywheel (buyer attention attracts vendors, vendor engagement funds the research)",
+  "Subscription economics: Insights is the large majority of revenue on mostly multiyear contracts, 77% contribution margin in Q2 2026, and clients prepay \u2014 deferred revenue of $2.81B at end-2025 funds the business interest-free",
+  "Retention that holds even in a stall: wallet retention 98.2% and client retention 85.2% (rising sequentially) in Q2 2026, with contract value per enterprise up ~10% YoY to $414,000 \u2014 pricing power inside the installed base",
+  "Returns on capital far above the cost of capital through the cycle: roic_proxy in fundamentals.json 36% (2021), 43% (2022), 52% (2023), 55% (2024), 49% (2025), with gross margin stable at 68-70% over the same five years \u2014 the franchise needs almost no tangible capital (PP&E $214M on $6.5B revenue)"
+ ],
+ "moat_against": [
+  "Contract value growth has collapsed and stayed down: from the 12-16% management calls normal to 1% in Q4 2025 and only 1.7% in Q2 2026 \u2014 two years of stall is erosion evidence, not just a cycle print",
+  "Wallet retention fell below 100% (98.2% in Q2 2026 vs 101.3% a year earlier): the existing client base is now shrinking its spend, and client enterprises fell 4.5% YoY to 12,775",
+  "Generative AI is a live substitution threat: buyers increasingly start vendor research by asking an LLM, and boutiques, peer-review platforms (G2 \u2014 which bought the divested Digital Markets properties) and free vendor content attack the same budget",
+  "People asset: the product is analyst judgment \u2014 analysts can leave, and the research must be re-earned every subscription cycle; no owned distribution or hard switching lock-in",
+  "Growth engine has quietly switched to financial engineering: TTM buybacks of $2.64B ran at ~2x free cash flow, funded with debt (net debt $0.53B at end-2024 to $1.26B at end-2025), which cannot persist at this pace"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 103124000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows, line 'Capital expenditures' tagged us-gaap PaymentsForCapitalImprovements in EDGAR companyfacts: $103,124,000 FY2023, $101,737,000 FY2024, $115,142,000 FY2025; the override value is the median of the three filed years (which equals the FY2023 figure)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 18.0569,
+  "base_oe_with_override": 16.5468,
+  "base_oe_impact_pct": -8.363,
+  "weighted_irr_without_override": 0.1395,
+  "weighted_irr_with_override": 0.1319,
+  "weighted_irr_impact_pp": -0.756,
+  "unblocks_tier": true
+ }
+}

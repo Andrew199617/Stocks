@@ -1,0 +1,82 @@
+{
+ "ticker": "LECO",
+ "name": "Lincoln Electric Holdings, Inc.",
+ "sector": "Industrials / Welding equipment & consumables",
+ "price": 262.1,
+ "market_cap_b": 14.64,
+ "engine_version": 5,
+ "base_oe_per_share": 9.417056117088721,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Global #1 arc-welding franchise: ROIC 22.5-28.2% over the last five fiscal years (17.6% even in the 2020 trough) and gross margin expanded 32.8% to 36.2%, with proven pricing power (Q2 2026 organic +10.1% was +7.7pp price). Tempered by capable scaled rivals (ESAB, ITW/Miller), partly commoditized consumables, and hard industrial cyclicality.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 43.64,
+   "irr": 0.0436
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 69.38,
+   "irr": 0.0581
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 93.14,
+   "irr": 0.0714
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 123.87,
+   "irr": 0.088
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 162.34,
+   "irr": 0.107
+  }
+ },
+ "iv_at_15": 96.85,
+ "iv_at_12": 129.88,
+ "implied_irr": 0.0738,
+ "implied_irr_base_case": 0.0714,
+ "upside_at_15_pct": -63.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality welding franchise, moat 7/10 with 22-28% ROIC \u2014 but at $262.10 it cannot clear 15% in any scenario (weighted IRR 7.4%, IV@15% $96.85); it clears the 15% hurdle only at ~$97.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0581,
+ "irr_bull": 0.088,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 67.41,
+ "iv_at_25": 51.38,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 985219000,
+ "shares_diluted_latest": 55875000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "ROIC 22.5-28.2% across the last five fiscal years, 17.6% in the 2020 trough (fundamentals.json roic_proxy)",
+  "Gross margin expanded from 32.8% (2020) to 36.2% (2025) \u2014 demonstrated pricing power",
+  "Global #1 share in arc welding; brand, distribution and application engineering specify welds into fabricator processes",
+  "Consumables pull-through on the installed equipment base plus a growing automation/robotics offering",
+  "Q2 2026 price realization +7.7pp of +10.1% organic growth; FY2026 guidance raised to low-double-digit sales growth"
+ ],
+ "moat_against": [
+  "ESAB and ITW (Miller Electric) are large, well-resourced rivals across the same portfolio",
+  "Electrodes and consumables face regional and private-label price competition; no network effects",
+  "Industrial-capex cyclicality: nine straight quarters of volume decline before the Q2 2026 inflection; International/Europe still weak",
+  "Steel and specialty-metal input costs plus tariff/trade exposure compress margins in adverse years"
+ ]
+}

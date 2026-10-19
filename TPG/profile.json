@@ -1,0 +1,300 @@
+{
+ "ticker": "TPG",
+ "cik": 1880661,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T15:14:30-04:00",
+ "newest_filing_date": "2026-09-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001880661.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000011/tpg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TPG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TPG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TPG Inc.",
+  "cik": 1880661,
+  "description": {
+   "text": "TPG is a leading global alternative asset manager with $303.0 billion in assets under management (“AUM”) as of December 31, 2025. We have built our firm through years of successful innovation and growth, and believe that we have delivered attractive risk-adjusted returns to our clients and established a premier investment business focused on the fastest-growing segments of the alternative asset management industry. We believe our distinctive business approach and diversified array of innovative investment platforms position us well to continue generating highly profitable, sustainable growth. We offer a broad range of investment strategies across the alternative asset management landscape, primarily in private equity, credit and real estate, and have constructed a high-quality base of assets under management within attractive sub-segments of these asset classes. The strength of our investment performance and our proven ability to innovate within our business, together with our ongoing focus on strategic, inorganic growth has led to consistent historical increase in our assets under management, all with the support of a scaled infrastructure that provides our business with a high degree of operating leverage.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001880661-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000011/tpg-20251231.htm"
+  },
+  "description_short": "TPG is a leading global alternative asset management firm, founded in San Francisco in 1992, with $327 billion of assets under management and investment and operational teams around the world. TPG invests across a broadly diversified set of strategies, including private equity, impact, credit, real estate, and market solutions, and our unique strategy is driven by collaboration, innovation, and inclusion. Our teams combine deep product and sector experience with broad capabilities and expertise to develop differentiated insights and add value for our fund investors, portfolio companies, management teams, and communities.",
+  "industry": "Investment Managers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6282",
+  "sic_description": "Investment Advice",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.tpg.com",
+  "headquarters": "Fort Worth, TX",
+  "address": {
+   "street": "301 Commerce Street Suite 3300",
+   "city": "Fort Worth",
+   "state": "TX",
+   "zip": "76102",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "817-871-4000",
+  "employees": {
+   "count": 1900,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed more than 1,900 people, comprised of approximately 690 investment and operations professionals, in offices across 16 countries, providing us with a substantial global footprint and network.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000011/tpg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-12-16",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "TPG Partners, LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001880661&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001880661-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000051/tpg-20260906.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001880661-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000049/tpg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001880661-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000046/tpg-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-15",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001880661-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000040/tpg-20260615.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-03",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001880661-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000036/tpg-20260603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001880661-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000033/tpg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001880661-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000029/tpg-20260501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-21",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-166834",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000119312526166834/d50931ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-09",
+   "period": "2026-04-08",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001880661-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000019/tpg-20260408.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-076645",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000119312526076645/d95423d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001880661-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000011/tpg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001880661-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066126000003/tpg-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-06",
+   "period": "2026-01-05",
+   "items": [
+    "3.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD; Other events",
+   "accession": "0001193125-26-003402",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000119312526003402/d111964d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-18",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001880661-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000080/tpg-20251218.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001880661-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000077/tpg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001880661-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000073/tpg-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-180780",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000119312525180780/d898965d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001880661-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000063/tpg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001880661-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000057/tpg-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-07-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001880661-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000049/tpg-20250729.htm"
+  }
+ ],
+ "warnings": []
+}

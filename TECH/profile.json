@@ -1,0 +1,297 @@
+{
+ "ticker": "TECH",
+ "cik": 842023,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T14:41:15-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000842023.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/842023/000110465926100322/tech-20260630x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TECH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TECH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BIO-TECHNE Corp",
+  "cik": 842023,
+  "description": {
+   "text": "Bio-Techne and its subsidiaries, collectively doing business as Bio-Techne Corporation (“Bio-Techne”, “we”, “our”, “us” or the “Company”), develop, manufacture and sell life science reagents, instruments and services for the research, diagnostics and bioprocessing markets worldwide. Our broad product portfolio and application expertise enables scientific investigations into biological processes and molecular diagnostics, revealing the nature, diagnosis, etiology and progression of specific diseases. Our products aid in drug discovery efforts and provide the means for accurate clinical tests and diagnoses. We manage the business in two operating segments – our Protein Sciences segment and our Diagnostics and Spatial Biology segment. Our Protein Sciences segment is a leading developer and manufacturer of high-quality biological reagents used in all aspects of life science research, diagnostics and cell and gene therapy. This segment also includes proteomic analytical tools, both manual and automated, that offer researchers and pharmaceutical manufacturers efficient and streamlined options for protein analysis, automated western blot, and multiplexed ELISA workflows.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-24",
+   "period": "2026-06-30",
+   "accession": "0001104659-26-100322",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926100322/tech-20260630x10k.htm"
+  },
+  "description_short": "Bio-Techne Corporation (NASDAQ: TECH) is a global life sciences company headquartered in Minnesota, celebrating 50 years of empowering scientific and diagnostic communities to reach better answers. The company provides high-quality reagents, analytical instruments, and precision diagnostics. Its portfolio is organized into three customer-focused brands: R&D Systems, Bio-Techne Spatial, and Bio-Techne Diagnostics, reflecting the scientific journey from discovery to translational research to clinical decision-making. Bio-Techne operates in 34 locations worldwide and employs more than 3,000 people. In fiscal year 2025, the company generated over $1.2 billion in net sales. Its more than 500,000 products are used globally by academic researchers, biopharmaceutical and biotechnology companies, and clinical diagnostic laboratories.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "MN",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.bio-techne.com",
+  "headquarters": "Minneapolis, MN",
+  "address": {
+   "street": "614 McKinley Place N.E.",
+   "city": "Minneapolis",
+   "state": "MN",
+   "zip": "55413",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-24"
+  },
+  "phone": "612-379-8854",
+  "employees": {
+   "count": 3000,
+   "as_of": "2026-06-30",
+   "evidence": "Through its subsidiaries, Bio-Techne employed approximately 3,000 full-time and part-time employees as of June 30, 2026, of whom approximately 2,200 were employed in the U.S. and approximately 800 outside the U.S.",
+   "form": "10-K",
+   "filed": "2026-08-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926100322/tech-20260630x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-05-10",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "TECHNE CORP /MN/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000842023&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001140361-26-037450",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000114036126037450/ef20082601_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-036499",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000114036126036499/ef20081960_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-24",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-100322",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926100322/tech-20260630x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001104659-26-094391",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926094391/tech-20260812x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-23",
+   "items": [
+    "1.01",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change",
+   "accession": "0001999371-26-013527",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000199937126013527/tech-8k_062326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001999371-26-013429",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000199937126013429/tech-8k_062526.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-056302",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926056302/tech-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001104659-26-055887",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926055887/tech-20260506x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-09",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001104659-26-013412",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926013412/tech-20260209x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-010335",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926010335/tech-20251231x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001104659-26-009994",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465926009994/tech-20260204x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-107053",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465925107053/tech-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Other events",
+   "accession": "0001104659-25-106631",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000110465925106631/tech-20251030x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-09-19",
+   "period": "2025-10-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001308179-25-000599",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000130817925000599/tech014339-def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-08-22",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001558370-25-011716",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000155837025011716/tech-20250630x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001558370-25-010393",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000155837025010393/tech-20250806x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-006990",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000155837025006990/tech-20250331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001558370-25-006594",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000155837025006594/tech-20250507x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-06",
+   "period": "2025-04-30",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001558370-25-006512",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000155837025006512/tech-20250430x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-04",
+   "period": "2025-02-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001558370-25-002177",
+   "url": "https://www.sec.gov/Archives/edgar/data/842023/000155837025002177/tech-20250226x8k.htm"
+  }
+ ],
+ "warnings": []
+}

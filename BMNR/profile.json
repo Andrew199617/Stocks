@@ -1,0 +1,305 @@
+{
+ "ticker": "BMNR",
+ "cik": 1829311,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T04:10:32-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001829311.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1829311/000149315225024679/form10-k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BMNR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BMNR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BITMINE IMMERSION TECHNOLOGIES, INC.",
+  "cik": 1829311,
+  "description": {
+   "text": "Immersion Technologies, Inc. is a U.S.-based digital asset technology company focused on acquiring, holding and actively managing ETH as its primary treasury reserve asset. Through equity and other capital markets transactions, we provide investors with indirect exposure to ETH by deploying offering proceeds to acquire and manage ETH within our corporate treasury.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-21",
+   "period": "2025-08-31",
+   "accession": "0001493152-25-024679",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315225024679/form10-k.htm"
+  },
+  "description_short": "Bitmine Immersion Technologies, Inc. (NYSE: BMNR), together with its subsidiaries ('Bitmine' or the 'Company'), is a blockchain technology infrastructure company operating across institutional digital asset staking and validation services, bitcoin mining, and strategic digital asset management. As the world's leading Ethereum Treasury company, it implements an innovative digital asset strategy for institutional investors and public market participants. The Company provides institutional-grade staking and validation infrastructure-through which it earns staking rewards and validation income-alongside bitcoin mining activities. Bitmine holds digital assets strategically, generating yield on those holdings to support liquidity and capital formation. Since 2025, the Company has expanded its blockchain infrastructure capabilities, including developing and deploying MAVAN, its institutional staking and validation platform.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6199",
+  "sic_description": "Finance Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0831",
+  "filer_category": "<br>Emerging growth company",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.bitminetech.io",
+  "headquarters": "Las Vegas, NV",
+  "address": {
+   "street": "10845 Griffith Peak Dr. #2",
+   "city": "Las Vegas",
+   "state": "NV",
+   "zip": "89135",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-21"
+  },
+  "phone": "203-401-8200",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-10-27",
+  "first_sec_filing_form": "10-12G",
+  "former_names": [
+   "Sandy Springs Holdings, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001829311&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-046744",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226046744/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-046088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226046088/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-045699",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226045699/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-045035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226045035/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-044459",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226044459/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-043486",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226043486/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-042492",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226042492/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-04",
+   "items": [
+    "1.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Termination of agreement; Reg FD",
+   "accession": "0001493152-26-041713",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226041713/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-040741",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226040741/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-039789",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226039789/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-038652",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226038652/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-14",
+   "period": "2026-08-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-038012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226038012/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-036757",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226036757/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-035752",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226035752/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-034720",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226034720/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-033855",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226033855/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-033460",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226033460/form8-k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-14",
+   "period": "2026-05-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-048157",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000162828026048157/bmnr-20260531.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-13",
+   "period": "2026-07-13",
+   "items": [
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Reg FD",
+   "accession": "0001493152-26-032951",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226032951/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001493152-26-032090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226032090/form8-k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2025-11-21"
+ ]
+}

@@ -1,0 +1,116 @@
+{
+ "ticker": "TX",
+ "name": "Ternium S.A.",
+ "sector": "Materials / Steel & iron ore mining",
+ "price": 57.1,
+ "market_cap_b": 112.09,
+ "engine_version": 5,
+ "base_oe_per_share": 0.43322808888448694,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Leading flat-steel producer in Mexico and Argentina (plus Brazil via Usiminas, consolidated since July 2023) with integrated iron-ore mining, a dense service-center/distribution network and a value-added mix \u2014 real regional scale, logistics and customer-embedding advantages. But the product is commodity flat steel with no through-cycle pricing power: operating income fell from $5,271M (FY2021) to $705M (FY2025) on the filed history as steel prices normalized, conservative owner's earnings were negative in FY2025 at peak Pesquer\u00eda growth capex, and earnings are set by steel prices, Chinese export pressure, FX and Argentine/Brazilian macro that Ternium does not control. Weak-to-moderate moat, 4/10, CAP 7.2y.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020): Item 7 markets disclosure states 'Each ADS represents ten shares of Ternium S.A.'s share capital' (42,960,625 ADSs registered of record as of February 27, 2026; BNY Mellon depositary), and Selected Financial Data footnote (2) states the same ('Each ADS represents 10 shares'), with basic EPS of $0.22 per share vs $2.17 per ADS for FY2025. Corroborated by the company's own earnings releases (e.g. 4Q25: dividend $2.20 per ADS = $0.22 per share).) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2017, 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Cash Flows (p. F-11): the adjustments reconciling profit to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, impairment charge, income tax accruals less payments, equity in earnings of non-consolidated companies, interest accruals, provisions and working-capital changes) with no share-based payment addback in any year, and the term 'share-based' appears nowhere in the 20-F. The only long-term incentive (Item 6 / Note 4(o)(3) and Note 26(iii)) grants units that are mandatorily redeemed for cash seven years after grant, are tied to book value, and are accounted for as an IAS 19 long-term benefit (liability $84.7M at Dec 31, 2025) \u2014 cash-settled, already expensed through income and operating cash flow; directors receive cash only, with 'no long-term incentive or pension plan'.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Income (p. F-6): 'Weighted average number of shares outstanding 1,963,076,776' for each of 2025, 2024 and 2023, with the line captioned 'Basic and diluted earnings per share for profit attributable to the owners of the parent (expressed in $ per share) 0.22 / (0.03) / 0.34'; Selected Financial Data footnote (4) states 'Diluted earnings per share and per ADS (expressed in $ per share or ADS), equals basic earnings per share or ADS, respectively', and accounting policy Note (x) calculates EPS on the daily weighted average number of ordinary shares excluding treasury shares (41,666,666 held in treasury).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear, bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "BASE_DIVERGENCE: latest FY OE/share -1.76 vs 3-yr median 0.43 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.8% \u2014 valuation rests almost entirely on growth; tier is fragile"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 1.63,
+   "irr": 0.028
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 2.24,
+   "irr": 0.0294
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 3.02,
+   "irr": 0.0313
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 4.04,
+   "irr": 0.0339
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 5.98,
+   "irr": 0.0391
+  }
+ },
+ "iv_at_15": 3.03,
+ "iv_at_12": 3.96,
+ "implied_irr": 0.0314,
+ "implied_irr_base_case": 0.0313,
+ "upside_at_15_pct": -94.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Leading Latin-American flat-steel producer, weak-to-moderate moat 4/10 \u2014 on the normalized conservative base (median OE $0.43 per ADS across the peak Pesquer\u00eda capex years) the price is far beyond the model: weighted IRR 3.14% (bear cases at the solver floor, so at most ~3%), weighted IV@15% $3.03 vs $57.10 per ADS, Tier D, and even the super-bull case returns only 3.91%; clears 15% only below ~$3.03 on this base.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": false,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0294,
+ "irr_bull": 0.0339,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 2.18,
+ "iv_at_25": 1.71,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 887783000,
+ "shares_diluted_latest": 1963076776.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Regional leadership: leading flat-steel producer in Mexico and Argentina and, via Usiminas (consolidated July 2023), Brazil \u2014 scale, integrated iron-ore mining and plants close to manufacturing customers give logistics and availability advantages importers cannot match at distance",
+  "Value-added differentiation: galvanized, painted and automotive/industrial products plus a service-center network and the ProPymes SME program embed Ternium in customer supply chains beyond plain hot-rolled coil",
+  "Balance-sheet capacity to invest through the cycle: engine net debt $887,783,000 at FY2025 on its cash-only definition (the company reported a $712M net cash position including financial securities at Dec 31, 2025) while funding the Pesquer\u00eda expansion, the largest in its history"
+ ],
+ "moat_against": [
+  "Commodity product, no through-cycle pricing power: operating income fell from $5,271,136,000 in FY2021 to $705,422,000 in FY2025 (financials_history.csv) as steel prices normalized \u2014 the cycle, not Ternium, sets earnings",
+  "Global steel overcapacity and Chinese export pressure drive import competition in Mexico and Brazil; US trade measures cut both ways for a Mexican producer",
+  "Heavy, recurring capital intensity: capex rose from $1,201,639,000 (FY2023) to $2,659,101,000 (FY2025) against D&A of $788,308,000 \u2014 conservative owner's earnings were negative in FY2025",
+  "Usiminas overhang leaks and whipsaws earnings: large noncontrolling interests, a $405M deferred-tax-asset writedown and a recurring litigation provision over the Usiminas participation acquisition in FY2025 (company 4Q25 release)",
+  "FX and country exposure: MXN/BRL/ARS earnings, Argentine macro and controls, and Brazilian tax/litigation risk sit outside management's control"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Cash Flows (p. F-11): the adjustments reconciling profit to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, impairment charge, income tax accruals less payments, equity in earnings of non-consolidated companies, interest accruals, provisions and working-capital changes) with no share-based payment addback in any year, and the term 'share-based' appears nowhere in the 20-F. The only long-term incentive (Item 6 / Note 4(o)(3) and Note 26(iii)) grants units that are mandatorily redeemed for cash seven years after grant, are tied to book value, and are accounted for as an IAS 19 long-term benefit (liability $84.7M at Dec 31, 2025) \u2014 cash-settled, already expensed through income and operating cash flow; directors receive cash only, with 'no long-term incentive or pension plan'."
+  },
+  {
+   "field": "shares",
+   "value": 1963076776.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Income (p. F-6): 'Weighted average number of shares outstanding 1,963,076,776' for each of 2025, 2024 and 2023, with the line captioned 'Basic and diluted earnings per share for profit attributable to the owners of the parent (expressed in $ per share) 0.22 / (0.03) / 0.34'; Selected Financial Data footnote (4) states 'Diluted earnings per share and per ADS (expressed in $ per share or ADS), equals basic earnings per share or ADS, respectively', and accounting policy Note (x) calculates EPS on the daily weighted average number of ordinary shares excluding treasury shares (41,666,666 held in treasury)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.4332,
+  "base_oe_with_override": 0.4332,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.0314,
+  "weighted_irr_with_override": 0.0314,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

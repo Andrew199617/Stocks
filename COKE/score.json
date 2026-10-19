@@ -1,0 +1,113 @@
+{
+ "ticker": "COKE",
+ "name": "Coca-Cola Consolidated, Inc.",
+ "sector": "Consumer Staples / Non-alcoholic beverage bottling & distribution",
+ "price": 210.33,
+ "market_cap_b": 17.63,
+ "engine_version": 5,
+ "base_oe_per_share": 7.684847327788848,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Strong territorial moat: exclusive Coca-Cola bottling franchise for 14 states + DC (~60M consumers) as the largest US Coca-Cola bottler, with a century-built local manufacturing/distribution density. Returns prove it in the current franchise era: fundamentals.json roic_proxy 25.2% (FY2021), 31.6% (FY2022), 43.7% (FY2023), 32.9% (FY2024), 39.8% (FY2025) \u2014 well above the cost of capital five straight years \u2014 and gross margin expanded from 35.1% (FY2021) to 39.9% (FY2024) / 39.7% (FY2025) on annual pricing actions. Capped at 7, not higher: the brands and concentrate belong to The Coca-Cola Company (~85% of bottle/can volume is KO product), the business is capital-intensive (capex ~$300M/yr), and pre-refranchising returns (FY2017-19 roic_proxy 3-7%) show what the model earns without scale/pricing tailwinds. CAP 11.1y.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Cash Flows: no share-based/stock compensation adjustment appears among the operating-activity reconciling items for FY2025, FY2024 or FY2023, and the Consolidated Statements of Changes in Stockholders' Equity show no stock-compensation credit to additional paid-in capital in FY2023-FY2025 (APIC flat at $23,764 thousand through FY2024-FY2025). EDGAR companyfacts' last filed ShareBasedCompensation values are $0 for FY2020 and FY2021 (10-Ks filed 2021-02-26 / 2022-02-22).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Operations: 'Weighted average number of Common Stock shares outstanding - assuming dilution' 83,807 thousand for FY2025 (90,524 thousand FY2024, 93,923 thousand FY2023), all retroactively adjusted for the 10-for-1 forward stock split effected May 27, 2025. Under the two-class method this Common diluted line is the company-wide diluted denominator: it equals Common basic 73,658 thousand + Class B diluted 10,149 thousand, and FY2025 net income $570,582 thousand / 83,807 thousand shares = the reported diluted EPS of $6.81 \u2014 the Class B diluted line is a component of the Common diluted line, not additive to it.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 32.4,
+   "irr": 0.0415
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 53.93,
+   "irr": 0.0565
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 75.88,
+   "irr": 0.0721
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 105.83,
+   "irr": 0.0922
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 167.75,
+   "irr": 0.1286
+  }
+ },
+ "iv_at_15": 82.72,
+ "iv_at_12": 111.44,
+ "implied_irr": 0.0774,
+ "implied_irr_base_case": 0.0721,
+ "upside_at_15_pct": -60.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-return territorial Coca-Cola bottler, moat 7/10 \u2014 at $210.33 the weighted IRR is only 7.74% (weighted IV@15% $82.72, Tier D) on a $7.68 TTM owner's-earnings base; even the super-bull case returns 12.86%, and the stock clears the 15% hurdle only below about $82.72.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0565,
+ "irr_bull": 0.0922,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 57.22,
+ "iv_at_25": 43.39,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2504091000,
+ "shares_diluted_latest": 83807000.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Exclusive Coca-Cola franchise territory (14 states + DC, ~60M consumers); largest US Coca-Cola bottler \u2014 no rival bottler can sell Coke in its territory",
+  "ROIC well above cost of capital through the current era: roic_proxy 25.2%/31.6%/43.7%/32.9%/39.8% in FY2021-FY2025 (fundamentals.json)",
+  "Proven pricing power: gross margin 35.1% (FY2021) -> 39.9% (FY2024), 39.7% (FY2025); annual pricing actions passed through per 10-K/10-Q MD&A",
+  "Century-built local manufacturing and route-to-market density across the Southeast/Mid-Atlantic; Q2 2026 case volume +7.6% YoY",
+  "Bottling relationship with The Coca-Cola Company affirmed intact when KO sold its equity stake in Nov 2025"
+ ],
+ "moat_against": [
+  "Brands are not owned: ~85% of bottle/can volume is KO product; COKE buys concentrate, KO controls brand strategy and pricing architecture",
+  "Secular headwinds for sugary drinks: volume risk from health trends, sugar taxes and GLP-1 appetite suppression",
+  "Capital-intensive: capex $312M in FY2025 (~4.3% of sales) for plants, fleet, coolers and automation is a permanent toll on owner's earnings",
+  "Leverage step-up: Nov 2025 KO-stake repurchase took net debt to $2,504M at FY2025-end (engine) and H1 2026 net interest to $62.5M vs $12.8M in H1 2025",
+  "Controlled company: Class B holders (Harrison family) hold ~78% of voting power; the only equity-linked pay plan covers the CEO alone"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Cash Flows: no share-based/stock compensation adjustment appears among the operating-activity reconciling items for FY2025, FY2024 or FY2023, and the Consolidated Statements of Changes in Stockholders' Equity show no stock-compensation credit to additional paid-in capital in FY2023-FY2025 (APIC flat at $23,764 thousand through FY2024-FY2025). EDGAR companyfacts' last filed ShareBasedCompensation values are $0 for FY2020 and FY2021 (10-Ks filed 2021-02-26 / 2022-02-22)."
+  },
+  {
+   "field": "shares",
+   "value": 83807000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Operations: 'Weighted average number of Common Stock shares outstanding - assuming dilution' 83,807 thousand for FY2025 (90,524 thousand FY2024, 93,923 thousand FY2023), all retroactively adjusted for the 10-for-1 forward stock split effected May 27, 2025. Under the two-class method this Common diluted line is the company-wide diluted denominator: it equals Common basic 73,658 thousand + Class B diluted 10,149 thousand, and FY2025 net income $570,582 thousand / 83,807 thousand shares = the reported diluted EPS of $6.81 \u2014 the Class B diluted line is a component of the Common diluted line, not additive to it."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": null,
+  "base_oe_with_override": 7.6848,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.0774,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

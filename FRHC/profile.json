@@ -1,0 +1,272 @@
+{
+ "ticker": "FRHC",
+ "cik": 924805,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T20:52:53-04:00",
+ "newest_filing_date": "2026-09-17",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000924805.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000012/frhc-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FRHC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FRHC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Freedom Holding Corp.",
+  "cik": 924805,
+  "description": {
+   "text": "Freedom Holding Corp. (\"FRHC\") is organized under the laws of the State of Nevada and acts as a holding company for all of our subsidiaries. Our subsidiaries engage in a broad range of activities including securities brokerage, securities dealing for customers and for our own account, market making activities, investment research, investment counseling, retail and commercial banking, and insurance products. We also own several ancillary businesses and lifestyle solutions, which complement our core financial services businesses, including payment and information processing services, entertainment and travel ticketing services, e-commerce business, cloud services, and telecommunications and media businesses in Kazakhstan that are in a developmental stage. Our mission has always been to democratize access to financial markets for global customers. Our company was founded to provide access to the international capital markets for retail brokerage customers and has rapidly grown providing a world-class digital infrastructure that has led to innovative, integrated financial technologies that address customer needs in Kazakhstan, our home market, and dozens of other countries across Europe, Asia, and North America. The main market of our operations is Kazakhstan.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-06-01",
+   "period": "2026-03-31",
+   "accession": "0000924805-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000012/frhc-20260331.htm"
+  },
+  "description_short": "Freedom Holding Corp. provides financial services in 24 countries, including Kazakhstan, the United States, multiple EU countries, Uzbekistan, and Armenia. The Company's principal executive office is located in New York City. In Kazakhstan, Freedom is actively developing its financial and digital ecosystem, which includes Freedom Bank, Freedom Broker, the insurance companies Freedom Life and Freedom insurance, as well as a lifestyle segment that features Arbuz.kz, Freedom Ticketon, and Aviata. Freedom Holding Corp. shares are traded on the U.S. technology exchange NASDAQ, the Kazakhstan Stock Exchange (KASE), and the Astana International Exchange (AIX) under the ticker symbol FRHC. Freedom Holding Corp. is regulated by the U.S. Securities and Exchange Commission (SEC) and the common stock is included in the Russell 3000 Index.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": "Asia",
+  "sic": "6211",
+  "sic_description": "Security Brokers, Dealers & Flotation Companies",
+  "state_of_incorporation": "NV",
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-CM",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.freedomholdingcorp.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "40 Wall Street 58th Floor",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10005",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-06-01"
+  },
+  "phone": "1-212-980-4400",
+  "employees": {
+   "count": 11627,
+   "as_of": "2026-03-31",
+   "evidence": "As of March 31, 2026, we had 11,627 full-time employees, 230 offices (of which 32 offered brokerage services, 63 offered insurance services offices, 9 offered banking services and 126 offered other financial and non-financial services) and 858,000 retail brokerage customer accounts.",
+   "form": "10-K",
+   "filed": "2026-06-01",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000012/frhc-20260331.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-08-07",
+  "first_sec_filing_form": "10SB12G",
+  "former_names": [
+   "BMB MUNAI INC",
+   "INTERUNION FINANCIAL CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000924805&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000924805-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000051/frhc-20260917.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000047/frhc-20260630.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000924805-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000041/fre-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000924805-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000028/frhc-20260710.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-10",
+   "items": [
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD",
+   "accession": "0000924805-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000026/frhc-20260710.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000924805-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000020/frhc-20260629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000924805-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000015/frhc-20260612.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-06-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000924805-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000012/frhc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-09",
+   "period": "2026-04-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000924805-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000009/frhc-20260409.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000006/frhc-20251231.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480525000041/frhc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-01",
+   "period": "2025-09-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000924805-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480525000038/frhc-20250929.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480525000031/frhc-20250630.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-07-29",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000924805-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480525000025/fre-20250729.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-06-13",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000924805-25-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480525000012/frhc-20250331.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-02-07",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-25-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480525000002/frhc-20241231.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2024-11-08",
+   "period": "2024-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-24-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480524000068/frhc-20240930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-09-23",
+   "period": "2024-09-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000924805-24-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480524000062/a2024-09xannualmeetingofst.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2024-08-09",
+   "period": "2024-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000924805-24-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480524000060/frhc-20240630.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2024-07-29",
+   "period": "2024-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000924805-24-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/924805/000092480524000054/fre-20240729.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,163 @@
+{
+ "ticker": "APA",
+ "cik": 1841666,
+ "entity": "APA CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 4545000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 2277000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 2260000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 4528000000
+  },
+  "capex": {
+   "fy": 2740000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 1358739726.0273972,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 1358739726.0273972,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 2740000000.0
+  },
+  "sbc": {
+   "fy": 107000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 53060273.97260274,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 53060273.97260274,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 107000000.0
+  },
+  "shares_diluted": {
+   "fy": 359000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 362000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 354000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 4528000000,
+ "ttm_capex": 2740000000.0,
+ "ttm_sbc": 107000000.0,
+ "ttm_shares_diluted": 354000000,
+ "ttm_oe_total": 1681000000.0,
+ "ttm_oe_per_share": 4.748587570621469,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 107000000.0,
+   "kind": "estimate",
+   "source": "Last filed SBC: FY2025 AllocatedShareBasedCompensationExpense $107,000,000 (Form 10-K FY2025, filed 2026-02-26) \u2014 the anchor named here; value is exactly 1.0x that filed figure, inside the 0.1x-10x estimate band",
+   "legs_filled": {
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 53060273.97260274,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 53060273.97260274,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 2740000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 2740000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 1358739726.0273972,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 1358739726.0273972,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

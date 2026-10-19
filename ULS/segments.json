@@ -1,0 +1,1094 @@
+{
+ "ticker": "ULS",
+ "cik": 1901440,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001901440-26-000005",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000005/uls-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001901440-26-000012",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000012/uls-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001901440-26-000023",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000023/uls-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "uls:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      1146000000,
+      1254000000,
+      1341000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4279,
+      0.4369,
+      0.4392
+     ],
+     "growth_yoy": [
+      null,
+      0.0942,
+      0.0694
+     ]
+    },
+    {
+     "member": "uls:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      1172000000,
+      1238000000,
+      1319000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4376,
+      0.4314,
+      0.432
+     ],
+     "growth_yoy": [
+      null,
+      0.0563,
+      0.0654
+     ]
+    },
+    {
+     "member": "uls:SoftwareAndAdvisoryMember",
+     "label": "Software and Advisory",
+     "values": [
+      360000000,
+      378000000,
+      393000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1344,
+      0.1317,
+      0.1287
+     ],
+     "growth_yoy": [
+      null,
+      0.05,
+      0.0397
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2678000000,
+     2870000000,
+     3053000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "uls:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      340000000,
+      373000000,
+      375000000,
+      402000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4823,
+      0.4807,
+      0.4947,
+      0.4926
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1029,
+      0.0777
+     ]
+    },
+    {
+     "member": "uls:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      304000000,
+      340000000,
+      318000000,
+      362000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4312,
+      0.4381,
+      0.4195,
+      0.4436
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0461,
+      0.0647
+     ]
+    },
+    {
+     "member": "uls:RiskComplianceSoftwareMember",
+     "label": "Risk & Compliance Software",
+     "values": [
+      61000000,
+      63000000,
+      65000000,
+      52000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0865,
+      0.0812,
+      0.0858,
+      0.0637
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0656,
+      -0.1746
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     705000000,
+     776000000,
+     758000000,
+     816000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "uls:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      308000000,
+      338000000,
+      386000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.837,
+      0.7316,
+      0.7395
+     ],
+     "growth_yoy": [
+      null,
+      0.0974,
+      0.142
+     ]
+    },
+    {
+     "member": "uls:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      45000000,
+      114000000,
+      122000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1223,
+      0.2468,
+      0.2337
+     ],
+     "growth_yoy": [
+      null,
+      1.5333,
+      0.0702
+     ]
+    },
+    {
+     "member": "uls:SoftwareAndAdvisoryMember",
+     "label": "Software and Advisory",
+     "values": [
+      15000000,
+      10000000,
+      14000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0408,
+      0.0216,
+      0.0268
+     ],
+     "growth_yoy": [
+      null,
+      -0.3333,
+      0.4
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     368000000,
+     462000000,
+     522000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "uls:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      83000000,
+      100000000,
+      101000000,
+      103000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7615,
+      0.7194,
+      0.7319,
+      0.6867
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2169,
+      0.03
+     ]
+    },
+    {
+     "member": "uls:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      22000000,
+      37000000,
+      30000000,
+      47000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2018,
+      0.2662,
+      0.2174,
+      0.3133
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3636,
+      0.2703
+     ]
+    },
+    {
+     "member": "uls:RiskComplianceSoftwareMember",
+     "label": "Risk & Compliance Software",
+     "values": [
+      4000000,
+      2000000,
+      7000000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0367,
+      0.0144,
+      0.0507,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.75,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     109000000,
+     139000000,
+     138000000,
+     150000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "uls:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      75000000,
+      79000000,
+      81000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.487,
+      0.4593,
+      0.4309
+     ],
+     "growth_yoy": [
+      null,
+      0.0533,
+      0.0253
+     ]
+    },
+    {
+     "member": "uls:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      38000000,
+      47000000,
+      56000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2468,
+      0.2733,
+      0.2979
+     ],
+     "growth_yoy": [
+      null,
+      0.2368,
+      0.1915
+     ]
+    },
+    {
+     "member": "uls:SoftwareAndAdvisoryMember",
+     "label": "Software and Advisory",
+     "values": [
+      41000000,
+      46000000,
+      51000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2662,
+      0.2674,
+      0.2713
+     ],
+     "growth_yoy": [
+      null,
+      0.122,
+      0.1087
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     154000000,
+     172000000,
+     188000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "uls:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      19000000,
+      20000000,
+      21000000,
+      20000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4222,
+      0.4348,
+      0.4468,
+      0.4348
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1053,
+      0.0
+     ]
+    },
+    {
+     "member": "uls:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      16000000,
+      16000000,
+      16000000,
+      16000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3556,
+      0.3478,
+      0.3404,
+      0.3478
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "member": "uls:RiskComplianceSoftwareMember",
+     "label": "Risk & Compliance Software",
+     "values": [
+      10000000,
+      10000000,
+      10000000,
+      10000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2222,
+      0.2174,
+      0.2128,
+      0.2174
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     45000000,
+     46000000,
+     47000000,
+     46000000
+    ],
+    "basis": "mixed: consolidated fact, sum of rows, consolidated fact, sum of rows"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "uls:OngoingCertificationServicesMember",
+     "label": "Ongoing Certification Services",
+     "values": [
+      874000000,
+      953000000,
+      1006000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3264,
+      0.3321,
+      0.3295
+     ],
+     "growth_yoy": [
+      null,
+      0.0904,
+      0.0556
+     ]
+    },
+    {
+     "member": "uls:NonCertificationTestingAndOtherServicesMember",
+     "label": "Non-certification Testing and Other Services",
+     "values": [
+      812000000,
+      860000000,
+      911000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3032,
+      0.2997,
+      0.2984
+     ],
+     "growth_yoy": [
+      null,
+      0.0591,
+      0.0593
+     ]
+    },
+    {
+     "member": "uls:CertificationTestingMember",
+     "label": "Certification Testing",
+     "values": [
+      718000000,
+      784000000,
+      851000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2681,
+      0.2732,
+      0.2787
+     ],
+     "growth_yoy": [
+      null,
+      0.0919,
+      0.0855
+     ]
+    },
+    {
+     "member": "uls:SoftwareMember",
+     "label": "Software",
+     "values": [
+      274000000,
+      273000000,
+      285000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1023,
+      0.0951,
+      0.0934
+     ],
+     "growth_yoy": [
+      null,
+      -0.0036,
+      0.044
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2678000000,
+     2870000000,
+     3053000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "uls:OngoingCertificationServicesMember",
+     "label": "Ongoing Certification Services",
+     "values": [
+      245000000,
+      250000000,
+      265000000,
+      270000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3475,
+      0.3222,
+      0.3496,
+      0.3309
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0816,
+      0.08
+     ]
+    },
+    {
+     "member": "uls:NonCertificationTestingAndOtherServicesMember",
+     "label": "Non-certification Testing and Other Services",
+     "values": [
+      203000000,
+      241000000,
+      209000000,
+      248000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2879,
+      0.3106,
+      0.2757,
+      0.3039
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0296,
+      0.029
+     ]
+    },
+    {
+     "member": "uls:CertificationTestingMember",
+     "label": "Certification Testing",
+     "values": [
+      189000000,
+      215000000,
+      211000000,
+      237000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2681,
+      0.2771,
+      0.2784,
+      0.2904
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1164,
+      0.1023
+     ]
+    },
+    {
+     "member": "uls:SoftwareMember",
+     "label": "Software",
+     "values": [
+      68000000,
+      70000000,
+      73000000,
+      61000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0965,
+      0.0902,
+      0.0963,
+      0.0748
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0735,
+      -0.1286
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     705000000,
+     776000000,
+     758000000,
+     816000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1117000000,
+      1178000000,
+      1253000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4171,
+      0.4105,
+      0.4104
+     ],
+     "growth_yoy": [
+      null,
+      0.0546,
+      0.0637
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      632000000,
+      710000000,
+      761000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.236,
+      0.2474,
+      0.2493
+     ],
+     "growth_yoy": [
+      null,
+      0.1234,
+      0.0718
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      474000000,
+      496000000,
+      529000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.177,
+      0.1728,
+      0.1733
+     ],
+     "growth_yoy": [
+      null,
+      0.0464,
+      0.0665
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      346000000,
+      375000000,
+      398000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1292,
+      0.1307,
+      0.1304
+     ],
+     "growth_yoy": [
+      null,
+      0.0838,
+      0.0613
+     ]
+    },
+    {
+     "member": "uls:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      109000000,
+      111000000,
+      112000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0407,
+      0.0387,
+      0.0367
+     ],
+     "growth_yoy": [
+      null,
+      0.0183,
+      0.009
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2678000000,
+     2870000000,
+     3053000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

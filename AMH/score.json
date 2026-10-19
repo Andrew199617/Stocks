@@ -1,0 +1,105 @@
+{
+ "ticker": "AMH",
+ "name": "American Homes 4 Rent",
+ "sector": "Real Estate / Single-family rental REIT",
+ "price": 31.28,
+ "market_cap_b": 11.6,
+ "engine_version": 5,
+ "base_oe_per_share": 2.204733634798668,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Scale, local density and the in-house development program are real but modest advantages in a commodity business: rent is a market price, leases are annual with no lock-in, fragmented mom-and-pop supply dominates, and new build-for-rent supply caps returns at replacement cost. Filed returns confirm it \u2014 ROE only 3.5% (2021) to 7.3% (2025) in fundamentals.json, with roic_proxy and gross margin not computable from the filed presentation \u2014 not the sustained well-above-cost-of-capital record a 7+ moat requires. Moat 4/10 (weak), the same score as direct peer Invitation Homes.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-20, accession 0001562401-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $40,645,000 FY2025, $34,052,000 FY2024, $40,137,000 FY2023); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 6.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (8.7%) vs bull-case tier C (11.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 11.38,
+   "irr": 0.0691
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 15.64,
+   "irr": 0.0872
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 19.13,
+   "irr": 0.1019
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 23.15,
+   "irr": 0.1184
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 29.48,
+   "irr": 0.1432
+  }
+ },
+ "iv_at_15": 19.52,
+ "iv_at_12": 25.81,
+ "implied_irr": 0.1036,
+ "implied_irr_base_case": 0.1019,
+ "upside_at_15_pct": -37.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Quality single-family rental REIT, moat 4/10 \u2014 scale, local density and the in-house AMH Development Program are real but rent is a market price on 12-month leases and filed ROE is only 7.3%; on a TTM owner's-earnings base of $2.20/share after charging filed capital-improvements capex, weighted IRR is 10.4% (IV@15% $19.52) at $31.28, so it clears the 15% hurdle only below ~$19.52 \u2014 the REIT lens (FY2026 Core FFO guided at $1.95/share, DPS TTM $1.26) is kinder than the OE lens, but neither supports 15% at this price.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0872,
+ "irr_bull": 0.1184,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 13.86,
+ "iv_at_25": 10.72,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4987219000,
+ "shares_diluted_latest": 370906582,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale and local density as an integrated owner-operator: professionally managed SFR platform with in-house leasing, renovation and property management lowering per-home turn and maintenance costs vs fragmented landlords",
+  "AMH Development Program \u2014 a genuine differentiator vs peers who must buy existing homes: more than 15,000 homes delivered since inception, 651 delivered in Q2 2026 (542 to the wholly owned portfolio), at initial yields management and outside coverage put above acquisition cap rates",
+  "Structural demand tailwind: high cost of homeownership keeps rent-vs-own economics favorable \u2014 Same-Home occupancy 96.0% in Q2 2026 with blended lease spreads +2.7% (renewals +3.2%, new leases +1.4%)",
+  "Expense discipline and balance-sheet access: controllable expense growth held below 1% YTD through Q2 2026, net debt/Adjusted EBITDA ~5.2x including preferreds, and buyback capacity used in Q2 2026 (4.1M shares repurchased at $29.88 average)"
+ ],
+ "moat_against": [
+  "No network effects or tenant switching costs \u2014 leases are typically 12 months, rent is set by the local market, and a tenant can move to a competing home or apartment at renewal",
+  "Single-family rental supply is overwhelmingly fragmented mom-and-pop stock; AMH's scale is operating efficiency, not a barrier \u2014 Invitation Homes and other institutional landlords replicate the model with capital",
+  "Returns are capped by replacement cost and cap-rate arbitrage \u2014 new build-for-rent supply is the permanent competitor, including AMH's own development channel",
+  "Filed returns are thin: ROE ran 3.5% in 2021 to 7.3% in 2025 (fundamentals.json) and roic_proxy / gross margin are not computable from the filed presentation \u2014 no evidence of sustained returns well above the cost of capital",
+  "Political and regulatory scrutiny of institutional single-family landlords is a live, recurring risk (partly eased by the 21st Century ROAD to Housing Act, per Q2 2026 coverage)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 40137000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-20, accession 0001562401-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $40,645,000 FY2025, $34,052,000 FY2024, $40,137,000 FY2023"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 2.231,
+  "base_oe_with_override": 2.2047,
+  "base_oe_impact_pct": -1.175,
+  "weighted_irr_without_override": 0.1045,
+  "weighted_irr_with_override": 0.1036,
+  "weighted_irr_impact_pp": -0.092,
+  "unblocks_tier": true
+ }
+}

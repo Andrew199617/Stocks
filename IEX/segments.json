@@ -1,0 +1,1017 @@
+{
+ "ticker": "IEX",
+ "cik": 832101,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000832101-26-000003",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/iex-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000832101-26-000009",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000009/iex-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000832101-26-000022",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000022/iex-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iex:HealthAndScienceTechnologiesMember",
+     "label": "Health And Science Technologies",
+     "values": [
+      1313500000,
+      1294000000,
+      1490700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4012,
+      0.3959,
+      0.4311
+     ],
+     "growth_yoy": [
+      null,
+      -0.0148,
+      0.152
+     ]
+    },
+    {
+     "member": "iex:FluidAndMeteringTechnologiesMember",
+     "label": "Fluid And Metering Technologies",
+     "values": [
+      1244200000,
+      1231800000,
+      1222500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.38,
+      0.3768,
+      0.3536
+     ],
+     "growth_yoy": [
+      null,
+      -0.01,
+      -0.0075
+     ]
+    },
+    {
+     "member": "iex:FireAndSafetyDiversifiedProductsMember",
+     "label": "Fire And Safety Diversified Products",
+     "values": [
+      716200000,
+      743000000,
+      744300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2188,
+      0.2273,
+      0.2153
+     ],
+     "growth_yoy": [
+      null,
+      0.0374,
+      0.0017
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3273900000,
+     3268800000,
+     3457500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iex:HealthAndScienceTechnologiesMember",
+     "label": "Health And Science Technologies",
+     "values": [
+      340100000,
+      363900000,
+      397400000,
+      414000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4177,
+      0.4205,
+      0.4481,
+      0.4497
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1685,
+      0.1377
+     ]
+    },
+    {
+     "member": "iex:FluidAndMeteringTechnologiesMember",
+     "label": "Fluid And Metering Technologies",
+     "values": [
+      290200000,
+      310500000,
+      301300000,
+      316700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3564,
+      0.3588,
+      0.3397,
+      0.344
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0382,
+      0.02
+     ]
+    },
+    {
+     "member": "iex:FireAndSafetyDiversifiedProductsMember",
+     "label": "Fire And Safety Diversified Products",
+     "values": [
+      184000000,
+      191000000,
+      188200000,
+      189900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.226,
+      0.2207,
+      0.2122,
+      0.2063
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0228,
+      -0.0058
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     814300000,
+     865400000,
+     886900000,
+     920600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iex:HealthAndScienceTechnologiesMember",
+     "label": "Health And Science Technologies",
+     "values": [
+      1313500000,
+      1294000000,
+      1490700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4012,
+      0.3959,
+      0.4311
+     ],
+     "growth_yoy": [
+      null,
+      -0.0148,
+      0.152
+     ]
+    },
+    {
+     "member": "iex:FluidAndMeteringTechnologiesMember",
+     "label": "Fluid And Metering Technologies",
+     "values": [
+      1244200000,
+      1231800000,
+      1222500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.38,
+      0.3768,
+      0.3536
+     ],
+     "growth_yoy": [
+      null,
+      -0.01,
+      -0.0075
+     ]
+    },
+    {
+     "member": "iex:FireAndSafetyDiversifiedProductsMember",
+     "label": "Fire And Safety Diversified Products",
+     "values": [
+      716200000,
+      743000000,
+      744300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2188,
+      0.2273,
+      0.2153
+     ],
+     "growth_yoy": [
+      null,
+      0.0374,
+      0.0017
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3273900000,
+     3268800000,
+     3457500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iex:HealthAndScienceTechnologiesMember",
+     "label": "Health And Science Technologies",
+     "values": [
+      340100000,
+      363900000,
+      397400000,
+      414000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4177,
+      0.4205,
+      0.4481,
+      0.4497
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1685,
+      0.1377
+     ]
+    },
+    {
+     "member": "iex:FluidAndMeteringTechnologiesMember",
+     "label": "Fluid And Metering Technologies",
+     "values": [
+      290200000,
+      310500000,
+      301300000,
+      316700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3564,
+      0.3588,
+      0.3397,
+      0.344
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0382,
+      0.02
+     ]
+    },
+    {
+     "member": "iex:FireAndSafetyDiversifiedProductsMember",
+     "label": "Fire And Safety Diversified Products",
+     "values": [
+      184000000,
+      191000000,
+      188200000,
+      189900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.226,
+      0.2207,
+      0.2122,
+      0.2063
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0228,
+      -0.0058
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     814300000,
+     865400000,
+     886900000,
+     920600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "iex:HealthAndScienceTechnologiesMember",
+     "label": "Health And Science Technologies",
+     "values": [
+      4142600000,
+      4301100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6141,
+      0.6209
+     ],
+     "growth_yoy": [
+      null,
+      0.0383
+     ]
+    },
+    {
+     "member": "iex:FluidAndMeteringTechnologiesMember",
+     "label": "Fluid And Metering Technologies",
+     "values": [
+      1609400000,
+      1694400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2386,
+      0.2446
+     ],
+     "growth_yoy": [
+      null,
+      0.0528
+     ]
+    },
+    {
+     "member": "iex:FireAndSafetyDiversifiedProductsMember",
+     "label": "Fire And Safety Diversified Products",
+     "values": [
+      794100000,
+      825200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1177,
+      0.1191
+     ],
+     "growth_yoy": [
+      null,
+      0.0392
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      199200000,
+      106300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0295,
+      0.0153
+     ],
+     "growth_yoy": [
+      null,
+      -0.4664
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6745300000,
+     6927000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "iex:HealthAndScienceTechnologiesMember",
+     "label": "Health And Science Technologies",
+     "values": [
+      4301100000,
+      4292900000,
+      4284100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6209,
+      0.6205,
+      0.6182
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "iex:FluidAndMeteringTechnologiesMember",
+     "label": "Fluid And Metering Technologies",
+     "values": [
+      1694400000,
+      1677800000,
+      1657900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2446,
+      0.2425,
+      0.2392
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "iex:FireAndSafetyDiversifiedProductsMember",
+     "label": "Fire And Safety Diversified Products",
+     "values": [
+      825200000,
+      822700000,
+      829000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1191,
+      0.1189,
+      0.1196
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      106300000,
+      125200000,
+      159000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0153,
+      0.0181,
+      0.0229
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6927000000,
+     6918600000,
+     6930000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1643100000,
+      1621700000,
+      1760800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5019,
+      0.4961,
+      0.5093
+     ],
+     "growth_yoy": [
+      null,
+      -0.013,
+      0.0858
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      820400000,
+      796500000,
+      846200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2506,
+      0.2437,
+      0.2447
+     ],
+     "growth_yoy": [
+      null,
+      -0.0291,
+      0.0624
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      535500000,
+      571000000,
+      563000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1636,
+      0.1747,
+      0.1628
+     ],
+     "growth_yoy": [
+      null,
+      0.0663,
+      -0.014
+     ]
+    },
+    {
+     "member": "iex:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      157000000,
+      154000000,
+      165100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.048,
+      0.0471,
+      0.0478
+     ],
+     "growth_yoy": [
+      null,
+      -0.0191,
+      0.0721
+     ]
+    },
+    {
+     "member": "iex:NorthAmericaExcludingUnitedStatesMember",
+     "label": "North America, Excluding United States",
+     "values": [
+      126300000,
+      132400000,
+      129700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0386,
+      0.0405,
+      0.0375
+     ],
+     "growth_yoy": [
+      null,
+      0.0483,
+      -0.0204
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3273900000,
+     3268800000,
+     3457500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      419400000,
+      435800000,
+      457100000,
+      467100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.515,
+      0.5036,
+      0.5154,
+      0.5074
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0899,
+      0.0718
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      193000000,
+      220100000,
+      225300000,
+      221900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.237,
+      0.2543,
+      0.254,
+      0.241
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1674,
+      0.0082
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      136700000,
+      141100000,
+      135700000,
+      156200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1679,
+      0.163,
+      0.153,
+      0.1697
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0073,
+      0.107
+     ]
+    },
+    {
+     "member": "iex:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      38400000,
+      39200000,
+      41600000,
+      45000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0472,
+      0.0453,
+      0.0469,
+      0.0489
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0833,
+      0.148
+     ]
+    },
+    {
+     "member": "iex:NorthAmericaExcludingUnitedStatesMember",
+     "label": "North America, Excluding United States",
+     "values": [
+      28800000,
+      31500000,
+      28500000,
+      31800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0354,
+      0.0364,
+      0.0321,
+      0.0345
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0104,
+      0.0095
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     814300000,
+     865400000,
+     886900000,
+     920600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

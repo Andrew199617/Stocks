@@ -1,0 +1,89 @@
+{
+ "ticker": "TU",
+ "name": "TELUS Corporation",
+ "sector": "Telecom / Integrated communications (Canada)",
+ "price": 8.44,
+ "market_cap_b": 12.96,
+ "engine_version": 5,
+ "base_oe_per_share": 0.9487542931596091,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Canadian telecom oligopoly structure (spectrum, fibre/5G scale, sticky base, ~88% gross margins) is real, but the measured franchise economics are weak and deteriorating: roic_proxy in fundamentals.json fell every year from 5.69% (FY2020) to 3.36% (FY2025), operating margin compressed from 16.1% to 11.5%, CAD revenue was flat in FY2025 and is guided flat-to-down in 2026, and the TELUS Digital round-trip ended in a C$2.1B impairment. A moat that cannot earn its cost of capital through the cycle scores weak-moderate: 4/10.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-12, accession 000110465926013854), cover page: securities registered pursuant to Section 12(b) are 'Common Shares', trading symbol TU, name of exchange New York Stock Exchange; the filing text contains no mention of American Depositary Shares; the cover reports 1,548,656,383 Common Shares outstanding as of December 31, 2025, matching the engine's DEI count of 1,548,656,383) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "HIGH_NET_DEBT: net debt is 14.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.8%) vs bull-case tier B (15.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.13,
+   "irr": 0.0832
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 5.69,
+   "irr": 0.1077
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 7.07,
+   "irr": 0.1294
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 8.74,
+   "irr": 0.1544
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 11.13,
+   "irr": 0.1885
+  }
+ },
+ "iv_at_15": 7.1,
+ "iv_at_12": 9.3,
+ "implied_irr": 0.1299,
+ "implied_irr_base_case": 0.1294,
+ "upside_at_15_pct": -15.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Weak-moderate Canadian telecom oligopoly name, moat 4/10 \u2014 real owner's earnings (base $0.95/share, 11.2% OE yield) but roic_proxy fell to 3.36% in FY2025, CAD revenue is flat and guided flat-to-down for 2026, and net debt at 14.5x normalized OE forced a 55% dividend cut: weighted IRR 13.0% and weighted IV@15% $7.10 sit below the $8.44 price, so it clears 15% only at ~$7.10 or below \u2014 Tier C, sized to the bear end (bear IRR 10.8%).",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1077,
+ "irr_bull": 0.1544,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 5.1,
+ "iv_at_25": 3.99,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 21062121680.0,
+ "shares_diluted_latest": 1535000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Regulated three-carrier Canadian oligopoly: spectrum licences and national fibre/5G networks are effectively irreplicable and foreign-ownership limits keep global carriers out",
+  "Sticky installed base: 21,160k total telecom subscriber connections at Dec 31, 2025 (FY2025 results release) and continued adds in Q2 2026 (+17,000 mobile phone and +20,000 internet subscribers, Q2 2026 release) despite price competition",
+  "Margin stability through the cycle: gross margin 87.1-88.3% across FY2020-25 (fundamentals.json annual) with no down year",
+  "Cash engines beyond connectivity: TELUS Health covered 161.2M lives at Dec 31, 2025 (FY2025 results release) and TELUS Digital is wholly owned again after the Oct 31, 2025 privatization"
+ ],
+ "moat_against": [
+  "Returns prove the moat is not converting: roic_proxy fell from 5.69% (FY2020) to 3.36% (FY2025) (fundamentals.json) \u2014 below any plausible cost of capital \u2014 and operating margin compressed 16.1% to 11.5% over the same span",
+  "No pricing power in the core: FY2025 CAD revenue +0.6% (fundamentals.json), Q2 2026 service revenue -1% YoY, and 2026 guidance cut to flat to -2% service revenue with adjusted EBITDA down 2-4% (Q2 2026 release)",
+  "Capital allocation destroyed value: TELUS Digital was spun out in 2021, privatized again on Oct 31, 2025 for ~US$539M, then written down by a C$2.1B non-cash impairment in Q2 2026",
+  "Leverage drives policy: engine net debt $21,062,121,680 is 14.46x normalized OE; the quarterly dividend was cut 55% to C$0.1875 in Q2 2026 to fund deleveraging toward ~3.0x net debt/EBITDA by end-2028",
+  "Regulator and fourth-player pressure: CRTC wholesale/MVNO mandates plus Quebecor/Freedom price competition, and federal immigration cuts remove the population-growth tailwind behind subscriber adds",
+  "Dilution is structural: diluted share count +3.0%/yr (engine share_cagr), driven mainly by DRIP treasury issuance at a discount plus plan shares; the DRIP discount is only removed effective Oct 1, 2026"
+ ]
+}

@@ -1,0 +1,278 @@
+{
+ "ticker": "DTM",
+ "cik": 1842022,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T23:26:14-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001842022.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000003/dtm-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DTM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DTM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DT Midstream, Inc.",
+  "cik": 1842022,
+  "description": null,
+  "description_short": "DT Midstream (NYSE: DTM) is an owner, operator and developer of natural gas interstate and intrastate pipelines, storage and gathering systems, compression, treatment and surface facilities. The company transports clean natural gas for utilities, power plants, marketers, large industrial customers and energy producers across the Southern, Northeastern and Midwestern United States and Canada. The Detroit-based company offers a comprehensive, wellhead-to-market array of services, including natural gas transportation, storage and gathering.",
+  "industry": "Natural Gas Distribution",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4922",
+  "sic_description": "Natural Gas Transmission",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.dtmidstream.com",
+  "headquarters": "Detroit, Michigan",
+  "address": {
+   "street": "500 Woodward Ave., Suite 2900",
+   "city": "Detroit",
+   "state": "Michigan",
+   "zip": "48226-1279",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "313-402-8532",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-05-07",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001842022&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001842022-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000009/dtm-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001140361-26-030142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126030142/ef20078985_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-08",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-020815",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126020815/ef20073183_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-05",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001140361-26-019543",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126019543/ef20072700_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001842022-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000006/dtm-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001140361-26-017997",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126017997/ef20071895_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-011280",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126011280/ny20058512x1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001842022-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000003/dtm-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001140361-26-006115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126006115/ef20066058_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-002732",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036126002732/ef20064080_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001842022-25-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202225000014/dtm-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001140361-25-039784",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036125039784/ef20057933_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-22",
+   "period": "2025-09-17",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-25-035697",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036125035697/ef20055876_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001842022-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202225000010/dtm-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001140361-25-028102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036125028102/ef20052946_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-20",
+   "period": "2025-05-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000947871-25-000556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000094787125000556/ss4848192_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-09",
+   "period": "2025-05-06",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0000947871-25-000484",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000094787125000484/ss4809543_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-30",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001842022-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202225000006/dtm-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000947871-25-000436",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000094787125000436/ss4763310_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-27",
+   "period": "2025-05-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-010578",
+   "url": "https://www.sec.gov/Archives/edgar/data/1842022/000114036125010578/ny20038388x3_def14a.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-19)",
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

@@ -1,0 +1,747 @@
+{
+ "ticker": "FORM",
+ "cik": 1039399,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001039399-26-000009",
+   "filed": "2026-02-20",
+   "period": "2025-12-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000009/form-20251227_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001039399-26-000023",
+   "filed": "2026-05-05",
+   "period": "2026-03-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000023/form-20260328_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001039399-26-000033",
+   "filed": "2026-08-04",
+   "period": "2026-06-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000033/form-20260627_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "form:ProbeCardsSegmentMember",
+     "label": "Probe Cards Segment",
+     "values": [
+      497903000,
+      625960000,
+      637898000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7509,
+      0.8197,
+      0.8126
+     ],
+     "growth_yoy": [
+      null,
+      0.2572,
+      0.0191
+     ]
+    },
+    {
+     "member": "form:SystemsSegmentMember",
+     "label": "Systems Segment",
+     "values": [
+      165199000,
+      137639000,
+      147095000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2491,
+      0.1803,
+      0.1874
+     ],
+     "growth_yoy": [
+      null,
+      -0.1668,
+      0.0687
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     663102000,
+     763599000,
+     784993000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "form:ProbeCardsSegmentMember",
+     "label": "Probe Cards Segment",
+     "values": [
+      136520000,
+      162108000,
+      198257000,
+      209695000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7967,
+      0.8279,
+      0.8767,
+      0.812
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4522,
+      0.2936
+     ]
+    },
+    {
+     "member": "form:SystemsSegmentMember",
+     "label": "Systems Segment",
+     "values": [
+      34836000,
+      33690000,
+      27887000,
+      48547000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2033,
+      0.1721,
+      0.1233,
+      0.188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1995,
+      0.441
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     171356000,
+     195798000,
+     226144000,
+     258242000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "form:FoundryLogicProductGroupMember",
+     "label": "Foundry & Logic Product Group",
+     "values": [
+      363539000,
+      381182000,
+      369897000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5482,
+      0.4992,
+      0.4712
+     ],
+     "growth_yoy": [
+      null,
+      0.0485,
+      -0.0296
+     ]
+    },
+    {
+     "member": "form:DRAMProductGroupMember",
+     "label": "DRAM Product Group",
+     "values": [
+      113779000,
+      227422000,
+      247397000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1716,
+      0.2978,
+      0.3152
+     ],
+     "growth_yoy": [
+      null,
+      0.9988,
+      0.0878
+     ]
+    },
+    {
+     "member": "form:SystemsProductGroupMember",
+     "label": "Systems Product Group",
+     "values": [
+      165199000,
+      null,
+      147095000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2491,
+      null,
+      0.1874
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "form:FlashProductGroupMember",
+     "label": "Flash Product Group",
+     "values": [
+      20585000,
+      17356000,
+      20604000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.031,
+      0.0227,
+      0.0262
+     ],
+     "growth_yoy": [
+      null,
+      -0.1569,
+      0.1871
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     663102000,
+     763599000,
+     784993000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "form:FoundryLogicProductGroupMember",
+     "label": "Foundry & Logic Product Group",
+     "values": [
+      85272000,
+      99513000,
+      111188000,
+      121839000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4976,
+      0.5082,
+      0.4917,
+      0.4718
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3039,
+      0.2244
+     ]
+    },
+    {
+     "member": "form:DRAMProductGroupMember",
+     "label": "DRAM Product Group",
+     "values": [
+      48858000,
+      57057000,
+      82933000,
+      84999000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2851,
+      0.2914,
+      0.3667,
+      0.3291
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6974,
+      0.4897
+     ]
+    },
+    {
+     "member": "form:SystemsProductGroupMember",
+     "label": "Systems Product Group",
+     "values": [
+      34836000,
+      33690000,
+      27887000,
+      48547000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2033,
+      0.1721,
+      0.1233,
+      0.188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1995,
+      0.441
+     ]
+    },
+    {
+     "member": "form:FlashProductGroupMember",
+     "label": "Flash Product Group",
+     "values": [
+      2390000,
+      5538000,
+      4136000,
+      2857000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0139,
+      0.0283,
+      0.0183,
+      0.0111
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.7305,
+      -0.4841
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     171356000,
+     195798000,
+     226144000,
+     258242000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      45362000,
+      52879000,
+      70840000,
+      94421000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2647,
+      0.2701,
+      0.3133,
+      0.3656
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5617,
+      0.7856
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      43171000,
+      57129000,
+      80562000,
+      73424000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2519,
+      0.2918,
+      0.3562,
+      0.2843
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8661,
+      0.2852
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      40325000,
+      40924000,
+      29410000,
+      38218000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2353,
+      0.209,
+      0.13,
+      0.148
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2707,
+      -0.0661
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      13615000,
+      9400000,
+      11362000,
+      16891000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0795,
+      0.048,
+      0.0502,
+      0.0654
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1655,
+      0.7969
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      7781000,
+      7248000,
+      7774000,
+      9465000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0454,
+      0.037,
+      0.0344,
+      0.0367
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0009,
+      0.3059
+     ]
+    },
+    {
+     "member": "country:MY",
+     "label": "MALAYSIA",
+     "values": [
+      2600000,
+      5155000,
+      3714000,
+      9071000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0152,
+      0.0263,
+      0.0164,
+      0.0351
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4285,
+      0.7597
+     ]
+    },
+    {
+     "member": "country:SG",
+     "label": "SINGAPORE",
+     "values": [
+      6249000,
+      6679000,
+      10275000,
+      6737000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0365,
+      0.0341,
+      0.0454,
+      0.0261
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6443,
+      0.0087
+     ]
+    },
+    {
+     "member": "form:RestOfTheWorldMember",
+     "label": "Rest Of The World",
+     "values": [
+      1934000,
+      1718000,
+      3925000,
+      5210000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0113,
+      0.0088,
+      0.0174,
+      0.0202
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0295,
+      2.0326
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      10319000,
+      14666000,
+      8282000,
+      4805000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0602,
+      0.0749,
+      0.0366,
+      0.0186
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1974,
+      -0.6724
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     171356000,
+     195798000,
+     226144000,
+     258242000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

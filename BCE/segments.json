@@ -1,0 +1,274 @@
+{
+ "ticker": "BCE",
+ "cik": 718940,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001193125-26-095004",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/718940/000119312526095004/d86374d40f_htm.xml"
+  }
+ ],
+ "currency": "CAD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bce:BellCTSMember",
+     "label": "Bell CTS",
+     "values": [
+      21619000000,
+      21681000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8857,
+      0.8861
+     ],
+     "growth_yoy": [
+      null,
+      0.0029
+     ]
+    },
+    {
+     "member": "bce:BellMediaMember",
+     "label": "Bell Media",
+     "values": [
+      3151000000,
+      3154000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1291,
+      0.1289
+     ],
+     "growth_yoy": [
+      null,
+      0.001
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -361000000,
+      -367000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0148,
+      -0.015
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24409000000,
+     24468000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bce:ServiceDataMember",
+     "label": "Service, Data",
+     "values": [
+      8117000000,
+      8439000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3325,
+      0.3449
+     ],
+     "growth_yoy": [
+      null,
+      0.0397
+     ]
+    },
+    {
+     "member": "bce:ServiceWirelessVoiceAndDataMember",
+     "label": "Service, Wireless Voice and Data",
+     "values": [
+      7136000000,
+      7053000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2924,
+      0.2883
+     ],
+     "growth_yoy": [
+      null,
+      -0.0116
+     ]
+    },
+    {
+     "member": "bce:ServiceMediaMember",
+     "label": "Service, Media",
+     "values": [
+      2830000000,
+      2882000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1159,
+      0.1178
+     ],
+     "growth_yoy": [
+      null,
+      0.0184
+     ]
+    },
+    {
+     "member": "bce:ProductWirelessMember",
+     "label": "Product, Wireless",
+     "values": [
+      2715000000,
+      2634000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1112,
+      0.1077
+     ],
+     "growth_yoy": [
+      null,
+      -0.0298
+     ]
+    },
+    {
+     "member": "bce:ServiceVoiceMember",
+     "label": "Service, Voice",
+     "values": [
+      2672000000,
+      2520000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1095,
+      0.103
+     ],
+     "growth_yoy": [
+      null,
+      -0.0569
+     ]
+    },
+    {
+     "member": "bce:ProductWirelineMember",
+     "label": "Product, Wireline",
+     "values": [
+      621000000,
+      627000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0254,
+      0.0256
+     ],
+     "growth_yoy": [
+      null,
+      0.0097
+     ]
+    },
+    {
+     "member": "bce:ServicesOtherMember",
+     "label": "Services, Other",
+     "values": [
+      318000000,
+      313000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.013,
+      0.0128
+     ],
+     "growth_yoy": [
+      null,
+      -0.0157
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24409000000,
+     24468000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Operating Service' (bce:OperatingServiceMember) dropped: it is the parent of Service, Data, Service, Media, Service, Voice, Service, Wireless Voice and Data, Services, Other in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Operating Product' (bce:OperatingProductMember) dropped: it is the parent of Product, Wireless, Product, Wireline in the filing's definition linkbase",
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

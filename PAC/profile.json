@@ -1,0 +1,246 @@
+{
+ "ticker": "PAC",
+ "cik": 1347557,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T07:17:55-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001347557.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1347557/000119312526161714/pac-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PAC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PAC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Pacific Airport Group",
+  "cik": 1347557,
+  "description": {
+   "text": "We hold concessions to operate, maintain, and develop 12 international airports in Mexico and two international airports in Jamaica. Upon completion of our Pending Business Combination, we would also own a cross-border terminal facility in San Diego, California that connects Tijuana International Airport. See “Item 4, Information on the Company — History and Development of the Company — Pending Business Combination”",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-161714",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000119312526161714/pac-20251231.htm"
+  },
+  "description_short": "Grupo Aeroportuario del Pacifico SAB de CV operates 12 airports near the Pacific coastline in Mexico plus two Jamaican airports. Approximately 57% of 2019 total passengers were domestic, and the largest airport (Guadalajara) accounts for 30% of total company passenger traffic. The company operates 5 of the 10 most popular airports in Mexico. It serves a diverse mix of passengers with popular tourist destinations in Los Cabos and Puerto Vallarta, Guadalajara's business and manufacturing footprint, and Tijuana's exposure to Southern California. The company operates the two major airports in Jamaica: Montego Bay and Kingston. Montego Bay was 9.7% of 2019's total company traffic of 48.7 million passengers.",
+  "industry": "Aerospace",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "4581",
+  "sic_description": "Airports, Flying Fields & Airport Terminal Services",
+  "state_of_incorporation": "O5",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.aeropuertosgap.com.mx",
+  "headquarters": "Guadalajara, Jalisco, Mexico",
+  "address": {
+   "street": "Avenida Mariano Otero No. 1249-B Torre Pacífico, Piso 6",
+   "city": "Guadalajara",
+   "state": null,
+   "zip": "44530",
+   "country": "Mexico",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "metro": "Jalisco",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "(52)(33) 3880-1100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2006-01-23",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001347557&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006475",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326006475/f6k_100626.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326006007/f6k_091126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005899",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326005899/f6k_090426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005334",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326005334/f6k_080626.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005269",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326005269/f6k_080526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-14",
+   "period": "2026-07-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004612",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326004612/f6k_071426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004489",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326004489/f6k_070626.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003977",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326003977/f6k_060926.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003952",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326003952/f6k_060526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003223",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326003223/f6k_050926.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326003120/f6k_050726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326003045/f6k_050626.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-002988",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326002988/f6k_050426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-002686",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326002686/f6k_042426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-002577",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326002577/f6k_042026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-002538",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326002538/f6k_041726.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-26-161714",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000119312526161714/pac-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-002310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326002310/f6k_040726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-002122",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326002122/f6k_040126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-001859",
+   "url": "https://www.sec.gov/Archives/edgar/data/1347557/000117184326001859/f6k_032326.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-04-17"
+ ]
+}

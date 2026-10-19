@@ -1,0 +1,101 @@
+{
+ "ticker": "MLI",
+ "cik": 89439,
+ "entity": "MUELLER INDUSTRIES INC",
+ "fy_end": "2025-12-27",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 755444000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 304161000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 292001000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 743284000
+  },
+  "capex": {
+   "fy": 68805000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 30691000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 38796000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 76910000
+  },
+  "sbc": {
+   "fy": 26764000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 13940000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 15846000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 28670000
+  },
+  "shares_diluted": {
+   "fy": 111492000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 224014000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 221506000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 743284000,
+ "ttm_capex": 76910000,
+ "ttm_sbc": 28670000,
+ "ttm_shares_diluted": 221506000,
+ "ttm_oe_total": 637704000,
+ "ttm_oe_per_share": 2.8789468456836382,
+ "warnings": [],
+ "overrides_used": []
+}

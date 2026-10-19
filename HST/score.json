@@ -1,0 +1,87 @@
+{
+ "ticker": "HST",
+ "name": "Host Hotels & Resorts, Inc.",
+ "sector": "Real Estate / Lodging REIT",
+ "price": 23.97,
+ "market_cap_b": 16.64,
+ "engine_version": 5,
+ "base_oe_per_share": 1.8398488591774451,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Irreplaceable prime luxury/upper-upscale locations and largest-lodging-REIT scale, but no owned brand or guest relationship (operators own both), heavy recurring capex, and deep cyclicality; ROIC proxy 11.5-12.7% in FY2022-25 collapsed to negative in FY2020-21, so it has not held above the cost of capital through a cycle.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "TIER_BAND: bear-case tier D (9.4%) vs bull-case tier C (13.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 9.14,
+   "irr": 0.0709
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 13.32,
+   "irr": 0.0943
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 16.6,
+   "irr": 0.1122
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 20.47,
+   "irr": 0.1324
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 27.04,
+   "irr": 0.1648
+  }
+ },
+ "iv_at_15": 16.12,
+ "iv_at_12": 21.33,
+ "implied_irr": 0.1097,
+ "implied_irr_base_case": 0.1122,
+ "upside_at_15_pct": -32.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality lodging REIT with a weak franchise moat 4/10 \u2014 at $23.97 it does not clear 15% (weighted IRR 11.0%, IV@15% $16.12); it would need ~$16 to clear.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0943,
+ "irr_bull": 0.1324,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 11.42,
+ "iv_at_25": 8.82,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 506000000,
+ "shares_diluted_latest": 694100000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Largest lodging REIT \u2014 scale in acquiring prime assets and negotiating with major managers",
+  "Luxury/upper-upscale portfolio in supply-constrained top markets peers cannot replicate",
+  "Investment-grade, largely unencumbered balance sheet \u2014 net debt 0.40x normalized OE",
+  "Renovation programs produced ~9-point average RevPAR index share gains across 21 properties"
+ ],
+ "moat_against": [
+  "No owned brand or loyalty program \u2014 Marriott/Hyatt/Hilton own the guest and charge the fees",
+  "Capex-hungry assets \u2014 guided 2026 capex ~$550-630M vs TTM OE of $1,266M",
+  "Extreme cyclicality \u2014 FY2020 revenue fell ~70% and OCF went negative",
+  "Labor and insurance cost inflation; business travel still below pre-pandemic norms"
+ ]
+}

@@ -1,0 +1,238 @@
+{
+ "ticker": "AGI",
+ "cik": 1178819,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T11:28:27-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001178819.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000048/agi-20251231_d2.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AGI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AGI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ALAMOS GOLD INC",
+  "cik": 1178819,
+  "description": null,
+  "description_short": "Alamos is a Canadian-based intermediate gold producer with diversified production from three operations in North America. This includes the Island Gold District and Young-Davidson mine in northern Ontario, Canada, and the Mulatos District in Sonora State, Mexico. Additionally, the Company has a strong portfolio of growth projects including the IGD Expansion, and the Lynn Lake project in Manitoba, Canada. Alamos employs more than 2,400 people and is committed to the highest standards of sustainable development. The Company's shares are traded on the TSX and NYSE under the symbol 'AGI'.",
+  "industry": "Precious Metals",
+  "sector": "Basic Materials",
+  "region": "North America",
+  "sic": "1040",
+  "sic_description": "Gold and Silver Ores",
+  "state_of_incorporation": "A6",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": null,
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.alamosgold.com",
+  "headquarters": "Toronto, Ontario",
+  "address": {
+   "street": "Brookfield Place, 181 Bay Street, Suite 3910",
+   "city": "Toronto",
+   "state": "Ontario",
+   "zip": "M5J 2T3",
+   "country": "Canada",
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2026-03-26"
+  },
+  "phone": "416-368-9932",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-07-25",
+  "first_sec_filing_form": "20FR12G",
+  "former_names": [
+   "ALAMOS MINERALS LTD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001178819&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000090/a6kalamosgoldprovidesnotic.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000088/a6kalamosgoldannounceschan.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000086/a6kalamosgolddeclaresq3202.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000081/a6k06302026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000078/a6kalamosgoldprovidesnotic.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000076/a6kalamosgoldmaterialchang.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000073/a6kagiextendshigh-grademin.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000070/a6kalamosgoldprovidesopera.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000067/a6kalamosgold2026agmvoting.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000064/a6kalamosdeclaresquarterly.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000062/a6kalamosgoldannouncesmana.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000058/a6k03312026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000055/a6k2026meetingmaterials.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2026-04-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000053/a6kalamosgoldprovidesnotic.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000051/a6kalamosgoldprovidesnotic.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2026-03-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001178819-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000048/agi-20251231_d2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000045/a6kalamosgoldfilestechnica.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-20",
+   "period": "2026-02-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000044/a6kislandgolddistrict2026e.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178819-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000039/a6kalamosgoldannouncesrefi.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001178819-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000038/form6-kaxamendedfinancials.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2026-03-26)",
+  "employees: no headcount sentence found in the 40-F filed 2026-03-26"
+ ]
+}

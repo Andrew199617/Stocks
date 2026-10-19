@@ -1,0 +1,291 @@
+{
+ "ticker": "ELAN",
+ "cik": 1739104,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T12:41:30-04:00",
+ "newest_filing_date": "2026-08-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001739104.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000012/elan-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ELAN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ELAN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Elanco Animal Health Inc",
+  "cik": 1739104,
+  "description": {
+   "text": "Elanco Animal Health Incorporated and its subsidiaries (collectively, Elanco, the Company, we, us, or our) is a global leader in animal health, dedicated to innovating and delivering products and services to prevent and treat disease in farm animals and pets. We partner with farmers, pet owners, veterinarians and society to create value and help our customers improve the health of animals in their care, while also making a meaningful impact on the communities we serve. Our diverse, durable product portfolio is sold in more than 90 countries and serves animals across many species, primarily: dogs and cats (collectively, pet health) and cattle, poultry, swine and sheep (collectively, farm animal). Our purpose – making life better for animals makes life better – inspires us to Go Beyond for animals, our customers, our people and society. Go Beyond for Animals – Our strong portfolio, high-impact innovation, unique market approach and dedication to making life better allow us to go beyond for animals to address critical health needs and increase access to health products and services. Go Beyond for Customers – Our ability to reach the world's animals, along with our customer promise, to advocate, earn trust and solve big challenges to create value, allows us to go beyond for our customers, unlocking economic value for producers through science-based, scalable and sustainable solutions and supporting the professional wellness of veterinarians.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001739104-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000012/elan-20251231.htm"
+  },
+  "description_short": "Elanco Animal Health Incorporated (NYSE: ELAN) is a global leader in animal health dedicated to innovating and delivering products and services to prevent and treat disease in farm animals and pets, creating value for farmers, pet owners, veterinarians, stakeholders and society as a whole. With 70 years of animal health heritage, we are committed to breaking boundaries and going beyond to help our customers improve the health of animals in their care, while also making a meaningful impact on our local and global communities. At Elanco, we are driven by our vision of Food and Companionship Enriching Life and our purpose - all to Go Beyond for Animals, Customers, Society and Our People. Learn more at www.elanco.com.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.elanco.com",
+  "headquarters": "Indianapolis, IN",
+  "address": {
+   "street": "450 ELANCO CIRCLE",
+   "city": "Indianapolis",
+   "state": "IN",
+   "zip": "46221",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "877-352-6261",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a single function's or location's headcount, not the company total",
+   "evidence": "As of December 31, 2025, we employed over 1,000 employees in our global R&D and Regulatory Affairs organizations.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000012/elan-20251231.htm"
+  },
+  "first_sec_filing": "2018-08-02",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001739104&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001739104-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000043/elan-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001739104-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000040/elan-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-067002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465926067002/tm2615566d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001739104-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000030/elan-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001739104-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000027/elan-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001739104-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000016/elan-20260407.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001739104-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000012/elan-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001739104-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910426000008/elan-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-002723",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465926002723/tm262899d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-05",
+   "items": [
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Exit costs; Reg FD",
+   "accession": "0001104659-25-119486",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465925119486/tm2533048d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001739104-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910425000071/elan-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001739104-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910425000068/elan-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-31",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-105246",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465925105246/tm2529998d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001739104-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910425000055/elan-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001739104-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910425000052/elan-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-26",
+   "period": "2025-06-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-063027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465925063027/tm2518758d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-21",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-25-053305",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465925053305/tm2516292d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-21",
+   "period": "2025-05-16",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-25-051136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000110465925051136/tm2515582d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001739104-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910425000042/elan-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001739104-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1739104/000173910425000040/elan-20250507.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a single function's or location's headcount, not the company total in the 10-K filed 2026-02-24: \"As of December 31, 2025, we employed over 1,000 employees in our global R&D and Regulatory Affairs organizations.\""
+ ]
+}

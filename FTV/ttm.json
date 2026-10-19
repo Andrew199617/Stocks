@@ -1,0 +1,101 @@
+{
+ "ticker": "FTV",
+ "cik": 1659166,
+ "entity": "Fortive Corporation",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-04-03",
+ "inputs": {
+  "ocf": {
+   "fy": 1083200000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 241700000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 234800000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-04-03"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1076300000
+  },
+  "capex": {
+   "fy": 105100000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 21100000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 26600000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-04-03"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 110600000
+  },
+  "sbc": {
+   "fy": 116800000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 23400000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 21300000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-04-03"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 114700000
+  },
+  "shares_diluted": {
+   "fy": 334600000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 344600000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 312800000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-04-03"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1076300000,
+ "ttm_capex": 110600000,
+ "ttm_sbc": 114700000,
+ "ttm_shares_diluted": 312800000,
+ "ttm_oe_total": 851000000,
+ "ttm_oe_per_share": 2.7205882352941178,
+ "warnings": [],
+ "overrides_used": []
+}

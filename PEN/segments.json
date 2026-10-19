@@ -1,0 +1,360 @@
+{
+ "ticker": "PEN",
+ "cik": 1321732,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001321732-26-000007",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000007/pen-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001321732-26-000019",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000019/pen-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001321732-26-000037",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000037/pen-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pen:ThrombectomyMember",
+     "label": "Thrombectomy",
+     "values": [
+      677343000,
+      815475000,
+      947918000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6399,
+      0.6826,
+      0.6753
+     ],
+     "growth_yoy": [
+      null,
+      0.2039,
+      0.1624
+     ]
+    },
+    {
+     "member": "pen:EmbolizationMember",
+     "label": "Embolization",
+     "values": [
+      381179000,
+      379140000,
+      455747000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3601,
+      0.3174,
+      0.3247
+     ],
+     "growth_yoy": [
+      null,
+      -0.0053,
+      0.2021
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1058522000,
+     1194615000,
+     1403665000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pen:ThrombectomyMember",
+     "label": "Thrombectomy",
+     "values": [
+      226544000,
+      230256000,
+      253917000,
+      258981000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6989,
+      0.6783,
+      0.6775,
+      0.664
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1208,
+      0.1248
+     ]
+    },
+    {
+     "member": "pen:EmbolizationAndAccessMember",
+     "label": "Embolization and Access",
+     "values": [
+      97596000,
+      109199000,
+      120841000,
+      131065000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3011,
+      0.3217,
+      0.3225,
+      0.336
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2382,
+      0.2002
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     324140000,
+     339455000,
+     374758000,
+     390046000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      757151000,
+      902067000,
+      1091761000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7153,
+      0.7551,
+      0.7778
+     ],
+     "growth_yoy": [
+      null,
+      0.1914,
+      0.2103
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      301371000,
+      292548000,
+      311904000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2847,
+      0.2449,
+      0.2222
+     ],
+     "growth_yoy": [
+      null,
+      -0.0293,
+      0.0662
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1058522000,
+     1194615000,
+     1403665000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      256860000,
+      260818000,
+      296387000,
+      305445000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7924,
+      0.7683,
+      0.7909,
+      0.7831
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1539,
+      0.1711
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      67280000,
+      78637000,
+      78371000,
+      84601000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2076,
+      0.2317,
+      0.2091,
+      0.2169
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1648,
+      0.0758
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     324140000,
+     339455000,
+     374758000,
+     390046000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

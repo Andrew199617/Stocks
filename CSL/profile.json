@@ -1,0 +1,291 @@
+{
+ "ticker": "CSL",
+ "cik": 790051,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T22:25:02-04:00",
+ "newest_filing_date": "2026-09-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000790051.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/csl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CSL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CSL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CARLISLE COMPANIES INC",
+  "cik": 790051,
+  "description": {
+   "text": "Carlisle Companies Incorporated (“Carlisle,” the “Company,” “we,” “us” or “our”) is a leading supplier of innovative building envelope products and solutions for more energy-efficient buildings. Through our building products businesses, Carlisle Construction Materials and Carlisle Weatherproofing Technologies, and family of leading brands, Carlisle delivers innovative, labor reducing and environmentally responsible products and solutions to customers through the Carlisle Experience. Our Company website is www.carlisle.com, through which we make available, free of charge, our Annual Report on Form 10-K, Quarterly Reports on Form 10-Q and Current Reports on Form 8-K and all amendments to those reports, as soon as reasonably practicable after these reports are electronically filed with or furnished to the Securities and Exchange Commission (“SEC”). Information on, or that can be accessed through, our website is not incorporated by reference and should not be considered part of this Annual Report on Form 10-K. All references to \"Notes\" refer to our Notes to Consolidated Financial Statements in this Annual Report on Form 10-K.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0000790051-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/csl-20251231.htm"
+  },
+  "description_short": "Carlisle Companies Incorporated is a leading supplier of innovative building envelope products and solutions for more energy efficient buildings. Through its building products businesses - Carlisle Construction Materials ('CCM') and Carlisle Weatherproofing Technologies ('CWT') - and family of leading brands, Carlisle delivers innovative, labor reducing and environmentally responsible products and solutions to customers through the Carlisle Experience. Carlisle is committed to generating superior shareholder returns and maintaining a balanced capital deployment approach, including investments in our businesses, strategic acquisitions, share repurchases and continued dividend increases. Leveraging its culture of continuous improvement as embodied in the Carlisle Operating System ('COS'), Carlisle has committed to achieving net-zero greenhouse gas emissions by 2050.",
+  "industry": "Specialty Chemicals",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3060",
+  "sic_description": "Fabricated Rubber Products, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.carlisle.com",
+  "headquarters": "Scottsdale, Arizona",
+  "address": {
+   "street": "16430 North Scottsdale Road Suite 400",
+   "city": "Scottsdale",
+   "state": "Arizona",
+   "zip": "85254",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "480-781-5000",
+  "employees": {
+   "count": 5900,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 5,900 people, including approximately 4,800 employees in our U.S operations and excluding approximately 300 contractors.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/csl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000790051&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000790051-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000042/csl-20260910.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000790051-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000037/csl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000790051-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000033/csl-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-28",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000790051-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000020/csl-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000790051-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000017/csl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000790051-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000015/csl-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-109193",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000119312526109193/d932758ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000790051-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/csl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000790051-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000009/csl-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000790051-25-000161",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000161/csl-20251103.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000790051-25-000159",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000159/csl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000790051-25-000157",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000157/csl-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000790051-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000153/csl-20250903.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-20",
+   "period": "2025-08-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-184090",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000119312525184090/d17228d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000790051-25-000146",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000146/csl-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000790051-25-000142",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000142/csl-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-16",
+   "period": "2025-05-15",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000790051-25-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000124/csl-20250515.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-04-30",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000790051-25-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000119/csl-20250430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000790051-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000097/csl-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000790051-25-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/790051/000079005125000095/csl-20250423.htm"
+  }
+ ],
+ "warnings": []
+}

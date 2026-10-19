@@ -1,0 +1,85 @@
+{
+ "ticker": "CRL",
+ "name": "Charles River Laboratories International, Inc.",
+ "sector": "Healthcare / Contract research (CRO)",
+ "price": 300.15,
+ "market_cap_b": 14.88,
+ "engine_version": 5,
+ "base_oe_per_share": 5.930454151713897,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Scale leader in preclinical safety assessment with an integrated NHP supply chain and real switching friction, but returns were only modest even in good years (roic_proxy ~8.5-11.4% FY16-23, ~0% in impairment-hit FY25) and demand is hostage to the biotech funding cycle \u2014 a moderate, cyclical moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 2.0% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "HIGH_NET_DEBT: net debt is 6.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 23.09,
+   "irr": 0.0331
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 35.64,
+   "irr": 0.0389
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 46.81,
+   "irr": 0.0443
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 60.81,
+   "irr": 0.0511
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 84.94,
+   "irr": 0.0629
+  }
+ },
+ "iv_at_15": 48.96,
+ "iv_at_12": 64.51,
+ "implied_irr": 0.0455,
+ "implied_irr_base_case": 0.0443,
+ "upside_at_15_pct": -83.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real CRO franchise, moat 5/10, but at $300.15 the price already pays for a full recovery and more \u2014 TTM OE/share of $5.93 supports only a 4.6% weighted IRR (weighted IV@15% $48.96); the shares would need to fall to ~$49 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0389,
+ "irr_bull": 0.0511,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 34.9,
+ "iv_at_25": 27.11,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1925984000,
+ "shares_diluted_latest": 49564000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest preclinical CRO: scale and capacity in Discovery & Safety Assessment sponsors cannot easily replicate",
+  "Integrated nonhuman-primate supply chain \u2014 a scarce, hard-to-copy input",
+  "Switching friction: safety studies sit on clients' regulatory critical path; track record matters",
+  "Research Models installed base and recurring services revenue"
+ ],
+ "moat_against": [
+  "Demand is cyclical \u2014 biotech funding downturn cut revenue and OE for three straight years",
+  "ROIC only ~9-11% even in good years; ~0% in FY2025 after impairments \u2014 no wide-moat return profile",
+  "Non-animal methods (NAMs) and regulatory drift threaten the animal-testing core long-term",
+  "Net debt 6.6x normalized OE limits flexibility through the trough",
+  "Chinese CRO price competition and large-pharma insourcing"
+ ]
+}

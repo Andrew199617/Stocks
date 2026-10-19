@@ -1,0 +1,283 @@
+{
+ "ticker": "HAS",
+ "cik": 46080,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T17:56:46-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000046080.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HAS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HAS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HASBRO, INC.",
+  "cik": 46080,
+  "description": {
+   "text": "Hasbro, Inc. (“Hasbro”) is a leading game, intellectual property (\"IP\"), and toy company whose mission is to create joy and community through the magic of play. With over 100 years of expertise, we deliver play experiences to kids, families, and fans around the world, through physical and digital games, video games, toys, licensed consumer products, location-based entertainment, film, TV and more. Through our franchise-first approach, we unlock value from both new and legacy IP, including MAGIC: THE GATHERING, MONOPOLY, HASBRO GAMES, PLAY-DOH, TRANSFORMERS, DUNGEONS & DRAGONS, NERF, and PEPPA PIG, as well as premier partner brands. Powered by our portfolio of iconic brands and a diversified network of partners and subsidiary studios, we bring fans together wherever they are, from tabletop to screen. For more than a decade, Hasbro has been consistently recognized for its corporate citizenship, including being named one of the 100 Best Corporate Citizens by 3BL Media, a 2025 JUST Capital Industry Leader, one of the 50 Most Community-Minded Companies in the U.S. by the Civic 50, and a Brand that Matters by Fast Company.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-28",
+   "accession": "0000046080-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228.htm"
+  },
+  "description_short": "Hasbro is a leading games, IP and toy company whose mission is to create joy and community through the magic of play. With 165 years of expertise, Hasbro delivers groundbreaking play experiences and reaches more than 1 billion fans annually around the world, through physical and digital games, video games, toys, licensed consumer products, location-based entertainment, film, TV and more. Through its franchise-first approach, Hasbro unlocks value from both new and legacy IP, including Magic: The Gathering, Dungeons & Dragons, Monopoly, Hasbro Games, Nerf, Transformers, Play-Doh and Peppa Pig, as well as premier partner brands. Powered by its portfolio of thousands of iconic marks and a diversified network of partners and subsidiary studios, Hasbro brings fans together wherever they are, from tabletop to screen.",
+  "industry": "Recreational Games/Products/Toys",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "3944",
+  "sic_description": "Games, Toys & Children's Vehicles (No Dolls & Bicycles)",
+  "state_of_incorporation": "RI",
+  "fiscal_year_end_mmdd": "1227",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.hasbro.com",
+  "headquarters": "Pawtucket, Rhode Island",
+  "address": {
+   "street": "1027 Newport Avenue",
+   "city": "Pawtucket",
+   "state": "Rhode Island",
+   "zip": "02861",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "4014318697",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-09",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "HASBRO INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000046080&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000046080-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000050/has-20260628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000046080-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000047/has-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000046080-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000044/has-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000046080-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000034/has-20260611.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000046080-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000029/has-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-13",
+   "period": "2026-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000046080-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000026/has-20260329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000046080-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000016/has-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-06-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-160426",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000119312526160426/d36474ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-04-01",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000046080-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000013/has-20260401.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-104184",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000119312526104184/d16707d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000046080-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000950157-26-000171",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000095015726000171/form8-k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000046080-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000006/has-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000046080-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000003/has-20260119.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000046080-25-000164",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608025000164/has-20250928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000046080-25-000156",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608025000156/has-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000046080-25-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608025000128/has-20250629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000046080-25-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608025000119/has-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000046080-25-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608025000096/has-20250521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000046080-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/46080/000004608025000069/has-20250330.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

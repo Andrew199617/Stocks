@@ -1,0 +1,1039 @@
+{
+ "ticker": "AES",
+ "cik": 874761,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000874761-26-000063",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/aes-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000874761-26-000120",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000120/aes-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000874761-26-000144",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000144/aes-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aes:EnergyInfrastructureMember",
+     "label": "Energy Infrastructure",
+     "values": [
+      6805000000,
+      6207000000,
+      5402000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5372,
+      0.5055,
+      0.4416
+     ],
+     "growth_yoy": [
+      null,
+      -0.0879,
+      -0.1297
+     ]
+    },
+    {
+     "member": "aes:UtilitiesMember",
+     "label": "Utilities",
+     "values": [
+      3495000000,
+      3608000000,
+      4122000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2759,
+      0.2939,
+      0.337
+     ],
+     "growth_yoy": [
+      null,
+      0.0323,
+      0.1425
+     ]
+    },
+    {
+     "member": "aes:RenewablesMember",
+     "label": "Renewables",
+     "values": [
+      2416000000,
+      2617000000,
+      2913000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1907,
+      0.2131,
+      0.2381
+     ],
+     "growth_yoy": [
+      null,
+      0.0832,
+      0.1131
+     ]
+    },
+    {
+     "member": "aes:AESAndesMember",
+     "label": "AES Andes",
+     "values": [
+      null,
+      null,
+      900000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.0736
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "aes:NewEnergyTechnologiesMember",
+     "label": "New Energy Technologies",
+     "values": [
+      76000000,
+      1000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.006,
+      0.0001,
+      0.0001
+     ],
+     "growth_yoy": [
+      null,
+      -0.9868,
+      0.0
+     ]
+    },
+    {
+     "member": "aes:CorporateOtherAndOtherMember",
+     "label": "Corporate Other And Other",
+     "values": [
+      null,
+      162000000,
+      149000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0132,
+      0.0122
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0802
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      138000000,
+      -317000000,
+      -354000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0109,
+      -0.0258,
+      -0.0289
+     ],
+     "growth_yoy": [
+      null,
+      -3.2971,
+      null
+     ]
+    },
+    {
+     "member": "aes:EliminationsMember",
+     "label": "Eliminations",
+     "values": [
+      -262000000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0207,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12668000000,
+     12278000000,
+     12233000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aes:EnergyInfrastructureMember",
+     "label": "Energy Infrastructure",
+     "values": [
+      1320000000,
+      1306000000,
+      1256000000,
+      1496000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4511,
+      0.4574,
+      0.395,
+      0.4372
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0485,
+      0.1455
+     ]
+    },
+    {
+     "member": "aes:UtilitiesMember",
+     "label": "Utilities",
+     "values": [
+      1009000000,
+      954000000,
+      1136000000,
+      1018000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3448,
+      0.3342,
+      0.3572,
+      0.2975
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1259,
+      0.0671
+     ]
+    },
+    {
+     "member": "aes:RenewablesMember",
+     "label": "Renewables",
+     "values": [
+      666000000,
+      644000000,
+      820000000,
+      939000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2276,
+      0.2256,
+      0.2579,
+      0.2744
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2312,
+      0.4581
+     ]
+    },
+    {
+     "member": "aes:CorporateOtherAndOtherMember",
+     "label": "Corporate Other And Other",
+     "values": [
+      36000000,
+      43000000,
+      29000000,
+      39000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0123,
+      0.0151,
+      0.0091,
+      0.0114
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1944,
+      -0.093
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -105000000,
+      -92000000,
+      -61000000,
+      -70000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0359,
+      -0.0322,
+      -0.0192,
+      -0.0205
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2926000000,
+     2855000000,
+     3180000000,
+     3422000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "aes:RenewablesMember",
+     "label": "Renewables",
+     "values": [
+      17300000000,
+      19151000000,
+      23945000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3862,
+      0.404,
+      0.4625
+     ],
+     "growth_yoy": [
+      null,
+      0.107,
+      0.2503
+     ]
+    },
+    {
+     "member": "aes:UtilitiesMember",
+     "label": "Utilities",
+     "values": [
+      7166000000,
+      8535000000,
+      9464000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.16,
+      0.18,
+      0.1828
+     ],
+     "growth_yoy": [
+      null,
+      0.191,
+      0.1088
+     ]
+    },
+    {
+     "member": "aes:EnergyInfrastructureMember",
+     "label": "Energy Infrastructure",
+     "values": [
+      5848000000,
+      5805000000,
+      4726000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1305,
+      0.1225,
+      0.0913
+     ],
+     "growth_yoy": [
+      null,
+      -0.0074,
+      -0.1859
+     ]
+    },
+    {
+     "member": "aes:NewEnergyTechnologiesMember",
+     "label": "New Energy Technologies",
+     "values": [
+      14000000,
+      22000000,
+      23000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0003,
+      0.0005,
+      0.0004
+     ],
+     "growth_yoy": [
+      null,
+      0.5714,
+      0.0455
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     44799000000,
+     47406000000,
+     51768000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aes:NonregulatedrevenueMember",
+     "label": "Non-regulated revenue",
+     "values": [
+      9245000000,
+      8756000000,
+      8195000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7298,
+      0.7131,
+      0.6699
+     ],
+     "growth_yoy": [
+      null,
+      -0.0529,
+      -0.0641
+     ]
+    },
+    {
+     "member": "aes:RegulatedRevenueMember",
+     "label": "Regulated Revenue",
+     "values": [
+      3423000000,
+      3522000000,
+      4038000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2702,
+      0.2869,
+      0.3301
+     ],
+     "growth_yoy": [
+      null,
+      0.0289,
+      0.1465
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12668000000,
+     12278000000,
+     12233000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aes:NonregulatedrevenueMember",
+     "label": "Non-regulated revenue",
+     "values": [
+      1941000000,
+      1922000000,
+      2066000000,
+      2427000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6634,
+      0.6732,
+      0.6497,
+      0.7092
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0644,
+      0.2627
+     ]
+    },
+    {
+     "member": "aes:RegulatedRevenueMember",
+     "label": "Regulated Revenue",
+     "values": [
+      985000000,
+      933000000,
+      1114000000,
+      995000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3366,
+      0.3268,
+      0.3503,
+      0.2908
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.131,
+      0.0665
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2926000000,
+     2855000000,
+     3180000000,
+     3422000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4439000000,
+      4689000000,
+      5056000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3504,
+      0.3819,
+      0.4133
+     ],
+     "growth_yoy": [
+      null,
+      0.0563,
+      0.0783
+     ]
+    },
+    {
+     "member": "country:CL",
+     "label": "CHILE",
+     "values": [
+      1932000000,
+      1534000000,
+      1516000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1525,
+      0.1249,
+      0.1239
+     ],
+     "growth_yoy": [
+      null,
+      -0.206,
+      -0.0117
+     ]
+    },
+    {
+     "member": "country:DO",
+     "label": "DOMINICAN REPUBLIC",
+     "values": [
+      1400000000,
+      1451000000,
+      1363000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1105,
+      0.1182,
+      0.1114
+     ],
+     "growth_yoy": [
+      null,
+      0.0364,
+      -0.0606
+     ]
+    },
+    {
+     "member": "country:SV",
+     "label": "EL SALVADOR",
+     "values": [
+      935000000,
+      1036000000,
+      1086000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0738,
+      0.0844,
+      0.0888
+     ],
+     "growth_yoy": [
+      null,
+      0.108,
+      0.0483
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      536000000,
+      462000000,
+      760000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0423,
+      0.0376,
+      0.0621
+     ],
+     "growth_yoy": [
+      null,
+      -0.1381,
+      0.645
+     ]
+    },
+    {
+     "member": "country:BG",
+     "label": "BULGARIA",
+     "values": [
+      528000000,
+      478000000,
+      687000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0417,
+      0.0389,
+      0.0562
+     ],
+     "growth_yoy": [
+      null,
+      -0.0947,
+      0.4372
+     ]
+    },
+    {
+     "member": "country:PA",
+     "label": "PANAMA",
+     "values": [
+      644000000,
+      666000000,
+      649000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0508,
+      0.0542,
+      0.0531
+     ],
+     "growth_yoy": [
+      null,
+      0.0342,
+      -0.0255
+     ]
+    },
+    {
+     "member": "country:CO",
+     "label": "COLOMBIA",
+     "values": [
+      706000000,
+      686000000,
+      422000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0557,
+      0.0559,
+      0.0345
+     ],
+     "growth_yoy": [
+      null,
+      -0.0283,
+      -0.3848
+     ]
+    },
+    {
+     "member": "country:AR",
+     "label": "ARGENTINA",
+     "values": [
+      407000000,
+      318000000,
+      366000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0321,
+      0.0259,
+      0.0299
+     ],
+     "growth_yoy": [
+      null,
+      -0.2187,
+      0.1509
+     ]
+    },
+    {
+     "member": "country:VN",
+     "label": "VIET NAM",
+     "values": [
+      344000000,
+      312000000,
+      321000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0272,
+      0.0254,
+      0.0262
+     ],
+     "growth_yoy": [
+      null,
+      -0.093,
+      0.0288
+     ]
+    },
+    {
+     "member": "country:JO",
+     "label": "JORDAN",
+     "values": [
+      97000000,
+      28000000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0077,
+      0.0023,
+      0.0005
+     ],
+     "growth_yoy": [
+      null,
+      -0.7113,
+      -0.7857
+     ]
+    },
+    {
+     "member": "_other",
+     "label": "Other (2 smaller rows)",
+     "values": [
+      700000000,
+      618000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0553,
+      0.0503,
+      0.0001
+     ],
+     "growth_yoy": [
+      null,
+      -0.1171,
+      -0.9984
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12668000000,
+     12278000000,
+     12233000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: rows sum to 107.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/Revenues/quarterly: row 'Corporate Other And Other Eliminations' (aes:CorporateOtherAndOtherEliminationsMember) dropped: its values equal the sum of Corporate Other And Other, Intersegment Eliminations",
+  "business_segments/Assets/annual: rows sum to 73.7% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "product/Revenues/annual: row 'Electricity, Generation' (us-gaap:ElectricityGenerationMember) dropped: same numbers as 'Non-regulated revenue' (aes:NonregulatedrevenueMember)",
+  "product/Revenues/annual: row 'Electric Distribution' (us-gaap:ElectricDistributionMember) dropped: same numbers as 'Regulated Revenue' (aes:RegulatedRevenueMember)",
+  "product/Revenues/quarterly: row 'Electricity, Generation' (us-gaap:ElectricityGenerationMember) dropped: same numbers as 'Non-regulated revenue' (aes:NonregulatedrevenueMember)",
+  "product/Revenues/quarterly: row 'Electric Distribution' (us-gaap:ElectricDistributionMember) dropped: same numbers as 'Regulated Revenue' (aes:RegulatedRevenueMember)",
+  "geography/Revenues/annual: row 'Total Non Us' (aes:TotalNonUsMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/Revenues/annual: row 'PUERTO RICO' (country:PR) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, CHILE, DOMINICAN REPUBLIC, EL SALVADOR, MEXICO, BULGARIA, PANAMA, COLOMBIA, ARGENTINA, VIET NAM, JORDAN, BRAZIL, Other Non Us)",
+  "geography/Revenues/annual: 13 rows; the 2 smallest (Other Non Us, BRAZIL) are summed into one 'Other' row"
+ ],
+ "complete": true
+}

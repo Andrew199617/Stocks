@@ -1,0 +1,286 @@
+{
+ "ticker": "UHAL",
+ "cik": 4457,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T16:48:40-04:00",
+ "newest_filing_date": "2026-08-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000004457.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/4457/000119312526241850/uhal-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/UHAL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/UHAL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "U-Haul Holding Co /NV/",
+  "cik": 4457,
+  "description": {
+   "text": "We are North America’s largest “do-it-yourself” moving and storage operator through our subsidiary U-Haul International, Inc. (“U-Haul”). U-Haul is synonymous with “do-it-yourself” moving and storage and is a leader in supplying products and services to help people move and store their household and commercial goods. Our primary service objective is to “provide a better and better product and service to more and more people at a lower and lower cost.” Unless the context otherwise requires, the terms “U-Haul Holding Company,” “Company,” “we,” “us,” or “our” refer to U-Haul Holding Company, a Nevada corporation, and all of its legal subsidiaries, on a consolidated basis. We were founded in 1945 as a sole proprietorship under the name \"U-Haul Trailer Rental Company\" and have rented trailers ever since. Starting in 1959, we rented trucks on a one-way and in-town basis exclusively through independent U-Haul dealers. In 1973, we began developing our network of U-Haul managed retail stores, through which we rent our trucks and trailers, self-storage units and portable moving and storage units and sell moving and self-storage products and services to complement our independent dealer network. We rent our distinctive orange and white U-Haul trucks and trailers, and orange door self-storage units, through a network of over 2,400 Company-operated retail moving stores and over 23,000 independent U-Haul dealers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-27",
+   "period": "2026-03-31",
+   "accession": "0001193125-26-241850",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526241850/uhal-20260331.htm"
+  },
+  "description_short": "Founded in 1945, U-Haul is the No. 1 choice of do-it-yourself movers with more than 25,000 rental locations across all 50 states and 10 Canadian provinces. The U-Haul app makes it easy for customers to use U-Haul Truck Share 24/7 to access trucks anytime through the self-dispatch and -return options on their smartphones with our patented Live Verify technology. Our customers' patronage has enabled the U-Haul fleet to grow to approximately 207,600 trucks, 136,500 trailers and 43,200 towing devices. U-Haul, which offers rate transparency to self-storage customers through its 1-Year Price Lock, is the third largest storage operator in North America with 1,147,300 rentable storage units and 100.3 million square feet of self-storage space at owned and managed facilities. U-Haul is the top retailer of propane in the U.S. and the largest installer of permanent trailer hitches in the automotive aftermarket industry.",
+  "industry": "Rental/Leasing Companies",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7510",
+  "sic_description": "Services-Auto Rental & Leasing (No Drivers)",
+  "state_of_incorporation": "NV",
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.uhaul.com",
+  "headquarters": "Reno, Nevada",
+  "address": {
+   "street": "5555 Kietzke Lane Ste. 100",
+   "city": "Reno",
+   "state": "Nevada",
+   "zip": "89511",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-27"
+  },
+  "phone": "7756886300",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-function / per-location breakdown with no filed total",
+   "evidence": "As of March 31, 2026, we employed approximately 32,600 people in the United States and approximately 2,100 in Canada with approximately 99% of these system members working within Moving and Storage and approximately 51% of these system members working on a full-time basis.",
+   "form": "10-K",
+   "filed": "2026-05-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526241850/uhal-20260331.htm"
+  },
+  "first_sec_filing": "1994-02-11",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "AMERCO /NV/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000004457&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-20",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-363558",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526363558/uhal-20260820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-335076",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526335076/uhal-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-335008",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526335008/uhal-20260630.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-292785",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526292785/uhal-20260701.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-241898",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526241898/uhal-20260527.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-27",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-241850",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526241850/uhal-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-037727",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526037727/uhal-20260204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-037685",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312526037685/uhal-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-314441",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312525314441/uhal-20251210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-267105",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312525267105/uhal-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-267088",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000119312525267088/uhal-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-25",
+   "period": "2025-08-21",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000950170-25-111181",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025111181/uhal-20250821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-104088",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025104088/uhal-20250806.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-104050",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025104050/uhal-20250630.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-07-02",
+   "period": "2025-07-02",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000950170-25-093059",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025093059/uhal-20250702.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-29",
+   "period": "2025-05-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-078471",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025078471/uhal-20250528.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-05-29",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000950170-25-078451",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025078451/uhal-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-05",
+   "period": "2025-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-014469",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025014469/uhal-20250205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-02-05",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-014444",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017025014444/uhal-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-11-06",
+   "period": "2024-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-24-122416",
+   "url": "https://www.sec.gov/Archives/edgar/data/4457/000095017024122416/uhal-20241106.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a per-function / per-location breakdown with no filed total in the 10-K filed 2026-05-27: \"As of March 31, 2026, we employed approximately 32,600 people in the United States and approximately 2,100 in Canada with approximately 99% of these system members working within Moving and Storage and approximately 51% of these system members working on a full-time basis.\""
+ ]
+}

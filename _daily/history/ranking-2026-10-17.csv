@@ -1,0 +1,361 @@
+rank,ticker,name,sector_misfit,tier_scored,irr_scored,tier_live,irr_live,band_low_tier,band_high_tier,price,price_date,iv15,upside15_pct,analysis_date,engine_release,alert_eligible,watchlist
+1,LDOS,"Leidos Holdings, Inc.",false,B,0.157200,B,0.157222,C,B,124.85,2026-10-16,132.68,6.27,2026-10-16,5.4.0,false,false
+2,VNOM,"Viper Energy, Inc.",false,B,0.150200,B,0.150239,D,B,45.02,2026-10-16,45.11,0.21,2026-10-16,5.4.0,false,false
+3,ZTO,ZTO Express (Cayman) Inc.,false,C,0.116200,C,0.116167,D,C,20.17,2026-10-16,14.24,-29.40,2026-10-16,5.4.0,false,false
+4,HST,"Host Hotels & Resorts, Inc.",true,C,0.109700,C,0.109735,D,C,23.97,2026-10-16,16.12,-32.74,2026-10-16,5.4.0,false,false
+5,STRL,"Sterling Infrastructure, Inc.",false,C,0.104400,C,0.104398,D,C,424.36,2026-10-16,250.49,-40.97,2026-10-16,5.4.0,false,false
+6,BALL,Ball Corporation,false,D,0.088200,D,0.088185,D,C,63.20,2026-10-16,30.86,-51.17,2026-10-16,5.4.0,false,false
+7,ROL,"Rollins, Inc.",false,D,0.080700,D,0.080703,D,D,33.45,2026-10-16,13.91,-58.43,2026-10-16,5.4.0,false,false
+8,RBA,"RB Global, Inc",false,D,0.075600,D,0.075632,D,D,84.30,2026-10-16,32.32,-61.67,2026-10-16,5.4.0,false,false
+9,AKAM,"Akamai Technologies, Inc",false,D,0.069100,D,0.069134,D,D,87.81,2026-10-16,29.41,-66.51,2026-10-16,5.4.0,false,false
+10,AS,"Amer Sports, Inc.",false,D,0.054400,D,0.054370,D,D,30.02,2026-10-16,6.01,-79.97,2026-10-16,5.4.0,false,false
+11,H,Hyatt Hotels Corp,false,D,0.053500,D,0.053501,D,D,169.13,2026-10-16,36.99,-78.13,2026-10-16,5.4.0,false,false
+12,VOD,Vodafone Group Plc,false,D,0.325700,,,S,S,15.51,2026-10-14,37.13,139.40,2026-10-14,,false,false
+13,RNR,RenaissanceRe Holdings Ltd.,true,A,0.273100,,,A,S,351.06,2026-10-17,720.19,105.10,2026-10-17,5.4.0,false,false
+14,RGA,"Reinsurance Group of America, Incorporated",true,B,0.239200,,,B,S,266.69,2026-10-16,483.37,81.20,2026-10-16,5.4.0,false,false
+15,EXPE,"Expedia Group, Inc.",false,B,0.233000,,,B,S,272.06,2026-10-14,491.74,80.80,2026-10-14,,false,false
+16,LTM,LATAM Airlines Group S.A.,false,A,0.224000,,,B,S,47.47,2026-10-17,80.10,68.70,2026-10-17,5.4.0,false,false
+17,PFG,"Principal Financial Group, Inc.",true,B,0.217100,,,B,S,107.81,2026-10-15,167.94,55.80,2026-10-15,,false,false
+18,JD,"JD.com, Inc.",false,A,0.203300,,,B,S,26.60,2026-10-14,38.45,44.60,2026-10-14,,false,false
+19,HIG,"The Hartford Insurance Group, Inc.",true,B,0.203200,,,B,A,137.59,2026-10-14,201.39,46.40,2026-10-14,,false,false
+20,FUTU,Futu Holdings Ltd,true,A,0.202000,,,C,S,105.64,2026-10-16,159.12,50.60,2026-10-16,5.4.0,false,false
+21,ACGL,Arch Capital Group Ltd.,true,C,0.190500,,,C,A,96.03,2026-10-14,126.86,32.10,2026-10-14,,false,false
+22,FIS,"Fidelity National Information Services, Inc.",false,B,0.186200,,,C,A,35.94,2026-10-16,46.72,30.00,2026-10-16,5.4.0,false,false
+23,APP,AppLovin Corporation,false,B,0.184300,,,C,A,272.28,2026-10-14,376.12,38.10,2026-10-14,,false,true
+24,CINF,Cincinnati Financial Corporation,true,B,0.184200,,,C,A,166.67,2026-10-15,214.99,29.00,2026-10-15,,false,false
+25,FISV,"Fiserv, Inc.",false,B,0.180100,,,C,A,46.19,2026-10-15,57.66,24.80,2026-10-15,,false,false
+26,GDDY,GoDaddy Inc.,false,B,0.178400,,,C,A,105.96,2026-10-17,133.61,26.10,2026-10-17,5.4.0,false,false
+27,LVS,Las Vegas Sands Corp.,false,B,0.176800,,,C,A,37.88,2026-10-15,47.00,24.10,2026-10-15,,false,false
+28,OWL,Blue Owl Capital Inc.,true,B,0.176000,,,C,A,8.85,2026-10-17,10.94,23.60,2026-10-17,5.4.0,false,false
+29,EG,"Everest Group, Ltd.",true,C,0.167100,,,C,A,389.10,2026-10-17,444.23,14.20,2026-10-17,5.4.0,false,false
+30,WRB,W. R. Berkley Corporation,true,C,0.166800,,,C,A,73.80,2026-10-14,84.37,14.30,2026-10-14,,false,false
+31,CNC,Centene Corporation,false,C,0.164200,,,C,A,69.29,2026-10-14,77.51,11.90,2026-10-14,,false,false
+32,ARES,Ares Management Corporation,true,C,0.159500,,,C,B,111.98,2026-10-14,122.19,9.10,2026-10-14,,false,false
+33,OMC,Omnicom Group Inc.,false,B,0.158100,,,C,B,80.72,2026-10-15,86.11,6.70,2026-10-15,,false,false
+34,GEN,Gen Digital Inc.,false,B,0.158000,,,C,A,24.16,2026-10-17,25.88,7.10,2026-10-17,5.4.0,false,false
+35,HBAN,Huntington Bancshares Incorporated,true,C,0.157100,,,C,B,15.01,2026-10-14,15.94,6.20,2026-10-14,,false,false
+36,JAZZ,Jazz Pharmaceuticals plc,false,B,0.154200,,,C,B,210.23,2026-10-17,217.92,3.70,2026-10-17,5.4.0,false,false
+37,AIZ,"Assurant, Inc.",true,C,0.153900,,,C,B,283.31,2026-10-17,292.45,3.20,2026-10-17,5.4.0,false,false
+38,EXE,Expand Energy Corporation,false,C,0.151600,,,C,A,90.80,2026-10-15,92.01,1.30,2026-10-15,,false,false
+39,THC,Tenet Healthcare Corporation,false,B,0.151600,,,C,B,253.97,2026-10-15,257.38,1.30,2026-10-15,,false,false
+40,L,Loews Corporation,true,C,0.148200,,,C,B,108.78,2026-10-15,107.23,-1.40,2026-10-15,,false,false
+41,SKM,"SK Telecom Co., Ltd.",false,C,0.147800,,,C,B,31.96,2026-10-17,31.40,-1.80,2026-10-17,5.4.0,false,false
+42,CF,"CF Industries Holdings, Inc.",false,C,0.147400,,,C,B,120.85,2026-10-16,118.16,-2.20,2026-10-16,5.4.0,false,false
+43,VICI,VICI Properties Inc.,true,C,0.147300,,,C,B,23.10,2026-10-15,22.58,-2.20,2026-10-15,,false,false
+44,KHC,Kraft Heinz Co,false,C,0.146400,,,C,B,22.70,2026-10-14,22.06,-2.80,2026-10-14,,false,false
+45,VIV,TELEFONICA BRASIL S.A.,false,C,0.145700,,,C,B,12.26,2026-10-16,11.83,-3.50,2026-10-16,,false,false
+46,TCOM,Trip.com Group Limited,false,C,0.145300,,,C,B,39.37,2026-10-15,37.76,-4.10,2026-10-15,,false,false
+47,NBIX,"Neurocrine Biosciences, Inc.",false,C,0.144800,,,C,B,135.71,2026-10-17,128.80,-5.10,2026-10-17,5.4.0,false,false
+48,ARCC,Ares Capital Corp,true,C,0.144600,,,C,B,18.72,2026-10-17,17.93,-4.20,2026-10-17,5.4.0,false,false
+49,XP,XP Inc.,true,C,0.143700,,,C,B,29.26,2026-10-16,27.71,-5.30,2026-10-16,5.4.0,false,false
+50,BCE,BCE Inc.,false,C,0.142700,,,C,B,20.38,2026-10-16,19.20,-5.70,2026-10-16,5.4.0,false,false
+51,HPQ,HP INC.,false,C,0.139500,,,C,B,30.23,2026-10-14,27.71,-8.30,2026-10-14,,false,false
+52,GPN,Global Payments Inc.,false,C,0.137000,,,D,B,84.33,2026-10-15,75.16,-10.90,2026-10-15,,false,false
+53,CPAY,"Corpay, Inc",false,C,0.134500,,,D,B,393.02,2026-10-15,337.40,-14.20,2026-10-15,,false,false
+54,OVV,Ovintiv Inc.,false,C,0.134400,,,C,B,66.16,2026-10-16,57.97,-12.40,2026-10-16,,false,false
+55,TW,Tradeweb Markets Inc.,true,C,0.132900,,,D,B,110.68,2026-10-15,92.31,-16.60,2026-10-15,,false,false
+56,FSLR,"First Solar, Inc.",false,C,0.132100,,,D,B,178.81,2026-10-16,151.05,-15.50,2026-10-16,,false,false
+57,MKL,Markel Group Inc.,true,C,0.129500,,,C,B,1825.00,2026-10-15,1514.69,-17.00,2026-10-15,,false,false
+58,HTHT,H World Group Limited,false,C,0.129400,,,D,B,46.50,2026-10-17,37.90,-18.50,2026-10-17,5.4.0,false,false
+59,GIS,"General Mills, Inc.",false,C,0.129200,,,C,B,32.81,2026-10-16,27.50,-16.20,2026-10-16,5.4.0,false,false
+60,FLUT,Flutter Entertainment plc,false,C,0.129000,,,C,B,75.60,2026-10-17,62.02,-18.00,2026-10-17,5.4.0,false,false
+61,WSE,Wise Group plc,false,C,0.128500,,,D,B,10.98,2026-10-17,8.77,-20.20,2026-10-17,5.4.0,false,false
+62,SHG,"Shinhan Financial Group Co., Ltd.",true,C,0.128400,,,D,B,70.71,2026-10-14,57.95,-18.10,2026-10-14,,false,false
+63,PNFP,"Pinnacle Financial Partners, Inc.",true,C,0.127800,,,D,B,94.72,2026-10-17,77.47,-18.20,2026-10-17,5.4.0,false,false
+64,RDDT,"Reddit, Inc.",false,C,0.127500,,,D,C,159.93,2026-10-13,122.98,-23.10,2026-10-13,,false,true
+65,ERIC,Telefonaktiebolaget LM Ericsson,false,C,0.126400,,,D,B,9.58,2026-10-14,7.75,-19.10,2026-10-14,,false,false
+66,SSNC,"SS&C Technologies Holdings, Inc.",false,C,0.126400,,,D,B,84.19,2026-10-16,67.10,-20.30,2026-10-16,,false,false
+67,CFG,"Citizens Financial Group, Inc.",true,C,0.126300,,,D,B,61.46,2026-10-14,49.38,-19.70,2026-10-14,,false,false
+68,NTRS,Northern Trust Corporation,true,C,0.125300,,,D,B,161.34,2026-10-14,127.06,-21.20,2026-10-14,,false,false
+69,RYAAY,Ryanair Holdings plc,false,C,0.124900,,,D,C,51.33,2026-10-14,40.23,-21.60,2026-10-14,,false,false
+70,CBOE,"Cboe Global Markets, Inc.",true,C,0.124600,,,D,B,292.25,2026-10-14,225.41,-22.90,2026-10-14,,false,false
+71,SYM,Symbotic Inc.,false,C,0.124500,,,C,B,37.90,2026-10-15,28.44,-25.00,2026-10-15,,false,false
+72,ZBH,"ZIMMER BIOMET HOLDINGS, INC.",false,C,0.124300,,,D,C,94.98,2026-10-16,74.49,-21.60,2026-10-16,5.4.0,false,false
+73,GIB,CGI Inc.,false,C,0.124100,,,D,B,75.57,2026-10-16,59.21,-21.60,2026-10-16,5.4.0,false,false
+74,ROP,"Roper Technologies, Inc.",false,C,0.123900,,,D,C,374.06,2026-10-14,288.12,-23.00,2026-10-14,,false,false
+75,CCL,Carnival Corp Ltd.,false,C,0.122500,,,D,C,26.82,2026-10-14,20.72,-22.70,2026-10-14,,false,false
+76,YUMC,"Yum China Holdings, Inc.",false,C,0.122500,,,D,C,45.12,2026-10-17,34.09,-24.40,2026-10-17,5.4.0,false,false
+77,TPR,"Tapestry, Inc.",false,C,0.122100,,,D,C,119.65,2026-10-15,91.17,-23.80,2026-10-15,,false,false
+78,EWBC,"East West Bancorp, Inc.",true,C,0.121500,,,D,C,126.47,2026-10-16,96.22,-23.90,2026-10-16,5.4.0,false,false
+79,INCY,Incyte Corporation,false,C,0.121000,,,D,B,113.78,2026-10-15,84.32,-25.90,2026-10-15,,false,false
+80,KEY,KeyCorp,true,C,0.118500,,,D,C,19.92,2026-10-15,14.85,-25.40,2026-10-15,,false,false
+81,MTB,M&T Bank Corporation,true,C,0.118500,,,D,C,215.43,2026-10-14,161.09,-25.20,2026-10-14,,false,false
+82,TME,Tencent Music Entertainment Group,false,C,0.116500,,,D,C,8.63,2026-10-17,6.19,-28.30,2026-10-17,5.4.0,false,false
+83,ALNY,"Alnylam Pharmaceuticals, Inc.",false,C,0.115500,,,D,C,224.41,2026-10-14,144.38,-35.70,2026-10-14,,false,false
+84,EQT,EQT CORPORATION,false,C,0.115500,,,D,B,54.80,2026-10-14,39.79,-27.40,2026-10-14,,false,false
+85,CTSH,Cognizant Technology Solutions Corporation,false,C,0.114300,,,D,C,62.85,2026-10-14,44.38,-29.40,2026-10-14,,false,false
+86,HAS,"HASBRO, INC.",false,C,0.113800,,,D,C,98.76,2026-10-17,69.29,-29.80,2026-10-17,5.4.0,false,false
+87,EXEL,"Exelixis, Inc.",false,C,0.112100,,,D,C,62.23,2026-10-17,42.37,-31.90,2026-10-17,5.4.0,false,false
+88,RF,Regions Financial Corporation,true,C,0.112000,,,D,C,27.18,2026-10-15,18.83,-30.70,2026-10-15,,false,false
+89,MGA,Magna International Inc.,false,C,0.111500,,,D,C,65.99,2026-10-16,45.12,-31.60,2026-10-16,5.4.0,false,false
+90,WPC,W. P. Carey Inc.,true,C,0.111500,,,D,C,65.14,2026-10-17,44.43,-31.80,2026-10-17,5.4.0,false,false
+91,JBL,Jabil Inc,false,C,0.110700,,,D,C,304.27,2026-10-14,197.16,-35.20,2026-10-14,,false,false
+92,GMAB,Genmab A/S,false,C,0.110500,,,D,C,38.15,2026-10-15,24.49,-35.80,2026-10-15,,false,false
+93,CDE,"COEUR MINING, INC.",false,C,0.110200,,,D,C,15.54,2026-10-16,10.56,-32.10,2026-10-16,,false,false
+94,DG,Dollar General Corp,false,C,0.110200,,,D,C,130.10,2026-10-14,86.97,-33.20,2026-10-14,,false,false
+95,FCNCA,"First Citizens BancShares, Inc.",true,C,0.109000,,,D,C,2080.19,2026-10-15,1393.43,-33.00,2026-10-15,,false,false
+96,APA,APA Corporation,false,C,0.108200,,,D,C,49.18,2026-10-16,32.80,-33.30,2026-10-16,5.4.0,false,false
+97,MEDP,"Medpace Holdings, Inc.",false,C,0.107600,,,D,C,613.74,2026-10-16,378.98,-38.30,2026-10-16,5.4.0,false,false
+98,JBS,JBS N.V.,false,C,0.107000,,,D,C,13.03,2026-10-17,8.36,-35.90,2026-10-17,5.4.0,false,false
+99,RMD,ResMed Inc.,false,C,0.106900,,,D,C,234.25,2026-10-14,144.57,-38.30,2026-10-14,,false,false
+100,BR,"Broadridge Financial Solutions, Inc.",false,C,0.106700,,,D,C,174.11,2026-10-16,108.36,-37.80,2026-10-16,,false,false
+101,BRO,"Brown & Brown, Inc.",true,C,0.105500,,,D,C,67.98,2026-10-15,42.63,-37.30,2026-10-15,,false,false
+102,TS,Tenaris S.A.,false,C,0.104700,,,D,C,58.17,2026-10-14,36.53,-37.20,2026-10-14,,false,false
+103,TROW,"T. Rowe Price Group, Inc.",true,C,0.104400,,,D,C,101.49,2026-10-15,63.40,-37.50,2026-10-15,,false,false
+104,AMCR,Amcor plc,false,C,0.104000,,,D,C,43.74,2026-10-16,26.84,-38.60,2026-10-16,,false,false
+105,FOXA,Fox Corporation,false,C,0.103900,,,D,C,62.21,2026-10-14,37.43,-39.80,2026-10-14,,false,false
+106,ZTS,Zoetis Inc.,false,C,0.103800,,,D,C,75.67,2026-10-14,46.87,-38.10,2026-10-14,,false,false
+107,VRSK,"Verisk Analytics, Inc.",false,C,0.102500,,,D,C,190.41,2026-10-15,109.46,-42.50,2026-10-15,,false,false
+108,BBY,"Best Buy Co., Inc.",false,C,0.102200,,,D,C,94.18,2026-10-16,58.27,-38.10,2026-10-16,,false,false
+109,WIT,Wipro Limited,false,C,0.102200,,,D,C,1.94,2026-10-16,1.21,-37.60,2026-10-16,5.4.0,false,false
+110,VTRS,Viatris Inc.,false,C,0.101800,,,D,C,18.22,2026-10-15,11.28,-38.10,2026-10-15,,false,false
+111,RGLD,"Royal Gold, Inc.",false,C,0.101600,,,D,C,233.00,2026-10-15,137.62,-40.90,2026-10-15,,false,false
+112,DHI,"D.R. Horton, Inc.",false,C,0.101400,,,D,C,135.45,2026-10-14,82.75,-38.90,2026-10-14,,false,false
+113,UAL,"United Airlines Holdings, Inc.",false,C,0.100900,,,D,C,103.50,2026-10-14,62.38,-39.70,2026-10-14,,false,false
+114,DXCM,"Dexcom, Inc.",false,D,0.099600,,,D,C,83.98,2026-10-14,46.68,-44.40,2026-10-14,,false,false
+115,EFX,Equifax Inc,true,D,0.099400,,,D,C,160.85,2026-10-16,91.61,-43.00,2026-10-16,5.4.0,false,false
+116,LPLA,LPL Financial Holdings Inc.,true,D,0.099200,,,D,C,323.46,2026-10-15,180.50,-44.20,2026-10-15,,false,false
+117,SWK,"Stanley Black & Decker, Inc.",false,D,0.098900,,,D,C,92.48,2026-10-17,55.43,-40.10,2026-10-17,5.4.0,false,false
+118,SNX,TD SYNNEX CORPORATION,false,D,0.098800,,,D,C,255.14,2026-10-15,145.24,-43.10,2026-10-15,,false,false
+119,MLI,"Mueller Industries, Inc.",false,D,0.098700,,,D,C,60.07,2026-10-17,33.78,-43.80,2026-10-17,5.4.0,false,false
+120,HSY,The Hershey Company,false,D,0.098500,,,D,C,164.28,2026-10-14,92.59,-43.60,2026-10-14,,false,false
+121,UI,Ubiquiti Inc.,false,D,0.098500,,,D,C,620.24,2026-10-14,326.30,-47.40,2026-10-14,,false,false
+122,CHKP,Check Point Software Technologies Ltd.,false,D,0.098100,,,D,C,137.87,2026-10-17,78.16,-43.30,2026-10-17,5.4.0,false,false
+123,STZ,"Constellation Brands, Inc.",false,D,0.098000,,,D,C,126.37,2026-10-14,74.13,-41.30,2026-10-14,,false,true
+124,WTW,Willis Towers Watson Public Limited Company,true,D,0.097900,,,D,C,297.15,2026-10-14,167.08,-43.80,2026-10-14,,false,false
+125,EME,"EMCOR Group, Inc.",false,D,0.097500,,,D,C,750.25,2026-10-14,404.69,-46.10,2026-10-14,,false,false
+126,PHM,"PulteGroup, Inc.",false,D,0.096800,,,D,C,113.08,2026-10-15,64.35,-43.10,2026-10-15,,false,false
+127,ONON,On Holding AG,false,D,0.096700,,,D,C,35.13,2026-10-15,18.30,-47.90,2026-10-15,,false,false
+128,CMG,"Chipotle Mexican Grill, Inc.",false,D,0.096100,,,D,C,30.35,2026-10-14,16.06,-47.10,2026-10-14,,false,false
+129,VIK,Viking Holdings Ltd,false,D,0.096100,,,D,C,82.60,2026-10-14,43.23,-47.70,2026-10-14,,false,false
+130,TIGO,Millicom International Cellular S.A.,false,D,0.095600,,,D,C,82.86,2026-10-17,46.70,-43.60,2026-10-17,5.4.0,false,false
+131,LYB,LyondellBasell Industries N.V.,false,D,0.095300,,,D,C,62.67,2026-10-16,36.20,-42.20,2026-10-16,,false,false
+132,RJF,"Raymond James Financial, Inc.",true,D,0.094700,,,D,C,155.04,2026-10-14,80.54,-48.00,2026-10-14,,false,false
+133,AMRZ,Amrize Ltd,false,D,0.094600,,,D,C,37.32,2026-10-16,20.48,-45.10,2026-10-16,,false,false
+134,FER,Ferrovial N.V.,false,D,0.094500,,,D,C,50.34,2026-10-14,25.63,-49.10,2026-10-14,,false,false
+135,TKO,"TKO Group Holdings, Inc.",false,D,0.094500,,,D,C,172.85,2026-10-14,91.05,-47.30,2026-10-14,,false,false
+136,DUOL,"Duolingo, Inc.",false,D,0.094400,,,D,C,140.10,2026-10-13,72.54,-48.20,2026-10-13,,false,true
+137,CPRT,"Copart, Inc.",false,D,0.094300,,,D,C,26.41,2026-10-15,13.77,-47.80,2026-10-15,,false,false
+138,FICO,Fair Isaac Corporation,false,D,0.093300,,,D,C,771.19,2026-10-17,395.24,-48.70,2026-10-17,5.4.0,false,false
+139,RCI,Rogers Communications Inc.,false,D,0.093300,,,D,C,31.99,2026-10-16,17.28,-46.00,2026-10-16,5.4.0,false,false
+140,TRMB,Trimble Inc.,false,D,0.092400,,,D,C,59.46,2026-10-17,30.44,-48.80,2026-10-17,5.4.0,false,false
+141,ALC,Alcon Inc.,false,D,0.092200,,,D,C,63.87,2026-10-14,32.50,-49.10,2026-10-14,,false,false
+142,DOCU,"Docusign, Inc.",false,D,0.091700,,,D,C,74.65,2026-10-17,37.65,-49.60,2026-10-17,5.4.0,false,false
+143,QSR,Restaurant Brands International Inc.,false,D,0.091700,,,D,C,71.06,2026-10-14,36.22,-49.00,2026-10-14,,false,false
+144,PBA,PEMBINA PIPELINE CORPORATION,false,D,0.091400,,,D,C,48.52,2026-10-14,25.11,-48.20,2026-10-14,,false,false
+145,OHI,"Omega Healthcare Investors, Inc.",true,D,0.091200,,,D,C,45.64,2026-10-17,23.78,-47.90,2026-10-17,5.4.0,false,false
+146,PAYX,"Paychex, Inc.",false,D,0.090900,,,D,C,106.25,2026-10-14,54.10,-49.10,2026-10-14,,false,false
+147,Q,"QNITY ELECTRONICS, INC.",false,D,0.090500,,,D,C,121.87,2026-10-14,58.18,-52.30,2026-10-14,,false,false
+148,OTIS,OTIS WORLDWIDE CORPORATION,false,D,0.090300,,,D,C,69.76,2026-10-15,35.99,-48.40,2026-10-15,,false,false
+149,KR,The Kroger Co.,false,D,0.090200,,,D,C,60.75,2026-10-14,31.26,-48.50,2026-10-14,,false,false
+150,INVH,Invitation Homes Inc.,true,D,0.090100,,,D,C,26.77,2026-10-16,13.79,-48.50,2026-10-16,5.4.0,false,false
+151,TOST,"Toast, Inc.",false,D,0.089900,,,D,C,32.22,2026-10-16,14.46,-55.10,2026-10-16,,false,false
+152,WF,Woori Financial Group Inc.,true,D,0.089100,,,D,C,70.07,2026-10-16,35.82,-48.90,2026-10-16,,false,false
+153,ADM,Archer-Daniels-Midland Co,false,D,0.088900,,,D,C,83.20,2026-10-14,42.39,-49.10,2026-10-14,,false,false
+154,CW,Curtiss-Wright Corporation,false,D,0.088500,,,D,C,501.49,2026-10-16,231.48,-53.80,2026-10-16,,false,false
+155,UNM,Unum Group,true,D,0.088400,,,D,C,92.23,2026-10-17,45.93,-50.20,2026-10-17,5.4.0,false,false
+156,SGI,SomniGroup International Inc.,false,D,0.088000,,,D,C,63.58,2026-10-17,31.29,-50.80,2026-10-17,5.4.0,false,false
+157,DGX,Quest Diagnostics Inc,false,D,0.087900,,,D,C,233.43,2026-10-15,113.01,-51.60,2026-10-15,,false,false
+158,KGC,Kinross Gold Corporation,false,D,0.087600,,,D,C,22.24,2026-10-14,10.85,-51.20,2026-10-14,,false,false
+159,NVR,"NVR, Inc.",false,D,0.087400,,,D,C,5919.82,2026-10-16,2901.18,-51.00,2026-10-16,5.4.0,false,false
+160,BIIB,Biogen Inc.,false,D,0.087000,,,D,C,228.91,2026-10-14,113.39,-50.50,2026-10-14,,false,false
+161,NVT,nVent Electric plc,false,D,0.087000,,,D,D,152.72,2026-10-14,66.33,-56.60,2026-10-14,,false,false
+162,ONTO,ONTO INNOVATION INC.,false,D,0.086600,,,D,C,220.70,2026-10-17,95.88,-56.60,2026-10-17,5.4.0,false,false
+163,LOGI,Logitech International S.A.,false,D,0.086400,,,D,C,104.41,2026-10-17,50.50,-51.60,2026-10-17,5.4.0,false,false
+164,SNA,Snap-on Inc,false,D,0.086200,,,D,C,370.65,2026-10-16,178.36,-51.90,2026-10-16,,false,false
+165,MAS,Masco Corporation,false,D,0.086000,,,D,C,72.87,2026-10-17,34.91,-52.10,2026-10-17,5.4.0,false,false
+166,HAL,Halliburton Company,false,D,0.084500,,,D,C,32.85,2026-10-14,15.47,-52.90,2026-10-14,,false,false
+167,FOX,Fox Corporation,false,D,0.084000,,,D,C,56.85,2026-10-15,26.45,-53.50,2026-10-15,,false,false
+168,ZBRA,Zebra Technologies Corporation,false,D,0.083900,,,D,C,380.50,2026-10-16,169.02,-55.60,2026-10-16,,false,false
+169,ON,ON Semiconductor Corporation,false,D,0.083700,,,D,C,72.10,2026-10-14,32.81,-54.50,2026-10-14,,false,false
+170,SUI,"SUN COMMUNITIES, INC",true,D,0.083600,,,D,D,118.08,2026-10-17,54.36,-54.00,2026-10-17,5.4.0,false,false
+171,TYL,"Tyler Technologies, Inc.",false,D,0.083500,,,D,D,360.87,2026-10-17,157.25,-56.40,2026-10-17,5.4.0,false,false
+172,SN,"SharkNinja, Inc.",false,D,0.083400,,,D,D,186.32,2026-10-15,79.13,-57.50,2026-10-15,,false,false
+173,PFGC,Performance Food Group Company,false,D,0.083100,,,D,C,97.78,2026-10-17,44.28,-54.70,2026-10-17,5.4.0,false,false
+174,NLY,"Annaly Capital Management, Inc.",true,D,0.083000,,,D,C,18.23,2026-10-17,8.54,-53.20,2026-10-17,5.4.0,false,false
+175,LH,Labcorp Holdings Inc.,false,D,0.082900,,,D,D,319.51,2026-10-15,140.01,-56.20,2026-10-15,,false,false
+176,TDY,Teledyne Technologies Incorporated,false,D,0.082900,,,D,D,607.91,2026-10-14,265.84,-56.30,2026-10-14,,false,false
+177,FDXF,"FedEx Freight Holding Company, Inc.",false,D,0.082300,,,D,C,113.58,2026-10-16,51.88,-54.30,2026-10-16,5.4.0,false,false
+178,IR,Ingersoll Rand Inc.,false,D,0.082200,,,D,D,78.43,2026-10-14,33.75,-57.00,2026-10-14,,false,false
+179,APG,APi Group Corporation,false,D,0.081900,,,D,D,40.19,2026-10-16,17.24,-57.10,2026-10-16,5.4.0,false,false
+180,NRG,"NRG Energy, Inc",true,D,0.081800,,,D,D,101.53,2026-10-15,43.17,-57.50,2026-10-15,,false,false
+181,CACI,CACI International Inc,false,D,0.081600,,,D,D,614.31,2026-10-17,262.33,-57.30,2026-10-17,5.4.0,false,false
+182,VRSN,"VeriSign, Inc.",false,D,0.081600,,,D,D,295.38,2026-10-14,123.46,-58.20,2026-10-14,,false,false
+183,SYY,Sysco Corporation,false,D,0.081400,,,D,C,79.03,2026-10-14,34.64,-56.20,2026-10-14,,false,false
+184,WMG,Warner Music Group Corp.,false,D,0.081400,,,D,D,31.40,2026-10-17,13.70,-56.40,2026-10-17,5.4.0,false,false
+185,NTR,Nutrien Ltd.,false,D,0.081200,,,D,D,70.49,2026-10-14,31.77,-54.90,2026-10-14,,false,false
+186,TSN,"Tyson Foods, Inc.",false,D,0.081200,,,D,C,54.04,2026-10-16,24.21,-55.20,2026-10-16,,false,false
+187,YUM,"Yum! Brands, Inc.",false,D,0.080800,,,D,D,147.06,2026-10-14,62.06,-57.80,2026-10-14,,false,false
+188,FWONA,Liberty Media Corporation — Formula One Group,false,D,0.080700,,,D,C,83.32,2026-10-15,34.23,-58.90,2026-10-15,,false,false
+189,STE,STERIS plc,false,D,0.080400,,,D,D,224.33,2026-10-15,94.49,-57.90,2026-10-15,,false,false
+190,KIM,Kimco Realty Corporation,true,D,0.079900,,,D,D,22.91,2026-10-17,9.96,-56.50,2026-10-17,5.4.0,false,false
+191,HUBB,Hubbell Incorporated,false,D,0.079800,,,D,D,470.53,2026-10-15,191.22,-59.40,2026-10-15,,false,false
+192,UTHR,United Therapeutics Corporation,false,D,0.079800,,,D,C,545.08,2026-10-15,224.03,-58.90,2026-10-15,,false,false
+193,DOV,DOVER Corp,false,D,0.079700,,,D,D,193.33,2026-10-15,81.97,-57.60,2026-10-15,,false,false
+194,CHD,"Church & Dwight Co., Inc.",false,D,0.079400,,,D,D,104.63,2026-10-15,43.71,-58.20,2026-10-15,,false,false
+195,AGI,Alamos Gold Inc.,false,D,0.079100,,,D,D,32.12,2026-10-17,12.24,-61.90,2026-10-17,5.4.0,false,false
+196,EXR,Extra Space Storage Inc.,true,D,0.078600,,,D,D,133.96,2026-10-14,56.90,-57.50,2026-10-14,,false,false
+197,PHG,Koninklijke Philips N.V. (Royal Philips),false,D,0.078500,,,D,D,25.18,2026-10-15,10.70,-57.50,2026-10-15,,false,false
+198,PPG,"PPG Industries, Inc.",false,D,0.078400,,,D,D,107.50,2026-10-15,45.43,-57.70,2026-10-15,,false,false
+199,FTV,Fortive Corporation,false,D,0.078300,,,D,D,57.40,2026-10-16,24.12,-58.00,2026-10-16,5.4.0,false,false
+200,KMB,Kimberly-Clark Corporation,false,D,0.077800,,,D,D,98.36,2026-10-14,41.46,-57.90,2026-10-14,,false,false
+201,ULTA,"Ulta Beauty, Inc.",false,D,0.077200,,,D,D,591.36,2026-10-15,232.58,-60.70,2026-10-15,,false,false
+202,LAMR,Lamar Advertising Company,true,D,0.077100,,,D,D,150.10,2026-10-17,61.14,-59.30,2026-10-17,5.4.0,false,false
+203,ZM,"Zoom Communications, Inc.",false,D,0.076800,,,D,D,95.21,2026-10-14,38.30,-59.80,2026-10-14,,false,false
+204,KVUE,Kenvue Inc.,false,D,0.076600,,,D,D,17.80,2026-10-14,7.36,-58.60,2026-10-14,,false,false
+205,MTZ,"MasTec, Inc.",false,D,0.076600,,,D,D,190.70,2026-10-16,73.76,-61.30,2026-10-16,5.4.0,false,false
+206,USFD,US Foods Holding Corp.,false,D,0.076600,,,D,D,101.47,2026-10-15,40.28,-60.30,2026-10-15,,false,false
+207,NDSN,NORDSON CORPORATION,false,D,0.076500,,,D,D,328.80,2026-10-16,128.21,-61.00,2026-10-16,,false,false
+208,NWSA,News Corporation,false,D,0.076100,,,D,D,29.98,2026-10-16,11.73,-60.90,2026-10-16,5.4.0,false,false
+209,GNRC,Generac Holdings Inc.,false,D,0.074900,,,D,D,192.68,2026-10-17,71.13,-63.10,2026-10-17,5.4.0,false,false
+210,MAA,"Mid-America Apartment Communities, Inc.",true,D,0.074800,,,D,D,116.63,2026-10-17,46.51,-60.10,2026-10-17,5.4.0,false,false
+211,PTC,PTC Inc.,false,D,0.074700,,,D,D,193.00,2026-10-15,70.46,-63.50,2026-10-15,,false,false
+212,SBAC,SBA COMMUNICATIONS CORPORATION,true,D,0.074600,,,D,D,183.72,2026-10-16,72.75,-60.40,2026-10-16,,false,false
+213,CCI,Crown Castle Inc.,true,D,0.074400,,,D,D,79.94,2026-10-14,31.30,-60.80,2026-10-14,,false,false
+214,SOLV,Solventum Corporation,false,D,0.074100,,,D,D,85.81,2026-10-17,33.24,-61.30,2026-10-17,5.4.0,false,false
+215,XYL,Xylem Inc.,false,D,0.074100,,,D,D,102.74,2026-10-15,38.44,-62.60,2026-10-15,,false,false
+216,LECO,"Lincoln Electric Holdings, Inc.",false,D,0.073800,,,D,D,262.10,2026-10-17,96.85,-63.00,2026-10-17,5.4.0,false,false
+217,RL,Ralph Lauren Corporation,false,D,0.073600,,,D,D,392.36,2026-10-15,141.46,-63.90,2026-10-15,,false,false
+218,EXPD,"EXPEDITORS INTERNATIONAL OF WASHINGTON, INC.",false,D,0.073400,,,D,D,196.38,2026-10-15,70.55,-64.10,2026-10-15,,false,false
+219,J,JACOBS SOLUTIONS INC.,false,D,0.073400,,,D,D,138.67,2026-10-16,51.46,-62.90,2026-10-16,5.4.0,false,false
+220,ITT,ITT Inc.,false,D,0.073300,,,D,D,197.54,2026-10-16,69.39,-64.90,2026-10-16,,false,false
+221,GEHC,GE HealthCare Technologies Inc.,false,D,0.073100,,,D,D,68.12,2026-10-14,25.84,-62.10,2026-10-14,,false,false
+222,ROKU,"Roku, Inc.",false,D,0.072600,,,D,D,154.57,2026-10-15,49.95,-67.70,2026-10-15,,false,false
+223,TPL,Texas Pacific Land Corporation,false,D,0.072400,,,D,D,354.50,2026-10-15,116.50,-67.10,2026-10-15,,false,false
+224,BEKE,KE Holdings Inc.,true,D,0.072000,,,D,D,17.83,2026-10-15,6.39,-64.20,2026-10-15,,false,false
+225,JBHT,"J.B. Hunt Transport Services, Inc.",false,D,0.072000,,,D,D,230.00,2026-10-15,85.88,-62.70,2026-10-15,,false,false
+226,NWS,News Corporation,false,D,0.071800,,,D,D,32.83,2026-10-16,11.73,-64.30,2026-10-16,5.4.0,false,false
+227,WCN,"Waste Connections, Inc.",true,D,0.071100,,,D,D,153.67,2026-10-14,52.05,-66.10,2026-10-14,,false,false
+228,DRI,"Darden Restaurants, Inc.",false,D,0.070700,,,D,D,214.28,2026-10-15,76.50,-64.30,2026-10-15,,false,false
+229,VLTO,Veralto Corporation,false,D,0.069700,,,D,D,101.50,2026-10-15,35.28,-65.20,2026-10-15,,false,false
+230,SW,Smurfit Westrock plc,false,D,0.069600,,,D,D,41.28,2026-10-15,14.54,-64.80,2026-10-15,,false,false
+231,IHG,InterContinental Hotels Group PLC,false,D,0.069100,,,D,D,164.25,2026-10-15,53.81,-67.20,2026-10-15,,false,false
+232,CPNG,"Coupang, Inc.",false,D,0.068900,,,D,D,14.29,2026-10-14,4.45,-68.90,2026-10-14,,false,false
+233,VMC,Vulcan Materials Company,false,D,0.068700,,,D,D,239.33,2026-10-14,79.51,-66.80,2026-10-14,,false,false
+234,DLTR,"Dollar Tree, Inc.",false,D,0.068500,,,D,D,123.73,2026-10-15,42.05,-66.00,2026-10-15,,false,false
+235,BEN,"Franklin Resources, Inc. (Franklin Templeton)",true,D,0.068300,,,D,D,30.96,2026-10-16,10.72,-65.40,2026-10-16,5.4.0,false,false
+236,BWXT,"BWX Technologies, Inc.",false,D,0.068300,,,D,D,137.01,2026-10-17,41.79,-69.50,2026-10-17,5.4.0,false,false
+237,FFIV,"F5, Inc.",false,D,0.068200,,,D,D,462.90,2026-10-14,147.14,-68.20,2026-10-14,,false,false
+238,GPC,Genuine Parts Company,false,D,0.068100,,,D,D,134.63,2026-10-16,45.52,-66.20,2026-10-16,5.4.0,false,false
+239,WSM,"Williams-Sonoma, Inc.",false,D,0.068000,,,D,D,239.84,2026-10-14,82.08,-65.80,2026-10-14,,false,false
+240,CHT,"Chunghwa Telecom Co., Ltd.",false,D,0.067800,,,D,D,46.51,2026-10-14,15.75,-66.10,2026-10-14,,false,false
+241,PKG,Packaging Corporation of America,false,D,0.067800,,,D,D,232.57,2026-10-15,76.42,-67.10,2026-10-15,,false,false
+242,CDW,CDW Corporation,false,D,0.067600,,,D,D,155.44,2026-10-16,52.14,-66.50,2026-10-16,,false,false
+243,LEN,Lennar Corporation,false,D,0.067400,,,D,D,78.43,2026-10-16,25.90,-67.00,2026-10-16,,false,false
+244,IEX,IDEX Corporation,false,D,0.067300,,,D,D,235.70,2026-10-16,77.08,-67.30,2026-10-16,5.4.0,false,false
+245,RBC,RBC Bearings Incorporated,false,D,0.066900,,,D,D,498.52,2026-10-16,150.00,-69.90,2026-10-16,5.4.0,false,false
+246,CHRW,"C. H. Robinson Worldwide, Inc.",false,D,0.065900,,,D,D,139.95,2026-10-16,44.06,-68.50,2026-10-16,5.4.0,false,false
+247,CRCL,"Circle Internet Group, Inc.",true,D,0.064900,,,D,D,86.30,2026-10-15,25.06,-71.00,2026-10-15,,false,false
+248,CBRE,"CBRE Group, Inc.",true,D,0.064200,,,D,D,129.67,2026-10-14,37.94,-70.70,2026-10-14,,false,false
+249,WWD,"Woodward, Inc.",false,D,0.064100,,,D,D,333.27,2026-10-16,88.26,-73.50,2026-10-16,,false,false
+250,AEG,AEGON LTD.,true,D,0.063900,,,D,D,8.32,2026-10-17,2.71,-67.50,2026-10-17,5.4.0,false,false
+251,GME,GameStop Corp.,false,D,0.063400,,,D,D,26.81,2026-10-17,8.28,-69.10,2026-10-17,5.4.0,false,false
+252,BIDU,"Baidu, Inc.",false,D,0.062700,,,D,D,81.86,2026-10-14,24.86,-69.60,2026-10-14,,false,false
+253,AFRM,"Affirm Holdings, Inc.",true,D,0.062600,,,D,D,70.10,2026-10-14,17.70,-74.70,2026-10-14,,false,false
+254,REG,Regency Centers Corporation,true,D,0.062500,,,D,D,73.24,2026-10-17,20.78,-71.60,2026-10-17,5.4.0,false,false
+255,CLH,"Clean Harbors, Inc.",false,D,0.062400,,,D,D,320.06,2026-10-16,89.05,-72.20,2026-10-16,5.4.0,false,false
+256,RVTY,"Revvity, Inc.",false,D,0.062200,,,D,D,152.46,2026-10-16,44.18,-71.00,2026-10-16,5.4.0,false,false
+257,MTD,Mettler-Toledo International Inc.,false,D,0.061900,,,D,D,1613.91,2026-10-14,440.70,-72.70,2026-10-14,,false,false
+258,XPO,"XPO, Inc.",false,D,0.061500,,,D,D,188.83,2026-10-15,50.30,-73.40,2026-10-15,,false,false
+259,DOCN,"DigitalOcean Holdings, Inc.",false,D,0.061300,,,D,D,97.50,2026-10-16,22.85,-76.60,2026-10-16,5.4.0,false,false
+260,FTI,TechnipFMC plc,false,D,0.061200,,,D,D,69.50,2026-10-14,18.16,-73.90,2026-10-14,,false,false
+261,ULS,UL Solutions Inc.,false,D,0.061000,,,D,D,73.31,2026-10-17,19.48,-73.40,2026-10-17,5.4.0,false,false
+262,MLM,"Martin Marietta Materials, Inc.",false,D,0.060900,,,D,D,472.39,2026-10-14,126.06,-73.30,2026-10-14,,false,false
+263,WY,Weyerhaeuser Company,true,D,0.060400,,,D,D,19.61,2026-10-17,5.55,-71.70,2026-10-17,5.4.0,false,false
+264,DT,"Dynatrace, Inc.",false,D,0.060000,,,D,D,64.01,2026-10-16,15.25,-76.20,2026-10-16,,false,false
+265,ARMK,Aramark,false,D,0.059800,,,D,D,55.28,2026-10-17,14.60,-73.60,2026-10-17,5.4.0,false,false
+266,ENTG,"Entegris, Inc.",false,D,0.059800,,,D,D,150.47,2026-10-15,38.22,-74.60,2026-10-15,,false,false
+267,GFS,GLOBALFOUNDRIES Inc.,false,D,0.059800,,,D,D,48.94,2026-10-14,13.23,-73.00,2026-10-14,,false,false
+268,CCJ,Cameco Corporation,false,D,0.059100,,,D,D,81.40,2026-10-14,18.72,-77.00,2026-10-14,,false,false
+269,FWONK,Liberty Media Corporation,false,D,0.057500,,,D,D,91.43,2026-10-15,23.45,-74.30,2026-10-15,,false,false
+270,NTNX,"Nutanix, Inc.",false,D,0.057100,,,D,D,69.98,2026-10-15,16.44,-76.50,2026-10-15,,false,false
+271,FN,Fabrinet,true,D,0.056900,,,D,D,372.48,2026-10-16,81.38,-78.20,2026-10-16,5.4.0,false,false
+272,RBLX,Roblox Corporation,false,D,0.056700,,,D,D,49.38,2026-10-14,10.67,-78.40,2026-10-14,,false,false
+273,CASY,"Casey's General Stores, Inc.",false,D,0.056600,,,D,D,664.19,2026-10-15,155.81,-76.50,2026-10-15,,false,false
+274,MKSI,MKS Inc.,false,D,0.056400,,,D,D,226.70,2026-10-16,53.74,-76.30,2026-10-16,,false,false
+275,RS,"RELIANCE, INC.",false,D,0.056400,,,D,D,406.67,2026-10-15,98.82,-75.70,2026-10-15,,false,false
+276,WCC,"WESCO International, Inc.",false,D,0.056300,,,D,D,346.01,2026-10-16,79.51,-77.00,2026-10-16,,false,false
+277,PAAS,Pan American Silver Corp.,false,D,0.054800,,,D,D,43.77,2026-10-16,10.10,-76.90,2026-10-16,,false,false
+278,EQH,"Equitable Holdings, Inc.",true,D,0.054400,,,D,D,53.21,2026-10-17,12.24,-77.00,2026-10-17,5.4.0,false,false
+279,EL,The Estée Lauder Companies Inc.,false,D,0.054300,,,D,D,102.29,2026-10-14,23.52,-77.00,2026-10-14,,false,false
+280,CNH,CNH Industrial N.V.,false,D,0.053300,,,D,D,11.60,2026-10-17,2.76,-76.20,2026-10-17,5.4.0,false,false
+281,BG,Bunge Global SA,false,D,0.052900,,,D,D,107.01,2026-10-16,24.15,-77.40,2026-10-16,,false,false
+282,ATI,ATI Inc.,false,D,0.052700,,,D,D,187.84,2026-10-15,38.16,-79.70,2026-10-15,,false,false
+283,DINO,HF Sinclair Corp,false,D,0.052200,,,D,D,124.80,2026-10-15,28.25,-77.40,2026-10-15,,false,false
+284,ODFL,"Old Dominion Freight Line, Inc.",false,D,0.052000,,,D,D,183.17,2026-10-14,37.61,-79.50,2026-10-14,,false,false
+285,BURL,"Burlington Stores, Inc.",false,D,0.051300,,,D,D,260.19,2026-10-16,51.05,-80.40,2026-10-16,5.4.0,false,false
+286,CRS,Carpenter Technology Corporation,false,D,0.050800,,,D,D,380.56,2026-10-16,68.83,-81.90,2026-10-16,,false,false
+287,JHX,James Hardie Industries plc,false,D,0.050700,,,D,D,25.82,2026-10-17,5.02,-80.50,2026-10-17,5.4.0,false,false
+288,STLD,"Steel Dynamics, Inc.",false,D,0.050400,,,D,D,251.49,2026-10-14,50.28,-80.00,2026-10-14,,false,false
+289,W,Wayfair Inc.,false,D,0.050100,,,D,D,107.28,2026-10-17,20.34,-81.00,2026-10-17,5.4.0,false,false
+290,WST,"West Pharmaceutical Services, Inc.",false,D,0.049800,,,D,D,374.65,2026-10-15,65.92,-82.40,2026-10-15,,false,false
+291,U,Unity Software Inc.,false,D,0.049500,,,D,D,46.63,2026-10-13,7.73,-83.40,2026-10-13,,false,true
+292,GWRE,"Guidewire Software, Inc.",false,D,0.048800,,,D,D,168.86,2026-10-17,26.34,-84.40,2026-10-17,5.4.0,false,false
+293,IP,International Paper Company,false,D,0.046300,,,D,D,34.05,2026-10-16,5.84,-82.90,2026-10-16,5.4.0,false,false
+294,IFF,INTERNATIONAL FLAVORS & FRAGRANCES INC,false,D,0.046000,,,D,D,90.29,2026-10-15,14.92,-83.50,2026-10-15,,false,false
+295,MTSI,"MACOM Technology Solutions Holdings, Inc.",false,D,0.045800,,,D,D,282.90,2026-10-15,37.07,-86.90,2026-10-15,,false,false
+296,CRL,"Charles River Laboratories International, Inc.",false,D,0.045500,,,D,D,300.15,2026-10-17,48.96,-83.70,2026-10-17,5.4.0,false,false
+297,SQM,Sociedad Quimica y Minera de Chile S.A. (SQM),false,D,0.044900,,,D,D,60.75,2026-10-16,9.34,-84.60,2026-10-16,,false,false
+298,ESLT,Elbit Systems Ltd,false,D,0.043300,,,D,D,698.72,2026-10-14,88.60,-87.30,2026-10-14,,false,false
+299,WEC,"WEC ENERGY GROUP, INC.",true,D,0.040900,,,D,D,106.08,2026-10-14,12.48,-88.20,2026-10-14,,false,false
+300,LSCC,Lattice Semiconductor Corporation,false,D,0.040800,,,D,D,106.00,2026-10-16,10.28,-90.30,2026-10-16,,false,false
+301,GFI,Gold Fields Limited,false,D,0.040400,,,D,D,35.59,2026-10-14,4.06,-88.60,2026-10-14,,false,false
+302,SMTC,Semtech Corporation,false,D,0.039600,,,D,D,141.16,2026-10-16,14.32,-89.90,2026-10-16,5.4.0,false,false
+303,TSCO,Tractor Supply Company,false,D,0.038900,,,D,D,33.88,2026-10-16,3.73,-89.00,2026-10-16,,false,false
+304,CORT,Corcept Therapeutics Incorporated,false,D,0.036600,,,D,D,110.16,2026-10-17,9.16,-91.70,2026-10-17,5.4.0,false,false
+305,YPF,YPF Sociedad Anonima,false,D,0.035500,,,D,D,51.11,2026-10-16,4.38,-91.40,2026-10-16,,false,false
+306,MDB,"MongoDB, Inc.",false,D,0.033400,,,D,D,365.55,2026-10-14,20.12,-94.50,2026-10-14,,false,false
+307,ZS,Zscaler Inc,false,D,0.032600,,,D,D,228.66,2026-10-14,11.14,-95.10,2026-10-14,,false,false
+308,TPG,TPG Inc.,true,D,0.032300,,,D,D,42.20,2026-10-16,1.93,-95.40,2026-10-16,5.4.0,false,false
+309,BNTX,BioNTech SE,false,D,0.031900,,,D,D,88.77,2026-10-15,5.27,-94.10,2026-10-15,,false,false
+310,TECK,Teck Resources Limited,false,D,0.001100,,,D,D,64.00,2026-10-14,1.61,-97.50,2026-10-14,,false,false
+311,GFL,GFL Environmental Inc.,true,D,-0.048400,,,D,D,43.55,2026-10-16,0.49,-98.90,2026-10-16,,false,false
+312,AEE,Ameren Corporation,true,F,,,,,,104.48,2026-10-14,,,2026-10-14,,false,false
+313,ASND,Ascendis Pharma A/S,false,F,,,,,,225.25,2026-10-17,,,2026-10-17,5.4.0,false,false
+314,ASTS,"AST SpaceMobile, Inc.",false,F,,,,,,44.46,2026-10-16,,,2026-10-16,,false,false
+315,ATO,ATMOS ENERGY CORP,true,F,,,,,,163.94,2026-10-14,,,2026-10-14,,false,false
+316,AWK,"American Water Works Company, Inc.",true,F,,,,,,131.71,2026-10-15,,,2026-10-15,,false,false
+317,AXON,"AXON ENTERPRISE, INC.",false,F,,,,,,418.00,2026-10-14,,,2026-10-14,,false,false
+318,BMNR,"BitMine Immersion Technologies, Inc.",true,F,,,,,,21.66,2026-10-17,,,2026-10-17,5.4.0,false,false
+319,CG,Carlyle Group Inc.,true,F,,,,,,36.38,2026-10-17,,,2026-10-17,5.4.0,false,false
+320,CMPS,COMPASS Pathways plc,false,F,,,,,,11.42,2026-10-14,,,2026-10-14,,false,true
+321,CMS,CMS Energy Corporation,true,F,,,,,,66.94,2026-10-15,,,2026-10-15,,false,false
+322,CNP,"CenterPoint Energy, Inc.",true,F,,,,,,39.68,2026-10-15,,,2026-10-15,,false,false
+323,DFTX,"Definium Therapeutics, Inc.",false,F,,,,,,34.56,2026-10-14,,,2026-10-14,,false,true
+324,DOW,Dow Inc.,false,F,,,,,,29.66,2026-10-15,,,2026-10-15,,false,false
+325,DTE,DTE Energy Company,true,F,,,,,,128.31,2026-10-14,,,2026-10-14,,false,false
+326,ECHO,EchoStar Corporation,false,F,,,,,,87.94,2026-10-14,,,2026-10-14,,false,false
+327,ED,"Consolidated Edison, Inc.",true,F,,,,,,107.82,2026-10-14,,,2026-10-14,,false,false
+328,EIX,Edison International,true,F,,,,,,55.68,2026-10-15,,,2026-10-15,,false,false
+329,EMA,Emera Inc.,true,F,,,,,,47.72,2026-10-17,,,2026-10-17,5.4.0,false,false
+330,EQX,Equinox Gold Corp.,false,F,,,,,,11.15,2026-10-17,,,2026-10-17,5.4.0,false,false
+331,ES,Eversource Energy,true,F,,,,,,67.43,2026-10-15,,,2026-10-15,,false,false
+332,EVRG,"Evergy, Inc.",true,F,,,,,,81.57,2026-10-16,,,2026-10-16,,false,false
+333,FE,FirstEnergy Corp.,true,F,,,,,,45.41,2026-10-15,,,2026-10-15,,false,false
+334,FIG,"Figma, Inc.",false,F,,,,,,21.76,2026-10-14,,,2026-10-14,,false,true
+335,FTAI,FTAI AVIATION LTD.,false,F,,,,,,169.29,2026-10-16,,,2026-10-16,5.4.0,false,false
+336,FTS,Fortis Inc.,true,F,,,,,,54.69,2026-10-14,,,2026-10-14,,false,false
+337,GH,"Guardant Health, Inc.",false,F,,,,,,165.41,2026-10-15,,,2026-10-15,,false,false
+338,INSM,INSMED INC,false,F,,,,,,98.50,2026-10-15,,,2026-10-15,,false,false
+339,IONQ,"IonQ, Inc.",false,F,,,,,,31.28,2026-10-16,,,2026-10-16,5.4.0,false,false
+340,IOT,Samsara Inc.,false,F,,,,,,40.50,2026-10-15,,,2026-10-15,,false,false
+341,IREN,IREN Limited,true,F,,,,,,26.99,2026-10-17,,,2026-10-17,5.4.0,false,false
+342,IRM,Iron Mountain Incorporated,true,F,,,,,,115.00,2026-10-14,,,2026-10-14,,false,false
+343,KEP,Korea Electric Power Corporation,true,F,,,,,,10.63,2026-10-17,,,2026-10-17,5.4.0,false,false
+344,LNT,Alliant Energy Corporation,true,F,,,,,,68.41,2026-10-16,,,2026-10-16,5.4.0,false,false
+345,NI,NiSource Inc.,true,F,,,,,,41.25,2026-10-16,,,2026-10-16,,false,false
+346,PCG,PG&E Corporation,true,F,,,,,,13.36,2026-10-14,,,2026-10-14,,false,false
+347,PEG,Public Service Enterprise Group Incorporated,true,F,,,,,,70.47,2026-10-14,,,2026-10-14,,false,false
+348,PPL,PPL Corp,true,F,,,,,,34.75,2026-10-15,,,2026-10-15,,false,false
+349,RBRK,"RUBRIK, INC.",false,F,,,,,,113.90,2026-10-15,,,2026-10-15,,false,false
+350,RIVN,"Rivian Automotive, Inc.",false,F,,,,,,13.02,2026-10-15,,,2026-10-15,,false,false
+351,RKT,"Rocket Companies, Inc.",true,F,,,,,,10.38,2026-10-14,,,2026-10-14,,false,false
+352,ROIV,Roivant Sciences Ltd.,false,F,,,,,,33.62,2026-10-15,,,2026-10-15,,false,false
+353,SITM,SiTime Corporation,false,F,,,,,,504.00,2026-10-16,,,2026-10-16,,false,false
+354,SMCI,"Super Micro Computer, Inc.",false,F,,,,,,35.83,2026-10-14,,,2026-10-14,,false,false
+355,SMMT,Summit Therapeutics Inc.,false,F,,,,,,14.63,2026-10-17,,,2026-10-17,5.4.0,false,false
+356,SNAP,Snap Inc,false,F,,,,,,6.49,2026-10-13,,,2026-10-13,,false,true
+357,SOFI,"SoFi Technologies, Inc.",true,F,,,,,,15.09,2026-10-15,,,2026-10-15,,false,false
+358,TSEM,Tower Semiconductor Ltd.,false,F,,,,,,209.16,2026-10-15,,,2026-10-15,,false,false
+359,TTWO,"Take-Two Interactive Software, Inc.",false,F,,,,,,200.32,2026-10-13,,,2026-10-13,,false,true
+360,VG,"Venture Global, Inc.",true,F,,,,,,13.95,2026-10-14,,,2026-10-14,,false,false

@@ -1,0 +1,149 @@
+{
+ "ticker": "FPS",
+ "name": "Forgent Power Solutions, Inc.",
+ "cik": 2080126,
+ "engine_version": 5,
+ "engine_release": "5.4.0",
+ "as_of": "2026-10-18",
+ "price": 31.68,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 304699000.0,
+ "shares_outstanding_dei_latest": null,
+ "shares_outstanding_dei_asof": null,
+ "market_cap_est": 9652864320.0,
+ "net_debt_latest": 484698000,
+ "net_debt_basis": "LongTermDebtNoncurrent+LongTermDebtCurrent",
+ "lease_liabilities_latest": 121596000,
+ "latest_period_end": "2026-06-30",
+ "rev_cagr_5y": 0.8862168871015259,
+ "rev_cagr_3y": 0.8862168871015259,
+ "oe_positive_years_of_last_5": "0/2",
+ "base_oe_total_latest_fy": -16860000,
+ "base_oe_per_share": -0.09474432144509828,
+ "base_oe_latest_per_share": -0.05533329613815602,
+ "base_oe_normalized_per_share": -0.09474432144509828,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.8862168871015259,
+  "rev_cagr_3y": 0.8862168871015259,
+  "rev_yoy_latest": 0.8853978024078981,
+  "oe_ps_cagr_2y": null
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.8862168871015259,
+  "rev_cagr_3y": 0.8862168871015259,
+  "rev_yoy_latest": 0.8853978024078981,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.8862168871015259,
+ "share_cagr": 0.0,
+ "share_count_adj": -0.0,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": null,
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_cur_ltd": "LongTermDebtCurrent",
+  "debt_cur_st": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "debt_total": "LongTermDebt",
+  "lease_liab_current": "OperatingLeaseLiabilityCurrent",
+  "lease_liab_lt": "OperatingLeaseLiabilityNoncurrent",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "shares": {
+   "value": 304699000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
+ "f_subtype": "no_cash_generation",
+ "f_subtype_basis": "sum of the last 2 fiscal years (the median window)",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "shares"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 304699000.0,
+   "kind": "filing",
+   "source": "Forgent Power Solutions FY2026 10-K (filed 2026-09-15, period ended 2026-06-30), MD&A non-GAAP reconciliation 'Adjusted Diluted EPS': adjusted diluted weighted average shares outstanding 304,699 (in thousands) = diluted weighted average shares 243,802 + assumed exchange of Class B common stock 60,897 + dilutive effect of RSUs 270 (all in thousands)",
+   "reason": "Up-C IPO structure (Feb 2026): the predecessor was an LLC, so no diluted share count is filed for FY2025 and the GAAP diluted count filed for FY2026 (243,802,000) covers only the post-IPO period Feb 6 - Jun 30, 2026 and excludes the exchangeable Class B / Opco interests. The 10-K's own Adjusted Diluted EPS reconciliation rebuilds the full-period diluted count assuming exchange of all Class B from the beginning of the earliest period presented: 243,802,000 GAAP diluted + 60,897,000 assumed Class B exchange + 270,000 dilutive RSUs = 304,699,000. Consolidated OCF/capex/SBC in the engine are 100% of Opco, so this is the matching denominator. Cross-check: shares outstanding at Jun 30, 2026 per the same 10-K balance sheet are 259,971,169 Class A + 44,457,720 Class B = 304,428,889, within 0.1% of the weighted figure.",
+   "periods_filled": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "fragility_flags": [
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "THIN_HISTORY: only 2 fiscal years of data",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Forgent Power Solutions FY2026 10-K (filed 2026-09-15, period ended 2026-06-30), MD&A non-GAAP reconciliation 'Adjusted Diluted EPS': adjusted diluted weighted average shares outstanding 304,699 (in thousands) = diluted weighted average shares 243,802 + assumed exchange of Class B common stock 60,897 + dilutive effect of RSUs 270 (all in thousands)); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": null,
+  "base_oe_per_share_final": -0.09474432144509828,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "f7368f6080e0cf098d9f92e7d59f9d0cf61fc96e329074d06df65683902cfbb7"
+}

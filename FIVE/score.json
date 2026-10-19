@@ -1,0 +1,89 @@
+{
+ "ticker": "FIVE",
+ "name": "Five Below, Inc.",
+ "sector": "Retail / Specialty discount \u2014 tween & teen treasure-hunt",
+ "price": 222.72,
+ "market_cap_b": 12.35,
+ "engine_version": 5,
+ "base_oe_per_share": 6.8006,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "A differentiated treasure-hunt value format aimed at tweens/teens ('the Kid and the Kid in all of us') with real brand resonance, 2,022 stores and proven new-store economics; return on invested capital (fundamentals.json roic_proxy) ran 28.1% / 29.3% / 40.2% / 30.8% / 20.3% / 27.4% / 25.2% / 20.6% / 16.4% / 23.2% over FY2017-FY2026 and gross margin held ~35-36% for a decade \u2014 returns well above the cost of capital through a cycle (the proxy excludes lease liabilities from capital, so it flatters the level, but the durability is real). Against that: no switching costs, a discretionary trend-driven assortment any rival can copy, heavyweight competition (Dollar Tree, Dollar General, Walmart, Target, TJX, Temu/Shein), imported-merchandise tariff exposure that has already hit earnings once, and a format whose comps round-tripped from negative to +18% in three years \u2014 a narrow, execution-dependent moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "BASE_DIVERGENCE: latest FY OE/share 6.80 vs 3-yr median 2.64 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.2%) vs bull-case tier C (11.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 52.55,
+   "irr": 0.0561
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 77.45,
+   "irr": 0.0719
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 109.81,
+   "irr": 0.0918
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 147.6,
+   "irr": 0.1131
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 212.61,
+   "irr": 0.1454
+  }
+ },
+ "iv_at_15": 110.97,
+ "iv_at_12": 152.27,
+ "implied_irr": 0.0928,
+ "implied_irr_base_case": 0.0918,
+ "upside_at_15_pct": -50.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Turnaround value retailer, moat 5/10 with a decade of high ROIC \u2014 but at $222.72 the market already pays for the recovery: weighted IRR 9.3% (IV@15% $110.97) on the clean latest-FY base, and even the tariff-refund-inflated TTM base reaches only 12.2%; clears the 15% hurdle only below ~$111.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0719,
+ "irr_bull": 0.1131,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 74.61,
+ "iv_at_25": 55.17,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 55436972,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Differentiated treasure-hunt format and brand aimed at tweens/teens \u2014 not a generic dollar store; customers come for discovery, not staples",
+  "ROIC history well above the cost of capital for a decade (roic_proxy 16-40%, FY2017-FY2026) with gross margin stable at ~35-36%",
+  "Scale and new-store machine: 2,022 stores in 46 states, ~150 net openings/yr at strong new-store performance, 8.5% unit growth in FY2026",
+  "Traffic-led comps: five straight double-digit comp quarters (Q2 FY2027 +14.1% on +13.6% transactions) under the post-2024 customer-centric reset"
+ ],
+ "moat_against": [
+  "No switching costs and a copyable assortment \u2014 trend-right merchandising must be re-earned every season",
+  "Competition for the same discretionary dollar: Dollar Tree/Dollar General, Walmart, Target, TJX, Amazon, Temu/Shein",
+  "Tariff exposure on imported merchandise \u2014 tariff costs depressed FY2025 earnings and the Q2 FY2027 'refund' one-off shows the exposure runs both ways",
+  "Comp volatility: comps went negative in the FY2024-25 trough before the +12.8% / +18.3% surge \u2014 the format's growth is execution- and trend-dependent",
+  "Price-point creep ('Five Beyond' items above $5) risks diluting the value promise that drives traffic"
+ ]
+}

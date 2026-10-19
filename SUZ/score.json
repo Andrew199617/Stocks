@@ -1,0 +1,110 @@
+{
+ "ticker": "SUZ",
+ "name": "Suzano S.A.",
+ "sector": "Materials / Pulp & paper (Brazil)",
+ "price": 8.5,
+ "market_cap_b": 10.54,
+ "engine_version": 5,
+ "base_oe_per_share": 1.4464567842846425,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "World's largest hardwood pulp producer with a structural cost advantage \u2014 own fast-growing eucalyptus plantations, integrated logistics and the Cerrado mill (world's largest single pulp line, 2.55Mt, started Jul 2024) put it at the low end of the global cost curve (pulp cash cost R$817/t in FY2025, lowest since 2021) \u2014 but it is a pure price-taker in a commodity: no pricing power, gross margin swung 50.2% (FY2022) to 32.4% (FY2025) with the pulp cycle, and roic_proxy fell from 17.9% (FY2022) to 8.5% / 9.9% / 6.8% (FY2023/24/25), i.e. recent returns sit around, not well above, the cost of capital through this part of the cycle.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.3%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Suzano Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-28), Note 1 (Company's operations): Suzano's ADRs, 'in a ratio of 1 (one) per common share', Level II, are traded on the NYSE under the ticker SUZ; corroborated by BNY Mellon depositary notices through April 2026 showing Ratio (Local Shares:DRs) 1:1) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Anchor: last SBC value filed under the engine's tags is FY2021 R$99,740,000 (financials_history.csv: US$17,902,333 at the FY2021 period-end ECB rate 0.17949 in dcf_numbers.json fx_conversion). Cash-flow compilations of Suzano's own statements put share-based compensation at R$42.1M (FY2023) / R$99.1M (FY2024) / R$92.1M (FY2025); the override takes the highest of the three recent years. Declared in BRL, the reporting currency; the engine FX-converts at period-end rates.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 1.98 vs 3-yr median 1.45 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 8.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier B (16.4%) vs bull-case tier S (28.0%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 5.35,
+   "irr": 0.0994
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 9.41,
+   "irr": 0.1637
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 13.72,
+   "irr": 0.2231
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 18.55,
+   "irr": 0.2796
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 25.85,
+   "irr": 0.3527
+  }
+ },
+ "iv_at_15": 12.96,
+ "iv_at_12": 17.23,
+ "implied_irr": 0.2124,
+ "implied_irr_base_case": 0.2231,
+ "upside_at_15_pct": 52.5,
+ "tier_by_numbers": "A",
+ "tier_final": "A",
+ "confidence": "low",
+ "one_liner": "World's largest, lowest-cost hardwood pulp producer, moat 5/10 \u2014 Tier A by numbers on the normalized median base ($1.45/ADS): weighted IRR 21.2%, IV@15% $12.96 vs $8.50 price \u2014 but a levered commodity price-taker (net debt 8.1x normalized OE; bear case is Tier B at 16.4% IRR and the super-bear IV of $5.35 sits below the price), so size it like a B.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1637,
+ "irr_bull": 0.2796,
+ "tier_bear": "B",
+ "tier_bull": "S",
+ "iv_at_20": 9.13,
+ "iv_at_25": 7.02,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 14535701770.240002,
+ "shares_diluted_latest": 1239714000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_eligible": false,
+ "moat_for": [
+  "Structural cost advantage: own eucalyptus plantations with short harvest cycles close to the mills, integrated logistics and ports \u2014 pulp cash cost R$817/t in FY2025, lowest since 2021 (company FY2025 release)",
+  "Scale: world's largest hardwood pulp producer; Cerrado (Ribas do Rio Pardo) added 2.55Mt/yr (~20% more capacity, total ~13.4Mt market pulp) and cut consolidated pulp cash cost 6% in 2024 to R$828/t",
+  "Vertical integration into paper/paperboard/tissue and the 2024 US paperboard acquisition diversify the pulp-only exposure (market pulp still ~75% of FY2025 revenue per segments.json)",
+  "Through-cycle cash generation: OE positive 5/5 last fiscal years (dcf_numbers.json), including the 2023 pulp-price trough"
+ ],
+ "moat_against": [
+  "Commodity price-taker: bleached eucalyptus kraft pulp price is set by the market (China demand, industry capacity additions); Suzano has no pricing power \u2014 gross margin ranged 32-50% over the last five fiscal years on price alone",
+  "Returns are cycle-determined, not franchise-determined: roic_proxy 17.7%/17.9% at the FY2021/22 price peak fell to 6.8% by FY2025 (fundamentals.json)",
+  "High leverage amplifies the cycle: net debt $14.54B (dcf_numbers.json), ~3.2x adjusted EBITDA in USD at FY2025 (company release) and several turns of the engine's normalized OE",
+  "BRL/USD exposure both ways: revenues are USD-linked but costs are in BRL, and USD debt/hedge marks produced a R$7.0B net loss in FY2024 on non-cash FX/derivative swings",
+  "New industry capacity (including Suzano's own Cerrado tonnes) pressures the very price it takes; environmental/land-use scrutiny of eucalyptus monoculture is a standing ESG overhang"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 99100000.0,
+   "kind": "estimate",
+   "source": "Anchor: last SBC value filed under the engine's tags is FY2021 R$99,740,000 (financials_history.csv: US$17,902,333 at the FY2021 period-end ECB rate 0.17949 in dcf_numbers.json fx_conversion). Cash-flow compilations of Suzano's own statements put share-based compensation at R$42.1M (FY2023) / R$99.1M (FY2024) / R$92.1M (FY2025); the override takes the highest of the three recent years. Declared in BRL, the reporting currency; the engine FX-converts at period-end rates."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 1.4591,
+  "base_oe_with_override": 1.4465,
+  "base_oe_impact_pct": -0.868,
+  "weighted_irr_without_override": 0.2139,
+  "weighted_irr_with_override": 0.2124,
+  "weighted_irr_impact_pp": -0.157,
+  "unblocks_tier": true
+ }
+}

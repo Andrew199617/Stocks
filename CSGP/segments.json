@@ -1,0 +1,200 @@
+{
+ "ticker": "CSGP",
+ "cik": 1057352,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001057352-26-000020",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000020/csgp-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001057352-26-000035",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000035/csgp-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001057352-26-000066",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000066/csgp-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "csgp:CommercialRealEstateSegmentMember",
+     "label": "Commercial Real Estate Segment",
+     "values": [
+      1443000000,
+      1515000000,
+      1787000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5878,
+      0.5537,
+      0.5504
+     ],
+     "growth_yoy": [
+      null,
+      0.0499,
+      0.1795
+     ]
+    },
+    {
+     "member": "csgp:ResidentialRealEstateSegmentMember",
+     "label": "Residential Real Estate Segment",
+     "values": [
+      1012000000,
+      1221000000,
+      1460000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4122,
+      0.4463,
+      0.4496
+     ],
+     "growth_yoy": [
+      null,
+      0.2065,
+      0.1957
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2455000000,
+     2736000000,
+     3247000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "csgp:CommercialRealEstateSegmentMember",
+     "label": "Commercial Real Estate Segment",
+     "values": [
+      409000000,
+      446000000,
+      472000000,
+      481000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5587,
+      0.5711,
+      0.5262,
+      0.52
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.154,
+      0.0785
+     ]
+    },
+    {
+     "member": "csgp:ResidentialRealEstateSegmentMember",
+     "label": "Residential Real Estate Segment",
+     "values": [
+      323000000,
+      335000000,
+      425000000,
+      444000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4413,
+      0.4289,
+      0.4738,
+      0.48
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3158,
+      0.3254
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     732000000,
+     781000000,
+     897000000,
+     925000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'North America Segment' (csgp:NorthAmericaSegmentMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Commercial Real Estate Segment, Residential Real Estate Segment)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'International Segment' (csgp:InternationalSegmentMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Commercial Real Estate Segment, Residential Real Estate Segment)"
+ ],
+ "complete": true
+}

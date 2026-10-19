@@ -1,0 +1,521 @@
+{
+ "ticker": "HST",
+ "cik": 1070750,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001070750-26-000054",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000054/hst-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001070750-26-000080",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000080/hst-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001070750-26-000126",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000126/hst-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:OccupancyMember",
+     "label": "Occupancy",
+     "values": [
+      3244000000,
+      3426000000,
+      3608000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6108,
+      0.6027,
+      0.5901
+     ],
+     "growth_yoy": [
+      null,
+      0.0561,
+      0.0531
+     ]
+    },
+    {
+     "member": "us-gaap:FoodAndBeverageMember",
+     "label": "Food and Beverage",
+     "values": [
+      1582000000,
+      1716000000,
+      1803000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2979,
+      0.3019,
+      0.2949
+     ],
+     "growth_yoy": [
+      null,
+      0.0847,
+      0.0507
+     ]
+    },
+    {
+     "member": "us-gaap:HomeBuildingMember",
+     "label": "Home Building",
+     "values": [
+      0,
+      0,
+      99000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0162
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:HotelOtherMember",
+     "label": "Hotel, Other",
+     "values": [
+      485000000,
+      542000000,
+      604000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0913,
+      0.0954,
+      0.0988
+     ],
+     "growth_yoy": [
+      null,
+      0.1175,
+      0.1144
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5311000000,
+     5684000000,
+     6114000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:OccupancyMember",
+     "label": "Occupancy",
+     "values": [
+      938000000,
+      949000000,
+      943000000,
+      954000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5885,
+      0.5984,
+      0.5733,
+      0.5817
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0053,
+      0.0053
+     ]
+    },
+    {
+     "member": "us-gaap:FoodAndBeverageMember",
+     "label": "Food and Beverage",
+     "values": [
+      503000000,
+      478000000,
+      517000000,
+      484000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3156,
+      0.3014,
+      0.3143,
+      0.2951
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0278,
+      0.0126
+     ]
+    },
+    {
+     "member": "us-gaap:HomeBuildingMember",
+     "label": "Home Building",
+     "values": [
+      0,
+      0,
+      26000000,
+      53000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0158,
+      0.0323
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:HotelOtherMember",
+     "label": "Hotel, Other",
+     "values": [
+      153000000,
+      159000000,
+      159000000,
+      149000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.096,
+      0.1003,
+      0.0967,
+      0.0909
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0392,
+      -0.0629
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1594000000,
+     1586000000,
+     1645000000,
+     1640000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5219000000,
+      5583000000,
+      6010000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9827,
+      0.9822,
+      0.983
+     ],
+     "growth_yoy": [
+      null,
+      0.0697,
+      0.0765
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      70000000,
+      75000000,
+      76000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0132,
+      0.0132,
+      0.0124
+     ],
+     "growth_yoy": [
+      null,
+      0.0714,
+      0.0133
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      22000000,
+      26000000,
+      28000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0041,
+      0.0046,
+      0.0046
+     ],
+     "growth_yoy": [
+      null,
+      0.1818,
+      0.0769
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5311000000,
+     5684000000,
+     6114000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1576000000,
+      1557000000,
+      1623000000,
+      1610000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9887,
+      0.9817,
+      0.9866,
+      0.9817
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0298,
+      0.034
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      11000000,
+      22000000,
+      14000000,
+      22000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0069,
+      0.0139,
+      0.0085,
+      0.0134
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2727,
+      0.0
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      7000000,
+      7000000,
+      8000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0044,
+      0.0044,
+      0.0049,
+      0.0049
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1429,
+      0.1429
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1594000000,
+     1586000000,
+     1645000000,
+     1640000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Hotel Ownership' (hst:HotelOwnershipMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Hotel Ownership' (hst:HotelOwnershipMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Hotel' (srt:HotelMember) dropped: its values equal the sum of Occupancy, Food and Beverage, Hotel, Other",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Hotel' (srt:HotelMember) dropped: its values equal the sum of Occupancy, Food and Beverage, Hotel, Other"
+ ],
+ "complete": true
+}

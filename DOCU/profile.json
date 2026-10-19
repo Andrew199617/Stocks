@@ -1,0 +1,290 @@
+{
+ "ticker": "DOCU",
+ "cik": 1261333,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T16:34:26-04:00",
+ "newest_filing_date": "2026-09-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001261333.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000021/docu-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DOCU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DOCU/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DOCUSIGN, INC.",
+  "cik": 1261333,
+  "description": {
+   "text": "Docusign solutions bring agreements to life, accelerating and simplifying the process of doing business. Docusign’s core offerings — our Intelligent Agreement Management (“IAM”) platform, the world’s leading e-signature solution, and contract lifecycle management (“CLM”) solution — allow organizations to boost productivity, accelerate contract review cycles, and transform agreement data into insights and actions, while providing a customer-centric experience. The Docusign IAM platform is a system of record that enables customers of all sizes to ingest a vast, complex body of agreements into a single repository, build agreement workflows that operate at scale, and take action on high-accuracy insights from agreement data. As of January 31, 2026, over 1.8 million customers and more than a billion users worldwide utilize Docusign to accelerate and simplify the process of doing business, and more than 25,000 customers are on IAM today. We offer subscriptions to our products to businesses of all sizes, from global enterprises down to very small businesses (“VSBs”). We offer more than 1,100 active partner integrations with the applications that many of our customers already use so that they can create, commit, and manage agreements directly within these applications. We have a diverse customer base spanning across virtually all industries and around the world with no significant customer concentration.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-18",
+   "period": "2026-01-31",
+   "accession": "0001261333-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000021/docu-20260131.htm"
+  },
+  "description_short": "Docusign brings agreements to life. Over 1.9 million customers and more than a billion people in over 180 countries use Docusign solutions to accelerate the process of doing business and simplify people's lives. With intelligent agreement management, Docusign unleashes business-critical data that is trapped inside of documents. Until now, these were disconnected from business systems of record, costing businesses time, money, and opportunity. Using the Docusign AI-native IAM platform, companies can create, commit, and manage agreements with solutions created by the #1 company in e-signature and contract lifecycle management (CLM).",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0131",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.docusign.com",
+  "headquarters": "San Francisco, California",
+  "address": {
+   "street": "221 Main St. Suite 800",
+   "city": "San Francisco",
+   "state": "California",
+   "zip": "94105",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-18"
+  },
+  "phone": "415-489-4940",
+  "employees": {
+   "count": 7044,
+   "as_of": "2026-01-31",
+   "evidence": "As of January 31, 2026, we had 7,044 employees, of which approximately 60% were based in the U.S. and the remainder in international locations.",
+   "form": "10-K",
+   "filed": "2026-03-18",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000021/docu-20260131.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2018-03-28",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "DOCUSIGN INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001261333&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-09-04",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001261333-26-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000099/docu-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001261333-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000088/docu-20260903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-05",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001261333-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000074/docu-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001261333-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000072/docu-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-070097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000110465926070097/tm2616614d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001261333-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000050/docu-20260502.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-16",
+   "period": "2026-04-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001261333-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000043/docu-20260416.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-18",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001261333-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000021/docu-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001261333-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000017/docu-20260317.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001261333-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133326000006/docu-20260305.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-05",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001261333-25-000150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000150/docu-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001261333-25-000146",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000146/docu-20251204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-09-05",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001261333-25-000132",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000132/docu-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-03",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0001261333-25-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000129/docu-20250903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-06",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001261333-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000075/docu-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-05",
+   "period": "2025-06-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001261333-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000073/docu-20250605.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-30",
+   "period": "2025-05-29",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001261333-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000053/docu-20250529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-23",
+   "period": "2025-05-21",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-052438",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000110465925052438/tm2515942d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-04-28",
+   "period": "2025-04-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001261333-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000051/docu-20250424.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-25",
+   "period": "2025-04-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001261333-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1261333/000126133325000049/docu-20250424.htm"
+  }
+ ],
+ "warnings": []
+}

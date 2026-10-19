@@ -1,0 +1,287 @@
+{
+ "ticker": "MAS",
+ "cik": 62996,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T13:40:44-04:00",
+ "newest_filing_date": "2026-07-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000062996.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000005/mas-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MAS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MAS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MASCO CORP /DE/",
+  "cik": 62996,
+  "description": {
+   "text": "Masco Corporation and its subsidiaries (the “Company”) is a global leader in the design, manufacture and distribution of branded home improvement and building products. Our portfolio of industry-leading brands includes BEHR® paint; DELTA® and HANSGROHE® faucets, bath and shower fixtures; LIBERTY® branded decorative and functional hardware; and HOT SPRING® spas. We leverage our powerful brands across product categories, sales channels and geographies to create value for our customers and shareholders. We believe that our solid results of operations and financial position for 2025 resulted from our continued focus on our strategy to drive the full potential of our core businesses, leverage opportunities across our enterprise, and actively manage our portfolio. In 2025, we continued to return value to our shareholders by repurchasing approximately 8.5 million shares of our common stock and increasing our quarterly dividend by approximately seven percent compared to 2024.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "accession": "0000062996-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000005/mas-20251231.htm"
+  },
+  "description_short": "Headquartered in Livonia, Michigan, Masco Corporation is a global leader in the design, manufacture and distribution of branded home improvement and building products. Our portfolio of industry leading brands includes Behr® paint; Delta® and hansgrohe® faucets, bath and shower fixtures; Liberty® branded decorative and functional hardware; and HotSpring® spas. We leverage our powerful brands across product categories, sales channels and geographies to create value for our customers and shareholders. For more information about Masco Corporation, visit www.masco.com.",
+  "industry": "Industrial Specialties",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3430",
+  "sic_description": "Heating Equip, Except Elec & Warm Air; & Plumbing Fixtures",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.masco.com",
+  "headquarters": "Livonia, Michigan",
+  "address": {
+   "street": "17450 College Parkway",
+   "city": "Livonia",
+   "state": "Michigan",
+   "zip": "48152",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-10"
+  },
+  "phone": "3132747400",
+  "employees": {
+   "count": 18000,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we employed approximately 18,000 people.",
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000005/mas-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-28",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000062996&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000062996-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000027/mas-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000062996-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000026/mas-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-08",
+   "items": [
+    "5.03",
+    "5.07"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0000062996-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000016/mas-20260508.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000062996-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000014/mas-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000062996-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000013/mas-20260422.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-16",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001213900-26-045890",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000121390026045890/ea0287027-8k_masco.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-10",
+   "period": "2026-05-08",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-151241",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000119312526151241/d44594ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-20",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0000062996-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000008/mas-20260320.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001213900-26-015557",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000121390026015557/ea0276633-8k_masco.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000062996-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000005/mas-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000062996-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000004/mas-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001213900-26-003396",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000121390026003396/ea0272550-8k_masco.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-16",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001213900-25-122251",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000121390025122251/ea0269860-8k_masco.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-02",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001213900-25-119223",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000121390025119223/ea0268680-8k_masco.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000062996-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299625000035/mas-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000062996-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299625000034/mas-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000062996-25-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299625000029/mas-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000062996-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299625000028/mas-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-09",
+   "period": "2025-07-08",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000062996-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299625000021/mas-20250708.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-15",
+   "period": "2025-05-09",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0000062996-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/62996/000006299625000013/mas-20250509.htm"
+  }
+ ],
+ "warnings": []
+}

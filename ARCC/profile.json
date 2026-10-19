@@ -1,0 +1,304 @@
+{
+ "ticker": "ARCC",
+ "cik": 1287750,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T15:56:49-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001287750.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1287750/000128775026000006/arcc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ARCC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ARCC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ARES CAPITAL CORP",
+  "cik": 1287750,
+  "description": {
+   "text": "Ares Capital Corporation, a Maryland corporation (together with its subsidiaries, where applicable, “Ares Capital” or the “Company,” which may also be referred to as “we,” “us” or “our”), is a specialty finance company that is a closed-end, non-diversified management investment company. We have elected to be regulated as a business development company (“BDC”) under the Investment Company Act of 1940, as amended, and the rules and regulations promulgated thereunder, the “Investment Company Act.” We were founded on April 16, 2004, were initially funded on June 23, 2004 and completed our initial public offering (“IPO”) on October 8, 2004. As of December 31, 2025, we were the largest publicly traded BDC by market capitalization and had approximately $31.2 billion of total assets. We are externally managed by Ares Capital Management LLC (“Ares Capital Management” or our “investment adviser”), a subsidiary of Ares Management Corporation (“Ares Management” or “Ares”), a publicly traded, leading global alternative investment manager, pursuant to our investment advisory and management agreement. Ares Operations LLC (“Ares Operations” or our “administrator”), a subsidiary of Ares Management, provides certain administrative and other services necessary for us to operate. Our investment objective is to generate both current income and capital appreciation through debt and equity investments.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "accession": "0001287750-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000128775026000006/arcc-20251231.htm"
+  },
+  "description_short": "Founded in 2004, Ares Capital is a leading specialty finance company focused on providing direct loans and other investments in private middle market companies in the United States. Ares Capital's objective is to source and invest in high-quality borrowers that need capital to achieve their business goals, which often leads to economic growth and employment. Ares Capital believes its loans and other investments in these companies can generate attractive levels of current income and potential capital appreciation for investors. Ares Capital, through its investment manager, utilizes its extensive, direct origination capabilities and incumbent borrower relationships to source and underwrite predominantly senior secured loans but also subordinated debt and equity investments. Ares Capital has elected to be regulated as a business development company (\"BDC\") and was the largest publicly traded BDC by market capitalization as of September 30, 2026.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": null,
+  "sic_description": null,
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.arescapitalcorp.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "245 Park Avenue 44th Floor",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10167",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-04"
+  },
+  "phone": "2127507300",
+  "employees": {
+   "count": 4250,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Ares had over 4,250 employees in over 55 offices in more than 25 countries.",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000128775026000006/arcc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2004-04-20",
+  "first_sec_filing_form": "8-A12G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001287750&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-107911",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926107911/tm2625396d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-14",
+   "period": "2026-08-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-057167",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026057167/arcc-20260813.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026050307/arcc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-050303",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026050303/arcc-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-17",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-085912",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926085912/tm2620889d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-26-044648",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026044648/arcc-20260618.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-04",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001628280-26-041366",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026041366/arcc-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-21",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-065964",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926065964/tm2615518d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-15",
+   "period": "2026-08-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-062497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926062497/tm267561-4_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-058639",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926058639/tm2614090d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-032891",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026032891/arcc-20260507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "1.01",
+    "1.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement",
+   "accession": "0001104659-26-050503",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926050503/tm2612790d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-027688",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026027688/arcc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-027685",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026027685/arcc-20260428.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-03-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001628280-26-020560",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026020560/arcc-20251231.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-05",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-024199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926024199/tm261483-2_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001287750-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000128775026000009/arcc-20260225.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001287750-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000128775026000006/arcc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001287750-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000128775026000004/arcc-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-002869",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000110465926002869/tm262535d1_8k.htm"
+  }
+ ],
+ "warnings": []
+}

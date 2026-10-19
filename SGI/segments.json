@@ -1,0 +1,1222 @@
+{
+ "ticker": "SGI",
+ "cik": 1206264,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001206264-26-000015",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1206264/000120626426000015/sgi-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001206264-26-000067",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1206264/000120626426000067/sgi-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001206264-26-000113",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1206264/000120626426000113/sgi-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      null,
+      null,
+      3505400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.4689
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      3855500000,
+      3788900000,
+      2701200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7828,
+      0.7684,
+      0.3613
+     ],
+     "growth_yoy": [
+      null,
+      -0.0173,
+      -0.2871
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      1069900000,
+      1142000000,
+      1269900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2172,
+      0.2316,
+      0.1699
+     ],
+     "growth_yoy": [
+      null,
+      0.0674,
+      0.112
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4925400000,
+     4930900000,
+     7476500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      593700000,
+      948800000,
+      885900000,
+      922200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.37,
+      0.5045,
+      0.4918,
+      0.5057
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4922,
+      -0.028
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      706200000,
+      638400000,
+      563500000,
+      601800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4401,
+      0.3394,
+      0.3128,
+      0.33
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2021,
+      -0.0573
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      304800000,
+      293600000,
+      352100000,
+      299500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1899,
+      0.1561,
+      0.1954,
+      0.1642
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1552,
+      0.0201
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1604700000,
+     1880800000,
+     1801500000,
+     1823500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      643100000,
+      612100000,
+      553300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0591,
+      0.9652,
+      0.7329
+     ],
+     "growth_yoy": [
+      null,
+      -0.0482,
+      -0.0961
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      170900000,
+      194900000,
+      221200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2815,
+      0.3073,
+      0.293
+     ],
+     "growth_yoy": [
+      null,
+      0.1404,
+      0.1349
+     ]
+    },
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      null,
+      null,
+      190800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.2527
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -206800000,
+      -172800000,
+      -210400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3406,
+      -0.2725,
+      -0.2787
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     607200000,
+     634200000,
+     754900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      40300000,
+      130100000,
+      131700000,
+      155900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      3.053,
+      0.7232,
+      0.7039,
+      0.7729
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.268,
+      0.1983
+     ]
+    },
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      null,
+      63200000,
+      33400000,
+      59400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3513,
+      0.1785,
+      0.2945
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0601
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      51100000,
+      39800000,
+      64900000,
+      37200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      3.8712,
+      0.2212,
+      0.3469,
+      0.1844
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2701,
+      -0.0653
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -85000000,
+      -53200000,
+      -42900000,
+      -50800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -6.4394,
+      -0.2957,
+      -0.2293,
+      -0.2519
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13200000,
+     179900000,
+     187100000,
+     201700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      0,
+      7929700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.6836
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      5575200000,
+      5717900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9322,
+      0.4929
+     ],
+     "growth_yoy": [
+      null,
+      0.0256
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      1477600000,
+      1542300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2471,
+      0.1329
+     ],
+     "growth_yoy": [
+      null,
+      0.0438
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      3580000000,
+      2588700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5986,
+      0.2232
+     ],
+     "growth_yoy": [
+      null,
+      -0.2769
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -4652400000,
+      -6177900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.7779,
+      -0.5325
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5980400000,
+     11600700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      7929700000,
+      8021600000,
+      8128200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6836,
+      0.6951,
+      0.7
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      5717900000,
+      5885100000,
+      6263400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4929,
+      0.51,
+      0.5394
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      1542300000,
+      1569600000,
+      1463500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1329,
+      0.136,
+      0.126
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2588700000,
+      2740900000,
+      3087700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2232,
+      0.2375,
+      0.2659
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -6177900000,
+      -6677600000,
+      -7331800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.5325,
+      -0.5787,
+      -0.6315
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11600700000,
+     11539600000,
+     11611000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      102200000,
+      127600000,
+      121400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5585,
+      0.6333,
+      0.4179
+     ],
+     "growth_yoy": [
+      null,
+      0.2485,
+      -0.0486
+     ]
+    },
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      null,
+      null,
+      85000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.2926
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      25600000,
+      28200000,
+      32000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1399,
+      0.14,
+      0.1102
+     ],
+     "growth_yoy": [
+      null,
+      0.1016,
+      0.1348
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      55200000,
+      45700000,
+      52100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3016,
+      0.2268,
+      0.1793
+     ],
+     "growth_yoy": [
+      null,
+      -0.1721,
+      0.14
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     183000000,
+     201500000,
+     290500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sgi:TempurSealyNorthAmericaSegmentMember",
+     "label": "Tempur Sealy North America Segment",
+     "values": [
+      30800000,
+      30200000,
+      30100000,
+      30100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.466,
+      0.4402,
+      0.4152,
+      0.4101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0227,
+      -0.0033
+     ]
+    },
+    {
+     "member": "sgi:MattressFirmSegmentMember",
+     "label": "Mattress Firm Segment",
+     "values": [
+      null,
+      17900000,
+      23500000,
+      21000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.2609,
+      0.3241,
+      0.2861
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1732
+     ]
+    },
+    {
+     "member": "sgi:TempurSealyInternationalSegmentMember",
+     "label": "Tempur Sealy International Segment",
+     "values": [
+      7400000,
+      7700000,
+      8600000,
+      8500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.112,
+      0.1122,
+      0.1186,
+      0.1158
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1622,
+      0.1039
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      11200000,
+      12800000,
+      10300000,
+      13800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1694,
+      0.1866,
+      0.1421,
+      0.188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0804,
+      0.0781
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     66100000,
+     68600000,
+     72500000,
+     73400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3560800000,
+      3490100000,
+      5934700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7229,
+      0.7078,
+      0.7938
+     ],
+     "growth_yoy": [
+      null,
+      -0.0199,
+      0.7004
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1364600000,
+      1440800000,
+      1541800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2771,
+      0.2922,
+      0.2062
+     ],
+     "growth_yoy": [
+      null,
+      0.0558,
+      0.0701
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4925400000,
+     4930900000,
+     7476500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1241800000,
+      1522100000,
+      1390900000,
+      1453500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7739,
+      0.8093,
+      0.7721,
+      0.7971
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1201,
+      -0.0451
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      362900000,
+      358700000,
+      410600000,
+      370000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2261,
+      0.1907,
+      0.2279,
+      0.2029
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1314,
+      0.0315
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1604700000,
+     1880800000,
+     1801500000,
+     1823500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

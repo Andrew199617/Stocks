@@ -1,0 +1,293 @@
+{
+ "ticker": "FIS",
+ "cik": 1136893,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T10:55:24-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001136893.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000013/fis-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FIS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FIS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Fidelity National Information Services, Inc.",
+  "cik": 1136893,
+  "description": {
+   "text": "FIS is a financial technology company providing solutions to financial institutions, businesses and developers. We unlock financial technology to the world across the money lifecycle underpinning the world's financial systems. Our people are dedicated to advancing the way the world pays, banks and invests, by helping our clients to confidently run, grow and protect their businesses. Our expertise comes from decades of experience helping financial institutions and businesses of all sizes adapt to meet the needs of their customers by harnessing where reliability meets innovation in financial technology. Headquartered in Jacksonville, Florida, FIS is a member of the Fortune 500® and the Standard & Poor’s 500® Index. FIS is incorporated under the laws of the State of Georgia as Fidelity National Information Services, Inc., and our stock is traded under the trading symbol \"FIS\" on the New York Stock Exchange.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001136893-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000013/fis-20251231.htm"
+  },
+  "description_short": "FIS is a financial technology company providing solutions to financial institutions and businesses globally. We unlock financial technology to the world across the money lifecycle underpinning the world's financial system. Our people are dedicated to advancing the way the world pays, banks and invests, by helping our clients to confidently run, grow, and protect their businesses. Headquartered in Jacksonville, Florida, FIS is a member of the Fortune 500 and the Standard & Poor's 500 Index.",
+  "industry": "Business Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.fisglobal.com",
+  "headquarters": "Jacksonville, Florida",
+  "address": {
+   "street": "347 Riverside Avenue",
+   "city": "Jacksonville",
+   "state": "Florida",
+   "zip": "32202",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "407-551-8315",
+  "employees": {
+   "count": 44000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had more than 44,000 employees, including over 27,000 employees principally employed outside of the U.S.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000013/fis-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-04-03",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "CERTEGY INC",
+   "EQUIFAX PS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001136893&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001136893-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000050/fis-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001136893-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000046/fis-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-16",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-276051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526276051/d169652d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-10",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-269601",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526269601/d167902d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001136893-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000040/fis-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001136893-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000038/fis-20260508.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-28",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001136893-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000026/fis-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-03",
+   "period": "2026-03-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001136893-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000016/fis-20260330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-18",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-117662",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526117662/d95406d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-04",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-100370",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526100370/d69461d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-097627",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526097627/d61310d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001136893-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000013/fis-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-065257",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526065257/d78935d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-24",
+   "period": "2026-01-12",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001193125-26-065244",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526065244/d14290d8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001136893-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000009/fis-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001136893-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689326000003/fis-20260119.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-09",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001193125-26-009759",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526009759/d947945d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-277795",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312525277795/d46240d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001136893-25-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689325000128/fis-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001136893-25-000125",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136893/000113689325000125/fis-20251105.htm"
+  }
+ ],
+ "warnings": []
+}

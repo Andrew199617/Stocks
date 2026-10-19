@@ -1,0 +1,35 @@
+{
+ "ticker": "UDR",
+ "cik": 74208,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000074208-26-000013",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/74208/000007420826000013/udr-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000074208-26-000049",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/74208/000007420826000049/udr-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000074208-26-000073",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/74208/000007420826000073/udr-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}

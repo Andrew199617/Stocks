@@ -1,0 +1,86 @@
+{
+ "ticker": "APG",
+ "name": "APi Group Corporation",
+ "sector": "Industrials / Life safety & specialty services",
+ "price": 40.19,
+ "market_cap_b": 16.71,
+ "engine_version": 5,
+ "base_oe_per_share": 1.4449922848536136,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: statutorily required, recurring inspection/service/monitoring work and scale as a leading life-safety provider give route density and customer stickiness, but the work is labor-intensive and locally fragmented, barriers are low, and measured returns are still modest \u2014 ROIC proxy rose only from 2.9% (2022) to 7.7% (2025), not well above cost of capital through a cycle. Gross margin expansion 26.1% to 31.4% over 2022-2025 supports a 5, not a 7+.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 16.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.34,
+   "irr": 0.0466
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 11.8,
+   "irr": 0.0625
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 16.12,
+   "irr": 0.0777
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 21.76,
+   "irr": 0.0967
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 32.81,
+   "irr": 0.1301
+  }
+ },
+ "iv_at_15": 17.24,
+ "iv_at_12": 23.24,
+ "implied_irr": 0.0819,
+ "implied_irr_base_case": 0.0777,
+ "upside_at_15_pct": -57.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid recurring-revenue services compounder, moat 5/10 \u2014 does not clear 15% at $40.19 (weighted IRR 8.2%, IV@15% $17.24; even super bull is 13.0%); it clears 15% only near $17.24.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0625,
+ "irr_bull": 0.0967,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 11.9,
+ "iv_at_25": 9.0,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1847000000,
+ "shares_diluted_latest": 415709895,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Statutorily required fire/life-safety inspection, service and monitoring \u2014 recurring, non-discretionary demand",
+  "Scale and route density as a leading global life-safety provider (Chubb platform, 17+ countries)",
+  "Gross margin expansion 26.1% (2022) to 31.4% (2025) on mix shift to inspection/service/monitoring",
+  "Record backlog over $5B at Q2 2026 and diversified building/infrastructure end markets"
+ ],
+ "moat_against": [
+  "Fragmented local competition and low entry barriers in fire protection and specialty contracting",
+  "Labor-intensive services model \u2014 pricing power limited, wage pressure passes through slowly",
+  "ROIC proxy only 7.7% in 2025 after rising from 2.9% in 2022 \u2014 not yet proven above cost of capital through a cycle",
+  "Growth is acquisition-dependent (Chubb 2022, Onyx-Fire and WTech 2026) with goodwill/intangible-heavy balance sheet"
+ ]
+}

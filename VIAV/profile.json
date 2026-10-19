@@ -1,0 +1,289 @@
+{
+ "ticker": "VIAV",
+ "cik": 912093,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T15:56:44-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000912093.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/912093/000162828026056765/viav-20260627.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VIAV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VIAV/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "VIAVI SOLUTIONS INC.",
+  "cik": 912093,
+  "description": {
+   "text": "Viavi Solutions Inc. (VIAVI, also referred to as the Company, we, our and us) is a global leader in test and measurement and optical technologies. Our test and measurement, and resilient Position, Navigation and Timing (PNT) solutions enable and secure critical infrastructure ranging from data center ecosystems and communication networks to military, aerospace, railway and first responder communications. In addition, we develop and advance technologies used in high-volume optical applications across anti-counterfeiting, consumer electronics, aerospace, industrial and automotive end markets. To serve our markets, we operate the following business segments: •Network and Service Enablement (NSE); and •Optical Security and Performance Products (OSP).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-27",
+   "accession": "0001628280-26-056765",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026056765/viav-20260627.htm"
+  },
+  "description_short": "VIAVI (NASDAQ: VIAV) is a global leader in test and measurement and optical technologies. Our test and measurement, and resilient Position, Navigation and Timing (PNT) solutions enable and secure critical infrastructure ranging from data center ecosystems and communication networks to military, aerospace, railway and first responder communications. In addition, we develop and advance technologies used in high-volume optical applications across anti-counterfeiting, consumer electronics, aerospace, industrial and automotive end markets.",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0627",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.viavisolutions.com",
+  "headquarters": "Chandler, Arizona",
+  "address": {
+   "street": "1445 South Spectrum Blvd, Suite 102",
+   "city": "Chandler",
+   "state": "Arizona",
+   "zip": "85286",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-13"
+  },
+  "phone": "4084043600",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-06-12",
+  "first_sec_filing_form": "424B4",
+  "former_names": [
+   "JDS UNIPHASE CORP /CA/",
+   "UNIPHASE CORP /CA/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000912093&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-10-02",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-064524",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026064524/viav-20261002.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-056765",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026056765/viav-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-053381",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026053381/viav-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-022337",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036126022337/ef20074430_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-035930",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026035930/viav-20260512.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028926",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026028926/viav-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-028392",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026028392/viav-20260429.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-29",
+   "period": "2025-12-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-004138",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026004138/viav-20251227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "2.05",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs",
+   "accession": "0001628280-26-003845",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026003845/viav-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-15",
+   "items": [
+    "1.01",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity",
+   "accession": "0001140361-25-045595",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036125045595/ef20061280_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-18",
+   "period": "2025-11-12",
+   "items": [
+    "5.03",
+    "5.07"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001628280-25-052859",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828025052859/viav-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000912093-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000091209325000153/viav-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000912093-25-000151",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000091209325000151/viav-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-16",
+   "period": "2025-10-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001140361-25-038266",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036125038266/ef20057008_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-03",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-25-043990",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828025043990/viav-20251003.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-25",
+   "period": "2025-08-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity",
+   "accession": "0001140361-25-032510",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036125032510/ny20053306x3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-19",
+   "period": "2025-08-13",
+   "items": [
+    "3.02"
+   ],
+   "description": "Unregistered sale of equity",
+   "accession": "0001140361-25-031900",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036125031900/ny20053306x4_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-08-18",
+   "period": "2025-07-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001140361-25-031747",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036125031747/ef20054125_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-13",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001140361-25-031023",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000114036125031023/ny20053306x2_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-08-11",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000912093-25-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/912093/000091209325000096/viav-20250628.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-08-13"
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "ticker": "ROL",
+ "name": "Rollins, Inc.",
+ "sector": "Commercial Services / Pest control",
+ "price": 33.45,
+ "market_cap_b": 16.19,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2002068978410751,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Orkin brand, route density and recurring contracts drive ROIC of 29-41% over the last five fiscal years and a stable ~52-53% gross margin, but residential switching costs are low, the industry stays fragmented, and labor costs pressure margins.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.55,
+   "irr": 0.0534
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 10.7,
+   "irr": 0.0669
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 13.7,
+   "irr": 0.0797
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 16.97,
+   "irr": 0.093
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 21.21,
+   "irr": 0.1089
+  }
+ },
+ "iv_at_15": 13.91,
+ "iv_at_12": 18.8,
+ "implied_irr": 0.0807,
+ "implied_irr_base_case": 0.0797,
+ "upside_at_15_pct": -58.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Elite pest-control compounder, moat 7/10 \u2014 does not clear 15% at $33.45 (weighted IRR 8.1%, IV@15% $13.91); clears 15% only below ~$13.91.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0669,
+ "irr_bull": 0.093,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 9.57,
+ "iv_at_25": 7.23,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 509826000,
+ "shares_diluted_latest": 484147000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "ROIC proxy 29-41% across FY2021-25, well above cost of capital through the cycle",
+  "Orkin brand awareness lowers customer-acquisition cost vs 20,000+ local rivals",
+  "Local route density spreads fixed costs and supports industry-leading margins",
+  "Recurring contracted revenue with proven pricing power (annual price increases accepted)",
+  "Fragmented industry gives a long tuck-in acquisition runway (e.g. Saela)"
+ ],
+ "moat_against": [
+  "Low residential switching costs; service is replicable by local operators",
+  "Rentokil/Terminix is larger globally and integrating its US network",
+  "Labor, medical and fuel costs pressured gross margin -100bp in Q2 2026",
+  "AI-mediated search is raising residential customer-acquisition cost",
+  "Termite damage litigation is a recurring tail risk"
+ ]
+}

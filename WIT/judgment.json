@@ -1,0 +1,35 @@
+{
+ "ads_ratio": {
+  "ratio": 1,
+  "reason": "20-F filer: engine per-share figures are per ordinary share while the NYSE price is per ADS. The filer's own 20-F states the ratio is one equity share per ADS, so per-share owner's earnings and the ADS price are directly comparable with no scaling.",
+  "source": "Wipro Limited Form 20-F for FY2026 (filed 2026-06-02), cover page, securities registered pursuant to Section 12(b) of the Act: American Depositary Shares, each represented by one Equity Share (also stated in Part I, Item 7)"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Labor-arbitrage delivery model is replicable — no proprietary product, data or network effect; TCS, Infosys, Accenture and HCLTech bid the same wallet",
+  "AI automation deflates traditional application/infrastructure work and clients demand the productivity be passed through — pricing power is weak",
+  "Growth has lagged peers for a decade: USD revenue flat FY22-25, IT services +0.6% YoY constant currency in Q2 FY27, large-deal bookings down ~59% QoQ in that release",
+  "ROIC proxy down from ~20% (FY16 and FY21) to ~13% (FY23-25) — returns converging toward the cost of capital",
+  "Client global capability centers (insourcing) compete for the same spend"
+ ],
+ "moat_for": [
+  "Top-tier Indian IT scale: ~$10.4B revenue, 236,328 employees (Q2 FY27 release), multi-year outsourcing relationships with genuine switching friction",
+  "ROIC proxy still above cost of capital — 12.8-13.1% FY23-25 — with gross margin stable at 28.7-30.7% over the last five fiscal years",
+  "Durable cash conversion: operating cash flow ran well above net income in recent prints (Q2 FY27 OCF 165.8% of net income per the results release), funding dividends and repeated buybacks"
+ ],
+ "moat_justification": "Scale and sticky multi-year enterprise relationships are real, and ROIC proxy has stayed above the cost of capital (~13% FY23-25, gross margin stable ~29-31%) — but the labor-arbitrage model is replicable, pricing power is weak, AI automation deflates the legacy ADM/infra base, and returns have converged from ~20% (FY16/FY21) toward ~13% while USD revenue has been flat for four years and peers (TCS, Infosys, Accenture) take share.",
+ "moat_score": 4,
+ "name": "Wipro Limited",
+ "one_liner": "Durable cash generator with a weak, eroding moat (4/10): USD revenue flat for four years, ROIC proxy down to ~13%, and even the bull case reaches only 12.2% IRR at $1.94 — it clears the 15% hurdle only below $1.21 (weighted IV@15%).",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Information Technology / IT services",
+ "tier_override": null,
+ "tier_override_reason": null
+}

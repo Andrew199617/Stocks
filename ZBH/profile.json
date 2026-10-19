@@ -1,0 +1,295 @@
+{
+ "ticker": "ZBH",
+ "cik": 1136869,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T16:23:47-04:00",
+ "newest_filing_date": "2026-09-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001136869.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526059853/zbh-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ZBH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ZBH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ZIMMER BIOMET HOLDINGS, INC.",
+  "cik": 1136869,
+  "description": {
+   "text": "Zimmer Biomet is a global medical technology leader with a comprehensive portfolio designed to maximize mobility and improve health. We design, manufacture and market orthopedic reconstructive products; sports medicine, biologics, extremities and trauma products; craniomaxillofacial and thoracic (“CMFT”) products; bone cement; surgical products; and a suite of integrated digital and robotic technologies that leverage data, data analytics and artificial intelligence. We collaborate with healthcare professionals around the globe to advance the pace of innovation. Our products and solutions help treat patients suffering from disorders of, or injuries to, bones, joints or supporting soft tissues. Together with healthcare professionals, we help millions of people live better lives. In this report, “Zimmer Biomet,” “we,” “us,” “our,” “the Company” and similar words refer collectively to Zimmer Biomet Holdings, Inc. and its subsidiaries. “Zimmer Biomet Holdings” refers to the parent company only. Zimmer Biomet Holdings was incorporated in Delaware in 2001. Our history dates to 1927, when Zimmer Manufacturing Company, a predecessor, was founded in Warsaw, Indiana. On August 6, 2001, we were spun off from our former parent and became an independent public company. In 2015, we acquired LVB Acquisition, Inc. (“LVB”), the parent company of Biomet, Inc. (“Biomet”), and LVB and Biomet became our wholly-owned subsidiaries.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-059853",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526059853/zbh-20251231.htm"
+  },
+  "description_short": "Zimmer Biomet is a global medical technology leader with a comprehensive portfolio designed to maximize mobility and improve health. We seamlessly transform the patient experience through our innovative products and suite of integrated digital and robotic technologies that leverage data, data analytics and artificial intelligence. With 90+ years of trusted leadership and proven expertise, Zimmer Biomet is positioned to deliver the highest quality solutions to patients and providers. Our legacy continues to come to life today through our progressive culture of evolution and innovation.",
+  "industry": "Industrial Specialties",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3842",
+  "sic_description": "Orthopedic, Prosthetic & Surgical Appliances & Supplies",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.zimmerbiomet.com",
+  "headquarters": "Warsaw, Indiana",
+  "address": {
+   "street": "345 East Main Street",
+   "city": "Warsaw",
+   "state": "Indiana",
+   "zip": "46580",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "5742676131",
+  "employees": {
+   "count": 17000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 17,000 employees worldwide, including approximately 2,000 employees dedicated to research and development.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526059853/zbh-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-03-26",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "ZIMMER HOLDINGS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001136869&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-385256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526385256/d304716d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-335108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526335108/zbh-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-335044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526335044/zbh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-333761",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526333761/zbh-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-26",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-26-288390",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526288390/d158696d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-22",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-242207",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526242207/zbh-20260522.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-218098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526218098/zbh-20260512.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-201710",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526201710/zbh-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-22",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-183430",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526183430/d151739d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-183411",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526183411/zbh-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-01",
+   "period": "2026-05-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-135661",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526135661/zbh-20260331.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-059853",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526059853/zbh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-043620",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526043620/zbh-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-08",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-009895",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312526009895/d37785d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-266884",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312525266884/zbh-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-265649",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312525265649/zbh-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-07",
+   "period": "2025-10-07",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-233473",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312525233473/d938765d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-04",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-196060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000119312525196060/d39979d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-104989",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000095017025104989/zbh-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-104527",
+   "url": "https://www.sec.gov/Archives/edgar/data/1136869/000095017025104527/zbh-20250807.htm"
+  }
+ ],
+ "warnings": []
+}

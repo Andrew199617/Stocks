@@ -1,0 +1,101 @@
+{
+ "ticker": "LFUS",
+ "cik": 889331,
+ "entity": "LITTELFUSE INC /DE",
+ "fy_end": "2025-12-27",
+ "ytd_end": "2026-03-28",
+ "inputs": {
+  "ocf": {
+   "fy": 433764000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 65758000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-03-29"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 80258000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-03-28"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 448264000
+  },
+  "capex": {
+   "fy": 67637000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 23102000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-03-29"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 14094000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-03-28"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 58629000
+  },
+  "sbc": {
+   "fy": 27301000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 4855000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-03-29"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 5671000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-03-28"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 28117000
+  },
+  "shares_diluted": {
+   "fy": 24817000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 24963000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-03-29"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 25420000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-03-28"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 448264000,
+ "ttm_capex": 58629000,
+ "ttm_sbc": 28117000,
+ "ttm_shares_diluted": 25420000,
+ "ttm_oe_total": 361518000,
+ "ttm_oe_per_share": 14.221793863099922,
+ "warnings": [],
+ "overrides_used": []
+}

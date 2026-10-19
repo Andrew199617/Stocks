@@ -1,0 +1,45 @@
+{
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed capex value to band against (last filed value is null under every candidate tag in all periods of companyfacts), so any value flags out-of-band. The $0 is not an estimate \u2014 it is proven by the filer's own FY2025 10-K cash-flow statement, which contains no capex line and reconciles exactly without one in FY2023, FY2024 and FY2025.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads because, as a specialty P&C insurer, AFG reports no capital expenditures at all: its cash deployment (purchases of investments) is an investing activity for the insurance portfolio, and it carries no operating PP&E base on the balance sheet. The filing's own cash-flow reconciliation proves the capex amount is $0, not an undisclosed purchase (EG/CMPS-style proof). The engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows: the investing-activities section lists only acquisitions ($7M in FY2025), purchases of investments ($2,984M), sales/maturities of investments ($2,437M) and other investing activities (-$7M) \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $1,533M + investing -$835M + financing -$377M = the reported net change in cash of $321M exactly; FY2024: $1,152M + $95M - $1,066M = reported $181M exactly; FY2023: $1,970M + $414M - $2,031M = reported $353M exactly. EDGAR companyfacts for CIK 1042046 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 69 periods with operating cash flow).",
+  "value": 0
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Insurance capacity is close to a commodity \u2014 no network effects and low switching costs; pricing is set by the industry cycle, which is softening",
+  "Social inflation on U.S. casualty lines and catastrophe exposure can produce reserve charges that erase underwriting profit",
+  "Earnings depend materially on investment returns, including alternative investments (7.1% annualized in Q2 2026 vs a 10%+ long-term target) \u2014 volatile and market-driven",
+  "Gross margin is not a meaningful insurer metric and the roic_proxy is an operating-income construct; the durable evidence is ROE, which is float-levered",
+  "Crop insurance seasonality concentrates profitability in Q4; workers' comp pricing was down ~2% in Q2 2026"
+ ],
+ "moat_for": [
+  "Diversified specialty P&C platform (~36 niche businesses) with granular underwriting expertise in hard-to-insure commercial niches",
+  "Combined ratio better than the industry average for more than two decades; 91.5% in Q2 2026",
+  "Sustained returns: roic_proxy 17.3-19.6% and ROE 17.5-20.0% in FY2023-25 (fundamentals.json)",
+  "Pricing power in the current cycle: renewal rate increases ~5% ex workers' comp for four consecutive quarters through Q2 2026",
+  "Disciplined, opportunistic capital allocation: $707M returned in FY2025 including special dividends, debt/total capital 27.5% at FY2025"
+ ],
+ "moat_justification": "Diversified specialty P&C franchise (~36 niche businesses via Great American) with a combined ratio better than the industry for more than two decades and sustained high returns (fundamentals.json roic_proxy 17.3-19.6% in FY2023-25, ROE 17.5-20.0%), but insurance capacity is close to a commodity: no network effects, modest switching costs, price set by the cycle, and social inflation / catastrophe / alternative-investment returns can erase a year of underwriting profit.",
+ "moat_score": 5,
+ "name": "American Financial Group, Inc.",
+ "one_liner": "Quality specialty P&C insurer, moat 5/10 \u2014 B by numbers (16.1% weighted IRR, IV@15% $163 vs $149 price) but the OCF base capitalizes float (TTM OCF $1,566M vs TTM net income $953M), so sized down to C per the insurer-float rule and the bear end (C) of the tier band; clears 15% only below ~$163 on these inputs.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "estimate",
+  "reason": "AFG tags SBC only in annual filings; its 10-Q cash-flow statements present no stock-compensation YTD fact, so ttm.py exits with 'sbc: no post-FY YTD fact' and no TTM base can be built (statements.json likewise warns the filings for 2025-03-31..2026-06-30 carry no SBC cash-flow line). This override lets ttm.py assemble the SBC legs at the last filed annual rate, prorated by days. SBC is ~1.2% of FY2025 OCF ($18M vs $1,533M), so the proration assumption moves TTM OE/share by cents, not dollars. The engine's annual history is unaffected: SBC is filed for every annual period, and an override never replaces a filed value.",
+  "source": "Last filed SBC: FY2025 AllocatedShareBasedCompensationExpense $18,000,000 (Form 10-K FY2025; the same $18M figure is filed for FY2023 and FY2024) \u2014 the anchor named here; value is exactly 1.0x that filed figure, inside the 0.1x-10x estimate band",
+  "value": 18000000
+ },
+ "sector": "Finance / Specialty Property & Casualty Insurance",
+ "tier_override": "C",
+ "tier_override_reason": "Insurer-float softening (Andrew's standing rule, 2026-10-15): the OCF-based owner's-earnings base capitalizes float \u2014 TTM OCF $1,566M vs TTM net income $953M (fundamentals.json), and FY2023/FY2025 show the same >40% NI/OCF divergence \u2014 so the final tier is sized down one notch from tier_by_numbers B to C, even though the TTM base ($18.63/share) sits close to the normalized median ($18.14/share). This also lands on the bear end of the TIER_BAND (bear C 11.6% vs bull B 19.5%), per the 5.4 sizing rule. Same treatment as PFG/EG/AIZ/ACGL/HIG/WRB."
+}

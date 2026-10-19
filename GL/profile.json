@@ -1,0 +1,282 @@
+{
+ "ticker": "GL",
+ "cik": 320335,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T23:42:13-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000320335.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000090/gl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GLOBE LIFE INC.",
+  "cik": 320335,
+  "description": {
+   "text": "Globe Life makes available free of charge through its website, its annual report on Form 10-K, its quarterly reports on Form 10-Q, current reports on Form 8-K, and amendments to those reports as soon as reasonably practicable after they have been electronically filed with or furnished to the Securities and Exchange Commission. Other information included in Globe Life's website is not incorporated into this filing. The following table presents Globe Life's business by primary marketing distribution channel. Additional information concerning industry segments may be found in Management’s Discussion and Analysis and in Note 15—Business Segments within the Notes to the Consolidated Financial Statements.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0000320335-26-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000090/gl-20251231.htm"
+  },
+  "description_short": "Globe Life (NYSE: GL) is headquartered in McKinney, TX, and has more than 16,000 insurance agents and 3,600 corporate employees. With a mission to Make Tomorrow Better, Globe Life and its subsidiary companies issue more life insurance policies and have more policyholders than any other life insurance company in the country, with more than 17 million policies in force (excluding reinsurance companies; as reported by S&P Global Market Intelligence 2024). Globe Life's insurance subsidiaries include American Income Life Insurance Company, Family Heritage Life Insurance Company of America, Globe Life And Accident Insurance Company, Liberty National Life Insurance Company, and United American Insurance Company.",
+  "industry": "Life Insurance",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6311",
+  "sic_description": "Life Insurance",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.globelifeinsurance.com",
+  "headquarters": "McKinney, TX",
+  "address": {
+   "street": "7677 Henneman Way",
+   "city": "McKinney",
+   "state": "TX",
+   "zip": "75070",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "972-569-4000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-20",
+  "first_sec_filing_form": "S-3",
+  "former_names": [
+   "TORCHMARK CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320335&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000320335-26-000218",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000218/gl-20260807.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000320335-26-000216",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000216/gl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000320335-26-000203",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000203/gl-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000320335-26-000198",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000198/gl-20260629.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000320335-26-000169",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000169/gl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000320335-26-000160",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000160/gl-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000320335-26-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000143/gl-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000320335-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000135/gl-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000320335-26-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000105/gl-20260227.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000320335-26-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000090/gl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000320335-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000029/gl-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000320335-25-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000066/gl-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000320335-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000064/gl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000320335-25-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000060/gl-20251022.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000320335-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000046/gl-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000320335-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000042/gl-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000320335-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000040/gl-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-01",
+   "period": "2025-07-01",
+   "items": [
+    "2.03"
+   ],
+   "description": "Debt obligation",
+   "accession": "0000320335-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000038/gl-20250701.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000320335-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000032/gl-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000320335-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/320335/000032033525000027/gl-20250430.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

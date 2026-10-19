@@ -1,0 +1,91 @@
+{
+ "ticker": "OWL",
+ "name": "Blue Owl Capital Inc.",
+ "sector": "Finance",
+ "price": 8.85,
+ "market_cap_b": 5.86,
+ "engine_version": 5,
+ "base_oe_per_share": 0.8868356206777666,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Permanent capital (~$225B, ~70%+ of $319B AUM) makes fees durable; scale leadership in middle-market direct lending and net-lease; FRE margin 58.5% and expanding; $31.1B non-fee-paying AUM pipeline (~$380M future fees). Against: private-credit commoditization and spread compression, wealth-channel redemption/headline risk, untested loan-book credit through a downturn, founder concentration, SBC TTM $716M and share count +15.2%/yr. No ROIC series available (roic_proxy null, operating income untagged), so no evidence-based case for 7+.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 15.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (13.4%) vs bull-case tier A (21.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.88,
+   "irr": 0.0927
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.65,
+   "irr": 0.1337
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.61,
+   "irr": 0.1723
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 14.57,
+   "irr": 0.2164
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 20.62,
+   "irr": 0.2728
+  }
+ },
+ "iv_at_15": 10.94,
+ "iv_at_12": 14.84,
+ "implied_irr": 0.176,
+ "implied_irr_base_case": 0.1723,
+ "upside_at_15_pct": 23.6,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Permanent-capital fee machine, moat 6/10 \u2014 clears 15% at $8.85 on TTM numbers (17.6% weighted, IV@15 $10.94) but only just; bear case is Tier C and the $0.92 dividend outruns ~$0.87 distributable earnings/share; clean 15% hurdle price $10.94, 20% at $7.49.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1337,
+ "irr_bull": 0.2164,
+ "tier_bear": "C",
+ "tier_bull": "A",
+ "iv_at_20": 7.49,
+ "iv_at_25": 5.63,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3129914000,
+ "shares_diluted_latest": 661885114,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Permanent capital ~$225B (~70%+ of AUM) \u2014 durable fee base",
+  "Scale leader in US middle-market direct lending and net-lease",
+  "FRE margin 58.5% and expanding; LTM FRE +15%",
+  "$31.1B AUM not yet fee-paying \u2248 ~$380M embedded future annual fees",
+  "Diversified: Credit / Real Assets / GP Strategic Capital"
+ ],
+ "moat_against": [
+  "Private credit commoditizing \u2014 BX/KKR/APO and banks compress fees/spreads",
+  "Wealth-channel redemption and headline risk (2026 BDC redemption story)",
+  "Loan-book credit quality (software exposure) untested through a downturn",
+  "SBC TTM $716M; share count growing 15.2%/yr dilutes per-share compounding",
+  "Founder/key-person concentration; OBDE\u2192OBDC litigation overhang"
+ ]
+}

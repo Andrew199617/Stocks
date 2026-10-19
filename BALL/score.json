@@ -1,0 +1,87 @@
+{
+ "ticker": "BALL",
+ "name": "Ball Corporation",
+ "sector": "Packaging / Aluminum beverage cans",
+ "price": 63.2,
+ "market_cap_b": 17.44,
+ "engine_version": 5,
+ "base_oe_per_share": 3.0081827059426574,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Scale leadership in a can-making oligopoly with long-term contracts and metal pass-through, but buyers are powerful and dual-sourced, pricing is largely pass-through, and ROIC ran only ~8-10% (roic_proxy 2020-2023 in fundamentals.json) \u2014 at, not well above, the cost of capital.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.8%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 7.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (6.6%) vs bull-case tier C (10.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 13.1,
+   "irr": 0.0484
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 21.08,
+   "irr": 0.0662
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 28.83,
+   "irr": 0.0834
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 38.97,
+   "irr": 0.1048
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 58.9,
+   "irr": 0.1426
+  }
+ },
+ "iv_at_15": 30.86,
+ "iv_at_12": 41.24,
+ "implied_irr": 0.0882,
+ "implied_irr_base_case": 0.0834,
+ "upside_at_15_pct": -51.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Decent oligopoly can maker, moat 5/10, but levered, cyclical owner's earnings \u2014 at $63.20 the weighted IRR is 8.8% (IV@15% $30.86); it only clears 15% below ~$31.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0662,
+ "irr_bull": 0.1048,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 21.57,
+ "iv_at_25": 16.48,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5800000000,
+ "shares_diluted_latest": 275972000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest global beverage-can footprint; plant proximity to customer filling lines is hard to replicate",
+  "Long-term supply contracts with major beverage companies",
+  "Aluminum recyclability tailwind as brands shift off plastic",
+  "Metal cost pass-through in contracts limits commodity margin risk"
+ ],
+ "moat_against": [
+  "Powerful concentrated buyers dual-source with Crown and Ardagh",
+  "Can-making is proven, replicable technology \u2014 no proprietary lock-in",
+  "Pricing is largely cost pass-through; real pricing power is thin",
+  "ROIC ~8-10% through the cycle, not well above cost of capital",
+  "High leverage: net debt 7.0x normalized OE"
+ ]
+}

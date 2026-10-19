@@ -1,0 +1,290 @@
+{
+ "ticker": "BALL",
+ "cik": 9389,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T22:23:42-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000009389.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/9389/000110465926017410/ball-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BALL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BALL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BALL Corp",
+  "cik": 9389,
+  "description": {
+   "text": "Ball Corporation and its consolidated subsidiaries (collectively, Ball, the company, we or our) is one of the world’s leading suppliers of aluminum packaging for the beverage, personal care and household products industries. The company was organized in 1880 and incorporated in the state of Indiana, United States of America (U.S.), in 1922. Our sustainable, aluminum packaging products are produced for a variety of end uses and are manufactured in facilities around the world. In 2025, our total consolidated net sales were $13.16 billion. Our largest product line is aluminum beverage containers and we also produce extruded aluminum aerosol containers, recloseable aluminum bottles across multiple consumer categories and aluminum slugs. We sell our aluminum packaging products globally to large multinational beverage, personal care and household products companies with which we have developed long-term relationships. This is evidenced by our high customer retention and large number of long-term supply contracts. While we have a diversified customer base, we sell a significant portion of our packaging products to major companies and brands, as well as to numerous regional customers. Our significant customers include top consumer packaging and beverage companies. We are headquartered in Westminster, Colorado, and our stock is listed for trading on the New York Stock Exchange under the ticker symbol BALL.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-017410",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926017410/ball-20251231x10k.htm"
+  },
+  "description_short": "Ball Corporation (NYSE: BALL) is the global leader in sustainable aluminum packaging solutions, serving a robust portfolio of customers in the beverage, personal care and household products industries. With 16,000 employees in more than 65 manufacturing plants and facilities worldwide, Ball reported 2025 net sales of $13.16 billion.",
+  "industry": "Containers/Packaging",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3411",
+  "sic_description": "Metal Cans",
+  "state_of_incorporation": "IN",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ball.com",
+  "headquarters": "Westminster, Colorado",
+  "address": {
+   "street": "9200 West 108th Circle",
+   "city": "Westminster",
+   "state": "Colorado",
+   "zip": "80021",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "3034695511",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-27",
+  "first_sec_filing_form": "8-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000009389&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-106140",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926106140/tm2625007d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-090226",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926090226/ball-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-090074",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926090074/ball-20260804x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-055460",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926055460/ball-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000009389-26-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938926000107/ball-20260505x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000009389-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938926000075/ball-20260429x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-029499",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926029499/tm2525516-2_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-017410",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465926017410/ball-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000009389-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938926000039/ball-20260203x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000009389-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938925000058/ball-20251210x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-26",
+   "period": "2025-11-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-116089",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465925116089/tm2532071d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-11-21",
+   "period": "2025-11-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0000009389-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938925000055/ball-20251110x8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-10",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000009389-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938925000051/ball-20251110x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-106108",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465925106108/ball-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000009389-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938925000048/ball-20251104x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000009389-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938925000044/ball-20251030x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-078701",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465925078701/tm2522576d5_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-07",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001104659-25-075699",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000110465925075699/tm2522576d4_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-010234",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000155837025010234/ball-20250630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000009389-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/9389/000000938925000015/ball-20250805x8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

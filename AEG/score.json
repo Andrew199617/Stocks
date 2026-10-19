@@ -1,0 +1,117 @@
+{
+ "ticker": "AEG",
+ "name": "AEGON LTD.",
+ "sector": "Finance / Life Insurance",
+ "price": 8.32,
+ "market_cap_b": 12.92,
+ "engine_version": 5,
+ "base_oe_per_share": 0.43616406954282033,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-narrow insurer moat: real US distribution scale through Transamerica and World Financial Group plus diversified Americas/UK/International/asset-management earnings, but commodity life and retirement products with no demonstrated pricing power, a shrinking divestiture perimeter, legacy and market-driven earnings volatility, and returns that have not stayed above the cost of capital through a cycle (fundamentals.json ROE: FY2023 negative, FY2024 7.3%, FY2025 10.3%; the roic_proxy series is null for FY2023-2025 and gross margin is not presented for an insurer, so neither can support a higher score). CAP 7.2y.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025, share capital / major shareholders disclosure: New York Registry Shares are common shares traded on the NYSE and are exchangeable on a one-to-one basis with the Euronext Amsterdam shares, with the same rights except cash dividends are paid in USD on NYRS; the 20-F cover registers Common shares, par value EUR 0.12 per share, under trading symbol AEG on the NYSE) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2017, 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025, Note 13 Other operating expenses, Employee expenses table: the Shares component is EUR 59 million for FY2025, with EUR 58 million for FY2024 and EUR 54 million for FY2023 in the same table; the same note describes the share plans (STI/LTI shares, shares as fixed compensation) whose cost this line carries); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025, Note 16 Earnings per share: weighted average number of common shares outstanding 1,553 million for FY2025 (1,630 million FY2024, 1,879 million FY2023), and the diluted EPS section states diluted EPS equaled basic EPS for all years disclosed because no long-term incentive plans were considered dilutive); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 0.25 vs 3-yr median 0.44 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 1.65,
+   "irr": 0.0468
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 1.97,
+   "irr": 0.0513
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 2.67,
+   "irr": 0.0629
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 3.57,
+   "irr": 0.0779
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 5.31,
+   "irr": 0.1059
+  }
+ },
+ "iv_at_15": 2.71,
+ "iv_at_12": 3.51,
+ "implied_irr": 0.0639,
+ "implied_irr_base_case": 0.0629,
+ "upside_at_15_pct": -67.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Transitioning life insurer, moat 4/10 - at $8.32 the weighted IRR is only 6.39% (weighted IV@15% $2.71) on a $0.44 normalized OE base the sector model already grades low-confidence; it clears the 15% hurdle only below about $2.71.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0513,
+ "irr_bull": 0.0779,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 1.97,
+ "iv_at_25": 1.56,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -882425000.0,
+ "shares_diluted_latest": 1553000000.0,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Transamerica scale in US life insurance and retirement, with World Financial Group distribution passing 100,000 agents in H1 2026",
+  "Diversified earnings across Americas, UK, International strategic partnerships and asset management",
+  "Operating momentum: FY2025 operating result up 15% and H1 2026 operating capital generation up 27% in company reporting",
+  "Capital-return capacity: growing dividend, repeated buybacks and a 169% group solvency ratio at H1 2026",
+  "Simplification path: US redomiciliation and Transamerica renaming approved in October 2026, UK business sale agreed"
+ ],
+ "moat_against": [
+  "Commodity life/retirement products sold on price and service - no demonstrated structural pricing power",
+  "Returns below a clear moat standard: ROE negative in FY2023, 7.3% in FY2024, 10.3% in FY2025 (fundamentals.json)",
+  "Legacy blocks and market/IFRS finance swings drive net result and operating cash flow - OE/share has ranged more than 3x in five years",
+  "Shrinking perimeter: Dutch business sold to a.s.r. in 2023 and the UK sale pending - the scored revenue base is contracting by design",
+  "Capital-intensive, rate-sensitive and regulated in several jurisdictions; redomiciliation and US-GAAP switch add execution risk"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 59000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025, Note 13 Other operating expenses, Employee expenses table: the Shares component is EUR 59 million for FY2025, with EUR 58 million for FY2024 and EUR 54 million for FY2023 in the same table; the same note describes the share plans (STI/LTI shares, shares as fixed compensation) whose cost this line carries"
+  },
+  {
+   "field": "shares",
+   "value": 1553000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025, Note 16 Earnings per share: weighted average number of common shares outstanding 1,553 million for FY2025 (1,630 million FY2024, 1,879 million FY2023), and the diluted EPS section states diluted EPS equaled basic EPS for all years disclosed because no long-term incentive plans were considered dilutive"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.4532,
+  "base_oe_with_override": 0.4362,
+  "base_oe_impact_pct": -3.751,
+  "weighted_irr_without_override": 0.0655,
+  "weighted_irr_with_override": 0.0639,
+  "weighted_irr_impact_pp": -0.156,
+  "unblocks_tier": true
+ }
+}

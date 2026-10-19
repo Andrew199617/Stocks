@@ -1,0 +1,318 @@
+{
+ "ticker": "RCI",
+ "cik": 733099,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0000733099-26-000009",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/733099/000073309926000009/rci-20251231_htm.xml"
+  }
+ ],
+ "currency": "CAD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rci:WirelessSegmentMember",
+     "label": "Wireless Segment",
+     "values": [
+      10595000000,
+      10715000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5142,
+      0.4935
+     ],
+     "growth_yoy": [
+      null,
+      0.0113
+     ]
+    },
+    {
+     "member": "rci:CableSegmentMember",
+     "label": "Cable Segment",
+     "values": [
+      7876000000,
+      7868000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3823,
+      0.3624
+     ],
+     "growth_yoy": [
+      null,
+      -0.001
+     ]
+    },
+    {
+     "member": "rci:MediaSegmentMember",
+     "label": "Media Segment",
+     "values": [
+      2242000000,
+      3288000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1088,
+      0.1514
+     ],
+     "growth_yoy": [
+      null,
+      0.4665
+     ]
+    },
+    {
+     "member": "ifrs-full:UnallocatedAmountsMember",
+     "label": "Unallocated amounts",
+     "values": [
+      325000000,
+      354000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0158,
+      0.0163
+     ],
+     "growth_yoy": [
+      null,
+      0.0892
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -434000000,
+      -513000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0211,
+      -0.0236
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20604000000,
+     21712000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rci:WirelessSegmentMember",
+     "label": "Wireless Segment",
+     "values": [
+      5312000000,
+      5364000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5524,
+      0.5462
+     ],
+     "growth_yoy": [
+      null,
+      0.0098
+     ]
+    },
+    {
+     "member": "rci:CableSegmentMember",
+     "label": "Cable Segment",
+     "values": [
+      4518000000,
+      4585000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4698,
+      0.4669
+     ],
+     "growth_yoy": [
+      null,
+      0.0148
+     ]
+    },
+    {
+     "member": "rci:MediaSegmentMember",
+     "label": "Media Segment",
+     "values": [
+      88000000,
+      241000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0092,
+      0.0245
+     ],
+     "growth_yoy": [
+      null,
+      1.7386
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      -301000000,
+      -370000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0313,
+      -0.0377
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9617000000,
+     9820000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rci:ServiceRevenueMember",
+     "label": "Service Revenue",
+     "values": [
+      18066000000,
+      19104000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8768,
+      0.8799
+     ],
+     "growth_yoy": [
+      null,
+      0.0575
+     ]
+    },
+    {
+     "member": "rci:EquipmentSalesMember",
+     "label": "Equipment Sales",
+     "values": [
+      2538000000,
+      2608000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1232,
+      0.1201
+     ],
+     "growth_yoy": [
+      null,
+      0.0276
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20604000000,
+     21712000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Material reconciling items' (ifrs-full:MaterialReconcilingItemsMember) dropped: its values equal the sum of Unallocated amounts, Elimination of intersegment amounts",
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

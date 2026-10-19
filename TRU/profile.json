@@ -1,0 +1,294 @@
+{
+ "ticker": "TRU",
+ "cik": 1552033,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T01:26:45-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001552033.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000012/tru-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TRU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TRU/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TransUnion",
+  "cik": 1552033,
+  "description": {
+   "text": "TransUnion is a leading global information and insights company that makes trust possible between businesses and consumers, helping people around the world access opportunities that can lead to a higher quality of life. That trust is built on TransUnion’s ability to deliver safe, innovative solutions with credibility and consistency. We call this Information for Good. We have built robust data and analytics assets for a large portion of the adult population in the markets we serve. We use our OneTru solution enablement platform to centralize data management, identity resolution and Artificial Intelligence (“AI”) powered analytics, enabling more persistent identity resolution with sharper, more contextualized insights. We use these insights, combined with our industry expertise, to develop relevant solutions to solve customers’ needs, including credit risk, marketing and fraud mitigation. Because of our work, customers can better understand consumers in order to make more informed decisions, earn consumer trust through personalized experiences, and extend the appropriate opportunities, tools and offers. In turn, we believe consumers can be confident that their data identities will result in better offers and opportunities. Our solutions enable businesses to manage and measure credit risk, market to new and existing customers, verify consumer identities, and mitigate fraud.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001552033-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000012/tru-20251231.htm"
+  },
+  "description_short": "TransUnion is a global information and insights company with over 13,000 associates operating in more than 30 countries. We make trust possible by ensuring each person is reliably represented in the marketplace. We do this with a Tru picture of each person: an actionable view of consumers, stewarded with care. Through our acquisitions and technology investments, we have developed innovative solutions that extend beyond our strong foundation in core credit into areas such as marketing, fraud, risk and advanced analytics. As a result, consumers and businesses can transact with confidence and achieve great things. We call this Information for Good - and it leads to economic opportunity, great experiences and personal empowerment for millions of people around the world.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "7320",
+  "sic_description": "Services-Consumer Credit Reporting, Collection Agencies",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.transunion.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "555 West Adams",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60661",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "(312) 985-2000",
+  "employees": {
+   "count": 13500,
+   "as_of": "2025-12-31",
+   "evidence": "We employed approximately 13,500 employees as of December 31, 2025.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000012/tru-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2012-07-25",
+  "first_sec_filing_form": "D",
+  "former_names": [
+   "TransUnion Holding Company, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001552033&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-399606",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000119312526399606/d117869d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001552033-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000047/tru-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001552033-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000043/ck0001552033-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-12",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001552033-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000032/ck0001552033-20260512.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001552033-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000028/tru-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001552033-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000025/ck0001552033-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-24",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-121876",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000119312526121876/d42958ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001552033-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000019/ck0001552033-20260310.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001552033-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000012/tru-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-11",
+   "items": [
+    "1.01",
+    "2.02",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Debt obligation; Reg FD",
+   "accession": "0001552033-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203326000006/ck0001552033-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-23",
+   "period": "2025-12-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001552033-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000062/ck0001552033-20251219.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001552033-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000057/tru-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001552033-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000055/ck0001552033-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001552033-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000047/tru-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001552033-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000044/ck0001552033-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-09",
+   "period": "2025-05-07",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001552033-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000028/ck0001552033-20250507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001552033-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000025/tru-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-24",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001552033-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000023/ck0001552033-20250424.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-21",
+   "period": "2025-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-060241",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000119312525060241/d910521ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-24",
+   "period": "2025-02-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001552033-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1552033/000155203325000019/ck0001552033-20250219.htm"
+  }
+ ],
+ "warnings": []
+}

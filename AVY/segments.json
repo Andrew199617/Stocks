@@ -1,0 +1,512 @@
+{
+ "ticker": "AVY",
+ "cik": 8818,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000008818-26-000015",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000015/avy-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000008818-26-000109",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000008818-26-000131",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000131/avy-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "avy:MaterialsGroupSegmentMember",
+     "label": "Materials Group Segment",
+     "values": [
+      5811300000,
+      6013000000,
+      6093300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6948,
+      0.6868,
+      0.6881
+     ],
+     "growth_yoy": [
+      null,
+      0.0347,
+      0.0134
+     ]
+    },
+    {
+     "member": "avy:SolutionsGroupSegmentMember",
+     "label": "Solutions Group Segment",
+     "values": [
+      2553000000,
+      2742700000,
+      2762200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3052,
+      0.3132,
+      0.3119
+     ],
+     "growth_yoy": [
+      null,
+      0.0743,
+      0.0071
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8364300000,
+     8755700000,
+     8855500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "avy:MaterialsGroupSegmentMember",
+     "label": "Materials Group Segment",
+     "values": [
+      1480100000,
+      1550200000,
+      1649300000,
+      1796100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.689,
+      0.6981,
+      0.7176,
+      0.7293
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1143,
+      0.1586
+     ]
+    },
+    {
+     "member": "avy:SolutionsGroupSegmentMember",
+     "label": "Solutions Group Segment",
+     "values": [
+      668200000,
+      670300000,
+      649200000,
+      666800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.311,
+      0.3019,
+      0.2824,
+      0.2707
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0284,
+      -0.0052
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2148300000,
+     2220500000,
+     2298500000,
+     2462900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "avy:SolutionsGroupSegmentMember",
+     "label": "Solutions Group Segment",
+     "values": [
+      170600000,
+      181300000,
+      190800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5717,
+      0.5807,
+      0.5814
+     ],
+     "growth_yoy": [
+      null,
+      0.0627,
+      0.0524
+     ]
+    },
+    {
+     "member": "avy:MaterialsGroupSegmentMember",
+     "label": "Materials Group Segment",
+     "values": [
+      127800000,
+      130900000,
+      137400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4283,
+      0.4193,
+      0.4186
+     ],
+     "growth_yoy": [
+      null,
+      0.0243,
+      0.0497
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     298400000,
+     312200000,
+     328200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "avy:SolutionsGroupSegmentMember",
+     "label": "Solutions Group Segment",
+     "values": [
+      46400000,
+      47800000,
+      48100000,
+      47800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5956,
+      0.5916,
+      0.5541,
+      0.5532
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0366,
+      0.0
+     ]
+    },
+    {
+     "member": "avy:MaterialsGroupSegmentMember",
+     "label": "Materials Group Segment",
+     "values": [
+      31500000,
+      33000000,
+      38700000,
+      38600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4044,
+      0.4084,
+      0.4459,
+      0.4468
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2286,
+      0.1697
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     77900000,
+     80800000,
+     86800000,
+     86400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2578300000,
+      2613400000,
+      2751000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3083,
+      0.2985,
+      0.3107
+     ],
+     "growth_yoy": [
+      null,
+      0.0136,
+      0.0527
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      2545200000,
+      2763100000,
+      2726800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3043,
+      0.3156,
+      0.3079
+     ],
+     "growth_yoy": [
+      null,
+      0.0856,
+      -0.0131
+     ]
+    },
+    {
+     "member": "avy:EuropeTheMiddleEastAndNorthAfricaMember",
+     "label": "Europe, The Middle East And North Africa",
+     "values": [
+      2306700000,
+      2418600000,
+      2457100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2758,
+      0.2762,
+      0.2775
+     ],
+     "growth_yoy": [
+      null,
+      0.0485,
+      0.0159
+     ]
+    },
+    {
+     "member": "srt:LatinAmericaMember",
+     "label": "Latin America",
+     "values": [
+      582300000,
+      599800000,
+      567300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0696,
+      0.0685,
+      0.0641
+     ],
+     "growth_yoy": [
+      null,
+      0.0301,
+      -0.0542
+     ]
+    },
+    {
+     "member": "avy:OtherInternationalMember",
+     "label": "Other International",
+     "values": [
+      351800000,
+      360800000,
+      353300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0421,
+      0.0412,
+      0.0399
+     ],
+     "growth_yoy": [
+      null,
+      0.0256,
+      -0.0208
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8364300000,
+     8755700000,
+     8855500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'China Including Hong Kong' (avy:ChinaIncludingHongKongMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, Europe, The Middle East And North Africa, Asia, Latin America, Other International)"
+ ],
+ "complete": true
+}

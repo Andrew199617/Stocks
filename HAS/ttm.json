@@ -1,0 +1,101 @@
+{
+ "ticker": "HAS",
+ "cik": 46080,
+ "entity": "HASBRO, INC.",
+ "fy_end": "2025-12-28",
+ "ytd_end": "2026-06-28",
+ "inputs": {
+  "ocf": {
+   "fy": 893200000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 209400000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 604400000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1288200000
+  },
+  "capex": {
+   "fy": 63300000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 29900000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 41200000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 74600000
+  },
+  "sbc": {
+   "fy": 80400000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 31300000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 46400000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 95500000
+  },
+  "shares_diluted": {
+   "fy": 140200000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 140000000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 143200000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-06-28"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1288200000,
+ "ttm_capex": 74600000,
+ "ttm_sbc": 95500000,
+ "ttm_shares_diluted": 143200000,
+ "ttm_oe_total": 1118100000,
+ "ttm_oe_per_share": 7.807960893854749,
+ "warnings": [],
+ "overrides_used": []
+}

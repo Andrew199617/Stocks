@@ -1,0 +1,38 @@
+{
+ "capex_override": {
+  "ack_reason": "The out-of-band flag is mechanical only: the band is computed against the last FILED capex value under an engine-read tag, and there is no filed value at all under any tag the engine reads (the last PaymentsToAcquireProductiveAssets fact is from 2018). This is not an estimate lacking an anchor \u2014 it is the exact FY2024 figure from the filer's own FY2025 10-K cash-flow statement line for real-estate capital spending, and the median of the three filed years on that line.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024 and FY2025 of the last 3 under every candidate tag the engine reads, because W. P. Carey reports its real-estate capital spending only on the Consolidated Statements of Cash Flows line 'Funding for real estate construction, redevelopments, and other capital expenditures on real estate', which is not carried under any us-gaap candidate tag the engine reads (companyfacts shows no PaymentsToAcquirePropertyPlantAndEquipment / ProductiveAssets annual fact since 2018). The engine applies this single value to every missing period; the value used is the filed FY2024 figure, which is also the median of the three filed years ($121,625,000 FY2023 / $135,327,000 FY2024 / $191,213,000 FY2025). Against the true per-year figures it overstates FY2023 capex by $13,702,000 (~1.3% of FY2023 OCF, lowering that year's OE \u2014 conservative direction), is exact for FY2024, and understates FY2025 capex by $55,886,000 (flattering FY2025 OE by ~$0.25/share; FY2025 is the median year that sets the normalized base, noted in analysis.md). 'Purchases of real estate' ($1,211,397,000 / $1,128,809,000 / $1,657,339,000 for FY2023/24/25, same statement) is excluded: it is property acquisition (growth) spend, presented separately by the filer, not capex \u2014 the same treatment as KIM's acquisition line.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0001025378-26-000036), Consolidated Statements of Cash Flows, investing activities line 'Funding for real estate construction, redevelopments, and other capital expenditures on real estate': $191,213 thousand for FY2025, $135,327 thousand for FY2024 and $121,625 thousand for FY2023",
+  "value": 135327000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Net lease is commodity capital: no pricing power beyond market cap rates at origination/renewal",
+  "Growth is externally funded \u2014 ATM forward equity and unsecured debt issuance dilute (share count +3.3%/yr)",
+  "Thin spread economics: returns are the cap-rate/interest-rate spread, so a higher-for-longer rate regime compresses the model",
+  "Tenant credit events recur (Hellweg insolvency 2026, Q2 2026 impairments of $79.4M); single-tenant assets are binary on default",
+  "REIT payout (~73% of AFFO) retains little; nothing compounds internally"
+ ],
+ "moat_for": [
+  "Contractual duration: 12.2-year weighted-average lease term, 98.5% occupancy, ~99% of leases with escalators (48% CPI-linked, 49% fixed) \u2014 2.6% contractual same-store rent growth",
+  "Diversification: 1,748 properties, 384 tenants, top-10 tenants only 18.1% of ABR, US + Europe, industrial/warehouse/retail mix",
+  "Cost-of-capital advantage: investment-grade BBB+/Baa1 unsecured access, 3.2% weighted-average debt rate, $2.7B liquidity, forward-equity ATM machine",
+  "Sale-leaseback sourcing franchise built since 1973 \u2014 proprietary deal flow in operationally-critical single-tenant assets"
+ ],
+ "moat_justification": "Durable contractual cash flows (12.2y WALT, escalators on ~99% of leases, 98.5% occupancy, 384 tenants) plus an investment-grade cost-of-capital and sourcing advantage \u2014 but net lease is commodity capital with no pricing power past market cap rates, thin cap-rate-over-funding spreads, and growth bought with dilutive external capital. Moderate/narrow moat, 5/10. ROIC evidence: fundamentals.json produces no roic_proxy for WPC (no operating-income series filed in its extraction) and its ~99% 'gross margin' is a rental-accounting artifact, so the score rests on the contractual/structural evidence above, consistent with peer REIT scores (KIM 5, EXR 5, CCI 6, VICI 7).",
+ "moat_score": 5,
+ "name": "W. P. Carey Inc.",
+ "one_liner": "Contractual net-lease cash machine (12.2y WALT, 98.5% occupancy), moat 5/10 \u2014 but at $65.14 it does not clear 15%: weighted IRR 11.2%, weighted IV@15% $44.43 vs the $65.14 price; it clears the 15% hurdle only below ~$44. Sector-misfit REIT model, confidence low.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Real Estate / REIT \u2014 Net lease (single-tenant industrial, warehouse, retail)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

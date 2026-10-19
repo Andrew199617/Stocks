@@ -1,0 +1,298 @@
+{
+ "ticker": "SNN",
+ "cik": 845982,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-028258",
+   "filed": "2026-03-16",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/845982/000110465926028258/snn-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "snn:OrthopaedicsMember",
+     "label": "Orthopaedics",
+     "values": [
+      2214000000,
+      2305000000,
+      2437000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.399,
+      0.3967,
+      0.3954
+     ],
+     "growth_yoy": [
+      null,
+      0.0411,
+      0.0573
+     ]
+    },
+    {
+     "member": "snn:SportsMedicineAndEntMember",
+     "label": "Sports Medicine & ENT",
+     "values": [
+      1729000000,
+      1824000000,
+      1934000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3116,
+      0.3139,
+      0.3138
+     ],
+     "growth_yoy": [
+      null,
+      0.0549,
+      0.0603
+     ]
+    },
+    {
+     "member": "snn:AdvancedWoundManagementMember",
+     "label": "Advanced Wound Management",
+     "values": [
+      1606000000,
+      1681000000,
+      1793000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2894,
+      0.2893,
+      0.2909
+     ],
+     "growth_yoy": [
+      null,
+      0.0467,
+      0.0666
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5549000000,
+     5810000000,
+     6164000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "snn:OrthopaedicsMember",
+     "label": "Orthopaedics",
+     "values": [
+      194000000,
+      213000000,
+      227000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5591,
+      0.571,
+      0.5661
+     ],
+     "growth_yoy": [
+      null,
+      0.0979,
+      0.0657
+     ]
+    },
+    {
+     "member": "snn:SportsMedicineAndEntMember",
+     "label": "Sports Medicine & ENT",
+     "values": [
+      97000000,
+      98000000,
+      105000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2795,
+      0.2627,
+      0.2618
+     ],
+     "growth_yoy": [
+      null,
+      0.0103,
+      0.0714
+     ]
+    },
+    {
+     "member": "snn:AdvancedWoundManagementMember",
+     "label": "Advanced Wound Management",
+     "values": [
+      56000000,
+      62000000,
+      69000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1614,
+      0.1662,
+      0.1721
+     ],
+     "growth_yoy": [
+      null,
+      0.1071,
+      0.1129
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     347000000,
+     373000000,
+     401000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "snn:OrthopaedicsSportsMedicineAndEarNoseAndThroatMember",
+     "label": "Orthopaedics, Sports Medicine and Ear Nose and Throat",
+     "values": [
+      3943000000,
+      4129000000,
+      4370000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7106,
+      0.7107,
+      0.709
+     ],
+     "growth_yoy": [
+      null,
+      0.0472,
+      0.0584
+     ]
+    },
+    {
+     "member": "snn:AdvancedWoundManagementMember",
+     "label": "Advanced Wound Management",
+     "values": [
+      1606000000,
+      1681000000,
+      1794000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2894,
+      0.2893,
+      0.291
+     ],
+     "growth_yoy": [
+      null,
+      0.0467,
+      0.0672
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5549000000,
+     5810000000,
+     6164000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

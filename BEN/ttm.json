@@ -1,0 +1,101 @@
+{
+ "ticker": "BEN",
+ "cik": 38777,
+ "entity": "FRANKLIN RESOURCES INC",
+ "fy_end": "2025-09-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1066100000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1086800000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 298500000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 277800000
+  },
+  "capex": {
+   "fy": 154500000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 123300000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 15000000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 46200000
+  },
+  "sbc": {
+   "fy": 214800000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 170000000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 151000000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 195800000
+  },
+  "shares_diluted": {
+   "fy": 517400000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 518200000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 517500000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 277800000,
+ "ttm_capex": 46200000,
+ "ttm_sbc": 195800000,
+ "ttm_shares_diluted": 517500000,
+ "ttm_oe_total": 35800000,
+ "ttm_oe_per_share": 0.06917874396135265,
+ "warnings": [],
+ "overrides_used": []
+}

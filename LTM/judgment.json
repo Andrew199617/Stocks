@@ -1,0 +1,50 @@
+{
+ "ads_ratio": {
+  "ratio": 2000,
+  "reason": "DATA_GAP:ads_ratio — 20-F filer; EDGAR per-share figures are per ordinary share while the NYSE price ($47.47) is per ADS, so per-share figures must be scaled x2,000 ordinary shares per ADS to be comparable to the ADS price.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, cover/ADS description: each ADS represents 2,000 common shares; corroborated by the company's July 18, 2024 ratio-change announcement (1 ADS = 1 share changed to 1 ADS = 2,000 shares, effective July 24, 2024) and by 2025 secondary-offering prospectuses (Form 424B7: 'Each ADS represents 2,000 common shares')"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": false,
+ "moat_against": [
+  "Commodity, price-shopped product with low passenger switching costs; loyalty is the only lock-in and rivals match it",
+  "Through-cycle returns are poor: roic_proxy -39.4% (2020) and -93.7% (2021) and only 3.3-8.0% in 2016-2019 — the 18.6-29.0% of 2023-2025 sits on a post-bankruptcy written-down capital base (equity was $31M-$1,337M over 2022-2025)",
+  "Cyclicality is proven, not theoretical: Chapter 11 in 2020, owner's earnings negative in FY2021 and FY2022 (OE positive only 3 of the last 5 years)",
+  "Fuel and FX: costs are largely USD while a large share of revenue is in BRL and other local currencies; 2026 guidance was cut then reinstated around a fuel shock",
+  "Rivals are resetting their own cost bases in Chapter 11 (GOL and Azul in 2025), eroding LATAM's post-restructuring cost edge; Brazilian tax/contingency overhang (Note 30)"
+ ],
+ "moat_for": [
+  "Dominant South American network: hubs at Santiago, Lima and Sao Paulo/Guarulhos and leading positions in the Chilean, Peruvian, Colombian, Ecuadorian and Brazilian domestic markets",
+  "LATAM Pass loyalty program plus the antitrust-immunized Delta joint venture feeding North America traffic",
+  "Cargo leadership in South America (about 30% regional share, per company/industry reporting) on the same network",
+  "Post-Chapter 11 cost and fleet reset showing up in the filings: gross margin 24.3% (FY2023) to 25.5% (FY2024) to 29.2% (FY2025) in fundamentals.json"
+ ],
+ "moat_justification": "Airlines are structurally close to moat-less: the product is commodity, switching costs are minimal and the industry destroyed capital through the last cycle — LATAM itself went through Chapter 11 in 2020 and printed negative owner's earnings in FY2021-FY2022. The roic_proxy series in fundamentals.json is 3.3% / 6.4% / 8.0% / 4.0% for 2016-2019, -39.4% / -93.7% for 2020-2021, then 21.5% / 18.6% / 25.7% / 29.0% for 2022-2025 — the recent strength is real but sits on a bankruptcy-written-down capital base (equity $31M in FY2022 rebuilding to $1,337M in FY2025), so it is not evidence of a through-cycle moat at 7+. What LATAM does have is regional dominance: the largest South American network and hubs, leading domestic positions in its home markets, LATAM Pass, the Delta JV, cargo leadership, and a post-restructuring cost base with gross margin expanding from 24.3% (FY2023) to 29.2% (FY2025). That is a weak-to-moderate franchise in a bad industry: moat 4/10, CAP 7.2 years.",
+ "moat_score": 4,
+ "name": "LATAM Airlines Group S.A.",
+ "one_liner": "Largest South American airline, moat 4/10 (regional dominance, structurally weak industry) — clears 15% on post-restructuring numbers (22.4% weighted IRR, IV@15% $80.10 vs $47.47) but the base is a cyclical high and the bear case is Tier B at 17.3%; it does not clear 25% (25% hurdle price $41.27, below the price) — size it like a B.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed SBC value for LATAM in any period (last_filed_value is null), so any override flags out-of-band. The value is not an estimate — it is the filer's own reported position (only cash-settled IFRS 2 awards, already expensed through OCF; see source).",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc — SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads. LATAM has no equity-settled share-based payment expense to subtract: its sole IFRS 2 program is cash-settled, so its cost is already inside operating expenses and operating cash flow — subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as SQM and TS in this sweep).",
+  "source": "Consolidated Financial Statements as of December 31, 2025 (filed with the FY2025 Form 20-F), Note 33 Share-Based Payments and accounting-policy note on IFRS 2: LATAM's only share-based program, the CIP (Corporate Incentive Plan) created on exit from Chapter 11, is a cash-settlement award — synthetic units paid in cash, recorded at fair value as a liability in Trade and other payables / Provisions for employee benefits, remeasured through profit or loss and classified in Administrative expenses. EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees fact for this filer in any year.",
+  "value": 0
+ },
+ "sector": "Industrials — Airlines",
+ "shares_override": {
+  "ack_reason": "The band anchor is the basic WeightedAverageShares count (589,302,090,735); the diluted override is 1.0000066x that anchor — in band by construction, the increment is exactly the 3,911,748 convertible-note shares in the filer's EPS note.",
+  "kind": "filing",
+  "reason": "DATA_GAP:shares — DILUTED shares missing for FY2023, FY2024, FY2025; EDGAR carries only the basic WeightedAverageShares count, which the engine records as a fallback and refuses to silently swap. The filer's own FY2025 diluted count fills the gap. The engine applies this single value to every missing period: it is exact for FY2025, and for FY2024/FY2023 it is a smaller denominator than the filer's own diluted counts (604,441,789,335 for FY2024), which raises those years' OE/share by ~2.6% — disclosed here and in analysis.md; the 3-yr median base year is FY2024 on either basis, so the base is modestly flattered, and the verdict is sized accordingly.",
+  "source": "Consolidated Financial Statements as of December 31, 2025 (filed with the FY2025 Form 20-F), Note 29 Earnings Per Share: weighted average number of shares, diluted 589,306,002,483 for FY2025 (basic 589,302,090,735 plus 3,911,748 shares assuming full conversion of the Chapter 11 exit convertible notes), with 604,441,789,335 diluted for FY2024 in the same table (basic 604,437,877,587 plus the same 3,911,748)",
+  "value": 589306002483
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

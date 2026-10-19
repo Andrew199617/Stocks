@@ -1,0 +1,87 @@
+{
+ "ticker": "CORT",
+ "name": "Corcept Therapeutics Incorporated",
+ "sector": "Biotechnology",
+ "price": 110.16,
+ "market_cap_b": 13.22,
+ "engine_version": 5,
+ "base_oe_per_share": 0.6944747722432031,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Specialty cortisol-modulation franchise with ~98% gross margins and ROIC proxy of 22-38% in 2020-2024, but the whole business rests on one molecule family (mifepristone Korlym plus relacorilant in both new indications), the Korlym patent defense against Teva failed at the Federal Circuit, an authorized generic launched in June 2024 is already cutting price, and the Cushing's relacorilant application drew a December 2025 CRL with a binary resubmission PDUFA on December 17, 2026 \u2014 a real franchise, but concentrated and legally/ regulatorily contestable, not durable-wide.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.6% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.12,
+   "irr": 0.0296
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 6.45,
+   "irr": 0.0328
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 8.65,
+   "irr": 0.0358
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 11.44,
+   "irr": 0.0398
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 16.75,
+   "irr": 0.0473
+  }
+ },
+ "iv_at_15": 9.16,
+ "iv_at_12": 12.36,
+ "implied_irr": 0.0366,
+ "implied_irr_base_case": 0.0358,
+ "upside_at_15_pct": -91.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real cortisol-modulation franchise, moat 4/10, growing fast (2026 guidance $1.1-1.2B) \u2014 but at $110.16 it does not come close to clearing 15% (weighted IRR 3.66%, weighted IV@15 $9.16, TTM OE/share just $0.09 after SBC); the price that clears 15% on these inputs is $9.16.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0328,
+ "irr_bull": 0.0398,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 6.3,
+ "iv_at_25": 4.75,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 119987000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Korlym specialty franchise in Cushing's/hypercortisolism: record prescriptions, prescribers and active patients, with CATALYST/MOMENTUM screening expanding the diagnosed pool",
+  "~98% gross margin every year 2020-2025 and ROIC proxy 22-38% through 2024 (fundamentals.json) \u2014 proven pricing power in a rare-disease niche",
+  "Second marketed product from the same platform: Lifyorli (relacorilant) approved March 2026 in platinum-resistant ovarian cancer, $47.6M in its first quarter, >1,300 patients started",
+  "Debt-free balance sheet: $544.6M cash and investments at June 30, 2026 (10-Q), no borrowings \u2014 self-funds the pipeline with no dilution need",
+  "Deep selective cortisol-modulator pipeline (oncology expansions, miricorilant in MASH, dazicorilant in ALS) extending the one platform"
+ ],
+ "moat_against": [
+  "Single-molecule-family concentration: Korlym, its authorized generic and Lifyorli all rest on cortisol modulation / relacorilant \u2014 one scientific and legal thesis",
+  "Generic threat is realized, not theoretical: Federal Circuit ruled against Corcept vs Teva on Korlym patents, and the June 2024 authorized generic already cut average price",
+  "Regulatory binary: relacorilant Cushing's NDA got a December 2025 Complete Response Letter; resubmission PDUFA is December 17, 2026, with a securities class action over the CRL disclosures",
+  "SBC is consuming the franchise: SBC was 59.5% of OCF in FY2025 and $96.1M of $109.7M OCF on TTM \u2014 owner's earnings are a fraction of reported cash flow",
+  "Launch-spend dependence: FY2025 operating margin collapsed to 5.9% (from 20.3%) and ROIC proxy to 6.7% as SG&A surged to fund launches management must keep funding"
+ ]
+}

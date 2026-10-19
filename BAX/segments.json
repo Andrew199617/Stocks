@@ -1,0 +1,736 @@
+{
+ "ticker": "BAX",
+ "cik": 10456,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-007733",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/10456/000162828026007733/bax-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028962",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/10456/000162828026028962/bax-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-051118",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bax:MedicalProductsAndTherapiesMember",
+     "label": "Medical Products And Therapies",
+     "values": [
+      5011000000,
+      5207000000,
+      5299000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4837,
+      0.4896,
+      0.4713
+     ],
+     "growth_yoy": [
+      null,
+      0.0391,
+      0.0177
+     ]
+    },
+    {
+     "member": "bax:HealthcareSystemsAndTechnologiesMember",
+     "label": "Healthcare Systems and Technologies",
+     "values": [
+      3013000000,
+      2951000000,
+      3071000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2908,
+      0.2775,
+      0.2731
+     ],
+     "growth_yoy": [
+      null,
+      -0.0206,
+      0.0407
+     ]
+    },
+    {
+     "member": "bax:PharmaceuticalsMember",
+     "label": "Pharmaceuticals",
+     "values": [
+      2249000000,
+      2411000000,
+      2493000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2171,
+      0.2267,
+      0.2217
+     ],
+     "growth_yoy": [
+      null,
+      0.072,
+      0.034
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      87000000,
+      67000000,
+      381000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0084,
+      0.0063,
+      0.0339
+     ],
+     "growth_yoy": [
+      null,
+      -0.2299,
+      4.6866
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10360000000,
+     10636000000,
+     11244000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bax:MedicalProductsAndTherapiesMember",
+     "label": "Medical Products And Therapies",
+     "values": [
+      1262000000,
+      1945000000,
+      1285000000,
+      2076000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4808,
+      0.6922,
+      0.4757,
+      0.7014
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0182,
+      0.0674
+     ]
+    },
+    {
+     "member": "bax:HealthcareSystemsAndTechnologiesMember",
+     "label": "Healthcare Systems and Technologies",
+     "values": [
+      704000000,
+      767000000,
+      705000000,
+      801000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2682,
+      0.273,
+      0.261,
+      0.2706
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0014,
+      0.0443
+     ]
+    },
+    {
+     "member": "bax:PharmaceuticalsMember",
+     "label": "Pharmaceuticals",
+     "values": [
+      581000000,
+      null,
+      621000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2213,
+      null,
+      0.2299,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0688,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      78000000,
+      98000000,
+      90000000,
+      83000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0297,
+      0.0349,
+      0.0333,
+      0.028
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1538,
+      -0.1531
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2625000000,
+     2810000000,
+     2701000000,
+     2960000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bax:MedicalProductsAndTherapiesMember",
+     "label": "Medical Products And Therapies",
+     "values": [
+      972000000,
+      950000000,
+      970000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3748,
+      67.8571,
+      -3.1494
+     ],
+     "growth_yoy": [
+      null,
+      -0.0226,
+      0.0211
+     ]
+    },
+    {
+     "member": "bax:HealthcareSystemsAndTechnologiesMember",
+     "label": "Healthcare Systems and Technologies",
+     "values": [
+      483000000,
+      468000000,
+      441000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6832,
+      33.4286,
+      -1.4318
+     ],
+     "growth_yoy": [
+      null,
+      -0.0311,
+      -0.0577
+     ]
+    },
+    {
+     "member": "bax:PharmaceuticalsMember",
+     "label": "Pharmaceuticals",
+     "values": [
+      401000000,
+      313000000,
+      222000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5672,
+      22.3571,
+      -0.7208
+     ],
+     "growth_yoy": [
+      null,
+      -0.2195,
+      -0.2907
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     707000000,
+     14000000,
+     -308000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bax:ReportableSegmentMember",
+     "label": "Reportable Segment",
+     "values": [
+      400000000,
+      600000000,
+      298000000,
+      563000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      6.8966,
+      3.1414,
+      4.5152,
+      2.5945
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.255,
+      -0.0617
+     ]
+    },
+    {
+     "member": "bax:MedicalProductsAndTherapiesMember",
+     "label": "Medical Products And Therapies",
+     "values": [
+      244000000,
+      444000000,
+      186000000,
+      400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      4.2069,
+      2.3246,
+      2.8182,
+      1.8433
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2377,
+      -0.0991
+     ]
+    },
+    {
+     "member": "bax:HealthcareSystemsAndTechnologiesMember",
+     "label": "Healthcare Systems and Technologies",
+     "values": [
+      93000000,
+      156000000,
+      66000000,
+      163000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.6034,
+      0.8168,
+      1.0,
+      0.7512
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2903,
+      0.0449
+     ]
+    },
+    {
+     "member": "bax:PharmaceuticalsMember",
+     "label": "Pharmaceuticals",
+     "values": [
+      63000000,
+      null,
+      46000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0862,
+      null,
+      0.697,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2698,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     58000000,
+     191000000,
+     66000000,
+     217000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5802000000,
+      5850000000,
+      6122000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.56,
+      0.55,
+      0.5445
+     ],
+     "growth_yoy": [
+      null,
+      0.0083,
+      0.0465
+     ]
+    },
+    {
+     "member": "bax:WesternEuropeCanadaJapanAustraliaAndNewZealandMember",
+     "label": "Western Europe, Canada, Japan, Australia and New Zealand",
+     "values": [
+      3215000000,
+      3436000000,
+      3728000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3103,
+      0.3231,
+      0.3316
+     ],
+     "growth_yoy": [
+      null,
+      0.0687,
+      0.085
+     ]
+    },
+    {
+     "member": "bax:EasternEuropeMiddleEastAfricaLatinAmericaAsiaMember",
+     "label": "Eastern Europe, Middle East, Africa, Latin America, Asia",
+     "values": [
+      1343000000,
+      1350000000,
+      1394000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1296,
+      0.1269,
+      0.124
+     ],
+     "growth_yoy": [
+      null,
+      0.0052,
+      0.0326
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10360000000,
+     10636000000,
+     11244000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1490000000,
+      1536000000,
+      1435000000,
+      1595000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5676,
+      0.5466,
+      0.5313,
+      0.5389
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0369,
+      0.0384
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1135000000,
+      1274000000,
+      1266000000,
+      1365000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4324,
+      0.4534,
+      0.4687,
+      0.4611
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1154,
+      0.0714
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2625000000,
+     2810000000,
+     2701000000,
+     2960000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (bax:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to -530.2% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 518.9% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Non-US' (us-gaap:NonUsMember) dropped: its values equal the sum of Eastern Europe, Middle East, Africa, Latin America, Asia, Western Europe, Canada, Japan, Australia and New Zealand"
+ ],
+ "complete": true
+}

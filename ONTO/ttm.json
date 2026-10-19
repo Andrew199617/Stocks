@@ -1,0 +1,101 @@
+{
+ "ticker": "ONTO",
+ "cik": 704532,
+ "entity": "ONTO INNOVATION INC.",
+ "fy_end": "2026-01-03",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 328315000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 149923000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 87829000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 266221000
+  },
+  "capex": {
+   "fy": 28513000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 22005000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 7242000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 13750000
+  },
+  "sbc": {
+   "fy": 27617000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 13492000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 17026000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 31151000
+  },
+  "shares_diluted": {
+   "fy": 49273000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 49213000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 49841000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 266221000,
+ "ttm_capex": 13750000,
+ "ttm_sbc": 31151000,
+ "ttm_shares_diluted": 49841000,
+ "ttm_oe_total": 221320000,
+ "ttm_oe_per_share": 4.440520856323108,
+ "warnings": [],
+ "overrides_used": []
+}

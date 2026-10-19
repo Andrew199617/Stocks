@@ -1,0 +1,163 @@
+{
+ "ticker": "AFG",
+ "cik": 1042046,
+ "entity": "AMERICAN FINANCIAL GROUP, INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1533000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 533000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 566000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1566000000
+  },
+  "capex": {
+   "fy": 0.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 0.0,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 0.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 0.0
+  },
+  "sbc": {
+   "fy": 18000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 8926027.397260275,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 8926027.397260275,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 18000000.0
+  },
+  "shares_diluted": {
+   "fy": 83500000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 83700000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 83100000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1566000000,
+ "ttm_capex": 0.0,
+ "ttm_sbc": 18000000.0,
+ "ttm_shares_diluted": 83100000,
+ "ttm_oe_total": 1548000000.0,
+ "ttm_oe_per_share": 18.62815884476534,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 18000000.0,
+   "kind": "estimate",
+   "source": "Last filed SBC: FY2025 AllocatedShareBasedCompensationExpense $18,000,000 (Form 10-K FY2025; the same $18M figure is filed for FY2023 and FY2024) \u2014 the anchor named here; value is exactly 1.0x that filed figure, inside the 0.1x-10x estimate band",
+   "legs_filled": {
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 8926027.397260275,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 8926027.397260275,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows: the investing-activities section lists only acquisitions ($7M in FY2025), purchases of investments ($2,984M), sales/maturities of investments ($2,437M) and other investing activities (-$7M) \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $1,533M + investing -$835M + financing -$377M = the reported net change in cash of $321M exactly; FY2024: $1,152M + $95M - $1,066M = reported $181M exactly; FY2023: $1,970M + $414M - $2,031M = reported $353M exactly. EDGAR companyfacts for CIK 1042046 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 69 periods with operating cash flow).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 0.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

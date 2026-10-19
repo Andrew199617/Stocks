@@ -1,0 +1,288 @@
+{
+ "ticker": "FN",
+ "cik": 1408710,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T12:25:45-04:00",
+ "newest_filing_date": "2026-08-18",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001408710.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Fabrinet",
+  "cik": 1408710,
+  "description": {
+   "text": "We provide advanced optical packaging and precision optical, electro-mechanical and electronic manufacturing services to original equipment manufacturers (“OEMs”) of complex products such as optical communication components, modules and sub-systems, industrial lasers, automotive components, medical devices and sensors. We offer a broad range of advanced optical and electro-mechanical capabilities across the entire manufacturing process, including process design and engineering, supply chain management, manufacturing, complex printed circuit board assembly, advanced packaging, integration, final assembly and testing. We are capable of producing a wide variety of high complexity products in any mix and any volume. Based on our extensive experience and the positive feedback we have received from our customers, we believe we are a global leader in providing these services to the optical communications, automotive, and industrial lasers markets. Our customer base includes companies in complex industries that require advanced precision manufacturing capabilities such as optical communications, automotive, industrial lasers, medical, and sensors. In many cases, we are the sole outsourced manufacturing partner used by our customers for the products that we manufacture for them.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-18",
+   "period": "2026-06-26",
+   "accession": "0001408710-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm"
+  },
+  "description_short": "Fabrinet is a leading provider of advanced optical packaging and precision optical, electro-mechanical, and electronic manufacturing services to original equipment manufacturers of complex products, such as optical communication components, modules and subsystems, automotive components, medical devices, industrial lasers and sensors. Fabrinet offers a broad range of advanced optical and electro-mechanical capabilities across the entire manufacturing process, including process design and engineering, supply chain management, manufacturing, advanced packaging, integration, final assembly and testing. Fabrinet focuses on production of high complexity products in any mix and any volume. Fabrinet maintains engineering and manufacturing resources and facilities in Thailand, the United States of America, the People's Republic of China, and Israel. For more information visit: www.fabrinet.com.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Utilities",
+  "region": "Caribbean",
+  "sic": "3661",
+  "sic_description": "Telephone & Telegraph Apparatus",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "0627",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.fabrinet.com",
+  "headquarters": "Grand Cayman, Cayman Islands",
+  "address": {
+   "street": "c/o Walkers Corporate Ltd. 190 Elgin Avenue, George Town",
+   "city": "Grand Cayman",
+   "state": null,
+   "zip": "KY1-9008",
+   "country": "Cayman Islands",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-18"
+  },
+  "phone": "(408) 748 0900",
+  "employees": {
+   "count": 21521,
+   "as_of": "2026-06-26",
+   "evidence": "As of June 26, 2026, we employed approximately 21,521 full-time employees worldwide, with approximately 21,221 employees located in the Asia-Pacific region, and 300 employees located in North America.",
+   "form": "10-K",
+   "filed": "2026-08-18",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2007-11-07",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001408710&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-K",
+   "filed": "2026-08-18",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001408710-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-11",
+   "items": [
+    "1.01",
+    "2.02",
+    "2.03",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Debt obligation; Officer/director change",
+   "accession": "0001408710-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000026/fn-20260811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001408710-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000016/fn-20260327.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001408710-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000014/fn-20260504.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-03",
+   "period": "2025-12-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001408710-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000008/fn-20251226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-02-02",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001408710-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000006/fn-20260202.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001408710-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000058/fn-20251211.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001408710-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000056/fn-20250926.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001408710-25-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000054/fn-20251103.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-23",
+   "period": "2025-12-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-039008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000114036125039008/ny20055128x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-17",
+   "period": "2025-10-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001408710-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000047/fn-20251013.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-16",
+   "period": "2025-10-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001408710-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000044/fn-20251013.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-08-19",
+   "period": "2025-06-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001408710-25-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000039/fn-20250627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-12",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001408710-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000036/fn-20250812.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001408710-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000027/fn-20250522.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001408710-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000023/fn-20250328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001408710-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000021/fn-20250505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-13",
+   "period": "2025-03-12",
+   "items": [
+    "1.01",
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Reg FD",
+   "accession": "0001408710-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000010/fn-20250312.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-02-04",
+   "period": "2024-12-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001408710-25-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000008/fn-20241227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-03",
+   "period": "2025-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001408710-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871025000006/fn-20250203.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,290 @@
+{
+ "ticker": "WMG",
+ "cik": 1319161,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T00:58:33-04:00",
+ "newest_filing_date": "2026-09-25",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001319161.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1319161/000131916125000034/wmg-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WMG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WMG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Warner Music Group Corp.",
+  "cik": 1319161,
+  "description": {
+   "text": "Warner Music Group Corp. (the “Company”) was formed on November 21, 2003. We are the direct parent of WMG Holdings Corp. (“Holdings”), which is the direct parent of WMG Acquisition Corp. (“Acquisition Corp.”). Acquisition Corp. is one of the world’s major music entertainment companies. The Company and Holdings are holding companies that conduct substantially all of their business operations through their subsidiaries. The terms “we,” “us,” “our,” “ours” and the “Company” refer collectively to Warner Music Group Corp. and its consolidated subsidiaries, unless the context refers only to Warner Music Group Corp. as a corporate entity.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-20",
+   "period": "2025-09-30",
+   "accession": "0001319161-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916125000034/wmg-20250930.htm"
+  },
+  "description_short": "With a legacy extending back over 200 years, Warner Music Group today is home to an unparalleled family of creative artists, songwriters, and companies that are moving culture across the globe. At the core of WMG's Recorded Music division are four of the most iconic companies in history: Atlantic, Elektra, Parlophone and Warner Records. They are joined by renowned labels such as TenThousand Projects, 300 Entertainment, Asylum, Big Beat, Canvasback, East West, Erato, FFRR, Fueled by Ramen, Nonesuch, Reprise, Rhino, Roadrunner, Sire, Spinnin' Records, Warner Classics and Warner Records Nashville. Warner Chappell Music - which traces its origins back to the founding of Chappell & Company in 1811 - is one of the world's leading music publishers, with a catalog of more than one million copyrights spanning every musical genre from the standards of the Great American Songbook to the biggest hits of the 21st century.",
+  "industry": "Services-Misc. Amusement & Recreation",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7900",
+  "sic_description": "Services-Amusement & Recreation Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.wmg.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "1633 Broadway",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10019",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-20"
+  },
+  "phone": "212-275-2000",
+  "employees": {
+   "count": 5500,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we employed approximately 5,500 persons worldwide, including temporary and part-time employees as well as employees that were added through acquisitions.",
+   "form": "10-K",
+   "filed": "2025-11-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916125000034/wmg-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-03-11",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001319161&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-24",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-402955",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526402955/d266628d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-21",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-398095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526398095/d171303d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-383641",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526383641/d109454d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001319161-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000032/wmg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001319161-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000031/wmg-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-329621",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526329621/d113003d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-328811",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526328811/d127683d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001319161-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000022/wmg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001319161-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000021/wmg-20260507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-102112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526102112/d115111d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-03",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-095149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526095149/d21722d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-086963",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526086963/d114158d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001319161-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000010/wmg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001319161-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000007/wmg-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-04",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-038593",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312526038593/d37806d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-20",
+   "period": "2026-03-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-001664",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000114036126001664/ny20057694x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-01",
+   "period": "2025-11-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-303579",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312525303579/d70858d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-20",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001319161-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916125000034/wmg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-20",
+   "period": "2025-11-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001319161-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916125000032/wmg-20251120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-07",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-271139",
+   "url": "https://www.sec.gov/Archives/edgar/data/1319161/000119312525271139/d98918d8k.htm"
+  }
+ ],
+ "warnings": []
+}

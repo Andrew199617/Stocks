@@ -1,0 +1,86 @@
+{
+ "ticker": "INVH",
+ "name": "Invitation Homes Inc.",
+ "sector": "Real Estate / Single-family rental REIT",
+ "price": 26.77,
+ "market_cap_b": 16.41,
+ "engine_version": 5,
+ "base_oe_per_share": 1.5475112209234112,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Real local-density and scale economies in maintenance, leasing and builder sourcing, but rent is a market price, leases are annual with no switching costs, SFR is dominated by mom-and-pop owners, and measured returns are low (ROE 2.67% in 2021 to 6.17% in 2025 in fundamentals.json; roic_proxy and gross margin are not computed for 2018-2025 in fundamentals.json).",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 8.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (10.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 8.0,
+   "irr": 0.0611
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 10.79,
+   "irr": 0.0749
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 13.45,
+   "irr": 0.0883
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 16.59,
+   "irr": 0.1037
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 21.12,
+   "irr": 0.1249
+  }
+ },
+ "iv_at_15": 13.79,
+ "iv_at_12": 18.24,
+ "implied_irr": 0.0901,
+ "implied_irr_base_case": 0.0883,
+ "upside_at_15_pct": -48.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality SFR landlord, moat 4/10 \u2014 at $26.77 it does not clear 15% on any scenario (weighted IRR 9.0%, IV@15% $13.79 vs $26.77); it would need ~$13.79 to clear the hurdle.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0749,
+ "irr_bull": 0.1037,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 9.78,
+ "iv_at_25": 7.57,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 8250049000,
+ "shares_diluted_latest": 613177806,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Largest SFR platform (~109k homes owned/JV/managed) with local density in 16 markets lowering per-home maintenance and turn costs",
+  "Vertically integrated acquire-renovate-lease-manage platform built since 2012",
+  "Builder partnerships / ResiBuilt and construction lending give sourced supply at scale",
+  "Structural housing shortage and rent-vs-own cost gap support 97.1% Q2 2026 same-store occupancy"
+ ],
+ "moat_against": [
+  "No network effects or tenant switching costs \u2014 annual leases, rent set by the local market",
+  "SFR supply is overwhelmingly fragmented mom-and-pop stock; scale is efficiency, not a barrier",
+  "AMH and other institutional landlords can replicate the model with capital",
+  "Property-tax, insurance and maintenance cost inflation largely uncontrollable",
+  "Political/regulatory hostility to institutional landlords"
+ ]
+}

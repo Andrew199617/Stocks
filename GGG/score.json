@@ -1,0 +1,84 @@
+{
+ "ticker": "GGG",
+ "name": "Graco Inc.",
+ "sector": "Industrials / Fluid-handling equipment",
+ "price": 81.99,
+ "market_cap_b": 13.87,
+ "engine_version": 5,
+ "base_oe_per_share": 3.5691227271910866,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Strong niche moat: ROIC proxy stayed 24.6-37.2% over FY2019-2025 (25.0% in FY2025) with gross margin 49.3-53.1% through the cycle, pricing power and mission-critical installed base in Contractor/Industrial fluid handling; capped at 7 because growth is low-single-digit organic, end markets are cyclical, and Nordson/EXEL/Asian rivals contest every niche.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 17.77,
+   "irr": 0.0501
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 25.12,
+   "irr": 0.0628
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 32.93,
+   "irr": 0.0765
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 41.95,
+   "irr": 0.0918
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 54.98,
+   "irr": 0.1122
+  }
+ },
+ "iv_at_15": 32.71,
+ "iv_at_12": 43.53,
+ "implied_irr": 0.0765,
+ "implied_irr_base_case": 0.0765,
+ "upside_at_15_pct": -60.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality compounder, moat 7/10 \u2014 does not clear 15% at $81.99 (weighted IRR 7.6%, IV@15% $32.71); clears 15% only below ~$32.71.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0628,
+ "irr_bull": 0.0918,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 23.02,
+ "iv_at_25": 17.69,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -622459000,
+ "shares_diluted_latest": 169219000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "ROIC proxy 24.6-37.2% FY2019-2025, well above cost of capital through a cycle",
+  "Gross margin 49.3-53.1% for seven straight years \u2014 proven pricing power",
+  "Mission-critical niche specialization (difficult fluids, precision dispensing) with high switching costs and 500+ patents",
+  "Leading share (~20-25% core segments) and global service/distribution network",
+  "Net-cash balance sheet (-$622M net debt) funding buybacks and bolt-on M&A through downturns"
+ ],
+ "moat_against": [
+  "Low-single-digit organic growth \u2014 Q2 2026 organic sales -1%, guidance low-single-digit for 2026",
+  "Cyclical Contractor (construction/housing) and Industrial capex exposure",
+  "Competition from Nordson, EXEL Industries and lower-cost Asian entrants",
+  "Growth increasingly acquisition-bought (COROB, Radia, Valco Melton) \u2014 integration and goodwill risk",
+  "Tariff and input-cost exposure; Q2 2026 margin helped by $9M of tariff refunds that will not repeat cleanly"
+ ]
+}

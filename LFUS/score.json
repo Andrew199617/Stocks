@@ -1,0 +1,86 @@
+{
+ "ticker": "LFUS",
+ "name": "Littelfuse, Inc.",
+ "sector": "Industrials / Electrical components \u2014 circuit protection",
+ "price": 380.89,
+ "market_cap_b": 9.45,
+ "engine_version": 5,
+ "base_oe_per_share": 14.221793863099922,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow: the largest specialist in circuit protection with design-in and safety-certification switching costs and a broad portfolio, but components face Eaton/TE/Bourns/Bel/Mersen and low-cost Asian rivals, no network effects, and measured ROIC fell from 15.9% (2022) to 10.2% (2023), 4.1% (2024) and 1.1% (2025) on semiconductor impairments \u2014 a franchise that has not held returns well above the cost of capital through this cycle.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.2%) vs bull-case tier C (10.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 69.52,
+   "irr": 0.0463
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 111.73,
+   "irr": 0.0622
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 165.79,
+   "irr": 0.0824
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 232.96,
+   "irr": 0.1057
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 350.75,
+   "irr": 0.1416
+  }
+ },
+ "iv_at_15": 177.94,
+ "iv_at_12": 240.64,
+ "implied_irr": 0.0871,
+ "implied_irr_base_case": 0.0824,
+ "upside_at_15_pct": -53.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid circuit-protection franchise, moat 5/10 \u2014 does not clear 15% at $380.89 on TTM OE (weighted IRR 8.71%, weighted IV@15% $177.94); it clears 15% only below $177.94 despite the strong 2026 recovery.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0622,
+ "irr_bull": 0.1057,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 122.25,
+ "iv_at_25": 92.08,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 239236000,
+ "shares_diluted_latest": 24817000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest independent fuse / circuit-protection specialist; leading share in automotive fuses and PPTC resettable devices",
+  "Design-in switching costs: components are qualified into OEM designs and safety-certified, so sockets are sticky for a product generation",
+  "Broad portfolio across protection, power semiconductors, sensors and control (Basler, Dortmund fab) enabling cross-sell into data-center, grid and EV demand",
+  "Gross margin held 35.9-40.1% over the last five fiscal years despite the downturn",
+  "Conservative balance sheet: net debt $239.2M, 0.68x normalized OE, supports M&A and the dividend"
+ ],
+ "moat_against": [
+  "ROIC proxy collapsed from 15.9% in 2022 to 1.1% in 2025 (impairment-depressed, but ex-charge returns also fell) \u2014 no proof of durable excess returns through a cycle",
+  "$301.2M goodwill impairment in Electronics-Semiconductors (Q4 2025) after $93.5M of impairments in 2024: past semiconductor M&A destroyed value; Allen, TX fab closure announced for 2027",
+  "Components are contestable: Eaton, TE Connectivity, Bourns, Bel Fuse, Mersen and low-cost Chinese makers compete on price in standard parts",
+  "Cyclical end markets \u2014 autos, consumer electronics, HVAC, commercial vehicles \u2014 with a 2023-24 revenue decline still in the 3-yr CAGR (-1.73%)",
+  "Growth is partly bought: Basler ($350.3M, Dec 2025) and the Dortmund fab supplied much of recent inorganic growth"
+ ]
+}

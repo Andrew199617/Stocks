@@ -1,0 +1,88 @@
+{
+ "ticker": "CF",
+ "name": "CF Industries Holdings, Inc.",
+ "sector": "Materials / Nitrogen fertilizer",
+ "price": 120.85,
+ "market_cap_b": 19.6,
+ "engine_version": 5,
+ "base_oe_per_share": 12.107652399481193,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Structural low-cost position from North American Henry Hub / AECO natural gas (70-90% of nitrogen production cost) versus European/Asian rivals on imported LNG, plus scale, 98% ammonia capacity utilization in H1 2026 vs an ~86% North American peer benchmark, and a Mississippi River / pipeline logistics network into the Corn Belt \u2014 against pure commodity price-taker economics: undifferentiated nitrogen products, no pricing power, earnings set by the global nitrogen price and the gas spread. ROIC proxy was strong in the last five fiscal years (28.0% in FY2021, 73.3% in FY2022, 27.4% in FY2023, 23.1% in FY2024, 30.4% in FY2025 in fundamentals.json) but that history is cycle-inflated \u2014 the FY2022 spike and a 9.4% trough in FY2020 show the returns are spread-driven, not franchise-driven \u2014 and gross margin swung from 19.4% (FY2020) to 52.4% (FY2022) to 34.6% (FY2024) to 38.5% (FY2025). A cost moat that pays only when the spread is wide is moderate, not wide: 5/10.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 7.4%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (11.5%) vs bull-case tier B (18.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 54.02,
+   "irr": 0.0776
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 86.88,
+   "irr": 0.1147
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 118.82,
+   "irr": 0.148
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 160.59,
+   "irr": 0.1869
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 242.62,
+   "irr": 0.2512
+  }
+ },
+ "iv_at_15": 118.16,
+ "iv_at_12": 157.74,
+ "implied_irr": 0.1474,
+ "implied_irr_base_case": 0.148,
+ "upside_at_15_pct": -2.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Low-cost North American nitrogen producer with a real gas-spread cost moat but commodity price-taker earnings, moat 5/10 \u2014 at $120.85 the TTM-base DCF yields a 14.7% weighted IRR with IV@15% of $118.16 (Tier C, bear-to-bull band C to B); it clears the 15% hurdle only at ~$118, essentially today's price with no margin of safety against nitrogen-price normalization.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1147,
+ "irr_bull": 0.1869,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 82.71,
+ "iv_at_25": 63.28,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1233000000,
+ "shares_diluted_latest": 162200000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Low-cost North American natural gas feedstock (Henry Hub/AECO) vs European/Asian rivals on high-cost imported LNG \u2014 gas is 70-90% of nitrogen cash cost",
+  "Scale and operating excellence: ~98% of available ammonia capacity utilized in H1 2026 vs ~86% North American peer benchmark",
+  "Mississippi River, pipeline and rail logistics network from Gulf Coast plants (Donaldsonville) into the U.S. Corn Belt",
+  "ROIC proxy above 20% in each of FY2023-FY2025 and positive through the FY2020 trough (9.4%)",
+  "Disciplined capital return: diluted shares fell from 216.2M (FY2021) to 162.2M (FY2025) to 154.2M current-YTD (ttm.py); dividend raised 20% to $0.60/qtr in July 2026"
+ ],
+ "moat_against": [
+  "Commodity price-taker: ammonia, urea, UAN and AN are undifferentiated; price is set globally, CF has no pricing power",
+  "Earnings hostage to the nitrogen price / natural gas spread \u2014 revenue went $11.186B (FY2022) to $5.936B (FY2024) in two years",
+  "Cost advantage can narrow if U.S. gas rises or European/Asian gas falls; new global capacity (incl. CF's own Blue Point, ~$2B CF share, 2029) adds supply",
+  "Concentration and outage risk: Yazoo City complex (up to 1.3M tons) idled since Nov 2025, restart pushed to H1 2027; Q2 2026 sales volume fell 15.3% YoY",
+  "Capex intensity rising: TTM capex $1.067B vs $0.453-0.518B/yr in FY2022-FY2024, funding Blue Point and the Yazoo rebuild"
+ ]
+}

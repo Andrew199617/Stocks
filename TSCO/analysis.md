@@ -32,5 +32,21 @@ Growth recalibration (written reason): the engine's blended g_base is 7.83%, bui
 
 | Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
 |---|---|---|---|---|---|---|
-| Super bear | 15% | -5.0% | 0.75 | Comps stay negative, inventory needs markdowns, expansion capex strand
-...[truncated 6187 chars]
+| Super bear | 15% | -5.0% | 0.75 | Comps stay negative, inventory needs markdowns, expansion capex strands | $2.07 | 3.19% |
+| Bear | 30% | 0.0% | 0.90 | Comps at the guided −1% to flat, inventory overhang clears slowly | $3.07 | 3.60% |
+| Base | 30% | 3.0% | 1.00 | Guidance path: sales +2.5–3.5%, adjusted EPS $1.90–2.00, capex step-up absorbed | $3.87 | 3.94% |
+| Bull | 15% | 6.0% | 1.10 | Comps turn positive, H1 inventory timing reverses, new-store cohort matures | $4.82 | 4.35% |
+| Super bull | 10% | 9.0% | 1.25 | Full return to the post-COVID growth pattern the blend remembers | $6.19 | 4.94% |
+
+- **Probability-weighted: IV@15% $3.73 (−89.0% vs price), IV@12% $4.92, IV@10% $6.24, weighted IRR 3.89%, base-case IRR 3.94%**
+- **Tier by numbers: D.** Every scenario is a D — even the super-bull case returns 4.94%. Diagnostics (key_numbers.md): OE yield 1.36%, terminal value 18.0% of IV@15%, scenario spread 2.99x, net debt 6.40x normalized OE, 9.6 months since FY end.
+- **Method range (disclosed, from the OE section):** on the engine's normalized median base ($1.09/share) instead of the TTM base, the weighted IRR is 7.1% with IV@15% of ~$11.93 — still Tier D, and still nowhere near the $33.88 price. The verdict does not depend on the base choice; the TTM base is used because the STALE_FY resolution prescribes it and the TTM deterioration is corroborated by the H1 2026 filing legs (see Owner's earnings).
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (latest FY ended 10 months ago): resolved by construction — the base is the TTM figure from ttm.py through Q2 2026, quoted in Owner's earnings, and the choice is corroborated rather than mechanical: H1 2026 OCF of $653,136,000 vs $1,002,575,000 in H1 2025 (with the Q1 inventory build of $499,515,000 identified in the 10-Q detail), a Q2 miss, and cut FY2026 guidance. Part of the OCF drop is inventory timing that can reverse in H2 — which is why the median base is carried as the method range above instead of being discarded.
+- **OE_VOLATILE** (OE/share range over the last 5 years spans >3x): acted on as instructed — probabilities were skewed bearish (15/30/30/15/10 vs the 10/25/30/25/10 default) and scenario starts were cut below the blend (base 3.0% vs blended 7.83%). The volatility is the post-COVID surge-and-fade pattern in the history, not a data break.
+- **LOW_OE_YIELD** (base OE yield 1.4%): the tier is indeed fragile in construction — at a $0.46 TTM base the valuation rests almost entirely on growth — but the fragility cuts against the price, not for it: at $33.88 the market is capitalizing a recovery the filed OE does not yet show, and no scenario in the table reaches even 5%. Confidence is graded low in recognition of the flag.
+- **HIGH_NET_DEBT** (net debt 6.4x normalized OE): $1.571B of net debt against a collapsed TTM OE is the leverage the flag measures; on the normalized base the same debt is roughly 2.7x the $588–683M recent-year OE totals, serviced by a needs-based consumables retailer with 5/5 OE-positive years. The bear cases are stressed accordingly (super-bear/bear OE multipliers 0.75/0.90 on a shrinking start), and the verdict never relies on the levered OE holding up.
+
+## Final verdict
+**Tier D.** Weighted IRR 3.89%, weighted IV@15% $3.73 against a $33.88 price (−89.0%). A solid niche retailer (moat 5/10) whose owner's earnings collapsed on a TTM basis ($0.46/share) as H1 2026 operating cash flow halved and capex rose — it does not clear 15% on any base: 3.9% weighted on the TTM base, 7.1% on the median base ($1.09/share, IV@15% ~$11.93). It clears 15% only below ~$3.73 (TTM) or ~$11.93 (median). Guidance was cut and the long-term framework withdrawn in 2026; until the filed OE recovers, the price is paying for a growth story the cash flow has stopped telling.

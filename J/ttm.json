@@ -1,0 +1,101 @@
+{
+ "ticker": "J",
+ "cik": 52988,
+ "entity": "JACOBS SOLUTIONS INC.",
+ "fy_end": "2025-09-26",
+ "ytd_end": "2026-06-26",
+ "inputs": {
+  "ocf": {
+   "fy": 686704000,
+   "fy_period": [
+    "2024-09-28",
+    "2025-09-26"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 303619000,
+   "ytd_prior_period": [
+    "2024-09-28",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 352758000,
+   "ytd_current_period": [
+    "2025-09-27",
+    "2026-06-26"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 735843000
+  },
+  "capex": {
+   "fy": 79232000,
+   "fy_period": [
+    "2024-09-28",
+    "2025-09-26"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 49655000,
+   "ytd_prior_period": [
+    "2024-09-28",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 61722000,
+   "ytd_current_period": [
+    "2025-09-27",
+    "2026-06-26"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 91299000
+  },
+  "sbc": {
+   "fy": 60960000,
+   "fy_period": [
+    "2024-09-28",
+    "2025-09-26"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 47421000,
+   "ytd_prior_period": [
+    "2024-09-28",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 56882000,
+   "ytd_current_period": [
+    "2025-09-27",
+    "2026-06-26"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 70421000
+  },
+  "shares_diluted": {
+   "fy": 121932000,
+   "fy_period": [
+    "2024-09-28",
+    "2025-09-26"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 122582000,
+   "ytd_prior_period": [
+    "2024-09-28",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 118486000,
+   "ytd_current_period": [
+    "2025-09-27",
+    "2026-06-26"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 735843000,
+ "ttm_capex": 91299000,
+ "ttm_sbc": 70421000,
+ "ttm_shares_diluted": 118486000,
+ "ttm_oe_total": 574123000,
+ "ttm_oe_per_share": 4.845492294448289,
+ "warnings": [],
+ "overrides_used": []
+}

@@ -1,0 +1,662 @@
+{
+ "ticker": "BEN",
+ "cik": 38777,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000038777-25-000238",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000238/ben-20250930_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000038777-26-000101",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000101/ben-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000038777-26-000217",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000217/ben-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:InvestmentAdvisoryManagementAndAdministrativeServiceMember",
+     "label": "Investment Advisory, Management and Administrative Service",
+     "values": [
+      6452900000,
+      6822200000,
+      6981800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8221,
+      0.8047,
+      0.796
+     ],
+     "growth_yoy": [
+      null,
+      0.0572,
+      0.0234
+     ]
+    },
+    {
+     "member": "ben:SalesAndDistributionFeesMember",
+     "label": "Sales And Distribution Fees",
+     "values": [
+      1203700000,
+      1381000000,
+      1474700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1533,
+      0.1629,
+      0.1681
+     ],
+     "growth_yoy": [
+      null,
+      0.1473,
+      0.0678
+     ]
+    },
+    {
+     "member": "us-gaap:ShareholderServiceMember",
+     "label": "Shareholder Service",
+     "values": [
+      152700000,
+      229300000,
+      264500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0195,
+      0.027,
+      0.0302
+     ],
+     "growth_yoy": [
+      null,
+      0.5016,
+      0.1535
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      40100000,
+      45500000,
+      49700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0051,
+      0.0054,
+      0.0057
+     ],
+     "growth_yoy": [
+      null,
+      0.1347,
+      0.0923
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7849400000,
+     8478000000,
+     8770700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:InvestmentAdvisoryManagementAndAdministrativeServiceMember",
+     "label": "Investment Advisory, Management and Administrative Service",
+     "values": [
+      1673600000,
+      1640800000,
+      1868100000,
+      1819300000,
+      1866200000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7926,
+      0.795,
+      0.7971,
+      0.7928,
+      0.7913
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0871,
+      0.1374
+     ]
+    },
+    {
+     "member": "ben:SalesAndDistributionFeesMember",
+     "label": "Sales And Distribution Fees",
+     "values": [
+      364900000,
+      351900000,
+      382400000,
+      396600000,
+      404500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1728,
+      0.1705,
+      0.1632,
+      0.1728,
+      0.1715
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0869,
+      0.1495
+     ]
+    },
+    {
+     "member": "us-gaap:ShareholderServiceMember",
+     "label": "Shareholder Service",
+     "values": [
+      61900000,
+      59900000,
+      79200000,
+      69000000,
+      74300000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0293,
+      0.029,
+      0.0338,
+      0.0301,
+      0.0315
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1147,
+      0.2404
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      11000000,
+      11400000,
+      14000000,
+      10000000,
+      13400000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0052,
+      0.0055,
+      0.006,
+      0.0044,
+      0.0057
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0909,
+      0.1754
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2111400000,
+     2064000000,
+     2343700000,
+     2294900000,
+     2358400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5880800000,
+      6357800000,
+      6614200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7492,
+      0.7499,
+      0.7541
+     ],
+     "growth_yoy": [
+      null,
+      0.0811,
+      0.0403
+     ]
+    },
+    {
+     "member": "country:LU",
+     "label": "LUXEMBOURG",
+     "values": [
+      1132200000,
+      1237500000,
+      1295700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1442,
+      0.146,
+      0.1477
+     ],
+     "growth_yoy": [
+      null,
+      0.093,
+      0.047
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      308800000,
+      308900000,
+      327800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0393,
+      0.0364,
+      0.0374
+     ],
+     "growth_yoy": [
+      null,
+      0.0003,
+      0.0612
+     ]
+    },
+    {
+     "member": "ben:EuropeMiddleEastandAfricaExcludingLuxembourgMember",
+     "label": "Europe, Middle East and Africa, Excluding Luxembourg",
+     "values": [
+      270500000,
+      305800000,
+      279000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0345,
+      0.0361,
+      0.0318
+     ],
+     "growth_yoy": [
+      null,
+      0.1305,
+      -0.0876
+     ]
+    },
+    {
+     "member": "ben:AmericasExcludingUnitedStatesMember",
+     "label": "Americas Excluding United States",
+     "values": [
+      257100000,
+      268000000,
+      254000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0328,
+      0.0316,
+      0.029
+     ],
+     "growth_yoy": [
+      null,
+      0.0424,
+      -0.0522
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7849400000,
+     8478000000,
+     8770700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1596100000,
+      1553900000,
+      1767500000,
+      1669600000,
+      1710600000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7559,
+      0.7529,
+      0.7541,
+      0.7275,
+      0.7253
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.046,
+      0.1008
+     ]
+    },
+    {
+     "member": "country:LU",
+     "label": "LUXEMBOURG",
+     "values": [
+      313200000,
+      308800000,
+      348400000,
+      365900000,
+      395400000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1483,
+      0.1496,
+      0.1487,
+      0.1594,
+      0.1677
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1683,
+      0.2804
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      78500000,
+      82400000,
+      85600000,
+      97400000,
+      103400000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0372,
+      0.0399,
+      0.0365,
+      0.0424,
+      0.0438
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2408,
+      0.2549
+     ]
+    },
+    {
+     "member": "ben:EuropeMiddleEastandAfricaExcludingLuxembourgMember",
+     "label": "Europe, Middle East and Africa, Excluding Luxembourg",
+     "values": [
+      64700000,
+      60000000,
+      69600000,
+      89000000,
+      75500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0306,
+      0.0291,
+      0.0297,
+      0.0388,
+      0.032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3756,
+      0.2583
+     ]
+    },
+    {
+     "member": "ben:AmericasExcludingUnitedStatesMember",
+     "label": "Americas Excluding United States",
+     "values": [
+      58900000,
+      58900000,
+      72600000,
+      73000000,
+      73500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0279,
+      0.0285,
+      0.031,
+      0.0318,
+      0.0312
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2394,
+      0.2479
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2111400000,
+     2064000000,
+     2343700000,
+     2294900000,
+     2358400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

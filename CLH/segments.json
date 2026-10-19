@@ -1,0 +1,654 @@
+{
+ "ticker": "CLH",
+ "cik": 822818,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000822818-26-000009",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/822818/000082281826000009/clh-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000822818-26-000020",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/822818/000082281826000020/clh-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000822818-26-000034",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/822818/000082281826000034/clh-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "clh:EnvironmentalServicesSegmentMember",
+     "label": "Environmental Services Segment",
+     "values": [
+      4511442000,
+      5004747000,
+      5193290000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.834,
+      0.8497,
+      0.8611
+     ],
+     "growth_yoy": [
+      null,
+      0.1093,
+      0.0377
+     ]
+    },
+    {
+     "member": "clh:SafetyKleenSustainabilitySolutionsSegmentMember",
+     "label": "Safety-Kleen Sustainability Solutions Segment",
+     "values": [
+      897263000,
+      884798000,
+      837361000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1659,
+      0.1502,
+      0.1388
+     ],
+     "growth_yoy": [
+      null,
+      -0.0139,
+      -0.0536
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      447000,
+      407000,
+      186000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0001,
+      0.0001,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -0.0895,
+      -0.543
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5409152000,
+     5889952000,
+     6030837000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "clh:EnvironmentalServicesSegmentMember",
+     "label": "Environmental Services Segment",
+     "values": [
+      1209113000,
+      1352035000,
+      1252526000,
+      1456563000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8444,
+      0.8724,
+      0.8582,
+      0.8395
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0359,
+      0.0773
+     ]
+    },
+    {
+     "member": "clh:SafetyKleenSustainabilitySolutionsSegmentMember",
+     "label": "Safety-Kleen Sustainability Solutions Segment",
+     "values": [
+      222740000,
+      197730000,
+      207011000,
+      278442000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1556,
+      0.1276,
+      0.1418,
+      0.1605
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0706,
+      0.4082
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      97000,
+      89000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0001,
+      0.0001,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1431950000,
+     1549854000,
+     1459537000,
+     1735005000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      4449542000,
+      4928023000,
+      5154668000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8226,
+      0.8367,
+      0.8547
+     ],
+     "growth_yoy": [
+      null,
+      0.1075,
+      0.046
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      959610000,
+      961929000,
+      876169000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1774,
+      0.1633,
+      0.1453
+     ],
+     "growth_yoy": [
+      null,
+      0.0024,
+      -0.0892
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5409152000,
+     5889952000,
+     6030837000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      1201454000,
+      1336948000,
+      1247434000,
+      1432855000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.839,
+      0.8626,
+      0.8547,
+      0.8259
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0383,
+      0.0717
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      230496000,
+      212906000,
+      212103000,
+      302150000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.161,
+      0.1374,
+      0.1453,
+      0.1741
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0798,
+      0.4192
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1431950000,
+     1549854000,
+     1459537000,
+     1735005000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4869180000,
+      5352423000,
+      5490884000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9002,
+      0.9087,
+      0.9105
+     ],
+     "growth_yoy": [
+      null,
+      0.0992,
+      0.0259
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      539972000,
+      537529000,
+      539953000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0998,
+      0.0913,
+      0.0895
+     ],
+     "growth_yoy": [
+      null,
+      -0.0045,
+      0.0045
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5409152000,
+     5889952000,
+     6030837000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1316383000,
+      1402969000,
+      1351381000,
+      1570837000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9193,
+      0.9052,
+      0.9259,
+      0.9054
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0266,
+      0.1197
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      115567000,
+      146885000,
+      108156000,
+      164168000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0807,
+      0.0948,
+      0.0741,
+      0.0946
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0641,
+      0.1177
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1431950000,
+     1549854000,
+     1459537000,
+     1735005000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      6756813000,
+      6937254000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9159,
+      0.9099
+     ],
+     "growth_yoy": [
+      null,
+      0.0267
+     ]
+    },
+    {
+     "member": "clh:CanadaAndOtherForeignCountriesMember",
+     "label": "Canada And Other Foreign Countries",
+     "values": [
+      620465000,
+      686802000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0841,
+      0.0901
+     ],
+     "growth_yoy": [
+      null,
+      0.1069
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7377278000,
+     7624056000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segments' (clh:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segments' (clh:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Technical Services' (clh:TechnicalServicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Field and Emergency Response' (clh:FieldandEmergencyResponseMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Safetly-Kleen Environmental Services' (clh:SafetlyKleenEnvironmentalServicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Safety-Kleen Oil' (clh:SafetyKleenOilMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Industrial Services And Other' (clh:IndustrialServicesAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Technical Services' (clh:TechnicalServicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Field and Emergency Response' (clh:FieldandEmergencyResponseMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Safetly-Kleen Environmental Services' (clh:SafetlyKleenEnvironmentalServicesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Safety-Kleen Oil' (clh:SafetyKleenOilMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Field And Emergency Response' (clh:FieldAndEmergencyResponseMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Product)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Industrial Services And Other' (clh:IndustrialServicesAndOtherMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

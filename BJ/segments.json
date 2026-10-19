@@ -1,0 +1,202 @@
+{
+ "ticker": "BJ",
+ "cik": 1531152,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001531152-26-000007",
+   "filed": "2026-03-12",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000007/bj-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001531152-26-000030",
+   "filed": "2026-05-28",
+   "period": "2026-05-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000030/bj-20260502_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001531152-26-000057",
+   "filed": "2026-08-25",
+   "period": "2026-08-01",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000057/bj-20260801_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      19548011000,
+      20045329000,
+      20957502000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9789,
+      0.9777,
+      0.9767
+     ],
+     "growth_yoy": [
+      null,
+      0.0254,
+      0.0455
+     ]
+    },
+    {
+     "member": "us-gaap:MembershipMember",
+     "label": "Membership",
+     "values": [
+      420678000,
+      456475000,
+      499772000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0211,
+      0.0223,
+      0.0233
+     ],
+     "growth_yoy": [
+      null,
+      0.0851,
+      0.0949
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19968689000,
+     20501804000,
+     21457274000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      5033094000,
+      5256907000,
+      5529145000,
+      6090975000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9766,
+      0.9771,
+      0.9766,
+      0.9782
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0986,
+      0.1587
+     ]
+    },
+    {
+     "member": "us-gaap:MembershipMember",
+     "label": "Membership",
+     "values": [
+      120389000,
+      123333000,
+      132355000,
+      135604000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0234,
+      0.0229,
+      0.0234,
+      0.0218
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0994,
+      0.0995
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5153483000,
+     5380240000,
+     5661500000,
+     6226579000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (bj:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (bj:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (bj:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (bj:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

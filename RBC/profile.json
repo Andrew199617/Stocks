@@ -1,0 +1,282 @@
+{
+ "ticker": "RBC",
+ "cik": 1324948,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T19:43:22-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001324948.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026057626/ea0288814-10k_rbcbear.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RBC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RBC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RBC Bearings INC",
+  "cik": 1324948,
+  "description": {
+   "text": "Bearings Incorporated, together with its subsidiaries, is an international manufacturer and marketer of highly engineered precision bearings, components and essential systems for the Industrial and Aerospace & Defense markets. Our precision solutions are integral to the manufacture and operation of most machines and mechanical systems, to reduce wear to moving parts, facilitate proper power transmission, reduce damage and energy loss caused by friction, and control pressure and flow. The terms “we,” “us,” “our,” “RBC” and the “Company” mean RBC Bearings Incorporated and its subsidiaries, unless the context indicates another meaning. While we manufacture products in all major categories, we focus primarily on the higher end of the bearing, gearing and engineered component markets where we believe our value-added engineering and manufacturing capabilities, and application expertise enable us to differentiate ourselves from our competitors and enhance profitability. We believe our expertise has enabled us to garner leading positions in many of the product markets in which we primarily compete. With 65 facilities in 11 countries, of which 44 are manufacturing facilities, we have been able to significantly broaden our end markets, products, customer base and geographic reach.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-15",
+   "period": "2026-03-28",
+   "accession": "0001213900-26-057626",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026057626/ea0288814-10k_rbcbear.htm"
+  },
+  "description_short": "RBC Bearings Incorporated is an international manufacturer and marketer of highly engineered precision bearings, components and essential systems. Founded in 1919, the Company is primarily focused on producing highly technical or regulated bearing products and components requiring sophisticated design, testing, and manufacturing capabilities for the diversified industrial, aerospace and defense markets. The Company is headquartered in Oxford, Connecticut.",
+  "industry": "Metal Fabrications",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3562",
+  "sic_description": "Ball & Roller Bearings",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0329",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.rbcbearings.com",
+  "headquarters": "Oxford, CT",
+  "address": {
+   "street": "One Tribology Center",
+   "city": "Oxford",
+   "state": "CT",
+   "zip": "06478",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-15"
+  },
+  "phone": "(203) 267 7001",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-05-11",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001324948&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-03",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001213900-26-098402",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026098402/ea0304597-8k_rbcbearings.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001213900-26-087860",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026087860/ea0301616-8k_rbcbearings.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001213900-26-083879",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026083879/ea0299277-10q_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001213900-26-083672",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026083672/ea0299983-8k_rbcbearings.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-24",
+   "period": "2026-09-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-029594",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000114036126029594/ny20075907x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-23",
+   "items": [
+    "1.01",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change",
+   "accession": "0001213900-26-071512",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026071512/ea0295751-8k_rbcbearings.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-15",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001213900-26-057626",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026057626/ea0288814-10k_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-15",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001213900-26-057223",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026057223/ea0291009-8k_rbcbearings.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2025-12-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001213900-26-012732",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026012732/ea0273640-10q_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001213900-26-012574",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390026012574/ea0275716-8k_rbcbear.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001213900-25-104623",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025104623/ea0262539-10q_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001213900-25-104431",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025104431/ea0262538-8k_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-28",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001213900-25-104124",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025104124/ea0262716-8k_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-04",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001213900-25-084801",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025084801/ea0256140-8k_rbc.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001213900-25-070466",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025070466/ea0250097-10q_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-08-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001213900-25-070319",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025070319/ea0251226-8k_rbcbear.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-07-24",
+   "period": "2025-09-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-027120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000114036125027120/ny20051866x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-21",
+   "period": "2025-07-18",
+   "items": [
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Debt obligation; Other events",
+   "accession": "0001213900-25-065878",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025065878/ea0249591-8k_rbcbear.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-20",
+   "period": "2025-05-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001213900-25-045999",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025045999/ea0242951-8k_rbcbear.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-05-16",
+   "period": "2025-03-29",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001213900-25-044893",
+   "url": "https://www.sec.gov/Archives/edgar/data/1324948/000121390025044893/ea0241667-10k_rbcbear.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-05-15"
+ ]
+}

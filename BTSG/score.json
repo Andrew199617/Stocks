@@ -1,0 +1,86 @@
+{
+ "ticker": "BTSG",
+ "name": "BrightSpring Health Services, Inc.",
+ "sector": "Healthcare / Home health & pharmacy services",
+ "price": 60.87,
+ "market_cap_b": 13.38,
+ "engine_version": 5,
+ "base_oe_per_share": 1.5713387976906836,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Scale, limited-distribution drug access (149 drugs) and an integrated pharmacy+provider platform give sticky clinical/payer relationships, but ROIC proxy was only 1.2%/2.0%/5.2% in 2023/2024/2025 and gross margin fell from 17.5% (2022) to 11.8% (2025) on low-margin specialty pharmacy mix \u2014 no proven pricing power or through-cycle returns above the cost of capital.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 23.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 7.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 9.47,
+   "irr": 0.0443
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 14.84,
+   "irr": 0.057
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 19.89,
+   "irr": 0.0687
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 26.3,
+   "irr": 0.0832
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 38.5,
+   "irr": 0.1089
+  }
+ },
+ "iv_at_15": 21.05,
+ "iv_at_12": 28.44,
+ "implied_irr": 0.0716,
+ "implied_irr_base_case": 0.0687,
+ "upside_at_15_pct": -65.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real growth pharmacy/provider platform, moat 4/10 \u2014 does not clear 15% at $60.87 on any scenario (weighted IRR 7.2%, weighted IV@15% $21.05; clears 15% only below ~$21) despite +23% Q2 revenue growth, because TTM OE is only $1.57/share and margins/ROIC are thin.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.057,
+ "irr_bull": 0.0832,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 14.47,
+ "iv_at_25": 10.9,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2419174000,
+ "shares_diluted_latest": 219774000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "National scale in home/community care for complex populations \u2014 ~475,000 patients daily, national payer contracts and procurement leverage",
+  "Limited-distribution drug portfolio (149 drugs, 16-20 launches expected next 12-18 months) \u2014 access smaller specialty pharmacies cannot replicate",
+  "Integrated Pharmacy Solutions + Provider Services platform: cross-referrals, sticky clinically-managed infusion/specialty cases with complex payer authorization",
+  "Specialty & Infusion momentum: Q2 2026 revenue +30%, script growth +31%"
+ ],
+ "moat_against": [
+  "ROIC proxy 1.2% (2023), 2.0% (2024), 5.2% (2025) \u2014 below cost of capital through the available history; gross margin compressed 17.5% -> 11.8% (2022-2025) as mix shifted to pass-through pharmacy revenue",
+  "Reimbursement is set by Medicare/Medicaid/commercial payers, not the company \u2014 IRA impact ~$200M on Home & Community Pharmacy in 2026, that segment's revenue fell 8.6% in H1 2026",
+  "Insurer-owned rivals (UnitedHealth/Optum, CVS) and focused peers (Option Care) compete for the same specialty/infusion volume",
+  "Labor-intensive provider services with thin operating margins (0.8-2.3% FY2023-25) and clinician-retention risk on acquired Amedisys/LHC branches",
+  "Levered history and sponsor overhang: KKR secondary offering in June 2026; net debt $2.42B at FY2025"
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "ticker": "PAG",
+ "name": "Penske Automotive Group, Inc.",
+ "sector": "Consumer Discretionary / Automotive & commercial truck retail",
+ "price": 212.42,
+ "market_cap_b": 14.06,
+ "engine_version": 5,
+ "base_oe_per_share": 8.560054927880701,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Franchise-protected local dealership territories, scale as the second-largest US franchised dealer group, premium/luxury brand mix and a high-margin recurring service & parts business give a moderate moat; ROIC was 17.0-19.6% in 2022-23 but has fallen to 12.4% in FY2025 (fundamentals.json roic_proxy) and gross margin has eased from 17.4% to 16.4%, while powerful OEMs control allocations and brand standards, margins are thin (~4% operating) and the business is deeply cyclical \u2014 so 5/10, not higher.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.8%/yr \u2014 already credited via the growth adjustment",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 40.14,
+   "irr": 0.0468
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 56.95,
+   "irr": 0.0577
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 71.71,
+   "irr": 0.0674
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 89.34,
+   "irr": 0.0789
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 119.76,
+   "irr": 0.098
+  }
+ },
+ "iv_at_15": 68.47,
+ "iv_at_12": 90.21,
+ "implied_irr": 0.0655,
+ "implied_irr_base_case": 0.0674,
+ "upside_at_15_pct": -67.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid franchised dealer group, moat 5/10 \u2014 does not clear 15% on current TTM numbers (6.5% weighted IRR, IV@15% $68.47 vs $212.42 price; hurdle price for 15% is $68.47); the price sits at the $210 Penske Corp/Mitsui take-private proposal, i.e. it is a control/deal price, not standalone owner's-earnings value.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0577,
+ "irr_bull": 0.0789,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 48.83,
+ "iv_at_25": 37.93,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2100800000,
+ "shares_diluted_latest": 66199042,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "State franchise laws create protected local dealership territories",
+  "Scale: second-largest US franchised dealer group, leverage in OEM allocations and acquisitions",
+  "Premium/luxury brand mix with better margins than volume peers",
+  "Service & parts: recurring, ~55-60% gross-margin revenue that cushions vehicle-sale cyclicality (Q2 2026 same-store service & parts revenue +2%, gross margin +80bp to 59.5%)",
+  "Diversification beyond US retail autos: Premier Truck Group (commercial trucks), Australia/UK operations and the Penske Transportation Solutions equity stake"
+ ],
+ "moat_against": [
+  "OEMs hold the power: they control production, allocations, franchise size/location and brand standards",
+  "Thin economics: blended gross margin 16.4% in FY2025 (17.4% in 2021-22), operating margin only 4.03%",
+  "ROIC falling through the cycle: 19.6% (2022) -> 17.0% -> 14.4% -> 12.4% (2025) per fundamentals.json",
+  "Cyclical vehicle demand, affordability and interest-rate exposure; new-vehicle GPU fell 10.4% YoY in Q2 2026",
+  "Direct-to-consumer OEM models (Tesla and others) threaten the franchise model long term; intense rivalry from AutoNation, Lithia and private dealers"
+ ]
+}

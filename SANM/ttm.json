@@ -1,0 +1,101 @@
+{
+ "ticker": "SANM",
+ "cik": 897723,
+ "entity": "Sanmina Corporation",
+ "fy_end": "2025-09-27",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 620657000,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 421578000,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 701977000,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 901056000
+  },
+  "capex": {
+   "fy": 147357000,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 84890000,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 244441000,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 306908000
+  },
+  "sbc": {
+   "fy": 63396000,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 47163000,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 72502000,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 88735000
+  },
+  "shares_diluted": {
+   "fy": 55178000,
+   "fy_period": [
+    "2024-09-29",
+    "2025-09-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 55285000,
+   "ytd_prior_period": [
+    "2024-09-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 55254000,
+   "ytd_current_period": [
+    "2025-09-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 901056000,
+ "ttm_capex": 306908000,
+ "ttm_sbc": 88735000,
+ "ttm_shares_diluted": 55254000,
+ "ttm_oe_total": 505413000,
+ "ttm_oe_per_share": 9.147084373981974,
+ "warnings": [],
+ "overrides_used": []
+}

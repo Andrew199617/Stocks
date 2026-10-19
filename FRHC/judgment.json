@@ -1,0 +1,38 @@
+{
+ "base_override": {
+  "kind": "filing",
+  "reason": "SECTOR_MODEL_MISMATCH (broker / bank / insurer): the engine's OCF-based conservative OE is rejected as the base — for a broker-bank, OCF is customer-balance and balance-sheet plumbing, not distributable earnings: OCF swung -$1,064,362,000 (FY2024) to +$1,681,058,000 (FY2025) to +$185,221,000 (FY2026) and -$637,234,000 TTM (ttm.json) while net income was positive in every one of those years ($379,107,000 / $76,287,000 / $153,328,000; TTM $154,592,000 per fundamentals.json), because deposits, customer payables, margin/securities balances and trading-book flows run through operating cash flow. That plumbing is what makes the normalized OCF base -$1.33/share and prints a spurious Tier F for a company that has been GAAP-profitable every year since FY2018. For a financial, net income is the honest owner's-earnings proxy (the FUTU/LPLA/WSE/ARCC/ALLY sector precedent in this sweep): SBC is already expensed inside it ($68,047,000 in FY2026), credit provisions and insurance reserves are already charged inside it, and capex is a premises/IT cost already carried via depreciation. The median-of-3-FY construction mirrors the engine's own normalization applied to that definition, and it is corroborated by the TTM check: fundamentals.json TTM net income through 2026-06-30 is $154,592,000, essentially the FY2026 level the median lands on. Known biases, stated: total net income is used (no noncontrolling-interest deduction is separable in the engine history), and regulatory-capital retention means not all of it is distributable — handled via low confidence and conservative scenario multipliers, not a fabricated capex line. Declared under bounded authority (c): every input is a figure printed by this run's engine outputs (financials_history.csv).",
+  "source": "Median of the last 3 fiscal years' net income per diluted share, built exclusively from this run's financials_history.csv (engine-filed figures): FY2024 net income $379,107,000 / 59,362,982 diluted shares = $6.3863; FY2025 $76,287,000 / 60,490,564 = $1.2611; FY2026 $153,328,000 / 61,117,931 = $2.5087; median of the three = $2.5087 (the FY2026 value)",
+  "value": 2.5087236673636744
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Only #3 in its home market: Kaspi.kz and Halyk Bank run larger ecosystems with bigger MAU and lending volumes; Freedom is the challenger, not the incumbent standard",
+  "Returns do not prove a moat: ROE 6.2% (FY2025) and 10.3% (FY2026) per fundamentals.json — at/below cost of equity — after 26.4%/32.6% in FY2023/24; net income ranged $76M-$379M over FY2024-26",
+  "Regulatory hostage in its core market: Kazakhstan legislation change cut net insurance revenue 29% in FY2026; banking/brokerage/insurance are all licensed, policy-sensitive businesses",
+  "Governance/regulatory overhang: SEC Wells Notice to the company and CEO (March 2026), 2023 Hindenburg allegations (sanctions evasion, related-party FST Belize), CFO resignation June 2026, Russian prosecutor lawsuit filed October 2026",
+  "Low switching costs and price competition: digital brokerage and deposits are rate-shopped (Freedom Bank's top tenge deposit pays 19.5% AER); founder control by Timur Turlov concentrates key-man and related-party risk"
+ ],
+ "moat_for": [
+  "Integrated SuperApp ecosystem bundling brokerage, banking, insurance, payments and lifestyle — ~2.6M monthly active users in March 2026 (S&P), cross-sell across 8.7M ecosystem customers at Q1 FY2027",
+  "Leading Kazakhstan brokerage: ~858,000 customer accounts at FY2026 (+26% YoY), >56% funded",
+  "Real insurance niches per National Bank of Kazakhstan data in the FY2026 10-K reporting: Freedom Life ~19.3% of pension annuity premiums, Freedom Insurance ~14.53% of car-owner liability premiums",
+  "Top-3 Kazakhstan financial group by market capitalization, behind only Kaspi.kz and Halyk Bank; S&P upgraded core subsidiaries to BB- with positive outlook in 2026",
+  "Loyalty program converts cashback into fractional FRHC shares — customers are literally invested in the platform"
+ ],
+ "moat_justification": "Kazakhstan's #3 financial group and a real digital ecosystem (SuperApp bundling brokerage, banking, insurance, payments and lifestyle; 858,000 brokerage accounts; Freedom Life #3-tier insurance shares) — but it trails Kaspi.kz and Halyk Bank in its home market, digital brokerage/banking switching costs are low, it competes for deposits on price, and returns have not proven the franchise: ROE fell to 6.2% in FY2025 and 10.3% in FY2026 (fundamentals.json) from 26.4-32.6% in FY2023-24, i.e. at or below the cost of equity in the two most recent years, with net income swinging $76M-$379M across the last three fiscal years. Regulatory dependence is a structural erosion force: a Kazakhstan insurance-law change cut net insurance revenue 29% in FY2026, and the group carries an SEC Wells Notice (March 2026), the 2023 Hindenburg allegations overhang, and founder (Timur Turlov) concentration.",
+ "moat_score": 4,
+ "name": "Freedom Holding Corp.",
+ "one_liner": "Kazakhstan's #3 financial ecosystem (brokerage/banking/insurance SuperApp), moat 4/10 — GAAP-profitable every year since FY2018, but at $181.57 the base OE yield is 1.4% on the NI-based base of $2.51/share: weighted IRR 5.2%, IV@15% $34.56, even the super-bull case only 8.2%; clears the 15% hurdle only at ~$35.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Finance / Brokerage, banking & insurance (Kazakhstan)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

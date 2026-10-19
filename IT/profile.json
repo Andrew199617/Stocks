@@ -1,0 +1,290 @@
+{
+ "ticker": "IT",
+ "cik": 749251,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T06:29:36-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000749251.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000112/it-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GARTNER INC",
+  "cik": 749251,
+  "description": {
+   "text": "Gartner, Inc. (NYSE: IT) delivers actionable, objective business and technology insights that drive smarter decisions and stronger performance on an organization’s mission-critical priorities. We are a trusted advisor and an objective resource for over 13,000 enterprises in approximately 90 countries and territories— across every major function, geography, industry and sector. Gartner delivers its products and services globally through three reportable segments – Business and Technology Insights, Conferences and Consulting, as described below. In the second quarter of 2025, we renamed our segment previously referred to as Research to Business and Technology Insights (or “Insights”) to reflect the nature of the value we provide to clients. In the third quarter of 2025, we changed the structure of our internal organization and concluded that Gartner Digital Markets (“Digital Markets”) was an operating segment but does not meet the criteria of a reportable segment. Accordingly, Digital Markets results are now included in “Other” where segment information is provided. Digital Markets was previously included in our Insights segment. Prior periods have been recast to conform to current period presentation. On February 5, 2026, we completed the sale of Digital Markets for approximately $110.0 million, prior to customary purchase price adjustments.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0000749251-26-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000112/it-20251231.htm"
+  },
+  "description_short": "Gartner (NYSE: IT) delivers actionable, objective business and technology insights that drive smarter decisions and stronger performance on an organization's mission-critical priorities. To learn more visit gartner.com.",
+  "industry": "Other Consumer Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "8741",
+  "sic_description": "Services-Management Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.gartner.com",
+  "headquarters": "Stamford, Connecticut",
+  "address": {
+   "street": "P.O. Box 10212 56 Top Gallant Road",
+   "city": "Stamford",
+   "state": "Connecticut",
+   "zip": "06902-7700",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "2039640096",
+  "employees": {
+   "count": 20244,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we had 20,244 employees globally, 9,994 of which were outside of the U.S., and the overwhelming majority of our employees were full time.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000112/it-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-07",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "GARTNER GROUP INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000749251&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-417937",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000119312526417937/d158580d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000749251-26-000245",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000245/it-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000749251-26-000243",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000243/it-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000749251-26-000198",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000198/it-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000749251-26-000167",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000167/it-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000749251-26-000165",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000165/it-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-15",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000749251-26-000159",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000159/it-20260415.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000749251-26-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000112/it-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-01-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000749251-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000028/it-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000749251-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000025/it-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-20",
+   "period": "2025-11-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-289854",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000119312525289854/d98932d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000749251-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000082/it-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000749251-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000080/it-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-12",
+   "period": "2025-09-10",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000749251-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000048/it-20250910.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000749251-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000046/it-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000749251-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000044/it-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-05-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000749251-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000035/it-20250529.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000749251-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000028/it-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-06",
+   "period": "2025-05-06",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000749251-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000026/it-20250506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-15",
+   "period": "2025-05-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000749251-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925125000018/it-20250415.htm"
+  }
+ ],
+ "warnings": []
+}

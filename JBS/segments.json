@@ -1,0 +1,276 @@
+{
+ "ticker": "JBS",
+ "cik": 1791942,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001213900-26-034213",
+   "filed": "2026-03-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026034213/ea0282342-20f_jbsnv_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001791942-26-000004",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1791942/000179194226000004/jbsay-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "jbs:BeefNorthAmericaMember",
+     "label": "Beef North America Member",
+     "values": [
+      23303052000,
+      24285826000,
+      28137233000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3196,
+      0.3147,
+      0.3265
+     ],
+     "growth_yoy": [
+      null,
+      0.0422,
+      0.1586
+     ]
+    },
+    {
+     "member": "jbs:PilgrimsPrideMember",
+     "label": "Pilgrims Pride Member",
+     "values": [
+      17347956000,
+      17863075000,
+      18484934000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2379,
+      0.2314,
+      0.2145
+     ],
+     "growth_yoy": [
+      null,
+      0.0297,
+      0.0348
+     ]
+    },
+    {
+     "member": "jbs:BRMember",
+     "label": "BRMember",
+     "values": [
+      11141171000,
+      null,
+      15293716000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1528,
+      null,
+      0.1775
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jbs:SearaMember",
+     "label": "Seara Member",
+     "values": [
+      8272546000,
+      8774541000,
+      9170889000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1134,
+      0.1137,
+      0.1064
+     ],
+     "growth_yoy": [
+      null,
+      0.0607,
+      0.0452
+     ]
+    },
+    {
+     "member": "jbs:USAPorkMember",
+     "label": "USAPork Member",
+     "values": [
+      7713828000,
+      8115549000,
+      8431202000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1058,
+      0.1051,
+      0.0978
+     ],
+     "growth_yoy": [
+      null,
+      0.0521,
+      0.0389
+     ]
+    },
+    {
+     "member": "jbs:AUMember",
+     "label": "AUMember",
+     "values": [
+      6209012000,
+      6648051000,
+      8076998000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0852,
+      0.0861,
+      0.0937
+     ],
+     "growth_yoy": [
+      null,
+      0.0707,
+      0.2149
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      null,
+      12590503000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.1631,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jbs:OtherMember",
+     "label": "Other Member",
+     "values": [
+      893459000,
+      526323000,
+      825647000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0123,
+      0.0068,
+      0.0096
+     ],
+     "growth_yoy": [
+      null,
+      -0.4109,
+      0.5687
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -1962901000,
+      -1621321000,
+      -2236437000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0269,
+      -0.021,
+      -0.0259
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     72918123000,
+     77182547000,
+     86184182000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/quarterly: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Revenues/quarterly: table dropped: its 2 rows cover -2.9% of the consolidated total for 2026-06-30, not a breakdown of it",
+  "geography/Revenues/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

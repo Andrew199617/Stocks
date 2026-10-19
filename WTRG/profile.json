@@ -1,0 +1,294 @@
+{
+ "ticker": "WTRG",
+ "cik": 78128,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T18:03:01-04:00",
+ "newest_filing_date": "2026-09-17",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000078128.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000050/wtrg-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WTRG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WTRG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Essential Utilities, Inc.",
+  "cik": 78128,
+  "description": {
+   "text": "Essential Utilities, Inc., referred to as “Essential Utilities”, “Essential”, the “Company”, “we”, “us”, or “our”, a Pennsylvania corporation, is the holding company for regulated utilities providing water, wastewater, or natural gas services to an estimated 5.5 million people in Pennsylvania, Ohio, Texas, Illinois, North Carolina, New Jersey, Indiana, Virginia, and Kentucky under the Aqua and Peoples brands. One of our largest operating subsidiaries, Aqua Pennsylvania, Inc., or Aqua Pennsylvania, accounted for approximately 57% of operating revenues and approximately 72% of income for our Regulated Water segment in 2025. As of December 31, 2025, Aqua Pennsylvania provided water or wastewater services to approximately one-half of the total number of water and wastewater customers we serve. Aqua Pennsylvania’s service territory is located in the suburban areas in counties north and west of the City of Philadelphia and in 28 other counties in Pennsylvania. Our other regulated water or wastewater utility subsidiaries provide similar services in seven additional states. Our Peoples subsidiaries provide natural gas service to approximately 747,000 customers in western Pennsylvania and Kentucky. Approximately 95% of the total number of natural gas utility customers we serve are in western Pennsylvania.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000078128-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000050/wtrg-20251231x10k.htm"
+  },
+  "description_short": "Essential Utilities, Inc. (NYSE: WTRG) delivers safe, clean, reliable services that improve quality of life for individuals, families, and entire communities. With a focus on water, wastewater and natural gas, Essential is committed to sustainable growth, operational excellence, a superior customer experience, and premier employer status. We are advocates for the communities we serve and are dedicated stewards of natural lands, protecting thousands of acres of forests and other habitats throughout our footprint. Operating as the Aqua and Peoples brands, Essential serves approximately 5.5 million people across nine states.",
+  "industry": "Water Supply",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4941",
+  "sic_description": "Water Supply",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.essential.co",
+  "headquarters": "Bryn Mawr, Pennsylvania",
+  "address": {
+   "street": "762 W Lancaster Avenue",
+   "city": "Bryn Mawr",
+   "state": "Pennsylvania",
+   "zip": "19010-3489",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "610-527-8000",
+  "employees": {
+   "count": 3303,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed a total of 3,303 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000050/wtrg-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-08",
+  "first_sec_filing_form": "S-8",
+  "former_names": [
+   "AQUA AMERICA INC",
+   "PHILADELPHIA SUBURBAN CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000078128&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-15",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001552781-26-000492",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000492/e26385_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-28",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001552781-26-000466",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000466/e26365_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-354055",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000119312526354055/d156812d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000078128-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000077/wtrg-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001552781-26-000404",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000404/e26327_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001552781-26-000331",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000331/e26263_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-214642",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000119312526214642/d132698d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001562762-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000156276226000060/wtrg-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001552781-26-000307",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000307/e26241_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001552781-26-000288",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000288/e26229_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001552781-26-000266",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000266/e26216_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-124163",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000119312526124163/d123052d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001552781-26-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000133/e26008_wtrg-def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-09",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001552781-26-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000098/e26097_wtrg-8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000078128-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000050/wtrg-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001552781-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000071/e26072_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001552781-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000049/e26053_wtrg-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001552781-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000047/e26050_wtrg-8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000078128-25-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000007812825000007/wtrg-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001552781-25-000394",
+   "url": "https://www.sec.gov/Archives/edgar/data/78128/000155278125000394/e25410_wtrg-8k.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,36 @@
+{
+ "base_override": {
+  "reason": "BASE_DIVERGENCE resolution: both engine candidate bases are distorted. The normalized median ($2.6376) is the FY2024 print — the pre-turnaround trough year (ROIC 16.4% low, peak capex on 227 store openings) — and averages in the FY2025 tariff-hit year ($1.6510); it describes a company that no longer exists. The TTM pin ($10.2260 from ttm.py) is distorted the other way: TTM OCF of $803,480,000 contains Q2 FY2027's one-time tariff recovery (Q2 GAAP operating income $275.4M vs adjusted $113.2M, a ~$162M pre-tax one-off in the quarter ended 2026-08-01), so the TTM base capitalizes a refund. The latest filed fiscal year (ended 2026-01-31) is the cleanest base: post-reset, pre-refund, a full audited year. It is also conservative against the forward run-rate — FY2027 guidance (adj. EPS $9.83-$10.31 on sales $5.63-5.71B) implies OE/share well above $6.80 — and its one flattering feature, trough capex of $174.7M on 150 openings vs 227, is charged against the bear scenarios (OE multipliers 0.75/0.90) rather than the base. Construction uses only figures printed by this run's dcf_numbers.json / financials_history.csv.",
+  "source": "Latest fiscal year OE/share from this run's own outputs: dcf_numbers.json base_oe_latest_per_share $6.8006 (financials_history.csv FY2026, period ended 2026-01-31: OCF $586,428,000 − capex $174,741,000 − SBC $34,680,000 = OE $377,007,000 on 55,436,972 diluted shares)",
+  "value": 6.8006
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No switching costs and a copyable assortment — trend-right merchandising must be re-earned every season",
+  "Competition for the same discretionary dollar: Dollar Tree/Dollar General, Walmart, Target, TJX, Amazon, Temu/Shein",
+  "Tariff exposure on imported merchandise — tariff costs depressed FY2025 earnings and the Q2 FY2027 'refund' one-off shows the exposure runs both ways",
+  "Comp volatility: comps went negative in the FY2024-25 trough before the +12.8% / +18.3% surge — the format's growth is execution- and trend-dependent",
+  "Price-point creep ('Five Beyond' items above $5) risks diluting the value promise that drives traffic"
+ ],
+ "moat_for": [
+  "Differentiated treasure-hunt format and brand aimed at tweens/teens — not a generic dollar store; customers come for discovery, not staples",
+  "ROIC history well above the cost of capital for a decade (roic_proxy 16-40%, FY2017-FY2026) with gross margin stable at ~35-36%",
+  "Scale and new-store machine: 2,022 stores in 46 states, ~150 net openings/yr at strong new-store performance, 8.5% unit growth in FY2026",
+  "Traffic-led comps: five straight double-digit comp quarters (Q2 FY2027 +14.1% on +13.6% transactions) under the post-2024 customer-centric reset"
+ ],
+ "moat_justification": "A differentiated treasure-hunt value format aimed at tweens/teens ('the Kid and the Kid in all of us') with real brand resonance, 2,022 stores and proven new-store economics; return on invested capital (fundamentals.json roic_proxy) ran 28.1% / 29.3% / 40.2% / 30.8% / 20.3% / 27.4% / 25.2% / 20.6% / 16.4% / 23.2% over FY2017-FY2026 and gross margin held ~35-36% for a decade — returns well above the cost of capital through a cycle (the proxy excludes lease liabilities from capital, so it flatters the level, but the durability is real). Against that: no switching costs, a discretionary trend-driven assortment any rival can copy, heavyweight competition (Dollar Tree, Dollar General, Walmart, Target, TJX, Temu/Shein), imported-merchandise tariff exposure that has already hit earnings once, and a format whose comps round-tripped from negative to +18% in three years — a narrow, execution-dependent moat, not a wide one.",
+ "moat_score": 5,
+ "name": "Five Below, Inc.",
+ "one_liner": "Turnaround value retailer, moat 5/10 with a decade of high ROIC — but at $222.72 the market already pays for the recovery: weighted IRR 9.3% (IV@15% $110.97) on the clean latest-FY base, and even the tariff-refund-inflated TTM base reaches only 12.2%; clears the 15% hurdle only below ~$111.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Retail / Specialty discount — tween & teen treasure-hunt",
+ "tier_override": null,
+ "tier_override_reason": null
+}

@@ -1,0 +1,126 @@
+{
+ "ticker": "WMG",
+ "cik": 1319161,
+ "entity": "Warner Music Group Corp.",
+ "fy_end": "2025-09-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 678000000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 447000000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 708000000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 939000000
+  },
+  "capex": {
+   "fy": 139000000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 111000000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 75000000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 103000000
+  },
+  "sbc": {
+   "fy": 54000000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 1000000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 40389041.09589041,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 93389041.0958904
+  },
+  "shares_diluted": {
+   "fy": null,
+   "fy_period": null,
+   "fy_tag": null,
+   "ytd_prior": null,
+   "ytd_prior_period": null,
+   "ytd_prior_tag": null,
+   "ytd_current": 520508000.0,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 939000000,
+ "ttm_capex": 103000000,
+ "ttm_sbc": 93389041.0958904,
+ "ttm_shares_diluted": 520508000.0,
+ "ttm_oe_total": 742610958.9041096,
+ "ttm_oe_per_share": 1.4267042176183835,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 54000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended September 30, 2025, Consolidated Statements of Cash Flows: share-based compensation $54M for FY2025 (engine-filed series, tag AllocatedShareBasedCompensationExpense, financials_history.csv FY2025 sbc = 54,000,000); FY2024 $52M and FY2023 $49M in the same statement",
+   "legs_filled": {
+    "ytd_current": {
+     "period": [
+      "2025-10-01",
+      "2026-06-30"
+     ],
+     "amount": 40389041.09589041,
+     "days": 273,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "shares",
+   "value": 520508000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended September 30, 2025, Note 3 Earnings per Share: weighted average shares outstanding Class A 145,128 thousand + Class B 375,380 thousand = 520,508 thousand for FY2025; same note gives FY2024 140,882 + 376,641 = 517,523 thousand and FY2023 138,070 + 377,650 = 515,720 thousand, and states potentially dilutive shares had no dilutive effect in FY2023-FY2025 (FY2025 diluted denominator includes only ~397 additional shares per footnote (b)), so basic = diluted",
+   "legs_filled": {
+    "ytd_current": {
+     "amount": 520508000.0,
+     "prorated": false,
+     "note": "share counts are weighted averages, not flows \u2014 used unprorated as the TTM denominator"
+    }
+   }
+  }
+ ]
+}

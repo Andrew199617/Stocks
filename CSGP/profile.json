@@ -1,0 +1,297 @@
+{
+ "ticker": "CSGP",
+ "cik": 1057352,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T06:55:18-04:00",
+ "newest_filing_date": "2026-08-21",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001057352.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000020/csgp-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CSGP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CSGP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "COSTAR GROUP, INC.",
+  "cik": 1057352,
+  "description": {
+   "text": "This Report also refers to our websites, but information contained on those sites is not part of this Report. CoStar Group is a leading provider of online real estate marketplaces, information, analytics, and 3D digital twin technology in the property markets. Our mission is to digitize the world's real estate, empowering all people to discover properties, insights, and connections that improve their businesses and lives. We own and operate leading online marketplaces for real estate in the U.S., Australia, Europe, Canada, and Asia-Pacific based on the numbers of unique visitors and site visits per month. We provide more information, analytics, and marketing services than many of our competitors; offer the most comprehensive commercial real estate database available; and have the largest commercial real estate research department in the industry. We have created and compiled a standardized platform of online marketplace services, information, and analytics where industry professionals, consumers of real estate, and the related business communities can continuously interact and facilitate transactions by efficiently accessing and exchanging accurate and standardized real estate-related information.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001057352-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000020/csgp-20251231.htm"
+  },
+  "description_short": "CoStar Group (NASDAQ: CSGP) is a global leader in commercial real estate information, analytics, online marketplaces, and 3D digital twin technology. Founded in 1986, CoStar Group is dedicated to digitizing the world's real estate, empowering all people to discover properties, insights, and connections that improve their businesses and lives. CoStar Group's major brands include CoStar, a leading global provider of commercial real estate data, analytics, and news; LoopNet, the most trafficked commercial real estate marketplace; Apartments.com, the leading platform for apartment rentals; Homes.com, the fastest-growing residential real estate marketplace; and Domain, one of Australia's leading property marketplaces.",
+  "industry": "Real Estate",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.costargroup.com",
+  "headquarters": "Arlington, VA",
+  "address": {
+   "street": "1201 Wilson Blvd",
+   "city": "Arlington",
+   "state": "VA",
+   "zip": "22209",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "2023466500",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-03-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "COSTAR GROUP, INC.",
+   "COSTAR GROUP INC",
+   "REALTY INFORMATION GROUP INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001057352&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001057352-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000072/csgp-20260821.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001057352-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000066/csgp-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001057352-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000061/csgp-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-13",
+   "period": "2026-07-07",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001057352-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000054/csgp-20260707.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-23",
+   "items": [
+    "5.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote; Reg FD",
+   "accession": "0001057352-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000048/csgp-20260623.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-28",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-246361",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000119312526246361/d91732d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-30",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-197205",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000119312526197205/d903159ddef14a.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001057352-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000035/csgp-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001057352-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000030/form8-kq12026earningspr.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-15",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001057352-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000024/csgp-20260315.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001057352-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000020/csgp-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001057352-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000012/csgp-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-13",
+   "period": "2026-02-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001057352-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000008/csgp-20260213.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-07",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001057352-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735226000004/csgp-20260107.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001057352-25-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735225000120/csgp-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001057352-25-000116",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735225000116/csgp-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001057352-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735225000102/csgp-20250827.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-23",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001057352-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735225000097/csgp-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001057352-25-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735225000095/csgp-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-27",
+   "period": "2025-06-26",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001057352-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1057352/000105735225000083/csgp-20250626.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-26"
+ ]
+}

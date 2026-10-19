@@ -1,0 +1,301 @@
+{
+ "ticker": "ONTO",
+ "cik": 704532,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T05:22:32-04:00",
+ "newest_filing_date": "2026-08-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000704532.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/704532/000119312526066937/onto-20260103.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ONTO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ONTO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ONTO INNOVATION INC.",
+  "cik": 704532,
+  "description": {
+   "text": "Onto Innovation® is a worldwide leader in the design, development, manufacture and support of metrology and inspection tools for the semiconductor industry, including process control tools that perform optical metrology and inspection on patterned and unpatterned wafers, including macro defect inspection of both 2D and 3D wafer features, wafer substrate and panel substrate lithography systems, and process control analytical software. Our products are primarily used by silicon wafer manufacturers, semiconductor integrated circuit (“IC”) fabricators, and advanced packaging manufacturers operating in the semiconductor market. Our products are also used for process control in a number of other specialty device manufacturing markets, including light emitting diodes (“LED”), vertical-cavity surface-emitting lasers (“VCSEL”), micro-electromechanical systems (“MEMS”), CMOS image sensors (“CIS”), silicon and compound semiconductor (SiC and GaN) power devices, analog devices, RF filters, data storage, and certain industrial and scientific applications. We provide process and yield management solutions used in bare silicon wafer production and wafer processing facilities, often referred to as “front-end” manufacturing, and advanced packaging of chips and test facilities, or “back-end” manufacturing, through a portfolio of standalone systems for optical metrology, macro-defect inspection, packaging lithography, as well as transparent and opaque thin film measurements.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2026-01-03",
+   "accession": "0001193125-26-066937",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526066937/onto-20260103.htm"
+  },
+  "description_short": "Onto Innovation is a leader in process control, combining global scale with an expanded portfolio of leading-edge technologies that includes un-patterned wafer quality, 3D metrology spanning chip features from nanometer scale transistors to large die interconnects, macro defect inspection of wafers and packages, metal interconnect composition, factory analytics, and lithography for advanced semiconductor packaging. Our breadth of offerings across the entire semiconductor value chain combined with our connected thinking approach results in a unique perspective to help solve our customers' most difficult yield, device performance, quality, and reliability issues. Onto Innovation strives to optimize customers' critical path of progress by making them smarter, faster and more efficient. Headquartered in Wilmington, Massachusetts, Onto Innovation supports customers with a worldwide sales and service organization.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3829",
+  "sic_description": "Measuring & Controlling Devices, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1226",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ontoinnovation.com",
+  "headquarters": "Wilmington, MA",
+  "address": {
+   "street": "16 Jonspin Road",
+   "city": "Wilmington",
+   "state": "MA",
+   "zip": "01887",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "9782536200",
+  "employees": {
+   "count": 1615,
+   "as_of": "2026-01-03",
+   "evidence": "As of January 3, 2026, we had approximately 1,615 staff globally, 419 in research and development, 263 in operations, 194 in administration and 739 in sales, applications and service support.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526066937/onto-20260103.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-15",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "NANOMETRICS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000704532&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-09",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001193125-26-341337",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526341337/d125405d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-338401",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526338401/onto-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-337990",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526337990/onto-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001193125-26-234610",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526234610/d17904d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-232522",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526232522/onto-20260520.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-227915",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526227915/d147805d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-206707",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526206707/onto-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-206365",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526206365/onto-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-20",
+   "items": [
+    "1.01",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD; Other events",
+   "accession": "0001193125-26-164529",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526164529/d75499d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-16",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-158081",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526158081/onto-20260416.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-143699",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526143699/onto-20260406.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2026-01-03",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-066937",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526066937/onto-20260103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-059380",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312526059380/onto-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-21",
+   "period": "2025-11-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-291346",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312525291346/onto-20251119.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "2.01",
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Unregistered sale of equity; Reg FD",
+   "accession": "0001193125-25-283980",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312525283980/onto-20251117.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-270040",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312525270040/onto-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-269460",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312525269460/onto-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-10",
+   "period": "2025-10-09",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-25-236464",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000119312525236464/onto-20251009.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-105161",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000095017025105161/onto-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-105068",
+   "url": "https://www.sec.gov/Archives/edgar/data/704532/000095017025105068/onto-20250807.htm"
+  }
+ ],
+ "warnings": []
+}

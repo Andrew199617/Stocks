@@ -1,0 +1,48 @@
+{
+ "ads_ratio": {
+  "ratio": 1,
+  "reason": "DATA_GAP:ads_ratio — the filer's own 20-F states one ADS represents one ordinary share, so per-ordinary-share figures are directly comparable to the traded price with no scaling. (Post-period: on April 20, 2026 all ADSs were mandatorily exchanged 1-for-1 into ordinary shares directly listed on Nasdaq under the same ASND ticker, per the company's April 8/20, 2026 GlobeNewswire releases — the 1:1 basis is unchanged.)",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), cover page: American Depositary Shares, each representing one ordinary share, nominal value DKK 1 per share (Nasdaq: ASND)"
+ },
+ "capex_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:capex — no PPE-only purchase tag is filed for FY2024/FY2025 because the filer reports PPE and intangible acquisitions on one combined cash-flow line (proof of basis: the FY2023 combined €2,442k is exactly the engine's last filed capex — €2,442k at the recorded 1.105 ECB rate = $2,698,410 in financials_history.csv). The combined line is an upper bound on PPE-only capex (it also buys intangibles), so subtracting it is conservative for owner's earnings. The engine applies this single FY2025 value to every missing period: for FY2024 it overstates the filed combined €1,427k by ~€7.1M, immaterial against FY2024 operating cash flow of -€306.2M and conservative in direction. Capex at this scale cannot change the sign of any year's OE (FY2025 OCF +$63.3M vs SBC $136.5M). Declared in EUR, the reporting currency; the engine FX-converts at period-end rates.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), Consolidated Statement of Cash Flows (p. F-8): the combined acquisition line for intangible assets and property, plant and equipment is €8,485 thousand for FY2025, with €1,427 thousand for FY2024 and €2,442 thousand for FY2023 in the same statement",
+  "value": 8485000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No demonstrated returns on capital: owner's earnings negative 0/5 of the last 5 years, operating losses every filed year, book equity negative (-€162.8M at FY2025) so ROIC is not yet measurable, let alone above the cost of capital through a cycle",
+  "Single-product concentration: YORVIPATH ~80% of Q2 2026 product revenue (€252M of €315M)",
+  "Competition is real on both lead products: rival PTH therapy eneboparatide in Phase 3 (Amolyt/AstraZeneca), weekly-GH rivals (Novo Nordisk Sogroya, Pfizer/Opko NGENLA) against SKYTROFA",
+  "SBC is a heavy, recurring cost: €116.2M share-based payment in FY2025 (FY2024 €95.5M), exceeding FY2025 free cash flow; the EPS-note share count rose from 56,287,060 (FY2023) to 60,607,131 (FY2025) to fund the loss years",
+  "Finite patent/exclusivity horizons and rare-disease pricing politics cap how long the gross-margin structure can be assumed to persist"
+ ],
+ "moat_for": [
+  "TransCon platform validated across three approved products — YORVIPATH (only PTH replacement for hypoparathyroidism), SKYTROFA (once-weekly GH), YUVIWEL (achondroplasia, FDA-approved Feb 2026)",
+  "Specialty pricing power in the filed numbers: gross margin 83.4% (FY2023), 87.8% (FY2024), 86.8% (FY2025) as commercial mix scaled",
+  "Rare-disease commercial infrastructure: YORVIPATH available in 35+ countries, SKYTROFA >20,000 patients enrolled globally since launch",
+  "Platform monetization beyond own sales: Novo Nordisk license, Teijin Japan license (royalties up to mid-20s %), Eyconis ophthalmology spin-out with milestone/royalty rights"
+ ],
+ "moat_justification": "TransCon prodrug platform validated by three approved rare-endocrine products (YORVIPATH — the only PTH replacement therapy for hypoparathyroidism; SKYTROFA weekly growth hormone; YUVIWEL for achondroplasia, approved Feb 2026) with specialty pricing power in the numbers: gross margin 83.4% (FY2023) → 87.8% (FY2024) → 86.8% (FY2025) in fundamentals.json. But there is no demonstrated return on capital: book equity is negative (-€162.8M at FY2025), the roic_proxy series in fundamentals.json is denominator noise (+180.6% in FY2019, -55.9% in FY2018, -3.0% in FY2025 despite an operating loss), and conservative owner's earnings are negative in 0 of the last 5 years. Revenue is concentrated (YORVIPATH ~80% of Q2 2026 product revenue), weekly-GH and PTH rivals are in market or in Phase 3, and SBC (€116.2M in FY2025) exceeds FY2025 free cash flow. A 5 gives CAP 8.5 years.",
+ "moat_score": 5,
+ "name": "Ascendis Pharma A/S",
+ "one_liner": "Real TransCon platform with three approved rare-disease products and ~87% gross margins, moat 5/10 — but owner's earnings are negative in all of the last 5 years (normalized base -$7.03/share with the filing overrides applied; FY2025 still -$1.37/share because SBC of $136.5M exceeded FCF of $53.4M) — Tier F on this screen; it does not clear 15% at any price on current numbers and no hurdle-clearing price is computed on a negative base. The 2026 inflection (H1 revenue €585.9M, non-IFRS profit positive) is a re-rating story, not yet an owner's-earnings story.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Healthcare / Biopharmaceuticals (rare endocrine diseases, TransCon platform)",
+ "shares_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:shares — no separate diluted count is tagged because Ascendis was loss-making in FY2023-2025: Note 5 states the outstanding warrants, RSUs/PSUs and the 575,000 convertible senior notes (convertible into 3,456,785 ordinary shares) were excluded from diluted EPS as antidilutive, so the filer's diluted denominator is the combined basic-and-diluted count in the EPS note. The engine applies this single FY2025 value to every missing period; for FY2023/FY2024 it is a larger denominator than the filer's own counts (56,287,060 / 57,891,570), which shrinks the negative OE/share toward zero — the direction runs against a harsher verdict, and the normalized base stays deeply negative on either basis (-$7.21/share on the filed per-year counts).",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), Note 5 Earnings Per Share: the weighted average number of ordinary shares for the purposes of basic and diluted earnings per share is 60,607,131 for FY2025, with 57,891,570 for FY2024 and 56,287,060 for FY2023 in the same table; basic and diluted EPS are identical in all three years (€(3.76) / €(6.53) / €(8.55))",
+  "value": 60607131
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

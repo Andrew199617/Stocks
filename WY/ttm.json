@@ -1,0 +1,137 @@
+{
+ "ticker": "WY",
+ "cik": 106535,
+ "entity": "WEYERHAEUSER COMPANY",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 562000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 466000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 451000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 547000000
+  },
+  "capex": {
+   "fy": 447000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 221663013.69863012,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 221663013.69863012,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 447000000.0
+  },
+  "sbc": {
+   "fy": 43000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 23000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 23000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 43000000
+  },
+  "shares_diluted": {
+   "fy": 723567000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 725239000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 721787000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 547000000,
+ "ttm_capex": 447000000.0,
+ "ttm_sbc": 43000000,
+ "ttm_shares_diluted": 721787000,
+ "ttm_oe_total": 57000000.0,
+ "ttm_oe_per_share": 0.07897066586125824,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 447000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13, accession 0001193125-26-051422), Consolidated Statements of Cash Flows, investing activities: 'Capital expenditures for property and equipment' $423M for FY2025, $364M for FY2024, $390M for FY2023, plus 'Capital expenditures for timberlands reforestation' $51M / $52M / $57M for the same years \u2014 combined totals $474M / $416M / $447M; corroborated in EDGAR companyfacts under us-gaap PropertyPlantAndEquipmentAdditions with identical totals ($474M / $416M / $447M) and by the same filing's FAD reconciliation line 'Capital expenditures' ($474M for FY2025, $416M for FY2024)",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 447000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 221663013.69863012,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 221663013.69863012,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

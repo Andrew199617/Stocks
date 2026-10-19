@@ -1,0 +1,279 @@
+{
+ "ticker": "EFX",
+ "cik": 33185,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T14:54:57-04:00",
+ "newest_filing_date": "2026-07-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000033185.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000010/efx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EFX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EFX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EQUIFAX INC",
+  "cik": 33185,
+  "description": {
+   "text": "Equifax Inc. is a global data, analytics and technology company. We provide information solutions for businesses, governments and consumers, and we provide human resources business process automation and outsourcing services for employers. We have a large and diversified group of clients, including financial institutions, corporations, government agencies and individuals. Our services are based on comprehensive databases of consumer and business information derived from numerous sources including credit, financial assets, telecommunications and utility payments, employment, income, educational history, criminal justice, healthcare professional licensure and sanctions, demographic and marketing data. We use advanced statistical techniques, artificial intelligence and machine learning, as well as proprietary software tools to analyze available data for the creation of customized insights, decision-making and process automation solutions, and processing services for our clients. We are a leading provider of information and solutions used in payroll-related and human resource management business process services in the United States of America (“U.S.”), as well as e-commerce fraud and charge back protection services in North America. For consumers, we provide products and services to help people understand, manage and protect their personal information and make more informed financial decisions.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0000033185-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000010/efx-20251231.htm"
+  },
+  "description_short": "At Equifax (NYSE: EFX), we believe knowledge drives progress. As a global data, analytics, and technology company, we play an essential role in the global economy by helping financial institutions, companies, employers, and government agencies make critical decisions with greater confidence. Our unique blend of differentiated data, analytics, and cloud technology drives insights to power decisions to move people forward. Headquartered in Atlanta and supported by nearly 15,000 employees worldwide, Equifax operates or has investments in 24 countries in North America, Central and South America, Europe, and the Asia Pacific region.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "7320",
+  "sic_description": "Services-Consumer Credit Reporting, Collection Agencies",
+  "state_of_incorporation": "GA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.equifax.com",
+  "headquarters": "Atlanta, Georgia",
+  "address": {
+   "street": "1550 Peachtree Street N.W.",
+   "city": "Atlanta",
+   "state": "Georgia",
+   "zip": "30309",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "4048858000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "EQUIFAX INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000033185&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-323760",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312526323760/d125882d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-21",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033185-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000028/efx-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033185-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000024/efx-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001193125-26-272759",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312526272759/d52077d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-220328",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312526220328/d20400d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-177620",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312526177620/d50537d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-21",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033185-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000018/efx-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033185-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000016/efx-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-127556",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312526127556/d947238ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000033185-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000010/efx-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033185-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000004/efx-20260204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-21",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033185-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318525000064/efx-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033185-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318525000061/efx-20251021.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-22",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033185-25-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318525000054/efx-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033185-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318525000049/efx-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-30",
+   "period": "2025-05-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-132263",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312525132263/d26782d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-09",
+   "period": "2025-05-08",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-116440",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000119312525116440/d30678d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-22",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000033185-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318525000042/efx-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-22",
+   "period": "2025-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000033185-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000003318525000035/efx-20250422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-28",
+   "period": "2025-05-08",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-25-029348",
+   "url": "https://www.sec.gov/Archives/edgar/data/33185/000110465925029348/tm2423995d11_def14a.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

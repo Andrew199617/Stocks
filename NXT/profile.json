@@ -1,0 +1,295 @@
+{
+ "ticker": "NXT",
+ "cik": 1852131,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T19:19:10-04:00",
+ "newest_filing_date": "2026-08-19",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001852131.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000017/nxt-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NXT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NXT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Nextpower Inc.",
+  "cik": 1852131,
+  "description": {
+   "text": "We envision a world electrified by clean energy. Our mission is to be the trusted partner delivering the world’s most intelligent, reliable, and productive clean-power technology. We are a leading global provider of solar and energy technology solutions for utility-scale power plants. Founded in 2013 by our Chief Executive Officer, Dan Shugar, we pioneered and remain the global market leader in solar tracking systems. We now deliver an integrated suite of structural, electrical, and digital solutions across the full lifecycle of solar power plants, from design and construction through operations and maintenance. Our integrated solutions are designed to streamline project execution, increase energy yield and long-term reliability, and enhance customer return on investment (“ROI”). The solar tracker market plays a key part in driving the global energy transition by increasing energy production and improving the levelized cost of energy (“LCOE”). The majority of utility-scale projects installed today in mature markets such as the United States, India, Latin America, Australia and parts of Europe use solar trackers, and adoption of solar tracker technology continues to grow in developing solar markets such as the Middle East and Africa. We have developed the next generation of solar trackers that enable rows to move independently, providing further benefits to customers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "accession": "0001852131-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000017/nxt-20260331.htm"
+  },
+  "description_short": "Nextpower (Nasdaq: NXT) innovates and delivers integrated technology solutions for modern energy infrastructure. Its solar and energy storage platforms help customers design, build, and operate utility-scale power plants and other critical power infrastructure with faster project delivery, improved system performance, greater reliability, and long-term operational value. Building on more than a decade of energy technology leadership, Nextpower partners with customers worldwide to accelerate the deployment of reliable firm power needed for a rapidly electrifying world.",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.nextpower.com",
+  "headquarters": "Fremont, California",
+  "address": {
+   "street": "6200 Paseo Padre Parkway",
+   "city": "Fremont",
+   "state": "California",
+   "zip": "94555",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-19"
+  },
+  "phone": "510-270-2500",
+  "employees": {
+   "count": 1993,
+   "as_of": "2026-03-31",
+   "evidence": "As of March 31, 2026, we had approximately 1,993 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-05-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000017/nxt-20260331.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2023-01-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Nextracker Inc.",
+   "Nextracker LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001852131&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-18",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001852131-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000052/nxt-20260818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-07-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001852131-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000048/nxt-20260703.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001852131-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000045/nxt-20260730.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-07",
+   "period": "2026-08-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001852131-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000038/nxt-20260702.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-21",
+   "items": [
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD",
+   "accession": "0001852131-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000026/nxt-20260621.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD",
+   "accession": "0001852131-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000020/nxt-20260528.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001852131-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000017/nxt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-10",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001852131-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000014/nxt-20260510.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-23",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001852131-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000009/nxt-20260423.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001852131-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000006/nxt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001852131-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000003/nxt-20260127.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Reg FD",
+   "accession": "0001852131-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000069/nxt-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001852131-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000064/nxt-20250926.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001852131-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000061/nxt-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001852131-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000057/nxt-20250908.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001852131-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000053/nxt-20250818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001852131-25-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000050/nxt-20250627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001852131-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000047/nxt-20250729.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-06-25",
+   "period": "2025-08-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001852131-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000036/nxt-20250625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-18",
+   "period": "2025-06-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001852131-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000028/nxt-20250617.htm"
+  }
+ ],
+ "warnings": []
+}

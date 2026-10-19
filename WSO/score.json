@@ -1,0 +1,84 @@
+{
+ "ticker": "WSO",
+ "name": "Watsco, Inc.",
+ "sector": "Industrials / HVAC-R distribution",
+ "price": 295.91,
+ "market_cap_b": 11.21,
+ "engine_version": 5,
+ "base_oe_per_share": 17.40311906222142,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Largest North American HVAC/R distributor (~685+ locations, 125,000+ contractors, estimated high-teens share of a fragmented $74B market) with scale purchasing power, local availability and a scaling digital ecosystem (e-commerce 37% of sales); ROIC proxy stayed 20-34% over the last five fiscal years and never below 17% in ten, and gross margin expanded from 24.2% (2020) to a record 28.0% (2025) \u2014 but it sells other makers' products into a still-fragmented field of ~1,400-2,200 distributors, so the moat is strong, not wide.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "TIER_BAND: bear-case tier D (6.6%) vs bull-case tier C (10.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 71.94,
+   "irr": 0.0513
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 103.97,
+   "irr": 0.0664
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 139.38,
+   "irr": 0.0836
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 185.21,
+   "irr": 0.1049
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 254.45,
+   "irr": 0.134
+  }
+ },
+ "iv_at_15": 133.56,
+ "iv_at_12": 175.54,
+ "implied_irr": 0.0813,
+ "implied_irr_base_case": 0.0836,
+ "upside_at_15_pct": -54.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality compounder, moat 7/10 \u2014 but at $295.91 it does not clear 15% on any defensible base (weighted IRR 8.1% on the TTM base, 6.9% on the median base; IV@15% $133.56); it clears 15% only at or below ~$134.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0664,
+ "irr_bull": 0.1049,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 95.56,
+ "iv_at_25": 74.43,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 45505000,
+ "shares_diluted_latest": 37899859,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale: largest HVAC/R distributor in North America, estimated 18-20% share vs ~$3B-revenue next rivals, 685+ locations and 125,000+ contractors",
+  "ROIC proxy 20.3-34.0% over FY2021-25 and 17-21% in FY2016-20 \u2014 above cost of capital through the whole cycle",
+  "Pricing power proven: gross margin 24.2% (2020) to record 28.0% (2025) via pricing-optimization technology, expanded even as 2025 volumes fell",
+  "Digital lock-in: e-commerce +13% in H1 2026 at 37% of trailing sales, OnCallAir $1.9B GMV \u2014 tools small distributors cannot match",
+  "Replacement-driven demand (residential replacement is the core) plus a debt-light balance sheet funding 70+ buy-and-build acquisitions since 1989"
+ ],
+ "moat_against": [
+  "No proprietary product \u2014 distributes OEM equipment (Carrier and others); OEM concentration and direct/OEM-channel shifts are a standing hostage risk",
+  "Market remains fragmented (~1,400-2,200 distributors); local availability moats erode branch by branch and price competition is constant in commodity segments",
+  "Gross margin is only 27-28% and the 2025 record leaned on OEM/A2L pricing actions that reversed in Q2 2026 (27.5% vs 29.3%)",
+  "Housing and consumer-durables cyclicality: FY2025 revenue fell 5% on A2L-transition volume softness and slower homebuilding",
+  "Share count creeps up ~1.7%/yr with no buyback offset and the dividend absorbs essentially all earnings, leaving little reinvestment cushion"
+ ]
+}

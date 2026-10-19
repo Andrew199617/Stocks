@@ -1,0 +1,226 @@
+{
+ "ticker": "STLA",
+ "name": "Stellantis N.V.",
+ "cik": 1605484,
+ "engine_version": 5,
+ "engine_release": "5.4.0",
+ "as_of": "2026-10-17",
+ "price": 4.37,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 2886684000,
+ "shares_outstanding_dei_latest": 2897483196,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 12614809080.0,
+ "net_debt_latest": 18566175000.0,
+ "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+ "lease_liabilities_latest": 2883450000.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.2527016861517619,
+ "rev_cagr_3y": -0.019843500923939272,
+ "oe_positive_years_of_last_5": "3/5",
+ "base_oe_total_latest_fy": -14901350000.0,
+ "base_oe_per_share": -3.341019618122064,
+ "base_oe_latest_per_share": -5.1620994885481055,
+ "base_oe_normalized_per_share": -3.341019618122064,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.2527016861517619,
+  "rev_cagr_3y": -0.019843500923939272,
+  "rev_yoy_latest": 0.10670810321738378,
+  "oe_ps_cagr_2y": null
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.28280421297864544,
+  "rev_cagr_3y": 0.010259025902944252,
+  "rev_yoy_latest": 0.1368106300442673,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.1368106300442673,
+ "share_cagr": -0.030102526826883524,
+ "share_count_adj": 0.030102526826883524,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": null,
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": null,
+  "debt_cur_st": null,
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": "Assets",
+  "liabilities": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for fiscal year ended December 31, 2025, cover page: securities registered pursuant to Section 12(b) of the Act are 'Common Shares, par value EUR 0.01 per share', trading symbol STLA, New York Stock Exchange \u2014 the NYSE security is the common share itself, listed also on Euronext Paris and Euronext Milan under the same ISIN",
+  "reason": "DATA_GAP:ads_ratio \u2014 Stellantis has no ADS program: the NYSE-traded security is the common share itself in direct-listed form, so per-ordinary-share figures are directly comparable to the traded STLA price with no scaling (ratio 1.0 ordinary shares per traded share)."
+ },
+ "fx_conversion": {
+  "from_currency": "EUR",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "debt_total",
+   "lease_liab_current",
+   "lease_liab_lt",
+   "assets",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2014-12-31": 1.2141,
+   "2015-12-31": 1.0887,
+   "2016-12-31": 1.0541,
+   "2017-12-31": 1.1993,
+   "2018-01-01": 1.1993,
+   "2018-12-31": 1.145,
+   "2019-01-01": 1.145,
+   "2019-12-31": 1.1234,
+   "2020-12-31": 1.2271,
+   "2021-12-31": 1.1326,
+   "2022-12-31": 1.0666,
+   "2023-12-31": 1.105,
+   "2024-12-31": 1.0389,
+   "2025-12-31": 1.175
+  },
+  "rates_by_currency": {
+   "EUR": {
+    "2014-12-31": 1.2141,
+    "2015-12-31": 1.0887,
+    "2016-12-31": 1.0541,
+    "2017-12-31": 1.1993,
+    "2018-01-01": 1.1993,
+    "2018-12-31": 1.145,
+    "2019-01-01": 1.145,
+    "2019-12-31": 1.1234,
+    "2020-12-31": 1.2271,
+    "2021-12-31": 1.1326,
+    "2022-12-31": 1.0666,
+    "2023-12-31": 1.105,
+    "2024-12-31": 1.0389,
+    "2025-12-31": 1.175
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 45000000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
+ "f_subtype": "no_cash_generation",
+ "f_subtype_basis": "sum of the last 3 fiscal years (the median window)",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 45000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025, Share-based Compensation Expense disclosure: total expense for the PSU awards and RSU awards of approximately EUR 73 million (2025), EUR 45 million (2024) and EUR 189 million (2023) was recorded for the years ended December 31, 2025, 2024 and 2023, respectively",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (sbc_tag blank for every year in financials_history.csv). The engine applies a single override value (declared in EUR, the reporting currency; the engine FX-converts at each period-end rate) to every missing period. EUR 45M is the filed FY2024 figure, and FY2024 is the median year of the 3-yr normalized base, so the base is built from the exact filed figure for its year. The error on the other years (filed EUR 189M in 2023, EUR 73M in 2025) is at most ~EUR 144M/yr against owner's-earnings totals in the billions \u2014 immaterial, and it does not change the sign of any year or the Tier F outcome.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025, cover page: securities registered pursuant to Section 12(b) of the Act are 'Common Shares, par value EUR 0.01 per share', trading symbol STLA, New York Stock Exchange \u2014 the NYSE security is the common share itself, listed also on Euronext Paris and Euronext Milan under the same ISIN) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025, Share-based Compensation Expense disclosure: total expense for the PSU awards and RSU awards of approximately EUR 73 million (2025), EUR 45 million (2024) and EUR 189 million (2023) was recorded for the years ended December 31, 2025, 2024 and 2023, respectively); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -3.3253094945258788,
+  "base_oe_per_share_final": -3.341019618122064,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "27626018574c7bb4d287dfe98fc872e95cc71022b97271ff3b55a7e990426df2"
+}

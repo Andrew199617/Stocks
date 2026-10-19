@@ -1,0 +1,84 @@
+{
+ "ticker": "TYL",
+ "name": "Tyler Technologies, Inc.",
+ "sector": "Technology / Government software (vertical SaaS)",
+ "price": 360.87,
+ "market_cap_b": 15.81,
+ "engine_version": 5,
+ "base_oe_per_share": 13.335507609968221,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Dominant U.S. state/local govtech franchise: mission-critical systems of record (courts, public safety, tax, finance, schools), ~98% client retention, 87-88% recurring revenue, 12-24 month implementations and state-by-state regulatory logic embedded in the product make switching rare and painful. Measured ROIC proxy is only 4.3-8.8% over the last five fiscal years (rising every year since 2021), which understates the franchise: the invested-capital denominator carries goodwill/intangibles from 50+ acquisitions including the ~$2.3B NIC deal, and the SaaS conversion depressed margins mid-transition \u2014 gross margin has recovered from 42.4% (2022) to 46.5% (FY2025) and 47.2% TTM as SaaS mix rises. That written reason is why a 7 stands despite ROIC not yet sitting well above the cost of capital.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 72.87,
+   "irr": 0.0492
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 110.69,
+   "irr": 0.0646
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 152.24,
+   "irr": 0.0813
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 197.77,
+   "irr": 0.0983
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 271.82,
+   "irr": 0.1234
+  }
+ },
+ "iv_at_15": 157.25,
+ "iv_at_12": 213.02,
+ "implied_irr": 0.0835,
+ "implied_irr_base_case": 0.0813,
+ "upside_at_15_pct": -56.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality govtech compounder, moat 7/10, but at $360.87 it does not clear 15% \u2014 weighted IRR 8.3%, weighted IV@15% $157.25; it would need to fall to ~$157 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0646,
+ "irr_bull": 0.0983,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 107.93,
+ "iv_at_25": 81.32,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -415737000,
+ "shares_diluted_latest": 43812000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Mission-critical systems of record for courts, public safety, tax assessment, municipal finance and schools \u2014 switching means re-implementing core government operations",
+  "~98% client retention and 87.8% recurring revenue (FY2025); contracts are long and rarely re-bid",
+  "State-by-state regulatory and workflow logic built from the ground up for government, vs generic ERP adapted by Oracle/SAP/Workday",
+  "Breadth across 50 states plus the NIC payments platform monetizing the installed base (~500M transactions/yr)",
+  "SaaS conversion tailwind: SaaS revenue +21.7% in Q2 2026, 22 straight quarters of >=20% SaaS growth, gross margin expanding with mix"
+ ],
+ "moat_against": [
+  "Measured ROIC proxy only 4.3-8.8% over the last five fiscal years \u2014 pricing power has not yet converted into high returns on the acquisition-heavy capital base",
+  "AI lowers the cost of building software, which over time erodes the switching-cost moat of legacy vertical vendors; government buyers are actively evaluating AI budget share",
+  "Growth has decelerated to high-single digits (Q2 2026 revenue +8.2%); one-off contract losses happen (Texas payments contract termination drags transaction growth)",
+  "Competition from CentralSquare, Motorola Solutions and horizontal platforms (Oracle, Workday, Microsoft) with far larger R&D budgets",
+  "Customer budgets are municipal/state appropriations \u2014 long sales cycles and budget timing can defer bookings (2025 bookings slump)"
+ ]
+}

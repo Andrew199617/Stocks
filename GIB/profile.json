@@ -1,0 +1,238 @@
+{
+ "ticker": "GIB",
+ "cik": 1061574,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T18:55:55-04:00",
+ "newest_filing_date": "2026-07-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001061574.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525322911/d88305d40f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GIB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GIB/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CGI INC",
+  "cik": 1061574,
+  "description": null,
+  "description_short": "Founded in 1976, CGI is among the largest independent IT and business consulting services firms in the world. With 94,000 consultants and professionals across the globe, CGI delivers an end-to-end portfolio of capabilities, from strategic IT and business consulting to systems integration, managed IT and business process services and intellectual property solutions. CGI works with clients through a local relationship model complemented by a global delivery network that helps clients digitally transform their organizations and accelerate results. CGI Fiscal 2025 reported revenue is CA$15.91 billion and CGI shares are listed on the TSX (GIB.A) and the NYSE (GIB). Learn more at cgi.com.",
+  "industry": "Professional Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "8742",
+  "sic_description": "Services-Management Consulting Services",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": null,
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.cgi.com",
+  "headquarters": "Montréal, Quebec",
+  "address": {
+   "street": "1350 René-Lévesque Boulevard West 25",
+   "city": "Montréal",
+   "state": "Quebec",
+   "zip": "H3G 1T4",
+   "country": "Canada",
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2025-12-17"
+  },
+  "phone": "514 841 3200",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-09-07",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "CGI GROUP INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001061574&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001061574-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000106157426000017/cgi_form-6xkxq3fy2026xmdaf.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-218148",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312526218148/d152309d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001061574-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000106157426000012/cgi_form-6xkxq2fy2026xmdaf.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-028323",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312526028323/d53844d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-28",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001061574-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000106157426000006/cgi_form-6xkxq1fy2026xmdaf.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-325258",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525325258/d46513d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-322919",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525322919/d269737d6k.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2025-12-17",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001193125-25-322911",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525322911/d88305d40f.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2025-12-10",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001061574-25-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000106157425000011/cgi_form-6xkxaxq4fy2025.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001061574-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000106157425000006/cgi_form-6xkxq4fy2025xmdaf.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001628280-25-036825",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000162828025036825/cgi_form-6xkxaxq3fy2025xmda.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-036554",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000162828025036554/cgi_form-6xkxq3fy2025xmdaf.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-105697",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525105697/d920819d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-01-29",
+   "period": "2025-01-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-015905",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525015905/d209468d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-01-29",
+   "period": "2025-01-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-014918",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525014918/d907343d6k.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2024-12-18",
+   "period": "2024-09-30",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001193125-24-281374",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312524281374/d825083d40f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2024-12-18",
+   "period": "2024-12-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-24-281372",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312524281372/d816502d6k.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2024-11-07",
+   "period": "2024-11-07",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001193125-24-253308",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312524253308/d880244d6ka.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2024-11-06",
+   "period": "2024-11-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-24-251691",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312524251691/d821319d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2024-07-31",
+   "period": "2024-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-24-189527",
+   "url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312524189527/d887944d6k.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2025-12-17)",
+  "employees: no headcount sentence found in the 40-F filed 2025-12-17"
+ ]
+}

@@ -1,0 +1,287 @@
+{
+ "ticker": "AES",
+ "cik": 874761,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T22:05:46-04:00",
+ "newest_filing_date": "2026-09-17",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000874761.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/aes-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AES/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AES/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AES CORP",
+  "cik": 874761,
+  "description": {
+   "text": "Item 1.—Business is an outline of our strategy and our businesses by SBU, including key financial drivers. Additional items that may have an impact on our businesses are discussed in Item 1A.—Risk Factors and Item 3.—Legal Proceedings. Incorporated in 1981, AES is a global energy company accelerating the future of energy. Together with our many stakeholders, we are improving lives by delivering the greener, smarter energy solutions the world needs. Our diverse workforce is committed to continuous innovation and operational excellence, while partnering with our customers on their strategic energy transitions and continuing to meet their energy needs today.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "accession": "0000874761-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/aes-20251231.htm"
+  },
+  "description_short": "The AES Corporation (NYSE: AES ) is a Fortune 500 global energy company accelerating the future of energy. Together with our many stakeholders, we're improving lives by delivering the greener, smarter energy solutions the world needs. Our diverse workforce is committed to continuous innovation and operational excellence, while partnering with our customers on their strategic energy transitions and continuing to meet their energy needs today.",
+  "industry": "Electric Utilities: Central",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "4991",
+  "sic_description": "Cogeneration Services & Small Power Producers",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.aes.com",
+  "headquarters": "Arlington, Virginia",
+  "address": {
+   "street": "4300 Wilson Boulevard",
+   "city": "Arlington",
+   "state": "Virginia",
+   "zip": "22203",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-02"
+  },
+  "phone": "7035221315",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-05-06",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "AES CORPORATION"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000874761&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-17",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-036994",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000114036126036994/ef20082051_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000874761-26-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000153/aes-20260914.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-034714",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000114036126034714/ef20081101_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950103-26-011951",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000095010326011951/dp251078_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874761-26-000144",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000144/aes-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-21",
+   "items": [
+    "4.01",
+    "9.01"
+   ],
+   "description": "Auditor change",
+   "accession": "0000874761-26-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000138/aes-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "5.07",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD; Other events",
+   "accession": "0001140361-26-026562",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000114036126026562/ef20076870_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-272726",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000119312526272726/d121124d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-12",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-025084",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000114036126025084/ef20076144_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874761-26-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000120/aes-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000874761-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000100/aes-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000874761-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000075/aes-20260414.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-20",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000874761-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000070/aes-20260320.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-19",
+   "period": "2026-03-13",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-116111",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000119312526116111/d80729d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000874761-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/aes-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-01",
+   "items": [
+    "1.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change; Reg FD",
+   "accession": "0001193125-26-084157",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000119312526084157/d100078d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-16",
+   "items": [
+    "2.06",
+    "9.01"
+   ],
+   "description": "Impairment",
+   "accession": "0000874761-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000006/aes-20260116.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000874761-25-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476125000086/aes-20251104.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874761-25-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476125000084/aes-20250930.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874761-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/874761/000087476125000075/aes-20250630.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-03-02"
+ ]
+}

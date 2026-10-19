@@ -1,0 +1,90 @@
+{
+ "ticker": "AS",
+ "name": "Amer Sports, Inc.",
+ "sector": "Consumer Discretionary / Premium sporting goods & apparel (Arc'teryx, Salomon, Wilson)",
+ "price": 30.02,
+ "market_cap_b": 16.9,
+ "engine_version": 5,
+ "base_oe_per_share": 0.3509749954830156,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Portfolio of genuinely premium technical brands \u2014 Arc'teryx in technical apparel, Salomon in outdoor performance, Wilson in ball & racquet \u2014 with demonstrated pricing power: gross margin expanded from 49.1% (FY2021) to 57.6% (FY2025) in fundamentals.json while revenue compounded at ~21-27%/yr, and the direct-to-consumer mix keeps rising. But the measured returns do not yet support a wide moat: the roic_proxy series in fundamentals.json runs -27.9% / 0.7% / 4.0% / 6.7% / 8.1% for FY2021-25 \u2014 only just reaching roughly the cost of capital in the latest year, with no through-cycle history above it under the current capital structure. Brand heat in outdoor/fashion is fickle, Wilson and winter-sports equipment are contested, lower-margin categories, and Greater China is a large, concentrated growth engine exposed to local competition (KAILAS, Anta, Li-Ning). Moderate/narrow moat, 5/10.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 13.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-26, EDGAR as-20251231.htm, CIK 1988894): the NYSE-listed security is the ordinary share itself \u2014 the Description of Share Capital filed with the annual report states 'Our ordinary shares are listed on the New York Stock Exchange (NYSE) under the symbol AS', and the company's SEC offering filings (424B4/424B5, CIK 1988894) register Ordinary Shares, not ADSs) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 0.85 vs 3-yr median 0.35 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 2.67,
+   "irr": 0.0368
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 4.26,
+   "irr": 0.0451
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.8,
+   "irr": 0.0531
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 7.8,
+   "irr": 0.0632
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 11.68,
+   "irr": 0.0816
+  }
+ },
+ "iv_at_15": 6.01,
+ "iv_at_12": 8.27,
+ "implied_irr": 0.0544,
+ "implied_irr_base_case": 0.0531,
+ "upside_at_15_pct": -80.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real premium-brand quality, moat 5/10, but the price pays for perfection: weighted IRR 5.4% and weighted IV@15 $6.01 vs $30.02 on the normalized base \u2014 even on the latest-FY base ($0.85/sh) the weighted IRR is only 9.3% with IV@15 $14.91; clears 15% only below ~$6.01 on the scored base.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0451,
+ "irr_bull": 0.0632,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 4.03,
+ "iv_at_25": 2.97,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 282800000,
+ "shares_diluted_latest": 563075693,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Arc'teryx premium technical-apparel franchise with proven pricing power \u2014 group gross margin 49.1% (FY2021) to 57.6% (FY2025)",
+  "Salomon scale in outdoor performance; softgoods/footwear momentum drove Outdoor Performance +37% in Q2 2026",
+  "Wilson's century-old ball & racquet franchise (Tennis 360 ecosystem) adds a second, steadier brand pillar",
+  "Rising direct-to-consumer mix (record 55% of revenue in Q2 2026) \u2014 controlled distribution, full-price sell-through",
+  "Multi-brand platform effect in Greater China: FY2025 Greater China revenue +43.4% to $1.86B"
+ ],
+ "moat_against": [
+  "ROIC proxy only 8.1% in FY2025 and below that in every prior year (fundamentals.json) \u2014 no through-cycle record of returns above the cost of capital",
+  "Brand-heat / fashion risk: Arc'teryx and Salomon softgoods growth leans on trend demand that can cool; Arc'teryx is drifting toward lifestyle",
+  "Greater China concentration (~28% of FY2025 revenue) with intensifying local competition (KAILAS, Anta, Li-Ning outdoor pushes)",
+  "Wilson / Ball & Racquet is a low-margin, contested category (segment margin compressed in 2025 prints on tariffs and SG&A)",
+  "Controlling-shareholder overhang from the Anta-led consortium ownership structure and repeated primary share issuance"
+ ]
+}

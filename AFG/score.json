@@ -1,0 +1,108 @@
+{
+ "ticker": "AFG",
+ "name": "American Financial Group, Inc.",
+ "sector": "Finance / Specialty Property & Casualty Insurance",
+ "price": 149.13,
+ "market_cap_b": 12.45,
+ "engine_version": 5,
+ "base_oe_per_share": 18.62815884476534,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Diversified specialty P&C franchise (~36 niche businesses via Great American) with a combined ratio better than the industry for more than two decades and sustained high returns (fundamentals.json roic_proxy 17.3-19.6% in FY2023-25, ROE 17.5-20.0%), but insurance capacity is close to a commodity: no network effects, modest switching costs, price set by the cycle, and social inflation / catastrophe / alternative-investment returns can erase a year of underwriting profit.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows: the investing-activities section lists only acquisitions ($7M in FY2025), purchases of investments ($2,984M), sales/maturities of investments ($2,437M) and other investing activities (-$7M) \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $1,533M + investing -$835M + financing -$377M = the reported net change in cash of $321M exactly; FY2024: $1,152M + $95M - $1,066M = reported $181M exactly; FY2023: $1,970M + $414M - $2,031M = reported $353M exactly. EDGAR companyfacts for CIK 1042046 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 69 periods with operating cash flow).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (11.6%) vs bull-case tier B (19.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 68.87,
+   "irr": 0.0773
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 110.9,
+   "irr": 0.1164
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 151.86,
+   "irr": 0.1523
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 205.56,
+   "irr": 0.1945
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 311.39,
+   "irr": 0.2646
+  }
+ },
+ "iv_at_15": 162.7,
+ "iv_at_12": 215.3,
+ "implied_irr": 0.1611,
+ "implied_irr_base_case": 0.1523,
+ "upside_at_15_pct": 9.1,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Quality specialty P&C insurer, moat 5/10 \u2014 B by numbers (16.1% weighted IRR, IV@15% $163 vs $149 price) but the OCF base capitalizes float (TTM OCF $1,566M vs TTM net income $953M), so sized down to C per the insurer-float rule and the bear end (C) of the tier band; clears 15% only below ~$163 on these inputs.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1164,
+ "irr_bull": 0.1945,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 115.31,
+ "iv_at_25": 89.13,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 93000000,
+ "shares_diluted_latest": 83500000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "tier_override_reason": "Insurer-float softening (Andrew's standing rule, 2026-10-15): the OCF-based owner's-earnings base capitalizes float \u2014 TTM OCF $1,566M vs TTM net income $953M (fundamentals.json), and FY2023/FY2025 show the same >40% NI/OCF divergence \u2014 so the final tier is sized down one notch from tier_by_numbers B to C, even though the TTM base ($18.63/share) sits close to the normalized median ($18.14/share). This also lands on the bear end of the TIER_BAND (bear C 11.6% vs bull B 19.5%), per the 5.4 sizing rule. Same treatment as PFG/EG/AIZ/ACGL/HIG/WRB.",
+ "moat_for": [
+  "Diversified specialty P&C platform (~36 niche businesses) with granular underwriting expertise in hard-to-insure commercial niches",
+  "Combined ratio better than the industry average for more than two decades; 91.5% in Q2 2026",
+  "Sustained returns: roic_proxy 17.3-19.6% and ROE 17.5-20.0% in FY2023-25 (fundamentals.json)",
+  "Pricing power in the current cycle: renewal rate increases ~5% ex workers' comp for four consecutive quarters through Q2 2026",
+  "Disciplined, opportunistic capital allocation: $707M returned in FY2025 including special dividends, debt/total capital 27.5% at FY2025"
+ ],
+ "moat_against": [
+  "Insurance capacity is close to a commodity \u2014 no network effects and low switching costs; pricing is set by the industry cycle, which is softening",
+  "Social inflation on U.S. casualty lines and catastrophe exposure can produce reserve charges that erase underwriting profit",
+  "Earnings depend materially on investment returns, including alternative investments (7.1% annualized in Q2 2026 vs a 10%+ long-term target) \u2014 volatile and market-driven",
+  "Gross margin is not a meaningful insurer metric and the roic_proxy is an operating-income construct; the durable evidence is ROE, which is float-levered",
+  "Crop insurance seasonality concentrates profitability in Q4; workers' comp pricing was down ~2% in Q2 2026"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statements of Cash Flows: the investing-activities section lists only acquisitions ($7M in FY2025), purchases of investments ($2,984M), sales/maturities of investments ($2,437M) and other investing activities (-$7M) \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $1,533M + investing -$835M + financing -$377M = the reported net change in cash of $321M exactly; FY2024: $1,152M + $95M - $1,066M = reported $181M exactly; FY2023: $1,970M + $414M - $2,031M = reported $353M exactly. EDGAR companyfacts for CIK 1042046 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 69 periods with operating cash flow)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 18.6282,
+  "base_oe_with_override": 18.6282,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1611,
+  "weighted_irr_with_override": 0.1611,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

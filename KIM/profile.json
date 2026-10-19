@@ -1,0 +1,288 @@
+{
+ "ticker": "KIM",
+ "cik": 879101,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T01:45:53-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000879101.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/879101/000119312526060760/kim-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/KIM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/KIM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "KIMCO REALTY CORP",
+  "cik": 879101,
+  "description": {
+   "text": "The Company is the leading owner and operator of high-quality, open-air, grocery-anchored shopping centers and mixed-use properties in the United States. The executive officers are engaged in the day-to-day management and operation of real estate exclusively with the Company, with nearly all operating functions, including leasing, asset management, maintenance, construction, legal, finance and accounting, administered by the Company. The Company’s mission is to create destinations for everyday living that inspire a sense of community and deliver value to our many stakeholders. The Company began operations through its predecessor, The Kimco Corporation, which was organized in 1966 upon the contribution of several shopping center properties owned by its principal stockholders. In 1973, these principals formed the Company as a Delaware corporation, and, in 1985, the operations of The Kimco Corporation were merged into the Company. The Company completed its initial public stock offering (the “IPO”) in November 1991, and, commencing with its taxable year which began January 1, 1992, elected to qualify as a REIT in accordance with Sections 856 through 860 of the Internal Revenue Code of 1986, as amended (the “Code”).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-060760",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526060760/kim-20251231.htm"
+  },
+  "description_short": "Kimco Realty ® (NYSE: KIM) is a real estate investment trust (REIT) and leading owner and operator of high-quality, open-air, grocery-anchored shopping centers and mixed-use properties in the United States. The company's portfolio is strategically concentrated in the first-ring suburbs of the top major metropolitan markets, including high-barrier-to-entry coastal markets and Sun Belt cities. Its tenant mix is focused on essential, necessity-based goods and services that drive multiple shopping trips per week. Publicly traded on the NYSE since 1991 and included in the S&P 500 Index, the company has specialized in shopping center ownership, management, acquisitions, and value-enhancing redevelopment activities for more than 65 years. With a proven commitment to corporate responsibility, Kimco Realty is a recognized industry leader in this area.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.kimcorealty.com",
+  "headquarters": "Jericho, NY",
+  "address": {
+   "street": "500 North Broadway, Suite 201",
+   "city": "Jericho",
+   "state": "NY",
+   "zip": "11753",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "(516) 869-9000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000879101&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-331817",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526331817/kim-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-331498",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526331498/kim-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity",
+   "accession": "0001140361-26-025223",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036126025223/ef20076176_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-024883",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036126024883/ef20076085_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001140361-26-022535",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036126022535/ef20074193_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-195304",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526195304/kim-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-193907",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526193907/kim-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001206774-26-000197",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000120677426000197/kim4498121-def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-060760",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526060760/kim-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-047615",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312526047615/kim-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-002589",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036126002589/ef20064088_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-26-001872",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036126001872/ef20063561_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-03",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001140361-25-040255",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036125040255/ny20058001x5_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-258133",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312525258133/kim-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-257371",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000119312525257371/kim-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-101195",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000095017025101195/kim-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-100547",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000095017025100547/kim-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-26",
+   "period": "2025-06-26",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001140361-25-023817",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036125023817/ef20051237_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-17",
+   "period": "2025-06-16",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001140361-25-022755",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000114036125022755/ny20039576x2_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-062383",
+   "url": "https://www.sec.gov/Archives/edgar/data/879101/000095017025062383/kim-20250331.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-20"
+ ]
+}

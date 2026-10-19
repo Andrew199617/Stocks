@@ -1,0 +1,304 @@
+{
+ "ticker": "NWS",
+ "cik": 1564708,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T13:09:13-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001564708.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000175/nws-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NWS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NWS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "NEWS CORP",
+  "cik": 1564708,
+  "description": null,
+  "description_short": "News Corp (Nasdaq: NWS, NWSA; ASX: NWS, NWSLV) is a global, diversified media and information services company focused on creating and distributing authoritative and engaging content and other products and services. The company comprises businesses across a range of media, including: information services and news, digital real estate services and book publishing. Headquartered in New York, News Corp operates primarily in the United States, Australia and the United Kingdom, and its content and other products and services are distributed and consumed worldwide. More information is available at: http://www.newscorp.com .",
+  "industry": "Newspapers/Magazines",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2711",
+  "sic_description": "Newspapers: Publishing or  Publishing & Printing",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq",
+   "OTC"
+  ],
+  "website": "https://www.newscorp.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "1211 Avenue of the Americas",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10036",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-07"
+  },
+  "phone": "212-416-3400",
+  "employees": {
+   "count": 21700,
+   "as_of": "2026-06-30",
+   "evidence": "As of June 30, 2026, the Company had approximately 21,700 employees, of whom approximately 7,900 were located in the U.S., 3,900 were located in the U.K. and 5,600 were located in Australia.",
+   "form": "10-K",
+   "filed": "2026-08-07",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000175/nws-20260630.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2012-12-21",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "New Newscorp Inc",
+   "New Newscorp LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001564708&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000230",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000230/nws-20261015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000222",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000222/nws-20261014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000221/nws-20261013.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000220",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000220/nws-20261009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000219",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000219/nws-20261008.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-07",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000218",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000218/nws-20261007.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000217",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000217/nws-20261006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000216",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000216/nws-20261005.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000215",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000215/nws-20261002.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000214",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000214/nws-20261001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000213",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000213/nws-20260930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000212",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000212/nws-20260929.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000211",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000211/nws-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000210",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000210/nws-20260925.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000209",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000209/nws-20260924.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000208",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000208/nws-20260923.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-23",
+   "period": "2026-11-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-109969",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000110465926109969/tm2624691-1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000207",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000207/nws-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000206",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000206/nws-20260921.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001564708-26-000205",
+   "url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000205/nws-20260918.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-08-07)"
+ ]
+}

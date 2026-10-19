@@ -1,0 +1,89 @@
+{
+ "ticker": "HMY",
+ "name": "Harmony Gold Mining Company Limited",
+ "sector": "Materials / Gold & copper mining (South Africa)",
+ "price": 17.12,
+ "market_cap_b": 10.76,
+ "engine_version": 5,
+ "base_oe_per_share": 0.6105829666202419,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "A gold miner has no pricing power and Harmony's returns prove it: roic_proxy was negative in four of the last nine years and only exceeds the cost of capital when the gold price rescues it (22.7% FY2024, 37.4% FY2025 at record prices); gross margin swung -15% to +33% on price alone. The 3 rests on scale, the high-grade Mponeng/Hidden Valley cash engines, a net-cash balance sheet, and the CSA/Eva copper pivot \u2014 real assets, but a commodity franchise, not a moat.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 16 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency ZAR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Harmony Gold Form 20-F for the fiscal year ended June 30, 2025 (filed 2025-10-31), cover page: 'American Depositary Shares (as evidenced by American Depositary Receipts), each representing one ordinary share', trading symbol HMY, New York Stock Exchange) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 0.90 vs 3-yr median 0.61 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 3.2,
+   "irr": 0.0477
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 4.58,
+   "irr": 0.0586
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 6.06,
+   "irr": 0.0704
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 8.16,
+   "irr": 0.0869
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 11.67,
+   "irr": 0.1131
+  }
+ },
+ "iv_at_15": 5.99,
+ "iv_at_12": 7.97,
+ "implied_irr": 0.0701,
+ "implied_irr_base_case": 0.0704,
+ "upside_at_15_pct": -65.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "South Africa's largest gold producer, moat 3/10 \u2014 a price-taker whose owner's earnings are the gold price in disguise; on the normalized FY2023-25 median base ($0.61/share) with gold-price-driven growth recalibrated to volume reality, the weighted IRR is 7.0% (Tier D, IV@15% $5.99 vs $17.12; clears 15% only below $5.99), and FY2026's record print is a gold-price spike, not volume growth \u2014 the market is pricing spot gold, not normalized owner's earnings.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0586,
+ "irr_bull": 0.0869,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 4.22,
+ "iv_at_25": 3.24,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -626963520.0,
+ "shares_diluted_latest": 628700000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale: South Africa's largest gold producer by volume, ~1.4-1.5 Moz/yr guided for the 11th consecutive year in FY2026",
+  "High-grade cornerstone assets: Mponeng (world's deepest, high recovered grades) and Hidden Valley (PNG) generate a disproportionate share of free cash flow",
+  "Balance sheet: net cash at FY2025 (net debt -$627M on the engine's USD history) funds the copper pivot without dilution",
+  "Copper diversification: CSA mine producing (18,207 t in FY2026) plus Eva Copper approved ($1.55B, first production H2 2028) toward ~100 kt/yr"
+ ],
+ "moat_against": [
+  "Pure price taker: earnings are the gold price minus AISC; gross margin swung from -15% (FY2018) to +33% (FY2025) on price alone",
+  "ROIC through the cycle is mediocre: roic_proxy negative in FY2018-FY2020 and FY2022, spiking to 37% in FY2025 only at record gold prices",
+  "Depleting, deep, old South African underground mines: grades and volumes decline without constant life-extension capex; production fell 5% in FY2025 and was flat in FY2026",
+  "South Africa operating risk: power supply, labour, safety stoppages (fatal incidents still reported in FY2026 6-Ks), and resource nationalism overhang",
+  "Growth is bought, not organic: Mponeng (2020), Eva Copper (2022), MAC Copper/CSA (2025) \u2014 reserves replaced by M&A"
+ ]
+}

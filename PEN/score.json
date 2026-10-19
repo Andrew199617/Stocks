@@ -1,0 +1,85 @@
+{
+ "ticker": "PEN",
+ "name": "Penumbra, Inc",
+ "sector": "Healthcare / Medical devices \u2014 thrombectomy",
+ "price": 320.86,
+ "market_cap_b": 12.61,
+ "engine_version": 5,
+ "base_oe_per_share": 3.952457002360765,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Leading pure-play thrombectomy franchise (CAVT computer-assisted vacuum technology, proprietary IP, physician training and workflow switching costs, 67-68% gross margins), but ROIC has not stayed above the cost of capital through a cycle \u2014 roic_proxy was -0.66% (2021), 0.52% (2022), 5.74% (2023), 0.75% (2024, impairment year) and only reached 13.21% in 2025 \u2014 and Medtronic/Stryker compete with far larger scale and distribution. A 7+ would need proven durable high ROIC; the measured history does not show it.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "LOW_OE_YIELD: base OE yield 1.2% \u2014 valuation rests almost entirely on growth; tier is fragile"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 28.09,
+   "irr": 0.0364
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 43.17,
+   "irr": 0.0436
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 56.47,
+   "irr": 0.05
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 76.02,
+   "irr": 0.0593
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 101.35,
+   "irr": 0.0708
+  }
+ },
+ "iv_at_15": 57.29,
+ "iv_at_12": 78.11,
+ "implied_irr": 0.0506,
+ "implied_irr_base_case": 0.05,
+ "upside_at_15_pct": -82.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality thrombectomy leader, moat 5/10 \u2014 standalone DCF does not clear 15% at any scenario (weighted IRR 5.1%, IV@15% $57.29 vs $320.86 price; clears 15% only below ~$57); the price is anchored to Boston Scientific's pending $374/share acquisition, not to standalone owner's earnings.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0436,
+ "irr_bull": 0.0593,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 38.89,
+ "iv_at_25": 28.99,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 39291828,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "World's leading thrombectomy company \u2014 pure-play focus on aspiration/CAVT (computer-assisted vacuum thrombectomy) across neuro, venous, pulmonary and arterial clots",
+  "Proprietary CAVT technology and IP portfolio, validated by clinical data (STORM-PE randomized trial; STRIKE-PE registry)",
+  "Physician training, clinical workflow integration and installed pump base create real switching costs; single-use disposables give recurring procedure-linked revenue",
+  "Gross margin 67.1% in FY2025 and 67.9% in Q2 2026, up from 63.2% in FY2024 \u2014 pricing/mix power"
+ ],
+ "moat_against": [
+  "ROIC history is weak and volatile: roic_proxy -0.66% / 0.52% / 5.74% / 0.75% / 13.21% over FY2021-25 \u2014 no through-cycle record above the cost of capital",
+  "Medtronic (Solitaire) and Stryker (Trevo) lead neurovascular thrombectomy with far larger scale, distribution and R&D breadth; Johnson & Johnson also competes",
+  "Revenue concentrated in thrombectomy \u2014 a single-category bet exposed to competing technologies and procedure trends",
+  "Reimbursement/payback pressure (Italian government payback provision hit FY2024 revenue) and heavy SBC ($59.5M TTM) dilute the economics"
+ ]
+}

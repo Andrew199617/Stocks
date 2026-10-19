@@ -1,0 +1,432 @@
+{
+ "ticker": "SWKS",
+ "cik": 4127,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000004127-25-000085",
+   "filed": "2025-11-07",
+   "period": "2025-10-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/4127/000000412725000085/swks-20251003_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000004127-26-000015",
+   "filed": "2026-05-05",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000015/swks-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000004127-26-000049",
+   "filed": "2026-07-28",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000049/swks-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-29",
+    "2024-09-27",
+    "2025-10-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3603900000,
+      3202200000,
+      3157100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7552,
+      0.7664,
+      0.7725
+     ],
+     "growth_yoy": [
+      null,
+      -0.1115,
+      -0.0141
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      344400000,
+      317500000,
+      259100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0722,
+      0.076,
+      0.0634
+     ],
+     "growth_yoy": [
+      null,
+      -0.0781,
+      -0.1839
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      358300000,
+      303400000,
+      254200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0751,
+      0.0726,
+      0.0622
+     ],
+     "growth_yoy": [
+      null,
+      -0.1532,
+      -0.1622
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      198300000,
+      203900000,
+      190100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0416,
+      0.0488,
+      0.0465
+     ],
+     "growth_yoy": [
+      null,
+      0.0282,
+      -0.0677
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      204200000,
+      114500000,
+      185800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0428,
+      0.0274,
+      0.0455
+     ],
+     "growth_yoy": [
+      null,
+      -0.4393,
+      0.6227
+     ]
+    },
+    {
+     "member": "swks:AsiaOtherMember",
+     "label": "Asia, Other",
+     "values": [
+      63300000,
+      36500000,
+      40600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0133,
+      0.0087,
+      0.0099
+     ],
+     "growth_yoy": [
+      null,
+      -0.4234,
+      0.1123
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4772400000,
+     4178000000,
+     4086900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-28",
+    "2025-06-27",
+    "2025-10-03",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      712600000,
+      724700000,
+      861600000,
+      687300000,
+      704900000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7476,
+      0.751,
+      0.7831,
+      0.7283,
+      0.7541
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0355,
+      -0.0273
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      72900000,
+      75800000,
+      63500000,
+      84900000,
+      72500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0765,
+      0.0785,
+      0.0577,
+      0.09,
+      0.0776
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1646,
+      -0.0435
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      64600000,
+      64600000,
+      60500000,
+      61800000,
+      66600000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0678,
+      0.0669,
+      0.055,
+      0.0655,
+      0.0712
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0433,
+      0.031
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      47100000,
+      44400000,
+      52700000,
+      44300000,
+      45300000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0494,
+      0.046,
+      0.0479,
+      0.0469,
+      0.0485
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0594,
+      0.0203
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      46300000,
+      45500000,
+      50100000,
+      56500000,
+      35900000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0486,
+      0.0472,
+      0.0455,
+      0.0599,
+      0.0384
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2203,
+      -0.211
+     ]
+    },
+    {
+     "member": "swks:AsiaOtherMember",
+     "label": "Asia, Other",
+     "values": [
+      9700000,
+      10000000,
+      11800000,
+      8900000,
+      9600000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0102,
+      0.0104,
+      0.0107,
+      0.0094,
+      0.0103
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0825,
+      -0.04
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     953200000,
+     965000000,
+     1100200000,
+     943700000,
+     934800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

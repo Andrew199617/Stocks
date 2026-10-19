@@ -1,0 +1,473 @@
+{
+ "ticker": "AS",
+ "cik": 1988894,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001988894-26-000004",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1988894/000198889426000004/as-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "as:TechnicalApparelMember",
+     "label": "Technical Apparel",
+     "values": [
+      1614100000,
+      2194300000,
+      2855800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3668,
+      0.4233,
+      0.4349
+     ],
+     "growth_yoy": [
+      null,
+      0.3595,
+      0.3015
+     ]
+    },
+    {
+     "member": "as:OutdoorPerformanceMember",
+     "label": "Outdoor Performance",
+     "values": [
+      1674200000,
+      1835500000,
+      2403700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3805,
+      0.3541,
+      0.3661
+     ],
+     "growth_yoy": [
+      null,
+      0.0963,
+      0.3096
+     ]
+    },
+    {
+     "member": "as:BallRacquetSportsMember",
+     "label": "Ball & Racquet Sports",
+     "values": [
+      1112100000,
+      1153500000,
+      1306700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2527,
+      0.2225,
+      0.199
+     ],
+     "growth_yoy": [
+      null,
+      0.0372,
+      0.1328
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4400400000,
+     5183300000,
+     6566200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "as:TechnicalApparelMember",
+     "label": "Technical Apparel",
+     "values": [
+      314400000,
+      460400000,
+      616800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0393,
+      0.9779,
+      0.8789
+     ],
+     "growth_yoy": [
+      null,
+      0.4644,
+      0.3397
+     ]
+    },
+    {
+     "member": "as:OutdoorPerformanceMember",
+     "label": "Outdoor Performance",
+     "values": [
+      151300000,
+      172300000,
+      299800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5002,
+      0.366,
+      0.4272
+     ],
+     "growth_yoy": [
+      null,
+      0.1388,
+      0.74
+     ]
+    },
+    {
+     "member": "as:BallRacquetSportsMember",
+     "label": "Ball & Racquet Sports",
+     "values": [
+      30600000,
+      23700000,
+      47700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1012,
+      0.0503,
+      0.068
+     ],
+     "growth_yoy": [
+      null,
+      -0.2255,
+      1.0127
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     302500000,
+     470800000,
+     701800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "as:TechnicalApparelMember",
+     "label": "Technical Apparel",
+     "values": [
+      92100000,
+      126000000,
+      164400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4169,
+      0.4602,
+      0.4279
+     ],
+     "growth_yoy": [
+      null,
+      0.3681,
+      0.3048
+     ]
+    },
+    {
+     "member": "as:OutdoorPerformanceMember",
+     "label": "Outdoor Performance",
+     "values": [
+      94700000,
+      107500000,
+      163800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4287,
+      0.3926,
+      0.4263
+     ],
+     "growth_yoy": [
+      null,
+      0.1352,
+      0.5237
+     ]
+    },
+    {
+     "member": "as:BallRacquetSportsMember",
+     "label": "Ball & Racquet Sports",
+     "values": [
+      27700000,
+      34100000,
+      39700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1254,
+      0.1245,
+      0.1033
+     ],
+     "growth_yoy": [
+      null,
+      0.231,
+      0.1642
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      6400000,
+      6200000,
+      16300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.029,
+      0.0226,
+      0.0424
+     ],
+     "growth_yoy": [
+      null,
+      -0.0312,
+      1.629
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     220900000,
+     273800000,
+     384200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1745600000,
+      1859000000,
+      2125600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3967,
+      0.3587,
+      0.3237
+     ],
+     "growth_yoy": [
+      null,
+      0.065,
+      0.1434
+     ]
+    },
+    {
+     "member": "as:GreaterChinaMember",
+     "label": "Greater China",
+     "values": [
+      844800000,
+      1298100000,
+      1861900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.192,
+      0.2504,
+      0.2836
+     ],
+     "growth_yoy": [
+      null,
+      0.5366,
+      0.4343
+     ]
+    },
+    {
+     "member": "as:IFRSEMEAMember",
+     "label": "IFRS EMEA",
+     "values": [
+      1457600000,
+      1513400000,
+      1805800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3312,
+      0.292,
+      0.275
+     ],
+     "growth_yoy": [
+      null,
+      0.0383,
+      0.1932
+     ]
+    },
+    {
+     "member": "as:AsiaPacificExcludingGreaterChinaMember",
+     "label": "Asia Pacific, Excluding Greater China",
+     "values": [
+      352400000,
+      512800000,
+      772900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0801,
+      0.0989,
+      0.1177
+     ],
+     "growth_yoy": [
+      null,
+      0.4552,
+      0.5072
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4400400000,
+     5183300000,
+     6566200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Unallocated amounts' (ifrs-full:UnallocatedAmountsMember) dropped: its values equal the sum of Technical Apparel, Outdoor Performance, Ball & Racquet Sports",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 137.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Unallocated amounts' (ifrs-full:UnallocatedAmountsMember) dropped: its values equal the sum of Technical Apparel, Outdoor Performance, Ball & Racquet Sports, Material reconciling items",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

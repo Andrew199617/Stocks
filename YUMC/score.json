@@ -1,0 +1,87 @@
+{
+ "ticker": "YUMC",
+ "name": "Yum China Holdings, Inc.",
+ "sector": "Consumer Discretionary / Restaurants (China QSR)",
+ "price": 45.12,
+ "market_cap_b": 16.74,
+ "engine_version": 5,
+ "base_oe_per_share": 2.5555555555555554,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Scale, brands, supply chain and digital membership give a real but narrow-to-moderate moat: ROIC recovered to 19.2% in FY2025 after an 8.2% FY2022 trough, operating margins hold ~10-11%, but there are no switching costs, competition is intense and fragmented, and the KFC brand is licensed \u2014 6/10, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.4%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (9.0%) vs bull-case tier C (14.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 13.89,
+   "irr": 0.0623
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 22.77,
+   "irr": 0.0899
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.59,
+   "irr": 0.1154
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 43.35,
+   "irr": 0.1458
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 66.97,
+   "irr": 0.1964
+  }
+ },
+ "iv_at_15": 34.09,
+ "iv_at_12": 46.44,
+ "implied_irr": 0.1225,
+ "implied_irr_base_case": 0.1154,
+ "upside_at_15_pct": -24.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Quality China QSR leader, moat 6/10 \u2014 does not clear 15% at $45.12 (weighted IRR 12.2%, weighted IV@15% $34.09); it clears 15% only at or below ~$34.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0899,
+ "irr_bull": 0.1458,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 23.2,
+ "iv_at_25": 17.34,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -476000000,
+ "shares_diluted_latest": 371000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest restaurant operator in China \u2014 19,297 stores at Q2 2026 (KFC + Pizza Hut), unmatched store density and brand reach",
+  "Proprietary supply chain and procurement scale built over ~40 years, plus food-safety trust that is hard to buy",
+  "Digital membership scale \u2014 over 270 million active KFC/Pizza Hut members; delivery sales +26% YoY in Q2 2026",
+  "ROIC proxy recovered to 19.2% in FY2025 (14.9% / 16.6% / 19.2% over FY2023-25) on stable ~10-11% operating margins",
+  "New-store paybacks of 2-3 years and side-by-side modules (KCOFFEE, KPRO, Pizza Hut WOW/Burger Bar) extend the network into lower-tier cities"
+ ],
+ "moat_against": [
+  "No customer switching costs \u2014 diners switch freely in a fragmented, intensely competitive China restaurant market",
+  "Delivery-platform dependence and rising delivery mix pressure restaurant margins (delivery ~54% of company sales in Q2 2026)",
+  "China consumer softness pins same-store sales near flat (Q2 2026 SSS +1%) and average ticket is falling",
+  "KFC brand is licensed from Yum! Brands (royalty drag); Pizza Hut brand ownership only being acquired in 2026",
+  "ROIC fell to 8.2% in FY2022 \u2014 returns are cyclical, not through-cycle wide-moat level"
+ ]
+}

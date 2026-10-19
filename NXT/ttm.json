@@ -1,0 +1,101 @@
+{
+ "ticker": "NXT",
+ "cik": 1852131,
+ "entity": "Nextpower Inc.",
+ "fy_end": "2026-03-31",
+ "ytd_end": "2026-07-03",
+ "inputs": {
+  "ocf": {
+   "fy": 562911000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 81324000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 121059000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 602646000
+  },
+  "capex": {
+   "fy": 49277000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 11258000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 15899000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 53918000
+  },
+  "sbc": {
+   "fy": 120298000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 22310000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 29638000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 127626000
+  },
+  "shares_diluted": {
+   "fy": 152710033,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 150900696,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 155141856,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 602646000,
+ "ttm_capex": 53918000,
+ "ttm_sbc": 127626000,
+ "ttm_shares_diluted": 155141856,
+ "ttm_oe_total": 421102000,
+ "ttm_oe_per_share": 2.7143029666990706,
+ "warnings": [],
+ "overrides_used": []
+}

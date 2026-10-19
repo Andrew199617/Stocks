@@ -1,0 +1,84 @@
+{
+ "ticker": "J",
+ "name": "JACOBS SOLUTIONS INC.",
+ "sector": "Industrials \u2014 Engineering & Construction Services",
+ "price": 138.67,
+ "market_cap_b": 16.91,
+ "engine_version": 5,
+ "base_oe_per_share": 4.845492294448289,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "People-based services franchise: scale, ENR #1 rankings in 18 categories and a record $28.9B backlog, but no network effect, switching cost or owned IP; ROIC proxy in fundamentals.json was 5.3\u20137.1% in FY2020\u2013FY2023 and only rose to 10.2%/11.2% in FY2024/FY2025, and gross margin is ~25% on the continuing basis (22.1% TTM as pass-through mix surged) \u2014 pricing power is thin through a cycle.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 25.02,
+   "irr": 0.0466
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 36.44,
+   "irr": 0.058
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 48.99,
+   "irr": 0.0707
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 65.03,
+   "irr": 0.0865
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 88.91,
+   "irr": 0.1086
+  }
+ },
+ "iv_at_15": 51.46,
+ "iv_at_12": 68.72,
+ "implied_irr": 0.0734,
+ "implied_irr_base_case": 0.0707,
+ "upside_at_15_pct": -62.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Sound engineering franchise, moat 4/10, but at $138.67 it prices in the backlog supercycle \u2014 weighted IRR 7.3%, IV@15% $51.46; clears 15% only below ~$51.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.058,
+ "irr_bull": 0.0865,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 35.98,
+ "iv_at_25": 27.5,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1001008000,
+ "shares_diluted_latest": 121932000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale and reputation: ENR #1 in 18 categories including data centers",
+  "Record backlog $28.9B, up 27.3% y/y, TTM book-to-bill 1.4x gross / 1.2x adjusted net revenue",
+  "Diversified secular end markets: data centers, semiconductors, energy & power, transportation, water",
+  "Long-standing government and blue-chip client relationships; PA Consulting advisory"
+ ],
+ "moat_against": [
+  "Talent walks out the door; contracts competitively re-bid \u2014 no structural lock-in",
+  "ROIC at/below cost of capital through most of the cycle (5.3\u20137.1% FY2020\u2013FY2023)",
+  "Pass-through procurement inflates revenue with almost no fee margin",
+  "Acquisition-built, goodwill-heavy balance sheet; PA Consulting integration/tax drag",
+  "Client capex-cycle and public-budget exposure"
+ ]
+}

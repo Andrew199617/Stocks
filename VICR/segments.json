@@ -1,0 +1,790 @@
+{
+ "ticker": "VICR",
+ "cik": 751978,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-085102",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/751978/000119312526085102/vicr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-194947",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/751978/000119312526194947/vicr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-322462",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/751978/000119312526322462/vicr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vicr:AdvancedproductsMember",
+     "label": "AdvancedProducts",
+     "values": [
+      223893000,
+      197329000,
+      248562000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5527,
+      0.5496,
+      0.6097
+     ],
+     "growth_yoy": [
+      null,
+      -0.1186,
+      0.2596
+     ]
+    },
+    {
+     "member": "vicr:BrickproductsMember",
+     "label": "BrickProducts",
+     "values": [
+      181166000,
+      161729000,
+      159139000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4473,
+      0.4504,
+      0.3903
+     ],
+     "growth_yoy": [
+      null,
+      -0.1073,
+      -0.016
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     405059000,
+     359058000,
+     407701000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vicr:AdvancedproductsMember",
+     "label": "AdvancedProducts",
+     "values": [
+      59857000,
+      60566000,
+      64920000,
+      94161000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.637,
+      0.6306,
+      0.5747,
+      0.6569
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0846,
+      0.5547
+     ]
+    },
+    {
+     "member": "vicr:BrickproductsMember",
+     "label": "BrickProducts",
+     "values": [
+      34111000,
+      35480000,
+      48049000,
+      49191000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.363,
+      0.3694,
+      0.4253,
+      0.3431
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4086,
+      0.3864
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     93968000,
+     96046000,
+     112969000,
+     143352000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "vicr:DirectCustomersContractManufacturersAndNonStockingDistributorsMember",
+     "label": "Direct Customers Contract Manufacturers And Non stocking Distributors",
+     "values": [
+      276997000,
+      201503000,
+      234520000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6838,
+      0.5612,
+      0.5752
+     ],
+     "growth_yoy": [
+      null,
+      -0.2725,
+      0.1639
+     ]
+    },
+    {
+     "member": "vicr:StockingDistributorsNetOfSalesAllowancesMember",
+     "label": "Stocking Distributors Net Of Sales Allowances",
+     "values": [
+      96437000,
+      103774000,
+      109230000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2381,
+      0.289,
+      0.2679
+     ],
+     "growth_yoy": [
+      null,
+      0.0761,
+      0.0526
+     ]
+    },
+    {
+     "member": "vicr:RoyaltiesMember",
+     "label": "Royalties",
+     "values": [
+      15872000,
+      46595000,
+      57384000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0392,
+      0.1298,
+      0.1408
+     ],
+     "growth_yoy": [
+      null,
+      1.9357,
+      0.2315
+     ]
+    },
+    {
+     "member": "vicr:NonRecurringEngineeringMember",
+     "label": "Non recurring Engineering",
+     "values": [
+      14595000,
+      5746000,
+      5547000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.036,
+      0.016,
+      0.0136
+     ],
+     "growth_yoy": [
+      null,
+      -0.6063,
+      -0.0346
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      1158000,
+      1440000,
+      1020000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0029,
+      0.004,
+      0.0025
+     ],
+     "growth_yoy": [
+      null,
+      0.2435,
+      -0.2917
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     405059000,
+     359058000,
+     407701000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vicr:DirectCustomersContractManufacturersAndNonStockingDistributorsMember",
+     "label": "Direct Customers Contract Manufacturers And Non stocking Distributors",
+     "values": [
+      61770000,
+      59774000,
+      64997000,
+      78157000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6574,
+      0.6223,
+      0.5754,
+      0.5452
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0522,
+      0.3075
+     ]
+    },
+    {
+     "member": "vicr:StockingDistributorsNetOfSalesAllowancesMember",
+     "label": "Stocking Distributors Net Of Sales Allowances",
+     "values": [
+      19210000,
+      23599000,
+      31421000,
+      32746000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2044,
+      0.2457,
+      0.2781,
+      0.2284
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6357,
+      0.3876
+     ]
+    },
+    {
+     "member": "vicr:RoyaltiesMember",
+     "label": "Royalties",
+     "values": [
+      10762000,
+      10353000,
+      14965000,
+      30426000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1145,
+      0.1078,
+      0.1325,
+      0.2122
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3905,
+      1.9389
+     ]
+    },
+    {
+     "member": "vicr:NonRecurringEngineeringMember",
+     "label": "Non recurring Engineering",
+     "values": [
+      1866000,
+      1960000,
+      1586000,
+      2023000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0199,
+      0.0204,
+      0.014,
+      0.0141
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1501,
+      0.0321
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      360000,
+      360000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0038,
+      0.0037,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     93968000,
+     96046000,
+     112969000,
+     143352000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      149456000,
+      185834000,
+      200645000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.369,
+      0.5176,
+      0.4921
+     ],
+     "growth_yoy": [
+      null,
+      0.2434,
+      0.0797
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      192267000,
+      129981000,
+      162417000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4747,
+      0.362,
+      0.3984
+     ],
+     "growth_yoy": [
+      null,
+      -0.324,
+      0.2495
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      59742000,
+      41803000,
+      42850000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1475,
+      0.1164,
+      0.1051
+     ],
+     "growth_yoy": [
+      null,
+      -0.3003,
+      0.025
+     ]
+    },
+    {
+     "member": "vicr:AllOtherCountriesMember",
+     "label": "All Other Countries",
+     "values": [
+      3594000,
+      1440000,
+      1789000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0089,
+      0.004,
+      0.0044
+     ],
+     "growth_yoy": [
+      null,
+      -0.5993,
+      0.2424
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     405059000,
+     359058000,
+     407701000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      36842000,
+      46246000,
+      57713000,
+      77417000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3921,
+      0.4815,
+      0.5109,
+      0.54
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5665,
+      0.674
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      47087000,
+      38702000,
+      41222000,
+      49403000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5011,
+      0.403,
+      0.3649,
+      0.3446
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1246,
+      0.2765
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      9873000,
+      10862000,
+      13600000,
+      16214000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1051,
+      0.1131,
+      0.1204,
+      0.1131
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3775,
+      0.4927
+     ]
+    },
+    {
+     "member": "vicr:AllOtherCountriesMember",
+     "label": "All Other Countries",
+     "values": [
+      166000,
+      236000,
+      434000,
+      318000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0018,
+      0.0025,
+      0.0038,
+      0.0022
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.6145,
+      0.3475
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     93968000,
+     96046000,
+     112969000,
+     143352000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product' (us-gaap:ProductMember) dropped: its values equal the sum of Direct Customers Contract Manufacturers And Non stocking Distributors, Stocking Distributors Net Of Sales Allowances, Non recurring Engineering, Product and Service, Other",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Royalty' (us-gaap:RoyaltyMember) dropped: same numbers as 'Royalties' (vicr:RoyaltiesMember)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product' (us-gaap:ProductMember) dropped: its values equal the sum of Direct Customers Contract Manufacturers And Non stocking Distributors, Stocking Distributors Net Of Sales Allowances, Non recurring Engineering, Product and Service, Other",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Royalty' (us-gaap:RoyaltyMember) dropped: same numbers as 'Royalties' (vicr:RoyaltiesMember)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Country US' (vicr:CountryUsMember) dropped: same numbers as 'UNITED STATES' (country:US)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Country US' (vicr:CountryUsMember) dropped: same numbers as 'UNITED STATES' (country:US)"
+ ],
+ "complete": true
+}

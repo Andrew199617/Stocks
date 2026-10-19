@@ -1,0 +1,84 @@
+{
+ "ticker": "CHRW",
+ "name": "C. H. Robinson Worldwide, Inc.",
+ "sector": "Transportation / Freight brokerage & logistics (3PL)",
+ "price": 139.95,
+ "market_cap_b": 17.0,
+ "engine_version": 5,
+ "base_oe_per_share": 4.816884088076444,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Largest US freight broker with a two-sided shipper/carrier network, Navisphere data scale and Lean AI productivity (+60% since end-2022, 13 straight quarters outgrowing the Cass index); ROIC proxy stayed 14.3%-32.8% over FY2020-25, above cost of capital even at the 2023 trough. But shippers and carriers multi-home with low switching costs, supply is not owned, pricing is transparent and the business is freight-cycle exposed, so the moat is moderate, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 21.22,
+   "irr": 0.0418
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 31.8,
+   "irr": 0.0525
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 44.15,
+   "irr": 0.0655
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 60.65,
+   "irr": 0.0824
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 89.9,
+   "irr": 0.1098
+  }
+ },
+ "iv_at_15": 44.06,
+ "iv_at_12": 58.66,
+ "implied_irr": 0.0659,
+ "implied_irr_base_case": 0.0655,
+ "upside_at_15_pct": -68.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality asset-light freight broker, moat 6/10 \u2014 does not clear 15% at $139.95 on any scenario (weighted IRR 6.59%, weighted IV@15% $44.06; even super bull is 10.98% / $89.90); it clears 15% only at or below $44.06.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0525,
+ "irr_bull": 0.0824,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 30.96,
+ "iv_at_25": 23.78,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 928567000,
+ "shares_diluted_latest": 121502000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale network: largest US freight broker, tens of thousands of shippers and carriers, volume/data advantage in matching and pricing",
+  "ROIC proxy 14.3%-32.8% FY2020-25 (fundamentals.json), above cost of capital through the freight trough",
+  "Lean AI productivity: >60% improvement since end-2022 in NAST and Global Forwarding, headcount down while volumes rose; 13 straight quarters outgrowing the Cass Freight Shipment Index",
+  "Asset-light variable-cost model: capex only $19.6M in FY2025 against $914.5M OCF, profitability cushioned in downturns"
+ ],
+ "moat_against": [
+  "Low switching costs: shippers deliberately multi-home brokers in routing guides and carriers are not owned or exclusive",
+  "Fragmented, transparent-priced brokerage: TQL, RXO, J.B. Hunt, Echo/Uber Freight and digital/AI entrants compete on the same capacity pool",
+  "Freight cyclicality: revenue fell from $24.70B (FY2022) to $16.23B (FY2025) and OE/share spans -0.52 to 11.78 over the last five years",
+  "Montgomery negligent-hiring legal exposure for brokers plus the pending RXO acquisition (integration, leverage and customer-overlap risk)"
+ ]
+}

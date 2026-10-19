@@ -1,0 +1,294 @@
+{
+ "ticker": "OWL",
+ "cik": 1823945,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T02:53:52-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001823945.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000009/owl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/OWL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/OWL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BLUE OWL CAPITAL INC.",
+  "cik": 1823945,
+  "description": {
+   "text": "Blue Owl is a global alternative asset manager with $307.4 billion in AUM as of December 31, 2025. Anchored by a strong Permanent Capital base, we deploy private capital across Credit, Real Assets and GP Strategic Capital platforms on behalf of institutional and private wealth clients. Our flexible, consultative approach helps position us as a partner of choice for businesses seeking capital solutions to support their sustained growth. Our management team is comprised of seasoned investment professionals with decades of experience building alternative investment businesses. We employ approximately 1,365 people globally. Blue Owl was formed in May 2021 through the combination of Owl Rock (as defined in Note 2 to our Financial Statements), a leader in credit solutions, and Dyal Capital (as defined in Note 1 to our Financial Statements), a leading capital solutions provider to large private capital managers. In December 2021, we acquired Oak Street (as defined in Note 10 to our Financial Statements), which expanded our offerings to include real estate-focused products. In April 2022, we acquired Wellfleet (as defined in Note 10 to our Financial Statements), which expanded our reach in the broadly syndicated leveraged loans market, including CLO product offerings. In August 2023, the Par Four Acquisition (as defined in Note 1 to our Financial Statements) expanded our liquid credit strategy team.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001823945-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000009/owl-20251231.htm"
+  },
+  "description_short": "Blue Owl Technology Finance Corp. ('OTF') is a specialty finance company focused on making debt and equity investments to U.S. technology-related companies, with a strategic focus on software. As of June 30, 2026, OTF had investments in 205 portfolio companies with an aggregate fair value of $14.7 billion. OTF has elected to be regulated as a business development company under the Investment Company Act of 1940, as amended. OTF is externally managed by Blue Owl Technology Credit Advisors LLC, an SEC-registered investment adviser that is an indirect affiliate of Blue Owl Capital Inc. ('Blue Owl') (NYSE: OWL) and part of Blue Owl's Credit platform.",
+  "industry": "Investment Managers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6282",
+  "sic_description": "Investment Advice",
+  "state_of_incorporation": "NJ",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.blueowl.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "399 Park Avenue",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10022",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "(212) 419-3000",
+  "employees": {
+   "count": 1365,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 1,365 full-time employees globally.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000009/owl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-10-07",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "ALTIMAR ACQUISITION CORP."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001823945&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-422905",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000119312526422905/d901314d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-355671",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000119312526355671/d166284d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-345635",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000119312526345635/d223714d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001823945-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000040/owl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001823945-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000036/owl-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001823945-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000030/owl-20260604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001823945-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000026/owl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001823945-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000022/owl-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001823945-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000017/owl-20260417.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001823945-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000009/owl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001823945-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000004/owl-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-03",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-307277",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000119312525307277/d269548d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-02",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-305470",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000119312525305470/d66810d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001823945-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394525000063/owl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001823945-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394525000059/owl-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-08",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-177104",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000119312525177104/d887624d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001823945-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394525000048/owl-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001823945-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394525000044/owl-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-09",
+   "period": "2025-06-09",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001823945-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394525000040/owl-20250609.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-05",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001823945-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394525000037/owl-20250331.htm"
+  }
+ ],
+ "warnings": []
+}

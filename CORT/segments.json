@@ -1,0 +1,99 @@
+{
+ "ticker": "CORT",
+ "cik": 1088856,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-011091",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026011091/cort-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028902",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026028902/cort-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050613",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026050613/cort-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cort:HypercortisolismProductsMember",
+     "label": "Hypercortisolism Products",
+     "values": [
+      194430000,
+      208583000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      0.8143
+     ],
+     "growth_yoy": [
+      null,
+      0.0728
+     ]
+    },
+    {
+     "member": "cort:LifyorliMember",
+     "label": "Lifyorli",
+     "values": [
+      0,
+      47564000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.1857
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     194430000,
+     256147000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

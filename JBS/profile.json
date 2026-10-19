@@ -1,0 +1,262 @@
+{
+ "ticker": "JBS",
+ "cik": 1791942,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T10:47:22-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001791942.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026034213/ea0282342-20f_jbsnv.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JBS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JBS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "JBS N.V.",
+  "cik": 1791942,
+  "description": {
+   "text": "Climate Change Reduction Goals.” However, the mere setting of these goals has subjected or may subject JBS S.A. and its affiliates to criticism, investigations, regulatory enforcement, litigation, or other risks, and may continue to do so in the future In addition, a failure by us to achieve these goals could expose us to litigation and harm our reputation, which could have a material adverse effect on our results of operations, financial condition and liquidity. For additional information, see “Item 8. Financial Information—A. Consolidated Statements and Other Financial Information—Legal Proceedings—Other Proceedings.” Failure by us to meet the commitments we have made regarding our cattle and grain supply chains in Brazil may have a material adverse effect on our business and reputation. While we have tools at our disposal to perform monitoring of the commitments we have made regarding our cattle and grain supply chains in Brazil and to which we are subject by Brazilian law and/or our internal policies, no assurance can be given that our monitoring efforts will be effective in every instance. For example, as mentioned under “Item 4. Information on the Company—B. Business Overview—Regulation—Brazil—Brazilian Forest Code,” rural landowners are required to self-report electronic geo-referencing data to the Rural Environmental Registry (Cadastro Ambiental Rural) (“CAR”), in order to demonstrate compliance with Federal Law No. 12.651 (Código Florestal) (the “Forest Code”).",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-25",
+   "period": "2025-12-31",
+   "accession": "0001213900-26-034213",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026034213/ea0282342-20f_jbsnv.htm"
+  },
+  "description_short": "JBS is a leading global food company with a diversified portfolio of high-quality products, including poultry, pork, beef, lamb, fish and plant-based proteins. The company employs more than 282,000 people and operates in over 20 countries, including Brazil, the United States, Canada, the United Kingdom and Australia. Worldwide, JBS offers a broad portfolio of brands recognized for their excellence and innovation, including Friboi, Seara, Swift, Pilgrim's Pride, Moy Park, Primo and Just Bare, among others, reaching consumers in 180 countries every day. The company also invests in related businesses, including leather, biodiesel, collagen, fertilizers, natural casings, solid waste management solutions, recycling and transportation, with a focus on the circular economy. Learn more at jbsglobal.com.",
+  "industry": "Meat/Poultry/Fish",
+  "sector": "Consumer Staples",
+  "region": "Europe",
+  "sic": "2011",
+  "sic_description": "Meat Packing Plants",
+  "state_of_incorporation": "P7",
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.jbs.com.br",
+  "headquarters": "Amstelveen, Netherlands",
+  "address": {
+   "street": "Stroombaan 16 5th Floor 1181 VX",
+   "city": "Amstelveen",
+   "state": null,
+   "zip": "00000",
+   "country": "Netherlands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-25"
+  },
+  "phone": "31206564700",
+  "employees": {
+   "count": 283000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 283,000 employees worldwide.",
+   "form": "20-F",
+   "filed": "2026-03-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026034213/ea0282342-20f_jbsnv.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2022-11-23",
+  "first_sec_filing_form": "DRS",
+  "former_names": [
+   "JBS B.V."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001791942&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001213900-26-100180",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026100180/ea0305591-8k_jbs.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-18",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001213900-26-091373",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026091373/ea0302563-8k425_jbs.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-10",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0001213900-26-087444",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026087444/ea0301374-8k_jbs.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001791942-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000179194226000004/jbsay-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-086392",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026086392/ea0301037-6k_jbs.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-085774",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026085774/ea0300826-6k_jbs.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-084089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026084089/ea0300037-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-068560",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026068560/ea0294771-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-056240",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026056240/ea0290803-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-055217",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026055217/ea0288902-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-055181",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026055181/ea0290363-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-050273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026050273/ea0288579-6k_jbs.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-044089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026044089/ea0286401-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-13",
+   "period": "2026-04-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-042824",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026042824/ea0286078-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-041590",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026041590/ea0285523-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-036668",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026036668/ea0284180-6k_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-27",
+   "period": "2026-03-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-035573",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026035573/ea028384901-6k_jbs.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-034244",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026034244/ea0283445-6k_jbs.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001213900-26-034213",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026034213/ea0282342-20f_jbsnv.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001213900-26-017063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1791942/000121390026017063/ea0277312-6k_jbsnv.htm"
+  }
+ ],
+ "warnings": []
+}

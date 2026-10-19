@@ -1,0 +1,287 @@
+{
+ "ticker": "MEDP",
+ "cik": 1668397,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T15:24:11-04:00",
+ "newest_filing_date": "2026-07-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001668397.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000006/medp-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MEDP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MEDP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Medpace Holdings, Inc.",
+  "cik": 1668397,
+  "description": {
+   "text": "We are one of the world’s leading clinical contract research organizations, or CROs, by revenue, solely focused on providing scientifically-driven outsourced clinical development services to the biotechnology, pharmaceutical and medical device industries. Our mission is to accelerate the global development of safe and effective medical therapeutics. We differentiate ourselves from our competitors by our disciplined operating model centered on providing full-service Phase I-IV clinical development services and our therapeutic expertise. We believe this combination results in timely and cost-effective delivery of clinical development services for our customers. We believe that we are a partner of choice for small and mid-sized biopharmaceutical companies based on our ability to consistently utilize our full-service, disciplined operating model to deliver timely and high-quality results for our customers. Accordingly, our business strategy aims to continue to expand our market share in the growing Phase I-IV CRO market as we conduct clinical trials across all major therapeutic areas, with particular strength in Oncology, Metabolic, Cardiology, Antiviral and Anti-infective (AVAI) and Central Nervous System (CNS). Our Revenues: Markets and Clinical Development Services Before a new drug can be commercialized, it often must undergo extensive pre-clinical and clinical testing and regulatory review to verify safety and efficacy.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "accession": "0001668397-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000006/medp-20251231.htm"
+  },
+  "description_short": "Medpace is a scientifically-driven, global, full-service clinical contract research organization (CRO) providing Phase I-IV clinical development services to the biotechnology, pharmaceutical and medical device industries. Medpace's mission is to accelerate the global development of safe and effective medical therapeutics through its high-science and disciplined operating approach that leverages regulatory and therapeutic expertise across all major areas including oncology, cardiology, metabolic disease, endocrinology, central nervous system and anti-viral and anti-infective. Headquartered in Cincinnati, Ohio, Medpace employs approximately 6,500 people across 46 countries as of June 30, 2026.",
+  "industry": "Biotechnology: Commercial Physical & Biological Resarch",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "8731",
+  "sic_description": "Services-Commercial Physical & Biological Research",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.medpace.com",
+  "headquarters": "Cincinnati, OH",
+  "address": {
+   "street": "5375 Medpace Way",
+   "city": "Cincinnati",
+   "state": "OH",
+   "zip": "45227",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-10"
+  },
+  "phone": "(513) 579-9911",
+  "employees": {
+   "count": 6200,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025 we had approximately 6,200 employees located across 46 countries.",
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000006/medp-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2016-06-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001668397&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001668397-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000025/medp-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001668397-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000023/medp-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-257387",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000119312526257387/d162455d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-15",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001193125-26-230425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000119312526230425/d101911d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001668397-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000019/medp-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001668397-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000017/medp-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-01",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001668397-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000012/medp-20260401.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001668397-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000006/medp-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001668397-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000004/medp-20260209.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001668397-25-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000110/medp-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001668397-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000108/medp-20251022.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-22",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001668397-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000087/medp-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-21",
+   "period": "2025-07-17",
+   "items": [
+    "1.01",
+    "2.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations",
+   "accession": "0001668397-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000085/medp-20250717.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-16",
+   "period": "2025-05-16",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-25-121801",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000119312525121801/d918670d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-22",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001668397-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000059/medp-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-21",
+   "period": "2025-04-17",
+   "items": [
+    "1.01",
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Other events",
+   "accession": "0001668397-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000056/medp-20250417.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-02",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001668397-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000043/medp-20250402.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-31",
+   "period": "2025-03-28",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001668397-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000037/medp-20250328.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-11",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001668397-25-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000017/medp-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-10",
+   "period": "2025-02-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001668397-25-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839725000012/medp-20250206.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,85 @@
+{
+ "ticker": "AKAM",
+ "name": "Akamai Technologies, Inc",
+ "sector": "Technology / Edge cloud, CDN & cybersecurity",
+ "price": 87.81,
+ "market_cap_b": 12.91,
+ "engine_version": 5,
+ "base_oe_per_share": 2.9402188944644196,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "World's most distributed edge network and a $2.4B/yr security franchise growing 10%, but returns are converging to the cost of capital: ROIC proxy fell from 17.9% (2021) to 10.5% (2024-25) and gross margin has eroded six straight years (64.6% to 58.9%) as delivery commoditizes and lower-margin compute mix rises. The network is a real asset; the pricing power on it is not proven anymore.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.9%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 12.96,
+   "irr": 0.042
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 21.08,
+   "irr": 0.0552
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 30.52,
+   "irr": 0.0704
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 41.22,
+   "irr": 0.0873
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 62.22,
+   "irr": 0.1177
+  }
+ },
+ "iv_at_15": 29.41,
+ "iv_at_12": 39.37,
+ "implied_irr": 0.0691,
+ "implied_irr_base_case": 0.0704,
+ "upside_at_15_pct": -66.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real network, eroding returns, moat 5/10 \u2014 mid-pivot into a capital-heavy AI-cloud bet; at $87.81 the weighted IRR is 6.9% on the TTM base (8.7% on the median base), IV@15% $29-42, so it clears 15% only below ~$29-42: Tier D.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0552,
+ "irr_bull": 0.0873,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 20.5,
+ "iv_at_25": 15.63,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 147023000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Most distributed edge network in the industry (4,100+ PoPs, ISP-embedded) \u2014 expensive and slow to replicate, best-in-class for large live-event delivery",
+  "Security franchise at scale: $604M in Q2 2026, +10% YoY, led by Guardicore segmentation and API security",
+  "Deeply embedded enterprise base with high retention; delivery cash flows fund the pivot",
+  "Contracted AI-cloud backlog: $14.4B of multiyear CIS commitments signed in 2026, incl. Anthropic $11.6B/7yr \u2014 multi-year revenue visibility peers lack"
+ ],
+ "moat_against": [
+  "Delivery (36% of Q2 revenue) declining -6% YoY against Cloudflare and hyperscaler bundling \u2014 the legacy moat is melting",
+  "ROIC proxy 17.9% (2021) \u2192 10.5% (2025) and gross margin down ~1pp/yr for six years \u2014 measured returns no longer clear a wide-moat bar",
+  "No owned demand surface and weak developer mindshare vs Cloudflare",
+  "Anthropic pivot concentrates counterparty risk and demands ~$5.5B capex at unproven returns; warrant dilutes holders up to ~5%"
+ ]
+}

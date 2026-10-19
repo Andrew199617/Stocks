@@ -1,0 +1,101 @@
+{
+ "ticker": "SAIL",
+ "cik": 2030781,
+ "entity": "SailPoint, Inc.",
+ "fy_end": "2026-01-31",
+ "ytd_end": "2026-07-31",
+ "inputs": {
+  "ocf": {
+   "fy": 70580000,
+   "fy_period": [
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -46862000,
+   "ytd_prior_period": [
+    "2025-02-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 83204000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 200646000
+  },
+  "capex": {
+   "fy": 5980000,
+   "fy_period": [
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 3153000,
+   "ytd_prior_period": [
+    "2025-02-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 2903000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 5730000
+  },
+  "sbc": {
+   "fy": 254872000,
+   "fy_period": [
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 154061000,
+   "ytd_prior_period": [
+    "2025-02-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 137426000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 238237000
+  },
+  "shares_diluted": {
+   "fy": 544159000,
+   "fy_period": [
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 528355000,
+   "ytd_prior_period": [
+    "2025-02-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 566360000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 200646000,
+ "ttm_capex": 5730000,
+ "ttm_sbc": 238237000,
+ "ttm_shares_diluted": 566360000,
+ "ttm_oe_total": -43321000,
+ "ttm_oe_per_share": -0.07649021823575111,
+ "warnings": [],
+ "overrides_used": []
+}

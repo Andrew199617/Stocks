@@ -1,0 +1,608 @@
+{
+ "ticker": "PNFP",
+ "cik": 2082866,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0002082866-26-000018",
+   "filed": "2026-03-02",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2082866/000208286626000018/pnfp-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002082866-26-000043",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2082866/000208286626000043/pnfp-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002082866-26-000082",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2082866/000208286626000082/pnfp-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pnfp:BankingReportingMember",
+     "label": "Banking Reporting",
+     "values": [
+      349000000,
+      355000000,
+      757000000,
+      807000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9562,
+      0.9342,
+      0.8114,
+      0.8441
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.1691,
+      1.2732
+     ]
+    },
+    {
+     "member": "pnfp:WealthReportingMember",
+     "label": "Wealth Reporting",
+     "values": [
+      2000000,
+      2000000,
+      8000000,
+      10000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0055,
+      0.0053,
+      0.0086,
+      0.0105
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.0,
+      4.0
+     ]
+    },
+    {
+     "member": "pnfp:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      14000000,
+      23000000,
+      167000000,
+      139000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0384,
+      0.0605,
+      0.179,
+      0.1454
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      10.9286,
+      5.0435
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     365000000,
+     380000000,
+     933000000,
+     956000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pnfp:BankingReportingMember",
+     "label": "Banking Reporting",
+     "values": [
+      41000000,
+      41000000,
+      116000000,
+      122000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4227,
+      0.328,
+      0.4085,
+      0.4939
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8293,
+      1.9756
+     ]
+    },
+    {
+     "member": "pnfp:WealthReportingMember",
+     "label": "Wealth Reporting",
+     "values": [
+      28000000,
+      29000000,
+      81000000,
+      80000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2887,
+      0.232,
+      0.2852,
+      0.3239
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8929,
+      1.7586
+     ]
+    },
+    {
+     "member": "pnfp:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      28000000,
+      55000000,
+      88000000,
+      45000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2887,
+      0.44,
+      0.3099,
+      0.1822
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.1429,
+      -0.1818
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     97000000,
+     125000000,
+     284000000,
+     247000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Deposits",
+   "tag": "us-gaap:Deposits",
+   "label": "Deposits by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pnfp:BankingReportingMember",
+     "label": "Banking Reporting",
+     "values": [
+      42339000000,
+      88433000000,
+      88359000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8932,
+      0.8834,
+      0.8757
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "pnfp:WealthReportingMember",
+     "label": "Wealth Reporting",
+     "values": [
+      1160000000,
+      2477000000,
+      3096000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0245,
+      0.0247,
+      0.0307
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "pnfp:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      3902000000,
+      9193000000,
+      9443000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0823,
+      0.0918,
+      0.0936
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     47401000000,
+     100103000000,
+     100898000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pnfp:IncomefromequitymethodinvestmentMember",
+     "label": "Income from equity method investment",
+     "values": [
+      85402000,
+      63172000,
+      118343000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1971,
+      0.1702,
+      0.2336
+     ],
+     "growth_yoy": [
+      null,
+      -0.2603,
+      0.8733
+     ]
+    },
+    {
+     "member": "us-gaap:InvestmentAdvisoryManagementAndAdministrativeServiceMember",
+     "label": "Investment Advisory, Management and Administrative Service",
+     "values": [
+      52432000,
+      67572000,
+      84391000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.121,
+      0.182,
+      0.1666
+     ],
+     "growth_yoy": [
+      null,
+      0.2888,
+      0.2489
+     ]
+    },
+    {
+     "member": "us-gaap:DepositAccountMember",
+     "label": "Deposit Account",
+     "values": [
+      49223000,
+      59394000,
+      71130000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1136,
+      0.16,
+      0.1404
+     ],
+     "growth_yoy": [
+      null,
+      0.2066,
+      0.1976
+     ]
+    },
+    {
+     "member": "us-gaap:FiduciaryAndTrustMember",
+     "label": "Fiduciary and Trust",
+     "values": [
+      26683000,
+      33219000,
+      40351000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0616,
+      0.0895,
+      0.0797
+     ],
+     "growth_yoy": [
+      null,
+      0.2449,
+      0.2147
+     ]
+    },
+    {
+     "member": "pnfp:InsurancesalescommissionsMember",
+     "label": "Insurance sales commissions",
+     "values": [
+      13670000,
+      13753000,
+      15525000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0316,
+      0.0371,
+      0.0306
+     ],
+     "growth_yoy": [
+      null,
+      0.0061,
+      0.1288
+     ]
+    },
+    {
+     "member": "us-gaap:MortgageBankingMember",
+     "label": "Mortgage Banking",
+     "values": [
+      6511000,
+      11136000,
+      7647000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.015,
+      0.03,
+      0.0151
+     ],
+     "growth_yoy": [
+      null,
+      0.7103,
+      -0.3133
+     ]
+    },
+    {
+     "member": "pnfp:GainLossOnSaleOfFixedAssetsMember",
+     "label": "Gain loss on sale of fixed assets",
+     "values": [
+      86048000,
+      2258000,
+      554000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1986,
+      0.0061,
+      0.0011
+     ],
+     "growth_yoy": [
+      null,
+      -0.9738,
+      -0.7547
+     ]
+    },
+    {
+     "member": "pnfp:GainonsaleofinvestmentsecuritiesnetMember",
+     "label": "Gain on sale of investment securities, netMember",
+     "values": [
+      -19674000,
+      -71854000,
+      -16611000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0454,
+      -0.1936,
+      -0.0328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:FinancialServiceOtherMember",
+     "label": "Financial Service, Other",
+     "values": [
+      132958000,
+      192528000,
+      185260000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3069,
+      0.5187,
+      0.3657
+     ],
+     "growth_yoy": [
+      null,
+      0.448,
+      -0.0378
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     433253000,
+     371178000,
+     506590000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

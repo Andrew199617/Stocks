@@ -1,0 +1,51 @@
+{
+ "base_override": {
+  "kind": "filing",
+  "reason": "SECTOR_MODEL_MISMATCH (bank / auto lender): the engine's OCF-based conservative OE is rejected as the base \u2014 for a lender, OCF adds back the credit provision ($1,477M in FY2025, $2,166M in FY2024) and $1,397M of depreciation/amortization (dominated by operating-lease fleet depreciation) while the corresponding earning-asset deployment (purchases of operating lease assets $4,275M in FY2025; purchases of finance receivables and loans held-for-investment $5,249M) sits in investing, so OCF measures balance-sheet plumbing, not distributable earnings: FY2025 OCF $3,729M against net income of $852M, and NI_OCF_DIVERGENCE fires for 2023, 2024 and 2025. The result is a $14.5989/share normalized base (a 38.7% OE yield at $37.68) for a company whose diluted EPS was $2.37 in FY2025. For a bank, net income is the honest owner's-earnings proxy (the FUTU/LPLA/WSE/ARCC sector precedent in this sweep): SBC is already expensed inside it, the provision \u2014 a real through-cycle cost \u2014 is already charged inside it, and the median-of-3-FY normalization mirrors the engine's own base method applied to that definition. The median is also conservative for this name: all three years carry goodwill impairments on exited businesses ($149M / $118M / $305M) inside net income. Known upward bias, stated: total net income is used (the ARCC construction), so the ~$110M/yr of preferred dividends is not deducted \u2014 about $0.35/share against the common EPS series ($2.77 / $1.80 / $2.37, median $2.37); the verdict is sized with that bias in view. Declared under bounded authority (c): every input is a figure printed by this run's engine output.",
+  "source": "Median of the last 3 fiscal years' net income per diluted share, built exclusively from this run's financials_history.csv (engine-filed figures): FY2023 net income $957,000,000 / 305,135,000 diluted shares = $3.1363; FY2024 $668,000,000 / 310,160,000 = $2.1537; FY2025 $852,000,000 / 313,043,000 = $2.7217; median of the three = $2.7217 (the FY2025 value)",
+  "value": 2.721670824774871
+ },
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine's sanity band anchors on the last FILED capex value under its candidate tags and Ally has never filed one in any period (last_filed_value is null in companyfacts), so no in-band estimate exists. The value is not unanchored \u2014 it is the filer's own FY2025 property and equipment depreciation, filed in its FY2025 10-K (see source), used as the maintenance-capex proxy for a bank whose cash-flow statement presents no PPE-purchase line.",
+  "kind": "estimate",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) under every candidate tag: EDGAR companyfacts for CIK 40729 contains no PaymentsToAcquirePropertyPlantAndEquipment fact in any period, and Ally's Consolidated Statements of Cash Flows present no purchases-of-property-and-equipment line in FY2023, FY2024 or FY2025 \u2014 premises/IT spend is folded into investing 'Other, net' (-$600M in FY2025) and cannot be isolated from the filing (the EWBC situation in this sweep). Maintenance PPE capex for this digital bank (IT hardware/software, premises, leasehold) is therefore proxied by its own filed PPE depreciation \u2014 the standard maintenance-capex proxy \u2014 at the top of the filed range, the conservative end. The figure is immaterial to the verdict either way: the scored base is the NI-based base_override (net income already carries the $243M depreciation charge), and $243M is ~$0.78/share against the rejected $14.60/share OCF-based base.",
+  "source": "Anchor: FY2025 property and equipment depreciation of $243M, printed in the Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), other operating expenses table (with $224M for FY2024 and $196M for FY2023 in the same table) \u2014 the top of the filer's own filed FY2023-FY2025 range for that line; net property and equipment was $1,150M at FY2025 (Note 13) on $196,002M of total assets",
+  "value": 243000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Returns below the cost of equity through the recent cycle \u2014 GAAP ROE 7.0% / 4.8% / 5.5% in FY2023 / FY2024 / FY2025 (fundamentals.json); the franchise has not earned its capital since FY2022",
+  "Commodity product, no structural pricing power \u2014 auto loans and deposits are fungible; competition from money-center banks, captive lenders and credit unions sets the price",
+  "Consumer credit-cycle and residual-value exposure \u2014 provision for credit losses $1,477M in FY2025 ($2,166M in FY2024); operating-lease fleet of $8,772M carries used-vehicle residual risk",
+  "Capital-allocation record \u2014 goodwill impairments of $149M (FY2023), $118M (FY2024) and $305M (FY2025) on the exited Ally Lending (sold Mar 2024) and Credit Card (sold Apr 1, 2025) businesses; consumer mortgage originations ceased in Q2 2025",
+  "Rate sensitivity \u2014 NIM depends on deposit repricing and asset yields outside management control; interest on deposits alone was $5,302M in FY2025"
+ ],
+ "moat_for": [
+  "Auto finance leadership at scale \u2014 consumer originations $13.3B in Q2 2026 (+21% YoY) on 4.6M applications (+17%); dealer franchise plus insurance (F&I) attached to the same dealer relationships",
+  "Largest all-digital US bank \u2014 $151,649M of deposits at FY2025 (10-K balance sheet) funding the loan book; 3.6M deposit customers, +7% YoY at Q2 2026",
+  "Corporate Finance is a genuine second engine \u2014 $13.7B portfolio at Q2 2026, +25% YoY, with a reported 32% ROE in the quarter",
+  "Profitability inflecting \u2014 core ROTCE 11.8% in Q2 2026 vs 11.0% a year earlier; NIM excluding core OID 3.63%, +18bp YoY; adjusted EPS $1.21, +22% YoY",
+  "Credit metrics improving at the print \u2014 retail auto net charge-offs 1.57% in Q2 2026, down 18bp YoY and 40bp sequentially"
+ ],
+ "moat_justification": "Weak-to-moderate franchise: the nation's largest all-digital bank and a leading auto lender (consumer auto originations $13.3B in Q2 2026, +21% YoY; Corporate Finance portfolio $13.7B, +25% YoY) \u2014 against a commodity lending product with no structural pricing power, full consumer-credit and rate-cycle exposure, and returns that prove the niche leadership is not translating: GAAP ROE (fundamentals.json, total equity) fell to 7.0% in FY2023, 4.8% in FY2024 and 5.5% in FY2025, below the cost of equity three straight years, with goodwill impairments in all three years ($149M / $118M / $305M) on the exited credit-card and lending adjacencies; core ROTCE of 11.8% in Q2 2026 is a recovery print at a benign point in the credit cycle (retail auto net charge-offs 1.57%), not a through-cycle level. Fundamentals.json carries no roic_proxy or gross margin for a bank presentation (both null), so ROE/ROTCE are the return evidence. A 4 gives CAP = 7.2 years.",
+ "moat_score": 4,
+ "name": "Ally Financial Inc.",
+ "one_liner": "Leading digital bank and auto lender in a real ROTCE recovery, moat 4/10 \u2014 on the only honest base for a lender (median net income $2.72/sh, not the $13.32/sh OCF artifact) the weighted IRR is 13.54% (IV@15% $32.94 vs $37.68), so it clears 15% only below ~$33; bank-model mismatch, confidence low.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under the engine's tags: AllocatedShareBasedCompensationExpense was last filed for FY2020 ($80M in financials_history.csv) and ShareBasedCompensation is not filed at all, so the expense survives only in the equity statement and Note 23. The engine applies this single FY2025 value to every missing period: it understates FY2024 SBC by $14M and FY2023 by $6M against the same statement (raising those years' OE slightly, ~0.3% of OCF \u2014 immaterial and noted, not hidden); FY2025 is exact. Against the last engine-filed value ($80M, FY2020) the value is 1.9x, inside the 0.1x-10x band. SBC is already expensed inside net income, so it does not double-charge the NI-based base_override; it charges the engine's OCF-based history, which is where the gap blocked the tier.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statement of Changes in Equity, line 'Share-based compensation': $153M for FY2025, with $167M for FY2024 and $159M for FY2023 in the same statement; corroborated by Note 23 (Share-based Compensation Plans), which reports PSU/RSU expense of $130M / $136M / $127M for FY2025 / FY2024 / FY2023 \u2014 the equity-statement line is the broader total (it also carries ESPP/DSU-type awards)",
+  "value": 153000000
+ },
+ "sector": "Finance / Auto lending & digital banking",
+ "tier_override": null,
+ "tier_override_reason": null
+}

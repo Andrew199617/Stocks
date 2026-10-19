@@ -1,0 +1,92 @@
+{
+ "ticker": "CNA",
+ "name": "CNA Financial Corporation",
+ "sector": "Finance / Property & Casualty Insurance",
+ "price": 47.9,
+ "market_cap_b": 13.05,
+ "engine_version": 5,
+ "base_oe_per_share": 8.67474302496329,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-narrow moat: a scaled, A+-rated specialty/commercial franchise (seventh-largest U.S. commercial insurer; Specialty/Commercial/International breadth; expense ratio held below 30%; retention 83% with record new business) \u2014 but P&C cover is re-bid at renewal through non-exclusive brokers/agents, pricing power belongs to the industry cycle (renewal rate flat in Q2 2026), far larger rivals (Chubb, Travelers, AIG) set competitive terms, and measured returns sit at the cost of capital through the cycle (ROE 5.43%/10.66%/7.98%/12.18%/9.12%/11.00% across 2020-2025 in fundamentals.json; FY2025 combined ratio 94.7%, underlying 91.8%, deteriorating to 94.2% underlying in Q2 2026), with recurring legacy mass-tort charges and LTC runoff as persistent drags and Loews' ~92% control leaving minority holders no governance say.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier B (16.2%) vs bull-case tier S (26.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 33.18,
+   "irr": 0.108
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 52.44,
+   "irr": 0.1625
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 70.72,
+   "irr": 0.2097
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 94.18,
+   "irr": 0.2636
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 139.18,
+   "irr": 0.351
+  }
+ },
+ "iv_at_15": 75.11,
+ "iv_at_12": 99.24,
+ "implied_irr": 0.2195,
+ "implied_irr_base_case": 0.2097,
+ "upside_at_15_pct": 56.8,
+ "tier_by_numbers": "A",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Mid-tier commercial P&C insurer with an A+ rating and disciplined underwriting, moat 4/10 \u2014 engine prints Tier A (weighted IRR 21.95%, IV@15% $75.11 vs $47.90) on an OCF base that capitalizes insurer float, so the final tier is softened to B at low confidence; it clears 15% at ~$75 on engine numbers, with the bear-case cushion (~$52) the honest margin of safety.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1625,
+ "irr_bull": 0.2636,
+ "tier_bear": "B",
+ "tier_bull": "S",
+ "iv_at_20": 53.33,
+ "iv_at_25": 41.28,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2546000000,
+ "shares_diluted_latest": 272400000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025 \u2014 FY2025 OCF $2,490,000,000 vs net income $1,278,000,000, and maintenance OE $1,278,000,000 vs conservative OE $2,363,000,000), so tier-by-numbers A overstates distributable owner's earnings; softened one notch to B, confidence low \u2014 the standing insurer-float treatment, same as PFG/HIG.",
+ "moat_for": [
+  "Scale: seventh-largest U.S. commercial insurer with Specialty / Commercial / International breadth",
+  "AM Best A+ financial strength rating (upgraded December 2025) supporting broker and policyholder trust",
+  "Specialty underwriting expertise in professional liability, surety (Western Surety) and healthcare lines",
+  "Expense ratio held below 30% (29.7% FY2025) while investing in technology/AI",
+  "Retention 83% with new business +11% to a record $718M in Q2 2026",
+  "Loews' ~92% ownership as a historically supportive long-horizon parent"
+ ],
+ "moat_against": [
+  "Commodity cover re-shopped at renewal; low policyholder switching costs and non-exclusive intermediated distribution",
+  "No structural pricing power: renewal rate flat in Q2 2026 as the pricing cycle softens",
+  "Larger rivals (Chubb, Travelers, AIG) set competitive terms in commercial lines",
+  "Social inflation pressuring loss ratios; underlying combined ratio deteriorated to 94.2% in Q2 2026",
+  "Recurring legacy mass-tort/asbestos charges in Corporate & Other ($77M after-tax in Q2 2026, $88M in Q2 2025) and LTC runoff drag",
+  "Catastrophe tail and controlled-company structure with a thin public float"
+ ]
+}

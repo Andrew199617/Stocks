@@ -1,0 +1,87 @@
+{
+ "ticker": "H",
+ "name": "Hyatt Hotels Corp",
+ "sector": "Consumer Discretionary / Lodging",
+ "price": 169.13,
+ "market_cap_b": 16.15,
+ "engine_version": 5,
+ "base_oe_per_share": 3.895567547090968,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Strong luxury/lifestyle brands and World of Hyatt \u2014 the highest-value major hotel loyalty currency \u2014 plus long-dated management contracts (50-year terms on the sold Playa resorts) and a 154,000-room pipeline, but subscale at ~1,400-1,500 properties vs Marriott/Hilton at 8,000-9,000+, no filed ROIC/gross-margin series in fundamentals.json (operating income untagged, roic_proxy null), and a volatile, thin OE record (negative in 2020, $0.89/share in 2025) that does not evidence returns well above cost of capital through a cycle.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.89 vs 3-yr median 3.90 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 9.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 21.57,
+   "irr": 0.0404
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 29.33,
+   "irr": 0.0468
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 36.91,
+   "irr": 0.0533
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 45.97,
+   "irr": 0.061
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 61.56,
+   "irr": 0.074
+  }
+ },
+ "iv_at_15": 36.99,
+ "iv_at_12": 49.21,
+ "implied_irr": 0.0535,
+ "implied_irr_base_case": 0.0533,
+ "upside_at_15_pct": -78.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality lodging franchisor in an asset-light transition, moat 5/10 \u2014 does not clear 15% at $169.13: weighted IRR 5.35%, weighted IV@15% $36.99, and even the super-bull case (7.40% IRR) is Tier D; clears 15% only below ~$36.99.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0468,
+ "irr_bull": 0.061,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 26.02,
+ "iv_at_25": 19.99,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3491000000,
+ "shares_diluted_latest": 95504061,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "World of Hyatt loyalty \u2014 highest-value major hotel points currency, high-end guest base",
+  "Luxury/lifestyle brand portfolio (Park Hyatt, Alila, Inclusive Collection) skewed to high-value guests",
+  "Long-dated fee contracts \u2014 50-year management agreements on the Playa resorts sold in Dec 2025",
+  "Pipeline ~154,000 rooms (+10% YoY) and net rooms growth ~4-6% supporting fee growth"
+ ],
+ "moat_against": [
+  "Subscale network (~1,400-1,500 properties) vs Marriott/Hilton at 8,000-9,000+ \u2014 weaker owner distribution and loyalty network effects",
+  "No evidenced high ROIC: roic_proxy and gross margin are null in fundamentals.json (operating income untagged); OE/share was negative in 2020 and $0.89 in 2025",
+  "Cyclical lodging demand \u2014 revenue fell from $5,020M (2019) to $2,066M (2020)",
+  "Leverage: net debt $3,491M is 9.4x normalized OE; buybacks at prices far above IV shrink the count without creating per-share value"
+ ]
+}

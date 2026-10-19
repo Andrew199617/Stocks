@@ -1,0 +1,54 @@
+{
+ "ads_ratio": {
+  "ratio": 0.5,
+  "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq/NYSE price ($22.17) is per ADS; per-share figures must be scaled x0.5 ordinary shares per ADS to be comparable to the ADS price",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-24), Item 9 'The offer and listing' (p. 147): a two-for-one split of the outstanding ADSs effective December 3, 2012 'changed the ratio of our ADSs to shares from one ADS representing one share to two ADSs representing one share' \u2014 so one ADS represents one-half of an ordinary share (depositary: Bank of New York Mellon); the same 1/2 ratio is carried in the NYSE-registered ADS class title"
+ },
+ "capex_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 the engine's PPE capex tags carry no value from FY2020 onward in companyfacts (last filed FY2019: EUR 1,124,791,000 under PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities, per statements.json), while the filer's own cash-flow statement reports the combined PPE + capitalized-development-costs line every year. The override uses the latest filed year (FY2025, EUR 915M) for every missing period: it is 0.81x the last engine-filed value (in band), and it OVERSTATES capex for FY2023 (filed EUR 685M) and FY2024 (filed EUR 699M) by about 31-34%, so the median base OE/share it produces is conservative relative to a year-by-year filing-true base.",
+  "source": "Fresenius Medical Care consolidated statements of cash flows, investing activities: 'Purchases of property, plant and equipment and capitalized development costs' EUR 915M for FY2025 (Q4/FY2025 financial tables, February 24, 2026, reproducing the FY2025 Form 20-F cash-flow statement filed 2026-02-24); the same line is EUR 699M for FY2024 and EUR 685M for FY2023",
+  "value": 915000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Reimbursement price-taker: U.S. Medicare/commercial rates are set by payors; FMS does not set its own price for its core treatment",
+  "Measured returns do not show a wide moat: ROIC proxy (fundamentals.json) fell from 13.6% in 2018 to 4.6% in 2023 and 2024, recovering only to 7.2% in 2025; gross margin fell from 33.9% (2016) to 25.6% (2025)",
+  "U.S. same-market treatment growth was -0.9% in Q2 2026 \u2014 the core volume engine is flat, growth is rate/mix and Value-Based Care, not treatments",
+  "DaVita duopoly competition in the U.S. and labor-cost pressure across the clinic network; recurring special items (FME25+ program, portfolio optimization, China exit charge of about EUR 110M expected Q3 2026)"
+ ],
+ "moat_for": [
+  "World's largest dialysis provider: about 3,513 clinics treating about 290,000 patients (20-F FY2025, Item 4.B) \u2014 clinic density and purchasing scale no challenger can replicate quickly",
+  "Vertically integrated: Care Enablement makes the machines/dialyzers (incl. the 5008X, first FDA-cleared high-volume hemodiafiltration system in the U.S.) that Care Delivery clinics consume",
+  "Life-sustaining, non-discretionary recurring treatments; global dialysis population growing about 4-5%/yr (20-F Item 4.B) on diabetes/hypertension/obesity drivers",
+  "Value-Based Care scaling fast (segment revenue +28.2% in FY2025 to EUR 2,247M, segments.json) \u2014 a capitated-care position built on the clinic network and nephrologist relationships"
+ ],
+ "moat_justification": "World's leading dialysis provider (about 3,513 clinics, about 290,000 patients, 20-F Item 4.B) with vertical integration into machines/dialyzers (Care Enablement) and unmatched clinic scale \u2014 but a reimbursement price-taker in a DaVita duopoly, with ROIC proxy down from 13.6% (2018) to 4.6% (2023/24) recovering to 7.2% (2025) and gross margin down from 33.9% to 25.6%, so the measured franchise earns around its cost of capital, not well above it.",
+ "moat_score": 5,
+ "name": "Fresenius Medical Care AG",
+ "one_liner": "World's largest dialysis provider, moat 5/10 \u2014 clears 15% on the conservative override base ($3.23/ADS): weighted IRR 18.1%, IV@15 $27.88 vs $22.17, but the band runs C (bear 14.7%) to A (bull 22.0%) with net debt 7.1x OE, so size it to the bear end; clears 15% only below $27.88.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "estimate",
+  "reason": "DATA_GAP:sbc \u2014 no share-based compensation line is filed in the cash-flow statement / companyfacts for FY2020-2025 under any engine tag (statements.json: SBC blank FY2020-2025), so the engine's SBC leg is a gap even though Note 23 of the 20-F discloses the expense. Note 23's table (component sums, no total printed): total share-based compensation expense EUR 45,124,000 (FY2025) / EUR 38,458,000 (FY2024) / EUR 32,515,000 (FY2023), but the legacy plans (LTIP 2024+, LTIP 2022+, MB LTIP 2020, LTIP 2019, MB LTIP 2019) are cash-settled ('In cash') \u2014 a cash personnel cost already borne inside operating cash flow, not the non-cash addback the OE template subtracts \u2014 and only the new plans (LTIP 2025+, MB LTIP 2024+) can be equity-settled. The template's SBC leg is therefore the equity-settled expense: EUR 8,371,000 in FY2025, nil in FY2024/FY2023. EUR 10M flat is that figure rounded up and overstates FY2023/24 \u2014 conservative \u2014 and is about 0.5% of the gated years' owner's earnings, immaterial to the base and the tier either way; a sourced in-band estimate is used instead of the v4-style silent zero.",
+  "source": "Anchor 1 (band): last engine-filed SBC value, FY2019 AdjustmentsForSharebasedPayments EUR 1,992,000 (statements.json; filed FY2015-2019 range EUR 1,992,000-46,811,000) \u2014 EUR 10,000,000 is 5.02x that anchor, inside the 0.1x-10x band. Anchor 2 (filing economics): FY2025 Form 20-F Note 23 'Share-based plans' compensation-expense table \u2014 the EQUITY-settled allocations total EUR 8,371,000 in FY2025 (LTIP 2025+ EUR 6,293,000 + MB LTIP 2024+ EUR 2,078,000) and nil in FY2024/FY2023, so EUR 10M is that filing figure rounded up, applied flat",
+  "value": 10000000
+ },
+ "sector": "Healthcare / Dialysis services & products",
+ "shares_override": {
+  "ack_reason": "Out-of-band by construction: the engine has NO filed diluted share value to band against (last_filed_value is null) because companyfacts carries no diluted weighted-share series for this filer at all. The value is not an estimate \u2014 it is the weighted-average share count printed in the FY2025 20-F EPS presentation, verified in the filer's own reported statements.",
+  "kind": "filing",
+  "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2023/2024/2025 (in fact all years) in companyfacts; only the basic weighted-average count is tagged. The filer's own Note 22 reconciliation shows potentially dilutive shares are NIL in all three gated years (its legacy LTIPs are cash-settled virtual shares; see Note 23), so diluted EPS equals basic EPS on the filer's own presentation and the filed FY2025 weighted-average count IS the diluted denominator. The engine applies this single value to every missing period; the filed counts it replaces differ by less than 1% in the gated years (293,413,449 in FY2023/24 vs 291,190,575 in FY2025), so the 3-yr median base OE/share moves by under 1% from this flattening.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-24), Note 22 'Earnings per share' reconciliation of basic and diluted EPS: 'Weighted average number of shares outstanding' 291,190,575 for FY2025 (293,413,449 for FY2024 and FY2023), 'Potentially dilutive shares' shown as nil in all three years, basic EPS = diluted EPS (EUR 3.36 / 1.83 / 1.70, also identical on the face of the income statement); EDGAR companyfacts carries no diluted weighted-average series for any year (fundamentals.json warning: diluted share count not filed for 2016-2025)",
+  "value": 291190575
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

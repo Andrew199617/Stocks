@@ -1,0 +1,81 @@
+{
+ "ticker": "AIT",
+ "name": "Applied Industrial Technologies, Inc.",
+ "sector": "Industrials / Industrial distribution (MRO & engineered solutions)",
+ "price": 330.48,
+ "market_cap_b": 12.51,
+ "engine_version": 5,
+ "base_oe_per_share": 11.675494641384995,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: a technical, service-heavy distributor (Engineered Solutions in fluid power, flow control and automation, plus a dense Service Center MRO network) with ROIC proxy sustained at 19.3\u201321.0% in FY2023\u2013FY2026 and gross margin edging up from 28.9% (FY2021) to 30.3% (FY2026) in fundamentals.json \u2014 evidence of real, service-based pricing power and returns well above the cost of capital through recent years. But it holds only about 2% of a fragmented market, sells other manufacturers' branded products that customers can multi-source, and its demand is cyclical industrial MRO, so the moat is narrow rather than strong. CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 59.41,
+   "irr": 0.0463
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 84.26,
+   "irr": 0.0567
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 110.56,
+   "irr": 0.068
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 137.67,
+   "irr": 0.0794
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 184.37,
+   "irr": 0.0981
+  }
+ },
+ "iv_at_15": 113.03,
+ "iv_at_12": 150.39,
+ "implied_irr": 0.0692,
+ "implied_irr_base_case": 0.068,
+ "upside_at_15_pct": -65.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality technical industrial distributor, moat 5/10 with ROIC around 20% \u2014 but at $330.48 the OE yield is only 3.53% and the weighted IRR is 6.92%; it clears 15% only near $113.03.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0567,
+ "irr_bull": 0.0794,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 79.48,
+ "iv_at_25": 61.04,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 135170000,
+ "shares_diluted_latest": 37857000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Technical Engineered Solutions (fluid power, flow control, automation) \u2014 embedded engineering and specification work raises switching costs versus catalog distributors",
+  "ROIC proxy 19.3\u201321.0% in FY2023\u2013FY2026 (fundamentals.json) with gross margin rising from 28.9% in FY2021 to 30.3% in FY2026",
+  "Dense local service-center network supplying critical MRO parts \u2014 customer downtime cost dwarfs the part cost, making availability and technical support sticky",
+  "Disciplined tuck-in M&A in a fragmented market plus buybacks \u2014 diluted share count is falling (share CAGR -1.17%)"
+ ],
+ "moat_against": [
+  "Only about 2% share of a fragmented US industrial distribution market \u2014 no dominant scale versus Grainger or Fastenal",
+  "Sells other manufacturers' branded products; suppliers can sell direct and customers can multi-source commodity parts",
+  "Demand is cyclical MRO/industrial production \u2014 FY2020-21 revenue was flat and OE is working-capital sensitive",
+  "Pricing power is service-based, not product-based: gross margin is only about 30% and operating margin about 11%"
+ ]
+}

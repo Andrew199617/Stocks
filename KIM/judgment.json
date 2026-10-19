@@ -1,0 +1,39 @@
+{
+ "capex_override": {
+  "ack_reason": "The out-of-band flag is mechanical only: the band is computed against the last FILED capex value under an engine-read tag, which is a single FY2025 $18.4M PaymentsToAcquirePropertyPlantAndEquipment fact that is not the filer's real-estate capex line at all (Kimco's actual capex line is filed only under its extension tag, per the source). This is not an estimate lacking an anchor — it is the exact FY2024 figure from the filer's own FY2025 10-K cash-flow statement.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex — capex missing for FY2023 and FY2024 of the last 3 under every candidate tag the engine reads, because Kimco reports its real-estate capex (tenant improvements, re-tenanting and redevelopment of operating properties) only under the extension tag in the source. The engine applies this single value to every missing period; the value used is the filed FY2024 figure, which is also the median of the three filed years. Against the true per-year figures it overstates FY2023 capex by $60.070M (true $264.395M, ~5.6% of FY2023 OCF, in the conservative direction of lowering that year's OE) and is exact for FY2024. FY2025 is not filled (a filed value exists): its $18.4M us-gaap PaymentsToAcquirePropertyPlantAndEquipment fact understates the true $347.616M improvements line, so FY2025 OE/share in the history is flattered — the median-of-3 base is not the FY2025 year under this fill, so the flattered year does not set the base. 'Acquisition of operating real estate and other related net assets' ($277.308M / $152.943M / $218.377M for FY2023/24/25, same statement) is excluded: it is property M&A, presented separately by the filer, not capex.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-20, accession 0001193125-26-060760), Consolidated Statements of Cash Flows, investing activities line 'Improvements to operating real estate': $347,616 thousand for FY2025, $324,465 thousand for FY2024 and $264,395 thousand for FY2023; the line is tagged in the filing's inline XBRL only under the filer's extension tag kim:PaymentsForImprovementsToOperatingRealEstate, which EDGAR companyfacts does not carry under any us-gaap candidate tag the engine reads",
+  "value": 324465000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Measured returns are thin: roic_proxy in fundamentals.json was 2.54%–4.30% across FY2020–FY2025 — at or below a REIT cost of capital, so the filed record does not show a wide-moat franchise earning well above its capital cost",
+  "No tenant lock-in in the technology sense: powerful national anchors and chains negotiate from strength and leases roll; space must be re-won at each expiry",
+  "Tenant credit is a recurring leak: bankruptcies and lease rejections (e.g. the Painted Tree rejections cost 16bp of Q2 2026 occupancy) and discretionary small-shop tenants are cycle-exposed",
+  "Leverage stacks on the rent stream: net debt $7.507B (dcf_numbers.json) and refinancing of low-coupon maturities at higher rates pressures OE/share growth",
+  "Substitutes exist for the marginal lease: Regency, Federal Realty, Brixmor and private landlords compete for the same grocery-anchored tenants, and e-commerce keeps pressuring discretionary categories"
+ ],
+ "moat_for": [
+  "Irreplaceable first-ring suburban grocery-anchored locations — zoning/land scarcity blocks replication, and new shopping-center supply is limited (management, Q2 2026)",
+  "Scale: largest US open-air center platform — 564 centers, ~100M sq ft (Q2 2026), national-tenant relationships sub-scale landlords cannot match",
+  "Necessity-based rent roll: ~86% of ABR from grocery, off-price and services tenants (Q1 2026 investor presentation, search results)",
+  "Proven pricing power in the current cycle: Q2 2026 comparable new-lease cash rent spreads +40.4%, blended +13.1% across 461 leases; occupancy 96.4% matching the all-time high, small-shop occupancy a record 92.9%",
+  "Signed-not-open pipeline (~$95M of ABR per Q2 2026 coverage) converts already-signed leases into rent without new leasing risk"
+ ],
+ "moat_justification": "Moderate/narrow: scarce first-ring suburban grocery-anchored locations that zoning and land constraints make hard to replicate, the largest US open-air shopping-center platform (564 centers, ~100M sq ft at Q2 2026), necessity-based rent roll and demonstrated pricing power (Q2 2026 new-lease cash spreads +40.4%, blended +13.1%, occupancy 96.4% matching the all-time high) — against measured returns that do not corroborate a wide moat: fundamentals.json roic_proxy ran only 2.5%–4.3% over FY2020–FY2025 (FY2025 4.30%, the best of the six), no gross-margin series is filed, tenants are powerful national chains with lease-roll freedom rather than locked-in customers, and tenant bankruptcies, anchor risk and $7.507B of net debt sit on top of the rent stream.",
+ "moat_score": 5,
+ "name": "Kimco Realty Corporation",
+ "one_liner": "Quality grocery-anchored open-air REIT, moat 5/10 — record 96.4% occupancy and +40.4% new-lease spreads are real, but measured ROIC runs only ~3–4% and at $22.91 the buyer pays for a $1.16/share median owner's-earnings base (after charging real-estate improvements capex) growing ~3.5% against $7.51B of net debt; weighted IRR 8.0% (IV@15% $9.96), so it clears the 15% hurdle only below ~$10 — the REIT lens (FY2026 FFO guided $1.83–$1.84/share) is kinder than the OE lens, but neither supports 15% at this price.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Real Estate / REIT — Grocery-anchored open-air shopping centers",
+ "tier_override": null,
+ "tier_override_reason": null
+}

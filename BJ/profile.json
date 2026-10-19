@@ -1,0 +1,281 @@
+{
+ "ticker": "BJ",
+ "cik": 1531152,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T03:10:20-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001531152.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000007/bj-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BJ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BJ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BJ's Wholesale Club Holdings, Inc.",
+  "cik": 1531152,
+  "description": {
+   "text": "BJ’s Wholesale Club is a leading operator of membership warehouse clubs concentrated primarily in the eastern half of the United States. We deliver significant value to our members, consistently offering up to 25% savings on a representative basket of manufacturer-branded groceries compared to traditional supermarket competitors. We provide a curated assortment focused on groceries, fresh foods, general merchandise, gasoline, and other ancillary services to deliver a differentiated shopping experience that is further enhanced by our digital capabilities. Additionally, we provide access to coupons and promotions to deliver further value to our members. Since pioneering the warehouse club model in New England in 1984, we have grown our footprint to 263 large-format, high volume warehouse clubs and 199 gas stations spanning 21 states as of fiscal year end 2025. In our originating New England market, which has high population density and generates a disproportionate part of U.S. gross domestic product (“GDP”), we operate nearly three times the number of clubs compared to the next largest warehouse club competitor. In addition to shopping in our clubs, members are able to shop when and how they want through our website, bjs.com, and our highly rated mobile app, which allows them to use our buy-online-pickup-in-club (“BOPIC”) service, curbside delivery, same-day delivery or traditional ship-to-home service, as well as through the DoorDash and Instacart marketplaces.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-12",
+   "period": "2026-01-31",
+   "accession": "0001531152-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000007/bj-20260131.htm"
+  },
+  "description_short": "BJ's Wholesale Club Holdings, Inc. (NYSE: BJ) is a leading operator of membership warehouse clubs focused on delivering significant value to its members and serving a shared purpose: 'We take care of the families who depend on us.' The company provides a wide assortment of fresh foods, produce, a full-service deli, fresh bakery, household essentials, various exclusive offerings, gas and more to deliver unbeatable value to smart-saving families. Headquartered in Marlborough, Massachusetts, the company pioneered the warehouse club model in New England in 1984 and currently operates 268 clubs and 209 BJ's Gas locations in 22 states.",
+  "industry": "Department/Specialty Retail Stores",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5331",
+  "sic_description": "Retail-Variety Stores",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0130",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.bjs.com",
+  "headquarters": "Marlborough, Massachusetts",
+  "address": {
+   "street": "350 Campus Drive",
+   "city": "Marlborough",
+   "state": "Massachusetts",
+   "zip": "01752",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-12"
+  },
+  "phone": "774-512-7400",
+  "employees": {
+   "count": 35000,
+   "as_of": "2026-01-31",
+   "evidence": "As of January 31, 2026, we had over 35,000 full-time and part-time employees, whom we refer to as team members.",
+   "form": "10-K",
+   "filed": "2026-03-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000007/bj-20260131.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2018-05-17",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Beacon Holding Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001531152&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-09-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-116256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000110465926116256/tm2627448d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-10-15",
+   "period": "2026-06-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Amendment: Shareholder vote",
+   "accession": "0001104659-26-116247",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000110465926116247/tm2627448d2_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-04",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-105906",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000110465926105906/tm2624998d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-25",
+   "period": "2026-08-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001531152-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000057/bj-20260801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001531152-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000053/bj-20260821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-075759",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000110465926075759/tm2618331d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-28",
+   "period": "2026-05-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001531152-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000030/bj-20260502.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001531152-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000026/bj-20260522.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-06",
+   "period": "2026-06-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-019305",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000114036126019305/ny20065362x1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-12",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001531152-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000007/bj-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001531152-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115226000003/bj-20260305.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-26",
+   "period": "2025-11-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001531152-25-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000131/bj-20251101.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-21",
+   "period": "2025-11-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001531152-25-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000127/bj-20251121.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-08-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001531152-25-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000105/bj-20250802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-22",
+   "period": "2025-08-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001531152-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000097/bj-20250822.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-20",
+   "period": "2025-06-19",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001104659-25-061197",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000110465925061197/tm2518500d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-29",
+   "period": "2025-05-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001531152-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000057/bj-20250503.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001531152-25-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000050/bj-20250522.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-05-09",
+   "period": "2025-06-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-018052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000114036125018052/ny20043353x2_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-03-14",
+   "period": "2025-02-01",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001531152-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1531152/000153115225000013/bj-20250201.htm"
+  }
+ ],
+ "warnings": []
+}

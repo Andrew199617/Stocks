@@ -1,0 +1,88 @@
+{
+ "ticker": "FROG",
+ "name": "JFrog Ltd.",
+ "sector": "Technology \u2014 DevOps / software supply chain platform",
+ "price": 84.31,
+ "market_cap_b": 9.8,
+ "engine_version": 5,
+ "base_oe_per_share": 0.07185591743026114,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Artifactory is the dominant enterprise artifact repository and the system of record for software binaries, with real switching costs, 121% net revenue retention in Q2 2026 and 1,291 customers above $100k ARR \u2014 a genuine moderate moat. It is not 7+: the roic_proxy series in fundamentals.json is negative in every year from 2020 to 2025 (FY2025 -8.9%) because GAAP operating income is negative after SBC, gross margin has slid from 83.1% (2018) to 76.8% (FY2025) on cloud hosting costs, and bundled 'good enough' artifact tools from GitHub and GitLab plus Sonatype and hyperscaler registries contest every renewal. No ROIC evidence of pricing power through a cycle exists yet.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 5.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2019 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear, bear, base, bull, super_bull, weighted) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.1% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 0.54,
+   "irr": 0.0258
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 0.86,
+   "irr": 0.0265
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1.17,
+   "irr": 0.0271
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 1.57,
+   "irr": 0.028
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 2.35,
+   "irr": 0.0296
+  }
+ },
+ "iv_at_15": 1.24,
+ "iv_at_12": 1.71,
+ "implied_irr": 0.0273,
+ "implied_irr_base_case": 0.0271,
+ "upside_at_15_pct": -98.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real DevOps franchise, moat 5/10, revenue +28.7% in Q2 2026 \u2014 but owner's earnings only just crossed zero in the TTM window ($0.07/share; 3-yr median -$0.21) because SBC ($161.0M TTM) consumes nearly all operating cash flow, so at $84.31 the weighted IRR sits at the ~3% floor and IV@15% is $1.24; clears 15% only near ~$1.24, Tier D.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0265,
+ "irr_bull": 0.028,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 0.83,
+ "iv_at_25": 0.61,
+ "f_subtype": null,
+ "irr_at_floor": true,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 116200900,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Artifactory dominance \u2014 the enterprise system of record for binaries/artifacts across 30+ package formats, with deep CI/CD integrations",
+  "Switching costs once artifact storage, replication, retention and release workflows sit on the platform; mission-critical and rarely ripped out",
+  "Expansion inside the base \u2014 net revenue retention 121% in Q2 2026, 1,291 customers >$100k ARR, 97 >$1M, Enterprise+ 59% of revenue",
+  "Security attach \u2014 Xray/supply-chain security is landing with new logos (>40% of Q2 2026 new wins included security) and the $1M+ cohort (>80%)"
+ ],
+ "moat_against": [
+  "Bundled 'good enough' rivals \u2014 GitHub Packages and GitLab, plus Sonatype Nexus, Harbor and hyperscaler registries (ECR/GCR/ACR) attack from inside platforms customers already pay for",
+  "No ROIC proof \u2014 roic_proxy negative every year 2020-2025 (FY2025 -8.9%); GAAP operating losses persist after SBC, so pricing power is unproven in filed numbers",
+  "Gross margin erosion \u2014 83.1% in 2018 to 76.8% in FY2025 as cloud hosting costs grow with the SaaS mix (53% of Q2 2026 revenue)",
+  "SBC-funded talent model \u2014 SBC $156.7M in FY2025 exceeds all of OCF growth headroom and dilutes holders 5.4%/yr; the moat is re-bought annually in stock"
+ ]
+}

@@ -1,0 +1,157 @@
+{
+ "ticker": "FIVE",
+ "cik": 1177609,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001177609-26-000010",
+   "filed": "2026-03-19",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000010/five-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001177609-26-000020",
+   "filed": "2026-06-04",
+   "period": "2026-05-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000020/five-20260502_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001177609-26-000027",
+   "filed": "2026-09-03",
+   "period": "2026-08-01",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000027/five-20260801_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "five:LeisureMember",
+     "label": "Leisure",
+     "values": [
+      434897000,
+      470463000,
+      620887000,
+      644235000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4481,
+      0.4582,
+      0.483,
+      0.5107
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4277,
+      0.3694
+     ]
+    },
+    {
+     "member": "five:FashionAndHomeMember",
+     "label": "Fashion And Home",
+     "values": [
+      283761000,
+      309295000,
+      352600000,
+      337696000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2924,
+      0.3012,
+      0.2743,
+      0.2677
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2426,
+      0.0918
+     ]
+    },
+    {
+     "member": "five:PartyAndSnackMember",
+     "label": "Party And Snack",
+     "values": [
+      251869000,
+      247089000,
+      312115000,
+      279562000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2595,
+      0.2406,
+      0.2428,
+      0.2216
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2392,
+      0.1314
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     970527000,
+     1026847000,
+     1285602000,
+     1261493000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reporting Segment' (five:ReportingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (five:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reporting Segment' (five:ReportingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (five:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Reporting Segment' (five:ReportingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Reportable Segment' (five:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Retail' (us-gaap:RetailMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

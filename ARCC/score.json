@@ -1,0 +1,115 @@
+{
+ "ticker": "ARCC",
+ "name": "Ares Capital Corp",
+ "sector": "Finance / Business development company (BDC) \u2014 direct lending",
+ "price": 18.72,
+ "market_cap_b": 13.09,
+ "engine_version": 5,
+ "base_oe_per_share": 2.4391025641025643,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat built on scale and sourcing, not on pricing power over a proprietary asset: ARCC is the largest publicly traded BDC ($31.2B total assets at FY2025, 10-K Item 1) and sits inside the Ares Credit Group origination platform, which gives it first-look deal flow, sponsor relationships and underwriting infrastructure a sub-scale BDC cannot replicate, plus investment-grade access to cheap unsecured debt (debt/equity 1.12x at FY2025). The measured return history does not support a higher score: fundamentals.json ROE was 13.59% (FY2023), 11.40% (FY2024) and 9.07% (FY2025) \u2014 around, and falling toward, the cost of capital \u2014 and the roic_proxy series is null for this filer (no operating-income / invested-capital presentation for an investment company), as is any gross-margin series (a BDC presents total investment income and expenses, not COGS), so no ROIC or gross-margin claim is made. Against the moat: the underlying product (senior loans to sponsor-backed middle-market companies) is commoditized and contested by BXSL, Blue Owl, Apollo and bank re-entry, with spread compression compressing NII; the franchise is rented, not owned \u2014 ARCC is externally managed and pays base and incentive fees to Ares Capital Management; and leverage plus PIK income (a material share of investment income) mean credit losses in a downturn hit NAV directly. A 5 gives CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-04, accession 0001287750-26-000006), Consolidated Statements of Cash Flows and Note 9 (Stockholders' Equity): no share-based/stock-based compensation line or adjustment appears among the operating adjustments, the filing contains no equity-incentive or stock-compensation note, and Note 9 reports stock issued only by sale (ATM offerings \u2014 42.4M shares for $937.2M gross proceeds in 2025) and, in 2024, on conversion of the 2024 convertible notes \u2014 no stock grants to anyone, including non-employee directors, and no stock-compensation expense amount is reported anywhere in the filing.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-04, accession 0001287750-26-000006), Consolidated Statements of Cash Flows: the statement has only OPERATING ACTIVITIES and FINANCING ACTIVITIES sections (no investing-activities section exists), no purchases-of-property-and-equipment or capital-expenditures line appears anywhere in it, and the FY2025 totals reconcile exactly with no investing section \u2014 operating $(1,717)M + financing $1,781M = the reported $64M change in cash, cash equivalents and restricted cash (beginning $860M, ending $924M), with no FX line. The same reconciliation holds in this run's statements.json (ocf -1,717,000,000 + fincf 1,781,000,000 = net_change_cash 64,000,000 for FY2025).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 9.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (11.5%) vs bull-case tier B (18.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 8.88,
+   "irr": 0.0786
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 13.72,
+   "irr": 0.1146
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 18.02,
+   "irr": 0.1452
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 24.41,
+   "irr": 0.1868
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 34.11,
+   "irr": 0.2424
+  }
+ },
+ "iv_at_15": 17.93,
+ "iv_at_12": 23.49,
+ "implied_irr": 0.1446,
+ "implied_irr_base_case": 0.1452,
+ "upside_at_15_pct": -4.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Largest BDC on the Ares direct-lending platform, moat 5/10 \u2014 the engine's OCF base is a sector artifact (loan purchases are operating outflows; OCF-based OE was negative in 4 of the last 5 years despite a covered $1.92/share dividend); on the corrected net-income base of $2.44/share the $18.72 price yields a 14.46% weighted IRR (Tier C) with weighted IV@15% of $17.93 \u2014 just short of the 15% hurdle, clearing it only at or below ~$17.93 and sized to the bear end (IV@15% $13.72) not at all; the finance-sector model misfit and a falling per-share earnings trend (TTM net income $960M through Q2 2026 vs $1,299M in FY2025, fundamentals.json) cap confidence at low.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1146,
+ "irr_bull": 0.1868,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 12.88,
+ "iv_at_25": 10.06,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 15353000000,
+ "shares_diluted_latest": 699000000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Largest publicly traded BDC by market cap ($31.2B total assets, FY2025 10-K) \u2014 scale in origination, portfolio diversification (hundreds of portfolio companies) and funding access",
+  "Ares Credit Group platform: sponsor relationships and direct-lending origination/underwriting infrastructure built since the 2004 IPO; exited investments have generated ~13% asset-level gross IRR since inception (company reporting)",
+  "Cheap, termed-out funding: investment-grade unsecured debt access, debt/equity 1.12x at FY2025 within the 0.9\u20131.25x target range, weighted average stated interest on debt 4.8\u20134.9% (Q2 2026 presentation)",
+  "Dividend durability: $0.48/quarter declared continuously, with a taxable spillover buffer (~$1.38/share per Q2 2026 coverage) covering multiple quarters of payout",
+  "Credit record through cycles: non-accruals 2.4% at cost / 1.4% at fair value at Q2 2026, below the ~4% BDC historical average"
+ ],
+ "moat_against": [
+  "Product is commoditized credit: senior middle-market loans are replicable by BXSL, Blue Owl, Apollo, other BDCs and returning banks \u2014 spread compression directly compresses NII per share",
+  "Externally managed: base management and incentive fees are paid to Ares Capital Management \u2014 the origination franchise belongs to the adviser, and the fee load is a structural drag on per-share earnings",
+  "Measured returns are ordinary and falling: ROE 13.59% / 11.40% / 9.07% over FY2023\u2013FY2025 (fundamentals.json), at or below the cost of equity in the latest year; NAV per share fell $19.94 (FY2025) to $19.35 (Q2 2026)",
+  "Leverage and non-cash income: 1.12\u20131.15x debt/equity amplifies credit losses, and PIK interest/dividends were ~15% of Q2 2026 investment income \u2014 earnings quality below the headline",
+  "Per-share growth is bought with issuance: share count grew 10.5%/yr (engine) via ATM offerings \u2014 portfolio growth has not translated into per-share NII growth (NII/share $2.30 FY2024 \u2192 $2.02 FY2025 on the company's reported figures)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-04, accession 0001287750-26-000006), Consolidated Statements of Cash Flows: the statement has only OPERATING ACTIVITIES and FINANCING ACTIVITIES sections (no investing-activities section exists), no purchases-of-property-and-equipment or capital-expenditures line appears anywhere in it, and the FY2025 totals reconcile exactly with no investing section \u2014 operating $(1,717)M + financing $1,781M = the reported $64M change in cash, cash equivalents and restricted cash (beginning $860M, ending $924M), with no FX line. The same reconciliation holds in this run's statements.json (ocf -1,717,000,000 + fincf 1,781,000,000 = net_change_cash 64,000,000 for FY2025)."
+  },
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-04, accession 0001287750-26-000006), Consolidated Statements of Cash Flows and Note 9 (Stockholders' Equity): no share-based/stock-based compensation line or adjustment appears among the operating adjustments, the filing contains no equity-incentive or stock-compensation note, and Note 9 reports stock issued only by sale (ATM offerings \u2014 42.4M shares for $937.2M gross proceeds in 2025) and, in 2024, on conversion of the 2024 convertible notes \u2014 no stock grants to anyone, including non-employee directors, and no stock-compensation expense amount is reported anywhere in the filing."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": -0.9471,
+  "base_oe_with_override": 2.4391,
+  "base_oe_impact_pct": -357.541,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.1446,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,293 @@
+{
+ "ticker": "AFG",
+ "cik": 1042046,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T10:29:49-04:00",
+ "newest_filing_date": "2026-08-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001042046.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1042046/000104204626000010/afg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AFG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AFG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AMERICAN FINANCIAL GROUP INC",
+  "cik": 1042046,
+  "description": {
+   "text": "American Financial Group, Inc. (“AFG” or the “Company”) is an insurance holding company. Through the operations of Great American Insurance Group, AFG is engaged in property and casualty insurance, focusing on specialized commercial products for businesses. AFG’s in-house team of investment professionals oversees the Company’s investment portfolio. The members of the Great American Insurance Group have been in business for over 150 years. Management believes that over 55% of the 2025 gross written premiums in AFG’s Specialty property and casualty group are produced by businesses that rank in the “top 10” amongst competitors based on gross written premiums. AFG’s address is 301 East Fourth Street, Cincinnati, Ohio 45202; its phone number is (513) 579-2121. SEC filings, news releases, AFG’s Code of Ethics applicable to directors, officers and employees, AFG’s Corporate Social Responsibility Report and other information may be accessed free of charge through AFG’s website at: www.AFGinc.com. (Information on or accessible through AFG’s website is not part of this Form 10-K.) See Note C — “Segments of Operations” to the financial statements for information on AFG’s assets, revenues and earnings before income taxes by segment.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001042046-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204626000010/afg-20251231.htm"
+  },
+  "description_short": "American Financial Group is an insurance holding company, based in Cincinnati, Ohio. Through the operations of Great American Insurance Group, AFG is engaged primarily in property and casualty insurance, focusing on specialized commercial products for businesses. Great American Insurance Group's roots go back to 1872 with the founding of its flagship company, Great American Insurance Company.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6331",
+  "sic_description": "Fire, Marine & Casualty Insurance",
+  "state_of_incorporation": "OH",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.afginc.com",
+  "headquarters": "Cincinnati, Ohio",
+  "address": {
+   "street": "301 East Fourth Street",
+   "city": "Cincinnati",
+   "state": "Ohio",
+   "zip": "45202",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "5135792121",
+  "employees": {
+   "count": 8500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company had approximately 8,500 employees (none of which were covered by collective bargaining agreements), including approximately 7,700 employed at Great American Insurance Group.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204626000010/afg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-11-25",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "AMERICAN FINANCIAL GROUP HOLDINGS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001042046&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001042046-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204626000024/afg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-333957",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000119312526333957/d124182d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001140361-26-022469",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036126022469/ef20074635_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001042046-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204626000014/afg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-193922",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000119312526193922/d133743d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-03",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-013118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036126013118/ny20062510x1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001042046-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204626000010/afg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-006031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036126006031/ef20065940_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-036749",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000119312526036749/d32393d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-044459",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036125044459/ef20060710_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001042046-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204625000035/afg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-25-265722",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000119312525265722/d939869d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-23",
+   "period": "2025-09-16",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-035826",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036125035826/ef20055919_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001042046-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204625000024/afg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-173998",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000119312525173998/d70239d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-11",
+   "period": "2025-06-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001140361-25-022136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036125022136/ef20050488_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-23",
+   "period": "2025-05-22",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001140361-25-020332",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036125020332/ef20049629_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001042046-25-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000104204625000020/afg-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-114450",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000119312525114450/d932101d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-04",
+   "period": "2025-05-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-012231",
+   "url": "https://www.sec.gov/Archives/edgar/data/1042046/000114036125012231/ny20043582x1_def14a.htm"
+  }
+ ],
+ "warnings": []
+}

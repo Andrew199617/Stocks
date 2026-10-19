@@ -1,0 +1,108 @@
+{
+ "ticker": "WPC",
+ "name": "W. P. Carey Inc.",
+ "sector": "Real Estate / REIT \u2014 Net lease (single-tenant industrial, warehouse, retail)",
+ "price": 65.14,
+ "market_cap_b": 14.4,
+ "engine_version": 5,
+ "base_oe_per_share": 4.652579513820839,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Durable contractual cash flows (12.2y WALT, escalators on ~99% of leases, 98.5% occupancy, 384 tenants) plus an investment-grade cost-of-capital and sourcing advantage \u2014 but net lease is commodity capital with no pricing power past market cap rates, thin cap-rate-over-funding spreads, and growth bought with dilutive external capital. Moderate/narrow moat, 5/10. ROIC evidence: fundamentals.json produces no roic_proxy for WPC (no operating-income series filed in its extraction) and its ~99% 'gross margin' is a rental-accounting artifact, so the score rests on the contractual/structural evidence above, consistent with peer REIT scores (KIM 5, EXR 5, CCI 6, VICI 7).",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0001025378-26-000036), Consolidated Statements of Cash Flows, investing activities line 'Funding for real estate construction, redevelopments, and other capital expenditures on real estate': $191,213 thousand for FY2025, $135,327 thousand for FY2024 and $121,625 thousand for FY2023); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 8.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (8.2%) vs bull-case tier C (13.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 18.84,
+   "irr": 0.0574
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 30.32,
+   "irr": 0.082
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 41.49,
+   "irr": 0.1053
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 56.12,
+   "irr": 0.1337
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 84.91,
+   "irr": 0.1827
+  }
+ },
+ "iv_at_15": 44.43,
+ "iv_at_12": 59.12,
+ "implied_irr": 0.1115,
+ "implied_irr_base_case": 0.1053,
+ "upside_at_15_pct": -31.8,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Contractual net-lease cash machine (12.2y WALT, 98.5% occupancy), moat 5/10 \u2014 but at $65.14 it does not clear 15%: weighted IRR 11.2%, weighted IV@15% $44.43 vs the $65.14 price; it clears the 15% hurdle only below ~$44. Sector-misfit REIT model, confidence low.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.082,
+ "irr_bull": 0.1337,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 31.24,
+ "iv_at_25": 24.0,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 8567361000,
+ "shares_diluted_latest": 221112343,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Contractual duration: 12.2-year weighted-average lease term, 98.5% occupancy, ~99% of leases with escalators (48% CPI-linked, 49% fixed) \u2014 2.6% contractual same-store rent growth",
+  "Diversification: 1,748 properties, 384 tenants, top-10 tenants only 18.1% of ABR, US + Europe, industrial/warehouse/retail mix",
+  "Cost-of-capital advantage: investment-grade BBB+/Baa1 unsecured access, 3.2% weighted-average debt rate, $2.7B liquidity, forward-equity ATM machine",
+  "Sale-leaseback sourcing franchise built since 1973 \u2014 proprietary deal flow in operationally-critical single-tenant assets"
+ ],
+ "moat_against": [
+  "Net lease is commodity capital: no pricing power beyond market cap rates at origination/renewal",
+  "Growth is externally funded \u2014 ATM forward equity and unsecured debt issuance dilute (share count +3.3%/yr)",
+  "Thin spread economics: returns are the cap-rate/interest-rate spread, so a higher-for-longer rate regime compresses the model",
+  "Tenant credit events recur (Hellweg insolvency 2026, Q2 2026 impairments of $79.4M); single-tenant assets are binary on default",
+  "REIT payout (~73% of AFFO) retains little; nothing compounds internally"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 135327000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0001025378-26-000036), Consolidated Statements of Cash Flows, investing activities line 'Funding for real estate construction, redevelopments, and other capital expenditures on real estate': $191,213 thousand for FY2025, $135,327 thousand for FY2024 and $121,625 thousand for FY2023"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 5.2551,
+  "base_oe_with_override": 4.6526,
+  "base_oe_impact_pct": -11.465,
+  "weighted_irr_without_override": 0.1223,
+  "weighted_irr_with_override": 0.1115,
+  "weighted_irr_impact_pp": -1.078,
+  "unblocks_tier": true
+ }
+}

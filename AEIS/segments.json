@@ -1,0 +1,625 @@
+{
+ "ticker": "AEIS",
+ "cik": 927003,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-014731",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/927003/000110465926014731/aeis-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000927003-26-000014",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/927003/000092700326000014/aeis-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000927003-26-000032",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/927003/000092700326000032/aeis-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aeis:SemiconductorEquipmentMember",
+     "label": "Semiconductor Equipment",
+     "values": [
+      743800000,
+      792500000,
+      839900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4492,
+      0.5348,
+      0.4669
+     ],
+     "growth_yoy": [
+      null,
+      0.0655,
+      0.0598
+     ]
+    },
+    {
+     "member": "aeis:DataCenterComputingMember",
+     "label": "Data Center Computing",
+     "values": [
+      249900000,
+      284200000,
+      587300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1509,
+      0.1918,
+      0.3265
+     ],
+     "growth_yoy": [
+      null,
+      0.1373,
+      1.0665
+     ]
+    },
+    {
+     "member": "aeis:IndustrialAndMedicalMember",
+     "label": "Industrial and Medical",
+     "values": [
+      474400000,
+      316200000,
+      282300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2865,
+      0.2134,
+      0.1569
+     ],
+     "growth_yoy": [
+      null,
+      -0.3335,
+      -0.1072
+     ]
+    },
+    {
+     "member": "aeis:TelecomAndNetworkingMember",
+     "label": "Telecom and Networking",
+     "values": [
+      187700000,
+      89100000,
+      89300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1134,
+      0.0601,
+      0.0496
+     ],
+     "growth_yoy": [
+      null,
+      -0.5253,
+      0.0022
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1655800000,
+     1482000000,
+     1798800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aeis:SemiconductorEquipmentMember",
+     "label": "Semiconductor Equipment",
+     "values": [
+      222200000,
+      209500000,
+      219400000,
+      278300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5492,
+      0.4745,
+      0.4294,
+      0.4848
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0126,
+      0.3284
+     ]
+    },
+    {
+     "member": "aeis:DataCenterComputingMember",
+     "label": "Data Center Computing",
+     "values": [
+      96200000,
+      141600000,
+      194200000,
+      191500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2378,
+      0.3207,
+      0.38,
+      0.3336
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0187,
+      0.3524
+     ]
+    },
+    {
+     "member": "aeis:IndustrialAndMedicalMember",
+     "label": "Industrial and Medical",
+     "values": [
+      64300000,
+      68600000,
+      72000000,
+      80000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1589,
+      0.1554,
+      0.1409,
+      0.1393
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1198,
+      0.1662
+     ]
+    },
+    {
+     "member": "aeis:TelecomAndNetworkingMember",
+     "label": "Telecom and Networking",
+     "values": [
+      21900000,
+      21800000,
+      25400000,
+      24300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0541,
+      0.0494,
+      0.0497,
+      0.0423
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1598,
+      0.1147
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     404600000,
+     441500000,
+     511000000,
+     574100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aeis:OtherCountriesMember",
+     "label": "All others",
+     "values": [
+      747200000,
+      600000000,
+      656200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4513,
+      0.4049,
+      0.3648
+     ],
+     "growth_yoy": [
+      null,
+      -0.197,
+      0.0937
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "United States",
+     "values": [
+      598400000,
+      508700000,
+      541400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3614,
+      0.3433,
+      0.301
+     ],
+     "growth_yoy": [
+      null,
+      -0.1499,
+      0.0643
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "Mexico",
+     "values": [
+      123500000,
+      160100000,
+      252800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0746,
+      0.108,
+      0.1405
+     ],
+     "growth_yoy": [
+      null,
+      0.2964,
+      0.579
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "Japan",
+     "values": [
+      62500000,
+      53600000,
+      218200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0377,
+      0.0362,
+      0.1213
+     ],
+     "growth_yoy": [
+      null,
+      -0.1424,
+      3.0709
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "Taiwan",
+     "values": [
+      124200000,
+      159600000,
+      130200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.075,
+      0.1077,
+      0.0724
+     ],
+     "growth_yoy": [
+      null,
+      0.285,
+      -0.1842
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1655800000,
+     1482000000,
+     1798800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aeis:OtherCountriesMember",
+     "label": "All others",
+     "values": [
+      218700000,
+      163600000,
+      235500000,
+      190400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5405,
+      0.3706,
+      0.4609,
+      0.3316
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0768,
+      0.1638
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "United States",
+     "values": [
+      144200000,
+      141700000,
+      142500000,
+      132300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3564,
+      0.321,
+      0.2789,
+      0.2304
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0118,
+      -0.0663
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "Mexico",
+     "values": [
+      41700000,
+      41100000,
+      133000000,
+      124100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1031,
+      0.0931,
+      0.2603,
+      0.2162
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.1894,
+      2.0195
+     ]
+    },
+    {
+     "member": "country:MY",
+     "label": "Malaysia",
+     "values": [
+      null,
+      30500000,
+      null,
+      66500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0691,
+      null,
+      0.1158
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.1803
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "Japan",
+     "values": [
+      null,
+      64600000,
+      null,
+      60800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.1463,
+      null,
+      0.1059
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0588
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     404600000,
+     441500000,
+     511000000,
+     574100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product' (us-gaap:ProductMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Semiconductor Equipment, Data Center Computing, Industrial and Medical, Telecom and Networking)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Service and Other' (aeis:ServiceAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product' (us-gaap:ProductMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Semiconductor Equipment, Data Center Computing, Industrial and Medical, Telecom and Networking)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Service and Other' (aeis:ServiceAndOtherMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

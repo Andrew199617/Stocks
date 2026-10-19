@@ -1,0 +1,244 @@
+{
+ "ticker": "HMY",
+ "cik": 1023514,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T21:38:50-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001023514.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1023514/000162828025047726/hmy-20250630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HMY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HMY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HARMONY GOLD MINING CO LTD",
+  "cik": 1023514,
+  "description": {
+   "text": "South African employment law sets out minimum terms and conditions of employment for employees. Although these may be improved by agreements between us and the trade unions, prescribed minimum terms and conditions form the benchmark for all employment contracts. See “Integrated Annual Report for the 20-F 2025 – Harmony – Material matters” on pages 35 to 38. We are required to submit a report under South African employment law detailing the progress made towards achieving employment equity in the workplace. If this report is not submitted, we could incur substantial penalties. Developments in South African employment law may increase our cash costs of production or alter our relationship with our employees and trade unions, which may have an adverse effect on our business, operating results and financial condition.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2025-10-31",
+   "period": "2025-06-30",
+   "accession": "0001628280-25-047726",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828025047726/hmy-20250630.htm"
+  },
+  "description_short": "Harmony Gold Mining Co Ltd is a gold mining and exploration company having operations in South Africa and Papua New Guinea (PNG). Its projects include Bambanani, Joel, Masimong, Phakisa, Target 1, Tshepong, Unisel, Doornkop, and Kusasalethu. The group's segments are Tshepong Operations, Bambanani, Joel, Doornkop, Moab Khotsong, Hidden Valley, Target 1, Kusasalethu, Masimong, Unisel, and all other surface operations.",
+  "industry": "Precious Metals",
+  "sector": "Basic Materials",
+  "region": "Africa",
+  "sic": "1040",
+  "sic_description": "Gold and Silver Ores",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.harmony.co.za",
+  "headquarters": "Randfontein, South Africa",
+  "address": {
+   "street": "CNR WARD AVENUE AND MAIN REEF ROAD RANDFONTEIN OFFICE PARK",
+   "city": "Randfontein",
+   "state": null,
+   "zip": "1759",
+   "country": "South Africa",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2025-10-31"
+  },
+  "phone": "27 011 411-2359",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-01-22",
+  "first_sec_filing_form": "6-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001023514&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-066047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026066047/sens_appointmentofindepend.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-065593",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026065593/sens-harmonydirpodealingsx.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-065308",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026065308/newdocument11.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-062949",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026062949/sens-harmonygoldxconvertib.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-062841",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026062841/sens-harmonygoldxlaunchpre.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-061965",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026061965/sens-harmonyreportslossofl.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-060803",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026060803/sens-harmonyreportsatragic.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-059198",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026059198/harmony-shortformxresultsf.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-059195",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026059195/a6-kharmony_fy26resultsb.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-058327",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026058327/sens-harmony_fy26tradingst.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-057551",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026057551/sens-notificationofanacqui.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-057273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026057273/changestoharmonysnominatio.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-049936",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026049936/sens-harmonyreducesfunding.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-048790",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026048790/sens-harmonyreportstragicl.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-046150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026046150/sens-fy26ceoprexcloseupdat.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-044491",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026044491/sens-harmonyreportstragicl.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-039062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026039062/sens-dealingsxtradingbyexe.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-037924",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026037924/sens-harmonyreportstragicl.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-035830",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026035830/a6-koperationalupdate31mar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-028215",
+   "url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828026028215/sens-embeddedsustainabilit.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2025-10-31"
+ ]
+}

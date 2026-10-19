@@ -1,0 +1,244 @@
+{
+ "ticker": "TIGO",
+ "cik": 912958,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T16:26:26-04:00",
+ "newest_filing_date": "2026-08-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000912958.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/912958/000162828026020831/tigo-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TIGO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TIGO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MILLICOM INTERNATIONAL CELLULAR SA",
+  "cik": 912958,
+  "description": {
+   "text": "We are a leading provider of fixed and mobile services dedicated to emerging markets. Through our main brands Tigo® and Tigo Business™, we provide a wide range of digital services in eleven countries in Latin America, including high-speed data, cable TV, direct-to-home satellite TV (“DTH” and when we refer to DTH together with cable TV, we use the term “pay-TV”), mobile voice, mobile data, SMS, MFS, fixed voice, and business solutions including value-added services (“VAS”). We provide services on both a business-to-consumer (“B2C”) and a business-to-business (“B2B”) basis, and we have used the Tigo brand in all our markets since 2004.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-020831",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000162828026020831/tigo-20251231.htm"
+  },
+  "description_short": "Millicom (NASDAQ: TIGO) is a leading provider of fixed and mobile telecommunications services in Latin America. Through its TIGO® and Tigo Business® brands, the company provides a wide range of digital services and products, including TIGO Money for mobile financial services, TIGO Sports for local entertainment, TIGO ONEtv for pay TV, high-speed data, voice, and business-to-business solutions such as cloud and security. As of June 30, 2026, Millicom, including its Honduras Joint Venture and Chile associate, employed over 20,000 people and provided mobile and fiber-cable services through its digital highways to more than 69 million customers, with a fiber-cable footprint over 22 million homes passed. Founded in 1990, Millicom International Cellular S.A. is headquartered in Luxembourg with principal executive offices in Doral, Florida.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Telecommunications",
+  "region": "Europe",
+  "sic": "4812",
+  "sic_description": "Radiotelephone Communications",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "OTC"
+  ],
+  "website": "https://www.millicom.com",
+  "headquarters": "Doral, FL",
+  "address": {
+   "street": "8400 NW 36th Street, Suite 530",
+   "city": "Doral",
+   "state": "FL",
+   "zip": "33166",
+   "country": "United States",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-24"
+  },
+  "phone": "3524571451",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000912958&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-012022",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326012022/dp251442_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007598",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326007598/dp247012_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007169",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326007169/dp246578_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-006285",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326006285/dp245765_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-005903",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326005903/dp245374_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-005756",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326005756/dp245225_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2026-04-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-005289",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326005289/dp244817_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-004704",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326004704/dp244186_6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001628280-26-020831",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000162828026020831/tigo-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-002760",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326002760/dp242237_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-001916",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326001916/dp241392_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-001741",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326001741/dp241209_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-30",
+   "period": "2026-01-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-001351",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010326001351/dp240798_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-014619",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325014619/dp237231_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-014424",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325014424/dp237073_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-014079",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325014079/dp236735_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-011395",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325011395/dp234109_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-010113",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325010113/dp232834_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-06-16",
+   "period": "2025-06-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-007457",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325007457/dp230203_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-007395",
+   "url": "https://www.sec.gov/Archives/edgar/data/912958/000095010325007395/dp230163_6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-24"
+ ]
+}

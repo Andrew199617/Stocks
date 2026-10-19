@@ -1,0 +1,84 @@
+{
+ "ticker": "TXT",
+ "name": "Textron Inc.",
+ "sector": "Aerospace & Defense / Industrials",
+ "price": 75.93,
+ "market_cap_b": 13.69,
+ "engine_version": 5,
+ "base_oe_per_share": 3.827075419583008,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Leading Cessna/Beechcraft general-aviation franchise with installed-base aftermarket and Bell's MV-75/FLRAA program of record, but measured returns are middling (roic_proxy null in fundamentals.json, net margin ~6% TTM, gross margin under 18% where tagged), with government program concentration and cyclical jet demand.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.7%/yr \u2014 already credited via the growth adjustment",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "TIER_BAND: bear-case tier D (7.0%) vs bull-case tier C (10.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 17.93,
+   "irr": 0.0524
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 27.66,
+   "irr": 0.0703
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 37.82,
+   "irr": 0.0889
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 49.06,
+   "irr": 0.1083
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 65.66,
+   "irr": 0.1348
+  }
+ },
+ "iv_at_15": 38.89,
+ "iv_at_12": 51.91,
+ "implied_irr": 0.091,
+ "implied_irr_base_case": 0.0889,
+ "upside_at_15_pct": -48.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid aerospace/defense franchise, moat 5/10 \u2014 does not clear 15% at $75.93 (weighted IRR 9.1%, IV@15 $38.89); it would need a price at or below $38.89 to clear the hurdle.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0703,
+ "irr_bull": 0.1083,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 27.22,
+ "iv_at_25": 20.82,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 180258000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Cessna and Beechcraft leading general-aviation brands with large installed base driving recurring aftermarket; Aviation backlog $8.0B",
+  "Bell MV-75 (FLRAA) program of record with multi-decade visibility plus H-1/V-22 sustainment; ITAR and qualification barriers",
+  "Diversified defense backlog (Bell $7.5B, Systems $3.3B) and qualification switching barriers"
+ ],
+ "moat_against": [
+  "Middling measured returns: roic_proxy unavailable, net margin ~6% TTM, gross margin under 18% where tagged; no proven pricing power through a cycle",
+  "US government program concentration: MV-75 funding gap puts $0.20-0.30 guided EPS and $150-250M cash flow at risk",
+  "Business-jet competition (Gulfstream, Embraer, Dassault, Bombardier) and cyclical demand",
+  "Q2 2026 execution drag: revenue +3% but segment profit flat, Aviation and Bell margins down; Industrial/EV transition and separation overhang"
+ ]
+}

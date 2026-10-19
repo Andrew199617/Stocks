@@ -1,0 +1,1036 @@
+{
+ "ticker": "CR",
+ "cik": 1944013,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001944013-26-000095",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000095/cr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001944013-26-000161",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000161/cr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001944013-26-000186",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000186/cr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      1072800000,
+      1198500000,
+      1256100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5761,
+      0.5624,
+      0.5449
+     ],
+     "growth_yoy": [
+      null,
+      0.1172,
+      0.0481
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndElectronicsMember",
+     "label": "Aerospace And Electronics",
+     "values": [
+      789300000,
+      932700000,
+      1048900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4239,
+      0.4376,
+      0.4551
+     ],
+     "growth_yoy": [
+      null,
+      0.1817,
+      0.1246
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1862100000,
+     2131200000,
+     2305000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      308700000,
+      319000000,
+      378100000,
+      385600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5536,
+      0.5527,
+      0.5429,
+      0.5321
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2248,
+      0.2088
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndAdvancedTechnologiesMember",
+     "label": "Aerospace And Advanced Technologies",
+     "values": [
+      248900000,
+      258200000,
+      318300000,
+      339100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4464,
+      0.4473,
+      0.4571,
+      0.4679
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2788,
+      0.3133
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     557600000,
+     577200000,
+     696400000,
+     724700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      1072800000,
+      1198500000,
+      1256100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5761,
+      0.5624,
+      0.5449
+     ],
+     "growth_yoy": [
+      null,
+      0.1172,
+      0.0481
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndElectronicsMember",
+     "label": "Aerospace And Electronics",
+     "values": [
+      789300000,
+      932700000,
+      1048900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4239,
+      0.4376,
+      0.4551
+     ],
+     "growth_yoy": [
+      null,
+      0.1817,
+      0.1246
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1862100000,
+     2131200000,
+     2305000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      208500000,
+      240300000,
+      263500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8327,
+      0.6754,
+      0.6212
+     ],
+     "growth_yoy": [
+      null,
+      0.1525,
+      0.0965
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndElectronicsMember",
+     "label": "Aerospace And Electronics",
+     "values": [
+      159000000,
+      209000000,
+      262500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.635,
+      0.5874,
+      0.6188
+     ],
+     "growth_yoy": [
+      null,
+      0.3145,
+      0.256
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -117100000,
+      -93500000,
+      -101800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.4677,
+      -0.2628,
+      -0.24
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     250400000,
+     355800000,
+     424200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cr:AerospaceAndAdvancedTechnologiesMember",
+     "label": "Aerospace And Advanced Technologies",
+     "values": [
+      64600000,
+      67900000,
+      71500000,
+      88900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.639,
+      0.6599,
+      0.7143,
+      0.6161
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1068,
+      0.3093
+     ]
+    },
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      62800000,
+      63900000,
+      64200000,
+      81600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6212,
+      0.621,
+      0.6414,
+      0.5655
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0223,
+      0.277
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -26300000,
+      -28900000,
+      -35600000,
+      -26200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2601,
+      -0.2809,
+      -0.3556,
+      -0.1816
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     101100000,
+     102900000,
+     100100000,
+     144300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      1265000000,
+      1326000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4788,
+      0.3441
+     ],
+     "growth_yoy": [
+      null,
+      0.0482
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndElectronicsMember",
+     "label": "Aerospace And Electronics",
+     "values": [
+      896200000,
+      936300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3392,
+      0.243
+     ],
+     "growth_yoy": [
+      null,
+      0.0447
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      262800000,
+      1591100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0995,
+      0.4129
+     ],
+     "growth_yoy": [
+      null,
+      5.0544
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2641900000,
+     3853400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      1326000000,
+      2552800000,
+      2493300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3441,
+      0.6301,
+      0.6186
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndAdvancedTechnologiesMember",
+     "label": "Aerospace And Advanced Technologies",
+     "values": [
+      936300000,
+      1324800000,
+      1350600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.243,
+      0.327,
+      0.3351
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1591100000,
+      174100000,
+      186900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4129,
+      0.043,
+      0.0464
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3853400000,
+     4051700000,
+     4030800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      21400000,
+      28600000,
+      32300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6045,
+      0.5608,
+      0.6434
+     ],
+     "growth_yoy": [
+      null,
+      0.3364,
+      0.1294
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndElectronicsMember",
+     "label": "Aerospace And Electronics",
+     "values": [
+      13900000,
+      22300000,
+      17800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3927,
+      0.4373,
+      0.3546
+     ],
+     "growth_yoy": [
+      null,
+      0.6043,
+      -0.2018
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      100000,
+      100000,
+      100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0028,
+      0.002,
+      0.002
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     35400000,
+     51000000,
+     50200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cr:ProcessFlowTechnologiesMember",
+     "label": "Process Flow Technologies",
+     "values": [
+      8000000,
+      8200000,
+      19800000,
+      18800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.64,
+      0.626,
+      0.7046,
+      0.6861
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.475,
+      1.2927
+     ]
+    },
+    {
+     "member": "cr:AerospaceAndAdvancedTechnologiesMember",
+     "label": "Aerospace And Advanced Technologies",
+     "values": [
+      4500000,
+      4800000,
+      8300000,
+      8600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.36,
+      0.3664,
+      0.2954,
+      0.3139
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8444,
+      0.7917
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      null,
+      100000,
+      null,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0076,
+      null,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12500000,
+     13100000,
+     28100000,
+     27400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1052400000,
+      1210000000,
+      1368800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5652,
+      0.5678,
+      0.5938
+     ],
+     "growth_yoy": [
+      null,
+      0.1498,
+      0.1312
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      325600000,
+      390900000,
+      390100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1749,
+      0.1834,
+      0.1692
+     ],
+     "growth_yoy": [
+      null,
+      0.2006,
+      -0.002
+     ]
+    },
+    {
+     "member": "cr:OtherInternationalMember",
+     "label": "Other International",
+     "values": [
+      298500000,
+      319800000,
+      320800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1603,
+      0.1501,
+      0.1392
+     ],
+     "growth_yoy": [
+      null,
+      0.0714,
+      0.0031
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      120300000,
+      137700000,
+      149100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0646,
+      0.0646,
+      0.0647
+     ],
+     "growth_yoy": [
+      null,
+      0.1446,
+      0.0828
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      65300000,
+      72800000,
+      76200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0351,
+      0.0342,
+      0.0331
+     ],
+     "growth_yoy": [
+      null,
+      0.1149,
+      0.0467
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1862100000,
+     2131200000,
+     2305000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

@@ -1,0 +1,286 @@
+{
+ "ticker": "FIVE",
+ "cik": 1177609,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T09:13:38-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001177609.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000010/five-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FIVE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FIVE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FIVE BELOW, INC",
+  "cik": 1177609,
+  "description": {
+   "text": "Five Below, Inc. was incorporated in Pennsylvania in January 2002. Our principal executive office is located at 701 Market Street, Suite 300, Philadelphia, PA 19106 and our telephone number is (215) 546-7909. Our corporate website address is www.fivebelow.com. The information contained on, or accessible through, our corporate website does not constitute part of this Annual Report. As used herein, “Five Below,” the “Company,” “we,” “us,” “our” or “our business” refers to Five Below, Inc. (collectively with its wholly owned subsidiaries), except as expressly indicated or unless the context otherwise requires. As used herein, references to “crew” refers to our employees, and references to “shipcenters” refers to our distribution and logistics centers. We purchase products in reaction to existing marketplace trends and, hence, refer to our products as “trend-right.” We use the term “dynamic” merchandise to refer to the broad range and frequently changing nature of the products we display in our stores. We use the term “power” shopping center to refer to an unenclosed shopping center with 250,000 to 750,000 square feet of gross leasable area that contains three or more “big box” retailers (large retailers with floor space over 50,000 square feet) and various smaller retailers with a common parking area shared by the retailers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-19",
+   "period": "2026-01-31",
+   "accession": "0001177609-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000010/five-20260131.htm"
+  },
+  "description_short": "Five Below is a leading growth retailer offering trend-right, extreme value, high-quality products loved by the kid and the kid in all of us. We believe life is better when customers are free to 'let go & have fun' in an amazing experience filled with unlimited possibilities. With most items priced between $1 and $5 and some extreme value items priced beyond $5, Five Below makes it easy to say YES! to the newest, coolest stuff across awesome Five Below worlds: Candy, Style, Party, Room, Create, Tech, Sports and New & Now. Founded in 2002 and headquartered in Philadelphia, Pennsylvania, Five Below today has over 2,000 stores in 47 states.",
+  "industry": "Department/Specialty Retail Stores",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5331",
+  "sic_description": "Retail-Variety Stores",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "0130",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.fivebelow.com",
+  "headquarters": "Philadelphia, Pennsylvania",
+  "address": {
+   "street": "701 Market Street Suite 300",
+   "city": "Philadelphia",
+   "state": "Pennsylvania",
+   "zip": "19106",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-19"
+  },
+  "phone": "215 546 7909",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2012-04-18",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "FIVE BELOW INC",
+   "CHEAP HOLDINGS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001177609&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001177609-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000072/five-20261014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-21",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001177609-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000050/five-20260921.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-09-03",
+   "period": "2026-08-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001177609-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000027/five-20260801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001177609-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000023/five-20260902.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-14",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-312573",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000119312526312573/d19155d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-272704",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000119312526272704/d97348d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-04",
+   "period": "2026-05-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001177609-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000020/five-20260502.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001177609-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000015/five-20260603.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-01",
+   "period": "2026-06-16",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-199315",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000119312526199315/d86361ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-19",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001177609-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000010/five-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001177609-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000006/five-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-042901",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000119312526042901/d25218d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001177609-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760926000003/five-20260112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-04",
+   "period": "2025-11-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001177609-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760925000052/five-20251101.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-03",
+   "period": "2025-12-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001177609-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760925000048/five-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-10-01",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-25-227293",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000119312525227293/d18933d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-08-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001177609-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760925000041/five-20250802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001177609-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760925000037/five-20250827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-140782",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000119312525140782/d941190d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-05",
+   "period": "2025-05-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001177609-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1177609/000117760925000025/five-20250503.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-03-19"
+ ]
+}

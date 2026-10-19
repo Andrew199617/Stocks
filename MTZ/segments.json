@@ -1,0 +1,1019 @@
+{
+ "ticker": "MTZ",
+ "cik": 15615,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000015615-26-000020",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000020/mtz-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000015615-26-000050",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000050/mtz-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000015615-26-000093",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000093/mtz-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtz:CleanEnergyAndInfrastructureMember",
+     "label": "Clean Energy and Infrastructure",
+     "values": [
+      3962000000,
+      4092100000,
+      4699600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3302,
+      0.3327,
+      0.3286
+     ],
+     "growth_yoy": [
+      null,
+      0.0328,
+      0.1485
+     ]
+    },
+    {
+     "member": "mtz:PowerDeliveryMember",
+     "label": "Power Delivery",
+     "values": [
+      3625100000,
+      3612700000,
+      4176100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3021,
+      0.2937,
+      0.292
+     ],
+     "growth_yoy": [
+      null,
+      -0.0034,
+      0.1559
+     ]
+    },
+    {
+     "member": "mtz:CommunicationsMember",
+     "label": "Communications",
+     "values": [
+      2366400000,
+      2524200000,
+      3339100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1972,
+      0.2052,
+      0.2335
+     ],
+     "growth_yoy": [
+      null,
+      0.0667,
+      0.3228
+     ]
+    },
+    {
+     "member": "mtz:PipelineInfrastructureMember",
+     "label": "Pipeline Infrastructure",
+     "values": [
+      2072800000,
+      2133600000,
+      2137800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1727,
+      0.1735,
+      0.1495
+     ],
+     "growth_yoy": [
+      null,
+      0.0293,
+      0.002
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -30400000,
+      -59100000,
+      -53400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0025,
+      -0.0048,
+      -0.0037
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12000000000,
+     12300000000,
+     14300000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtz:CleanEnergyAndInfrastructureMember",
+     "label": "Clean Energy and Infrastructure",
+     "values": [
+      915800000,
+      1131400000,
+      1329400000,
+      1622100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3216,
+      0.3192,
+      0.3472,
+      0.3709
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4516,
+      0.4337
+     ]
+    },
+    {
+     "member": "mtz:PowerDeliveryMember",
+     "label": "Power Delivery",
+     "values": [
+      899700000,
+      1045600000,
+      1046100000,
+      1245800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3159,
+      0.295,
+      0.2732,
+      0.2848
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1627,
+      0.1915
+     ]
+    },
+    {
+     "member": "mtz:CommunicationsMember",
+     "label": "Communications",
+     "values": [
+      680900000,
+      836900000,
+      802100000,
+      888900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2391,
+      0.2361,
+      0.2095,
+      0.2032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.178,
+      0.0621
+     ]
+    },
+    {
+     "member": "mtz:PipelineInfrastructureMember",
+     "label": "Pipeline Infrastructure",
+     "values": [
+      356500000,
+      539700000,
+      682500000,
+      642800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1252,
+      0.1523,
+      0.1783,
+      0.147
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.9144,
+      0.191
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -5200000,
+      -8900000,
+      -31300000,
+      -26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0018,
+      -0.0025,
+      -0.0082,
+      -0.0059
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2847718000,
+     3544705000,
+     3828801000,
+     4373554000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "mtz:CleanEnergyAndInfrastructureMember",
+     "label": "Clean Energy and Infrastructure",
+     "values": [
+      2978800000,
+      2706400000,
+      2816600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3178,
+      0.3015,
+      0.2838
+     ],
+     "growth_yoy": [
+      null,
+      -0.0914,
+      0.0407
+     ]
+    },
+    {
+     "member": "mtz:PowerDeliveryMember",
+     "label": "Power Delivery",
+     "values": [
+      2440200000,
+      2489900000,
+      2621600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2603,
+      0.2774,
+      0.2642
+     ],
+     "growth_yoy": [
+      null,
+      0.0204,
+      0.0529
+     ]
+    },
+    {
+     "member": "mtz:CommunicationsMember",
+     "label": "Communications",
+     "values": [
+      1729100000,
+      1673800000,
+      1962300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1845,
+      0.1865,
+      0.1977
+     ],
+     "growth_yoy": [
+      null,
+      -0.032,
+      0.1724
+     ]
+    },
+    {
+     "member": "mtz:PipelineInfrastructureMember",
+     "label": "Pipeline Infrastructure",
+     "values": [
+      1758000000,
+      1599700000,
+      1928700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1876,
+      0.1782,
+      0.1944
+     ],
+     "growth_yoy": [
+      null,
+      -0.09,
+      0.2057
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      162400000,
+      187300000,
+      9923500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0173,
+      0.0209,
+      1.0
+     ],
+     "growth_yoy": [
+      null,
+      0.1533,
+      51.9818
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      305000000,
+      318200000,
+      364000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0325,
+      0.0355,
+      0.0367
+     ],
+     "growth_yoy": [
+      null,
+      0.0433,
+      0.1439
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9373500000,
+     8975300000,
+     9923542000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtz:CleanEnergyAndInfrastructureMember",
+     "label": "Clean Energy and Infrastructure",
+     "values": [
+      2816600000,
+      3173300000,
+      3406400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2838,
+      0.3039,
+      0.3118
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mtz:PowerDeliveryMember",
+     "label": "Power Delivery",
+     "values": [
+      2621600000,
+      2721800000,
+      2811200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2642,
+      0.2607,
+      0.2573
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mtz:PipelineInfrastructureMember",
+     "label": "Pipeline Infrastructure",
+     "values": [
+      1928700000,
+      2032700000,
+      2109300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1944,
+      0.1947,
+      0.1931
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mtz:CommunicationsMember",
+     "label": "Communications",
+     "values": [
+      1962300000,
+      1946800000,
+      1995000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1977,
+      0.1864,
+      0.1826
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      364000000,
+      357100000,
+      369600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0367,
+      0.0342,
+      0.0338
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateMember",
+     "label": "Corporate Segment",
+     "values": [
+      230300000,
+      209800000,
+      234000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0232,
+      0.0201,
+      0.0214
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9923542000,
+     10441515000,
+     10925494000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtz:PowerDeliveryMember",
+     "label": "Power Delivery",
+     "values": [
+      211700000,
+      170200000,
+      142300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.351,
+      0.336,
+      0.3332
+     ],
+     "growth_yoy": [
+      null,
+      -0.196,
+      -0.1639
+     ]
+    },
+    {
+     "member": "mtz:CleanEnergyAndInfrastructureMember",
+     "label": "Clean Energy and Infrastructure",
+     "values": [
+      144200000,
+      123000000,
+      108100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2391,
+      0.2428,
+      0.2531
+     ],
+     "growth_yoy": [
+      null,
+      -0.147,
+      -0.1211
+     ]
+    },
+    {
+     "member": "mtz:PipelineInfrastructureMember",
+     "label": "Pipeline Infrastructure",
+     "values": [
+      152900000,
+      128800000,
+      107400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2535,
+      0.2542,
+      0.2515
+     ],
+     "growth_yoy": [
+      null,
+      -0.1576,
+      -0.1661
+     ]
+    },
+    {
+     "member": "mtz:CommunicationsMember",
+     "label": "Communications",
+     "values": [
+      84000000,
+      74400000,
+      60300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1393,
+      0.1469,
+      0.1412
+     ],
+     "growth_yoy": [
+      null,
+      -0.1143,
+      -0.1895
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      10400000,
+      10200000,
+      9000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0172,
+      0.0201,
+      0.0211
+     ],
+     "growth_yoy": [
+      null,
+      -0.0192,
+      -0.1176
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     603200000,
+     506600000,
+     427100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtz:CleanEnergyAndInfrastructureMember",
+     "label": "Clean Energy and Infrastructure",
+     "values": [
+      27700000,
+      26900000,
+      36100000,
+      37100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2544,
+      0.2622,
+      0.2961,
+      0.3002
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3032,
+      0.3792
+     ]
+    },
+    {
+     "member": "mtz:PipelineInfrastructureMember",
+     "label": "Pipeline Infrastructure",
+     "values": [
+      25800000,
+      25100000,
+      34000000,
+      36800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2369,
+      0.2446,
+      0.2789,
+      0.2977
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3178,
+      0.4661
+     ]
+    },
+    {
+     "member": "mtz:PowerDeliveryMember",
+     "label": "Power Delivery",
+     "values": [
+      37100000,
+      35000000,
+      31700000,
+      32100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3407,
+      0.3411,
+      0.26,
+      0.2597
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1456,
+      -0.0829
+     ]
+    },
+    {
+     "member": "mtz:CommunicationsMember",
+     "label": "Communications",
+     "values": [
+      16100000,
+      13400000,
+      18100000,
+      15700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1478,
+      0.1306,
+      0.1485,
+      0.127
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1242,
+      0.1716
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2200000,
+      2200000,
+      2000000,
+      1900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0202,
+      0.0214,
+      0.0164,
+      0.0154
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0909,
+      -0.1364
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     108900000,
+     102600000,
+     121900000,
+     123600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: rows sum to 197.7% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/Assets/quarterly: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: its values equal the sum of Communications, Clean Energy and Infrastructure, Power Delivery, Pipeline Infrastructure, Other Operating Segment, Corporate Segment"
+ ],
+ "complete": true
+}

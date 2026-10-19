@@ -1,0 +1,360 @@
+{
+ "ticker": "GDDY",
+ "cik": 1609711,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001609711-26-000010",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000010/gddy-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001609711-26-000037",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000037/gddy-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001609711-26-000088",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000088/gddy-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gddy:CorePlatformMember",
+     "label": "Core Platform",
+     "values": [
+      2823700000,
+      2920200000,
+      3062100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6638,
+      0.6385,
+      0.6185
+     ],
+     "growth_yoy": [
+      null,
+      0.0342,
+      0.0486
+     ]
+    },
+    {
+     "member": "gddy:ApplicationsAndCommerceMember",
+     "label": "Applications And Commerce",
+     "values": [
+      1430400000,
+      1653000000,
+      1889000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3362,
+      0.3615,
+      0.3815
+     ],
+     "growth_yoy": [
+      null,
+      0.1556,
+      0.1428
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4254100000,
+     4573200000,
+     4951100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gddy:CorePlatformMember",
+     "label": "Core Platform",
+     "values": [
+      747900000,
+      753700000,
+      768700000,
+      783200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6262,
+      0.619,
+      0.6068,
+      0.6034
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0278,
+      0.0391
+     ]
+    },
+    {
+     "member": "gddy:ApplicationsAndCommerceMember",
+     "label": "Applications And Commerce",
+     "values": [
+      446400000,
+      463900000,
+      498200000,
+      514800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3738,
+      0.381,
+      0.3932,
+      0.3966
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.116,
+      0.1097
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1194300000,
+     1217600000,
+     1266900000,
+     1298000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2873000000,
+      3113400000,
+      3324300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6753,
+      0.6808,
+      0.6714
+     ],
+     "growth_yoy": [
+      null,
+      0.0837,
+      0.0677
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1381100000,
+      1459800000,
+      1626800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3247,
+      0.3192,
+      0.3286
+     ],
+     "growth_yoy": [
+      null,
+      0.057,
+      0.1144
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4254100000,
+     4573200000,
+     4951100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      805500000,
+      821700000,
+      851000000,
+      870900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6745,
+      0.6749,
+      0.6717,
+      0.671
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0565,
+      0.0599
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      388800000,
+      395900000,
+      415900000,
+      427100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3255,
+      0.3251,
+      0.3283,
+      0.329
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0697,
+      0.0788
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1194300000,
+     1217600000,
+     1266900000,
+     1298000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

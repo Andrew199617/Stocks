@@ -1,0 +1,248 @@
+{
+ "ticker": "WSE",
+ "cik": 2099039,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T03:29:24-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002099039.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526282911/d17323d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WSE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WSE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Wise Group plc",
+  "cik": 2099039,
+  "description": {
+   "text": "Fifteen years ago, we set out with a simple but visionary goal that became the mission for Wise: money without borders. It should not be more expensive or less convenient to use your money in another country. People and businesses should always know what each transaction actually costs. Guided by this mission, we started with the goal of fixing overseas transfers and went on to build an account for a truly borderless experience for people and businesses using their money. An increasing number of banks and online platforms now offer our products to their customers via Wise Platform. To power this borderless experience, we have built an innovative infrastructure for the world’s money—one that makes payments instant (in under 20 seconds), convenient, low-cost and transparent. In the year ended March 31, 2026, this infrastructure powered payments across more than 40 currencies, moved $243.5 billion across borders for 18.9 million people and businesses, and saved them approximately $3.3 billion along the way, based on our estimates of per transaction savings calculated by reference to publicly available foreign exchange rates and fees of alternative banks and payment providers. As of March 31, 2026, our customers’ holdings across their cash and Wise Assets balances equaled $39 billion, reflecting the trust we have built with our customers. This included $9.0 billion held with Wise Assets (i.e.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-06-25",
+   "period": "2026-03-31",
+   "accession": "0001193125-26-282911",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526282911/d17323d20f.htm"
+  },
+  "description_short": "Wise is a global technology company, building the best way to move and manage the world's money. With Wise Account and Wise Business, people and businesses can hold 40 currencies, move money between countries and spend money abroad. Large companies and banks use Wise technology too; an entirely new network for the world's money. Launched in 2011, Wise is one of the world's fastest growing, profitable tech companies. In fiscal year 2026, Wise supported around 19 million people and businesses, processing over $240 billion in cross-border transactions and saving customers over $3 billion.",
+  "industry": "Diversified Commercial Services",
+  "sector": "Industrials",
+  "region": "Europe",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "Y9",
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "http://www.wise.com",
+  "headquarters": "London, United Kingdom",
+  "address": {
+   "street": "1st Floor, Worship Square 65 Clifton Street",
+   "city": "London",
+   "state": null,
+   "zip": "EC2A 4JE",
+   "country": "United Kingdom",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-06-25"
+  },
+  "phone": "44 20 3974 1321",
+  "employees": {
+   "count": 8000,
+   "as_of": "2026-03-31",
+   "evidence": "As of March 31, 2026, we employ over 8,000 people, from 130 nationalities, working in 11 key locations around the world.",
+   "form": "20-F",
+   "filed": "2026-06-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526282911/d17323d20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2026-04-10",
+  "first_sec_filing_form": "20FR12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002099039&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006666",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000117184326006666/f6k_101526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008900",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008900/a6433y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006589",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000117184326006589/f6k_101326.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008805",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008805/a6954x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008613",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008613/a6551w.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006206",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000117184326006206/f6k_092426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008496",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008496/a6647v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008362",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008362/a7209u.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008157",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008157/a7577t.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008073",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426008073/a9893s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005756",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000117184326005756/f6k_082626.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007837",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426007837/a9575r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007704",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426007704/a0280r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005571",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000117184326005571/f6k_081726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007438",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000165495426007438/a0475q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-335112",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526335112/d131426d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950142-26-002155",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000095014226002155/eh260811101_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-309606",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526309606/d108520d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-306087",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526306087/d40450d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-283123",
+   "url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526283123/d192097d6k.htm"
+  }
+ ],
+ "warnings": []
+}

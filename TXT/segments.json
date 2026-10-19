@@ -1,0 +1,855 @@
+{
+ "ticker": "TXT",
+ "cik": 217346,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000217346-26-000006",
+   "filed": "2026-02-11",
+   "period": "2026-01-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000006/txt-20260103_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000217346-26-000012",
+   "filed": "2026-04-30",
+   "period": "2026-04-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000012/txt-20260404_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000217346-26-000036",
+   "filed": "2026-07-28",
+   "period": "2026-07-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/217346/000021734626000036/txt-20260704_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "txt:TextronAviationMember",
+     "label": "Textron Aviation",
+     "values": [
+      5373000000,
+      5284000000,
+      5955000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3927,
+      0.3856,
+      0.4024
+     ],
+     "growth_yoy": [
+      null,
+      -0.0166,
+      0.127
+     ]
+    },
+    {
+     "member": "txt:BellMember",
+     "label": "Bell",
+     "values": [
+      3147000000,
+      3579000000,
+      4282000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.23,
+      0.2612,
+      0.2893
+     ],
+     "growth_yoy": [
+      null,
+      0.1373,
+      0.1964
+     ]
+    },
+    {
+     "member": "txt:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      3841000000,
+      3515000000,
+      3213000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2807,
+      0.2565,
+      0.2171
+     ],
+     "growth_yoy": [
+      null,
+      -0.0849,
+      -0.0859
+     ]
+    },
+    {
+     "member": "txt:TextronSystemsMember",
+     "label": "Textron Systems",
+     "values": [
+      1235000000,
+      1241000000,
+      1247000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0903,
+      0.0906,
+      0.0843
+     ],
+     "growth_yoy": [
+      null,
+      0.0049,
+      0.0048
+     ]
+    },
+    {
+     "member": "txt:FinanceMember",
+     "label": "Finance",
+     "values": [
+      55000000,
+      50000000,
+      75000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.004,
+      0.0036,
+      0.0051
+     ],
+     "growth_yoy": [
+      null,
+      -0.0909,
+      0.5
+     ]
+    },
+    {
+     "member": "txt:TextronEAviationSegmentMember",
+     "label": "Textron eAviation Segment",
+     "values": [
+      32000000,
+      33000000,
+      27000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0023,
+      0.0024,
+      0.0018
+     ],
+     "growth_yoy": [
+      null,
+      0.0312,
+      -0.1818
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13683000000,
+     13702000000,
+     14799000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "txt:TextronAviationMember",
+     "label": "Textron Aviation",
+     "values": [
+      1216000000,
+      1522000000,
+      1485000000,
+      1544000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3678,
+      0.4096,
+      0.4019,
+      0.4034
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2212,
+      0.0145
+     ]
+    },
+    {
+     "member": "txt:BellMember",
+     "label": "Bell",
+     "values": [
+      983000000,
+      1016000000,
+      1070000000,
+      1074000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2973,
+      0.2734,
+      0.2896,
+      0.2806
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0885,
+      0.0571
+     ]
+    },
+    {
+     "member": "txt:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      792000000,
+      839000000,
+      786000000,
+      848000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2396,
+      0.2258,
+      0.2127,
+      0.2216
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0076,
+      0.0107
+     ]
+    },
+    {
+     "member": "txt:TextronSystemsMember",
+     "label": "Textron Systems",
+     "values": [
+      299000000,
+      324000000,
+      338000000,
+      347000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0904,
+      0.0872,
+      0.0915,
+      0.0907
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1304,
+      0.071
+     ]
+    },
+    {
+     "member": "txt:FinanceMember",
+     "label": "Finance",
+     "values": [
+      16000000,
+      15000000,
+      16000000,
+      14000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0048,
+      0.004,
+      0.0043,
+      0.0037
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.0667
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3306000000,
+     3716000000,
+     3695000000,
+     3827000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "txt:TextronAviationMember",
+     "label": "Textron Aviation",
+     "values": [
+      649000000,
+      566000000,
+      694000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4891,
+      0.4717,
+      0.5092
+     ],
+     "growth_yoy": [
+      null,
+      -0.1279,
+      0.2261
+     ]
+    },
+    {
+     "member": "txt:BellMember",
+     "label": "Bell",
+     "values": [
+      320000000,
+      370000000,
+      363000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2411,
+      0.3083,
+      0.2663
+     ],
+     "growth_yoy": [
+      null,
+      0.1562,
+      -0.0189
+     ]
+    },
+    {
+     "member": "txt:TextronSystemsMember",
+     "label": "Textron Systems",
+     "values": [
+      147000000,
+      154000000,
+      175000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1108,
+      0.1283,
+      0.1284
+     ],
+     "growth_yoy": [
+      null,
+      0.0476,
+      0.1364
+     ]
+    },
+    {
+     "member": "txt:IndustrialMember",
+     "label": "Industrial",
+     "values": [
+      228000000,
+      151000000,
+      145000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1718,
+      0.1258,
+      0.1064
+     ],
+     "growth_yoy": [
+      null,
+      -0.3377,
+      -0.0397
+     ]
+    },
+    {
+     "member": "txt:FinanceMember",
+     "label": "Finance",
+     "values": [
+      46000000,
+      35000000,
+      49000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0347,
+      0.0292,
+      0.036
+     ],
+     "growth_yoy": [
+      null,
+      -0.2391,
+      0.4
+     ]
+    },
+    {
+     "member": "txt:TextronEAviationSegmentMember",
+     "label": "Textron eAviation Segment",
+     "values": [
+      -63000000,
+      -76000000,
+      -63000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0475,
+      -0.0633,
+      -0.0462
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1327000000,
+     1200000000,
+     1363000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "txt:FinanceMember",
+     "label": "Finance",
+     "values": [
+      680000000,
+      677000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0404,
+      0.0373
+     ],
+     "growth_yoy": [
+      null,
+      -0.0044
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      3842000000,
+      4688000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2282,
+      0.2586
+     ],
+     "growth_yoy": [
+      null,
+      0.2202
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16838000000,
+     18129000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      9305000000,
+      9676000000,
+      10283000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.68,
+      0.7062,
+      0.6948
+     ],
+     "growth_yoy": [
+      null,
+      0.0399,
+      0.0627
+     ]
+    },
+    {
+     "member": "txt:InternationalMember",
+     "label": "International",
+     "values": [
+      2122000000,
+      1942000000,
+      1947000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1551,
+      0.1417,
+      0.1316
+     ],
+     "growth_yoy": [
+      null,
+      -0.0848,
+      0.0026
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1414000000,
+      1210000000,
+      1289000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1033,
+      0.0883,
+      0.0871
+     ],
+     "growth_yoy": [
+      null,
+      -0.1443,
+      0.0653
+     ]
+    },
+    {
+     "member": "txt:SouthAndLatinAmericaMember",
+     "label": "South and Latin America",
+     "values": [
+      842000000,
+      874000000,
+      1280000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0615,
+      0.0638,
+      0.0865
+     ],
+     "growth_yoy": [
+      null,
+      0.038,
+      0.4645
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13683000000,
+     13702000000,
+     14799000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2278000000,
+      2655000000,
+      2647000000,
+      2687000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6891,
+      0.7145,
+      0.7164,
+      0.7021
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.162,
+      0.0121
+     ]
+    },
+    {
+     "member": "txt:InternationalMember",
+     "label": "International",
+     "values": [
+      707000000,
+      717000000,
+      664000000,
+      806000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2139,
+      0.1929,
+      0.1797,
+      0.2106
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0608,
+      0.1241
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      321000000,
+      344000000,
+      384000000,
+      334000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0971,
+      0.0926,
+      0.1039,
+      0.0873
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1963,
+      -0.0291
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3306000000,
+     3716000000,
+     3695000000,
+     3827000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: rows sum to 29.6% of the consolidated total for 2026-01-03 (ties_to_total: false)"
+ ],
+ "complete": true
+}

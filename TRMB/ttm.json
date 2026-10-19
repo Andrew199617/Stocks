@@ -1,0 +1,101 @@
+{
+ "ticker": "TRMB",
+ "cik": 864749,
+ "entity": "TRIMBLE INC.",
+ "fy_end": "2026-01-02",
+ "ytd_end": "2026-07-03",
+ "inputs": {
+  "ocf": {
+   "fy": 386200000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 102100000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 515000000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 799100000
+  },
+  "capex": {
+   "fy": 25300000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 12500000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 13200000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 26000000
+  },
+  "sbc": {
+   "fy": 146500000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 76300000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 85100000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 155300000
+  },
+  "shares_diluted": {
+   "fy": 241500000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 242900000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 233700000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 799100000,
+ "ttm_capex": 26000000,
+ "ttm_sbc": 155300000,
+ "ttm_shares_diluted": 233700000,
+ "ttm_oe_total": 617800000,
+ "ttm_oe_per_share": 2.6435601198117245,
+ "warnings": [],
+ "overrides_used": []
+}

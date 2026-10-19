@@ -1,0 +1,50 @@
+# FPS — Forgent Power Solutions, Inc.
+Pass-1 v5 run, engine release 5.4.0, 2026-10-18. Price $31.68 (nasdaq_quote_api). Market cap (est) $9.653B on the filing-sourced share count below — in scope under $40B.
+
+All figures below are copied from key_numbers.md, dcf_numbers.json, financials_history.csv, or fundamentals.json — none are recomputed.
+
+## What it is
+Designer/manufacturer of custom electrical distribution equipment — transformers, switchgear, transfer switches, power distribution units, prefabricated eHouses and power skids — for data centers, the grid, and energy-intensive industrial sites. A Neos Partners roll-up: MGM Transformers, PwrQ, States Manufacturing, and VanTran were combined in FY2024 (goodwill $516,629,000, unchanged at both June 30, 2025 and June 30, 2026 per fundamentals.json — no acquisitions in either gated year). IPO'd February 2026 in an Up-C structure (Forgent owns Opco LLC interests; pre-IPO owners hold exchangeable Class B shares). Customer mix in FY2025 per the IPO prospectus: ~42% data center, 23% grid, 19% industrial, 16% other. Ten manufacturing campuses in the US and Mexico.
+
+The demand story is real: Q4 FY2026 revenue $461.7M (+94% YoY), record bookings $1.5B, book-to-bill 3.3x, backlog $3.0B (+256%) at June 30, 2026, and FY2027 guidance of $2.4–2.6B revenue, $575–625M adjusted EBITDA, $1.26–1.40 adjusted EPS (company release, Sept 15, 2026). None of that is the problem. Cash conversion is.
+
+## Owner's earnings
+**FY2026 (10-K filed 2026-09-15, from financials_history.csv):** OCF $109,081,000; capex $115,905,000; SBC $10,036,000 (a real cost, still small at this scale).
+- **Conservative owner's earnings FY2026: −$16,860,000 = −$0.06/share** (key_numbers.md: latest FY OE/share $-0.06)
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): −$55,307,000 — worse, because it also charges the $137,152,000 working-capital build (receivables/inventory for +89% growth) that the conservative version only sees through OCF.
+- **FY2025:** OCF $45,022,000; capex $84,115,000; SBC $1,784,000 → conservative OE −$40,877,000 = −$0.13/share (oe_per_share in financials_history.csv).
+- **OE-positive years: 0/2.** Normalized base (median of last 3 FY, here the 2 filed years): **−$0.09/share** (key_numbers.md) → **Tier F, sub-type no_cash_generation** (sum of FCF over the median window is negative; SBC is not the culprit — capex + working capital are).
+- The accrual/cash split is the whole story: operating income rose $72,237,000 → $182,489,000 (margin 9.6% → 12.9%, fundamentals.json) and the company reports $322.9M of FY2026 adjusted EBITDA, but PP&E net nearly doubled ($108,170,000 → $204,957,000) as it builds capacity, and growth ate the rest in working capital. Capex here is mostly *growth* capex — the engine's conservative definition charges it all anyway, and that is the sweep's standing rule, not a bug to override away.
+- Balance sheet (latest, dcf_numbers.json): net debt $484,698,000 (debt $582,175,000 vs cash $97,477,000, restricted cash a further $24,200,000), lease liabilities $121,596,000 — plus, per the 10-K, a $338.9M Tax Receivable Agreement payable to the pre-IPO owners that sits outside the engine's net debt. Interest expense was $57.1M in FY2026 per the 10-K.
+
+## OVERRIDE — shares (filing)
+- **The gap:** the preliminary engine run exited 4 with `DATA_GAP:shares`. The predecessor was an LLC — no diluted share count is filed for FY2025 — and the only diluted count in companyfacts for FY2026 (243,802,000) covers just Feb 6 – Jun 30, 2026 (post-IPO) and excludes the exchangeable Class B / Opco interests, while the engine's OCF/capex/SBC are 100% of consolidated Opco.
+- **The fix (bounded authority, kind "filing"):** judgment.json carries `shares_override = 304,699,000` — the 10-K's own Adjusted Diluted EPS reconciliation (MD&A): 243,802k GAAP diluted + 60,897k assumed exchange of all Class B from the beginning of the earliest period presented + 270k dilutive RSUs = 304,699k. Cross-check from the same 10-K's balance sheet: 259,971,169 Class A + 44,457,720 Class B outstanding at June 30, 2026 = 304,428,889 (within 0.1%). An `ack_reason` is recorded because the band check has no filed value to band against — the flag fired on absence, not on a stretch.
+- **Measured impact (key_numbers.md):** base OE/share — (no override) → $-0.09 (with override); the override is the only reason a tier exists at all (unblocks_tier: YES in score.json). It does not flatter the result — the tier it unblocks is F.
+
+## Moat: 5/10 — narrow-moderate
+Justification: real lead-time/customization edge in a capacity-short market, evidenced by share gains and a 3.3x book-to-bill, but no pricing power yet, ROIC is one boom year with no through-cycle record, and the edge is replicable capacity and engineering labor against giants with far deeper benches.
+- FOR: engineered-to-order customization with among the shortest lead times in the industry — the scarce input right now; single-source Powertrain Solutions bundles (transformer through PDU) that cut customer integration risk — Powertrain revenue +259% in FY2026 to 25% of sales; UL-certified breadth across the full electrical chain from the four combined specialists; $3.0B backlog (+256% YoY) giving multi-quarter visibility.
+- AGAINST: Eaton, Schneider Electric, Vertiv, ABB, Siemens, Hitachi Energy are far larger and deeply embedded; gross margin *compressed* 36.9% → 35.0% (fundamentals.json) while revenue grew 89% — no demonstrated pricing power; return evidence is thin — roic_proxy 14.5% in FY2026, not computable for FY2025 (fundamentals.json) — respectable, not wide-moat, and unproven through a cycle; demand is one cyclical driver (AI data-center capex) and backlog is purchase-order work, not contracted annuity revenue; Neos sponsor overhang — $1.5B+ of secondary sales since the IPO and 44,457,720 exchangeable Class B shares still outstanding at FY end.
+- A 5 gives CAP = 8.5 years — moot for the verdict (no positive base to fade), recorded for when the base turns.
+
+## DCF — v5 final run (2026-10-18)
+No scenario table exists: with a negative normalized base the engine emits Tier F and no scenarios, IRR, or IV (dcf_numbers.json: tier_by_numbers F, f_subtype no_cash_generation, implied_irr_weighted null). Inputs recorded anyway: moat 5, probs 10/25/30/25/10, default offsets −12/−5/0/+5/+12pp and multipliers 0.75/0.90/1.00/1.10/1.25.
+- **Growth sanity check (for the record):** the engine blend is 88.62% (rev CAGR 5y 88.62% · rev CAGR 3y 88.62% · latest rev YoY 88.54% — all the same two-year print, since only 2 fiscal years exist). That matches what the company just printed (+88.5% FY2026, +94% Q4) and its FY2027 guide (~+76% at the $2.5B midpoint) — the blend is *not* an artifact. It still cannot rescue the DCF: growth applied to a negative OE base is meaningless, and the binding question is when capex and working capital stop consuming all of OCF.
+- **Hurdle-clearing price: none.** A negative base clears no hurdle at any positive price; there is no IV@15% to quote and none is invented here.
+
+## Flags — every fragility flag resolved
+- **DATA_GAP:shares** (preliminary run): resolved by the filing override above — see OVERRIDE. data_gap_uncovered is empty in the final run.
+- **OVERRIDE_APPLIED:shares**: recorded in judgment.json, dcf_numbers.json (overrides_applied, override_impact) and score.json, with the out-of-band absence explicitly acknowledged via ack_reason.
+- **BASIS_BREAK_SUSPECT** (>60% revenue jump): resolved — not a basis break in the gated window. All four platform acquisitions closed in FY2024 (goodwill identical at both gated balance-sheet dates); FY2025 and FY2026 are both full combined years, so the +88.5% is organic demand growth, corroborated by bookings/backlog prints. The CAGRs are still only two-year figures — treat them as prints, not trends.
+- **THIN_HISTORY** (2 fiscal years): real and structural — the combined company has existed since FY2024 and has been public since February 2026. One reason confidence is low; there is no through-cycle evidence for margins, ROIC, or cash conversion.
+
+## My thoughts / method range
+- On the company's own non-GAAP lens this looks cheap-ish: FY2027 guided adjusted EPS $1.26–1.40 against a $31.68 price. On the sweep's lens it is unscoreable: adjusted EPS excludes exactly what owner's earnings charges — the capex building the capacity and the working capital funding the growth. Both lenses agree on the trigger that changes the answer: management says the Tijuana Powertrain expansion completes in Q4 FY2027 and lifts revenue capacity to ~$5.8B; if capex then falls toward D&A (~$66.9M) while OCF keeps scaling, conservative OE turns positive fast and this name gets a real DCF on the next pass.
+- Watch items for pass 2 / refresh: FCF conversion in the FY2027 10-Qs (first one due after the Sept 30, 2026 quarter), gross margin direction (35.0% and falling while scaling is the wrong sign), accrued warranty reserve up to $10.4M at June 30, 2026 from $2.7M a year earlier (10-K balance-sheet detail), further Neos secondary sales / Class B exchanges (supply overhang), and TRA cash payments once they begin.
+- Method range: there is none to report — every defensible owner's-earnings construction from this run's computed outputs is negative (conservative −$16.9M latest FY; maintenance −$55.3M). The F is a statement about cash generation to date, not about the franchise's demand position.
+
+## Final verdict
+- **Final tier: F** (no positive normalized conservative owner's earnings in either filed year; sub-type no_cash_generation)
+- Confidence: **Low** (2 years of history, Up-C share structure resolved only via the filer's own adjusted count, no through-cycle record)
+- One-liner: AI data-center power-equipment roll-up growing 89% with a $3.0B backlog, moat 5/10 — but conservative owner's earnings are negative in both filed years (FY2026 OCF $109.1M vs capex $115.9M + SBC $10.0M, plus a $137.2M working-capital build), so Tier F at $31.68: it clears no hurdle until free cash flow turns positive.

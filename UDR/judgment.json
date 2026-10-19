@@ -1,0 +1,38 @@
+{
+ "capex_override": {
+  "ack_reason": "The out-of-band flag is mechanical only: the band anchors on the last FILED capex value under an engine-read tag, which is the FY2018 PaymentsToAcquireProductiveAssets fact of $4,850,000 \u2014 a minor productive-assets line that ends in FY2018, not the filer's real-estate capex line at all (UDR's actual recurring capex is filed only as 'Payments for capital improvements', per the source). The override is not an estimate lacking an anchor \u2014 it is the median of the filer's own FY2023-25 cash-flow figures from its FY2025 10-K.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads, because UDR (an apartment REIT) reports its recurring real-estate capex on the cash-flow line 'Payments for capital improvements', tagged us-gaap PaymentsForCapitalImprovements, which is not in the engine's candidate tag list (the engine-read PaymentsToAcquireProductiveAssets series ends at FY2018). Filed values in the FY2025 10-K: $295,440,000 (FY2023), $249,886,000 (FY2024), $252,857,000 (FY2025). The engine applies this single value to every missing period; the value used is the median of the three filed years (the FY2025 figure). Against the true per-year figures it understates FY2023 capex by $42,583,000 (flatters that year's OE) and overstates FY2024 capex by $2,971,000 (conservative direction); FY2025 is exact. Excluded, deliberately: PaymentsToDevelopRealEstateAssets ($155,875,000 / $67,532,000 / $43,695,000 FY2023/24/25) and payments to acquire buildings / real estate \u2014 development and acquisition spend is growth investment presented separately by the filer, not recurring capex; charging it would double-count growth the unit count already reflects.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-17, accession 0000074208-26-000013), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $295,440,000 FY2023, $249,886,000 FY2024, $252,857,000 FY2025; the override value is the median of the three filed years (the FY2025 figure).",
+  "value": 252857000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Apartments are a commodity product \u2014 12-month leases, low tenant switching costs, and rent is a market price set against new supply (Sun Belt same-store NOI fell ~2% in Q2 2026 under the supply wave)",
+  "Measured returns are low: roic_proxy 2.6%-6.5% over FY2020-25 and ROE 2.0%-11.5% (fundamentals.json) \u2014 no record of returns well above the cost of capital, and the higher years are flattered by gains on property sales inside operating income",
+  "Returns are capped by replacement cost / cap-rate arbitrage \u2014 new supply is the permanent competitor, and dispositions in 2026 are clearing at only a mid-5% cap rate",
+  "Leverage is real: consolidated net debt / EBITDAre 5.6x at Q2 2026 (supplement) on $5,820,147,000 of net debt (dcf_numbers.json) \u2014 the equity is a levered claim on slow-growing rent",
+  "Mid-Atlantic / Washington D.C. exposure (~19% of same-store revenue per sector coverage) carries federal-workforce demand risk; Southeast/Southwest NOI was negative in Q2 2026"
+ ],
+ "moat_for": [
+  "High-barrier coastal footprint: ~75% of NOI from coastal markets (West, Northeast, Mid-Atlantic \u2014 San Francisco, Orange County, NYC, D.C.) where entitlement and land scarcity structurally limit new supply (Q2 2026 supplement / call coverage)",
+  "Scale and operating platform: 60,259 homes in 186 communities at Q2 2026, in-house development/redevelopment, and the Orion data-analytics platform \u2014 Q2 2026 resident retention hit a record 60% and blended lease-rate growth was 2.1%",
+  "Occupancy durability through a record supply wave: physical occupancy held at 96.6% in Q2 2026 with same-store revenue +1.8% and NOI +1.4%",
+  "Balance-sheet access as a competitive tool: investment-grade, ~$1B liquidity, 5.2x interest coverage (Q2 2026 supplement) \u2014 cheaper, longer capital than private landlords, funding buybacks (~11.5M shares, ~$420M since Sep 2025) below NAV"
+ ],
+ "moat_justification": "Coastal high-barrier locations, scale and a data-driven operating platform are real but modest advantages in a commodity business: apartments have no network effects, no lock-in beyond a 12-month lease and no pricing power against new supply. Filed returns confirm it \u2014 roic_proxy ran only 2.6%-6.5% over FY2020-25 and ROE 2.0%-11.5% (fundamentals.json), with the better years flattered by gains on property sales. No evidence of sustained returns well above the cost of capital, so a 7+ moat is not available. Moat 4/10 (weak), in line with apartment-REIT peers scored in this sweep (MAA 4, AMH 4).",
+ "moat_score": 4,
+ "name": "UDR, Inc.",
+ "one_liner": "Quality coastal apartment REIT, moat 4/10 \u2014 a high-barrier coastal footprint (~75% of NOI) and a record-retention operating platform are real, but apartments are a commodity and filed ROIC ran only 2.6%-6.5% over FY2020-25; on a TTM owner's-earnings base of $1.80/share after charging filed capital-improvements capex, weighted IRR is 7.9% (IV@15% $14.67) at $34.26, so it clears the 15% hurdle only below ~$15 \u2014 the REIT lens (FY2026 FFOA guided at $2.53/share, DPS $1.74) is kinder, but neither supports 15% at this price.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Real Estate / Apartment REIT",
+ "tier_override": null,
+ "tier_override_reason": null
+}

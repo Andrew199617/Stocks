@@ -1,0 +1,492 @@
+{
+ "ticker": "EMBJ",
+ "cik": 1355444,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001628280-26-021824",
+   "filed": "2026-03-30",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1355444/000162828026021824/erj-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "erj:CommercialAviationMember",
+     "label": "Commercial Aviation",
+     "values": [
+      1846800000,
+      2208600000,
+      2369800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3505,
+      0.3454,
+      0.3127
+     ],
+     "growth_yoy": [
+      null,
+      0.1959,
+      0.073
+     ]
+    },
+    {
+     "member": "erj:ExecutiveAviationMember",
+     "label": "Executive Aviation",
+     "values": [
+      1408200000,
+      1762700000,
+      2205100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2673,
+      0.2757,
+      0.291
+     ],
+     "growth_yoy": [
+      null,
+      0.2517,
+      0.251
+     ]
+    },
+    {
+     "member": "erj:ServiceAndSupportMember",
+     "label": "Service And Support",
+     "values": [
+      1417600000,
+      1636500000,
+      1925600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2691,
+      0.2559,
+      0.2541
+     ],
+     "growth_yoy": [
+      null,
+      0.1544,
+      0.1767
+     ]
+    },
+    {
+     "member": "erj:DefenseAndSecurityMember",
+     "label": "Defense And Security",
+     "values": [
+      515400000,
+      720900000,
+      983900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0978,
+      0.1127,
+      0.1298
+     ],
+     "growth_yoy": [
+      null,
+      0.3987,
+      0.3648
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "All other segments",
+     "values": [
+      80500000,
+      66000000,
+      93100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0153,
+      0.0103,
+      0.0123
+     ],
+     "growth_yoy": [
+      null,
+      -0.1801,
+      0.4106
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5268500000,
+     6394700000,
+     7577500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ifrs-full:AircraftMember",
+     "label": "Aircraft",
+     "values": [
+      3300200000,
+      4003000000,
+      4606500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6264,
+      0.626,
+      0.6079
+     ],
+     "growth_yoy": [
+      null,
+      0.213,
+      0.1508
+     ]
+    },
+    {
+     "member": "erj:ServicesMember",
+     "label": "Services",
+     "values": [
+      1021600000,
+      1229200000,
+      1417200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1939,
+      0.1922,
+      0.187
+     ],
+     "growth_yoy": [
+      null,
+      0.2032,
+      0.1529
+     ]
+    },
+    {
+     "member": "erj:LongTermContractsAircraftAndDevelopmentMember",
+     "label": "Long Term Contracts Aircraft And Development",
+     "values": [
+      457300000,
+      661200000,
+      919100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0868,
+      0.1034,
+      0.1213
+     ],
+     "growth_yoy": [
+      null,
+      0.4459,
+      0.39
+     ]
+    },
+    {
+     "member": "erj:SparePartsMember",
+     "label": "Spare Parts",
+     "values": [
+      458300000,
+      457800000,
+      566000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.087,
+      0.0716,
+      0.0747
+     ],
+     "growth_yoy": [
+      null,
+      -0.0011,
+      0.2363
+     ]
+    },
+    {
+     "member": "erj:OthersMember",
+     "label": "Others",
+     "values": [
+      31100000,
+      43500000,
+      68700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0059,
+      0.0068,
+      0.0091
+     ],
+     "growth_yoy": [
+      null,
+      0.3987,
+      0.5793
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5268500000,
+     6394700000,
+     7577500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      3282300000,
+      3781200000,
+      4450900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.623,
+      0.5913,
+      0.5874
+     ],
+     "growth_yoy": [
+      null,
+      0.152,
+      0.1771
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1130700000,
+      1437500000,
+      1840700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2146,
+      0.2248,
+      0.2429
+     ],
+     "growth_yoy": [
+      null,
+      0.2713,
+      0.2805
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      453700000,
+      531400000,
+      630200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0861,
+      0.0831,
+      0.0832
+     ],
+     "growth_yoy": [
+      null,
+      0.1713,
+      0.1859
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      204500000,
+      256200000,
+      409100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0388,
+      0.0401,
+      0.054
+     ],
+     "growth_yoy": [
+      null,
+      0.2528,
+      0.5968
+     ]
+    },
+    {
+     "member": "erj:LatinAmericaExceptBrazilMember",
+     "label": "Latin America, Except Brazil",
+     "values": [
+      98200000,
+      267200000,
+      142000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0186,
+      0.0418,
+      0.0187
+     ],
+     "growth_yoy": [
+      null,
+      1.721,
+      -0.4686
+     ]
+    },
+    {
+     "member": "erj:OtherForeignCountriesMember",
+     "label": "Other Foreign Countries",
+     "values": [
+      99100000,
+      121200000,
+      104600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0188,
+      0.019,
+      0.0138
+     ],
+     "growth_yoy": [
+      null,
+      0.223,
+      -0.137
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5268500000,
+     6394700000,
+     7577500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/Revenues/annual: row 'Foreign countries' (ifrs-full:ForeignCountriesMember) dropped: same numbers as 'Other Foreign Countries' (erj:OtherForeignCountriesMember)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

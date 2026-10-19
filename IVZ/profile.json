@@ -1,0 +1,296 @@
+{
+ "ticker": "IVZ",
+ "cik": 914208,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T19:46:41-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000914208.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000079/ivz-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IVZ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IVZ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Invesco Ltd.",
+  "cik": 914208,
+  "description": {
+   "text": "Invesco Ltd. (the Parent), along with its consolidated entities (collectively, Invesco or the company), is an independent investment management firm dedicated to delivering a superior investment experience. Our comprehensive range of active, passive and alternative investment capabilities has been constructed over many years to help clients achieve their investment objectives. We draw on this comprehensive range of capabilities to provide solutions designed to deliver key outcomes aligned to client needs. With approximately 7,500 employees and an on-the-ground presence in more than 20 countries, Invesco is well positioned to meet the needs of investors across the globe. We have specialized investment teams managing investments across a broad range of asset classes, investment styles and geographies. For decades, individuals and institutions have viewed Invesco as a trusted partner for a comprehensive set of investment needs. We have a significant presence in the retail and institutional markets within the investment management industry in the Americas, Europe, Middle East and Africa (EMEA) and Asia-Pacific (APAC), serving clients in more than 120 countries. As of December 31, 2025, the firm managed approximately $2.2 trillion in assets for investors around the world.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0000914208-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000079/ivz-20251231.htm"
+  },
+  "description_short": "Invesco Ltd. is one of the world's leading asset management firms serving clients in more than 120 countries. With US$2.5 trillion in assets under management as of June 30, 2026, we deliver a comprehensive range of investment capabilities across public, private, active, and passive. Our collaborative mindset, breadth of solutions and global scale mean we're well positioned to help retail and institutional investors rethink challenges and find new possibilities for success.",
+  "industry": "Investment Managers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6282",
+  "sic_description": "Investment Advice",
+  "state_of_incorporation": "D0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.invesco.com",
+  "headquarters": "Atlanta, GA",
+  "address": {
+   "street": "1331 Spring Street NW Suite 2500",
+   "city": "Atlanta",
+   "state": "GA",
+   "zip": "30309",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "404-892-0896",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-07",
+  "first_sec_filing_form": "SC 13D/A",
+  "former_names": [
+   "Invesco Asset Management Deutschland GMBH",
+   "Invesco Ltd",
+   "INVESCO PLC/LONDON/",
+   "AMVESCAP PLC/LONDON/",
+   "AMVESCAP /LONDON/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000914208&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K/A",
+   "filed": "2026-10-09",
+   "period": "2026-10-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Amendment: Reg FD",
+   "accession": "0000914208-26-000360",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000360/ivz-20261009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000353",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000353/ivz-20261009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000350",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000350/ivz-20260910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000914208-26-000347",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000347/ivz-20260831.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000252",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000252/ivz-20260811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000914208-26-000235",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000235/ivz-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000914208-26-000229",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000229/ivz-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000207",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000207/ivz-20260710.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000202",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000202/ivz-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000914208-26-000196",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000196/ivz-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000191",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000191/ivz-20260511.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000914208-26-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000106/ivz-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000914208-26-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000102/ivz-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000097/ivz-20260410.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-140019",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000119312526140019/d931607ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000088/ivz-20260310.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000914208-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000079/ivz-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-18",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000914208-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000076/ivz-20260218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000914208-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000025/ivz-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000914208-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/914208/000091420826000017/ivz-20260127.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-24"
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine has NO filed capex value to band against (last_filed_value is null) because Regency tags its capital spending as PaymentsToDevelopRealEstateAssets, outside the engine's candidate tag list. The value is not an estimate \u2014 it is the FY2025 figure printed in the FY2025 10-K's cash flow statement and MD&A, verified directly in the filing document.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, 2024, 2025 of the last 3 (in fact all years under engine candidate tags). The override value is the LATEST filed year's (FY2025) development-and-capital-improvements spend, because the final base is the TTM pin: ttm.py fills every capex leg with this override (no filed leg exists under its candidate tags), so the pin is only honest at the current spend level \u2014 at FY2025's $435,112 thousand the TTM pin is $2.00/share vs a true TTM of $1.98/share computed from filed 10-Q YTD development spend (FY2025 $435,112 \u2212 Q1 2025 $101,386 + Q1 2026 $105,071 = $438,797 thousand TTM spend; analysis.md), while at FY2024's $343,368 thousand the pin would read $2.50/share on a capex leg the filings contradict (spend has plateaued at the FY2025 level: Q1 2026 $105,071 thousand vs Q1 2025 $101,386 thousand). Cost of the choice, disclosed: the engine applies the one value to every gap year, so the normalized 3-yr median reads ~$1.82/share \u2014 below every filed year \u2014 an artifact; the true per-year median at each year's filed spend and filed diluted share count is $2.31/share and the true latest-FY figure is $2.05/share (analysis.md method range). Acquisitions of operating real estate ($104,153 thousand in 2025, $45,405 thousand in 2024, same statements) are excluded, consistent with the engine's convention of excluding PaymentsToAcquireBusinesses from capex for non-REIT filers.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), consolidated statements of cash flows and MD&A Summary of Cash Flow Activity: 'Real estate development and capital improvements' $435,112 thousand in 2025 and $343,368 thousand in 2024; the 2023 figure $232,855 thousand is the same line as tagged PaymentsToDevelopRealEstateAssets in EDGAR companyfacts (10-Q YTD facts of the same tag give Q1 2025 $101,386 thousand and Q1 2026 $105,071 thousand). Regency files no PaymentsToAcquirePropertyPlantAndEquipment or any other engine candidate capex tag in any year \u2014 its capital spending is tagged PaymentsToDevelopRealEstateAssets, which the engine does not read, so the engine has no filed capex value (last_filed_value null).",
+  "value": 435112000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No network effects or lock-in: leases roll (short shop leases), grocer anchors are powerful counterparties who can relocate or extract concessions at renewal, and anchor consolidation/bankruptcy is a recurring sector hit",
+  "Local scarcity is contestable: rival REITs (Kimco, Brixmor, Federal Realty) and private developers can build or redevelop competing centers; the moat is a portfolio of local positions, not a franchise",
+  "Rate and cap-rate exposure dominates: bond-like earnings, a guided 100-150bp refinancing drag as maturing debt reprices (search results), and a valuation multiple that compresses when rates rise regardless of operations",
+  "Growth is increasingly bought with capital: revenue CAGR is flattered by the all-stock Urstadt Biddle acquisition (closed Aug 18, 2023; +79 properties) and a development ramp from $232.9M (2023) to $435.1M (2025) of annual spend that depresses current owner's earnings; guided per-share growth is ~5% \u2014 utility-like",
+  "Discretionary tenant tail (restaurants, fitness, services) and geographic concentration \u2014 California and Florida together are roughly half of annual base rent (search results)"
+ ],
+ "moat_for": [
+  "Grocery-anchored necessity tenancy: >85% of centers grocery-anchored (search results), anchors 98.4% leased \u2014 weekly-trip tenancy that is e-commerce-resistant and feeds the shop tenants",
+  "Location scarcity in affluent suburbs: ~$150k average household income within 3 miles (search results), premier suburban trade areas where zoning constrains new competing supply; portfolio 96.9% leased / 94.5% commenced with a $41.2M signed-not-occupied rent pipeline (Q2 2026 release)",
+  "Demonstrated pricing power: blended cash rent spreads +10.4% in Q2 2026 (+11.8% trailing twelve months), straight-line +19.5%; same-property NOI +5.3% in 2025, guided +3.7-4.1% in 2026; annual escalators in most new leases (search results)",
+  "Development platform: $680M in-process at a ~9% blended estimated yield (Q2 2026 release) \u2014 building at yields well above acquisition cap rates, funded cheaply by an A-rated balance sheet (pro-rata net debt + preferred / EBITDAre 5.0x; 87.3% of consolidated real estate assets unencumbered, FY2025 10-K)",
+  "Returns corroborate a narrow moat: roic_proxy 7.3% / 8.5% / 9.3% / 7.7% in 2022-2025 (fundamentals.json), operating margin ~72% \u2014 above a REIT's cost of capital through the cycle so far"
+ ],
+ "moat_justification": "Moderate/narrow: grocery-anchored necessity centers in affluent, supply-constrained suburbs with demonstrated pricing power (Q2 2026 blended cash rent spreads +10.4%, same-property NOI guided +3.7-4.1% for 2026 after +5.3% in 2025) and a development platform building at ~9% yields \u2014 but no network effects or lock-in (leases roll, grocer anchors are powerful counterparties), each center's local position is contestable by rival REITs and developers, returns are rate/cap-rate dominated, and the measured returns corroborate only a narrow moat: roic_proxy 7.3% / 8.5% / 9.3% / 7.7% across 2022-2025 (fundamentals.json) \u2014 above a REIT cost of capital, not wide-moat territory, and flattered by a depreciated-cost asset denominator.",
+ "moat_score": 5,
+ "name": "Regency Centers Corporation",
+ "one_liner": "Premier grocery-anchored shopping-center REIT, moat 5/10 \u2014 but at $73.24 the TTM owner's-earnings yield is only 2.73% (base OE $2.00/share after charging all $435.1M of development & capital-improvement spend), so the weighted IRR is 6.25% with IV@15% of $20.78 and even the super-bull case earns just 9.76%; it clears the 15% hurdle only below ~$21. The REIT lens is kinder (FY2026 guided Nareit FFO $4.84\u20134.88/share, Core Operating Earnings $4.62\u20134.66/share), but no reading of the filed numbers supports a 15% owner's-earnings return at this price.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Real Estate / REIT \u2014 Grocery-anchored shopping centers",
+ "shares_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:shares \u2014 diluted weighted shares missing for FY2023, 2024, 2025 in companyfacts; only non-diluted outstanding counts are filed there. The filer's own FY2025 diluted weighted average count fills the gap; the engine applies this single value to every missing period (including the 2016/2021/2022 fallback history years, where it modestly understates OE/share vs the ~171M shares then outstanding \u2014 history only, not the base). The 3-yr median base is barely affected: FY2024's true diluted count (183,040,000) differs from the override by 0.4%. ttm.py uses the override unprorated as the TTM denominator \u2014 the current-period figure.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 14 Earnings per Share and Unit, 'Parent Company Earnings per Share' table (in thousands, except per share data): weighted average common shares outstanding for diluted EPS 182,234 in 2025 (183,040 in 2024; 176,371 in 2023); diluted EPS $2.82 / $2.11 / $2.04 on net income attributable to common shareholders of $513,810 / $386,738 / $359,500 thousand. EDGAR companyfacts carries no weighted-average share series for CIK 910606 after FY2020 (the filer tags share counts with dimensions the aggregated facts drop), so the engine fell back to point-in-time CommonStockSharesOutstanding counts (184,581,070 / 181,361,454 / 182,902,234).",
+  "value": 182234000
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

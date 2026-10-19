@@ -1,0 +1,294 @@
+{
+ "ticker": "IONQ",
+ "cik": 1824920,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T23:53:18-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001824920.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IONQ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IONQ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "IonQ, Inc.",
+  "cik": 1824920,
+  "description": {
+   "text": "IonQ is the world’s first and only quantum platform company. We operate in every theater: in space, in the air, on land and at sea, where we seek to deliver the full promise of quantum, across computing, networking, sensing and security. We believe that we have the clearest path to fault-tolerant quantum computing, and a repertoire of networking, sensing and security products that will form the backbone of a global quantum infrastructure. We are developing quantum computers designed to solve some of the world’s most complex problems and transform business, society and the planet for the better. We believe that our proprietary technology, our architecture and the technology exclusively available to us through license agreements will offer us advantages both in research and development and in the commercial value of our product offerings. Today, we sell specialized quantum computing hardware, together with complementary products and services, such as quantum networking, quantum sensing and quantum security products and associated maintenance and support. We also sell access to several quantum computers of various qubit capacities and are in the process of researching and developing technologies for quantum computers with increasing computational capabilities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-071562",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231.htm"
+  },
+  "description_short": "IonQ, Inc. [NYSE: IONQ] is a leading quantum platform and foundry - delivering integrated quantum solutions across computing, networking, sensing, and security. IonQ's newest generation of quantum computers, the Superion, is the latest in a line of cutting-edge systems. Earlier systems have helped customers and partners including Amazon Web Services, AstraZeneca, and NVIDIA achieve a 20x performance increase over previous quantum solutions and accelerate innovation in drug discovery, materials science, financial modeling, logistics, cybersecurity, and defense. In 2025, the company achieved 99.99% two-qubit gate fidelity, setting a world record in quantum computing performance.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7373",
+  "sic_description": "Services-Computer Integrated Systems Design",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ionq.com",
+  "headquarters": "College Park, MD",
+  "address": {
+   "street": "4505 Campus Drive",
+   "city": "College Park",
+   "state": "MD",
+   "zip": "20740",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(301) 298-7997",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-10-16",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "dMY Technology Group, Inc. III"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001824920&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-424230",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526424230/ionq-20261014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-09",
+   "items": [
+    "1.01",
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Reg FD",
+   "accession": "0001193125-26-419609",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526419609/ionq-20261009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-384388",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-20260908.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-28",
+   "period": "2026-08-24",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001193125-26-374694",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526374694/ionq-20260824.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-341001",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/ionq-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "3.02",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity",
+   "accession": "0001193125-26-338998",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526338998/ionq-20260807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-335040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-327127",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526327127/ionq-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-321221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526321221/ionq-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-16",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-276342",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526276342/ionq-20260616.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-211876",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526211876/ionq-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-208923",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526208923/ionq-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-197487",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526197487/ionq-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950142-26-001187",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000095014226001187/eh260771393_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-124402",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526124402/ionq-20260319.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-10",
+   "items": [
+    "3.02"
+   ],
+   "description": "Unregistered sale of equity",
+   "accession": "0001193125-26-100814",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526100814/ionq-20260310.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-083238",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526083238/ionq-20260227.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-071562",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-071520",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071520/ionq-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-30",
+   "period": "2026-01-26",
+   "items": [
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD",
+   "accession": "0001193125-26-032000",
+   "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526032000/ionq-20260126.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

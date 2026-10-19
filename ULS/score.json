@@ -1,0 +1,84 @@
+{
+ "ticker": "ULS",
+ "name": "UL Solutions Inc.",
+ "sector": "Industrials / Testing, inspection & certification",
+ "price": 73.31,
+ "market_cap_b": 14.88,
+ "engine_version": 5,
+ "base_oe_per_share": 1.838235294117647,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "UL mark and accreditation make certification close to a market-access requirement in core North American safety categories; ROIC proxy 23.6%/28.5%/26.3% (2023-2025) and gross margin rising 47.9% to 49.5% prove pricing power, but global TIC share is only ~7% against larger SGS/Bureau Veritas/Intertek rivals and growth is structurally mid-single-digit.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.64,
+   "irr": 0.0359
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 12.7,
+   "irr": 0.0462
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 17.87,
+   "irr": 0.057
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 24.93,
+   "irr": 0.0716
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 39.51,
+   "irr": 0.0991
+  }
+ },
+ "iv_at_15": 19.48,
+ "iv_at_12": 26.22,
+ "implied_irr": 0.061,
+ "implied_irr_base_case": 0.057,
+ "upside_at_15_pct": -73.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality TIC franchise, moat 7/10 \u2014 but at $73.31 it does not clear 15% (weighted IRR 6.1%, IV@15% $19.48); it clears 15% only at ~$19.48.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0462,
+ "irr_bull": 0.0716,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 13.5,
+ "iv_at_25": 10.25,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 196000000,
+ "shares_diluted_latest": 203000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Regulatory/accreditation moat \u2014 UL mark embedded in codes and regulator/retailer requirements",
+  "Re-certification switching costs for manufacturers mid-product-cycle",
+  "ROIC proxy 24-28% sustained (2023-2025) with gross margin rising to 49.5%",
+  "Demand tied to non-discretionary safety regulation plus electrification, energy storage and AI-data-center build-outs"
+ ],
+ "moat_against": [
+  "Only ~7% global TIC share; smaller than SGS and Bureau Veritas at global scale",
+  "Standards-setting sits with the nonprofit parent, not the listed company",
+  "Demand follows customer product-development cycles (tariff/macro freezes hit volumes)",
+  "Controlled company \u2014 UL Standards & Engagement held 95.7% of voting power at Dec 31, 2024",
+  "Virtual/AI-assisted testing could commoditize low-complexity work"
+ ]
+}

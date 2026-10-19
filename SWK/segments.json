@@ -1,0 +1,866 @@
+{
+ "ticker": "SWK",
+ "cik": 93556,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000093556-26-000009",
+   "filed": "2026-02-24",
+   "period": "2026-01-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000009/swk-20260103_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000093556-26-000015",
+   "filed": "2026-04-29",
+   "period": "2026-04-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000015/swk-20260404_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000093556-26-000031",
+   "filed": "2026-07-29",
+   "period": "2026-07-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000031/swk-20260704_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "swk:ToolsAndOutdoorSegmentMember",
+     "label": "Tools And Outdoor Segment",
+     "values": [
+      13367100000,
+      13304200000,
+      13158200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.847,
+      0.8658,
+      0.8697
+     ],
+     "growth_yoy": [
+      null,
+      -0.0047,
+      -0.011
+     ]
+    },
+    {
+     "member": "swk:EngineeredFasteningSegmentMember",
+     "label": "Engineered Fastening Segment",
+     "values": [
+      2414000000,
+      2061500000,
+      1972200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.153,
+      0.1342,
+      0.1303
+     ],
+     "growth_yoy": [
+      null,
+      -0.146,
+      -0.0433
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15781100000,
+     15365700000,
+     15130400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "swk:ToolsAndOutdoorSegmentMember",
+     "label": "Tools And Outdoor Segment",
+     "values": [
+      3280900000,
+      3461400000,
+      3335600000,
+      3564300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8762,
+      0.8774,
+      0.8672,
+      0.8999
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0167,
+      0.0297
+     ]
+    },
+    {
+     "member": "swk:EngineeredFasteningSegmentMember",
+     "label": "Engineered Fastening Segment",
+     "values": [
+      463700000,
+      483800000,
+      510800000,
+      396400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1238,
+      0.1226,
+      0.1328,
+      0.1001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1016,
+      -0.1807
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3744600000,
+     3945200000,
+     3846400000,
+     3960700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "swk:ToolsAndOutdoorSegmentMember",
+     "label": "Tools And Outdoor Segment",
+     "values": [
+      687600000,
+      1197400000,
+      1328800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7207,
+      0.8245,
+      0.8709
+     ],
+     "growth_yoy": [
+      null,
+      0.7414,
+      0.1097
+     ]
+    },
+    {
+     "member": "swk:EngineeredFasteningSegmentMember",
+     "label": "Engineered Fastening Segment",
+     "values": [
+      266500000,
+      254900000,
+      197000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2793,
+      0.1755,
+      0.1291
+     ],
+     "growth_yoy": [
+      null,
+      -0.0435,
+      -0.2271
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     954100000,
+     1452300000,
+     1525800000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "swk:ToolsAndOutdoorSegmentMember",
+     "label": "Tools And Outdoor Segment",
+     "values": [
+      289200000,
+      238100000,
+      276000000,
+      389000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8812,
+      0.8718,
+      0.8192,
+      0.8829
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0456,
+      0.6338
+     ]
+    },
+    {
+     "member": "swk:EngineeredFasteningSegmentMember",
+     "label": "Engineered Fastening Segment",
+     "values": [
+      39000000,
+      35000000,
+      60900000,
+      51600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1188,
+      0.1282,
+      0.1808,
+      0.1171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5615,
+      0.4743
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     328200000,
+     273100000,
+     336900000,
+     440600000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "swk:ToolsAndOutdoorSegmentMember",
+     "label": "Tools And Outdoor Segment",
+     "values": [
+      18135800000,
+      17705500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8301,
+      0.8334
+     ],
+     "growth_yoy": [
+      null,
+      -0.0237
+     ]
+    },
+    {
+     "member": "swk:EngineeredFasteningSegmentMember",
+     "label": "Engineered Fastening Segment",
+     "values": [
+      3962900000,
+      2402000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1814,
+      0.1131
+     ],
+     "growth_yoy": [
+      null,
+      -0.3939
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -249800000,
+      -400100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0114,
+      -0.0188
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21848900000,
+     21243700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2026-01-03",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "swk:ToolsAndOutdoorSegmentMember",
+     "label": "Tools And Outdoor Segment",
+     "values": [
+      17705500000,
+      18006500000,
+      17839900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8334,
+      0.8336,
+      0.8878
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "swk:EngineeredFasteningSegmentMember",
+     "label": "Engineered Fastening Segment",
+     "values": [
+      2402000000,
+      2381400000,
+      2386400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1131,
+      0.1103,
+      0.1188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -400100000,
+      -339100000,
+      -132800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0188,
+      -0.0157,
+      -0.0066
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21243700000,
+     21599800000,
+     20093500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      9861300000,
+      9505400000,
+      9316800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6249,
+      0.6186,
+      0.6158
+     ],
+     "growth_yoy": [
+      null,
+      -0.0361,
+      -0.0198
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      3024700000,
+      3018300000,
+      3079800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1917,
+      0.1964,
+      0.2036
+     ],
+     "growth_yoy": [
+      null,
+      -0.0021,
+      0.0204
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      1262700000,
+      1222800000,
+      1213900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.08,
+      0.0796,
+      0.0802
+     ],
+     "growth_yoy": [
+      null,
+      -0.0316,
+      -0.0073
+     ]
+    },
+    {
+     "member": "swk:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      870900000,
+      879700000,
+      839600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0552,
+      0.0573,
+      0.0555
+     ],
+     "growth_yoy": [
+      null,
+      0.0101,
+      -0.0456
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      761500000,
+      739500000,
+      680300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0483,
+      0.0481,
+      0.045
+     ],
+     "growth_yoy": [
+      null,
+      -0.0289,
+      -0.0801
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15781100000,
+     15365700000,
+     15130400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2327300000,
+      2430400000,
+      2334800000,
+      2412200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6215,
+      0.616,
+      0.607,
+      0.609
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0032,
+      -0.0075
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      752000000,
+      829500000,
+      820900000,
+      815700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2008,
+      0.2103,
+      0.2134,
+      0.2059
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0916,
+      -0.0166
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      288000000,
+      300500000,
+      285400000,
+      316900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0769,
+      0.0762,
+      0.0742,
+      0.08
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.009,
+      0.0546
+     ]
+    },
+    {
+     "member": "swk:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      179200000,
+      211900000,
+      211000000,
+      241800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0479,
+      0.0537,
+      0.0549,
+      0.061
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1775,
+      0.1411
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      198100000,
+      172900000,
+      194300000,
+      174100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0529,
+      0.0438,
+      0.0505,
+      0.044
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0192,
+      0.0069
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3744600000,
+     3945200000,
+     3846400000,
+     3960700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: rows sum to 92.8% of the consolidated total for 2026-01-03 (ties_to_total: false)"
+ ],
+ "complete": true
+}

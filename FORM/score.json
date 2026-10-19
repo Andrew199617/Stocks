@@ -1,0 +1,85 @@
+{
+ "ticker": "FORM",
+ "name": "FormFactor, Inc.",
+ "sector": "Semiconductors / Wafer test equipment (probe cards & systems)",
+ "price": 105.01,
+ "market_cap_b": 8.22,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2572725215598521,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "#1 global probe-card supplier (~22-25% share, TechInsights #1 in Test Subsystems 13 consecutive years) with per-device qualification stickiness and a MEMS technology lead in HBM/advanced packaging \u2014 but the measured franchise is weaker than the position: ROIC proxy ran only 4.9%-13.1% over FY2020-25 and fell to 4.9% in FY2025, GAAP gross margin was flat ~39-42% for five straight years (pricing power unproven until the 2026 AI cycle), Technoprobe is a strong #2, and demand from a concentrated memory/logic customer base is violently cyclical (revenue -11% in FY2023; conservative OE negative in 2 of the last 3 FYs). Moderate/narrow moat: 5/10.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 5.64,
+   "irr": 0.031
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 9.46,
+   "irr": 0.0363
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 15.24,
+   "irr": 0.045
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 23.2,
+   "irr": 0.0569
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 36.27,
+   "irr": 0.0753
+  }
+ },
+ "iv_at_15": 15.1,
+ "iv_at_12": 20.44,
+ "implied_irr": 0.0452,
+ "implied_irr_base_case": 0.045,
+ "upside_at_15_pct": -85.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real AI/HBM wafer-test franchise, moat 5/10, but at $105.01 the price embeds far more than even the super-bull owner's-earnings path delivers \u2014 weighted IRR 4.52%, weighted IV@15% $15.10 vs $105.01; it clears a 15% hurdle only near $15.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0363,
+ "irr_bull": 0.0569,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 10.37,
+ "iv_at_25": 7.8,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -91122000,
+ "shares_diluted_latest": 78313000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 global probe-card supplier (~22-25% share; TechInsights #1 in Test Subsystems for 13 consecutive years)",
+  "Probe cards are qualified per device and process \u2014 requalification friction makes incumbency sticky at TSMC, Samsung, Intel and the memory makers",
+  "MEMS / advanced-probe technology lead for HBM and advanced packaging; reported second-source position for Nvidia GPU probe cards at TSMC (Deutsche Bank initiation, Sept 2026)",
+  "Net-cash balance sheet (net debt -$91.1M) funds the Farmers Branch capacity build through the cycle"
+ ],
+ "moat_against": [
+  "ROIC proxy only 4.9%-13.1% FY2020-25 and falling to 4.9% in FY2025 \u2014 returns near, not well above, the cost of capital",
+  "GAAP gross margin flat ~39-42% for five straight years \u2014 no proven pricing power until the 2026 AI/HBM cycle",
+  "Technoprobe is a strong #2 (~16% share), plus Micronics Japan, MPI and low-cost Chinese entrants",
+  "Customer concentration in a handful of memory/logic makers; violently cyclical demand (revenue -11% in 2023, conservative OE negative in 2 of last 3 FYs)",
+  "SBC consumes most of pre-SBC cash generation in soft years (engine F sub-type 'sbc_exceeds_cash' on the median window)"
+ ]
+}

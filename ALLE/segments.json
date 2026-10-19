@@ -1,0 +1,1105 @@
+{
+ "ticker": "ALLE",
+ "cik": 1579241,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001579241-26-000007",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000007/alle-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001579241-26-000015",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000015/alle-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001579241-26-000028",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000028/alle-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "alle:AllegionAmericasMember",
+     "label": "Allegion Americas",
+     "values": [
+      757800000,
+      821500000,
+      809900000,
+      918600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8045,
+      0.8038,
+      0.7836,
+      0.7977
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0688,
+      0.1182
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      184100000,
+      200500000,
+      223700000,
+      232900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1955,
+      0.1962,
+      0.2164,
+      0.2023
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2151,
+      0.1616
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     941900000,
+     1022000000,
+     1033600000,
+     1151500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "alle:Alle_AllegionAmericasMember",
+     "label": "alle_Allegion Americas",
+     "values": [
+      2913600000,
+      3012400000,
+      3218800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7981,
+      0.7986,
+      0.7914
+     ],
+     "growth_yoy": [
+      null,
+      0.0339,
+      0.0685
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      737200000,
+      759800000,
+      848500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2019,
+      0.2014,
+      0.2086
+     ],
+     "growth_yoy": [
+      null,
+      0.0307,
+      0.1167
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3650800000,
+     3772200000,
+     4067300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "alle:AllegionAmericasMember",
+     "label": "Allegion Americas",
+     "values": [
+      757800000,
+      821500000,
+      809900000,
+      918600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8045,
+      0.8038,
+      0.7836,
+      0.7977
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0688,
+      0.1182
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      184100000,
+      200500000,
+      223700000,
+      232900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1955,
+      0.1962,
+      0.2164,
+      0.2023
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2151,
+      0.1616
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     941900000,
+     1022000000,
+     1033600000,
+     1151500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "alle:Alle_AllegionAmericasMember",
+     "label": "alle_Allegion Americas",
+     "values": [
+      757200000,
+      816200000,
+      896500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0689,
+      1.0455,
+      1.043
+     ],
+     "growth_yoy": [
+      null,
+      0.0779,
+      0.0984
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      58100000,
+      66300000,
+      76500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.082,
+      0.0849,
+      0.089
+     ],
+     "growth_yoy": [
+      null,
+      0.1411,
+      0.1538
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     708400000,
+     780700000,
+     859500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "alle:AllegionAmericasMember",
+     "label": "Allegion Americas",
+     "values": [
+      211400000,
+      236600000,
+      215100000,
+      266800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0764,
+      1.0769,
+      1.1014,
+      1.0475
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0175,
+      0.1276
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      11700000,
+      15700000,
+      8300000,
+      14800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0596,
+      0.0715,
+      0.0425,
+      0.0581
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2906,
+      -0.0573
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      26700000,
+      32600000,
+      28100000,
+      26900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1359,
+      0.1484,
+      0.1439,
+      0.1056
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0524,
+      -0.1748
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     196400000,
+     219700000,
+     195300000,
+     254700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "alle:Alle_AllegionAmericasMember",
+     "label": "alle_Allegion Americas",
+     "values": [
+      2457700000,
+      2572700000,
+      2732500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.57,
+      0.5733,
+      0.5231
+     ],
+     "growth_yoy": [
+      null,
+      0.0468,
+      0.0621
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      1204300000,
+      1146000000,
+      1886100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2793,
+      0.2554,
+      0.3611
+     ],
+     "growth_yoy": [
+      null,
+      -0.0484,
+      0.6458
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      649500000,
+      769100000,
+      605100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1506,
+      0.1714,
+      0.1158
+     ],
+     "growth_yoy": [
+      null,
+      0.1841,
+      -0.2132
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4311500000,
+     4487800000,
+     5223700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "alle:Alle_AllegionAmericasMember",
+     "label": "alle_Allegion Americas",
+     "values": [
+      67600000,
+      74300000,
+      79400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6202,
+      0.6394,
+      0.6122
+     ],
+     "growth_yoy": [
+      null,
+      0.0991,
+      0.0686
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      40000000,
+      41000000,
+      49400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.367,
+      0.3528,
+      0.3809
+     ],
+     "growth_yoy": [
+      null,
+      0.025,
+      0.2049
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1400000,
+      900000,
+      900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0128,
+      0.0077,
+      0.0069
+     ],
+     "growth_yoy": [
+      null,
+      -0.3571,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     109000000,
+     116200000,
+     129700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "alle:Alle_AllegionAmericasMember",
+     "label": "alle_Allegion Americas",
+     "values": [
+      18900000,
+      19900000,
+      20300000,
+      20500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6451,
+      0.6482,
+      0.585,
+      0.5874
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0741,
+      0.0302
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      10400000,
+      10800000,
+      14400000,
+      14400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3549,
+      0.3518,
+      0.415,
+      0.4126
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3846,
+      0.3333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     29300000,
+     30700000,
+     34700000,
+     34900000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+   "label": "Capital expenditures by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "alle:Alle_AllegionAmericasMember",
+     "label": "alle_Allegion Americas",
+     "values": [
+      72600000,
+      67200000,
+      69100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8176,
+      0.7352,
+      0.7462
+     ],
+     "growth_yoy": [
+      null,
+      -0.0744,
+      0.0283
+     ]
+    },
+    {
+     "member": "alle:AllegionInternationalMember",
+     "label": "Allegion International",
+     "values": [
+      16200000,
+      24200000,
+      23500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1824,
+      0.2648,
+      0.2538
+     ],
+     "growth_yoy": [
+      null,
+      0.4938,
+      -0.0289
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     88800000,
+     91400000,
+     92600000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "alle:MechanicalProductsMember",
+     "label": "Mechanical Products",
+     "values": [
+      2436300000,
+      2572200000,
+      2713900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6673,
+      0.6819,
+      0.6672
+     ],
+     "growth_yoy": [
+      null,
+      0.0558,
+      0.0551
+     ]
+    },
+    {
+     "member": "alle:ElectronicProductsMember",
+     "label": "Electronic Products",
+     "values": [
+      965000000,
+      946400000,
+      1075100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2643,
+      0.2509,
+      0.2643
+     ],
+     "growth_yoy": [
+      null,
+      -0.0193,
+      0.136
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      249500000,
+      253600000,
+      278300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0683,
+      0.0672,
+      0.0684
+     ],
+     "growth_yoy": [
+      null,
+      0.0164,
+      0.0974
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3650800000,
+     3772200000,
+     4067300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      879500000,
+      958900000,
+      961600000,
+      1080600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9338,
+      0.9383,
+      0.9303,
+      0.9384
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0933,
+      0.1269
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      62400000,
+      63100000,
+      72000000,
+      70900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0662,
+      0.0617,
+      0.0697,
+      0.0616
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1538,
+      0.1236
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     941900000,
+     1022000000,
+     1033600000,
+     1151500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2754700000,
+      2858700000,
+      3049800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7545,
+      0.7578,
+      0.7498
+     ],
+     "growth_yoy": [
+      null,
+      0.0378,
+      0.0668
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      896100000,
+      913500000,
+      1017500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2455,
+      0.2422,
+      0.2502
+     ],
+     "growth_yoy": [
+      null,
+      0.0194,
+      0.1138
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3650800000,
+     3772200000,
+     4067300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 113.2% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 121.1% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product' (us-gaap:ProductMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Service, Mechanical Products, Electronic Products)"
+ ],
+ "complete": true
+}

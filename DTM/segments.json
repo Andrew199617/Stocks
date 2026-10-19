@@ -1,0 +1,551 @@
+{
+ "ticker": "DTM",
+ "cik": 1842022,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001842022-26-000003",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000003/dtm-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001842022-26-000006",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000006/dtm-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001842022-26-000009",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1842022/000184202226000009/dtm-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dtm:PipelineSegmentMember",
+     "label": "Pipeline Segment",
+     "values": [
+      377000000,
+      443000000,
+      687000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4089,
+      0.4516,
+      0.5527
+     ],
+     "growth_yoy": [
+      null,
+      0.1751,
+      0.5508
+     ]
+    },
+    {
+     "member": "dtm:GatheringSegmentMember",
+     "label": "Gathering Segment",
+     "values": [
+      545000000,
+      538000000,
+      556000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5911,
+      0.5484,
+      0.4473
+     ],
+     "growth_yoy": [
+      null,
+      -0.0128,
+      0.0335
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     922000000,
+     981000000,
+     1243000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dtm:PipelineSegmentMember",
+     "label": "Pipeline Segment",
+     "values": [
+      169000000,
+      176000000,
+      185000000,
+      183000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5578,
+      0.5696,
+      0.5506,
+      0.5335
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0947,
+      0.0398
+     ]
+    },
+    {
+     "member": "dtm:GatheringSegmentMember",
+     "label": "Gathering Segment",
+     "values": [
+      134000000,
+      133000000,
+      156000000,
+      168000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4422,
+      0.4304,
+      0.4643,
+      0.4898
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1642,
+      0.2632
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      0,
+      0,
+      -5000000,
+      -8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      -0.0149,
+      -0.0233
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     303000000,
+     309000000,
+     336000000,
+     343000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dtm:PipelineSegmentMember",
+     "label": "Pipeline Segment",
+     "values": [
+      278000000,
+      276000000,
+      370000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.724,
+      0.7797,
+      0.839
+     ],
+     "growth_yoy": [
+      null,
+      -0.0072,
+      0.3406
+     ]
+    },
+    {
+     "member": "dtm:GatheringSegmentMember",
+     "label": "Gathering Segment",
+     "values": [
+      106000000,
+      78000000,
+      71000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.276,
+      0.2203,
+      0.161
+     ],
+     "growth_yoy": [
+      null,
+      -0.2642,
+      -0.0897
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     384000000,
+     354000000,
+     441000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dtm:PipelineSegmentMember",
+     "label": "Pipeline Segment",
+     "values": [
+      92000000,
+      93000000,
+      108000000,
+      86000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8519,
+      0.8692,
+      0.8308,
+      0.7679
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1739,
+      -0.0753
+     ]
+    },
+    {
+     "member": "dtm:GatheringSegmentMember",
+     "label": "Gathering Segment",
+     "values": [
+      16000000,
+      14000000,
+      22000000,
+      26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1481,
+      0.1308,
+      0.1692,
+      0.2321
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.375,
+      0.8571
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     108000000,
+     107000000,
+     130000000,
+     112000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "dtm:PipelineSegmentMember",
+     "label": "Pipeline Segment",
+     "values": [
+      4439000000,
+      5274000000,
+      5297000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4942,
+      0.5309,
+      0.5255
+     ],
+     "growth_yoy": [
+      null,
+      0.1881,
+      0.0044
+     ]
+    },
+    {
+     "member": "dtm:GatheringSegmentMember",
+     "label": "Gathering Segment",
+     "values": [
+      4543000000,
+      4661000000,
+      4783000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5058,
+      0.4691,
+      0.4745
+     ],
+     "growth_yoy": [
+      null,
+      0.026,
+      0.0262
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8982000000,
+     9935000000,
+     10080000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dtm:PipelineSegmentMember",
+     "label": "Pipeline Segment",
+     "values": [
+      5297000000,
+      5297000000,
+      5351000000,
+      5393000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5255,
+      0.5255,
+      0.5269,
+      0.5284
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0102,
+      0.0181
+     ]
+    },
+    {
+     "member": "dtm:GatheringSegmentMember",
+     "label": "Gathering Segment",
+     "values": [
+      4783000000,
+      4783000000,
+      4804000000,
+      4814000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4745,
+      0.4745,
+      0.4731,
+      0.4716
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0044,
+      0.0065
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10080000000,
+     10080000000,
+     10155000000,
+     10207000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

@@ -1,0 +1,285 @@
+{
+ "ticker": "MANH",
+ "cik": 1056696,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T07:56:44-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001056696.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526037138/manh-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MANH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MANH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MANHATTAN ASSOCIATES INC",
+  "cik": 1056696,
+  "description": {
+   "text": "Manhattan Associates was founded in 1990 in Manhattan Beach, California and incorporated in Georgia in 1998. References in this filing to the “Company,” “Manhattan,” “Manhattan Associates,” “we,” “our,” and “us” refer to Manhattan Associates, Inc., our predecessors, and our wholly-owned and consolidated subsidiaries. Our principal executive offices are located at 2300 Windy Ridge Parkway, Tenth Floor, Atlanta, Georgia 30339, and our telephone number is 770-955-7070. We develop, sell, deploy, service and maintain software solutions designed to manage supply chains, inventory and omnichannel operations for retailers, wholesalers, manufacturers, logistics providers and other organizations. Our customers include many of the world’s premier and most profitable brands. We run our Manhattan Active® applications in the cloud and deliver them as subscription-based software as a service (\"SaaS\"). Its architecture is highly differentiated among enterprise application providers, particularly within the Omni Channel and Supply Chain categories. We believe our application architecture delivers a versionless yet highly extensible experience for our customers. We offer our customers access to new innovation on a quarterly basis, ensuring all customers are running on a single fully up-to-date codebase. With AI-driven insights and zero downtime updates, Manhattan delivers innovation seamlessly into customer environments without the need for planned maintenance windows.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-037138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526037138/manh-20251231.htm"
+  },
+  "description_short": "Manhattan Associates is a global technology leader, providing supply chain and omnichannel commerce solutions with unmatched AI capabilities. We design, build and offer best-in-class, AI-powered, cloud-based solutions that drive resilience and efficiency for businesses. We enable enterprises to uniquely unify front-end sales with back-end supply chain execution. Our commitment to innovation, cloud-native platform, and API-first architecture create simpler experiences and faster paths to value for our customers. We empower them to pre-empt and react to emerging trends and global disruptions with technical expertise and operational confidence, transforming challenges into competitive advantage.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "GA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.manh.com",
+  "headquarters": "Atlanta, Georgia",
+  "address": {
+   "street": "2300 Windy Ridge Parkway Tenth Floor",
+   "city": "Atlanta",
+   "state": "Georgia",
+   "zip": "30339",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-04"
+  },
+  "phone": "7709557070",
+  "employees": {
+   "count": 4370,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 4,370 employees worldwide.",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526037138/manh-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-02-27",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001056696&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-327591",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526327591/manh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-320952",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526320952/manh-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "2.05",
+    "7.01"
+   ],
+   "description": "Exit costs; Reg FD",
+   "accession": "0001193125-26-251382",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526251382/manh-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-14",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-232142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526232142/manh-20260514.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-228194",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526228194/manh-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-175715",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526175715/manh-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-166709",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526166709/manh-20260421.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-02",
+   "period": "2026-03-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-140163",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526140163/manh-20260327.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-04-02",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-140024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526140024/manh-20260402.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-25",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-073584",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526073584/manh-20260225.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-037138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526037138/manh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-024382",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312526024382/manh-20260127.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-24",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-249633",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312525249633/manh-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001193125-25-245073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000119312525245073/manh-20251021.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-25",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-098656",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000095017025098656/manh-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-097562",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000095017025097562/manh-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-14",
+   "period": "2025-05-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000950170-25-071356",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000095017025071356/manh-20250513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-25",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-058642",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000095017025058642/manh-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-22",
+   "period": "2025-04-16",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0000950170-25-056718",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000095017025056718/manh-20250416.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000950170-25-049285",
+   "url": "https://www.sec.gov/Archives/edgar/data/1056696/000095017025049285/manh-20250331.htm"
+  }
+ ],
+ "warnings": []
+}

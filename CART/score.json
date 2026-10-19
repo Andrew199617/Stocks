@@ -1,0 +1,89 @@
+{
+ "ticker": "CART",
+ "name": "Maplebear Inc. dba Instacart",
+ "sector": "Consumer / Grocery marketplace & retail technology",
+ "price": 49.83,
+ "market_cap_b": 13.93,
+ "engine_version": 5,
+ "base_oe_per_share": 3.0845280075143084,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Leading third-party grocery marketplace (~21.6% US online grocery share, dominant in large baskets) with retailer network effects, an enterprise platform (350+ storefronts, Caper carts) that raises retailer switching costs, and a closed-loop advertising business growing faster than GTV. ROIC proxy was 22.3% in 2024 and 21.3% in 2025 with gross margin 73-75%, supporting a moderate moat \u2014 but the clean ROIC history is only two post-IPO years, gross margin has slipped to 72.6% TTM, and Walmart and Amazon can outspend and out-distribute it, so it is not a wide moat.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 40.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 2.00 vs 3-yr median 1.12 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (9.3%) vs bull-case tier B (16.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 16.99,
+   "irr": 0.0665
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.62,
+   "irr": 0.0933
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 40.37,
+   "irr": 0.1285
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 57.87,
+   "irr": 0.1667
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 89.3,
+   "irr": 0.2221
+  }
+ },
+ "iv_at_15": 43.86,
+ "iv_at_12": 60.01,
+ "implied_irr": 0.1369,
+ "implied_irr_base_case": 0.1285,
+ "upside_at_15_pct": -12.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "High-quality, debt-free grocery platform, moat 6/10 \u2014 does not clear 15% at $49.83 on TTM owner's earnings (13.7% weighted IRR, IV@15% $43.86); it clears 15% at or below $43.86, with the bear case at 9.3%.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0933,
+ "irr_bull": 0.1667,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 29.66,
+ "iv_at_25": 22.05,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 279621000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Leading third-party grocery marketplace \u2014 ~21.6% US online grocery share and >70% share of large baskets over $75",
+  "Retailer network effects across 1,500+ banners plus scale data from 1.6B lifetime orders",
+  "Enterprise platform (storefronts, fulfillment, Caper carts) embedded in retailer operations \u2014 real switching costs",
+  "Closed-loop advertising: ad revenue +16% in Q2 2026 to 2.9% of GTV, monetizing purchase intent a second time",
+  "ROIC proxy 22.3% (2024) and 21.3% (2025) with gross margin 75.3% / 73.7% \u2014 returns well above cost of capital in the clean post-IPO years"
+ ],
+ "moat_against": [
+  "Walmart (largest US grocer, own logistics) and Amazon same-day fresh expansion can compress share and take rate",
+  "DoorDash and Uber Eats encroaching on grocery from adjacent delivery networks",
+  "Low consumer switching costs \u2014 shoppers multi-home and retailers can insource or dual-source",
+  "Gross margin eroding: 75.3% (2024) to 73.7% (2025) to 72.6% TTM as ad publisher payments and cost of revenue rise",
+  "SBC is a large, rising real cost: $300M (2024) to $352M (2025) to $401M TTM, ~10% of revenue"
+ ]
+}

@@ -1,0 +1,101 @@
+{
+ "ticker": "MKC",
+ "cik": 63754,
+ "entity": "McCORMICK\u00a0& COMPANY, INCORPORATED",
+ "fy_end": "2025-11-30",
+ "ytd_end": "2026-08-31",
+ "inputs": {
+  "ocf": {
+   "fy": 962200000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 420200000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 598800000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1140800000
+  },
+  "capex": {
+   "fy": 221800000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 138100000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 131200000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 214900000
+  },
+  "sbc": {
+   "fy": 46200000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 37300000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 34500000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 43400000
+  },
+  "shares_diluted": {
+   "fy": 269400000,
+   "fy_period": [
+    "2024-12-01",
+    "2025-11-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 269400000,
+   "ytd_prior_period": [
+    "2024-12-01",
+    "2025-08-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 269300000,
+   "ytd_current_period": [
+    "2025-12-01",
+    "2026-08-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1140800000,
+ "ttm_capex": 214900000,
+ "ttm_sbc": 43400000,
+ "ttm_shares_diluted": 269300000,
+ "ttm_oe_total": 882500000,
+ "ttm_oe_per_share": 3.2770144819903453,
+ "warnings": [],
+ "overrides_used": []
+}

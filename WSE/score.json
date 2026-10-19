@@ -1,0 +1,86 @@
+{
+ "ticker": "WSE",
+ "name": "Wise Group plc",
+ "sector": "Finance / Cross-border payments & multi-currency accounts (fintech)",
+ "price": 10.98,
+ "market_cap_b": 11.31,
+ "engine_version": 5,
+ "base_oe_per_share": 0.48431582014178887,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "Global cross-border payments network with a structural cost advantage: direct connections to domestic payment systems (Brazil and Japan added in FY2026, Malaysia its ninth in Q2 FY27), a broad licensing footprint (new approvals in South Africa, the UAE and Thailand in FY2026), local netting at scale (cross-border volume $243.5B in FY2026, +31%) and 85+ Wise Platform partners (Morgan Stanley, Standard Chartered, Nubank, Google Pay) let Wise cut its cross-border take rate to 0.49-0.52% and still earn a 26% pre-tax margin in FY2026. Returns on the small own-equity base are high (fundamentals.json ROE: 43.0% FY2024, 31.7% FY2025, 25.9% FY2026); the roic_proxy series is not meaningful here (negative in all three years) because its denominator subtracts $27.8B of cash that is mostly safeguarded customer funds, and no gross-margin series is presented for this filer. Capped at 6: pricing power is deliberately given back (take rate 0.64% in Q1 FY2025 to 0.49% in Q2 FY2027), $609M of FY2026 net revenue was net interest on customer balances against $660M of pre-tax profit (rate-sensitive float earnings, with guidance to pay more interest to customers), Revolut/Airwallex/banks contest every corridor, and US regulators denied its national trust bank application in July 2026 (it intends to reapply). CAP 9.8y.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended March 31, 2026 (filed 2026-06-25, accession 0001193125-26-282911), cover page: securities registered under Section 12(b) are 'Class A ordinary shares, nominal value $0.01 per share', trading symbol WSE, The Nasdaq Global Select Market; Item 12.D 'American Depositary Shares: Not applicable') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 55.1x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict",
+  "TIER_BAND: bear-case tier D (9.7%) vs bull-case tier B (15.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 3.8,
+   "irr": 0.0706
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 5.96,
+   "irr": 0.0973
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 8.25,
+   "irr": 0.123
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 11.3,
+   "irr": 0.1529
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 15.95,
+   "irr": 0.1916
+  }
+ },
+ "iv_at_15": 8.77,
+ "iv_at_12": 12.15,
+ "implied_irr": 0.1285,
+ "implied_irr_base_case": 0.123,
+ "upside_at_15_pct": -20.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Global cross-border payments network, moat 6/10 \u2014 on a corrected net-income base of $0.48/share (the engine's OCF base capitalizes safeguarded customer balances and prints a fake Tier S) the $10.98 price yields a 12.9% weighted IRR with weighted IV@15% $8.77, so it clears 15% only below ~$8.77; the bear case is Tier D (9.7%), so size to the bear end.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0973,
+ "irr_bull": 0.1529,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 5.81,
+ "iv_at_25": 4.25,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -27467500000,
+ "shares_diluted_latest": 1029700000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Direct connections to domestic payment systems (Brazil/Japan added FY2026; Malaysia ninth in Q2 FY27) plus a broad global licensing footprint \u2014 infrastructure rivals cannot replicate quickly",
+  "Structural cost advantage from local netting at scale: cross-border volume $243.5B in FY2026 (+31%), 78% of transfers instant in Q2 FY2027, take rate cut to 0.49% while staying profitable",
+  "Wise Platform distribution: 85+ bank/fintech partners (Morgan Stanley, Standard Chartered, Nubank, Google Pay, UniCredit) embed Wise rails inside other institutions",
+  "High returns on own equity: ROE 43.0% / 31.7% / 25.9% across FY2024-26 (fundamentals.json) on a debt-light own balance sheet, funding a ~$540M buyback programme"
+ ],
+ "moat_against": [
+  "No pricing power by design: cross-border take rate fell 0.64% (Q1 FY2025) to 0.52% (FY2026) to 0.49% (Q2 FY2027) \u2014 savings are passed to customers, so volume must outrun price cuts forever",
+  "Float-dependent profit: FY2026 net interest income on customer balances was $609M of $2,503M net revenue, against income before tax of $660M \u2014 rate cuts or paying customers more (guided) compress earnings directly",
+  "Contestability: Revolut, Airwallex, traditional banks and stablecoin rails compete in every corridor; customers multi-home and switching costs are low",
+  "Regulatory tail: US national trust bank application denied in July 2026 (reapplying intended); safeguarding/AML compliance is a permanent cost and headline risk across dozens of licences"
+ ]
+}

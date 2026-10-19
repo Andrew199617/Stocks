@@ -1,0 +1,628 @@
+{
+ "ticker": "RVTY",
+ "cik": 31791,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000031791-26-000012",
+   "filed": "2026-02-24",
+   "period": "2025-12-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000031791-26-000019",
+   "filed": "2026-05-12",
+   "period": "2026-04-05",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000031791-26-000027",
+   "filed": "2026-08-11",
+   "period": "2026-07-05",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000027/revv-20260705_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "revv:LifeSciencesMember",
+     "label": "Life Sciences",
+     "values": [
+      1458192000,
+      1398601000,
+      1431104000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5301,
+      0.5077,
+      0.5011
+     ],
+     "growth_yoy": [
+      null,
+      -0.0409,
+      0.0232
+     ]
+    },
+    {
+     "member": "revv:DiagnosticsMember",
+     "label": "Diagnostics",
+     "values": [
+      1292379000,
+      1356425000,
+      1424947000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4699,
+      0.4923,
+      0.4989
+     ],
+     "growth_yoy": [
+      null,
+      0.0496,
+      0.0505
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2750571000,
+     2755026000,
+     2856051000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-04-05",
+    "2026-07-05"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "revv:DiagnosticsMember",
+     "label": "Diagnostics",
+     "values": [
+      324367000,
+      354386000,
+      349273000,
+      370989000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4879,
+      0.492,
+      0.4912,
+      0.5084
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0768,
+      0.0469
+     ]
+    },
+    {
+     "member": "revv:LifeSciencesMember",
+     "label": "Life Sciences",
+     "values": [
+      340395000,
+      365898000,
+      361845000,
+      358699000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5121,
+      0.508,
+      0.5088,
+      0.4916
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.063,
+      -0.0197
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     664762000,
+     720284000,
+     711118000,
+     729688000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      2415893000,
+      2338211000,
+      2389984000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8783,
+      0.8487,
+      0.8368
+     ],
+     "growth_yoy": [
+      null,
+      -0.0322,
+      0.0221
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      334678000,
+      416815000,
+      466067000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1217,
+      0.1513,
+      0.1632
+     ],
+     "growth_yoy": [
+      null,
+      0.2454,
+      0.1182
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2750571000,
+     2755026000,
+     2856051000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-04-05",
+    "2026-07-05"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      562680000,
+      610704000,
+      581458000,
+      603411000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8464,
+      0.8479,
+      0.8177,
+      0.8269
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0334,
+      -0.0119
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      102082000,
+      109580000,
+      129660000,
+      126277000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1536,
+      0.1521,
+      0.1823,
+      0.1731
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2702,
+      0.1524
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     664762000,
+     720284000,
+     711118000,
+     729688000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1117654000,
+      1097856000,
+      1126274000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4063,
+      0.3985,
+      0.3943
+     ],
+     "growth_yoy": [
+      null,
+      -0.0177,
+      0.0259
+     ]
+    },
+    {
+     "member": "revv:OtherInternationalMember",
+     "label": "Other International",
+     "values": [
+      859902000,
+      931705000,
+      1000204000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3126,
+      0.3382,
+      0.3502
+     ],
+     "growth_yoy": [
+      null,
+      0.0835,
+      0.0735
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      454426000,
+      450007000,
+      425060000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1652,
+      0.1633,
+      0.1488
+     ],
+     "growth_yoy": [
+      null,
+      -0.0097,
+      -0.0554
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      193170000,
+      162575000,
+      177664000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0702,
+      0.059,
+      0.0622
+     ],
+     "growth_yoy": [
+      null,
+      -0.1584,
+      0.0928
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      125419000,
+      112883000,
+      126849000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0456,
+      0.041,
+      0.0444
+     ],
+     "growth_yoy": [
+      null,
+      -0.1,
+      0.1237
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2750571000,
+     2755026000,
+     2856051000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-04-05",
+    "2026-07-05"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      304629000,
+      323580000,
+      315992000,
+      325583000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4583,
+      0.4492,
+      0.4444,
+      0.4462
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0373,
+      0.0062
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      181792000,
+      203632000,
+      223046000,
+      229041000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2735,
+      0.2827,
+      0.3137,
+      0.3139
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2269,
+      0.1248
+     ]
+    },
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      178341000,
+      193072000,
+      172080000,
+      175064000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2683,
+      0.268,
+      0.242,
+      0.2399
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0351,
+      -0.0933
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     664762000,
+     720284000,
+     711118000,
+     729688000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total international' (revv:TotalInternationalMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Americas' (srt:AmericasMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, CHINA, GERMANY, UNITED KINGDOM, Other International)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Europe' (srt:EuropeMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, CHINA, GERMANY, UNITED KINGDOM, Other International)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Asia' (srt:AsiaMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, CHINA, GERMANY, UNITED KINGDOM, Other International)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,209 @@
+{
+ "ticker": "FPS",
+ "cik": 2080126,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T04:58:15-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002080126.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000035/fps-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FPS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FPS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Forgent Power Solutions, Inc.",
+  "cik": 2080126,
+  "description": {
+   "text": "Forgent Power Solutions, Inc. is a Delaware corporation, and its shares of Class A common stock trade on the New York Stock Exchange under the symbol “FPS”. Unless the context otherwise requires, references to “we,” “us,” “our,” “Forgent,” the “Company,” and other similar references refer to Forgent Power Solutions, Inc. and, unless otherwise stated, all of its subsidiaries. References to “Existing Opco LLC Owners” refer collectively to Forgent Parent II LP and Forgent Parent III LP. For more information on the Company's initial public offering (“IPO”), reorganization transactions, and follow-on offerings, please see Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II of this Form 10-K. Forgent is a leading designer and manufacturer of electrical distribution equipment used in data centers, the power grid and energy-intensive industrial facilities. Electrical distribution equipment is essential for delivering electricity safely and efficiently from power plants to homes, businesses and industrial facilities and between equipment and devices within buildings. Every power plant, utility grid, data center, manufacturing facility and commercial building requires electrical distribution equipment to operate.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-09-15",
+   "period": "2026-06-30",
+   "accession": "0002080126-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000035/fps-20260630.htm"
+  },
+  "description_short": "Forgent (NYSE: FPS) is a leading U.S. designer and manufacturer of electrical distribution equipment used in data centers, the power grid and energy-intensive industrial facilities. The Company specializes in manufacturing custom products that are 'engineered-to-order' for technically demanding applications. We believe Forgent is one of a small number of companies that can manufacture all of the electrical distribution equipment required for a data center or large manufacturing facility's powertrain with some of the highest levels of customization and shortest lead times available in the industry.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "3620",
+  "sic_description": "Electrical Industrial Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.forgentpower.com",
+  "headquarters": "Dayton, MN",
+  "address": {
+   "street": "11500 Dayton Parkway",
+   "city": "Dayton",
+   "state": "MN",
+   "zip": "55369",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-09-15"
+  },
+  "phone": "323-726-0888",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2026-01-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002080126&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-K",
+   "filed": "2026-09-15",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0002080126-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000035/fps-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002080126-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000034/fps-20260915.htm"
+  },
+  {
+   "form": "S-1",
+   "filed": "2026-06-29",
+   "period": null,
+   "items": [],
+   "description": "Registration statement",
+   "accession": "0001193125-26-288605",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526288605/na-20260629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-23",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-283773",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526283773/na-20260623.htm"
+  },
+  {
+   "form": "S-1",
+   "filed": "2026-05-26",
+   "period": null,
+   "items": [],
+   "description": "Registration statement",
+   "accession": "0001193125-26-239485",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526239485/na-20260526.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-14",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002080126-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000018/fps-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002080126-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000017/fps-20260514.htm"
+  },
+  {
+   "form": "S-1",
+   "filed": "2026-03-24",
+   "period": null,
+   "items": [],
+   "description": "Registration statement",
+   "accession": "0001193125-26-122235",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526122235/d131669ds1.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-03-16",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002080126-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000011/fps-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002080126-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000208012626000010/fps-20260316.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-04",
+   "items": [
+    "1.01",
+    "3.02",
+    "3.03",
+    "5.02",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Change to security holders' rights; Officer/director change; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-26-043650",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526043650/d23417d8k.htm"
+  },
+  {
+   "form": "S-1/A",
+   "filed": "2026-01-26",
+   "period": null,
+   "items": [],
+   "description": "Amendment: Registration statement",
+   "accession": "0001193125-26-021675",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526021675/d890989ds1a.htm"
+  },
+  {
+   "form": "S-1/A",
+   "filed": "2026-01-16",
+   "period": null,
+   "items": [],
+   "description": "Amendment: Registration statement",
+   "accession": "0001193125-26-014411",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526014411/d28867ds1a.htm"
+  },
+  {
+   "form": "S-1",
+   "filed": "2026-01-09",
+   "period": null,
+   "items": [],
+   "description": "Registration statement",
+   "accession": "0001193125-26-008865",
+   "url": "https://www.sec.gov/Archives/edgar/data/2080126/000119312526008865/d890989ds1.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-09-15"
+ ]
+}

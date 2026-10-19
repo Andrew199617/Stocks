@@ -1,0 +1,291 @@
+{
+ "ticker": "OHI",
+ "cik": 888491,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T14:40:52-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000888491.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000008/ohi-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/OHI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/OHI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "OMEGA HEALTHCARE INVESTORS INC",
+  "cik": 888491,
+  "description": {
+   "text": "Omega Healthcare Investors, Inc. (“Parent”) is a Maryland corporation that invests in healthcare-related real estate properties located in the United States (“U.S.”), the United Kingdom (“U.K.”) and Canada, which investments comprise our one reportable segment. Omega became a publicly traded company listed on the New York Stock Exchange in 1992. Our primary objective is to provide strong returns to our investors, while serving as the preferred capital partner to our third-party healthcare operating companies and affiliates (collectively, our “operators”) and other third-party high quality healthcare operators so they can concentrate on providing a high level of care for their resident-patients. Parent, together with its consolidated subsidiaries (collectively, “Omega” or “Company”) has elected to be taxed as a REIT for federal income tax purposes. Omega is structured as an umbrella partnership REIT (“UPREIT”) under which all of Omega's assets are owned directly or indirectly by, and all of Omega's operations are conducted directly or indirectly through, its operating partnership subsidiary, OHI Healthcare Properties Limited Partnership (collectively with subsidiaries, “Omega OP”). As of December 31, 2025, Parent owned approximately 95% of the issued and outstanding units of partnership interest in Omega OP (“Omega OP Units”), and other investors owned approximately 5% of the outstanding Omega OP Units.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "accession": "0000888491-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000008/ohi-20251231x10k.htm"
+  },
+  "description_short": "Omega Healthcare Investors Inc is a healthcare facility real estate investment trust that invests in the United States real estate markets. Omega's portfolio focuses on long-term healthcare facilities. The company maintains dual goals of increasing its returns to investors while also maintaining a high level of care for residents. Omega works to obtain contractual rent escalations under long-term leases, along with fixed-rate mortgage loans. The company considers merger and acquisition investment as a component of its operational growth strategy.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.omegahealthcare.com",
+  "headquarters": "Hunt Valley, MD",
+  "address": {
+   "street": "303 International Circle, Suite 200",
+   "city": "Hunt Valley",
+   "state": "MD",
+   "zip": "21030",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-09"
+  },
+  "phone": "410-427-1700",
+  "employees": {
+   "count": 69,
+   "as_of": "2026-02-01",
+   "evidence": "As of February 1, 2026, we had 69 employees including the executive officers listed below, none of whom is subject to a collective bargaining agreement.",
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000008/ohi-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-11",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000888491&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-113450",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465926113450/tm2627011d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-112589",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465926112589/tm2626496d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000888491-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000024/ohi-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000888491-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000022/ohi-20260729x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-05",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001104659-26-070979",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465926070979/tm2617005d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-065158",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465926065158/tm2615007d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000888491-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000018/ohi-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000888491-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000016/ohi-20260428x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-21",
+   "period": "2026-06-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-045753",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465926045753/ohi-20260605xdef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000888491-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000008/ohi-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000888491-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000003/ohi-20260204x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-001774",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465926001774/tm262317d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-105648",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000110465925105648/tm2529947d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000888491-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000040/ohi-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000888491-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000038/ohi-20251030x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "1.02"
+   ],
+   "description": "Termination of agreement",
+   "accession": "0000888491-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000034/ohi-20251015x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-01",
+   "period": "2025-09-30",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation; Reg FD",
+   "accession": "0000888491-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000031/ohi-20250930x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-15",
+   "period": "2025-09-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000888491-25-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000029/ohi-20250915x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000888491-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000025/ohi-20250630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000888491-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849125000022/ohi-20250731x8k.htm"
+  }
+ ],
+ "warnings": []
+}

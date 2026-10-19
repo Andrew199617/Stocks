@@ -1,0 +1,302 @@
+{
+ "ticker": "AA",
+ "cik": 1675149,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T17:12:08-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001675149.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526077167/aa-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Alcoa Corp",
+  "cik": 1675149,
+  "description": {
+   "text": "Alcoa Corporation, a Delaware corporation (Alcoa or the Company) which became an independent, publicly traded company on November 1, 2016, is active in all aspects of the upstream aluminum industry with bauxite mining, alumina refining, and aluminum smelting and casting. The Company has direct and indirect ownership of 25 operating locations across eight countries on five continents. The Company’s operations are comprised of two reportable business segments: Alumina and Aluminum. The Alumina segment primarily consists of the Company’s bauxite mines and alumina refineries, and its operations generally include the mining of bauxite and other aluminous ores, as well as the refining, production, and sale of smelter grade and non-metallurgical alumina. The Aluminum segment consists of the Company’s aluminum smelting and casting operations along with most of the Company’s energy production assets. Aluminum, as an element, is abundant in the earth’s crust, but a multi-step process is required to manufacture finished aluminum metal. Aluminum metal is produced by refining alumina oxide from bauxite into alumina, which is then smelted into aluminum and can be cast into many shapes and forms. Alcoa smelts and casts aluminum in various shapes and sizes for global customers, including developing and creating various alloy combinations for specific applications. Aluminum metal is a commodity traded on the London Metal Exchange (LME) and priced daily.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-077167",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526077167/aa-20251231.htm"
+  },
+  "description_short": "Alcoa is a global industry leader in bauxite, alumina and aluminum products with a vision to build a legacy of excellence for future generations. Since developing the process that made aluminum an affordable and vital part of modern life, our talented Alcoans have developed breakthrough innovations and best practices that have led to greater safety, efficiency, sustainability and stronger communities wherever we operate.",
+  "industry": "Aluminum",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3334",
+  "sic_description": "Primary Production of  Aluminum",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.alcoa.com",
+  "headquarters": "Pittsburgh, Pennsylvania",
+  "address": {
+   "street": "201 Isabella Street Suite 500",
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "zip": "15212-5858",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "412-315-2900",
+  "employees": {
+   "count": 14900,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Alcoa had approximately 14,900 employees in 16 countries.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526077167/aa-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2016-06-29",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "Alcoa Upstream Corp"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001675149&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-422891",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526422891/aa-20261015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD; Other events",
+   "accession": "0001193125-26-399499",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526399499/aa-20260923.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-388649",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526388649/d23778d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-386787",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526386787/aa-20260909.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-385947",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526385947/aa-20260909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-326265",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526326265/aa-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-306118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526306118/aa-20260716.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-06-30",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0000950103-26-010155",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000095010326010155/dp249367_8k-mc.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-01",
+   "period": "2026-06-30",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950103-26-009899",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000095010326009899/dp249366_8k-pr.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-06",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-216915",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526216915/aa-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-203996",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526203996/d15759d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-197447",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526197447/aa-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-16",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-159018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526159018/aa-20260416.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-154986",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526154986/d106551d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-115997",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526115997/aa-20260319.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-077167",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526077167/aa-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-019438",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526019438/aa-20260122.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-297348",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312525297348/d73709d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-253570",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312525253570/aa-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-246788",
+   "url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312525246788/aa-20251022.htm"
+  }
+ ],
+ "warnings": []
+}

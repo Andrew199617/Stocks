@@ -1,0 +1,287 @@
+{
+ "ticker": "IEX",
+ "cik": 832101,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T13:39:59-04:00",
+ "newest_filing_date": "2026-09-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000832101.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/iex-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IEX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IEX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "IDEX CORP /DE/",
+  "cik": 832101,
+  "description": {
+   "text": "IDEX Corporation (“IDEX,” the “Company,” “we,” or “our”) is a global applied solutions provider serving niche markets with mission critical components for everyday life. Substantially all of the Company’s business activities are carried out through over 50 wholly-owned subsidiaries with shared values of Trust, Team and Excellence. IDEX’s diverse family of businesses is committed to making trusted solutions that improve lives and is innovative and inquisitive in its quest to solve customers’ most challenging applied technology problems. These businesses operate with a high degree of autonomy, yet are all united by employing The IDEX Difference, a philosophy of great teams who embrace the 8020 principle while remaining hyper-focused on serving customers. IDEX was incorporated in Delaware on September 24, 1987.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0000832101-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/iex-20251231.htm"
+  },
+  "description_short": "IDEX Corporation (NYSE: IEX), a global engineered products company, is comprised of three primary business segments - Health & Science Technologies, Fluid & Metering Technologies, and Fire & Safety / Diversified Products. Thousands of IDEX employees around the world design and manufacture highly engineered components and applied solutions that are vital to the advances of modern life and help IDEX live its purpose - Trusted Solutions, Improving Lives. From satellite communications to water systems, from medical diagnostic components to emergency rescue tools and more, we collaborate with customers in the most critical industries to develop solutions that make the world better today and into the future. Founded in 1988, IDEX now includes more than 50 dynamic businesses around the world and manufacturing operations in more than 20 countries. Learn more about the impactful work we do at www.idexcorp.com.",
+  "industry": "Fluid Controls",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3561",
+  "sic_description": "Pumps & Pumping Equipment",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.idexcorp.com",
+  "headquarters": "Northbrook, Illinois",
+  "address": {
+   "street": "3100 Sanders Road Suite 301",
+   "city": "Northbrook",
+   "state": "Illinois",
+   "zip": "60062",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "8474987070",
+  "employees": {
+   "count": 8700,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, the Company had approximately 8,700 employees.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/iex-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-10",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000832101&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-381880",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000119312526381880/d421581d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-354040",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000119312526354040/d371988d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000832101-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000022/iex-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000832101-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000019/iex-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-06",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000832101-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000012/iex-20260506.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000832101-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000009/iex-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000832101-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000007/iex-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-125451",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000119312526125451/iex-20260325.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000832101-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/iex-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-042918",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000119312526042918/d103123d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005268",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000162828026005268/iex-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-01",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-25-308187",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000119312525308187/d93116d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047080",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000162828025047080/iex-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-046909",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000162828025046909/iex-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-17",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0000832101-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210125000034/iex-20250917.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000832101-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210125000032/iex-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000832101-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210125000030/iex-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-21",
+   "period": "2025-05-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-123635",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000119312525123635/d931249d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-12",
+   "period": "2025-05-08",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000832101-25-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210125000020/iex-20250508.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000832101-25-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/832101/000083210125000017/iex-20250331.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,321 @@
+{
+ "ticker": "SUZ",
+ "cik": 909327,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0000909327-26-000045",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/909327/000090932726000045/suz-20251231_htm.xml"
+  }
+ ],
+ "currency": "BRL",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "suz:MarketPulpMember",
+     "label": "Market pulp",
+     "values": [
+      30677265000,
+      37593462000,
+      37816141000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7716,
+      0.7931,
+      0.7546
+     ],
+     "growth_yoy": [
+      null,
+      0.2255,
+      0.0059
+     ]
+    },
+    {
+     "member": "suz:PrintingAndWritingPaperMember",
+     "label": "Printing and writing paper",
+     "values": [
+      7567320000,
+      8072722000,
+      8260804000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1903,
+      0.1703,
+      0.1648
+     ],
+     "growth_yoy": [
+      null,
+      0.0668,
+      0.0233
+     ]
+    },
+    {
+     "member": "suz:PaperboardMember",
+     "label": "Paperboard",
+     "values": [
+      1417075000,
+      1676639000,
+      3999186000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0356,
+      0.0354,
+      0.0798
+     ],
+     "growth_yoy": [
+      null,
+      0.1832,
+      1.3852
+     ]
+    },
+    {
+     "member": "suz:OtherProductsNotSeparatelyDisclosedMember",
+     "label": "Other products",
+     "values": [
+      93915000,
+      60459000,
+      39548000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0024,
+      0.0013,
+      0.0008
+     ],
+     "growth_yoy": [
+      null,
+      -0.3562,
+      -0.3459
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     39755575000,
+     47403282000,
+     50115679000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AsiaMember",
+     "label": "Asia",
+     "values": [
+      13660165000,
+      15785567000,
+      18032946000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3436,
+      0.333,
+      0.3598
+     ],
+     "growth_yoy": [
+      null,
+      0.1556,
+      0.1424
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      9003272000,
+      12251178000,
+      10877721000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2265,
+      0.2584,
+      0.2171
+     ],
+     "growth_yoy": [
+      null,
+      0.3607,
+      -0.1121
+     ]
+    },
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      6158439000,
+      7879965000,
+      10222303000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1549,
+      0.1662,
+      0.204
+     ],
+     "growth_yoy": [
+      null,
+      0.2795,
+      0.2973
+     ]
+    },
+    {
+     "member": "ifrs-full:CountryOfDomicileMember",
+     "label": "Country of domicile",
+     "values": [
+      8863292000,
+      9573844000,
+      9249788000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2229,
+      0.202,
+      0.1846
+     ],
+     "growth_yoy": [
+      null,
+      0.0802,
+      -0.0338
+     ]
+    },
+    {
+     "member": "suz:CentralAndSouthAmericaMember",
+     "label": "Central and South America",
+     "values": [
+      1995782000,
+      1849997000,
+      1657564000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0502,
+      0.039,
+      0.0331
+     ],
+     "growth_yoy": [
+      null,
+      -0.073,
+      -0.104
+     ]
+    },
+    {
+     "member": "srt:AfricaMember",
+     "label": "Africa",
+     "values": [
+      74625000,
+      62730000,
+      75357000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0019,
+      0.0013,
+      0.0015
+     ],
+     "growth_yoy": [
+      null,
+      -0.1594,
+      0.2013
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     39755575000,
+     47403282000,
+     50115679000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total of products' (suz:TotalOfProductsMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Net Sales' (suz:TotalNetSalesMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Foreign countries' (ifrs-full:ForeignCountriesMember) dropped: its values equal the sum of Asia, Europe, North America, Central and South America, Africa",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

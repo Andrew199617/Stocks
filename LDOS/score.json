@@ -1,0 +1,84 @@
+{
+ "ticker": "LDOS",
+ "name": "Leidos Holdings, Inc.",
+ "sector": "Industrials / Defense & government services",
+ "price": 124.85,
+ "market_cap_b": 16.23,
+ "engine_version": 5,
+ "base_oe_per_share": 11.76923076923077,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "Incumbency on classified mission programs, a cleared workforce and a $48.71B backlog (funded +44% YoY) are real advantages, and the defense-tech mix shift lifted gross margin from 13.98% (FY2023) to 17.72% (FY2026) with the ROIC proxy at 16.94%/19.10% in FY2025/26 \u2014 but through-cycle ROIC was ~10% (3.89% in the FY2023 impairment year), the US government is a monopsonist that recompetes all work on price, and the core product is cleared labor that Booz Allen, CACI, SAIC, Parsons and the primes also supply. Moderate/narrow moat, CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (11.6%) vs bull-case tier B (18.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 56.44,
+   "irr": 0.079
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 90.73,
+   "irr": 0.1161
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 124.01,
+   "irr": 0.1492
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 167.5,
+   "irr": 0.1877
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 252.78,
+   "irr": 0.2509
+  }
+ },
+ "iv_at_15": 132.68,
+ "iv_at_12": 178.3,
+ "implied_irr": 0.1572,
+ "implied_irr_base_case": 0.1492,
+ "upside_at_15_pct": 6.3,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "medium",
+ "one_liner": "Quality government-services compounder at a mix inflection, moat 5/10 \u2014 clears 15% only on the latest audited FY base (weighted IRR 15.7%, IV@15% $132.68 vs $124.85) and only barely; on the standardized median base it is a C that clears 15% below ~$100, and the bear case ($90.73) sits well under the price \u2014 size it to the bear end.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1161,
+ "irr_bull": 0.1877,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 92.0,
+ "iv_at_25": 69.83,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3540000000,
+ "shares_diluted_latest": 130000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "$48.71B backlog (~2.8x TTM revenue) with funded backlog +44% YoY to $10.22B \u2014 multi-year visibility",
+  "Incumbency on mission-critical classified programs (Navy SMIT, intelligence infrastructure); past-performance ratings and a cleared workforce are formal bid discriminators",
+  "Scale and breadth: $17.6B revenue across defense, intelligence, health and civil \u2014 can bid primes-sized integrations",
+  "Mix shift to defense-tech products: gross margin 13.98% (FY2023) \u2192 17.72% (FY2026); ROIC proxy 16.94% / 19.10% in FY2025/26 (fundamentals.json)"
+ ],
+ "moat_against": [
+  "Monopsonist customer recompetes everything on price \u2014 Leidos has litigated Navy SMIT pricing; Booz Allen, CACI, SAIC, Parsons and the primes contest every award",
+  "Through-cycle ROIC ~10% (3.89% in FY2023) \u2014 the 17\u201319% of the last two years is unproven through a budget cycle",
+  "Gross margin 17.72% even after the mix shift \u2014 a services margin, not a product franchise margin",
+  "Federal budget/efficiency pressure hits the whole revenue base at once; growth leans on M&A (Entrust) and buybacks \u2014 Q2 organic revenue growth +3.9% vs +7.2% reported"
+ ]
+}

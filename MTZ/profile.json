@@ -1,0 +1,294 @@
+{
+ "ticker": "MTZ",
+ "cik": 15615,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T15:40:01-04:00",
+ "newest_filing_date": "2026-08-17",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000015615.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000020/mtz-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MTZ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MTZ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MASTEC INC",
+  "cik": 15615,
+  "description": null,
+  "description_short": "MasTec, Inc. is a leading North American infrastructure engineering and construction company focused primarily on engineering, building, installation, maintenance and upgrade of communications, energy and utility and other infrastructure. MasTec primarily operates under four business segments including Communications, serving both wireless and wireline/fiber infrastructure; Power Delivery, serving primarily utility customers in transmission and distribution markets; Pipeline Infrastructure serving energy and other customers with installation and maintenance services primarily for natural gas pipeline and distribution infrastructure; and Clean Energy and Infrastructure, providing renewable energy engineering and construction services, as well as for heavy civil and other industrial infrastructure markets.",
+  "industry": "Water, Sewer, Pipeline, Comm & Power Line Construction",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "1623",
+  "sic_description": "Water, Sewer, Pipeline, Comm & Power Line Construction",
+  "state_of_incorporation": "FL",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.mastec.com",
+  "headquarters": "Coral Gables, Florida",
+  "address": {
+   "street": "800 S. Douglas Road, 12th Floor",
+   "city": "Coral Gables",
+   "state": "Florida",
+   "zip": "33134",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "3055991800",
+  "employees": {
+   "count": 36000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 36,000 employees, of which approximately 9,000 were represented by unions or subject to collective bargaining agreements.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000020/mtz-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-20",
+  "first_sec_filing_form": "10-K/A",
+  "former_names": [
+   "BURNUP & SIMS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000015615&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-354111",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312526354111/d299977d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-06",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-26-342507",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312526342507/d165744d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001193125-26-328848",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312526328848/d118637d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-24",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0000015615-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz-20260724.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000015615-26-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000093/mtz-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "2.03"
+   ],
+   "description": "Debt obligation",
+   "accession": "0001193125-26-309077",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312526309077/d123535d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-07",
+   "period": "2026-06-30",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Officer/director change",
+   "accession": "0001193125-26-297552",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312526297552/d77261d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-236909",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312526236909/d78092d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000015615-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000052/mtz-20260430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000015615-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000050/mtz-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-014022",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000114036126014022/ny20064175x771_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000015615-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000020/mtz-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000015615-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000018/mtz-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000015615-25-000130",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561525000130/mtz-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000015615-25-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561525000128/mtz-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-22",
+   "items": [
+    "5.04",
+    "9.01"
+   ],
+   "description": "Item 5.04",
+   "accession": "0001193125-25-189769",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312525189769/d944511d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000015615-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561525000080/mtz-20250731.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000015615-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000001561525000079/mtz-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-27",
+   "period": "2025-06-26",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-151280",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312525151280/d35356d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-127576",
+   "url": "https://www.sec.gov/Archives/edgar/data/15615/000119312525127576/d902981d8k.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-26)"
+ ]
+}

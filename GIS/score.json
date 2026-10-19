@@ -1,0 +1,85 @@
+{
+ "ticker": "GIS",
+ "name": "General Mills, Inc.",
+ "sector": "Consumer staples / Packaged food",
+ "price": 32.815,
+ "market_cap_b": 17.64,
+ "engine_version": 5,
+ "base_oe_per_share": 3.948340807174888,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Iconic brands (Cheerios, Betty Crocker, Pillsbury, Nature Valley, Blue Buffalo) and shelf/distribution scale, with ROIC_proxy of 11-13% in FY2022-25 and gross margin held in a 32.6-34.9% band \u2014 above cost of capital but narrowing, not wide-moat grade; pricing power is now exhausted (private-label share gains, volumes falling), and the FY2026 North America Pet goodwill impairment shows the premium pet franchise was overpaid for and is weakening.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 3.6%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 6.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.7%) vs bull-case tier B (16.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 15.64,
+   "irr": 0.0799
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 22.2,
+   "irr": 0.1073
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 28.56,
+   "irr": 0.1333
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 35.61,
+   "irr": 0.1606
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 45.84,
+   "irr": 0.1977
+  }
+ },
+ "iv_at_15": 27.5,
+ "iv_at_12": 35.88,
+ "implied_irr": 0.1292,
+ "implied_irr_base_case": 0.1333,
+ "upside_at_15_pct": -16.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Solid branded-food franchise, moat 5/10, in a volume/impairment downcycle \u2014 does not clear 15% at $32.81 (weighted IRR 12.9% on the normalized base, IV@15% $27.50; on the TTM base only 9.6%, Tier D); clears 15% only below $27.50.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1073,
+ "irr_bull": 0.1606,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 19.87,
+ "iv_at_25": 15.6,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 13084200000,
+ "shares_diluted_latest": 537700000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Iconic brand portfolio (Cheerios, Betty Crocker, Pillsbury, Nature Valley, Old El Paso, H\u00e4agen-Dazs, Blue Buffalo) with national shelf space and distribution scale",
+  "ROIC_proxy stayed 11.1-13.2% across FY2022-25 (fundamentals.json) \u2014 above cost of capital through the inflation cycle",
+  "Gross margin held in a narrow 32.6-34.9% band over the last five fiscal years despite input-cost inflation",
+  "Category positions across cereal, snacks, meals, baking and premium pet that retailers must stock"
+ ],
+ "moat_against": [
+  "Pricing power exhausted: 2022-23 price hikes widened the gap to private label, which is taking unit share in cereal and snacks; volumes are falling",
+  "ROIC trend is down (13.2% FY2022 to 11.1% FY2025, 3.4% reported FY2026 on impairments) and gross margin is flat, not expanding",
+  "FY2026 impairments \u2014 $1,500M North America Pet goodwill plus $250M Nudges/True Chews brands \u2014 are an admission the Blue Buffalo-era pet moat is narrower than paid for",
+  "GLP-1 drugs and value-seeking consumers shrink stomach share for cereal/snack categories",
+  "Net debt $13,084.2M is 6.2x normalized OE; buybacks are paused for deleveraging, removing the per-share tailwind"
+ ]
+}

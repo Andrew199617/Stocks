@@ -1,0 +1,382 @@
+{
+ "ticker": "MAA",
+ "cik": 912595,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-041208",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526041208/maa-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-197331",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526197331/maa-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-326153",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526326153/maa-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "maa:SameStoreMember",
+     "label": "Same Store",
+     "values": [
+      2075096000,
+      2080027000,
+      2077162000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9658,
+      0.9493,
+      0.9403
+     ],
+     "growth_yoy": [
+      null,
+      0.0024,
+      -0.0014
+     ]
+    },
+    {
+     "member": "maa:NonSameStoreAndOtherMember",
+     "label": "Non Same Store And Other",
+     "values": [
+      73372000,
+      110988000,
+      131964000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0342,
+      0.0507,
+      0.0597
+     ],
+     "growth_yoy": [
+      null,
+      0.5127,
+      0.189
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2148468000,
+     2191015000,
+     2209126000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "maa:SameStoreMember",
+     "label": "Same Store",
+     "values": [
+      518827000,
+      519039000,
+      516980000,
+      517438000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9445,
+      0.9439,
+      0.9336,
+      0.9321
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0036,
+      -0.0031
+     ]
+    },
+    {
+     "member": "maa:NonSameStoreAndOtherMember",
+     "label": "Non Same Store And Other",
+     "values": [
+      30468000,
+      30863000,
+      36745000,
+      37689000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0555,
+      0.0561,
+      0.0664,
+      0.0679
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.206,
+      0.2212
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     549295000,
+     549902000,
+     553725000,
+     555127000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "maa:SameStoreMember",
+     "label": "Same Store",
+     "values": [
+      9840140000,
+      9683810000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.833,
+      0.8086
+     ],
+     "growth_yoy": [
+      null,
+      -0.0159
+     ]
+    },
+    {
+     "member": "maa:NonSameStoreAndOtherMember",
+     "label": "Non Same Store And Other",
+     "values": [
+      1814597000,
+      2103045000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1536,
+      0.1756
+     ],
+     "growth_yoy": [
+      null,
+      0.159
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateMember",
+     "label": "Corporate Segment",
+     "values": [
+      157632000,
+      188528000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0133,
+      0.0157
+     ],
+     "growth_yoy": [
+      null,
+      0.196
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11812369000,
+     11975383000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "maa:SameStoreMember",
+     "label": "Same Store",
+     "values": [
+      9683810000,
+      9602238000,
+      9555569000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8086,
+      0.8006,
+      0.7967
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "maa:NonSameStoreAndOtherMember",
+     "label": "Non Same Store And Other",
+     "values": [
+      2103045000,
+      2194303000,
+      2256153000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1756,
+      0.1829,
+      0.1881
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateMember",
+     "label": "Corporate Segment",
+     "values": [
+      188528000,
+      197961000,
+      182862000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0157,
+      0.0165,
+      0.0152
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11975383000,
+     11994502000,
+     11994584000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

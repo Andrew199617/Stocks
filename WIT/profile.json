@@ -1,0 +1,243 @@
+{
+ "ticker": "WIT",
+ "cik": 1123799,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T17:11:52-04:00",
+ "newest_filing_date": "2026-07-22",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001123799.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526253514/wit-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WIT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WIT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WIPRO LTD",
+  "cik": 1123799,
+  "description": {
+   "text": "Celebrating more than 80 years of innovation, Wipro is a purpose-driven, global technology services and consulting firm employing over 240,000 experts in 65 countries across six continents helping customers, colleagues, and communities thrive in an ever-changing world. We are recognized globally for our strong commitment to improve the communities we live and work in. The economic interest of two-thirds of Wipro shares is earmarked for philanthropy through the Azim Premji Foundation working towards developing a just, equitable, humane, and sustainable society. We are globally appreciated for our unwavering commitment to sustainability. As a founding member of 'Transform to Net Zero', Wipro aims to achieve the goal of zero-carbon emissions worldwide by 2040. Our vision is to be a trusted partner for our clients, guiding them through their transformation journey with a consulting-led and AI-powered approach, and empowering them to become leaders in their industries. As part of our solutions, we bring together our deep industry knowledge, technology expertise, best-of-breed partners and start-ups, and hyper-scaler capabilities to solve the most complex problems for our clients. At Wipro, we believe AI is a transformative force that will augment human capabilities and pave the way towards new AI-first business models, improve business productivity and enhance operational efficiency.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-06-02",
+   "period": "2026-03-31",
+   "accession": "0001193125-26-253514",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526253514/wit-20260331.htm"
+  },
+  "description_short": "Wipro Limited (NYSE: WIT, BSE: 507685, NSE: WIPRO ) is a leading AI-powered technology services and consulting company focused on building innovative solutions that address clients' most complex digital transformation needs. Leveraging our consulting-led approach and the Wipro Intelligence unified suite of AI-powered platforms, solutions and transformative offerings, we help clients realize their boldest ambitions to build intelligent and sustainable businesses. The Wipro Innovation Network-part of the Wipro Intelligence suite-underpins our commitment to client-centric co-innovation and co-creation by bringing together capabilities from the innovation labs and partner labs, academia, and global tech communities. With over 240,000 employees and business partners across 65 countries, we deliver on the promise of helping our customers, colleagues, and communities thrive in an ever-changing world. For additional information, visit us at www.wipro.com .",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "Asia",
+  "sic": "7371",
+  "sic_description": "Services-Computer Programming Services",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.wipro.com",
+  "headquarters": "Bengaluru, India",
+  "address": {
+   "street": "Doddakannelli Sarjapur Road",
+   "city": "Bengaluru",
+   "state": null,
+   "zip": "560035",
+   "country": "India",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-06-02"
+  },
+  "phone": "91-80-2844-0011",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2000-09-21",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001123799&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-312481",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526312481/d29463d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-308474",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526308474/d36495d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-308467",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526308467/d36563d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-02",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-293345",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526293345/d56717d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-285478",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526285478/d169298d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-281757",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526281757/d141770d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-281751",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526281751/d154883d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-281741",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526281741/d118550d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-265810",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526265810/d16981d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-263708",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526263708/d62338d6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-06-02",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-26-253514",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526253514/wit-20260331.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-239232",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526239232/d134077d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-236821",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526236821/d103999d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-234398",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526234398/d50853d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-170313",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526170313/d100859d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-166704",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526166704/d270502d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-161792",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526161792/d92697d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-160362",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526160362/d38362d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-147595",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526147595/d127245d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-143695",
+   "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526143695/d123796d6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-06-02"
+ ]
+}

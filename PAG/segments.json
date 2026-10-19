@@ -1,0 +1,352 @@
+{
+ "ticker": "PAG",
+ "cik": 1019849,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-012830",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1019849/000162828026012830/pag-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028868",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1019849/000162828026028868/pag-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-051036",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1019849/000162828026051036/pag-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pag:RetailAutomotiveDealershipSegmentMember",
+     "label": "Retail Automotive Dealership Segment",
+     "values": [
+      26598200000,
+      27565800000,
+      27474600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8603,
+      0.8651,
+      0.8638
+     ],
+     "growth_yoy": [
+      null,
+      0.0364,
+      -0.0033
+     ]
+    },
+    {
+     "member": "pag:RetailCommercialTruckDealershipSegmentMember",
+     "label": "Retail Commercial Truck Dealership Segment",
+     "values": [
+      3684300000,
+      3521100000,
+      3411300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1192,
+      0.1105,
+      0.1072
+     ],
+     "growth_yoy": [
+      null,
+      -0.0443,
+      -0.0312
+     ]
+    },
+    {
+     "member": "pag:CommercialVehicleDistributionAndOtherMember",
+     "label": "Commercial Vehicle Distribution And Other",
+     "values": [
+      634000000,
+      777900000,
+      922600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0205,
+      0.0244,
+      0.029
+     ],
+     "growth_yoy": [
+      null,
+      0.227,
+      0.186
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     30916500000,
+     31864800000,
+     31808500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pag:RetailAutomotiveDealershipSegmentMember",
+     "label": "Retail Automotive Dealership Segment",
+     "values": [
+      6918600000,
+      6887700000,
+      6967100000,
+      7301000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8698,
+      0.8575,
+      0.886,
+      0.8577
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.007,
+      0.06
+     ]
+    },
+    {
+     "member": "pag:RetailCommercialTruckDealershipSegmentMember",
+     "label": "Retail Commercial Truck Dealership Segment",
+     "values": [
+      823700000,
+      943600000,
+      694600000,
+      927800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1036,
+      0.1175,
+      0.0883,
+      0.109
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1567,
+      -0.0167
+     ]
+    },
+    {
+     "member": "pag:CommercialVehicleDistributionAndOtherMember",
+     "label": "Commercial Vehicle Distribution And Other",
+     "values": [
+      211500000,
+      201200000,
+      201900000,
+      283900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0266,
+      0.025,
+      0.0257,
+      0.0334
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0454,
+      0.411
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7953800000,
+     8032500000,
+     7863600000,
+     8512700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      18575600000,
+      19124700000,
+      19578800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6008,
+      0.6002,
+      0.6155
+     ],
+     "growth_yoy": [
+      null,
+      0.0296,
+      0.0237
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      9240400000,
+      9322000000,
+      8334400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2989,
+      0.2925,
+      0.262
+     ],
+     "growth_yoy": [
+      null,
+      0.0088,
+      -0.1059
+     ]
+    },
+    {
+     "member": "pag:NonUSAndNonUKMember",
+     "label": "Non-US and Non-UK",
+     "values": [
+      3100500000,
+      3418100000,
+      3895300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1003,
+      0.1073,
+      0.1225
+     ],
+     "growth_yoy": [
+      null,
+      0.1024,
+      0.1396
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     30916500000,
+     31864800000,
+     31808500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember) dropped: same numbers as 'Commercial Vehicle Distribution And Other' (pag:CommercialVehicleDistributionAndOtherMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember) dropped: same numbers as 'Commercial Vehicle Distribution And Other' (pag:CommercialVehicleDistributionAndOtherMember)"
+ ],
+ "complete": true
+}

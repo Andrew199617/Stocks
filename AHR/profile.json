@@ -1,0 +1,306 @@
+{
+ "ticker": "AHR",
+ "cik": 1632970,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T08:30:21-04:00",
+ "newest_filing_date": "2026-09-18",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001632970.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526082692/ahr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AHR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AHR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "American Healthcare REIT, Inc.",
+  "cik": 1632970,
+  "description": {
+   "text": "The use of the words “we,” “us” or “our” refers to American Healthcare REIT, Inc. and its subsidiaries, including American Healthcare REIT Holdings, LP, except where otherwise noted. American Healthcare REIT, Inc., a Maryland corporation, is a self-managed real estate investment trust, or REIT, that acquires, owns and operates a diversified portfolio of clinical healthcare real estate properties, focusing primarily on senior housing, skilled nursing facilities, or SNFs, outpatient medical, or OM, buildings and other healthcare-related facilities. We have built a fully-integrated management platform, with approximately 121 employees as of December 31, 2025, that operates clinical healthcare properties throughout the United States, and in the United Kingdom and the Isle of Man. We own and operate our integrated senior health campuses, or ISHC, and senior-housing operating properties, or SHOP, utilizing the structure permitted by the REIT Investment Diversification and Empowerment Act of 2007, which is commonly referred to as a “RIDEA” structure. We have also originated and acquired secured loans and may acquire other real estate-related investments in the future on an infrequent and opportunistic basis. We generally seek investments that produce current income; however, we have selectively developed, and may continue to selectively develop, healthcare real estate properties. We have elected to be taxed as a REIT for U.S. federal income tax purposes.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-082692",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526082692/ahr-20251231.htm"
+  },
+  "description_short": "American Healthcare REIT, Inc. (NYSE: AHR) is a real estate investment trust that acquires, owns and operates a diversified portfolio of clinical healthcare real estate, focusing primarily on senior housing communities, skilled nursing facilities, and outpatient medical buildings across the United States, and in the United Kingdom and the Isle of Man.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.americanhealthcarereit.com",
+  "headquarters": "Irvine, California",
+  "address": {
+   "street": "18191 Von Karman Avenue Suite 300",
+   "city": "Irvine",
+   "state": "California",
+   "zip": "92612",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "949-270-9200",
+  "employees": {
+   "count": 121,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 121 employees, including 74 in Accounting and Finance, 17 in Asset Management, 10 in Investments, five in Information Technology and four in Legal.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526082692/ahr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2015-07-30",
+  "first_sec_filing_form": "S-11",
+  "former_names": [
+   "Griffin-American Healthcare REIT IV, Inc.",
+   "Griffin-American Healthcare REIT 4, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001632970&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-395604",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526395604/ahr-20260918.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-389802",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526389802/ahr-20260914.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-380473",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526380473/ahr-20260902.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-378483",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526378483/ahr-20260901.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-363616",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526363616/ahr-20260820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-10",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-346895",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526346895/ahr-20260810.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-342358",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526342358/ahr-20260810.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-340269",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526340269/ahr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-338076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526338076/ahr-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-20",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-312419",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526312419/ahr-20260720.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-24",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-282860",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526282860/ahr-20260624.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-275899",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526275899/ahr-20260618.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-245272",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526245272/ahr-20260526.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-236930",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526236930/ahr-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-214678",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526214678/ahr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-212023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526212023/d146383d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2026-04-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-149677",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526149677/ahr-20260409.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-07",
+   "period": "2026-04-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-145647",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526145647/ahr-20260401.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-03-24",
+   "period": "2026-02-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-121898",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526121898/ahr-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-114004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1632970/000119312526114004/ahr-20260318.htm"
+  }
+ ],
+ "warnings": []
+}

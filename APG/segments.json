@@ -1,0 +1,903 @@
+{
+ "ticker": "APG",
+ "cik": 1796209,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-011620",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026011620/apg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028658",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026028658/apg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-051007",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026051007/apg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "apg:SafetyServicesMember",
+     "label": "Safety Services",
+     "values": [
+      4425000000,
+      4797000000,
+      5456000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6387,
+      0.6835,
+      0.6897
+     ],
+     "growth_yoy": [
+      null,
+      0.0841,
+      0.1374
+     ]
+    },
+    {
+     "member": "apg:SpecialtyServicesMember",
+     "label": "Specialty Services",
+     "values": [
+      2518000000,
+      2229000000,
+      2460000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3635,
+      0.3176,
+      0.311
+     ],
+     "growth_yoy": [
+      null,
+      -0.1148,
+      0.1036
+     ]
+    },
+    {
+     "member": "apg:CorporateAndEliminationsMember",
+     "label": "Corporate And Eliminations",
+     "values": [
+      -15000000,
+      -8000000,
+      -5000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0022,
+      -0.0011,
+      -0.0006
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6928000000,
+     7018000000,
+     7911000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "apg:SafetyServicesMember",
+     "label": "Safety Services",
+     "values": [
+      1267000000,
+      1362000000,
+      1415000000,
+      1482000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7371,
+      0.6844,
+      0.7139,
+      0.6575
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1168,
+      0.0881
+     ]
+    },
+    {
+     "member": "apg:SpecialtyServicesMember",
+     "label": "Specialty Services",
+     "values": [
+      453000000,
+      629000000,
+      569000000,
+      773000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2635,
+      0.3161,
+      0.2871,
+      0.3429
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2561,
+      0.2289
+     ]
+    },
+    {
+     "member": "apg:CorporateAndEliminationsMember",
+     "label": "Corporate And Eliminations",
+     "values": [
+      -1000000,
+      -1000000,
+      -2000000,
+      -1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0006,
+      -0.0005,
+      -0.001,
+      -0.0004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1719000000,
+     1990000000,
+     1982000000,
+     2254000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "apg:SafetyServicesMember",
+     "label": "Safety Services",
+     "values": [
+      625000000,
+      765000000,
+      916000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.7409,
+      1.5806,
+      1.6534
+     ],
+     "growth_yoy": [
+      null,
+      0.224,
+      0.1974
+     ]
+    },
+    {
+     "member": "apg:SpecialtyServicesMember",
+     "label": "Specialty Services",
+     "values": [
+      278000000,
+      253000000,
+      264000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7744,
+      0.5227,
+      0.4765
+     ],
+     "growth_yoy": [
+      null,
+      -0.0899,
+      0.0435
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     359000000,
+     484000000,
+     554000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "apg:SafetyServicesMember",
+     "label": "Safety Services",
+     "values": [
+      199000000,
+      232000000,
+      230000000,
+      252000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      2.369,
+      1.6224,
+      2.233,
+      1.44
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1558,
+      0.0862
+     ]
+    },
+    {
+     "member": "apg:SpecialtyServicesMember",
+     "label": "Specialty Services",
+     "values": [
+      29000000,
+      71000000,
+      39000000,
+      92000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3452,
+      0.4965,
+      0.3786,
+      0.5257
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3448,
+      0.2958
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     84000000,
+     143000000,
+     103000000,
+     175000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "apg:LifeSafetyMember",
+     "label": "Life Safety",
+     "values": [
+      4425000000,
+      4797000000,
+      5456000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6387,
+      0.6835,
+      0.6897
+     ],
+     "growth_yoy": [
+      null,
+      0.0841,
+      0.1374
+     ]
+    },
+    {
+     "member": "apg:SpecialtyContractingMember",
+     "label": "Specialty Contracting",
+     "values": [
+      1040000000,
+      941000000,
+      1094000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1501,
+      0.1341,
+      0.1383
+     ],
+     "growth_yoy": [
+      null,
+      -0.0952,
+      0.1626
+     ]
+    },
+    {
+     "member": "apg:InfrastructureAndUtilityMember",
+     "label": "Infrastructure and Utility",
+     "values": [
+      1216000000,
+      998000000,
+      1024000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1755,
+      0.1422,
+      0.1294
+     ],
+     "growth_yoy": [
+      null,
+      -0.1793,
+      0.0261
+     ]
+    },
+    {
+     "member": "apg:FabricationAndDistributionMember",
+     "label": "Fabrication and Distribution",
+     "values": [
+      262000000,
+      290000000,
+      342000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0378,
+      0.0413,
+      0.0432
+     ],
+     "growth_yoy": [
+      null,
+      0.1069,
+      0.1793
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6928000000,
+     7018000000,
+     7911000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "apg:LifeSafetyMember",
+     "label": "Life Safety",
+     "values": [
+      1267000000,
+      1362000000,
+      1415000000,
+      1482000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7371,
+      0.6844,
+      0.7139,
+      0.6575
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1168,
+      0.0881
+     ]
+    },
+    {
+     "member": "apg:SpecialtyContractingMember",
+     "label": "Specialty Contracting",
+     "values": [
+      198000000,
+      274000000,
+      269000000,
+      373000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1152,
+      0.1377,
+      0.1357,
+      0.1655
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3586,
+      0.3613
+     ]
+    },
+    {
+     "member": "apg:InfrastructureAndUtilityMember",
+     "label": "Infrastructure and Utility",
+     "values": [
+      185000000,
+      256000000,
+      218000000,
+      299000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1076,
+      0.1286,
+      0.11,
+      0.1327
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1784,
+      0.168
+     ]
+    },
+    {
+     "member": "apg:FabricationAndDistributionMember",
+     "label": "Fabrication and Distribution",
+     "values": [
+      70000000,
+      99000000,
+      82000000,
+      101000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0407,
+      0.0497,
+      0.0414,
+      0.0448
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1714,
+      0.0202
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1719000000,
+     1990000000,
+     1982000000,
+     2254000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      4338000000,
+      4383000000,
+      5180000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6262,
+      0.6245,
+      0.6548
+     ],
+     "growth_yoy": [
+      null,
+      0.0104,
+      0.1818
+     ]
+    },
+    {
+     "member": "apg:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      1983000000,
+      1998000000,
+      2040000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2862,
+      0.2847,
+      0.2579
+     ],
+     "growth_yoy": [
+      null,
+      0.0076,
+      0.021
+     ]
+    },
+    {
+     "member": "country:FR",
+     "label": "FRANCE",
+     "values": [
+      607000000,
+      637000000,
+      691000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0876,
+      0.0908,
+      0.0873
+     ],
+     "growth_yoy": [
+      null,
+      0.0494,
+      0.0848
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6928000000,
+     7018000000,
+     7911000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1079000000,
+      1302000000,
+      1291000000,
+      1545000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6277,
+      0.6543,
+      0.6514,
+      0.6854
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1965,
+      0.1866
+     ]
+    },
+    {
+     "member": "apg:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      479000000,
+      516000000,
+      511000000,
+      532000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2787,
+      0.2593,
+      0.2578,
+      0.236
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0668,
+      0.031
+     ]
+    },
+    {
+     "member": "country:FR",
+     "label": "FRANCE",
+     "values": [
+      161000000,
+      172000000,
+      180000000,
+      177000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0937,
+      0.0864,
+      0.0908,
+      0.0785
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.118,
+      0.0291
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1719000000,
+     1990000000,
+     1982000000,
+     2254000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Operating Segments, Excluding Intersegment Elimination' (apg:OperatingSegmentsExcludingIntersegmentEliminationMember) dropped: its values equal the sum of Corporate And Eliminations, Safety Services, Specialty Services",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Corporate And Eliminations' (apg:CorporateAndEliminationsMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Operating Segments, Excluding Intersegment Elimination' (apg:OperatingSegmentsExcludingIntersegmentEliminationMember) dropped: its values equal the sum of Corporate And Eliminations, Safety Services, Specialty Services",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Corporate And Eliminations' (apg:CorporateAndEliminationsMember)",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 213.0% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 196.6% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Corporate and Elimination' (apg:CorporateAndEliminationMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Corporate and Elimination' (apg:CorporateAndEliminationMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

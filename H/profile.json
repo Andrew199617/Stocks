@@ -1,0 +1,295 @@
+{
+ "ticker": "H",
+ "cik": 1468174,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T23:40:53-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001468174.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000007/h-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/H/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/H/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Hyatt Hotels Corp",
+  "cik": 1468174,
+  "description": {
+   "text": "Hyatt Hotels Corporation is a global hospitality company with widely recognized, industry-leading brands and a tradition of innovation developed over our almost 70-year history. Hyatt's portfolio of properties consists of full service hotels and resorts, select service hotels, all-inclusive resorts, and other properties, including timeshare, fractional, and other forms of residential and vacation units. We also offer distribution and destination management services through ALG Vacations and distribution services through Mr & Mrs Smith, a boutique and luxury global travel platform. On June 17, 2025, we completed the acquisition of Playa Hotels & Resorts N.V. (\"Playa Hotels\" or the \"Playa Hotels Acquisition\"), a leading owner, operator, and developer of all-inclusive resorts in Mexico, the Dominican Republic, and Jamaica. At December 31, 2025, our hotel portfolio consisted of 1,528 hotels and all-inclusive resorts (372,763 rooms). See Part II, Item 7, \"Management's Discussion and Analysis of Financial Condition and Results of Operations—Overview\" for a breakdown of our portfolio. Our colleagues and hotel general managers are supported by our regional management teams, located in cities around the world, and our executive management team, headquartered in Chicago. Our offering includes brands across five distinct portfolios.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001468174-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000007/h-20251231.htm"
+  },
+  "description_short": "Hyatt Hotels Corporation, headquartered in Chicago, is a leading global hospitality company guided by its purpose - to care for people so they can be their best. As of June 30, 2026, the Company's portfolio included more than 1,500 hotels and all-inclusive properties in 83 countries across six continents.",
+  "industry": "Hotels/Resorts",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7011",
+  "sic_description": "Hotels & Motels",
+  "state_of_incorporation": "IL",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.hyatt.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "150 North Riverside Plaza 8th Floor",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60606",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "(312) 750-1234",
+  "employees": {
+   "count": 242000,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we had approximately 242,000 colleagues working at our corporate and regional offices, our managed, franchised, owned, and leased properties, the Bahia Principe Hotels & Resorts properties that are managed by a consolidated hospitality venture, and the Unlimited Vacation Club business that we manage.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000007/h-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2009-08-05",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001468174&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001468174-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000025/h-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001468174-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000021/h-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001104659-26-067209",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465926067209/tm2615108d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-20",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001104659-26-065756",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465926065756/tm2615108d2_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001468174-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000017/h-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001468174-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000013/h-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-038759",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465926038759/tm264387-2_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-27",
+   "period": "2026-03-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-036206",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465926036206/tm269877d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-16",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-015532",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465926015532/tm266532d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001468174-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000007/h-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001468174-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817426000004/h-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-30",
+   "period": "2025-12-30",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001104659-25-125229",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465925125229/tm2534420d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-26",
+   "period": "2025-11-26",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001104659-25-116442",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465925116442/tm2532262d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001104659-25-112977",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465925112977/tm2531334d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-05",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-25-108510",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465925108510/tm2530499d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001468174-25-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817425000111/h-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001468174-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817425000108/h-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-104477",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465925104477/tm2529845d1_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-08-27",
+   "period": "2025-06-11",
+   "items": [
+    "2.01",
+    "9.01"
+   ],
+   "description": "Amendment: Acquisition/disposition",
+   "accession": "0001104659-25-084042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000110465925084042/tm2524389d1_8ka.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001468174-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817425000092/h-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

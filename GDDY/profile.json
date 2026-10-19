@@ -1,0 +1,285 @@
+{
+ "ticker": "GDDY",
+ "cik": 1609711,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T16:56:12-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001609711.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000010/gddy-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GDDY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GDDY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GoDaddy Inc.",
+  "cik": 1609711,
+  "description": {
+   "text": "GoDaddy is a global leader serving a large market of entrepreneurs, developing and delivering easy-to-use solutions as a one-stop shop provider, backed by proactive, informed and personalized guidance. We serve small businesses, individuals, organizations, developers, designers and domain investors. Our vision is to radically shift the global economy toward life-fulfilling entrepreneurial ventures. Our mission is to empower entrepreneurs everywhere, making opportunity more inclusive for all. We are passionate about our mission and honored that entrepreneurs trust us with their ideas. Our 20.4 million customers are passionate and determined to transform their ideas into something meaningful. Our ability to evolve and build solutions and tools to handle our customers' fundamental jobs to be done uniquely positions us to help them navigate their individual journeys. Each customer's journey is unique and they tend to be non-linear and iterative in nature. We design our solutions and tools to help our customers across all aspects of their businesses and to assist them in growing across what we call the \"Entrepreneur's Wheel.\" The Entrepreneur's Wheel represents our customers' needs within three main focus areas: Identity, Presence and Commerce. Our customers often start with the most intimate of brand considerations, their Identity, which includes their company name, domain name, logo and email address.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001609711-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000010/gddy-20251231.htm"
+  },
+  "description_short": "GoDaddy, the world's largest domain name registrar, helps millions of entrepreneurs globally start, grow, and scale their businesses. People come to GoDaddy to name their idea, build a website and logo, sell their products and services and accept payments. Airo, the company's agentic operating system for small businesses, helps entrepreneurs get their idea online, run their business day-to-day, and grow through an integrated identity, presence and commerce experience. GoDaddy's expert guides are available 24/7 to provide assistance.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7373",
+  "sic_description": "Services-Computer Integrated Systems Design",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.godaddy.com",
+  "headquarters": "Tempe, Arizona",
+  "address": {
+   "street": "100 S. Mill Ave, Suite 1600",
+   "city": "Tempe",
+   "state": "Arizona",
+   "zip": "85281",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(480) 505-8800",
+  "employees": {
+   "count": 5845,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 5,845 people worldwide, made up of 2,414 in technology and development, 2,237 in care and services (who represent the portion of our GoDaddy Guides that are employed directly by GoDaddy), 369 in marketing and advertising and 825 in general and administrative functions.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000010/gddy-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-06-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001609711&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-07-31",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001609711-26-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000092/gddy-20260731.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001609711-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000088/gddy-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000087/gddy-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-03",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001609711-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000058/gddy-20260603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001609711-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000037/gddy-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000035/gddy-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001609711-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000030/gddy-20260423.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001609711-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000010/gddy-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971126000008/gddy-20260224.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001609711-25-000209",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000209/gddy-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-25-000206",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000206/gddy-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001609711-25-000154",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000154/gddy-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-25-000151",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000151/gddy-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-10",
+   "period": "2025-06-04",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001609711-25-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000124/gddy-20250604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001609711-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000077/gddy-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000075/gddy-20250501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-24",
+   "period": "2025-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001609711-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000070/gddy-20250424.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-20",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001609711-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000023/gddy-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-13",
+   "period": "2025-02-13",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001609711-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971125000018/gddy-20250213.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-12-16",
+   "period": "2024-12-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001609711-24-000205",
+   "url": "https://www.sec.gov/Archives/edgar/data/1609711/000160971124000205/gddy-20241216.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,101 @@
+{
+ "ticker": "SWK",
+ "cik": 93556,
+ "entity": "STANLEY BLACK\u00a0& DECKER, INC.",
+ "fy_end": "2026-01-03",
+ "ytd_end": "2026-07-04",
+ "inputs": {
+  "ocf": {
+   "fy": 971200000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -205700000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 374300000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-07-04"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1551200000
+  },
+  "capex": {
+   "fy": 283300000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 144600000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 123400000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-07-04"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 262100000
+  },
+  "sbc": {
+   "fy": 94100000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 64400000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 52600000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-07-04"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 82300000
+  },
+  "shares_diluted": {
+   "fy": 151878000,
+   "fy_period": [
+    "2024-12-29",
+    "2026-01-03"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 151711000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 151401000,
+   "ytd_current_period": [
+    "2026-01-04",
+    "2026-07-04"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1551200000,
+ "ttm_capex": 262100000,
+ "ttm_sbc": 82300000,
+ "ttm_shares_diluted": 151401000,
+ "ttm_oe_total": 1206800000,
+ "ttm_oe_per_share": 7.9708852649586195,
+ "warnings": [],
+ "overrides_used": []
+}

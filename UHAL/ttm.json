@@ -1,0 +1,137 @@
+{
+ "ticker": "UHAL",
+ "cik": 4457,
+ "entity": "U-Haul Holding Company",
+ "fy_end": "2026-03-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1794584000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 598376000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 630277000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1826485000
+  },
+  "capex": {
+   "fy": 3154325000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 916571000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 822362000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 3060116000
+  },
+  "sbc": {
+   "fy": 0.0,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 0.0,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 0.0,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 0.0
+  },
+  "shares_diluted": {
+   "fy": 196077880,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+   "ytd_prior": 196077880,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+   "ytd_current": 195869719,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1826485000,
+ "ttm_capex": 3060116000,
+ "ttm_sbc": 0.0,
+ "ttm_shares_diluted": 195869719,
+ "ttm_oe_total": -1233631000.0,
+ "ttm_oe_per_share": -6.298222136112831,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended March 31, 2026 (filed 2026-05-27, accession 0001193125-26-241850), Consolidated Statements of Cash Flows (p. F-6): the operating-activities reconciliation for FY2026, FY2025 and FY2024 is enumerated in full (depreciation $1,183,133k / $971,933k / $817,889k, premium amortization, debt-issuance amortization, interest credited to policyholders, disposal gains/losses, deferred taxes and working-capital changes) with no share-based or stock-based compensation line anywhere in it, and the listed items reconcile exactly to the reported operating cash flow ($1,794,584k / $1,454,429k / $1,452,756k) with no SBC addback. The terms 'share-based' and 'stock-based' appear nowhere in the filing, EDGAR companyfacts carries no ShareBasedCompensation or AllocatedShareBasedCompensationExpense fact for CIK 4457 in any year, and weighted average shares were flat at 196,077,880 combined throughout FY2024-FY2026.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-04-01",
+      "2026-03-31"
+     ],
+     "amount": 0.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-04-01",
+      "2025-06-30"
+     ],
+     "amount": 0.0,
+     "days": 91,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-04-01",
+      "2026-06-30"
+     ],
+     "amount": 0.0,
+     "days": 91,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

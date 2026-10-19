@@ -1,0 +1,88 @@
+{
+ "ticker": "AEIS",
+ "name": "Advanced Energy Industries, Inc.",
+ "sector": "Technology / Semiconductor equipment & precision power",
+ "price": 238.05,
+ "market_cap_b": 9.19,
+ "engine_version": 5,
+ "base_oe_per_share": 1.8186528497409327,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Real qualification switching costs in plasma power for leading-edge fabs (eVerest/eVoS design wins validated on yield/throughput) and in hyperscaler rack power, against through-cycle ROIC that collapsed in the trough (roic_proxy 19.9% in FY2022, 8.8% FY2023, 2.8% FY2024, 13.1% FY2025) and gross margin of 35.7-37.7% over the last five fiscal years (39.3% TTM) \u2014 well below the 50%+ of 2016-18 after mix shift and acquisitions. A genuine technology position, but cyclical, customer-concentrated and re-qualified program by program; not a durable wide moat.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.8% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 8.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 3.2x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 8.17,
+   "irr": 0.0288
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 14.89,
+   "irr": 0.0331
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 24.96,
+   "irr": 0.04
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 41.06,
+   "irr": 0.0511
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 69.05,
+   "irr": 0.0692
+  }
+ },
+ "iv_at_15": 26.25,
+ "iv_at_12": 35.91,
+ "implied_irr": 0.0413,
+ "implied_irr_base_case": 0.04,
+ "upside_at_15_pct": -89.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Good cyclical precision-power franchise, moat 5/10, in a genuine AI semi/data-center upcycle \u2014 but at $238.05 the price capitalizes far more than owner's earnings can deliver: weighted IRR 4.1%, IV@15% $26.25, and it clears the 15% hurdle only at ~$26; even the super-bull IV@15% ($69.05) is less than a third of the price.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0331,
+ "irr_bull": 0.0511,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 17.73,
+ "iv_at_25": 13.16,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -223700000,
+ "shares_diluted_latest": 38600000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Leading plasma power position (eVerest/eVoS) with customer-validated yield/throughput gains at leading-edge logic and memory nodes \u2014 high qualification switching costs in fab tools",
+  "Design wins in hyperscaler data-center rack power, incl. next-generation and 800V programs, plus second-wave customers ramping 2027",
+  "Broad precision-power portfolio across semiconductor, data center, industrial and medical with global engineering and manufacturing scale",
+  "Net cash balance sheet (net debt -$223.7M) funds the Thailand/Malaysia/Philippines/Mexico capacity build without leverage"
+ ],
+ "moat_against": [
+  "Through-cycle ROIC is mediocre and volatile: roic_proxy 19.1%/19.9% (FY2021/22) fell to 8.8%/2.8% (FY2023/24) before recovering to 13.1% (FY2025)",
+  "Gross margin 35.7-37.7% over the last five fiscal years \u2014 structurally below the 50%+ earned in 2016-18; recovery to ~42% is guided, not yet delivered",
+  "Deep cyclicality: revenue fell -10.3% in FY2023 and -10.5% in FY2024; OE/share fell from $3.09 (FY2023) to $0.74 (FY2024)",
+  "Customer and end-market concentration: semiconductor capex and a handful of hyperscalers set demand; competition from MKS and other power specialists is program-by-program",
+  "Growth now requires heavy capex: 2026 guided capex $180-195M vs D&A of ~$62M, so owner's earnings lag reported earnings through the build"
+ ]
+}

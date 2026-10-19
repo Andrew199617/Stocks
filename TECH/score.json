@@ -1,0 +1,85 @@
+{
+ "ticker": "TECH",
+ "name": "Bio-Techne Corporation",
+ "sector": "Healthcare / Life sciences tools",
+ "price": 72.57,
+ "market_cap_b": 11.39,
+ "engine_version": 5,
+ "base_oe_per_share": 1.3506201594069511,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "R&D Systems reference-standard citation lock-in and 65-68% gross margins held through the tools downturn, instrument + consumable pull-through and regulated GMP positions; capped at 7 because revenue has been flat for three years, ROIC slid from 14.5% (FY2022) to 9.3% (FY2026) with a one-off-depressed 3.6% in FY2025, and it is subscale vs Thermo Fisher/Danaher. Merck KGaA's $73 cash bid validates the franchise durability the recent ROIC series understates (FY2025 operating income carried the non-cash held-for-sale impairment and litigation/arbitration charges).",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "LOW_OE_YIELD: base OE yield 1.9% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 5.3,
+   "irr": 0.0324
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 8.81,
+   "irr": 0.0394
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 12.38,
+   "irr": 0.0472
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 17.27,
+   "irr": 0.0578
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 27.37,
+   "irr": 0.0787
+  }
+ },
+ "iv_at_15": 13.5,
+ "iv_at_12": 18.09,
+ "implied_irr": 0.0501,
+ "implied_irr_base_case": 0.0472,
+ "upside_at_15_pct": -81.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality life-sciences tools franchise, moat 7/10, but standalone owner's-earnings value is ~$13.50 vs the $72.57 price \u2014 the price is Merck KGaA's pending $73 cash takeover, not fundamentals; Tier D standalone (5.0% weighted IRR), clears 15% only below $13.50, and a deal break leaves the whole DCF range far below the price.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0394,
+ "irr_bull": 0.0578,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 9.41,
+ "iv_at_25": 7.18,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -64712000,
+ "shares_diluted_latest": 157009000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Reference-standard citation lock-in \u2014 R&D Systems proteins/antibodies cited by catalog number in the literature; reproducibility trust beats price",
+  "Gross margin 64.8-68.4% every year FY2021-26 \u2014 pricing power held through the downcycle",
+  "Instrument + proprietary consumable pull-through (ProteinSimple, Lunaphore COMET, RNAscope)",
+  "GMP reagents qualified into cell-therapy manufacturing workflows \u2014 re-validation switching costs",
+  "Net-cash balance sheet; Merck KGaA paying $73 cash / ~$11.3B EV for the franchise"
+ ],
+ "moat_against": [
+  "Subscale vs Thermo Fisher and Danaher, who bundle across the whole lab wallet",
+  "Revenue flat for three years (FY2023 $1.137B to FY2026 $1.215B) \u2014 moat defends share, not growth",
+  "ROIC downtrend: 14.5% FY2022 to 9.3% FY2026 (3.6% in one-off-hit FY2025)",
+  "Diagnostics and Spatial Biology segment weaker and shrinking (-2.9% in FY2026)",
+  "Demand rides the biotech funding cycle; balance sheet carries a large acquired goodwill/intangible base"
+ ]
+}

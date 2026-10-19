@@ -1,0 +1,271 @@
+{
+ "ticker": "CHKP",
+ "cik": 1015922,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001178913-26-001932",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326001932/zk2634942_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "chkp:SecuritySubscriptionsMember",
+     "label": "Security Subscriptions",
+     "values": [
+      981200000,
+      1104200000,
+      1219000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4063,
+      0.4305,
+      0.4473
+     ],
+     "growth_yoy": [
+      null,
+      0.1254,
+      0.104
+     ]
+    },
+    {
+     "member": "chkp:SoftwareUpdatesAndMaintenanceMember",
+     "label": "Software updates and maintenance",
+     "values": [
+      936100000,
+      952900000,
+      958200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3877,
+      0.3715,
+      0.3516
+     ],
+     "growth_yoy": [
+      null,
+      0.0179,
+      0.0056
+     ]
+    },
+    {
+     "member": "chkp:NetworkSecurityGatewaysMember",
+     "label": "Network Security Gateways",
+     "values": [
+      452000000,
+      470100000,
+      506200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1872,
+      0.1833,
+      0.1857
+     ],
+     "growth_yoy": [
+      null,
+      0.04,
+      0.0768
+     ]
+    },
+    {
+     "member": "chkp:OtherProductMember",
+     "label": "Other Product",
+     "values": [
+      45400000,
+      37800000,
+      42000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0188,
+      0.0147,
+      0.0154
+     ],
+     "growth_yoy": [
+      null,
+      -0.1674,
+      0.1111
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2414700000,
+     2565000000,
+     2725400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1050400000,
+      1120500000,
+      1174200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.435,
+      0.4368,
+      0.4308
+     ],
+     "growth_yoy": [
+      null,
+      0.0667,
+      0.0479
+     ]
+    },
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1025700000,
+      1070400000,
+      1142700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4248,
+      0.4173,
+      0.4193
+     ],
+     "growth_yoy": [
+      null,
+      0.0436,
+      0.0675
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      272300000,
+      301200000,
+      334500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1128,
+      0.1174,
+      0.1227
+     ],
+     "growth_yoy": [
+      null,
+      0.1061,
+      0.1106
+     ]
+    },
+    {
+     "member": "country:IL",
+     "label": "ISRAEL",
+     "values": [
+      66300000,
+      72900000,
+      74000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0275,
+      0.0284,
+      0.0272
+     ],
+     "growth_yoy": [
+      null,
+      0.0995,
+      0.0151
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2414700000,
+     2565000000,
+     2725400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product and Licensing' (chkp:ProductAndLicensingMember) dropped: its values equal the sum of Network Security Gateways, Other Product",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

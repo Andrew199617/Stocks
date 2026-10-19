@@ -1,0 +1,245 @@
+{
+ "ticker": "STLA",
+ "cik": 1605484,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T20:00:26-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001605484.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000021/stellantis-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/STLA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/STLA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Stellantis N.V.",
+  "cik": 1605484,
+  "description": null,
+  "description_short": "Stellantis (NYSE: STLA / Euronext Milan: STLAM / Euronext Paris : STLAP) is a leading global automaker, dedicated to giving its customers the freedom to choose the way they move, embracing the latest technologies and creating value for all its stakeholders. Its unique portfolio of iconic and innovative brands includes Abarth, Alfa Romeo, Chrysler, Citroën, Dodge, DS Automobiles, FIAT, Jeep , Lancia, Maserati, Opel, Peugeot, Ram, Vauxhall, Free2move and Leasys. For more information, visit www.stellantis.",
+  "industry": "Auto Manufacturing",
+  "sector": "Industrials",
+  "region": "Europe",
+  "sic": "3711",
+  "sic_description": "Motor Vehicles & Passenger Car Bodies",
+  "state_of_incorporation": "P7",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.stellantis.com",
+  "headquarters": "Hoofddorp, Netherlands",
+  "address": {
+   "street": "Taurusavenue 1",
+   "city": "Hoofddorp",
+   "state": null,
+   "zip": "2132 LS",
+   "country": "Netherlands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-26"
+  },
+  "phone": "31 237001511",
+  "employees": {
+   "count": 258668,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, Stellantis had a total of 258,668 employees (excluding employees of joint arrangements, associates and unconsolidated subsidiaries), a 4.2 percent increase from December 31, 2024, and a 0.2 percent increase from December 31, 2023.",
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000021/stellantis-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-10-01",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "Fiat Chrysler Automobiles N.V.",
+   "Fiat Investments N.V."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001605484&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000085/a6k10152026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000083/a6k10132026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-393046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000119312526393046/d71756d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000081/a6k09032026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000066/a6-kcoverpageq22026supplem.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000064/a6-kstellantisnvh12026inte.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000062/a6-kcoverpageh12026pressre.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000057/a6k07152026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-13",
+   "period": "2026-07-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000055/a6k07132026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000047/a6k05222026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000044/a6-kcoverpageq12026supplem.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000041/a6-kstellantisnvq12026inte.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000039/a6-kcoverpageq12026pressre.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000034/a6k04172026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000032/a6k04162026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-01",
+   "period": "2026-04-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000030/a6k04012026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000028/a6k03112026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000026/a6k03022026_stla.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001605484-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000023/a6-kcoverpagefy2025supplem.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001605484-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1605484/000160548426000021/stellantis-20251231.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-02-26)"
+ ]
+}

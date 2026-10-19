@@ -1,0 +1,819 @@
+{
+ "ticker": "LDOS",
+ "cik": 1336920,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001336920-26-000030",
+   "filed": "2026-02-17",
+   "period": "2026-01-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1336920/000133692026000030/ldos-20260102_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001336920-26-000169",
+   "filed": "2026-05-05",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1336920/000133692026000169/ldos-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001336920-26-000246",
+   "filed": "2026-08-04",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1336920/000133692026000246/ldos-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-29",
+    "2025-01-03",
+    "2026-01-02"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ldos:NationalSecurityAndDigitalSegmentMember",
+     "label": "National Security and Digital Segment",
+     "values": [
+      7196000000,
+      7365000000,
+      7611000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4661,
+      0.442,
+      0.4432
+     ],
+     "growth_yoy": [
+      null,
+      0.0235,
+      0.0334
+     ]
+    },
+    {
+     "member": "ldos:HealthAndCivilSegmentMember",
+     "label": "Health and Civil Segment",
+     "values": [
+      4238000000,
+      5015000000,
+      5069000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2745,
+      0.301,
+      0.2952
+     ],
+     "growth_yoy": [
+      null,
+      0.1833,
+      0.0108
+     ]
+    },
+    {
+     "member": "ldos:CommercialAndInternationalSegmentMember",
+     "label": "Commercial and International Segment",
+     "values": [
+      2126000000,
+      2252000000,
+      2315000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1377,
+      0.1352,
+      0.1348
+     ],
+     "growth_yoy": [
+      null,
+      0.0593,
+      0.028
+     ]
+    },
+    {
+     "member": "ldos:DefenseSystemsSegmentMember",
+     "label": "Defense Systems Segment",
+     "values": [
+      1878000000,
+      2030000000,
+      2179000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1216,
+      0.1218,
+      0.1269
+     ],
+     "growth_yoy": [
+      null,
+      0.0809,
+      0.0734
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15438000000,
+     16662000000,
+     17174000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ldos:IntelligenceAndDigitalSegmentMember",
+     "label": "Intelligence and Digital Segment",
+     "values": [
+      1408000000,
+      1408000000,
+      1513000000,
+      1499000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3317,
+      0.3311,
+      0.3439,
+      0.3289
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0746,
+      0.0646
+     ]
+    },
+    {
+     "member": "ldos:HealthSegmentMember",
+     "label": "Health Segment",
+     "values": [
+      1188000000,
+      1175000000,
+      1188000000,
+      1086000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2799,
+      0.2763,
+      0.27,
+      0.2383
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.0757
+     ]
+    },
+    {
+     "member": "ldos:HomelandSegmentMember",
+     "label": "Homeland Segment",
+     "values": [
+      770000000,
+      771000000,
+      816000000,
+      1018000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1814,
+      0.1813,
+      0.1855,
+      0.2233
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0597,
+      0.3204
+     ]
+    },
+    {
+     "member": "ldos:DefenseSegmentMember",
+     "label": "Defense Segment",
+     "values": [
+      879000000,
+      899000000,
+      883000000,
+      955000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2071,
+      0.2114,
+      0.2007,
+      0.2095
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0046,
+      0.0623
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4245000000,
+     4253000000,
+     4400000000,
+     4558000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-29",
+    "2025-01-03",
+    "2026-01-02"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ldos:NationalSecurityAndDigitalSegmentMember",
+     "label": "National Security and Digital Segment",
+     "values": [
+      7142000000,
+      7304000000,
+      7563000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4656,
+      0.4406,
+      0.4421
+     ],
+     "growth_yoy": [
+      null,
+      0.0227,
+      0.0355
+     ]
+    },
+    {
+     "member": "ldos:HealthAndCivilSegmentMember",
+     "label": "Health and Civil Segment",
+     "values": [
+      4202000000,
+      4994000000,
+      5053000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2739,
+      0.3013,
+      0.2954
+     ],
+     "growth_yoy": [
+      null,
+      0.1885,
+      0.0118
+     ]
+    },
+    {
+     "member": "ldos:CommercialAndInternationalSegmentMember",
+     "label": "Commercial and International Segment",
+     "values": [
+      2116000000,
+      2248000000,
+      2312000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1379,
+      0.1356,
+      0.1351
+     ],
+     "growth_yoy": [
+      null,
+      0.0624,
+      0.0285
+     ]
+    },
+    {
+     "member": "ldos:DefenseSystemsSegmentMember",
+     "label": "Defense Systems Segment",
+     "values": [
+      1879000000,
+      2030000000,
+      2179000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1225,
+      0.1225,
+      0.1274
+     ],
+     "growth_yoy": [
+      null,
+      0.0804,
+      0.0734
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15339000000,
+     16576000000,
+     17107000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ldos:IntelligenceAndDigitalSegmentMember",
+     "label": "Intelligence and Digital Segment",
+     "values": [
+      1397000000,
+      1393000000,
+      1497000000,
+      1489000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3304,
+      0.3291,
+      0.3415,
+      0.3274
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0716,
+      0.0689
+     ]
+    },
+    {
+     "member": "ldos:HealthSegmentMember",
+     "label": "Health Segment",
+     "values": [
+      1183000000,
+      1170000000,
+      1188000000,
+      1086000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2798,
+      0.2764,
+      0.271,
+      0.2388
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0042,
+      -0.0718
+     ]
+    },
+    {
+     "member": "ldos:HomelandSegmentMember",
+     "label": "Homeland Segment",
+     "values": [
+      769000000,
+      771000000,
+      815000000,
+      1018000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1819,
+      0.1821,
+      0.1859,
+      0.2238
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0598,
+      0.3204
+     ]
+    },
+    {
+     "member": "ldos:DefenseSegmentMember",
+     "label": "Defense Segment",
+     "values": [
+      879000000,
+      899000000,
+      883000000,
+      955000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2079,
+      0.2124,
+      0.2015,
+      0.21
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0046,
+      0.0623
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4228000000,
+     4233000000,
+     4383000000,
+     4548000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-29"
+   ],
+   "period_labels": [
+    "FY2023"
+   ],
+   "rows": [
+    {
+     "member": "ldos:NationalSecurityAndDigitalSegmentMember",
+     "label": "National Security and Digital Segment",
+     "values": [
+      672000000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      1.0821
+     ],
+     "growth_yoy": [
+      null
+     ]
+    },
+    {
+     "member": "ldos:HealthAndCivilSegmentMember",
+     "label": "Health and Civil Segment",
+     "values": [
+      574000000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      0.9243
+     ],
+     "growth_yoy": [
+      null
+     ]
+    },
+    {
+     "member": "ldos:DefenseSystemsSegmentMember",
+     "label": "Defense Systems Segment",
+     "values": [
+      65000000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      0.1047
+     ],
+     "growth_yoy": [
+      null
+     ]
+    },
+    {
+     "member": "ldos:CommercialAndInternationalSegmentMember",
+     "label": "Commercial and International Segment",
+     "values": [
+      -560000000
+     ],
+     "derived": [
+      false
+     ],
+     "share_of_total": [
+      -0.9018
+     ],
+     "growth_yoy": [
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     621000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-29",
+    "2025-01-03",
+    "2026-01-02"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      14015000000,
+      15206000000,
+      15703000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9137,
+      0.9174,
+      0.9179
+     ],
+     "growth_yoy": [
+      null,
+      0.085,
+      0.0327
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1324000000,
+      1370000000,
+      1404000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0863,
+      0.0826,
+      0.0821
+     ],
+     "growth_yoy": [
+      null,
+      0.0347,
+      0.0248
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15339000000,
+     16576000000,
+     17107000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3881000000,
+      3893000000,
+      4026000000,
+      4144000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9179,
+      0.9197,
+      0.9185,
+      0.9112
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0374,
+      0.0645
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      347000000,
+      340000000,
+      357000000,
+      404000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0821,
+      0.0803,
+      0.0815,
+      0.0888
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0288,
+      0.1882
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4228000000,
+     4233000000,
+     4383000000,
+     4548000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 120.9% of the consolidated total for 2023-12-29 (ties_to_total: false)"
+ ],
+ "complete": true
+}

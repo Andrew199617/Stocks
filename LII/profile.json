@@ -1,0 +1,288 @@
+{
+ "ticker": "LII",
+ "cik": 1069202,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T03:39:59-04:00",
+ "newest_filing_date": "2026-09-18",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001069202.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000028/lii-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LII/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LII/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "LENNOX INTERNATIONAL INC",
+  "cik": 1069202,
+  "description": {
+   "text": "We are a global leader in energy-efficient climate-control solutions. We design, manufacture and market a broad range of products for the heating, ventilation, air conditioning and refrigeration (“HVACR”) markets. We have leveraged our expertise to become an industry leader known for innovation, quality and reliability. Our products and services are sold through multiple distribution channels under various brand names. The Company was founded in 1895, in Marshalltown, Iowa, by Dave Lennox, the owner of a machine repair business for railroads. He designed and patented a riveted steel coal-fired furnace, which led to numerous advancements in heating, cooling and climate control solutions. Our two business segments, Home Comfort Solutions and Building Climate Solutions, the key products, services and well-known product and brand names within each segment and net sales in 2025 by segment are shown in the table below. Segment financial data for 2025, 2024 and 2023, including financial information about foreign and domestic operations, is included in Note 3 of the Notes to our Consolidated Financial Statements in “Item 8. Financial Statements and Supplementary Data” and is incorporated herein by reference.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001069202-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000028/lii-20251231.htm"
+  },
+  "description_short": "Lennox (NYSE: LII) is a leader in energy-efficient building solutions and is committed to creating healthier and more comfortable environments. Serving residential and commercial customers, the company delivers innovative heating, cooling, indoor air quality, refrigeration, and water heating systems. Through trusted products, parts, and services, and advanced technology, Lennox delivers connected solutions that support the full lifecycle of customer needs.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3585",
+  "sic_description": "Air-Cond & Warm Air Heatg Equip & Comm & Indl Refrig Equip",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.lennox.com",
+  "headquarters": "Richardson, Texas",
+  "address": {
+   "street": "2140 Lake Park Blvd",
+   "city": "Richardson",
+   "state": "Texas",
+   "zip": "75080",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "972-497-5000",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-type / per-location breakdown with no filed total",
+   "evidence": "As of December 31, 2025, we employed approximately 12,900 people, primarily in the U.S. (approximately 8,500 employees) and Mexico (approximately 3,200 employees).",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000028/lii-20251231.htm"
+  },
+  "first_sec_filing": "1999-04-06",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001069202&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-16",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001069202-26-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000091/lii-20260916.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069202-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000087/lii-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001069202-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000085/lii-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001069202-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000076/lii-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069202-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000054/lii-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001069202-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000052/lii-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001069202-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000046/lii-20260406.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001069202-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000028/lii-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001069202-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000005/lii-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001069202-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000062/lii-20251204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-22",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069202-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000048/lii-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001069202-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000046/lii-20251022.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-23",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069202-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000032/lii-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001069202-25-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000029/lii-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-22",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001069202-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000024/lii-20250522.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-14",
+   "period": "2025-05-09",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001069202-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000022/lii-20250509.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-23",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069202-25-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000017/lii-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001069202-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000015/lii-20250423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-09",
+   "period": "2025-05-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001069202-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000010/lii-20250408.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-13",
+   "period": "2025-03-07",
+   "items": [
+    "4.01",
+    "9.01"
+   ],
+   "description": "Auditor change",
+   "accession": "0001069202-25-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920225000005/lii-20250307.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a per-type / per-location breakdown with no filed total in the 10-K filed 2026-02-17: \"As of December 31, 2025, we employed approximately 12,900 people, primarily in the U.S. (approximately 8,500 employees) and Mexico (approximately 3,200 employees).\""
+ ]
+}

@@ -1,0 +1,783 @@
+{
+ "ticker": "NLY",
+ "cik": 1043219,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001043219-26-000013",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000013/nly-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001043219-26-000028",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000028/nly-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001043219-26-000058",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000058/nly-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "nly:AgencySegmentMember",
+     "label": "Agency Segment",
+     "values": [
+      -2208086000,
+      287928000,
+      1361941000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3438,
+      0.2874,
+      0.6718
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.7301
+     ]
+    },
+    {
+     "member": "nly:MortgageServicingRightsSegmentMember",
+     "label": "Mortgage Servicing Rights Segment",
+     "values": [
+      289538000,
+      352829000,
+      361770000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1762,
+      0.3522,
+      0.1785
+     ],
+     "growth_yoy": [
+      null,
+      0.2186,
+      0.0253
+     ]
+    },
+    {
+     "member": "nly:ResidentialCreditSegmentMember",
+     "label": "Residential Credit Segment",
+     "values": [
+      302781000,
+      372180000,
+      329522000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1843,
+      0.3715,
+      0.1625
+     ],
+     "growth_yoy": [
+      null,
+      0.2292,
+      -0.1146
+     ]
+    },
+    {
+     "member": "nly:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -27404000,
+      -11031000,
+      -25971000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0167,
+      -0.011,
+      -0.0128
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -1643171000,
+     1001906000,
+     2027262000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nly:AgencySegmentMember",
+     "label": "Agency Segment",
+     "values": [
+      -53584000,
+      -87322000,
+      -24898000,
+      566380000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.4313,
+      -1.5293,
+      -0.0881,
+      0.6885
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "nly:ResidentialCreditSegmentMember",
+     "label": "Residential Credit Segment",
+     "values": [
+      79706000,
+      80076000,
+      247882000,
+      149155000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6416,
+      1.4024,
+      0.877,
+      0.1813
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.11,
+      0.8627
+     ]
+    },
+    {
+     "member": "nly:MortgageServicingRightsSegmentMember",
+     "label": "Mortgage Servicing Rights Segment",
+     "values": [
+      105458000,
+      69651000,
+      66814000,
+      116429000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8489,
+      1.2198,
+      0.2364,
+      0.1415
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3664,
+      0.6716
+     ]
+    },
+    {
+     "member": "nly:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -7356000,
+      -5306000,
+      -7146000,
+      -9291000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0592,
+      -0.0929,
+      -0.0253,
+      -0.0113
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     124224000,
+     57099000,
+     282652000,
+     822673000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "nly:AgencySegmentMember",
+     "label": "Agency Segment",
+     "values": [
+      71167416000,
+      71834543000,
+      91816874000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7634,
+      0.6937,
+      0.6771
+     ],
+     "growth_yoy": [
+      null,
+      0.0094,
+      0.2782
+     ]
+    },
+    {
+     "member": "nly:ResidentialCreditSegmentMember",
+     "label": "Residential Credit Segment",
+     "values": [
+      19149003000,
+      28137561000,
+      39310418000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2054,
+      0.2717,
+      0.2899
+     ],
+     "growth_yoy": [
+      null,
+      0.4694,
+      0.3971
+     ]
+    },
+    {
+     "member": "nly:MortgageServicingRightsSegmentMember",
+     "label": "Mortgage Servicing Rights Segment",
+     "values": [
+      2578644000,
+      3406686000,
+      4388619000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0277,
+      0.0329,
+      0.0324
+     ],
+     "growth_yoy": [
+      null,
+      0.3211,
+      0.2882
+     ]
+    },
+    {
+     "member": "nly:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      332173000,
+      177594000,
+      93927000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0036,
+      0.0017,
+      0.0007
+     ],
+     "growth_yoy": [
+      null,
+      -0.4654,
+      -0.4711
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     93227236000,
+     103556384000,
+     135609838000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nly:AgencySegmentMember",
+     "label": "Agency Segment",
+     "values": [
+      70429198000,
+      75289321000,
+      89373473000,
+      90585914000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.67,
+      0.6714,
+      0.6451,
+      0.6302
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.269,
+      0.2032
+     ]
+    },
+    {
+     "member": "nly:ResidentialCreditSegmentMember",
+     "label": "Residential Credit Segment",
+     "values": [
+      30678639000,
+      32919304000,
+      44237023000,
+      48138201000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2919,
+      0.2936,
+      0.3193,
+      0.3349
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4419,
+      0.4623
+     ]
+    },
+    {
+     "member": "nly:MortgageServicingRightsSegmentMember",
+     "label": "Mortgage Servicing Rights Segment",
+     "values": [
+      3849181000,
+      3835511000,
+      4899360000,
+      4985815000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0366,
+      0.0342,
+      0.0354,
+      0.0347
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2728,
+      0.2999
+     ]
+    },
+    {
+     "member": "nly:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      158328000,
+      97756000,
+      27735000,
+      31246000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0015,
+      0.0009,
+      0.0002,
+      0.0002
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.8248,
+      -0.6804
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     105115346000,
+     112141892000,
+     138537591000,
+     143741176000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "nly:AgencySegmentMember",
+     "label": "Agency Segment",
+     "values": [
+      -323282000,
+      -27883000,
+      754868000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      2.9024,
+      -0.1125,
+      0.6648
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "nly:ResidentialCreditSegmentMember",
+     "label": "Residential Credit Segment",
+     "values": [
+      201959000,
+      272296000,
+      380279000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -1.8132,
+      1.0989,
+      0.3349
+     ],
+     "growth_yoy": [
+      null,
+      0.3483,
+      0.3966
+     ]
+    },
+    {
+     "member": "nly:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      9939000,
+      3383000,
+      353000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0892,
+      0.0137,
+      0.0003
+     ],
+     "growth_yoy": [
+      null,
+      -0.6596,
+      -0.8957
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -111384000,
+     247796000,
+     1135500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nly:AgencySegmentMember",
+     "label": "Agency Segment",
+     "values": [
+      130947000,
+      181951000,
+      328849000,
+      346978000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5953,
+      0.666,
+      0.7264,
+      0.7107
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.5113,
+      0.907
+     ]
+    },
+    {
+     "member": "nly:ResidentialCreditSegmentMember",
+     "label": "Residential Credit Segment",
+     "values": [
+      88679000,
+      91241000,
+      123842000,
+      141215000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4031,
+      0.334,
+      0.2736,
+      0.2893
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3965,
+      0.5477
+     ]
+    },
+    {
+     "member": "nly:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      345000,
+      8000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0016,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     219971000,
+     273200000,
+     452691000,
+     488193000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

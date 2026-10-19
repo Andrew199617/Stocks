@@ -1,0 +1,845 @@
+{
+ "ticker": "EFX",
+ "cik": 33185,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000033185-26-000010",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000010/efx-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000033185-26-000018",
+   "filed": "2026-04-21",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000018/efx-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000033185-26-000028",
+   "filed": "2026-07-21",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/33185/000003318526000028/efx-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "efx:WorkforceSolutionsMember",
+     "label": "Workforce Solutions",
+     "values": [
+      2315800000,
+      2433800000,
+      2582300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4398,
+      0.4284,
+      0.4251
+     ],
+     "growth_yoy": [
+      null,
+      0.051,
+      0.061
+     ]
+    },
+    {
+     "member": "efx:UnitedStatesConsumerInformationSolutionsMember",
+     "label": "United States Consumer Information Solutions",
+     "values": [
+      1720400000,
+      1893000000,
+      2078500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3267,
+      0.3332,
+      0.3422
+     ],
+     "growth_yoy": [
+      null,
+      0.1003,
+      0.098
+     ]
+    },
+    {
+     "member": "efx:InternationalMember",
+     "label": "International",
+     "values": [
+      1229000000,
+      1354300000,
+      1413700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2334,
+      0.2384,
+      0.2327
+     ],
+     "growth_yoy": [
+      null,
+      0.102,
+      0.0439
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5265200000,
+     5681100000,
+     6074500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "efx:WorkforceSolutionsMember",
+     "label": "Workforce Solutions",
+     "values": [
+      618600000,
+      662100000,
+      683100000,
+      705400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.429,
+      0.4308,
+      0.4143,
+      0.4149
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1043,
+      0.0654
+     ]
+    },
+    {
+     "member": "efx:UnitedStatesConsumerInformationSolutionsMember",
+     "label": "United States Consumer Information Solutions",
+     "values": [
+      499900000,
+      521500000,
+      605600000,
+      611600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3467,
+      0.3393,
+      0.3673,
+      0.3597
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2114,
+      0.1728
+     ]
+    },
+    {
+     "member": "efx:InternationalMember",
+     "label": "International",
+     "values": [
+      323500000,
+      353400000,
+      360200000,
+      383100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2243,
+      0.2299,
+      0.2184,
+      0.2253
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1134,
+      0.084
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1442000000,
+     1537000000,
+     1648900000,
+     1700100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "efx:WorkforceSolutionsMember",
+     "label": "Workforce Solutions",
+     "values": [
+      969300000,
+      1053300000,
+      1141500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0382,
+      1.0107,
+      1.0423
+     ],
+     "growth_yoy": [
+      null,
+      0.0867,
+      0.0837
+     ]
+    },
+    {
+     "member": "efx:USInformationSolutionsMember",
+     "label": "U S Information Solutions",
+     "values": [
+      365000000,
+      404400000,
+      475200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.391,
+      0.3881,
+      0.4339
+     ],
+     "growth_yoy": [
+      null,
+      0.1079,
+      0.1751
+     ]
+    },
+    {
+     "member": "efx:InternationalMember",
+     "label": "International",
+     "values": [
+      167800000,
+      181200000,
+      182500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1797,
+      0.1739,
+      0.1666
+     ],
+     "growth_yoy": [
+      null,
+      0.0799,
+      0.0072
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     933600000,
+     1042100000,
+     1095200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "efx:WorkforceSolutionsMember",
+     "label": "Workforce Solutions",
+     "values": [
+      264100000,
+      307300000,
+      309400000,
+      316700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.12,
+      0.9887,
+      1.0754,
+      1.008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1715,
+      0.0306
+     ]
+    },
+    {
+     "member": "efx:UnitedStatesConsumerInformationSolutionsMember",
+     "label": "United States Consumer Information Solutions",
+     "values": [
+      105700000,
+      118000000,
+      122300000,
+      137800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4483,
+      0.3797,
+      0.4251,
+      0.4386
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.157,
+      0.1678
+     ]
+    },
+    {
+     "member": "efx:InternationalMember",
+     "label": "International",
+     "values": [
+      25400000,
+      38600000,
+      34100000,
+      46300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1077,
+      0.1242,
+      0.1185,
+      0.1474
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3425,
+      0.1995
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     235800000,
+     310800000,
+     287700000,
+     314200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "efx:WorkforceMember",
+     "label": "Workforce",
+     "values": [
+      4104900000,
+      4067600000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3491,
+      0.3428
+     ],
+     "growth_yoy": [
+      null,
+      -0.0091
+     ]
+    },
+    {
+     "member": "efx:InternationalMember",
+     "label": "International",
+     "values": [
+      3451600000,
+      3629200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2935,
+      0.3059
+     ],
+     "growth_yoy": [
+      null,
+      0.0515
+     ]
+    },
+    {
+     "member": "efx:UnitedStatesConsumerInformationSolutionsMember",
+     "label": "United States Consumer Information Solutions",
+     "values": [
+      3386200000,
+      3354100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.288,
+      0.2827
+     ],
+     "growth_yoy": [
+      null,
+      -0.0095
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      816700000,
+      813300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0695,
+      0.0686
+     ],
+     "growth_yoy": [
+      null,
+      -0.0042
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11759400000,
+     11864200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "efx:WorkforceSolutionsMember",
+     "label": "Workforce Solutions",
+     "values": [
+      4067600000,
+      4104500000,
+      4103800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3428,
+      0.3437,
+      0.3425
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "efx:InternationalMember",
+     "label": "International",
+     "values": [
+      3629200000,
+      3671600000,
+      3677900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3059,
+      0.3075,
+      0.307
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "efx:UnitedStatesConsumerInformationSolutionsMember",
+     "label": "United States Consumer Information Solutions",
+     "values": [
+      3354100000,
+      3351600000,
+      3330700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2827,
+      0.2807,
+      0.278
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      813300000,
+      814300000,
+      869400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0686,
+      0.0682,
+      0.0726
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11864200000,
+     11942000000,
+     11981800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4036200000,
+      4326800000,
+      4660800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7666,
+      0.7616,
+      0.7673
+     ],
+     "growth_yoy": [
+      null,
+      0.072,
+      0.0772
+     ]
+    },
+    {
+     "member": "efx:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      386000000,
+      477500000,
+      498300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0733,
+      0.0841,
+      0.082
+     ],
+     "growth_yoy": [
+      null,
+      0.237,
+      0.0436
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      265800000,
+      302800000,
+      325900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0505,
+      0.0533,
+      0.0537
+     ],
+     "growth_yoy": [
+      null,
+      0.1392,
+      0.0763
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      317600000,
+      309100000,
+      318100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0603,
+      0.0544,
+      0.0524
+     ],
+     "growth_yoy": [
+      null,
+      -0.0268,
+      0.0291
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      259600000,
+      264900000,
+      271400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0493,
+      0.0466,
+      0.0447
+     ],
+     "growth_yoy": [
+      null,
+      0.0204,
+      0.0245
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5265200000,
+     5681100000,
+     6074500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'U S Information Solutions' (efx:USInformationSolutionsMember) dropped: same numbers as 'United States Consumer Information Solutions' (efx:UnitedStatesConsumerInformationSolutionsMember)",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 164.3% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 159.4% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

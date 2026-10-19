@@ -1,0 +1,87 @@
+{
+ "ticker": "SWK",
+ "name": "Stanley Black & Decker, Inc.",
+ "sector": "Industrials / Tools & outdoor equipment",
+ "price": 92.48,
+ "market_cap_b": 14.05,
+ "engine_version": 5,
+ "base_oe_per_share": 7.9708852649586195,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "DEWALT's professional brand and battery-platform lock-in are real, but share is contested by Milwaukee, the consumer brands are weak, and returns collapsed through the last downturn \u2014 no through-cycle pricing power proof.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 4.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (12.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 29.03,
+   "irr": 0.0592
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 40.17,
+   "irr": 0.0754
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 55.05,
+   "irr": 0.0978
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 74.6,
+   "irr": 0.126
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 113.25,
+   "irr": 0.1757
+  }
+ },
+ "iv_at_15": 55.43,
+ "iv_at_12": 72.41,
+ "implied_irr": 0.0989,
+ "implied_irr_base_case": 0.0978,
+ "upside_at_15_pct": -40.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Turnaround in progress with a real DEWALT franchise, moat 5/10 \u2014 but even on the generous TTM base it returns 9.9% weighted (IV@15% $55.43 vs $92.48); it only clears 15% at ~$55 or below.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0754,
+ "irr_bull": 0.126,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 40.01,
+ "iv_at_25": 31.38,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5583600000,
+ "shares_diluted_latest": 151878000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "DEWALT professional brand equity and trust (~17% dollar share in power tools)",
+  "20V MAX / FLEXVOLT battery ecosystem lock-in for professional users",
+  "Distribution scale across Home Depot, Lowe's and pro channels",
+  "Engineered fastening niches with co-engineered, qualified auto/aerospace positions",
+  "Recurring high-margin consumables (blades, bits, accessories)"
+ ],
+ "moat_against": [
+  "TTI's Milwaukee gaining professional share with faster cordless innovation",
+  "Retailer private labels and low-cost Chinese brands eroding the consumer tier",
+  "Housing/DIY cyclicality \u2014 gross margin fell 37% to 25% in the 2022-23 downturn",
+  "Tariff exposure on imported content",
+  "Peak ROIC only mid-teens (8.8-15.0% where computable), not through-cycle high"
+ ]
+}

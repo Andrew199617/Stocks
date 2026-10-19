@@ -1,0 +1,294 @@
+{
+ "ticker": "SWK",
+ "cik": 93556,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T15:26:21-04:00",
+ "newest_filing_date": "2026-09-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000093556.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000009/swk-20260103.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SWK/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SWK/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "STANLEY BLACK & DECKER, INC.",
+  "cik": 93556,
+  "description": {
+   "text": "Stanley Black & Decker, Inc. (\"the Company\") was founded in 1843 by Frederick T. Stanley and incorporated in Connecticut in 1852. In March 2010, the Company completed a merger with The Black & Decker Corporation (“Black & Decker”), a company founded by S. Duncan Black and Alonzo G. Decker and incorporated in Maryland in 1910. At that time, the Company changed its name from The Stanley Works to Stanley Black & Decker, Inc. The Company’s principal executive office is located at 1000 Stanley Drive, New Britain, Connecticut 06053 and its telephone number is (860) 225-5111. The Company is a global provider of hand tools, power tools, outdoor products and related accessories, as well as a leading provider of engineered fastening solutions, with 2025 consolidated annual revenues of $15.1 billion. Approximately 62% of the Company’s 2025 revenues were generated in the United States, with the remainder largely from Europe (16%), emerging markets (13%) and Canada (4%). In recent years, the Company has re-shaped its portfolio through a series of divestitures. In July 2022, the Company sold its Convergent Security Solutions (\"CSS\") business comprised of the commercial electronic security and healthcare businesses for net proceeds of $3.1 billion and its Mechanical Access Solutions (\"MAS\") business comprised of the automatic doors business for net proceeds of $916 million. In August 2022, the Company sold its Oil & Gas business comprised of the pipeline services and equipment businesses.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2026-01-03",
+   "accession": "0000093556-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000009/swk-20260103.htm"
+  },
+  "description_short": "Founded in 1843 and headquartered in the USA, Stanley Black & Decker (NYSE: SWK) is a worldwide leader in Tools and Outdoor, operating manufacturing facilities globally. The Company's approximately 41,000 employees produce innovative end-user inspired power tools, hand tools, storage, digital jobsite solutions, outdoor and lifestyle products, and engineered fasteners to support the world's builders, tradespeople and DIYers. The Company's world class portfolio of trusted brands includes DEWALT, CRAFTSMAN, STANLEY, BLACK+DECKER, and Cub Cadet.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "3420",
+  "sic_description": "Cutlery, Handtools & General Hardware",
+  "state_of_incorporation": "CT",
+  "fiscal_year_end_mmdd": "0102",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.stanleyblackanddecker.com",
+  "headquarters": "New Britain, CT",
+  "address": {
+   "street": "1000 STANLEY DRIVE",
+   "city": "New Britain",
+   "state": "CT",
+   "zip": "06053",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "8602255111",
+  "employees": {
+   "count": 43500,
+   "as_of": "2026-01-03",
+   "evidence": "As of January 3, 2026, the Company had approximately 43,500 employees in 59 countries.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000009/swk-20260103.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-02",
+  "first_sec_filing_form": "8-K",
+  "former_names": [
+   "STANLEY WORKS"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000093556&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-383511",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312526383511/d493257d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-07-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000093556-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000031/swk-20260704.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000093556-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000028/swk-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-18",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-26-281077",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312526281077/d49687d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-04-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000093556-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000015/swk-20260404.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000093556-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000013/swk-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-24",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-182041",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312526182041/d930480d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-162675",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312526162675/d76531d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-142966",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312526142966/d97341d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-06",
+   "period": "2026-04-24",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-008170",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000114036126008170/ny20055502x771_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2026-01-03",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000093556-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000009/swk-20260103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000093556-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355626000004/swk-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-021636",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312526021636/d75341d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-327646",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312525327646/d943321d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000093556-25-000154",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355625000154/swk-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000093556-25-000152",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355625000152/swk-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-260847",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312525260847/d32570d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-17",
+   "period": "2025-10-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-242520",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000119312525242520/d929827d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-29",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000093556-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355625000143/swk-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000093556-25-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/93556/000009355625000141/swk-20250729.htm"
+  }
+ ],
+ "warnings": []
+}

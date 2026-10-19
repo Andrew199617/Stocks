@@ -1,0 +1,298 @@
+{
+ "ticker": "MAA",
+ "cik": 912595,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T13:29:19-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000912595.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/912595/000119312526041208/maa-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MAA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MAA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "MID AMERICA APARTMENT COMMUNITIES INC.",
+  "cik": 912595,
+  "description": {
+   "text": "MAA, an S&P 500 company, is a multifamily-focused, self-administered and self-managed real estate investment trust, or REIT. We own, operate, acquire and selectively develop apartment communities primarily located in the Southeast, Southwest and Mid-Atlantic regions of the U.S. As of December 31, 2025, we maintained full or partial ownership of apartment communities, including communities currently in development, across 16 states and the District of Columbia, summarized as follows:",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-041208",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526041208/maa-20251231.htm"
+  },
+  "description_short": "MAA is a self-administered real estate investment trust (REIT) and member of the S&P 500. MAA owns or has ownership interest in apartment communities primarily throughout the Southeast, Southwest and Mid-Atlantic regions of the U.S. focused on delivering strong, full-cycle investment performance.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "TN",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.maac.com",
+  "headquarters": "Germantown, Tennessee",
+  "address": {
+   "street": "6815 Poplar Avenue Suite 500",
+   "city": "Germantown",
+   "state": "Tennessee",
+   "zip": "38138",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-06"
+  },
+  "phone": "9016826600",
+  "employees": {
+   "count": 2507,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed 2,507 associates.",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526041208/maa-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-03",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "MID AMERICA APARTMENT COMMUNITIES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000912595&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-386623",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526386623/maa-20260909.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-28",
+   "period": "2026-08-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-372238",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526372238/maa-20260828.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-332847",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526332847/maa-20260804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-326153",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526326153/maa-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-324880",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526324880/maa-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-323756",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526323756/maa-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-22",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-282807",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526282807/maa-20260622.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-251471",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526251471/maa-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-19",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-232618",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526232618/maa-20260519.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-204026",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526204026/maa-20260504.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-197331",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526197331/maa-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-191620",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526191620/maa-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-06",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-013212",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000114036126013212/ny20062832x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-082682",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526082682/maa-20260227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-082680",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526082680/maa-20260227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-072186",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526072186/maa-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-13",
+   "period": "2026-02-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-051407",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526051407/maa-20260213.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-041208",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526041208/maa-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-037610",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526037610/maa-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-26",
+   "items": [
+    "1.01",
+    "7.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-027241",
+   "url": "https://www.sec.gov/Archives/edgar/data/912595/000119312526027241/maa-20260126.htm"
+  }
+ ],
+ "warnings": []
+}

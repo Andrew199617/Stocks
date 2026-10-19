@@ -1,0 +1,239 @@
+{
+ "ticker": "EMA",
+ "cik": 1127248,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T09:27:03-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001127248.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526062876/d845370d40f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EMA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EMA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EMERA INC",
+  "cik": 1127248,
+  "description": null,
+  "description_short": "Emera (TSX/NYSE: EMA) is a leading North American provider of energy services headquartered in Halifax, Nova Scotia, with investments in regulated electric and natural gas utilities, and related businesses and assets. The Emera family of companies delivers safe, reliable energy to approximately 2.1 million customers in the United States, Canada and the Caribbean. Our team of 6,800 employees is committed to our purpose of energizing modern life and delivering a cleaner energy future for all. Emera's common and preferred shares are listed and trade on the Toronto Stock Exchange and its common shares are listed and trade on the New York Stock Exchange.",
+  "industry": "Electric Utilities: Central",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4911",
+  "sic_description": "Electric Services",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC",
+   "OTC",
+   "OTC"
+  ],
+  "website": "https://www.emera.com",
+  "headquarters": "Halifax, Nova Scotia",
+  "address": {
+   "street": "5151 Terminal Road",
+   "city": "Halifax",
+   "state": "Nova Scotia",
+   "zip": "B3J 1A1",
+   "country": "Canada",
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2026-02-23"
+  },
+  "phone": "902-428-6494",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2000-11-06",
+  "first_sec_filing_form": "U-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001127248&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-415553",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526415553/d190051d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-340556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526340556/d143477d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-306236",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526306236/d158292d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-237208",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526237208/d11133d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-215035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526215035/d937393d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-195530",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526195530/d22510d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-151326",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526151326/d143243d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-27",
+   "period": "2026-03-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-129411",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526129411/d135320d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-23",
+   "period": "2026-03-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-119848",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526119848/d926793d6k.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001193125-26-062876",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526062876/d845370d40f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-062605",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526062605/d845358d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-13",
+   "period": "2026-01-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-010877",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526010877/d62729d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-015826",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000095010325015826/dp238422_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-272857",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312525272857/d818790d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-03",
+   "period": "2025-10-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-012820",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000095010325012820/dp235496_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-25",
+   "period": "2025-08-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-187532",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312525187532/d86074d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-177062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312525177062/d949974d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-11",
+   "period": "2025-07-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-158040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312525158040/d59147d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-05-23",
+   "period": "2025-05-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-125794",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312525125794/d21829d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-05-09",
+   "period": "2025-05-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-116129",
+   "url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312525116129/d71872d6k.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2026-02-23)",
+  "employees: no headcount sentence found in the 40-F filed 2026-02-23"
+ ]
+}

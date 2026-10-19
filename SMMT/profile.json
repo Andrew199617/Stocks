@@ -1,0 +1,301 @@
+{
+ "ticker": "SMMT",
+ "cik": 1599298,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T09:07:44-04:00",
+ "newest_filing_date": "2026-09-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001599298.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000015/smmt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SMMT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SMMT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Summit Therapeutics Inc.",
+  "cik": 1599298,
+  "description": {
+   "text": "Summit Therapeutics Inc. (“we”, “Summit” or the “Company”) is a biopharmaceutical company focused on the discovery, development, and commercialization of patient-, physician-, caregiver- and societal-friendly medicinal therapies intended to improve quality of life, increase potential duration of life, and resolve serious unmet medical needs. The Company’s pipeline of product candidates is designed with the goal to become the patient-friendly, new-era standard-of-care medicines, in the therapeutic area of oncology. The Company’s current lead development candidate is ivonescimab, a novel, potential first-in-class bispecific antibody intending to combine the effects of immunotherapy via a blockade of PD-1 with the anti-angiogenesis effects of an anti-VEGF (as defined in Part I, Item I Business, Company Overview, Ivonescimab) compound into a single molecule. On December 5, 2022, the Company entered into the License Agreement with Akeso, Inc. and its affiliates (collectively, “Akeso”) pursuant to which the Company has in-licensed intellectual property rights related to ivonescimab (as amended, the “License Agreement”). Through the License Agreement, the Company obtained the rights to develop and commercialize ivonescimab in the United States, Canada, Europe, and Japan. The License Agreement and transaction closed in January 2023 following customary waiting periods.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001599298-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000015/smmt-20251231.htm"
+  },
+  "description_short": "Summit Therapeutics Inc. is a biopharmaceutical oncology company focused on the discovery, development, and commercialization of patient-, physician-, caregiver- and societal-friendly medicinal therapies intended to improve quality of life, increase potential duration of life, and resolve serious unmet medical needs. Summit was founded in 2003 and the company's shares are listed on the Nasdaq Global Market (symbol \"SMMT\").",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GM",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.smmttx.com",
+  "headquarters": "Miami, FL",
+  "address": {
+   "street": "601 Brickell Key Drive, Suite 1000",
+   "city": "Miami",
+   "state": "FL",
+   "zip": "33131",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "305-203-2034",
+  "employees": {
+   "count": 265,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 265 total employees.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000015/smmt-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2015-01-30",
+  "first_sec_filing_form": "F-1",
+  "former_names": [
+   "Summit Therapeutics plc",
+   "Summit Corp plc"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001599298&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-28",
+   "items": [
+    "1.01",
+    "3.02",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-26-405776",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000119312526405776/d178892d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000081/smmt-20260915.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000078/smmt-20260913.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000076/smmt-20260902.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000074/smmt-20260825.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000071/smmt-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-314214",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000119312526314214/d143170d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001599298-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000068/smmt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001599298-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000067/smmt-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000058/smmt-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-10",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001599298-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000054/smmt-20260610.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-10",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001599298-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000052/smmt-20260610.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-02",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000049/smmt-20260602.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000043/smmt-20260530.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001599298-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000039/smmt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001599298-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000037/smmt-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001599298-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000029/smmt-20260417.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001599298-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000015/smmt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001599298-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000014/smmt-20260223.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001599298-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1599298/000159929826000006/smmt-20260129.htm"
+  }
+ ],
+ "warnings": []
+}

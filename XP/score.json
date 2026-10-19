@@ -1,0 +1,91 @@
+{
+ "ticker": "XP",
+ "name": "XP Inc.",
+ "sector": "Finance / Capital markets \u2014 Brazilian investment platform",
+ "price": 29.26,
+ "market_cap_b": 16.04,
+ "engine_version": 5,
+ "base_oe_per_share": 2.9142732875791055,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Scale distribution (18.4k advisors, R$2.2tn client assets) and a two-decade brand produce durable ~20-25% ROE, but advisors are not captive, take rates compress ~5bp/yr, and banks/fintechs with bigger balance sheets contest every product line \u2014 a moderate moat, not a wide one. Measured ROIC history is unavailable (roic_proxy is null: the IFRS filer tags no operating income), so the score rests on sustained ROE rather than a computed ROIC series.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 21 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2022, 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (XP Inc. Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-29), cover page: securities registered pursuant to Section 12(b) are 'Class A common shares, par value US$0.00001 per share \u2014 XP \u2014 The NASDAQ Global Select Market'; no ADS class is registered) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (11.0%) vs bull-case tier B (18.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 12.18,
+   "irr": 0.0725
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 19.94,
+   "irr": 0.1095
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 27.68,
+   "irr": 0.1435
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 38.03,
+   "irr": 0.1835
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 58.9,
+   "irr": 0.2494
+  }
+ },
+ "iv_at_15": 27.71,
+ "iv_at_12": 37.01,
+ "implied_irr": 0.1437,
+ "implied_irr_base_case": 0.1435,
+ "upside_at_15_pct": -5.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality Brazilian investment platform, moat 6/10 \u2014 at $29.26 it does not clear 15% on the scored numbers (weighted IRR 14.4%, weighted IV@15% $27.71; it clears 15% only below $27.71), and the finance-sector OE model plus a stale FY2024 base cap confidence at low \u2014 size it to the bear end (Tier C).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1095,
+ "irr_bull": 0.1835,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 19.39,
+ "iv_at_25": 14.84,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -1817910097.5800002,
+ "shares_diluted_latest": 548319000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Brazil's leading independent investment platform: ~R$2.2tn client assets (AUM+AUA, 2Q26, +17% YoY), 4.8M active clients",
+  "Largest advisor distribution network in Brazil (~18.4k advisors) \u2014 distribution scale rivals cannot replicate quickly",
+  "Sustained ROE ~20-25% (22.5% in 2Q26; FY ROE 20-25% across 2020-2024 in fundamentals.json) on a capital-light model",
+  "Diversifying beyond brokerage: wholesale banking +32% YoY in 2Q26, cards, credit (loan book R$78bn, +16%), insurance, retirement (R$101bn, +18%)",
+  "Brand and investor-education franchise built over two decades in a market structurally shifting from bank deposits to investments"
+ ],
+ "moat_against": [
+  "Advisor network is not captive \u2014 independent advisors can multi-home or leave, and internal/RIA migration is still in progress",
+  "Take-rate compression is structural: annualized retail take rate fell 5bp YoY to 1.20% in 2Q26 as banks and fintechs compete",
+  "Entrenched banks (Ita\u00fa, BTG Pactual, Bradesco) and Nubank/Inter attack with bigger balance sheets and customer bases",
+  "Earnings geared to Brazilian rates, market volumes and BRL \u2014 USD returns carry unhedged currency risk",
+  "Revenue still concentrated in Brazilian retail investing; core wealth segment maturing (~16% share)"
+ ]
+}

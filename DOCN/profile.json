@@ -1,0 +1,298 @@
+{
+ "ticker": "DOCN",
+ "cik": 1582961,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T20:11:02-04:00",
+ "newest_filing_date": "2026-09-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001582961.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000019/docn-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DOCN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DOCN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DigitalOcean Holdings, Inc.",
+  "cik": 1582961,
+  "description": {
+   "text": "Our mission is to empower AI-driven and digital-native businesses to build, run, and scale intelligent applications with speed, simplicity and predictable economics through an agentic inference cloud platform that reduces operational complexity and accelerates time to product. DigitalOcean is an agentic inference cloud platform that helps AI and Digital Native Enterprises build, run, and scale intelligent applications with speed, simplicity, and predictable economics. The platform combines production-ready GPU infrastructure, a full-stack cloud, model-first inference workflows, and an agentic experience layer to reduce operational complexity and accelerate time to production. Our customers include growing technology companies across numerous industry verticals ranging from online gaming to fintech to cybersecurity, among many others, and leverage our platform for a wide variety of use cases, such as building and hosting websites, developing new web and mobile applications, integrating AI into their businesses, and building AI products and applications, among many others. We believe that being simple, scalable and approachable, while offering a comprehensive range of integrated cloud and AI products, are our key differentiators, driving a broad range of customers around the world whose needs are not being fully met by larger cloud providers to build and grow their businesses on our platform.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001582961-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000019/docn-20251231.htm"
+  },
+  "description_short": "DigitalOcean (NYSE: DOCN) is the AI-Native Cloud, purpose-built for the inference and agentic era. Its five-layer integrated platform - spanning GPU and CPU infrastructure, core cloud, inference, data, learning, and managed agents - is open throughout with no vendor lock-in, giving builders everything they need to start fast, scale production AI workloads, and improve unit economics. More than 680,000 customers and millions of developers globally trust DigitalOcean to build, ship, and scale their applications.",
+  "industry": "Computer Software: Programming, Data Processing",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7370",
+  "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.digitalocean.com",
+  "headquarters": "Broomfield, Colorado",
+  "address": {
+   "street": "105 Edgeview Drive, Suite 425",
+   "city": "Broomfield",
+   "state": "Colorado",
+   "zip": "80021",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "6468274366",
+  "employees": {
+   "count": 1462,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had a total of 1,462 employees, including 848 located outside the United States.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000019/docn-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-02-25",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Digital Ocean, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001582961&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001104659-26-106704",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926106704/tm2625205d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-052556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000162828026052556/docn-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-052135",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000162828026052135/docn-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-23",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-086652",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926086652/tm2621138d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-086342",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926086342/tm2621138d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001582961-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000055/docn-20260707.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001582961-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000051/docn-20260615.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001582961-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000049/docn-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-04",
+   "items": [
+    "1.01",
+    "2.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Debt obligation",
+   "accession": "0001582961-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000045/docn-20260504.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001582961-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000029/docn-20260424.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-034746",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926034746/tm269524d6_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001582961-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000019/docn-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001582961-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000015/docn-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-26",
+   "period": "2025-11-20",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001582961-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296125000153/docn-20251120.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001582961-25-000150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296125000150/docn-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001582961-25-000147",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296125000147/docn-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001193125-25-180799",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000119312525180799/d45966d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001582961-25-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296125000138/docn-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001582961-25-000134",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296125000134/docn-20250805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-11",
+   "period": "2025-06-09",
+   "items": [
+    "3.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Shareholder vote",
+   "accession": "0001582961-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296125000108/docn-20250609.htm"
+  }
+ ],
+ "warnings": []
+}

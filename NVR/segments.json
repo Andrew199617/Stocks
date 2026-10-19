@@ -1,0 +1,341 @@
+{
+ "ticker": "NVR",
+ "cik": 906163,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000906163-26-000018",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/906163/000090616326000018/nvr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000906163-26-000040",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/906163/000090616326000040/nvr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000906163-26-000093",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/906163/000090616326000093/nvr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "nvr:HomeBuildingSegmentMember",
+     "label": "Home Building Segment",
+     "values": [
+      9314605000,
+      10292425000,
+      10094269000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9786,
+      0.978,
+      0.9778
+     ],
+     "growth_yoy": [
+      null,
+      0.105,
+      -0.0193
+     ]
+    },
+    {
+     "member": "nvr:MortgageBankingSegmentMember",
+     "label": "Mortgage Banking Segment",
+     "values": [
+      203597000,
+      232054000,
+      229690000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0214,
+      0.022,
+      0.0222
+     ],
+     "growth_yoy": [
+      null,
+      0.1398,
+      -0.0102
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9518202000,
+     10524479000,
+     10323959000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nvr:HomeBuildingSegmentMember",
+     "label": "Home Building Segment",
+     "values": [
+      2350445000,
+      2548267000,
+      1834879000,
+      2279771000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9781,
+      0.9805,
+      0.9754,
+      0.98
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2193,
+      -0.1054
+     ]
+    },
+    {
+     "member": "nvr:MortgageBankingSegmentMember",
+     "label": "Mortgage Banking Segment",
+     "values": [
+      52587000,
+      50547000,
+      46184000,
+      46585000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0219,
+      0.0195,
+      0.0246,
+      0.02
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1218,
+      -0.0784
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2403032000,
+     2598814000,
+     1881063000,
+     2326356000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "nvr:HomeBuildingSegmentMember",
+     "label": "Home Building Segment",
+     "values": [
+      5888232000,
+      5089563000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9228,
+      0.869
+     ],
+     "growth_yoy": [
+      null,
+      -0.1356
+     ]
+    },
+    {
+     "member": "nvr:MortgageBankingSegmentMember",
+     "label": "Mortgage Banking Segment",
+     "values": [
+      492756000,
+      767367000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0772,
+      0.131
+     ],
+     "growth_yoy": [
+      null,
+      0.5573
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6380988000,
+     5856930000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nvr:HomeBuildingSegmentMember",
+     "label": "Home Building Segment",
+     "values": [
+      5089563000,
+      5144521000,
+      4908913000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.869,
+      0.921,
+      0.8973
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "nvr:MortgageBankingSegmentMember",
+     "label": "Mortgage Banking Segment",
+     "values": [
+      767367000,
+      441257000,
+      561707000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.131,
+      0.079,
+      0.1027
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5856930000,
+     5585778000,
+     5470620000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: reconciling row 'Corporate and Reconciling Items' (nvr:CorporateAndReconcilingItemsMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Assets/quarterly: reconciling row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

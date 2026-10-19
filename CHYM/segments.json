@@ -1,0 +1,200 @@
+{
+ "ticker": "CHYM",
+ "cik": 1795586,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001795586-26-000013",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000013/chym-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001795586-26-000038",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000038/chym-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001795586-26-000048",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000048/chym-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "chym:PaymentsRevenueMember",
+     "label": "Payments Revenue",
+     "values": [
+      1021158000,
+      1276601000,
+      1500563000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7987,
+      0.7629,
+      0.6862
+     ],
+     "growth_yoy": [
+      null,
+      0.2502,
+      0.1754
+     ]
+    },
+    {
+     "member": "chym:PlatformRelatedRevenueMember",
+     "label": "Platform-Related Revenue",
+     "values": [
+      257297000,
+      396668000,
+      686207000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2013,
+      0.2371,
+      0.3138
+     ],
+     "growth_yoy": [
+      null,
+      0.5417,
+      0.7299
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1278455000,
+     1673269000,
+     2186770000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "chym:PaymentsRevenueMember",
+     "label": "Payments Revenue",
+     "values": [
+      375312000,
+      366101000,
+      432644000,
+      430029000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7235,
+      0.6932,
+      0.6683,
+      0.6421
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1528,
+      0.1746
+     ]
+    },
+    {
+     "member": "chym:PlatformRelatedRevenueMember",
+     "label": "Platform-Related Revenue",
+     "values": [
+      143432000,
+      162048000,
+      214743000,
+      239739000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2765,
+      0.3068,
+      0.3317,
+      0.3579
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4972,
+      0.4794
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     518744000,
+     528149000,
+     647387000,
+     669768000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/Revenues/annual: row 'MyPay' (chym:MyPayMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Payments Revenue, Platform-Related Revenue)",
+  "product/Revenues/quarterly: row 'MyPay' (chym:MyPayMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Payments Revenue, Platform-Related Revenue)"
+ ],
+ "complete": true
+}

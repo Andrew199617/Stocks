@@ -1,0 +1,84 @@
+{
+ "ticker": "NWS",
+ "name": "News Corporation",
+ "sector": "Media / Publishing, professional data & digital real estate",
+ "price": 32.825,
+ "market_cap_b": 18.33,
+ "engine_version": 5,
+ "base_oe_per_share": 1.1333914559721012,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Two genuine franchises inside a conglomerate: Dow Jones (brand, 6.26M digital-only subs, Risk & Compliance/Energy B2B data with switching costs) and REA Group's Australian portal network effects, plus HarperCollins scale. But the moat is blended, not consolidated: News Media (~$2.23B revenue) earns near-zero segment EBITDA, and consolidated ROE ran only 1.8\u20137.6% in FY22\u201326 excluding FY25's Foxtel-gain year (fundamentals.json; the roic_proxy and gross-margin series are null because News Corp tags no operating-income/COGS lines the engine can use). Returns below the cost of capital through the cycle cap this at moderate \u2014 5/10.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.98,
+   "irr": 0.0421
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 8.01,
+   "irr": 0.0552
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.96,
+   "irr": 0.0681
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 14.82,
+   "irr": 0.0845
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 22.39,
+   "irr": 0.1143
+  }
+ },
+ "iv_at_15": 11.73,
+ "iv_at_12": 15.69,
+ "implied_irr": 0.0718,
+ "implied_irr_base_case": 0.0681,
+ "upside_at_15_pct": -64.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Diversified media conglomerate \u2014 two real franchises (Dow Jones, REA/Realtor.com) diluted by a near-zero-profit News Media segment, moat 5/10 \u2014 at $32.83 the consolidated owner's earnings support only a 7.2% weighted IRR (weighted IV@15% $11.73); it clears 15% only below ~$11.73.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0552,
+ "irr_bull": 0.0845,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 8.19,
+ "iv_at_25": 6.26,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -106000000,
+ "shares_diluted_latest": 558400000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Dow Jones: WSJ/Barron's brands with 6.26M digital-only subscriptions and a growing enterprise/B2B recurring base",
+  "Professional Information Business: Risk & Compliance revenue $392M in FY26 (+16%) and Dow Jones Energy \u2014 data products with real switching costs",
+  "REA Group: Australia's dominant property portal with network effects (146.4M average monthly visits in FY26)",
+  "HarperCollins: Big Five scale and a deep backlist, with audiobooks/e-books growing double digits",
+  "Net-cash balance sheet (net debt -$106M) and $641M of FY26 buybacks shrinking the share count"
+ ],
+ "moat_against": [
+  "News Media (~$2.23B FY26 revenue) earns near-zero segment EBITDA \u2014 structural print decline drags consolidated returns",
+  "Consolidated ROE only 1.8\u20137.6% across FY22\u201326 excluding the Foxtel-gain year \u2014 returns below the cost of capital through the cycle",
+  "Realtor.com is No. 2 to Zillow in the US and housing-cycle exposed",
+  "Book publishing is hit-driven and platform-dependent (Amazon, Audible/Spotify); AI content licensing is opportunistic, not a contracted moat",
+  "Dual-class Murdoch control and a persistent conglomerate discount; the segments do not reinforce each other"
+ ]
+}

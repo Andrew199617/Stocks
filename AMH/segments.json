@@ -1,0 +1,37 @@
+{
+ "ticker": "AMH",
+ "cik": 1562401,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001562401-26-000010",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000010/amh-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001562401-26-000032",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000032/amh-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001562401-26-000047",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000047/amh-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "business_segments/ProfitLoss/annual: row 'Reportable Segment' (amh:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/quarterly: row 'Reportable Segment' (amh:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}

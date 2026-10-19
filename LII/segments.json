@@ -1,0 +1,523 @@
+{
+ "ticker": "LII",
+ "cik": 1069202,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001069202-26-000028",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000028/lii-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001069202-26-000054",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000054/lii-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001069202-26-000087",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1069202/000106920226000087/lii-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lii:ResidentialHeatingAndCoolingMember",
+     "label": "Residential Heating and Cooling",
+     "values": [
+      3222900000,
+      3577100000,
+      3343400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6469,
+      0.6697,
+      0.6435
+     ],
+     "growth_yoy": [
+      null,
+      0.1099,
+      -0.0653
+     ]
+    },
+    {
+     "member": "lii:CommercialHeatingAndCoolingMember",
+     "label": "Commercial Heating and Cooling",
+     "values": [
+      1511400000,
+      1764200000,
+      1851900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3034,
+      0.3303,
+      0.3565
+     ],
+     "growth_yoy": [
+      null,
+      0.1673,
+      0.0497
+     ]
+    },
+    {
+     "member": "lii:RefrigerationMember",
+     "label": "Refrigeration",
+     "values": [
+      247600000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0497,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -1.0,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4981900000,
+     5341300000,
+     5195300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lii:ResidentialHeatingAndCoolingMember",
+     "label": "Residential Heating and Cooling",
+     "values": [
+      721400000,
+      1009300000,
+      650000000,
+      935600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6726,
+      0.6725,
+      0.5726,
+      0.6054
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.099,
+      -0.073
+     ]
+    },
+    {
+     "member": "lii:CommercialHeatingAndCoolingMember",
+     "label": "Commercial Heating and Cooling",
+     "values": [
+      351200000,
+      491600000,
+      485100000,
+      609700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3274,
+      0.3275,
+      0.4274,
+      0.3946
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3813,
+      0.2402
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1072600000,
+     1500900000,
+     1135100000,
+     1545300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "lii:ResidentialHeatingAndCoolingMember",
+     "label": "Residential Heating and Cooling",
+     "values": [
+      1549300000,
+      1721400000,
+      1971000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5268,
+      0.4755,
+      0.4829
+     ],
+     "growth_yoy": [
+      null,
+      0.1111,
+      0.145
+     ]
+    },
+    {
+     "member": "lii:CommercialHeatingAndCoolingMember",
+     "label": "Commercial Heating and Cooling",
+     "values": [
+      1032100000,
+      1105500000,
+      1746400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3509,
+      0.3054,
+      0.4279
+     ],
+     "growth_yoy": [
+      null,
+      0.0711,
+      0.5797
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      359600000,
+      793100000,
+      364400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1223,
+      0.2191,
+      0.0893
+     ],
+     "growth_yoy": [
+      null,
+      1.2055,
+      -0.5405
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2941000000,
+     3620000000,
+     4081800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lii:ResidentialHeatingAndCoolingMember",
+     "label": "Residential Heating and Cooling",
+     "values": [
+      1971000000,
+      2078100000,
+      2230000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4829,
+      0.4841,
+      0.4906
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "lii:CommercialHeatingAndCoolingMember",
+     "label": "Commercial Heating and Cooling",
+     "values": [
+      1746400000,
+      1795800000,
+      1902800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4279,
+      0.4183,
+      0.4187
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      364400000,
+      418800000,
+      412200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0893,
+      0.0976,
+      0.0907
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4081800000,
+     4292700000,
+     4545000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4416900000,
+      5021800000,
+      4821900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8866,
+      0.9402,
+      0.9281
+     ],
+     "growth_yoy": [
+      null,
+      0.137,
+      -0.0398
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      317400000,
+      319500000,
+      373400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0637,
+      0.0598,
+      0.0719
+     ],
+     "growth_yoy": [
+      null,
+      0.0066,
+      0.1687
+     ]
+    },
+    {
+     "member": "lii:InternationalMember",
+     "label": "International",
+     "values": [
+      247600000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0497,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4981900000,
+     5341300000,
+     5195300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: reconciling row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

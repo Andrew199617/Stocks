@@ -1,0 +1,87 @@
+{
+ "ticker": "CHTR",
+ "name": "Charter Communications, Inc.",
+ "sector": "Telecommunications / Cable broadband",
+ "price": 110.11,
+ "market_cap_b": 15.17,
+ "engine_version": 5,
+ "base_oe_per_share": 17.280145501720504,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Local cable footprint scale and converged broadband+mobile bundling still give pricing power and low churn, but fiber overbuilds and fixed wireless are taking subscribers outright, video is in secular decline, mobile rides on a rival's network (MVNO), and ROIC proxy has only run ~9% in 2023-25 \u2014 barely above the cost of capital, not wide-moat evidence.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.7%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 27.19 vs 3-yr median 17.28 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 39.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (14.6%) vs bull-case tier A (21.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 76.34,
+   "irr": 0.1093
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 107.14,
+   "irr": 0.1465
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 133.74,
+   "irr": 0.1772
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 165.11,
+   "irr": 0.2114
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 218.5,
+   "irr": 0.2648
+  }
+ },
+ "iv_at_15": 130.33,
+ "iv_at_12": 171.03,
+ "implied_irr": 0.1732,
+ "implied_irr_base_case": 0.1772,
+ "upside_at_15_pct": 18.4,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Eroding cable moat 4/10 on 39.6x levered OE \u2014 clears 15% only on the conservative median base (17.3% weighted, IV $130 vs $110) with a Tier C bear case; the TTM base would print S, so the verdict is base-dominated and sized to the bear end.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1465,
+ "irr_bull": 0.2114,
+ "tier_bear": "C",
+ "tier_bull": "A",
+ "iv_at_20": 93.45,
+ "iv_at_25": 72.92,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 94279000000,
+ "shares_diluted_latest": 137743676,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scaled local footprint \u2014 largest US cable operator after the Aug 2026 Cox close, ~70M homes passed (search-cited deal coverage)",
+  "Converged bundle: Spectrum Mobile grew to 12.5M lines (+406k in Q2 2026), raising switching friction",
+  "Operating margin expanded 17.5% (2020) to 23.6% (2025) on cost discipline despite flat revenue",
+  "DOCSIS 4.0 / network evolution to multi-gig symmetrical speeds defends the core product"
+ ],
+ "moat_against": [
+  "Fiber overbuild + fixed wireless: internet customers fell 172k in Q2 2026, -515k YoY; revenue -1.7% YoY, fourth straight shrinking quarter",
+  "ROIC proxy only ~8.9-9.4% (2023-25) \u2014 thin spread over the cost of capital for a 7+ moat",
+  "Video in secular decline; broadband ARPU falling under retention promotions",
+  "Mobile is an MVNO on T-Mobile's network \u2014 the growth leg rides on a competitor's asset",
+  "Extreme leverage (net debt $94.3B pre-Cox) leaves no room to answer a price war"
+ ]
+}

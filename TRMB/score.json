@@ -1,0 +1,86 @@
+{
+ "ticker": "TRMB",
+ "name": "Trimble Inc.",
+ "sector": "Technology / Positioning, construction & transportation software",
+ "price": 59.46,
+ "market_cap_b": 14.36,
+ "engine_version": 5,
+ "base_oe_per_share": 2.6435601198117245,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "GNSS/positioning leadership and construction-workflow software with real switching costs and ARR of $2.51B growing 14%, but roic_proxy ran only 5.0-9.8% over the last five fiscal years (goodwill-heavy balance sheet, $562.0M T&L goodwill impairment in Q2 2026) \u2014 measured returns sit around the cost of capital, so the franchise is moderate, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.89 vs 3-yr median 1.37 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.5%) vs bull-case tier C (11.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 11.65,
+   "irr": 0.0469
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 19.08,
+   "irr": 0.0649
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 28.95,
+   "irr": 0.0886
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 39.75,
+   "irr": 0.1123
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 58.84,
+   "irr": 0.1489
+  }
+ },
+ "iv_at_15": 30.44,
+ "iv_at_12": 41.09,
+ "implied_irr": 0.0924,
+ "implied_irr_base_case": 0.0886,
+ "upside_at_15_pct": -48.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Improving software-quality compounder, moat 6/10 \u2014 but at $59.46 the market already prices the bull case: weighted IRR 9.24%, IV@15% $30.44 vs $59.46 price; clears 15% only near $30.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0649,
+ "irr_bull": 0.1123,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 20.98,
+ "iv_at_25": 15.86,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1138800000,
+ "shares_diluted_latest": 241500000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "GNSS/positioning technology leadership with a large installed field base",
+  "AECO workflow software embedded in construction processes \u2014 real switching friction",
+  "ARR $2.51B, +14% YoY, with record Q2 2026 gross margins (gross margin 55.6% FY2021 \u2192 69.1% FY2025 on software mix)",
+  "Exclusive GNSS/guidance supply agreement into PTx Trimble (AGCO) locks in a channel"
+ ],
+ "moat_against": [
+  "ROIC only ~5-10% through the cycle \u2014 no proven wide-moat economics yet",
+  "Serial-acquirer goodwill keeps impairing ($562.0M T&L impairment, Q2 2026)",
+  "Autodesk, Hexagon, Topcon and OEM in-sourcing (Deere, Caterpillar) competition",
+  "Construction-cycle exposure in Field Systems hardware; T&L under strategic review",
+  "Material weaknesses in internal controls disclosed in 2025, under remediation"
+ ]
+}

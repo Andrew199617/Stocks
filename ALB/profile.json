@@ -1,0 +1,293 @@
+{
+ "ticker": "ALB",
+ "cik": 915913,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T07:41:14-04:00",
+ "newest_filing_date": "2026-09-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000915913.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000018/alb-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ALB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ALB/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ALBEMARLE CORP",
+  "cik": 915913,
+  "description": {
+   "text": "Albemarle Corporation was incorporated in Virginia in 1993. Our principal executive offices are located at 4250 Congress Street, Suite 900, Charlotte, North Carolina 28209. Unless the context otherwise indicates, the terms “Albemarle,” “we,” “us,” “our” or “the Company” mean Albemarle Corporation and its consolidated subsidiaries. Albemarle is a world leader in transforming essential resources into critical ingredients for mobility, energy, connectivity, and health. Our purpose is to enable a more resilient world. We partner to pioneer new ways to move, power, connect, and protect. The end markets we serve include grid storage, automotive, aerospace, conventional energy, electronics, construction, agriculture and food, pharmaceuticals and medical devices. We believe that our world-class resources with reliable and consistent supply, our leading process chemistry, high-impact innovation, customer centricity and focus on people and planet will enable us to maintain a leading position in the industries in which we operate. We and our joint ventures currently operate more than 25 production and research and development (“R&D”) facilities, as well as a number of administrative and sales offices, around the world. As of December 31, 2025, we served approximately 1,900 customers in approximately 70 countries. For information regarding our unconsolidated joint ventures, see Note 8, “Investments,” to our consolidated financial statements included in Part II, Item 8 of this report.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0000915913-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000018/alb-20251231.htm"
+  },
+  "description_short": "Albemarle Corporation (NYSE: ALB) is a world leader in transforming essential resources into critical ingredients for mobility, energy, connectivity and health. We partner to pioneer new ways to move, power, connect and protect with people and planet in mind. A reliable and high-quality global supply of lithium and bromine allows us to deliver advanced solutions for our customers. Learn more about how the people of Albemarle are enabling a more resilient world at Albemarle.com.",
+  "industry": "Major Chemicals",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "2821",
+  "sic_description": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+  "state_of_incorporation": "VA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.albemarle.com",
+  "headquarters": "Charlotte, North Carolina",
+  "address": {
+   "street": "4250 Congress Street Suite 900",
+   "city": "Charlotte",
+   "state": "North Carolina",
+   "zip": "28209",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "980-299-5700",
+  "employees": {
+   "count": 7800,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 7,800 employees, including employees of our consolidated joint ventures, of whom 3,100, or 40%, are employed in the U.S. and the Americas; 2,600, or 33%, are employed in Asia Pacific; 1,500, or 19%, are employed in Europe; and 600, or 8%, are employed in the Middle East or other areas.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000018/alb-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000915913&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-26-035623",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000114036126035623/ef20081522_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000915913-26-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000107/alb-20260819.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000915913-26-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000102/alb-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000915913-26-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000101/alb-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-21",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000915913-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000095/alb-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000915913-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000087/alb-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-05",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000915913-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000075/alb-20260505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000915913-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000072/alb-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000915913-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000070/alb-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000915913-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000064/alb-20260413.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0000915913-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000060/alb-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-19",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000915913-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000057/alb-20260319.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000915913-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000050/alb-20260323.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-02",
+   "items": [
+    "2.01",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD; Other events",
+   "accession": "0000915913-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000032/alb-20260302.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-02-26",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000915913-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000029/alb-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000915913-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000018/alb-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000915913-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591326000016/alb-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-08",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000915913-25-000166",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591325000166/alb-20251208.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000915913-25-000162",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591325000162/alb-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000915913-25-000160",
+   "url": "https://www.sec.gov/Archives/edgar/data/915913/000091591325000160/alb-20251105.htm"
+  }
+ ],
+ "warnings": []
+}

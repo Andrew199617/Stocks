@@ -1,0 +1,408 @@
+{
+ "ticker": "GSAT",
+ "cik": 1366868,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001366868-26-000012",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1366868/000136686826000012/gsat-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001366868-26-000029",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1366868/000136686826000029/gsat-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001366868-26-000039",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1366868/000136686826000039/gsat-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gsat:ServicesWholesaleCapacityMember",
+     "label": "Services, Wholesale Capacity",
+     "values": [
+      109067000,
+      145299000,
+      172731000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4873,
+      0.5804,
+      0.6327
+     ],
+     "growth_yoy": [
+      null,
+      0.3322,
+      0.1888
+     ]
+    },
+    {
+     "member": "gsat:ServicesSPOTMember",
+     "label": "Services, SPOT",
+     "values": [
+      44184000,
+      41140000,
+      37311000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1974,
+      0.1643,
+      0.1367
+     ],
+     "growth_yoy": [
+      null,
+      -0.0689,
+      -0.0931
+     ]
+    },
+    {
+     "member": "gsat:CommercialLoTMember",
+     "label": "Commercial loT",
+     "values": [
+      22867000,
+      26245000,
+      27263000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1022,
+      0.1048,
+      0.0999
+     ],
+     "growth_yoy": [
+      null,
+      0.1477,
+      0.0388
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      19612000,
+      12660000,
+      15677000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0876,
+      0.0506,
+      0.0574
+     ],
+     "growth_yoy": [
+      null,
+      -0.3545,
+      0.2383
+     ]
+    },
+    {
+     "member": "gsat:ServicesDuplexMember",
+     "label": "Services, Duplex",
+     "values": [
+      25932000,
+      20156000,
+      15238000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1159,
+      0.0805,
+      0.0558
+     ],
+     "growth_yoy": [
+      null,
+      -0.2227,
+      -0.244
+     ]
+    },
+    {
+     "member": "gsat:ServicesOtherMember",
+     "label": "Services, Other",
+     "values": [
+      2146000,
+      4849000,
+      4766000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0096,
+      0.0194,
+      0.0175
+     ],
+     "growth_yoy": [
+      null,
+      1.2596,
+      -0.0171
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     223808000,
+     250349000,
+     272986000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gsat:ServicesWholesaleCapacityMember",
+     "label": "Services, Wholesale Capacity",
+     "values": [
+      36709000,
+      42385000,
+      46267000,
+      40114000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6115,
+      0.6312,
+      0.6604,
+      0.6193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2604,
+      -0.0536
+     ]
+    },
+    {
+     "member": "gsat:ServicesSPOTMember",
+     "label": "Services, SPOT",
+     "values": [
+      9371000,
+      9224000,
+      8655000,
+      8604000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1561,
+      0.1374,
+      0.1235,
+      0.1328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0764,
+      -0.0672
+     ]
+    },
+    {
+     "member": "gsat:CommercialIoTMember",
+     "label": "Commercial IoT",
+     "values": [
+      6580000,
+      7051000,
+      7450000,
+      7512000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1096,
+      0.105,
+      0.1063,
+      0.116
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1322,
+      0.0654
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      2965000,
+      3932000,
+      3363000,
+      4774000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0494,
+      0.0586,
+      0.048,
+      0.0737
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1342,
+      0.2141
+     ]
+    },
+    {
+     "member": "gsat:ServicesDuplexMember",
+     "label": "Services, Duplex",
+     "values": [
+      3452000,
+      3677000,
+      2576000,
+      2715000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0575,
+      0.0548,
+      0.0368,
+      0.0419
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2538,
+      -0.2616
+     ]
+    },
+    {
+     "member": "gsat:ServicesOtherMember",
+     "label": "Services, Other",
+     "values": [
+      955000,
+      879000,
+      1753000,
+      1053000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0159,
+      0.0131,
+      0.025,
+      0.0163
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8356,
+      0.198
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     60032000,
+     67148000,
+     70064000,
+     64772000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Service' (us-gaap:ServiceMember) dropped: it is the parent of Commercial loT, Services, Duplex, Services, Other, Services, SPOT, Services, Wholesale Capacity in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Service' (us-gaap:ServiceMember) dropped: it is the parent of Commercial IoT, Services, Duplex, Services, Other, Services, SPOT, Services, Wholesale Capacity in the filing's definition linkbase"
+ ],
+ "complete": true
+}

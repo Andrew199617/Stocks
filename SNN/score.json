@@ -1,0 +1,85 @@
+{
+ "ticker": "SNN",
+ "name": "Smith & Nephew plc",
+ "sector": "Healthcare / Medical Devices \u2014 Orthopaedics, Sports Medicine & ENT, Advanced Wound Management",
+ "price": 29.06,
+ "market_cap_b": 25.37,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2922374429223744,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Leading positions (#2 in sports medicine and advanced wound care, top 3-4 in orthopaedics) with brands, surgeon relationships and proprietary platforms (OXINIUM, CORI robotics, PICO NPWT), but larger rivals (Stryker, Zimmer Biomet, DePuy) hold stronger robotics ecosystems, hospital/GPO pricing power is high, gross margin has eroded from 74.0% (2019) to 68.0% (2025), and the roic_proxy series in fundamentals.json ran only 7.1% / 5.6% / 4.9% / 7.0% / 8.1% over FY2021-25 \u2014 below or near the cost of capital through the cycle, with the company's own >10% ROIC target only a 2026 goal. A moderate 5/10, not a wide moat.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Smith & Nephew plc Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-16), registered American Depositary Shares class (Exhibit 2(d), Description of Securities); the company's FY2025 results announcement (2 March 2026) states a final dividend of 24.1 US cents per ordinary share (48.2 US cents per ADS) and its H1 2026 report an interim dividend of 15.6c per share (31.2c per ADS) \u2014 per-ADS amounts are exactly 2x per-share amounts; the company's shareholder resources page confirms a ratio change on 14 October 2014 to one ADS representing two Ordinary Shares) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 1.85 vs 3-yr median 1.29 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 6.1,
+   "irr": 0.0493
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 9.02,
+   "irr": 0.0633
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 11.83,
+   "irr": 0.0769
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 15.36,
+   "irr": 0.0934
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 20.56,
+   "irr": 0.1162
+  }
+ },
+ "iv_at_15": 11.42,
+ "iv_at_12": 15.15,
+ "implied_irr": 0.0752,
+ "implied_irr_base_case": 0.0769,
+ "upside_at_15_pct": -60.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified medtech with #2 positions in sports medicine and advanced wound care, moat 5/10 \u2014 Tier D: weighted IRR 7.5%, weighted IV@15% $11.42 vs $29.06 per ADS on the normalized median base ($1.29/ADS); even the super-bull IV@15% ($20.56) sits below the price, and the ADS clears 15% only at or below $11.42",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0633,
+ "irr_bull": 0.0934,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 8.07,
+ "iv_at_25": 6.23,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2554000000,
+ "shares_diluted_latest": 873000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#2 global positions in sports medicine and advanced wound care; top 3-4 in orthopaedic reconstruction, sold in 100+ countries",
+  "Proprietary platforms and materials: OXINIUM implants, CORI handheld robotics, PICO single-use NPWT, ALLEVYN dressings, REGENETEN bioinductive implant",
+  "Surgeon training, clinical evidence and installed instrument sets create real switching friction in implants and arthroscopy",
+  "Diversified three-franchise portfolio (Orthopaedics, Sports Medicine & ENT, Advanced Wound Management) balances weakness in any one segment"
+ ],
+ "moat_against": [
+  "ROIC has not cleared the cost of capital through the cycle: roic_proxy 4.9-8.1% over FY2021-25 (fundamentals.json); company targets >10% only from 2026 and 12-13% by 2028",
+  "Gross margin erosion: 74.0% (2019) to 68.0% (2025) on pricing pressure, mix and China VBP",
+  "Bigger rivals' robotics ecosystems (Stryker Mako, Zimmer ROSA, DePuy VELYS) outscale CORI; US knee implants lost ground in 2026 (Q2 US knee revenue -7.2%)",
+  "High customer bargaining power: hospitals and GPOs demand proven cost-effectiveness; continuous innovation spend is required just to hold share"
+ ]
+}

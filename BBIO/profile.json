@@ -1,0 +1,310 @@
+{
+ "ticker": "BBIO",
+ "cik": 1743881,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T21:41:26-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001743881.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000009/bbio-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BBIO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BBIO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BridgeBio Pharma, Inc.",
+  "cik": 1743881,
+  "description": {
+   "text": "A New Type of Biopharmaceutical Company BridgeBio Pharma, Inc. is a commercial-stage, multi-product biopharmaceutical company organized around a portfolio operating model to discover, develop, and deliver medicines for patients with genetic diseases. We seek to translate advances in genetic science into therapies for patient populations with significant unmet medical needs. Since our founding 10 years ago, we have advanced multiple programs from discovery through regulatory approval and commercialization. To date, more than 8,500 patients have been treated with our approved medicines, and we have obtained U.S. Food and Drug Administration (the “FDA”) approval for three products. We believe our decentralized hub and spoke model enables us to achieve clinical proof-of-concept with speed and efficiency, demonstrated by an average investment per program of less than $40.0 million to proof-of-concept data and less than $10.0 million to reach Investigational New Drug (“IND”) submission. This efficiency allows us to work on a broad range of scientifically compelling therapies, including programs for underserved conditions which more traditional biopharmaceutical models might leave on the shelf but we believe can be developed on a Net Present Value (“NPV”)-positive basis in our portfolio.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001743881-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000009/bbio-20251231.htm"
+  },
+  "description_short": "BridgeBio exists to develop transformative medicines for genetic conditions. Millions of people worldwide living with genetic conditions lack treatment options, often because drug development for small patient populations can be commercially challenging. We aim to bridge the gap between advancements in genetic science and meaningful medicines for underserved patient populations. Our decentralized, hub-and-spoke model is designed for speed, precision, and scalability. Autonomous and empowered teams focus on individual conditions, while a central hub provides the clinical, regulatory, and commercial capabilities needed to bring innovation to market.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.bridgebio.com",
+  "headquarters": "Palo Alto, CA",
+  "address": {
+   "street": "3160 Porter Drive Suite 250",
+   "city": "Palo Alto",
+   "state": "CA",
+   "zip": "94304",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "(650) 391-9740",
+  "employees": {
+   "count": 834,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 834 full-time employees and 5 part-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000009/bbio-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2019-05-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "BridgeBio Pharma LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001743881&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-039334",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126039334/ef20083591_form8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-035055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126035055/ef20081330_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-13",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001140361-26-033282",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126033282/ef20080234_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001743881-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000027/bbio-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001743881-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000026/bbio-20260810.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-029291",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126029291/ef20078442_form8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-01",
+   "items": [
+    "1.01",
+    "3.02",
+    "3.03",
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Change to security holders' rights; Charter or bylaw amendment; Reg FD",
+   "accession": "0001140361-26-027445",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126027445/ef20077282_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-22",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001140361-26-026506",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126026506/ef20076710_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-022979",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126022979/ef20074977_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-021036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126021036/ef20073370_form8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-07",
+   "items": [
+    "1.01",
+    "1.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement",
+   "accession": "0001140361-26-019761",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126019761/ny20072667x2_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001743881-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000019/bbio-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "8.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001743881-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000018/bbio-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-016723",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126016723/ny20065754x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-011991",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126011991/ef20069329_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001743881-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000009/bbio-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001743881-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000008/bbio-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-004995",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126004995/ef20065539_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001140361-26-001843",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126001843/ef20063486_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "2.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD; Other events",
+   "accession": "0001140361-26-000971",
+   "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036126000971/ef20062706_8k.htm"
+  }
+ ],
+ "warnings": []
+}

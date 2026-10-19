@@ -1,0 +1,278 @@
+{
+ "ticker": "GGG",
+ "cik": 42888,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T23:10:42-04:00",
+ "newest_filing_date": "2026-09-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000042888.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000081/ggg-20251226.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GGG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GGG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GRACO INC",
+  "cik": 42888,
+  "description": {
+   "text": "Graco Inc., together with its subsidiaries (“Graco,” “us,” “we,” or “our Company”), is a multi-national manufacturing company. We supply technology and expertise for the management of fluids and coatings in industrial and commercial applications. We design, manufacture and market systems and equipment used to move, measure, mix, control, dispense and spray fluid and powder materials. Our equipment is used in manufacturing, processing, construction and maintenance industries. Graco is a Minnesota corporation and was incorporated in 1926. We specialize in providing equipment solutions for difficult-to-handle materials with high viscosities, abrasive or corrosive properties, and multiple component materials that require precise ratio control. We aim to serve niche markets, providing high customer value through product differentiation. Our products enable customers to reduce their use of labor, material and energy, improve quality and environmental performance. We make significant investments in developing innovative, high-quality products. We strive to grow into new geographic markets by strategically adding commercial and technical resources and third-party distribution in growing and emerging markets. We have grown our third-party distribution to have specialized experience in particular end-user applications. We leverage our product technologies for new applications and industries.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-26",
+   "accession": "0000042888-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000081/ggg-20251226.htm"
+  },
+  "description_short": "Graco Inc. supplies technology and expertise for the management of fluids in both industrial and commercial applications. It designs, manufactures and markets systems and equipment to move, measure, control, dispense and spray fluid and powder materials. A recognized leader in its specialties, Minneapolis-based Graco serves customers around the world in the manufacturing, processing, construction and maintenance industries.",
+  "industry": "Fluid Controls",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3561",
+  "sic_description": "Pumps & Pumping Equipment",
+  "state_of_incorporation": "MN",
+  "fiscal_year_end_mmdd": "1226",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.graco.com",
+  "headquarters": "Minneapolis, Minnesota",
+  "address": {
+   "street": "88 - 11th Avenue N.E.",
+   "city": "Minneapolis",
+   "state": "Minnesota",
+   "zip": "55413",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "6126236000",
+  "employees": {
+   "count": 4400,
+   "as_of": "2025-12-26",
+   "evidence": "As of December 26, 2025, we employed approximately 4,400 persons.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000081/ggg-20251226.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-10",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000042888&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-389891",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000119312526389891/d127483d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-08-31",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-377613",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000119312526377613/d100947d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-22",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000042888-26-000123",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000123/ggg-20260626.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-12",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000042888-26-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000114/ggg-20260612.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000042888-26-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000110/ggg-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-205255",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000119312526205255/d864524d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-24",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000042888-26-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000101/ggg-20260424.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-22",
+   "period": "2026-03-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000042888-26-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000098/ggg-20260327.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-11",
+   "period": "2026-04-24",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-101267",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000119312526101267/d93954ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-02-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-085816",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000119312526085816/d104194d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-26",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000042888-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000081/ggg-20251226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-13",
+   "period": "2026-02-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000042888-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000036/ggg-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000042888-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288826000019/ggg-20260126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000042888-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288825000055/ggg-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-22",
+   "period": "2025-09-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000042888-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288825000047/ggg-20250926.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-23",
+   "period": "2025-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000042888-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288825000025/ggg-20250627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-25",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000042888-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288825000018/ggg-20250425.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-23",
+   "period": "2025-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000042888-25-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288825000014/ggg-20250328.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-12",
+   "period": "2025-04-25",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-052581",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000119312525052581/d887661ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-18",
+   "period": "2024-12-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000042888-25-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/42888/000004288825000011/ggg-20241227.htm"
+  }
+ ],
+ "warnings": []
+}

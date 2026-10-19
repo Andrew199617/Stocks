@@ -1,0 +1,85 @@
+{
+ "ticker": "FDXF",
+ "name": "FedEx Freight Holding Company, Inc.",
+ "sector": "Transportation / Less-than-truckload (LTL) freight",
+ "price": 113.58,
+ "market_cap_b": 16.98,
+ "engine_version": 5,
+ "base_oe_per_share": 7.143561943725213,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Largest North American LTL network (365+ locations, 26,000+ doors, 98% of U.S. ZIP codes) and costly-to-replicate terminals give real density scale, but service is replicable, pricing is cyclical, and Old Dominion \u2014 not FDXF \u2014 is the service and margin leader; carve-out ROIC prints (62.5%/42.5%) are parent-capital artifacts and the first standalone print is 9.9% on negative equity.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "BASE_DIVERGENCE: latest FY OE/share -1.50 vs 3-yr median 7.14 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 4.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (6.4%) vs bull-case tier C (10.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 24.53,
+   "irr": 0.0487
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 37.24,
+   "irr": 0.0639
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 53.83,
+   "irr": 0.0844
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 67.75,
+   "irr": 0.1008
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 91.91,
+   "irr": 0.1276
+  }
+ },
+ "iv_at_15": 51.88,
+ "iv_at_12": 68.36,
+ "implied_irr": 0.0823,
+ "implied_irr_base_case": 0.0844,
+ "upside_at_15_pct": -54.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Largest North American LTL carrier with a real density moat (5/10), but a levered spin-off priced for a recovery it hasn't printed \u2014 at $113.58 it does not clear 15% (weighted IRR 8.2%, weighted IV@15% $51.88; hurdle price $51.88).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0639,
+ "irr_bull": 0.1008,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 36.99,
+ "iv_at_25": 28.73,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4527000000,
+ "shares_diluted_latest": 149505248,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest NA LTL carrier by revenue ($8,782M vs Old Dominion $5,446M) \u2014 densest network, 365+ locations / 26,000+ doors, 98% U.S. ZIP coverage",
+  "High barriers to entry: service-center terminals are costly and slow to build; top five carriers hold the majority of the market",
+  "Dual Priority/Economy model segments time-definite vs deferred freight off one network",
+  "Proprietary digital platforms (LTL Select) and route-optimization tooling"
+ ],
+ "moat_against": [
+  "Not the quality leader: Old Dominion ranked top national carrier in shipper surveys 16 straight years, with structurally higher margins",
+  "Operating margin fell 18.6% \u2192 15.8% \u2192 6.1% GAAP (FY2024\u201326); FY2026 adjusted 12.6%, below best-in-class LTL",
+  "Cyclical industrial demand: average daily shipments \u22124% FY2026, \u22125.9% in Q4; industry excess capacity pressures yield",
+  "Low shipper switching costs \u2014 freight is re-bid; Estes, XPO, Saia, R+L run comparable networks",
+  "Rising wage rates on a labor-dominant cost base"
+ ]
+}

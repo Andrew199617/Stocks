@@ -1,0 +1,517 @@
+{
+ "ticker": "MKC",
+ "cik": 63754,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000063754-26-000037",
+   "filed": "2026-01-22",
+   "period": "2025-11-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/63754/000006375426000037/mkc-20251130_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000063754-26-000274",
+   "filed": "2026-06-25",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/63754/000006375426000274/mkc-20260531_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000063754-26-000329",
+   "filed": "2026-10-01",
+   "period": "2026-08-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/63754/000006375426000329/mkc-20260831_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mkc:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      3807300000,
+      3848500000,
+      3950300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5715,
+      0.5724,
+      0.5775
+     ],
+     "growth_yoy": [
+      null,
+      0.0108,
+      0.0265
+     ]
+    },
+    {
+     "member": "mkc:FlavorSolutionsMember",
+     "label": "Flavor Solutions",
+     "values": [
+      2854900000,
+      2875200000,
+      2890000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4285,
+      0.4276,
+      0.4225
+     ],
+     "growth_yoy": [
+      null,
+      0.0071,
+      0.0051
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6662200000,
+     6723700000,
+     6840300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2025-11-30",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mkc:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      930600000,
+      973200000,
+      1127300000,
+      1142700000,
+      1215400000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5608,
+      0.5642,
+      0.6092,
+      0.5901,
+      0.6003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2279,
+      0.2489
+     ]
+    },
+    {
+     "member": "mkc:FlavorSolutionsMember",
+     "label": "Flavor Solutions",
+     "values": [
+      728900000,
+      751700000,
+      723100000,
+      793900000,
+      809400000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4392,
+      0.4358,
+      0.3908,
+      0.4099,
+      0.3997
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0892,
+      0.0768
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1659500000,
+     1724900000,
+     1850400000,
+     1936600000,
+     2024800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mkc:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      699700000,
+      736900000,
+      721300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7266,
+      0.695,
+      0.6736
+     ],
+     "growth_yoy": [
+      null,
+      0.0532,
+      -0.0212
+     ]
+    },
+    {
+     "member": "mkc:FlavorSolutionsMember",
+     "label": "Flavor Solutions",
+     "values": [
+      263300000,
+      323400000,
+      349500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2734,
+      0.305,
+      0.3264
+     ],
+     "growth_yoy": [
+      null,
+      0.2283,
+      0.0807
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     963000000,
+     1060300000,
+     1070800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-11-30",
+    "2024-11-30",
+    "2025-11-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      4756900000,
+      4801900000,
+      4867800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.714,
+      0.7142,
+      0.7116
+     ],
+     "growth_yoy": [
+      null,
+      0.0095,
+      0.0137
+     ]
+    },
+    {
+     "member": "mkc:EuropeMiddleEastAndAfricaMember",
+     "label": "Europe Middle East And Africa",
+     "values": [
+      1212800000,
+      1239300000,
+      1268500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.182,
+      0.1843,
+      0.1854
+     ],
+     "growth_yoy": [
+      null,
+      0.0219,
+      0.0236
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      692500000,
+      682500000,
+      704000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1039,
+      0.1015,
+      0.1029
+     ],
+     "growth_yoy": [
+      null,
+      -0.0144,
+      0.0315
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6662200000,
+     6723700000,
+     6840300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-31",
+    "2025-08-31",
+    "2025-11-30",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1176300000,
+      1228200000,
+      1345000000,
+      1411900000,
+      1494800000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7088,
+      0.712,
+      0.7269,
+      0.7291,
+      0.7382
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2003,
+      0.2171
+     ]
+    },
+    {
+     "member": "mkc:EuropeMiddleEastAndAfricaMember",
+     "label": "Europe Middle East And Africa",
+     "values": [
+      308600000,
+      315800000,
+      344600000,
+      334500000,
+      326900000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.186,
+      0.1831,
+      0.1862,
+      0.1727,
+      0.1614
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0839,
+      0.0351
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      174600000,
+      180900000,
+      160800000,
+      190200000,
+      203100000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1052,
+      0.1049,
+      0.0869,
+      0.0982,
+      0.1003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0893,
+      0.1227
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1659500000,
+     1724900000,
+     1850400000,
+     1936600000,
+     2024800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/Revenues/annual: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, Europe Middle East And Africa, Asia Pacific)",
+  "geography/Revenues/annual: row 'Other Countries' (mkc:OtherCountriesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, Europe Middle East And Africa, Asia Pacific)"
+ ],
+ "complete": true
+}

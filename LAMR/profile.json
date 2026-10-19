@@ -1,0 +1,300 @@
+{
+ "ticker": "LAMR",
+ "cik": 1090425,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T01:24:35-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001090425.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000008/lamr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LAMR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LAMR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "LAMAR ADVERTISING CO/NEW",
+  "cik": 1090425,
+  "description": {
+   "text": "Lamar Advertising Company is one of the largest outdoor advertising companies in the United States based on number of displays and has operated under the Lamar name since 1902. We manage our business through three operating segments –billboard, logo and transit advertising. We rent space for advertising on billboards, buses, shelters, benches, logo plates and in airport terminals. We offer our customers a fully integrated service, satisfying all aspects of their display requirements from ad copy production to placement and maintenance. We operate three types of outdoor advertising displays: billboards, logo signs and transit advertising displays. Billboards. As of December 31, 2025, we owned and operated approximately 159,300 billboard advertising displays in 45 states and Canada. We rent most of our advertising space on two types of billboards: bulletins and posters. •Bulletins are generally large, illuminated advertising structures that are located on major highways and target vehicular traffic. •Posters are generally smaller advertising structures that are located on major traffic arteries and city streets and target vehicular and pedestrian traffic. In addition to traditional billboards, we also rent space on digital billboards, which are generally located on major traffic arteries and city streets. As of December 31, 2025, we owned and operated approximately 5,500 digital billboard advertising displays in 43 states and Canada. Logo signs.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001090425-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000008/lamr-20251231.htm"
+  },
+  "description_short": "Founded in 1902, Lamar Advertising Company is one of the largest outdoor advertising companies in North America, with over 360,000 displays across the United States and Canada. Lamar offers advertisers a variety of billboard, interstate logo, transit and airport advertising formats, helping both local businesses and national brands reach broad audiences every day. In addition to its more traditional out-of-home inventory, Lamar is proud to offer its customers the largest network of digital billboards in the United States with over 5,700 displays.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.lamar.com",
+  "headquarters": "Baton Rouge, LA",
+  "address": {
+   "street": "5321 Corporate Blvd.",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "zip": "70808",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "2259261000",
+  "employees": {
+   "count": 3500,
+   "as_of": "2025-12-31",
+   "evidence": "Our People. We employed over 3,500 people as of December 31, 2025.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000008/lamr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-07-19",
+  "first_sec_filing_form": "POS AM",
+  "former_names": [
+   "LAMAR NEW HOLDING CO"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001090425&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-415546",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312526415546/d180378d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-378592",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312526378592/d81164d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001090425-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000024/lamr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001090425-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000021/lamr-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-14",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-230735",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312526230735/d227765d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-224221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312526224221/d74412d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001090425-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000017/lamr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001090425-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000014/lamr-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-140058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312526140058/d19571ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-076937",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312526076937/d25344d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001090425-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000008/lamr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001090425-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000006/lamr-20260220.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-316012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312525316012/d160514d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001090425-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042525000010/lamr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001090425-25-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042525000008/lamr-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-01",
+   "period": "2025-09-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-226747",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312525226747/d97349d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-24",
+   "period": "2025-09-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-215425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312525215425/d74817d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-22",
+   "period": "2025-09-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-211504",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312525211504/d57737d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-22",
+   "period": "2025-09-22",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-25-210108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312525210108/d10973d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-189779",
+   "url": "https://www.sec.gov/Archives/edgar/data/1090425/000119312525189779/d30006d8k.htm"
+  }
+ ],
+ "warnings": []
+}
