@@ -1,0 +1,729 @@
+{
+ "ticker": "UHS",
+ "cik": 352915,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-071676",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/352915/000119312526071676/uhs-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-211992",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/352915/000119312526211992/uhs-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-340278",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/352915/000119312526340278/uhs-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "uhs:AcuteCareHospitalServicesMember",
+     "label": "Acute Care Hospital Services",
+     "values": [
+      8081402000,
+      8944288000,
+      9925907000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5658,
+      0.5651,
+      0.5716
+     ],
+     "growth_yoy": [
+      null,
+      0.1068,
+      0.1097
+     ]
+    },
+    {
+     "member": "uhs:BehavioralHealthServicesMember",
+     "label": "Behavioral Health Services",
+     "values": [
+      6190921000,
+      6873090000,
+      7425500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4335,
+      0.4342,
+      0.4276
+     ],
+     "growth_yoy": [
+      null,
+      0.1102,
+      0.0804
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      9653000,
+      10557000,
+      13422000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0007,
+      0.0007,
+      0.0008
+     ],
+     "growth_yoy": [
+      null,
+      0.0936,
+      0.2714
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14281976000,
+     15827935000,
+     17364829000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "uhs:AcuteCareHospitalServicesMember",
+     "label": "Acute Care Hospital Services",
+     "values": [
+      2357814000,
+      2403837000,
+      2610136000,
+      2609999000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5751,
+      0.5611,
+      0.5807,
+      0.5627
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.107,
+      0.0858
+     ]
+    },
+    {
+     "member": "uhs:BehavioralHealthServicesMember",
+     "label": "Behavioral Health Services",
+     "values": [
+      1739064000,
+      1877273000,
+      1882152000,
+      2025065000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4242,
+      0.4382,
+      0.4187,
+      0.4366
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0823,
+      0.0787
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      2842000,
+      2706000,
+      2894000,
+      2948000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0007,
+      0.0006,
+      0.0006,
+      0.0006
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0183,
+      0.0894
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4099720000,
+     4283816000,
+     4495182000,
+     4638012000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "uhs:ManagedCareMember",
+     "label": "Managed Care",
+     "values": [
+      4211194000,
+      4496402000,
+      4902096000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2949,
+      0.2841,
+      0.2823
+     ],
+     "growth_yoy": [
+      null,
+      0.0677,
+      0.0902
+     ]
+    },
+    {
+     "member": "uhs:MedicaidMember",
+     "label": "Medicaid",
+     "values": [
+      1532904000,
+      2252030000,
+      2686967000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1073,
+      0.1423,
+      0.1547
+     ],
+     "growth_yoy": [
+      null,
+      0.4691,
+      0.1931
+     ]
+    },
+    {
+     "member": "uhs:ManagedMedicaidMember",
+     "label": "Managed Medicaid",
+     "values": [
+      2290661000,
+      2303938000,
+      2482601000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1604,
+      0.1456,
+      0.143
+     ],
+     "growth_yoy": [
+      null,
+      0.0058,
+      0.0775
+     ]
+    },
+    {
+     "member": "uhs:ManagedMedicareMember",
+     "label": "Managed Medicare",
+     "values": [
+      1714055000,
+      1883905000,
+      2080278000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.12,
+      0.119,
+      0.1198
+     ],
+     "growth_yoy": [
+      null,
+      0.0991,
+      0.1042
+     ]
+    },
+    {
+     "member": "uhs:MedicareMember",
+     "label": "Medicare",
+     "values": [
+      1607405000,
+      1669125000,
+      1856404000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1125,
+      0.1055,
+      0.1069
+     ],
+     "growth_yoy": [
+      null,
+      0.0384,
+      0.1122
+     ]
+    },
+    {
+     "member": "uhs:OtherPatientRevenueAndAdjustmentsNetMember",
+     "label": "Other Patient Revenue And Adjustments Net",
+     "values": [
+      981203000,
+      1112808000,
+      1240278000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0687,
+      0.0703,
+      0.0714
+     ],
+     "growth_yoy": [
+      null,
+      0.1341,
+      0.1145
+     ]
+    },
+    {
+     "member": "uhs:OtherNonPatientRevenueMember",
+     "label": "Other Non Patient Revenue",
+     "values": [
+      1183430000,
+      1229579000,
+      1114849000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0829,
+      0.0777,
+      0.0642
+     ],
+     "growth_yoy": [
+      null,
+      0.039,
+      -0.0933
+     ]
+    },
+    {
+     "member": "uhs:UKRevenueMember",
+     "label": "U K Revenue",
+     "values": [
+      761124000,
+      880148000,
+      1001356000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0533,
+      0.0556,
+      0.0577
+     ],
+     "growth_yoy": [
+      null,
+      0.1564,
+      0.1377
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14281976000,
+     15827935000,
+     17364829000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "uhs:ManagedCareMember",
+     "label": "Managed Care",
+     "values": [
+      1184801000,
+      1227853000,
+      1200498000,
+      1202141000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.289,
+      0.2866,
+      0.2671,
+      0.2592
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0132,
+      -0.0209
+     ]
+    },
+    {
+     "member": "uhs:MedicaidMember",
+     "label": "Medicaid",
+     "values": [
+      526908000,
+      644121000,
+      709900000,
+      820202000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1285,
+      0.1504,
+      0.1579,
+      0.1768
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3473,
+      0.2734
+     ]
+    },
+    {
+     "member": "uhs:ManagedMedicaidMember",
+     "label": "Managed Medicaid",
+     "values": [
+      602829000,
+      619608000,
+      646602000,
+      653738000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.147,
+      0.1446,
+      0.1438,
+      0.141
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0726,
+      0.0551
+     ]
+    },
+    {
+     "member": "uhs:ManagedMedicareMember",
+     "label": "Managed Medicare",
+     "values": [
+      520299000,
+      519172000,
+      550100000,
+      548673000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1269,
+      0.1212,
+      0.1224,
+      0.1183
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0573,
+      0.0568
+     ]
+    },
+    {
+     "member": "uhs:MedicareMember",
+     "label": "Medicare",
+     "values": [
+      468039000,
+      449247000,
+      481677000,
+      478705000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1142,
+      0.1049,
+      0.1072,
+      0.1032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0291,
+      0.0656
+     ]
+    },
+    {
+     "member": "uhs:OtherNonPatientRevenueMember",
+     "label": "Other Non Patient Revenue",
+     "values": [
+      259703000,
+      266848000,
+      315849000,
+      354641000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0633,
+      0.0623,
+      0.0703,
+      0.0765
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2162,
+      0.329
+     ]
+    },
+    {
+     "member": "uhs:OtherPatientRevenueAndAdjustmentsNetMember",
+     "label": "Other Patient Revenue And Adjustments Net",
+     "values": [
+      310073000,
+      310061000,
+      329344000,
+      310708000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0756,
+      0.0724,
+      0.0733,
+      0.067
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0621,
+      0.0021
+     ]
+    },
+    {
+     "member": "uhs:UKRevenueMember",
+     "label": "U K Revenue",
+     "values": [
+      227068000,
+      246906000,
+      261212000,
+      269204000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0554,
+      0.0576,
+      0.0581,
+      0.058
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1504,
+      0.0903
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4099720000,
+     4283816000,
+     4495182000,
+     4638012000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: same numbers as 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: same numbers as 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,87 @@
+{
+ "ticker": "UHS",
+ "name": "Universal Health Services, Inc.",
+ "sector": "Healthcare / Hospitals \u2014 acute care and behavioral health",
+ "price": 185.1,
+ "market_cap_b": 11.93,
+ "engine_version": 5,
+ "base_oe_per_share": 12.337857178107882,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow: local scale and scarce behavioral-health beds plus diversified acute/behavioral footprint, but payer-set reimbursement, labor scarcity and ROIC that fell to 7.2% in 2022 and only recovered to 12.9% in 2025 \u2014 not well above cost of capital through a cycle.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 5.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (9.3%) vs bull-case tier C (13.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 73.66,
+   "irr": 0.0745
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 100.14,
+   "irr": 0.0935
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 125.99,
+   "irr": 0.1116
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 163.39,
+   "irr": 0.1365
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 218.61,
+   "irr": 0.1698
+  }
+ },
+ "iv_at_15": 125.26,
+ "iv_at_12": 167.44,
+ "implied_irr": 0.1114,
+ "implied_irr_base_case": 0.1116,
+ "upside_at_15_pct": -32.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Solid hospital operator, moat 5/10 \u2014 does not clear 15% at $185.10 (11.1% weighted IRR, IV@15% $125.26); clears 15% only below ~$125, with Medicaid supplemental cuts and leverage capping the upside.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0935,
+ "irr_bull": 0.1365,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 87.51,
+ "iv_at_25": 66.84,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4614754000,
+ "shares_diluted_latest": 64462000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest US behavioral-health platform; inpatient psychiatric beds structurally undersupplied locally",
+  "Scale across ~400 facilities in acute care and behavioral health; negotiating leverage with commercial payers",
+  "Diversified acute + behavioral mix, resilient through cycles; operating margin recovered to 11.5% in FY2025",
+  "Local facility density, licensure/CON barriers and referral relationships in served markets"
+ ],
+ "moat_against": [
+  "Government payers set much of reimbursement; Medicare/Medicaid rates lag cost inflation and supplemental Medicaid benefits are set to shrink under OBBBA from 2028",
+  "Labor shortages (nurses, psychiatrists, techs) constrain capacity and drive wage/professional-fee costs",
+  "ROIC proxy only 7.2-12.9% over 2022-2025 \u2014 thin spread over cost of capital, volatile",
+  "Larger rivals (HCA in acute care, Acadia in behavioral) and non-profit systems compete for patients, physicians and staff in every local market",
+  "Professional/general liability severity rising \u2014 reserve increases in Q2 2026"
+ ]
+}
