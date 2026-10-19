@@ -267,6 +267,24 @@ STALE = [
 ]
 
 
+def test_depreciation_anchor_clause_present():
+    """Andrew's 2026-10-18 clause: a capex estimate may anchor on filed
+    depreciation only when no capex was ever filed, the override carries an
+    ack_reason, and analysis.md states the anchor. The clause must stand in
+    WORKER_SPEC step 8 and in README's bounded-authority summary (the
+    2026-10-14 entry, amended in place). Fails on the pre-clause documents —
+    the regression test for a prose policy change."""
+    spec = _read("_system/WORKER_SPEC.md")
+    for phrase in ("Depreciation-anchor exception", "no capex value was ever filed",
+                   "must state the anchor explicitly", "ack_reason"):
+        assert phrase in spec, f"WORKER_SPEC.md lost the clause phrase: {phrase!r}"
+    readme = _read(SYS_README)
+    assert "Depreciation anchor for capex estimates (Andrew's decision)" in readme, \
+        "README Fixes & lessons lost the depreciation-anchor entry"
+    assert "amended 2026-10-18" in readme and "filed depreciation" in readme, \
+        "README's bounded-authority summary lost the amendment"
+
+
 def test_corrected_passages_stay_corrected():
     found = [f"{doc}: {phrase!r}" for doc, phrase in STALE if phrase in _read(doc)]
     assert not found, f"stale wording is back: {found}"

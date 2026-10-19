@@ -12,7 +12,7 @@
   "value": 10444346000
  },
  "confidence": "low",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
  "moat_against": [
   "Finite concessions: Mexican concessions expire 2048 (~22 years) and concession assets revert \u2014 a perpetuity terminal value assumes renewal the filing does not grant",
   "Regulator sets the ceiling: five-year MDP reviews reset maximum tariffs and impose the capex program (Ps.43,185m committed 2025-2029 in Mexico); the 2025-2029 bases added a claw-back on excess workload units",
