@@ -1,0 +1,360 @@
+{
+ "ticker": "AVTR",
+ "cik": 1722482,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-007118",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026007118/avtr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028141",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026028141/avtr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050415",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026050415/avtr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "avtr:LaboratorySolutionsSegmentMember",
+     "label": "Laboratory Solutions Segment",
+     "values": [
+      4738300000,
+      4610100000,
+      4399700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6801,
+      0.6796,
+      0.6715
+     ],
+     "growth_yoy": [
+      null,
+      -0.0271,
+      -0.0456
+     ]
+    },
+    {
+     "member": "avtr:BioscienceProductionSegmentMember",
+     "label": "Bioscience Production Segment",
+     "values": [
+      2228900000,
+      2173500000,
+      2152500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3199,
+      0.3204,
+      0.3285
+     ],
+     "growth_yoy": [
+      null,
+      -0.0249,
+      -0.0097
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6967200000,
+     6783600000,
+     6552200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "avtr:VWRDistributionServicesSegmentMember",
+     "label": "VWR Distribution & Services Segment",
+     "values": [
+      1155000000,
+      1207500000,
+      1150000000,
+      1240500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7304,
+      0.7173,
+      0.7272,
+      0.733
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0043,
+      0.0273
+     ]
+    },
+    {
+     "member": "avtr:BioscienceMedtechProductsSegmentMember",
+     "label": "Bioscience & Medtech Products Segment",
+     "values": [
+      426400000,
+      475900000,
+      431400000,
+      451800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2696,
+      0.2827,
+      0.2728,
+      0.267
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0117,
+      -0.0506
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1581400000,
+     1683400000,
+     1581400000,
+     1692300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "avtr:ProprietaryMaterialsAndConsumablesMember",
+     "label": "Proprietary Materials And Consumables",
+     "values": [
+      3720200000,
+      3615100000,
+      3448900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.534,
+      0.5329,
+      0.5264
+     ],
+     "growth_yoy": [
+      null,
+      -0.0283,
+      -0.046
+     ]
+    },
+    {
+     "member": "avtr:ThirdPartyMaterialsAndConsumablesMember",
+     "label": "Third Party Materials And Consumables",
+     "values": [
+      3247000000,
+      3168500000,
+      3103300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.466,
+      0.4671,
+      0.4736
+     ],
+     "growth_yoy": [
+      null,
+      -0.0242,
+      -0.0206
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6967200000,
+     6783600000,
+     6552200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "avtr:ProprietaryMaterialsAndConsumablesMember",
+     "label": "Proprietary Materials And Consumables",
+     "values": [
+      829700000,
+      893800000,
+      833300000,
+      880400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5247,
+      0.5309,
+      0.5269,
+      0.5202
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0043,
+      -0.015
+     ]
+    },
+    {
+     "member": "avtr:ThirdPartyMaterialsAndConsumablesMember",
+     "label": "Third Party Materials And Consumables",
+     "values": [
+      751700000,
+      789600000,
+      748100000,
+      811900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4753,
+      0.4691,
+      0.4731,
+      0.4798
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0048,
+      0.0282
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1581400000,
+     1683400000,
+     1581400000,
+     1692300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

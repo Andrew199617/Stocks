@@ -1,0 +1,84 @@
+{
+ "ticker": "AVTR",
+ "name": "Avantor, Inc.",
+ "sector": "Healthcare / Life sciences distribution & products",
+ "price": 16.42,
+ "market_cap_b": 11.18,
+ "engine_version": 5,
+ "base_oe_per_share": 0.5855496453900709,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Real distribution scale and spec-in embedment, but economics say narrow: ROIC proxy ran 5.2\u20139.3% in FY19\u2013FY24 (never durably above cost of capital), gross margin is eroding, revenue has fallen three straight years, and the Distribution unit itself was written down $785M in Q3 2025. That is a weak-moderate moat, not a wide one.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 9.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 2.21,
+   "irr": 0.0396
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 3.23,
+   "irr": 0.0479
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 4.36,
+   "irr": 0.0575
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 5.6,
+   "irr": 0.068
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 7.69,
+   "irr": 0.0854
+  }
+ },
+ "iv_at_15": 4.5,
+ "iv_at_12": 5.91,
+ "implied_irr": 0.059,
+ "implied_irr_base_case": 0.0575,
+ "upside_at_15_pct": -72.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Levered lab-distribution turnaround, moat 4/10 \u2014 does not clear 15% on any scenario (weighted IRR 5.90%, IV@15% $4.50 vs $16.42 price); it would need to fall to ~$4.50 to clear the 15% hurdle on TTM owner's earnings.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0479,
+ "irr_bull": 0.068,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 3.23,
+ "iv_at_25": 2.52,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3580900000,
+ "shares_diluted_latest": 680600000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "VWR distribution scale: one of the two largest global lab distributors, 300,000+ customer locations in ~180 countries",
+  "Spec-in stickiness: materials specified into 85% of the top 20 commercialized biologics \u2014 recurring bioprocessing demand",
+  "Proprietary brands with regulatory trust: J.T. Baker high-purity chemicals, NuSil medical-grade silicones",
+  "cGMP / regulated-workflow embedment raises switching friction in production (not just research) labs"
+ ],
+ "moat_against": [
+  "Distribution is contestable \u2014 larger platforms (Thermo Fisher et al.) compete for the same lab spend",
+  "Revenue down three straight years (FY23\u2013FY25) and the Distribution unit took a $785M goodwill impairment in Q3 2025 on market conditions and projected performance",
+  "ROIC proxy only 5\u20139% across FY19\u2013FY24 (negative in FY25 on the impairment) \u2014 at/barely above cost of capital",
+  "Gross margin eroding: 34.6% FY22 \u2192 32.7% FY25 \u2192 32.1% TTM",
+  "Levered: net debt $3,580,900,000 = 9.0x normalized OE on the TTM base"
+ ]
+}

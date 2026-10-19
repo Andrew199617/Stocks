@@ -1,0 +1,304 @@
+{
+ "ticker": "AVTR",
+ "cik": 1722482,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T01:34:56-04:00",
+ "newest_filing_date": "2026-09-21",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001722482.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026007118/avtr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AVTR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AVTR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Avantor, Inc.",
+  "cik": 1722482,
+  "description": {
+   "text": "At Avantor, everything we do is tied to our unique mission of setting science in motion to create a better world. We are a leading global provider of mission-critical products and services to customers in the biopharma & healthcare, education & government, and advanced technologies & applied materials end markets. Our business model is grounded in supporting our customers from discovery to delivery and Avantor is embedded in virtually every stage of the most important research, scale-up and manufacturing activities in the industries we serve. We work with customers across these sophisticated, science-driven industries that require innovation and adherence to the most demanding technical and regulatory requirements. Our customer-centric innovation model enables us to provide solutions for some of the most demanding applications, and we leverage our comprehensive offering and access to early-stage research to identify and develop content and solutions that ultimately become specified into our customers’ approved production platforms. We go to market in two primary ways. First, in our channel business, VWR, we distribute consumables and equipment to laboratories around the world. Second, we manufacture proprietary products used in life sciences and medical technology applications.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-007118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026007118/avtr-20251231.htm"
+  },
+  "description_short": "Avantor® is a leading life science tools company and global provider of mission-critical products and services to the life sciences and advanced technology industries. We work side-by-side with customers at every step of the scientific journey to enable breakthroughs in medicine, healthcare, and technology. Our portfolio is used in virtually every stage of the most important research, development and production activities at more than 300,000 customer locations in 180 countries.",
+  "industry": "Biotechnology: Laboratory Analytical Instruments",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3826",
+  "sic_description": "Laboratory Analytical Instruments",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.avantorsciences.com",
+  "headquarters": "Radnor, Pennsylvania",
+  "address": {
+   "street": "Radnor Corporate Center, Building One, Suite 200 100 Matsonford Road",
+   "city": "Radnor",
+   "state": "Pennsylvania",
+   "zip": "19087",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "(610) 386-1700",
+  "employees": {
+   "count": 13500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 13,500 employees located in over 30 different countries in a variety of roles.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026007118/avtr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2019-02-08",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Vail Holdco Corp"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001722482&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000947871-26-000877",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000094787126000877/ss6842956_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000947871-26-000876",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000094787126000876/ss6842956_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-08-27",
+   "period": "2026-04-17",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001628280-26-059273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026059273/avtr-20260417.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050415",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026050415/avtr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-050333",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026050333/avtr-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-17",
+   "period": "2026-07-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-26-048676",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026048676/avtr-20260714.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-07",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-034146",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026034146/avtr-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026028141/avtr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-028078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026028078/avtr-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-026905",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026026905/avtr-20260417.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-03-26",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-022575",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026022575/avtr-20260326.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-021572",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026021572/avtr-20260326.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-25",
+   "period": "2025-12-17",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001628280-26-011727",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026011727/avtr-20251217.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-25",
+   "period": "2025-12-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001628280-26-011722",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026011722/avtr-20251204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-007120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026007120/avtr-20260211.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-007118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828026007118/avtr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-25-057805",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828025057805/avtr-20251217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001722482-25-000221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000172248225000221/avtr-20251204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-10-26",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-25-051159",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828025051159/avtr-20251026.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-046936",
+   "url": "https://www.sec.gov/Archives/edgar/data/1722482/000162828025046936/avtr-20250930.htm"
+  }
+ ],
+ "warnings": []
+}
