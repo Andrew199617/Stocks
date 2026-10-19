@@ -1,0 +1,252 @@
+{
+ "ticker": "PAYC",
+ "cik": 1590955,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-059372",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526059372/payc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-211926",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526211926/payc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-338010",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/payc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "payc:RecurringMember",
+     "label": "Recurring",
+     "values": [
+      1563400000,
+      1733900000,
+      1912700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9231,
+      0.9207,
+      0.9323
+     ],
+     "growth_yoy": [
+      null,
+      0.1091,
+      0.1031
+     ]
+    },
+    {
+     "member": "payc:InterestOnFundsHeldForClientsMember",
+     "label": "Interest on Funds Held For Clients",
+     "values": [
+      108000000,
+      124900000,
+      113000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0638,
+      0.0663,
+      0.0551
+     ],
+     "growth_yoy": [
+      null,
+      0.1565,
+      -0.0953
+     ]
+    },
+    {
+     "member": "payc:ImplementationAndOtherMember",
+     "label": "Implementation And Other",
+     "values": [
+      22300000,
+      24400000,
+      26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0132,
+      0.013,
+      0.0127
+     ],
+     "growth_yoy": [
+      null,
+      0.0942,
+      0.0656
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1693700000,
+     1883200000,
+     2051700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "payc:RecurringMember",
+     "label": "Recurring",
+     "values": [
+      493400000,
+      449100000,
+      537300000,
+      497900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9301,
+      0.9287,
+      0.9395,
+      0.9373
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.089,
+      0.1087
+     ]
+    },
+    {
+     "member": "payc:InterestOnFundsHeldForClientsMember",
+     "label": "Interest on Funds Held For Clients",
+     "values": [
+      30500000,
+      28500000,
+      27800000,
+      26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0575,
+      0.0589,
+      0.0486,
+      0.0489
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0885,
+      -0.0877
+     ]
+    },
+    {
+     "member": "payc:ImplementationAndOtherMember",
+     "label": "Implementation And Other",
+     "values": [
+      6600000,
+      6000000,
+      6700000,
+      7300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0124,
+      0.0124,
+      0.0117,
+      0.0137
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0152,
+      0.2167
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     530500000,
+     483600000,
+     571900000,
+     531200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Recurring and Other' (payc:RecurringAndOtherMember) dropped: its values equal the sum of Recurring, Implementation And Other",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Recurring and Other' (payc:RecurringAndOtherMember) dropped: its values equal the sum of Recurring, Implementation And Other"
+ ],
+ "complete": true
+}
