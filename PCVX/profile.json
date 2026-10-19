@@ -1,0 +1,292 @@
+{
+ "ticker": "PCVX",
+ "cik": 1649094,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T23:35:44-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001649094.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000007/pcvx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PCVX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PCVX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Vaxcyte, Inc.",
+  "cik": 1649094,
+  "description": {
+   "text": "We are a clinical-stage vaccine innovation company engineering high-fidelity vaccines to protect humankind from the consequences of bacterial diseases. We are re-engineering the way highly complex vaccines are made through the XpressCF™ cell-free protein synthesis platform. Unlike conventional cell-based approaches, our system for producing difficult-to-make proteins and antigens is intended to develop and deliver high-fidelity vaccines with enhanced immunological benefits that are beyond the capabilities of conventional approaches. Vaccines are one of the most successful and cost-effective global health interventions and prevent millions of deaths worldwide each year. Routine pediatric vaccinations in the United States are estimated to prevent approximately 17 million cases of disease over the lifetimes of each annual birth cohort, and it is estimated that every $1 spent on childhood vaccination results in savings of approximately $11. Adult vaccination has increased with the introduction of new vaccines along with expanded age recommendations and growing international adoption, which is contributing to the growth of the overall vaccine market. Given the critical role vaccines play in preventing disease from childhood through adulthood, the global vaccine market is large, durable and growing.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001649094-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000007/pcvx-20251231.htm"
+  },
+  "description_short": "Vaxcyte is a vaccine innovation company engineering high-fidelity vaccines to protect humankind from the consequences of bacterial diseases. VAX-31, a 31-valent pneumococcal conjugate vaccine (PCV) candidate being evaluated in the OPUS Phase 3 adult clinical program and in a Phase 2 infant clinical program, is being developed for the prevention of invasive pneumococcal disease (IPD) and is the broadest-spectrum PCV candidate in the clinic today. VAX-24, a 24-valent PCV candidate, has generated positive Phase 2 clinical results in both adults and infants and is designed to cover more serotypes than any PCV on-market. VAX-31 and VAX-24 are designed to improve upon standard-of-care PCVs by covering the serotypes in circulation that cause a significant portion of IPD and are associated with high case-fatality rates, antibiotic resistance and meningitis, while maintaining coverage of previously circulating strains.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.vaxcyte.com",
+  "headquarters": "San Carlos, California",
+  "address": {
+   "street": "825 Industrial Road Suite 300",
+   "city": "San Carlos",
+   "state": "California",
+   "zip": "94070",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "650-837-0111",
+  "employees": {
+   "count": 507,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 507 full-time employees, with most of those based in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000007/pcvx-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-05-22",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "SutroVax, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001649094&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-419174",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000119312526419174/d150490d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-413168",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000119312526413168/d21202d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-08-31",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001649094-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000045/pcvx-20260831.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001649094-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000043/pcvx-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001649094-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000041/pcvx-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001649094-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000030/pcvx-20260713.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001649094-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000026/pcvx-20260617.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001649094-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000021/pcvx-20260615.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001649094-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000017/pcvx-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001649094-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000015/pcvx-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-23",
+   "period": "2026-06-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-173672",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000119312526173672/d64525ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-067546",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000119312526067546/d259722d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001649094-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000007/pcvx-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001649094-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000005/pcvx-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-01-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-033578",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000119312526033578/d54534d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-18",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001649094-25-000116",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909425000116/pcvx-20251218.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001649094-25-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909425000114/pcvx-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001649094-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909425000112/pcvx-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-30",
+   "period": "2025-09-24",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001649094-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909425000102/pcvx-20250924.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001649094-25-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909425000098/pcvx-20250630.htm"
+  }
+ ],
+ "warnings": []
+}
