@@ -1,0 +1,292 @@
+{
+ "ticker": "YUMC",
+ "cik": 1673358,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T03:09:26-04:00",
+ "newest_filing_date": "2026-09-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001673358.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526082824/yumc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/YUMC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/YUMC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Yum China Holdings, Inc.",
+  "cik": 1673358,
+  "description": {
+   "text": "References to “Yum China” mean Yum China Holdings, Inc. and references to the “Company,” “we,” “us,” and “our” mean Yum China and its subsidiaries. “U.S. dollars,” “$” or “US$” refers to the legal currency of the United States, and “RMB” or “Renminbi” refers to the legal currency of the People’s Republic of China (the “PRC” or “China”). The KFC, Pizza Hut, Lavazza, Huang Ji Huang, Little Sheep and Taco Bell brands are collectively referred to as the “brands” or “concepts.” Throughout this Form 10-K, the terms “brands” and “concepts” are used interchangeably and “restaurants,” “stores” and “units” are used interchangeably.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-082824",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526082824/yumc-20251231.htm"
+  },
+  "description_short": "Yum China is the largest restaurant company in China with a mission to make every life taste beautiful. The Company operates over 19,000 restaurants under six brands across over 2,700 cities in China. KFC and Pizza Hut are the leading brands in the quick-service and casual dining restaurant spaces in China, respectively. The Pizza Hut brand in Mainland China is owned by Yum China. In addition, Yum China has also partnered with Lavazza to develop the Lavazza coffee concept in China. Little Sheep and Huang Ji Huang specialize in Chinese cuisine. Taco Bell offers innovative Mexican-inspired food. Yum China has a world-class, digitalized supply chain which includes an extensive network of logistics centers nationwide and an in-house supply chain management system. Its strong digital capabilities and loyalty program enable the Company to reach customers faster and serve them better.",
+  "industry": "Restaurants",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5812",
+  "sic_description": "Retail-Eating  Places",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.yumchina.com",
+  "headquarters": "Plano, Texas",
+  "address": {
+   "street": "101 East Park Boulevard, Suite 805",
+   "city": "Plano",
+   "state": "Texas",
+   "zip": "75074",
+   "country": "United States of America",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "(469)980-2898",
+  "employees": {
+   "count": 290000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company had approximately 290,000 employees, including approximately 130,000 full-time employees and approximately 160,000 part-time restaurant crew members.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526082824/yumc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2016-05-04",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "Yum! China Holding, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001673358&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-377525",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526377525/yumc-20260901.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-341077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526341077/yumc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [
+    "1.01",
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Reg FD",
+   "accession": "0001193125-26-339048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526339048/yumc-20260807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-07-31",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-336485",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526336485/yumc-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-324793",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526324793/yumc-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-272893",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526272893/yumc-20260616.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-271854",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526271854/yumc-20260616.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-242942",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526242942/yumc-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-213131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526213131/yumc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-188588",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526188588/yumc-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-16",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-157856",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526157856/d97158ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-08",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-146384",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526146384/yumc-20260408.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-02-27",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001673358-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000167335826000051/yumc-20260227.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-082824",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526082824/yumc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-036625",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526036625/yumc-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-010568",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312526010568/yumc-20260106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-316788",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312525316788/yumc-20251212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-283928",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312525283928/d723391d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-273109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312525273109/yumc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-263373",
+   "url": "https://www.sec.gov/Archives/edgar/data/1673358/000119312525263373/yumc-20251104.htm"
+  }
+ ],
+ "warnings": []
+}

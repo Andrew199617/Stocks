@@ -1,0 +1,44 @@
+{
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Distribution belongs to the DSPs - Spotify and peers control the customer relationship and take their cut before WMG",
+  "Number-three major - subscale vs Universal and Sony in catalog, market share and bargaining weight",
+  "Hit-driven frontline - depends on signing and retaining artists against rising advances/royalties, independents and AI-generated supply",
+  "Levered, controlled equity - net debt $3,531M (4.8x normalized OE), lease liabilities $243M, and a controlling holder in Access Industries",
+  "No gross-margin expansion in a decade (~46-48%) - industry pricing gains are split with artists and DSPs, capping OE margin at 7-9%"
+ ],
+ "moat_for": [
+  "Evergreen recorded catalog + Warner Chappell publishing copyrights - long-lived scarce IP that monetizes every format shift (streaming, social, sync, AI licensing)",
+  "Proven DSP pricing power - FY2026 renewals carry contractual per-subscriber minimum increases; Q3 FY2026 subscription streaming revenue +12.5%",
+  "Returns through a cycle - ROIC proxy 14-17% FY2021-FY2024, 12.5% FY2025; gross margin ~46-48% for ten straight years (fundamentals.json)",
+  "Two-engine mix - Recorded Music $5,408M FY2025 plus steadier Music Publishing royalties $1,306M, with global A&R/marketing scale"
+ ],
+ "moat_justification": "One of the three majors: an evergreen recorded-music catalog plus Warner Chappell publishing copyrights that have monetized every format shift, with demonstrated pricing power at the DSP table (FY2026 renewals delivered contractual per-subscriber minimum increases; Q3 FY2026 subscription streaming +12.5%). Returns support a real but not wide moat: roic_proxy in fundamentals.json ran 14.2% / 16.2% / 15.7% / 17.1% / 12.5% across FY2021-FY2025 and gross margin held ~46-48% for a decade \u2014 but the gross margin never expands (pricing gains are shared with artists and DSPs), WMG is the number-three major behind Universal and Sony, distribution belongs to the DSP gatekeepers, and the frontline stays hit-driven. That is moderate-strong, not 7+: a 6 gives CAP 9.8 years.",
+ "moat_score": 6,
+ "name": "Warner Music Group Corp.",
+ "one_liner": "Durable catalog/publishing major, moat 6/10 - even on the stepped-up TTM base of $1.43/share it clears 15% only at ~$13.70 vs the $31.40 price (weighted IRR 8.14%, IV@15% $13.70, Tier D); even the super-bull case earns only 13.5%.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Communication Services / Music (Recorded Music & Music Publishing)",
+ "shares_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:shares - diluted share count missing in EDGAR companyfacts for FY2023, FY2024, FY2025 (the filer reports EPS by class under the two-class method, so no single aggregated diluted tag survives into companyfacts). The FY2025 two-class total from the filer's own EPS note fills the gap on the engine's total-share basis; the same single value applied to FY2023/FY2024 overstates those years' counts by only 0.9%/0.6% versus the note's own totals (515,720k / 517,523k), a conservative direction that understates OE/share slightly, and to the ungated 2020-2022 history years by ~1-3% versus their ~505-515M counts.",
+  "source": "Form 10-K for fiscal year ended September 30, 2025, Note 3 Earnings per Share: weighted average shares outstanding Class A 145,128 thousand + Class B 375,380 thousand = 520,508 thousand for FY2025; same note gives FY2024 140,882 + 376,641 = 517,523 thousand and FY2023 138,070 + 377,650 = 515,720 thousand, and states potentially dilutive shares had no dilutive effect in FY2023-FY2025 (FY2025 diluted denominator includes only ~397 additional shares per footnote (b)), so basic = diluted",
+  "value": 520508000,
+  "ack_reason": "Out-of-band by construction: the band anchors on the last filed diluted share value under the engine's tags and WMG files none (last_filed_value is null) because EPS is reported by class under the two-class method and the class-dimensioned counts do not survive into aggregated companyfacts. The value is not an estimate - it is the sum of the two class weighted-average counts printed in Note 3 of the FY2025 10-K, on the total-share basis the engine uses for every other filer."
+ },
+ "tier_override": null,
+ "tier_override_reason": null,
+ "sbc_override": {
+  "value": 54000000,
+  "kind": "filing",
+  "source": "Form 10-K for fiscal year ended September 30, 2025, Consolidated Statements of Cash Flows: share-based compensation $54M for FY2025 (engine-filed series, tag AllocatedShareBasedCompensationExpense, financials_history.csv FY2025 sbc = 54,000,000); FY2024 $52M and FY2023 $49M in the same statement",
+  "reason": "Annual SBC is filed for every year, so this override fills nothing in the annual engine run. It exists for ttm.py: companyfacts carries no post-FY YTD SBC fact for the FY2026 10-Q periods (the 10-Q reports stock compensation only in its equity statement), so ttm.py exits 3 on the sbc leg. Per ttm.py's documented override assembly, missing YTD legs on the OCF anchor timeline are filled with this filed annual value prorated by days; filed legs always win where they exist. The value equals the last filed annual SBC exactly, so it is in-band by construction."
+ }
+}

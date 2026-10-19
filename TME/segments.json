@@ -1,0 +1,98 @@
+{
+ "ticker": "TME",
+ "cik": 1744676,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-160257",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1744676/000119312526160257/tme-20251231_htm.xml"
+  }
+ ],
+ "currency": "CNY",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tme:OnlineMusicServicesMember",
+     "label": "Online Music Services",
+     "values": [
+      17325000000,
+      21742000000,
+      26726000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6243,
+      0.7655,
+      0.8123
+     ],
+     "growth_yoy": [
+      null,
+      0.2549,
+      0.2292
+     ]
+    },
+    {
+     "member": "tme:SocialEntertainmentServicesAndOthersMember",
+     "label": "Social Entertainment Services And Others",
+     "values": [
+      10427000000,
+      6659000000,
+      6176000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3757,
+      0.2345,
+      0.1877
+     ],
+     "growth_yoy": [
+      null,
+      -0.3614,
+      -0.0725
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     27752000000,
+     28401000000,
+     32902000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

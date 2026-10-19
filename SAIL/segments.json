@@ -1,0 +1,571 @@
+{
+ "ticker": "SAIL",
+ "cik": 2030781,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0002030781-26-000003",
+   "filed": "2026-03-19",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2030781/000203078126000003/sail-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002030781-26-000011",
+   "filed": "2026-06-10",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2030781/000203078126000011/sail-20260430_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002030781-26-000021",
+   "filed": "2026-09-10",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2030781/000203078126000021/sail-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-31",
+    "2025-01-31",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sail:SoftwareAsAServiceSaaSMember",
+     "label": "Software as a Service (SaaS)",
+     "values": [
+      312259000,
+      444595000,
+      602149000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4464,
+      0.516,
+      0.562
+     ],
+     "growth_yoy": [
+      null,
+      0.4238,
+      0.3544
+     ]
+    },
+    {
+     "member": "sail:TermSubscriptionsServicesMember",
+     "label": "Term Subscriptions Services",
+     "values": [
+      144181000,
+      173917000,
+      229292000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2061,
+      0.2019,
+      0.214
+     ],
+     "growth_yoy": [
+      null,
+      0.2062,
+      0.3184
+     ]
+    },
+    {
+     "member": "us-gaap:MaintenanceMember",
+     "label": "Maintenance",
+     "values": [
+      155528000,
+      154351000,
+      150879000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2223,
+      0.1791,
+      0.1408
+     ],
+     "growth_yoy": [
+      null,
+      -0.0076,
+      -0.0225
+     ]
+    },
+    {
+     "member": "sail:OtherSubscriptionServicesMember",
+     "label": "Other Subscription Services",
+     "values": [
+      10862000,
+      21056000,
+      27878000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0155,
+      0.0244,
+      0.026
+     ],
+     "growth_yoy": [
+      null,
+      0.9385,
+      0.324
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      76742000,
+      67692000,
+      61218000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1097,
+      0.0786,
+      0.0571
+     ],
+     "growth_yoy": [
+      null,
+      -0.1179,
+      -0.0956
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     699572000,
+     861611000,
+     1071416000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "sail:SoftwareAsAServiceSaaSMember",
+     "label": "Software as a Service (SaaS)",
+     "values": [
+      131815000,
+      144758000,
+      178479000,
+      193872000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5719,
+      0.5476,
+      0.6371,
+      0.6278
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.354,
+      0.3393
+     ]
+    },
+    {
+     "member": "sail:TermSubscriptionsServicesMember",
+     "label": "Term Subscriptions Services",
+     "values": [
+      40040000,
+      58120000,
+      43916000,
+      56196000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1737,
+      0.2199,
+      0.1568,
+      0.182
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0968,
+      -0.0331
+     ]
+    },
+    {
+     "member": "us-gaap:MaintenanceMember",
+     "label": "Maintenance",
+     "values": [
+      37389000,
+      38471000,
+      34563000,
+      35468000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1622,
+      0.1455,
+      0.1234,
+      0.1149
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0756,
+      -0.0781
+     ]
+    },
+    {
+     "member": "sail:OtherSubscriptionServicesMember",
+     "label": "Other Subscription Services",
+     "values": [
+      6079000,
+      6588000,
+      8863000,
+      9669000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0264,
+      0.0249,
+      0.0316,
+      0.0313
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.458,
+      0.4677
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      15145000,
+      16422000,
+      14321000,
+      13608000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0657,
+      0.0621,
+      0.0511,
+      0.0441
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0544,
+      -0.1714
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     230468000,
+     264359000,
+     280142000,
+     308813000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-31",
+    "2025-01-31",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      472830000,
+      586466000,
+      694407000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6759,
+      0.6807,
+      0.6481
+     ],
+     "growth_yoy": [
+      null,
+      0.2403,
+      0.1841
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      143023000,
+      166691000,
+      227778000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2044,
+      0.1935,
+      0.2126
+     ],
+     "growth_yoy": [
+      null,
+      0.1655,
+      0.3665
+     ]
+    },
+    {
+     "member": "sail:RestOfTheWorldMember",
+     "label": "Rest Of The World",
+     "values": [
+      83719000,
+      108454000,
+      149231000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1197,
+      0.1259,
+      0.1393
+     ],
+     "growth_yoy": [
+      null,
+      0.2955,
+      0.376
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     699572000,
+     861611000,
+     1071416000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      151177000,
+      170356000,
+      178790000,
+      205112000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.656,
+      0.6444,
+      0.6382,
+      0.6642
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1827,
+      0.204
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      47957000,
+      58618000,
+      61410000,
+      62509000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2081,
+      0.2217,
+      0.2192,
+      0.2024
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2805,
+      0.0664
+     ]
+    },
+    {
+     "member": "sail:RestOfTheWorldMember",
+     "label": "Rest Of The World",
+     "values": [
+      31334000,
+      35385000,
+      39942000,
+      41192000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.136,
+      0.1339,
+      0.1426,
+      0.1334
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2747,
+      0.1641
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     230468000,
+     264359000,
+     280142000,
+     308813000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Subscription' (sail:SubscriptionMember) dropped: it is the parent of Maintenance, Other Subscription Services, Software as a Service (SaaS), Term Subscriptions Services in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Subscription' (sail:SubscriptionMember) dropped: it is the parent of Maintenance, Other Subscription Services, Software as a Service (SaaS), Term Subscriptions Services in the filing's definition linkbase"
+ ],
+ "complete": true
+}

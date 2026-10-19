@@ -1,0 +1,84 @@
+{
+ "ticker": "SWKS",
+ "name": "Skyworks Solutions, Inc.",
+ "sector": "Semiconductors / RF front-end",
+ "price": 79.7,
+ "market_cap_b": 12.36,
+ "engine_version": 5,
+ "base_oe_per_share": 5.631205673758865,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 4,
+ "moat_justification": "Real design-win franchise and RF scale, but returns prove erosion: ROIC proxy down from 22.7% to 8.9% over five fiscal years, gross margin down ~8 points, sockets re-bid each generation, and two-thirds of revenue sits with one customer that just dual-sourced a premier socket. A 4 sits on measured returns at/below the cost of capital, not on the historical franchise.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 5.63 vs 3-yr median 9.11 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 21.24,
+   "irr": 0.0547
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 26.47,
+   "irr": 0.0628
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 35.81,
+   "irr": 0.079
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 47.84,
+   "irr": 0.0996
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 71.06,
+   "irr": 0.137
+  }
+ },
+ "iv_at_15": 38.55,
+ "iv_at_12": 50.25,
+ "implied_irr": 0.0841,
+ "implied_irr_base_case": 0.079,
+ "upside_at_15_pct": -51.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "RF front-end franchise in structural erosion, moat 4/10 - does not clear 15% on the latest-FY base (8.4% weighted IRR, IV $38.55 vs $79.70 price); clears 15% only below ~$39, and the Qorvo combination that closed 2026-10-05 makes even that a standalone-basis figure pending combined filings.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0628,
+ "irr_bull": 0.0996,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 27.91,
+ "iv_at_25": 21.95,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -664900000,
+ "shares_diluted_latest": 155100000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "RF front-end oligopoly: deep design-win integration in flagship Apple and Android phones, with in-house GaAs manufacturing",
+  "Patent estate (~5,200 patents standalone per the company IR page; 12,000+ issued and pending combined after the Qorvo close)",
+  "Broad Markets diversification is working: ~43% of Q3 FY2026 revenue, up 8% year over year, led by automotive and data center",
+  "Qorvo combination (closed 2026-10-05) adds scale across RF, analog and power and removes a direct rival"
+ ],
+ "moat_against": [
+  "Largest customer ~67% of FY2025 revenue and ~57% of Q3 FY2026 revenue, and that customer dual-sourced a premier RF socket for the iPhone 17 (20-25% content loss)",
+  "ROIC proxy fell from 22.7% (FY2020/21) to 8.9% (FY2025); gross margin fell from 49.2% (FY2021) to 41.2% (FY2025) and 40.7% TTM",
+  "Sockets are re-competed every phone generation; Qualcomm bundles RF with Snapdragon and Broadcom holds premium filter slots",
+  "Revenue fell three straight fiscal years (FY2023-25) on handset maturity and content losses",
+  "Qorvo integration risk: ~$2B of acquisition debt added and $500M+ of claimed synergies are unproven"
+ ]
+}

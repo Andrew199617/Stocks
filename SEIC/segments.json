@@ -1,0 +1,851 @@
+{
+ "ticker": "SEIC",
+ "cik": 350894,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000350894-26-000013",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000013/seic-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000350894-26-000030",
+   "filed": "2026-04-27",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000030/seic-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000350894-26-000048",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000048/seic-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "seic:InvestmentManagersMember",
+     "label": "Investment Managers",
+     "values": [
+      645254000,
+      728390000,
+      815005000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3361,
+      0.3427,
+      0.3548
+     ],
+     "growth_yoy": [
+      null,
+      0.1288,
+      0.1189
+     ]
+    },
+    {
+     "member": "seic:InvestmentAdvisorsMember",
+     "label": "Investment Advisors",
+     "values": [
+      436298000,
+      509408000,
+      577397000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2273,
+      0.2397,
+      0.2513
+     ],
+     "growth_yoy": [
+      null,
+      0.1676,
+      0.1335
+     ]
+    },
+    {
+     "member": "seic:PrivateBankMember",
+     "label": "Private Bank",
+     "values": [
+      496317000,
+      541414000,
+      572939000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2585,
+      0.2548,
+      0.2494
+     ],
+     "growth_yoy": [
+      null,
+      0.0909,
+      0.0582
+     ]
+    },
+    {
+     "member": "seic:InstitutionalInvestorsMember",
+     "label": "Institutional Investors",
+     "values": [
+      289708000,
+      285723000,
+      282498000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1509,
+      0.1344,
+      0.123
+     ],
+     "growth_yoy": [
+      null,
+      -0.0138,
+      -0.0113
+     ]
+    },
+    {
+     "member": "seic:InvestmentsInNewBusinessesMember",
+     "label": "Investments In New Businesses",
+     "values": [
+      52216000,
+      60216000,
+      49542000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0272,
+      0.0283,
+      0.0216
+     ],
+     "growth_yoy": [
+      null,
+      0.1532,
+      -0.1773
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1919793000,
+     2125151000,
+     2297381000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "seic:InvestmentManagersMember",
+     "label": "Investment Managers",
+     "values": [
+      192048000,
+      195067000,
+      220717000,
+      227679000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3483,
+      0.3486,
+      0.3547,
+      0.3549
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1493,
+      0.1672
+     ]
+    },
+    {
+     "member": "seic:InvestmentAdvisorsMember",
+     "label": "Investment Advisors",
+     "values": [
+      136576000,
+      137193000,
+      169695000,
+      177897000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2477,
+      0.2452,
+      0.2727,
+      0.2773
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2425,
+      0.2967
+     ]
+    },
+    {
+     "member": "seic:PrivateBanksMember",
+     "label": "Private Banks",
+     "values": [
+      137714000,
+      141449000,
+      152262000,
+      156879000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2498,
+      0.2528,
+      0.2447,
+      0.2445
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1056,
+      0.1091
+     ]
+    },
+    {
+     "member": "seic:InstitutionalInvestorsMember",
+     "label": "Institutional Investors",
+     "values": [
+      68506000,
+      69343000,
+      71516000,
+      69702000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1243,
+      0.1239,
+      0.1149,
+      0.1086
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0439,
+      0.0052
+     ]
+    },
+    {
+     "member": "seic:InvestmentsInNewBusinessesMember",
+     "label": "Investments In New Businesses",
+     "values": [
+      16500000,
+      16549000,
+      7993000,
+      9460000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0299,
+      0.0296,
+      0.0128,
+      0.0147
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5156,
+      -0.4284
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     551344000,
+     559601000,
+     622183000,
+     641617000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "seic:AssetManagementAdministrationAndDistributionFeesMember",
+     "label": "Asset Management, Administration And Distribution Fees",
+     "values": [
+      1514815000,
+      1677143000,
+      1817079000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7891,
+      0.7892,
+      0.7909
+     ],
+     "growth_yoy": [
+      null,
+      0.1072,
+      0.0834
+     ]
+    },
+    {
+     "member": "seic:InformationProcessingAndSoftwareServicingFeesMember",
+     "label": "Information Processing And Software Servicing Fees",
+     "values": [
+      404978000,
+      448008000,
+      480302000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2109,
+      0.2108,
+      0.2091
+     ],
+     "growth_yoy": [
+      null,
+      0.1063,
+      0.0721
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1919793000,
+     2125151000,
+     2297381000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "seic:AssetManagementAdministrationAndDistributionFeesMember",
+     "label": "Asset Management, Administration And Distribution Fees",
+     "values": [
+      432143000,
+      437543000,
+      497984000,
+      513482000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7838,
+      0.7819,
+      0.8004,
+      0.8003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1524,
+      0.1736
+     ]
+    },
+    {
+     "member": "seic:InformationProcessingAndSoftwareServicingFeesMember",
+     "label": "Information Processing And Software Servicing Fees",
+     "values": [
+      119201000,
+      122058000,
+      124199000,
+      128135000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2162,
+      0.2181,
+      0.1996,
+      0.1997
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0419,
+      0.0498
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     551344000,
+     559601000,
+     622183000,
+     641617000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1640109000,
+      1816650000,
+      1957737000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8543,
+      0.8548,
+      0.8522
+     ],
+     "growth_yoy": [
+      null,
+      0.1076,
+      0.0777
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      147800000,
+      162744000,
+      165022000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.077,
+      0.0766,
+      0.0718
+     ],
+     "growth_yoy": [
+      null,
+      0.1011,
+      0.014
+     ]
+    },
+    {
+     "member": "country:IE",
+     "label": "IRELAND",
+     "values": [
+      62524000,
+      69329000,
+      88885000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0326,
+      0.0326,
+      0.0387
+     ],
+     "growth_yoy": [
+      null,
+      0.1088,
+      0.2821
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      45626000,
+      46320000,
+      48633000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0238,
+      0.0218,
+      0.0212
+     ],
+     "growth_yoy": [
+      null,
+      0.0152,
+      0.0499
+     ]
+    },
+    {
+     "member": "country:LU",
+     "label": "LUXEMBOURG",
+     "values": [
+      23734000,
+      30108000,
+      37104000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0124,
+      0.0142,
+      0.0162
+     ],
+     "growth_yoy": [
+      null,
+      0.2686,
+      0.2324
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1919793000,
+     2125151000,
+     2297381000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      472682000,
+      477021000,
+      529901000,
+      545491000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8573,
+      0.8524,
+      0.8517,
+      0.8502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1211,
+      0.1435
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      38336000,
+      40859000,
+      43935000,
+      44324000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0695,
+      0.073,
+      0.0706,
+      0.0691
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1461,
+      0.0848
+     ]
+    },
+    {
+     "member": "country:IE",
+     "label": "IRELAND",
+     "values": [
+      20975000,
+      21368000,
+      24900000,
+      26493000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.038,
+      0.0382,
+      0.04,
+      0.0413
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1871,
+      0.2398
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      11398000,
+      11872000,
+      13200000,
+      13780000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0207,
+      0.0212,
+      0.0212,
+      0.0215
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1581,
+      0.1607
+     ]
+    },
+    {
+     "member": "country:LU",
+     "label": "LUXEMBOURG",
+     "values": [
+      7953000,
+      8481000,
+      10247000,
+      11529000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0144,
+      0.0152,
+      0.0165,
+      0.018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2884,
+      0.3594
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     551344000,
+     559601000,
+     622183000,
+     641617000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/Revenues/annual: row 'Investment Management Fees From Investment Products' (seic:InvestmentManagementFeesFromInvestmentProductsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/annual: row 'Investment Management Fees From Investment Management Agreements' (seic:InvestmentManagementFeesFromInvestmentManagementAgreementsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/annual: row 'Investment Operations Fees' (seic:InvestmentOperationsFeesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/annual: row 'Investment Processing Fees, PaaS' (seic:InvestmentProcessingFeesPaaSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/annual: row 'Investment Processing Fees, SaaS' (seic:InvestmentProcessingFeesSaaSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/annual: row 'Professional Services Fees' (seic:ProfessionalServicesFeesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/annual: reconciling row 'Account Fees And Other' (seic:AccountFeesAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "product/Revenues/quarterly: row 'Investment Management Fees From Investment Products' (seic:InvestmentManagementFeesFromInvestmentProductsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/quarterly: row 'Investment Management Fees From Investment Management Agreements' (seic:InvestmentManagementFeesFromInvestmentManagementAgreementsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/quarterly: row 'Investment Operations Fees' (seic:InvestmentOperationsFeesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/quarterly: row 'Investment Processing Fees, PaaS' (seic:InvestmentProcessingFeesPaaSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/quarterly: row 'Investment Processing Fees, SaaS' (seic:InvestmentProcessingFeesSaaSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/quarterly: row 'Professional Services Fees' (seic:ProfessionalServicesFeesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Asset Management, Administration And Distribution Fees, Information Processing And Software Servicing Fees)",
+  "product/Revenues/quarterly: reconciling row 'Account Fees And Other' (seic:AccountFeesAndOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "geography/Revenues/annual: row 'Non-US' (us-gaap:NonUsMember) dropped: its values equal the sum of UNITED KINGDOM, CANADA, IRELAND, LUXEMBOURG"
+ ],
+ "complete": true
+}

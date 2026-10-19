@@ -1,0 +1,290 @@
+{
+ "ticker": "TOL",
+ "cik": 794170,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T04:09:17-04:00",
+ "newest_filing_date": "2026-08-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000794170.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000112/tol-20251031.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TOL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TOL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Toll Brothers, Inc.",
+  "cik": 794170,
+  "description": {
+   "text": "Toll Brothers, Inc., a corporation incorporated in Delaware in May 1986, began doing business through predecessor entities in 1967. When this report uses the words “we,” “us,” “our,” and the “Company,” it refers to Toll Brothers, Inc. and its subsidiaries, unless the context otherwise requires. References herein to fiscal year refer to our fiscal years ended or ending October 31. We design, build, market, sell, and arrange financing for an array of luxury residential single-family detached home, attached home, master-planned, and urban low-, mid-, and high-rise communities. In recent years, we have pursued a strategy of broadening our product lines, price points and geographic footprint, as well as increasing the number of quick move-in (or “spec”) homes that we sell relative to our traditional build-to-order homes. We cater to luxury first-time, move-up, empty-nester (move-down), active-adult and second-home buyers in the United States. We also design, build, market, and sell high-density, high-rise urban luxury condominiums with third-party joint venture partners through Toll Brothers City Living® (“City Living”). At October 31, 2025, we were operating in 24 states and in the District of Columbia. In the five years ended October 31, 2025, we delivered 52,203 homes from 1,061 communities, including 11,292 homes from 556 communities in fiscal 2025.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-12-19",
+   "period": "2025-10-31",
+   "accession": "0000794170-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000112/tol-20251031.htm"
+  },
+  "description_short": "Toll Brothers, Inc., a Fortune 500 Company, is the nation's leading builder of luxury homes. The Company was founded in 1967 and became a public company in 1986 with common stock listed on the New York Stock Exchange under the symbol 'TOL.' Toll Brothers builds new homes and communities in over 60 markets across the United States, serving first-time, move-up, active-adult, and second-home buyers. The Company also operates its own architectural, engineering, mortgage, title, land development, smart home technology, landscape, and building components manufacturing businesses.",
+  "industry": "Homebuilding",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "1531",
+  "sic_description": "Operative Builders",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1031",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.tollbrothers.com",
+  "headquarters": "Fort Washington, Pennsylvania",
+  "address": {
+   "street": "1140 Virginia Drive",
+   "city": "Fort Washington",
+   "state": "Pennsylvania",
+   "zip": "19034",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-12-19"
+  },
+  "phone": "2159388000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-07",
+  "first_sec_filing_form": "8-K",
+  "former_names": [
+   "TOLL BROTHERS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000794170&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-28",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000794170-26-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000102/tol-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000794170-26-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000096/tol-20260818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-29",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000794170-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000087/tol-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000794170-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000083/tol-20260519.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-12",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000794170-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000079/tol-20260512.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-30",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000794170-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000066/tol-20260330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-10",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000794170-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000063/tol-20260310.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-27",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000794170-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000056/tol-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000794170-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000050/tol-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000794170-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000046/tol-20260205.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-29",
+   "period": "2026-03-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000794170-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000037/tol-20260127.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-05",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000794170-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417026000006/tol-20260105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000794170-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000113/tol-20251219.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-12-19",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000794170-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000112/tol-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000794170-25-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000099/tol-20251208.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000794170-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000079/tol-20250918.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000794170-25-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000066/tol-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-19",
+   "period": "2025-08-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000794170-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000055/tol-20250819.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-11",
+   "period": "2025-07-09",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000794170-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000049/tol-20250709.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000794170-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/794170/000079417025000047/tol-20250613.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2025-12-19"
+ ]
+}

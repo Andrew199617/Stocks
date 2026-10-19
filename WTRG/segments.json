@@ -1,0 +1,1003 @@
+{
+ "ticker": "WTRG",
+ "cik": 78128,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000078128-26-000050",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000050/wtrg-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001562762-26-000060",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/78128/000156276226000060/wtrg-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000078128-26-000077",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/78128/000007812826000077/wtrg-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      1153376000,
+      1221880000,
+      1326629000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5616,
+      0.5857,
+      0.5361
+     ],
+     "growth_yoy": [
+      null,
+      0.0594,
+      0.0857
+     ]
+    },
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      860586000,
+      840453000,
+      1114531000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.419,
+      0.4029,
+      0.4504
+     ],
+     "growth_yoy": [
+      null,
+      -0.0234,
+      0.3261
+     ]
+    },
+    {
+     "member": "wtrg:OtherAndEliminationsMember",
+     "label": "Other And Eliminations",
+     "values": [
+      39862000,
+      23780000,
+      33455000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0194,
+      0.0114,
+      0.0135
+     ],
+     "growth_yoy": [
+      null,
+      -0.4034,
+      0.4069
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2053824000,
+     2086113000,
+     2474615000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      300848000,
+      332282000,
+      322975000,
+      357544000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3839,
+      0.6453,
+      0.3748,
+      0.6735
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0735,
+      0.076
+     ]
+    },
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      469451000,
+      176761000,
+      528458000,
+      168800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5991,
+      0.3433,
+      0.6132,
+      0.318
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1257,
+      -0.045
+     ]
+    },
+    {
+     "member": "wtrg:OtherAndEliminationsMember",
+     "label": "Other And Eliminations",
+     "values": [
+      13327000,
+      5864000,
+      10326000,
+      4510000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.017,
+      0.0114,
+      0.012,
+      0.0085
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2252,
+      -0.2309
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     783626000,
+     514907000,
+     861759000,
+     530854000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      340961000,
+      350305000,
+      410920000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6844,
+      0.5884,
+      0.6667
+     ],
+     "growth_yoy": [
+      null,
+      0.0274,
+      0.173
+     ]
+    },
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      200563000,
+      293617000,
+      267375000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4026,
+      0.4932,
+      0.4338
+     ],
+     "growth_yoy": [
+      null,
+      0.464,
+      -0.0894
+     ]
+    },
+    {
+     "member": "wtrg:OtherAndEliminationsMember",
+     "label": "Other And Eliminations",
+     "values": [
+      -43298000,
+      -48608000,
+      -61926000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0869,
+      -0.0817,
+      -0.1005
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     498226000,
+     595314000,
+     616369000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      107922000,
+      100480000,
+      81318000,
+      103482000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3803,
+      0.9319,
+      0.3624,
+      0.9788
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2465,
+      0.0299
+     ]
+    },
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      189505000,
+      17516000,
+      192230000,
+      4162000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6678,
+      0.1624,
+      0.8567,
+      0.0394
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0144,
+      -0.7624
+     ]
+    },
+    {
+     "member": "wtrg:OtherAndEliminationsMember",
+     "label": "Other And Eliminations",
+     "values": [
+      -13638000,
+      -10169000,
+      -49156000,
+      -1919000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0481,
+      -0.0943,
+      -0.2191,
+      -0.0182
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     283789000,
+     107827000,
+     224392000,
+     105725000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      863759000,
+      842991000,
+      1117875000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4206,
+      0.4041,
+      0.4517
+     ],
+     "growth_yoy": [
+      null,
+      -0.024,
+      0.3261
+     ]
+    },
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      951051000,
+      1011497000,
+      1092589000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4631,
+      0.4849,
+      0.4415
+     ],
+     "growth_yoy": [
+      null,
+      0.0636,
+      0.0802
+     ]
+    },
+    {
+     "member": "wtrg:WastewaterMember",
+     "label": "Wastewater",
+     "values": [
+      187462000,
+      199157000,
+      223103000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0913,
+      0.0955,
+      0.0902
+     ],
+     "growth_yoy": [
+      null,
+      0.0624,
+      0.1202
+     ]
+    },
+    {
+     "member": "wtrg:OtherMember",
+     "label": "Other",
+     "values": [
+      51552000,
+      32468000,
+      41048000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0251,
+      0.0156,
+      0.0166
+     ],
+     "growth_yoy": [
+      null,
+      -0.3702,
+      0.2643
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2053824000,
+     2086113000,
+     2474615000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      246922000,
+      273636000,
+      263070000,
+      291290000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3151,
+      0.5314,
+      0.3053,
+      0.5487
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0654,
+      0.0645
+     ]
+    },
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      470797000,
+      177321000,
+      529412000,
+      169279000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6008,
+      0.3444,
+      0.6143,
+      0.3189
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1245,
+      -0.0454
+     ]
+    },
+    {
+     "member": "wtrg:WastewaterMember",
+     "label": "Wastewater",
+     "values": [
+      51035000,
+      55962000,
+      57112000,
+      63076000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0651,
+      0.1087,
+      0.0663,
+      0.1188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1191,
+      0.1271
+     ]
+    },
+    {
+     "member": "wtrg:OtherMember",
+     "label": "Other",
+     "values": [
+      14872000,
+      7988000,
+      12165000,
+      7209000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.019,
+      0.0155,
+      0.0141,
+      0.0136
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.182,
+      -0.0975
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     783626000,
+     514907000,
+     861759000,
+     530854000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      861671000,
+      832216000,
+      1124201000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4281,
+      0.4059,
+      0.4589
+     ],
+     "growth_yoy": [
+      null,
+      -0.0342,
+      0.3509
+     ]
+    },
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      948815000,
+      1007647000,
+      1091922000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4714,
+      0.4914,
+      0.4457
+     ],
+     "growth_yoy": [
+      null,
+      0.062,
+      0.0836
+     ]
+    },
+    {
+     "member": "wtrg:WastewaterMember",
+     "label": "Wastewater",
+     "values": [
+      187394000,
+      199422000,
+      222766000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0931,
+      0.0973,
+      0.0909
+     ],
+     "growth_yoy": [
+      null,
+      0.0642,
+      0.1171
+     ]
+    },
+    {
+     "member": "wtrg:OtherMember",
+     "label": "Other",
+     "values": [
+      14863000,
+      11226000,
+      10937000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0074,
+      0.0055,
+      0.0045
+     ],
+     "growth_yoy": [
+      null,
+      -0.2447,
+      -0.0257
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2012743000,
+     2050511000,
+     2449826000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wtrg:WaterMember",
+     "label": "Water",
+     "values": [
+      247227000,
+      273612000,
+      263163000,
+      290645000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3197,
+      0.5422,
+      0.3063,
+      0.5575
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0645,
+      0.0623
+     ]
+    },
+    {
+     "member": "wtrg:NaturalGasMember",
+     "label": "Natural Gas",
+     "values": [
+      471985000,
+      172608000,
+      535634000,
+      164995000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6103,
+      0.342,
+      0.6234,
+      0.3165
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1349,
+      -0.0441
+     ]
+    },
+    {
+     "member": "wtrg:WastewaterMember",
+     "label": "Wastewater",
+     "values": [
+      51303000,
+      55732000,
+      57560000,
+      62502000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0663,
+      0.1104,
+      0.067,
+      0.1199
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.122,
+      0.1215
+     ]
+    },
+    {
+     "member": "wtrg:OtherMember",
+     "label": "Other",
+     "values": [
+      2891000,
+      2684000,
+      2793000,
+      3178000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0037,
+      0.0053,
+      0.0033,
+      0.0061
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0339,
+      0.1841
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     773406000,
+     504636000,
+     859150000,
+     521320000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable Segment Aggregation Before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Natural Gas, Water in the filing's definition linkbase",
+  "business_segments/Revenues/quarterly: row 'Reportable Segment Aggregation Before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Natural Gas, Water in the filing's definition linkbase",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment Aggregation Before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Natural Gas, Water in the filing's definition linkbase",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment Aggregation Before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Natural Gas, Water in the filing's definition linkbase"
+ ],
+ "complete": true
+}

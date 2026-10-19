@@ -1,0 +1,287 @@
+{
+ "ticker": "RVTY",
+ "cik": 31791,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T14:24:08-04:00",
+ "newest_filing_date": "2026-08-11",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000031791.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RVTY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RVTY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "REVVITY, INC.",
+  "cik": 31791,
+  "description": {
+   "text": "We are a leading provider of health science solutions, technologies, expertise and services that deliver complete workflows from discovery to development, and diagnosis to cure. Revvity is revolutionizing what’s possible in healthcare, with specialized focus areas in translational multi-omics technologies, biomarker identification, imaging, prediction, screening, detection and diagnosis, informatics and more. Our headquarters are in Waltham, Massachusetts, and we market our products and services in more than 160 countries. As of December 28, 2025, we employed approximately 11,000 employees. Our common stock is listed on the New York Stock Exchange under the symbol “RVTY” and we are a component of the S&P 500 Index. We maintain a website with the address http://www.revvity.com. We are not including the information contained in our website as part of, or incorporating it by reference into, this annual report on Form 10-K. We make available free of charge through our website our annual reports on Form 10-K, quarterly reports on Form 10-Q, current reports on Form 8-K and amendments to these reports, as soon as reasonably practicable after we electronically file these materials with, or otherwise furnish them to, the Securities and Exchange Commission.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-28",
+   "accession": "0000031791-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228.htm"
+  },
+  "description_short": "At Revvity, 'impossible' is inspiration, and 'can't be done' is a call to action. Revvity provides health science solutions, technologies, expertise, and services that deliver complete workflows from discovery to development, and diagnosis to cure. Revvity is revolutionizing what's possible in healthcare, with specialized focus areas in translational multi-omics technologies, biomarker identification, imaging, prediction, screening, detection and diagnosis, informatics and more. With 2025 revenue of $2.9 billion and approximately 11,000 employees, Revvity serves customers across pharmaceutical and biotech, diagnostic labs, academia and governments. It is part of the S&P 500 index and has customers in more than 160 countries.",
+  "industry": "Biotechnology: Laboratory Analytical Instruments",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3826",
+  "sic_description": "Laboratory Analytical Instruments",
+  "state_of_incorporation": "MA",
+  "fiscal_year_end_mmdd": "1229",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.revvity.com",
+  "headquarters": "Waltham, Massachusetts",
+  "address": {
+   "street": "77 4th Avenue",
+   "city": "Waltham",
+   "state": "Massachusetts",
+   "zip": "02451",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "781-663-6900",
+  "employees": {
+   "count": 11000,
+   "as_of": "2025-12-28",
+   "evidence": "As of December 28, 2025, we employed approximately 11,000 employees on a worldwide basis.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-10",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "PERKINELMER INC",
+   "EG&G INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000031791&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-11",
+   "period": "2026-07-05",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000031791-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000027/revv-20260705.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000031791-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000022/pki-20260804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-12",
+   "period": "2026-04-05",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000031791-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000019/revv-20260405.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000031791-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000016/pki-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-28",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001193125-26-201401",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312526201401/d146870d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-16",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-107266",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312526107266/d21831ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000031791-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000012/revv-20251228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-02-02",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000031791-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000007/pki-20260202.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-13",
+   "period": "2026-01-12",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000031791-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000003/pki-20260112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000031791-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000037/revv-20250928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000031791-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000032/pki-20251027.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-24",
+   "period": "2025-10-23",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-249958",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312525249958/d52648d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000031791-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000026/revv-20250629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-28",
+   "period": "2025-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000031791-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000022/pki-20250728.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000031791-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000015/revv-20250330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000031791-25-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000012/pki-20250428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-25",
+   "period": "2025-04-22",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001193125-25-096747",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312525096747/d900630d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-12",
+   "period": "2025-04-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-052522",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000119312525052522/d925831ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-25",
+   "period": "2024-12-29",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000031791-25-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000009/revv-20241229.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-01-31",
+   "period": "2025-01-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000031791-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179125000006/pki-20250131.htm"
+  }
+ ],
+ "warnings": []
+}

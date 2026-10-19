@@ -1,0 +1,101 @@
+{
+ "ticker": "SMTC",
+ "cik": 88941,
+ "entity": "Semtech Corporation",
+ "fy_end": "2026-01-25",
+ "ytd_end": "2026-04-26",
+ "inputs": {
+  "ocf": {
+   "fy": 181168000,
+   "fy_period": [
+    "2025-01-27",
+    "2026-01-25"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 27824000,
+   "ytd_prior_period": [
+    "2025-01-27",
+    "2025-04-27"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 36183000,
+   "ytd_current_period": [
+    "2026-01-26",
+    "2026-04-26"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 189527000
+  },
+  "capex": {
+   "fy": 9783000,
+   "fy_period": [
+    "2025-01-27",
+    "2026-01-25"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 1650000,
+   "ytd_prior_period": [
+    "2025-01-27",
+    "2025-04-27"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 8172000,
+   "ytd_current_period": [
+    "2026-01-26",
+    "2026-04-26"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 16305000
+  },
+  "sbc": {
+   "fy": 57723000,
+   "fy_period": [
+    "2025-01-27",
+    "2026-01-25"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 6835000,
+   "ytd_prior_period": [
+    "2025-01-27",
+    "2025-04-27"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 26446000,
+   "ytd_current_period": [
+    "2026-01-26",
+    "2026-04-26"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 77334000
+  },
+  "shares_diluted": {
+   "fy": 88374000,
+   "fy_period": [
+    "2025-01-27",
+    "2026-01-25"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 89579000,
+   "ytd_prior_period": [
+    "2025-01-27",
+    "2025-04-27"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 98028000,
+   "ytd_current_period": [
+    "2026-01-26",
+    "2026-04-26"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 189527000,
+ "ttm_capex": 16305000,
+ "ttm_sbc": 77334000,
+ "ttm_shares_diluted": 98028000,
+ "ttm_oe_total": 95888000,
+ "ttm_oe_per_share": 0.9781695025910965,
+ "warnings": [],
+ "overrides_used": []
+}

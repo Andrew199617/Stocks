@@ -1,0 +1,87 @@
+{
+ "ticker": "RMBS",
+ "name": "Rambus Inc.",
+ "sector": "Semiconductors \u2014 memory interface chips & silicon IP",
+ "price": 87.25,
+ "market_cap_b": 9.53,
+ "engine_version": 5,
+ "base_oe_per_share": 2.559991250136717,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong niche moat: roughly 40% share of DDR5 registered clock drivers in a three-player oligopoly (Rambus, Renesas, Montage), a deep patent/IP portfolio monetized as royalties, and server-module qualification switching costs, with gross margin holding 75.3-80.2% over the last five fiscal years. Capped at 6, not 7+: the roic_proxy series in fundamentals.json only reached 18.0% in FY2025 after -4.4% (2020), 2.5% (2021), 9.3% (2022), 12.9% (2023) and 16.1% (2024) \u2014 high ROIC is recent, not proven through a cycle \u2014 and the franchise is a narrow niche exposed to DDR generation transitions, Montage/Renesas share fights, and bundled IP from larger rivals.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 2.55 vs 3-yr median 1.42 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (12.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 20.1,
+   "irr": 0.0557
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 31.47,
+   "irr": 0.0746
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 45.56,
+   "irr": 0.0966
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 65.13,
+   "irr": 0.1237
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 95.88,
+   "irr": 0.1593
+  }
+ },
+ "iv_at_15": 49.42,
+ "iv_at_12": 68.76,
+ "implied_irr": 0.1026,
+ "implied_irr_base_case": 0.0966,
+ "upside_at_15_pct": -43.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "High-quality, debt-free memory-interface/IP franchise, moat 6/10 \u2014 at $87.25 it does not clear 15% (weighted IRR 10.3%, weighted IV@15% $49.42); it clears the 15% hurdle only at or below $49.42.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0746,
+ "irr_bull": 0.1237,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 32.58,
+ "iv_at_25": 23.71,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 109235000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "~40% share of DDR5 RCDs in a three-player oligopoly (Rambus / Renesas / Montage) \u2014 every DDR5 server module needs an RCD",
+  "Patent and silicon-IP portfolio generating high-margin royalty and licensing revenue; consolidated gross margin 79.6% in FY2025",
+  "Qualification / design-in switching costs at DRAM makers and module vendors; standards and signal-integrity expertise at high data rates",
+  "Debt-free balance sheet and rising returns: roic_proxy 12.9% \u2192 16.1% \u2192 18.0% over FY2023-25"
+ ],
+ "moat_against": [
+  "Narrow niche TAM \u2014 one product family (memory interface) drives the story; DDR6 / new form-factor transitions reset share",
+  "Montage and Renesas contest the same RCD sockets; Synopsys / Cadence bundle competing IP with EDA",
+  "Customer and end-market concentration: server DRAM cycle and AI data-center capex drive demand",
+  "High ROIC is recent (roic_proxy was -4.4% in 2020 and 2.5% in 2021) \u2014 not yet proven through a downcycle",
+  "SBC is a persistent real cost: $54,267,000 in FY2025, 15.1% of operating cash flow"
+ ]
+}

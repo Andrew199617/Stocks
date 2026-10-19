@@ -1,0 +1,458 @@
+{
+ "ticker": "RRX",
+ "cik": 82811,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000082811-26-000054",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000054/rbc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000082811-26-000144",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000144/rbc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000082811-26-000229",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000229/rbc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rbc:IndustrialPowertrainSolutionsSegmentMember",
+     "label": "Industrial Powertrain Solutions Segment",
+     "values": [
+      151800000,
+      322700000,
+      337500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4025,
+      0.5122,
+      0.4957
+     ],
+     "growth_yoy": [
+      null,
+      1.1258,
+      0.0459
+     ]
+    },
+    {
+     "member": "rbc:PowerEfficiencySolutionsSegmentMember",
+     "label": "Power Efficiency Solutions Segment",
+     "values": [
+      217400000,
+      162600000,
+      209400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5765,
+      0.2581,
+      0.3076
+     ],
+     "growth_yoy": [
+      null,
+      -0.2521,
+      0.2878
+     ]
+    },
+    {
+     "member": "rbc:AutomationAndMotionControlSegmentMember",
+     "label": "Automation And Motion Control Segment",
+     "values": [
+      139000000,
+      144400000,
+      133900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3686,
+      0.2292,
+      0.1967
+     ],
+     "growth_yoy": [
+      null,
+      0.0388,
+      -0.0727
+     ]
+    },
+    {
+     "member": "rbc:IndustrialSystemsSegmentMember",
+     "label": "Industrial Systems Segment",
+     "values": [
+      -131100000,
+      300000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3477,
+      0.0005,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     377100000,
+     630000000,
+     680800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rbc:IndustrialPowertrainSolutionsSegmentMember",
+     "label": "Industrial Powertrain Solutions Segment",
+     "values": [
+      81700000,
+      92400000,
+      79200000,
+      97600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5116,
+      0.5069,
+      0.5187,
+      0.4535
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0306,
+      0.0563
+     ]
+    },
+    {
+     "member": "rbc:PowerEfficiencySolutionsSegmentMember",
+     "label": "Power Efficiency Solutions Segment",
+     "values": [
+      42900000,
+      59500000,
+      41900000,
+      69100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2686,
+      0.3264,
+      0.2744,
+      0.3211
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0233,
+      0.1613
+     ]
+    },
+    {
+     "member": "rbc:AutomationAndMotionControlSegmentMember",
+     "label": "Automation And Motion Control Segment",
+     "values": [
+      35100000,
+      30400000,
+      31600000,
+      48500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2198,
+      0.1668,
+      0.2069,
+      0.2254
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0997,
+      0.5954
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     159700000,
+     182300000,
+     152700000,
+     215200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "rbc:IndustrialPowertrainSolutionsSegmentMember",
+     "label": "Industrial Powertrain Solutions Segment",
+     "values": [
+      7528800000,
+      7389100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5365,
+      0.5308
+     ],
+     "growth_yoy": [
+      null,
+      -0.0186
+     ]
+    },
+    {
+     "member": "rbc:AutomationAndMotionControlSegmentMember",
+     "label": "Automation And Motion Control Segment",
+     "values": [
+      4642400000,
+      4598600000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3308,
+      0.3303
+     ],
+     "growth_yoy": [
+      null,
+      -0.0094
+     ]
+    },
+    {
+     "member": "rbc:PowerEfficiencySolutionsSegmentMember",
+     "label": "Power Efficiency Solutions Segment",
+     "values": [
+      1862500000,
+      1933300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1327,
+      0.1389
+     ],
+     "growth_yoy": [
+      null,
+      0.038
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14033700000,
+     13921000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rbc:IndustrialPowertrainSolutionsSegmentMember",
+     "label": "Industrial Powertrain Solutions Segment",
+     "values": [
+      7389100000,
+      7323200000,
+      7257600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5308,
+      0.5314,
+      0.5278
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rbc:AutomationAndMotionControlSegmentMember",
+     "label": "Automation And Motion Control Segment",
+     "values": [
+      4598600000,
+      4553300000,
+      4576000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3303,
+      0.3304,
+      0.3328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "rbc:PowerEfficiencySolutionsSegmentMember",
+     "label": "Power Efficiency Solutions Segment",
+     "values": [
+      1933300000,
+      1904300000,
+      1918200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1389,
+      0.1382,
+      0.1395
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13921000000,
+     13780800000,
+     13751800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

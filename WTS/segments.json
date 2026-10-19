@@ -1,0 +1,1385 @@
+{
+ "ticker": "WTS",
+ "cik": 795403,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-018541",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-056817",
+   "filed": "2026-05-07",
+   "period": "2026-03-29",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926056817/wts-20260329x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-091726",
+   "filed": "2026-08-06",
+   "period": "2026-06-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wts:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      1428100000,
+      1664900000,
+      1847400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6945,
+      0.7392,
+      0.7576
+     ],
+     "growth_yoy": [
+      null,
+      0.1658,
+      0.1096
+     ]
+    },
+    {
+     "member": "wts:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      512100000,
+      453300000,
+      450700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.249,
+      0.2013,
+      0.1848
+     ],
+     "growth_yoy": [
+      null,
+      -0.1148,
+      -0.0057
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaSegmentMember",
+     "label": "Asia Pacific Middle East And Africa Segment",
+     "values": [
+      116100000,
+      134000000,
+      140400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0565,
+      0.0595,
+      0.0576
+     ],
+     "growth_yoy": [
+      null,
+      0.1542,
+      0.0478
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2056300000,
+     2252200000,
+     2438500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wts:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      418100000,
+      498500000,
+      515100000,
+      585000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7493,
+      0.7744,
+      0.7605,
+      0.7665
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.232,
+      0.1735
+     ]
+    },
+    {
+     "member": "wts:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      108400000,
+      111000000,
+      121400000,
+      124600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1943,
+      0.1724,
+      0.1792,
+      0.1633
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1199,
+      0.1225
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaSegmentMember",
+     "label": "Asia Pacific Middle East And Africa Segment",
+     "values": [
+      31500000,
+      34200000,
+      40800000,
+      53600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0565,
+      0.0531,
+      0.0602,
+      0.0702
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2952,
+      0.5673
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     558000000,
+     643700000,
+     677300000,
+     763200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wts:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      328500000,
+      376000000,
+      452200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9362,
+      0.9631,
+      1.0091
+     ],
+     "growth_yoy": [
+      null,
+      0.1446,
+      0.2027
+     ]
+    },
+    {
+     "member": "wts:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      72400000,
+      53200000,
+      59800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2063,
+      0.1363,
+      0.1335
+     ],
+     "growth_yoy": [
+      null,
+      -0.2652,
+      0.1241
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaSegmentMember",
+     "label": "Asia Pacific Middle East And Africa Segment",
+     "values": [
+      19300000,
+      24500000,
+      25700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.055,
+      0.0628,
+      0.0574
+     ],
+     "growth_yoy": [
+      null,
+      0.2694,
+      0.049
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Corporate",
+     "values": [
+      -60800000,
+      -55800000,
+      -62100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1733,
+      -0.1429,
+      -0.1386
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     350900000,
+     390400000,
+     448100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wts:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      97800000,
+      135800000,
+      124500000,
+      150100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1152,
+      1.0037,
+      0.9361,
+      0.9747
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.273,
+      0.1053
+     ]
+    },
+    {
+     "member": "wts:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      15100000,
+      13000000,
+      16700000,
+      16600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1722,
+      0.0961,
+      0.1256,
+      0.1078
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.106,
+      0.2769
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaSegmentMember",
+     "label": "Asia Pacific Middle East And Africa Segment",
+     "values": [
+      5500000,
+      6500000,
+      7500000,
+      10600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0627,
+      0.048,
+      0.0564,
+      0.0688
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3636,
+      0.6308
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Corporate",
+     "values": [
+      -12300000,
+      -16200000,
+      -12800000,
+      -17300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1403,
+      -0.1197,
+      -0.0962,
+      -0.1123
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     87700000,
+     135300000,
+     133000000,
+     154000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wts:ResidentialAndCommercialFlowControlMember",
+     "label": "Residential & Commercial Flow Control",
+     "values": [
+      1357200000,
+      1487900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6026,
+      0.6102
+     ],
+     "growth_yoy": [
+      null,
+      0.0963
+     ]
+    },
+    {
+     "member": "wts:HVACAndGasMember",
+     "label": "HVAC and Gas Products",
+     "values": [
+      544200000,
+      572100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2416,
+      0.2346
+     ],
+     "growth_yoy": [
+      null,
+      0.0513
+     ]
+    },
+    {
+     "member": "wts:DrainsAndWaterReuseMember",
+     "label": "Drainage and Water Re-use Products",
+     "values": [
+      241300000,
+      262100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1071,
+      0.1075
+     ],
+     "growth_yoy": [
+      null,
+      0.0862
+     ]
+    },
+    {
+     "member": "wts:WaterQualityMember",
+     "label": "Water Quality Products",
+     "values": [
+      109500000,
+      116400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0486,
+      0.0477
+     ],
+     "growth_yoy": [
+      null,
+      0.063
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2252200000,
+     2438500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wts:ResidentialAndCommercialFlowControlMember",
+     "label": "Residential & Commercial Flow Control",
+     "values": [
+      340800000,
+      394800000,
+      419300000,
+      471800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6108,
+      0.6133,
+      0.6191,
+      0.6182
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2303,
+      0.195
+     ]
+    },
+    {
+     "member": "wts:HVACAndGasMember",
+     "label": "HVAC and Gas Products",
+     "values": [
+      132100000,
+      142900000,
+      156700000,
+      180900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2367,
+      0.222,
+      0.2314,
+      0.237
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1862,
+      0.2659
+     ]
+    },
+    {
+     "member": "wts:DrainsAndWaterReuseMember",
+     "label": "Drainage and Water Re-use Products",
+     "values": [
+      56300000,
+      75900000,
+      69600000,
+      78800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1009,
+      0.1179,
+      0.1028,
+      0.1032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2362,
+      0.0382
+     ]
+    },
+    {
+     "member": "wts:WaterQualityMember",
+     "label": "Water Quality Products",
+     "values": [
+      28800000,
+      30100000,
+      31700000,
+      31700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0516,
+      0.0468,
+      0.0468,
+      0.0415
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1007,
+      0.0532
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     558000000,
+     643700000,
+     677300000,
+     763200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1664900000,
+      1847400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7392,
+      0.7576
+     ],
+     "growth_yoy": [
+      null,
+      0.1096
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      453300000,
+      450700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2013,
+      0.1848
+     ],
+     "growth_yoy": [
+      null,
+      -0.0057
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaMember",
+     "label": "APMEA",
+     "values": [
+      134000000,
+      140400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0595,
+      0.0576
+     ],
+     "growth_yoy": [
+      null,
+      0.0478
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2252200000,
+     2438500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      418100000,
+      498500000,
+      515100000,
+      585000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7493,
+      0.7744,
+      0.7605,
+      0.7665
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.232,
+      0.1735
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      108400000,
+      111000000,
+      121400000,
+      124600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1943,
+      0.1724,
+      0.1792,
+      0.1633
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1199,
+      0.1225
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaMember",
+     "label": "APMEA",
+     "values": [
+      31500000,
+      34200000,
+      40800000,
+      53600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0565,
+      0.0531,
+      0.0602,
+      0.0702
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2952,
+      0.5673
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     558000000,
+     643700000,
+     677300000,
+     763200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1605700000,
+      1728000000,
+      2043600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6953,
+      0.7209,
+      0.7093
+     ],
+     "growth_yoy": [
+      null,
+      0.0762,
+      0.1826
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      569100000,
+      534100000,
+      616500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2464,
+      0.2228,
+      0.214
+     ],
+     "growth_yoy": [
+      null,
+      -0.0615,
+      0.1543
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaMember",
+     "label": "APMEA",
+     "values": [
+      134600000,
+      134900000,
+      221100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0583,
+      0.0563,
+      0.0767
+     ],
+     "growth_yoy": [
+      null,
+      0.0022,
+      0.639
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2309400000,
+     2397000000,
+     2881200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      2043600000,
+      2079100000,
+      2075000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7093,
+      0.7072,
+      0.703
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      616500000,
+      629400000,
+      628100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.214,
+      0.2141,
+      0.2128
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaMember",
+     "label": "APMEA",
+     "values": [
+      221100000,
+      231300000,
+      248400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0767,
+      0.0787,
+      0.0842
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2881200000,
+     2939800000,
+     2951500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      31500000,
+      42900000,
+      43400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7275,
+      0.7886,
+      0.7641
+     ],
+     "growth_yoy": [
+      null,
+      0.3619,
+      0.0117
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      9600000,
+      9200000,
+      10900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2217,
+      0.1691,
+      0.1919
+     ],
+     "growth_yoy": [
+      null,
+      -0.0417,
+      0.1848
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaMember",
+     "label": "APMEA",
+     "values": [
+      2200000,
+      2300000,
+      2500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0508,
+      0.0423,
+      0.044
+     ],
+     "growth_yoy": [
+      null,
+      0.0455,
+      0.087
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     43300000,
+     54400000,
+     56800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      10800000,
+      11100000,
+      11800000,
+      12100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7883,
+      0.7655,
+      0.7662,
+      0.7658
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0926,
+      0.0901
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      2400000,
+      2800000,
+      2600000,
+      2700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1752,
+      0.1931,
+      0.1688,
+      0.1709
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0833,
+      -0.0357
+     ]
+    },
+    {
+     "member": "wts:AsiaPacificMiddleEastAndAfricaMember",
+     "label": "APMEA",
+     "values": [
+      500000,
+      600000,
+      1000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0365,
+      0.0414,
+      0.0649,
+      0.0633
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0,
+      0.6667
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13700000,
+     14500000,
+     15400000,
+     15800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segments, Aggregation' (wts:ReportableSegmentsAggregationMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment sales' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment sales' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 106.1% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 103.9% of the consolidated total for 2026-06-28 (ties_to_total: false)"
+ ],
+ "complete": true
+}

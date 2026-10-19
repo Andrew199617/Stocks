@@ -1,0 +1,878 @@
+{
+ "ticker": "WY",
+ "cik": 106535,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-051422",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526051422/wy-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-201473",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526201473/wy-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-328606",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526328606/wy-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wy:WoodProductsMember",
+     "label": "Wood Products",
+     "values": [
+      5657000000,
+      5221000000,
+      4957000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7372,
+      0.7329,
+      0.7179
+     ],
+     "growth_yoy": [
+      null,
+      -0.0771,
+      -0.0506
+     ]
+    },
+    {
+     "member": "wy:TimberlandsMember",
+     "label": "Timberlands",
+     "values": [
+      1654000000,
+      1512000000,
+      1494000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2155,
+      0.2122,
+      0.2164
+     ],
+     "growth_yoy": [
+      null,
+      -0.0859,
+      -0.0119
+     ]
+    },
+    {
+     "member": "wy:REENRMember",
+     "label": "R E E N R",
+     "values": [
+      363000000,
+      391000000,
+      454000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0473,
+      0.0549,
+      0.0657
+     ],
+     "growth_yoy": [
+      null,
+      0.0771,
+      0.1611
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7674000000,
+     7124000000,
+     6905000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wy:WoodProductsMember",
+     "label": "Wood Products",
+     "values": [
+      1287000000,
+      1357000000,
+      1164000000,
+      1360000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.73,
+      0.7203,
+      0.674,
+      0.7284
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0956,
+      0.0022
+     ]
+    },
+    {
+     "member": "wy:TimberlandsMember",
+     "label": "Timberlands",
+     "values": [
+      382000000,
+      373000000,
+      356000000,
+      367000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2167,
+      0.198,
+      0.2061,
+      0.1966
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0681,
+      -0.0161
+     ]
+    },
+    {
+     "member": "wy:StrategicLandSolutionsMember",
+     "label": "Strategic Land Solutions",
+     "values": [
+      94000000,
+      154000000,
+      207000000,
+      140000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0533,
+      0.0817,
+      0.1199,
+      0.075
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.2021,
+      -0.0909
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1763000000,
+     1884000000,
+     1727000000,
+     1867000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "wy:TimberlandsandRealEstateENRMember",
+     "label": "Timberlandsand Real Estate E N R",
+     "values": [
+      12545000000,
+      12687000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7586,
+      0.7637
+     ],
+     "growth_yoy": [
+      null,
+      0.0113
+     ]
+    },
+    {
+     "member": "wy:WoodProductsMember",
+     "label": "Wood Products",
+     "values": [
+      3116000000,
+      3194000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1884,
+      0.1923
+     ],
+     "growth_yoy": [
+      null,
+      0.025
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      875000000,
+      732000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0529,
+      0.0441
+     ],
+     "growth_yoy": [
+      null,
+      -0.1634
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16536000000,
+     16613000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wy:TimberlandsAndStrategicLandSolutionsMember",
+     "label": "Timberlands and Strategic Land Solutions",
+     "values": [
+      12687000000,
+      12527000000,
+      12398000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7637,
+      0.7638,
+      0.7508
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wy:WoodProductsMember",
+     "label": "Wood Products",
+     "values": [
+      3194000000,
+      3360000000,
+      3368000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1923,
+      0.2049,
+      0.204
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      732000000,
+      514000000,
+      747000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0441,
+      0.0313,
+      0.0452
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16613000000,
+     16401000000,
+     16513000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wy:TimberlandsMember",
+     "label": "Timberlands",
+     "values": [
+      267000000,
+      260000000,
+      261000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.534,
+      0.5179,
+      0.5128
+     ],
+     "growth_yoy": [
+      null,
+      -0.0262,
+      0.0038
+     ]
+    },
+    {
+     "member": "wy:WoodProductsMember",
+     "label": "Wood Products",
+     "values": [
+      210000000,
+      219000000,
+      224000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.42,
+      0.4363,
+      0.4401
+     ],
+     "growth_yoy": [
+      null,
+      0.0429,
+      0.0228
+     ]
+    },
+    {
+     "member": "wy:REENRMember",
+     "label": "R E E N R",
+     "values": [
+      16000000,
+      13000000,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.032,
+      0.0259,
+      0.0236
+     ],
+     "growth_yoy": [
+      null,
+      -0.1875,
+      -0.0769
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7000000,
+      10000000,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.014,
+      0.0199,
+      0.0236
+     ],
+     "growth_yoy": [
+      null,
+      0.4286,
+      0.2
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     500000000,
+     502000000,
+     509000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wy:TimberlandsMember",
+     "label": "Timberlands",
+     "values": [
+      65000000,
+      64000000,
+      63000000,
+      64000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.52,
+      0.512,
+      0.5081,
+      0.5039
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0308,
+      0.0
+     ]
+    },
+    {
+     "member": "wy:WoodProductsMember",
+     "label": "Wood Products",
+     "values": [
+      55000000,
+      55000000,
+      57000000,
+      58000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.44,
+      0.44,
+      0.4597,
+      0.4567
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0364,
+      0.0545
+     ]
+    },
+    {
+     "member": "wy:StrategicLandSolutionsMember",
+     "label": "Strategic Land Solutions",
+     "values": [
+      2000000,
+      4000000,
+      1000000,
+      4000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.016,
+      0.032,
+      0.0081,
+      0.0315
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5,
+      0.0
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      3000000,
+      2000000,
+      3000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.024,
+      0.016,
+      0.0242,
+      0.0079
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.5
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     125000000,
+     125000000,
+     124000000,
+     127000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      6602000000,
+      6150000000,
+      5998000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8603,
+      0.8633,
+      0.8686
+     ],
+     "growth_yoy": [
+      null,
+      -0.0685,
+      -0.0247
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      578000000,
+      551000000,
+      543000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0753,
+      0.0773,
+      0.0786
+     ],
+     "growth_yoy": [
+      null,
+      -0.0467,
+      -0.0145
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      302000000,
+      258000000,
+      271000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0394,
+      0.0362,
+      0.0392
+     ],
+     "growth_yoy": [
+      null,
+      -0.1457,
+      0.0504
+     ]
+    },
+    {
+     "member": "wy:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      48000000,
+      49000000,
+      61000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0063,
+      0.0069,
+      0.0088
+     ],
+     "growth_yoy": [
+      null,
+      0.0208,
+      0.2449
+     ]
+    },
+    {
+     "member": "country:KR",
+     "label": "KOREA, REPUBLIC OF",
+     "values": [
+      30000000,
+      24000000,
+      21000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0039,
+      0.0034,
+      0.003
+     ],
+     "growth_yoy": [
+      null,
+      -0.2,
+      -0.125
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      114000000,
+      92000000,
+      11000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0149,
+      0.0129,
+      0.0016
+     ],
+     "growth_yoy": [
+      null,
+      -0.193,
+      -0.8804
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7674000000,
+     7124000000,
+     6905000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember)",
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember)",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

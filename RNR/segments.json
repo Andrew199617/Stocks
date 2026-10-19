@@ -1,0 +1,35 @@
+{
+ "ticker": "RNR",
+ "cik": 913144,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000913144-26-000012",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000012/rnr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000913144-26-000065",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000065/rnr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000913144-26-000084",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/913144/000091314426000084/rnr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

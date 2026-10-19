@@ -1,0 +1,284 @@
+{
+ "ticker": "WTS",
+ "cik": 795403,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T09:26:23-04:00",
+ "newest_filing_date": "2026-10-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000795403.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WTS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WTS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WATTS WATER TECHNOLOGIES INC",
+  "cik": 795403,
+  "description": {
+   "text": "Watts Regulator Co. was founded by Joseph E. Watts in 1874 in Lawrence, Massachusetts. Watts Regulator Co. started as a small machine shop supplying parts to the New England textile mills of the 19th century. Since then, Watts has grown into a global manufacturer and become one of the world’s leading providers of water technologies and solutions that are designed to promote safety, energy efficiency, and water conservation for commercial and residential buildings. Watts Water Technologies, Inc. was incorporated in Delaware in 1985 and is the parent company of Watts Regulator Co. Our strategy is to be the preferred supplier of differentiated products and solutions that manage and conserve the flow of fluids and energy into, through and out of buildings in the commercial and residential markets of the Americas, Europe, and Asia-Pacific, Middle East and Africa (“APMEA”), our three geographic segments. Within this framework, we focus upon three themes: safety and regulation, energy efficiency and water conservation. This strategy provides us with a platform to increase our earnings through sales growth, both organic and inorganic, and the systematic reduction of manufacturing costs and operational expenses.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-018541",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm"
+  },
+  "description_short": "Watts Water Technologies, Inc., through its subsidiaries, is a world leader in the manufacturing of innovative products to control the efficiency, safety, and quality of water within residential, commercial, and institutional applications. Watts' expertise in a wide variety of water technologies enables us to be a comprehensive supplier to the water industry.",
+  "industry": "Metal Fabrications",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3490",
+  "sic_description": "Miscellaneous Fabricated Metal Products",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.wattswater.com",
+  "headquarters": "North Andover, MA",
+  "address": {
+   "street": "815 Chestnut Street",
+   "city": "North Andover",
+   "state": "MA",
+   "zip": "01845",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "9786881811",
+  "employees": {
+   "count": 5700,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 5,700 employees globally, including 3,100 in the Americas, 1,900 in Europe and 700 in APMEA.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-09",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "WATTS WATER TECHNOLOGIES INC",
+   "WATTS INDUSTRIES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000795403&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-28",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-112656",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926112656/wts-20260928x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-091726",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-091165",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926091165/wts-20260805x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-19",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-064461",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926064461/wts-20260519x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-056817",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926056817/wts-20260329x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-056325",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926056325/wts-20260506x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-01",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-038336",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926038336/tm261407-1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-018541",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-013437",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926013437/wts-20260211x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-14",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-112999",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465925112999/wts-20251114x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-09",
+   "items": [
+    "1.01",
+    "5.02"
+   ],
+   "description": "Material agreement; Officer/director change",
+   "accession": "0001104659-25-109203",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465925109203/wts-20251109x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-107489",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465925107489/wts-20250928x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-25-107038",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465925107038/wts-20251105x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-010686",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001558370-25-010556",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000155837025010556/wts-20250806x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-14",
+   "period": "2025-07-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001558370-25-009215",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000155837025009215/wts-20250714x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001558370-25-008094",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000155837025008094/wts-20250521x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-006887",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000155837025006887/wts-20250330x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001558370-25-006761",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000155837025006761/wts-20250507x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-01",
+   "period": "2025-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-25-030421",
+   "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465925030421/tm252338-2_def14a.htm"
+  }
+ ],
+ "warnings": []
+}

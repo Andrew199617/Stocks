@@ -1,0 +1,914 @@
+{
+ "ticker": "SOLV",
+ "cik": 1964738,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001964738-26-000007",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000007/solv-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001964738-26-000024",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000024/solv-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001964738-26-000047",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1964738/000196473826000047/solv-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "solv:MedSurgSegmentMember",
+     "label": "MedSurg Segment",
+     "values": [
+      4632000000,
+      4637000000,
+      4817000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5651,
+      0.5618,
+      0.5786
+     ],
+     "growth_yoy": [
+      null,
+      0.0011,
+      0.0388
+     ]
+    },
+    {
+     "member": "solv:HealthInformationSystemsSegmentMember",
+     "label": "Health Information Systems Segment",
+     "values": [
+      1285000000,
+      1306000000,
+      1360000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1568,
+      0.1582,
+      0.1634
+     ],
+     "growth_yoy": [
+      null,
+      0.0163,
+      0.0413
+     ]
+    },
+    {
+     "member": "solv:DentalSolutionsSegmentMember",
+     "label": "Dental Solutions Segment",
+     "values": [
+      1329000000,
+      1295000000,
+      1349000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1621,
+      0.1569,
+      0.162
+     ],
+     "growth_yoy": [
+      null,
+      -0.0256,
+      0.0417
+     ]
+    },
+    {
+     "member": "solv:PurificationAndFiltrationSegmentMember",
+     "label": "Purification and Filtration Segment",
+     "values": [
+      689000000,
+      709000000,
+      497000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0841,
+      0.0859,
+      0.0597
+     ],
+     "growth_yoy": [
+      null,
+      0.029,
+      -0.299
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      262000000,
+      306000000,
+      302000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.032,
+      0.0371,
+      0.0363
+     ],
+     "growth_yoy": [
+      null,
+      0.1679,
+      -0.0131
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8197000000,
+     8254000000,
+     8325000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "solv:MedSurgSegmentMember",
+     "label": "MedSurg Segment",
+     "values": [
+      1157000000,
+      1218000000,
+      1234000000,
+      1372000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5589,
+      0.5636,
+      0.6148,
+      0.6211
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0666,
+      0.1264
+     ]
+    },
+    {
+     "member": "solv:DentalSolutionsSegmentMember",
+     "label": "Dental Solutions Segment",
+     "values": [
+      328000000,
+      338000000,
+      354000000,
+      396000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1585,
+      0.1564,
+      0.1764,
+      0.1793
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0793,
+      0.1716
+     ]
+    },
+    {
+     "member": "solv:HealthInformationSystemsSegmentMember",
+     "label": "Health Information Systems Segment",
+     "values": [
+      329000000,
+      339000000,
+      342000000,
+      354000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1589,
+      0.1569,
+      0.1704,
+      0.1603
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0395,
+      0.0442
+     ]
+    },
+    {
+     "member": "solv:PurificationAndFiltrationSegmentMember",
+     "label": "Purification and Filtration Segment",
+     "values": [
+      180000000,
+      189000000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.087,
+      0.0875,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      -1.0
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      76000000,
+      77000000,
+      76000000,
+      87000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0367,
+      0.0356,
+      0.0379,
+      0.0394
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.1299
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2070000000,
+     2161000000,
+     2007000000,
+     2209000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "solv:MedSurgSegmentMember",
+     "label": "MedSurg Segment",
+     "values": [
+      1107000000,
+      887000000,
+      810000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6543,
+      0.8562,
+      0.3714
+     ],
+     "growth_yoy": [
+      null,
+      -0.1987,
+      -0.0868
+     ]
+    },
+    {
+     "member": "solv:HealthInformationSystemsSegmentMember",
+     "label": "Health Information Systems Segment",
+     "values": [
+      423000000,
+      431000000,
+      496000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.25,
+      0.416,
+      0.2274
+     ],
+     "growth_yoy": [
+      null,
+      0.0189,
+      0.1508
+     ]
+    },
+    {
+     "member": "solv:DentalSolutionsSegmentMember",
+     "label": "Dental Solutions Segment",
+     "values": [
+      442000000,
+      350000000,
+      346000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2612,
+      0.3378,
+      0.1586
+     ],
+     "growth_yoy": [
+      null,
+      -0.2081,
+      -0.0114
+     ]
+    },
+    {
+     "member": "solv:PurificationAndFiltrationSegmentMember",
+     "label": "Purification and Filtration Segment",
+     "values": [
+      111000000,
+      74000000,
+      96000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0656,
+      0.0714,
+      0.044
+     ],
+     "growth_yoy": [
+      null,
+      -0.3333,
+      0.2973
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      51000000,
+      30000000,
+      42000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0301,
+      0.029,
+      0.0193
+     ],
+     "growth_yoy": [
+      null,
+      -0.4118,
+      0.4
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1692000000,
+     1036000000,
+     2181000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "solv:MedSurgSegmentMember",
+     "label": "MedSurg Segment",
+     "values": [
+      206000000,
+      210000000,
+      161000000,
+      355000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3553,
+      0.9813,
+      1.9877,
+      1.9613
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2184,
+      0.6905
+     ]
+    },
+    {
+     "member": "solv:HealthInformationSystemsSegmentMember",
+     "label": "Health Information Systems Segment",
+     "values": [
+      109000000,
+      120000000,
+      130000000,
+      145000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7171,
+      0.5607,
+      1.6049,
+      0.8011
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1927,
+      0.2083
+     ]
+    },
+    {
+     "member": "solv:DentalSolutionsSegmentMember",
+     "label": "Dental Solutions Segment",
+     "values": [
+      78000000,
+      96000000,
+      87000000,
+      131000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5132,
+      0.4486,
+      1.0741,
+      0.7238
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1154,
+      0.3646
+     ]
+    },
+    {
+     "member": "solv:PurificationAndFiltrationSegmentMember",
+     "label": "Purification and Filtration Segment",
+     "values": [
+      27000000,
+      43000000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1776,
+      0.2009,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.0,
+      -1.0
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      11000000,
+      8000000,
+      12000000,
+      19000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0724,
+      0.0374,
+      0.1481,
+      0.105
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0909,
+      1.375
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     152000000,
+     214000000,
+     81000000,
+     181000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      6296000000,
+      6348000000,
+      6349000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7681,
+      0.7691,
+      0.7626
+     ],
+     "growth_yoy": [
+      null,
+      0.0083,
+      0.0002
+     ]
+    },
+    {
+     "member": "solv:CostOfSoftwareAndRentalsMember",
+     "label": "Cost Of Software And Rentals",
+     "values": [
+      1901000000,
+      1906000000,
+      1976000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2319,
+      0.2309,
+      0.2374
+     ],
+     "growth_yoy": [
+      null,
+      0.0026,
+      0.0367
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8197000000,
+     8254000000,
+     8325000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      1597000000,
+      1668000000,
+      1513000000,
+      1698000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7715,
+      0.7719,
+      0.7539,
+      0.7687
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0526,
+      0.018
+     ]
+    },
+    {
+     "member": "solv:CostOfSoftwareAndRentalsMember",
+     "label": "Cost Of Software And Rentals",
+     "values": [
+      473000000,
+      493000000,
+      493000000,
+      511000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2285,
+      0.2281,
+      0.2456,
+      0.2313
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0423,
+      0.0365
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2070000000,
+     2161000000,
+     2007000000,
+     2209000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4471000000,
+      4559000000,
+      4668000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5454,
+      0.5523,
+      0.5607
+     ],
+     "growth_yoy": [
+      null,
+      0.0197,
+      0.0239
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      3726000000,
+      3695000000,
+      3657000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4546,
+      0.4477,
+      0.4393
+     ],
+     "growth_yoy": [
+      null,
+      -0.0083,
+      -0.0103
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8197000000,
+     8254000000,
+     8325000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 82.1% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 359.1% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

@@ -1,0 +1,246 @@
+{
+ "ticker": "SNN",
+ "cik": 845982,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T14:04:58-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000845982.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/845982/000110465926028258/snn-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SNN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SNN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SMITH & NEPHEW PLC",
+  "cik": 845982,
+  "description": {
+   "text": "The Group has a history dating back almost 170 years to the family enterprise of Thomas James Smith who opened a small pharmacy in Hull, UK, in 1856. Following his death in 1896, his nephew Horatio Nelson Smith took over the management of the business. By the late 1990s, Smith+Nephew had expanded into being a diverse healthcare company with operations across the globe, producing various medical devices, personal care products and traditional and advanced wound care treatments. In 1998, Smith+Nephew announced a major restructuring to focus management attention and investment on three global business units – Advanced Wound Management, Endoscopy and Orthopaedics – which offered high growth and margin opportunities. In 2024, Smith+Nephew announced its current structure comprising three global business units, Advanced Wound Management, Sports Medicine and ENT and Orthopaedics. You can read more about our business units on pages 39 to 52. Smith+Nephew was incorporated and listed on the London Stock Exchange in 1937 and in 1999 the Group was also listed on the New York Stock Exchange. In 2001, Smith+Nephew became a constituent member of the FTSE 100 index in the UK. This means that Smith+Nephew is included in the top 100 companies traded on the London Stock Exchange measured in terms of market capitalisation. Today, Smith+Nephew is a public limited company incorporated and headquartered in the UK and carries out business around the world.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-16",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-028258",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000110465926028258/snn-20251231x20f.htm"
+  },
+  "description_short": "Smith+Nephew is a portfolio medical technology business focused on the repair, regeneration and replacement of soft and hard tissue. We exist to restore people's bodies and their self-belief by using technology to take the limits off living. We call this purpose 'Life Unlimited'. Our 17,000 employees deliver this mission every day, making a difference to patients' lives through the excellence of our product portfolio, and the invention and application of new technologies across our three global business units of Orthopaedics, Sports Medicine & ENT and Advanced Wound Management. Founded in Hull, UK, in 1856, we now operate in around 100 countries, and generated annual sales of $6.2 billion in 2025. Smith+Nephew is a constituent of the FTSE100 (LSE:SN, NYSE:SNN). The terms 'Group' and 'Smith+Nephew' are used to refer to Smith & Nephew plc and its consolidated subsidiaries, unless the context requires otherwise.",
+  "industry": "Industrial Specialties",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "3842",
+  "sic_description": "Orthopedic, Prosthetic & Surgical Appliances & Supplies",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.smith-nephew.com",
+  "headquarters": "Watford, Hertfordshire",
+  "address": {
+   "street": "Building 5, Croxley Park, Hatters Lane",
+   "city": "Watford",
+   "state": null,
+   "zip": "WD18 8YE",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-16",
+   "metro": "Hertfordshire",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "44 (0) 1923 477 100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-02-15",
+  "first_sec_filing_form": "6-K",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000845982&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008852",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008852/a2307y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008692",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008692/a2069x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008690",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008690/a0850x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008442",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008442/a4368v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008434",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008434/a2698v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008399",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008399/a0131v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008396",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008396/a9112u.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-013824",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000095010326013824/dp253238_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-013772",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000095010326013772/dp253150_6k-ua.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-013744",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000095010326013744/dp253151_6k-pricing.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008237",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008237/a1407u.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008190",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008190/a0320u.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008168",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008168/a8870t.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008086",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008086/a1565t.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008075",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008075/a1257t.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008025",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426008025/a9225s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007781",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426007781/a7305r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007735",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426007735/a2107r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007708",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000165495426007708/a1438r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-14",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-096410",
+   "url": "https://www.sec.gov/Archives/edgar/data/845982/000110465926096410/snn-20260627x6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-16"
+ ]
+}

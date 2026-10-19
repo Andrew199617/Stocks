@@ -1,0 +1,109 @@
+{
+ "ticker": "WY",
+ "name": "Weyerhaeuser Company",
+ "sector": "Real Estate / REIT \u2014 Timberlands and wood products",
+ "price": 19.61,
+ "market_cap_b": 14.19,
+ "engine_version": 5,
+ "base_oe_per_share": 0.710604329199116,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "A scarce, irreplicable asset base \u2014 more than 10 million acres of U.S. timberlands owned or controlled (plus Canadian licenses), the largest private timberland holding in the U.S., with scale cost advantages in forestry, logistics and export market access, and timber that grows (and accretes value) biologically. But Weyerhaeuser is a commodity price taker in logs, lumber and OSB: no pricing power, no switching costs, no network effects, and returns prove it \u2014 roic_proxy (fundamentals.json) ran 20.5% / 17.7% in the pandemic spike years 2021-22 but only 7.5% / 4.5% / 4.0% in 2023-25 and 3.6-10.1% in 2016-20, i.e. at or below the cost of capital in most non-spike years, while gross margin compressed from 40.2% (2021) to 35.5% / 21.9% / 18.4% / 14.8% (2022-25) as lumber prices normalized. The land endures; the earnings power on it is cyclical, not a wide moat \u2014 4/10, weak-to-narrow, asset-backed rather than franchise-based.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13, accession 0001193125-26-051422), Consolidated Statements of Cash Flows, investing activities: 'Capital expenditures for property and equipment' $423M for FY2025, $364M for FY2024, $390M for FY2023, plus 'Capital expenditures for timberlands reforestation' $51M / $52M / $57M for the same years \u2014 combined totals $474M / $416M / $447M; corroborated in EDGAR companyfacts under us-gaap PropertyPlantAndEquipmentAdditions with identical totals ($474M / $416M / $447M) and by the same filing's FAD reconciliation line 'Capital expenditures' ($474M for FY2025, $416M for FY2024)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 0.10 vs 3-yr median 0.71 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 11.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 9.9x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 1.43,
+   "irr": 0.0328
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 2.82,
+   "irr": 0.0412
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 4.9,
+   "irr": 0.055
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 8.98,
+   "irr": 0.083
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 16.71,
+   "irr": 0.1327
+  }
+ },
+ "iv_at_15": 5.55,
+ "iv_at_12": 7.3,
+ "implied_irr": 0.0604,
+ "implied_irr_base_case": 0.055,
+ "upside_at_15_pct": -71.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Irreplicable 10M+ acre timberland asset but a commodity price taker with no pricing power, moat 4/10 \u2014 does not clear 15% on owner's earnings at $19.61: weighted IRR 6.0%, weighted IV@15% $5.55 (the 15% hurdle price); even the super-bull mid-cycle normalization case earns only 13.3% \u2014 the price capitalizes land value and a housing recovery this OE screen does not credit, and confidence is low on the sector model misfit.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0412,
+ "irr_bull": 0.083,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 3.96,
+ "iv_at_25": 3.08,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5108000000,
+ "shares_diluted_latest": 723567000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Irreplicable asset: >10M acres of U.S. timberlands owned/controlled \u2014 the largest private holding; land and standing timber cannot be recreated at any price",
+  "Scale cost advantage: peer-leading forestry, logistics and export (Japan) positions across Southern and Western timberlands",
+  "Biological growth: timber appreciates on the stump regardless of harvest timing \u2014 harvest can be deferred into better prices, a real option commodity miners lack",
+  "Higher-and-better-use / Strategic Land Solutions optionality: real estate, energy, carbon and land sales monetize acres above timber value (2026 SLS Adjusted EBITDA guided ~$450M)",
+  "Investment-grade balance sheet and a base dividend ($0.21/qtr) framed to be sustainable at low commodity prices"
+ ],
+ "moat_against": [
+  "Pure price taker: lumber, OSB and log prices are set by housing starts and industry capacity \u2014 no pricing power through the cycle",
+  "Returns confirm no wide moat: roic_proxy 4.0-7.5% in 2023-25 and gross margin down from 40.2% (2021) to 14.8% (2025) as prices normalized",
+  "Earnings hostage to U.S. housing / rates: revenue fell from $10.18B (2022) to $6.91B (2025) on the housing downturn alone",
+  "Canadian softwood lumber duties / trade policy and wildfire, pest and climate risk sit directly on the core asset",
+  "REIT payout (75-80% of Adjusted FAD targeted) leaves little retained cash to compound; growth capex (Monticello EWP) competes with the dividend"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 447000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13, accession 0001193125-26-051422), Consolidated Statements of Cash Flows, investing activities: 'Capital expenditures for property and equipment' $423M for FY2025, $364M for FY2024, $390M for FY2023, plus 'Capital expenditures for timberlands reforestation' $51M / $52M / $57M for the same years \u2014 combined totals $474M / $416M / $447M; corroborated in EDGAR companyfacts under us-gaap PropertyPlantAndEquipmentAdditions with identical totals ($474M / $416M / $447M) and by the same filing's FAD reconciliation line 'Capital expenditures' ($474M for FY2025, $416M for FY2024)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 1.3238,
+  "base_oe_with_override": 0.7106,
+  "base_oe_impact_pct": -46.321,
+  "weighted_irr_without_override": 0.0909,
+  "weighted_irr_with_override": 0.0604,
+  "weighted_irr_impact_pp": -3.05,
+  "unblocks_tier": true
+ }
+}

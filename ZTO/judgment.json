@@ -1,0 +1,36 @@
+{
+ "name": "ZTO Express (Cayman) Inc.",
+ "sector": "Transportation / Express delivery & logistics (China)",
+ "moat_score": 5,
+ "moat_justification": "China's #1 express carrier by parcel volume since 2016 (19.9% share in Q2 2026) on a dense owned sorting/line-haul network (93 hubs, 596 automation lines, 10,000+ owned line-haul vehicles, 31,000+ outlets, >99% of cities/counties) run through a network-partner last-mile model \u2014 real scale/density cost advantage, with combined unit sorting+transport costs still falling in Q2 2026. But the service is largely commoditized: e-commerce platforms and merchants multi-home with low switching costs, rivals (SF, JD Logistics, YTO, Yunda, STO, J&T) contest every point of share, and pricing has historically been set by price wars \u2014 the current ASP recovery leans on anti-involution regulation and higher-value KA/reverse-logistics mix, not proven standalone pricing power. Returns confirm a narrow moat, not a wide one: ROIC proxy (fundamentals.json) ran 10.7% / 13.0% / 14.8% / 15.3% / 12.9% over FY2021-25 \u2014 above cost of capital but mid-teens, not high \u2014 and gross margin swung 21.7% -> 31.0% -> 25.0% over the same years, i.e. cyclical with the price war, not steadily expanding.",
+ "moat_for": [
+  "#1 by parcel volume in China since 2016; 19.9% share in Q2 2026, +0.4pp YoY while industry volume grew only 4.2%",
+  "Density/scale cost advantage: 93 sorting hubs, 596 automation lines, 10,000+ owned line-haul vehicles, ~3,800 routes, 31,000+ outlets covering >99% of cities/counties (FY2025 20-F)",
+  "Network-partner (franchise) last-mile model: asset-light at the edge, aligned local partners, company keeps the automated middle mile",
+  "Unit economics still improving: combined unit sorting + transportation cost fell in Q2 2026 despite higher oil prices; mix shift to KA / reverse logistics lifted core ASP +15.5% YoY in Q2 2026"
+ ],
+ "moat_against": [
+  "Commoditized service, low switching costs: platforms/merchants multi-home across SF, JD Logistics, YTO, Yunda, STO and J&T; share must be re-won continuously",
+  "ROIC proxy only mid-teens (12.9% FY2025, 10.7-15.3% FY2021-25) and gross margin volatile (25.0% FY2025 after 31.0% FY2024) \u2014 no through-cycle record of high returns",
+  "Pricing recovery depends partly on anti-involution regulation staying in force; a return to price wars compresses the per-parcel spread the thesis rests on",
+  "China volume growth slowing (industry +4.2% YoY in Q2 2026; ZTO FY2026 volume guidance cut to 6-10%) plus courier social-insurance and fuel cost pressure",
+  "China / VIE ADS tail risk and CNY translation exposure for a Cayman-incorporated, China-operating issuer"
+ ],
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "one_liner": "China's volume-leading express carrier, moat 5/10 \u2014 real scale and mid-teens ROIC, but at $20.17 the weighted IRR is only 11.6% (IV@15 $14.24); clears 15% only below ~$14.24, so size it like the bear end of its D-to-C band.",
+ "confidence": "low",
+ "tier_override": null,
+ "tier_override_reason": null,
+ "in_scope_under_40b": true,
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-17), cover page Section 12(b) table: American depositary shares, each representing one Class A ordinary share (par value US$0.0001 per share), trading symbol ZTO, New York Stock Exchange; the Introduction definitions state the same 1:1 ratio",
+  "reason": "20-F filer: engine per-share figures are per ordinary share and the NYSE price is per ADS; at a 1:1 ADS-to-ordinary ratio the two bases are identical, so no scaling applies, but make_score requires the ratio declared and sourced from the filer's own 20-F."
+ }
+}

@@ -1,0 +1,290 @@
+{
+ "ticker": "VNOM",
+ "cik": 2074176,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T22:45:44-04:00",
+ "newest_filing_date": "2026-09-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002074176.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000010/vnom-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VNOM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VNOM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Viper Energy, Inc.",
+  "cik": 2074176,
+  "description": {
+   "text": "We are a publicly traded Delaware corporation focused on owning and acquiring mineral and royalty interests in oil and natural gas properties primarily in the Permian Basin. We operate in one reportable segment. Effective November 13, 2023, we converted our legal status from a Delaware limited partnership into a Delaware corporation. Our primary business objective is to provide an attractive return to our stockholders by focusing on business results, generating robust free cash flow, reducing debt and protecting our balance sheet, while maintaining what we believe is a best-in-class cost structure. Our assets consist of mineral and royalty interests in oil and natural gas properties primarily in the Permian Basin in West Texas, substantially all of which are leased to working interest owners who bear the costs of operation and development. We are currently focused on oil and natural gas properties primarily in the Permian Basin, which is one of the oldest and most prolific producing basins in North America. The Permian Basin, which consists of approximately 75,000 square miles centered around Midland, Texas, has been a significant source of oil production since the 1920s. The Permian Basin is known to have a number of formations of oil and natural gas bearing rock throughout.",
+   "source": "10-K Items 1 and 2 Business and Properties",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0002074176-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000010/vnom-20251231.htm"
+  },
+  "description_short": "Viper is a corporation formed by Diamondback to own, acquire and exploit oil and natural gas properties in North America, with a focus on owning and acquiring mineral and royalty interests in oil-weighted basins, primarily the Permian Basin.",
+  "industry": "Oil & Gas Production",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "1311",
+  "sic_description": "Crude Petroleum & Natural Gas",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.viperenergy.com",
+  "headquarters": "Midland, TX",
+  "address": {
+   "street": "500 West Texas Ave. Suite 100",
+   "city": "Midland",
+   "state": "TX",
+   "zip": "79701",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(432) 221-7400",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-06-30",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "New Cobra Pubco, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002074176&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-15",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-108245",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926108245/tm2625491d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-01",
+   "items": [
+    "3.02"
+   ],
+   "description": "Unregistered sale of equity",
+   "accession": "0001104659-26-105890",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926105890/tm2624863d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002074176-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000053/vnom-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002074176-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000050/vnom-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-080406",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926080406/tm2617785d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-074042",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926074042/tm2617785d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-19",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0002074176-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000033/vnom-20260519.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002074176-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000030/vnom-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002074176-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000025/vnom-20260504.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-146417",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000119312526146417/d78130ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-02",
+   "items": [
+    "1.01",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD; Other events",
+   "accession": "0001104659-26-023479",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926023479/tm267705d4_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-02",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001104659-26-022427",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926022427/tm267697d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0002074176-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000010/vnom-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002074176-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000005/vnom-20260223.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-017566",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465926017566/tm266596d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-30",
+   "period": "2025-12-23",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001104659-25-125257",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465925125257/tm2534458d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-12",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-120446",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000110465925120446/tm2533341d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002074176-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417625000053/vnom-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002074176-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417625000048/vnom-20251103.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-08-25",
+   "period": "2025-08-18",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001193125-25-187727",
+   "url": "https://www.sec.gov/Archives/edgar/data/2074176/000119312525187727/d97296d8ka.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

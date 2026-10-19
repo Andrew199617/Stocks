@@ -1,0 +1,414 @@
+{
+ "ticker": "WPC",
+ "cik": 1025378,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001025378-26-000036",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1025378/000102537826000036/wpc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001025378-26-000078",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1025378/000102537826000078/wpc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001025378-26-000119",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1025378/000102537826000119/wpc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wpc:OwnedRealEstateMember",
+     "label": "Owned Real Estate",
+     "values": [
+      1738139000,
+      1572197000,
+      1707244000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9982,
+      0.9932,
+      0.9946
+     ],
+     "growth_yoy": [
+      null,
+      -0.0955,
+      0.0859
+     ]
+    },
+    {
+     "member": "wpc:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      3219000,
+      10821000,
+      9241000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0018,
+      0.0068,
+      0.0054
+     ],
+     "growth_yoy": [
+      null,
+      2.3616,
+      -0.146
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1741358000,
+     1583018000,
+     1716485000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wpc:OwnedRealEstateMember",
+     "label": "Owned Real Estate",
+     "values": [
+      407441000,
+      428401000,
+      453019000,
+      459670000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9941,
+      0.9945,
+      0.9967,
+      0.997
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1119,
+      0.073
+     ]
+    },
+    {
+     "member": "wpc:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      2417000,
+      2376000,
+      1490000,
+      1394000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0059,
+      0.0055,
+      0.0033,
+      0.003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3835,
+      -0.4133
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     409858000,
+     430777000,
+     454509000,
+     461064000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wpc:OwnedRealEstateMember",
+     "label": "Owned Real Estate",
+     "values": [
+      180257000,
+      146813000,
+      112531000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9825,
+      0.9314,
+      0.9241
+     ],
+     "growth_yoy": [
+      null,
+      -0.1855,
+      -0.2335
+     ]
+    },
+    {
+     "member": "us-gaap:ManagementServiceMember",
+     "label": "Management Service",
+     "values": [
+      2184000,
+      6597000,
+      4957000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0119,
+      0.0419,
+      0.0407
+     ],
+     "growth_yoy": [
+      null,
+      2.0206,
+      -0.2486
+     ]
+    },
+    {
+     "member": "wpc:OtherAdvisoryIncomeAndReimbursementsMember",
+     "label": "Other Advisory Income and Reimbursements",
+     "values": [
+      1035000,
+      4224000,
+      4284000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0056,
+      0.0268,
+      0.0352
+     ],
+     "growth_yoy": [
+      null,
+      3.0812,
+      0.0142
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     183476000,
+     157634000,
+     121772000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wpc:OwnedRealEstateMember",
+     "label": "Owned Real Estate",
+     "values": [
+      33094000,
+      34287000,
+      12050000,
+      11638000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9319,
+      0.9352,
+      0.89,
+      0.893
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.6359,
+      -0.6606
+     ]
+    },
+    {
+     "member": "wpc:OtherAdvisoryIncomeAndReimbursementsMember",
+     "label": "Other Advisory Income and Reimbursements",
+     "values": [
+      1067000,
+      1072000,
+      1000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.03,
+      0.0292,
+      0.0739,
+      0.0767
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0628,
+      -0.0672
+     ]
+    },
+    {
+     "member": "us-gaap:ManagementServiceMember",
+     "label": "Management Service",
+     "values": [
+      1350000,
+      1304000,
+      490000,
+      394000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.038,
+      0.0356,
+      0.0362,
+      0.0302
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.637,
+      -0.6979
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     35511000,
+     36663000,
+     13540000,
+     13032000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Owned Real Estate' (wpc:OwnedRealEstateMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

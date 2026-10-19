@@ -1,0 +1,940 @@
+{
+ "ticker": "TYL",
+ "cik": 860731,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000860731-26-000016",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000016/tyl-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000860731-26-000032",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000032/tyl-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000860731-26-000050",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000050/tyl-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tyl:EnterpriseSoftwareSegmentMember",
+     "label": "Enterprise Software Segment",
+     "values": [
+      1349655000,
+      1511602000,
+      1694421000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6915,
+      0.7071,
+      0.7265
+     ],
+     "growth_yoy": [
+      null,
+      0.12,
+      0.1209
+     ]
+    },
+    {
+     "member": "tyl:PlatformTechnologiesSegmentMember",
+     "label": "Platform Technologies Segment",
+     "values": [
+      594766000,
+      619248000,
+      628554000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3047,
+      0.2897,
+      0.2695
+     ],
+     "growth_yoy": [
+      null,
+      0.0412,
+      0.015
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7330000,
+      6953000,
+      9365000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0038,
+      0.0033,
+      0.004
+     ],
+     "growth_yoy": [
+      null,
+      -0.0514,
+      0.3469
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1951751000,
+     2137803000,
+     2332340000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "tyl:EnterpriseSoftwareSegmentMember",
+     "label": "Enterprise Software Segment",
+     "values": [
+      402746000,
+      433915000,
+      464753000,
+      476332000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7126,
+      0.7279,
+      0.7575,
+      0.7384
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.154,
+      0.0978
+     ]
+    },
+    {
+     "member": "tyl:PlatformTechnologiesSegmentMember",
+     "label": "Platform Technologies Segment",
+     "values": [
+      161729000,
+      154636000,
+      148063000,
+      160857000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2862,
+      0.2594,
+      0.2413,
+      0.2494
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0845,
+      0.0402
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      690000,
+      7566000,
+      687000,
+      7907000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0012,
+      0.0127,
+      0.0011,
+      0.0123
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0043,
+      0.0451
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     565165000,
+     596117000,
+     613503000,
+     645096000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "tyl:EnterpriseSoftwareSegmentMember",
+     "label": "Enterprise Software Segment",
+     "values": [
+      572224000,
+      534864000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1105,
+      0.0949
+     ],
+     "growth_yoy": [
+      null,
+      -0.0653
+     ]
+    },
+    {
+     "member": "tyl:PlatformTechnologiesSegmentMember",
+     "label": "Platform Technologies Segment",
+     "values": [
+      416635000,
+      416998000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0804,
+      0.074
+     ],
+     "growth_yoy": [
+      null,
+      0.0009
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      4191156000,
+      4687046000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8091,
+      0.8312
+     ],
+     "growth_yoy": [
+      null,
+      0.1183
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5180015000,
+     5638908000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "tyl:EnterpriseSoftwareSegmentMember",
+     "label": "Enterprise Software Segment",
+     "values": [
+      534864000,
+      461269000,
+      622025000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0949,
+      0.0961,
+      0.107
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "tyl:PlatformTechnologiesSegmentMember",
+     "label": "Platform Technologies Segment",
+     "values": [
+      416998000,
+      386632000,
+      390959000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.074,
+      0.0806,
+      0.0672
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      4687046000,
+      3950718000,
+      4800592000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8312,
+      0.8233,
+      0.8258
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5638908000,
+     4798619000,
+     5813576000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tyl:PlatformTechnologiesSegmentMember",
+     "label": "Platform Technologies Segment",
+     "values": [
+      110354000,
+      89372000,
+      89476000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7162,
+      0.6231,
+      0.6467
+     ],
+     "growth_yoy": [
+      null,
+      -0.1901,
+      0.0012
+     ]
+    },
+    {
+     "member": "tyl:EnterpriseSoftwareSegmentMember",
+     "label": "Enterprise Software Segment",
+     "values": [
+      25445000,
+      37179000,
+      29372000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1651,
+      0.2592,
+      0.2123
+     ],
+     "growth_yoy": [
+      null,
+      0.4612,
+      -0.21
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      18280000,
+      16886000,
+      19510000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1186,
+      0.1177,
+      0.141
+     ],
+     "growth_yoy": [
+      null,
+      -0.0763,
+      0.1554
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     154079000,
+     143437000,
+     138358000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "tyl:PlatformTechnologiesSegmentMember",
+     "label": "Platform Technologies Segment",
+     "values": [
+      4341000,
+      4445000,
+      9481000,
+      4804000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1254,
+      0.1295,
+      0.2434,
+      0.1341
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.1841,
+      0.0808
+     ]
+    },
+    {
+     "member": "tyl:EnterpriseSoftwareSegmentMember",
+     "label": "Enterprise Software Segment",
+     "values": [
+      973000,
+      2008000,
+      1879000,
+      1894000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0281,
+      0.0585,
+      0.0482,
+      0.0529
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.9311,
+      -0.0568
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      29307000,
+      27869000,
+      27589000,
+      29114000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8465,
+      0.812,
+      0.7083,
+      0.813
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0586,
+      0.0447
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     34621000,
+     34322000,
+     38949000,
+     35812000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:SubscriptionAndCirculationMember",
+     "label": "Subscription and Circulation",
+     "values": [
+      1159512000,
+      1342931000,
+      1586203000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5941,
+      0.6282,
+      0.6801
+     ],
+     "growth_yoy": [
+      null,
+      0.1582,
+      0.1812
+     ]
+    },
+    {
+     "member": "us-gaap:MaintenanceMember",
+     "label": "Maintenance",
+     "values": [
+      466661000,
+      463132000,
+      445614000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2391,
+      0.2166,
+      0.1911
+     ],
+     "growth_yoy": [
+      null,
+      -0.0076,
+      -0.0378
+     ]
+    },
+    {
+     "member": "tyl:ProfessionalServicesMember",
+     "label": "Professional Services",
+     "values": [
+      249976000,
+      263991000,
+      242700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1281,
+      0.1235,
+      0.1041
+     ],
+     "growth_yoy": [
+      null,
+      0.0561,
+      -0.0807
+     ]
+    },
+    {
+     "member": "tyl:SoftwareLicensesAndRoyaltiesMember",
+     "label": "Software Licenses And Royalties",
+     "values": [
+      38096000,
+      26357000,
+      12816000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0195,
+      0.0123,
+      0.0055
+     ],
+     "growth_yoy": [
+      null,
+      -0.3081,
+      -0.5138
+     ]
+    },
+    {
+     "member": "tyl:HardwareAndOtherMember",
+     "label": "Hardware And Other",
+     "values": [
+      37506000,
+      41392000,
+      45007000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0192,
+      0.0194,
+      0.0193
+     ],
+     "growth_yoy": [
+      null,
+      0.1036,
+      0.0873
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1951751000,
+     2137803000,
+     2332340000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:SubscriptionAndCirculationMember",
+     "label": "Subscription and Circulation",
+     "values": [
+      374989000,
+      405075000,
+      429745000,
+      453724000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6635,
+      0.6795,
+      0.7005,
+      0.7033
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.146,
+      0.1201
+     ]
+    },
+    {
+     "member": "us-gaap:MaintenanceMember",
+     "label": "Maintenance",
+     "values": [
+      112801000,
+      112123000,
+      108874000,
+      105810000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1996,
+      0.1881,
+      0.1775,
+      0.164
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0348,
+      -0.0563
+     ]
+    },
+    {
+     "member": "tyl:ProfessionalServicesMember",
+     "label": "Professional Services",
+     "values": [
+      64050000,
+      58612000,
+      60807000,
+      63166000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1133,
+      0.0983,
+      0.0991,
+      0.0979
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0506,
+      0.0777
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceOtherMember",
+     "label": "Service, Other",
+     "values": [
+      13325000,
+      20307000,
+      14077000,
+      22396000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0236,
+      0.0341,
+      0.0229,
+      0.0347
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0564,
+      0.1029
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     565165000,
+     596117000,
+     613503000,
+     645096000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

@@ -1,0 +1,245 @@
+{
+ "ticker": "SKM",
+ "cik": 1015650,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T18:29:19-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001015650.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526188763/d78252d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SKM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SKM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SK TELECOM CO LTD",
+  "cik": 1015650,
+  "description": {
+   "text": "We are Korea’s leading wireless telecommunications services provider, and our core business is centered on providing wireless and fixed-line telecommunications services. We maintain the largest market share in the Korean market for wireless telecommunications services. Our revenue is primarily generated from our cellular services segment, which accounts for a substantial portion of our consolidated revenue, with additional contributions from our fixed-line telecommunications services and other business segments. We continue to develop, enhance and operate our telecommunications services through ongoing investments in network infrastructure and the adoption of advanced technologies, with a focus on improving service quality, reliability and operational efficiency. In addition to our core telecommunications services, we offer a broad range of complementary services and solutions that leverage our telecommunications platforms and digital infrastructure capabilities. These include IoT solutions and enterprise communications services, cloud services, subscription services, advertising and curated shopping services, AI business-to-consumer (“B2C”) services and AI business-to-business (“B2B”) services. We seek to drive growth by enhancing our core telecommunications services while selectively expanding complementary services that leverage our network infrastructure and customer base.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-29",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-188763",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526188763/d78252d20f.htm"
+  },
+  "description_short": "SK Telecom has been a leader in telecommunications since 1984. Today, the company drives innovation across the full-stack AI ecosystem-encompassing infrastructure, models, and services-to create value for industries, customers, and society.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Telecommunications",
+  "region": "Asia",
+  "sic": "4812",
+  "sic_description": "Radiotelephone Communications",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.sktelecom.com",
+  "headquarters": "Jung-gu, Seoul, KR",
+  "address": {
+   "street": "65, Eulji-ro",
+   "city": "Jung-gu",
+   "state": null,
+   "zip": "04539",
+   "country": "KR",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-29",
+   "metro": "Seoul",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "82-2-6100-1639",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-05-10",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001015650&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-420931",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526420931/d153043d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-392477",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526392477/d141168d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-379284",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526379284/d523682d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-369455",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526369455/d121930d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-369453",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526369453/d120053d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-369444",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526369444/d93094d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-339139",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526339139/d49977d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-333727",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526333727/d141674d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-322146",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526322146/d161068d6k.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2026-07-24",
+   "period": "2026-07-24",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001193125-26-314986",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526314986/d173792d6ka.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-313273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526313273/d172759d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-313271",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526313271/d174183d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-300155",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526300155/d112895d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-289380",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526289380/d44499d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-289375",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526289375/d45719d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-289276",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526289276/d46986d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-283777",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526283777/d29165d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-270234",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526270234/d572641d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-260621",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526260621/d109398d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-246193",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526246193/d147390d6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-04-29"
+ ]
+}

@@ -1,0 +1,303 @@
+{
+ "ticker": "REG",
+ "cik": 910606,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T17:27:26-04:00",
+ "newest_filing_date": "2026-09-11",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000910606.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/910606/000119312526051668/reg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/REG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/REG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "REGENCY CENTERS CORP",
+  "cik": 910606,
+  "description": {
+   "text": "Regency Centers Corporation is a fully integrated real estate company and self-administered and self-managed real estate investment trust that began its operations as a publicly-traded REIT in 1993. Our corporate headquarters are located at One Independent Drive, Suite 114, Jacksonville, Florida. Regency Centers, L.P. is a subsidiary through which Regency Centers Corporation conducts substantially all of its operations, and which owns, directly or indirectly, substantially all of its assets. Our business consists of acquiring, developing, owning, and operating income-producing retail real estate principally located in suburban trade areas with compelling demographics within the United States of America (\"USA\" or \"United States\"). We generate revenues by leasing space to necessity, service, convenience, and value-based retailers serving the essential needs of our communities. Regency has been an S&P 500 Index member since 2017. As of December 31, 2025, we had full or partial equity ownership interests in 481 properties, primarily anchored by market leading grocery stores, encompassing approximately 58.4 million square feet (\"SF\") of gross leasable area (\"GLA\"). Our Pro-rata share of this GLA is approximately 50.5 million SF, including our share of properties owned through unconsolidated real estate partnerships.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-051668",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526051668/reg-20251231.htm"
+  },
+  "description_short": "Regency Centers is a preeminent national owner, operator, and developer of shopping centers located in suburban trade areas with compelling demographics. Our portfolio includes thriving properties merchandised with highly productive grocers, restaurants, service providers, and best-in-class retailers that connect to their neighborhoods, communities, and customers. Operating as a fully integrated real estate company, Regency Centers is a qualified real estate investment trust (REIT) that is self-administered, self-managed, and an S&P 500 Index member.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "FL",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.regencycenters.com",
+  "headquarters": "Jacksonville, Florida",
+  "address": {
+   "street": "One Independent Drive Suite 114",
+   "city": "Jacksonville",
+   "state": "Florida",
+   "zip": "32202",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "9045987000",
+  "employees": {
+   "count": 507,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 507 employees, including 4 part-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526051668/reg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-11",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "REGENCY REALTY CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000910606&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-388861",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526388861/reg-20260911.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-343812",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526343812/reg-20260811.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-337033",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526337033/reg-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-330021",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526330021/reg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-323784",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526323784/reg-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-251156",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526251156/reg-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-243251",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526243251/reg-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-242017",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526242017/reg-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-228412",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526228412/reg-20260518.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001193125-26-210895",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526210895/reg-20260506.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-203537",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526203537/reg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-191872",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526191872/reg-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-151349",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526151349/d140724d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-25",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-122880",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526122880/d939595ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-101147",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526101147/reg-20260311.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-084753",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526084753/reg-20260302.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-063959",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526063959/d800651d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-054934",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526054934/d88725d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-051668",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526051668/reg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-04",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-041311",
+   "url": "https://www.sec.gov/Archives/edgar/data/910606/000119312526041311/reg-20260204.htm"
+  }
+ ],
+ "warnings": []
+}

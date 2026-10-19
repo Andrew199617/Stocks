@@ -1,0 +1,86 @@
+{
+ "ticker": "STRL",
+ "name": "Sterling Infrastructure, Inc.",
+ "sector": "Construction / Infrastructure services",
+ "price": 424.36,
+ "market_cap_b": 13.13,
+ "engine_version": 5,
+ "base_oe_per_share": 14.608164577306333,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Execution-and-integration edge in a per-project bid business: integrated site + shell/electrical model and schedule reliability expanded gross margin from 14.4% (FY2021) to 23.0% (FY2025) with ROIC proxy 31.8% in FY2025, but through-cycle ROIC was ~11-12% (FY2020-21), there is no recurring revenue or switching cost beyond a single project, and larger rivals (Quanta, MasTec, EMCOR) contest every award.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 7.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.7%) vs bull-case tier C (13.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 80.94,
+   "irr": 0.0482
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 135.43,
+   "irr": 0.0667
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 226.49,
+   "irr": 0.0965
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 371.45,
+   "irr": 0.137
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 622.51,
+   "irr": 0.1922
+  }
+ },
+ "iv_at_15": 250.49,
+ "iv_at_12": 345.39,
+ "implied_irr": 0.1044,
+ "implied_irr_base_case": 0.0965,
+ "upside_at_15_pct": -41.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality cyclical contractor, moat 5/10 \u2014 record backlog and a real margin inflection, but at $424.36 it does not clear 15% (10.4% weighted, IV $250); it clears 15% only at or below ~$250.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0667,
+ "irr_bull": 0.137,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 167.24,
+ "iv_at_25": 122.92,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -99672000,
+ "shares_diluted_latest": 30947000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Integrated site + shell model (CEC electrical) \u2014 site win gives pole position on higher-value phases and compresses customer schedules",
+  "Proven execution reputation with repeat mission-critical customers \u2014 92% of E-Infrastructure backlog is mission-critical",
+  "Signed backlog $4.33B at 2026-06-30 (+116% YoY; combined $5.62B) \u2014 multi-year revenue visibility",
+  "Disciplined bid selection \u2014 exiting low-bid transportation work while margins expanded ~9pp in four years"
+ ],
+ "moat_against": [
+  "Per-project competitive bidding \u2014 no recurring revenue, backlog must be re-won",
+  "Cycle and customer concentration \u2014 growth is a leveraged bet on hyperscaler data-center capex",
+  "Scale disadvantage vs Quanta, MasTec and EMCOR on the largest campuses",
+  "Labor-constrained execution plus CEC/Stone Ridge acquisition integration risk",
+  "Building Solutions tied to soft Sun Belt housing"
+ ]
+}

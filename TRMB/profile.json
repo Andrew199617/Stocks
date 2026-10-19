@@ -1,0 +1,288 @@
+{
+ "ticker": "TRMB",
+ "cik": 864749,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T09:39:51-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000864749.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000015/trmb-20260102.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TRMB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TRMB/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TRIMBLE INC.",
+  "cik": 864749,
+  "description": {
+   "text": "Trimble is a leading technology solutions and platform provider, enabling office professionals and field workers to connect their workflows and industry lifecycles, driving a more productive, efficient, and sustainable future. With a focus on the industries that build, maintain, and move the world, the comprehensive depth and breadth of our solutions are transforming the way the world works, making it easier for Trimble customers to focus on what matters—getting the job done right. We innovate at the intersection of the digital and physical worlds with solutions that span the world’s foundational industries, including building, civil and infrastructure construction, geospatial, natural resources, utilities, and transportation. We exist to empower our customers: asset owners; general and specialty contractors; architects, engineers, and designers; surveyors; energy and utility companies; transportation shippers and carriers; as well as state, federal, and municipal governments. Productivity and sustainability are at the heart of who we are—woven into our work internally and through our customers’ application of our technologies. Our solutions provide customers with the ability to improve their work quality while being safe, efficient, and sustainable.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2026-01-02",
+   "accession": "0000864749-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000015/trmb-20260102.htm"
+  },
+  "description_short": "Trimble is a global technology company that connects the physical and digital worlds, transforming the ways work gets done. With relentless innovation in precise positioning, modeling and data analytics, Trimble enables essential industries including construction, geospatial and transportation. Whether it's helping customers build and maintain infrastructure, design and construct buildings, optimize global supply chains or map the world, Trimble is at the forefront, driving productivity and progress.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3829",
+  "sic_description": "Measuring & Controlling Devices, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0102",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.trimble.com",
+  "headquarters": "Westminster, CO",
+  "address": {
+   "street": "10368 Westmoor Drive",
+   "city": "Westminster",
+   "state": "CO",
+   "zip": "80021",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(720) 887-6100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-06-26",
+  "first_sec_filing_form": "11-K",
+  "former_names": [
+   "TRIMBLE NAVIGATION LTD /CA/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000864749&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000864749-26-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000111/trmb-20261002.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-12",
+   "period": "2026-07-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000864749-26-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000108/trmb-20260703.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000864749-26-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000106/trmb-20260812.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-26",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0000864749-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000073/trmb-20260526.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [
+    "5.02",
+    "8.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000864749-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000071/trmb-20260526.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-04-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000864749-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000063/trmb-20260403.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000864749-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000061/trmb-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000864749-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000042/trmb-20260409.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000864749-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000024/trmb-20260324.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2026-01-02",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000864749-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000015/trmb-20260102.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000864749-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474926000006/trmb-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-03",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation; Other events",
+   "accession": "0000864749-25-000307",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000307/trmb-20251203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-10-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000864749-25-000286",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000286/trmb-20251003.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000864749-25-000283",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000283/trmb-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-18",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000864749-25-000253",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000253/trmb-20250818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-07-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000864749-25-000245",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000245/trmb-20250704.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000864749-25-000243",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000243/trmb-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-18",
+   "period": "2025-06-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000864749-25-000174",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000174/trmb-20250617.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-12",
+   "period": "2025-04-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000864749-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000113/trmb-20250404.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000864749-25-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/864749/000086474925000105/trmb-20250507.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

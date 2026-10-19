@@ -1,0 +1,301 @@
+{
+ "ticker": "SWKS",
+ "cik": 4127,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T14:58:47-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000004127.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/4127/000000412725000085/swks-20251003.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SWKS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SWKS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SKYWORKS SOLUTIONS, INC.",
+  "cik": 4127,
+  "description": {
+   "text": "Skyworks Solutions, Inc., together with its consolidated subsidiaries (“Skyworks” or the “Company”), is a leading developer, manufacturer and provider of analog and mixed-signal semiconductor products and solutions for numerous applications, including aerospace, automotive, broadband, cellular infrastructure, connected home, defense, entertainment and gaming, industrial, medical, smartphone, tablet, and wearables. Over the past two decades, Skyworks has made important investments to address key network technologies, from cellular to advanced Wi-Fi®, enhanced GPS, and Bluetooth®, among others. Capitalizing on both organic growth and strategic acquisitions, we are targeting high-growth verticals, while at the same time, seeking to diversify our revenue and customer set. Targeted investments in next-generation technology and solutions, technical talent, and fabrication capabilities have created the opportunity to expand into high-growth market segments, including electric and hybrid vehicles, industrial and motor control, power supply, 5G wireless infrastructure, optical data communication, data center, automotive, smart home, and several other applications.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-07",
+   "period": "2025-10-03",
+   "accession": "0000004127-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412725000085/swks-20251003.htm"
+  },
+  "description_short": "Skyworks Solutions, Inc. is empowering the wireless networking revolution. Skyworks is a leading developer, manufacturer and provider of analog and mixed-signal semiconductors and solutions for numerous applications, including aerospace, automotive, broadband, cellular infrastructure, connected home, defense, entertainment and gaming, industrial, medical, smartphone, tablet and wearables. Skyworks is a global company with engineering, marketing, operations, sales and support facilities located throughout Asia, Europe and North America and is a member of the S&P 500 market index (Nasdaq: SWKS).",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1002",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.skyworksinc.com",
+  "headquarters": "Irvine, California",
+  "address": {
+   "street": "5260 California Avenue",
+   "city": "Irvine",
+   "state": "California",
+   "zip": "92617",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-07"
+  },
+  "phone": "9492313000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-08",
+  "first_sec_filing_form": "8-K",
+  "former_names": [
+   "SKYWORKS SOLUTIONS INC",
+   "ALPHA INDUSTRIES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000004127&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-114359",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926114359/tm2626934d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [
+    "2.01",
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Officer/director change; Other events",
+   "accession": "0001104659-26-113538",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926113538/tm2626934d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-112129",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926112129/tm2626657d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-104395",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926104395/tm2624606d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-04",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001104659-26-093355",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926093355/tm2622643d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-089397",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926089397/tm2621905d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-089381",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926089381/tm2620808d3_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-07-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000004127-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000049/swks-20260703.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-27",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000004127-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000047/swks-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000004127-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000045/swks-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-073096",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926073096/tm2613769d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-064624",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926064624/tm2615189d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-064574",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926064574/tm2614811d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-13",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000004127-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000031/swks-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-04-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000004127-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000015/swks-20260403.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000004127-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000014/swks-20260505.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-03",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-039476",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926039476/tm261577-5_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-013519",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000110465926013519/tm265879d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-05",
+   "period": "2026-01-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000004127-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000008/swks-20260102.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000004127-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000005/swks-20260203.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2025-11-07"
+ ]
+}

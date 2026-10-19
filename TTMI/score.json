@@ -1,0 +1,89 @@
+{
+ "ticker": "TTMI",
+ "name": "TTM Technologies, Inc.",
+ "sector": "Electronic Manufacturing / Advanced PCBs & RF Components",
+ "price": 93.88,
+ "market_cap_b": 9.9,
+ "engine_version": 5,
+ "base_oe_per_share": 0.3654,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 3,
+ "moat_justification": "Weak moat: a cyclical PCB/RF manufacturer whose filed ROIC proxy ran 1.2-5.3% in six of the last nine fiscal years (only FY2018 12.0% and FY2025 10.3% above high-single digits) and whose gross margin lived at 16-19.5% for a decade before the AI mix shift lifted it to 20.7% (FY2025) / 21.2% (TTM). Current strength is a technology-and-capacity position in advanced N+M asymmetrical PCBs plus long defense qualifications \u2014 real, but contestable by Asian PCB rivals and hostage to the hyperscaler capex cycle; no network effects, no owned demand, limited pricing power through a cycle.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "BASE_DIVERGENCE: latest FY OE/share -0.40 vs 3-yr median 0.04 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 10.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.46,
+   "irr": 0.0284
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.75,
+   "irr": 0.0304
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.8,
+   "irr": 0.0337
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 8.22,
+   "irr": 0.0378
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 12.67,
+   "irr": 0.0452
+  }
+ },
+ "iv_at_15": 5.65,
+ "iv_at_12": 7.65,
+ "implied_irr": 0.0336,
+ "implied_irr_base_case": 0.0337,
+ "upside_at_15_pct": -94.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real AI/defense growth story with a weak moat (3/10) and a capex supercycle that swallows owner's earnings \u2014 even on a maintenance-capex base and guided growth it does not clear 15% at $93.88 (weighted IRR 3.36%, weighted IV@15% $5.65; clears 15% only below ~$5.65); the price capitalizes the bull case and then some, it does not discount it.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0304,
+ "irr_bull": 0.0378,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 3.86,
+ "iv_at_25": 2.89,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 414917000,
+ "shares_diluted_latest": 105453000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Advanced N+M asymmetrical PCB technology for AI data centers \u2014 one of few scaled suppliers, capacity being added brownfield at speed",
+  "Aerospace & defense franchise: mission systems, RF/microwave assemblies, $1.7B defense backlog and long program qualifications that are sticky once designed in",
+  "Scale: one of the world's largest PCB manufacturers, ~80% of sales tied to AI and defense megatrends per management",
+  "Mix shift is lifting filed gross margin (16.5-18.5% FY2022-24 to 20.7% FY2025, 21.2% TTM) and ROIC proxy to 10.3% in FY2025"
+ ],
+ "moat_against": [
+  "Filed ROIC proxy was 1.2-5.3% in six of the last nine years \u2014 through-cycle returns at or below the cost of capital",
+  "PCB fabrication is capital-intensive and contestable: Asian competitors (and customer in-sourcing) can add the same capacity; the current edge is timing, not structure",
+  "Demand concentration in the hyperscaler AI capex cycle \u2014 the same cycle now driving a $1.2B 2025-29 capex program plus a further $400M announced 2026-10-12; if AI spend digests, the new capacity is stranded cost",
+  "New capacity concentrated in China and Penang, Malaysia \u2014 tariff, export-control and geopolitical exposure",
+  "SBC rising fast ($22.9M FY2024-label to $41.7M FY2025 to $61.3M TTM) and share count creeping up (~0.5%/yr) \u2014 owners fund part of the growth story"
+ ]
+}

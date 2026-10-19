@@ -1,0 +1,297 @@
+{
+ "ticker": "ULS",
+ "cik": 1901440,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T08:06:46-04:00",
+ "newest_filing_date": "2026-10-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001901440.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000005/uls-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ULS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ULS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "UL Solutions Inc.",
+  "cik": 1901440,
+  "description": {
+   "text": "UL Solutions Inc. (together with its consolidated subsidiaries, “UL Solutions”, the “Company”, “we”, “our”, and “us”) is a global safety science leader that provides Testing, Inspection and Certification (“TIC”) services and related software and advisory offerings to customers worldwide. We work for a safer world. Our mission drives our actions, inspires our employees and is the key to our success. We strive to be our customers’ most trusted science-based safety, security and sustainability partner. Our history dates back to our founding in 1894 as part of the nonprofit Underwriters Electrical Bureau, a predecessor to Underwriters Laboratories Inc. (“UL Research Institutes”), UL Standards & Engagement and UL Solutions. UL Research Institutes is the sole member of UL Standards & Engagement, which controls the majority of the voting power of our common stock. As the largest TIC services provider headquartered in North America (by revenue) with a global network of laboratories, we provided a comprehensive set of product safety, security and sustainability solutions to more than 80,000 customers across over 110 countries in 2025. Our distinguished heritage and our long history of operating at the forefront of safety science enables us to achieve and maintain more than 650 technical accreditations and 76 commercial software solutions, and to remain active in over 1,200 standards panels and technical committees globally, which underpins the expertise we offer to our customers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001901440-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000005/uls-20251231.htm"
+  },
+  "description_short": "A global leader in applied safety science, UL Solutions (NYSE: ULS) transforms safety, security and sustainability challenges into opportunities for customers in more than 110 countries. UL Solutions delivers testing, inspection and certification services, advisory offerings and software solutions that support customers' product innovation and business growth. The UL Mark serves as a recognized symbol of trust in customers' products and reflects an unwavering commitment to advancing UL Solutions' safety mission. The company helps customers innovate, launch new products and services, navigate global markets and complex supply chains, and grow sustainably and responsibly into the future. Its science is customers' advantage.",
+  "industry": "Precision Instruments",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "8734",
+  "sic_description": "Services-Testing Laboratories",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ul.com",
+  "headquarters": "Northbrook, Illinois",
+  "address": {
+   "street": "333 Pfingsten Road",
+   "city": "Northbrook",
+   "state": "Illinois",
+   "zip": "60062",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "(847) 272-8800",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-type / per-location breakdown with no filed total",
+   "evidence": "As of December 31, 2025, we had a total of 14,587 full-time employees and 264 part-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000005/uls-20251231.htm"
+  },
+  "first_sec_filing": "2023-11-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "UL Solutions Inc.",
+   "UL Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001901440&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-064246",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000162828026064246/uls-20261001.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001901440-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000023/uls-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001901440-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000021/uls-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001901440-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000019/uls-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001901440-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000015/uls-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001901440-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000012/uls-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001901440-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000009/uls-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-13",
+   "period": "2026-04-13",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-152920",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000119312526152920/d900814d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-140022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000119312526140022/d65278ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001901440-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000005/uls-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001901440-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000003/uls-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-055586",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000162828025055586/uls-20251203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001901440-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144025000047/uls-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "2.05",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs",
+   "accession": "0001901440-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144025000044/uls-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "3.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation; Change to security holders' rights",
+   "accession": "0001628280-25-046843",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000162828025046843/uls-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001901440-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144025000038/uls-20250812.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001901440-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144025000030/uls-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-037593",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000162828025037593/uls-20250805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001901440-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144025000023/uls-20250520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001901440-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144025000019/uls-20250331.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a per-type / per-location breakdown with no filed total in the 10-K filed 2026-02-19: \"As of December 31, 2025, we had a total of 14,587 full-time employees and 264 part-time employees.\""
+ ]
+}

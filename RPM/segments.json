@@ -1,0 +1,366 @@
+{
+ "ticker": "RPM",
+ "cik": 110621,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-147191",
+   "filed": "2026-04-08",
+   "period": "2026-02-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/110621/000119312526147191/rpm-20260228_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-312142",
+   "filed": "2026-07-22",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/110621/000119312526312142/rpm-20260531_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-415321",
+   "filed": "2026-10-06",
+   "period": "2026-08-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/110621/000119312526415321/rpm-20260831_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-31",
+    "2025-05-31",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rpm:ConstructionProductsGroupSegmentMember",
+     "label": "Construction Products Group Segment",
+     "values": [
+      2827813000,
+      2874452000,
+      3069785000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3855,
+      0.3899,
+      0.3904
+     ],
+     "growth_yoy": [
+      null,
+      0.0165,
+      0.068
+     ]
+    },
+    {
+     "member": "rpm:ConsumerSegmentMember",
+     "label": "Consumer Segment",
+     "values": [
+      2548858000,
+      2502376000,
+      2661723000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3475,
+      0.3394,
+      0.3385
+     ],
+     "growth_yoy": [
+      null,
+      -0.0182,
+      0.0637
+     ]
+    },
+    {
+     "member": "rpm:PerformanceCoatingsGroupSegmentMember",
+     "label": "Performance Coatings Group Segment",
+     "values": [
+      1958606000,
+      1995816000,
+      2131914000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.267,
+      0.2707,
+      0.2711
+     ],
+     "growth_yoy": [
+      null,
+      0.019,
+      0.0682
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7335277000,
+     7372644000,
+     7863422000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-02-28",
+    "2025-05-31",
+    "2025-08-31",
+    "2026-02-28",
+    "2026-05-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q3 FY2024",
+    "Q4 FY2024",
+    "Q1 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rpm:ConstructionProductsGroupSegmentMember",
+     "label": "Construction Products Group Segment",
+     "values": [
+      494845000,
+      831134000,
+      851997000,
+      546665000,
+      904235000,
+      859209000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3351,
+      0.3992,
+      0.4031,
+      0.34,
+      0.4052,
+      0.3878
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1047,
+      0.088,
+      0.0085
+     ]
+    },
+    {
+     "member": "rpm:ConsumerSegmentMember",
+     "label": "Consumer Segment",
+     "values": [
+      523297000,
+      714636000,
+      690153000,
+      564455000,
+      764799000,
+      726734000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3544,
+      0.3432,
+      0.3265,
+      0.351,
+      0.3427,
+      0.328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0787,
+      0.0702,
+      0.053
+     ]
+    },
+    {
+     "member": "rpm:PerformanceCoatingsGroupSegmentMember",
+     "label": "Performance Coatings Group Segment",
+     "values": [
+      458420000,
+      536205000,
+      571593000,
+      496829000,
+      562801000,
+      629650000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3105,
+      0.2575,
+      0.2704,
+      0.309,
+      0.2522,
+      0.2842
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0838,
+      0.0496,
+      0.1016
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1476562000,
+     2081975000,
+     2113743000,
+     1607949000,
+     2231835000,
+     2215593000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-08-31",
+    "2026-08-31"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q1 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rpm:ConstructionProductsGroupSegmentMember",
+     "label": "Construction Products Group Segment",
+     "values": [
+      18923000,
+      19585000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3677,
+      0.369
+     ],
+     "growth_yoy": [
+      null,
+      0.035
+     ]
+    },
+    {
+     "member": "rpm:ConsumerSegmentMember",
+     "label": "Consumer Segment",
+     "values": [
+      18912000,
+      18896000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3675,
+      0.356
+     ],
+     "growth_yoy": [
+      null,
+      -0.0008
+     ]
+    },
+    {
+     "member": "rpm:PerformanceCoatingsGroupSegmentMember",
+     "label": "Performance Coatings Group Segment",
+     "values": [
+      12329000,
+      13267000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2396,
+      0.25
+     ],
+     "growth_yoy": [
+      null,
+      0.0761
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     51464000,
+     53075000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: rows sum to 97.5% of the consolidated total for 2026-08-31 (ties_to_total: false)"
+ ],
+ "complete": true
+}

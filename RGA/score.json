@@ -1,0 +1,107 @@
+{
+ "ticker": "RGA",
+ "name": "Reinsurance Group of America, Incorporated",
+ "sector": "Finance / Life & Health Reinsurance (Insurance)",
+ "price": 266.69,
+ "market_cap_b": 17.81,
+ "engine_version": 5,
+ "base_oe_per_share": 43.86363636363637,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate moat 6/10: a concentrated life/health reinsurance oligopoly where RGA is the leading pure-play, built on decades of biometric data, underwriting expertise, A+ rated balance-sheet capacity and long-duration in-force treaties that switch slowly \u2014 against no structural pricing power over mortality/longevity outcomes, capacity competition on large asset-intensive blocks including from PE-backed rivals, structural earnings volatility from biometric shocks and remeasurements, and capital/ratings constraints. Measured returns support a moderate rather than high score: GAAP ROE was 9.93% (FY2023), 6.63% (FY2024) and 8.78% (FY2025) on AOCI-swollen equity in fundamentals.json, while the company's adjusted operating ROE was 17.4% TTM at Q2 2026 \u2014 good, but earned in a risk business whose bad years are set by claims experience, not by the franchise.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: EDGAR companyfacts CIK 898174, PaymentsToAcquirePropertyPlantAndEquipment: FY2022 $25,000,000 (10-K filed 2023-02-24) and YTD Q3 2023 $20,000,000 (10-Q filed 2023-11-03); no FY fact filed for 2023, 2024 or 2025 thereafter); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier B (18.7%) vs bull-case tier S (30.0%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 212.48,
+   "irr": 0.123
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 348.13,
+   "irr": 0.1873
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 483.16,
+   "irr": 0.2409
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 663.4,
+   "irr": 0.3002
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 1026.08,
+   "irr": 0.3933
+  }
+ },
+ "iv_at_15": 483.37,
+ "iv_at_12": 651.9,
+ "implied_irr": 0.2392,
+ "implied_irr_base_case": 0.2409,
+ "upside_at_15_pct": 81.2,
+ "tier_by_numbers": "A",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Global life/health reinsurer, moat 6/10 \u2014 engine prints Tier A on the TTM base (weighted IRR 23.92%, IV@15% $483.37 vs $266.69) but that OCF base capitalizes insurer float/reserve growth, so the final tier is softened to B at low confidence; it clears 15% at ~$483 on engine numbers, with a materially lower true margin of safety.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1873,
+ "irr_bull": 0.3002,
+ "tier_bear": "B",
+ "tier_bull": "S",
+ "iv_at_20": 333.64,
+ "iv_at_25": 252.46,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1542000000,
+ "shares_diluted_latest": 66800000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact: the OCF-based OE base capitalizes float/reserve growth (NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025 \u2014 FY2024 OCF $9,370,000,000 vs net income $717,000,000, driven by an $8,811,000,000 increase in future policy benefits and other reinsurance balances from large assumed blocks; FY2025 OCF $4,091,000,000 vs net income $1,182,000,000), so tier-by-numbers A overstates distributable owner's earnings; softened one notch to B, confidence low \u2014 same treatment as PFG/HIG/ACGL/WRB, and the TTM bear case also tiers B.",
+ "moat_for": [
+  "Concentrated global life/health reinsurance oligopoly \u2014 few scaled rivals (Munich Re, Swiss Re, Hannover Re) and high balance-sheet/rating barriers to entry",
+  "Decades of proprietary biometric data and underwriting expertise \u2014 the core input for pricing mortality/longevity risk cannot be bought quickly",
+  "Long-duration in-force treaties and embedded client relationships \u2014 reinsurance programs renew with incumbents and switch slowly",
+  "Diversified global platform (U.S./LatAm, Canada, EMEA, Asia Pacific plus financial solutions) \u2014 regional and product diversification dampens any single mortality pool"
+ ],
+ "moat_against": [
+  "No pricing power over biometric outcomes \u2014 mortality/longevity experience and assumption updates drive earnings, not RGA's price list",
+  "Large asset-intensive blocks are capacity-competed, including by private-equity-backed reinsurers with cheaper asset origination",
+  "Earnings volatility is structural \u2014 COVID-era mortality, remeasurement gains/losses and investment marks swing GAAP results year to year",
+  "Capital and ratings hostage \u2014 growth is capped by insurance capital rules and the need to defend the A+ financial strength rating"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 30000000.0,
+   "kind": "estimate",
+   "source": "EDGAR companyfacts CIK 898174, PaymentsToAcquirePropertyPlantAndEquipment: FY2022 $25,000,000 (10-K filed 2023-02-24) and YTD Q3 2023 $20,000,000 (10-Q filed 2023-11-03); no FY fact filed for 2023, 2024 or 2025 thereafter"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 43.9242,
+  "base_oe_with_override": 43.8636,
+  "base_oe_impact_pct": -0.138,
+  "weighted_irr_without_override": 0.2394,
+  "weighted_irr_with_override": 0.2392,
+  "weighted_irr_impact_pp": -0.027,
+  "unblocks_tier": true
+ }
+}

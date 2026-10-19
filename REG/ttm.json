@@ -1,0 +1,144 @@
+{
+ "ticker": "REG",
+ "cik": 910606,
+ "entity": "REGENCY CENTERS CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 827692000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 161031000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 152729000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 819390000
+  },
+  "capex": {
+   "fy": 435112000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 107287890.4109589,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 107287890.4109589,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 435112000.0
+  },
+  "sbc": {
+   "fy": 19459000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 4966000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 5279000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 19772000
+  },
+  "shares_diluted": {
+   "fy": null,
+   "fy_period": null,
+   "fy_tag": null,
+   "ytd_prior": null,
+   "ytd_prior_period": null,
+   "ytd_prior_tag": null,
+   "ytd_current": 182234000.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 819390000,
+ "ttm_capex": 435112000.0,
+ "ttm_sbc": 19772000,
+ "ttm_shares_diluted": 182234000.0,
+ "ttm_oe_total": 364506000.0,
+ "ttm_oe_per_share": 2.000208523107653,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "shares",
+   "value": 182234000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 14 Earnings per Share and Unit, 'Parent Company Earnings per Share' table (in thousands, except per share data): weighted average common shares outstanding for diluted EPS 182,234 in 2025 (183,040 in 2024; 176,371 in 2023); diluted EPS $2.82 / $2.11 / $2.04 on net income attributable to common shareholders of $513,810 / $386,738 / $359,500 thousand. EDGAR companyfacts carries no weighted-average share series for CIK 910606 after FY2020 (the filer tags share counts with dimensions the aggregated facts drop), so the engine fell back to point-in-time CommonStockSharesOutstanding counts (184,581,070 / 181,361,454 / 182,902,234).",
+   "legs_filled": {
+    "ytd_current": {
+     "amount": 182234000.0,
+     "prorated": false,
+     "note": "share counts are weighted averages, not flows \u2014 used unprorated as the TTM denominator"
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 435112000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), consolidated statements of cash flows and MD&A Summary of Cash Flow Activity: 'Real estate development and capital improvements' $435,112 thousand in 2025 and $343,368 thousand in 2024; the 2023 figure $232,855 thousand is the same line as tagged PaymentsToDevelopRealEstateAssets in EDGAR companyfacts (10-Q YTD facts of the same tag give Q1 2025 $101,386 thousand and Q1 2026 $105,071 thousand). Regency files no PaymentsToAcquirePropertyPlantAndEquipment or any other engine candidate capex tag in any year \u2014 its capital spending is tagged PaymentsToDevelopRealEstateAssets, which the engine does not read, so the engine has no filed capex value (last_filed_value null).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 435112000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-03-31"
+     ],
+     "amount": 107287890.4109589,
+     "days": 90,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-03-31"
+     ],
+     "amount": 107287890.4109589,
+     "days": 90,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

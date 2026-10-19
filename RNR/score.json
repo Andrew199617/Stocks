@@ -1,0 +1,110 @@
+{
+ "ticker": "RNR",
+ "name": "RenaissanceRe Holdings Ltd.",
+ "sector": "Finance / Property & Casualty Reinsurance",
+ "price": 351.06,
+ "market_cap_b": 16.32,
+ "engine_version": 5,
+ "base_oe_per_share": 77.78342619882538,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "A top-tier global property-catastrophe reinsurance franchise plus the Capital Partners third-party capital platform (third-party capital of just over $9B at December 31, 2025, ~$8.5B at mid-2026; fee income $328.9M in FY2025 and $83.0M in Q2 2026) are real differentiators \u2014 RenRe matches efficient capital to risk and earns a fee stream peers without a comparable ILS/joint-venture platform do not. But reinsurance capacity itself is close to a commodity: no network effects, low switching costs, price set by the cycle, and pricing is now softening (U.S. property-catastrophe rates down high-teens at the mid-2026 renewals). Returns confirm a narrow moat: attributable net income on year-end equity was strongly positive in the hard-market years 2023-2025 ($2,561M / $9,455M, $1,870M / $10,574M, $2,682M / $11,609M) but the company lost $1,061M in 2022 and $40M in 2021 \u2014 through a full cycle, returns swing around the cost of capital rather than staying well above it. roic_proxy and gross margin are not computable for this filer (fundamentals.json carries no operating-income/COGS series for an insurer); ROE on filing net income and equity is the substitute evidence.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000913144-26-000012), Consolidated Statements of Cash Flows (p. F-8): the investing-activities section lists only fixed-maturity / short-term / equity / other investment flows, derivatives settlements, investments in other ventures and the Validus purchase \u2014 there is no purchases-of-property-and-equipment (or any capex) line for FY2025, FY2024 or FY2023, and the Consolidated Balance Sheets (p. F-5) carry no property-and-equipment line. The statement fully reconciles without one: FY2025 operating $3,693,107 thousand + investing $(2,215,809) thousand + financing $(1,410,503) thousand + FX $(12,218) thousand = the reported net increase in cash of $54,577 thousand exactly; FY2024: $4,164,822 - $3,060,856 - $1,287,515 - $17,365 = reported $(200,914) thousand exactly; FY2023: $1,911,634 - $3,822,636 + $2,588,639 + $5,542 = reported $683,179 thousand exactly. EDGAR companyfacts for CIK 913144 contains no capex fact under any candidate tag in any year.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier A (22.3%) vs bull-case tier S (34.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 315.88,
+   "irr": 0.136
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 552.66,
+   "irr": 0.2227
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 725.19,
+   "irr": 0.2768
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 980.58,
+   "irr": 0.3446
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 1423.72,
+   "irr": 0.4416
+  }
+ },
+ "iv_at_15": 720.19,
+ "iv_at_12": 958.22,
+ "implied_irr": 0.2731,
+ "implied_irr_base_case": 0.2768,
+ "upside_at_15_pct": 105.1,
+ "tier_by_numbers": "S",
+ "tier_final": "A",
+ "confidence": "low",
+ "one_liner": "Global property-catastrophe reinsurer with a real Capital Partners fee franchise, moat 5/10 \u2014 engine prints Tier S (weighted IRR 27.31%, IV@15% $720.19 vs $351.06) on an OCF base that capitalizes float and noncontrolling-interest cash flow, so the final tier is softened to A at low confidence; on engine numbers it clears 15% at ~$720, ~$553 (bear IV) with a margin of safety.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.2227,
+ "irr_bull": 0.3446,
+ "tier_bear": "A",
+ "tier_bull": "S",
+ "iv_at_20": 506.52,
+ "iv_at_25": 389.07,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 598020000,
+ "shares_diluted_latest": 46483000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "exit_alert_eligible": false,
+ "tier_override_reason": "Insurer-float softening (Andrew's standing rule, 2026-10-15; same treatment as PFG/ACGL/EG): the OCF-based OE base capitalizes float and third-party-capital economics \u2014 FY2025 operating cash flow of $3,693,107,000 includes $935,409,000 of net income attributable to redeemable noncontrolling interests and a $998,854,000 increase in the reserve for claims and claim expenses (both FY2025 10-K), and the $77.78/share base sits well above the same filing's diluted EPS available to common shareholders of $56.03. Tier by numbers S (weighted IRR 27.31%) therefore overstates distributable owner's earnings to common shareholders; softened one notch to A, which is also the bear end of the TIER_BAND (bear A 22.27% / bull S 34.46%). Confidence low (SECTOR_MODEL_MISMATCH + WIDE_SCENARIO_SPREAD 4.5x).",
+ "moat_for": [
+  "Leading global property-catastrophe reinsurance franchise \u2014 72.8% combined ratio in Q2 2026, book value per share +24.8% YoY to $264.77",
+  "Capital Partners third-party capital platform: >$9B of partner/ILS capital at Dec 31, 2025 and $328.9M of FY2025 fee income \u2014 capacity and fees peers cannot easily replicate",
+  "Validus Re acquisition (closed Nov 1, 2023) added treaty scale and diversification into casualty & specialty",
+  "Disciplined cycle management \u2014 gross premiums written down 12.5% YoY in Q2 2026 into softening prices, more retrocession bought instead of chasing share",
+  "Aggressive, accretive buybacks: ~11.5M shares (~22% of the starting count) repurchased for ~$3B over the two years to Q2 2026"
+ ],
+ "moat_against": [
+  "Reinsurance capacity is close to a commodity \u2014 no network effects, low switching costs, price set by the cycle; property-cat pricing fell high-teens at mid-2026 renewals",
+  "Catastrophe earnings volatility: net losses in 2021 and 2022 (2022 attributable net loss $1,061M) \u2014 a single severe cat year can erase several benign years of OE",
+  "Casualty & specialty is the weak leg: 103.3% combined ratio and an underwriting loss in Q2 2026, adverse prior-year development, social-inflation exposure",
+  "Reserve risk is the balance sheet: $22,302M of claim reserves at Dec 31, 2025 are estimates, and prior-year development swings earnings both ways",
+  "Third-party capital is rented, not owned \u2014 partner capital takes its share of the best underwriting economics ($935M of FY2025 net income attributable to redeemable noncontrolling interests) and can be returned at cycle turns"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000913144-26-000012), Consolidated Statements of Cash Flows (p. F-8): the investing-activities section lists only fixed-maturity / short-term / equity / other investment flows, derivatives settlements, investments in other ventures and the Validus purchase \u2014 there is no purchases-of-property-and-equipment (or any capex) line for FY2025, FY2024 or FY2023, and the Consolidated Balance Sheets (p. F-5) carry no property-and-equipment line. The statement fully reconciles without one: FY2025 operating $3,693,107 thousand + investing $(2,215,809) thousand + financing $(1,410,503) thousand + FX $(12,218) thousand = the reported net increase in cash of $54,577 thousand exactly; FY2024: $4,164,822 - $3,060,856 - $1,287,515 - $17,365 = reported $(200,914) thousand exactly; FY2023: $1,911,634 - $3,822,636 + $2,588,639 + $5,542 = reported $683,179 thousand exactly. EDGAR companyfacts for CIK 913144 contains no capex fact under any candidate tag in any year."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 77.7834,
+  "base_oe_with_override": 77.7834,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.2731,
+  "weighted_irr_with_override": 0.2731,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,84 @@
+{
+ "ticker": "ZBH",
+ "name": "ZIMMER BIOMET HOLDINGS, INC.",
+ "sector": "Healthcare \u2014 Medical Devices (Orthopedics)",
+ "price": 94.98,
+ "market_cap_b": 18.87,
+ "engine_version": 5,
+ "base_oe_per_share": 7.332990221307257,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Leading share in knees/hips and durable ~70% gross margins, but roic_proxy in fundamentals.json ran 0.14%-4.5% FY2018-22 and only 6.88%/6.19%/4.75% FY2023-25 \u2014 below the cost of capital through the cycle on an acquisition-inflated capital base (~$10.6B goodwill + ~$8.8B intangibles from Biomet). Moderate/narrow moat.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (9.1%) vs bull-case tier C (14.9%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 31.62,
+   "irr": 0.0633
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 50.87,
+   "irr": 0.0914
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 69.58,
+   "irr": 0.1175
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 94.07,
+   "irr": 0.1489
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 142.2,
+   "irr": 0.202
+  }
+ },
+ "iv_at_15": 74.49,
+ "iv_at_12": 99.49,
+ "implied_irr": 0.1243,
+ "implied_irr_base_case": 0.1175,
+ "upside_at_15_pct": -21.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Solid orthopedics franchise, moat 5/10 \u2014 at $94.98 it does not clear 15% (weighted IRR 12.4%, IV@15% $74.49); it clears the hurdle at ~$74.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0914,
+ "irr_bull": 0.1489,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 52.11,
+ "iv_at_25": 39.84,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 6927200000,
+ "shares_diluted_latest": 198700000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1/#2 share in large-joint reconstruction (knees, hips)",
+  "Surgeon training and hospital/GPO switching friction",
+  "ROSA robotics ecosystem ties procedures to the implant platform",
+  "Gross margin held ~69-73% for a decade \u2014 pricing power exists"
+ ],
+ "moat_against": [
+  "ROIC proxy below cost of capital through the whole measured cycle",
+  "Management-guided pricing erosion up to ~100bps/yr",
+  "Knees nearly flat (+0.4% Q2 2026) vs Stryker/DePuy robotics competition",
+  "Adjusted margins falling on acquisition mix (Paragon 28, Monogram); China volatility"
+ ]
+}

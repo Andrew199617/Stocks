@@ -1,0 +1,106 @@
+{
+ "ticker": "SJM",
+ "name": "The J. M. Smucker Company",
+ "sector": "Consumer Staples / Packaged foods",
+ "price": 127.43,
+ "market_cap_b": 13.62,
+ "engine_version": 5,
+ "base_oe_per_share": 7.359214218896165,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow brand moat: leading shelf positions (Folgers/Dunkin'/Cafe Bustelo coffee, Jif, Uncrustables, Meow Mix/Milk-Bone) with proven price realization (coffee net price +21pp in Q4 FY26), but the measured economics are mid-single-digit \u2014 ROIC proxy ran only ~5-8% in clean years (FY17-22, FY24) and was negative/near-zero in the impairment years, GAAP gross margin swung 32.8%-38.8% over the last five fiscal years on coffee commodity costs and derivative marks, categories are mature with falling volumes (Q4 FY26 volume/mix -4pp), and the Hostess/Sweet Baked Snacks acquisition has absorbed ~$2.9B of impairments since FY25 \u2014 brands that earn ~6% on a goodwill-heavy capital base do not clear the 7+ moat bar.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2023 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended April 30, 2026 (filed 2026-06-09), EPS note and the FY26 results non-GAAP reconciliation (Ex. 99.1, 2026-06-09): 'Weighted-average shares outstanding - assuming dilution' 106.9M for FY2026 (FY2025: 106.6M), computed under the treasury stock method. EDGAR companyfacts carries only the non-diluted CommonStockSharesOutstanding count for FY2024-2026 (106,194,281 / 106,425,081 / 106,661,858), which is the DATA_GAP:shares fallback the engine printed.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 10.59 vs 3-yr median 7.36 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 8.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (6.8%) vs bull-case tier C (10.9%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 28.08,
+   "irr": 0.0489
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 45.21,
+   "irr": 0.0676
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 61.89,
+   "irr": 0.0859
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 83.76,
+   "irr": 0.1089
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 126.83,
+   "irr": 0.1495
+  }
+ },
+ "iv_at_15": 66.3,
+ "iv_at_12": 87.9,
+ "implied_irr": 0.0911,
+ "implied_irr_base_case": 0.0859,
+ "upside_at_15_pct": -48.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Staple-brand cash generator with a busted Hostess acquisition, moat 5/10 \u2014 on the scored median base OE $7.36/share the weighted IRR is 9.11% (IV@15% $66.30 vs $127.43), and even the tariff-flattered TTM base only reaches 15.40% / $131.61; it clears the 15% hurdle only below ~$66 on the scored base.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0676,
+ "irr_bull": 0.1089,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 46.86,
+ "iv_at_25": 36.14,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 6905100000,
+ "shares_diluted_latest": 106900000.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Leading branded shelf positions: Folgers/Dunkin'/Cafe Bustelo in U.S. retail coffee, Jif peanut butter, Uncrustables (>$1B sales platform, still growing high-single-digits), Meow Mix/Milk-Bone in pet",
+  "Proven pricing power \u2014 coffee net price realization +21pp in Q4 FY26 and +13% coffee sales in Q1 FY27, taken to recover commodity costs without share collapse (~two-thirds of portfolio holding/gaining share)",
+  "Recurring, staple demand through cycles: OE positive 5/5 last years, OCF $1.2-1.5B/yr, 25 years of consecutive dividend increases"
+ ],
+ "moat_against": [
+  "ROIC proxy only ~5-8% in clean years and negative in FY25 (impairments) \u2014 returns sit near/below cost of capital on an acquisition-heavy capital base",
+  "Hostess deal destroyer: ~$2.9B of goodwill/trademark impairments FY25-Q3 FY26 on the $5.6B Sweet Baked Snacks acquisition; segment sales and volumes still falling (Q1 FY27 -7%)",
+  "Commodity hostage: coffee input costs drove GAAP gross margin to 33.5% in FY26 (adjusted 34.9% vs 38.2% FY25); pricing is cost-recovery, not expansion, and volumes fall when price rises (Q4 FY26 volume/mix -4pp)",
+  "Mature/declining center-store categories, private-label and retailer power, health/GLP-1 headwinds for sweet snacks and sugary spreads; net debt $6,905.1M (8.78x normalized OE, 6.1x latest-FY OE) limits flexibility"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 106900000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended April 30, 2026 (filed 2026-06-09), EPS note and the FY26 results non-GAAP reconciliation (Ex. 99.1, 2026-06-09): 'Weighted-average shares outstanding - assuming dilution' 106.9M for FY2026 (FY2025: 106.6M), computed under the treasury stock method. EDGAR companyfacts carries only the non-diluted CommonStockSharesOutstanding count for FY2024-2026 (106,194,281 / 106,425,081 / 106,661,858), which is the DATA_GAP:shares fallback the engine printed."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 7.3921,
+  "base_oe_with_override": 7.3592,
+  "base_oe_impact_pct": -0.444,
+  "weighted_irr_without_override": 0.0892,
+  "weighted_irr_with_override": 0.0911,
+  "weighted_irr_impact_pp": 0.187,
+  "unblocks_tier": true
+ }
+}

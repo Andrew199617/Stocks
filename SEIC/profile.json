@@ -1,0 +1,294 @@
+{
+ "ticker": "SEIC",
+ "cik": 350894,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T01:09:04-04:00",
+ "newest_filing_date": "2026-07-27",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000350894.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000013/seic-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SEIC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SEIC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SEI INVESTMENTS CO",
+  "cik": 350894,
+  "description": {
+   "text": "SEI Investments Company (together, with its subsidiaries unless otherwise noted, “SEI” or the “Company”) is a leading global provider of financial technology, operations, and asset management solutions that connect the financial services ecosystem across advice, asset management, and administration. Our enterprise operating model unifies technology, trust-based custody, and investment management to help clients more effectively deploy their capital, whether that’s money, time, or talent, so they can better serve their clients and achieve their growth objectives. We are headquartered in Oaks, Pennsylvania, and over 5,000 employees support clients from service centers located in the United States, United Kingdom, Ireland, Canada, continental Europe, India, and South Africa. In 2025, we earned approximately 57% of our revenue from technology and operations outsourcing and 38% from asset management fees, with the remainder attributable to professional services and other ancillary services. We provide these services across four core client-oriented business segments; Investment Managers, Private Banks, Investment Advisors, and Institutional Investors. SEI serves leading institutions globally, including 8 of the top 20 U.S. banks and 43 of the top 100 investment managers worldwide, and we manage, advise or administer approximately $1.9 trillion in assets.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0000350894-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000013/seic-20251231.htm"
+  },
+  "description_short": "SEI (NASDAQ:SEIC) is a leading global provider of financial technology, operations, and asset management services within the financial services industry. SEI tailors its solutions and services to help clients more effectively deploy their capital - whether that's money, time, or talent - so they can better serve their clients and achieve their growth objectives. As of June 30, 2026, SEI manages, advises, or administers approximately $2.1 trillion in assets.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6211",
+  "sic_description": "Security Brokers, Dealers & Flotation Companies",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.seic.com",
+  "headquarters": "Oaks, PA",
+  "address": {
+   "street": "1 Freedom Valley Drive",
+   "city": "Oaks",
+   "state": "PA",
+   "zip": "19456",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "6106761000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "SEI CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000350894&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000350894-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000048/seic-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000350894-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000044/seic-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-27",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0000350894-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000033/seic-20260527.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-27",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000350894-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000030/seic-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000350894-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000026/seic-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-15",
+   "period": "2026-05-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000350894-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000021/seic-20260414.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000350894-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000015/seic-20260302.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000350894-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000013/seic-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000350894-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089426000003/seic-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-15",
+   "period": "2026-01-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000929638-26-000165",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000092963826000165/a8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-12",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000350894-25-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000126/seic-20251212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-03",
+   "period": "2025-12-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000350894-25-000123",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000123/seic-20251203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-27",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000350894-25-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000120/seic-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-24",
+   "period": "2025-10-20",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000350894-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000115/seic-20251020.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000350894-25-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000113/seic-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000350894-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000109/seic-20250918.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-19",
+   "period": "2025-08-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000350894-25-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000106/seic-20250818.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-28",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000350894-25-000104",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000104/seic-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000350894-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000097/seic-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-16",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000350894-25-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/350894/000035089425000095/seic-20250716.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-23"
+ ]
+}

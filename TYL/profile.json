@@ -1,0 +1,295 @@
+{
+ "ticker": "TYL",
+ "cik": 860731,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T14:09:32-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000860731.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000016/tyl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TYL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TYL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TYLER TECHNOLOGIES INC",
+  "cik": 860731,
+  "description": {
+   "text": "Tyler Technologies, Inc. (“Tyler” or “Company”) is a leading provider of integrated software and technology management solutions for the public sector. Our solutions empower local, state, and federal government entities to create smarter, safer, and stronger communities. We offer the broadest range of software solutions and services designed for every level of public sector government agency. Our solutions deliver mission-critical technology to support the essential functions of government, including public safety, justice, public health, taxation and budgeting, infrastructure and land use, outdoor recreation, utility and civic services, regulation, K-12 education, and social services. We provide both the back-office systems-of-record that serve the operational needs of specific government agencies, as well as platform technology solutions that are designed to integrate with our back-office solutions and be deployed and connected across many agencies. Examples of transformative platform technologies include our market-leading payments platform, data platform, low-code application development platform, and digital resident experience solutions. We maintain deep, long-term relationships with state and local government agencies, including dedicated state-level offices in the 30 states in which we have enterprise contracts. Our professional information technology (“IT”) services include cloud-based software deployment, data conversion, and training.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0000860731-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000016/tyl-20251231.htm"
+  },
+  "description_short": "Tyler Technologies (NYSE: TYL) is a leading provider of technology solutions purpose-built exclusively for the public sector. Tyler's end-to-end solutions empower local, state, and federal government entities to operate efficiently and transparently with residents and each other. By connecting data and processes across disparate systems, Tyler's solutions strengthen the core operations of government and help agencies turn insight into action for their communities. With more than 50,000 installations across 16,000 client locations, Tyler serves clients in all 50 states, Canada, the Caribbean, Australia, and other international locations. Tyler has been recognized numerous times for growth and innovation, including on Government Technology's GovTech 100 list. More information about Tyler Technologies, an S&P 500 company headquartered in Plano, Texas, can be found at tylertech.com.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.tylertech.com",
+  "headquarters": "Plano, Texas",
+  "address": {
+   "street": "5101 Tennyson Parkway",
+   "city": "Plano",
+   "state": "Texas",
+   "zip": "75024",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "9727133700",
+  "employees": {
+   "count": 7800,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 7,800 team members.",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000016/tyl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-15",
+  "first_sec_filing_form": "SC 13D/A",
+  "former_names": [
+   "TYLER CORP /NEW/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000860731&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000860731-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000052/tyl-20260915.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000860731-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000050/tyl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "8.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000860731-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000048/tyl-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-12",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000860731-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000044/tyl-20260612.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-29",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0000860731-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000042/tyl-20260529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0000860731-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000040/tyl-20260514.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000860731-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000038/tyl-20260512.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000860731-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000036/tyl-20260511.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000860731-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000034/tyl-20260505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000860731-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000032/tyl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000860731-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000031/tyl-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000860731-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000026/tyl-20260420.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000860731-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000022/tyl-20260323.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-13",
+   "period": "2026-03-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000860731-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000018/tyl-20260313.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000860731-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000016/tyl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000860731-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000013/tyl-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000860731-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000009/tyl-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000860731-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073126000004/tyl-20260203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000860731-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073125000046/tyl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000860731-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/860731/000086073125000045/tyl-20251029.htm"
+  }
+ ],
+ "warnings": []
+}

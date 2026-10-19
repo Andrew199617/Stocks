@@ -1,0 +1,403 @@
+{
+ "ticker": "TU",
+ "cik": 868675,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001104659-26-013854",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013854/tu-20251231x40f_htm.xml"
+  }
+ ],
+ "currency": "CAD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tu:TelusTechnologySolutionsMember",
+     "label": "TELUS technology solutions",
+     "values": [
+      15809000000,
+      15614000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7755,
+      0.7614
+     ],
+     "growth_yoy": [
+      null,
+      -0.0123
+     ]
+    },
+    {
+     "member": "tu:TelusDigitalExperienceMember",
+     "label": "TELUS Digital Experience",
+     "values": [
+      3724000000,
+      3882000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1827,
+      0.1893
+     ],
+     "growth_yoy": [
+      null,
+      0.0424
+     ]
+    },
+    {
+     "member": "tu:TelusHealthIncMember",
+     "label": "TELUS Health Inc",
+     "values": [
+      1790000000,
+      2060000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0878,
+      0.1005
+     ],
+     "growth_yoy": [
+      null,
+      0.1508
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -937000000,
+      -1050000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.046,
+      -0.0512
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20386000000,
+     20506000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tu:MobileMember",
+     "label": "Mobile",
+     "values": [
+      9355000000,
+      9131000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4645,
+      0.4488
+     ],
+     "growth_yoy": [
+      null,
+      -0.0239
+     ]
+    },
+    {
+     "member": "tu:FixedMember",
+     "label": "Fixed",
+     "values": [
+      6273000000,
+      6313000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3115,
+      0.3103
+     ],
+     "growth_yoy": [
+      null,
+      0.0064
+     ]
+    },
+    {
+     "member": "tu:TelusDigitalExperienceMember",
+     "label": "TELUS Digital Experience",
+     "values": [
+      2732000000,
+      2861000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1357,
+      0.1406
+     ],
+     "growth_yoy": [
+      null,
+      0.0472
+     ]
+    },
+    {
+     "member": "tu:TelusHealthIncMember",
+     "label": "TELUS Health Inc",
+     "values": [
+      1779000000,
+      2041000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0883,
+      0.1003
+     ],
+     "growth_yoy": [
+      null,
+      0.1473
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20139000000,
+     20346000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tu:TelusTechnologySolutionsMember",
+     "label": "TELUS technology solutions",
+     "values": [
+      2918000000,
+      3243000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0407,
+      1.3724
+     ],
+     "growth_yoy": [
+      null,
+      0.1114
+     ]
+    },
+    {
+     "member": "tu:TelusHealthIncMember",
+     "label": "TELUS Health Inc",
+     "values": [
+      -218000000,
+      -138000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0777,
+      -0.0584
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "tu:TelusDigitalExperienceMember",
+     "label": "TELUS Digital Experience",
+     "values": [
+      154000000,
+      -663000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0549,
+      -0.2806
+     ],
+     "growth_yoy": [
+      null,
+      -5.3052
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -50000000,
+      -79000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0178,
+      -0.0334
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2804000000,
+     2363000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tu:IfrsServiceMember",
+     "label": "Service",
+     "values": [
+      17588000000,
+      18012000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8733,
+      0.8853
+     ],
+     "growth_yoy": [
+      null,
+      0.0241
+     ]
+    },
+    {
+     "member": "tu:IfrsEquipmentMember",
+     "label": "Equipment",
+     "values": [
+      2551000000,
+      2334000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1267,
+      0.1147
+     ],
+     "growth_yoy": [
+      null,
+      -0.0851
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20139000000,
+     20346000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'TELUS technology solutions' (tu:TelusTechnologySolutionsMember) dropped: it is the parent of Fixed, Mobile in the filing's definition linkbase",
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

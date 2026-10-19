@@ -1,0 +1,22 @@
+{
+ "ticker": "SKM",
+ "cik": 1015650,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-188763",
+   "filed": "2026-04-29",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1015650/000119312526188763/d78252d20f_htm.xml"
+  }
+ ],
+ "currency": "KRW",
+ "tables": [],
+ "warnings": [
+  "dimensioned facts exist but no axis has two members with values for the same concept",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

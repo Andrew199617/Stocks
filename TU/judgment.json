@@ -1,0 +1,37 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "TELUS is a direct cross-listing, not an ADS program: one NYSE-traded TU share is one Common Share (the same class trades on the TSX as T), so per-share figures from the 40-F are directly comparable to the traded price with no scaling.",
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-12, accession 000110465926013854), cover page: securities registered pursuant to Section 12(b) are 'Common Shares', trading symbol TU, name of exchange New York Stock Exchange; the filing text contains no mention of American Depositary Shares; the cover reports 1,548,656,383 Common Shares outstanding as of December 31, 2025, matching the engine's DEI count of 1,548,656,383"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Returns prove the moat is not converting: roic_proxy fell from 5.69% (FY2020) to 3.36% (FY2025) (fundamentals.json) \u2014 below any plausible cost of capital \u2014 and operating margin compressed 16.1% to 11.5% over the same span",
+  "No pricing power in the core: FY2025 CAD revenue +0.6% (fundamentals.json), Q2 2026 service revenue -1% YoY, and 2026 guidance cut to flat to -2% service revenue with adjusted EBITDA down 2-4% (Q2 2026 release)",
+  "Capital allocation destroyed value: TELUS Digital was spun out in 2021, privatized again on Oct 31, 2025 for ~US$539M, then written down by a C$2.1B non-cash impairment in Q2 2026",
+  "Leverage drives policy: engine net debt $21,062,121,680 is 14.46x normalized OE; the quarterly dividend was cut 55% to C$0.1875 in Q2 2026 to fund deleveraging toward ~3.0x net debt/EBITDA by end-2028",
+  "Regulator and fourth-player pressure: CRTC wholesale/MVNO mandates plus Quebecor/Freedom price competition, and federal immigration cuts remove the population-growth tailwind behind subscriber adds",
+  "Dilution is structural: diluted share count +3.0%/yr (engine share_cagr), driven mainly by DRIP treasury issuance at a discount plus plan shares; the DRIP discount is only removed effective Oct 1, 2026"
+ ],
+ "moat_for": [
+  "Regulated three-carrier Canadian oligopoly: spectrum licences and national fibre/5G networks are effectively irreplicable and foreign-ownership limits keep global carriers out",
+  "Sticky installed base: 21,160k total telecom subscriber connections at Dec 31, 2025 (FY2025 results release) and continued adds in Q2 2026 (+17,000 mobile phone and +20,000 internet subscribers, Q2 2026 release) despite price competition",
+  "Margin stability through the cycle: gross margin 87.1-88.3% across FY2020-25 (fundamentals.json annual) with no down year",
+  "Cash engines beyond connectivity: TELUS Health covered 161.2M lives at Dec 31, 2025 (FY2025 results release) and TELUS Digital is wholly owned again after the Oct 31, 2025 privatization"
+ ],
+ "moat_justification": "Canadian telecom oligopoly structure (spectrum, fibre/5G scale, sticky base, ~88% gross margins) is real, but the measured franchise economics are weak and deteriorating: roic_proxy in fundamentals.json fell every year from 5.69% (FY2020) to 3.36% (FY2025), operating margin compressed from 16.1% to 11.5%, CAD revenue was flat in FY2025 and is guided flat-to-down in 2026, and the TELUS Digital round-trip ended in a C$2.1B impairment. A moat that cannot earn its cost of capital through the cycle scores weak-moderate: 4/10.",
+ "moat_score": 4,
+ "name": "TELUS Corporation",
+ "one_liner": "Weak-moderate Canadian telecom oligopoly name, moat 4/10 \u2014 real owner's earnings (base $0.95/share, 11.2% OE yield) but roic_proxy fell to 3.36% in FY2025, CAD revenue is flat and guided flat-to-down for 2026, and net debt at 14.5x normalized OE forced a 55% dividend cut: weighted IRR 13.0% and weighted IV@15% $7.10 sit below the $8.44 price, so it clears 15% only at ~$7.10 or below \u2014 Tier C, sized to the bear end (bear IRR 10.8%).",
+ "probs_used": [
+  0.1,
+  0.3,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Telecom / Integrated communications (Canada)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

@@ -1,0 +1,38 @@
+{
+ "capex_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:capex — capex missing for FY2023, FY2024, FY2025 (in fact every year from FY2019) under every candidate tag the engine reads: the us-gaap PaymentsToAcquirePropertyPlantAndEquipment tag carries no filed value after FY2018 ($368M), and Weyerhaeuser files its two cash capex lines only in the combined total tagged PropertyPlantAndEquipmentAdditions, which the engine does not read. The engine applies this single value to every missing period; the value used is $447M, the median of the three filed years and the exact FY2023 figure. Against the true per-year totals it overstates FY2024 capex by $31M (true $416M, conservative direction — lowers that year's OE) and understates FY2025 capex by $27M (true $474M, raising the trough FY2025 OE from $45M to $72M; FY2025 is not the median year). The resulting median base ($0.71/share) sits below the median built from the true per-year figures ($0.75/share), so the approximation is conservative on the base that sets the tier. 'Acquisition of timberlands' ($469M / $251M / $233M for FY2025/24/23, same statement) is excluded: the filer presents it separately as land M&A, not capital expenditures.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13, accession 0001193125-26-051422), Consolidated Statements of Cash Flows, investing activities: 'Capital expenditures for property and equipment' $423M for FY2025, $364M for FY2024, $390M for FY2023, plus 'Capital expenditures for timberlands reforestation' $51M / $52M / $57M for the same years — combined totals $474M / $416M / $447M; corroborated in EDGAR companyfacts under us-gaap PropertyPlantAndEquipmentAdditions with identical totals ($474M / $416M / $447M) and by the same filing's FAD reconciliation line 'Capital expenditures' ($474M for FY2025, $416M for FY2024)",
+  "value": 447000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Pure price taker: lumber, OSB and log prices are set by housing starts and industry capacity — no pricing power through the cycle",
+  "Returns confirm no wide moat: roic_proxy 4.0-7.5% in 2023-25 and gross margin down from 40.2% (2021) to 14.8% (2025) as prices normalized",
+  "Earnings hostage to U.S. housing / rates: revenue fell from $10.18B (2022) to $6.91B (2025) on the housing downturn alone",
+  "Canadian softwood lumber duties / trade policy and wildfire, pest and climate risk sit directly on the core asset",
+  "REIT payout (75-80% of Adjusted FAD targeted) leaves little retained cash to compound; growth capex (Monticello EWP) competes with the dividend"
+ ],
+ "moat_for": [
+  "Irreplicable asset: >10M acres of U.S. timberlands owned/controlled — the largest private holding; land and standing timber cannot be recreated at any price",
+  "Scale cost advantage: peer-leading forestry, logistics and export (Japan) positions across Southern and Western timberlands",
+  "Biological growth: timber appreciates on the stump regardless of harvest timing — harvest can be deferred into better prices, a real option commodity miners lack",
+  "Higher-and-better-use / Strategic Land Solutions optionality: real estate, energy, carbon and land sales monetize acres above timber value (2026 SLS Adjusted EBITDA guided ~$450M)",
+  "Investment-grade balance sheet and a base dividend ($0.21/qtr) framed to be sustainable at low commodity prices"
+ ],
+ "moat_justification": "A scarce, irreplicable asset base — more than 10 million acres of U.S. timberlands owned or controlled (plus Canadian licenses), the largest private timberland holding in the U.S., with scale cost advantages in forestry, logistics and export market access, and timber that grows (and accretes value) biologically. But Weyerhaeuser is a commodity price taker in logs, lumber and OSB: no pricing power, no switching costs, no network effects, and returns prove it — roic_proxy (fundamentals.json) ran 20.5% / 17.7% in the pandemic spike years 2021-22 but only 7.5% / 4.5% / 4.0% in 2023-25 and 3.6-10.1% in 2016-20, i.e. at or below the cost of capital in most non-spike years, while gross margin compressed from 40.2% (2021) to 35.5% / 21.9% / 18.4% / 14.8% (2022-25) as lumber prices normalized. The land endures; the earnings power on it is cyclical, not a wide moat — 4/10, weak-to-narrow, asset-backed rather than franchise-based.",
+ "moat_score": 4,
+ "name": "Weyerhaeuser Company",
+ "one_liner": "Irreplicable 10M+ acre timberland asset but a commodity price taker with no pricing power, moat 4/10 — does not clear 15% on owner's earnings at $19.61: weighted IRR 6.0%, weighted IV@15% $5.55 (the 15% hurdle price); even the super-bull mid-cycle normalization case earns only 13.3% — the price capitalizes land value and a housing recovery this OE screen does not credit, and confidence is low on the sector model misfit.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.15,
+  0.1
+ ],
+ "sector": "Real Estate / REIT — Timberlands and wood products",
+ "tier_override": null,
+ "tier_override_reason": null
+}

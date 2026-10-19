@@ -1,0 +1,86 @@
+{
+ "ticker": "UHAL",
+ "name": "U-Haul Holding Company",
+ "sector": "Industrials / Moving & storage (truck rental, self-storage)",
+ "price": 57.02,
+ "market_cap_b": 11.18,
+ "engine_version": 5,
+ "base_oe_per_share": -7.85474628754656,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Dominant DIY moving network \u2014 24,000+ locations, >50% DIY share, a fleet larger than the top three rivals combined and the #3 self-storage operator in North America \u2014 but a capital-intensive, price-compared rental business whose measured returns have eroded: the ROIC proxy fell from 24.5% (FY2017) to 2.2% (FY2026) and operating margin from 21.7% to 7.2% over the same span (fundamentals.json), so the network moat is real but is no longer earning wide-moat returns.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2017, 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended March 31, 2026 (filed 2026-05-27, accession 0001193125-26-241850), Consolidated Statements of Cash Flows (p. F-6): the operating-activities reconciliation for FY2026, FY2025 and FY2024 is enumerated in full (depreciation $1,183,133k / $971,933k / $817,889k, premium amortization, debt-issuance amortization, interest credited to policyholders, disposal gains/losses, deferred taxes and working-capital changes) with no share-based or stock-based compensation line anywhere in it, and the listed items reconcile exactly to the reported operating cash flow ($1,794,584k / $1,454,429k / $1,452,756k) with no SBC addback. The terms 'share-based' and 'stock-based' appear nowhere in the filing, EDGAR companyfacts carries no ShareBasedCompensation or AllocatedShareBasedCompensationExpense fact for CIK 4457 in any year, and weighted average shares were flat at 196,077,880 combined throughout FY2024-FY2026.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended March 31, 2026 (filed 2026-05-27, accession 0001193125-26-241850), Note 4 Earnings Per Share (pp. F-17/F-18) and the Consolidated Statements of Operations: weighted average shares outstanding are stated on a 'Basic and diluted' basis for both classes \u2014 Voting Common Stock 19,607,788 plus Series N Non-Voting Common Stock 176,470,092 equals a total of 196,077,880 \u2014 with the identical total for FY2026, FY2025 and FY2024; EPS is computed under the two-class method with basic and diluted the same.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "medium",
+ "one_liner": "Dominant moving-and-storage network, moat 5/10, but no positive conservative owner's earnings at any point in the last 5 years \u2014 fleet capex swallows operating cash flow (base OE -$7.85/share, latest FY -$6.93/share), so Tier F at $57.02; it clears no hurdle on this model and even the maintenance definition (FY2026 OE $83,128k) is under 1% of the $11.18B market cap.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": "no_cash_generation",
+ "irr_at_floor": false,
+ "net_debt_latest": 7004802000,
+ "shares_diluted_latest": 196077880.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Location density no rival matches: 24,000+ rental locations (company stores + independent dealers) vs roughly 2,500 for Penske \u2014 convenience is the purchase criterion in DIY moving",
+  "Scale: a fleet of approximately 207,600 trucks, larger than the top three competitors combined, and over 50% share of the DIY self-moving market",
+  "Brand default since 1945 \u2014 U-Haul is the generic name for a rental truck, feeding direct and app demand (Truck Share 24/7 self-dispatch)",
+  "Self-storage flywheel: #3 operator in North America (about 100.3M sq ft) attached to the moving funnel; storage revenue +8.3% in FY2026 with revenue per occupied foot rising",
+  "Dealer network expands reach on other people's capital; vertical integration (fleet manufacturing/repair, propane retail, hitch installation) supports availability and cost"
+ ],
+ "moat_against": [
+  "Measured returns contradict a wide moat: ROIC proxy 24.5% (FY2017) to 2.2% (FY2026) and operating margin 17.4% to 7.2% in the last two fiscal years alone (fundamentals.json)",
+  "Commodity, price-compared purchase: customers rent on price and proximity with zero switching cost; Penske, Avis Budget and Enterprise contest every market",
+  "Capital intensity: fleet and storage capex ($3,154,325k in FY2026, 10-K cash-flow statement) runs at roughly 2.7x depreciation \u2014 the network must be continuously re-bought",
+  "Post-COVID over-expansion: FY2026 fleet depreciation rose $186.6M and disposal losses were $117.6M (FY2026 results release); management says new storage units are still completing faster than they fill (Q1 FY2027 release)",
+  "Shoen-family control and a related-party web ($114.1M of related-party costs in FY2026, 10-K) plus leverage \u2014 notes, loans and finance leases payable of $8,083,374k against $1,120,147k of cash at March 31, 2026 \u2014 limit minority-holder recourse and flexibility"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended March 31, 2026 (filed 2026-05-27, accession 0001193125-26-241850), Consolidated Statements of Cash Flows (p. F-6): the operating-activities reconciliation for FY2026, FY2025 and FY2024 is enumerated in full (depreciation $1,183,133k / $971,933k / $817,889k, premium amortization, debt-issuance amortization, interest credited to policyholders, disposal gains/losses, deferred taxes and working-capital changes) with no share-based or stock-based compensation line anywhere in it, and the listed items reconcile exactly to the reported operating cash flow ($1,794,584k / $1,454,429k / $1,452,756k) with no SBC addback. The terms 'share-based' and 'stock-based' appear nowhere in the filing, EDGAR companyfacts carries no ShareBasedCompensation or AllocatedShareBasedCompensationExpense fact for CIK 4457 in any year, and weighted average shares were flat at 196,077,880 combined throughout FY2024-FY2026."
+  },
+  {
+   "field": "shares",
+   "value": 196077880.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended March 31, 2026 (filed 2026-05-27, accession 0001193125-26-241850), Note 4 Earnings Per Share (pp. F-17/F-18) and the Consolidated Statements of Operations: weighted average shares outstanding are stated on a 'Basic and diluted' basis for both classes \u2014 Voting Common Stock 19,607,788 plus Series N Non-Voting Common Stock 176,470,092 equals a total of 196,077,880 \u2014 with the identical total for FY2026, FY2025 and FY2024; EPS is computed under the two-class method with basic and diluted the same."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": -7.8547,
+  "base_oe_with_override": -7.8547,
+  "base_oe_impact_pct": -0.0,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

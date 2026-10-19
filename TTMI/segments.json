@@ -1,0 +1,1160 @@
+{
+ "ticker": "TTMI",
+ "cik": 1116942,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-051976",
+   "filed": "2026-02-17",
+   "period": "2025-12-29",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-201403",
+   "filed": "2026-05-01",
+   "period": "2026-03-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526201403/ttmi-20260330_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-335107",
+   "filed": "2026-08-05",
+   "period": "2026-06-29",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526335107/ttmi-20260629_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-01",
+    "2024-12-30",
+    "2025-12-29"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:CommercialMember",
+     "label": "Commercial",
+     "values": [
+      1164672000,
+      1275701000,
+      1585701000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5217,
+      0.5222,
+      0.5456
+     ],
+     "growth_yoy": [
+      null,
+      0.0953,
+      0.243
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseMember",
+     "label": "Aerospace And Defense",
+     "values": [
+      1045983000,
+      1139955000,
+      1292523000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4685,
+      0.4667,
+      0.4447
+     ],
+     "growth_yoy": [
+      null,
+      0.0898,
+      0.1338
+     ]
+    },
+    {
+     "member": "ttmi:RadioFrequencyAndSpecialtyComponentsMember",
+     "label": "Radio Frequency And Specialty Components",
+     "values": [
+      38619000,
+      37317000,
+      40014000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0173,
+      0.0153,
+      0.0138
+     ],
+     "growth_yoy": [
+      null,
+      -0.0337,
+      0.0723
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -16707000,
+      -10220000,
+      -11893000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0075,
+      -0.0042,
+      -0.0041
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2232567000,
+     2442753000,
+     2906345000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-30",
+    "2026-06-29"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:CommercialMember",
+     "label": "Commercial",
+     "values": [
+      332705000,
+      395624000,
+      495043000,
+      621605000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5129,
+      0.5415,
+      0.5852,
+      0.6191
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4879,
+      0.5712
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseMember",
+     "label": "Aerospace And Defense",
+     "values": [
+      316250000,
+      335183000,
+      351664000,
+      382750000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4875,
+      0.4588,
+      0.4157,
+      0.3812
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.112,
+      0.1419
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -287000,
+      -186000,
+      -731000,
+      -301000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0004,
+      -0.0003,
+      -0.0009,
+      -0.0003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     648668000,
+     730621000,
+     845976000,
+     1004054000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-01",
+    "2024-12-30",
+    "2025-12-29"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:CommercialMember",
+     "label": "Commercial",
+     "values": [
+      1163555000,
+      1274834000,
+      1584851000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5212,
+      0.5219,
+      0.5453
+     ],
+     "growth_yoy": [
+      null,
+      0.0956,
+      0.2432
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseMember",
+     "label": "Aerospace And Defense",
+     "values": [
+      1030491000,
+      1130781000,
+      1281536000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4616,
+      0.4629,
+      0.4409
+     ],
+     "growth_yoy": [
+      null,
+      0.0973,
+      0.1333
+     ]
+    },
+    {
+     "member": "ttmi:RadioFrequencyAndSpecialtyComponentsMember",
+     "label": "Radio Frequency And Specialty Components",
+     "values": [
+      38521000,
+      37138000,
+      39958000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0173,
+      0.0152,
+      0.0137
+     ],
+     "growth_yoy": [
+      null,
+      -0.0359,
+      0.0759
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2232567000,
+     2442753000,
+     2906345000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-30",
+    "2026-06-29"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:CommercialMember",
+     "label": "Commercial",
+     "values": [
+      332430000,
+      395481000,
+      494790000,
+      621423000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5125,
+      0.5413,
+      0.5849,
+      0.6189
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4884,
+      0.5713
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseMember",
+     "label": "Aerospace And Defense",
+     "values": [
+      316238000,
+      335140000,
+      351186000,
+      382631000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4875,
+      0.4587,
+      0.4151,
+      0.3811
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1105,
+      0.1417
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     648668000,
+     730621000,
+     845976000,
+     1004054000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-01",
+    "2024-12-30",
+    "2025-12-29"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:CommercialMember",
+     "label": "Commercial",
+     "values": [
+      171379000,
+      179782000,
+      238781000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      4.05,
+      1.5493,
+      0.9021
+     ],
+     "growth_yoy": [
+      null,
+      0.049,
+      0.3282
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseMember",
+     "label": "Aerospace And Defense",
+     "values": [
+      95021000,
+      141800000,
+      183813000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      2.2455,
+      1.222,
+      0.6945
+     ],
+     "growth_yoy": [
+      null,
+      0.4923,
+      0.2963
+     ]
+    },
+    {
+     "member": "ttmi:RadioFrequencyAndSpecialtyComponentsMember",
+     "label": "Radio Frequency And Specialty Components",
+     "values": [
+      10955000,
+      8666000,
+      11253000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2589,
+      0.0747,
+      0.0425
+     ],
+     "growth_yoy": [
+      null,
+      -0.2089,
+      0.2985
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     42316000,
+     116043000,
+     264684000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-30",
+    "2026-06-29"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:CommercialMember",
+     "label": "Commercial",
+     "values": [
+      43649000,
+      60069000,
+      81568000,
+      112676000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8685,
+      0.9725,
+      1.1259,
+      1.0332
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8687,
+      0.8758
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseMember",
+     "label": "Aerospace And Defense",
+     "values": [
+      42369000,
+      48145000,
+      54779000,
+      63861000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.843,
+      0.7794,
+      0.7561,
+      0.5856
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2929,
+      0.3264
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     50260000,
+     61769000,
+     72449000,
+     109055000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-01",
+    "2024-12-30",
+    "2025-12-29"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:AerospaceAndDefenseComponentsMember",
+     "label": "Aerospace and Defense Components",
+     "values": [
+      1030509000,
+      1130781000,
+      1281536000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4616,
+      0.4629,
+      0.4409
+     ],
+     "growth_yoy": [
+      null,
+      0.0973,
+      0.1333
+     ]
+    },
+    {
+     "member": "ttmi:DataCenterComputingMember",
+     "label": "Data Center Computing",
+     "values": [
+      313429000,
+      501417000,
+      683393000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1404,
+      0.2053,
+      0.2351
+     ],
+     "growth_yoy": [
+      null,
+      0.5998,
+      0.3629
+     ]
+    },
+    {
+     "member": "ttmi:MedicalIndustrialInstrumentationMember",
+     "label": "Medical Industrial Instrumentation",
+     "values": [
+      360712000,
+      335155000,
+      409461000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1616,
+      0.1372,
+      0.1409
+     ],
+     "growth_yoy": [
+      null,
+      -0.0709,
+      0.2217
+     ]
+    },
+    {
+     "member": "ttmi:AutomotiveComponentsMember",
+     "label": "Automotive Components",
+     "values": [
+      351477000,
+      315125000,
+      302194000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1574,
+      0.129,
+      0.104
+     ],
+     "growth_yoy": [
+      null,
+      -0.1034,
+      -0.041
+     ]
+    },
+    {
+     "member": "ttmi:NetworkingCommunicationMember",
+     "label": "Networking Communication",
+     "values": [
+      176440000,
+      160275000,
+      229761000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.079,
+      0.0656,
+      0.0791
+     ],
+     "growth_yoy": [
+      null,
+      -0.0916,
+      0.4335
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2232567000,
+     2442753000,
+     2906345000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-30",
+    "2026-06-29"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:DataCenterAndNetworkingMember",
+     "label": "Data Center and Networking",
+     "values": [
+      187450000,
+      212525000,
+      301747000,
+      405344000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.289,
+      0.2909,
+      0.3567,
+      0.4037
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6097,
+      0.9073
+     ]
+    },
+    {
+     "member": "ttmi:AerospaceAndDefenseComponentsMember",
+     "label": "Aerospace and Defense Components",
+     "values": [
+      307418000,
+      325092000,
+      341557000,
+      371165000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4739,
+      0.445,
+      0.4037,
+      0.3697
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1111,
+      0.1417
+     ]
+    },
+    {
+     "member": "ttmi:MedicalIndustrialInstrumentationMember",
+     "label": "Medical Industrial Instrumentation",
+     "values": [
+      82446000,
+      111580000,
+      132902000,
+      148080000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1271,
+      0.1527,
+      0.1571,
+      0.1475
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.612,
+      0.3271
+     ]
+    },
+    {
+     "member": "ttmi:AutomotiveComponentsMember",
+     "label": "Automotive Components",
+     "values": [
+      71354000,
+      81424000,
+      69770000,
+      79465000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.11,
+      0.1114,
+      0.0825,
+      0.0791
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0222,
+      -0.0241
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     648668000,
+     730621000,
+     845976000,
+     1004054000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-01",
+    "2024-12-30",
+    "2025-12-29"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1263065000,
+      1232288000,
+      1554258000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5657,
+      0.5045,
+      0.5348
+     ],
+     "growth_yoy": [
+      null,
+      -0.0244,
+      0.2613
+     ]
+    },
+    {
+     "member": "ttmi:OtherThanUnitedStatesAndTaiwanMember",
+     "label": "Other Than United States And Taiwan Member",
+     "values": [
+      792460000,
+      936120000,
+      1095092000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.355,
+      0.3832,
+      0.3768
+     ],
+     "growth_yoy": [
+      null,
+      0.1813,
+      0.1698
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      177042000,
+      274345000,
+      256995000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0793,
+      0.1123,
+      0.0884
+     ],
+     "growth_yoy": [
+      null,
+      0.5496,
+      -0.0632
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2232567000,
+     2442753000,
+     2906345000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-30",
+    "2026-06-29"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ttmi:OtherThanUnitedStatesAndTaiwanMember",
+     "label": "Other Than United States And Taiwan Member",
+     "values": [
+      236704000,
+      298146000,
+      341306000,
+      477635000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3649,
+      0.4081,
+      0.4034,
+      0.4757
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4419,
+      0.602
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      357808000,
+      381619000,
+      413597000,
+      432076000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5516,
+      0.5223,
+      0.4889,
+      0.4303
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1559,
+      0.1322
+     ]
+    },
+    {
+     "member": "country:TW",
+     "label": "TAIWAN",
+     "values": [
+      54156000,
+      50856000,
+      91073000,
+      94343000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0835,
+      0.0696,
+      0.1077,
+      0.094
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6817,
+      0.8551
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     648668000,
+     730621000,
+     845976000,
+     1004054000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Industry' (ttmi:TotalIndustryMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Total Industry' (ttmi:TotalIndustryMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: row 'Total Industry' (ttmi:TotalIndustryMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 163.9% of the consolidated total for 2025-12-29 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Total Industry' (ttmi:TotalIndustryMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 161.9% of the consolidated total for 2026-06-29 (ties_to_total: false)"
+ ],
+ "complete": true
+}

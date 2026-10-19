@@ -1,0 +1,86 @@
+{
+ "ticker": "SGI",
+ "name": "SomniGroup International Inc.",
+ "sector": "Consumer Discretionary \u2014 Bedding & Furniture",
+ "price": 63.58,
+ "market_cap_b": 13.3,
+ "engine_version": 5,
+ "base_oe_per_share": 3.404985888993415,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Leading premium brands (Tempur-Pedic, Sealy, Stearns & Foster) with proven pricing power \u2014 North America adjusted gross margin 61.8% in Q2 2026, consolidated gross margin held 40.3-44.6% over five years \u2014 plus vertical integration through Mattress Firm (Tempur Sealy brands >50% of its sales, 2,852 stores) and demonstrated share gains in a down industry. Against: ROIC proxy fell every year from 29.9% (2021) to 7.9% (2025, acquisition-inflated capital base; goodwill 39.6% of assets), mattresses have near-zero switching costs and are housing-linked discretionary, DTC/private-label rivals cap pricing, and the low-margin retail segment (~33% gross margin) dilutes the manufacturing franchise. Moderate/narrow moat.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 5.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 6.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.3%) vs bull-case tier C (11.0%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 17.37,
+   "irr": 0.0576
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 24.63,
+   "irr": 0.0732
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.0,
+   "irr": 0.0869
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 41.93,
+   "irr": 0.1097
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 60.9,
+   "irr": 0.1453
+  }
+ },
+ "iv_at_15": 31.29,
+ "iv_at_12": 41.6,
+ "implied_irr": 0.088,
+ "implied_irr_base_case": 0.0869,
+ "upside_at_15_pct": -50.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Good brands, moderate moat 5/10, now a levered retailer-manufacturer \u2014 at $63.58 it prices in the synergy/recovery story and returns only 8.8% weighted (IV@15% $31.29); clears 15% only at ~$31.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0732,
+ "irr_bull": 0.1097,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 22.04,
+ "iv_at_25": 16.94,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4550800000,
+ "shares_diluted_latest": 209200000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 US bedding brands (Tempur-Pedic, Sealy, Stearns & Foster) with demonstrated premium pricing power",
+  "Vertical integration: Mattress Firm's 2,174 stores with Tempur Sealy brands >50% of sales \u2014 shelf control no rival has",
+  "Scale in manufacturing, logistics and ~$690M advertising across 2,852 stores in 100+ countries",
+  "Share gains in a declining industry (Mattress Firm same-store flat in Q1 2026 vs industry down mid-single digits)"
+ ],
+ "moat_against": [
+  "ROIC proxy down five straight years: 29.9% (2021) to 7.9% (2025); goodwill now 39.6% of assets",
+  "Deferrable, housing-linked discretionary product with near-zero switching costs",
+  "DTC and private-label competition caps pricing; other retailers remain multi-brand",
+  "Low-margin retail segment dilutes the manufacturing franchise; second integration (Leggett & Platt) stacked on the first"
+ ]
+}

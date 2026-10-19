@@ -1,0 +1,79 @@
+{
+ "ticker": "STLA",
+ "name": "Stellantis N.V.",
+ "sector": "Consumer Cyclical / Automobiles",
+ "price": 4.37,
+ "market_cap_b": 12.61,
+ "engine_version": 5,
+ "base_oe_per_share": -3.341019618122064,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Scale and a few genuine brand franchises (Jeep, Ram in North America; Peugeot/Fiat in Europe and South America; EU light-commercial-vehicle leadership at ~28.6% share) are real, but they have not translated into durable pricing power or share defense: European share fell from 20.2% in 2021 to ~14-16% in 2025 and U.S. share from 12.0% to 7.7% over the same period, and the strong ROIC of 2021-2023 (34.4% / 32.8% / 27.4% on the fundamentals.json roic_proxy series, gross margin ~19-20%) collapsed to 3.4% in 2024 and -29.7% in 2025 with gross margin at -1.4% \u2014 the earlier returns were shortage-cycle pricing, not a structural moat. Mass-market autos are commodity-competitive, Chinese EV entrants are taking European share, and a 14-brand sprawl dilutes focus. Moat 3/10 (weak).",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025, cover page: securities registered pursuant to Section 12(b) of the Act are 'Common Shares, par value EUR 0.01 per share', trading symbol STLA, New York Stock Exchange \u2014 the NYSE security is the common share itself, listed also on Euronext Paris and Euronext Milan under the same ISIN) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025, Share-based Compensation Expense disclosure: total expense for the PSU awards and RSU awards of approximately EUR 73 million (2025), EUR 45 million (2024) and EUR 189 million (2023) was recorded for the years ended December 31, 2025, 2024 and 2023, respectively); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Global auto scale, moat 3/10 \u2014 Tier F on this screen: normalized (3-yr median) conservative owner's earnings are negative (\u2212$3.34/share, latest FY \u2212$5.16), so no 15% hurdle-clearing price is computable on a negative OE base.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": "no_cash_generation",
+ "irr_at_floor": false,
+ "net_debt_latest": 18566175000.0,
+ "shares_diluted_latest": 2886684000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale: one of the world's largest automakers (~5.5M units shipped in 2025), shared platforms and purchasing leverage across 14 brands",
+  "Jeep and Ram franchises in North America \u2014 Ram pickups and Jeep SUVs are the group's historic profit pool (47% and 34% of 2025 U.S. sales respectively)",
+  "Leading regional positions: #2 OEM in EU30 (~16% share in 2025), #1 in EU light commercial vehicles (~28.6%), market leader in South America (~19% share, #1 in Brazil and Argentina)"
+ ],
+ "moat_against": [
+  "Share erosion on both sides of the Atlantic: Europe 20.2% (2021) to ~14-16% (2025), U.S. 12.0% to 7.7% \u2014 no demonstrated share defense against VW, GM/Ford or Chinese EV entrants",
+  "Returns were cyclical, not structural: ROIC proxy 27-34% in 2021-2023 collapsed to 3.4% (2024) and -29.7% (2025); gross margin ~19-20% fell to 13.1% then -1.4%",
+  "No pricing power in the downcycle: 2024-2025 revenue fell on price cuts and high incentives despite volume efforts; commodity mass-market product",
+  "14-brand sprawl (Chrysler, Dodge, Maserati, Alfa Romeo, DS, Lancia among them) spreads capital thin; EV strategy over-investment forced ~\u20ac25.4B of 2025 reset charges"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 45000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025, Share-based Compensation Expense disclosure: total expense for the PSU awards and RSU awards of approximately EUR 73 million (2025), EUR 45 million (2024) and EUR 189 million (2023) was recorded for the years ended December 31, 2025, 2024 and 2023, respectively"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": -3.3253,
+  "base_oe_with_override": -3.341,
+  "base_oe_impact_pct": 0.472,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

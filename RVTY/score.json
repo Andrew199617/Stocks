@@ -1,0 +1,86 @@
+{
+ "ticker": "RVTY",
+ "name": "Revvity, Inc.",
+ "sector": "Healthcare / Life sciences & diagnostics instruments",
+ "price": 152.46,
+ "market_cap_b": 17.78,
+ "engine_version": 5,
+ "base_oe_per_share": 4.775866697689403,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Niche installed bases in newborn/reproductive screening, immunodiagnostics and high-content screening give recurring reagents and switching friction, but the measured franchise is weak: roic_proxy in fundamentals.json fell from 12.8% at the COVID-peak year to 2.72% / 3.22% / 3.34% in the last three fiscal years \u2014 well below cost of capital \u2014 against far larger rivals (Thermo Fisher, Danaher, Abbott) and a shrinking China immunodiagnostics position now being divested.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.7%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 19.56,
+   "irr": 0.0393
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 30.89,
+   "irr": 0.0496
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 41.62,
+   "irr": 0.0595
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 55.37,
+   "irr": 0.0722
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 81.71,
+   "irr": 0.0955
+  }
+ },
+ "iv_at_15": 44.18,
+ "iv_at_12": 58.58,
+ "implied_irr": 0.0622,
+ "implied_irr_base_case": 0.0595,
+ "upside_at_15_pct": -71.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Decent diagnostics/life-sciences franchise, moat 4/10 with ~3% ROIC \u2014 does not clear 15% at $152.46 (weighted IRR 6.2%, IV@15% $44.18, even super-bull IRR only 9.5%); clears 15% only below $44.18.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0496,
+ "irr_bull": 0.0722,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 31.21,
+ "iv_at_25": 24.05,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2300204000,
+ "shares_diluted_latest": 116595000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Installed base in newborn screening and reproductive health \u2014 assays embedded in regional/national screening programs, real switching friction",
+  "High-content screening instruments (Opera Phenix line) are a de facto standard in phenotypic drug discovery, pulling through reagents and assay kits",
+  "Recurring reagent/consumable revenue attached to the instrument base in both Diagnostics and Life Sciences",
+  "Signals informatics software embedded in pharma discovery workflows"
+ ],
+ "moat_against": [
+  "ROIC proxy collapsed to ~3% for three straight years (fundamentals.json) \u2014 the BioLegend-era capital base is not earning its cost of capital",
+  "Much larger, better-capitalized rivals (Thermo Fisher, Danaher, Abbott) contest every category",
+  "China immunodiagnostics weakness forced a divestiture of that business (announced with Q2 2026 results)",
+  "Signals software revenue fell ~20% organically in Q2 2026 \u2014 the software pillar is not currently compounding",
+  "End-market exposure to pharma/biotech and academic budgets is cyclical, as the post-COVID revenue decline showed"
+ ]
+}

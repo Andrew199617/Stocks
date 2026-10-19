@@ -1,0 +1,115 @@
+{
+ "ticker": "REG",
+ "name": "Regency Centers Corporation",
+ "sector": "Real Estate / REIT \u2014 Grocery-anchored shopping centers",
+ "price": 73.24,
+ "market_cap_b": 13.35,
+ "engine_version": 5,
+ "base_oe_per_share": 2.000208523107653,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow: grocery-anchored necessity centers in affluent, supply-constrained suburbs with demonstrated pricing power (Q2 2026 blended cash rent spreads +10.4%, same-property NOI guided +3.7-4.1% for 2026 after +5.3% in 2025) and a development platform building at ~9% yields \u2014 but no network effects or lock-in (leases roll, grocer anchors are powerful counterparties), each center's local position is contestable by rival REITs and developers, returns are rate/cap-rate dominated, and the measured returns corroborate only a narrow moat: roic_proxy 7.3% / 8.5% / 9.3% / 7.7% across 2022-2025 (fundamentals.json) \u2014 above a REIT cost of capital, not wide-moat territory, and flattered by a depreciated-cost asset denominator.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), consolidated statements of cash flows and MD&A Summary of Cash Flow Activity: 'Real estate development and capital improvements' $435,112 thousand in 2025 and $343,368 thousand in 2024; the 2023 figure $232,855 thousand is the same line as tagged PaymentsToDevelopRealEstateAssets in EDGAR companyfacts (10-Q YTD facts of the same tag give Q1 2025 $101,386 thousand and Q1 2026 $105,071 thousand). Regency files no PaymentsToAcquirePropertyPlantAndEquipment or any other engine candidate capex tag in any year \u2014 its capital spending is tagged PaymentsToDevelopRealEstateAssets, which the engine does not read, so the engine has no filed capex value (last_filed_value null).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 14 Earnings per Share and Unit, 'Parent Company Earnings per Share' table (in thousands, except per share data): weighted average common shares outstanding for diluted EPS 182,234 in 2025 (183,040 in 2024; 176,371 in 2023); diluted EPS $2.82 / $2.11 / $2.04 on net income attributable to common shareholders of $513,810 / $386,738 / $359,500 thousand. EDGAR companyfacts carries no weighted-average share series for CIK 910606 after FY2020 (the filer tags share counts with dimensions the aggregated facts drop), so the engine fell back to point-in-time CommonStockSharesOutstanding counts (184,581,070 / 181,361,454 / 182,902,234).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 12.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 8.83,
+   "irr": 0.0385
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 14.2,
+   "irr": 0.049
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 19.42,
+   "irr": 0.0594
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 26.25,
+   "irr": 0.0728
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 39.66,
+   "irr": 0.0976
+  }
+ },
+ "iv_at_15": 20.78,
+ "iv_at_12": 27.8,
+ "implied_irr": 0.0625,
+ "implied_irr_base_case": 0.0594,
+ "upside_at_15_pct": -71.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Premier grocery-anchored shopping-center REIT, moat 5/10 \u2014 but at $73.24 the TTM owner's-earnings yield is only 2.73% (base OE $2.00/share after charging all $435.1M of development & capital-improvement spend), so the weighted IRR is 6.25% with IV@15% of $20.78 and even the super-bull case earns just 9.76%; it clears the 15% hurdle only below ~$21. The REIT lens is kinder (FY2026 guided Nareit FFO $4.84\u20134.88/share, Core Operating Earnings $4.62\u20134.66/share), but no reading of the filed numbers supports a 15% owner's-earnings return at this price.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.049,
+ "irr_bull": 0.0728,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 14.51,
+ "iv_at_25": 11.08,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4634644000,
+ "shares_diluted_latest": 182234000.0,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Grocery-anchored necessity tenancy: >85% of centers grocery-anchored (search results), anchors 98.4% leased \u2014 weekly-trip tenancy that is e-commerce-resistant and feeds the shop tenants",
+  "Location scarcity in affluent suburbs: ~$150k average household income within 3 miles (search results), premier suburban trade areas where zoning constrains new competing supply; portfolio 96.9% leased / 94.5% commenced with a $41.2M signed-not-occupied rent pipeline (Q2 2026 release)",
+  "Demonstrated pricing power: blended cash rent spreads +10.4% in Q2 2026 (+11.8% trailing twelve months), straight-line +19.5%; same-property NOI +5.3% in 2025, guided +3.7-4.1% in 2026; annual escalators in most new leases (search results)",
+  "Development platform: $680M in-process at a ~9% blended estimated yield (Q2 2026 release) \u2014 building at yields well above acquisition cap rates, funded cheaply by an A-rated balance sheet (pro-rata net debt + preferred / EBITDAre 5.0x; 87.3% of consolidated real estate assets unencumbered, FY2025 10-K)",
+  "Returns corroborate a narrow moat: roic_proxy 7.3% / 8.5% / 9.3% / 7.7% in 2022-2025 (fundamentals.json), operating margin ~72% \u2014 above a REIT's cost of capital through the cycle so far"
+ ],
+ "moat_against": [
+  "No network effects or lock-in: leases roll (short shop leases), grocer anchors are powerful counterparties who can relocate or extract concessions at renewal, and anchor consolidation/bankruptcy is a recurring sector hit",
+  "Local scarcity is contestable: rival REITs (Kimco, Brixmor, Federal Realty) and private developers can build or redevelop competing centers; the moat is a portfolio of local positions, not a franchise",
+  "Rate and cap-rate exposure dominates: bond-like earnings, a guided 100-150bp refinancing drag as maturing debt reprices (search results), and a valuation multiple that compresses when rates rise regardless of operations",
+  "Growth is increasingly bought with capital: revenue CAGR is flattered by the all-stock Urstadt Biddle acquisition (closed Aug 18, 2023; +79 properties) and a development ramp from $232.9M (2023) to $435.1M (2025) of annual spend that depresses current owner's earnings; guided per-share growth is ~5% \u2014 utility-like",
+  "Discretionary tenant tail (restaurants, fitness, services) and geographic concentration \u2014 California and Florida together are roughly half of annual base rent (search results)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 435112000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), consolidated statements of cash flows and MD&A Summary of Cash Flow Activity: 'Real estate development and capital improvements' $435,112 thousand in 2025 and $343,368 thousand in 2024; the 2023 figure $232,855 thousand is the same line as tagged PaymentsToDevelopRealEstateAssets in EDGAR companyfacts (10-Q YTD facts of the same tag give Q1 2025 $101,386 thousand and Q1 2026 $105,071 thousand). Regency files no PaymentsToAcquirePropertyPlantAndEquipment or any other engine candidate capex tag in any year \u2014 its capital spending is tagged PaymentsToDevelopRealEstateAssets, which the engine does not read, so the engine has no filed capex value (last_filed_value null)."
+  },
+  {
+   "field": "shares",
+   "value": 182234000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 14 Earnings per Share and Unit, 'Parent Company Earnings per Share' table (in thousands, except per share data): weighted average common shares outstanding for diluted EPS 182,234 in 2025 (183,040 in 2024; 176,371 in 2023); diluted EPS $2.82 / $2.11 / $2.04 on net income attributable to common shareholders of $513,810 / $386,738 / $359,500 thousand. EDGAR companyfacts carries no weighted-average share series for CIK 910606 after FY2020 (the filer tags share counts with dimensions the aggregated facts drop), so the engine fell back to point-in-time CommonStockSharesOutstanding counts (184,581,070 / 181,361,454 / 182,902,234)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": null,
+  "base_oe_with_override": 2.0002,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.0625,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

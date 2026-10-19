@@ -1,0 +1,281 @@
+{
+ "ticker": "SJM",
+ "cik": 91419,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T21:19:14-04:00",
+ "newest_filing_date": "2026-08-26",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000091419.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000050/sjm-20260430.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SJM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SJM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "J M SMUCKER Co",
+  "cik": 91419,
+  "description": {
+   "text": "The Company: The J. M. Smucker Company (“Company,” “registrant,” “we,” “us,” or “our”), often referred to as Smucker’s (a registered trademark), was established in 1897 and incorporated in Ohio in 1921. We operate principally in one industry, the manufacturing and marketing of branded food and beverage products on a worldwide basis, although the majority of our sales are in the United States (“U.S.”). Operations outside the U.S. are principally in Canada, although our products are exported to other countries as well. Net sales outside the U.S., subject to foreign currency translation, represented 4 percent of consolidated net sales for 2026. Our branded food and beverage products include a strong portfolio of trusted, iconic, market-leading brands that are sold to consumers primarily through retail outlets in North America. We have five reportable segments: U.S. Retail Coffee, U.S. Retail Frozen Handheld and Spreads, and U.S. Retail Pet Foods (the “U.S. Retail reportable segments”), Sweet Baked Snacks, and Away From Home. During the fourth quarter of 2026, the Away From Home operating segment met the reportable segment criteria under Financial Accounting Standards Board (“FASB”) Accounting Standards Codification (“ASC”) 280. For additional information on our reportable segments, see Note 5: Reportable Segments. On March 3, 2025, we sold certain Sweet Baked Snacks value brands to JTM Foods, LLC (“JTM”).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-06-09",
+   "period": "2026-04-30",
+   "accession": "0000091419-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000050/sjm-20260430.htm"
+  },
+  "description_short": "At The J.M. Smucker Co., it is our privilege to make food people and pets love by offering a diverse family of brands available across North America. We are proud to lead in the coffee, peanut butter, fruit spreads, frozen handheld, sweet baked goods, dog snacks and cat food categories by offering brands consumers trust for themselves and their families each day including Folgers , Dunkin ' , Cafe Bustelo , Jif , Uncrustables , Smucker's , Hostess , Milk-Bone and Meow Mix . Through our unwavering commitment to producing high quality products, operating responsibly and ethically and delivering on our Purpose, we will continue to grow our business while making a positive impact on society.",
+  "industry": "Packaged Foods",
+  "sector": "Consumer Staples",
+  "region": "North America",
+  "sic": "2033",
+  "sic_description": "Canned, Fruits, Veg, Preserves, Jams & Jellies",
+  "state_of_incorporation": "OH",
+  "fiscal_year_end_mmdd": "0430",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.jmsmucker.com",
+  "headquarters": "Orrville, Ohio",
+  "address": {
+   "street": "One Strawberry Lane",
+   "city": "Orrville",
+   "state": "Ohio",
+   "zip": "44667-0280",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-06-09"
+  },
+  "phone": "3306823000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-09",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "SMUCKER J M CO"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000091419&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-26",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091419-26-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000080/sjm-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091419-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000079/sjm-20260826.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000091419-26-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000076/sjm-20260812.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-06-26",
+   "period": "2026-08-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-283858",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000119312526283858/d227901ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-06-09",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000091419-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000050/sjm-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091419-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000047/sjm-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-02-26",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000091419-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000020/sjm-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-24",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000091419-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000017/sjm-20260224.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-26",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091419-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000016/sjm-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091419-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000013/sjm-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-09",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000091419-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141926000007/sjm-20260209.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-25",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091419-25-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000106/sjm-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091419-25-000104",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000104/sjm-20251125.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-27",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091419-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000071/sjm-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091419-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000069/sjm-20250827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000091419-25-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000065/sjm-20250813.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-06-27",
+   "period": "2025-08-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-149673",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000119312525149673/d876403ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-06-18",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000091419-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000056/sjm-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-10",
+   "period": "2025-06-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091419-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000009141925000037/sjm-20250610.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "5.02",
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment; Other events",
+   "accession": "0001193125-25-105911",
+   "url": "https://www.sec.gov/Archives/edgar/data/91419/000119312525105911/d27261d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-06-09"
+ ]
+}

@@ -1,0 +1,300 @@
+{
+ "ticker": "SUI",
+ "cik": 912593,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T10:59:11-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000912593.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000086/sui-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SUI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SUI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SUN COMMUNITIES INC",
+  "cik": 912593,
+  "description": {
+   "text": "We are a fully integrated real estate investment trust (\"REIT\"). We own manufactured housing (\"MH\") and recreational vehicle (\"RV\") communities in the United States (\"U.S.\"), Canada, and the UK (together with MH and RV, the \"properties\"). We self-administer, self-manage, operate, or hold an interest in, and develop the majority of our properties, and a select number of our communities are operated by independent third-party contractors on our behalf under management agreements. Others are operated by lessees under ground lease arrangements. Together with our affiliates and predecessors, we have been in the business of operating, acquiring, developing, and expanding MH and RV communities since 1975 and communities in the UK since 2022. For our MH and RV businesses, we lease individual parcels of land, or sites, with utility access for the placement of manufactured homes and RVs to our MH and RV customers. Our MH communities are designed to offer affordable housing to individuals and families, while also providing certain amenities. Our RV communities are designed to offer affordable vacation opportunities to individuals and families complemented by a diverse selection of high-quality amenities. Through SHS, a taxable REIT subsidiary, we market, sell, and lease new and pre-owned homes to current and future residents in our MH and RV communities. The operations of SHS support and enhance our occupancy levels, property performance, and cash flows.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0000912593-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000086/sui-20251231.htm"
+  },
+  "description_short": "Sun Communities, Inc. is a REIT that, as of June 30, 2026, owned, operated, or had an interest in a portfolio of 455 developed properties comprising approximately 156,130 developed sites in the United States and Canada.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "0513",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.suninc.com",
+  "headquarters": "Southfield, Michigan",
+  "address": {
+   "street": "27777 Franklin Rd Suite 300",
+   "city": "Southfield",
+   "state": "Michigan",
+   "zip": "48034",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "2482082500",
+  "employees": {
+   "count": 3614,
+   "as_of": "2025-12-31",
+   "evidence": "We employed an aggregate of 3,614 full and part time employees as of December 31, 2025.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000086/sui-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-06-05",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000912593&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-01",
+   "items": [
+    "1.01",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity",
+   "accession": "0000912593-26-000262",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000262/sui-20261001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-22",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0000912593-26-000256",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000256/sui-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000912593-26-000254",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000254/sui-20260909.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-21",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000912593-26-000243",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000243/sui-20260821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-24",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000912593-26-000240",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000240/sui-20260824.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000912593-26-000234",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000234/sui-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000912593-26-000231",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000231/sui-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000912593-26-000194",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000194/sui-20260601.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-28",
+   "period": "2026-05-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Amendment: Other events",
+   "accession": "0000912593-26-000192",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000192/sui-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "1.01",
+    "2.06",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Impairment; Reg FD; Other events",
+   "accession": "0000912593-26-000174",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000174/sui-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-12",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000912593-26-000172",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000172/sui-20260512.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-13",
+   "period": "2026-03-23",
+   "items": [
+    "4.01",
+    "9.01"
+   ],
+   "description": "Amendment: Auditor change",
+   "accession": "0000912593-26-000167",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000167/sui-20260323.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000912593-26-000163",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000163/sui-20260504.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000912593-26-000160",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000160/sui-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000912593-26-000156",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000156/sui-20260427.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000912593-26-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000141/sui-20260330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-27",
+   "period": "2026-03-23",
+   "items": [
+    "4.01"
+   ],
+   "description": "Auditor change",
+   "accession": "0000912593-26-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000129/sui-20260323.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-09",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000912593-26-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000107/sui-20260309.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000912593-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000087/sui-20260225.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000912593-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000086/sui-20251231.htm"
+  }
+ ],
+ "warnings": []
+}

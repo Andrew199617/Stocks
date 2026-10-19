@@ -1,0 +1,291 @@
+{
+ "ticker": "W",
+ "cik": 1616707,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T04:55:30-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001616707.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000027/w-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/W/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/W/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Wayfair Inc.",
+  "cik": 1616707,
+  "description": {
+   "text": "As used herein, “Wayfair,” “the company,” “we,” “us,” “our” and similar terms refer to Wayfair Inc. and its subsidiaries, unless the context indicates otherwise. Wayfair is the destination for all things home. Through our e-commerce platform, we offer customers visually inspired browsing, compelling merchandising, easy product discovery and attractive prices. We are focused on bringing our customers an experience that is at the forefront of shopping for the home online. Our customers span a wide range of demographics, with annual household incomes typically ranging from $25,000 to over $250,000, and also include businesses, from small startups to global enterprises. Our selections of furniture, décor, housewares and home improvement products appeal to our customers’ different tastes, styles, purchasing goals and budgets when shopping for their homes and businesses. To meet our customers where they are, we offer a family of brands, both online and through physical retail stores, each with a unique identity that offers a tailored shopping experience and rich product selection to a different target audience: •Wayfair: Every style. Every home. •AllModern: Modern made simple. •Birch Lane: Classic style for joyful living. •Joss & Main: The ultimate style edit for home. •Perigold: The destination for luxury home. •Wayfair Professional: A one-stop Pro shop.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001616707-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000027/w-20251231.htm"
+  },
+  "description_short": "Wayfair is the destination for all things home, and we make it easy to create a home that is just right for you. Whether you're looking for that perfect piece or redesigning your entire space, Wayfair offers quality finds for every style and budget, and a seamless experience from inspiration to installation.",
+  "industry": "Catalog/Specialty Distribution",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5961",
+  "sic_description": "Retail-Catalog & Mail-Order Houses",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.wayfair.com",
+  "headquarters": "Boston, MA",
+  "address": {
+   "street": "4 Copley Place",
+   "city": "Boston",
+   "state": "MA",
+   "zip": "02116",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "617 532 6100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-08-15",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001616707&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001616707-26-000150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000150/w-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001616707-26-000147",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000147/w-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001616707-26-000122",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000122/w-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001193125-26-229012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000119312526229012/d122682d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-13",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-222168",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000119312526222168/d155001d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-220660",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000119312526220660/d153028d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001616707-26-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000113/w-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001616707-26-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000110/w-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001616707-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000074/w-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-04",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001616707-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000043/w-20260304.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001616707-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000027/w-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001616707-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000024/w-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-06",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001616707-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000015/w-20260206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-07",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001616707-25-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670725000139/w-20251107.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Officer/director change",
+   "accession": "0001193125-25-272454",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000119312525272454/d77661d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-265169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000119312525265169/d84392d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-263738",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000119312525263738/d94945d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001616707-25-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670725000127/w-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001616707-25-000125",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670725000125/w-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-19",
+   "period": "2025-09-15",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001616707-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670725000091/w-20250915.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

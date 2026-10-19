@@ -1,0 +1,306 @@
+{
+ "ticker": "TTMI",
+ "cik": 1116942,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T22:14:23-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001116942.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TTMI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TTMI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TTM TECHNOLOGIES INC",
+  "cik": 1116942,
+  "description": {
+   "text": "We are a leading global manufacturer of technology products, including mission systems, RF components, RF microwave/microelectronic assemblies, and technologically advanced interconnect products, including PCBs and substrates. In 2025, we generated approximately $2.9 billion in net sales and ended the year with approximately 18,200 employees worldwide. We currently operate a total of 24 specialized facilities in North America and Asia. We focus on providing time-to-market and volume production of advanced technology products and offer a one-stop design, engineering, and manufacturing solution to our customers. This solution allows us to align technology development with the diverse needs of our customers and to enable them to reduce the time required to develop new products and bring them to market. We serve a diversified customer base consisting of approximately 1,300 customers in various markets throughout the world, including aerospace and defense, data center computing, automotive, medical, industrial, and instrumentation, and networking. Our customers include OEMs, EMS providers, ODMs, distributors, and government agencies (both domestic and allied foreign governments).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-29",
+   "accession": "0001193125-26-051976",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+  },
+  "description_short": "TTM Technologies, Inc. is a leading global manufacturer of technology products, including mission systems, radio frequency ('RF') components, RF microwave/microelectronic assemblies, and technologically advanced interconnect products, including PCBs and substrates. TTM stands for time-to-market, representing how TTM's time-critical, one-stop design, engineering and manufacturing services enable customers to reduce the time required to develop new products and bring them to market.",
+  "industry": "Electrical Products",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3672",
+  "sic_description": "Printed Circuit Boards",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1228",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.ttm.com",
+  "headquarters": "Santa Ana, California",
+  "address": {
+   "street": "200 East Sandpointe Suite 400",
+   "city": "Santa Ana",
+   "state": "California",
+   "zip": "92707",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "7143273000",
+  "employees": {
+   "count": 18200,
+   "as_of": "2025-12-29",
+   "evidence": "As of December 29, 2025, we had approximately 18,200 employees.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2000-06-22",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001116942&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-419614",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526419614/d38382d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD; Other events",
+   "accession": "0001193125-26-409136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526409136/d147406d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Change to security holders' rights",
+   "accession": "0001193125-26-401013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526401013/d186334d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-388039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526388039/d113135d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-15",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-353148",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526353148/d375900d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-08-06",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Amendment: Results of operations",
+   "accession": "0001193125-26-337923",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526337923/d142017d8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-336163",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526336163/d132953d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-335107",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526335107/ttmi-20260629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-274429",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526274429/d144646d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-01",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "3.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation; Change to security holders' rights; Reg FD",
+   "accession": "0001193125-26-255711",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526255711/d220132d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-240340",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526240340/d112116d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-15",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-229075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526229075/d131334d8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-05-08",
+   "period": "2026-01-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-214701",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526214701/d147030d8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-07",
+   "items": [
+    "5.02",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote; Other events",
+   "accession": "0001193125-26-214668",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526214668/d131458d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-201403",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526201403/ttmi-20260330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-191490",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526191490/d103788d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-115993",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526115993/ttmi-20260319.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-29",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-051976",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-037560",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526037560/d19660d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-01-29",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-032638",
+   "url": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526032638/d296024d8k.htm"
+  }
+ ],
+ "warnings": []
+}

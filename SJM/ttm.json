@@ -1,0 +1,101 @@
+{
+ "ticker": "SJM",
+ "cik": 91419,
+ "entity": "J M SMUCKER Co",
+ "fy_end": "2026-04-30",
+ "ytd_end": "2026-07-31",
+ "inputs": {
+  "ocf": {
+   "fy": 1473600000,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -10600000,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 425700000,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1909900000
+  },
+  "capex": {
+   "fy": 317400000,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 84300000,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 88400000,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 321500000
+  },
+  "sbc": {
+   "fy": 23600000,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 9000000,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 12200000,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 26800000
+  },
+  "shares_diluted": {
+   "fy": 108400000,
+   "fy_period": [
+    "2021-05-01",
+    "2022-04-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 108100000,
+   "ytd_prior_period": [
+    "2021-05-01",
+    "2022-01-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 106900000,
+   "ytd_current_period": [
+    "2022-05-01",
+    "2023-01-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1909900000,
+ "ttm_capex": 321500000,
+ "ttm_sbc": 26800000,
+ "ttm_shares_diluted": 106900000,
+ "ttm_oe_total": 1561600000,
+ "ttm_oe_per_share": 14.608044901777362,
+ "warnings": [],
+ "overrides_used": []
+}

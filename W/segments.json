@@ -1,0 +1,385 @@
+{
+ "ticker": "W",
+ "cik": 1616707,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001616707-26-000027",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000027/w-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001616707-26-000113",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000113/w-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001616707-26-000150",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1616707/000161670726000150/w-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "w:USSegmentMember",
+     "label": "US Segment",
+     "values": [
+      10482000000,
+      10373000000,
+      10973000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8733,
+      0.8753,
+      0.8809
+     ],
+     "growth_yoy": [
+      null,
+      -0.0104,
+      0.0578
+     ]
+    },
+    {
+     "member": "w:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      1521000000,
+      1478000000,
+      1484000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1267,
+      0.1247,
+      0.1191
+     ],
+     "growth_yoy": [
+      null,
+      -0.0283,
+      0.0041
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12003000000,
+     11851000000,
+     12457000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "w:USSegmentMember",
+     "label": "US Segment",
+     "values": [
+      2429000000,
+      2874000000,
+      2612000000,
+      3125000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8897,
+      0.8781,
+      0.8912,
+      0.888
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0753,
+      0.0873
+     ]
+    },
+    {
+     "member": "w:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      301000000,
+      399000000,
+      319000000,
+      394000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1103,
+      0.1219,
+      0.1088,
+      0.112
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0598,
+      -0.0125
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2730000000,
+     3273000000,
+     2931000000,
+     3519000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "w:USSegmentMember",
+     "label": "US Segment",
+     "values": [
+      1245000000,
+      1107000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3599,
+      0.3218
+     ],
+     "growth_yoy": [
+      null,
+      -0.1108
+     ]
+    },
+    {
+     "member": "w:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      328000000,
+      319000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0948,
+      0.0927
+     ],
+     "growth_yoy": [
+      null,
+      -0.0274
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateMember",
+     "label": "Corporate Segment",
+     "values": [
+      1886000000,
+      2014000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5452,
+      0.5855
+     ],
+     "growth_yoy": [
+      null,
+      0.0679
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3459000000,
+     3440000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "w:USSegmentMember",
+     "label": "US Segment",
+     "values": [
+      1107000000,
+      1039000000,
+      1092000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3218,
+      0.362,
+      0.3667
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "w:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      319000000,
+      317000000,
+      302000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0927,
+      0.1105,
+      0.1014
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateMember",
+     "label": "Corporate Segment",
+     "values": [
+      2014000000,
+      1514000000,
+      1584000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5855,
+      0.5275,
+      0.5319
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3440000000,
+     2870000000,
+     2978000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the sum of US Segment, International Segment",
+  "business_segments/Assets/quarterly: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the sum of US Segment, International Segment"
+ ],
+ "complete": true
+}

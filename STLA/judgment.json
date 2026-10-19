@@ -1,0 +1,41 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "DATA_GAP:ads_ratio — Stellantis has no ADS program: the NYSE-traded security is the common share itself in direct-listed form, so per-ordinary-share figures are directly comparable to the traded STLA price with no scaling (ratio 1.0 ordinary shares per traded share).",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, cover page: securities registered pursuant to Section 12(b) of the Act are 'Common Shares, par value EUR 0.01 per share', trading symbol STLA, New York Stock Exchange — the NYSE security is the common share itself, listed also on Euronext Paris and Euronext Milan under the same ISIN"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Share erosion on both sides of the Atlantic: Europe 20.2% (2021) to ~14-16% (2025), U.S. 12.0% to 7.7% — no demonstrated share defense against VW, GM/Ford or Chinese EV entrants",
+  "Returns were cyclical, not structural: ROIC proxy 27-34% in 2021-2023 collapsed to 3.4% (2024) and -29.7% (2025); gross margin ~19-20% fell to 13.1% then -1.4%",
+  "No pricing power in the downcycle: 2024-2025 revenue fell on price cuts and high incentives despite volume efforts; commodity mass-market product",
+  "14-brand sprawl (Chrysler, Dodge, Maserati, Alfa Romeo, DS, Lancia among them) spreads capital thin; EV strategy over-investment forced ~€25.4B of 2025 reset charges"
+ ],
+ "moat_for": [
+  "Scale: one of the world's largest automakers (~5.5M units shipped in 2025), shared platforms and purchasing leverage across 14 brands",
+  "Jeep and Ram franchises in North America — Ram pickups and Jeep SUVs are the group's historic profit pool (47% and 34% of 2025 U.S. sales respectively)",
+  "Leading regional positions: #2 OEM in EU30 (~16% share in 2025), #1 in EU light commercial vehicles (~28.6%), market leader in South America (~19% share, #1 in Brazil and Argentina)"
+ ],
+ "moat_justification": "Scale and a few genuine brand franchises (Jeep, Ram in North America; Peugeot/Fiat in Europe and South America; EU light-commercial-vehicle leadership at ~28.6% share) are real, but they have not translated into durable pricing power or share defense: European share fell from 20.2% in 2021 to ~14-16% in 2025 and U.S. share from 12.0% to 7.7% over the same period, and the strong ROIC of 2021-2023 (34.4% / 32.8% / 27.4% on the fundamentals.json roic_proxy series, gross margin ~19-20%) collapsed to 3.4% in 2024 and -29.7% in 2025 with gross margin at -1.4% — the earlier returns were shortage-cycle pricing, not a structural moat. Mass-market autos are commodity-competitive, Chinese EV entrants are taking European share, and a 14-brand sprawl dilutes focus. Moat 3/10 (weak).",
+ "moat_score": 3,
+ "name": "Stellantis N.V.",
+ "one_liner": "Global auto scale, moat 3/10 — Tier F on this screen: normalized (3-yr median) conservative owner's earnings are negative (−$3.34/share, latest FY −$5.16), so no 15% hurdle-clearing price is computable on a negative OE base.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed SBC value to band against (last filed value is null under its tags — sbc is blank for every filed year), so any current filing figure is out-of-band. The value is not an estimate — it is the FY2024 share-based compensation expense printed in the filer's own FY2025 Form 20-F.",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc — SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (sbc_tag blank for every year in financials_history.csv). The engine applies a single override value (declared in EUR, the reporting currency; the engine FX-converts at each period-end rate) to every missing period. EUR 45M is the filed FY2024 figure, and FY2024 is the median year of the 3-yr normalized base, so the base is built from the exact filed figure for its year. The error on the other years (filed EUR 189M in 2023, EUR 73M in 2025) is at most ~EUR 144M/yr against owner's-earnings totals in the billions — immaterial, and it does not change the sign of any year or the Tier F outcome.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, Share-based Compensation Expense disclosure: total expense for the PSU awards and RSU awards of approximately EUR 73 million (2025), EUR 45 million (2024) and EUR 189 million (2023) was recorded for the years ended December 31, 2025, 2024 and 2023, respectively",
+  "value": 45000000
+ },
+ "sector": "Consumer Cyclical / Automobiles",
+ "tier_override": null,
+ "tier_override_reason": null
+}

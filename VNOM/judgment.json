@@ -1,0 +1,51 @@
+{
+ "base_override": {
+  "reason": "The engine's per-share figures divide CONSOLIDATED owner's earnings (100% of the operating company, including the noncontrolling interest's share) by the filer's tagged diluted share count, which for this Up-C filer is Class A only (ttm.json: TTM OE $1,488,000,000 on 187,553,000 current-YTD Class A diluted shares = $7.9338/share). Class A is only ~54% of the economic units: Class B shares / OpCo units held by Diamondback and other noncontrolling holders share the same per-unit distributions and are exchangeable 1-for-1 into Class A, so consolidated OE must be divided by total units. A shares_override cannot fix this \u2014 overrides fill only absent periods and never replace filed values (the NTNX/VIV precedent). The corrected base pins TTM OE per total unit; it is ~48% below the engine's Class A-basis TTM figure and is the only reason this name does not print a fake high tier off a share-basis artifact. Denominator is the Mar 31, 2026 unit count; Q2 2026 buybacks (~3.0M Class A shares repurchased in the quarter, per the Q2 2026 release) would only raise the figure ~0.8%, so the pin is slightly conservative.",
+  "source": "Built from this run's ttm.json TTM owner's-earnings total ($1,488,000,000 = TTM OCF $1,495,000,000 \u2212 capex $0 by override \u2212 SBC $7,000,000 by override) divided by total economic units of 359,123,000 = Class A 194,312 thousand + Class B 164,811 thousand shares outstanding at March 31, 2026 (Form 10-Q for Q1 2026, Consolidated Statements of Changes in Stockholders' Equity, balance at March 31, 2026). Cross-check against the company's own per-unit math: Q2 2026 consolidated OCF of $487M (statements.json) / 359,123,000 units = $1.356 per unit, vs the $1.37 per Class A share of cash available for distribution the company itself reported for Q2 2026 (GlobeNewswire release, 2026-08-03) \u2014 the two agree once Q2 buybacks are allowed for. $1,488,000,000 / 359,123,000 = $4.143427182330288 per unit.",
+  "value": 4.143427182330288
+ },
+ "capex_override": {
+  "ack_reason": "Out of band by construction: the band is computed against the last FILED capex value and Viper has never filed one under any candidate tag (last_filed_value is null), so every value flags out-of-band, including the filing-proven $0. This is not an estimate lacking an anchor \u2014 it is a figure established by the filer's own cash-flow statements (see source), and no filed capex value exists in any period to anchor to.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads, because Viper is a mineral/royalty owner that buys no property or equipment: operators bear all drilling and completion capex on its acreage. Its investing outflows are acquisitions of mineral interests \u2014 growth investment, not maintenance capex (the same distinction the sweep applied to Royal Gold's stream/royalty acquisitions). The filing's cash-flow statement fully accounts for investing activities for all three years with no PPE purchase line, so PPE capex is $0 as a filing fact, not an estimate. Measured impact is nil: the engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Cash Flows (p. 50): the investing-activities section for 2025/2024/2023 lists ONLY 'Acquisitions of oil and natural gas interests' $(1,549)M / $(696)M / $(830)M, 'Acquisitions of oil and natural gas interests\u2014related party' $(875)M / $\u2014 / $(75)M and 'Proceeds from sale of oil and natural gas interests' $\u2014 / $88M / $(3)M, netting to $(2,424)M / $(608)M / $(908)M. There is no purchases-of-property-plant-and-equipment, fixed-asset or capital-expenditure line anywhere in the statement for any of the three years (the balance sheet carries only $8M of other property, equipment and land at FY2025).",
+  "value": 0
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No pricing power: royalty revenue is a price-taker claim on oil, gas and NGL prices (FY2025 ceiling-test impairment of $768M when prices fell)",
+  "Reserves deplete: maintaining per-unit production requires continuous acreage acquisition at market prices (FY2025 acquisitions of oil and gas interests $1,549M + $875M related-party)",
+  "Volumes depend on third-party operators' (mainly Diamondback's) drilling and completion pace",
+  "Single-basin concentration: essentially all value in the Permian Basin; long-run hydrocarbon demand decline caps the terminal story",
+  "Up-C structure: a large noncontrolling interest (OpCo units / Class B) shares consolidated economics ahead of Class A holders, and net debt was $2,173M at FY2025 (being paid toward a ~$1.5B target)"
+ ],
+ "moat_for": [
+  "Perpetual mineral/royalty interests (96,003 net royalty acres at FY2025) that bear no well capex or lease operating expense \u2014 a structural cost advantage no producer can match",
+  "Scale: largest pure-play mineral company after the Aug 2025 Sitio acquisition (~$4.0B all-equity); proved reserves 406,035 MBOE, ~78% proved developed producing",
+  "Diamondback symbiosis: parent-operator develops Viper acreage preferentially; ~1,388 gross horizontal wells in active development on its Permian acreage at YE2025 plus ~1,370 line-of-sight wells",
+  "Cash ROIC history well above cost of capital before the FY2025 non-cash impairment (fundamentals.json roic_proxy 19.9% FY2023, 16.3% FY2024); operating margin 86.5% / 66.4% in FY2023/FY2024",
+  "Royalty breakeven far below current commodity prices \u2014 cash generation survives troughs that force producers to cut rigs"
+ ],
+ "moat_justification": "The largest pure-play mineral and royalty owner in the Permian: perpetual royalty interests that bear no drilling, completion or operating capex, a symbiotic Diamondback relationship supplying a disproportionate share of development on its acreage, and scale that gives it the lowest cost of capital in a fragmented minerals market \u2014 a moderate-strong asset moat (6). It is not wider: Viper is a pure commodity price-taker, its reserves deplete and must be replenished by buying acreage at market prices, volumes depend on third-party operators' drilling pace, and essentially all value sits in one basin facing long-run hydrocarbon decline.",
+ "moat_score": 6,
+ "name": "Viper Energy, Inc.",
+ "one_liner": "Largest Permian mineral/royalty owner, moat 6/10, zero-capex royalty cash flow \u2014 on the corrected per-unit TTM base it barely clears 15%: weighted IRR 15.02% (Tier B), weighted IV@15% $45.11 vs the $45.02 price, but the bear case is Tier D (9.98% IRR), so size it like the conservative end of B.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out of band by construction: the band is computed against the last FILED SBC value under the tags the engine reads, and Viper has never filed one in companyfacts (last_filed_value is null), so any override flags out-of-band. The value is not an estimate \u2014 it is the exact FY2025 equity-based compensation printed in the filer's own 10-K statement of changes in stockholders' equity (see source).",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads (ShareBasedCompensation / AllocatedShareBasedCompensationExpense have no facts in this filer's companyfacts). The filer's own equity statement reports equity-based compensation of $7M (FY2025) / $3M (FY2024) / $1M (FY2023). The engine applies this single FY2025 value to every missing period, which overstates FY2023 SBC by $6M and FY2024 by $4M against the same statement's true values \u2014 both in the conservative direction of lowering owner's earnings, and immaterial either way (FY2025 SBC is 0.7% of FY2025 OCF of $1,053M). ttm.py prorates the same value across its legs, leaving TTM SBC at the FY2025 figure.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0002074176-26-000010), Consolidated Statements of Changes in Stockholders' Equity (pp. 51-52), row 'Equity-based compensation' credited to additional paid-in capital: $7M for FY2025, with $3M for FY2024 and $1M for FY2023 in the same statement. The cash-flow statement (p. 50) carries no separate equity-compensation addback line \u2014 it is inside the 'Other' operating adjustment of $13M / $6M / $3M \u2014 which is why EDGAR companyfacts has no ShareBasedCompensation fact for this filer.",
+  "value": 7000000
+ },
+ "sector": "Energy / Oil & gas mineral and royalty interests",
+ "tier_override": null,
+ "tier_override_reason": null
+}

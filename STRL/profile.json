@@ -1,0 +1,298 @@
+{
+ "ticker": "STRL",
+ "cik": 874238,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T21:22:19-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000874238.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000024/strl-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/STRL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/STRL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "STERLING INFRASTRUCTURE, INC.",
+  "cik": 874238,
+  "description": {
+   "text": "Sterling Infrastructure, Inc. (“Sterling” or “the Company”) operates through a variety of subsidiaries within three segments specializing in E-Infrastructure, Transportation and Building Solutions in the United States, primarily across the Southern, Northeastern, Mid-Atlantic and Rocky Mountain regions and the Pacific Islands. E-Infrastructure Solutions provides advanced, large-scale site development services and mission-critical electrical services for data centers, semiconductor fabrication, manufacturing, distribution centers, warehousing, power generation and more. Transportation Solutions includes infrastructure and rehabilitation projects for highways, roads, bridges, airports, ports, rail and storm drainage systems. Building Solutions includes residential and commercial concrete foundations for single-family and multi-family homes, parking structures, elevated slabs, other concrete work, plumbing services, and surveys for new single-family residential builds. From strategy to operations, we are committed to sustainability by operating responsibly to safeguard and improve society’s quality of life. Caring for our people and our communities, our customers and our investors – that is The Sterling Way. In this report, unless the context otherwise indicates, “Sterling,” “the Company,” “we,” “our” or “us” means Sterling and its consolidated subsidiaries.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000874238-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000024/strl-20251231.htm"
+  },
+  "description_short": "Sterling Infrastructure, Inc., operates through a variety of subsidiaries within three segments specializing in E-Infrastructure, Transportation and Building Solutions in the United States, primarily across the Southern, Northeastern, Mid-Atlantic and Rocky Mountain regions and the Pacific Islands. E-Infrastructure Solutions provides advanced, large-scale site development services and mission-critical electrical services for data centers, semiconductor fabrication, manufacturing, distribution centers, warehousing, power generation and more. Transportation Solutions includes infrastructure and rehabilitation projects for highways, roads, bridges, airports, ports, rail and storm drainage systems. Building Solutions includes residential and commercial concrete foundations for single-family and multi-family homes, parking structures, elevated slabs, other concrete work, plumbing services, and surveys for new single-family residential builds.",
+  "industry": "Military/Government/Technical",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "1600",
+  "sic_description": "Heavy Construction Other Than Bldg Const - Contractors",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.strlco.com",
+  "headquarters": "The Woodlands, Texas",
+  "address": {
+   "street": "1800 Hughes Landing Blvd.",
+   "city": "The Woodlands",
+   "state": "Texas",
+   "zip": "77380",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "281-214-0777",
+  "employees": {
+   "count": 4400,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, the Company had approximately 4,400 employees, comprised of approximately 1,200 salaried employees and approximately 3,200 hourly employees.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000024/strl-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-10",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "STERLING CONSTRUCTION CO INC",
+   "OAKHURST CO INC",
+   "OAKHURST CAPITAL INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000874238&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000874238-26-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000110/strl-20261005.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874238-26-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000103/strl-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000874238-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000100/strl-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000874238-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000095/strl-20260706.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0000874238-26-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000093/strl-20260702.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000874238-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000087/strl-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000874238-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000083/strl-20260520.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000874238-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000078/strl-20260512.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000874238-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000058/strl-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874238-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000055/strl-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000874238-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000052/strl-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000874238-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000047/strl-20260408.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-25",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000874238-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000042/strl-20260324.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000874238-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000024/strl-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000874238-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423826000018/strl-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000874238-25-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423825000138/strl-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000874238-25-000136",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423825000136/strl-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000874238-25-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423825000133/strl-20251103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-24",
+   "period": "2025-09-23",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000874238-25-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423825000131/strl-20250923.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000874238-25-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/874238/000087423825000129/strl-20250917.htm"
+  }
+ ],
+ "warnings": []
+}

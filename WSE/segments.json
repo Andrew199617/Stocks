@@ -1,0 +1,270 @@
+{
+ "ticker": "WSE",
+ "cik": 2099039,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-282911",
+   "filed": "2026-06-25",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2099039/000119312526282911/d17323d20f_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wse:CrossBorderSevicesMember",
+     "label": "Cross Border Sevices",
+     "values": [
+      999700000,
+      1071700000,
+      1257000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7556,
+      0.6931,
+      0.6638
+     ],
+     "growth_yoy": [
+      null,
+      0.072,
+      0.1729
+     ]
+    },
+    {
+     "member": "wse:CardServicesMember",
+     "label": "Card Services",
+     "values": [
+      207200000,
+      280500000,
+      391600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1566,
+      0.1814,
+      0.2068
+     ],
+     "growth_yoy": [
+      null,
+      0.3538,
+      0.3961
+     ]
+    },
+    {
+     "member": "wse:OtherServicesMember",
+     "label": "Other Services",
+     "values": [
+      116200000,
+      194100000,
+      245000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0878,
+      0.1255,
+      0.1294
+     ],
+     "growth_yoy": [
+      null,
+      0.6704,
+      0.2622
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1323100000,
+     1546300000,
+     1893600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      404600000,
+      467000000,
+      569400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3058,
+      0.302,
+      0.3007
+     ],
+     "growth_yoy": [
+      null,
+      0.1542,
+      0.2193
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      272000000,
+      336500000,
+      450500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2056,
+      0.2176,
+      0.2379
+     ],
+     "growth_yoy": [
+      null,
+      0.2371,
+      0.3388
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      254800000,
+      288900000,
+      329100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1926,
+      0.1868,
+      0.1738
+     ],
+     "growth_yoy": [
+      null,
+      0.1338,
+      0.1391
+     ]
+    },
+    {
+     "member": "wse:RestOfTheWorldMember",
+     "label": "Rest of the World",
+     "values": [
+      182100000,
+      224200000,
+      282700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1376,
+      0.145,
+      0.1493
+     ],
+     "growth_yoy": [
+      null,
+      0.2312,
+      0.2609
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      209600000,
+      229700000,
+      261900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1584,
+      0.1485,
+      0.1383
+     ],
+     "growth_yoy": [
+      null,
+      0.0959,
+      0.1402
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1323100000,
+     1546300000,
+     1893600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

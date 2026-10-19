@@ -1,0 +1,101 @@
+{
+ "ticker": "RVTY",
+ "cik": 31791,
+ "entity": "REVVITY, INC",
+ "fy_end": "2025-12-28",
+ "ytd_end": "2026-07-05",
+ "inputs": {
+  "ocf": {
+   "fy": 582933000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 262473000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 307173000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-07-05"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 627633000
+  },
+  "capex": {
+   "fy": 73522000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 34850000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 30848000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-07-05"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 69520000
+  },
+  "sbc": {
+   "fy": 22847000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 17864000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 19446000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-07-05"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 24429000
+  },
+  "shares_diluted": {
+   "fy": 116595000,
+   "fy_period": [
+    "2024-12-30",
+    "2025-12-28"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 118882000,
+   "ytd_prior_period": [
+    "2024-12-30",
+    "2025-06-29"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 111746000,
+   "ytd_current_period": [
+    "2025-12-29",
+    "2026-07-05"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 627633000,
+ "ttm_capex": 69520000,
+ "ttm_sbc": 24429000,
+ "ttm_shares_diluted": 111746000,
+ "ttm_oe_total": 533684000,
+ "ttm_oe_per_share": 4.775866697689403,
+ "warnings": [],
+ "overrides_used": []
+}

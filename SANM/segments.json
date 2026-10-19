@@ -1,0 +1,675 @@
+{
+ "ticker": "SANM",
+ "cik": 897723,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000897723-25-000042",
+   "filed": "2025-11-13",
+   "period": "2025-09-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/897723/000089772325000042/sanm-20250927_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000897723-26-000025",
+   "filed": "2026-04-27",
+   "period": "2026-03-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/897723/000089772326000025/sanm-20260328_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000897723-26-000037",
+   "filed": "2026-07-27",
+   "period": "2026-06-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/897723/000089772326000037/sanm-20260627_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-28",
+    "2025-09-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sanm:IMSThirdPartyRevenueMember",
+     "label": "IMS Third Party Revenue",
+     "values": [
+      7289037000,
+      6033867000,
+      6512891000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8158,
+      0.7973,
+      0.8013
+     ],
+     "growth_yoy": [
+      null,
+      -0.1722,
+      0.0794
+     ]
+    },
+    {
+     "member": "sanm:CPSThirdPartyRevenueMember",
+     "label": "CPS Third Party Revenue",
+     "values": [
+      1646011000,
+      1534461000,
+      1615491000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1842,
+      0.2027,
+      0.1987
+     ],
+     "growth_yoy": [
+      null,
+      -0.0678,
+      0.0528
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8935048000,
+     7568328000,
+     8128382000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2025-09-27",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sanm:IMSThirdPartyRevenueMember",
+     "label": "IMS Third Party Revenue",
+     "values": [
+      1592140000,
+      1639258000,
+      1670378000,
+      3574546000,
+      2947574000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8025,
+      0.8029,
+      0.7968,
+      0.8907,
+      0.8509
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.2451,
+      0.7981
+     ]
+    },
+    {
+     "member": "sanm:CPSThirdPartyRevenueMember",
+     "label": "CPS Third Party Revenue",
+     "values": [
+      391940000,
+      402304000,
+      426014000,
+      438725000,
+      516442000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1975,
+      0.1971,
+      0.2032,
+      0.1093,
+      0.1491
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1194,
+      0.2837
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1984080000,
+     2041562000,
+     2096392000,
+     4013271000,
+     3464016000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-28",
+    "2025-09-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sanm:ReportableSegmentIMSMember",
+     "label": "Reportable Segment - IMS",
+     "values": [
+      79508000,
+      81880000,
+      76918000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6724,
+      0.6689,
+      0.6438
+     ],
+     "growth_yoy": [
+      null,
+      0.0298,
+      -0.0606
+     ]
+    },
+    {
+     "member": "sanm:OtherSegmentsCPSMember",
+     "label": "Other Segments - CPS",
+     "values": [
+      34348000,
+      36205000,
+      37635000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2905,
+      0.2957,
+      0.315
+     ],
+     "growth_yoy": [
+      null,
+      0.0541,
+      0.0395
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      4381000,
+      4333000,
+      4913000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0371,
+      0.0354,
+      0.0411
+     ],
+     "growth_yoy": [
+      null,
+      -0.011,
+      0.1339
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     118237000,
+     122418000,
+     119466000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2025-09-27",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sanm:ReportableSegmentIMSMember",
+     "label": "Reportable Segment - IMS",
+     "values": [
+      19267000,
+      18962000,
+      18740000,
+      32309000,
+      33118000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.683,
+      0.6372,
+      0.632,
+      0.6862,
+      0.6871
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.6769,
+      0.7465
+     ]
+    },
+    {
+     "member": "sanm:OtherSegmentsCPSMember",
+     "label": "Other Segments - CPS",
+     "values": [
+      8100000,
+      9518000,
+      9609000,
+      10403000,
+      10807000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2872,
+      0.3198,
+      0.324,
+      0.2209,
+      0.2242
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2843,
+      0.1354
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      841000,
+      1280000,
+      1304000,
+      4373000,
+      4276000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0298,
+      0.043,
+      0.044,
+      0.0929,
+      0.0887
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      4.1998,
+      2.3406
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     28208000,
+     29760000,
+     29653000,
+     47085000,
+     48201000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-28",
+    "2025-09-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      4426690000,
+      3962652000,
+      4650934000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4954,
+      0.5236,
+      0.5722
+     ],
+     "growth_yoy": [
+      null,
+      -0.1048,
+      0.1737
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      3187017000,
+      2558073000,
+      2611053000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3567,
+      0.338,
+      0.3212
+     ],
+     "growth_yoy": [
+      null,
+      -0.1973,
+      0.0207
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1321341000,
+      1047603000,
+      866395000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1479,
+      0.1384,
+      0.1066
+     ],
+     "growth_yoy": [
+      null,
+      -0.2072,
+      -0.173
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8935048000,
+     7568328000,
+     8128382000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2025-09-27",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1153434000,
+      1210923000,
+      1205515000,
+      3091986000,
+      2392129000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5813,
+      0.5931,
+      0.575,
+      0.7704,
+      0.6906
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.6807,
+      0.9755
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      620776000,
+      612363000,
+      682341000,
+      636213000,
+      725206000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3129,
+      0.2999,
+      0.3255,
+      0.1585,
+      0.2094
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0249,
+      0.1843
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      209870000,
+      218276000,
+      208536000,
+      285072000,
+      346681000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1058,
+      0.1069,
+      0.0995,
+      0.071,
+      0.1001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3583,
+      0.5883
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1984080000,
+     2041562000,
+     2096392000,
+     4013271000,
+     3464016000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment - IMS' (sanm:ReportableSegmentIMSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (IMS Third Party Revenue, CPS Third Party Revenue)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Other Segments - CPS' (sanm:OtherSegmentsCPSMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment - IMS' (sanm:ReportableSegmentIMSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (IMS Third Party Revenue, CPS Third Party Revenue)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Other Segments - CPS' (sanm:OtherSegmentsCPSMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

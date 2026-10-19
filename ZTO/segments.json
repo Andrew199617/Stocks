@@ -1,0 +1,24 @@
+{
+ "ticker": "ZTO",
+ "cik": 1677250,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-044613",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1677250/000110465926044613/zto-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "CNY",
+ "tables": [],
+ "warnings": [
+  "8 facts in a currency other than CNY were ignored",
+  "business_segments/ProfitLoss/annual: row 'Single Reportable Segment' (zto:SingleReportableSegmentMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

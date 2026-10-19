@@ -1,0 +1,290 @@
+{
+ "ticker": "RRX",
+ "cik": 82811,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T18:29:02-04:00",
+ "newest_filing_date": "2026-08-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000082811.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000054/rbc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RRX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RRX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "REGAL REXNORD CORP",
+  "cik": 82811,
+  "description": {
+   "text": "Regal Rexnord Corporation (NYSE: RRX) (“we,” “us,” “our” or the “Company”) and its associates around the world help create a better tomorrow by providing sustainable solutions that power, transmit and control motion. The Company’s electric motors and air moving subsystems provide the power to create motion. A portfolio of highly engineered power transmission components and subsystems efficiently transmits motion to power industrial applications. The Company's automation offering, comprised of controllers, drives, precision motors, and actuators, controls motion in applications ranging from factory automation to precision tools used in surgical applications. The Company is headquartered in Milwaukee, Wisconsin and has manufacturing, sales and service facilities worldwide. The Company is comprised of three operating segments: Automation & Motion Control (\"AMC\"), Industrial Powertrain Solutions (\"IPS\"), and Power Efficiency Solutions (\"PES\"). A description of the three operating segments is as follows: •The AMC segment designs, produces and services conveyor products, conveying automation subsystems, aerospace components, precision motion control solutions, high-efficiency miniature servo motors, controls, drives and linear actuators, as well as power management products that include automatic transfer switches, paralleling switchgear, and customized modular electric pod solutions (\"E-Pods\") that comprise relevant power and thermal management content.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0000082811-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000054/rbc-20251231.htm"
+  },
+  "description_short": "Regal Rexnord's 30,000 associates around the world help create a better tomorrow by providing sustainable solutions that power, transmit and control motion. The Company's electric motors and air moving subsystems provide the power to create motion. A portfolio of highly engineered power transmission components and subsystems efficiently transmits motion to power industrial applications. The Company's automation offering, comprised of controllers, drives, precision motors, and actuators, controls motion in applications ranging from factory automation to precision tools used in surgical applications. The Company's end markets benefit from meaningful secular demand tailwinds, and include discrete automation, food & beverage, aerospace & defense, medical, data center, energy, residential and commercial buildings, general industrial, and metals and mining.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3569",
+  "sic_description": "General Industrial Machinery & Equipment, NEC",
+  "state_of_incorporation": "WI",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.regalrexnord.com",
+  "headquarters": "Milwaukee, Wisconsin",
+  "address": {
+   "street": "111 West Michigan Street",
+   "city": "Milwaukee",
+   "state": "Wisconsin",
+   "zip": "53203",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "6083648800",
+  "employees": {
+   "count": 29200,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 29,200 associates worldwide, of whom approximately 28,700 were full-time.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000054/rbc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "REGAL BELOIT CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000082811&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000082811-26-000229",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000229/rbc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000082811-26-000226",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000226/rrx-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-05-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-039279",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000162828026039279/rbc-20260526.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000082811-26-000144",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000144/rbc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000082811-26-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000141/rrx-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000082811-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000135/rrx-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000950157-26-000533",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000095015726000533/form8-k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-18",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000082811-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000085/rrx-20260318.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-03-16",
+   "period": "2025-10-27",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change; Reg FD",
+   "accession": "0000950157-26-000298",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000095015726000298/form8k-a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000082811-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000054/rbc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000082811-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281126000041/rrx-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-21",
+   "items": [
+    "1.01",
+    "2.03"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000082811-25-000220",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000220/rrx-20251121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-27",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000950157-25-000898",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000095015725000898/form8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000082811-25-000215",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000215/rbc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000082811-25-000212",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000212/rrx-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000082811-25-000204",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000204/rrx-20250805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000082811-25-000202",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000202/rbc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000082811-25-000200",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000200/rrx-20250805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-25",
+   "period": "2025-07-22",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000082811-25-000192",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000192/rrx-20250722.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000082811-25-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/82811/000008281125000119/rbc-20250331.htm"
+  }
+ ],
+ "warnings": []
+}

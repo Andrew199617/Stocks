@@ -1,0 +1,283 @@
+{
+ "ticker": "WY",
+ "cik": 106535,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T12:20:42-04:00",
+ "newest_filing_date": "2026-09-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000106535.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/106535/000119312526051422/wy-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/WY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/WY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "WEYERHAEUSER CO",
+  "cik": 106535,
+  "description": null,
+  "description_short": "Weyerhaeuser Company, one of the world's largest private owners of timberlands, began operations in 1900 and today owns or controls more than 10 million acres of timberlands in the U.S., as well as additional public timberlands managed under long-term licenses in Canada. Weyerhaeuser has been a global leader in sustainability for more than a century and manages 100 percent of its timberlands on a fully sustainable basis in compliance with internationally recognized sustainable forestry standards. Weyerhaeuser is also one of the largest manufacturers of wood products in North America and operates additional business lines around product distribution, climate solutions, real estate, energy and natural resources, among others. In 2025, the company generated $6.9 billion in net sales and employed approximately 9,500 people who serve customers worldwide.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "WA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.weyerhaeuser.com",
+  "headquarters": "Seattle, Washington",
+  "address": {
+   "street": "220 OCCIDENTAL AVENUE SOUTH",
+   "city": "Seattle",
+   "state": "Washington",
+   "zip": "98104-7800",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "206-539-3000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000106535&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-400727",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526400727/wy-20260924.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000106535-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000010653526000009/wy-20260827.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-328606",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526328606/wy-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-326124",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526326124/wy-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000106535-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000010653526000007/wy-20260625.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000106535-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000010653526000005/wy-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-14",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000106535-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000010653526000003/wy-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-201473",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526201473/wy-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-197281",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526197281/wy-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-01",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-012453",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000114036126012453/ny20063863x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000106535-26-000001",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000010653526000001/wy-20260326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-076924",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526076924/wy-20260226.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-19",
+   "period": "2025-11-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001193125-26-059494",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526059494/wy-20251113.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-051422",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526051422/wy-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-029351",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526029351/wy-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-21",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-024507",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312526024507/wy-20260121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-324926",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312525324926/wy-20251218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-315157",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312525315157/wy-20251211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-18",
+   "period": "2025-11-13",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-286451",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312525286451/wy-20251113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-05",
+   "items": [
+    "2.03"
+   ],
+   "description": "Debt obligation",
+   "accession": "0001193125-25-277594",
+   "url": "https://www.sec.gov/Archives/edgar/data/106535/000119312525277594/wy-20251105.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-13)",
+  "employees: no headcount sentence found in the 10-K filed 2026-02-13"
+ ]
+}

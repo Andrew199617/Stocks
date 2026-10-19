@@ -1,0 +1,88 @@
+{
+ "ticker": "TRU",
+ "name": "TransUnion",
+ "sector": "Financials \u2014 consumer credit reporting & data analytics (SIC 7320)",
+ "price": 74.08,
+ "market_cap_b": 14.56,
+ "engine_version": 5,
+ "base_oe_per_share": 2.7953727506426733,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Regulated three-bureau oligopoly with an irreplicable consumer-file database and real switching costs, but TransUnion is the smallest of the three with no exclusive verification database comparable to Equifax's Work Number, and measured ROIC proxy ran only 1.1\u20137.2% over FY2020\u201325 on an acquisition-built, goodwill-heavy balance sheet \u2014 the FY2023 UK goodwill impairment is direct evidence of overpayment, so the history does not prove a wide moat.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 7.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (6.6%) vs bull-case tier C (10.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 14.31,
+   "irr": 0.0478
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 23.45,
+   "irr": 0.0658
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 32.55,
+   "irr": 0.0833
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 44.68,
+   "irr": 0.105
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 69.06,
+   "irr": 0.143
+  }
+ },
+ "iv_at_15": 35.13,
+ "iv_at_12": 47.68,
+ "implied_irr": 0.0885,
+ "implied_irr_base_case": 0.0833,
+ "upside_at_15_pct": -52.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Oligopoly credit-bureau data franchise, moat 6/10, but levered and with low measured ROIC \u2014 on TTM OE of $2.80/share it does not clear 15% at $74.08 (weighted IRR 8.85%, IV@15 $35.13); it clears 15% only at or below $35.13.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0658,
+ "irr_bull": 0.105,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 24.03,
+ "iv_at_25": 18.05,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4250200000,
+ "shares_diluted_latest": 196600000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "One of only three national credit bureaus \u2014 ~200M U.S. consumer files and ~10,000 furnisher relationships no entrant can replicate",
+  "Switching costs \u2014 lender underwriting, models and compliance workflows built around bureau data",
+  "Diversifying recurring non-mortgage revenue (fraud, identity, marketing, emerging verticals) on the OneTru platform",
+  "Mid-60s gross margin in the last tagged years (FY2016\u201319: 64.5\u201366.6%)"
+ ],
+ "moat_against": [
+  "Measured ROIC proxy only 1.1\u20137.2% (FY2020\u201325); goodwill-heavy balance sheet from acquisitions",
+  "FY2023 UK goodwill impairment of $414M \u2014 direct evidence an acquisition overpaid",
+  "Smallest of the Big Three vs Equifax, Experian, LexisNexis and FICO; FICO royalty pricing is an upstream margin headwind",
+  "Mortgage / consumer-lending cyclicality \u2014 OE/share fell to \u2212$0.43 in FY2022",
+  "Leverage (net debt $4.25B, 7.73x normalized OE) plus permanent regulatory / data-privacy exposure"
+ ]
+}

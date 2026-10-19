@@ -1,0 +1,295 @@
+{
+ "ticker": "RGA",
+ "cik": 898174,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T17:41:58-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000898174.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000006/rga-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RGA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RGA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "REINSURANCE GROUP OF AMERICA INC",
+  "cik": 898174,
+  "description": {
+   "text": "Reinsurance Group of America, Incorporated (“RGA”) is an insurance holding company that was formed on December 31, 1992. The consolidated financial statements herein include the assets, liabilities, and results of operations of RGA and its subsidiaries, all of which are wholly owned. The terms “Company”, “we”, “us” and “our” in this Annual Report on Form 10-K refer to RGA and its subsidiaries. The Company is a leading global provider of traditional life and health, and asset-intensive reinsurance, with operations in the U.S., Latin America, Canada, Europe, the Middle East, Africa, Asia and Australia. Reinsurance is an arrangement under which an insurance company, the “reinsurer,” agrees to indemnify another insurance company, the “ceding company,” for all or a portion of the insurance and/or investment risks underwritten by the ceding company. Reinsurance is designed to: i.reduce the net amount at risk on individual risks, thereby enabling the ceding company to increase the volume of business it can underwrite, as well as increase the maximum risk it can underwrite on a single risk; ii.enhance the ceding company’s financial strength and surplus position; iii.stabilize operating results by leveling fluctuations in the ceding company’s loss experience; and iv.assist the ceding company in meeting applicable regulatory requirements. The Company has the following geographic-based and business-based operational segments: •U.S. and Latin America;",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0000898174-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000006/rga-20251231.htm"
+  },
+  "description_short": "Reinsurance Group of America, Incorporated (NYSE: RGA) is a global industry leader specializing in life and health reinsurance and financial solutions that help clients effectively manage risk and optimize capital. Founded in 1973, RGA is one of the world's largest and most respected reinsurers and remains guided by a powerful purpose: to make financial protection accessible to all. As a global capabilities and solutions leader, RGA empowers partners through bold innovation, relentless execution, and dedicated client focus - all directed toward creating sustainable long-term value. RGA has approximately $4.3 trillion of life reinsurance in force and total assets of $167.1 billion as of June 30, 2026. To learn more about RGA and its businesses, please visit rgare.com or follow RGA on LinkedIn and Facebook. Investors can learn more at investor.rgare.com.",
+  "industry": "Life Insurance",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6311",
+  "sic_description": "Life Insurance",
+  "state_of_incorporation": "MO",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.rgare.com",
+  "headquarters": "Chesterfield, Missouri",
+  "address": {
+   "street": "16600 Swingley Ridge Road",
+   "city": "Chesterfield",
+   "state": "Missouri",
+   "zip": "63017",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "6367367000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-02-12",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000898174&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000898174-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000034/rga-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000898174-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000030/rga-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-09",
+   "period": "2026-07-02",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-299825",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526299825/d138283d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-01",
+   "period": "2026-06-26",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-292830",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526292830/d108862d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-15",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-276808",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526276808/d147490d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-234445",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526234445/d136842d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000898174-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000025/rga-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000898174-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000022/rga-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-201509",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526201509/d115304d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000898174-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000017/rga-20260408.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-117615",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526117615/d84963d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-19",
+   "period": "2026-03-19",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-115964",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526115964/d111783d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-088164",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312526088164/d50383d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000898174-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000006/rga-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000898174-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817426000003/rga-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-03",
+   "period": "2025-12-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-306028",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000119312525306028/d949693d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000898174-25-000137",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817425000137/rga-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000898174-25-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817425000135/rga-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000898174-25-000130",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817425000130/rga-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000898174-25-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/898174/000089817425000127/rga-20250729.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-20"
+ ]
+}

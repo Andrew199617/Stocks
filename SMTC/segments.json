@@ -1,0 +1,493 @@
+{
+ "ticker": "SMTC",
+ "cik": 88941,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000088941-26-000005",
+   "filed": "2026-03-23",
+   "period": "2026-01-25",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/88941/000008894126000005/smtc-20260125_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000088941-26-000013",
+   "filed": "2026-05-27",
+   "period": "2026-04-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/88941/000008894126000013/smtc-20260426_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000088941-26-000034",
+   "filed": "2026-08-26",
+   "period": "2026-07-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/88941/000008894126000034/smtc-20260726_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-01-26",
+    "2026-01-25"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "smtc:AdvancedProtectionAndSensingProductsGroupMember",
+     "label": "Advanced Protection And Sensing Products Group",
+     "values": [
+      260264000,
+      322899000,
+      373444000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2996,
+      0.3551,
+      0.3557
+     ],
+     "growth_yoy": [
+      null,
+      0.2407,
+      0.1565
+     ]
+    },
+    {
+     "member": "smtc:IoTSystemsAndConnectivityMember",
+     "label": "IoT Systems And Connectivity",
+     "values": [
+      431461000,
+      324641000,
+      353923000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4966,
+      0.357,
+      0.3371
+     ],
+     "growth_yoy": [
+      null,
+      -0.2476,
+      0.0902
+     ]
+    },
+    {
+     "member": "smtc:SignalIntegrityProductsGroupMember",
+     "label": "Signal Integrity Products Group",
+     "values": [
+      177033000,
+      261747000,
+      322608000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2038,
+      0.2879,
+      0.3073
+     ],
+     "growth_yoy": [
+      null,
+      0.4785,
+      0.2325
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     868758000,
+     909287000,
+     1049975000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-27",
+    "2025-07-27",
+    "2026-04-26",
+    "2026-07-26"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "smtc:SignalIntegrityProductsGroupMember",
+     "label": "Signal Integrity Products Group",
+     "values": [
+      73521000,
+      76758000,
+      102003000,
+      126173000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2928,
+      0.298,
+      0.3505,
+      0.3691
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3874,
+      0.6438
+     ]
+    },
+    {
+     "member": "smtc:AdvancedProtectionAndSensingProductsGroupMember",
+     "label": "Advanced Protection And Sensing Products Group",
+     "values": [
+      90623000,
+      92042000,
+      100755000,
+      117352000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.361,
+      0.3573,
+      0.3462,
+      0.3433
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1118,
+      0.275
+     ]
+    },
+    {
+     "member": "smtc:IoTSystemsAndConnectivityMember",
+     "label": "IoT Systems And Connectivity",
+     "values": [
+      86916000,
+      88789000,
+      88260000,
+      98346000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3462,
+      0.3447,
+      0.3033,
+      0.2877
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0155,
+      0.1076
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     251060000,
+     257589000,
+     291018000,
+     341871000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-01-26",
+    "2026-01-25"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      754018000,
+      794379000,
+      942087000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8679,
+      0.8736,
+      0.8972
+     ],
+     "growth_yoy": [
+      null,
+      0.0535,
+      0.1859
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      114740000,
+      114908000,
+      107888000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1321,
+      0.1264,
+      0.1028
+     ],
+     "growth_yoy": [
+      null,
+      0.0015,
+      -0.0611
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     868758000,
+     909287000,
+     1049975000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-27",
+    "2026-04-26"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      223776000,
+      264874000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8913,
+      0.9102
+     ],
+     "growth_yoy": [
+      null,
+      0.1837
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      27284000,
+      26144000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1087,
+      0.0898
+     ],
+     "growth_yoy": [
+      null,
+      -0.0418
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     251060000,
+     291018000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-01-26",
+    "2026-01-25"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      505603000,
+      574710000,
+      697597000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.582,
+      0.632,
+      0.6644
+     ],
+     "growth_yoy": [
+      null,
+      0.1367,
+      0.2138
+     ]
+    },
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      237132000,
+      204479000,
+      231877000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.273,
+      0.2249,
+      0.2208
+     ],
+     "growth_yoy": [
+      null,
+      -0.1377,
+      0.134
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      126023000,
+      130098000,
+      120501000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1451,
+      0.1431,
+      0.1148
+     ],
+     "growth_yoy": [
+      null,
+      0.0323,
+      -0.0738
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     868758000,
+     909287000,
+     1049975000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Semiconductor Products Group' (smtc:SemiconductorProductsGroupMember) dropped: its values equal the sum of Signal Integrity Products Group, Advanced Protection And Sensing Products Group",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Semiconductor Products Group' (smtc:SemiconductorProductsGroupMember) dropped: its values equal the sum of Signal Integrity Products Group, Advanced Protection And Sensing Products Group"
+ ],
+ "complete": true
+}

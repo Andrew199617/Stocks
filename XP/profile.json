@@ -1,0 +1,248 @@
+{
+ "ticker": "XP",
+ "cik": 1787425,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T17:55:04-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001787425.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1787425/000207097926000182/xp-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/XP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/XP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "XP Inc.",
+  "cik": 1787425,
+  "description": {
+   "text": "Our mission is to transform the financial markets in order to improve people’s lives in Brazil, which is the eleventh largest economy in the world with over 213 million people in 2025 and a GDP of R$12.7 trillion (approximately US$2.3 trillion) in 2025, according to the IBGE. We believe the financial services industry in Brazil is inefficient and expensive by international standards and provides poor client experiences. Brazil’s investments industry is highly concentrated and we estimate our Individual’s Client Assets as of December 31, 2025 to account for nearly 12% of a market totaling R$ 8.6 trillion, according to internal research and public data from Anbima.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-29",
+   "period": "2025-12-31",
+   "accession": "0002070979-26-000182",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000207097926000182/xp-20251231.htm"
+  },
+  "description_short": "XP is a leading, technology-driven platform and a trusted provider of low-fee financial products and services in Brazil. XP's mission is to disintermediate the legacy models of traditional financial institutions by: Educating new classes of investors; Democratizing access to a wider range of financial services; Developing new financial products and technology applications to empower clients; and Providing high-quality customer service and client experience in the industry in Brazil. XP provides customers with two principal types of offerings, (i) financial advisory services for retail clients in Brazil, high-net-worth clients, international clients and corporate and institutional clients, and (ii) an open financial product platform providing access to over 800 investment products including equity and fixed income securities, mutual and hedge funds, structured products, life insurance, pension plans, real-estate investment funds (REITs) and others from XP, its partners and competitors.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": "South America",
+  "sic": "6211",
+  "sic_description": "Security Brokers, Dealers & Flotation Companies",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.xpinc.com",
+  "headquarters": "Grand Cayman, George Town, Cayman Islands",
+  "address": {
+   "street": "20, Genesis Close",
+   "city": "Grand Cayman, George Town",
+   "state": null,
+   "zip": "KY-1-1208",
+   "country": "Cayman Islands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-29"
+  },
+  "phone": "55-11-3075-0429",
+  "employees": {
+   "count": 8069,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, 2024 and 2023, we had 8,069, 7,442 and 6,669 employees, respectively.",
+   "form": "20-F",
+   "filed": "2026-04-29",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000207097926000182/xp-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2019-11-15",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001787425&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-424071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000119312526424071/d79350d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-012482",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326012482/dp251887_6k-2q26finstate.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-012481",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326012481/dp251884_6k-2q26er.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-012480",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326012480/dp251885_6k-treasshare.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-248324",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000119312526248324/d895712d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-239344",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000119312526239344/d140711d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007341",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326007341/dp246825_6k-1q26.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007336",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326007336/dp246840_6k-announcement.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007334",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326007334/dp246824_6k-press.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-007333",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326007333/dp246817_6k-dividends.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-209022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000119312526209022/d17939d6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-04-29",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0002070979-26-000182",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000207097926000182/xp-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-064316",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000119312526064316/d26048d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-002058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326002058/dp241525_6k-3.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-002055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326002055/dp241505_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-26-002051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010326002051/dp241504_6k-1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-014857",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010325014857/dp237480_6k-3q25fs.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-014855",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010325014855/dp237481_6k-3q25.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-014854",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010325014854/dp237494_6k-buyback.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-19",
+   "period": "2025-08-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000950103-25-010411",
+   "url": "https://www.sec.gov/Archives/edgar/data/1787425/000095010325010411/dp233156_6k-2q25fs.htm"
+  }
+ ],
+ "warnings": []
+}

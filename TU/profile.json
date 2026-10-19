@@ -1,0 +1,238 @@
+{
+ "ticker": "TU",
+ "cik": 868675,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T04:27:53-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000868675.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013854/tu-20251231x40f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TU/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TELUS CORP",
+  "cik": 868675,
+  "description": null,
+  "description_short": "TELUS Digital crafts unique and enduring experiences for customers and employees, and creates future-focused digital transformations that deliver value for our clients. We are the brand behind the brands. Our global team members are both passionate ambassadors of our clients' products and services, and technology experts resolute in our pursuit to elevate their end customer journeys, solve business challenges, mitigate risks, and drive continuous innovation. Our portfolio of end-to-end, integrated capabilities include customer experience management, digital solutions, such as cloud solutions, AI-fueled automation, front-end digital design and consulting services, AI & data solutions, including computer vision, and trust, safety and security services.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Telecommunications",
+  "region": "North America",
+  "sic": "4812",
+  "sic_description": "Radiotelephone Communications",
+  "state_of_incorporation": "A1",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": null,
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.telus.com",
+  "headquarters": "Vancouver, British Columbia",
+  "address": {
+   "street": "23rd Floor – 510 West Georgia Street",
+   "city": "Vancouver",
+   "state": "British Columbia",
+   "zip": "V6B 0M3",
+   "country": "Canada",
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2026-02-12"
+  },
+  "phone": "604-697-8044",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2000-08-21",
+  "first_sec_filing_form": "425",
+  "former_names": [
+   "TELUS CORPORATION"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000868675&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-088977",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926088977/tm2615221d3_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-088975",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926088975/tm2615221d2_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-088973",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926088973/tu-20260630x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-076974",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926076974/tm2618661d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-058128",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926058128/tm2610993d4_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-057529",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926057529/tm2610993d3_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-057527",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926057527/tm2610993d2_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-057526",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926057526/tm2610993d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2026-04-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-039250",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926039250/tm2610149d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-02",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-039249",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926039249/tm2610149d2_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-024948",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926024948/tm268313d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-019410",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926019410/tm267175d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-13",
+   "period": "2026-02-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-015356",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926015356/tm266283d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-013863",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013863/tm261121d5_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-013860",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013860/tm261121d7_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-013859",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013859/tm261121d6_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-013857",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013857/tm261121d4_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-013856",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013856/tm261121d3_6k.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001104659-26-013854",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013854/tu-20251231x40f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-001938",
+   "url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926001938/tm262540d1_6k.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2026-02-12)",
+  "employees: no headcount sentence found in the 40-F filed 2026-02-12"
+ ]
+}

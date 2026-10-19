@@ -1,0 +1,829 @@
+{
+ "ticker": "WMG",
+ "cik": 1319161,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001319161-25-000034",
+   "filed": "2025-11-20",
+   "period": "2025-09-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916125000034/wmg-20250930_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001319161-26-000022",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000022/wmg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001319161-26-000032",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1319161/000131916126000032/wmg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wmg:RecordedMusicMember",
+     "label": "Recorded Music",
+     "values": [
+      4955000000,
+      5223000000,
+      5408000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8208,
+      0.8128,
+      0.8063
+     ],
+     "growth_yoy": [
+      null,
+      0.0541,
+      0.0354
+     ]
+    },
+    {
+     "member": "wmg:MusicPublishingMember",
+     "label": "Music Publishing",
+     "values": [
+      1088000000,
+      1210000000,
+      1306000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1802,
+      0.1883,
+      0.1947
+     ],
+     "growth_yoy": [
+      null,
+      0.1121,
+      0.0793
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -6000000,
+      -7000000,
+      -7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.001,
+      -0.0011,
+      -0.001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6037000000,
+     6426000000,
+     6707000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wmg:RecordedMusicMember",
+     "label": "Recorded Music",
+     "values": [
+      1175000000,
+      1354000000,
+      1534000000,
+      1380000000,
+      1488000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7918,
+      0.8017,
+      0.8212,
+      0.7968,
+      0.7983
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1745,
+      0.099
+     ]
+    },
+    {
+     "member": "wmg:MusicPublishingMember",
+     "label": "Music Publishing",
+     "values": [
+      310000000,
+      336000000,
+      337000000,
+      353000000,
+      377000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2089,
+      0.1989,
+      0.1804,
+      0.2038,
+      0.2023
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1387,
+      0.122
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -1000000,
+      -1000000,
+      -3000000,
+      -1000000,
+      -1000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0007,
+      -0.0006,
+      -0.0016,
+      -0.0006,
+      -0.0005
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1484000000,
+     1689000000,
+     1868000000,
+     1732000000,
+     1864000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "wmg:RecordedMusicMember",
+     "label": "Recorded Music",
+     "values": [
+      875000000,
+      916000000,
+      850000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1076,
+      1.113,
+      1.2248
+     ],
+     "growth_yoy": [
+      null,
+      0.0469,
+      -0.0721
+     ]
+    },
+    {
+     "member": "wmg:MusicPublishingMember",
+     "label": "Music Publishing",
+     "values": [
+      200000000,
+      238000000,
+      224000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2532,
+      0.2892,
+      0.3228
+     ],
+     "growth_yoy": [
+      null,
+      0.19,
+      -0.0588
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -285000000,
+      -331000000,
+      -380000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3608,
+      -0.4022,
+      -0.5476
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     790000000,
+     823000000,
+     694000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wmg:RecordedMusicMember",
+     "label": "Recorded Music",
+     "values": [
+      203000000,
+      201000000,
+      208000000,
+      288000000,
+      326000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2083,
+      1.1893,
+      1.4545,
+      1.0909,
+      1.0689
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.4187,
+      0.6219
+     ]
+    },
+    {
+     "member": "wmg:MusicPublishingMember",
+     "label": "Music Publishing",
+     "values": [
+      52000000,
+      60000000,
+      57000000,
+      61000000,
+      71000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3095,
+      0.355,
+      0.3986,
+      0.2311,
+      0.2328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1731,
+      0.1833
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -87000000,
+      -92000000,
+      -122000000,
+      -85000000,
+      -92000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.5179,
+      -0.5444,
+      -0.8531,
+      -0.322,
+      -0.3016
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     168000000,
+     169000000,
+     143000000,
+     264000000,
+     305000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "wmg:RecordedMusicMember",
+     "label": "Recorded Music",
+     "values": [
+      4945000000,
+      5328000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5401,
+      0.5421
+     ],
+     "growth_yoy": [
+      null,
+      0.0775
+     ]
+    },
+    {
+     "member": "wmg:MusicPublishingMember",
+     "label": "Music Publishing",
+     "values": [
+      3017000000,
+      3463000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3295,
+      0.3523
+     ],
+     "growth_yoy": [
+      null,
+      0.1478
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1193000000,
+      1038000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1303,
+      0.1056
+     ],
+     "growth_yoy": [
+      null,
+      -0.1299
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9155000000,
+     9829000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      3277000000,
+      3563000000,
+      3840000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5428,
+      0.5545,
+      0.5725
+     ],
+     "growth_yoy": [
+      null,
+      0.0873,
+      0.0777
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2766000000,
+      2870000000,
+      2874000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4582,
+      0.4466,
+      0.4285
+     ],
+     "growth_yoy": [
+      null,
+      0.0376,
+      0.0014
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      726000000,
+      774000000,
+      857000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1203,
+      0.1204,
+      0.1278
+     ],
+     "growth_yoy": [
+      null,
+      0.0661,
+      0.1072
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      535000000,
+      513000000,
+      515000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0886,
+      0.0798,
+      0.0768
+     ],
+     "growth_yoy": [
+      null,
+      -0.0411,
+      0.0039
+     ]
+    },
+    {
+     "member": "wmg:AllOtherCountriesMember",
+     "label": "All Other Countries",
+     "values": [
+      2010000000,
+      2269000000,
+      2461000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3329,
+      0.3531,
+      0.3669
+     ],
+     "growth_yoy": [
+      null,
+      0.1289,
+      0.0846
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6037000000,
+     6426000000,
+     6707000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      827000000,
+      968000000,
+      1082000000,
+      990000000,
+      1084000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5573,
+      0.5731,
+      0.5792,
+      0.5716,
+      0.5815
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1971,
+      0.1198
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      658000000,
+      722000000,
+      789000000,
+      743000000,
+      781000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4434,
+      0.4275,
+      0.4224,
+      0.429,
+      0.419
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1292,
+      0.0817
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1484000000,
+     1689000000,
+     1868000000,
+     1732000000,
+     1864000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Segment Reporting, Reconciling Item, Corporate Nonsegment' (us-gaap:CorporateNonSegmentMember) dropped: same numbers as 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 157.3% of the consolidated total for 2025-09-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}
