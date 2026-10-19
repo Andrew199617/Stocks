@@ -1,0 +1,37 @@
+{
+ "capex_override": {
+  "ack_reason": "The out-of-band flag is mechanical only: the band is computed against the last FILED capex value under an engine-read tag, and no such value exists at all (override_checks.capex.last_filed_value is null) \u2014 Hut 8 has never filed capex under any tag in the engine's candidate list. The override is not an estimate lacking an anchor \u2014 it is the median of the filer's own FY2023-25 cash-flow figures from its FY2025 10-K (kind filing, source cited).",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads, because Hut 8 files its equipment capex only as PaymentsToAcquireMachineryAndEquipment (the cash-flow line 'Purchases of property and equipment') plus PaymentsToAcquireMiningAssets (the line 'Deposit paid to purchase miners and mining equipment') plus PaymentsToAcquireIntangibleAssets ('Additions to intangible assets'). True per-year totals: FY2023 $2,508,000, FY2024 $163,888,000, FY2025 $217,939,000. The engine applies this single value to every missing period; it is the median of the three filed years (the FY2024 figure). Against the true per-year figures it overstates FY2023 capex by $161,380,000 (conservative direction \u2014 lowers that year's OE) and understates FY2025 capex by $54,051,000 (flatters the latest year; noted, not hidden \u2014 on per-year filed capex the median base is -$2.51/sh vs the override-applied -$3.43/sh, and both are deeply negative, so the tier does not turn on the difference). Excluded, with reasons: 'Bitcoin purchased' ($405,147,000 FY2025) and 'Other digital asset purchased' ($25,000,000 FY2025) are purchases of digital assets held as treasury/investment, presented separately by the filer \u2014 asset purchases, not capex; 'Deposits for future sites' ($162,691,000 FY2025, custom tag) is a deposit \u2014 no property or equipment was acquired \u2014 and including it would not change the median (it is a single-year spike; the median of $2,508,000 / $163,888,000 / $380,630,000 is still $163,888,000).",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001104659-26-019392), Consolidated Statements of Cash Flows, investing activities: 'Purchases of property and equipment' $(202,928) thousand FY2025 / $(123,991) thousand FY2024 / $(604) thousand six months ended Dec 31, 2023; 'Deposit paid to purchase miners and mining equipment' $(14,000) thousand FY2025 / $(39,611) thousand FY2024; 'Additions to intangible assets' $(1,011) thousand FY2025 / $(286) thousand FY2024. Full-calendar-2023 legs from the prior Form 10-K (filed 2025-03-03, accession 0001558370-25-001996) tagged facts for 2023-01-01..2023-12-31, the same period basis as the engine's 2023-12-31 history row: Purchases of property and equipment $1,542,000 + Deposit paid to purchase miners and mining equipment $966,000 = $2,508,000. XBRL tags (none of them in the engine's capex candidate list): PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets, PaymentsToAcquireIntangibleAssets.",
+  "value": 163888000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Mining is a commodity price-taker: revenue and margins are set by Bitcoin price, network difficulty and power cost \u2014 no pricing power, and the April 2024 halving structurally compresses block rewards",
+  "Earned returns are negative through the cycle: roic_proxy +28.9% in FY2024 was digital-asset mark-to-market, not operations; FY2025 roic_proxy -18.5% and operating cash flow negative in 5 of the last 5 fiscal years",
+  "Extreme dilution funds the model: diluted share count +45.1%/yr (engine), SBC up from $13,564,000 (Dec-2023) to $57,802,000 (FY2025), repeated at-the-market equity issuance ($314,350,000 at parent level in FY2025 alone, plus American Bitcoin Corp. issuance)",
+  "Capital intensity is exploding and execution is unproven: construction in progress $77,403,000 at Dec 31, 2025 to $808,356,000 at June 30, 2026 (Q2 2026 10-Q), against contracted leases whose NOI is not yet in any scored period",
+  "Consolidated figures include majority-owned American Bitcoin Corp. with a $267,545,000 non-controlling interest at Dec 31, 2025 \u2014 a material share of consolidated asset value and future mining earnings belongs to minority holders"
+ ],
+ "moat_for": [
+  "Secured power and interconnection pipeline is the binding constraint in AI infrastructure and takes years to replicate (1,020 MW under management, 330 MW under construction, 1,230 MW under development at Dec 31, 2025 per the FY2025 10-K; 8,660 MW total pipeline at June 30, 2026 per the Q2 2026 release)",
+  "Long-duration contracted AI data-center leases signed in 2026 (River Bend and Beacon Point Phase 1, 15-year terms, financed with $7.5B of non-recourse investment-grade project debt per the Q2 2026 release) give forward revenue visibility the mining book never had",
+  "Vertically integrated power platform (Ontario generation assets, King Mountain JV) and a large Bitcoin treasury (consolidated ~17,316 BTC at June 30, 2026 per the Q2 2026 10-Q reporting) provide collateral and self-funding options peers lack"
+ ],
+ "moat_justification": "Weak moat: a price-taker on Bitcoin/hashprice in mining and a landlord-in-formation in AI data centers. The scarce asset is secured power and interconnection (1,020 MW under management at Dec 31, 2025, per the FY2025 10-K; 1,330 MW under construction at June 30, 2026) plus 15-year contracted AI leases signed after the scored period (River Bend, Beacon Point), but none of it has yet produced earned returns: roic_proxy in fundamentals.json is -23.5% (FY2022-06), -319.3% (FY2023-06, tiny capital base), +1.4% (Dec-2023), +28.9% (FY2024 \u2014 entirely digital-asset fair-value gains inside operating income, not operations) and -18.5% (FY2025). Gross margin (excl. D&A) recovered from 43.6% (Dec-2023) to 46.6% (FY2024) and 54.2% (FY2025) off a 65.0% FY2022-06 print, but operating cash flow was negative in every one of the last five fiscal years. No through-cycle ROIC above the cost of capital, no pricing power in mining, and the contracted-lease economics are unproven at scale \u2014 3/10.",
+ "moat_score": 3,
+ "name": "Hut 8 Corp.",
+ "one_liner": "Power-first Bitcoin miner pivoting to contracted AI data centers, moat 3/10 \u2014 owner's earnings are positive in 0 of the last 5 years on every base (normalized median -$3.43/sh with the filing capex override applied; -$2.51/sh on per-year filed capex), OCF itself is negative, and the $68.46 price capitalizes the 2026 lease story, not any scored cash flow \u2014 Tier F, no hurdle-clearing price exists on current numbers.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Energy infrastructure / Bitcoin mining & AI-HPC compute \u2014 EDGAR SIC 6199 Finance Services (sector misfit)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

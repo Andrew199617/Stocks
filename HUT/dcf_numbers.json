@@ -1,0 +1,156 @@
+{
+ "ticker": "HUT",
+ "name": "Hut 8 Corp.",
+ "cik": 1964789,
+ "engine_version": 5,
+ "engine_release": "5.4.0",
+ "as_of": "2026-10-19",
+ "price": 68.455,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 105328890,
+ "shares_outstanding_dei_latest": 123259468,
+ "shares_outstanding_dei_asof": "2026-07-31",
+ "market_cap_est": 7210289164.95,
+ "net_debt_latest": null,
+ "net_debt_basis": null,
+ "lease_liabilities_latest": 19170000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.39224263877041343,
+ "rev_cagr_3y": 0.5215138014328589,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -360916000.0,
+ "base_oe_per_share": -3.500211978841212,
+ "base_oe_latest_per_share": -3.4265622660601474,
+ "base_oe_normalized_per_share": -3.4265622660601474,
+ "base_source": "ttm_json",
+ "growth_components": {
+  "rev_cagr_5y": 0.39224263877041343,
+  "rev_cagr_3y": 0.5215138014328589,
+  "rev_yoy_latest": 0.44790467099793707,
+  "oe_ps_cagr_2y": null
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.34224263877041344,
+  "rev_cagr_3y": 0.47151380143285887,
+  "rev_yoy_latest": 0.3979046709979371,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.3979046709979371,
+ "share_cagr": 0.4507310796572779,
+ "share_count_adj": -0.05,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": null,
+  "da": "DepreciationAndAmortization",
+  "sbc": "ShareBasedCompensation",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "restricted_cash": "RestrictedCashCurrent",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_cur_ltd": "LongTermDebtCurrent",
+  "debt_cur_st": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "debt_total": "LongTermDebt",
+  "lease_liab_current": "OperatingLeaseLiabilityCurrent",
+  "lease_liab_lt": "OperatingLeaseLiabilityNoncurrent",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": null,
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "override_checks": {
+  "capex": {
+   "value": 163888000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
+ "f_subtype": "no_cash_generation",
+ "f_subtype_basis": "ttm.json legs (TTM pin)",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": -3.500211978841212,
+  "base_pin_source": "ttm_json"
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 163888000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001104659-26-019392), Consolidated Statements of Cash Flows, investing activities: 'Purchases of property and equipment' $(202,928) thousand FY2025 / $(123,991) thousand FY2024 / $(604) thousand six months ended Dec 31, 2023; 'Deposit paid to purchase miners and mining equipment' $(14,000) thousand FY2025 / $(39,611) thousand FY2024; 'Additions to intangible assets' $(1,011) thousand FY2025 / $(286) thousand FY2024. Full-calendar-2023 legs from the prior Form 10-K (filed 2025-03-03, accession 0001558370-25-001996) tagged facts for 2023-01-01..2023-12-31, the same period basis as the engine's 2023-12-31 history row: Purchases of property and equipment $1,542,000 + Deposit paid to purchase miners and mining equipment $966,000 = $2,508,000. XBRL tags (none of them in the engine's capex candidate list): PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets, PaymentsToAcquireIntangibleAssets.",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads, because Hut 8 files its equipment capex only as PaymentsToAcquireMachineryAndEquipment (the cash-flow line 'Purchases of property and equipment') plus PaymentsToAcquireMiningAssets (the line 'Deposit paid to purchase miners and mining equipment') plus PaymentsToAcquireIntangibleAssets ('Additions to intangible assets'). True per-year totals: FY2023 $2,508,000, FY2024 $163,888,000, FY2025 $217,939,000. The engine applies this single value to every missing period; it is the median of the three filed years (the FY2024 figure). Against the true per-year figures it overstates FY2023 capex by $161,380,000 (conservative direction \u2014 lowers that year's OE) and understates FY2025 capex by $54,051,000 (flatters the latest year; noted, not hidden \u2014 on per-year filed capex the median base is -$2.51/sh vs the override-applied -$3.43/sh, and both are deeply negative, so the tier does not turn on the difference). Excluded, with reasons: 'Bitcoin purchased' ($405,147,000 FY2025) and 'Other digital asset purchased' ($25,000,000 FY2025) are purchases of digital assets held as treasury/investment, presented separately by the filer \u2014 asset purchases, not capex; 'Deposits for future sites' ($162,691,000 FY2025, custom tag) is a deposit \u2014 no property or equipment was acquired \u2014 and including it would not change the median (it is a single-year spike; the median of $2,508,000 / $163,888,000 / $380,630,000 is still $163,888,000).",
+   "periods_filled": [
+    "2022-06-30",
+    "2023-06-30",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 45.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001104659-26-019392), Consolidated Statements of Cash Flows, investing activities: 'Purchases of property and equipment' $(202,928) thousand FY2025 / $(123,991) thousand FY2024 / $(604) thousand six months ended Dec 31, 2023; 'Deposit paid to purchase miners and mining equipment' $(14,000) thousand FY2025 / $(39,611) thousand FY2024; 'Additions to intangible assets' $(1,011) thousand FY2025 / $(286) thousand FY2024. Full-calendar-2023 legs from the prior Form 10-K (filed 2025-03-03, accession 0001558370-25-001996) tagged facts for 2023-01-01..2023-12-31, the same period basis as the engine's 2023-12-31 history row: Purchases of property and equipment $1,542,000 + Deposit paid to purchase miners and mining equipment $966,000 = $2,508,000. XBRL tags (none of them in the engine's capex candidate list): PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets, PaymentsToAcquireIntangibleAssets.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -0.8839188376100132,
+  "base_oe_per_share_final": -3.500211978841212,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "3c916cbd99f728503e65796fc58cd78211dff1906e096e25f4f34374f7937f38"
+}
