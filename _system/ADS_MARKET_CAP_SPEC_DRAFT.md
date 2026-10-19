@@ -1,8 +1,13 @@
-# DRAFT SPEC — ADS-adjusted market cap for the DCF engine (v5.4.0)
+# SPEC — ADS-adjusted market cap for the DCF engine (v5.4.0)
 
-Status: DRAFT, prepared 2026-10-18 (proactive research run). Not implemented.
-Engine untouched. Decision needed from Andrew: implement, or keep relying on
-workers disclosing the artifact name-by-name in analysis.md.
+Status: IMPLEMENTED 2026-10-18 — Andrew approved the fix the same day, from
+Codex's PR #3 review (prepared as a draft earlier that day). `market_cap_est()`
+in `dcf_engine.py` now computes price × shares ÷ ads_ratio; `reprice.py`'s live
+cap uses the same helper on the recorded ratio; `make_score.py` follows via
+`market_cap_est` and needed no change. Tests: `test_market_cap_ads_ratio`
+(engine) and `test_ads_ratio_divides_live_market_cap` (reprice). The eight
+cases below are the pre-fix record; the affected names are re-scored as
+separate data PRs, and TLK completes from its saved workup.
 
 This consolidates eight verified instances of one defect: when an ads_ratio
 applies, the engine scales per-share figures to the ADS basis but computes
@@ -12,7 +17,7 @@ recorded scope flag.
 
 ## Root cause (verified in code, 2026-10-18)
 
-`dcf_engine.py` line 950:
+`dcf_engine.py` line 950 (pre-fix):
 
 ```python
 mktcap = (price * shares) if (price and shares) else (...)
@@ -79,22 +84,25 @@ the scope field.
    included because it proves the fix must divide by the ratio, not
    special-case ratios > 1.
 
-## Proposed fix
+## The fix as implemented (2026-10-18)
 
-1. In `dcf_engine.py`, after `load_ads_ratio`, compute
-   `mktcap = price * shares / ads_ratio["ratio"]` when an ads_ratio applies
-   and both price and shares are present; unchanged otherwise.
-2. Regression checks before any re-score: a synthetic ADS case at ratio 100
-   (TLK shape), ratio 2 (JD shape) and ratio 0.5 (FMS shape) must print caps
-   matching hand-computed ADS count × price; a non-ADS name's cap must be
-   bit-identical to today.
-3. Re-run scope for the seven already-scored ADS names (JD, CHT, VOD, PAC,
-   TS, WF, FMS): their `market_cap_est` and recorded `in_scope_under_40b`
-   change; tiers do not (per-share figures are already ADS-scaled and
-   unaffected). VOD's corrected cap lands near the $40B line — its scope
-   call should be made on the corrected number explicitly, not by default.
-4. Unblock TLK per its queue note (make_score + enrichment + queue done +
-   build_site) and confirm its Tier B record reaches the ranking.
+1. `dcf_engine.py`: `market_cap_est(price, shares, ads_ratio, fallback)`
+   computes `price * shares / ads_ratio["ratio"]` when price and shares are
+   present (ratio defaults to 1 — bit-identical to the old formula);
+   `reprice.py`'s live cap uses the same helper on the split-adjusted count.
+2. Regression checks shipped as tests: `test_market_cap_ads_ratio` covers
+   ratio 100 (TLK shape), ratio 2 (JD shape), ratio 0.5 (FMS shape), the
+   ratio-1 / no-ratio identity and the fallback; an end-to-end A/B against
+   the old engine showed APP bit-identical and JD differing only in
+   `market_cap_est` and its content hash.
+3. Re-scores: Andrew's ruling names PAC, EMBJ, FUTU, HTHT, LTM, TX and FMS —
+   their `market_cap_est` and recorded `in_scope_under_40b` change; tiers do
+   not (per-share figures are already ADS-scaled and unaffected). The other
+   pre-fix cases above (JD, CHT, VOD, TS, WF) correct on their next re-score;
+   VOD's corrected cap lands near the $40B line — its scope call should be
+   made on the corrected number explicitly, not by default.
+4. TLK completes from its saved workup (make_score + enrichment + queue done)
+   and its Tier B record reaches the ranking.
 
 ## What this does NOT fix
 
