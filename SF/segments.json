@@ -1,0 +1,918 @@
+{
+ "ticker": "SF",
+ "cik": 720672,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-067130",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526067130/sf-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-202795",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526202795/sf-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-333953",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526333953/sf-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sf:GlobalWealthManagementMember",
+     "label": "Global Wealth Management",
+     "values": [
+      2072886000,
+      2271917000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6293,
+      0.6025
+     ],
+     "growth_yoy": [
+      null,
+      0.096
+     ]
+    },
+    {
+     "member": "sf:InstitutionalGroupMember",
+     "label": "Institutional Group",
+     "values": [
+      1221041000,
+      1498850000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3707,
+      0.3975
+     ],
+     "growth_yoy": [
+      null,
+      0.2275
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      49000,
+      250000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0001
+     ],
+     "growth_yoy": [
+      null,
+      4.102
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3293976000,
+     3771017000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sf:GlobalWealthManagementMember",
+     "label": "Global Wealth Management",
+     "values": [
+      542535000,
+      539182000,
+      607218000,
+      614337000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.644,
+      0.6427,
+      0.601,
+      0.6071
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1192,
+      0.1394
+     ]
+    },
+    {
+     "member": "sf:InstitutionalGroupMember",
+     "label": "Institutional Group",
+     "values": [
+      299913000,
+      299736000,
+      403141000,
+      397600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.356,
+      0.3573,
+      0.399,
+      0.3929
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3442,
+      0.3265
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      42000,
+      null,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      null,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     842490000,
+     838918000,
+     1010359000,
+     1011937000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "sf:GlobalWealthManagementMember",
+     "label": "Global Wealth Management",
+     "values": [
+      34894973000,
+      36086157000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8747,
+      0.8744
+     ],
+     "growth_yoy": [
+      null,
+      0.0341
+     ]
+    },
+    {
+     "member": "sf:InstitutionalGroupMember",
+     "label": "Institutional Group",
+     "values": [
+      4788640000,
+      4996613000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.12,
+      0.1211
+     ],
+     "growth_yoy": [
+      null,
+      0.0434
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      211927000,
+      188012000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0053,
+      0.0046
+     ],
+     "growth_yoy": [
+      null,
+      -0.1128
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     39895540000,
+     41270782000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sf:GlobalWealthManagementMember",
+     "label": "Global Wealth Management",
+     "values": [
+      36086157000,
+      37473117000,
+      39269073000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8744,
+      0.8736,
+      0.8744
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sf:InstitutionalGroupMember",
+     "label": "Institutional Group",
+     "values": [
+      4996613000,
+      5247572000,
+      5470432000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1211,
+      0.1223,
+      0.1218
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      188012000,
+      172463000,
+      168104000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0046,
+      0.004,
+      0.0037
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     41270782000,
+     42893152000,
+     44907609000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:AssetManagement1Member",
+     "label": "Asset Management",
+     "values": [
+      1536674000,
+      1700345000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4665,
+      0.4509
+     ],
+     "growth_yoy": [
+      null,
+      0.1065
+     ]
+    },
+    {
+     "member": "sf:InvestmentBankingMember",
+     "label": "Investment Banking",
+     "values": [
+      994831000,
+      1250741000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.302,
+      0.3317
+     ],
+     "growth_yoy": [
+      null,
+      0.2572
+     ]
+    },
+    {
+     "member": "sf:CommissionsMember",
+     "label": "Commissions",
+     "values": [
+      756024000,
+      813618000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2295,
+      0.2158
+     ],
+     "growth_yoy": [
+      null,
+      0.0762
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      6447000,
+      6313000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.002,
+      0.0017
+     ],
+     "growth_yoy": [
+      null,
+      -0.0208
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3293976000,
+     3771017000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:AssetManagement1Member",
+     "label": "Asset Management",
+     "values": [
+      409541000,
+      403608000,
+      459457000,
+      456630000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4861,
+      0.4811,
+      0.4547,
+      0.4512
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1219,
+      0.1314
+     ]
+    },
+    {
+     "member": "sf:InvestmentBankingMember",
+     "label": "Investment Banking",
+     "values": [
+      237942000,
+      233460000,
+      341412000,
+      331954000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2824,
+      0.2783,
+      0.3379,
+      0.328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4349,
+      0.4219
+     ]
+    },
+    {
+     "member": "sf:CommissionsMember",
+     "label": "Commissions",
+     "values": [
+      193670000,
+      200669000,
+      207834000,
+      221462000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2299,
+      0.2392,
+      0.2057,
+      0.2188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0731,
+      0.1036
+     ]
+    },
+    {
+     "member": "us-gaap:ProductAndServiceOtherMember",
+     "label": "Product and Service, Other",
+     "values": [
+      1337000,
+      1181000,
+      1656000,
+      1891000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0016,
+      0.0014,
+      0.0016,
+      0.0019
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2386,
+      0.6012
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     842490000,
+     838918000,
+     1010359000,
+     1011937000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      3073094000,
+      3492140000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9329,
+      0.926
+     ],
+     "growth_yoy": [
+      null,
+      0.1364
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      127113000,
+      143116000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0386,
+      0.038
+     ],
+     "growth_yoy": [
+      null,
+      0.1259
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      40000000,
+      80866000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0121,
+      0.0214
+     ],
+     "growth_yoy": [
+      null,
+      1.0217
+     ]
+    },
+    {
+     "member": "sf:OtherStatesMember",
+     "label": "Other States",
+     "values": [
+      53769000,
+      54895000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0163,
+      0.0146
+     ],
+     "growth_yoy": [
+      null,
+      0.0209
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3293976000,
+     3771017000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      783079000,
+      787818000,
+      919584000,
+      949350000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9295,
+      0.9391,
+      0.9102,
+      0.9382
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1743,
+      0.205
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      35564000,
+      32317000,
+      52237000,
+      33204000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0422,
+      0.0385,
+      0.0517,
+      0.0328
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4688,
+      0.0274
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      16872000,
+      9786000,
+      23122000,
+      17295000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.02,
+      0.0117,
+      0.0229,
+      0.0171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3704,
+      0.7673
+     ]
+    },
+    {
+     "member": "sf:OtherStatesMember",
+     "label": "Other States",
+     "values": [
+      6975000,
+      8997000,
+      15416000,
+      12088000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0083,
+      0.0107,
+      0.0153,
+      0.0119
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.2102,
+      0.3436
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     842490000,
+     838918000,
+     1010359000,
+     1011937000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Investment Advisory, Management and Administrative Service' (us-gaap:InvestmentAdvisoryManagementAndAdministrativeServiceMember) dropped: same numbers as 'Asset Management' (us-gaap:AssetManagement1Member)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Investment Advisory, Management and Administrative Service' (us-gaap:InvestmentAdvisoryManagementAndAdministrativeServiceMember) dropped: same numbers as 'Asset Management' (us-gaap:AssetManagement1Member)"
+ ],
+ "complete": true
+}

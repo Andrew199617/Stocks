@@ -1,0 +1,90 @@
+{
+ "ticker": "SF",
+ "name": "Stifel Financial Corp.",
+ "sector": "Finance \u2014 Wealth management / broker-dealer & investment banking",
+ "price": 67.56,
+ "market_cap_b": 7.44,
+ "engine_version": 5,
+ "base_oe_per_share": 4.206421171780802,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow finance moat: a durable, advisor-centric wealth franchise \u2014 record total client assets of $580.1B at Q2 2026 (+12% YoY, company release), fee-based client assets of $224.5B at end-2025 (+16%), Global Wealth Management net revenue of $3.54B in FY2025, the #1 ranking in J.D. Power employee advisor satisfaction for four straight years, and a diversified second engine in the Institutional Group ($1.91B FY2025 net revenue incl. KBW investment banking) \u2014 with measured returns above the cost of capital (fundamentals.json roic_proxy 15.6% in 2022, 17.1% in 2023, 20.0% in 2024; non-GAAP ROTCE ~25% in FY2025 and 23.6% in Q2 2026) \u2014 against the structural limits of the model: advisors are portable and own the client relationship, revenue is geared to equity-market levels and policy rates, investment banking is deal-cycle cyclical, GAAP ROE is only 9.9%-12.9% over 2023-2025, and the Roberts structured-products supervision cases (a $180.0M legal provision in Q1 2025, with related cases still open) show a controls/franchise risk larger rivals do not currently carry. No network effect or hard switching-cost lock-in supports a score above the moderate band.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.2%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 8.10 vs 3-yr median 2.71 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 3.5x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict",
+  "TIER_BAND: bear-case tier D (9.0%) vs bull-case tier C (14.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 23.31,
+   "irr": 0.0672
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 34.44,
+   "irr": 0.0897
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 49.03,
+   "irr": 0.1178
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 66.15,
+   "irr": 0.1477
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 99.67,
+   "irr": 0.1977
+  }
+ },
+ "iv_at_15": 48.43,
+ "iv_at_12": 65.27,
+ "implied_irr": 0.117,
+ "implied_irr_base_case": 0.1178,
+ "upside_at_15_pct": -28.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Diversified wealth/investment-banking franchise, moat 5/10 \u2014 the engine's OCF base is broker/bank balance-sheet plumbing on a pre-split share basis; on the corrected maintenance-earnings base of $4.21/share (post-split) the $67.56 price yields an 11.70% weighted IRR with IV@15% of $48.43, so it clears the 15% hurdle only below ~$48 (~$39 with a margin of safety).",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0897,
+ "irr_bull": 0.1477,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 33.43,
+ "iv_at_25": 25.28,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -1636346000,
+ "shares_diluted_latest": 110052000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Advisor-centric wealth franchise at scale: record total client assets $580.1B at Q2 2026 (+12% YoY); fee-based client assets $224.5B at end-2025 (+16%) \u2014 recurring asset-based revenue",
+  "Advisor recruiting engine and culture: #1 in J.D. Power employee advisor satisfaction four straight years (company release); 181 advisors added in 2025",
+  "Diversified second engine: Institutional Group net revenue $1.91B in FY2025 (+20%), investment banking revenue +42% YoY in Q2 2026 \u2014 wealth + capital markets dampen any single cycle",
+  "Returns above cost of capital through the cycle: roic_proxy 15.6%/17.1%/20.0% (2022/2023/2024, fundamentals.json); non-GAAP ROTCE ~25% FY2025, 23.6% Q2 2026; OE positive 5 of last 5 FY on both definitions"
+ ],
+ "moat_against": [
+  "Advisors can leave and take clients with them; recruiting is an arms race (forgivable loans, transition packages) against Morgan Stanley, Schwab, Fidelity and large RIAs",
+  "Revenue geared to exogenous variables: asset-based fees ride equity-market levels; bank/sweep net interest income rides policy rates and deposit mix",
+  "Investment banking and transactional revenue are deal-cycle cyclical \u2014 the Institutional Group has no recurring-revenue floor comparable to wealth fees",
+  "Supervision/legal overhang: the Roberts structured-products cases forced a $180.0M provision in Q1 2025 (a $1.16/share pre-split EPS hit) and related claims are still being litigated \u2014 a franchise-controls risk, not just a cost line"
+ ]
+}

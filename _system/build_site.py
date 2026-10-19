@@ -541,7 +541,7 @@ def restate_split(rec, factor, label, lv):
         rec["row"]["split_restated"] = {"factor": factor, "split": label}
 
 
-def priced_fundamentals(fund, prices):
+def priced_fundamentals(fund, prices, ads_ratio=None):
     """fundamentals.json as the page shows it: the dividends block repriced
     with fundamentals.price_dividends at prices.json stats.last / last_date
     when that close is not older than the block's own price_date and differs
@@ -550,7 +550,10 @@ def priced_fundamentals(fund, prices):
     not modified. Shown as written without prices.json, with an older close,
     for a block written before 5.4.4 (fundamentals.repriceable), or without
     fundamentals.py. The close is passed as filed (a JSON number, as
-    fundamentals._read_price reads it), never a coerced string."""
+    fundamentals._read_price reads it), never a coerced string. `ads_ratio`
+    (the run's recorded ratio, from dcf_numbers.json) backfills a dividends
+    block written before blocks carried it, so a legacy ADS block reprices
+    on the traded-cap basis instead of price x ordinary shares."""
     if FUND is None or not isinstance(fund, dict) or not FUND.repriceable(fund.get("dividends")):
         return fund
     st = _d(_d(prices).get("stats"))
@@ -562,6 +565,9 @@ def priced_fundamentals(fund, prices):
     if pd is not None and (last_date < pd or (last_date == pd and num(div.get("price")) == last
                                               and div.get("price_source") == FUND.PRICES_JSON_SOURCE)):
         return fund
+    if not isinstance(div.get("ads_ratio"), (int, float)) and isinstance(ads_ratio, (int, float)) \
+            and not isinstance(ads_ratio, bool) and ads_ratio > 0:
+        div = dict(div, ads_ratio=ads_ratio)
     return dict(fund, dividends=FUND.price_dividends(div, st.get("last"), st.get("last_date"), FUND.PRICES_JSON_SOURCE))
 
 
@@ -843,7 +849,9 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
     # post-split close would mix the two (a 2:1 split doubles every yield).
     live, withheld = live_shown(c)
     factor, label = live_split(live)
-    c = dict(c, live=live, fund=c.get("fund") if factor else priced_fundamentals(c.get("fund"), c.get("prices")))
+    _ads = c["numbers"].get("ads_ratio") if isinstance(c.get("numbers"), dict) else None
+    _ratio = _ads.get("ratio") if isinstance(_ads, dict) else None
+    c = dict(c, live=live, fund=c.get("fund") if factor else priced_fundamentals(c.get("fund"), c.get("prices"), _ratio))
     s, n = c["score"], c["numbers"]
     has_scn = bool(_d(n.get("scenarios")))
     paths, gpaths, replayed = forecast_paths(n) if has_scn else (None, None, False)

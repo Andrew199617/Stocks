@@ -494,7 +494,11 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
     iv15, iv12, iv20, iv25 = iv("iv_at_15", 0.15), iv("iv_at_12", 0.12), iv("iv_at_20", 0.20), iv("iv_at_25", 0.25)
 
     shares = _f(numbers.get("shares_diluted_latest"))
-    mcap = price * shares * factor if shares else None
+    # Live cap on the same basis as the scored run's market_cap_est: the
+    # split factor restates the ordinary count to today's units, and the
+    # recorded ADS ratio converts it to traded units (dcf_engine's helper;
+    # no ratio = identity).
+    mcap = E.market_cap_est(price, shares * factor, numbers.get("ads_ratio")) if shares else None
     scored_price = _f(numbers.get("price"))
     if scored_price is not None:
         scored_price /= factor  # in today's share units, like `price`

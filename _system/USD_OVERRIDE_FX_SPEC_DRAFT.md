@@ -48,6 +48,9 @@ every fill period whenever any `fx_info` exists — and returns None
      Note: the engine's $451.7B `market_cap_est` for CX is the known
      ADS share-basis artifact (ADS price × ordinary shares); true cap
      ~$14.9B — that is the share-basis spec's territory, not this one's.
+     (The $451.7B is CX's recorded pre-fix value: the ADS formula fix
+     shipped 2026-10-18, so CX's cap corrects to ~$14.9B on its next
+     engine run; CX itself stays blocked on the FX defect above.)
 
 ## Root cause, in one line
 
