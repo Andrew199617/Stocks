@@ -2866,6 +2866,23 @@
    "weighted_irr_with_override": 0.0772,
    "weighted_irr_impact_pp": null,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "AGNC",
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001423689-26-000043), Consolidated Statements of Cash Flows: the investing-activities section lists only purchases and sales/maturities of investment securities and related portfolio flows \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $653M + investing -$25,864M + financing $25,182M = the reported net change in cash of -$29M exactly; FY2024: $86M - $11,169M + $11,083M = reported $0 exactly; FY2023: -$118M - $14,672M + $14,227M = reported -$563M exactly. EDGAR companyfacts for CIK 1423689 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 67 periods with operating cash flow).",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads because, as an Agency mortgage REIT holding financial assets (Agency MBS), AGNC buys no property or equipment and reports no capital-expenditures line; its cash deployment (purchases of Agency securities) is an investing activity for the MBS portfolio, and it carries no property-and-equipment line on the balance sheet (engine ppe_net blank every year). The filing's own cash-flow reconciliation proves the capex amount is $0, not an undisclosed purchase (NLY/AFG/EG-style proof). The engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": 0.753,
+   "base_oe_with_override": 0.753,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1183,
+   "weighted_irr_with_override": 0.1183,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
   }
  ]
 }

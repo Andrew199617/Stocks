@@ -1,0 +1,38 @@
+{
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed capex value to band against (last filed value is null under every candidate tag in all periods of companyfacts), so any value flags out-of-band. The $0 is not an estimate \u2014 it is proven by the filer's own FY2025 10-K cash-flow statement, which contains no capex line and reconciles exactly without one in FY2023, FY2024 and FY2025.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads because, as an Agency mortgage REIT holding financial assets (Agency MBS), AGNC buys no property or equipment and reports no capital-expenditures line; its cash deployment (purchases of Agency securities) is an investing activity for the MBS portfolio, and it carries no property-and-equipment line on the balance sheet (engine ppe_net blank every year). The filing's own cash-flow reconciliation proves the capex amount is $0, not an undisclosed purchase (NLY/AFG/EG-style proof). The engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001423689-26-000043), Consolidated Statements of Cash Flows: the investing-activities section lists only purchases and sales/maturities of investment securities and related portfolio flows \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $653M + investing -$25,864M + financing $25,182M = the reported net change in cash of -$29M exactly; FY2024: $86M - $11,169M + $11,083M = reported $0 exactly; FY2023: -$118M - $14,672M + $14,227M = reported -$563M exactly. EDGAR companyfacts for CIK 1423689 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 67 periods with operating cash flow).",
+  "value": 0
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No pricing power: Agency MBS spreads and repo funding costs are market-set; the assets are commodity government-guaranteed securities anyone with financing can buy",
+  "Structural leverage (~7.4x tangible equity at Q2 2026, company reporting) makes book value hostage to rate and spread moves \u2014 tangible book per share has eroded over the long run despite the recent recovery",
+  "Persistent equity dilution: diluted share count +24.0%/yr CAGR in the engine history (ATM issuance funding portfolio growth), so per-share spread income barely grows even when the portfolio does",
+  "ROE is cyclical and sign-flipping (-15.1% in FY2022, +1.9% FY2023, +8.8% FY2024, +13.5% FY2025, fundamentals.json) \u2014 no through-cycle return on capital above the cost of equity is demonstrated",
+  "Earnings quality: GAAP net income is dominated by non-cash mark-to-market on the MBS book and hedges (other non-operating +$1,122M in FY2025, statements.json), and the $0.12/month dividend has been held flat at $1.44/yr since 2020 while book value per share fell"
+ ],
+ "moat_for": [
+  "Scale and liquidity: one of the two largest Agency mREITs ($97.2B investment portfolio at Q2 2026), with deep, preferred access to repo funding and the TBA/dollar-roll market",
+  "Internally managed \u2014 no external-manager fee drag \u2014 with an operating history since 2008 through multiple rate cycles",
+  "Demonstrated accretive capital raising: ATM issuance at premiums to tangible book value (Q2 2026: $167M raised at ~$10.31/share vs $8.58 tangible book) grows per-share book when the shares trade above book",
+  "Pure Agency portfolio (94% 30-year fixed Agency MBS/TBA at Q2 2026): no credit risk in the asset book \u2014 losses come from rates/spreads, not defaults"
+ ],
+ "moat_justification": "Weak: AGNC's only durable advantages are scale in the Agency MBS market ($97.2B portfolio at Q2 2026), deep repo/TBA market access, internal management and the ability to issue ATM shares accretively when the stock trades above tangible book. The product itself is a commodity \u2014 government-guaranteed securities funded at market repo rates \u2014 so there is no pricing power and no switching cost. Measured returns confirm no franchise premium: fundamentals.json roic_proxy is null for every year (no operating-income tag is filed) and gross margin is not meaningful for a spread lender, while ROE swung from -15.1% (FY2022) to +13.5% (FY2025) \u2014 rate/spread-driven, not franchise-driven. Same grade as peer NLY (3/10).",
+ "moat_score": 3,
+ "name": "AGNC Investment Corp.",
+ "one_liner": "Agency mortgage REIT with scale but no pricing power, moat 3/10 \u2014 C by numbers on TTM owner's earnings ($0.75/share): weighted IRR 11.8%, weighted IV@15% $6.28 vs $8.44 price, clears 15% only below ~$6.28; the OCF base runs ~2x below the company's own spread income (net spread and dollar roll income $0.40/share in Q2 2026), a known mREIT method limit \u2014 sector model misfit, confidence low, size to the bear end (D, 9.4%).",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.25,
+  0.2,
+  0.1
+ ],
+ "sector": "Real Estate / Mortgage REIT (Agency MBS)",
+ "tier_override": null,
+ "tier_override_reason": null
+}
