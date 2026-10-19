@@ -1,0 +1,137 @@
+{
+ "ticker": "HUT",
+ "cik": 1964789,
+ "entity": "Hut 8 Corp.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": -139226000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -82636000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -32845000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": -89435000
+  },
+  "capex": {
+   "fy": 163888000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 81270487.67123288,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 81270487.67123288,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 163888000.0
+  },
+  "sbc": {
+   "fy": 57802000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 11433000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 102113000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 148482000
+  },
+  "shares_diluted": {
+   "fy": 105328890,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 109070208,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 114794476,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": -89435000,
+ "ttm_capex": 163888000.0,
+ "ttm_sbc": 148482000,
+ "ttm_shares_diluted": 114794476,
+ "ttm_oe_total": -401805000.0,
+ "ttm_oe_per_share": -3.500211978841212,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 163888000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25, accession 0001104659-26-019392), Consolidated Statements of Cash Flows, investing activities: 'Purchases of property and equipment' $(202,928) thousand FY2025 / $(123,991) thousand FY2024 / $(604) thousand six months ended Dec 31, 2023; 'Deposit paid to purchase miners and mining equipment' $(14,000) thousand FY2025 / $(39,611) thousand FY2024; 'Additions to intangible assets' $(1,011) thousand FY2025 / $(286) thousand FY2024. Full-calendar-2023 legs from the prior Form 10-K (filed 2025-03-03, accession 0001558370-25-001996) tagged facts for 2023-01-01..2023-12-31, the same period basis as the engine's 2023-12-31 history row: Purchases of property and equipment $1,542,000 + Deposit paid to purchase miners and mining equipment $966,000 = $2,508,000. XBRL tags (none of them in the engine's capex candidate list): PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets, PaymentsToAcquireIntangibleAssets.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 163888000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 81270487.67123288,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 81270487.67123288,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}
