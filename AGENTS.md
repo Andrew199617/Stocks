@@ -226,6 +226,18 @@ misfit`. For them:
   is a known limit of the method, listed in the analysis, not a defect).
 - A misfit ranked in the top 10 by numbers IRR deserves one P3 comment
   saying the IRR shown is not the one the analysis defends.
+- P&C insurers and reinsurers (Andrew, 2026-10-19): when the filer prints
+  "operating income (loss) available to common shareholders", the folder
+  must carry a `base_override` of kind `filing` equal to the average of the
+  last five fiscal years of that line ÷ the CSV's latest `shares_diluted`,
+  with the five figures and their sources in `source` and the construction
+  quoted in `analysis.md` (`WORKER_SPEC.md` step 4). Check the arithmetic
+  reproduces to the cent; a mismatch is P1. With that base the one-notch
+  `tier_override` must NOT also be applied (double-counting the same
+  correction is P2); the alert-gate suppression and low confidence stand.
+  A P&C name scored on the OCF base with only the notch is P2 — ask for
+  the payable-earnings base. Life insurers, banks and REITs keep the
+  2026-10-15 rule.
 
 ## Ranking and history files
 
