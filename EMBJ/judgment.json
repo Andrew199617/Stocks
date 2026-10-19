@@ -5,7 +5,7 @@
   "source": "Form 20-F for fiscal year ended December 31, 2025, Description of Securities exhibit: American Depositary Shares, each representing four common shares, traded on the New York Stock Exchange under the symbol EMBJ"
  },
  "confidence": "medium",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
  "moat_against": [
   "Thin, cyclical economics: gross margin only 17.5% in FY2025 and 17.3-18.0% over FY2023-2025; roic_proxy negative or near-zero in 2017-2022 before recovering in 2023-2025 \u2014 no through-cycle pricing power proven",
   "Scale disadvantage versus Airbus and Boeing in procurement, financing, support network and program risk-bearing",

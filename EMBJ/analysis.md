@@ -61,3 +61,5 @@ Price $72.34 per ADS.
 - **Final tier: C** (weighted IRR 12.58% on the normalized median base; bear C to bull B band, sized to the bear end)
 - Confidence: **Medium** (filing-sourced base and overrides, but WIDE_SCENARIO_SPREAD, a stale annual-only FY base with no TTM pin, and engine-unmeasured debt)
 - One-liner: Diversified aerospace niche leader, moat 5/10 — does not clear 15% at $72.34: weighted IRR 12.58%, weighted IV@15% $56.46 on a $3.62/ADS normalized OE base; it clears the 15% hurdle only below about $56.46.
+
+**Correction, 2026-10-19 (ADS market-cap fix):** the ADS note above describes the pre-fix engine. The engine now divides the share count by the ADS ratio (Andrew's ruling, 2026-10-18; Stocks PR #5): `market_cap_est` is $13.25B, and judgment.json / score.json now record `in_scope_under_40b: true`. Everything else stands — Tier C, weighted IRR 12.58%, unchanged, because the per-share figures were already ADS-scaled; only the recorded cap and scope flag were wrong.

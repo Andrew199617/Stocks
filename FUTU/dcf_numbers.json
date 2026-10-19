@@ -4,13 +4,13 @@
  "cik": 1754581,
  "engine_version": 5,
  "engine_release": "5.4.0",
- "as_of": "2026-10-16",
+ "as_of": "2026-10-19",
  "price": 105.64,
- "price_source": "nasdaq_quote_api",
+ "price_source": "manual",
  "shares_diluted_latest": 1130846701,
  "shares_outstanding_dei_latest": null,
  "shares_outstanding_dei_asof": null,
- "market_cap_est": 119462645493.64,
+ "market_cap_est": 14932830686.705,
  "net_debt_latest": null,
  "net_debt_basis": null,
  "lease_liabilities_latest": 76310000,
@@ -444,12 +444,12 @@
   "tv_share_at_15": 0.2196289238990887,
   "scenario_spread_iv15": 6.592851519956319,
   "net_debt_to_normalized_oe": null,
-  "months_since_fy_end": 9.494086727989487,
+  "months_since_fy_end": 9.592641261498029,
   "irr_capped": false,
   "irr_at_floor": false
  },
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
@@ -461,5 +461,5 @@
   "WIDE_SCENARIO_SPREAD: super-bull IV is 6.6x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
   "TIER_BAND: bear-case tier C (13.9%) vs bull-case tier S (26.8%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
- "content_hash": "9e407d5b0520f92b3fe5772f8f206965559b42b6e1d9c52f72178e9bfb40a877"
+ "content_hash": "a446bf6cd4ff4f8d752aff7627c6ff02b296c9f671e059ab6ef6a908b6f27530"
 }
