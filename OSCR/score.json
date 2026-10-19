@@ -1,0 +1,88 @@
+{
+ "ticker": "OSCR",
+ "name": "Oscar Health, Inc.",
+ "sector": "Health Care / Health Plans (ACA individual-market insurer)",
+ "price": 32.35,
+ "market_cap_b": 8.49,
+ "engine_version": 5,
+ "base_oe_per_share": 3.1614162713981036,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Weak moat: a technology-led ACA exchange insurer whose genuine edge is administrative cost \u2014 SG&A ratio fell from 19.1% of revenue (FY2024) to 17.5% (FY2025) to a guided 15.6\u201316.1% for FY2026, with a record-low 14.2% in Q2 2026 \u2014 plus scale as one of the largest pure-play exchange carriers (2.96M members at 2026-06-30, +46% YoY). But there is no pricing power (rates are filed a year ahead and the ACA's 80% minimum MLR caps underwriting margin by law), no switching costs (annual open enrollment, members churn freely), and its young/healthy member mix is structurally taxed by risk adjustment (net risk-adjustment transfer ~18.5% of direct premiums in FY2025). The measured earnings history argues against a wide moat: operating income was negative in every year 2019\u20132023 and again in FY2025 (-$396,357,000), with only FY2024 (+$57,265,000) and the TTM to 2026-06-30 (+$629,723,000, fundamentals.json) positive; fundamentals.json's roic_proxy series is not meaningful here because the denominator (equity + debt - cash) is negative at a net-cash insurer, so operating margin and MLR are the usable evidence \u2014 MLR 81.7% (FY2024) blew out to 87.4% (FY2025) before the guided 81\u201382% for FY2026, i.e. underwriting results are set by market morbidity and CMS risk adjustment, not by Oscar.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 7.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 2.8x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict",
+  "TIER_BAND: bear-case tier D (9.7%) vs bull-case tier B (15.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 9.93,
+   "irr": 0.0604
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 18.8,
+   "irr": 0.0966
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 26.38,
+   "irr": 0.127
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 34.49,
+   "irr": 0.158
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 49.63,
+   "irr": 0.2105
+  }
+ },
+ "iv_at_15": 24.88,
+ "iv_at_12": 32.81,
+ "implied_irr": 0.1213,
+ "implied_irr_base_case": 0.127,
+ "upside_at_15_pct": -23.1,
+ "tier_by_numbers": "C",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "ACA health insurer in a real 2026 earnings inflection, moat 3/10 \u2014 engine prints Tier C (weighted IRR 12.13%, IV@15% $24.88 vs $32.35) on an OCF base that capitalizes premium float, so the final tier is softened to D at low confidence; on accrual earnings the last-3 median base is negative, and it clears 15% only below ~$24.88 even on engine numbers.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0966,
+ "irr_bull": 0.158,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 17.71,
+ "iv_at_25": 13.74,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -2344056000,
+ "shares_diluted_latest": 262388000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact (the universe classifies OSCR as Health Care \u2014 SIC 6324 Hospital & Medical Service Plans \u2014 so the engine's Finance/Real Estate/Utilities flag did not fire, but economically this is an insurer): the OCF-based OE base capitalizes premium float and claims/risk-adjustment working capital. FY2025 conservative OE is $970,828,000 against a net loss of -$443,151,000 (financials_history.csv), and TTM OE of $4,304,752,000 (ttm.json) is ~7.8x TTM net income of $550,743,000 (fundamentals.json TTM to 2026-06-30). A payable-earnings (accrual) base built only from financials_history.csv figures \u2014 net income + D&A - capex per share, SBC already expensed inside net income so not deducted twice \u2014 is -$1.20 (2023: -270,728,000 + 30,694,000 - 25,577,000 over 221,655,000 shares), +$0.11 (2024: 25,432,000 + 32,145,000 - 27,897,000 over 265,853,000) and -$1.72 (2025: -443,151,000 + 28,892,000 - 36,372,000 over 262,388,000), a last-3 median of -$1.20/share against the engine's +$3.16 OCF base. The engine base also divides by the loss-year FY2025 diluted count of 262,388,000 while the profitable H1 2026 diluted count is 331,292,000 (ttm.json), overstating per-share OE by ~26% on the current diluted basis. Softened one notch C to D under the standing insurer-float policy (Andrew, 2026-10-15), confidence low \u2014 same treatment as PFG/HIG/ACGL/WRB.",
+ "moat_for": [
+  "Administrative cost edge \u2014 proprietary tech/AI claims and servicing platform cut the SG&A ratio from 19.1% (FY2024) to 17.5% (FY2025), guided 15.6\u201316.1% FY2026, record-low 14.2% in Q2 2026",
+  "Exchange scale \u2014 2.96M members at 2026-06-30 (+46% YoY), one of the largest pure-play ACA carriers, gaining share as larger rivals retreat from the exchanges",
+  "Member-experience brand and engagement in the individual market, plus ICHRA/+Oscar platform optionality beyond its own risk book"
+ ],
+ "moat_against": [
+  "No pricing power \u2014 premiums are filed a year in advance and the ACA 80% minimum MLR caps underwriting margin by law; pricing errors (FY2025) cannot be corrected in-year",
+  "Risk adjustment structurally taxes its exact franchise \u2014 a younger/healthier pool pays net transfers of ~18.5% of direct premiums (FY2025), and late CMS true-ups blew MLR out to 87.4% in FY2025",
+  "No switching costs and single-market concentration \u2014 annual open enrollment churn, essentially all revenue from ACA individual/small-group, exposed to enhanced-subsidy expiry and CMS program-integrity disenrollment (up to ~300k members flagged)",
+  "No through-cycle earnings record \u2014 operating losses in 2019\u20132023 and FY2025; ROIC history (where measurable) is negative-to-thin, and much larger rivals (UNH, CVS, Centene, Molina) carry bigger scale and diversified earnings"
+ ]
+}

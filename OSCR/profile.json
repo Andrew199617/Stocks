@@ -1,0 +1,297 @@
+{
+ "ticker": "OSCR",
+ "cik": 1568651,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T13:16:30-04:00",
+ "newest_filing_date": "2026-09-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001568651.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000011/oscr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/OSCR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/OSCR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Oscar Health, Inc.",
+  "cik": 1568651,
+  "description": {
+   "text": "Oscar is a leading healthcare technology company built around a full stack technology platform and a relentless focus on member experience. We offer health plans through the ACA serving individuals, families, and employees. We have been challenging the status quo in the healthcare system since our founding in 2012 and are dedicated to making a healthier life accessible and affordable for all. Our technology drives superior experiences, deep engagement, and high-value clinical care, earning us the trust of approximately 2.0 million effectuated members, as of December 31, 2025. Effectuated members are those who are actively enrolled in our plan and have either paid their premium or are within the grace period. In addition to supporting our insurance business, our differentiated technology platform also powers both providers and payors through +Oscar. We offer Campaign Builder, an engagement and recommendation platform that leverages the wisdom from 13+ years of building the Oscar member experience. The platform leverages data and AI to identify high value opportunities for engagement and to deliver personalized interactions to improve care with real time reporting and analytics to measure key outcomes and insights. In 2025, we also acquired early-stage businesses with capabilities to help us power Individual Coverage Health Reimbursement Arrangements (“ICHRA”) and further diversify the Company.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001568651-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000011/oscr-20251231.htm"
+  },
+  "description_short": "Oscar Health, Inc. (NYSE: OSCR) is a leading consumer health company that gives people power over their healthcare. Oscar Health serves millions of consumers, employers, brokers, and partners through Oscar Insurance, Lucie Health Marketplace, and Trove Group. Together these businesses deliver exceptional lifestyle products and technology platforms that make healthcare easy to choose, use, and experience.",
+  "industry": "Medical Specialities",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "6324",
+  "sic_description": "Hospital & Medical Service Plans",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.hioscar.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "75 Varick Street, 5th Floor",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10013",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "(646) 403-3677",
+  "employees": {
+   "count": 2305,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 2,305 employees.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000011/oscr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-02-05",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Oscar Health, Inc.",
+   "Mulberry Health Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001568651&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001568651-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000074/oscr-20260916.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001568651-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000069/oscr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001568651-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000066/oscr-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-04",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001568651-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000059/oscr-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-08",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001568651-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000054/oscr-20260608.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-05-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001568651-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000048/oscr-20260529.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001568651-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000040/oscr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001568651-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000036/oscr-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-22",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-016119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000114036126016119/ny20059895x771_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001568651-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000028/oscr-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001568651-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000014/oscr-20260302.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001568651-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000011/oscr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-06",
+   "items": [
+    "1.01",
+    "2.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Debt obligation",
+   "accession": "0001568651-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865126000008/oscr-20260206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-335294",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000119312525335294/d97018d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001568651-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865125000037/oscr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001568651-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000156865125000035/oscr-20251103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity",
+   "accession": "0001193125-25-207417",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000119312525207417/d74904d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-16",
+   "period": "2025-09-15",
+   "items": [
+    "1.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Termination of agreement; Other events",
+   "accession": "0001193125-25-204231",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000119312525204231/d944721d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-15",
+   "period": "2025-09-15",
+   "items": [
+    "1.01",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD; Other events",
+   "accession": "0001193125-25-203549",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000119312525203549/d944718d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-03",
+   "period": "2025-09-03",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-194448",
+   "url": "https://www.sec.gov/Archives/edgar/data/1568651/000119312525194448/d63277d8k.htm"
+  }
+ ],
+ "warnings": []
+}
