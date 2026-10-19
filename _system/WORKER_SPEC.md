@@ -92,9 +92,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    exists to anchor the band — a capex estimate may anchor on the filer's filed
    depreciation instead (the estimate still sits within 0.1×–10× of that depreciation
    anchor), and analysis.md must state the anchor explicitly: that the estimate anchors
-   on filed depreciation because no capex was ever filed. Any other field, or any capex
-   case where a capex value was filed at some point, follows the plain rule above or
-   escalates. (c) `base_override` — ONLY built exclusively from figures
+   on filed depreciation because no capex was ever filed. With no filed capex the engine
+   marks the estimate out-of-band by construction, so the override must also carry an
+   `ack_reason` saying exactly that (the existing out-of-band acknowledgment — ALLY's
+   scored capex override is the worked example); without it make_score refuses. Any
+   other field, or any capex case where a capex value was filed at some point, follows
+   the plain rule above or escalates. (c) `base_override` — ONLY built exclusively from figures
    THIS run's dcf_numbers.json / ttm.json / financials_history.csv printed, construction
    quoted in analysis.md. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
    Anything outside: block with a reason starting `NEEDS_MAIN_AGENT: <field> — <detail>` and
