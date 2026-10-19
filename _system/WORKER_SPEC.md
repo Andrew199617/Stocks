@@ -59,17 +59,28 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    2× or more above what common shareholders earn (RNR: OCF base $77.78/sh vs $27.21/sh
    through-cycle operating income to common; Tier S by numbers, where the payable base
    prints C). The one-notch softening (2026-10-15) cannot bridge that gap. For these filers
-   the worker declares a `base_override` with kind "filing": value = **average of the last
-   five fiscal years' operating income available to common ÷ the latest `shares_diluted`
-   in financials_history.csv**; `source` cites each year's release or 10-K with the five
-   figures; the construction is quoted in analysis.md and must reproduce. Five-year average,
-   not 3-year median, because a catastrophe cycle is longer than three years and a benign
-   window would otherwise set the base. This filing-sourced base is the one standing
-   exception to clause (c) in step 8, authorized by the main agent. With it in force the
-   one-notch `tier_override` is **not** applied (the base already measures payable
-   earnings); the alert-gate misfit suppression and the low-confidence grade stay. Life
-   insurers, banks and REITs, and any filer without that printed line, keep the 2026-10-15
-   rule. `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
+   the worker declares in judgment.json:
+   `base_override: {basis: "payable_earnings_5y", kind: "filing", figures: [5 annual
+   amounts in USD dollars, oldest first], shares: <this run's latest shares_diluted from
+   financials_history.csv>, value: <average of figures ÷ shares, per ORDINARY share>,
+   source: <each year's release or 10-K, with the five figures>, reason}` and runs the
+   final pass with **`--base-judgment`** (in place of `--ttm`). The engine recomputes the
+   base from `figures` / `shares`, scales it by `ads_ratio` for a 20-F/40-F filer (the
+   pin must be per ADS, like the price), records the construction in dcf_numbers.json
+   (`payable_base`) and refuses the run (BAD_BASE_OVERRIDE, exit 3) when the declaration
+   does not reproduce, `shares` is not this run's latest diluted count, or the filer's
+   series were FX-converted (the rule is for USD filers; a non-USD P&C filer escalates
+   `NEEDS_MAIN_AGENT`). make_score checks the declaration figure for figure against the
+   engine's record and key_numbers.md prints the five exact figures, the average, the
+   share count and the pinned base — quote the construction in analysis.md from there,
+   never retyped from the filing. Five-year average, not 3-year median, because a
+   catastrophe cycle is longer than three years and a benign window would otherwise set
+   the base. This filing-sourced base is the one standing exception to clause (c) in
+   step 8, authorized by the main agent. With it in force the one-notch `tier_override`
+   is **not** applied — make_score refuses the pair as double-counting; the alert-gate
+   misfit suppression and the low-confidence grade stay. Life insurers, banks and REITs,
+   and any filer without that printed line, keep the 2026-10-15 rule.
+   `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
 5. **Moat 0–10, justified.** Rubric: 9–10 wide and durable (network effects, switching
    costs, structural cost advantage, proven pricing power, high returns on capital through
    a cycle); 7–8 strong; 5–6 moderate/narrow; 3–4 weak; 0–2 none. Name the specific pillars
@@ -89,7 +100,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    YoY, guidance). A start below what the company just printed — especially bull — needs a
    written reason; equally, if the blend hit the 35% cap on inflection artifacts, recalibrate
    downward with the reason written. Final run:
-   `python3 _system/dcf_engine.py <T> --moat <m> --probs <5> [--offsets <5>] [--mults <5>] [--ttm] [--gterm <x>] [--cik <cik>]`.
+   `python3 _system/dcf_engine.py <T> --moat <m> --probs <5> [--offsets <5>] [--mults <5>] [--ttm | --base-judgment] [--gterm <x>] [--cik <cik>]`
+   (`--base-judgment` is the insurer payable-earnings pin from step 4; a declared
+   `base_override` with `basis` that the final run does not pass is unused and make_score
+   refuses the score).
    Exit 4 here → block as in step 2 and finish.
 7. **Write `analysis.md`** in APP's shape: what it is; owner's earnings (both definitions,
    which base and why, ttm.json legs quoted if TTM); MOAT (score, FOR/AGAINST, CAP);

@@ -149,6 +149,10 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
 - `base_override`: built only from figures printed in that PR's
   `dcf_numbers.json` / `ttm.json` / CSV, with the construction shown in
   `analysis.md`, and the arithmetic must reproduce.
+  One exception (Andrew, 2026-10-19): a `base_override` with `basis`
+  `payable_earnings_5y` at a P&C insurer or reinsurer is built from five
+  filing figures (operating income available to common, FY by FY) that are
+  not in the run outputs; see "Sector misfits" below for what to check.
 - `ads_ratio`: only when stated in the filer's own 20-F/40-F, and the
   filing citation must be in `reason`.
 - `tier_override`: a written reason is required, and the reason must be
@@ -228,16 +232,23 @@ misfit`. For them:
   saying the IRR shown is not the one the analysis defends.
 - P&C insurers and reinsurers (Andrew, 2026-10-19): when the filer prints
   "operating income (loss) available to common shareholders", the folder
-  must carry a `base_override` of kind `filing` equal to the average of the
-  last five fiscal years of that line ÷ the CSV's latest `shares_diluted`,
-  with the five figures and their sources in `source` and the construction
-  quoted in `analysis.md` (`WORKER_SPEC.md` step 4). Check the arithmetic
-  reproduces to the cent; a mismatch is P1. With that base the one-notch
-  `tier_override` must NOT also be applied (double-counting the same
-  correction is P2); the alert-gate suppression and low confidence stand.
-  A P&C name scored on the OCF base with only the notch is P2 — ask for
-  the payable-earnings base. Life insurers, banks and REITs keep the
-  2026-10-15 rule.
+  carries a `base_override` with `basis: payable_earnings_5y`, `kind:
+  filing`, the five annual `figures` (USD dollars, oldest first), `shares`
+  (the CSV's latest `shares_diluted`) and `value` = average ÷ shares per
+  ordinary share, and the final run passed `--base-judgment`:
+  `dcf_numbers.json` then carries `payable_base` (figures, average, shares,
+  ads_ratio, pinned_per_share) with `base_source`
+  `judgment_base_override`, and `key_numbers.md` prints the five exact
+  figures. Check: the five figures match between `judgment.json`,
+  `payable_base` and `key_numbers.md`; average ÷ shares × ads_ratio equals
+  `base_oe_per_share` to the cent (P1 otherwise); `shares` equals the
+  CSV's latest diluted count (P1); the filing cited for each figure is a
+  release or 10-K for that fiscal year ("cannot verify from the diff" if
+  the PR does not show it). A `payable_base` block together with a
+  `tier_override` below the numbers tier is double-counting (P2;
+  make_score refuses it). A P&C name scored on the OCF base with only the
+  notch is P2 — ask for the payable-earnings base. Life insurers, banks and
+  REITs keep the 2026-10-15 rule.
 
 ## Ranking and history files
 
