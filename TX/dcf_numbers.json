@@ -4,13 +4,13 @@
  "cik": 1342874,
  "engine_version": 5,
  "engine_release": "5.4.0",
- "as_of": "2026-10-18",
+ "as_of": "2026-10-19",
  "price": 57.1,
- "price_source": "nasdaq_quote_api",
+ "price_source": "manual",
  "shares_diluted_latest": 1963076776.0,
  "shares_outstanding_dei_latest": 2004743442,
  "shares_outstanding_dei_asof": "2025-12-31",
- "market_cap_est": 112091683909.6,
+ "market_cap_est": 11209168390.960001,
  "net_debt_latest": 887783000,
  "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
  "lease_liabilities_latest": 186534000,
@@ -456,7 +456,7 @@
   "tv_share_at_15": 0.17218304338173926,
   "scenario_spread_iv15": 3.661376796287211,
   "net_debt_to_normalized_oe": 1.0438856618771017,
-  "months_since_fy_end": 9.559789750328514,
+  "months_since_fy_end": 9.592641261498029,
   "irr_capped": false,
   "irr_at_floor": false
  },
@@ -480,5 +480,5 @@
   "weighted_irr_final": 0.03142512711175499,
   "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
  },
- "content_hash": "3a0bac8723175cd10bff1da7a2821c36d38815a6b1094b587c1dad160f914549"
+ "content_hash": "00b22a9a87fea3252143ad3c827cdfa7c21502fde20540749bc3feeb88bfa1c1"
 }

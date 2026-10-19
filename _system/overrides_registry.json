@@ -2207,48 +2207,6 @@
    "reason": "SECTOR_MODEL_MISMATCH (bank / auto lender): the engine's OCF-based conservative OE is rejected as the base \u2014 for a lender, OCF adds back the credit provision ($1,477M in FY2025, $2,166M in FY2024) and $1,397M of depreciation/amortization (dominated by operating-lease fleet depreciation) while the corresponding earning-asset deployment (purchases of operating lease assets $4,275M in FY2025; purchases of finance receivables and loans held-for-investment $5,249M) sits in investing, so OCF measures balance-sheet plumbing, not distributable earnings: FY2025 OCF $3,729M against net income of $852M, and NI_OCF_DIVERGENCE fires for 2023, 2024 and 2025. The result is a $14.5989/share normalized base (a 38.7% OE yield at $37.68) for a company whose diluted EPS was $2.37 in FY2025. For a bank, net income is the honest owner's-earnings proxy (the FUTU/LPLA/WSE/ARCC sector precedent in this sweep): SBC is already expensed inside it, the provision \u2014 a real through-cycle cost \u2014 is already charged inside it, and the median-of-3-FY normalization mirrors the engine's own base method applied to that definition. The median is also conservative for this name: all three years carry goodwill impairments on exited businesses ($149M / $118M / $305M) inside net income. Known upward bias, stated: total net income is used (the ARCC construction), so the ~$110M/yr of preferred dividends is not deducted \u2014 about $0.35/share against the common EPS series ($2.77 / $1.80 / $2.37, median $2.37); the verdict is sized with that bias in view. Declared under bounded authority (c): every input is a figure printed by this run's engine output."
   },
   {
-   "ticker": "TX",
-   "field": "sbc",
-   "value": 0.0,
-   "kind": "filing",
-   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Cash Flows (p. F-11): the adjustments reconciling profit to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, impairment charge, income tax accruals less payments, equity in earnings of non-consolidated companies, interest accruals, provisions and working-capital changes) with no share-based payment addback in any year, and the term 'share-based' appears nowhere in the 20-F. The only long-term incentive (Item 6 / Note 4(o)(3) and Note 26(iii)) grants units that are mandatorily redeemed for cash seven years after grant, are tied to book value, and are accounted for as an IAS 19 long-term benefit (liability $84.7M at Dec 31, 2025) \u2014 cash-settled, already expensed through income and operating cash flow; directors receive cash only, with 'no long-term incentive or pension plan'.",
-   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees have no facts in this filer's companyfacts for any year 2016-2025). Ternium has no equity-settled share-based payment expense to subtract: it files no IFRS 2 expense and its sole incentive program is cash-settled and already inside operating cash flow \u2014 subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as TS in this sweep).",
-   "date": "2026-10-18",
-   "base_used": "median_3y",
-   "base_oe_without_override": 0.4332,
-   "base_oe_with_override": 0.4332,
-   "base_oe_impact_pct": 0.0,
-   "weighted_irr_without_override": 0.0314,
-   "weighted_irr_with_override": 0.0314,
-   "weighted_irr_impact_pp": 0.0,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "TX",
-   "field": "shares",
-   "value": 1963076776.0,
-   "kind": "filing",
-   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Income (p. F-6): 'Weighted average number of shares outstanding 1,963,076,776' for each of 2025, 2024 and 2023, with the line captioned 'Basic and diluted earnings per share for profit attributable to the owners of the parent (expressed in $ per share) 0.22 / (0.03) / 0.34'; Selected Financial Data footnote (4) states 'Diluted earnings per share and per ADS (expressed in $ per share or ADS), equals basic earnings per share or ADS, respectively', and accounting policy Note (x) calculates EPS on the daily weighted average number of ordinary shares excluding treasury shares (41,666,666 held in treasury).",
-   "reason": "DATA_GAP:shares \u2014 DILUTED shares missing for fiscal years 2023, 2024, 2025 of the last 3; EDGAR carries only the non-diluted WeightedAverageShares count (1,963,076,776 in each year), which the engine records as a fallback and refuses to silently swap. The filer's own 20-F states diluted EPS equals basic EPS, so the diluted count is the same 1,963,076,776 the filer itself uses for both \u2014 the override is exact for all three gap years, not an approximation, because the count was unchanged in every year.",
-   "date": "2026-10-18",
-   "base_used": "median_3y",
-   "base_oe_without_override": 0.4332,
-   "base_oe_with_override": 0.4332,
-   "base_oe_impact_pct": 0.0,
-   "weighted_irr_without_override": 0.0314,
-   "weighted_irr_with_override": 0.0314,
-   "weighted_irr_impact_pp": 0.0,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "TX",
-   "event": "ads_ratio",
-   "date": "2026-10-18",
-   "ratio": 10.0,
-   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020): Item 7 markets disclosure states 'Each ADS represents ten shares of Ternium S.A.'s share capital' (42,960,625 ADSs registered of record as of February 27, 2026; BNY Mellon depositary), and Selected Financial Data footnote (2) states the same ('Each ADS represents 10 shares'), with basic EPS of $0.22 per share vs $2.17 per ADS for FY2025. Corroborated by the company's own earnings releases (e.g. 4Q25: dividend $2.20 per ADS = $0.22 per share).",
-   "reason": "DATA_GAP:ads_ratio \u2014 EDGAR share counts are in ordinary shares (1,963,076,776) while the Nasdaq price ($57.10) is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price. Note the engine's market_cap_est still multiplies the ordinary share count by the ADS price, so make_score's computed scope follows that overstated engine figure ($112.09B vs the ~$11.2B traded market cap)."
-  },
-  {
    "ticker": "SNN",
    "event": "ads_ratio",
    "date": "2026-10-18",
@@ -2626,6 +2584,54 @@
    "ratio": 2000.0,
    "source": "Form 20-F for fiscal year ended December 31, 2025, cover/ADS description: each ADS represents 2,000 common shares; corroborated by the company's July 18, 2024 ratio-change announcement (1 ADS = 1 share changed to 1 ADS = 2,000 shares, effective July 24, 2024) and by 2025 secondary-offering prospectuses (Form 424B7: 'Each ADS represents 2,000 common shares')",
    "reason": "DATA_GAP:ads_ratio \u2014 20-F filer; EDGAR per-share figures are per ordinary share while the NYSE price ($47.47) is per ADS, so per-share figures must be scaled x2,000 ordinary shares per ADS to be comparable to the ADS price."
+  },
+  {
+   "ticker": "TX",
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Cash Flows (p. F-11): the adjustments reconciling profit to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, impairment charge, income tax accruals less payments, equity in earnings of non-consolidated companies, interest accruals, provisions and working-capital changes) with no share-based payment addback in any year, and the term 'share-based' appears nowhere in the 20-F. The only long-term incentive (Item 6 / Note 4(o)(3) and Note 26(iii)) grants units that are mandatorily redeemed for cash seven years after grant, are tied to book value, and are accounted for as an IAS 19 long-term benefit (liability $84.7M at Dec 31, 2025) \u2014 cash-settled, already expensed through income and operating cash flow; directors receive cash only, with 'no long-term incentive or pension plan'.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees have no facts in this filer's companyfacts for any year 2016-2025). Ternium has no equity-settled share-based payment expense to subtract: it files no IFRS 2 expense and its sole incentive program is cash-settled and already inside operating cash flow \u2014 subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as TS in this sweep).",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 0.4332,
+   "base_oe_with_override": 0.4332,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.0314,
+   "weighted_irr_with_override": 0.0314,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "TX",
+   "field": "shares",
+   "value": 1963076776.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020), Consolidated Statements of Income (p. F-6): 'Weighted average number of shares outstanding 1,963,076,776' for each of 2025, 2024 and 2023, with the line captioned 'Basic and diluted earnings per share for profit attributable to the owners of the parent (expressed in $ per share) 0.22 / (0.03) / 0.34'; Selected Financial Data footnote (4) states 'Diluted earnings per share and per ADS (expressed in $ per share or ADS), equals basic earnings per share or ADS, respectively', and accounting policy Note (x) calculates EPS on the daily weighted average number of ordinary shares excluding treasury shares (41,666,666 held in treasury).",
+   "reason": "DATA_GAP:shares \u2014 DILUTED shares missing for fiscal years 2023, 2024, 2025 of the last 3; EDGAR carries only the non-diluted WeightedAverageShares count (1,963,076,776 in each year), which the engine records as a fallback and refuses to silently swap. The filer's own 20-F states diluted EPS equals basic EPS, so the diluted count is the same 1,963,076,776 the filer itself uses for both \u2014 the override is exact for all three gap years, not an approximation, because the count was unchanged in every year.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 0.4332,
+   "base_oe_with_override": 0.4332,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.0314,
+   "weighted_irr_with_override": 0.0314,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "TX",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 57.1
+  },
+  {
+   "ticker": "TX",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 10.0,
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001342874-26-000020): Item 7 markets disclosure states 'Each ADS represents ten shares of Ternium S.A.'s share capital' (42,960,625 ADSs registered of record as of February 27, 2026; BNY Mellon depositary), and Selected Financial Data footnote (2) states the same ('Each ADS represents 10 shares'), with basic EPS of $0.22 per share vs $2.17 per ADS for FY2025. Corroborated by the company's own earnings releases (e.g. 4Q25: dividend $2.20 per ADS = $0.22 per share).",
+   "reason": "DATA_GAP:ads_ratio \u2014 EDGAR share counts are in ordinary shares (1,963,076,776) while the Nasdaq price ($57.10) is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price. Note the engine's market_cap_est still multiplies the ordinary share count by the ADS price, so make_score's computed scope follows that overstated engine figure ($112.09B vs the ~$11.2B traded market cap)."
   }
  ]
 }
