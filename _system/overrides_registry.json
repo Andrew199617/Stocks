@@ -2883,6 +2883,14 @@
    "weighted_irr_with_override": 0.1183,
    "weighted_irr_impact_pp": 0.0,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "RTO",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 5.0,
+   "source": "Rentokil Initial plc Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), American Depositary Shares section: 'Each Rentokil Initial ADS will represent five Rentokil Initial ordinary shares' under the Amended and Restated Deposit Agreement dated 26 November 2018; the same 1:5 ADS-to-share ratio is stated in the Terminix combination announcement (128.66 million ADSs = 643.29 million shares)",
+   "reason": "EDGAR share counts and per-share figures are per ordinary share while the Nasdaq/NYSE price ($21.20) is per ADS; per-share OE must be scaled x5 to be comparable to the ADS price, and the market cap is price x ordinary shares / 5"
   }
  ]
 }

@@ -1,0 +1,239 @@
+{
+ "ticker": "RTO",
+ "cik": 930157,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T17:35:14-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000930157.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/930157/000110465926034062/rto-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RTO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RTO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RENTOKIL INITIAL PLC /FI",
+  "cik": 930157,
+  "description": null,
+  "description_short": "Rentokil Terminix is the leading provider of residential and commercial services in North America. The company provides health, hygiene, and environment services, and pest management services, including protection against termites, mosquitoes, rodents and other pests. The company is part of Rentokil Initial plc (NYSE: RTO), one of the largest business services companies in the world.",
+  "industry": "Other Consumer Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "8741",
+  "sic_description": "Services-Management Services",
+  "state_of_incorporation": "X0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.rentokil-initial.com",
+  "headquarters": "Crawley, United Kingdom",
+  "address": {
+   "street": "Compass House Manor Royal",
+   "city": "Crawley",
+   "state": null,
+   "zip": "RH10 9PY",
+   "country": "United Kingdom",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-25"
+  },
+  "phone": "44 1293 858 000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-01-22",
+  "first_sec_filing_form": "SUPPL",
+  "former_names": [
+   "RENTOKIL INITIAL PLC                                    /FI"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000930157&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008811",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426008811/a8138x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008651",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426008651/a9666w.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008498",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426008498/a6698v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007903",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426007903/a4852s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007539",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426007539/a5557q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007220",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426007220/a2077p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007144",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426007144/a0398p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006999",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426006999/a4551o.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006671",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426006671/a6451m.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-005208",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426005208/a1741f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-004577",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426004577/a6252d.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-004520",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426004520/a4882d.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-003848",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426003848/a7212b.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-003837",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426003837/a7143b.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-003760",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426003760/a3195b.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-003571",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426003571/a6537a.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-003522",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426003522/a4799a.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-002926",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426002926/a6331y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-002797",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426002797/a3268y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-002719",
+   "url": "https://www.sec.gov/Archives/edgar/data/930157/000165495426002719/a0994y.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-03-25)",
+  "employees: no headcount sentence found in the 20-F filed 2026-03-25"
+ ]
+}

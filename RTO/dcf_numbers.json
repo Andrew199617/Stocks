@@ -1,0 +1,595 @@
+{
+ "ticker": "RTO",
+ "name": "RENTOKIL INITIAL PLC /FI",
+ "cik": 930157,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 21.2,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 2535000000,
+ "shares_outstanding_dei_latest": 2526039885,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 10748400000.0,
+ "net_debt_latest": 3248000000,
+ "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+ "lease_liabilities_latest": 563000000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.12546684719053958,
+ "rev_cagr_3y": 0.1564193322202212,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 675000000.0,
+ "base_oe_per_share": 1.2267510882469332,
+ "base_oe_latest_per_share": 1.3313609467455623,
+ "base_oe_normalized_per_share": 1.2267510882469332,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.12546684719053958,
+  "rev_cagr_3y": 0.1564193322202212,
+  "rev_yoy_latest": 0.04397763336859595,
+  "oe_ps_cagr_2y": 0.041735649283562326
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.07546684719053957,
+  "rev_cagr_3y": 0.1064193322202212,
+  "rev_yoy_latest": -0.006022366631404055,
+  "oe_ps_cagr_2y": 0.041735649283562326
+ },
+ "g_blend": 0.05860124823705095,
+ "share_cagr": 0.07968873114744235,
+ "share_count_adj": -0.05,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "RevenueFromContractsWithCustomers",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities",
+  "da": null,
+  "sbc": "ExpenseFromSharebasedPaymentTransactionsWithEmployees",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": null,
+  "debt_cur_st": null,
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": null,
+  "liabilities": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null,
+  "capex_components": "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities+PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 5.0,
+  "source": "Rentokil Initial plc Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), American Depositary Shares section: 'Each Rentokil Initial ADS will represent five Rentokil Initial ordinary shares' under the Amended and Restated Deposit Agreement dated 26 November 2018; the same 1:5 ADS-to-share ratio is stated in the Terminix combination announcement (128.66 million ADSs = 643.29 million shares)",
+  "reason": "EDGAR share counts and per-share figures are per ordinary share while the Nasdaq/NYSE price ($21.20) is per ADS; per-share OE must be scaled x5 to be comparable to the ADS price, and the market cap is price x ordinary shares / 5"
+ },
+ "fx_conversion": {
+  "from_currency": "GBP",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "sbc",
+   "tax",
+   "cash",
+   "restricted_cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_lt",
+   "debt_total",
+   "lease_liab_current",
+   "lease_liab_lt",
+   "ppe_net",
+   "equity",
+   "capex_intang"
+  ],
+  "rates": {
+   "2019-12-31": 1.3204,
+   "2020-12-31": 1.3649,
+   "2021-12-31": 1.3479,
+   "2022-12-31": 1.2026,
+   "2023-12-31": 1.2715
+  },
+  "rates_by_currency": {
+   "GBP": {
+    "2019-12-31": 1.3204,
+    "2020-12-31": 1.3649,
+    "2021-12-31": 1.3479,
+    "2022-12-31": 1.2026,
+    "2023-12-31": 1.2715
+   }
+  },
+  "overrides_usd_verbatim": {}
+ },
+ "payable_base": null,
+ "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 2535000000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 5.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": 2526039885,
+  "dei_date": "2025-12-31",
+  "dei_ratio": 1.0035470995740037,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 1.0528299580294203
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2020-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 130000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 23000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2023-04-04",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2023-04-04"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 128000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 32000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2024-03-27",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2024-03-27"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 153000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 37000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-03-26",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2025-03-26"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 207000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 55000000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-25",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-03-25"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 219000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 56000000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-25",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-03-25"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 208000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 61000000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-25",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-03-25"
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "g_base": 0.05860124823705095,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.079,
+   -0.044,
+   -0.019,
+   0.011,
+   0.051
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0204,
+   "oe_mult": 0.75,
+   "iv_at_10": 10.17155331733646,
+   "iv_at_12": 8.108220840590652,
+   "iv_at_15": 6.241424774400004,
+   "iv_at_20": 4.537171656337039,
+   "iv_at_25": 3.578832565842591,
+   "irr": 0.06017642747340926,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0146,
+   "oe_mult": 0.9,
+   "iv_at_10": 14.377097796454825,
+   "iv_at_12": 11.374703117296223,
+   "iv_at_15": 8.669436812091234,
+   "iv_at_20": 6.216984489202444,
+   "iv_at_25": 4.850868821100582,
+   "irr": 0.07571436708270507,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0396,
+   "oe_mult": 1.0,
+   "iv_at_10": 17.938398200059815,
+   "iv_at_12": 14.12031032801649,
+   "iv_at_15": 10.689403957747688,
+   "iv_at_20": 7.593578915489676,
+   "iv_at_25": 5.879942431951535,
+   "irr": 0.08857639912219273,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0696,
+   "oe_mult": 1.1,
+   "iv_at_10": 22.65155873832025,
+   "iv_at_12": 17.727350448954624,
+   "iv_at_15": 13.315922008884888,
+   "iv_at_20": 9.356128983540927,
+   "iv_at_25": 7.179886285942196,
+   "irr": 0.10495603477073134,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1096,
+   "oe_mult": 1.25,
+   "iv_at_10": 30.87551201569849,
+   "iv_at_12": 23.989775471962613,
+   "iv_at_15": 17.843985004775266,
+   "iv_at_20": 12.362800034132048,
+   "iv_at_25": 9.377024879495162,
+   "irr": 0.1315777585499599,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 18.74339012701521,
+  "iv_at_12": 14.721406121222985,
+  "iv_at_15": 11.111701870485863,
+  "iv_at_20": 7.861349211879654,
+  "iv_at_25": 6.067257250879931,
+  "irr": 0.09146547058748145,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   0.901295,
+   0.88291,
+   0.869615,
+   0.861165,
+   0.857397,
+   0.858225,
+   0.863637,
+   0.873696,
+   0.888539,
+   0.90838,
+   0.931089,
+   0.954367,
+   0.978226,
+   1.002681,
+   1.027748
+  ],
+  "bear": [
+   1.120197,
+   1.136553,
+   1.154539,
+   1.174221,
+   1.195676,
+   1.218985,
+   1.24424,
+   1.271541,
+   1.300996,
+   1.332725,
+   1.366043,
+   1.400195,
+   1.435199,
+   1.471079,
+   1.507856
+  ],
+  "base": [
+   1.275332,
+   1.325837,
+   1.376064,
+   1.42583,
+   1.474947,
+   1.523222,
+   1.570461,
+   1.616467,
+   1.661043,
+   1.703996,
+   1.746596,
+   1.790261,
+   1.835017,
+   1.880893,
+   1.927915
+  ],
+  "bull": [
+   1.443348,
+   1.543807,
+   1.643157,
+   1.740279,
+   1.83401,
+   1.923165,
+   2.006564,
+   2.08305,
+   2.151521,
+   2.210954,
+   2.266228,
+   2.322884,
+   2.380956,
+   2.44048,
+   2.501492
+  ],
+  "super_bull": [
+   1.701506,
+   1.887993,
+   2.076128,
+   2.262346,
+   2.44275,
+   2.613227,
+   2.769592,
+   2.907746,
+   3.023852,
+   3.114496,
+   3.192359,
+   3.272168,
+   3.353972,
+   3.437821,
+   3.523767
+  ],
+  "weighted": [
+   1.283766,
+   1.344931,
+   1.406817,
+   1.468725,
+   1.52992,
+   1.58965,
+   1.647162,
+   1.701732,
+   1.752682,
+   1.799406,
+   1.844391,
+   1.890501,
+   1.937764,
+   1.986208,
+   2.035863
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.020399,
+   -0.020399,
+   -0.015058,
+   -0.009717,
+   -0.004376,
+   0.000965,
+   0.006306,
+   0.011647,
+   0.016988,
+   0.022329,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   0.014601,
+   0.014601,
+   0.015825,
+   0.017048,
+   0.018271,
+   0.019495,
+   0.020718,
+   0.021942,
+   0.023165,
+   0.024388,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.039601,
+   0.039601,
+   0.037883,
+   0.036166,
+   0.034448,
+   0.03273,
+   0.031012,
+   0.029294,
+   0.027577,
+   0.025859,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.069601,
+   0.069601,
+   0.064354,
+   0.059107,
+   0.05386,
+   0.048612,
+   0.043365,
+   0.038118,
+   0.032871,
+   0.027624,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.109601,
+   0.109601,
+   0.099648,
+   0.089695,
+   0.079742,
+   0.069789,
+   0.059836,
+   0.049883,
+   0.03993,
+   0.029977,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.09146547058748145,
+ "implied_irr_base": 0.08857639912219273,
+ "irr_bear": 0.07571436708270507,
+ "irr_bull": 0.10495603477073134,
+ "irr_low": 0.06017642747340926,
+ "irr_high": 0.1315777585499599,
+ "tier_by_numbers": "D",
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 11.111701870485863,
+  "20": 7.861349211879654,
+  "25": 6.067257250879931
+ },
+ "upside_at_15": -0.47586311931670455,
+ "upside_at_12": -0.30559405088570823,
+ "iv_at_15": 11.111701870485863,
+ "iv_at_12": 14.721406121222985,
+ "iv_at_20": 7.861349211879654,
+ "iv_at_25": 6.067257250879931,
+ "diagnostics": {
+  "oe_yield": 0.057865617370138366,
+  "tv_share_at_15": 0.18463508874777135,
+  "scenario_spread_iv15": 2.8589601973518346,
+  "net_debt_to_normalized_oe": 5.222177260291405,
+  "months_since_fy_end": 9.592641261498029,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 8.0%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency GBP converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x5.0 ordinary shares per ADS (Rentokil Initial plc Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), American Depositary Shares section: 'Each Rentokil Initial ADS will represent five Rentokil Initial ordinary shares' under the Amended and Restated Deposit Agreement dated 26 November 2018; the same 1:5 ADS-to-share ratio is stated in the Terminix combination announcement (128.66 million ADSs = 643.29 million shares)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "HIGH_NET_DEBT: net debt is 5.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.6%) vs bull-case tier C (10.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "content_hash": "0f4bf5783da0cc477defbf8cd7e93c3d1da47a1422e62156ad602a8903340cba"
+}
