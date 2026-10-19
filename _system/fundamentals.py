@@ -2387,6 +2387,7 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         "price": None, "price_date": None, "price_source": None, "price_note": None,
         "shares_outstanding": shares, "shares_as_of": shares_as_of, "shares_source": shares_src, "shares_basis": shares_basis,
         "shares_diluted": diluted, "shares_diluted_source": diluted_src,
+        "ads_ratio": ctx.get("ads_ratio"),
         "market_cap": None, "market_cap_basis": None,
         "dividend_yield": None,
         "buyback_yield": None,
@@ -2468,8 +2469,15 @@ def price_dividends(div, price, price_date, price_source):
     else:
         price_note = None
     shares, shares_src, shares_as_of = d.get("shares_outstanding"), d.get("shares_source"), d.get("shares_as_of")
-    market_cap = price * shares if (_num(price) and _num(shares)) else None
-    market_cap_basis = f"{price} × {shares:,.0f} shares ({shares_src}" + (f", as of {shares_as_of})" if shares_as_of else ")") if market_cap is not None else None
+    # ADS filers: shares_outstanding is the ordinary share count while the
+    # price is per ADS, so the yield denominator divides by the ads_ratio the
+    # engine recorded in dcf_numbers.json (carried in the block at build time)
+    # — the traded cap, on the same basis as dcf_engine.market_cap_est
+    # (2026-10-18 ADS fix). No ratio recorded: the plain product, unchanged.
+    ads_ratio = d.get("ads_ratio")
+    ads_ratio = ads_ratio if (_num(ads_ratio) and ads_ratio > 0) else None
+    market_cap = price * shares / ads_ratio if (_num(price) and _num(shares) and ads_ratio) else (price * shares if (_num(price) and _num(shares)) else None)
+    market_cap_basis = f"{price} × {shares:,.0f} shares ({shares_src}" + (f" ÷ ADS ratio {ads_ratio}" if ads_ratio else "") + (f", as of {shares_as_of})" if shares_as_of else ")") if market_cap is not None else None
     legs = d.get("legs") if isinstance(d.get("legs"), dict) else {}
     yield_basis = dict(d.get("yield_basis")) if isinstance(d.get("yield_basis"), dict) else {}
     values = {}
@@ -3129,7 +3137,9 @@ def main():
                   "buybacks": duration_facts(facts, DUR["buybacks"]),
                   "share_issuance": combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS)}
     filed_any = {k: bool(v) for k, v in flow_facts.items()}
+    _ads = nums.get("ads_ratio")
     ctx = {"filed_any": filed_any, "flow_facts": flow_facts, "shares_instant": latest_share_count(facts),
+           "ads_ratio": _ads.get("ratio") if isinstance(_ads, dict) else None,
            "latest_filed_period": {f: v.get("period") for f, v in (profile.get("latest_filings") or {}).items() if isinstance(v, dict)},
            "split_notes": dmeta["split_notes"], "splits": dmeta["splits"], "shares_by_end": dmeta.get("shares_by_end"), "warnings": warnings}
     dividends = build_dividends(annual, quarterly, dps_q, dps_fy, price, price_date, price_source, ctx)
