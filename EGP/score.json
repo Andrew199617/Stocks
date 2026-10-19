@@ -1,0 +1,108 @@
+{
+ "ticker": "EGP",
+ "name": "EASTGROUP PROPERTIES, INC.",
+ "sector": "Real Estate / Industrial REIT (shallow-bay, Sun Belt)",
+ "price": 197.44,
+ "market_cap_b": 10.43,
+ "engine_version": 5,
+ "base_oe_per_share": 8.088977918568899,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow 5/10: infill shallow-bay scarcity in Sun Belt markets, demonstrated rent pricing power (leasing spreads +34% GAAP / +19% cash, cash same-store NOI +8-9%) and a development channel that creates assets at a ~9.4% stabilized yield give EastGroup more than a generic landlord's moat, but the assets remain replicable with capital, there is no lock-in beyond leases, growth is bought with continuous equity issuance (shares +7.3%/yr), and filed ROE has run only 6.9-7.7% in the last three years with roic_proxy not computable from the REIT presentation \u2014 not the sustained well-above-cost-of-capital record a 7+ requires. In line with KIM (5) and above the generic REIT 4s (AMH, AHR, MAA, INVH) on the strength of the development alpha and spreads.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 7.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000049600-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Capital improvements' (us-gaap PaymentsForCapitalImprovements): $(51,116) thousand for FY2023, $(59,288) thousand for FY2024 and $(75,830) thousand for FY2025; the override value is the median of the three filed years (the FY2024 figure). Cross-checked against statements.json, whose capex series is exactly this line.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 38.43,
+   "irr": 0.0476
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 56.85,
+   "irr": 0.0606
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 77.75,
+   "irr": 0.0756
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 96.81,
+   "irr": 0.0887
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 129.64,
+   "irr": 0.1101
+  }
+ },
+ "iv_at_15": 78.55,
+ "iv_at_12": 104.55,
+ "implied_irr": 0.0763,
+ "implied_irr_base_case": 0.0756,
+ "upside_at_15_pct": -60.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality Sun Belt industrial REIT, moat 5/10 \u2014 even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the bear\u2192bull band is Tier D (even the super-bull scenario, 11.01%, reaches only the C band), and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0606,
+ "irr_bull": 0.0887,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 55.21,
+ "iv_at_25": 42.38,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 52814000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Infill shallow-bay locations in supply-constrained Sun Belt markets: zoning/permit friction and scarce infill land make the 65.8M sq ft portfolio hard to replicate at any price near book; quarter-end occupancy 95.6%, same-store 96.9% (Q2 2026)",
+  "Demonstrated pricing power: Q2 2026 leasing spreads +34% GAAP / +19% cash on a record 3.9M sq ft signed; cash same-store NOI +8.3% in Q2, +8.8% YTD",
+  "Development alpha: self-developed projects transfer at a ~9.4% stabilized yield (management, Q2 2026 coverage), well above acquisition cap rates \u2014 a structural cost advantage over REITs that must buy growth",
+  "Balance sheet as a competitive weapon: debt/total market cap 12.9%, debt/EBITDA 3.0x, coverage 15.1x, no revolver drawn ($675M available) at Q2 2026 \u2014 cheap, always-available capital through cycles",
+  "Diversified rent roll (top 10 tenants 6.6% of rents) and 186 consecutive quarterly dividends; FFO/share compounded ~10.7%/yr over five years (peer coverage)"
+ ],
+ "moat_against": [
+  "Real estate is replicable with capital \u2014 no network effects; tenant lock-in is a multi-year lease, and shallow-bay space competes with new build-for-rent industrial supply",
+  "Filed returns are moderate, not wide-moat: ROE 9.5% (FY2022) \u2192 7.7% (FY2023) \u2192 6.9% (FY2024) \u2192 7.4% (FY2025) in fundamentals.json; roic_proxy and gross margin are not computable from the filed REIT presentation \u2014 no record of returns durably well above the cost of capital",
+  "Growth is equity-funded: share count CAGR 7.3%/yr, issuance proceeds $692,312,000 (FY2023), $717,659,000 (FY2024), $264,071,000 (FY2025) \u2014 per-share economics lag portfolio growth",
+  "Sun Belt concentration (Florida, Texas, Arizona, California) and a post-COVID industrial supply wave in several markets cap rent growth as the 34% leasing spreads normalize; same-property NOI guidance (+6.8% for 2026) is already below the +8.8% YTD print",
+  "Development is cyclical: the $487M pipeline (17 projects, 3.2M sq ft) must lease up through whatever demand does next; development starts guidance was cut one quarter and raised the next in 2026"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 59288000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000049600-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Capital improvements' (us-gaap PaymentsForCapitalImprovements): $(51,116) thousand for FY2023, $(59,288) thousand for FY2024 and $(75,830) thousand for FY2025; the override value is the median of the three filed years (the FY2024 figure). Cross-checked against statements.json, whose capex series is exactly this line."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 9.1938,
+  "base_oe_with_override": 8.089,
+  "base_oe_impact_pct": -12.017,
+  "weighted_irr_without_override": 0.0859,
+  "weighted_irr_with_override": 0.0763,
+  "weighted_irr_impact_pp": -0.961,
+  "unblocks_tier": true
+ }
+}

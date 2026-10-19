@@ -1,0 +1,291 @@
+{
+ "ticker": "EGP",
+ "cik": 49600,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T04:40:46-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000049600.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000010/egp-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EGP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EGP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EASTGROUP PROPERTIES INC",
+  "cik": 49600,
+  "description": {
+   "text": "EastGroup Properties, Inc., which we refer to in this Annual Report as the “Company,” “EastGroup,” “we,” “us” or “our,” is an internally-managed equity REIT first organized in 1969. EastGroup is focused on the development, acquisition and operation of industrial properties in high-growth markets throughout the United States, primarily in the states of Texas, Florida, California, Arizona and North Carolina. EastGroup’s strategy for growth is based on ownership of premier distribution facilities generally clustered near major transportation features in supply-constrained submarkets. EastGroup is a Maryland corporation, and its common stock is publicly traded on the New York Stock Exchange (“NYSE”) under the symbol “EGP.” The Company has elected to be taxed and intends to continue to qualify as a REIT under the Internal Revenue Code of 1986, as amended (the “Internal Revenue Code”).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0000049600-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000010/egp-20251231.htm"
+  },
+  "description_short": "EastGroup, a member of the S&P Mid-Cap 400 and Russell 2000 Indexes, is a self-administered equity real estate investment trust focused on the development, acquisition and operation of industrial properties in high-growth markets throughout the United States with an emphasis in the states of Texas, Florida, California, Arizona and North Carolina. The Company's goal is to maximize shareholder value by being a leading provider in its markets of functional, flexible and quality business distribution space for location sensitive customers (primarily in the 20,000 to 100,000 square foot range). The Company's strategy for growth is based on ownership of premier distribution facilities generally clustered near major transportation features in supply-constrained submarkets. The Company's portfolio, including development projects and value-add acquisitions in lease-up and under construction, currently includes approximately 67 million square feet.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.eastgroup.net",
+  "headquarters": "Ridgeland, Mississippi",
+  "address": {
+   "street": "400 W Parkway Place Suite 100",
+   "city": "Ridgeland",
+   "state": "Mississippi",
+   "zip": "39157",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "6013543555",
+  "employees": {
+   "count": 103,
+   "as_of": "2025-12-31",
+   "evidence": "•Workforce Diversity: As of December 31, 2025, we employed 103 full-time team members and one temporary employee, across 16 locations in Texas, Florida, California, Arizona, North Carolina, Nevada, Georgia, Mississippi and South Carolina.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000010/egp-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "EASTGROUP PROPERTIES II INC",
+   "EASTGROUP PROPERTIES"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000049600&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K/A",
+   "filed": "2026-10-13",
+   "period": "2026-10-08",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001628280-26-065759",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000162828026065759/egp-20261008.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-26-064276",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000162828026064276/egp-20261001.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-22",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049600-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000041/egp-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049600-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000040/egp-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000049600-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000034/egp-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049600-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000029/egp-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049600-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000028/egp-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-10",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000049600-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000019/egp-20260410.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000049600-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000010/egp-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049600-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960026000003/egp-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-12",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000049600-25-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000120/egp-20251212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-044567",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000114036125044567/ef20060746_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-19",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0000049600-25-000117",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000117/egp-20251119.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049600-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000109/egp-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049600-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000108/egp-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-23",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049600-25-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000100/egp-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049600-25-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000099/egp-20250723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000049600-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000075/egp-20250522.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-23",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000049600-25-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000065/egp-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000049600-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/49600/000004960025000064/egp-20250423.htm"
+  }
+ ],
+ "warnings": []
+}

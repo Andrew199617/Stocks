@@ -2713,6 +2713,23 @@
    "reason": "MICC is a direct multi-listing of ordinary shares, not an ADS program: one NYSE-traded MICC share is one ordinary share (the 612,259,739 issued ordinary shares match the DEI outstanding count in dcf_numbers.json), so per-share figures from the 20-F are directly comparable to the traded price with no scaling."
   },
   {
+   "ticker": "EGP",
+   "field": "capex",
+   "value": 59288000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000049600-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Capital improvements' (us-gaap PaymentsForCapitalImprovements): $(51,116) thousand for FY2023, $(59,288) thousand for FY2024 and $(75,830) thousand for FY2025; the override value is the median of the three filed years (the FY2024 figure). Cross-checked against statements.json, whose capex series is exactly this line.",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2025 under every candidate tag the engine reads, because in the FY2025 10-K EastGroup stopped filing PaymentsForConstructionInProcess (the minor tag the engine read for FY2022-24, whose FY2024 fact is a signed construction-payables change of -$17,170,000, not capex). The filer's recurring real-estate capex is the cash-flow line 'Capital improvements' (us-gaap PaymentsForCapitalImprovements), which statements.py reads as the capex series ($51,116,000 FY2023 / $59,288,000 FY2024 / $75,830,000 FY2025) but which is not in the engine's candidate tag list \u2014 the same dead end documented for MAA, AMH, ELS and others in this sweep. The engine applies this single value to every missing period (FY2025 and the assumed-zero years); filed values are never replaced, so FY2023 ($12,163,000) and FY2024 (-$17,170,000) in the base window still carry the wrong minor tag \u2014 disclosed, not hidden: the median of the three window years under the fill is the corrected FY2025 year, so the normalized base is the corrected figure (see analysis.md). Against the true per-year capital-improvements figures the single value overstates FY2025 capex charge by $0 in the median construction (it IS the FY2024 figure) and understates FY2025's filed $75,830,000 by $16,542,000 (flatters the latest year \u2014 stated here; the TTM pin charges the same $59,288,000, also below the FY2025 run rate, so the base is if anything generous on capex). Excluded, deliberately: 'Development of real estate' ($321,934,000 FY2025) and 'Acquisition of real estate' ($143,099,000 FY2025) are growth investment presented separately by the filer; charging them as capex would double-count growth the portfolio expansion already paid for (same treatment as AMH/AHR in this sweep).",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": 9.1938,
+   "base_oe_with_override": 8.089,
+   "base_oe_impact_pct": -12.017,
+   "weighted_irr_without_override": 0.0859,
+   "weighted_irr_with_override": 0.0763,
+   "weighted_irr_impact_pp": -0.961,
+   "unblocks_tier": true
+  },
+  {
    "ticker": "TXG",
    "event": "tier_override",
    "date": "2026-10-19",
