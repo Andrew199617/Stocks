@@ -1,0 +1,90 @@
+{
+ "ticker": "RDY",
+ "name": "Dr. Reddy's Laboratories Limited",
+ "sector": "Healthcare / Pharmaceuticals \u2014 generics, branded generics, APIs (India)",
+ "price": 12.87,
+ "market_cap_b": 10.74,
+ "engine_version": 5,
+ "base_oe_per_share": 0.4114990938382054,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Diversified generics scale, an India branded franchise and the acquired Haleon nicotine-replacement brands give moderate staying power, and filing-direct ROIC ran 14.5-17.9% in FY23-25 with gross margins near 58%; but commodity US generics carry no durable pricing power, the high-margin lenalidomide contribution collapsed when US volume limits ended on 31 Jan 2026, and FY26/Q1 FY27 prints show ROIC and margins resetting sharply lower \u2014 a weak-to-moderate moat, not a durable one.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 19 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 71.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "FX_CONVERTED: reporting currency INR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Dr. Reddy's Form 20-F for the fiscal year ended March 31, 2024: 'One ADS represents one equity share of Rs.5 par value per share'; the 5-for-1 share sub-division effective 28 Oct 2024 left the ratio unchanged \u2014 the company's FY2026 interim/annual share-capital disclosure states each ADS continues to represent one underlying equity share and the number of ADSs increased proportionately (FY2026 Form 20-F, period ended 2026-03-31, filed 2026-05-29). Depositary listing (Deutsche Bank ADR universe) confirms Ratio (ORD:DR) 1:1.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 0.26 vs 3-yr median 0.41 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.2,
+   "iv_at_15": 1.03,
+   "irr": 0.0337
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 1.58,
+   "irr": 0.039
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 2.45,
+   "irr": 0.0483
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 3.53,
+   "irr": 0.0599
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 4.94,
+   "irr": 0.075
+  }
+ },
+ "iv_at_15": 2.19,
+ "iv_at_12": 2.87,
+ "implied_irr": 0.0458,
+ "implied_irr_base_case": 0.0483,
+ "upside_at_15_pct": -83.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Solid diversified generics franchise in an earnings reset, moat 4/10 \u2014 does not clear 15%: weighted IRR 4.6% and IV@15% $2.19 vs the $12.87 ADS price; it would need to trade near $2.19 to clear the 15% hurdle on these scenarios.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.039,
+ "irr_bull": 0.0599,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 1.58,
+ "iv_at_25": 1.24,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 375000000,
+ "shares_diluted_latest": 834179134,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale diversified generics platform: Global Generics across North America, India, emerging markets and Europe, plus the PSAI/API business",
+  "India branded-generics franchise compounding at mid-teens (FY26 India revenue +16%) with repeat-prescription brand equity",
+  "Acquired Haleon nicotine-replacement portfolio (Sep 2024) added owned consumer brands and drove Europe revenue +55% in FY26",
+  "Filing-direct economics through FY25: ROIC proxy 17.9%/17.9%/14.5% in FY23/24/25 and gross margin 56.7%/58.6%/58.5%",
+  "Development pipeline as an intangible asset: 73 ANDAs pending at Q1 FY26 (43 Paragraph IV, 22 possible first-to-file), semaglutide and abatacept optionality"
+ ],
+ "moat_against": [
+  "No pricing power in commodity US generics: structural price erosion, and lenalidomide \u2014 the outsized profit driver \u2014 lost its protected volume window on 31 Jan 2026; North America revenue fell 22% in FY26 and NA generics fell 41% YoY in Q1 FY27",
+  "Earnings reset is already in the prints: FY26 PAT down ~24% YoY, Q4 FY26 PAT down 86% YoY, Q1 FY27 PAT down ~69% YoY with EBITDA margin 12.5% vs 26.7% a year earlier",
+  "Single-product concentration was real: the lenalidomide shelf-stock adjustment alone cut FY26 revenue by Rs4,530M",
+  "USFDA manufacturing-compliance overhang (e.g. Form 483 with seven observations at the CTO-2 API facility in Nov 2024) can strand supply and approvals",
+  "ROIC is falling, not through-cycle stable: FY25 14.5% on filed figures and materially lower on FY26/Q1 FY27 reported results"
+ ]
+}
