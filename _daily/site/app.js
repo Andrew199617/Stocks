@@ -380,7 +380,7 @@ function renderHeader(record, stars, repo) {
   var fsub = '';
   if (tier === 'F') {
     var fs = s.f_subtype || n.f_subtype || row.f_subtype;
-    fsub = { sbc_exceeds_cash: 'F · SBC exceeds cash generation', no_cash_generation: 'F · no cash generation' }[fs] || "F · no positive owner's earnings";
+    fsub = { sbc_exceeds_cash: 'F · SBC exceeds cash generation', no_cash_generation: 'F · no cash generation', payable_earnings_nonpositive: 'F · payable earnings non-positive' }[fs] || "F · no positive owner's earnings";
   }
   // compact header (owner decision, 2026-10-14): tier tile · ticker · name · sector line; the live expected
   // return with the scored figure beside it; the last close with its 1-day change; value @15% with upside.
