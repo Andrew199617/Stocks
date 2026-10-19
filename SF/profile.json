@@ -1,0 +1,301 @@
+{
+ "ticker": "SF",
+ "cik": 720672,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T00:13:44-04:00",
+ "newest_filing_date": "2026-09-24",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000720672.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/720672/000119312526067130/sf-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SF/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SF/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "STIFEL FINANCIAL CORP",
+  "cik": 720672,
+  "description": {
+   "text": "Stifel Financial Corp. is a Delaware corporation and a financial holding company headquartered in St. Louis. We were organized in 1983. Our principal subsidiary is Stifel, Nicolaus & Company, Incorporated (“Stifel”), a full-service retail and institutional wealth management and investment banking firm. Stifel is the successor to a partnership founded in 1890. Our other subsidiaries include Stifel Independent Advisors, LLC (“SIA”), an independent contractor broker-dealer firm; Keefe, Bruyette & Woods, Inc. (“KBW”), a broker-dealer firm; Stifel Nicolaus Europe Limited (“SNEL”), our European subsidiary; Stifel Nicolaus Canada Inc. (“SNC”), our Canadian subsidiary; Stifel Bank & Trust and Stifel Bank, retail and commercial banks, Stifel Trust Company, N.A. and Stifel Trust Company Delaware, N.A. (collectively, “Stifel Trust”), our trust companies (collectively “Stifel Bancorp”); and 1919 Investment Counsel, LLC, an asset management firm. Unless the context requires otherwise, the terms “the Company,” “our company,” “we,” and “our,” as used herein, refer to Stifel Financial Corp. and its subsidiaries. We have a 135-year operating history and have built a diversified business serving private clients, institutional investors, and investment banking clients located across the country. Our principal activities are:",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-067130",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526067130/sf-20251231.htm"
+  },
+  "description_short": "Stifel Financial Corp. (NYSE: SF) is a financial services holding company headquartered in St. Louis, Missouri, that conducts its banking, securities, and financial services business through several wholly owned subsidiaries. Stifel's broker-dealer clients are served in the United States through Stifel, Nicolaus & Company, Incorporated, including its Eaton Partners and Miller Buckfire business divisions; Keefe, Bruyette & Woods, Inc.; and Stifel Independent Advisors, LLC; in Canada through Stifel Nicolaus Canada Inc.; and in the United Kingdom and Europe through Stifel Nicolaus Europe Limited. The Company's broker-dealer affiliates provide securities brokerage, investment banking, trading, investment advisory, and related financial services to individual investors, professional money managers, businesses, and municipalities. Stifel Bank and Stifel Bank & Trust offer a full range of consumer and commercial lending solutions.",
+  "industry": "Investment Bankers/Brokers/Service",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6211",
+  "sic_description": "Security Brokers, Dealers & Flotation Companies",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.stifel.com",
+  "headquarters": "St. Louis, Missouri",
+  "address": {
+   "street": "501 North Broadway",
+   "city": "St. Louis",
+   "state": "Missouri",
+   "zip": "63102-2188",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "314-342-2000",
+  "employees": {
+   "count": 9000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had over 9,000 associates, including more than 2,300 financial advisors, located primarily in the United States, the United Kingdom, Europe, and Canada.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526067130/sf-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-04-11",
+  "first_sec_filing_form": "S-8",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000720672&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-401093",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526401093/d52523d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-371310",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526371310/d180692d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-333953",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526333953/sf-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-311288",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526311288/d137168d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-282810",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526282810/d151691d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [
+    "5.02",
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001193125-26-263768",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526263768/d282209d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-245264",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526245264/d130492d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-202795",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526202795/sf-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-29",
+   "period": "2026-06-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-191643",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526191643/d939496ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-168288",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526168288/d113868d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-126284",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526126284/d24834d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-076744",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526076744/d948907d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-067130",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526067130/sf-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-037686",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526037686/d899297d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-26",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-025634",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526025634/d28114d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-18",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-324847",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312525324847/d46253d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-20",
+   "period": "2025-11-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-289794",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312525289794/d851212d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-266891",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312525266891/sf-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-245829",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312525245829/d25533d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-25",
+   "period": "2025-09-25",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-217538",
+   "url": "https://www.sec.gov/Archives/edgar/data/720672/000119312525217538/d10226d8k.htm"
+  }
+ ],
+ "warnings": []
+}
