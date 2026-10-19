@@ -1758,31 +1758,6 @@
    "unblocks_tier": true
   },
   {
-   "ticker": "HTHT",
-   "field": "capex",
-   "value": 828000000.0,
-   "kind": "filing",
-   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property and equipment': RMB828M for FY2025 (US$119M in the filing's own convenience-translation column), with RMB883M for FY2024 and RMB894M for FY2023 in the same statement",
-   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads (the 20-F cash-flow line 'Purchases of property and equipment' is not carried in EDGAR companyfacts under PaymentsToAcquirePropertyPlantAndEquipment or any candidate). The engine applies this single FY2025 filing value to every missing period; against the true per-year figures in the same statement it understates FY2023 capex by RMB66M (RMB894M filed) and FY2024 by RMB55M (RMB883M filed) \u2014 slightly aggressive in direction but immaterial (~0.8% of those years' operating cash flow of RMB7,674M / RMB7,518M), and FY2025 is exact. Declared in RMB (the reporting currency); the engine FX-converts at period-end ECB rates.",
-   "date": "2026-10-17",
-   "base_used": "median_3y",
-   "base_oe_without_override": 3.1628,
-   "base_oe_with_override": 2.8151,
-   "base_oe_impact_pct": -10.994,
-   "weighted_irr_without_override": 0.1407,
-   "weighted_irr_with_override": 0.1294,
-   "weighted_irr_impact_pp": -1.13,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "HTHT",
-   "event": "ads_ratio",
-   "date": "2026-10-17",
-   "ratio": 10.0,
-   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24): cover page registers American Depositary Shares, each representing ten ordinary shares (NASDAQ: HTHT); ordinary shares listed on HKEX (1179)",
-   "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
-  },
-  {
    "ticker": "MAA",
    "field": "capex",
    "value": 341224000.0,
@@ -2614,6 +2589,37 @@
    "ratio": 8.0,
    "source": "Futu Holdings Limited Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-14), Notes to Consolidated Financial Statements, Note 1 (General Information, Organization and Principal Activities): each American Depositary Share represents eight Class A ordinary shares; the same statement appears in the FY2025 20-F (filed 2026-04-15)",
    "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x8 ordinary shares per ADS to be comparable to the ADS price"
+  },
+  {
+   "ticker": "HTHT",
+   "field": "capex",
+   "value": 828000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property and equipment': RMB828M for FY2025 (US$119M in the filing's own convenience-translation column), with RMB883M for FY2024 and RMB894M for FY2023 in the same statement",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads (the 20-F cash-flow line 'Purchases of property and equipment' is not carried in EDGAR companyfacts under PaymentsToAcquirePropertyPlantAndEquipment or any candidate). The engine applies this single FY2025 filing value to every missing period; against the true per-year figures in the same statement it understates FY2023 capex by RMB66M (RMB894M filed) and FY2024 by RMB55M (RMB883M filed) \u2014 slightly aggressive in direction but immaterial (~0.8% of those years' operating cash flow of RMB7,674M / RMB7,518M), and FY2025 is exact. Declared in RMB (the reporting currency); the engine FX-converts at period-end ECB rates.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 3.1628,
+   "base_oe_with_override": 2.8151,
+   "base_oe_impact_pct": -10.994,
+   "weighted_irr_without_override": 0.1407,
+   "weighted_irr_with_override": 0.1294,
+   "weighted_irr_impact_pp": -1.13,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "HTHT",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 46.5
+  },
+  {
+   "ticker": "HTHT",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 10.0,
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24): cover page registers American Depositary Shares, each representing ten ordinary shares (NASDAQ: HTHT); ordinary shares listed on HKEX (1179)",
+   "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
   }
  ]
 }
