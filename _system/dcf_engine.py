@@ -271,9 +271,10 @@ v5.5 (2026-10-19, Andrew's rulings on the seven 5.5 spec drafts — engine_relea
     E11 share_basis.in_history_split_facts lists split facts dated on or before the
         latest FY end (informational; nothing is rescaled — TPL's in-history split
         is a listed limitation).
-    M5 (engine half) load_share_class_mismatch: only bool true, an object whose
-        `value` is bool true, or an object without `value` carrying a non-empty
-        source declares (DATA_GAP:shares — SHARE_CLASS_MISMATCH); false, null,
+    M5 (engine half) load_share_class_mismatch: only bool true or an object whose
+        `value` is bool true declares (DATA_GAP:shares — SHARE_CLASS_MISMATCH; since
+        Codex review 3 of PR #31 a non-empty object without `value` is malformed, even
+        with a source); false, null,
         {value: false} and {} declare nothing; strings ("false", "no", "true"),
         numbers and other shapes are recorded as {"malformed": <repr>} with NO gap
         (make_score refuses them).
@@ -611,16 +612,16 @@ def load_share_class_mismatch(ticker):
     declares that the filed share count is a different class from the traded
     security. [ADDITION — M5, round-1 verification] Strict shapes (the same
     rule as make_score.share_class_status):
-      - declared: bool true, an object whose `value` is bool true, or an
-        object without `value` that carries a non-empty source ->
+      - declared: bool true or an object whose `value` is bool true ->
         {"declared": True, "source", "reason"} (truthy: DATA_GAP:shares —
         SHARE_CLASS_MISMATCH; a bare `true` counts, and make_score refuses a
         declaration lacking source/reason — it never ignores one);
       - not declared: absent, null, false, {value: false}, an empty object ->
         None;
       - malformed: anything else (strings such as "false" / "no" / "true",
-        numbers, lists, an object whose `value` is not a bool, a non-empty
-        object with neither `value` nor a source) -> {"malformed": repr(value)},
+        numbers, lists, an object whose `value` is not a bool, and — Codex
+        review 3, PR #31 — any non-empty object without `value`, even with a
+        source, so an omitted value cannot block a company) -> {"malformed": repr(value)},
         recorded in dcf_numbers.json without a gap (the caller raises the
         share_class gap only for a record with "declared": a typo is not a
         declaration); make_score refuses it, naming the accepted shapes."""
@@ -643,8 +644,6 @@ def load_share_class_mismatch(ticker):
                 return {"declared": True, "source": src, "reason": why}
             if v["value"] is False:
                 return None
-        elif src:
-            return {"declared": True, "source": src, "reason": why}
         elif not v:
             return None
     return {"malformed": repr(v)}

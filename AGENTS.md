@@ -330,7 +330,8 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
 - `share_class_mismatch` (engine 5.5): `{value: true, source, reason}`,
   filing-sourced from the EPS note; it forces `DATA_GAP:shares —
   SHARE_CLASS_MISMATCH` (no tier, no alert) and make_score refuses it.
-  Only `true` or an object whose `value` is `true` declares; `false`,
+  Only `true` or an object whose `value` is `true` declares (an object
+  without `value` is malformed, even with a source); `false`,
   null and `{value: false}` declare nothing; any other value (the string
   "false", a number) is malformed — the engine records
   `{"malformed": …}` with no gap and make_score refuses it.

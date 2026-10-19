@@ -3346,11 +3346,12 @@ def test_override_note_prints_the_intangible_amount_in_its_own_unit():
     assert len(note) == 1 and "FY2025 (900,000,000 CNY)" in note[0], note
 
 
-def test_ttm_currency_rule_refuses_only_a_fill_and_warns_on_non_usd_intangibles():
+def test_ttm_currency_rule_refuses_only_a_fill_and_refuses_non_usd_intangible_legs():
     """[PR #31 verifier] ttm.py refuses an undeclared override at a foreign-currency filer only when it would fill a
-    leg: with every SBC leg filed it fills nothing and the TTM builds (overrides_used []). An intangible leg filed only
-    in another currency is not read (USD only) — a warning and capex_components[leg].intangibles_not_added
-    'non_usd_unit' say so instead of a silent drop."""
+    leg: with every SBC leg filed it fills nothing and the TTM builds (overrides_used []). A TTM leg whose intangible
+    purchases are filed only in another currency (a positive amount, no USD fact for the period) cannot be read (USD
+    only), so the TTM is refused (exit 3, Codex review 3) rather than built with that capex at $0; a $0 or negative
+    non-USD fact, or a USD fact beside it, refuses nothing (the engine adds nothing there either)."""
     fx = _ttm_fixture(PRIMARY, 52e6, 25e6, 27e6)
     us = fx["facts"]["facts"]["us-gaap"]
     ocf = us["NetCashProvidedByUsedInOperatingActivities"]["units"]
@@ -3361,9 +3362,16 @@ def test_ttm_currency_rule_refuses_only_a_fill_and_warns_on_non_usd_intangibles(
     fx["facts"]["facts"]["us-gaap"].setdefault(INTANG, {"units": {}})["units"]["CNY"] = [
         _ctx("2025-01-01", "2025-12-31", 70e6, filed="2026-02-20")]
     t = run_ttm("SYNT", judgment={}, fixture=fx)
-    assert t["exit"] == 0, t["stderr"][-400:]
-    assert t["ttm"]["capex_components"]["fy"].get("intangibles_not_added") == "non_usd_unit", t["ttm"]["capex_components"]["fy"]
-    assert any("filed only in CNY" in w for w in t["ttm"]["warnings"]), t["ttm"]["warnings"]
+    # [Codex review 3, PR #31] a refusal: the TTM would count as $0 a capex leg the annual engine converts and adds
+    assert t["exit"] == 3 and "filed only in CNY" in t["stderr"] and "no TTM base" in t["stderr"], (t["exit"], t["stderr"][-500:])
+    for cny, usd in ((0.0, None), (-5e6, None), (70e6, 0.0)):   # the engine adds nothing for these: no refusal
+        fx = _ttm_fixture(PRIMARY, 52e6, 25e6, 27e6)
+        units = fx["facts"]["facts"]["us-gaap"].setdefault(INTANG, {"units": {}})["units"]
+        units["CNY"] = [_ctx("2025-01-01", "2025-12-31", cny, filed="2026-02-20")]
+        if usd is not None:
+            units["USD"] = [_ctx("2025-01-01", "2025-12-31", usd, filed="2026-02-20")]
+        t = run_ttm("SYNT", judgment={}, fixture=fx)
+        assert t["exit"] == 0, (cny, usd, t["stderr"][-400:])
 
 
 if __name__ == "__main__":

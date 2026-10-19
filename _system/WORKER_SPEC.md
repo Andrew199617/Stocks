@@ -266,8 +266,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    than the traded security, or the traded security is an exchangeable / paired share
    whose price tracks a parent (BNT); `source` cites the form, period and note. It forces
    `DATA_GAP:shares — SHARE_CLASS_MISMATCH`: no tier, no alert (block as in step 4). Only
-   `true` or an object whose `value` is `true` declares (an object without `value` declares
-   only when it carries a non-empty `source`); `false`, null, `{value: false}` and an empty
+   `true` or an object whose `value` is `true` declares (an object without `value` is
+   malformed, even with a `source`); `false`, null, `{value: false}` and an empty
    object declare nothing. Any other value — a string such as "false", "no" or "true", a
    number, a list, a `value` that is not a bool — is malformed: the engine records
    `share_class_mismatch: {"malformed": …}` without a gap and make_score refuses it

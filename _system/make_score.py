@@ -157,12 +157,13 @@ drafts, DESIGN_5.5 §1 / §2c / §7 / §8):
   unmeasured.
 - share_class_mismatch (decision 2 §5, flag route; [ADDITION — M5,
   round-1 verification] strict shapes): a declaration is ONLY bool true, or an
-  object whose `value` is bool true (an object without `value` declares only
-  when it carries a non-empty source). It refuses with DATA_GAP:shares —
+  object whose `value` is bool true (Codex review 3, PR #31: a non-empty object
+  without `value` is malformed, even with a source — an omitted value must not
+  block a company). It refuses with DATA_GAP:shares —
   SHARE_CLASS_MISMATCH, also when source / reason are missing. false, null,
   {value: false} and an empty object declare nothing. Anything else — strings
   ("false", "no", "true"), numbers, lists, an object whose `value` is not a
-  bool, a non-empty object with neither `value` nor a source — is MALFORMED
+  bool, any non-empty object without `value` (even with a source) — is MALFORMED
   and refuses with "share_class_mismatch must be true or {value: true, source,
   reason}" (dcf_engine.load_share_class_mismatch applies the same rule and
   records {"malformed": <repr>} without raising the gap).
@@ -323,12 +324,12 @@ def share_class_status(j):
     """judgment.json share_class_mismatch -> (status, source, reason) with
     status "declared" | "none" | "malformed" — the engine's rule
     (dcf_engine.load_share_class_mismatch; [ADDITION — M5] strict shapes):
-      declared: bool True, or an object whose `value` is bool True, or an
-                object without `value` that carries a non-empty source;
+      declared: bool True, or an object whose `value` is bool True;
       none:     absent, null, false, {value: false}, an empty object;
       malformed: anything else — strings ("false", "no", "true"), numbers,
-                lists, an object whose `value` is not a bool, a non-empty
-                object with neither `value` nor a source."""
+                lists, an object whose `value` is not a bool, and (Codex
+                review 3, PR #31) any non-empty object without `value`, even
+                one that carries a source."""
     v = j.get("share_class_mismatch") if isinstance(j, dict) else None
     if v is None or v is False:
         return "none", None, None
@@ -342,8 +343,6 @@ def share_class_status(j):
             if v["value"] is False:
                 return "none", None, None
             return "malformed", None, None
-        if src:
-            return "declared", src, why
         return ("none" if not v else "malformed"), None, None
     return "malformed", None, None
 

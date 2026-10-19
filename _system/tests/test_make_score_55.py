@@ -34,8 +34,9 @@ stand-in is reached when one is).
 5. Override currency: "USD" + filing accepted (any case), "USD" + estimate
    refused, "EUR" / non-string refused; a USD declaration the run FX-converted
    anyway (pre-5.5 with fx_conversion, or currency_basis "converted") refuses.
-6. share_class_mismatch: true / object / object without source (or without
-   value, with a source) all refuse; false, null, an empty object or one whose
+6. share_class_mismatch: true / {value: true} objects (with or without
+   source) refuse as declarations; an object without `value` (even with a
+   source) refuses as malformed; false, null, an empty object or one whose
    value is false declare nothing (the engine's rule); a 5.5 run's share_class
    gap refuses naming the declaration.
 7. A 5.5 record with market_cap_basis passes through (never divided twice).
@@ -570,9 +571,14 @@ def test_share_class_mismatch_refuses_every_declaration():
     n = _numbers()
     full = {"value": True, "source": "Form 20-F 2025 Item 9: the ADS represents Class B shares", "reason": "EPS is per Class A"}
     for decl, extra in ((True, "no source given"), (full, "Form 20-F 2025 Item 9"), ({"value": True}, "no source given"),
-                        ({"value": True, "reason": "r"}, "lacks a source"), ({"source": "s"}, "lacks a source and/or reason")):
+                        ({"value": True, "reason": "r"}, "lacks a source")):
         r = _with(n, _judgment(n, share_class_mismatch=decl))
         r.refused("DATA_GAP:shares — SHARE_CLASS_MISMATCH", "NEEDS_MAIN_AGENT", extra)  # nothing written
+    # [Codex review 3, PR #31] an object without `value` is malformed, even with a source: it refuses as malformed,
+    # not as a declaration (an omitted value must not block a company as a share-class mismatch)
+    r = _with(n, _judgment(n, share_class_mismatch={"source": "s"}))
+    r.refused("must be true or {value: true, source, reason}")
+    assert "DATA_GAP:shares — SHARE_CLASS_MISMATCH" not in r.err, r.err
     # the engine's rule: false, null, an object whose value is false, or an empty object declare nothing
     for falsy in (False, None, {}, {"value": False, "source": "s", "reason": "checked: same class"}):
         assert _with(n, _judgment(n, share_class_mismatch=falsy)).rc == 0, falsy
@@ -997,7 +1003,7 @@ SC_SRC = "Form 20-F 2025 Item 9: the ADS represents Class B shares"
 # (value, make_score status, engine record): "declared" -> {"declared": True, ...}; None -> no record; "malformed"
 SC_SHAPES = [
     (True, "declared"), ({"value": True, "source": SC_SRC, "reason": "EPS is per Class A"}, "declared"),
-    ({"value": True}, "declared"), ({"source": SC_SRC}, "declared"), ({"source": SC_SRC, "reason": "r"}, "declared"),
+    ({"value": True}, "declared"), ({"source": SC_SRC}, "malformed"), ({"source": SC_SRC, "reason": "r"}, "malformed"),
     (None, "none"), (False, "none"), ({}, "none"), ({"value": False, "source": "s", "reason": "checked: same class"}, "none"),
     ("false", "malformed"), ("no", "malformed"), ("true", "malformed"), ("yes", "malformed"), ("", "malformed"),
     (1, "malformed"), (0, "malformed"), (1.0, "malformed"), (["x"], "malformed"), ([], "malformed"),

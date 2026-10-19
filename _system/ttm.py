@@ -430,18 +430,24 @@ def foreign_reporting_currencies(facts):
 
 
 def nonusd_intangible_periods(facts):
-    """[PR #31 verifier] {(start, end): {units}} for intangible-purchase facts (the shared us-gaap list) filed in a
-    unit other than USD, by exact period — the legs ttm.py's USD-only reading cannot include."""
+    """[PR #31 verifier] {(start, end): {units}} for intangible-purchase facts (the shared us-gaap list) the annual
+    engine would convert and add but ttm.py's USD-only reading cannot include: a POSITIVE amount in a unit other than
+    USD, on a tag that files no USD fact for that exact period (the engine prefers a tag's USD fact, drops negative
+    intangible facts and adds nothing for a $0 one)."""
     out = {}
     for t in _engine.CAPEX_INTANGIBLE_TAGS:
         if not isinstance(t, str):
             continue
-        for u, arr in ((facts.get("facts", {}).get("us-gaap", {}).get(t) or {}).get("units") or {}).items():
+        units = ((facts.get("facts", {}).get("us-gaap", {}).get(t) or {}).get("units") or {})
+        usd_periods = {(e.get("start"), e.get("end")) for e in units.get("USD") or [] if e.get("form", "") in FORMS}
+        for u, arr in units.items():
             if u == "USD":
                 continue
             for e in arr:
-                if e.get("form", "") in FORMS and e.get("start") and e.get("end"):
-                    out.setdefault((e["start"], e["end"]), set()).add(u)
+                per = (e.get("start"), e.get("end"))
+                if (e.get("form", "") in FORMS and per[0] and per[1] and per not in usd_periods
+                        and isinstance(e.get("val"), (int, float)) and e["val"] > 0):
+                    out.setdefault(per, set()).add(u)
     return out
 
 
@@ -648,17 +654,20 @@ def main():
         capex = extract_ttm(capex_series, "capex", problems)
     if capex and capex.get("fy_period"):
         capex_components = add_intangibles(capex, capex_results, warnings)   # v5.5: + intangible purchases
-        # [PR #31 verifier] ttm.py reads USD facts only: an intangible leg filed only in another currency is not in
-        # this TTM (the annual engine converts and adds it) — say so instead of dropping it silently
+        # [Codex review 3, PR #31] ttm.py reads USD facts only and holds no FX rates: a leg whose intangible
+        # purchases are filed only in another currency would enter this TTM as $0 while the annual engine converts
+        # and adds them (an overstated pin), so the TTM is refused (exit 3) — never on an override-filled leg, where
+        # intangibles are not added
         _nonusd = nonusd_intangible_periods(facts)
         for _leg in ("fy", "ytd_prior", "ytd_current"):
             _per = tuple(capex.get(f"{_leg}_period") or ())
             _comp = (capex_components or {}).get(_leg)
-            if _per in _nonusd and isinstance(_comp, dict) and not _comp.get("intangibles"):
-                _comp["intangibles_not_added"] = _comp.get("intangibles_not_added") or "non_usd_unit"
-                warnings.append(f"capex {_leg}: intangible purchases for {_per[0]}..{_per[1]} are filed only in "
-                                f"{', '.join(sorted(_nonusd[_per]))}; ttm.py reads USD facts only, so they are not in this "
-                                "leg (the annual engine converts and adds them) and TTM OE is overstated by that amount")
+            if (_per in _nonusd and isinstance(_comp, dict) and not _comp.get("intangibles")
+                    and capex.get(f"{_leg}_tag") != "OVERRIDE"):
+                problems.append(f"capex {_leg}: intangible purchases for {_per[0]}..{_per[1]} are filed only in "
+                                f"{', '.join(sorted(_nonusd[_per]))}; ttm.py reads USD facts only and holds no FX rates, so "
+                                "it cannot include them (the annual engine converts and adds them) — no TTM base; use the "
+                                "median base")
 
     if problems:
         print(f"ttm.py: cannot compute TTM for {ticker} (CIK {cik}): " + "; ".join(problems), file=sys.stderr)
