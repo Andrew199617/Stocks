@@ -1273,22 +1273,6 @@
    "unblocks_tier": true
   },
   {
-   "ticker": "FUTU",
-   "event": "base_override",
-   "date": "2026-10-16",
-   "value": 10.304993585509871,
-   "source": "financials_history.csv (this run's engine-filed USD figures): FY2025 net income $1,456,671,000 / diluted shares 1,130,846,701 = $1.2881 per ordinary share, scaled x8 ordinary shares per ADS (ads_ratio) = $10.3050 per ADS",
-   "reason": "SECTOR_MODEL_MISMATCH (broker-dealer): the engine's OCF-based conservative OE is client-balance plumbing, not distributable earnings (FY2025 OCF $5,240,468,000 vs net income $1,456,671,000; FY2023 OCF -$811,352,000 vs net income $548,140,000), so it is rejected as the base (IBKR precedent in this sweep). For a broker, net income is the honest owner's-earnings proxy: SBC is already expensed inside it, and FY2025 capex ($7,033,000) and D&A ($9,291,000) are trivial and roughly offset. Latest-FY net income is used over the 3-yr median NI per ADS ($5.00, the FY2024 figure) because the median averages in the pre-inflection client base; the FY2025 base is still below the ex-penalty 2026 interim run-rate reported in the company's 6-K releases (see analysis.md)."
-  },
-  {
-   "ticker": "FUTU",
-   "event": "ads_ratio",
-   "date": "2026-10-16",
-   "ratio": 8.0,
-   "source": "Futu Holdings Limited Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-14), Notes to Consolidated Financial Statements, Note 1 (General Information, Organization and Principal Activities): each American Depositary Share represents eight Class A ordinary shares; the same statement appears in the FY2025 20-F (filed 2026-04-15)",
-   "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x8 ordinary shares per ADS to be comparable to the ADS price"
-  },
-  {
    "ticker": "AS",
    "event": "ads_ratio",
    "date": "2026-10-16",
@@ -2583,6 +2567,28 @@
    "ratio": 4.0,
    "source": "Form 20-F for fiscal year ended December 31, 2025, Description of Securities exhibit: American Depositary Shares, each representing four common shares, traded on the New York Stock Exchange under the symbol EMBJ",
    "reason": "DATA_GAP:ads_ratio \u2014 EDGAR per-share figures are per ordinary (common) share while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x4 ordinary shares per ADS to be comparable to the ADS price. This also corrects the engine's preliminary market-cap estimate, which multiplied the ordinary share count by the ADS price."
+  },
+  {
+   "ticker": "FUTU",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 105.64
+  },
+  {
+   "ticker": "FUTU",
+   "event": "base_override",
+   "date": "2026-10-19",
+   "value": 10.304993585509871,
+   "source": "financials_history.csv (this run's engine-filed USD figures): FY2025 net income $1,456,671,000 / diluted shares 1,130,846,701 = $1.2881 per ordinary share, scaled x8 ordinary shares per ADS (ads_ratio) = $10.3050 per ADS",
+   "reason": "SECTOR_MODEL_MISMATCH (broker-dealer): the engine's OCF-based conservative OE is client-balance plumbing, not distributable earnings (FY2025 OCF $5,240,468,000 vs net income $1,456,671,000; FY2023 OCF -$811,352,000 vs net income $548,140,000), so it is rejected as the base (IBKR precedent in this sweep). For a broker, net income is the honest owner's-earnings proxy: SBC is already expensed inside it, and FY2025 capex ($7,033,000) and D&A ($9,291,000) are trivial and roughly offset. Latest-FY net income is used over the 3-yr median NI per ADS ($5.00, the FY2024 figure) because the median averages in the pre-inflection client base; the FY2025 base is still below the ex-penalty 2026 interim run-rate reported in the company's 6-K releases (see analysis.md)."
+  },
+  {
+   "ticker": "FUTU",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 8.0,
+   "source": "Futu Holdings Limited Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-14), Notes to Consolidated Financial Statements, Note 1 (General Information, Organization and Principal Activities): each American Depositary Share represents eight Class A ordinary shares; the same statement appears in the FY2025 20-F (filed 2026-04-15)",
+   "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x8 ordinary shares per ADS to be comparable to the ADS price"
   },
   {
    "ticker": "HTHT",
