@@ -1,0 +1,101 @@
+{
+ "ticker": "MEDP",
+ "cik": 1668397,
+ "entity": "Medpace Holdings, Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 713223000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 274362000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 313799000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 752660000
+  },
+  "capex": {
+   "fy": 31356000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 16107000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 30725000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 45974000
+  },
+  "sbc": {
+   "fy": 34786000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 22843000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 9266000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 21209000
+  },
+  "shares_diluted": {
+   "fy": 29527000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 30165000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 28761000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 752660000,
+ "ttm_capex": 45974000,
+ "ttm_sbc": 21209000,
+ "ttm_shares_diluted": 28761000,
+ "ttm_oe_total": 685477000,
+ "ttm_oe_per_share": 23.833559333820105,
+ "warnings": [],
+ "overrides_used": []
+}

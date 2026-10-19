@@ -1,0 +1,87 @@
+{
+ "ticker": "ONTO",
+ "name": "ONTO INNOVATION INC.",
+ "sector": "Technology / Semiconductor process control (metrology & inspection)",
+ "price": 220.7,
+ "market_cap_b": 10.87,
+ "engine_version": 5,
+ "base_oe_per_share": 4.440520856323108,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Niche leadership in advanced-packaging inspection/metrology (Dragonfly) and fab qualification switching costs, but KLA dominates process control, ROIC proxy has run only 6.4-15.4% in the last four fiscal years, and gross margin has slipped from 53.6% to 49.7% \u2014 a moderate/narrow moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 5.52 vs 3-yr median 3.73 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 9.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (5.5%) vs bull-case tier C (10.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 24.59,
+   "irr": 0.0385
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 48.51,
+   "irr": 0.055
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 87.55,
+   "irr": 0.081
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 132.01,
+   "irr": 0.107
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 220.22,
+   "irr": 0.1498
+  }
+ },
+ "iv_at_15": 95.88,
+ "iv_at_12": 133.47,
+ "implied_irr": 0.0866,
+ "implied_irr_base_case": 0.081,
+ "upside_at_15_pct": -56.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Real AI-packaging growth inflection, moat 5/10 \u2014 but at $220.70 the price already discounts the super-bull case: weighted IRR 8.7%, IV@15% $95.88, clears 15% only below $95.88; Tier D.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.055,
+ "irr_bull": 0.107,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 63.09,
+ "iv_at_25": 45.77,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 49273000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Leading position in advanced-packaging inspection/metrology (Dragonfly G5) riding HBM/AI packaging demand",
+  "Tool qualification and process-integration switching costs at fabs and OSATs",
+  "Semilab materials-analysis acquisition (closed FY2025, $436.1M acquisitions line) broadens the metrology suite",
+  "Debt-free balance sheet: cash $346.1M + short-term investments $293.5M at FY end, no debt tags filed"
+ ],
+ "moat_against": [
+  "KLA is the dominant process-control rival with far broader portfolio and scale; Nova and Camtek contest the same niches",
+  "ROIC proxy only 6.4% in latest FY and 7.1-15.4% in the prior three \u2014 not well above cost of capital through a cycle",
+  "Gross margin fell from 53.6% (FY2022) to 49.7% (latest FY) \u2014 pricing power is contested, not proven",
+  "Semiconductor capex cyclicality and customer concentration; China export-control exposure",
+  "Goodwill jumped to $644.0M after Semilab \u2014 acquisition integration / impairment risk"
+ ]
+}

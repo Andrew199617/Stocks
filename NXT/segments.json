@@ -1,0 +1,127 @@
+{
+ "ticker": "NXT",
+ "cik": 1852131,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001852131-26-000006",
+   "filed": "2026-01-30",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000006/nxt-20251231_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001852131-26-000017",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000017/nxt-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001852131-26-000048",
+   "filed": "2026-08-03",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000048/nxt-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-06-27",
+    "2025-12-31",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      450410000,
+      599498000,
+      735000000,
+      775617000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.663,
+      0.6937,
+      0.8083,
+      0.8294
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6318,
+      0.2938
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      228953000,
+      264755000,
+      174352000,
+      159553000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.337,
+      0.3063,
+      0.1917,
+      0.1706
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2385,
+      -0.3974
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     679363000,
+     864253000,
+     909352000,
+     935170000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable Segment' (nxt:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/Revenues/quarterly: row 'Reportable Segment' (nxt:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (nxt:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/annual: row 'Reportable Segment' (nxt:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/quarterly: row 'Reportable Segment' (nxt:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

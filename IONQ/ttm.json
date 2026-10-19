@@ -1,0 +1,101 @@
+{
+ "ticker": "IONQ",
+ "cik": 1824920,
+ "entity": "IonQ, Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": -283187000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -85599000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -254781000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": -452369000
+  },
+  "capex": {
+   "fy": 16417000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 3501000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 18583000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 31499000
+  },
+  "sbc": {
+   "fy": 312032000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 132421000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 270362000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 449973000
+  },
+  "shares_diluted": {
+   "fy": 280345046,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 239924680,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 363265843,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": -452369000,
+ "ttm_capex": 31499000,
+ "ttm_sbc": 449973000,
+ "ttm_shares_diluted": 363265843,
+ "ttm_oe_total": -933841000,
+ "ttm_oe_per_share": -2.57068209961045,
+ "warnings": [],
+ "overrides_used": []
+}

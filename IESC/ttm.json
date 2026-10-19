@@ -1,0 +1,101 @@
+{
+ "ticker": "IESC",
+ "cik": 1048268,
+ "entity": "IES Holdings, Inc.",
+ "fy_end": "2025-09-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 286096000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 154095000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 239421000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 371422000
+  },
+  "capex": {
+   "fy": 67253000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 47270000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 123042000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 143025000
+  },
+  "sbc": {
+   "fy": 12931000,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 9416000,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 11133000,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 14648000
+  },
+  "shares_diluted": {
+   "fy": 20182797,
+   "fy_period": [
+    "2024-10-01",
+    "2025-09-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 20188035,
+   "ytd_prior_period": [
+    "2024-10-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 20186894,
+   "ytd_current_period": [
+    "2025-10-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 371422000,
+ "ttm_capex": 143025000,
+ "ttm_sbc": 14648000,
+ "ttm_shares_diluted": 20186894,
+ "ttm_oe_total": 213749000,
+ "ttm_oe_per_share": 10.58850361031271,
+ "warnings": [],
+ "overrides_used": []
+}

@@ -1,0 +1,90 @@
+{
+ "ticker": "RCI",
+ "name": "Rogers Communications Inc.",
+ "sector": "Telecom / Integrated communications (Canada)",
+ "price": 31.987,
+ "market_cap_b": 17.3,
+ "engine_version": 5,
+ "base_oe_per_share": 1.9824023551401868,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Canadian telecom oligopoly member with the #1 wireless base, a national cable footprint after Shaw, deep spectrum holdings and unique sports/media assets; ROIC proxy stayed 10.2-16.2% over 2020-2025 (13.9% in 2025) and gross margin expanded from 42.1% to 45.2%, but the moat is shared with Bell/Telus, the regulator keeps prying at wholesale access, and population-driven subscriber growth is fading.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-06, accession 0000733099-26-000009), cover page: securities registered under Section 12(b) are 'Class B Non-Voting' shares, trading symbol RCI, listed on the New York Stock Exchange \u2014 the NYSE security is the Class B share itself, not an ADS; the same cover reports 111,152,011 Class A Voting and 429,073,267 Class B Non-Voting shares outstanding (540,225,278 total, vs the 541,000,000 diluted count the engine uses)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "BASE_DIVERGENCE: latest FY OE/share 2.83 vs 3-yr median 1.98 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 27.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (11.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 9.53,
+   "irr": 0.0598
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 13.07,
+   "irr": 0.0749
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 17.36,
+   "irr": 0.0935
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 21.82,
+   "irr": 0.1118
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 28.33,
+   "irr": 0.1368
+  }
+ },
+ "iv_at_15": 17.28,
+ "iv_at_12": 22.87,
+ "implied_irr": 0.0933,
+ "implied_irr_base_case": 0.0935,
+ "upside_at_15_pct": -46.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid oligopoly cash machine, moat 6/10 \u2014 but at $31.99 the price already pays for the recovery: weighted IRR 9.3% on the normalized base (method range D to C) and it clears 15% only at or below the $17.28 weighted IV@15%.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0749,
+ "irr_bull": 0.1118,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 12.24,
+ "iv_at_25": 9.46,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 29005517040.0,
+ "shares_diluted_latest": 541000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Regulated three-player oligopoly with foreign-ownership limits and spectrum scarcity",
+  "#1 wireless subscriber base; 66-67% wireless EBITDA margins, best-in-class churn (0.94-0.99% postpaid)",
+  "National cable/internet footprint from the 2023 Shaw acquisition plus deep spectrum holdings",
+  "ROIC proxy 10.2-16.2% across 2020-2025 and gross margin up from 42.1% to 45.2%",
+  "Sports/media assets no rival can replicate (Toronto Blue Jays, 75% of MLSE moving to 100%)"
+ ],
+ "moat_against": [
+  "Moat is shared: Bell and Telus hold comparable scale, spectrum and margins",
+  "CRTC wholesale/MVNO mandates and political pressure on consumer prices cap pricing power",
+  "Federal immigration cuts remove the population-growth tailwind behind subscriber adds",
+  "Quebecor/Freedom competes on price nationally since the Shaw deal remedies",
+  "Net debt of $29.0B (3.9x EBITDA) limits flexibility; cord-cutting erodes cable video"
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "ticker": "INVH",
+ "cik": 1687229,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001687229-26-000016",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000016/invh-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001687229-26-000032",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000032/invh-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001687229-26-000045",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000045/invh-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

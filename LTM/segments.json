@@ -1,0 +1,342 @@
+{
+ "ticker": "LTM",
+ "cik": 1047716,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001047716-26-000046",
+   "filed": "2026-03-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000046/ltm-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ltm:Passengers2Member",
+     "label": "Passengers2 Member",
+     "values": [
+      10215148000,
+      11233287000,
+      12611528000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8775,
+      0.8753,
+      0.8841
+     ],
+     "growth_yoy": [
+      null,
+      0.0997,
+      0.1227
+     ]
+    },
+    {
+     "member": "ltm:CargoMember",
+     "label": "Cargo Member",
+     "values": [
+      1425393000,
+      1599756000,
+      1653528000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1225,
+      0.1247,
+      0.1159
+     ],
+     "growth_yoy": [
+      null,
+      0.1223,
+      0.0336
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11640541000,
+     12833043000,
+     14265056000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      5006377000,
+      5512471000,
+      6098633000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4301,
+      0.4296,
+      0.4275
+     ],
+     "growth_yoy": [
+      null,
+      0.1011,
+      0.1063
+     ]
+    },
+    {
+     "member": "country:CL",
+     "label": "CHILE",
+     "values": [
+      1898150000,
+      1927847000,
+      2121331000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1631,
+      0.1502,
+      0.1487
+     ],
+     "growth_yoy": [
+      null,
+      0.0156,
+      0.1004
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1044822000,
+      1324008000,
+      1446087000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0898,
+      0.1032,
+      0.1014
+     ],
+     "growth_yoy": [
+      null,
+      0.2672,
+      0.0922
+     ]
+    },
+    {
+     "member": "country:PE",
+     "label": "PERU",
+     "values": [
+      988908000,
+      1127532000,
+      1285674000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.085,
+      0.0879,
+      0.0901
+     ],
+     "growth_yoy": [
+      null,
+      0.1402,
+      0.1403
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      800897000,
+      957042000,
+      1100178000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0688,
+      0.0746,
+      0.0771
+     ],
+     "growth_yoy": [
+      null,
+      0.195,
+      0.1496
+     ]
+    },
+    {
+     "member": "ltm:AsiaPacificAndRestOfLatinAmericaMember",
+     "label": "Asia Pacific And Rest Of Latin America Member",
+     "values": [
+      661910000,
+      710608000,
+      763443000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0569,
+      0.0554,
+      0.0535
+     ],
+     "growth_yoy": [
+      null,
+      0.0736,
+      0.0744
+     ]
+    },
+    {
+     "member": "country:CO",
+     "label": "COLOMBIA",
+     "values": [
+      662263000,
+      669206000,
+      741889000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0569,
+      0.0521,
+      0.052
+     ],
+     "growth_yoy": [
+      null,
+      0.0105,
+      0.1086
+     ]
+    },
+    {
+     "member": "country:EC",
+     "label": "ECUADOR",
+     "values": [
+      332801000,
+      364960000,
+      390575000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0286,
+      0.0284,
+      0.0274
+     ],
+     "growth_yoy": [
+      null,
+      0.0966,
+      0.0702
+     ]
+    },
+    {
+     "member": "country:AR",
+     "label": "ARGENTINA",
+     "values": [
+      244413000,
+      239369000,
+      317246000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.021,
+      0.0187,
+      0.0222
+     ],
+     "growth_yoy": [
+      null,
+      -0.0206,
+      0.3253
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11640541000,
+     12833043000,
+     14265056000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

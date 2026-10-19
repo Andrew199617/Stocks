@@ -1,0 +1,279 @@
+{
+ "ticker": "NYT",
+ "cik": 71691,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T22:36:27-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000071691.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000011/nyt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NYT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NYT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "NEW YORK TIMES CO",
+  "cik": 71691,
+  "description": {
+   "text": "We are a global media organization focused on creating and distributing high-quality news and information that help our audience understand and engage with the world, and this mission has contributed to our success. We believe that The Times’s original, independent and high-quality reporting, storytelling, expertise and journalistic excellence set us apart from other sources and are at the heart of what makes our journalism worth paying for. The quality of our coverage has been widely recognized with many industry and peer accolades, including more Pulitzer Prizes and citations than any other news organization. The Company includes our digital and print products and related businesses, including: •our core news product, The New York Times (“The Times”), which is available on our mobile application, on our website (NYTimes.com) and as a printed newspaper, and associated content, such as our podcasts; •our other interest-specific products, including The Athletic (our sports media product), Audio (our audio offering available as a separate subscription through our news app), Cooking (our recipes and cooking content product) and Games (our puzzle games product), which are available on mobile applications and websites, and Wirecutter (our product review and recommendation offering); and •our related businesses, such as our licensing operations, our commercial printing operations and other products and services under The Times brand.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0000071691-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000011/nyt-20251231.htm"
+  },
+  "description_short": "The New York Times Company (NYSE: NYT) is a trusted source of quality, independent journalism whose mission is to seek the truth and help people understand the world. With more than 13 million subscribers across a diverse array of print and digital products - including news, games, sports, cooking and shopping advice - The Times has evolved from a local and regional news leader into a diversified media company with curious readers, listeners and viewers around the globe.",
+  "industry": "Newspapers/Magazines",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2711",
+  "sic_description": "Newspapers: Publishing or  Publishing & Printing",
+  "state_of_incorporation": "NY",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.nytco.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "620 Eighth Avenue",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10018",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "2125561234",
+  "employees": {
+   "count": 6000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 6,000 full-time equivalent employees, which includes more than 3,000 involved in our journalism operations.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000011/nyt-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-04",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000071691&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-386067",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000119312526386067/d118790d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000071691-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000034/nyt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000071691-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000032/nyt-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000071691-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000025/nyt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000071691-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000023/nyt-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000071691-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000019/nyt-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-13",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000071691-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000016/nyt-20260313.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000071691-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000011/nyt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000071691-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000008/nyt-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-15",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000071691-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000003/nyt-20260115.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000071691-25-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000126/nyt-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000071691-25-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000124/nyt-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000071691-25-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000119/nyt-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000071691-25-000117",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000117/nyt-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-18",
+   "period": "2025-06-13",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-142415",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000119312525142415/d38762d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000071691-25-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000100/nyt-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000071691-25-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000098/nyt-20250507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-02",
+   "period": "2025-04-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000071691-25-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000086/nyt-20250430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-14",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000071691-25-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000060/nyt-20250314.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-27",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000071691-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169125000047/nyt-20241231.htm"
+  }
+ ],
+ "warnings": []
+}

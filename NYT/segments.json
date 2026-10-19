@@ -1,0 +1,252 @@
+{
+ "ticker": "NYT",
+ "cik": 71691,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000071691-26-000011",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000011/nyt-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000071691-26-000025",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000025/nyt-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000071691-26-000034",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000034/nyt-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "nyt:SubscriptionMember",
+     "label": "Subscription",
+     "values": [
+      1656153000,
+      1788207000,
+      1950778000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6826,
+      0.6915,
+      0.6906
+     ],
+     "growth_yoy": [
+      null,
+      0.0797,
+      0.0909
+     ]
+    },
+    {
+     "member": "us-gaap:AdvertisingMember",
+     "label": "Advertising",
+     "values": [
+      505206000,
+      506311000,
+      565993000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2082,
+      0.1958,
+      0.2004
+     ],
+     "growth_yoy": [
+      null,
+      0.0022,
+      0.1179
+     ]
+    },
+    {
+     "member": "nyt:AffiliateLicensingAndOtherProductsAndServicesMember",
+     "label": "Affiliate, Licensing and Other Products and Services",
+     "values": [
+      264793000,
+      291401000,
+      308147000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1091,
+      0.1127,
+      0.1091
+     ],
+     "growth_yoy": [
+      null,
+      0.1005,
+      0.0575
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2426152000,
+     2585919000,
+     2824918000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nyt:SubscriptionMember",
+     "label": "Subscription",
+     "values": [
+      464257000,
+      481420000,
+      516871000,
+      537880000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7301,
+      0.7019,
+      0.7257,
+      0.7055
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1133,
+      0.1173
+     ]
+    },
+    {
+     "member": "us-gaap:AdvertisingMember",
+     "label": "Advertising",
+     "values": [
+      108076000,
+      133974000,
+      126824000,
+      149123000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.17,
+      0.1953,
+      0.1781,
+      0.1956
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1735,
+      0.1131
+     ]
+    },
+    {
+     "member": "nyt:AffiliateLicensingAndOtherProductsAndServicesMember",
+     "label": "Affiliate, Licensing and Other Products and Services",
+     "values": [
+      63577000,
+      70479000,
+      68541000,
+      75452000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1,
+      0.1028,
+      0.0962,
+      0.099
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0781,
+      0.0706
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     635910000,
+     685873000,
+     712236000,
+     762455000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (nyt:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (nyt:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

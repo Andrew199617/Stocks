@@ -1,0 +1,125 @@
+{
+ "ticker": "PAC",
+ "name": "Grupo Aeroportuario del Pacifico, S.A.B. de C.V. (Pacific Airport Group)",
+ "sector": "Industrials / Airport concessions (transportation infrastructure)",
+ "price": 203.9,
+ "market_cap_b": 103.03,
+ "engine_version": 5,
+ "base_oe_per_share": 4.077161497153176,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Regulated local-monopoly airport concessions: GAP is the sole operator of 12 Mexican airports (Guadalajara, Tijuana, Puerto Vallarta, Los Cabos and 8 others) under 50-year concessions to 2048 plus 2 Jamaican airports, with maximum tariffs reset every five years under the Master Development Program framework and adjusted for Mexican PPI. Returns prove the franchise: fundamentals.json roic_proxy was 13.5% (FY2015), 26.4% (FY2018), 30.1% (FY2019), still 17.8% in the COVID trough (FY2020), 42.1% (FY2021), 64.8% (FY2022), 49.5% (FY2023) and 37.7% (FY2024) \u2014 above the cost of capital through a full cycle including a traffic collapse; ROE ran 36-46% in FY2022-24 and the ex-IFRIC-12 EBITDA margin was 67.1% in 2Q25 company reporting. Gross margin is not presented in the filing (no cost-of-sales split), so the moat rests on ROIC/ROE and margin evidence instead. Capped at 7, not higher: the concessions are finite (Mexican concessions expire 2048 and assets revert), the regulator sets the tariff ceiling and the mandated capex program (Ps.43,185m committed for the Mexican airports in the 2025-2029 MDP), traffic is cyclical, and earnings are MXN-denominated. CAP = 2 + 1.3 x 7 = 11.1 years.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 22 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency MXN converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-17, accession 0001193125-26-161714): the registered NYSE security is American Depositary Shares 'each representing 10 Series B shares' (20-F cover / Description of Securities), and the EPS disclosure states 'Earnings per ADS are based on a ratio of 10 Series B shares per ADS') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2015, 2016, 2017, 2018, 2019, 2020, 2021 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-17, accession 0001193125-26-161714), Item 16G NYSE-standards comparison, Equity Compensation Plans: 'No equity-compensation plans have been approved by our shareholders'; Note 22 Employee Cost for 2023, 2024 and 2025 is comprised solely of wages and salaries, other remunerations, social benefits, severance payments, labor union fees, taxes on employee benefits, PTU and retirement benefits \u2014 no share-based line; the term 'share-based' appears nowhere in the 20-F, and EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments fact for this filer in any year); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2024 (filed 2025-04-24, accession 0000950170-25-057571), Consolidated Statements of Cash Flows, investing activities: 'Purchases of machinery, equipment, improvements on leased assets, improvements to concession assets and advance payments to suppliers' Ps.8,431,106 thousand for FY2022, Ps.10,444,346 thousand for FY2023 and Ps.7,844,983 thousand for FY2024 (in thousands of Mexican pesos); the same line in the FY2025 20-F (filed 2026-04-17) is Ps.10,444,346 thousand FY2023 / Ps.7,844,983 thousand FY2024 / Ps.12,396,949 thousand FY2025, confirming the series); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-17, accession 0001193125-26-161714), EPS disclosure: weighted average common shares outstanding (excluding treasury shares) of 519,372,684 (FY2021), 508,371,309 (FY2022), 505,277,464 (FY2023), 505,277,464 (FY2024) and 505,277,464 (FY2025), reflecting the repurchase program; accounting policy note r: 'The Company does not have any potentially diluted shares; and therefore, basic and diluted earnings per share are the same' (also in the FY2024 20-F). Cross-check from companyfacts: FY2024 profit attributable to owners Ps.8,612,157 thousand / filed diluted EPS Ps.17.0444 = 505.28 million shares); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 5.94 vs 3-yr median 4.08 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 2.0% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 18.42,
+   "irr": 0.0348
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 30.69,
+   "irr": 0.0439
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 43.2,
+   "irr": 0.0536
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 60.26,
+   "irr": 0.0666
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 95.51,
+   "irr": 0.0912
+  }
+ },
+ "iv_at_15": 45.0,
+ "iv_at_12": 60.83,
+ "implied_irr": 0.0556,
+ "implied_irr_base_case": 0.0536,
+ "upside_at_15_pct": -77.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Regulated airport-concession monopoly, moat 7/10 - but at $203.90 the ADS prices in a growth path the mandated capex cycle cannot deliver: weighted IRR 5.56% (band D to D, even super-bull 9.12%), weighted IV@15% $45.00 on a $4.08/ADS normalized OE base (2.0% OE yield); clears 15% only below ~$45.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": false,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0439,
+ "irr_bull": 0.0666,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 30.98,
+ "iv_at_25": 23.4,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 222736467.29999995,
+ "shares_diluted_latest": 505277464.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Sole-operator concessions: 12 Mexican airports (Guadalajara, Tijuana, Puerto Vallarta, Los Cabos + 8) to 2048 and 2 Jamaican airports \u2014 no competing airport in each catchment",
+  "Regulated pricing power proven in the 2025-2029 tariff reset: weighted average maximum tariffs +18.1% in 2025, with PPI indexation inside each five-year MDP period",
+  "ROIC well above the cost of capital through a cycle: roic_proxy 17.8% even in COVID-year FY2020, 49.5% FY2023, 37.7% FY2024 (fundamentals.json); ROE 36-46% FY2022-24",
+  "High and stable cash margins: EBITDA margin ex-IFRIC-12 67.1% in 2Q25 (66.8% 2Q24) in company reporting",
+  "Non-aeronautical diversification (retail, cargo/bonded warehouses via GWTC consolidated Jul 2024) growing faster than aeronautical and less traffic-sensitive"
+ ],
+ "moat_against": [
+  "Finite concessions: Mexican concessions expire 2048 (~22 years) and concession assets revert \u2014 a perpetuity terminal value assumes renewal the filing does not grant",
+  "Regulator sets the ceiling: five-year MDP reviews reset maximum tariffs and impose the capex program (Ps.43,185m committed 2025-2029 in Mexico); the 2025-2029 bases added a claw-back on excess workload units",
+  "Traffic cyclicality: Mexican workload units fell in 2024 (-1.7%) after +10.5% in 2023, and FY2020 revenue fell ~27% in MXN on COVID",
+  "MXN earnings vs a USD ADS price: the peso fell ~18% against the USD at the 2024 period-end ECB rate vs 2023, mechanically cutting USD owner's earnings",
+  "Mandatory MDP capex is the owner's-earnings story: the purchases-of-concession-assets line jumped to Ps.12,397m in FY2025, cutting filing-basis OE/share ~34% in MXN in one year"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 10444346000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2024 (filed 2025-04-24, accession 0000950170-25-057571), Consolidated Statements of Cash Flows, investing activities: 'Purchases of machinery, equipment, improvements on leased assets, improvements to concession assets and advance payments to suppliers' Ps.8,431,106 thousand for FY2022, Ps.10,444,346 thousand for FY2023 and Ps.7,844,983 thousand for FY2024 (in thousands of Mexican pesos); the same line in the FY2025 20-F (filed 2026-04-17) is Ps.10,444,346 thousand FY2023 / Ps.7,844,983 thousand FY2024 / Ps.12,396,949 thousand FY2025, confirming the series"
+  },
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-17, accession 0001193125-26-161714), Item 16G NYSE-standards comparison, Equity Compensation Plans: 'No equity-compensation plans have been approved by our shareholders'; Note 22 Employee Cost for 2023, 2024 and 2025 is comprised solely of wages and salaries, other remunerations, social benefits, severance payments, labor union fees, taxes on employee benefits, PTU and retirement benefits \u2014 no share-based line; the term 'share-based' appears nowhere in the 20-F, and EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments fact for this filer in any year"
+  },
+  {
+   "field": "shares",
+   "value": 505277464.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-17, accession 0001193125-26-161714), EPS disclosure: weighted average common shares outstanding (excluding treasury shares) of 519,372,684 (FY2021), 508,371,309 (FY2022), 505,277,464 (FY2023), 505,277,464 (FY2024) and 505,277,464 (FY2025), reflecting the repurchase program; accounting policy note r: 'The Company does not have any potentially diluted shares; and therefore, basic and diluted earnings per share are the same' (also in the FY2024 20-F). Cross-check from companyfacts: FY2024 profit attributable to owners Ps.8,612,157 thousand / filed diluted EPS Ps.17.0444 = 505.28 million shares"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.0159,
+  "base_oe_with_override": 4.0772,
+  "base_oe_impact_pct": 25527.253,
+  "weighted_irr_without_override": 0.0251,
+  "weighted_irr_with_override": 0.0556,
+  "weighted_irr_impact_pp": 3.045,
+  "unblocks_tier": true
+ }
+}

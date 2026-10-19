@@ -1,0 +1,302 @@
+{
+ "ticker": "NLY",
+ "cik": 1043219,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T11:52:05-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001043219.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000013/nly-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NLY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NLY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ANNALY CAPITAL MANAGEMENT INC",
+  "cik": 1043219,
+  "description": {
+   "text": "“Annaly,” “we,” “us,” or “our” refers to Annaly Capital Management, Inc. and our wholly-owned subsidiaries, except where it is made clear that the term means only the parent company. Refer to the section titled “Glossary of Terms” located at the end of Part II, Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations.” for definitions of certain of the commonly used terms in this annual report on Form 10-K. The following description of our business should be read in conjunction with the Consolidated Financial Statements and the related Notes thereto, and the information set forth under the heading “Special Note Regarding Forward-Looking Statements” in Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations.” INDEX TO ITEM 1. BUSINESS",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0001043219-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000013/nly-20251231.htm"
+  },
+  "description_short": "Annaly is a leading diversified capital manager with investment strategies across mortgage finance. Annaly's principal business objective is to generate net income for distribution to its stockholders and to optimize its returns through prudent management of its diversified investment strategies. Annaly is internally managed and has elected to be taxed as a real estate investment trust, or REIT, for federal income tax purposes.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.annaly.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "1211 Avenue of the Americas",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10036",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "212 696 0100",
+  "employees": {
+   "count": 212,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 212 employees.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000013/nly-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-08-05",
+  "first_sec_filing_form": "S-11",
+  "former_names": [
+   "ANNALY MORTGAGE MANAGEMENT INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001043219&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [
+    "3.03",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment",
+   "accession": "0001043219-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000070/nly-20261002.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001043219-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000061/nly-20260819.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043219-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000058/nly-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001043219-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000054/nly-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001043219-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000053/nly-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043219-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000052/nly-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-10",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001043219-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000034/nly-20260610.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-30",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-052954",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000110465926052954/tm261328-1_def14a.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043219-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000028/nly-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001043219-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000023/nly-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001043219-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000022/nly-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043219-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000021/nly-20260421.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001043219-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000013/nly-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001043219-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000009/nly-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001043219-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000008/nly-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043219-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321926000007/nly-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-29",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-25-335363",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000119312525335363/d15017d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-328728",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000119312525328728/d93819d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043219-25-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321925000012/nly-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001043219-25-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043219/000104321925000009/nly-20251022.htm"
+  }
+ ],
+ "warnings": []
+}

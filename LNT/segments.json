@@ -1,0 +1,946 @@
+{
+ "ticker": "LNT",
+ "cik": 352541,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000352541-26-000007",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000007/lnt-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000352541-26-000033",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000033/lnt-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000352541-26-000043",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000043/lnt-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lnt:IplMember",
+     "label": "Ipl",
+     "values": [
+      2110000000,
+      2046000000,
+      2208000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.524,
+      0.5139,
+      0.5062
+     ],
+     "growth_yoy": [
+      null,
+      -0.0303,
+      0.0792
+     ]
+    },
+    {
+     "member": "lnt:WplMember",
+     "label": "Wpl",
+     "values": [
+      1827000000,
+      1845000000,
+      2065000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4537,
+      0.4635,
+      0.4734
+     ],
+     "growth_yoy": [
+      null,
+      0.0099,
+      0.1192
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      90000000,
+      90000000,
+      89000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0223,
+      0.0226,
+      0.0204
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      -0.0111
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4027000000,
+     3981000000,
+     4362000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lnt:IplMember",
+     "label": "Ipl",
+     "values": [
+      560000000,
+      469000000,
+      561000000,
+      475000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4965,
+      0.488,
+      0.4738,
+      0.4892
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0018,
+      0.0128
+     ]
+    },
+    {
+     "member": "lnt:WplMember",
+     "label": "Wpl",
+     "values": [
+      546000000,
+      469000000,
+      600000000,
+      470000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.484,
+      0.488,
+      0.5068,
+      0.484
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0989,
+      0.0021
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      22000000,
+      23000000,
+      23000000,
+      26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0195,
+      0.0239,
+      0.0194,
+      0.0268
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0455,
+      0.1304
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1128000000,
+     961000000,
+     1184000000,
+     971000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lnt:ElectricMember",
+     "label": "Electric",
+     "values": [
+      3345000000,
+      3372000000,
+      3697000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8306,
+      0.847,
+      0.8475
+     ],
+     "growth_yoy": [
+      null,
+      0.0081,
+      0.0964
+     ]
+    },
+    {
+     "member": "lnt:GasMember",
+     "label": "Gas",
+     "values": [
+      540000000,
+      465000000,
+      525000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1341,
+      0.1168,
+      0.1204
+     ],
+     "growth_yoy": [
+      null,
+      -0.1389,
+      0.129
+     ]
+    },
+    {
+     "member": "lnt:OtherUtilityMember",
+     "label": "Other Utility",
+     "values": [
+      52000000,
+      54000000,
+      51000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0129,
+      0.0136,
+      0.0117
+     ],
+     "growth_yoy": [
+      null,
+      0.0385,
+      -0.0556
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      90000000,
+      90000000,
+      89000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0223,
+      0.0226,
+      0.0204
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      -0.0111
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4027000000,
+     3981000000,
+     4362000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lnt:ElectricMember",
+     "label": "Electric",
+     "values": [
+      853000000,
+      851000000,
+      888000000,
+      861000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7562,
+      0.8855,
+      0.75,
+      0.8867
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.041,
+      0.0118
+     ]
+    },
+    {
+     "member": "lnt:GasMember",
+     "label": "Gas",
+     "values": [
+      240000000,
+      76000000,
+      271000000,
+      82000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2128,
+      0.0791,
+      0.2289,
+      0.0844
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1292,
+      0.0789
+     ]
+    },
+    {
+     "member": "lnt:OtherUtilityMember",
+     "label": "Other Utility",
+     "values": [
+      13000000,
+      11000000,
+      2000000,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0115,
+      0.0114,
+      0.0017,
+      0.0021
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.8462,
+      -0.8182
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      22000000,
+      23000000,
+      23000000,
+      26000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0195,
+      0.0239,
+      0.0194,
+      0.0268
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0455,
+      0.1304
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1128000000,
+     961000000,
+     1184000000,
+     971000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "lnt:IplMember",
+     "label": "Ipl",
+     "values": [
+      10489000000,
+      11407000000,
+      12495000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4939,
+      0.5022,
+      0.5
+     ],
+     "growth_yoy": [
+      null,
+      0.0875,
+      0.0954
+     ]
+    },
+    {
+     "member": "lnt:WplMember",
+     "label": "Wpl",
+     "values": [
+      9634000000,
+      10106000000,
+      10655000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4536,
+      0.4449,
+      0.4264
+     ],
+     "growth_yoy": [
+      null,
+      0.049,
+      0.0543
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      1114000000,
+      1201000000,
+      1841000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0525,
+      0.0529,
+      0.0737
+     ],
+     "growth_yoy": [
+      null,
+      0.0781,
+      0.5329
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21237000000,
+     22714000000,
+     24991000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lnt:IplMember",
+     "label": "Ipl",
+     "values": [
+      11540000000,
+      12180000000,
+      12641000000,
+      12872000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.505,
+      0.5128,
+      0.5095,
+      0.5084
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0954,
+      0.0568
+     ]
+    },
+    {
+     "member": "lnt:WplMember",
+     "label": "Wpl",
+     "values": [
+      10101000000,
+      10236000000,
+      10787000000,
+      11046000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.442,
+      0.431,
+      0.4347,
+      0.4363
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0679,
+      0.0791
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      1210000000,
+      1334000000,
+      1385000000,
+      1400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.053,
+      0.0562,
+      0.0558,
+      0.0553
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1446,
+      0.0495
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     22851000000,
+     23750000000,
+     24813000000,
+     25318000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lnt:IplMember",
+     "label": "Ipl",
+     "values": [
+      388000000,
+      404000000,
+      463000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.574,
+      0.5233,
+      0.5473
+     ],
+     "growth_yoy": [
+      null,
+      0.0412,
+      0.146
+     ]
+    },
+    {
+     "member": "lnt:WplMember",
+     "label": "Wpl",
+     "values": [
+      280000000,
+      357000000,
+      370000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4142,
+      0.4624,
+      0.4374
+     ],
+     "growth_yoy": [
+      null,
+      0.275,
+      0.0364
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      8000000,
+      11000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0118,
+      0.0142,
+      0.0154
+     ],
+     "growth_yoy": [
+      null,
+      0.375,
+      0.1818
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     676000000,
+     772000000,
+     846000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lnt:IplMember",
+     "label": "Ipl",
+     "values": [
+      115000000,
+      115000000,
+      120000000,
+      119000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.545,
+      0.5529,
+      0.5381,
+      0.5409
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0435,
+      0.0348
+     ]
+    },
+    {
+     "member": "lnt:WplMember",
+     "label": "Wpl",
+     "values": [
+      93000000,
+      90000000,
+      100000000,
+      98000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4408,
+      0.4327,
+      0.4484,
+      0.4455
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0753,
+      0.0889
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      3000000,
+      3000000,
+      3000000,
+      3000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0142,
+      0.0144,
+      0.0135,
+      0.0136
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     211000000,
+     208000000,
+     223000000,
+     220000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

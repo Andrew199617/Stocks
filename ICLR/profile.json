@@ -1,0 +1,250 @@
+{
+ "ticker": "ICLR",
+ "cik": 1060955,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T00:57:21-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001060955.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038487/iclr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ICLR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ICLR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ICON PLC",
+  "cik": 1060955,
+  "description": {
+   "text": "ICON is a global provider of outsourced development and commercialization services to pharmaceutical, biotechnology, medical device, and government and public health organizations. We offer a full range of clinical, consulting and commercial services that range from clinical development strategy, planning and trial design, to full study execution, and post-market commercialization. ICON provides its services across a range of clinical outsourcing operating models including strategic partnerships, preferred provider, full-service delivery to functional service provision and stand-alone services. We specialize in the strategic development, management and analysis of programs that support all stages of the clinical development process, from compound selection to Phase I-IV clinical studies. We earn revenue by providing a number of different services to our customers. These services are integral components of the clinical development process and include clinical trial management, consulting, contract staffing, data solutions and laboratory services. Our vision is to be the partner of choice by delivering industry leading solutions and best in class performance in clinical development.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-05-27",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-038487",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038487/iclr-20251231.htm"
+  },
+  "description_short": "ICON plc is a world-leading clinical research organization. Offering deep operational and medical expertise we accelerate innovation, driving emerging therapies forward to improve patient outcomes. From molecule to medicine, we deliver integrated consulting, clinical development, commercialization and post-marketing solutions to pharmaceutical, biotechnology, medical device, government and public health organizations worldwide. With headquarters in Dublin, Ireland, ICON employed approximately 40,200 employees in 99 locations in 55 countries as at June 30, 2026.",
+  "industry": "Biotechnology: Commercial Physical & Biological Resarch",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "8731",
+  "sic_description": "Services-Commercial Physical & Biological Research",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.iconplc.com",
+  "headquarters": "Dublin 18, Ireland",
+  "address": {
+   "street": "South County Business Park Leopardstown",
+   "city": "Dublin 18",
+   "state": null,
+   "zip": "D18 X5R3",
+   "country": "Ireland",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-05-27"
+  },
+  "phone": "00 353 1 291 2000",
+  "employees": {
+   "count": 40100,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we employed approximately 40,100 employees in 97 locations in 55 countries.",
+   "form": "20-F",
+   "filed": "2026-05-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038487/iclr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-02-12",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "ICON PLC  /ADR/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001060955&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-065404",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026065404/iconschedulesearningscall6.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-061152",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026061152/plc6kfiling-3september2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-058141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026058141/icon-iconcares20256xk.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001140361-26-033497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000114036126033497/ef20080314_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-053877",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026053877/icon-pricing6xk.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-051419",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026051419/a6kofpr-iconannouncesresul.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-050844",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026050844/iclr-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-050634",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026050634/iconplc6kq226.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-049100",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026049100/iconearningscall6-k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-045649",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026045649/a6kagmfiling2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-044957",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026044957/iclr-20260331.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-044904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026044904/iconplc6kq126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-043908",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026043908/iconearningscall6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-038510",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038510/iconplc6kq425.htm"
+  },
+  {
+   "form": "6-K/A",
+   "filed": "2026-05-27",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Amendment: Report of a foreign private issuer",
+   "accession": "0001628280-26-038497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038497/iclr-20250930.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-05-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001628280-26-038487",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038487/iclr-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-038089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038089/iconearningscallanddeficie.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-028107",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026028107/a202504292non-reliance6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-007449",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026007449/a6kofpr-iconplcannounces.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-001174",
+   "url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026001174/a6k-iconplc.htm"
+  }
+ ],
+ "warnings": []
+}

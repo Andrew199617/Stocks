@@ -1,0 +1,119 @@
+{
+ "ticker": "KIM",
+ "cik": 879101,
+ "entity": "KIMCO REALTY CORPORATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1120015000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 529216000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 588307000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1179106000
+  },
+  "capex": {
+   "fy": 18400000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 18400000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 160899082.19178084,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 160899082.19178084
+  },
+  "sbc": {
+   "fy": 33225000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 18349000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 18856000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 33732000
+  },
+  "shares_diluted": {
+   "fy": 675279000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 676244000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 672282000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1179106000,
+ "ttm_capex": 160899082.19178084,
+ "ttm_sbc": 33732000,
+ "ttm_shares_diluted": 672282000,
+ "ttm_oe_total": 984474917.8082192,
+ "ttm_oe_per_share": 1.4643779214797052,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 324465000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-20, accession 0001193125-26-060760), Consolidated Statements of Cash Flows, investing activities line 'Improvements to operating real estate': $347,616 thousand for FY2025, $324,465 thousand for FY2024 and $264,395 thousand for FY2023; the line is tagged in the filing's inline XBRL only under the filer's extension tag kim:PaymentsForImprovementsToOperatingRealEstate, which EDGAR companyfacts does not carry under any us-gaap candidate tag the engine reads",
+   "legs_filled": {
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 160899082.19178084,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

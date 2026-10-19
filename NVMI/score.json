@@ -1,0 +1,87 @@
+{
+ "ticker": "NVMI",
+ "name": "Nova Ltd.",
+ "sector": "Technology / Semiconductor metrology & process control equipment",
+ "price": 321.2,
+ "market_cap_b": 0.01,
+ "engine_version": 5,
+ "base_oe_per_share": 5.842195121951219,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong metrology franchise: tool-of-record positions at all four GAA players, #2 share (~25%) in film/CD metrology with ~400bp of share gains in 2025, gross margins held at 55.5-57.6% across FY2021-25 and roic_proxy of 18.1-33.8% over FY2020-25 - above the cost of capital through the FY2023 down year as well as the upcycle. Capped at 6, not 7+: ROIC has drifted from the high-20s to ~20%, Nova is a niche player against KLA/Applied Materials scale, demand is geared to a handful of customers' capex cycles, and there is no network effect or majority-recurring revenue. A 6 gives CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Nova Ltd. Form 20-F for the fiscal year ended December 31, 2025 (filed with the SEC on February 17, 2026), Item 9.A/9.C: 'Our ordinary shares began trading on Nasdaq on April 11, 2000 under the symbol NVMI' and 'Our ordinary shares are quoted on the Nasdaq Global Select Market under the symbol NVMI and on the Tel Aviv Stock Exchange Ltd.' Nova has no ADS program: the Nasdaq-traded security IS the ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "LOW_OE_YIELD: base OE yield 1.8% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 45.89,
+   "irr": 0.0442
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 75.12,
+   "irr": 0.0583
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 104.03,
+   "irr": 0.0718
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 155.3,
+   "irr": 0.0938
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 248.85,
+   "irr": 0.1278
+  }
+ },
+ "iv_at_15": 118.29,
+ "iv_at_12": 165.08,
+ "implied_irr": 0.0786,
+ "implied_irr_base_case": 0.0718,
+ "upside_at_15_pct": -63.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality metrology franchise, moat 6/10 - but at $321.20 the price pre-pays more than the bull case: weighted IRR 7.9%, weighted IV@15% $118.29 on the corrected base of $5.84/share, and even the super-bull scenario (12.8% IRR, IV@15% $248.85) does not clear 15%; it clears the 15% hurdle only below ~$118.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0583,
+ "irr_bull": 0.0938,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 77.65,
+ "iv_at_25": 56.3,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 32800,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Tool-of-record qualification stickiness - Nova is a partner for all four GAA players and its WMC platform was selected as tool of record by a leading global foundry for advanced-packaging flows (Q2 2026 reporting); qualified metrology tools are embedded in fab process flows and are costly to displace",
+  "Returns through a cycle: roic_proxy in fundamentals.json stayed 18.1-33.8% over FY2020-25 (27.6% FY2021, 27.9% FY2022, 18.1% in the FY2023 down year, 20.7% FY2024, 19.6% FY2025) - well above the cost of capital in every year including the downturn",
+  "Pricing power / margin durability: gross margin held 55.5-57.6% in every year FY2021-25 (fundamentals.json) and 57% GAAP in Q2 2026, through both the FY2023 revenue decline and the current AI-led upcycle",
+  "Share gains in its niches: ascent to #2 in film and critical-dimension metrology at roughly 25% market share, gaining about 400bp in 2025 (company/analyst reporting cited in analysis.md)",
+  "Diversified metrology portfolio - dimensional, materials and chemical metrology plus a recurring services layer (services $102.5M in H1 2026), broadening beyond any single measurement step"
+ ],
+ "moat_against": [
+  "Niche scale against far larger process-control rivals - KLA dominates process control and Applied Materials/ASML outspend Nova on R&D; Nova is #2 in its film/CD niches at roughly 25% share",
+  "Semiconductor capex cyclicality - revenue fell in FY2023 and corrected OE/share swung from $2.74 in FY2023 to $6.00 in FY2024 and $5.84 in FY2025 (financials_history.csv totals on the thousands-corrected share scale); customer capex pauses hit tool orders directly",
+  "Customer concentration in a handful of leading foundry, logic and memory makers whose GAA/packaging roadmaps set Nova's demand",
+  "ROIC is drifting down, not up: roic_proxy 27.6-27.9% in FY2021-22 to 18.1-20.7% in FY2023-25 (fundamentals.json) as the equity base compounds and acquisitions (Sentronics, closed early 2025) add goodwill/intangibles",
+  "Packaging inspection/metrology rivals (Onto Innovation, Camtek) attack the advanced-packaging growth leg from adjacent positions"
+ ]
+}

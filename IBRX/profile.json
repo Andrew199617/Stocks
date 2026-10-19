@@ -1,0 +1,299 @@
+{
+ "ticker": "IBRX",
+ "cik": 1326110,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T16:55:03-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001326110.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000030/ibrx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IBRX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IBRX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ImmunityBio, Inc.",
+  "cik": 1326110,
+  "description": null,
+  "description_short": "ImmunityBio, Inc. is a biotechnology company focused on innovating, developing, and commercializing next-generation immunotherapies designed to activate the patient's immune system and deliver durable protection against cancer and infectious diseases. Our approach harnesses both the adaptive and innate immune systems with the goal of restoring immune function and generating lasting immunological memory in patients. At the core of our strategy is the Cancer BioShield platform, which is designed to stimulate critical lymphocytes, including natural killer (NK) cells, cytotoxic T cells, and memory T cells via our proprietary IL-15 receptor agonist, ANKTIVA (nogapendekin alfa inbakicept).",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.immunitybio.com",
+  "headquarters": "San Diego, California",
+  "address": {
+   "street": "3530 John Hopkins Court",
+   "city": "San Diego",
+   "state": "California",
+   "zip": "92121",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "(844) 696-5235",
+  "employees": {
+   "count": 691,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, ImmunityBio employed 691 employees, of which 41% are focused on research and development, 25% on manufacturing and quality, and 34% on selling, general and administrative functions.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000030/ibrx-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2015-06-19",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "NantKwest, Inc.",
+   "Conkwest, Inc.",
+   "ZelleRx Corp"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001326110&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-421820",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000119312526421820/d188887d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001326110-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000079/ibrx-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001326110-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000077/ibrx-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-29",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001326110-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000071/ibrx-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-09",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001326110-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000064/ibrx-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-229153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000119312526229153/d75270d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001326110-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000059/ibrx-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001326110-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000057/ibrx-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-30",
+   "period": "2026-06-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001326110-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000049/ibrx-20260429.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-09",
+   "period": "2026-04-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001326110-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000036/ibrx-20260409.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-142932",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000119312526142932/d70606d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-30",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD; Other events",
+   "accession": "0001193125-26-133363",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000119312526133363/d139829d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001326110-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000030/ibrx-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001326110-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000025/ibrx-20260223.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001326110-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000018/ibrx-20260218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-23",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001326110-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000014/ibrx-20260123.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-15",
+   "period": "2026-01-15",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001326110-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000008/ibrx-20260115.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-14",
+   "period": "2026-01-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001326110-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611026000004/ibrx-20260114.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-23",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-25-331244",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000119312525331244/d61833d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001326110-25-000146",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326110/000132611025000146/ibrx-20251210.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-23)"
+ ]
+}

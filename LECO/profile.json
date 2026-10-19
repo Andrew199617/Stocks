@@ -1,0 +1,276 @@
+{
+ "ticker": "LECO",
+ "cik": 59527,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T07:08:23-04:00",
+ "newest_filing_date": "2026-08-11",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000059527.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000006/leco-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LECO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LECO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "LINCOLN ELECTRIC HOLDINGS INC",
+  "cik": 59527,
+  "description": {
+   "text": "Founded in 1895 and incorporated in the state of Ohio in 1906 as The Lincoln Electric Company, the Company reorganized into a holding company structure as Lincoln Electric Holdings, Inc. in 1998. The Company is a high-performance industrial machinery and technology leader who helps customers manufacture and maintain vital equipment and infrastructure. The Company’s innovative solutions enable higher quality and productivity across a variety of processes including welding, cutting, brazing, machining, process automation, and field repair.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0000059527-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000006/leco-20251231x10k.htm"
+  },
+  "description_short": "Lincoln Electric is a high-performance industrial machinery and technology leader who helps customers manufacture and maintain vital equipment and infrastructure. Lincoln Electric's innovative solutions enable higher quality and productivity across a variety of processes including welding, cutting, brazing, machining, process automation, and field repair. The Company leverages proprietary technologies and expertise in materials science, power electronics, automation, and intelligent software to help customers build better and achieve resilience in their operations. Headquartered in Cleveland, Ohio, Lincoln Electric is the essential 'Linc' that keeps the economy running. The Company operates 71 manufacturing and automation facilities across 20 countries and serves customers in over 160 countries.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3540",
+  "sic_description": "Metalworkg Machinery & Equipment",
+  "state_of_incorporation": "OH",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.lincolnelectric.com",
+  "headquarters": "Cleveland, Ohio",
+  "address": {
+   "street": "22801 St. Clair Avenue",
+   "city": "Cleveland",
+   "state": "Ohio",
+   "zip": "44117",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "2164818100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "LINCOLN ELECTRIC HOLDINGS INC",
+   "LINCOLN ELECTRIC CO"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000059527&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-343585",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000119312526343585/d96464d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000059527-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000022/leco-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000059527-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000021/leco-20260730x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000059527-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000012/leco-20260331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000059527-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000010/leco-20260430x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-166965",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000119312526166965/d139367d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0002071876-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000207187626000032/i26041_leco-def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000059527-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000006/leco-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000059527-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952726000003/leco-20260212x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000059527-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000032/leco-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000059527-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000030/leco-20251030x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-15",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-243028",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000119312525243028/d31526d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000059527-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000024/leco-20250630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000059527-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000022/leco-20250731x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-30",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000059527-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000013/leco-20250331x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000059527-25-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000011/leco-20250430x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-24",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-098318",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000119312525098318/d79157d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-20",
+   "period": "2025-04-24",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001171200-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000117120025000080/e24459_leco-def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-26",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000059527-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000005952725000006/leco-20241231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-24",
+   "period": "2025-02-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-033465",
+   "url": "https://www.sec.gov/Archives/edgar/data/59527/000119312525033465/d919873d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

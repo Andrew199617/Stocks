@@ -1,0 +1,90 @@
+{
+ "ticker": "QXO",
+ "name": "QXO, INC.",
+ "sector": "Industrials / Building products distribution",
+ "price": 10.86,
+ "market_cap_b": 6.66,
+ "engine_version": 5,
+ "base_oe_per_share": 0.01812409048815981,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Real and growing procurement/branch scale in a fragmented industry, bought entirely with raised capital in 15 months; distribution has no structural switching costs, equally scaled rivals exist (ABC Supply, Home Depot-owned SRS), and the acquired business has not yet produced a positive-ROIC filed year (FY2025 roic_proxy -1.9%, TTM operating margin -3.4%, gross margin 23-24%).",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 391.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear, bear, base, weighted) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "BASE_DIVERGENCE: latest FY OE/share 0.06 vs 3-yr median 0.25 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 62.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 0.12,
+   "irr": 0.0265
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 0.19,
+   "irr": 0.0274
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 0.29,
+   "irr": 0.0289
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 0.42,
+   "irr": 0.031
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 0.61,
+   "irr": 0.0339
+  }
+ },
+ "iv_at_15": 0.29,
+ "iv_at_12": 0.39,
+ "implied_irr": 0.0289,
+ "implied_irr_base_case": 0.0289,
+ "upside_at_15_pct": -97.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Jacobs rollup with real scale but no filed earnings power yet, moat 4/10 \u2014 TTM owner's earnings $0.018/share vs a $10.86 price (weighted IRR at the ~3% floor, IV@15% $0.29); clears 15% only at $0.29 on filed numbers, so the price bets on unfiled TopBuild earnings and execution.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0274,
+ "irr_bull": 0.031,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 0.19,
+ "iv_at_25": 0.14,
+ "f_subtype": null,
+ "irr_at_floor": true,
+ "net_debt_latest": 695700000,
+ "shares_diluted_latest": 613000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest roofing distributor in North America via Beacon; pro-forma #2 publicly traded building products distributor (>$18B revenue) after TopBuild \u2014 procurement leverage in an $800B fragmented industry",
+  "Branch density and pro-contractor job-site presence across roofing, waterproofing, insulation and complementary products",
+  "Brad Jacobs' demonstrated rollup playbook (XPO, United Rentals) \u2014 disciplined dealmaking and operational lift"
+ ],
+ "moat_against": [
+  "Distribution is structurally low-moat: local relationships, no switching costs, customers multi-source",
+  "ABC Supply (private) and Home Depot-owned SRS Distribution are equally or better scaled without rollup premiums",
+  "ROIC evidence is negative: FY2025 roic_proxy -1.9%, TTM operating income -$337.6M, gross margin 23.0% FY2025 / 24.0% TTM \u2014 commodity distribution economics",
+  "Tech/AI playbook unproven in this vertical; three mega-deals (Beacon, Kodiak, TopBuild) in 15 months is an unmatched integration load",
+  "39% of Q2 2026 sales are residential roofing \u2014 hostage to soft housing volumes"
+ ]
+}

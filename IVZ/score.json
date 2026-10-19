@@ -1,0 +1,90 @@
+{
+ "ticker": "IVZ",
+ "name": "Invesco Ltd.",
+ "sector": "Finance / Asset management",
+ "price": 28.2,
+ "market_cap_b": 12.83,
+ "engine_version": 5,
+ "base_oe_per_share": 2.240026304252521,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "A real but narrow franchise: QQQ's liquidity moat and $2.5T scale are genuine, but measured ROIC (roic_proxy ~4-12%, negative in the 2023 and 2025 impairment years) has never compounded well above the cost of capital, fees compress structurally, and BlackRock's IQQ ends the Nasdaq-100 exclusivity. Moderate moat, not strong.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (8.6%) vs bull-case tier C (14.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 8.79,
+   "irr": 0.0597
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 14.15,
+   "irr": 0.0862
+  },
+  "base": {
+   "prob": 0.25,
+   "iv_at_15": 19.37,
+   "irr": 0.1112
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 26.2,
+   "irr": 0.1417
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 39.66,
+   "irr": 0.1937
+  }
+ },
+ "iv_at_15": 19.61,
+ "iv_at_12": 26.0,
+ "implied_irr": 0.1128,
+ "implied_irr_base_case": 0.1112,
+ "upside_at_15_pct": -30.5,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Decent-quality asset manager with a narrow QQQ/scale moat (5/10), but at $28.20 it does not clear the 15% hurdle on the normalized base \u2014 weighted IRR 11.3%, weighted IV@15% $19.61; it clears 15% only at ~$19.61 or below (method range C on the median base to B on the TTM base).",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0862,
+ "irr_bull": 0.1417,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 13.86,
+ "iv_at_25": 10.69,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 787600000,
+ "shares_diluted_latest": 455000000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "QQQ franchise: ~$498.9B AUM (Sep 2026), the 2nd-most-traded US ETF \u2014 liquidity and adviser-workflow network effects a cheaper rival cannot quickly replicate",
+  "Scale: $2.5T ending AUM (Q2 2026) with global distribution across Americas, EMEA and APAC",
+  "Product breadth beyond QQQ: ETF/index suite, fundamental fixed income and equities, private markets ($134.9B), China JV ($166.3B)",
+  "Flow momentum: 12 consecutive quarters of net long-term inflows; record $45.1B in Q2 2026, $67B in H1 (7% annualized organic growth)",
+  "Operating leverage at scale: adjusted operating margin 37.5% in Q2 2026, up from 31.2% a year earlier"
+ ],
+ "moat_against": [
+  "ROIC proxy only ~4-12% over the last decade and negative in 2023 and 2025 (impairment years) \u2014 returns have not stayed well above the cost of capital",
+  "Industry-wide fee compression and the shift to low-cost passive; blended fee yield keeps eroding",
+  "Nasdaq-100 exclusivity ended \u2014 BlackRock's IQQ launched at a 10bp net fee against QQQ, chipping at the flagship franchise",
+  "Sub-scale vs BlackRock, Vanguard and State Street in ETF distribution and pricing power",
+  "AUM and revenue are market-beta driven: 5-yr revenue CAGR is only 0.7%; a drawdown cuts fees mechanically",
+  "Goodwill/intangibles-heavy balance sheet with recurring non-cash impairments (operating losses in 2023 and 2025)"
+ ]
+}

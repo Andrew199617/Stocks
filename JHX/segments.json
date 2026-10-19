@@ -1,0 +1,974 @@
+{
+ "ticker": "JHX",
+ "cik": 1159152,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001159152-26-000045",
+   "filed": "2026-05-19",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000045/jhx-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001159152-26-000051",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1159152/000115915226000051/jhx-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jhx:SidingTrimSegmentMember",
+     "label": "Siding & Trim Segment",
+     "values": [
+      2891400000,
+      2863300000,
+      2963100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7345,
+      0.7384,
+      0.6127
+     ],
+     "growth_yoy": [
+      null,
+      -0.0097,
+      0.0349
+     ]
+    },
+    {
+     "member": "jhx:DeckRailAccessoriesSegmentMember",
+     "label": "Deck, Rail & Accessories Segment",
+     "values": [
+      0,
+      0,
+      795200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.1644
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jhx:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      482100000,
+      494300000,
+      556900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1225,
+      0.1275,
+      0.1152
+     ],
+     "growth_yoy": [
+      null,
+      0.0253,
+      0.1266
+     ]
+    },
+    {
+     "member": "jhx:AustraliaNewZealandSegmentMember",
+     "label": "Australia & New Zealand Segment",
+     "values": [
+      562800000,
+      519900000,
+      520600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.143,
+      0.1341,
+      0.1077
+     ],
+     "growth_yoy": [
+      null,
+      -0.0762,
+      0.0013
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3936300000,
+     3877500000,
+     4835800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "jhx:SidingTrimSegmentMember",
+     "label": "Siding & Trim Segment",
+     "values": [
+      641800000,
+      859800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7132,
+      0.5831
+     ],
+     "growth_yoy": [
+      null,
+      0.3397
+     ]
+    },
+    {
+     "member": "jhx:DeckRailAccessoriesSegmentMember",
+     "label": "Deck, Rail & Accessories Segment",
+     "values": [
+      0,
+      305100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.2069
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jhx:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      136500000,
+      156400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1517,
+      0.1061
+     ],
+     "growth_yoy": [
+      null,
+      0.1458
+     ]
+    },
+    {
+     "member": "jhx:AustraliaNewZealandSegmentMember",
+     "label": "Australia & New Zealand Segment",
+     "values": [
+      121600000,
+      153300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1351,
+      0.104
+     ],
+     "growth_yoy": [
+      null,
+      0.2607
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     899900000,
+     1474600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jhx:SidingTrimSegmentMember",
+     "label": "Siding & Trim Segment",
+     "values": [
+      921100000,
+      840900000,
+      661900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2003,
+      1.2821,
+      1.4788
+     ],
+     "growth_yoy": [
+      null,
+      -0.0871,
+      -0.2129
+     ]
+    },
+    {
+     "member": "jhx:AustraliaNewZealandSegmentMember",
+     "label": "Australia & New Zealand Segment",
+     "values": [
+      166100000,
+      111000000,
+      153900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2164,
+      0.1692,
+      0.3438
+     ],
+     "growth_yoy": [
+      null,
+      -0.3317,
+      0.3865
+     ]
+    },
+    {
+     "member": "jhx:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      45000000,
+      38000000,
+      52200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0586,
+      0.0579,
+      0.1166
+     ],
+     "growth_yoy": [
+      null,
+      -0.1556,
+      0.3737
+     ]
+    },
+    {
+     "member": "jhx:DeckRailAccessoriesSegmentMember",
+     "label": "Deck, Rail & Accessories Segment",
+     "values": [
+      null,
+      null,
+      -17700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      -0.0395
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jhx:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -364800000,
+      -334000000,
+      -402700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.4754,
+      -0.5092,
+      -0.8997
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     767400000,
+     655900000,
+     447600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "jhx:SidingTrimSegmentMember",
+     "label": "Siding & Trim Segment",
+     "values": [
+      161200000,
+      214900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1631,
+      0.9871
+     ],
+     "growth_yoy": [
+      null,
+      0.3331
+     ]
+    },
+    {
+     "member": "jhx:AustraliaNewZealandSegmentMember",
+     "label": "Australia & New Zealand Segment",
+     "values": [
+      37800000,
+      46800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2727,
+      0.215
+     ],
+     "growth_yoy": [
+      null,
+      0.2381
+     ]
+    },
+    {
+     "member": "jhx:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      15100000,
+      20200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1089,
+      0.0928
+     ],
+     "growth_yoy": [
+      null,
+      0.3377
+     ]
+    },
+    {
+     "member": "jhx:DeckRailAccessoriesSegmentMember",
+     "label": "Deck, Rail & Accessories Segment",
+     "values": [
+      null,
+      -3300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      -0.0152
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jhx:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      -75500000,
+      -60900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.5447,
+      -0.2797
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     138600000,
+     217700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jhx:SidingTrimSegmentMember",
+     "label": "Siding & Trim Segment",
+     "values": [
+      133800000,
+      160700000,
+      230900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7232,
+      0.7433,
+      0.4679
+     ],
+     "growth_yoy": [
+      null,
+      0.201,
+      0.4368
+     ]
+    },
+    {
+     "member": "jhx:DeckRailAccessoriesSegmentMember",
+     "label": "Deck, Rail & Accessories Segment",
+     "values": [
+      0,
+      0,
+      202400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.4101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jhx:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      29700000,
+      32400000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1605,
+      0.1499,
+      0.0608
+     ],
+     "growth_yoy": [
+      null,
+      0.0909,
+      -0.0741
+     ]
+    },
+    {
+     "member": "jhx:AustraliaNewZealandSegmentMember",
+     "label": "Australia & New Zealand Segment",
+     "values": [
+      17000000,
+      19200000,
+      22400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0919,
+      0.0888,
+      0.0454
+     ],
+     "growth_yoy": [
+      null,
+      0.1294,
+      0.1667
+     ]
+    },
+    {
+     "member": "jhx:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      4500000,
+      3900000,
+      7800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0243,
+      0.018,
+      0.0158
+     ],
+     "growth_yoy": [
+      null,
+      -0.1333,
+      1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     185000000,
+     216200000,
+     493500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "jhx:DeckRailAccessoriesSegmentMember",
+     "label": "Deck, Rail & Accessories Segment",
+     "values": [
+      0,
+      80900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.4793
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jhx:SidingTrimSegmentMember",
+     "label": "Siding & Trim Segment",
+     "values": [
+      43600000,
+      68500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7717,
+      0.4058
+     ],
+     "growth_yoy": [
+      null,
+      0.5711
+     ]
+    },
+    {
+     "member": "jhx:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      6800000,
+      10200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1204,
+      0.0604
+     ],
+     "growth_yoy": [
+      null,
+      0.5
+     ]
+    },
+    {
+     "member": "jhx:AustraliaNewZealandSegmentMember",
+     "label": "Australia & New Zealand Segment",
+     "values": [
+      5200000,
+      6700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.092,
+      0.0397
+     ],
+     "growth_yoy": [
+      null,
+      0.2885
+     ]
+    },
+    {
+     "member": "jhx:CorporateAndReconcilingItemsMember",
+     "label": "Corporate And Reconciling Items",
+     "values": [
+      900000,
+      2500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0159,
+      0.0148
+     ],
+     "growth_yoy": [
+      null,
+      1.7778
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     56500000,
+     168800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2743700000,
+      2707200000,
+      3544500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.697,
+      0.6982,
+      0.733
+     ],
+     "growth_yoy": [
+      null,
+      -0.0133,
+      0.3093
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      403800000,
+      401100000,
+      423300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1026,
+      0.1034,
+      0.0875
+     ],
+     "growth_yoy": [
+      null,
+      -0.0067,
+      0.0553
+     ]
+    },
+    {
+     "member": "jhx:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      412900000,
+      377600000,
+      393000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1049,
+      0.0974,
+      0.0813
+     ],
+     "growth_yoy": [
+      null,
+      -0.0855,
+      0.0408
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      147700000,
+      156100000,
+      213800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0375,
+      0.0403,
+      0.0442
+     ],
+     "growth_yoy": [
+      null,
+      0.0569,
+      0.3696
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      140500000,
+      142900000,
+      163900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0357,
+      0.0369,
+      0.0339
+     ],
+     "growth_yoy": [
+      null,
+      0.0171,
+      0.147
+     ]
+    },
+    {
+     "member": "country:NZ",
+     "label": "NEW ZEALAND",
+     "values": [
+      87700000,
+      92600000,
+      97300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0223,
+      0.0239,
+      0.0201
+     ],
+     "growth_yoy": [
+      null,
+      0.0559,
+      0.0508
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3936300000,
+     3877500000,
+     4835800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

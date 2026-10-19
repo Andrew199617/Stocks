@@ -1,0 +1,287 @@
+{
+ "ticker": "PEN",
+ "cik": 1321732,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T00:39:53-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001321732.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000007/pen-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PEN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PEN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Penumbra Inc",
+  "cik": 1321732,
+  "description": {
+   "text": "Penumbra, the world’s leading thrombectomy company, is focused on developing the most innovative technologies for challenging medical conditions such as ischemic stroke, venous thromboembolism such as pulmonary embolism, and acute limb ischemia. Our broad portfolio, which includes computer assisted vacuum thrombectomy (CAVT), centers on removing blood clots from head-to-toe with speed, safety, and simplicity. Our team focuses on developing, manufacturing and marketing novel products for use by specialist physicians and other healthcare providers to drive improved clinical and health outcomes. We believe that the cost-effectiveness of our products is attractive to our customers. Since our founding in 2004, we have invested heavily in our product development and commercial expansion that has established the foundation of our global organization. We have successfully developed, obtained regulatory clearance or approval for, and introduced products into the thrombectomy market since 2007, access market since 2008, embolization market since 2011, and neurosurgical market since 2014. We expect to continue to develop and build our portfolio of products, including our thrombectomy, embolization, and access technologies, while iterating on our currently available products. Generally, when we introduce a next generation product or a new product designed to replace a current product, sales of the earlier generation product or the product replaced decline.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001321732-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000007/pen-20251231.htm"
+  },
+  "description_short": "Penumbra, Inc., the world's leading thrombectomy company, is focused on developing the most innovative technologies for challenging medical conditions such as ischemic stroke, venous thromboembolism such as pulmonary embolism, and acute limb ischemia. Our broad portfolio, which includes computer assisted vacuum thrombectomy (CAVT), centers on removing blood clots from head-to-toe with speed, safety, and simplicity. By pioneering these innovations, we support healthcare providers, hospitals and clinics in more than 100 countries, working to improve patient outcomes and quality of life.",
+  "industry": "Medical/Dental Instruments",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3841",
+  "sic_description": "Surgical & Medical Instruments & Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.penumbrainc.com",
+  "headquarters": "Alameda, CA",
+  "address": {
+   "street": "One Penumbra Place",
+   "city": "Alameda",
+   "state": "CA",
+   "zip": "94502",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(510) 995-2486",
+  "employees": {
+   "count": 4700,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 4,700 employees worldwide.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000007/pen-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2015-08-14",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001321732&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001321732-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000037/pen-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001321732-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000036/pen-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001321732-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000030/pen-20260618.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001321732-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000024/pen-20260506.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001321732-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000019/pen-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001321732-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000018/pen-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-29",
+   "period": "2026-06-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001321732-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000010/pen-20260427.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001321732-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000007/pen-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001321732-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173226000006/pen-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-15",
+   "period": "2026-01-14",
+   "items": [
+    "1.01",
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Reg FD",
+   "accession": "0000950103-26-000523",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000095010326000523/dp240008_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001321732-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000109/pen-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001321732-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000108/pen-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-22",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001321732-25-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000101/pen-20250822.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-29",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001321732-25-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000098/pen-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001321732-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000097/pen-20250729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-30",
+   "period": "2025-05-28",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001321732-25-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000093/pen-20250528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-23",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001321732-25-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000086/pen-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001321732-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000085/pen-20250423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-16",
+   "period": "2025-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001321732-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000074/pen-20250416.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-21",
+   "period": "2025-02-14",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001321732-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1321732/000132173225000036/pen-20250214.htm"
+  }
+ ],
+ "warnings": []
+}

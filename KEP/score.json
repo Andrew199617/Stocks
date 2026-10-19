@@ -1,0 +1,77 @@
+{
+ "ticker": "KEP",
+ "name": "Korea Electric Power Corporation",
+ "sector": "Utilities / Electric (South Korea, state-controlled)",
+ "price": 10.63,
+ "market_cap_b": 6.82,
+ "engine_version": 5,
+ "base_oe_per_share": -7.428283615626673,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Exclusive national T&D franchise with captive essential-service demand and generation scale, but the regulator/government \u2014 also the controlling holder \u2014 sets tariffs politically and froze them through the 2021-2023 fuel spike, so the franchise has no pricing power and its measured ROIC through the cycle is deeply negative (roic_proxy -47.01% in 2022, -6.36% in 2023, 9.78% in 2024). A durable monopoly whose economics are capped and periodically confiscated is a weak moat, not a wide one.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 22 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "FX_CONVERTED: reporting currency KRW converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x0.5 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-29, accession 0001193125-26-190113), cover page: 'American depositary shares, each representing one-half of share of common stock'; Item 9.A Share Capital repeats: 'One ADS represents one-half of one share of our common stock.') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-29, accession 0001193125-26-190113), Item 16G / NYSE-standards comparison, 'Shareholder Approval of Equity Compensation Plans': 'We currently do not have any equity compensation plans.' The term 'share-based' appears nowhere in the 20-F, and EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees (or us-gaap ShareBasedCompensation) fact for this filer in any year.); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "South Korea's state-controlled electric monopoly, moat 4/10 \u2014 Tier F on this screen: the normalized (median FY2022-24) conservative OE base is -$7.43/ADS because the window carries the tariff-freeze crisis years (OE positive in only 2 of the last 5 years), so no IV@15% or hurdle-clearing price is computable; the latest engine year (FY2024, +$0.88/ADS) and the filed FY2025 recovery show a profitable utility underneath, but on the v5 method there is no positive normalized OE stream to clear 15% with.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": "no_cash_generation",
+ "irr_at_floor": false,
+ "net_debt_latest": 12427953360.0,
+ "shares_diluted_latest": 641964077,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Sole nationwide transmission and distribution operator for South Korea, with generation concentrated in its genco subsidiaries and KHNP (nuclear) \u2014 an exclusive, essential-service national franchise",
+  "Captive demand: effectively every Korean household, business and factory buys delivered power through KEPCO; share count has been flat at 641,964,077 for a decade \u2014 no dilution",
+  "Scale and state backing: FY2024 revenue $62,953,220,200 (engine, FX-converted) and continued access to bond funding through the crisis years despite the losses"
+ ],
+ "moat_against": [
+  "No pricing power: tariffs are set politically and the fuel-cost adjustment is capped \u2014 for Q4 2026 the formula indicated KRW 7.30/kWh and the charge was frozen at the KRW 5.00 ceiling for the 18th consecutive quarter (search results)",
+  "Measured returns through a cycle are value-destructive: fundamentals.json roic_proxy 22.73% (2015) collapsed to -47.01% (2022) and -6.36% (2023) before recovering to 9.78% (2024); gross margin was -43.0% in 2022 and -2.5% in 2023",
+  "The state is the controlling holder and uses KEPCO as a price-stabilization policy tool \u2014 the 2021-2023 tariff freeze through the fuel spike is what produced the crisis losses in the base window",
+  "Heavy leverage funds the grid build: engine net debt $12,427,953,360 with a further $2,515,630,080 of lease liabilities, and consolidated liabilities of KRW 210.7 trillion at H1 2026 (search results)"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-29, accession 0001193125-26-190113), Item 16G / NYSE-standards comparison, 'Shareholder Approval of Equity Compensation Plans': 'We currently do not have any equity compensation plans.' The term 'share-based' appears nowhere in the 20-F, and EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees (or us-gaap ShareBasedCompensation) fact for this filer in any year."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": -7.4283,
+  "base_oe_with_override": -7.4283,
+  "base_oe_impact_pct": -0.0,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,87 @@
+{
+ "ticker": "MTZ",
+ "name": "MasTec, Inc.",
+ "sector": "Industrials \u2014 Construction & Engineering",
+ "price": 190.7,
+ "market_cap_b": 15.01,
+ "engine_version": 5,
+ "base_oe_per_share": 5.9457148384600504,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-moderate. Scale, national footprint, bonding capacity, utility/telecom incumbency and a record $21.4B 18-month backlog give real bidding advantages on large programs, but the work is competitively bid, labor- and fleet-based, with thin margins and no durable pricing power: fundamentals.json ROE ran 12.9% (2021), 1.2% (2022), -1.8% (2023), 5.6% (2024), 12.2% (2025) \u2014 at or below the cost of capital through most of the cycle (management noted on the Q4 2025 call that ROIC met its WACC hurdle in 2025 for the first time since 2021). roic_proxy and gross margin are null in fundamentals.json (the filer does not tag the needed lines), so the ROE series is the computed return evidence available. A 4 gives CAP = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 3.20 vs 3-yr median 5.95 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 35.56,
+   "irr": 0.0482
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 55.74,
+   "irr": 0.0631
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 74.71,
+   "irr": 0.077
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 98.83,
+   "irr": 0.0939
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 144.66,
+   "irr": 0.1234
+  }
+ },
+ "iv_at_15": 73.76,
+ "iv_at_12": 99.43,
+ "implied_irr": 0.0766,
+ "implied_irr_base_case": 0.077,
+ "upside_at_15_pct": -61.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified infrastructure contractor with a record backlog but a weak 4/10 moat and volatile, working-capital-driven owner's earnings \u2014 at $190.70 it clears nothing: weighted IRR 7.7%, weighted IV@15% $73.76, and even the super-bull IV@15% ($144.66) sits below price; it would need ~$74 to clear 15%.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0631,
+ "irr_bull": 0.0939,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 50.87,
+ "iv_at_25": 38.42,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1934653000,
+ "shares_diluted_latest": 78694000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale and national footprint \u2014 one of the few contractors that can execute large multi-region power, pipeline, clean-energy and communications programs",
+  "Record 18-month backlog of $21.4B at Q2 2026 (+30% YoY, ~1.2x book-to-bill) gives unusual revenue visibility for a contractor",
+  "Incumbency and long relationships with utilities, telecom carriers and energy customers; bonding and safety record gate large-project bidding",
+  "Diversified end markets (Power Delivery, Clean Energy & Infrastructure, Pipeline, Communications) plus data-center exposure via the July 2026 Superior Group acquisition"
+ ],
+ "moat_against": [
+  "Competitively bid, project-based work \u2014 no recurring revenue or durable pricing power; customers can and do re-bid",
+  "Returns at/below cost of capital through most of the cycle: ROE -1.8% to 12.9% over 2021-25, net margin 2.79% in FY2025 (fundamentals.json)",
+  "Labor- and fleet-intensive cost structure \u2014 wage pressure and execution on fixed-price projects flow straight to OE",
+  "Growth partly bought: serial acquisitions (Superior Group $1.65B, debt-financed, closed July 2026) add integration and leverage risk",
+  "Segment cyclicality \u2014 Communications softness (RDOF roll-off, wireline deferrals) and pipeline project timing whipsaw results"
+ ]
+}

@@ -1,0 +1,1122 @@
+{
+ "ticker": "PAC",
+ "cik": 1347557,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-161714",
+   "filed": "2026-04-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1347557/000119312526161714/pac-20251231_htm.xml"
+  }
+ ],
+ "currency": "MXN",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pac:GuadalajaraMember",
+     "label": "Guadalajara",
+     "values": [
+      10579816000,
+      9667671000,
+      11629128000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3184,
+      0.2876,
+      0.2808
+     ],
+     "growth_yoy": [
+      null,
+      -0.0862,
+      0.2029
+     ]
+    },
+    {
+     "member": "pac:PuertoVallartaMember",
+     "label": "Puerto Vallarta",
+     "values": [
+      4769964000,
+      4531286000,
+      5571301000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1436,
+      0.1348,
+      0.1345
+     ],
+     "growth_yoy": [
+      null,
+      -0.05,
+      0.2295
+     ]
+    },
+    {
+     "member": "pac:SanJoseDelCaboMember",
+     "label": "San Jose Del Cabo",
+     "values": [
+      4477375000,
+      4605041000,
+      5104203000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1348,
+      0.137,
+      0.1233
+     ],
+     "growth_yoy": [
+      null,
+      0.0285,
+      0.1084
+     ]
+    },
+    {
+     "member": "pac:TijuanaMember",
+     "label": "Tijuana",
+     "values": [
+      3988846000,
+      3703670000,
+      5023227000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1201,
+      0.1102,
+      0.1213
+     ],
+     "growth_yoy": [
+      null,
+      -0.0715,
+      0.3563
+     ]
+    },
+    {
+     "member": "pac:OtherAirportMember",
+     "label": "Other Airport",
+     "values": [
+      3393145000,
+      3612152000,
+      4578609000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1021,
+      0.1075,
+      0.1106
+     ],
+     "growth_yoy": [
+      null,
+      0.0645,
+      0.2676
+     ]
+    },
+    {
+     "member": "pac:OtherCompaniesMember",
+     "label": "Other Companies",
+     "values": [
+      1251556000,
+      2423773000,
+      4111117000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0377,
+      0.0721,
+      0.0993
+     ],
+     "growth_yoy": [
+      null,
+      0.9366,
+      0.6962
+     ]
+    },
+    {
+     "member": "pac:MontegoBayMember",
+     "label": "Montego Bay",
+     "values": [
+      2811173000,
+      2926939000,
+      2917028000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0846,
+      0.0871,
+      0.0704
+     ],
+     "growth_yoy": [
+      null,
+      0.0412,
+      -0.0034
+     ]
+    },
+    {
+     "member": "pac:GuanajuatoMember",
+     "label": "Guanajuato",
+     "values": [
+      1291221000,
+      1419509000,
+      1675687000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0389,
+      0.0422,
+      0.0405
+     ],
+     "growth_yoy": [
+      null,
+      0.0994,
+      0.1805
+     ]
+    },
+    {
+     "member": "pac:HermosilloMember",
+     "label": "Hermosillo",
+     "values": [
+      661049000,
+      724333000,
+      798241000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0199,
+      0.0215,
+      0.0193
+     ],
+     "growth_yoy": [
+      null,
+      0.0957,
+      0.102
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     33224144000,
+     33614374000,
+     41408540000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pac:OtherCompaniesMember",
+     "label": "Other Companies",
+     "values": [
+      8822285000,
+      11702985000,
+      12872270000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5828,
+      0.7776,
+      0.7322
+     ],
+     "growth_yoy": [
+      null,
+      0.3265,
+      0.0999
+     ]
+    },
+    {
+     "member": "pac:GuadalajaraMember",
+     "label": "Guadalajara",
+     "values": [
+      4619800000,
+      4558825000,
+      5113484000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3052,
+      0.3029,
+      0.2909
+     ],
+     "growth_yoy": [
+      null,
+      -0.0132,
+      0.1217
+     ]
+    },
+    {
+     "member": "pac:SanJoseDelCaboMember",
+     "label": "San Jose Del Cabo",
+     "values": [
+      2851985000,
+      2577743000,
+      2879943000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1884,
+      0.1713,
+      0.1638
+     ],
+     "growth_yoy": [
+      null,
+      -0.0962,
+      0.1172
+     ]
+    },
+    {
+     "member": "pac:PuertoVallartaMember",
+     "label": "Puerto Vallarta",
+     "values": [
+      2137339000,
+      1985498000,
+      2259227000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1412,
+      0.1319,
+      0.1285
+     ],
+     "growth_yoy": [
+      null,
+      -0.071,
+      0.1379
+     ]
+    },
+    {
+     "member": "pac:TijuanaMember",
+     "label": "Tijuana",
+     "values": [
+      2294571000,
+      1856737000,
+      2148225000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1516,
+      0.1234,
+      0.1222
+     ],
+     "growth_yoy": [
+      null,
+      -0.1908,
+      0.157
+     ]
+    },
+    {
+     "member": "pac:GuanajuatoMember",
+     "label": "Guanajuato",
+     "values": [
+      761752000,
+      717978000,
+      1032435000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0503,
+      0.0477,
+      0.0587
+     ],
+     "growth_yoy": [
+      null,
+      -0.0575,
+      0.438
+     ]
+    },
+    {
+     "member": "pac:MontegoBayMember",
+     "label": "Montego Bay",
+     "values": [
+      895296000,
+      1016663000,
+      1014992000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0591,
+      0.0675,
+      0.0577
+     ],
+     "growth_yoy": [
+      null,
+      0.1356,
+      -0.0016
+     ]
+    },
+    {
+     "member": "pac:OtherAirportMember",
+     "label": "Other Airport",
+     "values": [
+      786858000,
+      727935000,
+      942146000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.052,
+      0.0484,
+      0.0536
+     ],
+     "growth_yoy": [
+      null,
+      -0.0749,
+      0.2943
+     ]
+    },
+    {
+     "member": "pac:HermosilloMember",
+     "label": "Hermosillo",
+     "values": [
+      337981000,
+      310727000,
+      571828000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0223,
+      0.0206,
+      0.0325
+     ],
+     "growth_yoy": [
+      null,
+      -0.0806,
+      0.8403
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -8369155000,
+      -10404447000,
+      -11254435000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.5528,
+      -0.6913,
+      -0.6402
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15138713000,
+     15050644000,
+     17580115000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "pac:GuadalajaraMember",
+     "label": "Guadalajara",
+     "values": [
+      19923075000,
+      23183154000,
+      27761297000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2954,
+      0.2839,
+      0.315
+     ],
+     "growth_yoy": [
+      null,
+      0.1636,
+      0.1975
+     ]
+    },
+    {
+     "member": "pac:OtherCompaniesMember",
+     "label": "Other Companies",
+     "values": [
+      66607919000,
+      78944248000,
+      14831206000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9876,
+      0.9668,
+      0.1683
+     ],
+     "growth_yoy": [
+      null,
+      0.1852,
+      -0.8121
+     ]
+    },
+    {
+     "member": "pac:PuertoVallartaMember",
+     "label": "Puerto Vallarta",
+     "values": [
+      8067761000,
+      8562633000,
+      10141160000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1196,
+      0.1049,
+      0.1151
+     ],
+     "growth_yoy": [
+      null,
+      0.0613,
+      0.1844
+     ]
+    },
+    {
+     "member": "pac:TijuanaMember",
+     "label": "Tijuana",
+     "values": [
+      9411058000,
+      9253785000,
+      10086191000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1395,
+      0.1133,
+      0.1144
+     ],
+     "growth_yoy": [
+      null,
+      -0.0167,
+      0.09
+     ]
+    },
+    {
+     "member": "pac:OtherAirportMember",
+     "label": "Other Airport",
+     "values": [
+      6606148000,
+      7343753000,
+      8446493000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0979,
+      0.0899,
+      0.0958
+     ],
+     "growth_yoy": [
+      null,
+      0.1117,
+      0.1502
+     ]
+    },
+    {
+     "member": "pac:SanJoseDelCaboMember",
+     "label": "San Jose Del Cabo",
+     "values": [
+      7375756000,
+      7786187000,
+      8004437000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1094,
+      0.0954,
+      0.0908
+     ],
+     "growth_yoy": [
+      null,
+      0.0556,
+      0.028
+     ]
+    },
+    {
+     "member": "pac:MontegoBayMember",
+     "label": "Montego Bay",
+     "values": [
+      1829445000,
+      3251557000,
+      3510320000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0271,
+      0.0398,
+      0.0398
+     ],
+     "growth_yoy": [
+      null,
+      0.7773,
+      0.0796
+     ]
+    },
+    {
+     "member": "pac:GuanajuatoMember",
+     "label": "Guanajuato",
+     "values": [
+      2193605000,
+      2293425000,
+      2398946000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0325,
+      0.0281,
+      0.0272
+     ],
+     "growth_yoy": [
+      null,
+      0.0455,
+      0.046
+     ]
+    },
+    {
+     "member": "pac:HermosilloMember",
+     "label": "Hermosillo",
+     "values": [
+      1983026000,
+      2157056000,
+      2198465000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0294,
+      0.0264,
+      0.0249
+     ],
+     "growth_yoy": [
+      null,
+      0.0878,
+      0.0192
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Elimination of intersegment amounts",
+     "values": [
+      -56552935000,
+      -61122725000,
+      -761760000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.8385,
+      -0.7486,
+      -0.0086
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     67444859000,
+     81653073000,
+     88140275000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pac:GuadalajaraMember",
+     "label": "Guadalajara",
+     "values": [
+      459556000,
+      603129000,
+      877246000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1805,
+      0.197,
+      0.2338
+     ],
+     "growth_yoy": [
+      null,
+      0.3124,
+      0.4545
+     ]
+    },
+    {
+     "member": "pac:OtherCompaniesMember",
+     "label": "Other Companies",
+     "values": [
+      119602000,
+      364088000,
+      556279000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.047,
+      0.1189,
+      0.1483
+     ],
+     "growth_yoy": [
+      null,
+      2.0442,
+      0.5279
+     ]
+    },
+    {
+     "member": "pac:MontegoBayMember",
+     "label": "Montego Bay",
+     "values": [
+      467968000,
+      480960000,
+      524760000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1838,
+      0.1571,
+      0.1399
+     ],
+     "growth_yoy": [
+      null,
+      0.0278,
+      0.0911
+     ]
+    },
+    {
+     "member": "pac:TijuanaMember",
+     "label": "Tijuana",
+     "values": [
+      421742000,
+      472715000,
+      510818000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1657,
+      0.1544,
+      0.1361
+     ],
+     "growth_yoy": [
+      null,
+      0.1209,
+      0.0806
+     ]
+    },
+    {
+     "member": "pac:OtherAirportMember",
+     "label": "Other Airport",
+     "values": [
+      332729000,
+      364927000,
+      412467000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1307,
+      0.1192,
+      0.1099
+     ],
+     "growth_yoy": [
+      null,
+      0.0968,
+      0.1303
+     ]
+    },
+    {
+     "member": "pac:SanJoseDelCaboMember",
+     "label": "San Jose Del Cabo",
+     "values": [
+      326769000,
+      364526000,
+      409460000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1284,
+      0.1191,
+      0.1091
+     ],
+     "growth_yoy": [
+      null,
+      0.1155,
+      0.1233
+     ]
+    },
+    {
+     "member": "pac:PuertoVallartaMember",
+     "label": "Puerto Vallarta",
+     "values": [
+      230168000,
+      220975000,
+      252380000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0904,
+      0.0722,
+      0.0673
+     ],
+     "growth_yoy": [
+      null,
+      -0.0399,
+      0.1421
+     ]
+    },
+    {
+     "member": "pac:GuanajuatoMember",
+     "label": "Guanajuato",
+     "values": [
+      87899000,
+      88856000,
+      105425000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0345,
+      0.029,
+      0.0281
+     ],
+     "growth_yoy": [
+      null,
+      0.0109,
+      0.1865
+     ]
+    },
+    {
+     "member": "pac:HermosilloMember",
+     "label": "Hermosillo",
+     "values": [
+      99270000,
+      100863000,
+      103113000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.039,
+      0.033,
+      0.0275
+     ],
+     "growth_yoy": [
+      null,
+      0.016,
+      0.0223
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2545702000,
+     3061039000,
+     3751948000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ifrs-full:CountryOfDomicileMember",
+     "label": "Country of domicile",
+     "values": [
+      29179397000,
+      28963456000,
+      36547481000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8783,
+      0.8616,
+      0.8826
+     ],
+     "growth_yoy": [
+      null,
+      -0.0074,
+      0.2618
+     ]
+    },
+    {
+     "member": "country:JM",
+     "label": "JAMAICA",
+     "values": [
+      4044747000,
+      4650918000,
+      4861059000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1217,
+      0.1384,
+      0.1174
+     ],
+     "growth_yoy": [
+      null,
+      0.1499,
+      0.0452
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     33224144000,
+     33614374000,
+     41408540000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

@@ -1,0 +1,294 @@
+{
+ "ticker": "IP",
+ "cik": 51434,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T16:14:02-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000051434.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000055/ip-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/IP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/IP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "INTERNATIONAL PAPER CO /NEW/",
+  "cik": 51434,
+  "description": {
+   "text": "International Paper Company (the \"Company,\" \"International Paper\" or \"IP\", which may also be referred to as \"we\" or \"us\") is a global leader in sustainable packaging solutions. We produce renewable fiber-based packaging products with manufacturing operations in North America, Latin America, Europe and North Africa. We are a New York corporation, incorporated in 1941 as the successor to the New York corporation of the same name organized in 1898. In recent years, the Company has undergone significant transformation designed to simplify our operations, strengthen performance and position the business for long-term value creation.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0000051434-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000055/ip-20251231.htm"
+  },
+  "description_short": "International Paper creates sustainable packaging solutions that enable our customers, teammates and shareowners to thrive in an ever-changing world. We are a leader in corrugated packaging, partnering with customers across industries to protect what matters most, strengthen supply chains and create lasting value. Learn more at internationalpaper.com.",
+  "industry": "Paper",
+  "sector": "Basic Materials",
+  "region": "North America",
+  "sic": "2621",
+  "sic_description": "Paper Mills",
+  "state_of_incorporation": "NY",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.internationalpaper.com",
+  "headquarters": "Memphis, Tennessee",
+  "address": {
+   "street": "6400 Poplar Avenue",
+   "city": "Memphis",
+   "state": "Tennessee",
+   "zip": "38197",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "901-419-7000",
+  "employees": {
+   "count": 62602,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we have approximately 62,602 employees, nearly 30,421 of whom are in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000055/ip-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-01",
+  "first_sec_filing_form": "S-3/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000051434&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0000051434-26-000140",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000140/ip-20261008.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000051434-26-000123",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000123/ip-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000051434-26-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000115/ip-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-17",
+   "period": "2026-07-14",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000051434-26-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000112/ip-20260714.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000051434-26-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000075/ip-20260511.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000051434-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000074/ip-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000051434-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000067/ip-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-021729",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000162828026021729/ipc-20260327.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000051434-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000055/ip-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-011950",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000162828026011950/ip-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000051434-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000016/ip-20260129.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-23",
+   "period": "2026-01-23",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001628280-26-003279",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000162828026003279/ip-20260123.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000051434-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143425000074/ip-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000051434-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143425000068/ip-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-26",
+   "period": "2025-09-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-042938",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000162828025042938/ip-20250924.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-21",
+   "period": "2025-08-20",
+   "items": [
+    "2.05",
+    "2.06",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Exit costs; Impairment; Reg FD",
+   "accession": "0000051434-25-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143425000060/ip-20250820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-21",
+   "period": "2025-08-20",
+   "items": [
+    "1.01",
+    "2.05",
+    "2.06",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Exit costs; Impairment; Officer/director change; Reg FD",
+   "accession": "0000051434-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143425000059/ip-20250820.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000051434-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143425000048/ip-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000051434-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000005143425000042/ip-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-01",
+   "period": "2025-06-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-033541",
+   "url": "https://www.sec.gov/Archives/edgar/data/51434/000162828025033541/ip-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

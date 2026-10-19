@@ -1,0 +1,103 @@
+{
+ "ticker": "RBC",
+ "name": "RBC Bearings Incorporated",
+ "sector": "Industrials / Aerospace & defense bearings and engineered components",
+ "price": 498.52,
+ "market_cap_b": 15.77,
+ "engine_version": 5,
+ "base_oe_per_share": 11.351216719364736,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong narrow moat: mission-critical, highly engineered precision bearings and components designed into aerospace/defense and industrial platforms, where requalification of a substitute supplier is slow and costly, giving sole/primary-source stickiness and proven pricing power (gross margin 37.9% FY2022 \u2192 44.4% FY2025/26, 47.7% in Q1 FY2027). Measured ROIC proxy is only mid-to-high single digits (6.0% FY2023 \u2192 7.8% FY2026 after 11-12% in FY2019-20) because the 2021 Dodge acquisition loaded the balance sheet with goodwill/intangibles \u2014 that caps the score at 6 despite the margin record; larger rivals (Timken, SKF, Schaeffler) contest the industrial side and OEM customers are concentrated and powerful.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "SHARES_FALLBACK: no diluted share count filed for 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended March 28, 2026 (filed 2026-05-15), Consolidated Statements of Cash Flows, investing line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $73.1M for FY2026, with $49.8M for FY2025 and $33.2M for FY2024 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 9.74 vs 3-yr median 6.33 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 61.58,
+   "irr": 0.0398
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 96.51,
+   "irr": 0.0502
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 140.0,
+   "irr": 0.0635
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 192.12,
+   "irr": 0.0787
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 296.81,
+   "irr": 0.1063
+  }
+ },
+ "iv_at_15": 150.0,
+ "iv_at_12": 204.23,
+ "implied_irr": 0.0669,
+ "implied_irr_base_case": 0.0635,
+ "upside_at_15_pct": -69.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality precision-bearings franchise, moat 6/10 \u2014 but at $498.52 the weighted IRR is only 6.7% (Tier D, IV@15% $150.00); it clears the 15% hurdle only near $150, about 70% below the current price.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0502,
+ "irr_bull": 0.0787,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 102.13,
+ "iv_at_25": 76.4,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 818200000,
+ "shares_diluted_latest": 31634888,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Designed-in, mission-critical bearings/components \u2014 requalifying a substitute on an aerospace or defense platform is slow and costly",
+  "Proven pricing power: gross margin 37.9% (FY2022) \u2192 44.4% (FY2025/26) and 47.7% in Q1 FY2027",
+  "Sole/primary-source positions and a $2.3B backlog (Q1 FY2027) across commercial aero, defense and space programs",
+  "Proprietary plain-bearing / engineered-component know-how built over decades; fragmented niche leadership"
+ ],
+ "moat_against": [
+  "Measured ROIC proxy only 6.0-7.8% FY2023-26 \u2014 Dodge (2021) goodwill/intangibles bloat the capital base and returns have not yet re-earned a wide-moat grade",
+  "Larger diversified rivals (Timken, SKF, Schaeffler) and powerful concentrated OEM customers (Boeing/Airbus/defense primes)",
+  "Cyclical end markets: commercial aero build rates, defense budgets and industrial capex all swing",
+  "Growth has been substantially bought (Dodge 2021, Specline 2023, VACCO 2025) \u2014 acquisition pricing/integration risk and rising capex (true capex $33.2M FY2024 \u2192 $73.1M FY2026)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 73100000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended March 28, 2026 (filed 2026-05-15), Consolidated Statements of Cash Flows, investing line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $73.1M for FY2026, with $49.8M for FY2025 and $33.2M for FY2024 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 13.6498,
+  "base_oe_with_override": 11.3512,
+  "base_oe_impact_pct": -16.84,
+  "weighted_irr_without_override": 0.0747,
+  "weighted_irr_with_override": 0.0669,
+  "weighted_irr_impact_pp": -0.788,
+  "unblocks_tier": true
+ }
+}

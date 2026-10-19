@@ -1,0 +1,775 @@
+{
+ "ticker": "MAS",
+ "cik": 62996,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000062996-26-000005",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000005/mas-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000062996-26-000014",
+   "filed": "2026-04-22",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000014/mas-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000062996-26-000027",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299626000027/mas-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mas:PlumbingProductsMember",
+     "label": "Plumbing Products",
+     "values": [
+      4842000000,
+      4853000000,
+      4992000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6078,
+      0.62,
+      0.6601
+     ],
+     "growth_yoy": [
+      null,
+      0.0023,
+      0.0286
+     ]
+    },
+    {
+     "member": "mas:DecorativeArchitecturalProductsMember",
+     "label": "Decorative Architectural Products",
+     "values": [
+      3125000000,
+      2975000000,
+      2570000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3922,
+      0.38,
+      0.3399
+     ],
+     "growth_yoy": [
+      null,
+      -0.048,
+      -0.1361
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7967000000,
+     7828000000,
+     7562000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mas:PlumbingProductsMember",
+     "label": "Plumbing Products",
+     "values": [
+      1246000000,
+      1372000000,
+      1364000000,
+      1337000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6918,
+      0.6689,
+      0.7112,
+      0.6712
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0947,
+      -0.0255
+     ]
+    },
+    {
+     "member": "mas:DecorativeArchitecturalProductsMember",
+     "label": "Decorative Architectural Products",
+     "values": [
+      556000000,
+      679000000,
+      554000000,
+      655000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3087,
+      0.3311,
+      0.2888,
+      0.3288
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0036,
+      -0.0353
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1801000000,
+     2051000000,
+     1918000000,
+     1992000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "mas:PlumbingProductsMember",
+     "label": "Plumbing Products",
+     "values": [
+      3140000000,
+      3131000000,
+      3489000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5855,
+      0.6242,
+      0.6708
+     ],
+     "growth_yoy": [
+      null,
+      -0.0029,
+      0.1143
+     ]
+    },
+    {
+     "member": "mas:DecorativeArchitecturalProductsMember",
+     "label": "Decorative Architectural Products",
+     "values": [
+      1696000000,
+      1435000000,
+      1248000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3162,
+      0.2861,
+      0.24
+     ],
+     "growth_yoy": [
+      null,
+      -0.1539,
+      -0.1303
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      527000000,
+      450000000,
+      463000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0983,
+      0.0897,
+      0.089
+     ],
+     "growth_yoy": [
+      null,
+      -0.1461,
+      0.0289
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5363000000,
+     5016000000,
+     5201000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mas:PlumbingProductsMember",
+     "label": "Plumbing Products",
+     "values": [
+      3489000000,
+      3662000000,
+      3625000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6708,
+      0.6998,
+      0.6712
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mas:DecorativeArchitecturalProductsMember",
+     "label": "Decorative Architectural Products",
+     "values": [
+      1248000000,
+      1369000000,
+      1440000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.24,
+      0.2616,
+      0.2666
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      463000000,
+      202000000,
+      337000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.089,
+      0.0386,
+      0.0624
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5201000000,
+     5233000000,
+     5401000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mas:PlumbingProductsMember",
+     "label": "Plumbing Products",
+     "values": [
+      107000000,
+      108000000,
+      111000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7181,
+      0.72,
+      0.75
+     ],
+     "growth_yoy": [
+      null,
+      0.0093,
+      0.0278
+     ]
+    },
+    {
+     "member": "mas:DecorativeArchitecturalProductsMember",
+     "label": "Decorative Architectural Products",
+     "values": [
+      35000000,
+      35000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2349,
+      0.2333,
+      0.2027
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      -0.1429
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7000000,
+      7000000,
+      7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.047,
+      0.0467,
+      0.0473
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     149000000,
+     150000000,
+     148000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mas:PlumbingProductsMember",
+     "label": "Plumbing Products",
+     "values": [
+      26000000,
+      27000000,
+      29000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7429,
+      0.75,
+      0.7632,
+      0.7895
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1154,
+      0.1111
+     ]
+    },
+    {
+     "member": "mas:DecorativeArchitecturalProductsMember",
+     "label": "Decorative Architectural Products",
+     "values": [
+      7000000,
+      7000000,
+      7000000,
+      7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2,
+      0.1944,
+      0.1842,
+      0.1842
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      2000000,
+      2000000,
+      2000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0571,
+      0.0556,
+      0.0526,
+      0.0263
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      -0.5
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     35000000,
+     36000000,
+     38000000,
+     38000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      6384000000,
+      6264000000,
+      5950000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8013,
+      0.8002,
+      0.7868
+     ],
+     "growth_yoy": [
+      null,
+      -0.0188,
+      -0.0501
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1583000000,
+      1564000000,
+      1612000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1987,
+      0.1998,
+      0.2132
+     ],
+     "growth_yoy": [
+      null,
+      -0.012,
+      0.0307
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7967000000,
+     7828000000,
+     7562000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      1412000000,
+      1638000000,
+      1493000000,
+      1554000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.784,
+      0.7986,
+      0.7784,
+      0.7801
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0574,
+      -0.0513
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      389000000,
+      413000000,
+      425000000,
+      438000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.216,
+      0.2014,
+      0.2216,
+      0.2199
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0925,
+      0.0605
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1801000000,
+     2051000000,
+     1918000000,
+     1992000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

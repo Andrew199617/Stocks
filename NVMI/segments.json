@@ -1,0 +1,98 @@
+{
+ "ticker": "NVMI",
+ "cik": 1109345,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001178913-26-000504",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000504/zk2634307_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      405037000,
+      538350000,
+      705598000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.782,
+      0.8006,
+      0.8013
+     ],
+     "growth_yoy": [
+      null,
+      0.3291,
+      0.3107
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service [Member] [Default Label]",
+     "values": [
+      112885000,
+      134046000,
+      174979000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.218,
+      0.1994,
+      0.1987
+     ],
+     "growth_yoy": [
+      null,
+      0.1875,
+      0.3054
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     517922000,
+     672396000,
+     880577000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

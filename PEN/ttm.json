@@ -1,0 +1,101 @@
+{
+ "ticker": "PEN",
+ "cik": 1321732,
+ "entity": "Penumbra, Inc",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 238663000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 93916000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 133055000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 277802000
+  },
+  "capex": {
+   "fy": 63729000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 29046000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 27213000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 61896000
+  },
+  "sbc": {
+   "fy": 59213000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 28019000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 28304000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 59498000
+  },
+  "shares_diluted": {
+   "fy": 39291828,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 39214027,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 39572347,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 277802000,
+ "ttm_capex": 61896000,
+ "ttm_sbc": 59498000,
+ "ttm_shares_diluted": 39572347,
+ "ttm_oe_total": 156408000,
+ "ttm_oe_per_share": 3.952457002360765,
+ "warnings": [],
+ "overrides_used": []
+}

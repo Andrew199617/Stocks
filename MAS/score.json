@@ -1,0 +1,84 @@
+{
+ "ticker": "MAS",
+ "name": "Masco Corporation",
+ "sector": "Capital Goods / Building products & home improvement",
+ "price": 72.87,
+ "market_cap_b": 15.3,
+ "engine_version": 5,
+ "base_oe_per_share": 3.980952380952381,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Leading branded positions (Delta/Hansgrohe plumbing, Behr paint exclusive at Home Depot since 1978, Hot Spring spas) with pro-channel preference and proven pricing power; ROIC proxy stayed 0.44-0.53 over 2021-25 through a revenue downturn and gross margin held 31.3-36.2%. Capped at 7: no consumer switching costs at the shelf, Behr's Home Depot concentration, and housing/R&R cyclicality the brands could not offset (revenue fell 2022-25).",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.3%/yr \u2014 already credited via the growth adjustment",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.3%) vs bull-case tier C (10.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 14.33,
+   "irr": 0.0447
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 23.79,
+   "irr": 0.0634
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 33.42,
+   "irr": 0.0826
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 44.43,
+   "irr": 0.1033
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 64.01,
+   "irr": 0.1364
+  }
+ },
+ "iv_at_15": 34.91,
+ "iv_at_12": 46.28,
+ "implied_irr": 0.086,
+ "implied_irr_base_case": 0.0826,
+ "upside_at_15_pct": -52.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality branded building-products franchise, moat 7/10 \u2014 does not clear 15% at $72.87 (weighted IRR 8.6%, weighted IV@15% $34.91); it clears 15% only at or below $34.91, and even the bull case is just 10.3%.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0634,
+ "irr_bull": 0.1033,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 24.7,
+ "iv_at_25": 19.07,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2300000000,
+ "shares_diluted_latest": 210000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "ROIC proxy 0.44-0.53 every year 2021-25, well above cost of capital through a downturn",
+  "Behr paint's exclusive Home Depot distribution since 1978 and Delta/Hansgrohe pro-channel preference",
+  "Proven pricing power: gross margin held 31.3-36.2% and expanded in Q2 2026 while volumes fell",
+  "#1/#2 branded positions (Delta, Behr, Hansgrohe, Hot Spring) in repair-and-remodel categories driven by an aging housing stock"
+ ],
+ "moat_against": [
+  "No real switching costs: DIY consumers can switch paint/faucet brands at the shelf (Sherwin-Williams, Moen, Kohler, private label)",
+  "Customer concentration: Behr sells exclusively through Home Depot in North America",
+  "Housing and repair-and-remodel cyclicality: revenue fell from $8.680B (2022) to $7.562B (2025) despite the brands",
+  "Tariff and commodity exposure on imported plumbing components and paint inputs"
+ ]
+}

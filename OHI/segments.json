@@ -1,0 +1,204 @@
+{
+ "ticker": "OHI",
+ "cik": 888491,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000888491-26-000008",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000008/ohi-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000888491-26-000018",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000018/ohi-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000888491-26-000024",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000024/ohi-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ohi:TripleNetInvestmentsMember",
+     "label": "Triple Net Investments",
+     "values": [
+      282199000,
+      313242000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9989,
+      0.9543
+     ],
+     "growth_yoy": [
+      null,
+      0.11
+     ]
+    },
+    {
+     "member": "ohi:OperatingPortfolioSegmentMember",
+     "label": "Operating Portfolio Segment",
+     "values": [
+      null,
+      13987000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0426
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      307000,
+      1017000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0011,
+      0.0031
+     ],
+     "growth_yoy": [
+      null,
+      2.3127
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     282506000,
+     328246000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ohi:TripleNetInvestmentsMember",
+     "label": "Triple Net Investments",
+     "values": [
+      280932000,
+      324515000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9989,
+      0.9807
+     ],
+     "growth_yoy": [
+      null,
+      0.1551
+     ]
+    },
+    {
+     "member": "ohi:OperatingPortfolioSegmentMember",
+     "label": "Operating Portfolio Segment",
+     "values": [
+      null,
+      5382000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0163
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      307000,
+      1017000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0011,
+      0.0031
+     ],
+     "growth_yoy": [
+      null,
+      2.3127
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     281239000,
+     330914000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

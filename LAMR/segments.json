@@ -1,0 +1,35 @@
+{
+ "ticker": "LAMR",
+ "cik": 1090425,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001090425-26-000008",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000008/lamr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001090425-26-000017",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000017/lamr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001090425-26-000024",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1090425/000109042526000024/lamr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

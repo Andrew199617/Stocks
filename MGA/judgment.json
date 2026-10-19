@@ -1,0 +1,43 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "Magna is a direct-listed foreign private issuer: one NYSE-traded MGA share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis.",
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, accession 0001193125-26-128771), cover page: the securities registered under Section 12(b) are 'Common Shares', trading symbol MGA, listed on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; the financial statements are stated 'in millions, except number of common shares' and the same shares trade as MG on the TSX"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No pricing power: OEM customers squeeze supplier margins annually; gross margin only 12.3%-14.3% (FY2021-2025, fundamentals.json) and ROE 5.4%-12.8% \u2014 returns at or below the cost of capital through the cycle",
+  "Customer concentration: top customers dominate revenue (GM the largest single name) and >70% of revenue traces to Detroit Three and German OEMs exposed to US tariffs",
+  "Full cyclicality: earnings swing with light-vehicle production \u2014 OE/share ranged $1.25-$7.92 over FY2022-2025",
+  "Program/customer blow-ups land on Magna: Fisker impairments and settlements ($330M in FY2024 other expense), Jaguar I-Pace/E-Pace production end, $498M Lighting/Rooftop held-for-sale impairment in H1 2026",
+  "Capital intensity: capex $1.3-2.5B/yr against OCF of $2.1-3.6B \u2014 growth and tooling must be bought every cycle"
+ ],
+ "moat_for": [
+  "Scale and breadth: one of the world's largest auto suppliers, ~$42B revenue across body, power & vision, seating and complete vehicles \u2014 cross-selling and content-per-vehicle gains",
+  "Design-in switching costs: once engineered into a vehicle program, supply runs for the program's life; re-sourcing mid-program is costly for OEMs",
+  "Complete-vehicle assembly (Graz) is a capability almost no rival offers \u2014 4M+ vehicles produced, now adding Chinese OEM programs (XPENG, GAC) for Europe",
+  "Global footprint in 28 countries near OEM plants in North America, Europe and China, plus Veoneer Active Safety (ADAS) content growth"
+ ],
+ "moat_justification": "One of the world's largest and most diversified auto suppliers \u2014 breadth across body exteriors & structures, power & vision, seating and complete-vehicle assembly, with design-in switching costs for the life of a vehicle program (typically 5-7 years) and a unique complete-vehicle assembly franchise (Graz). But the returns do not show a moat: fundamentals.json gross margin was only 12.3%-14.3% over FY2021-2025 and ROE 5.4%-12.8%, the roic_proxy series is null because the filer tags no operating-income line, and powerful OEM customers hold the pricing power \u2014 Magna earns supplier margins, not franchise margins. Customer concentration is high and the business is fully exposed to light-vehicle production cycles, tariffs and program ends (Jaguar I-Pace/E-Pace, Fisker). Scale and switching costs keep it from the 0-2 bucket; thin, cyclical, sub-cost-of-capital-looking returns keep it at weak 4.",
+ "moat_score": 4,
+ "name": "Magna International Inc.",
+ "one_liner": "Diversified auto-supplier scale but a weak moat 4/10 \u2014 at $65.99 it does not clear 15%: weighted IRR 11.1%, weighted IV@15 $45.12 vs $65.99, bear-to-bull tier band D to C; clears 15% only below ~$45.12.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.25,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine's sanity band anchors on the last FILED SBC value under its own tags and Magna has no filed value under any SBC tag the engine maps (last_filed_value is null), so no in-band value exists. The $49M is not an estimate \u2014 it is the FY2024 stock-based compensation expense printed in Magna's own FY2025 40-F statements of changes in equity, corroborated by the EDGAR companyfacts tag for the same concept.",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 of the last 3 under the engine's tags. The filer's own reported stock-based compensation expense fills the gap; the engine applies this single value to every missing period. $49M is the filed FY2024 figure, and FY2024 is the median year of the 3-yr normalized base, so the base is built from the exact filed figure; the error on the other years is at most $11M (~$0.04/share) and in the conservative direction for FY2025 (true $60M). SBC is ~0.1% of revenue \u2014 immaterial to the verdict either way.",
+  "source": "Form 40-F for fiscal year ended December 31, 2025 (filed 2026-03-27, accession 0001193125-26-128771), Consolidated Statements of Changes in Equity: 'Stock-based compensation expense' $60M in FY2025 and $49M in FY2024; EDGAR companyfacts carries the identical series under us-gaap AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue ($45M FY2023 / $49M FY2024 / $60M FY2025, 40-F filings 2024-03-28, 2025-03-28, 2026-03-27) \u2014 a tag the engine does not map; its own SBC tags (ShareBasedCompensation / AllocatedShareBasedCompensationExpense) carry no values for the gated years.",
+  "value": 49000000
+ },
+ "sector": "Consumer Cyclical / Auto parts (Motor Vehicle Parts & Accessories)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

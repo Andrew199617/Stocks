@@ -1,0 +1,412 @@
+{
+ "ticker": "MEDP",
+ "cik": 1668397,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001668397-26-000006",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000006/medp-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001668397-26-000019",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000019/medp-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001668397-26-000025",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1668397/000166839726000025/medp-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "medp:OncologyMember",
+     "label": "Oncology",
+     "values": [
+      587097000,
+      651237000,
+      747585000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3113,
+      0.3088,
+      0.2955
+     ],
+     "growth_yoy": [
+      null,
+      0.1092,
+      0.1479
+     ]
+    },
+    {
+     "member": "medp:MetabolicMember",
+     "label": "Metabolic",
+     "values": [
+      376842000,
+      457542000,
+      744957000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1998,
+      0.2169,
+      0.2944
+     ],
+     "growth_yoy": [
+      null,
+      0.2141,
+      0.6282
+     ]
+    },
+    {
+     "member": "medp:CentralNervousSystemMember",
+     "label": "Central Nervous System",
+     "values": [
+      160057000,
+      181977000,
+      254838000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0849,
+      0.0863,
+      0.1007
+     ],
+     "growth_yoy": [
+      null,
+      0.137,
+      0.4004
+     ]
+    },
+    {
+     "member": "medp:CardiologyMember",
+     "label": "Cardiology",
+     "values": [
+      193690000,
+      230454000,
+      239371000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1027,
+      0.1093,
+      0.0946
+     ],
+     "growth_yoy": [
+      null,
+      0.1898,
+      0.0387
+     ]
+    },
+    {
+     "member": "medp:AntiviralAndAntiInfectiveMember",
+     "label": "Antiviral And Anti Infective",
+     "values": [
+      163312000,
+      156460000,
+      134935000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0866,
+      0.0742,
+      0.0533
+     ],
+     "growth_yoy": [
+      null,
+      -0.042,
+      -0.1376
+     ]
+    },
+    {
+     "member": "medp:OtherMember",
+     "label": "Other",
+     "values": [
+      404844000,
+      431384000,
+      408548000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2147,
+      0.2045,
+      0.1615
+     ],
+     "growth_yoy": [
+      null,
+      0.0656,
+      -0.0529
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1885842000,
+     2109054000,
+     2530234000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "medp:MetabolicMember",
+     "label": "Metabolic",
+     "values": [
+      148015000,
+      147873000,
+      237558000,
+      219067000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.265,
+      0.2451,
+      0.3362,
+      0.3097
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.605,
+      0.4815
+     ]
+    },
+    {
+     "member": "medp:OncologyMember",
+     "label": "Oncology",
+     "values": [
+      170476000,
+      188558000,
+      201239000,
+      209372000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3052,
+      0.3125,
+      0.2848,
+      0.296
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1805,
+      0.1104
+     ]
+    },
+    {
+     "member": "medp:CentralNervousSystemMember",
+     "label": "Central Nervous System",
+     "values": [
+      54901000,
+      61129000,
+      80207000,
+      82858000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0983,
+      0.1013,
+      0.1135,
+      0.1171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4609,
+      0.3555
+     ]
+    },
+    {
+     "member": "medp:CardiologyMember",
+     "label": "Cardiology",
+     "values": [
+      58279000,
+      58584000,
+      56261000,
+      59982000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1043,
+      0.0971,
+      0.0796,
+      0.0848
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0346,
+      0.0239
+     ]
+    },
+    {
+     "member": "medp:AntiviralAndAntiInfectiveMember",
+     "label": "Antiviral And Anti Infective",
+     "values": [
+      31063000,
+      29105000,
+      38021000,
+      37773000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0556,
+      0.0482,
+      0.0538,
+      0.0534
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.224,
+      0.2978
+     ]
+    },
+    {
+     "member": "medp:OtherMember",
+     "label": "Other",
+     "values": [
+      95836000,
+      118062000,
+      93318000,
+      98279000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1716,
+      0.1957,
+      0.1321,
+      0.1389
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0263,
+      -0.1676
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     558570000,
+     603311000,
+     706604000,
+     707331000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (medp:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (medp:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (medp:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment' (medp:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (medp:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (medp:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

@@ -1,0 +1,291 @@
+{
+ "ticker": "JAZZ",
+ "cik": 1232524,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T07:38:28-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001232524.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000013/jazz-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JAZZ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JAZZ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Jazz Pharmaceuticals plc",
+  "cik": 1232524,
+  "description": {
+   "text": "Jazz Pharmaceuticals plc is a global biopharmaceutical company whose purpose is to innovate to transform the lives of patients and their families. We are dedicated to developing life-changing medicines for people with rare disease – often with limited or no therapeutic options. We have a diverse portfolio of medicines, including leading therapies addressing epilepsies, cancers and sleep disorders. Our patient-focused and science-driven approach powers pioneering R&D advancements across our robust pipeline of innovative therapeutics. Our lead marketed products, listed below, are approved in countries around the world to improve patient care. •Xywav® (calcium, magnesium, potassium, and sodium oxybates) oral solution, a product approved by FDA in July 2020, and launched in the U.S. in November 2020 for the treatment of cataplexy or EDS in patients seven years of age and older with narcolepsy, and also approved by FDA in August 2021 for the treatment of IH in adults and launched in the U.S. in November 2021. Xywav contains 92% less sodium than Xyrem®. Xywav is also approved in Canada for the treatment of cataplexy in patients with narcolepsy.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001232524-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000013/jazz-20251231.htm"
+  },
+  "description_short": "Jazz Pharmaceuticals plc (Nasdaq: JAZZ) is a global biopharma company whose purpose is to innovate to transform the lives of patients and their families. We are dedicated to developing life-changing medicines for people with rare disease - often with limited or no therapeutic options. We have a diverse portfolio of medicines, including leading therapies addressing epilepsies, cancers and sleep disorders. Our patient-focused and science-driven approach powers pioneering research and development advancements across our robust pipeline of innovative therapeutics. Jazz is headquartered in Dublin, Ireland with research and development laboratories, manufacturing facilities and employees in multiple countries committed to serving patients worldwide. Please visit www.jazzpharmaceuticals.com for more information.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "L2",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.jazzpharmaceuticals.com",
+  "headquarters": "Dublin 4, Ireland",
+  "address": {
+   "street": "Fifth Floor, Waterloo Exchange Waterloo Road",
+   "city": "Dublin 4",
+   "state": null,
+   "zip": "D04 E5W7",
+   "country": "Ireland",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "353-1-634-7800",
+  "employees": {
+   "count": 2890,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Jazz employed approximately 2,890 people worldwide, with approximately 53% in the U.S. and approximately 47% outside the U.S., primarily in the U.K., Ireland and across the EU.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000013/jazz-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2007-03-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "JAZZ PHARMACEUTICALS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001232524&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-06",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-065497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000162828026065497/jazz-20261006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-399425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000119312526399425/d163027d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-061978",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000162828026061978/jazz-20260915.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-26",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001193125-26-377073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000119312526377073/d127542d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-25",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-058864",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000162828026058864/jazz-20260825.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-342667",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000119312526342667/d151973d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-341270",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000119312526341270/d106596d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001232524-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000045/jazz-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001232524-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000044/jazz-20260803.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-23",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-049466",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000162828026049466/jazz-20260723.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-06-08",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001232524-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000029/jazz-20260605.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-25",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-039147",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000162828026039147/jazz-20260525.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001232524-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000025/jazz-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001232524-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000024/jazz-20260505.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001628280-26-027205",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000162828026027205/jazz-20251231.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001232524-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000013/jazz-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001232524-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000012/jazz-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-009899",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000119312526009899/d61589d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-283887",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000119312525283887/d827060d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001232524-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252425000074/jazz-20250930.htm"
+  }
+ ],
+ "warnings": []
+}

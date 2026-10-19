@@ -1,0 +1,737 @@
+{
+ "ticker": "KEP",
+ "cik": 887225,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-190113",
+   "filed": "2026-04-29",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/887225/000119312526190113/d86100d20f_htm.xml"
+  }
+ ],
+ "currency": "KRW",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kep:TransmissionAndDistributionMember",
+     "label": "Transmission And Distribution",
+     "values": [
+      85082542000000,
+      90825950000000,
+      94674405000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9726,
+      0.9811,
+      0.9804
+     ],
+     "growth_yoy": [
+      null,
+      0.0675,
+      0.0424
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNonNuclearMember",
+     "label": "Electric power generation (Non-nuclear)",
+     "values": [
+      35159641000000,
+      31563589000000,
+      28710970000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4019,
+      0.3409,
+      0.2973
+     ],
+     "growth_yoy": [
+      null,
+      -0.1023,
+      -0.0904
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNuclearMember",
+     "label": "Electric power generation (Nuclear)",
+     "values": [
+      10798378000000,
+      13447880000000,
+      15346722000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1234,
+      0.1453,
+      0.1589
+     ],
+     "growth_yoy": [
+      null,
+      0.2454,
+      0.1412
+     ]
+    },
+    {
+     "member": "kep:PlantMaintenanceEngineeringServiceMember",
+     "label": "Plant maintenance & engineering service",
+     "values": [
+      3091022000000,
+      3266873000000,
+      3325786000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0353,
+      0.0353,
+      0.0344
+     ],
+     "growth_yoy": [
+      null,
+      0.0569,
+      0.018
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "All other segments",
+     "values": [
+      2175972000000,
+      2283458000000,
+      2200702000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0249,
+      0.0247,
+      0.0228
+     ],
+     "growth_yoy": [
+      null,
+      0.0494,
+      -0.0362
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     87476410000000,
+     92578265000000,
+     96567586000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kep:TransmissionAndDistributionMember",
+     "label": "Transmission And Distribution",
+     "values": [
+      -6153936000000,
+      3542715000000,
+      9004357000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.4497,
+      0.4187,
+      0.6426
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.5417
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNuclearMember",
+     "label": "Electric power generation (Nuclear)",
+     "values": [
+      819838000000,
+      1442490000000,
+      2370899000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1931,
+      0.1705,
+      0.1692
+     ],
+     "growth_yoy": [
+      null,
+      0.7595,
+      0.6436
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNonNuclearMember",
+     "label": "Electric power generation (Non-nuclear)",
+     "values": [
+      929210000000,
+      2662597000000,
+      2193972000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2189,
+      0.3147,
+      0.1566
+     ],
+     "growth_yoy": [
+      null,
+      1.8654,
+      -0.176
+     ]
+    },
+    {
+     "member": "kep:PlantMaintenanceEngineeringServiceMember",
+     "label": "Plant maintenance & engineering service",
+     "values": [
+      355284000000,
+      417667000000,
+      366355000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0837,
+      0.0494,
+      0.0261
+     ],
+     "growth_yoy": [
+      null,
+      0.1756,
+      -0.1229
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "All other segments",
+     "values": [
+      89302000000,
+      96984000000,
+      151733000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.021,
+      0.0115,
+      0.0108
+     ],
+     "growth_yoy": [
+      null,
+      0.086,
+      0.5645
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      -284714000000,
+      298807000000,
+      -75870000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0671,
+      0.0353,
+      -0.0054
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.2539
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -4245016000000,
+     8461260000000,
+     14011446000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "kep:TransmissionAndDistributionMember",
+     "label": "Transmission And Distribution",
+     "values": [
+      139472103000000,
+      144616479000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5651,
+      0.5673
+     ],
+     "growth_yoy": [
+      null,
+      0.0369
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNuclearMember",
+     "label": "Electric power generation (Nuclear)",
+     "values": [
+      72508359000000,
+      76378365000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2938,
+      0.2996
+     ],
+     "growth_yoy": [
+      null,
+      0.0534
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNonNuclearMember",
+     "label": "Electric power generation (Non-nuclear)",
+     "values": [
+      66834569000000,
+      63352471000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2708,
+      0.2485
+     ],
+     "growth_yoy": [
+      null,
+      -0.0521
+     ]
+    },
+    {
+     "member": "kep:PlantMaintenanceEngineeringServiceMember",
+     "label": "Plant maintenance & engineering service",
+     "values": [
+      4522610000000,
+      4363345000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0183,
+      0.0171
+     ],
+     "growth_yoy": [
+      null,
+      -0.0352
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "All other segments",
+     "values": [
+      14977126000000,
+      17125478000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0607,
+      0.0672
+     ],
+     "growth_yoy": [
+      null,
+      0.1434
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      -51506972000000,
+      -50908681000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2087,
+      -0.1997
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     246807795000000,
+     254927457000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "kep:ElectricPowerGenerationNuclearMember",
+     "label": "Electric power generation (Nuclear)",
+     "values": [
+      4403610000000,
+      5182841000000,
+      4898189000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3379,
+      0.3703,
+      0.3552
+     ],
+     "growth_yoy": [
+      null,
+      0.177,
+      -0.0549
+     ]
+    },
+    {
+     "member": "kep:TransmissionAndDistributionMember",
+     "label": "Transmission And Distribution",
+     "values": [
+      4258909000000,
+      4368806000000,
+      4544891000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3268,
+      0.3121,
+      0.3296
+     ],
+     "growth_yoy": [
+      null,
+      0.0258,
+      0.0403
+     ]
+    },
+    {
+     "member": "kep:ElectricPowerGenerationNonNuclearMember",
+     "label": "Electric power generation (Non-nuclear)",
+     "values": [
+      4180939000000,
+      4252872000000,
+      4119191000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3208,
+      0.3038,
+      0.2987
+     ],
+     "growth_yoy": [
+      null,
+      0.0172,
+      -0.0314
+     ]
+    },
+    {
+     "member": "kep:PlantMaintenanceEngineeringServiceMember",
+     "label": "Plant maintenance & engineering service",
+     "values": [
+      129628000000,
+      164749000000,
+      171000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0099,
+      0.0118,
+      0.0124
+     ],
+     "growth_yoy": [
+      null,
+      0.2709,
+      0.0379
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "All other segments",
+     "values": [
+      204322000000,
+      218505000000,
+      236282000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0157,
+      0.0156,
+      0.0171
+     ],
+     "growth_yoy": [
+      null,
+      0.0694,
+      0.0814
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      -145145000000,
+      -190418000000,
+      -180762000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0111,
+      -0.0136,
+      -0.0131
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13032263000000,
+     13997355000000,
+     13788791000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ifrs-full:CountryOfDomicileMember",
+     "label": "Country of domicile",
+     "values": [
+      86242808000000,
+      91286837000000,
+      95433009000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9859,
+      0.9861,
+      0.9883
+     ],
+     "growth_yoy": [
+      null,
+      0.0585,
+      0.0454
+     ]
+    },
+    {
+     "member": "ifrs-full:ForeignCountriesMember",
+     "label": "Foreign countries",
+     "values": [
+      1233602000000,
+      1291428000000,
+      1134577000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0141,
+      0.0139,
+      0.0117
+     ],
+     "growth_yoy": [
+      null,
+      0.0469,
+      -0.1215
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     87476410000000,
+     92578265000000,
+     96567586000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: rows sum to 149.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/Assets/annual: reconciling row 'Elimination of intersegment amounts' (ifrs-full:EliminationOfIntersegmentAmountsMember) dropped: the other rows already tie to the consolidated total without it",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

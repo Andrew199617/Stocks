@@ -1,0 +1,245 @@
+{
+ "ticker": "NVMI",
+ "cik": 1109345,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T16:15:56-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001109345.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000504/zk2634307.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/NVMI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/NVMI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "NOVA LTD.",
+  "cik": 1109345,
+  "description": {
+   "text": "Nova is a leading innovator and key provider of metrology solutions for advanced process control used in semiconductor manufacturing. Nova delivers continuous innovation by providing high-performance metrology solutions for effective process control throughout the semiconductor fabrication process. We bring pioneering metrology solutions to semiconductors process control, by industrializing lab and research-grade technologies and developing emerging metrology solutions. Nova’s product portfolio, deployed at the world’s largest integrated-circuit manufacturers, combines high-precision hardware and cutting-edge software, and provides its customers with deep insight into the development and production of the most advanced semiconductor devices. Nova’s capability to deliver innovative Optical, X-ray, SIMS and Chemical analysis technology solutions enables its customers to improve performance, enhance product yields and accelerate time to market.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001178913-26-000504",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000504/zk2634307.htm"
+  },
+  "description_short": "Nova is a leading innovator and key provider of material, optical and chemical solutions for advanced metrology and process control in semiconductor manufacturing. Nova delivers continuous innovation by providing state-of-the-art, high-performance solutions for effective process control throughout the semiconductor fabrication lifecycle. Nova's product portfolio, which combines high-precision hardware and cutting-edge software, provides its customers with deep insight into developing and producing the most advanced semiconductor devices. Nova's unique capability to deliver innovative solutions enables its customers to improve performance, enhance product yields, and accelerate time to market. Nova acts as a partner to semiconductor manufacturers from its offices worldwide.",
+  "industry": "Electronic Components",
+  "sector": "Technology",
+  "region": "Middle East",
+  "sic": "3827",
+  "sic_description": "Optical Instruments & Lenses",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.novami.com",
+  "headquarters": "Rehovot, Israel",
+  "address": {
+   "street": "5 David Fikes St.",
+   "city": "Rehovot",
+   "state": null,
+   "zip": "7632805",
+   "country": "Israel",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-17"
+  },
+  "phone": "972-73-229-5600",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-02-12",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "NOVA MEASURING INSTRUMENTS LTD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001109345&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004775",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326004775/zk2636227.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004385",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326004385/zk2636060.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326004024/zk2635904.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003892",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326003892/zk2635873.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003411",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326003411/zk2635645.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003393",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326003393/zk2635640.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003271",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326003271/zk2635584.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002752",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326002752/zk2635355.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002707",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326002707/zk2635332.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002666",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326002666/zk2635325.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-13",
+   "period": "2026-04-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326002082/zk2635064.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000556/zk2634404.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000506",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000506/zk2634385.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001178913-26-000504",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000504/zk2634307.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000434",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000434/zk2634348.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000258",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000258/zk2634266.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000115/zk2634205.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891326000089/zk2634193.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-004119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891325004119/zk2534138.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-003740",
+   "url": "https://www.sec.gov/Archives/edgar/data/1109345/000117891325003740/zk2533983.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-02-17"
+ ]
+}

@@ -1,0 +1,271 @@
+{
+ "ticker": "ICLR",
+ "cik": 1060955,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001628280-26-038487",
+   "filed": "2026-05-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026038487/iclr-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:IE",
+     "label": "IRELAND",
+     "values": [
+      2317527000,
+      2703765000,
+      3183637000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2877,
+      0.3302,
+      0.3858
+     ],
+     "growth_yoy": [
+      null,
+      0.1667,
+      0.1775
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3280018000,
+      2983052000,
+      2524938000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4072,
+      0.3643,
+      0.306
+     ],
+     "growth_yoy": [
+      null,
+      -0.0905,
+      -0.1536
+     ]
+    },
+    {
+     "member": "iclr:RestOfEuropeMember",
+     "label": "Rest Of Europe",
+     "values": [
+      1572883000,
+      1559532000,
+      1590867000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1953,
+      0.1904,
+      0.1928
+     ],
+     "growth_yoy": [
+      null,
+      -0.0085,
+      0.0201
+     ]
+    },
+    {
+     "member": "iclr:RestOfWorldMember",
+     "label": "Rest of World",
+     "values": [
+      884498000,
+      942641000,
+      951898000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1098,
+      0.1151,
+      0.1154
+     ],
+     "growth_yoy": [
+      null,
+      0.0657,
+      0.0098
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8054926000,
+     8188990000,
+     8251340000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:IE",
+     "label": "IRELAND",
+     "values": [
+      840070000,
+      850525000,
+      691431000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9286,
+      0.8238,
+      1.5613
+     ],
+     "growth_yoy": [
+      null,
+      0.0124,
+      -0.1871
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      311209000,
+      245925000,
+      206639000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.344,
+      0.2382,
+      0.4666
+     ],
+     "growth_yoy": [
+      null,
+      -0.2098,
+      -0.1597
+     ]
+    },
+    {
+     "member": "iclr:RestOfEuropeMember",
+     "label": "Rest Of Europe",
+     "values": [
+      152726000,
+      215566000,
+      158929000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1688,
+      0.2088,
+      0.3589
+     ],
+     "growth_yoy": [
+      null,
+      0.4115,
+      -0.2627
+     ]
+    },
+    {
+     "member": "iclr:RestOfWorldMember",
+     "label": "Rest of World",
+     "values": [
+      60513000,
+      70659000,
+      78342000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0669,
+      0.0684,
+      0.1769
+     ],
+     "growth_yoy": [
+      null,
+      0.1677,
+      0.1087
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     904664000,
+     1032384000,
+     442846000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "geography/OperatingIncomeLoss/annual: rows sum to 256.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

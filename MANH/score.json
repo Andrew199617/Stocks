@@ -1,0 +1,86 @@
+{
+ "ticker": "MANH",
+ "name": "Manhattan Associates, Inc.",
+ "sector": "Technology / Supply chain & omnichannel software",
+ "price": 222.17,
+ "market_cap_b": 13.56,
+ "engine_version": 5,
+ "base_oe_per_share": 4.791212299420314,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Tier-1 WMS leader (~15-20% share) on a versionless cloud platform with mission-critical switching costs, 5.5-6yr contracts and RPO of $2.47B, but share is not commanding vs Blue Yonder/SAP/Oracle, roughly half of revenue is low-growth services, and gross margin (53-56%) reflects that mix; ROIC proxy is not meaningful because the net-cash balance sheet makes invested capital near-zero/negative.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 4.30 vs 3-yr median 3.11 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 28.81,
+   "irr": 0.0411
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 41.31,
+   "irr": 0.0493
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 54.84,
+   "irr": 0.0585
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 75.28,
+   "irr": 0.0722
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 111.41,
+   "irr": 0.0944
+  }
+ },
+ "iv_at_15": 57.93,
+ "iv_at_12": 78.44,
+ "implied_irr": 0.061,
+ "implied_irr_base_case": 0.0585,
+ "upside_at_15_pct": -73.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality supply-chain software leader, moat 6/10 \u2014 does not clear 15% at $222.17 (weighted IRR 6.1%, IV@15% $57.93, even super-bull IRR only 9.4%); clears 15% only below ~$58.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0493,
+ "irr_bull": 0.0722,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 39.75,
+ "iv_at_25": 29.93,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 61054000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Mission-critical WMS/TMS/OMS installed base with high switching costs and reimplementation risk for customers",
+  "Versionless Manhattan Active cloud platform, quarterly updates, unified WMS/TMS/store/order suite for cross-sell",
+  "Long contracted backlog: RPO $2.47B at Q2 2026 (+23% YoY), contract duration ~5.5-6 years",
+  "Premium pricing position and >70% win rate cited by management; cloud revenue +26% YoY in Q2 2026",
+  "Asset-light, debt-free, high cash conversion: OE positive 5/5 years, operating margin expanded to 25.9% in FY2025"
+ ],
+ "moat_against": [
+  "No commanding share: Blue Yonder, SAP, Oracle and K\u00f6rber contest every tier-1 deal; WMS share estimated only ~15-20%",
+  "Services is roughly half of revenue and grows ~3%, dragging gross margin to 53-56% vs pure SaaS peers",
+  "Growth decelerated hard in the cloud transition: total revenue +3.7% in FY2025 as license/maintenance attrits",
+  "SBC is heavy and rising: $111.3M in FY2025, 28.6% of OCF, requiring large buybacks ($435M TTM) to shrink the count",
+  "End-demand tied to retail/logistics capex and macro; bookings are lumpy by management's own guidance language"
+ ]
+}

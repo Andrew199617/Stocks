@@ -1,0 +1,1084 @@
+{
+ "ticker": "IP",
+ "cik": 51434,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000051434-26-000055",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000055/ip-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000051434-26-000074",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000074/ip-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000051434-26-000123",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/51434/000005143426000123/ip-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      14293000000,
+      14293000000,
+      15175000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8915,
+      0.9026,
+      0.6421
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.0617
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      1398000000,
+      1355000000,
+      8451000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0872,
+      0.0856,
+      0.3576
+     ],
+     "growth_yoy": [
+      null,
+      -0.0308,
+      5.2369
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      437000000,
+      302000000,
+      197000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0273,
+      0.0191,
+      0.0083
+     ],
+     "growth_yoy": [
+      null,
+      -0.3089,
+      -0.3477
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -95000000,
+      -115000000,
+      -189000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0059,
+      -0.0073,
+      -0.008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16033000000,
+     15835000000,
+     23634000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      3702000000,
+      3860000000,
+      3626000000,
+      3688000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7033,
+      0.6285,
+      0.6073,
+      0.6143
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0205,
+      -0.0446
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      1550000000,
+      2291000000,
+      2323000000,
+      2287000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2945,
+      0.373,
+      0.389,
+      0.3809
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4987,
+      -0.0017
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      46000000,
+      48000000,
+      51000000,
+      48000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0087,
+      0.0078,
+      0.0085,
+      0.008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1087,
+      0.0
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -34000000,
+      -57000000,
+      -29000000,
+      -19000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0065,
+      -0.0093,
+      -0.0049,
+      -0.0032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5264000000,
+     6142000000,
+     5971000000,
+     6004000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      839000000,
+      891000000,
+      572000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9129,
+      0.9369,
+      1.7024
+     ],
+     "growth_yoy": [
+      null,
+      0.062,
+      -0.358
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      80000000,
+      60000000,
+      -236000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0871,
+      0.0631,
+      -0.7024
+     ],
+     "growth_yoy": [
+      null,
+      -0.25,
+      -4.9333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     919000000,
+     951000000,
+     336000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      142000000,
+      277000000,
+      248000000,
+      204000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7553,
+      1.0036,
+      1.2589,
+      1.6452
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.7465,
+      -0.2635
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      46000000,
+      -1000000,
+      -51000000,
+      -80000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2447,
+      -0.0036,
+      -0.2589,
+      -0.6452
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -2.1087,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     188000000,
+     276000000,
+     197000000,
+     124000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      14501000000,
+      16498000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.636,
+      0.4346
+     ],
+     "growth_yoy": [
+      null,
+      0.1377
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      1276000000,
+      15439000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.056,
+      0.4067
+     ],
+     "growth_yoy": [
+      null,
+      11.0995
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      7023000000,
+      6027000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.308,
+      0.1588
+     ],
+     "growth_yoy": [
+      null,
+      -0.1418
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     22800000000,
+     37964000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      16498000000,
+      16718000000,
+      17587000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4346,
+      0.4589,
+      0.4816
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      15439000000,
+      15351000000,
+      15050000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4067,
+      0.4213,
+      0.4121
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      6027000000,
+      4365000000,
+      3884000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1588,
+      0.1198,
+      0.1063
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     37964000000,
+     36434000000,
+     36521000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      1080000000,
+      786000000,
+      1724000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9424,
+      0.9236,
+      0.6276
+     ],
+     "growth_yoy": [
+      null,
+      -0.2722,
+      1.1934
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      64000000,
+      64000000,
+      1020000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0558,
+      0.0752,
+      0.3713
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      14.9375
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1146000000,
+     851000000,
+     2747000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ip:PackagingSolutionsEMEASegmentMember",
+     "label": "Packaging Solutions EMEA Segment",
+     "values": [
+      107000000,
+      195000000,
+      259000000,
+      262000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2058,
+      0.4524,
+      0.5297,
+      0.5369
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.4206,
+      0.3436
+     ]
+    },
+    {
+     "member": "ip:PackagingSolutionsNorthAmericaSegmentMember",
+     "label": "Packaging Solutions North America Segment",
+     "values": [
+      413000000,
+      236000000,
+      230000000,
+      226000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7942,
+      0.5476,
+      0.4703,
+      0.4631
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4431,
+      -0.0424
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     520000000,
+     431000000,
+     489000000,
+     488000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      13777000000,
+      13686000000,
+      14439000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8593,
+      0.8643,
+      0.6109
+     ],
+     "growth_yoy": [
+      null,
+      -0.0066,
+      0.055
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1398000000,
+      1355000000,
+      8451000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0872,
+      0.0856,
+      0.3576
+     ],
+     "growth_yoy": [
+      null,
+      -0.0308,
+      5.2369
+     ]
+    },
+    {
+     "member": "ip:AmericasOtherThanUSMember",
+     "label": "Americas Other Than U S",
+     "values": [
+      821000000,
+      730000000,
+      713000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0512,
+      0.0461,
+      0.0302
+     ],
+     "growth_yoy": [
+      null,
+      -0.1108,
+      -0.0233
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      37000000,
+      64000000,
+      31000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0023,
+      0.004,
+      0.0013
+     ],
+     "growth_yoy": [
+      null,
+      0.7297,
+      -0.5156
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16033000000,
+     15835000000,
+     23634000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3510000000,
+      3655000000,
+      3447000000,
+      3547000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6668,
+      0.5951,
+      0.5773,
+      0.5908
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0179,
+      -0.0295
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1550000000,
+      2291000000,
+      2323000000,
+      2286000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2945,
+      0.373,
+      0.389,
+      0.3807
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4987,
+      -0.0022
+     ]
+    },
+    {
+     "member": "ip:AmericasOtherThanUSMember",
+     "label": "Americas Other Than U S",
+     "values": [
+      193000000,
+      187000000,
+      196000000,
+      169000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0367,
+      0.0304,
+      0.0328,
+      0.0281
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0155,
+      -0.0963
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      11000000,
+      9000000,
+      5000000,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0021,
+      0.0015,
+      0.0008,
+      0.0003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5455,
+      -0.7778
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5264000000,
+     6142000000,
+     5971000000,
+     6004000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Corporate And Eliminations' (ip:CorporateAndEliminationsMember) dropped: its values equal the sum of Intersegment Eliminations, Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Operating Segments Excluding Intersegment Elimination' (ip:OperatingSegmentsExcludingIntersegmentEliminationMember) dropped: its values equal the sum of Packaging Solutions North America Segment, Packaging Solutions EMEA Segment, Intersegment Eliminations",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Corporate And Eliminations' (ip:CorporateAndEliminationsMember) dropped: its values equal the sum of Intersegment Eliminations, Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Operating Segments Excluding Intersegment Elimination' (ip:OperatingSegmentsExcludingIntersegmentEliminationMember) dropped: its values equal the sum of Packaging Solutions North America Segment, Packaging Solutions EMEA Segment, Intersegment Eliminations"
+ ],
+ "complete": true
+}

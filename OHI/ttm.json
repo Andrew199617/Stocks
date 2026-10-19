@@ -1,0 +1,101 @@
+{
+ "ticker": "OHI",
+ "cik": 888491,
+ "entity": "OMEGA HEALTHCARE INVESTORS, INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 878551000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 421217000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 433224000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 890558000
+  },
+  "capex": {
+   "fy": 33589000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsForConstructionInProcess",
+   "ytd_prior": 29731000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsForConstructionInProcess",
+   "ytd_current": 7860000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsForConstructionInProcess",
+   "ttm": 11718000
+  },
+  "sbc": {
+   "fy": 44189000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 25046000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 34043000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 53186000
+  },
+  "shares_diluted": {
+   "fy": 304952000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 299087000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 315690000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 890558000,
+ "ttm_capex": 11718000,
+ "ttm_sbc": 53186000,
+ "ttm_shares_diluted": 315690000,
+ "ttm_oe_total": 825654000,
+ "ttm_oe_per_share": 2.615394849377554,
+ "warnings": [],
+ "overrides_used": []
+}

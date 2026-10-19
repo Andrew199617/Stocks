@@ -1,0 +1,83 @@
+{
+ "ticker": "IEX",
+ "name": "IDEX Corporation",
+ "sector": "Industrials / Engineered components",
+ "price": 235.7,
+ "market_cap_b": 17.75,
+ "engine_version": 5,
+ "base_oe_per_share": 8.224764468371466,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Moderate moat: mission-critical, spec-in engineered components that are a small share of system cost across Fluid & Metering, Health & Science and Fire & Safety niches, with stable ~44-45% gross margins \u2014 but ROIC proxy has fallen from 18.6% in 2019 to 10.1% in 2025, growth is mid-single-digit organic plus acquisitions, and larger diversified industrials compete in adjacent markets.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 35.6,
+   "irr": 0.0416
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 53.34,
+   "irr": 0.0522
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 77.41,
+   "irr": 0.0674
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 97.31,
+   "irr": 0.0792
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 126.34,
+   "irr": 0.0957
+  }
+ },
+ "iv_at_15": 77.08,
+ "iv_at_12": 102.52,
+ "implied_irr": 0.0673,
+ "implied_irr_base_case": 0.0674,
+ "upside_at_15_pct": -67.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality engineered-components compounder, moat 6/10 \u2014 does not clear 15% at $235.70 (weighted IRR 6.7%, weighted IV@15% $77.08); clears 15% only below $77.08, and even the super-bull case yields only 9.6%.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0522,
+ "irr_bull": 0.0792,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 54.26,
+ "iv_at_25": 41.71,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1240800000,
+ "shares_diluted_latest": 75300000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Mission-critical, spec-in components \u2014 small share of total system cost, high cost of failure, real switching friction once designed in",
+  "Pricing power evidenced by gross margin held at 44.2-45.1% over the last five fiscal years (44.5% in FY2025, 46.4% in Q2 2026)",
+  "Diversified niche portfolio (Fluid & Metering, Health & Science, Fire & Safety/Diversified) \u2014 weakness in one end market is partly offset by strength in another",
+  "80/20 discipline and high-mix, low-volume manufacturing model shifting mix toward semiconductor, data-center and space & defense applications",
+  "Disciplined bolt-on M&A platform (e.g. Mott) that adds spec-in positions in adjacent high-value niches"
+ ],
+ "moat_against": [
+  "ROIC proxy declining for six straight years: 18.6% (2019) to 10.1% (2025) \u2014 franchise returns are compressing toward the cost of capital",
+  "Organic growth is only mid-single-digit; reaching higher growth depends on acquisitions, with goodwill-heavy balance sheet risk",
+  "Net income fell from $596.1M in FY2023 to $483.2M in FY2025 despite revenue growth \u2014 acquisition debt, interest and amortization are eating operating gains",
+  "Larger, better-scaled competitors (Eaton, Parker-Hannifin, Emerson, AMETEK, Roper) in adjacent fluid and engineered-component markets",
+  "Cyclical industrial end markets; Q2 2026 strength leans on data-center/semiconductor/space demand and included a one-off tariff refund benefit"
+ ]
+}

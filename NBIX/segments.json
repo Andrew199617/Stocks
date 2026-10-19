@@ -1,0 +1,202 @@
+{
+ "ticker": "NBIX",
+ "cik": 914475,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000914475-26-000007",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/914475/000091447526000007/nbix-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000914475-26-000026",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/914475/000091447526000026/nbix-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000914475-26-000037",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/914475/000091447526000037/nbix-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      1860600000,
+      2330600000,
+      2833900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.986,
+      0.9895,
+      0.9907
+     ],
+     "growth_yoy": [
+      null,
+      0.2526,
+      0.216
+     ]
+    },
+    {
+     "member": "nbix:CollaborationRevenueMember",
+     "label": "Collaboration Revenue",
+     "values": [
+      26500000,
+      24700000,
+      26600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.014,
+      0.0105,
+      0.0093
+     ],
+     "growth_yoy": [
+      null,
+      -0.0679,
+      0.0769
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1887100000,
+     2355300000,
+     2860500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      563700000,
+      682000000,
+      811000000,
+      954300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9845,
+      0.992,
+      0.9957,
+      0.9951
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4387,
+      0.3993
+     ]
+    },
+    {
+     "member": "nbix:CollaborationRevenueMember",
+     "label": "Collaboration Revenue",
+     "values": [
+      8900000,
+      5500000,
+      3500000,
+      4700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0155,
+      0.008,
+      0.0043,
+      0.0049
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.6067,
+      -0.1455
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     572600000,
+     687500000,
+     814500000,
+     959000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (nbix:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (nbix:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (nbix:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (nbix:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

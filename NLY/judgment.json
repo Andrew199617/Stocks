@@ -1,0 +1,43 @@
+{
+ "capex_override": {
+  "ack_reason": "The out-of-band flag is mechanical only: the band is computed against the last FILED capex value and Annaly has never filed one under a candidate tag in the gated years (last_filed_value is null), so every value flags out-of-band, including the filing-proven $0. The figure is established by the filer's own cash-flow statements (see source), and no filed capex value exists in any gated period to anchor an estimate to.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads because Annaly, a mortgage REIT holding financial assets, buys no property or equipment and reports no capex line; the filer's own cash-flow statements fully account for investing activities in all three years, so PPE capex is $0 as a filing fact, not an estimate (same treatment as the EG/RGLD/DFTX precedents in this sweep). Measured impact is nil: the engine's history already carried capex as assumed-zero, so the override changes no OE figure \u2014 it converts a silent zero-fill into a sourced, registered decision.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Consolidated Statements of Cash Flows (p. F-6): the investing-activities section lists only payments/proceeds on securities, loans, MSR and interests in MSR, reverse repurchase agreements and JV distributions for FY2025, FY2024 and FY2023 \u2014 there is no purchases-of-property-and-equipment (or any PPE capex) line in any of the three years, and the balance sheet carries no property-and-equipment line (engine ppe_net is blank for every year). The statement fully reconciles without one (dollars in thousands): FY2025 operating 692,911 + investing (27,362,734) + financing 27,219,634 = the reported net increase in cash 549,811 exactly; FY2024: 3,310,659 - 14,984,830 + 11,750,050 = reported 75,879 exactly; FY2023: 2,367,203 - 8,415,890 + 5,884,121 = reported (164,566) exactly. EDGAR companyfacts for CIK 1043219 contains no PaymentsToAcquirePropertyPlantAndEquipment fact in any year.",
+  "value": 0
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No pricing power: Agency MBS spreads and repo funding costs are market-set; the product is a commodity financial asset",
+  "Structural leverage (GAAP 7.2x / economic 5.6x at YE2025) makes book value hostage to rate and spread moves",
+  "Persistent equity dilution: diluted share count +15.9%/yr CAGR in the engine history (ATM issuance), DPS cut in 2023 and 5-yr DPS CAGR -5.1% (fundamentals.json)",
+  "ROE is cyclical and sign-flipping (-14.6% in 2023) \u2014 no through-cycle return on capital above the cost of equity is demonstrated"
+ ],
+ "moat_for": [
+  "Scale and liquidity: largest U.S. mREIT, $9.4B of assets available for financing at YE2025, preferred access to repo and securitization markets",
+  "Diversified three-engine platform (Agency MBS / Residential Credit / MSR) \u2014 MSR and credit partly offset Agency spread risk across rate cycles",
+  "Internally managed (no external-manager fee drag) with a 25+ year operating history through multiple rate cycles"
+ ],
+ "moat_justification": "Weak: scale ($135.6B assets, largest U.S. mortgage REIT), deep repo/swap market access and a diversified three-engine platform (Agency MBS, Residential Credit, MSR) are real but replicable advantages \u2014 the assets are commodity securities anyone with financing can buy, spreads are set by the market, and there is no pricing power. Measured returns confirm no durable franchise: fundamentals.json roic_proxy is null for every year (no operating-income tag is filed) and gross margin is null (no revenue tag), while ROE swung from -14.6% (2023) to +7.9% (2024) to +12.6% (2025) \u2014 rate/spread-driven, not franchise-driven.",
+ "moat_score": 3,
+ "name": "Annaly Capital Management, Inc.",
+ "one_liner": "Diversified mortgage REIT with scale but no pricing power, moat 3/10 \u2014 on filing-direct TTM owner's earnings ($1.17/share) it cannot clear the 15% hurdle at $18.23 (weighted IRR 8.3%, weighted IV@15% $8.54; clears 15% only below ~$8.54); the 3-yr median base prints a fake Tier S off noncash mark-to-market addbacks and the company's own EAD ($2.92/share FY2025) reaches only Tier B \u2014 sector model misfit, confidence low.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.25,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine's sanity band anchors on the last FILED SBC value and Annaly has filed no ShareBasedCompensation value in any gated period (last_filed_value is null in the engine's history window), so no in-band value exists. The $28.0M is not an estimate \u2014 it is the equity-based compensation expense Annaly itself disclosed in Note 14 of its FY2025 10-K.",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads; the filer's own 10-K Note 14 discloses the equity-based compensation expense for each year ($17.3M / $23.2M / $28.0M). A single override value fills every untagged year, so the latest filed year (FY2025, $28.0M) is used for all years: it overstates FY2024 and FY2023, i.e. it errs in the conservative direction (more SBC = lower owner's earnings), and the amount is immaterial either way \u2014 $28M is ~$0.04/share against a normalized OE base of several dollars per share (under ~1% of the base in each gated year).",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12), Note 14 Long-Term Stock Incentive Plan (p. F-30): 'The Company recognized equity-based compensation expense of $28.0 million for the year ended December 31, 2025.' The same note in the FY2024 10-K reports $23.2 million for FY2024 and in the FY2023 10-K $17.3 million for FY2023 \u2014 EDGAR companyfacts carries no ShareBasedCompensation annual fact for 2023-2025 (the tag was last filed for FY2009), so the expense is disclosed only in this note.",
+  "value": 28000000
+ },
+ "sector": "Real Estate / Mortgage REIT",
+ "tier_override": null,
+ "tier_override_reason": null
+}

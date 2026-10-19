@@ -1,0 +1,211 @@
+{
+ "ticker": "J",
+ "cik": 52988,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-25-053316",
+   "filed": "2025-11-20",
+   "period": "2025-09-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/52988/000162828025053316/jec-20250926_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-030528",
+   "filed": "2026-05-05",
+   "period": "2026-03-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/52988/000162828026030528/jec-20260327_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-052573",
+   "filed": "2026-08-04",
+   "period": "2026-06-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/52988/000162828026052573/jec-20260626_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-29",
+    "2024-09-27",
+    "2025-09-26"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "jec:InfrastructureAdvancedFacilitiesMember",
+     "label": "Infrastructure & Advanced Facilities",
+     "values": [
+      733602000,
+      798375000,
+      903548000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0844,
+      1.153,
+      1.0462
+     ],
+     "growth_yoy": [
+      null,
+      0.0883,
+      0.1317
+     ]
+    },
+    {
+     "member": "jec:PAConsultingMember",
+     "label": "PA Consulting",
+     "values": [
+      237003000,
+      239250000,
+      278499000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3503,
+      0.3455,
+      0.3225
+     ],
+     "growth_yoy": [
+      null,
+      0.0095,
+      0.1641
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     676484000,
+     692436000,
+     863634000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-28",
+    "2025-06-27",
+    "2025-09-26",
+    "2026-03-27",
+    "2026-06-26"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jec:InfrastructureAdvancedFacilitiesMember",
+     "label": "Infrastructure & Advanced Facilities",
+     "values": [
+      203265000,
+      235975000,
+      254034000,
+      225223000,
+      268125000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9742,
+      1.0041,
+      1.2008,
+      -2.7745,
+      0.9352
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.108,
+      0.1362
+     ]
+    },
+    {
+     "member": "jec:PAConsultingMember",
+     "label": "PA Consulting",
+     "values": [
+      67347000,
+      72418000,
+      71997000,
+      79864000,
+      73643000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3228,
+      0.3081,
+      0.3403,
+      -0.9838,
+      0.2569
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1859,
+      0.0169
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     208648000,
+     235014000,
+     211555000,
+     -81176000,
+     286703000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 136.9% of the consolidated total for 2025-09-26 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 119.2% of the consolidated total for 2026-06-26 (ties_to_total: false)"
+ ],
+ "complete": true
+}

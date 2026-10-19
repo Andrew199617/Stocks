@@ -1,0 +1,85 @@
+{
+ "ticker": "JAZZ",
+ "name": "Jazz Pharmaceuticals plc",
+ "sector": "Healthcare / Specialty pharmaceuticals (neuroscience & oncology)",
+ "price": 210.23,
+ "market_cap_b": 12.82,
+ "engine_version": 5,
+ "base_oe_per_share": 18.946725663716816,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Patent-protected niche franchises with real friction \u2014 oxybate REMS controlled distribution, Epidiolex patents into the late 2030s, ~88% GAAP gross margin \u2014 but returns on the acquisition-inflated capital base have been poor: roic_proxy 10-13% in 2016-19 fell to 1.4% (2021), -0.7% (2022), 5.8% (2023), 7.3% (2024), -4.1% (2025, IPR&D-depressed). The largest franchise (Xywav) faces generic high-sodium oxybate payer pressure, once-nightly Lumryz, and orexin agonists in development. Moderate/narrow moat, not wide.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 3.4x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (11.7%) vs bull-case tier B (18.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 95.51,
+   "irr": 0.0798
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 153.47,
+   "irr": 0.1169
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 209.68,
+   "irr": 0.1497
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 283.07,
+   "irr": 0.1878
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 363.34,
+   "irr": 0.2252
+  }
+ },
+ "iv_at_15": 217.92,
+ "iv_at_12": 293.07,
+ "implied_irr": 0.1542,
+ "implied_irr_base_case": 0.1497,
+ "upside_at_15_pct": 3.7,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "medium",
+ "one_liner": "Cash-generative specialty pharma, moat 5/10 \u2014 clears 15% only just and only on the TTM base (weighted IRR 15.4%, IV@15 $218 vs $210 price); on the 3-yr median base it does not clear (14.2%, Tier C), so size it to the bear end, not as a full B.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1169,
+ "irr_bull": 0.1878,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 150.92,
+ "iv_at_25": 114.45,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3966358000,
+ "shares_diluted_latest": 60981000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Oxybate REMS controlled-distribution platform creates switching friction for Xywav/Xyrem",
+  "Epidiolex patent protection into the late 2030s (ANDA litigations resolved)",
+  "High product gross margins (~88% GAAP per company guidance) on orphan/rare-disease pricing",
+  "Diversifying oncology launches: Ziihera (HER2+ GEA, peak sales est. raised to $3-5B) and Modeyso"
+ ],
+ "moat_against": [
+  "ROIC collapsed after the GW acquisition: roic_proxy 1.4%/-0.7%/5.8%/7.3%/-4.1% for 2021-25 vs 10-13% in 2016-19",
+  "Xywav concentration (~39% of Q2 2026 revenue) faces generic high-sodium oxybate payer pressure from H2 2026 and once-nightly Lumryz",
+  "Orexin agonists in development (Takeda, Axsome) threaten the narcolepsy franchise longer term",
+  "Growth is bought: recurring acquisition IPR&D ($948M in 2025, Chimerix; $820M Actio closed Sep 2026) sits outside owner's earnings",
+  "Leverage: net debt $3.97B = 3.4x normalized OE"
+ ]
+}

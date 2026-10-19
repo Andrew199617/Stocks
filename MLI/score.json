@@ -1,0 +1,86 @@
+{
+ "ticker": "MLI",
+ "name": "Mueller Industries, Inc.",
+ "sector": "Industrials / Nonferrous metals \u2014 copper, brass & piping products",
+ "price": 60.07,
+ "market_cap_b": 6.7,
+ "engine_version": 5,
+ "base_oe_per_share": 2.8789468456836382,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Dominant, vertically integrated North American copper tube/fittings and brass franchise with ROIC well above the cost of capital through the cycle, but the products are commodity fabrications with low switching costs and earnings are leveraged to copper prices and the construction cycle.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 4.3x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict",
+  "TIER_BAND: bear-case tier D (7.2%) vs bull-case tier C (11.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 13.76,
+   "irr": 0.0515
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 22.54,
+   "irr": 0.0725
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.28,
+   "irr": 0.0928
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 42.95,
+   "irr": 0.1177
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 66.45,
+   "irr": 0.1609
+  }
+ },
+ "iv_at_15": 33.78,
+ "iv_at_12": 45.64,
+ "implied_irr": 0.0987,
+ "implied_irr_base_case": 0.0928,
+ "upside_at_15_pct": -43.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality cyclical metals franchise, moat 6/10 \u2014 on the post-split TTM base it does not clear 15% at $60.07 (weighted IRR 9.9%, weighted IV@15% $33.78); it clears 15% only at or below ~$33.78.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0725,
+ "irr_bull": 0.1177,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 23.25,
+ "iv_at_25": 17.55,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -1367003000,
+ "shares_diluted_latest": 111492000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Only vertically integrated North American manufacturer of copper tube & fittings, brass rod and forgings \u2014 structural scale/cost position",
+  "ROIC proxy 33\u201349% across FY2021\u201325 and 12\u201318% in the soft FY2016\u201320 years (fundamentals.json) \u2014 above the cost of capital through a cycle",
+  "Pricing power via copper cost pass-through with spread capture \u2014 operating margin expanded from 10.3% (FY2020) to 22.9% TTM",
+  "Net-cash balance sheet ($1.367B cash, no debt filed at FY2025) funds dividends, buybacks and accretive M&A (Bison Metals, Chicago Extruded Metals)",
+  "Established wholesale distribution and spec position in plumbing/HVACR; US tariffs on semi-finished copper imports favor the domestic footprint"
+ ],
+ "moat_against": [
+  "Commodity fabrication products \u2014 low switching costs; competition from Wieland, Cambridge-Lee, Cerro Flow and imports",
+  "Earnings leveraged to COMEX copper and the construction cycle (roughly half of demand construction-linked); FY2017 owner's earnings were negative",
+  "Headline revenue growth is inflated by copper price pass-through (COMEX +30.6% YoY in Q2 2026), not volume alone",
+  "Gross margin volatile \u2014 Q2 2026 27.7% vs 31.0% a year earlier; prior-year quarter included a $36.3M insurance gain",
+  "No recurring revenue or contractual lock-in \u2014 returns depend on sustaining a favorable metal spread"
+ ]
+}

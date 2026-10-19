@@ -1,0 +1,87 @@
+{
+ "ticker": "NYT",
+ "name": "The New York Times Company",
+ "sector": "Media / Digital subscription publishing",
+ "price": 67.78,
+ "market_cap_b": 11.18,
+ "engine_version": 5,
+ "base_oe_per_share": 3.334245351157467,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Brand trust plus the multi-product bundle (News, Games, Cooking, Wirecutter, The Athletic) creates real habit and switching friction at 13.35M subscribers, with proven price step-ups; but ROIC is mid-teens (10.8% in 2022 to 18.4% in 2025), not wide-moat through a cycle, and discovery is hostage to search/AI platforms.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 2.89 vs 3-yr median 1.89 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.6%) vs bull-case tier C (12.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 16.69,
+   "irr": 0.0539
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 27.34,
+   "irr": 0.0765
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 37.94,
+   "irr": 0.098
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 52.09,
+   "irr": 0.1241
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 80.54,
+   "irr": 0.169
+  }
+ },
+ "iv_at_15": 39.73,
+ "iv_at_12": 53.77,
+ "implied_irr": 0.1018,
+ "implied_irr_base_case": 0.098,
+ "upside_at_15_pct": -41.4,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality debt-free subscription compounder, moat 6/10 \u2014 but at $67.78 the weighted IRR is only 10.2% (IV@15% $39.73); it does not clear 15% until ~$40, and the bear-to-bull band (D to C) says size to the bear end.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0765,
+ "irr_bull": 0.1241,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 27.28,
+ "iv_at_25": 20.55,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 164943000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scarce trusted news brand; the bundle (News + Games + Cooking + Wirecutter + Athletic) builds daily habit and lowers churn",
+  "Direct paid relationship at scale: 13.35M total subscribers, 12.80M digital-only (Q2 2026)",
+  "Proven pricing power: digital-only ARPU $9.94, +3.1% YoY in Q2 2026, on promo step-ups and tenured price increases",
+  "Journalism cost spread over millions of subscribers; operating margin expanded 8.7% (2022) to 15.3% (2025) to 16.0% TTM"
+ ],
+ "moat_against": [
+  "AI answers and search-referral erosion threaten discovery; platform dependence for new-subscriber funnel",
+  "News is partially substitutable and attention competition is intense; US subscriber pool eventually saturates and bundle adds dilute ARPU",
+  "Print is in structural decline and legacy costs remain a drag",
+  "Content and video investment keeps adjusted costs growing 8-9%; OpenAI/Microsoft litigation is expensive and a fair-use loss would weaken AI licensing leverage"
+ ]
+}

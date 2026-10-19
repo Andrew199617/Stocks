@@ -1,0 +1,86 @@
+{
+ "ticker": "NXT",
+ "name": "Nextpower Inc.",
+ "sector": "Clean energy / Solar trackers & power technology",
+ "price": 80.04,
+ "market_cap_b": 12.22,
+ "engine_version": 5,
+ "base_oe_per_share": 2.7143029666990706,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Clear #1 global tracker share (~26%), bankability and TrueCapture software with ROIC proxy 46-72% in the clean post-IPO years (FY24-26) and gross margin expanded to ~33%, but trackers are bid project-by-project, margins are partly policy-made (45X credits), and there is no recurring-revenue lock-in.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (8.5%) vs bull-case tier C (13.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 21.52,
+   "irr": 0.0608
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 35.22,
+   "irr": 0.0851
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 48.78,
+   "irr": 0.107
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 66.76,
+   "irr": 0.1329
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 102.63,
+   "irr": 0.1759
+  }
+ },
+ "iv_at_15": 47.99,
+ "iv_at_12": 66.57,
+ "implied_irr": 0.1061,
+ "implied_irr_base_case": 0.107,
+ "upside_at_15_pct": -40.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "High-quality solar-tracker leader, moat 6/10 \u2014 but at $80.04 it does not clear 15% (10.6% weighted IRR, IV@15 $47.99 vs $80.04); it clears 15% only at ~$48.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0851,
+ "irr_bull": 0.1329,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 31.79,
+ "iv_at_25": 23.23,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 152710033,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Global tracker leader (~26% share) \u2014 scale, bankability and field record developers pay for",
+  "TrueCapture / Hail Pro software and integrated bundles (tracker + eBOS + foundations) raise switching friction",
+  "Proven pricing power \u2014 gross margin 15.1% (FY23) to 32.6% (FY26) / 33.4% TTM",
+  "ROIC proxy 72.0% / 59.2% / 46.2% (FY24-26), far above cost of capital, on an asset-light model",
+  "Net-cash, investment-grade balance sheet and >$5.5B backlog"
+ ],
+ "moat_against": [
+  "Per-project bidding vs Array, GameChange, Arctech \u2014 no lock-in beyond backlog",
+  "Gross margin flattered by IRA 45X credits / tariff recoveries (~$99M in Q1 FY27) that management expects to normalize",
+  "83% U.S. revenue concentration \u2014 full exposure to U.S. tax-credit, tariff and permitting policy",
+  "SBC rising fast ($32M FY23 to $128M TTM) and share count +1.54%/yr dilute OE/share compounding",
+  "High-ROIC record is only three clean years \u2014 pre-IPO Flex capital structure makes earlier ROIC meaningless"
+ ]
+}

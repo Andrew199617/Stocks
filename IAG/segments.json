@@ -1,0 +1,257 @@
+{
+ "ticker": "IAG",
+ "cik": 1203464,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001062993-26-001022",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1203464/000106299326001022/form40f_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iag:GoldMineSegmentsMember",
+     "label": "Gold Mine Segments",
+     "values": [
+      1690500000,
+      2906900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0352,
+      1.019
+     ],
+     "growth_yoy": [
+      null,
+      0.7196
+     ]
+    },
+    {
+     "member": "iag:Corporate1Member",
+     "label": "Corporate1",
+     "values": [
+      -57500000,
+      -54100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0352,
+      -0.019
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1633000000,
+     2852800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "iag:GoldMineSegmentsMember",
+     "label": "Gold Mine Segments",
+     "values": [
+      1068900000,
+      1244100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1323,
+      1.1376
+     ],
+     "growth_yoy": [
+      null,
+      0.1639
+     ]
+    },
+    {
+     "member": "iag:ExplorationAndEvaluationSegmentMember",
+     "label": "Exploration And Evaluation Segment",
+     "values": [
+      -15900000,
+      -31000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0168,
+      -0.0283
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "iag:Corporate1Member",
+     "label": "Corporate1",
+     "values": [
+      -109000000,
+      -119500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1155,
+      -0.1093
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     944000000,
+     1093600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "iag:GoldMineSegmentsMember",
+     "label": "Gold Mine Segments",
+     "values": [
+      5044400000,
+      5201900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9386,
+      0.8888
+     ],
+     "growth_yoy": [
+      null,
+      0.0312
+     ]
+    },
+    {
+     "member": "iag:ExplorationAndEvaluationSegmentMember",
+     "label": "Exploration And Evaluation Segment",
+     "values": [
+      77700000,
+      418700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0145,
+      0.0715
+     ],
+     "growth_yoy": [
+      null,
+      4.3887
+     ]
+    },
+    {
+     "member": "iag:Corporate1Member",
+     "label": "Corporate1",
+     "values": [
+      252300000,
+      231900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0469,
+      0.0396
+     ],
+     "growth_yoy": [
+      null,
+      -0.0809
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5374400000,
+     5852500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

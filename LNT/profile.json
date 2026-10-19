@@ -1,0 +1,287 @@
+{
+ "ticker": "LNT",
+ "cik": 352541,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T15:55:32-04:00",
+ "newest_filing_date": "2026-08-21",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000352541.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000007/lnt-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LNT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LNT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ALLIANT ENERGY CORP",
+  "cik": 352541,
+  "description": {
+   "text": "Alliant Energy operates as a regulated investor-owned public utility holding company, and its purpose-driven strategy is to serve its customers and build stronger communities. Alliant Energy’s primary focus is to provide regulated electric and natural gas service to approximately 1,010,000 electric and approximately 435,000 natural gas customers in the Midwest through its two public utility subsidiaries, IPL and WPL. The primary first tier wholly-owned subsidiaries of Alliant Energy are as follows: 1) IPL - is a public utility engaged principally in the generation and distribution of electricity and the distribution and transportation of natural gas to retail customers in select markets in Iowa. IPL provides utility services to incorporated communities as directed by the IUC and utilizes non-exclusive franchises, which cover the use of public right-of-ways for utility facilities in incorporated communities for a maximum term of 25 years. At December 31, 2025, IPL supplied electric and natural gas service to approximately 505,000 and 230,000 retail customers, respectively, in Iowa. IPL also sells electricity to wholesale customers in Illinois and Iowa and was engaged in the generation and distribution of steam for two customers in Cedar Rapids, Iowa, which were each under contract through 2025 for taking minimum quantities of annual steam usage, with certain conditions. Subsequent to December 31, 2025, IPL exited the steam business.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0000352541-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000007/lnt-20251231.htm"
+  },
+  "description_short": "Alliant Energy is the parent company of two public utility companies - Interstate Power and Light Company and Wisconsin Power and Light Company - and of Alliant Energy Finance, LLC, the parent company of Alliant Energy's non-utility operations. Alliant Energy, whose core purpose is to serve customers and build stronger communities, is an energy-services provider with utility subsidiaries serving approximately 1,010,000 electric and 435,000 natural gas customers. Providing its customers in the Midwest with regulated electricity and natural gas service is the Company's primary focus. Alliant Energy, headquartered in Madison, Wisconsin, is a component of the S&P 500 and is traded on the Nasdaq Global Select Market under the symbol LNT. For more information, visit the Company's website at www.alliantenergy.com.",
+  "industry": "Power Generation",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4931",
+  "sic_description": "Electric & Other Services Combined",
+  "state_of_incorporation": "WI",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.alliantenergy.com",
+  "headquarters": "Madison, Wisconsin",
+  "address": {
+   "street": "4902 N. Biltmore Lane",
+   "city": "Madison",
+   "state": "Wisconsin",
+   "zip": "53718",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "608-458-3311",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-07",
+  "first_sec_filing_form": "10-K/A",
+  "former_names": [
+   "ALLIANT ENERGY CORP",
+   "INTERSTATE ENERGY CORP",
+   "WPL HOLDINGS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000352541&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-21",
+   "period": "2026-08-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-360020",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000119312526360020/d440334d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000352541-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000043/lnt-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000352541-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000042/lnt-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000352541-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000036/lnt-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000352541-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000033/lnt-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000352541-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000030/lnt-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000352541-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000025/lnt-20260330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-19",
+   "period": "2026-03-19",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-116244",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000119312526116244/d131241d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000352541-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000009/lnt-20260302.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000352541-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000007/lnt-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000352541-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000005/lnt-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000352541-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254126000003/lnt-20260105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000352541-25-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000089/lnt-20251210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-05",
+   "period": "2025-12-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000352541-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000085/lnt-20251202.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000352541-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000081/lnt-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000352541-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000079/lnt-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-26",
+   "period": "2025-09-23",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000352541-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000076/lnt-20250923.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-11",
+   "period": "2025-09-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000352541-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000074/lnt-20250908.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000352541-25-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000072/lnt-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-08",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000352541-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/352541/000035254125000070/lnt-20250807.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-20"
+ ]
+}

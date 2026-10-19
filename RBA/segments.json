@@ -1,0 +1,629 @@
+{
+ "ticker": "RBA",
+ "cik": 1046102,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-011682",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026011682/rba-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-029808",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026029808/rba-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-052582",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026052582/rba-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rba:BuyerRevenueMember",
+     "label": "Buyer Revenue",
+     "values": [
+      1593200000,
+      2067100000,
+      2238300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.433,
+      0.4825,
+      0.4876
+     ],
+     "growth_yoy": [
+      null,
+      0.2975,
+      0.0828
+     ]
+    },
+    {
+     "member": "rba:RevenueFromInventorySalesMember",
+     "label": "Inventory sales revenue",
+     "values": [
+      947100000,
+      920600000,
+      1088500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2574,
+      0.2149,
+      0.2371
+     ],
+     "growth_yoy": [
+      null,
+      -0.028,
+      0.1824
+     ]
+    },
+    {
+     "member": "rba:SellerRevenueMember",
+     "label": "Seller Revenue",
+     "values": [
+      851700000,
+      939400000,
+      928800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2315,
+      0.2193,
+      0.2023
+     ],
+     "growth_yoy": [
+      null,
+      0.103,
+      -0.0113
+     ]
+    },
+    {
+     "member": "rba:MarketplaceServicesFeesMember",
+     "label": "Marketplace services revenue",
+     "values": [
+      287600000,
+      357100000,
+      335100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0782,
+      0.0834,
+      0.073
+     ],
+     "growth_yoy": [
+      null,
+      0.2417,
+      -0.0616
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3679600000,
+     4284200000,
+     4590700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rba:BuyerRevenueMember",
+     "label": "Buyer Revenue",
+     "values": [
+      556700000,
+      560600000,
+      577500000,
+      610900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5022,
+      0.4727,
+      0.4678,
+      0.4638
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0374,
+      0.0897
+     ]
+    },
+    {
+     "member": "rba:RevenueFromInventorySalesMember",
+     "label": "Inventory sales revenue",
+     "values": [
+      256100000,
+      298800000,
+      336900000,
+      383700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.231,
+      0.2519,
+      0.2729,
+      0.2913
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3155,
+      0.2841
+     ]
+    },
+    {
+     "member": "rba:SellerRevenueMember",
+     "label": "Seller Revenue",
+     "values": [
+      216800000,
+      241000000,
+      241300000,
+      239200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1956,
+      0.2032,
+      0.1954,
+      0.1816
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.113,
+      -0.0075
+     ]
+    },
+    {
+     "member": "rba:MarketplaceServicesFeesMember",
+     "label": "Marketplace services revenue",
+     "values": [
+      79000000,
+      85600000,
+      78900000,
+      83300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0713,
+      0.0722,
+      0.0639,
+      0.0632
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0013,
+      -0.0269
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1108600000,
+     1186000000,
+     1234600000,
+     1317100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2591600000,
+      3094100000,
+      3307200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7043,
+      0.7222,
+      0.7204
+     ],
+     "growth_yoy": [
+      null,
+      0.1939,
+      0.0689
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      551500000,
+      640600000,
+      695600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1499,
+      0.1495,
+      0.1515
+     ],
+     "growth_yoy": [
+      null,
+      0.1616,
+      0.0859
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      321800000,
+      333000000,
+      338900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0875,
+      0.0777,
+      0.0738
+     ],
+     "growth_yoy": [
+      null,
+      0.0348,
+      0.0177
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      136700000,
+      137200000,
+      151200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0372,
+      0.032,
+      0.0329
+     ],
+     "growth_yoy": [
+      null,
+      0.0037,
+      0.102
+     ]
+    },
+    {
+     "member": "rba:OtherCountriesMember",
+     "label": "Other",
+     "values": [
+      78000000,
+      79300000,
+      97800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0212,
+      0.0185,
+      0.0213
+     ],
+     "growth_yoy": [
+      null,
+      0.0167,
+      0.2333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3679600000,
+     4284200000,
+     4590700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      854700000,
+      815700000,
+      874900000,
+      897200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.771,
+      0.6878,
+      0.7087,
+      0.6812
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0236,
+      0.0999
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      124900000,
+      213800000,
+      151800000,
+      207000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1127,
+      0.1803,
+      0.123,
+      0.1572
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2154,
+      -0.0318
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      17100000,
+      53100000,
+      71400000,
+      98100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0154,
+      0.0448,
+      0.0578,
+      0.0745
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.1754,
+      0.8475
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      90600000,
+      78600000,
+      105500000,
+      80900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0817,
+      0.0663,
+      0.0855,
+      0.0614
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1645,
+      0.0293
+     ]
+    },
+    {
+     "member": "rba:OtherCountriesMember",
+     "label": "Other",
+     "values": [
+      21300000,
+      24800000,
+      31000000,
+      33900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0192,
+      0.0209,
+      0.0251,
+      0.0257
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4554,
+      0.3669
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1108600000,
+     1186000000,
+     1234600000,
+     1317100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable Segment' (rba:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/Revenues/quarterly: row 'Reportable Segment' (rba:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/annual: row 'Reportable Segment' (rba:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/quarterly: row 'Reportable Segment' (rba:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Reportable Segment' (rba:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Reportable Segment' (rba:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/Revenues/annual: row 'Service revenue' (rba:ServiceRevenuesMember) dropped: it is the parent of Buyer Revenue, Marketplace services revenue, Seller Revenue in the filing's definition linkbase",
+  "product/Revenues/quarterly: row 'Service revenue' (rba:ServiceRevenuesMember) dropped: it is the parent of Buyer Revenue, Marketplace services revenue, Seller Revenue in the filing's definition linkbase"
+ ],
+ "complete": true
+}

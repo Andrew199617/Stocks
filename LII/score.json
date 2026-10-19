@@ -1,0 +1,86 @@
+{
+ "ticker": "LII",
+ "name": "Lennox International Inc",
+ "sector": "Industrials / HVAC equipment",
+ "price": 357.73,
+ "market_cap_b": 12.66,
+ "engine_version": 5,
+ "base_oe_per_share": 18.045714285714286,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Big-four North American HVAC oligopoly with premium brand, direct dealer network and proven pricing power \u2014 roic_proxy 33-52% over the last five fiscal years and gross margin up from 27-28% to 33.4% \u2014 but low end-customer switching costs, equally strong Trane/Carrier/Daikin rivals, housing cyclicality and R-454B transition risk keep it moderate, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.7%) vs bull-case tier C (10.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 75.1,
+   "irr": 0.048
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 122.98,
+   "irr": 0.0672
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 170.7,
+   "irr": 0.0861
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 214.57,
+   "irr": 0.1024
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 304.38,
+   "irr": 0.1333
+  }
+ },
+ "iv_at_15": 161.99,
+ "iv_at_12": 215.31,
+ "implied_irr": 0.083,
+ "implied_irr_base_case": 0.0861,
+ "upside_at_15_pct": -54.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality HVAC oligopolist, moat 6/10 \u2014 but at $357.73 it does not clear 15% in any scenario (weighted IRR 8.3%, IV@15% $161.99); it would need to fall to ~$162 to clear the 15% hurdle.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0672,
+ "irr_bull": 0.1024,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 114.13,
+ "iv_at_25": 87.8,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1354200000,
+ "shares_diluted_latest": 35400000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Big-four oligopoly structure with rational pricing in North American HVAC",
+  "Premium residential brand and highest-tier efficiency ratings",
+  "Direct-to-dealer distribution relationship",
+  "Commercial/BCS share gains and national-account wins in 2026, plus bolt-on M&A breadth",
+  "Replacement-driven demand (~75% of residential sales) cushions new-construction cycles"
+ ],
+ "moat_against": [
+  "Low end-customer switching costs \u2014 the installer/dealer owns the replacement decision",
+  "Trane extending its commercial lead; Carrier/Daikin match on efficiency and scale",
+  "No meaningful recurring/service revenue moat",
+  "Housing- and rate-sensitive earnings (residential volumes -12% YoY in Q2 2026)",
+  "R-454B refrigerant transition cost and share-loss risk; regulatory/tax-credit policy shifts"
+ ]
+}

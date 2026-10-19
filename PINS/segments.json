@@ -1,0 +1,252 @@
+{
+ "ticker": "PINS",
+ "cik": 1506293,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001506293-26-000021",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1506293/000150629326000021/pins-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001506293-26-000068",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1506293/000150629326000068/pins-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001506293-26-000104",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1506293/000150629326000104/pins-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pins:UnitedStatesAndCanadaMember",
+     "label": "United States And Canada",
+     "values": [
+      2350188000,
+      2739887000,
+      3052639000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7693,
+      0.7514,
+      0.7231
+     ],
+     "growth_yoy": [
+      null,
+      0.1658,
+      0.1141
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      501290000,
+      601187000,
+      779092000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1641,
+      0.1649,
+      0.1845
+     ],
+     "growth_yoy": [
+      null,
+      0.1993,
+      0.2959
+     ]
+    },
+    {
+     "member": "pins:RestOfWorldMember",
+     "label": "Rest Of World",
+     "values": [
+      203593000,
+      305092000,
+      390036000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0666,
+      0.0837,
+      0.0924
+     ],
+     "growth_yoy": [
+      null,
+      0.4985,
+      0.2784
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3055071000,
+     3646166000,
+     4221767000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pins:UnitedStatesAndCanadaMember",
+     "label": "United States And Canada",
+     "values": [
+      632134000,
+      721801000,
+      717448000,
+      842607000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7393,
+      0.7231,
+      0.7121,
+      0.7143
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.135,
+      0.1674
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      147176000,
+      189620000,
+      192096000,
+      223428000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1721,
+      0.19,
+      0.1907,
+      0.1894
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3052,
+      0.1783
+     ]
+    },
+    {
+     "member": "pins:RestOfWorldMember",
+     "label": "Rest Of World",
+     "values": [
+      75678000,
+      86806000,
+      97970000,
+      113619000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0885,
+      0.087,
+      0.0972,
+      0.0963
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2946,
+      0.3089
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     854988000,
+     998227000,
+     1007514000,
+     1179654000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (United States And Canada, Europe, Rest Of World)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (United States And Canada, Europe, Rest Of World)"
+ ],
+ "complete": true
+}

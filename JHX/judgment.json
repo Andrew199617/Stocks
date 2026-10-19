@@ -1,0 +1,34 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Housing-cycle beta: volumes and plant utilization swing with US housing; FY26 Siding & Trim EBITDA margin compressed ~400bp on underutilization",
+  "Cheaper substitutes (vinyl ~25-30% of siding, wood, stucco) cap pricing in a downturn",
+  "ROIC fading pre-deal: 23.4% FY22 → 20.5% FY23 → 19.8% FY24 → 15.9% FY25 → 2.1% FY26 (fundamentals.json roic_proxy); gross margin 40.4% FY24 → 35.8% FY26",
+  "AZEK leverage and integration: net debt $4.27B (was $0.56B pre-deal); decking faces Trex head-on",
+  "Legacy asbestos funding obligation (AICF) is a permanent cash drag unique to Hardie",
+  "Capital-intensive: capex $258-591M/yr over the last five fiscal years"
+ ],
+ "moat_for": [
+  "~90% share of North American fiber cement; Hardie brand is the category",
+  "National multi-year builder agreements and deep dealer/channel partnerships",
+  "Proven pricing power — ASP +2% in a weak housing market (Q2 FY26)",
+  "Repair & remodel ~60-65% of demand — less cyclical than new construction",
+  "Material-conversion runway: fiber cement on only ~8% of existing US homes; $23B conversion opportunity cited at Sept 2026 Investor Day",
+  "AZEK adds leading composite deck/rail brand and exterior cross-sell; $125M cost synergies tracking a year ahead of schedule"
+ ],
+ "moat_justification": "~90% North American fiber-cement share, the Hardie brand, national builder agreements and proven pricing power (ASP +2% in a weak Q2 FY26 market), with repair/remodel ~60-65% of demand softening the cycle and AZEK adding the leading composite decking brand — against housing cyclicality, cheaper vinyl/wood substitutes, Trex competition in decking, a legacy asbestos funding obligation, and pre-AZEK ROIC already fading from 23.4% (FY22) to 15.9% (FY25) before collapsing to 2.1% in the FY26 acquisition trough.",
+ "moat_score": 6,
+ "name": "James Hardie Industries plc",
+ "one_liner": "Dominant fiber-cement franchise, moat 6/10, transformed and levered by the $8.75B AZEK deal — at $25.82 the market is paying for synergies and a housing recovery, but TTM owner's earnings of $0.54/share support only a 5.1% weighted IRR (weighted IV@15% $5.02); it clears the 15% hurdle only below ~$5.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.17,
+  0.08
+ ],
+ "sector": "Building Products / Fiber cement & exterior solutions",
+ "tier_override": null,
+ "tier_override_reason": null
+}

@@ -1,0 +1,1084 @@
+{
+ "ticker": "NWSA",
+ "cik": 1564708,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001564708-26-000029",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000029/nws-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001564708-26-000103",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000103/nws-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001564708-26-000175",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1564708/000156470826000175/nws-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nws:DowJonesSegmentMember",
+     "label": "Dow Jones Segment",
+     "values": [
+      2231000000,
+      2331000000,
+      2497000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2704,
+      0.2758,
+      0.2766
+     ],
+     "growth_yoy": [
+      null,
+      0.0448,
+      0.0712
+     ]
+    },
+    {
+     "member": "nws:BookPublishingSegmentMember",
+     "label": "Book Publishing Segment",
+     "values": [
+      2093000000,
+      2149000000,
+      2288000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2536,
+      0.2543,
+      0.2534
+     ],
+     "growth_yoy": [
+      null,
+      0.0268,
+      0.0647
+     ]
+    },
+    {
+     "member": "nws:NewsAndInformationServicesSegmentMember",
+     "label": "News and Information Services Segment",
+     "values": [
+      2270000000,
+      2170000000,
+      2227000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2751,
+      0.2567,
+      0.2467
+     ],
+     "growth_yoy": [
+      null,
+      -0.0441,
+      0.0263
+     ]
+    },
+    {
+     "member": "nws:DigitalRealEstateServicesSegmentMember",
+     "label": "Digital Real Estate Services Segment",
+     "values": [
+      1658000000,
+      1802000000,
+      2016000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2009,
+      0.2132,
+      0.2233
+     ],
+     "growth_yoy": [
+      null,
+      0.0869,
+      0.1188
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8252000000,
+     8452000000,
+     9028000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nws:DowJonesSegmentMember",
+     "label": "Dow Jones Segment",
+     "values": [
+      600000000,
+      575000000,
+      604000000,
+      648000000,
+      619000000,
+      644000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.2681,
+      0.2862,
+      0.2864,
+      0.2743,
+      0.2833,
+      0.2756
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.08,
+      0.0765,
+      0.0662
+     ]
+    },
+    {
+     "member": "nws:NewsAndInformationServicesSegmentMember",
+     "label": "News and Information Services Segment",
+     "values": [
+      570000000,
+      514000000,
+      545000000,
+      570000000,
+      538000000,
+      574000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.2547,
+      0.2558,
+      0.2584,
+      0.2413,
+      0.2462,
+      0.2456
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0,
+      0.0467,
+      0.0532
+     ]
+    },
+    {
+     "member": "nws:BookPublishingSegmentMember",
+     "label": "Book Publishing Segment",
+     "values": [
+      595000000,
+      514000000,
+      494000000,
+      633000000,
+      555000000,
+      566000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.2659,
+      0.2558,
+      0.2342,
+      0.268,
+      0.254,
+      0.2422
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0639,
+      0.0798,
+      0.1457
+     ]
+    },
+    {
+     "member": "nws:DigitalRealEstateServicesSegmentMember",
+     "label": "Digital Real Estate Services Segment",
+     "values": [
+      473000000,
+      406000000,
+      466000000,
+      511000000,
+      473000000,
+      553000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.2113,
+      0.2021,
+      0.221,
+      0.2163,
+      0.2165,
+      0.2366
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0803,
+      0.165,
+      0.1867
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2238000000,
+     2009000000,
+     2109000000,
+     2362000000,
+     2185000000,
+     2337000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "FY2026 end"
+   ],
+   "rows": [
+    {
+     "member": "nws:DowJonesSegmentMember",
+     "label": "Dow Jones Segment",
+     "values": [
+      4134000000,
+      4159000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2666,
+      0.2676
+     ],
+     "growth_yoy": [
+      null,
+      0.006
+     ]
+    },
+    {
+     "member": "nws:DigitalRealEstateServicesSegmentMember",
+     "label": "Digital Real Estate Services Segment",
+     "values": [
+      3202000000,
+      3515000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2065,
+      0.2261
+     ],
+     "growth_yoy": [
+      null,
+      0.0978
+     ]
+    },
+    {
+     "member": "nws:BookPublishingSegmentMember",
+     "label": "Book Publishing Segment",
+     "values": [
+      2767000000,
+      2743000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1785,
+      0.1765
+     ],
+     "growth_yoy": [
+      null,
+      -0.0087
+     ]
+    },
+    {
+     "member": "nws:NewsAndInformationServicesSegmentMember",
+     "label": "News and Information Services Segment",
+     "values": [
+      2102000000,
+      2044000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1356,
+      0.1315
+     ],
+     "growth_yoy": [
+      null,
+      -0.0276
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      2283000000,
+      2081000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1473,
+      0.1339
+     ],
+     "growth_yoy": [
+      null,
+      -0.0885
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15504000000,
+     15544000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nws:DowJonesSegmentMember",
+     "label": "Dow Jones Segment",
+     "values": [
+      4134000000,
+      4104000000,
+      4137000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2666,
+      0.2646,
+      0.2666
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "nws:DigitalRealEstateServicesSegmentMember",
+     "label": "Digital Real Estate Services Segment",
+     "values": [
+      3202000000,
+      3378000000,
+      3412000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2065,
+      0.2178,
+      0.2199
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "nws:BookPublishingSegmentMember",
+     "label": "Book Publishing Segment",
+     "values": [
+      2767000000,
+      3003000000,
+      2834000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1785,
+      0.1936,
+      0.1827
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "nws:NewsAndInformationServicesSegmentMember",
+     "label": "News and Information Services Segment",
+     "values": [
+      2102000000,
+      2095000000,
+      2133000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1356,
+      0.1351,
+      0.1375
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      2283000000,
+      1927000000,
+      2000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1473,
+      0.1242,
+      0.1289
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     15504000000,
+     15510000000,
+     15516000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nws:CirculationAndSubscriptionMember",
+     "label": "Circulation And Subscription",
+     "values": [
+      2909000000,
+      3009000000,
+      3203000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3525,
+      0.356,
+      0.3548
+     ],
+     "growth_yoy": [
+      null,
+      0.0344,
+      0.0645
+     ]
+    },
+    {
+     "member": "nws:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      2000000000,
+      2047000000,
+      2185000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2424,
+      0.2422,
+      0.242
+     ],
+     "growth_yoy": [
+      null,
+      0.0235,
+      0.0674
+     ]
+    },
+    {
+     "member": "us-gaap:RealEstateMember",
+     "label": "Real Estate",
+     "values": [
+      1284000000,
+      1410000000,
+      1571000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1556,
+      0.1668,
+      0.174
+     ],
+     "growth_yoy": [
+      null,
+      0.0981,
+      0.1142
+     ]
+    },
+    {
+     "member": "us-gaap:AdvertisingMember",
+     "label": "Advertising",
+     "values": [
+      1400000000,
+      1367000000,
+      1391000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1697,
+      0.1617,
+      0.1541
+     ],
+     "growth_yoy": [
+      null,
+      -0.0236,
+      0.0176
+     ]
+    },
+    {
+     "member": "nws:OtherProductOrServiceMember",
+     "label": "Other Product or Service",
+     "values": [
+      659000000,
+      619000000,
+      678000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0799,
+      0.0732,
+      0.0751
+     ],
+     "growth_yoy": [
+      null,
+      -0.0607,
+      0.0953
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8252000000,
+     8452000000,
+     9028000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "nws:CirculationAndSubscriptionMember",
+     "label": "Circulation And Subscription",
+     "values": [
+      745000000,
+      755000000,
+      766000000,
+      792000000,
+      809000000,
+      820000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.3329,
+      0.3758,
+      0.3632,
+      0.3353,
+      0.3703,
+      0.3509
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0631,
+      0.0715,
+      0.0705
+     ]
+    },
+    {
+     "member": "nws:ConsumerMember",
+     "label": "Consumer",
+     "values": [
+      572000000,
+      492000000,
+      462000000,
+      607000000,
+      530000000,
+      538000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.2556,
+      0.2449,
+      0.2191,
+      0.257,
+      0.2426,
+      0.2302
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0612,
+      0.0772,
+      0.1645
+     ]
+    },
+    {
+     "member": "us-gaap:RealEstateMember",
+     "label": "Real Estate",
+     "values": [
+      377000000,
+      318000000,
+      358000000,
+      401000000,
+      365000000,
+      435000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1685,
+      0.1583,
+      0.1697,
+      0.1698,
+      0.167,
+      0.1861
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0637,
+      0.1478,
+      0.2151
+     ]
+    },
+    {
+     "member": "us-gaap:AdvertisingMember",
+     "label": "Advertising",
+     "values": [
+      385000000,
+      308000000,
+      353000000,
+      389000000,
+      322000000,
+      363000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.172,
+      0.1533,
+      0.1674,
+      0.1647,
+      0.1474,
+      0.1553
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0104,
+      0.0455,
+      0.0283
+     ]
+    },
+    {
+     "member": "nws:OtherProductOrServiceMember",
+     "label": "Other Product or Service",
+     "values": [
+      159000000,
+      136000000,
+      170000000,
+      173000000,
+      159000000,
+      181000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.071,
+      0.0677,
+      0.0806,
+      0.0732,
+      0.0728,
+      0.0774
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0881,
+      0.1691,
+      0.0647
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2238000000,
+     2009000000,
+     2109000000,
+     2362000000,
+     2185000000,
+     2337000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3900000000,
+      4000000000,
+      4200000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4726,
+      0.4733,
+      0.4652
+     ],
+     "growth_yoy": [
+      null,
+      0.0256,
+      0.05
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      2100000000,
+      2200000000,
+      2400000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2545,
+      0.2603,
+      0.2658
+     ],
+     "growth_yoy": [
+      null,
+      0.0476,
+      0.0909
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      1300000000,
+      1200000000,
+      1300000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1575,
+      0.142,
+      0.144
+     ],
+     "growth_yoy": [
+      null,
+      -0.0769,
+      0.0833
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     8252000000,
+     8452000000,
+     9028000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: rows sum to 93.6% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "business_segments/Assets/quarterly: rows sum to 93.6% of the consolidated total for 2026-03-31 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'United States And Canada' (nws:UnitedStatesAndCanadaMember) dropped: it is the parent of UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Europe' (srt:EuropeMember) dropped: it is the parent of UNITED KINGDOM in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Australasia And Other' (nws:AustralasiaAndOtherMember) dropped: it is the parent of AUSTRALIA in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 87.5% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

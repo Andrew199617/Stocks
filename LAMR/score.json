@@ -1,0 +1,85 @@
+{
+ "ticker": "LAMR",
+ "name": "Lamar Advertising Company",
+ "sector": "Real Estate / REIT \u2014 Outdoor advertising",
+ "price": 150.1,
+ "market_cap_b": 15.26,
+ "engine_version": 5,
+ "base_oe_per_share": 6.663821019902756,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Scarce permitted billboard locations and the largest US outdoor network give durable local pricing power, with ROIC 12.3%/12.5%/14.7%/12.5%/17.1% in 2021-2025 and gross margin stable at ~67% (fundamentals.json), but advertising is cyclical, online/social platforms compete for the same budgets, leases and permits renew, and leverage is high \u2014 moderate moat, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 5.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 32.09,
+   "irr": 0.0497
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 46.0,
+   "irr": 0.0627
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 60.4,
+   "irr": 0.0763
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 75.09,
+   "irr": 0.0897
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 95.36,
+   "irr": 0.1072
+  }
+ },
+ "iv_at_15": 61.14,
+ "iv_at_12": 81.15,
+ "implied_irr": 0.0771,
+ "implied_irr_base_case": 0.0763,
+ "upside_at_15_pct": -59.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Solid billboard REIT, moat 6/10 \u2014 does not clear 15% on owner's-earnings DCF (7.7% weighted IRR, IV@15% $61.14 vs $150.10 price; clears 15% only below ~$61); sector AFFO model fits better, so confidence is low.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0627,
+ "irr_bull": 0.0897,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 43.15,
+ "iv_at_25": 33.24,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3354095000,
+ "shares_diluted_latest": 101634142,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Scarce, permit-restricted billboard locations that are largely irreplaceable in high-traffic corridors",
+  "Largest US outdoor network and scale, concentrated in secondary/local markets with an entrenched local sales force",
+  "Digital billboard scale \u2014 small share of faces drives a disproportionate share of billboard revenue, with programmatic growth",
+  "Stable ~67% gross margin and ROIC in the 12-17% range through 2021-2025 (fundamentals.json)"
+ ],
+ "moat_against": [
+  "Advertising spend is highly cyclical \u2014 a recession cuts revenue directly",
+  "Competition for ad budgets from online/social platforms",
+  "Ground-lease renewals, zoning and permit regulation can erode or displace sites",
+  "High leverage: net debt $3.354B plus $1.487B lease liabilities (dcf_numbers.json)"
+ ]
+}

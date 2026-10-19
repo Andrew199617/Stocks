@@ -1,0 +1,445 @@
+{
+ "ticker": "PNW",
+ "cik": 764622,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000764622-26-000011",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/764622/000076462226000011/pnw-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000764622-26-000025",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/764622/000076462226000025/pnw-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000764622-26-000041",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/764622/000076462226000041/pnw-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember",
+     "label": "Reportable Segment, Aggregation before Other Operating Segment",
+     "values": [
+      25988000000,
+      29886000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9956,
+      0.9952
+     ],
+     "growth_yoy": [
+      null,
+      0.15
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      115000000,
+      146000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0044,
+      0.0049
+     ],
+     "growth_yoy": [
+      null,
+      0.2696
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     26102760000,
+     30031599000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember",
+     "label": "Reportable Segment, Aggregation before Other Operating Segment",
+     "values": [
+      29886000000,
+      30524000000,
+      32401000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9952,
+      0.9946,
+      0.9946
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      146000000,
+      167000000,
+      176000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0049,
+      0.0054,
+      0.0054
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     30031599000,
+     30690627000,
+     32576874000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pnw:ElectricandTransmissionServiceMember",
+     "label": "Electric and Transmission Service",
+     "values": [
+      4651000000,
+      5073000000,
+      5319000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9904,
+      0.9899,
+      0.9961
+     ],
+     "growth_yoy": [
+      null,
+      0.0907,
+      0.0485
+     ]
+    },
+    {
+     "member": "pnw:TransmissionServicesMember",
+     "label": "Transmission Services",
+     "values": [
+      138631000,
+      119038000,
+      129667000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0295,
+      0.0232,
+      0.0243
+     ],
+     "growth_yoy": [
+      null,
+      -0.1413,
+      0.0893
+     ]
+    },
+    {
+     "member": "pnw:WholesaleMember",
+     "label": "Wholesale",
+     "values": [
+      208985000,
+      96857000,
+      108661000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0445,
+      0.0189,
+      0.0203
+     ],
+     "growth_yoy": [
+      null,
+      -0.5365,
+      0.1219
+     ]
+    },
+    {
+     "member": "pnw:OtherServicesMember",
+     "label": "Other Services",
+     "values": [
+      10763000,
+      11273000,
+      17355000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0023,
+      0.0022,
+      0.0033
+     ],
+     "growth_yoy": [
+      null,
+      0.0474,
+      0.5395
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4695991000,
+     5124915000,
+     5339939000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "pnw:ElectricandTransmissionServiceMember",
+     "label": "Electric and Transmission Service",
+     "values": [
+      1019000000,
+      1345000000,
+      1124000000,
+      1451000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9871,
+      0.9899,
+      0.9777,
+      0.9967
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.103,
+      0.0788
+     ]
+    },
+    {
+     "member": "pnw:TransmissionServicesMember",
+     "label": "Transmission Services",
+     "values": [
+      25547000,
+      31996000,
+      32027000,
+      29188000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0247,
+      0.0235,
+      0.0279,
+      0.0201
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2537,
+      -0.0878
+     ]
+    },
+    {
+     "member": "pnw:WholesaleMember",
+     "label": "Wholesale",
+     "values": [
+      24824000,
+      17893000,
+      14976000,
+      13709000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.024,
+      0.0132,
+      0.013,
+      0.0094
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3967,
+      -0.2338
+     ]
+    },
+    {
+     "member": "pnw:OtherServicesMember",
+     "label": "Other Services",
+     "values": [
+      8129000,
+      3158000,
+      7160000,
+      8882000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0079,
+      0.0023,
+      0.0062,
+      0.0061
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1192,
+      1.8125
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1032280000,
+     1358751000,
+     1149597000,
+     1455749000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 104.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 103.2% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

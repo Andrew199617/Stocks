@@ -1,0 +1,87 @@
+{
+ "ticker": "RBA",
+ "name": "RB Global, Inc",
+ "sector": "Industrials / Business services \u2014 asset marketplaces & auctions",
+ "price": 84.3,
+ "market_cap_b": 15.76,
+ "engine_version": 5,
+ "base_oe_per_share": 2.955662393162393,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: genuine liquidity network effects and scale as the largest used heavy-equipment marketplace plus IAA's entrenched insurer position in the two-player salvage market, a hard-to-replicate yard/site network, and ancillary data services \u2014 but measured returns cap it at 5: the ROIC proxy fell from 25.4% (FY2022, pre-IAA) to 4.6% (2023) and has recovered only to 7.8% (2024) / 7.6% (2025), below cost of capital on the post-deal capital base; operating margin is mid-teens (15.5% FY2025, 16.0% TTM; gross margin not filed in fundamentals.json); Copart is the stronger salvage rival; and the Q2 2026 service take rate fell 110bp to 20.0%, evidence against current pricing power.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 18.6%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 3.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 16.38,
+   "irr": 0.0486
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 23.22,
+   "irr": 0.0599
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.73,
+   "irr": 0.0743
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 42.85,
+   "irr": 0.0923
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 59.65,
+   "irr": 0.1173
+  }
+ },
+ "iv_at_15": 32.32,
+ "iv_at_12": 43.38,
+ "implied_irr": 0.0756,
+ "implied_irr_base_case": 0.0743,
+ "upside_at_15_pct": -61.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Leading commercial-asset marketplace (Ritchie Bros. + IAA), moat 5/10 \u2014 does not clear 15% at $84.30 (weighted IRR 7.6%, IV@15% $32.32; even super bull is 11.7%); it clears 15% only near $32.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0599,
+ "irr_bull": 0.0923,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 22.44,
+ "iv_at_25": 17.05,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1940000000,
+ "shares_diluted_latest": 186900000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Liquidity network effects \u2014 largest buyer/seller pool for used heavy equipment and transportation assets, 40+ auction sites",
+  "IAA's entrenched insurer relationships in salvage vehicles \u2014 a two-player market with Copart",
+  "Physical yard/site network and local permits that take years to replicate",
+  "Ancillary data/services (Rouse, SmartEquip, VeriTread) deepening seller lock-in",
+  "Trusted brands \u2014 Ritchie Bros. since 1958, IAA in salvage"
+ ],
+ "moat_against": [
+  "Copart \u2014 entrenched, higher-margin rival setting the bar in salvage",
+  "ROIC proxy only 7.6-7.8% in 2024-25 post-IAA (vs 25.4% pre-deal in 2022) \u2014 deal capital not yet earning its cost",
+  "Service revenue take rate fell 110bp to 20.0% in Q2 2026 \u2014 pricing/mix pressure, no proven pricing power now",
+  "Cyclical GTV (construction, transport, auto) and insurer-controlled salvage supply",
+  "Growth partly bought (BigIron $316.6M, Blackmon $17M in 2026) \u2014 goodwill keeps stacking"
+ ]
+}

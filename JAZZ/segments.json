@@ -1,0 +1,943 @@
+{
+ "ticker": "JAZZ",
+ "cik": 1232524,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001232524-26-000013",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000013/jazz-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001232524-26-000025",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000025/jazz-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001232524-26-000045",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252426000045/jazz-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "jazz:XywavMember",
+     "label": "Xywav",
+     "values": [
+      1272977000,
+      1473202000,
+      1656986000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.332,
+      0.3621,
+      0.3883
+     ],
+     "growth_yoy": [
+      null,
+      0.1573,
+      0.1248
+     ]
+    },
+    {
+     "member": "jazz:EpidiolexEpidyolexMember",
+     "label": "Epidiolex/Epidyolex",
+     "values": [
+      845468000,
+      972423000,
+      1059197000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2205,
+      0.239,
+      0.2482
+     ],
+     "growth_yoy": [
+      null,
+      0.1502,
+      0.0892
+     ]
+    },
+    {
+     "member": "jazz:RylazeEnrylazeMember",
+     "label": "Rylaze/Enrylaze",
+     "values": [
+      394226000,
+      410846000,
+      402920000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1028,
+      0.101,
+      0.0944
+     ],
+     "growth_yoy": [
+      null,
+      0.0422,
+      -0.0193
+     ]
+    },
+    {
+     "member": "jazz:ZepzelcaMember",
+     "label": "Zepzelca",
+     "values": [
+      289533000,
+      320318000,
+      307309000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0755,
+      0.0787,
+      0.072
+     ],
+     "growth_yoy": [
+      null,
+      0.1063,
+      -0.0406
+     ]
+    },
+    {
+     "member": "jazz:HighSodiumAGOxybateProductRoyaltyRevenueMember",
+     "label": "High Sodium AG Oxybate Product Royalty Revenue",
+     "values": [
+      75918000,
+      217575000,
+      211725000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0198,
+      0.0535,
+      0.0496
+     ],
+     "growth_yoy": [
+      null,
+      1.8659,
+      -0.0269
+     ]
+    },
+    {
+     "member": "jazz:DefitelioDefibrotideMember",
+     "label": "Defitelio/Defibrotide",
+     "values": [
+      184000000,
+      216565000,
+      199392000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.048,
+      0.0532,
+      0.0467
+     ],
+     "growth_yoy": [
+      null,
+      0.177,
+      -0.0793
+     ]
+    },
+    {
+     "member": "jazz:VyxeosMember",
+     "label": "Vyxeos",
+     "values": [
+      147495000,
+      162595000,
+      146709000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0385,
+      0.04,
+      0.0344
+     ],
+     "growth_yoy": [
+      null,
+      0.1024,
+      -0.0977
+     ]
+    },
+    {
+     "member": "jazz:XyremMember",
+     "label": "Xyrem",
+     "values": [
+      569730000,
+      233816000,
+      146034000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1486,
+      0.0575,
+      0.0342
+     ],
+     "growth_yoy": [
+      null,
+      -0.5896,
+      -0.3754
+     ]
+    },
+    {
+     "member": "jazz:ModeysoMember",
+     "label": "Modeyso",
+     "values": [
+      0,
+      0,
+      48043000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0113
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "jazz:OtherRoyaltiesAndContractRevenueMember",
+     "label": "Other Royalties And Contract Revenue",
+     "values": [
+      21343000,
+      30211000,
+      34012000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0056,
+      0.0074,
+      0.008
+     ],
+     "growth_yoy": [
+      null,
+      0.4155,
+      0.1258
+     ]
+    },
+    {
+     "member": "jazz:ZiiheraMember",
+     "label": "Ziihera",
+     "values": [
+      0,
+      1051000,
+      24810000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0003,
+      0.0058
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      22.6061
+     ]
+    },
+    {
+     "member": "_other",
+     "label": "Other (2 smaller rows)",
+     "values": [
+      33514000,
+      30348000,
+      30449000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0087,
+      0.0075,
+      0.0071
+     ],
+     "growth_yoy": [
+      null,
+      -0.0945,
+      0.0033
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3834204000,
+     4068950000,
+     4267586000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jazz:XywavMember",
+     "label": "Xywav",
+     "values": [
+      344800000,
+      415300000,
+      408200000,
+      471200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.384,
+      0.3972,
+      0.3819,
+      0.39
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1839,
+      0.1346
+     ]
+    },
+    {
+     "member": "jazz:EpidiolexEpidyolexMember",
+     "label": "Epidiolex/Epidyolex",
+     "values": [
+      217700000,
+      251700000,
+      249800000,
+      292100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2425,
+      0.2407,
+      0.2337,
+      0.2417
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1475,
+      0.1605
+     ]
+    },
+    {
+     "member": "jazz:ZepzelcaMember",
+     "label": "Zepzelca",
+     "values": [
+      63000000,
+      74500000,
+      101000000,
+      105800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0702,
+      0.0712,
+      0.0945,
+      0.0876
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6032,
+      0.4201
+     ]
+    },
+    {
+     "member": "jazz:RylazeEnrylazeMember",
+     "label": "Rylaze/Enrylaze",
+     "values": [
+      94200000,
+      100700000,
+      103700000,
+      99500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1049,
+      0.0963,
+      0.097,
+      0.0823
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1008,
+      -0.0119
+     ]
+    },
+    {
+     "member": "jazz:DefitelioDefibrotideMember",
+     "label": "Defitelio/Defibrotide",
+     "values": [
+      40700000,
+      48100000,
+      47400000,
+      62000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0453,
+      0.046,
+      0.0443,
+      0.0513
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1646,
+      0.289
+     ]
+    },
+    {
+     "member": "jazz:ModeysoMember",
+     "label": "Modeyso",
+     "values": [
+      0,
+      500000,
+      41400000,
+      48200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0005,
+      0.0387,
+      0.0399
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      95.4
+     ]
+    },
+    {
+     "member": "jazz:HighSodiumAGOxybateProductRoyaltyRevenueMember",
+     "label": "High Sodium AG Oxybate Product Royalty Revenue",
+     "values": [
+      48900000,
+      54100000,
+      36300000,
+      42200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0545,
+      0.0517,
+      0.034,
+      0.0349
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2577,
+      -0.22
+     ]
+    },
+    {
+     "member": "jazz:VyxeosMember",
+     "label": "Vyxeos",
+     "values": [
+      29500000,
+      44900000,
+      26600000,
+      31400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0329,
+      0.0429,
+      0.0249,
+      0.026
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0983,
+      -0.3007
+     ]
+    },
+    {
+     "member": "jazz:XyremMember",
+     "label": "Xyrem",
+     "values": [
+      37200000,
+      35400000,
+      31200000,
+      30500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0414,
+      0.0339,
+      0.0292,
+      0.0252
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1613,
+      -0.1384
+     ]
+    },
+    {
+     "member": "jazz:ZiiheraMember",
+     "label": "Ziihera",
+     "values": [
+      2000000,
+      6000000,
+      13300000,
+      15400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0022,
+      0.0057,
+      0.0124,
+      0.0127
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      5.65,
+      1.5667
+     ]
+    },
+    {
+     "member": "jazz:OtherRoyaltyAndContractRevenuesMember",
+     "label": "Other Royalty And Contract Revenues",
+     "values": [
+      9500000,
+      6000000,
+      7300000,
+      10000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0106,
+      0.0057,
+      0.0068,
+      0.0083
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2316,
+      0.6667
+     ]
+    },
+    {
+     "member": "jazz:OtherProductsMember",
+     "label": "Other Products",
+     "values": [
+      10300000,
+      8500000,
+      2700000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0115,
+      0.0081,
+      0.0025,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.7379,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     897800000,
+     1045700000,
+     1068900000,
+     1208300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3489977000,
+      3660109000,
+      3831598000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9102,
+      0.8995,
+      0.8978
+     ],
+     "growth_yoy": [
+      null,
+      0.0487,
+      0.0469
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      269243000,
+      312706000,
+      341122000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0702,
+      0.0769,
+      0.0799
+     ],
+     "growth_yoy": [
+      null,
+      0.1614,
+      0.0909
+     ]
+    },
+    {
+     "member": "jazz:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      74984000,
+      96135000,
+      94866000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0196,
+      0.0236,
+      0.0222
+     ],
+     "growth_yoy": [
+      null,
+      0.2821,
+      -0.0132
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3834204000,
+     4068950000,
+     4267586000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      797900000,
+      936300000,
+      959800000,
+      1077900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8887,
+      0.8954,
+      0.8979,
+      0.8921
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2029,
+      0.1512
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      83600000,
+      82700000,
+      92400000,
+      97400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0931,
+      0.0791,
+      0.0864,
+      0.0806
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1053,
+      0.1778
+     ]
+    },
+    {
+     "member": "jazz:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      16300000,
+      26700000,
+      16700000,
+      33000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0182,
+      0.0255,
+      0.0156,
+      0.0273
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0245,
+      0.236
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     897800000,
+     1045700000,
+     1068900000,
+     1208300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Neuroscience' (jazz:TotalNeuroscienceMember) dropped: its name marks it as a subtotal of the other rows",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Oncology' (jazz:TotalOncologyMember) dropped: its name marks it as a subtotal of the other rows",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product And Services, Product Sales Net Of Deductions' (jazz:ProductAndServicesProductSalesNetOfDeductionsMember) dropped: it is the parent of Defitelio/Defibrotide, Epidiolex/Epidyolex, Modeyso, Other Products, Rylaze/Enrylaze, Sativex, Vyxeos, Xyrem, Xywav, Zepzelca, Ziihera in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product And Services, Royalties And Contract Revenue' (jazz:ProductAndServicesRoyaltiesAndContractRevenueMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Xywav, Xyrem, Epidiolex/Epidyolex, Sativex, Rylaze/Enrylaze, Zepzelca, Defitelio/Defibrotide, Vyxeos, Modeyso, Ziihera, Other Products, High Sodium AG Oxybate Product Royalty Revenue, Other Royalties And Contract Revenue)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: 13 rows; the 2 smallest (Sativex, Other Products) are summed into one 'Other' row",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product And Services, Product Sales Net Of Deductions' (jazz:ProductAndServicesProductSalesNetOfDeductionsMember) dropped: it is the parent of Defitelio/Defibrotide, Epidiolex/Epidyolex, Epilepsy, Modeyso, Oncology, Other Products, Rylaze/Enrylaze, Sleep, Vyxeos, Xyrem, Xywav, Zepzelca, Ziihera in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Sleep' (jazz:SleepMember) dropped: it is the parent of Xyrem, Xywav in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Epilepsy' (jazz:EpilepsyMember) dropped: it is the parent of Epidiolex/Epidyolex in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Oncology' (jazz:OncologyMember) dropped: it is the parent of Defitelio/Defibrotide, Modeyso, Rylaze/Enrylaze, Vyxeos, Zepzelca, Ziihera in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product And Services, Royalties And Contract Revenue' (jazz:ProductAndServicesRoyaltiesAndContractRevenueMember) dropped: its values equal the sum of High Sodium AG Oxybate Product Royalty Revenue, Other Royalty And Contract Revenues"
+ ],
+ "complete": true
+}

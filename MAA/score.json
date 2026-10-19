@@ -1,0 +1,105 @@
+{
+ "ticker": "MAA",
+ "name": "Mid-America Apartment Communities, Inc.",
+ "sector": "Real Estate / Apartment REIT",
+ "price": 116.63,
+ "market_cap_b": 13.66,
+ "engine_version": 5,
+ "base_oe_per_share": 5.761324310433442,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Scale, platform and cheap long-dated capital are real but modest advantages in a commodity business: apartments have no network effects, no lock-in beyond a 12-month lease and no pricing power against new supply (new-lease rates -5.3% in Q2 2026). Filed returns confirm it \u2014 ROE ~8-11% recently, not the sustained well-above-cost-of-capital record a 7+ moat requires. Moat 4/10 (weak).",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0001193125-26-041208), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $360,238,000 FY2025, $322,372,000 FY2024, $341,224,000 FY2023); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 26.47,
+   "irr": 0.0515
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 35.72,
+   "irr": 0.062
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 45.42,
+   "irr": 0.0734
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 56.11,
+   "irr": 0.0857
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 72.85,
+   "irr": 0.1045
+  }
+ },
+ "iv_at_15": 46.51,
+ "iv_at_12": 61.17,
+ "implied_irr": 0.0748,
+ "implied_irr_base_case": 0.0734,
+ "upside_at_15_pct": -60.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality Sun Belt apartment REIT, moat 4/10 \u2014 scale, expense discipline and a 4.5x-levered balance sheet are real, but apartments are a commodity with no pricing power against new supply (new-lease rates -5.3% in Q2 2026, same-store NOI guided negative for 2026); on a TTM owner's-earnings base of $5.76/share after charging filed capital-improvements capex, weighted IRR is 7.5% (IV@15% $46.51) at $116.63, so it clears the 15% hurdle only below ~$47 \u2014 the REIT lens (FY2026 Core FFO guided at $8.53/share, DPS TTM $6.075) is kinder than the OE lens, but neither supports 15% at this price.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.062,
+ "irr_bull": 0.0857,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 33.25,
+ "iv_at_25": 25.88,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 117149000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale: ~105,000 units across 16 Sun Belt states \u2014 the largest apartment REIT platform, with in-house development, redevelopment and renovation capability (interior renovations earning ~25% cash-on-cash, Q2 2026 call)",
+  "Operating platform and expense discipline: same-store opex growth held to ~80-90 bps YoY through Q2 2026 while revenue fell, record-low resident turnover of 39.6% and renewal pricing +5.2%",
+  "Balance-sheet strength as a competitive tool: net debt/EBITDA ~4.5x, ~6-year average maturity at a 3.9% effective rate (Q2 2026 call) \u2014 cheaper, longer capital than private landlords",
+  "Diversified Sun Belt footprint across primary and mid-tier markets cushions single-market supply shocks (mid-tier markets outperforming high-supply ones in 2026)"
+ ],
+ "moat_against": [
+  "Apartments are a commodity product \u2014 Q2 2026 new-lease rates were -5.3% under Sun Belt oversupply, proving no pricing power when supply lands",
+  "Low tenant switching costs; leases are 12-month and residents can move to a competing new property with concessions",
+  "Returns are capped by replacement cost / cap-rate arbitrage \u2014 new supply is the permanent competitor",
+  "ROE has run only ~8-11% in recent years (fundamentals.json) and the roic_proxy series is not computable from the filed presentation \u2014 no evidence of sustained returns well above the cost of capital",
+  "Sun Belt concentration: the same migration markets (Austin, Phoenix, Charlotte, Nashville) took the record supply wave"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 341224000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0001193125-26-041208), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $360,238,000 FY2025, $322,372,000 FY2024, $341,224,000 FY2023"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 8.3696,
+  "base_oe_with_override": 5.7613,
+  "base_oe_impact_pct": -31.164,
+  "weighted_irr_without_override": 0.0974,
+  "weighted_irr_with_override": 0.0748,
+  "weighted_irr_impact_pp": -2.257,
+  "unblocks_tier": true
+ }
+}

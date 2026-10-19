@@ -1,0 +1,301 @@
+{
+ "ticker": "LFUS",
+ "cik": 889331,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-009585",
+   "filed": "2026-02-19",
+   "period": "2025-12-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026009585/lfus-20251227_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-031041",
+   "filed": "2026-05-06",
+   "period": "2026-03-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026031041/lfus-20260328_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050481",
+   "filed": "2026-07-29",
+   "period": "2026-06-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/889331/000162828026050481/lfus-20260627_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lfus:ElectronicsSegmentMember",
+     "label": "Electronics Segment",
+     "values": [
+      300581000,
+      169893000,
+      220066000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.833,
+      1.07,
+      5.864
+     ],
+     "growth_yoy": [
+      null,
+      -0.4348,
+      0.2953
+     ]
+    },
+    {
+     "member": "lfus:TransportationSegmentMember",
+     "label": "Transportation Segment",
+     "values": [
+      33634000,
+      58578000,
+      84780000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0932,
+      0.3689,
+      2.2591
+     ],
+     "growth_yoy": [
+      null,
+      0.7416,
+      0.4473
+     ]
+    },
+    {
+     "member": "lfus:IndustrialSegmentMember",
+     "label": "Industrial Segment",
+     "values": [
+      54800000,
+      42331000,
+      59023000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1519,
+      0.2666,
+      1.5728
+     ],
+     "growth_yoy": [
+      null,
+      -0.2275,
+      0.3943
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -28153000,
+      -112022000,
+      -326341000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.078,
+      -0.7055,
+      -8.6959
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     360862000,
+     158780000,
+     37528000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lfus:ElectronicsSegmentMember",
+     "label": "Electronics Segment",
+     "values": [
+      46766000,
+      49861000,
+      70279000,
+      86916000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6667,
+      0.5374,
+      0.6947,
+      0.726
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.5028,
+      0.7432
+     ]
+    },
+    {
+     "member": "lfus:IndustrialSegmentMember",
+     "label": "Industrial Segment",
+     "values": [
+      13074000,
+      18863000,
+      20761000,
+      27474000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1864,
+      0.2033,
+      0.2052,
+      0.2295
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.588,
+      0.4565
+     ]
+    },
+    {
+     "member": "lfus:TransportationSegmentMember",
+     "label": "Transportation Segment",
+     "values": [
+      18917000,
+      28074000,
+      24103000,
+      25691000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2697,
+      0.3026,
+      0.2383,
+      0.2146
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2741,
+      -0.0849
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -8607000,
+      -4020000,
+      -13978000,
+      -20357000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1227,
+      -0.0433,
+      -0.1382,
+      -0.17
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     70150000,
+     92778000,
+     101165000,
+     119724000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

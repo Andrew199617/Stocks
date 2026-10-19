@@ -1,0 +1,221 @@
+{
+ "ticker": "OWL",
+ "cik": 1823945,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001823945-26-000009",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000009/owl-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001823945-26-000026",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000026/owl-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001823945-26-000040",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1823945/000182394526000040/owl-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:AssetManagement1Member",
+     "label": "Asset Management",
+     "values": [
+      1527241000,
+      1994064000,
+      2521937000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.882,
+      0.8687,
+      0.8787
+     ],
+     "growth_yoy": [
+      null,
+      0.3057,
+      0.2647
+     ]
+    },
+    {
+     "member": "us-gaap:AdministrativeServiceMember",
+     "label": "Administrative Service",
+     "values": [
+      200746000,
+      294267000,
+      321469000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1159,
+      0.1282,
+      0.112
+     ],
+     "growth_yoy": [
+      null,
+      0.4659,
+      0.0924
+     ]
+    },
+    {
+     "member": "us-gaap:ManagementServiceIncentiveMember",
+     "label": "Management Service, Incentive",
+     "values": [
+      3621000,
+      7096000,
+      26772000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0021,
+      0.0031,
+      0.0093
+     ],
+     "growth_yoy": [
+      null,
+      0.9597,
+      2.7728
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1731608000,
+     2295427000,
+     2870178000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:AssetManagement1Member",
+     "label": "Asset Management",
+     "values": [
+      677174000,
+      702127000,
+      747746000,
+      752950000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9908,
+      0.9986,
+      0.992,
+      0.9999
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1042,
+      0.0724
+     ]
+    },
+    {
+     "member": "us-gaap:ManagementServiceIncentiveMember",
+     "label": "Management Service, Incentive",
+     "values": [
+      6312000,
+      979000,
+      6065000,
+      102000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0092,
+      0.0014,
+      0.008,
+      0.0001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0391,
+      -0.8958
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     683486000,
+     703106000,
+     753811000,
+     753052000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

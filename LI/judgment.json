@@ -1,0 +1,37 @@
+{
+ "ads_ratio": {
+  "ratio": 2.0,
+  "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price",
+  "source": "Li Auto Inc. Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-10): ADSs each representing two Class A ordinary shares; the same ratio is stated in the company's ADS offering announcements (each ADS representing two Class A ordinary shares, Nasdaq: LI; HKEX: 2015)"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "EREV differentiation copied: Huawei AITO, Leapmotor and others now sell extended-range family SUVs into Li Auto's exact niche",
+  "No lock-in or network effect: buyers cross-shop on price/spec with near-zero switching costs in a China price war",
+  "Pricing power lost: vehicle gross margin fell from 19.4% in Q2 2025 to 9.4% in Q2 2026; FY2025 gross margin 18.7% down from 20.5%",
+  "BEV transition rocky: MEGA recall cost over RMB 1.1B in Q3 2025 and BEV models are not yet offsetting EREV decline",
+  "ROIC not sustained above cost of capital: roic_proxy in fundamentals.json was negative in 2021, 2022, 2023 and 2025, with only 2024 strongly positive"
+ ],
+ "moat_for": [
+  "Family-SUV brand and cabin/living-space positioning in the RMB 200,000+ segment, where it held a top NEV position in Q2 2026",
+  "Scale: over RMB 100B revenue for three straight years and 406,000 deliveries in 2025 despite the decline",
+  "Owned retail/service footprint and 5C supercharging network (4,141 stations at end-July 2026 per Q2 2026 reporting)",
+  "In-house stack in development: Mach M100 chip, 5C batteries, drive-by-wire chassis and VLA assisted driving",
+  "Fortress cash: RMB 87.5B cash position at Q2 2026 and buybacks ($631.5M repurchased) cushion the downturn"
+ ],
+ "moat_justification": "Once-clear EREV/family-SUV differentiation has been copied by Huawei AITO, Leapmotor and others, pricing power has collapsed (vehicle margin 19.4% to 9.4% YoY in Q2 2026), and the ROIC history in fundamentals.json is volatile and mostly negative with only 2024 strongly positive, while gross margin fell from 22.2% in FY2023 to 18.7% in FY2025 and 11.0% in Q2 2026. Brand, scale, charging network and in-house tech give some franchise value, but no durable lock-in — moat 3/10, weak.",
+ "moat_score": 3,
+ "name": "Li Auto Inc.",
+ "one_liner": "China premium NEV maker in a downturn, moat 3/10 — does not clear 15%: Tier D, weighted IRR 9.2%, IV@15% $6.06 per ADS vs $11.34; clears 15% only under ~$6.06, with the large net cash pile cushioning but not offsetting collapsing margins and negative latest OE.",
+ "probs_used": [
+  0.2,
+  0.3,
+  0.3,
+  0.15,
+  0.05
+ ],
+ "sector": "Automotive / China new energy vehicles (EREV + BEV premium SUVs)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

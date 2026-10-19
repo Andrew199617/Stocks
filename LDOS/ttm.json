@@ -1,0 +1,101 @@
+{
+ "ticker": "LDOS",
+ "cik": 1336920,
+ "entity": "Leidos Holdings, Inc.",
+ "fy_end": "2026-01-02",
+ "ytd_end": "2026-07-03",
+ "inputs": {
+  "ocf": {
+   "fy": 1750000000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 544000000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 1094000000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 2300000000
+  },
+  "capex": {
+   "fy": 125000000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 51000000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 63000000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 137000000
+  },
+  "sbc": {
+   "fy": 95000000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 46000000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 51000000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 100000000
+  },
+  "shares_diluted": {
+   "fy": 130000000,
+   "fy_period": [
+    "2025-01-04",
+    "2026-01-02"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 130000000,
+   "ytd_prior_period": [
+    "2025-01-04",
+    "2025-07-04"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 127000000,
+   "ytd_current_period": [
+    "2026-01-03",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 2300000000,
+ "ttm_capex": 137000000,
+ "ttm_sbc": 100000000,
+ "ttm_shares_diluted": 127000000,
+ "ttm_oe_total": 2063000000,
+ "ttm_oe_per_share": 16.244094488188978,
+ "warnings": [],
+ "overrides_used": []
+}

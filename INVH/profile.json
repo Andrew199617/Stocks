@@ -1,0 +1,291 @@
+{
+ "ticker": "INVH",
+ "cik": 1687229,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T20:24:41-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001687229.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000016/invh-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/INVH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/INVH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Invitation Homes Inc.",
+  "cik": 1687229,
+  "description": {
+   "text": "Invitation Homes is a leading owner and operator of single-family homes for lease, offering residents high-quality homes in sought-after neighborhoods across the United States. As of December 31, 2025, we wholly own 86,192 homes for lease, jointly own 8,006 homes for lease, and provide professional third-party property and asset management services for an additional 15,866 homes, all of which are primarily located in 16 core markets across the country. These homes help meet the needs of a growing share of Americans who count on the ease, flexibility, and savings of leasing. We provide our residents access to updated homes with features they value, as well as close proximity to jobs and good schools. The continued demand for our product proves that the choice and flexibility we offer are attractive to many people. We operate in markets with strong demand drivers, high barriers to entry, and high rent growth potential, primarily in the Western United States, Florida, and the Southeast United States. Through disciplined market and asset selection, as well as through strategic mergers and acquisitions, we designed our wholly and jointly owned portfolios to capture the operating benefits of local density as well as economies of scale that we believe cannot be readily replicated.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001687229-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000016/invh-20251231.htm"
+  },
+  "description_short": "Invitation Homes, an S&P 500 company, is the nation's premier single-family home leasing and management company, meeting changing lifestyle demands by providing access to high-quality homes with valued features such as close proximity to jobs and access to good schools. Our purpose, Unlock the Power of Home, reflects our commitment to providing living solutions and Genuine CARE to the growing share of people who count on the flexibility and savings of leasing a home.",
+  "industry": "Real Estate",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6510",
+  "sic_description": "Real Estate Operators (No Developers) & Lessors",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.invitationhomes.com",
+  "headquarters": "Dallas, Texas",
+  "address": {
+   "street": "5420 LBJ Freeway Suite 600",
+   "city": "Dallas",
+   "state": "Texas",
+   "zip": "75240",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "(972) 421-3600",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-01-06",
+  "first_sec_filing_form": "S-11",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001687229&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001687229-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000048/invh-20260909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001687229-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000045/invh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001687229-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000041/invh-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-08",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-298582",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000119312526298582/d116394d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-06",
+   "period": "2026-06-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-296211",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000119312526296211/d117428d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001687229-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000037/invh-20260601.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-05",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001193125-26-214709",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000119312526214709/d120040d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001687229-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000032/invh-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001687229-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000030/invh-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-26",
+   "period": "2026-05-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-126310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000119312526126310/d96989ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-01",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001687229-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000024/invh-20260301.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001687229-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000020/invh-20260227.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001687229-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000016/invh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001687229-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000013/invh-20260218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-02",
+   "period": "2025-12-31",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001687229-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722926000004/invh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001687229-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722925000059/invh-20251208.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001687229-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722925000055/invh-20251117.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001687229-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722925000051/invh-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001687229-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000168722925000047/invh-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-15",
+   "period": "2025-08-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-181906",
+   "url": "https://www.sec.gov/Archives/edgar/data/1687229/000119312525181906/d93422d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

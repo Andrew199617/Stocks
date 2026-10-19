@@ -1,0 +1,292 @@
+{
+ "ticker": "RBA",
+ "cik": 1046102,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T21:40:29-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001046102.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026011682/rba-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RBA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RBA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RB GLOBAL INC.",
+  "cik": 1046102,
+  "description": {
+   "text": "Established in 1958, the Company is a leading, omnichannel marketplace and trusted provider of value-added insights, services and transaction solutions for buyers and sellers of commercial assets and vehicles worldwide. Through our global network of auction sites and digital platform, we serve customers worldwide across a variety of asset classes, including automotive, construction, commercial transportation, government surplus, lifting and material handling, energy, mining and agriculture. Our marketplace brands include Ritchie Bros., the world's largest auctioneer of commercial assets and vehicles offering online bidding, and IAA, a leading global digital marketplace connecting vehicle buyers and sellers. Our portfolio of brands also includes Rouse Services (“Rouse”), which provides complete end-to-end asset management and market data-driven intelligence; SmartEquip, an innovative technology platform that supports customers' management of the equipment lifecycle and integrates parts procurement with both original equipment manufacturers (“OEMs”) and dealers; and VeriTread, an online marketplace for heavy haul transport. Our sectors are organized by asset class and include automotive, commercial, construction and transportation (“CC&T”), and other. Automotive includes automobiles, including passenger vehicles and buses. CC&T includes equipment needed for earth moving, lift and material handling, as well as vocational and commercial trucks and trailers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-011682",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026011682/rba-20251231.htm"
+  },
+  "description_short": "RB Global, Inc. (NYSE: RBA) (TSX: RBA) keeps the world's assets working. A leading marketplace connecting buyers and sellers of commercial assets, vehicles and real estate, RB Global has a vision to be the world's most trusted asset marketplace. Through its global network of physical locations, digital marketplaces and trusted brands, the company provides transaction solutions, services and insights to customers across construction, commercial transportation, automotive, agriculture, government surplus, lifting and material handling, energy and mining, delivering liquidity, trust and ease at every stage of an asset's life. Its brands include Ritchie Bros., IAA, BigIron, Rouse Services, SmartEquip and VeriTread. Visit rbglobal.com.",
+  "industry": "Business Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "A6",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.rbglobal.com",
+  "headquarters": "Illinois, USA",
+  "address": {
+   "street": "Two Westbrook Corporate Center, Suite 500 Westchester",
+   "city": "Illinois",
+   "state": null,
+   "zip": "60154",
+   "country": "USA",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(778) 331-5300",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-09-26",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "RITCHIE BROS AUCTIONEERS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001046102&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-114556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926114556/tm2627264d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-107718",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926107718/tm2625417d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-052582",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026052582/rba-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-052570",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026052570/rba-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-063234",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926063234/tm2614952d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-029808",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026029808/rba-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-029803",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026029803/rba-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-054207",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926054207/tm2613352d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-047775",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926047775/tm2612502d1_8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-010430",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000114036126010430/ny20059679x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-028564",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926028564/tm268839d2_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-028091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926028091/tm268839d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-024984",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926024984/tm268312d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-023577",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926023577/tm268042d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-011682",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026011682/rba-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-008548",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000162828026008548/rba-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-005102",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465926005102/tm263625d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-115184",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000110465925115184/tm2531985d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001046102-25-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000104610225000009/rba-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001046102-25-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1046102/000104610225000008/rba-20251106.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

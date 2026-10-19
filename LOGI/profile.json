@@ -1,0 +1,286 @@
+{
+ "ticker": "LOGI",
+ "cik": 1032975,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T08:53:38-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001032975.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000021/logi-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LOGI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LOGI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "LOGITECH INTERNATIONAL S.A.",
+  "cik": 1032975,
+  "description": {
+   "text": "Founded in 1981, and headquartered in Lausanne, Switzerland, Logitech International is a Swiss public company listed on the SIX Swiss Exchange (LOGN) and on the Nasdaq Global Select Market (LOGI). Logitech’s website address is www.logitech.com. Logitech designs software-enabled hardware solutions that help businesses thrive and bring people together when working, creating and gaming. As the point of connection between people and the digital world, our mission is to extend human potential in work and play, in a way that is good for people and the planet. We sell the vast majority of our products under the Logitech and Logitech G brand names. Our diverse, innovative portfolio includes the following product categories: Gaming, Keyboards & Combos, Pointing Devices, Video Collaboration, Webcams, Tablet Accessories, and Headsets. These products are all classified under a single operating segment: Peripherals (see Note 15 to our consolidated financial statements). They are compatible with many cloud or cloud-based services: video conferencing platforms (e.g. Zoom, Microsoft Teams, Google Meet); esports or video games (e.g. League of Legends, Call of Duty, Gran Turismo); music streaming platforms (e.g. Spotify, Apple Music); content streaming platforms (e.g. Twitch, YouTube); and creativity and productivity platforms (e.g. Google Workplace, Adobe Creative Cloud). Our products are also enhanced through software, including machine learning and artificial intelligence (\"AI\").",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-21",
+   "period": "2026-03-31",
+   "accession": "0001032975-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000021/logi-20260331.htm"
+  },
+  "description_short": "Logitech designs software-enabled hardware solutions that help businesses thrive and bring people together when working, creating and gaming. As the point of connection between people and the digital world, our mission is to extend human potential in work and play, in a way that is good for people and the planet. Founded in 1981, Logitech International is a Swiss public company listed on the SIX Swiss Exchange (LOGN) and on the Nasdaq Global Select Market (LOGI). Find Logitech and more of its business products and enterprise solutions at www.logitech.com/business, the company blog, Logitech Business or @LogitechBiz.",
+  "industry": "Computer peripheral equipment",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3577",
+  "sic_description": "Computer Peripheral Equipment, NEC",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.logitech.com",
+  "headquarters": "San Jose, California",
+  "address": {
+   "street": "1015 Lausanne c/o Logitech Inc. 3930 North First Street",
+   "city": "San Jose",
+   "state": "California",
+   "zip": "95134",
+   "country": "Switzerland",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-21"
+  },
+  "phone": "5107958500",
+  "employees": {
+   "count": 7300,
+   "as_of": "2026-03-31",
+   "evidence": "As of March 31, 2026, we employed approximately 7,300 persons, of which approximately 2,300 were employed in our Suzhou manufacturing operations.",
+   "form": "10-K",
+   "filed": "2026-05-21",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000021/logi-20260331.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-06-30",
+  "first_sec_filing_form": "20-F",
+  "former_names": [
+   "LOGITECH INTERNATIONAL SA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001032975&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-12",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001032975-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000056/logi-20261012.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-08",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001032975-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000053/logi-20260908.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001032975-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000050/logi-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001032975-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000047/logi-20260728.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001032975-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000037/logi-20260723.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-21",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001032975-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000021/logi-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001032975-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000014/logi-20260505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-28",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001032975-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000011/logi-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001032975-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297526000006/logi-20260127.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-14",
+   "period": "2025-11-14",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001032975-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000085/logi-20251114.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001032975-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000080/logi-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001032975-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000076/logi-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-10-01",
+   "items": [
+    "3.01"
+   ],
+   "description": "Listing notice",
+   "accession": "0001032975-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000071/logi-20251001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-19",
+   "period": "2025-09-18",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001032975-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000068/logi-20250918.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-09",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001032975-25-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000065/logi-20250909.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-26",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001032975-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000062/logi-20250826.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001032975-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000059/logi-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001032975-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000055/logi-20250729.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-07-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001032975-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000046/logi-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-17",
+   "period": "2025-06-17",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001032975-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1032975/000103297525000034/logi-20250617.htm"
+  }
+ ],
+ "warnings": []
+}
