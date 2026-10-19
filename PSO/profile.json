@@ -1,0 +1,239 @@
+{
+ "ticker": "PSO",
+ "cik": 938323,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T17:14:44-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000938323.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/938323/000119312526104945/d33885d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/PSO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/PSO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "PEARSON PLC",
+  "cik": 938323,
+  "description": null,
+  "description_short": "At Pearson, our purpose is simple: to help people realise the life they imagine through learning. We believe that every learning opportunity is a chance for a personal breakthrough. That's why our c.18,000 Pearson employees are committed to creating vibrant and enriching learning experiences designed for real-life impact. We are the world's lifelong learning company, serving customers in nearly 200 countries with digital learning and assessments experiences, verified skills, and credentials. For us, learning isn't just what we do. It's who we are.",
+  "industry": "Books",
+  "sector": "Consumer Discretionary",
+  "region": "Europe",
+  "sic": "2731",
+  "sic_description": "Books: Publishing or  Publishing & Printing",
+  "state_of_incorporation": "X0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://plc.pearson.com",
+  "headquarters": "London, England, England",
+  "address": {
+   "street": "80 Strand",
+   "city": "London",
+   "state": null,
+   "zip": "WC2R 0RL",
+   "country": "England",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-13",
+   "metro": "England",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "442070102000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2000-08-07",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000938323&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008915",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008915/a7852y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008708",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008708/a2072x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008703",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008703/a2061x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008532",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008532/a0476w.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008527",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008527/a8720v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008011",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008011/a7310s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008009",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426008009/a7310s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-28",
+   "period": "2026-08-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007941",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426007941/a6735s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007720",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426007720/a1581r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007505",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426007505/a4118q.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007124",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426007124/a9690o.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007121",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426007121/a9680o.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007081",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426007081/a6516o.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-17",
+   "period": "2026-07-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006701",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426006701/a8210m.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006440",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426006440/a4689k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006384",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426006384/a5871k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006288",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426006288/a0304k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-006063",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426006063/a9020i.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-005573",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426005573/a4483g.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-005571",
+   "url": "https://www.sec.gov/Archives/edgar/data/938323/000165495426005571/a4469g.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-03-13)",
+  "employees: no headcount sentence found in the 20-F filed 2026-03-13"
+ ]
+}
