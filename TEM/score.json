@@ -2,8 +2,9 @@
  "ticker": "TEM",
  "name": "Tempus AI, Inc.",
  "sector": "Healthcare / AI precision medicine (diagnostics + data platform)",
- "price": 64.72,
- "market_cap_b": 0.01,
+ "price": 65.65,
+ "market_cap_b": 11.44,
+ "market_cap_basis": "diluted_latest_scale_corrected",
  "engine_version": 5,
  "base_oe_per_share": -3.9324392632609864,
  "base_year": "2025",
@@ -16,7 +17,8 @@
   "DILUTION: share count growing 40.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md"
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SHARE_SCALE_SUSPECT: base OE/share -3,932.44 is 60x the price 65.65 (limit 20x); the declared base_override pin -3.93244 carries the base; market cap uses the latest diluted count x 1000 (pin basis: 174,264,000 shares)"
  ],
  "scenarios": {},
  "iv_at_15": null,
@@ -28,9 +30,9 @@
  "tier_final": "F",
  "confidence": "low",
  "one_liner": "Real precision-medicine data platform, moat 5/10 \u2014 but owner's earnings are negative in every filed year (normalized base -$3.93/share after the 1,000x share-scale correction; FY2025 -$2.09/share, TTM -$2.50/share, because TTM OCF of -$237.4M cannot cover capex plus $186.1M of SBC) \u2014 Tier F on this screen; it does not clear 15% at any price on current numbers and no hurdle-clearing price is computed on a negative base.",
- "analysis_date": "2026-10-17",
+ "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
- "engine_release": "5.4.0",
+ "engine_release": "5.5.0",
  "irr_bear": null,
  "irr_bull": null,
  "tier_bear": null,
@@ -43,7 +45,8 @@
  "shares_diluted_latest": 174264,
  "model_fit": "modeled",
  "alert_eligible": false,
- "exit_alert_eligible": true,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
  "moat_for": [
   "One of the largest libraries of clinical and molecular oncology data in the world (FY2025 10-K, Item 1, quoted in profile.json) \u2014 multimodal data paired with clinical outcomes that compounds with every test run",
   "Data flywheel monetized, not just claimed: Data and applications revenue $316,408,000 in FY2025, +30.9% YoY (segments.json), with data licensing / Insights the recurring, higher-value layer",
@@ -51,7 +54,7 @@
   "Diagnostics scale with regulatory assets: Diagnostics revenue $955,381,000 in FY2025 (segments.json); FDA-cleared xT CDx companion diagnostic carrying ADLT pricing"
  ],
  "moat_against": [
-  "No demonstrated returns on capital: conservative owner's earnings negative in 0 of the last 4 filed years and on TTM through Q2 2026; operating losses every year; the roic_proxy series in fundamentals.json (+14.6% FY2022, +10.0% FY2023, +191.8% FY2024, +176.1% FY2025) is denominator noise on negative-then-thin equity with blank debt tags, not evidence of returns above the cost of capital",
+  "No demonstrated returns on capital: conservative owner's earnings positive in 0 of the last 4 filed years and negative on TTM through Q2 2026; operating losses every year; the roic_proxy series in fundamentals.json (+14.6% FY2022, +10.0% FY2023, +191.8% FY2024, +176.1% FY2025) is denominator noise on negative-then-thin equity with blank debt tags, not evidence of returns above the cost of capital",
   "Diagnostics concentration: $955,381,000 of FY2025 revenue (75.1% in segments.json), oncology-centric; Data and applications is only $316,408,000",
   "SBC is heavy and rising again: $124,747,000 in FY2025 after the $534,138,000 IPO year, $186,145,000 TTM through Q2 2026 (ttm.json) \u2014 a recurring tax on owners that alone exceeds TTM free cash flow in magnitude",
   "Competition on every layer: Guardant Health and Natera in diagnostics, Flatiron Health (Roche) in oncology data, Illumina in sequencing, plus hospital/EHR platforms that own the workflow",

@@ -3,8 +3,8 @@
  "name": "BROOKFIELD WEALTH SOLUTIONS LTD.",
  "cik": 1837429,
  "engine_version": 5,
- "engine_release": "5.4.0",
- "as_of": "2026-10-18",
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
  "price": 36.54,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 224030265,
@@ -64,12 +64,157 @@
   "liabilities": "Liabilities",
   "ppe_net": "PropertyPlantAndEquipment",
   "equity": "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
-  "shares_out_inst": null
+  "shares_out_inst": null,
+  "capex_components": "PaymentsToAcquireProductiveAssets+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities"
  },
  "filer_annual_form": "20-F",
- "ads_ratio": null,
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "FY2025 Form 20-F cover / Item 9: the registered securities are the Class A exchangeable shares listed directly on NYSE and TSX; no depositary / ADS facility",
+  "reason": "20-F filer whose traded security is the share itself, not an ADS"
+ },
  "fx_conversion": null,
+ "payable_base": null,
  "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 224030265,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 1.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": null,
+  "dei_date": null,
+  "dei_ratio": null,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [
+   {
+    "date": "2025-10-09",
+    "ratio_filed": 1.5
+   }
+  ],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": {
+  "declared": true,
+  "source": "FY2025 Form 20-F (filed 2026-03-26), Note 25 Earnings Per Share (EPS presented for Class C shares only; Class A exchangeable and Class B are not common stock for EPS) and Note 23 Share Capital (59,934,825 Class A exchangeable outstanding vs 272,687,160 Class C, all held by Brookfield)",
+  "reason": "the only filed share count is the non-traded Class C; the traded Class A exchangeable share tracks Brookfield Corporation's price, so no per-share base can be priced against it"
+ },
+ "capex_provenance": {
+  "2019-12-31": {
+   "ppe_source": "assumed_zero",
+   "ppe": {},
+   "ppe_unit": null,
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {}
+  },
+  "2020-12-31": {
+   "ppe_source": "assumed_zero",
+   "ppe": {},
+   "ppe_unit": null,
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {},
+   "intangibles_not_added": "no_ppe_leg",
+   "intangibles_filed": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 1000000
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 1000000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2024-03-28",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2022-03-23"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 24000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2025-03-27"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 135000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2026-03-26"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 40000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2026-03-26"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 69000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2026-03-26"
+   }
+  }
+ },
+ "sbc_provenance": {},
  "tier_by_numbers": null,
  "implied_irr_weighted": null,
  "implied_irr_base": null,
@@ -78,26 +223,29 @@
  "g_terminal": 0.025,
  "data_gap": [
   "sbc",
-  "shares"
+  "shares",
+  "share_class"
  ],
  "data_gap_uncovered": [
   "sbc",
-  "shares"
+  "shares",
+  "share_class"
  ],
  "overrides_applied": [],
  "fragility_flags": [
   "DATA_GAP:sbc \u2014 sbc missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
   "DATA_GAP:shares \u2014 DILUTED shares missing for fiscal year(s) 2023, 2024, 2025 of the last 3; only a non-diluted count is filed (2023: 64,215,726 (WeightedAverageNumberOfSharesOutstandingBasic); 2024: 126,003,542 (WeightedAverageNumberOfSharesOutstandingBasic); 2025: 224,030,265 (WeightedAverageNumberOfSharesOutstandingBasic)) \u2014 no silent swap (v5.4). Declare shares_override kind \"filing\" from the 10-K EPS note \u2014 no tier emitted",
+  "DATA_GAP:shares \u2014 SHARE_CLASS_MISMATCH: judgment.json declares that the filed share count is a different class from the traded security (FY2025 Form 20-F (filed 2026-03-26), Note 25 Earnings Per Share (EPS presented for Class C shares only; Class A exchangeable and Class B are not common stock for EPS) and Note 23 Share Capital (59,934,825 Class A exchangeable outstanding vs 272,687,160 Class C, all held by Brookfield)); no per-share base can be priced against the traded share \u2014 NEEDS_MAIN_AGENT \u2014 no tier emitted",
   "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "DILUTION: share count growing 93.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "ADS_RATIO_MISSING: 20-F filer \u2014 per-share figures are per ordinary share but the traded price is per ADS; make_score refuses (DATA_GAP:ads_ratio) until judgment.json carries an ads_ratio {ratio, source, reason}",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (FY2025 Form 20-F cover / Item 9: the registered securities are the Class A exchangeable shares listed directly on NYSE and TSX; no depositary / ADS facility) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
   "SHARES_FALLBACK: no diluted share count filed for 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
   "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
   "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
  ],
  "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
- "content_hash": "2eb8116544bcf51b31ca757ee9b140f0d727026f2fd249a242aa52e9f002c57b"
+ "content_hash": "29e21b5cde5788a7427537eb2a98658498e5c0fcdf3c66bbf26d6350e85ffe61"
 }

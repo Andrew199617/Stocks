@@ -4,8 +4,9 @@
  "sector": "Real Estate / Apartment REIT",
  "price": 116.63,
  "market_cap_b": 13.66,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
- "base_oe_per_share": 5.761324310433442,
+ "base_oe_per_share": 5.70814630803495,
  "base_year": "2025",
  "base_source": "ttm_json",
  "moat_score": 4,
@@ -15,54 +16,54 @@
   "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
   "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
-  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
-  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0001193125-26-041208), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $360,238,000 FY2025, $322,372,000 FY2024, $341,224,000 FY2023); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2017 (10,570,000 vs 10,800,000, +2.2%), FY2018 (12,444,000 vs 12,900,000, +3.7%), FY2019 (13,654,000 vs 14,700,000, +7.7%), FY2020 (14,329,000 vs 16,000,000, +11.7%), FY2021 (16,665,000 vs 18,200,000, +9.2%), FY2022 (18,798,000 vs 20,100,000, +6.9%), FY2023 (15,699,000 vs 18,300,000, +16.6%), FY2024 (15,789,000 vs 17,700,000, +12.1%), FY2025 (16,839,000 vs 18,300,000, +8.7%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "iv_at_15": 26.47,
-   "irr": 0.0515
+   "iv_at_15": 22.51,
+   "irr": 0.0465
   },
   "bear": {
    "prob": 0.25,
-   "iv_at_15": 35.72,
-   "irr": 0.062
+   "iv_at_15": 30.4,
+   "irr": 0.0553
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 45.42,
-   "irr": 0.0734
+   "iv_at_15": 38.71,
+   "irr": 0.065
   },
   "bull": {
    "prob": 0.25,
-   "iv_at_15": 56.11,
-   "irr": 0.0857
+   "iv_at_15": 47.88,
+   "irr": 0.0757
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 72.85,
-   "irr": 0.1045
+   "iv_at_15": 62.26,
+   "irr": 0.0922
   }
  },
- "iv_at_15": 46.51,
- "iv_at_12": 61.17,
- "implied_irr": 0.0748,
- "implied_irr_base_case": 0.0734,
- "upside_at_15_pct": -60.1,
+ "iv_at_15": 39.66,
+ "iv_at_12": 51.71,
+ "implied_irr": 0.0663,
+ "implied_irr_base_case": 0.065,
+ "upside_at_15_pct": -66.0,
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "low",
- "one_liner": "Quality Sun Belt apartment REIT, moat 4/10 \u2014 scale, expense discipline and a 4.5x-levered balance sheet are real, but apartments are a commodity with no pricing power against new supply (new-lease rates -5.3% in Q2 2026, same-store NOI guided negative for 2026); on a TTM owner's-earnings base of $5.76/share after charging filed capital-improvements capex, weighted IRR is 7.5% (IV@15% $46.51) at $116.63, so it clears the 15% hurdle only below ~$47 \u2014 the REIT lens (FY2026 Core FFO guided at $8.53/share, DPS TTM $6.075) is kinder than the OE lens, but neither supports 15% at this price.",
- "analysis_date": "2026-10-17",
+ "one_liner": "Quality Sun Belt apartment REIT, moat 4/10 \u2014 scale, expense discipline and a 4.5x-levered balance sheet are real, but apartments are a commodity with no pricing power against new supply (new-lease rates -5.3% in Q2 2026, same-store NOI guided negative for 2026); on a TTM owner's-earnings base of $5.71/share after charging the filed capital-improvements capex line (read natively by engine 5.5, no override) and the base case started at the FY2026 Core FFO/share guide (-2.4%), weighted IRR is 6.63% (IV@15% $39.66) at $116.63, so it clears the 15% hurdle only below ~$40 \u2014 the REIT lens (FY2026 Core FFO guided at $8.53/share, DPS TTM $6.075) is kinder than the OE lens, but neither supports 15% at this price.",
+ "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
- "engine_release": "5.4.0",
- "irr_bear": 0.062,
- "irr_bull": 0.0857,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0553,
+ "irr_bull": 0.0757,
  "tier_bear": "D",
  "tier_bull": "D",
- "iv_at_20": 33.25,
- "iv_at_25": 25.88,
+ "iv_at_20": 28.7,
+ "iv_at_25": 22.56,
  "f_subtype": null,
  "irr_at_floor": false,
  "net_debt_latest": null,
@@ -70,7 +71,7 @@
  "model_fit": "misfit",
  "alert_eligible": false,
  "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "exit_alert_suppressed_reason": "sector model misfit",
  "moat_for": [
   "Scale: ~105,000 units across 16 Sun Belt states \u2014 the largest apartment REIT platform, with in-house development, redevelopment and renovation capability (interior renovations earning ~25% cash-on-cash, Q2 2026 call)",
   "Operating platform and expense discipline: same-store opex growth held to ~80-90 bps YoY through Q2 2026 while revenue fell, record-low resident turnover of 39.6% and renewal pricing +5.2%",
@@ -83,23 +84,5 @@
   "Returns are capped by replacement cost / cap-rate arbitrage \u2014 new supply is the permanent competitor",
   "ROE has run only ~8-11% in recent years (fundamentals.json) and the roic_proxy series is not computable from the filed presentation \u2014 no evidence of sustained returns well above the cost of capital",
   "Sun Belt concentration: the same migration markets (Austin, Phoenix, Charlotte, Nashville) took the record supply wave"
- ],
- "overrides": [
-  {
-   "field": "capex",
-   "value": 341224000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0001193125-26-041208), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $360,238,000 FY2025, $322,372,000 FY2024, $341,224,000 FY2023"
-  }
- ],
- "override_impact": {
-  "base_used": "ttm",
-  "base_oe_without_override": 8.3696,
-  "base_oe_with_override": 5.7613,
-  "base_oe_impact_pct": -31.164,
-  "weighted_irr_without_override": 0.0974,
-  "weighted_irr_with_override": 0.0748,
-  "weighted_irr_impact_pp": -2.257,
-  "unblocks_tier": true
- }
+ ]
 }

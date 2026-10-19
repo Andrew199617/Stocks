@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $2.23 · normalized (3-yr median) OE/share: $2.23
 - Latest FY OE total: $2.211B
 - Shares diluted (latest): 99,062,216,600
-- Market cap (est): $10.927B · net debt (latest): $1.181B
+- Market cap (est): $10.927B (basis: diluted_latest) · net debt (latest): $1.181B
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 5/5
 
 ## Growth & moat
@@ -38,7 +39,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 20.24%
 - TV share @15%: 16.2%
 - Scenario spread (IV@15 super-bull / super-bear): 3.54x
-- Net debt / normalized OE: 0.01x
+- Net debt / normalized OE: 0.53x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 100 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed 0.01x)
 - Months since FY end: 21.6
 
 ## Fragility flags
@@ -62,5 +63,5 @@ Filing gaps found and covered by judgment overrides: sbc, shares
 - sbc reason: DATA_GAP:sbc — SBC missing for fiscal years 2022, 2023, 2024 of the last 3 under the engine's tags because the filer reports no share-based compensation at all in those years: no SBC line, note, plan or expense amount appears anywhere in its own FY2024 audited statements (which carry the FY2023 comparatives), and its EPS note confirms no equity-linked dilutive instruments exist. The filing-sourced equity SBC figure for the gap years is $0 (same treatment as COKE/ARCC in this sweep); charging $0 is the filer's own reported position, not a zero-fill of a missing value.
 - shares reason: DATA_GAP:shares — diluted shares missing for 2022, 2023, 2024; only the non-diluted WeightedAverageShares count (99,062,216,600 in each year) is tagged. The filer's own EPS note proves diluted = basic for 2023 and 2024 (no potentially dilutive instruments), and the count has been identical at 99,062,216,600 every year since 2017 in financials_history.csv, so applying the same filed count to 2022 changes nothing. Declared kind 'filing' per the v5.4 flag instruction.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $2.23 (no override) → $2.23 (with override), +0.00% · weighted IRR 19.11% → 19.11% (+0.00pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $2.23 (no override) → $2.23 (with override), +0.00% · weighted IRR 19.11% → 19.11% (+0.00pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

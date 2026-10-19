@@ -1,11 +1,4 @@
 {
- "capex_override": {
-  "ack_reason": "The out-of-band flag is mechanical only: there is NO filed capex value under any tag the engine reads (the series is empty, not small), so the band has no anchor at all. The override value is not an estimate \u2014 it is the filer's own filed 'Payments for capital improvements' figure (the median of the three filed years FY2023-25) from the FY2025 10-K Consolidated Statements of Cash Flows, tagged us-gaap PaymentsForCapitalImprovements, a tag the engine's candidate list does not include.",
-  "kind": "filing",
-  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024 and FY2025 of the last 3 under every candidate tag the engine reads, because MAA (an apartment REIT) reports its real-estate capex on the cash-flow line 'Payments for capital improvements', tagged us-gaap PaymentsForCapitalImprovements, which is not in the engine's candidate tag list. Filed values in the FY2025 10-K: $341,224,000 (FY2023), $322,372,000 (FY2024), $360,238,000 (FY2025). The engine applies this single value to every missing period; the value used is the filed FY2023 figure, which is also the median of the three filed years. Against the true per-year figures it overstates FY2024 capex by $18,852,000 (conservative direction, lowers that year's OE) and understates FY2025 capex by $19,014,000 (flatters the latest year slightly \u2014 the median-of-3 base is the FY2024 year under this fill, so the flattered year does not set the base). Excluded, deliberately: 'Payments to acquire real estate' / development and acquisition spend are property M&A and growth investment presented separately by the filer, not the recurring capital-improvements line; charging them as capex would double-count growth.",
-  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-06, accession 0001193125-26-041208), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $360,238,000 FY2025, $322,372,000 FY2024, $341,224,000 FY2023",
-  "value": 341224000
- },
  "confidence": "low",
  "in_scope_under_40b": true,
  "moat_against": [
@@ -24,7 +17,7 @@
  "moat_justification": "Scale, platform and cheap long-dated capital are real but modest advantages in a commodity business: apartments have no network effects, no lock-in beyond a 12-month lease and no pricing power against new supply (new-lease rates -5.3% in Q2 2026). Filed returns confirm it \u2014 ROE ~8-11% recently, not the sustained well-above-cost-of-capital record a 7+ moat requires. Moat 4/10 (weak).",
  "moat_score": 4,
  "name": "Mid-America Apartment Communities, Inc.",
- "one_liner": "Quality Sun Belt apartment REIT, moat 4/10 \u2014 scale, expense discipline and a 4.5x-levered balance sheet are real, but apartments are a commodity with no pricing power against new supply (new-lease rates -5.3% in Q2 2026, same-store NOI guided negative for 2026); on a TTM owner's-earnings base of $5.76/share after charging filed capital-improvements capex, weighted IRR is 7.5% (IV@15% $46.51) at $116.63, so it clears the 15% hurdle only below ~$47 \u2014 the REIT lens (FY2026 Core FFO guided at $8.53/share, DPS TTM $6.075) is kinder than the OE lens, but neither supports 15% at this price.",
+ "one_liner": "Quality Sun Belt apartment REIT, moat 4/10 \u2014 scale, expense discipline and a 4.5x-levered balance sheet are real, but apartments are a commodity with no pricing power against new supply (new-lease rates -5.3% in Q2 2026, same-store NOI guided negative for 2026); on a TTM owner's-earnings base of $5.71/share after charging the filed capital-improvements capex line (read natively by engine 5.5, no override) and the base case started at the FY2026 Core FFO/share guide (-2.4%), weighted IRR is 6.63% (IV@15% $39.66) at $116.63, so it clears the 15% hurdle only below ~$40 \u2014 the REIT lens (FY2026 Core FFO guided at $8.53/share, DPS TTM $6.075) is kinder than the OE lens, but neither supports 15% at this price.",
  "probs_used": [
   0.1,
   0.25,

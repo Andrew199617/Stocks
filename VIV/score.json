@@ -2,62 +2,81 @@
  "ticker": "VIV",
  "name": "TELEFONICA BRASIL S.A.",
  "sector": "Telecommunications",
- "price": 12.26,
- "market_cap_b": 39.18,
+ "price": 12.4,
+ "market_cap_b": 19.99,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
- "base_oe_per_share": 1.2803686126106435,
+ "base_oe_per_share": 1.2692270927499132,
  "base_year": "2025",
  "base_source": "agent_supplied_ttm_override",
  "moat_score": 5,
  "moat_justification": "Moderate/narrow moat: Brazil's largest wireless carrier (about 33% market share, postpaid leadership) with scale, spectrum, the Vivo brand and a large FTTH footprint enabling converged cross-sell, backed by the Telef\u00f3nica group \u2014 against strong Claro/TIM competition, low prepaid switching costs, heavy 5G/FTTH capex intensity, Anatel regulation including the FISTEL fee overhang, BRL/USD exposure on a USD-priced ADS, and minority holders subordinate to the controlling parent.",
  "cap_years": 8.5,
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "BUYBACK_TAILWIND: share count shrinking 87.6%/yr \u2014 already credited via the growth adjustment",
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
   "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
   "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed February 23, 2026), notes to the consolidated financial statements describing the 2025 reverse stock split / stock split transaction: '1 ADR now representing 2 ordinary shares issued by the Company, while the total number of ADRs in circulation remained unchanged.') so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
-  "BASE_DIVERGENCE: latest FY OE/share 1.28 vs 3-yr median 2068.56 \u2014 one of them is distorted; find out which and why"
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2017, 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "SHARE_SCALE_SUSPECT: base OE/share 2,068.56 is 167x the price 12.40 (limit 20x); the declared base_override pin 1.26923 carries the base; market cap uses the latest diluted count as filed (the cover-page count agrees with it within 25%; no power-of-ten factor found in the dei count or the pin); the share-count series breaks scale inside the growth window (FY2022 3,223,658,000 -> FY2023 1,658,604, FY2024 1,643,132 -> FY2025 3,223,658,000), so the share-count CAGR (+0.0%/yr) and the OE/share CAGR (-97.7%/yr) were dropped from the growth blend (share adjustment 0)",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F FY2025 (accession 0002070979-26-000018), Note 24.h Earnings per share, p. F-89: Weighted average of common shares outstanding (in thousands) 3,223,658 \u2014 denominator of Basic and diluted results per common share R$1.91; the note states no potentially dilutive shares); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 1.27 vs 3-yr median 2068.56 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier C (11.3%) vs bull-case tier B (17.4%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "iv_at_15": 6.53,
-   "irr": 0.0897
+   "iv_at_15": 6.47,
+   "irr": 0.0884
   },
   "bear": {
    "prob": 0.25,
-   "iv_at_15": 8.88,
-   "irr": 0.1151
+   "iv_at_15": 8.8,
+   "irr": 0.1132
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 11.65,
-   "irr": 0.1439
+   "iv_at_15": 11.55,
+   "irr": 0.1416
   },
   "bull": {
    "prob": 0.2,
-   "iv_at_15": 15.12,
-   "irr": 0.1771
+   "iv_at_15": 14.99,
+   "irr": 0.1743
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 21.09,
-   "irr": 0.2275
+   "iv_at_15": 20.91,
+   "irr": 0.224
   }
  },
- "iv_at_15": 11.83,
- "iv_at_12": 15.71,
- "implied_irr": 0.1457,
- "implied_irr_base_case": 0.1439,
- "upside_at_15_pct": -3.5,
+ "iv_at_15": 11.72,
+ "iv_at_12": 15.57,
+ "implied_irr": 0.1434,
+ "implied_irr_base_case": 0.1416,
+ "upside_at_15_pct": -5.5,
  "tier_by_numbers": "C",
  "tier_final": "C",
  "confidence": "low",
- "one_liner": "Brazil's telecom incumbent, moat 5/10 \u2014 a 10.44% OE yield and +7.6% BRL revenue prints, but at $12.26 the weighted IRR is only 14.57% (IV@15% $11.83/ADS on a pinned FY2025 base of $1.28/ADS); it clears the 15% hurdle only below ~$11.83.",
- "analysis_date": "2026-10-16",
+ "one_liner": "Brazil's telecom incumbent, moat 5/10 \u2014 a 10.24% OE yield and +7.6% BRL revenue prints, but at $12.40 the weighted IRR is only 14.34% (bear 11.32%, bull 17.43%; IV@15% $11.72/ADS on a pinned FY2025 base of $1.27/ADS); it clears the 15% hurdle only at or below $11.72.",
+ "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.1132,
+ "irr_bull": 0.1743,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 8.26,
+ "iv_at_25": 6.36,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2430666275.5200005,
+ "shares_diluted_latest": 3223658000.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
  "moat_for": [
   "Largest Brazilian wireless carrier \u2014 about 33% market share with postpaid leadership (about 37% of postpaid)",
   "Scale, spectrum holdings and the Vivo brand; record mobile ARPU in Q2 2026 prints",
@@ -70,5 +89,23 @@
   "Regulatory overhang: Anatel oversight and FISTEL TFF fees (the Q2 2026 release notes R$7.3B for 2020-2026 excluded from its debt figure)",
   "BRL earnings priced in USD \u2014 real depreciation directly cuts per-ADS owner's earnings",
   "Controlled company (Telef\u00f3nica held 77.13% at Q1 2026) \u2014 minorities are subordinate to group strategy and a >=100%-of-net-income distribution commitment"
- ]
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 3223658000.0,
+   "kind": "filing",
+   "source": "Form 20-F FY2025 (accession 0002070979-26-000018), Note 24.h Earnings per share, p. F-89: Weighted average of common shares outstanding (in thousands) 3,223,658 \u2014 denominator of Basic and diluted results per common share R$1.91; the note states no potentially dilutive shares"
+  }
+ ],
+ "override_impact": {
+  "base_used": "declared_pin",
+  "base_oe_without_override": 1.2692,
+  "base_oe_with_override": 1.2692,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1434,
+  "weighted_irr_with_override": 0.1434,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
 }

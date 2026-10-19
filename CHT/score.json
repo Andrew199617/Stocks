@@ -3,7 +3,8 @@
  "name": "Chunghwa Telecom Co., Ltd.",
  "sector": "Telecommunications / Integrated telecom & ICT services (Taiwan)",
  "price": 46.51,
- "market_cap_b": 361.62,
+ "market_cap_b": 36.16,
+ "market_cap_basis": "ads_corrected_by_make_score",
  "engine_version": 5,
  "base_oe_per_share": 1.8609143593045718,
  "base_year": "2024",
@@ -54,7 +55,22 @@
  "confidence": "medium",
  "one_liner": "Taiwan's dominant incumbent telecom, moat 6/10 \u2014 quality is not the issue, price is: Tier D, weighted IRR 6.8%, IV@15% $15.75 per ADS vs $46.51, and even the super-bull case ($26.59) sits far below the price; it clears 15% only under ~$15.75 per ADS.",
  "analysis_date": "2026-10-14",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
+ "engine_release": null,
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -788000000,
+ "shares_diluted_latest": 7775000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert",
  "moat_for": [
   "Taiwan's #1 operator: mobile revenue share 41.2% > subscriber share 39.8% (Q2 2026), ~54.6% of broadband access/internet, leading 5G share",
   "Scarce licensed spectrum + sunk incumbent fiber/last-mile network rivals cannot replicate",
@@ -68,5 +84,7 @@
   "Two capable, consolidated rivals (Taiwan Mobile, Far EasTone) contest every segment; entry-tier price competition persists",
   "OTT erosion of legacy fixed voice/SMS; the fast-growing ICT revenue is project-based, lumpy and lower-margin than core telecom",
   "State influence (Ministry of Transportation and Communications is the largest shareholder) and TWD/USD exposure for ADS holders"
- ]
+ ],
+ "in_scope_corrected_by_make_score": true,
+ "net_debt_to_normalized_oe_ads_basis": -0.5446
 }

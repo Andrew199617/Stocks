@@ -1,0 +1,109 @@
+{
+ "ticker": "CX",
+ "name": "Cemex, S.A.B. de C.V.",
+ "sector": "Materials / Cement & construction materials",
+ "price": 10.26,
+ "market_cap_b": 15.07,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 0.36967568300135445,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Local cement/aggregates density, quarry and plant scarcity and high transport costs give Cemex pricing power in its core local markets, but the product is a commodity, ROIC has run only about 4-10% through the cycle and gross margin about 31-34%, and earnings ride construction cycles, energy/carbon costs and FX.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 22 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency MXN converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x30.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 1 Description of Business: each CPO represents two series A shares and one series B share of common stock (3 ordinary shares per CPO), and each ADS represents ten CPOs - 30 ordinary shares per ADS. Corroborated in the same statements, Note 21: 662 million own shares cancelled in 2022 were stated as 22.1 million ADSs (662/22.1 is about 30).) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 22 Executive Share-Based Compensation: the combined compensation expense for the Share-Based Compensation Programs amounted to $55 million in 2024, $61 million in 2023 and $52 million in 2022 (statements presented in millions of U.S. dollars)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 8.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 1.52,
+   "irr": 0.0413
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 2.45,
+   "irr": 0.054
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 3.35,
+   "irr": 0.0666
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 4.53,
+   "irr": 0.0828
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 6.85,
+   "irr": 0.1123
+  }
+ },
+ "iv_at_15": 3.59,
+ "iv_at_12": 4.78,
+ "implied_irr": 0.0703,
+ "implied_irr_base_case": 0.0666,
+ "upside_at_15_pct": -65.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Tier D: moat 5/10 local-density cement incumbent with ROIC of roughly 4-10% - on the last filed year (FY2024, 22 months stale, base $0.37/ADS once engine 5.5 adds intangible-asset purchases to capex) the weighted IRR is 7.03% at $10.26 with the whole band in D; clears 15% only at $3.59 (IV@15). A FY2025 base may lift it toward C, not near B.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.054,
+ "irr_bull": 0.0828,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 2.52,
+ "iv_at_25": 1.93,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4665000000,
+ "shares_diluted_latest": 44065652000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Local market density: cement and aggregates are transport-cost bound (economic radius roughly 200-300km), so plant/quarry positions create local oligopolies",
+  "Scarce permitted quarry reserves and capital-intensive plants (over EUR150-200M per 1Mt of capacity) deter new entry",
+  "Proven local pricing power: Mexico cement prices rose in local currency in Q2 2026 prints while volumes also grew, and group gross margin has held about 33-34% in 2023-2024",
+  "Global scale across Mexico, the US and EMEA plus a ready-mix/aggregates distribution network that pulls through cement volumes"
+ ],
+ "moat_against": [
+  "ROIC proxy only 3.5-9.9% over 2022-2024 (fundamentals.json) and negative in 2020 - returns have not stayed well above the cost of capital through a cycle",
+  "Commodity product with no global pricing power: utilization runs the economics, so a small volume drop can erase profit (high operating leverage)",
+  "Gross margin has drifted down from about 36% in 2016 to about 33-34% - no expanding pricing-power trend",
+  "Energy, carbon (EU ETS/CBAM) and decarbonization capex are structural cost threats; cement is one of the most capital-intensive industries",
+  "MXN/USD and multi-currency exposure: a USD-priced ADS on largely non-USD earnings, plus recurring tax/legal overhangs (the Spanish tax assessments that hit 2023)"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 55000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 22 Executive Share-Based Compensation: the combined compensation expense for the Share-Based Compensation Programs amounted to $55 million in 2024, $61 million in 2023 and $52 million in 2022 (statements presented in millions of U.S. dollars)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.4071,
+  "base_oe_with_override": 0.3697,
+  "base_oe_impact_pct": -9.197,
+  "weighted_irr_without_override": 0.0748,
+  "weighted_irr_with_override": 0.0703,
+  "weighted_irr_impact_pp": -0.447,
+  "unblocks_tier": true
+ }
+}

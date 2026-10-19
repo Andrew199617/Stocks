@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $3.70 · normalized (3-yr median) OE/share: $3.62
 - Latest FY OE total: $677.4M
 - Shares diluted (latest): 732,412,025
-- Market cap (est): $13.246B · net debt (latest): —
+- Market cap (est): $13.246B (basis: diluted_latest) · net debt (latest): —
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 5/5
 
 ## Growth & moat
@@ -59,5 +60,5 @@ Filing gaps found and covered by judgment overrides: sbc
 | sbc | $5.4M | filing | Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-30), Notes to the Consolidated Financial Statements, capital reserves table (Note 27.5): Sharebased remuneration US$5.4 million in FY2025, US$4.5 million in FY2024 and US$4.5 million in FY2023 | 2019-12-31, 2020-12-31, 2021-12-31, 2023-12-31, 2024-12-31, 2025-12-31 |
 - sbc reason: DATA_GAP:sbc — SBC missing for fiscal years 2023, 2024, 2025 under the engine's AdjustmentsForSharebasedPayments tag (last filed FY2022: $2.9 million). The filer's own FY2025 sharebased remuneration figure fills the gap; the engine applies this single value to every missing period, so FY2023/FY2024 are charged $5.4M instead of their filed $4.5M — slightly conservative and immaterial ($5.4M is under 1% of FY2025 operating cash flow of $870M and under 0.8% of the $682.8M owner's-earnings total). Value is 1.86x the last filed value, inside the 0.1x-10x band.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $3.65 (no override) → $3.62 (with override), -0.81% · weighted IRR 12.65% → 12.58% (-0.07pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $3.65 (no override) → $3.62 (with override), -0.81% · weighted IRR 12.65% → 12.58% (-0.07pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

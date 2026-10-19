@@ -3,7 +3,8 @@
  "name": "Tenaris S.A.",
  "sector": "Energy / Steel pipes \u2014 OCTG & line pipe (Tubes)",
  "price": 58.17,
- "market_cap_b": 58.86,
+ "market_cap_b": 29.43,
+ "market_cap_basis": "ads_corrected_by_make_score",
  "engine_version": 5,
  "base_oe_per_share": 4.0068573519285255,
  "base_year": "2025",
@@ -57,7 +58,22 @@
  "confidence": "medium",
  "one_liner": "Global premium OCTG leader, moat 6/10, company-reported net cash \u2014 but on a normalized mid-cycle base the price already pays for a recovery: weighted IRR 10.47%, weighted IV@15% $36.53 vs $58.17 per ADS, Tier C; clears 15% only below ~$36.53 per ADS.",
  "analysis_date": "2026-10-14",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
+ "engine_release": null,
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -266925000,
+ "shares_diluted_latest": 1011823958,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert; tier exists only because of a judgment override",
  "moat_for": [
   "Global leader in seamless and premium OCTG \u2014 proprietary premium connections qualified into demanding shale, sour-service and deepwater wells, where failure costs dwarf pipe price",
   "Vertically integrated steelmaking-to-threading footprint inside the major basins (US, Canada, Mexico, Argentina, Italy, Romania, Middle East) \u2014 logistics and lead-time advantage rivals importing at distance cannot match",
@@ -88,6 +104,10 @@
   "weighted_irr_without_override": 0.1047,
   "weighted_irr_with_override": 0.1047,
   "weighted_irr_impact_pp": 0.0,
-  "unblocks_tier": true
- }
+  "unblocks_tier": true,
+  "impact_carried_from_prior_score": true,
+  "counterfactual_engine_release": null
+ },
+ "in_scope_corrected_by_make_score": true,
+ "net_debt_to_normalized_oe_ads_basis": -0.1317
 }

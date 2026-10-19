@@ -1,0 +1,108 @@
+{
+ "ticker": "JLL",
+ "name": "Jones Lang LaSalle Incorporated",
+ "sector": "Real Estate",
+ "price": 305.5046,
+ "market_cap_b": 14.76,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 9.811461175886876,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow: a genuine scale platform (global #2, integrated services, contractual management-services base with very high top-client retention, LaSalle investment-management fees) but a people business whose producers can walk, with no pricing-power proof and measured ROIC only around the cost of capital through the cycle (roic_proxy 7.0-12.5% over 2021-25, trough 7.0% in 2023). CBRE, the #1 franchise, was scored 6/10 in this sweep; JLL sits one notch below it. A 7+ moat would need ROIC sustained well above the cost of capital, which the filed history does not show.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2018 (0 vs 26,900,000), FY2019 (28,000,000 vs 76,400,000, +172.9%), FY2020 (36,700,000 vs 47,500,000, +29.4%), FY2021 (17,800,000 vs 80,100,000, +350.0%), FY2022 (6,100,000 vs 75,300,000, +1134.4%), FY2023 (3,400,000 vs 74,900,000, +2102.9%), FY2024 (2,300,000 vs 95,100,000, +4034.8%), FY2025 (2,700,000 vs 112,000,000, +4048.1%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-19), Consolidated Statements of Cash Flows: 'Net capital additions - property and equipment' $(215.6) million for FY2025, with $(185.5) million for FY2024 and $(186.9) million for FY2023 in the same statement; MD&A 'Capital Expenditures' section confirms $215.6M (2025) and $185.5M (2024)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 17.94 vs 3-yr median 9.81 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 52.52,
+   "irr": 0.0457
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 84.35,
+   "irr": 0.0607
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 115.18,
+   "irr": 0.0751
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 155.4,
+   "irr": 0.093
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 234.11,
+   "irr": 0.1247
+  }
+ },
+ "iv_at_15": 114.46,
+ "iv_at_12": 154.39,
+ "implied_irr": 0.0752,
+ "implied_irr_base_case": 0.0751,
+ "upside_at_15_pct": -62.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Quality global #2 CRE services franchise, moat 5/10, but Tier D: weighted IRR 7.52% on the 3-yr median owner's-earnings base of $9.81/sh (engine 5.5 now charges the full $112.0M FY2025 stock comp), IV@15% $114.46 vs $305.50 \u2014 the 15% hurdle needs ~$114; the TTM base ($21.86/sh) is a cyclical-upswing print whose capex and 10-Q SBC legs are understated, so it is not pinned (a TTM pin reads Tier C by numbers, which the sector-misfit notch would size to D anyway); confidence low.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0607,
+ "irr_bull": 0.093,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 78.93,
+ "iv_at_25": 59.64,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 290800000,
+ "shares_diluted_latest": 48312000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale global platform: #2 CRE services franchise (with CBRE at the top), integrated leasing + capital markets + property/facilities management across ~80 countries - a corporate client can buy the whole stack from one counterparty",
+  "Recurring management-services base: Real Estate Management Services is contractual and retention-led (management cited ~99% retention among top clients and ~80% resilient revenue in Q2 2026 materials) - this carried OCF positive through the 2022-23 transaction freeze",
+  "Investment Management (LaSalle) AUM fee stream plus brand/trust with the largest owners: ~95% of the top 100 investors and ~50% of the Fortune 500 are clients (company materials)",
+  "Data/tech platform (JLL Technologies, AI/data investment funded from the recurring base) raises cross-sell and switching friction for embedded workplace-management clients"
+ ],
+ "moat_against": [
+  "People business: producers and client relationships can walk to CBRE/Cushman/rivals; no owned asset, network effect or lock-in protects the brokerage fee pool",
+  "Measured returns are only around the cost of capital through the cycle: roic_proxy 12.5% (2021), 9.6% (2022), 7.0% (2023), 9.3% (2024), 11.4% (2025) in fundamentals.json - no wide-moat ROIC signature",
+  "Transaction revenue (leasing advisory, capital markets) is un-moated cyclicality: OE/share $13.00 (2021), -$1.84 (2022), $5.91 (2023) in the rate shock (engine 5.5 history with the capex override and reconciled SBC)",
+  "Thin economics: operating margin ~4-5% of gross revenue (revenue includes large pass-through reimbursables); sophisticated institutional clients negotiate fees hard"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 215600000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-19), Consolidated Statements of Cash Flows: 'Net capital additions - property and equipment' $(215.6) million for FY2025, with $(185.5) million for FY2024 and $(186.9) million for FY2023 in the same statement; MD&A 'Capital Expenditures' section confirms $215.6M (2025) and $185.5M (2024)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 14.2686,
+  "base_oe_with_override": 9.8115,
+  "base_oe_impact_pct": -31.237,
+  "weighted_irr_without_override": 0.0964,
+  "weighted_irr_with_override": 0.0752,
+  "weighted_irr_impact_pp": -2.122,
+  "unblocks_tier": true
+ }
+}

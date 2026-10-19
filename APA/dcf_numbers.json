@@ -3,14 +3,14 @@
  "name": "APA CORPORATION",
  "cik": 1841666,
  "engine_version": 5,
- "engine_release": "5.4.0",
- "as_of": "2026-10-16",
- "price": 49.18,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 49.1437,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 359000000,
  "shares_outstanding_dei_latest": 350351510,
  "shares_outstanding_dei_asof": "2026-07-31",
- "market_cap_est": 17655620000.0,
+ "market_cap_est": 17642588300.0,
  "net_debt_latest": 3977000000,
  "net_debt_basis": "LongTermDebtAndCapitalLeaseObligations+DebtCurrent",
  "lease_liabilities_latest": 317000000,
@@ -18,24 +18,24 @@
  "rev_cagr_5y": null,
  "rev_cagr_3y": null,
  "oe_positive_years_of_last_5": "5/5",
- "base_oe_total_latest_fy": 1698000000.0,
- "base_oe_per_share": 4.748587570621469,
+ "base_oe_total_latest_fy": 1698000000,
+ "base_oe_per_share": 5.669491525423729,
  "base_oe_latest_per_share": 4.729805013927576,
- "base_oe_normalized_per_share": 2.3541076487252126,
+ "base_oe_normalized_per_share": 2.3689320388349513,
  "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": null,
   "rev_cagr_3y": null,
   "rev_yoy_latest": null,
-  "oe_ps_cagr_2y": 1.1878533534581233
+  "oe_ps_cagr_2y": 0.41267617009150603
  },
  "growth_components_adjusted": {
   "rev_cagr_5y": null,
   "rev_cagr_3y": null,
   "rev_yoy_latest": null,
-  "oe_ps_cagr_2y": 1.1878533534581233
+  "oe_ps_cagr_2y": 0.41267617009150603
  },
- "g_blend": 1.1878533534581233,
+ "g_blend": 0.41267617009150603,
  "share_cagr": 0.02537074531302652,
  "share_count_adj": -0.02537074531302652,
  "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
@@ -44,9 +44,9 @@
   "net_income": "NetIncomeLoss",
   "operating_income": "OperatingIncomeLoss",
   "ocf": "NetCashProvidedByUsedInOperatingActivities",
-  "capex": null,
+  "capex": "PaymentsToExploreAndDevelopOilAndGasProperties",
   "da": "DepreciationDepletionAndAmortization",
-  "sbc": "ShareBasedCompensation",
+  "sbc": "AllocatedShareBasedCompensationExpense",
   "tax": "IncomeTaxExpenseBenefit",
   "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
   "cash": "CashAndCashEquivalentsAtCarryingValue",
@@ -64,25 +64,211 @@
   "liabilities": null,
   "ppe_net": null,
   "equity": "StockholdersEquity",
-  "shares_out_inst": "CommonStockSharesOutstanding"
+  "shares_out_inst": "CommonStockSharesOutstanding",
+  "capex_components": "PaymentsToAcquireOilAndGasProperty+PaymentsToExploreAndDevelopOilAndGasProperties"
  },
  "filer_annual_form": "10-K",
  "ads_ratio": null,
  "fx_conversion": null,
+ "payable_base": null,
  "override_checks": {
-  "capex": {
-   "value": 2740000000.0,
-   "last_filed_value": null,
-   "last_filed_unit": null,
-   "out_of_band": true,
-   "ack_reason_present": true
-  },
   "sbc": {
    "value": 107000000.0,
    "last_filed_value": 107000000,
    "last_filed_unit": "USD",
    "out_of_band": false,
-   "ack_reason_present": false
+   "ack_reason_present": false,
+   "currency_basis": "no_fx"
+  }
+ },
+ "market_cap_basis": {
+  "shares_used": 359000000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": null,
+  "formula": "price \u00d7 shares"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": 350351510,
+  "dei_date": "2026-07-31",
+  "dei_ratio": 1.0246851797499033,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2019-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 2594000000,
+    "PaymentsToAcquireOilAndGasProperty": 40000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2022-02-22",
+    "PaymentsToAcquireOilAndGasProperty": "2022-02-22"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "components_mixed_filings",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 1270000000,
+    "PaymentsToAcquireOilAndGasProperty": 4000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2023-02-23",
+    "PaymentsToAcquireOilAndGasProperty": "2022-02-22"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "components_mixed_filings",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 1101000000,
+    "PaymentsToAcquireOilAndGasProperty": 9000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2024-02-22",
+    "PaymentsToAcquireOilAndGasProperty": "2022-02-22"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 1770000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2025-02-28"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 2313000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2026-02-26"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 2851000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2026-02-26"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 2740000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2026-02-26"
+   }
+  }
+ },
+ "sbc_provenance": {
+  "2019-12-31": {
+   "share": [
+    138000000,
+    "USD"
+   ],
+   "allocated": [
+    110000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2020-12-31": {
+   "share": [
+    47000000,
+    "USD"
+   ],
+   "allocated": [
+    40000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2021-12-31": {
+   "share": [
+    175000000,
+    "USD"
+   ],
+   "allocated": [
+    157000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2022-12-31": {
+   "share": [
+    348000000,
+    "USD"
+   ],
+   "allocated": [
+    304000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
   }
  },
  "g_base": 0.35,
@@ -113,206 +299,185 @@
    1.25
   ],
   "g_terminal": 0.025,
-  "base_oe_ps_arg": 4.748587570621469,
+  "base_oe_ps_arg": 5.669491525423729,
   "base_pin_source": "ttm_json"
  },
- "data_gap": [
-  "capex"
- ],
+ "data_gap": [],
  "data_gap_uncovered": [],
- "overrides_applied": [
-  {
-   "field": "capex",
-   "value": 2740000000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read",
-   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) in EDGAR companyfacts under every candidate tag the engine reads, because APA files its capital expenditures only as additions to oil and gas property under PaymentsToExploreAndDevelopOilAndGasProperties (the only capex-like Payments* tag in its companyfacts). The engine applies this single value to every missing period; $2,740M is both the FY2025 filed figure and the median of the three filed years ($2,313M / $2,851M / $2,740M). Against the true per-year figures it overstates FY2023 capex by $427M (conservative direction, lowers that year's OE) and understates FY2024 by $111M (~3% of that year's filed OCF, raising that year's OE slightly \u2014 noted, not hidden); FY2025 is exact. The median-of-3 base year is FY2024 on shares, and the single-value fill lands the computed median base within ~1% of the median built from the true per-year figures, so the approximation does not drive the verdict. A separate small line, leasehold and property acquisitions ($26M in FY2025), is acquisition spend, not additions to oil and gas property, and is excluded as the filer presents it.",
-   "periods_filled": [
-    "2019-12-31",
-    "2020-12-31",
-    "2021-12-31",
-    "2022-12-31",
-    "2023-12-31",
-    "2024-12-31",
-    "2025-12-31"
-   ],
-   "out_of_band": true,
-   "last_filed_value": null
-  }
- ],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
    "g_start": -0.1,
    "oe_mult": 0.5,
-   "iv_at_10": 19.88984258282044,
-   "iv_at_12": 15.976684280882424,
-   "iv_at_15": 12.42783840192569,
-   "iv_at_20": 9.173185723365728,
-   "iv_at_25": 7.330222722775691,
-   "irr": 0.05394862329508976,
+   "iv_at_10": 23.747123178893887,
+   "iv_at_12": 19.075077544158848,
+   "iv_at_15": 14.837996235969579,
+   "iv_at_20": 10.952161657819762,
+   "iv_at_25": 8.751788818923744,
+   "irr": 0.05981570147847702,
    "irr_at_floor": false
   },
   "bear": {
    "prob": 0.3,
    "g_start": -0.07,
    "oe_mult": 0.75,
-   "iv_at_10": 33.651821541886555,
-   "iv_at_12": 26.908779523614292,
-   "iv_at_15": 20.80601931559019,
-   "iv_at_20": 15.229368243858751,
-   "iv_at_25": 12.087479764403131,
-   "irr": 0.07543746256289513,
+   "iv_at_10": 40.17799276297818,
+   "iv_at_12": 32.12725788452938,
+   "iv_at_15": 24.840976065668958,
+   "iv_at_20": 18.182832876516663,
+   "iv_at_25": 14.431631104793029,
+   "irr": 0.0857165295213772,
    "irr_at_floor": false
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.0,
    "oe_mult": 1.0,
-   "iv_at_10": 58.99473291491772,
-   "iv_at_12": 46.72135306634257,
-   "iv_at_15": 35.66034639462544,
-   "iv_at_20": 25.628596700200465,
-   "iv_at_25": 20.036279557483123,
-   "irr": 0.11518448049962726,
+   "iv_at_10": 70.4357102678405,
+   "iv_at_12": 55.782127069690404,
+   "iv_at_15": 42.57603522546893,
+   "iv_at_20": 30.598806411244702,
+   "iv_at_25": 23.921958995757667,
+   "irr": 0.13303991079460287,
    "irr_at_floor": false
   },
   "bull": {
    "prob": 0.15,
    "g_start": 0.06,
    "oe_mult": 1.1,
-   "iv_at_10": 81.41520518283676,
-   "iv_at_12": 64.00852820047793,
-   "iv_at_15": 48.37027785704149,
-   "iv_at_20": 34.266125769323985,
-   "iv_at_25": 26.465781830852794,
-   "irr": 0.1479866181224695,
+   "iv_at_10": 97.20423367159633,
+   "iv_at_12": 76.42184181936896,
+   "iv_at_15": 57.75083144502219,
+   "iv_at_20": 40.91143035040646,
+   "iv_at_25": 31.598348682047337,
+   "irr": 0.17135037957545307,
    "irr_at_floor": false
   },
   "super_bull": {
    "prob": 0.1,
    "g_start": 0.12,
    "oe_mult": 1.25,
-   "iv_at_10": 115.27177821072509,
-   "iv_at_12": 90.03737751608254,
-   "iv_at_15": 67.42888172320066,
-   "iv_at_20": 47.138392534716935,
-   "iv_at_25": 35.99558247223658,
-   "irr": 0.193193686118306,
+   "iv_at_10": 137.62668582327504,
+   "iv_at_12": 107.49852270956441,
+   "iv_at_15": 80.50551196815215,
+   "iv_at_20": 56.28004391265731,
+   "iv_at_25": 42.97628436750674,
+   "irr": 0.22361083153484385,
    "irr_at_floor": false
   }
  },
  "weighted": {
-  "iv_at_10": 54.51690132296237,
-  "iv_at_12": 43.090559400799364,
-  "iv_at_15": 32.80251532422984,
-  "iv_at_20": 23.487125460592914,
-  "iv_at_25": 18.306086726833808,
-  "irr": 0.10817979731047933,
+  "iv_at_10": 65.08948301914664,
+  "iv_at_12": 51.447205661751546,
+  "iv_at_15": 39.163978736305346,
+  "iv_at_20": 28.042034978828074,
+  "iv_at_25": 21.856226092061544,
+  "irr": 0.124478227605858,
   "irr_at_floor": false
  },
  "paths": {
   "super_bear": [
-   2.136864,
-   1.923178,
-   1.771605,
-   1.669513,
-   1.608675,
-   1.584136,
-   1.593533,
-   1.633371,
-   1.674206,
-   1.716061,
-   1.758962,
-   1.802936,
-   1.84801,
-   1.89421,
-   1.941565
+   2.551271,
+   2.296144,
+   2.115177,
+   1.993285,
+   1.920649,
+   1.891351,
+   1.90257,
+   1.950135,
+   1.998888,
+   2.04886,
+   2.100082,
+   2.152584,
+   2.206398,
+   2.261558,
+   2.318097
   ],
   "bear": [
-   3.31214,
-   3.08029,
-   2.914268,
-   2.804118,
-   2.743283,
-   2.727939,
-   2.756606,
-   2.825521,
-   2.896159,
-   2.968563,
-   3.042777,
-   3.118846,
-   3.196818,
-   3.276738,
-   3.358656
+   3.95447,
+   3.677657,
+   3.479438,
+   3.347927,
+   3.275294,
+   3.256975,
+   3.2912,
+   3.37348,
+   3.457817,
+   3.544263,
+   3.632869,
+   3.723691,
+   3.816783,
+   3.912203,
+   4.010008
   ],
   "base": [
-   4.748588,
-   4.748588,
-   4.768709,
-   4.809121,
-   4.870254,
-   4.952801,
-   5.057733,
-   5.184177,
-   5.313781,
-   5.446626,
-   5.582791,
-   5.722361,
-   5.86542,
-   6.012056,
-   6.162357
+   5.669492,
+   5.669492,
+   5.693515,
+   5.741765,
+   5.814753,
+   5.913309,
+   6.038591,
+   6.189555,
+   6.344294,
+   6.502902,
+   6.665474,
+   6.832111,
+   7.002914,
+   7.177987,
+   7.357436
   ],
   "bull": [
-   5.536853,
-   5.869064,
-   6.186392,
-   6.484177,
-   6.757832,
-   7.002946,
-   7.215408,
-   7.395794,
-   7.580688,
-   7.770206,
-   7.964461,
-   8.163572,
-   8.367662,
-   8.576853,
-   8.791274
+   6.610627,
+   7.007265,
+   7.386132,
+   7.741668,
+   8.068393,
+   8.361043,
+   8.614708,
+   8.830076,
+   9.050828,
+   9.277099,
+   9.509026,
+   9.746752,
+   9.990421,
+   10.240181,
+   10.496186
   ],
   "super_bull": [
-   6.648023,
-   7.445785,
-   8.21939,
-   8.941024,
-   9.58205,
-   10.114747,
-   10.514194,
-   10.777049,
-   11.046475,
-   11.322637,
-   11.605703,
-   11.895846,
-   12.193242,
-   12.498073,
-   12.810525
+   7.937288,
+   8.889763,
+   9.813394,
+   10.674977,
+   11.440318,
+   12.076322,
+   12.553235,
+   12.867066,
+   13.188742,
+   13.518461,
+   13.856422,
+   14.202833,
+   14.557904,
+   14.921851,
+   15.294898
   ],
   "weighted": [
-   4.234078,
-   4.262078,
-   4.320531,
-   4.401128,
-   4.497242,
-   4.603759,
-   4.717062,
-   4.834989,
-   4.955864,
-   5.07976,
-   5.206754,
-   5.336923,
-   5.470346,
-   5.607105,
-   5.747282
+   5.055202,
+   5.088632,
+   5.158422,
+   5.254648,
+   5.369402,
+   5.496576,
+   5.631853,
+   5.772649,
+   5.916965,
+   6.064889,
+   6.216511,
+   6.371924,
+   6.531222,
+   6.694503,
+   6.861865
   ]
  },
  "growth_paths": {
@@ -402,50 +567,42 @@
    0.025
   ]
  },
- "implied_irr_weighted": 0.10817979731047933,
- "implied_irr_base": 0.11518448049962726,
- "irr_bear": 0.07543746256289513,
- "irr_bull": 0.1479866181224695,
- "irr_low": 0.05394862329508976,
- "irr_high": 0.193193686118306,
+ "implied_irr_weighted": 0.124478227605858,
+ "implied_irr_base": 0.13303991079460287,
+ "irr_bear": 0.0857165295213772,
+ "irr_bull": 0.17135037957545307,
+ "irr_low": 0.05981570147847702,
+ "irr_high": 0.22361083153484385,
  "tier_by_numbers": "C",
  "tier_bear": "D",
- "tier_bull": "C",
+ "tier_bull": "B",
  "hurdle_prices": {
-  "15": 32.80251532422984,
-  "20": 23.487125460592914,
-  "25": 18.306086726833808
+  "15": 39.163978736305346,
+  "20": 28.042034978828074,
+  "25": 21.856226092061544
  },
- "upside_at_15": -0.3330110751478276,
- "upside_at_12": -0.12381945098008618,
- "iv_at_15": 32.80251532422984,
- "iv_at_12": 43.090559400799364,
- "iv_at_20": 23.487125460592914,
- "iv_at_25": 18.306086726833808,
+ "upside_at_15": -0.203072240464081,
+ "upside_at_12": 0.046872857797673806,
+ "iv_at_15": 39.163978736305346,
+ "iv_at_12": 51.447205661751546,
+ "iv_at_20": 28.042034978828074,
+ "iv_at_25": 21.856226092061544,
  "diagnostics": {
-  "oe_yield": 0.09655525763768745,
-  "tv_share_at_15": 0.17656378936028713,
-  "scenario_spread_iv15": 5.425632321768247,
-  "net_debt_to_normalized_oe": 2.332903050478973,
-  "months_since_fy_end": 9.494086727989487,
+  "oe_yield": 0.11536558145649857,
+  "tv_share_at_15": 0.1765637893602872,
+  "scenario_spread_iv15": 5.425632321768248,
+  "net_debt_to_normalized_oe": 1.9539661324639526,
+  "months_since_fy_end": 9.592641261498029,
   "irr_capped": false,
   "irr_at_floor": false
  },
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
-  "BASE_DIVERGENCE: latest FY OE/share 4.73 vs 3-yr median 2.35 \u2014 one of them is distorted; find out which and why",
+  "BASE_DIVERGENCE: latest FY OE/share 4.73 vs 3-yr median 2.37 \u2014 one of them is distorted; find out which and why",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 5.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (14.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+  "TIER_BAND: bear-case tier D (8.6%) vs bull-case tier B (17.1%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
- "override_impact": {
-  "base_oe_per_share_zero_fill": 10.11614730878187,
-  "base_oe_per_share_final": 4.748587570621469,
-  "weighted_irr_zero_fill": 0.14427843525765904,
-  "weighted_irr_final": 0.10817979731047933,
-  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
- },
- "content_hash": "49ffc51209d2772b0cd9e84dd8a1a1fa4d3789aa0b4874322d27b5c7cc8413a1"
+ "content_hash": "682535c10b30d52e183e48e927ce487c8a7174ae8b7e60c95d07eef2eb4482f0"
 }

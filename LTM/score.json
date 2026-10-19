@@ -4,6 +4,7 @@
  "sector": "Industrials \u2014 Airlines",
  "price": 47.47,
  "market_cap_b": 13.99,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 6.04393640145002,
  "base_year": "2025",
@@ -73,7 +74,7 @@
  "shares_diluted_latest": 589306002483.0,
  "model_fit": "modeled",
  "alert_eligible": false,
- "alert_suppressed_reason": "tier exists only because of a judgment override",
+ "alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an entry alert; tier exists only because of a judgment override",
  "exit_alert_eligible": false,
  "moat_for": [
   "Dominant South American network: hubs at Santiago, Lima and Sao Paulo/Guarulhos and leading positions in the Chilean, Peruvian, Colombian, Ecuadorian and Brazilian domestic markets",
@@ -110,6 +111,9 @@
   "weighted_irr_without_override": 0.2097,
   "weighted_irr_with_override": 0.224,
   "weighted_irr_impact_pp": 1.436,
-  "unblocks_tier": true
- }
+  "unblocks_tier": true,
+  "impact_carried_from_prior_score": true,
+  "counterfactual_engine_release": "5.4.0"
+ },
+ "net_debt_to_normalized_oe_ads_basis": 3.3346
 }

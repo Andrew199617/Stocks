@@ -1,0 +1,300 @@
+{
+ "ticker": "AR",
+ "cik": 1433270,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:14:29-04:00",
+ "newest_filing_date": "2026-07-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001433270.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926013386/ar-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ANTERO RESOURCES Corp",
+  "cik": 1433270,
+  "description": {
+   "text": "Antero Resources Corporation (individually referred to as “Antero”) and its consolidated subsidiaries (collectively referred to as “Antero Resources,” the “Company,” “we,” “us” or “our”) are engaged in the development, production, exploration and acquisition of natural gas, NGLs and oil properties located in the Appalachian Basin. The Company targets large, repeatable resource plays where horizontal drilling and advanced fracture stimulation technologies provide the means to economically develop and produce natural gas, NGLs and oil from unconventional formations. As of December 31, 2025, we held approximately 537,000 net acres of natural gas, NGLs and oil properties located in the Appalachian Basin primarily in West Virginia and Ohio. Our corporate headquarters is in Denver, Colorado. Unless expressly stated otherwise, the operating and financial information presented in this Annual Report on Form 10-K does not give effect to the completion of the HG Acquisition or the Utica Shale Divestiture.",
+   "source": "10-K Items 1 and 2 Business and Properties",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-013386",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926013386/ar-20251231x10k.htm"
+  },
+  "description_short": "Antero Resources, based in Denver, engages in the exploration for and production of natural gas and natural gas liquids in the United States and Canada. At the end of 2021, the company reported proven reserves of 17.7 trillion cubic feet of natural gas equivalent. Production averaged approximately 3,268 million cubic feet of equivalent a day in 2021 at a ratio of 31% liquids and 69% natural gas.",
+  "industry": "Oil & Gas Production",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "1311",
+  "sic_description": "Crude Petroleum & Natural Gas",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.anteroresources.com",
+  "headquarters": "Denver, Colorado",
+  "address": {
+   "street": "1615 Wynkoop Street",
+   "city": "Denver",
+   "state": "Colorado",
+   "zip": "80202",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "303-357-7325",
+  "employees": {
+   "count": 632,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 632 full-time employees, including 47 in executive, finance, treasury, legal and administration, 37 in information technology, 19 in geology, 243 in production and operations, 184 in midstream and water, 53 in land and 49 in accounting and internal audit.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926013386/ar-20251231x10k.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2013-06-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "ANTERO RESOURCES APPALACHIAN CORP",
+   "ANTERO RESOURCES BARNETT CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001433270&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-088204",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926088204/tm2621397d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-088153",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926088153/ar-20260630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-23",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-076641",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926076641/tm2618449d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-16",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-074744",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926074744/tm2618017d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-03",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-070581",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926070581/tm2616933d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-059013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926059013/tm2614298d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-051537",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926051537/tm2612870d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-051530",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926051530/ar-20260331x10q.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-23",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001308179-26-000330",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000130817926000330/ar014929-def14a.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-17",
+   "period": "2026-02-03",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001104659-26-044934",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926044934/tm2611828d1_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-022558",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926022558/tm267640d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-018614",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926018614/tm267009d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001104659-26-013420",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926013420/tm265893d1_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-013386",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926013386/ar-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-012158",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926012158/tm265496d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "1.01",
+    "2.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Debt obligation; Other events",
+   "accession": "0001104659-26-009754",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926009754/tm264854d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-007438",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926007438/tm264179d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-14",
+   "period": "2026-01-13",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001104659-26-003798",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926003798/tm263172d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-05",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001104659-25-119058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465925119058/tm2532931d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-25-109796",
+   "url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465925109796/tm2530703d1_8k.htm"
+  }
+ ],
+ "warnings": []
+}

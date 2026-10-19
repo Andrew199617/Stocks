@@ -1,0 +1,31 @@
+{
+ "name": "EQUITY LIFESTYLE PROPERTIES, INC.",
+ "sector": "Real Estate / Manufactured housing & RV REIT",
+ "moat_score": 6,
+ "moat_justification": "Moderate 6/10, the top of the REIT range in this sweep: the land-lease manufactured-housing model (residents own the home, ELS owns the land; moving a home is costly) makes tenants unusually captive and rent increases stick (2026 core MH base-rent guidance +5.2-6.2%, MH occupancy rising), and zoning keeps new MH community supply near zero in ELS's Florida / California / Arizona retirement markets. Not 7+: filed returns on capital are low (fundamentals.json roic_proxy 5.1-6.1% over FY2021-25), the RV and marina third of the business is discretionary and weather-exposed (2026 RV/marina base-rent guidance +1.1-2.1%), and rent regulation plus the pending Datacomp lot-rent antitrust suit are live risks to the pricing power that is the moat. Above EGP / KIM (5) and the residential REIT 4s (AMH, MAA, INVH) on tenant captivity and supply scarcity.",
+ "moat_for": [
+  "Land-lease manufactured housing: residents own their homes on ELS land and moving a home is costly, so turnover is low and annual rent increases stick (2026 core MH base-rent guidance +5.2-6.2%; MH occupancy ~94% and rising, Q2 2026)",
+  "Near-zero new supply: zoning and entitlement make new MH communities rare, and the portfolio sits in high-barrier retirement and coastal markets (Florida, California, Arizona)",
+  "Demographic demand: an ageing 55+ population and MH as the cheapest form of detached housing support occupancy and pricing",
+  "Balance sheet and record: debt / Adjusted EBITDAre 4.4x, interest coverage 5.6x, debt 20.5% of total market cap (Q2 2026 release); 22 consecutive annual dividend increases (2026: $2.17/sh, +5.3%)"
+ ],
+ "moat_against": [
+  "Filed returns on capital are low: fundamentals.json roic_proxy 5.9% (FY2021), 6.1% (FY2022), 5.1% (FY2023), 6.1% (FY2024), 6.1% (FY2025); the ~20-23% ROE is leverage on a small book equity, not returns well above the cost of capital",
+  "RV and marina business is discretionary and weather-exposed: transient RV demand uneven in 2026 (weather, wildfires), storm-damaged marinas awaiting restoration and insurance proceeds; 2026 RV/marina base-rent guidance only +1.1-2.1%",
+  "Regulatory and legal pressure on the pricing power itself: local rent-control regimes (California) and the Datacomp lot-rent antitrust class action (In re Manufactured Home Lot Rents Antitrust Litigation, N.D. Ill. No. 1:23-cv-6715; dismissed without prejudice Dec 2025, amended complaint Jan 2026, renewed motion to dismiss pending, no accrual)",
+  "Florida and coastal concentration: hurricane restoration capex (FY2023 capital improvements $317,086,000 vs $241,279,000 and $237,091,000 in FY2024-25) and insurance-cost cycles",
+  "External growth is constrained (management: transaction activity limited); per-share growth rests on internal rent escalation of mid-single digits"
+ ],
+ "probs_used": [
+  0.1,
+  0.3,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "one_liner": "Best-in-class manufactured-housing / RV landlord, moat 6/10 — but conservative owner's earnings (OCF less all capital improvements and SBC) are only $1.64/sh TTM against a $61.21 price: weighted IRR 5.51% (IV@15% $14.40), bear→bull band D→D, and the price would have to fall to ~$14 to clear the 15% hurdle; confidence low (REIT sector misfit — FFO-based measures read richer, but not near 15%).",
+ "confidence": "low",
+ "tier_override": null,
+ "tier_override_reason": null,
+ "in_scope_under_40b": true
+}

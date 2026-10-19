@@ -1,0 +1,89 @@
+{
+ "ticker": "DD",
+ "name": "DuPont de Nemours, Inc.",
+ "sector": "Industrials / Specialty chemicals & materials",
+ "price": 130.0,
+ "market_cap_b": 18.17,
+ "market_cap_basis": "diluted_latest_split_adjusted",
+ "engine_version": 5,
+ "base_oe_per_share": 4.803206997084548,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Market-leading, spec-in franchises (Tyvek, FilmTec membranes) with qualification switching costs and a 30.1% Q2 2026 operating EBITDA margin in Healthcare & Water, but measured returns on capital are low through the cycle (ROE 1.7% in 2023, 3.0% in 2024, -5.6% in 2025 on the filed history; roic_proxy not computable because operating income is untagged) and continuing-basis gross margin is only 32.8-34.5% \u2014 a narrow/moderate moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.7%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARE_BASIS_ADJUSTED: 1-for-3 split (filed ratio 0.333, effective 2026-06-30) post-dates the filings behind FY2016, FY2017, FY2018, FY2019, FY2020, FY2021, FY2022, FY2023, FY2024, FY2025; their share counts were multiplied by 0.333333 so the history and the current price share one basis (dei 135,042,975 on 2026-07-31 confirms)",
+  "BASE_DIVERGENCE: latest FY OE/share 1.35 vs 3-yr median 3.03 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 21.59,
+   "irr": 0.0439
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 31.94,
+   "irr": 0.0549
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 41.92,
+   "irr": 0.0658
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 56.72,
+   "irr": 0.0819
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 79.13,
+   "irr": 0.1046
+  }
+ },
+ "iv_at_15": 41.82,
+ "iv_at_12": 55.4,
+ "implied_irr": 0.0661,
+ "implied_irr_base_case": 0.0658,
+ "upside_at_15_pct": -67.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Solid specialty-materials franchise, moat 5/10 \u2014 on TTM owner's earnings of $4.80/share the weighted IRR is 6.61% at $130.00 (weighted IV@15% $41.82, bear 5.49% \u2192 bull 8.19%, all Tier D); it clears the 15% hurdle only below $41.82 \u2014 the post-reverse-split price capitalizes an adjusted-EPS recovery that cash owner's earnings do not yet support.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0549,
+ "irr_bull": 0.0819,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 29.59,
+ "iv_at_25": 22.84,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2479000000,
+ "shares_diluted_latest": 139733333.3333333,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Tyvek leadership in medical packaging and construction envelopes \u2014 spec-in, qualification-locked positions",
+  "FilmTec reverse-osmosis membranes \u2014 leading position in water treatment with installed-base replacement demand",
+  "Healthcare & Water Technologies operating EBITDA margin 30.1% in Q2 2026 (company release)",
+  "Patent and brand portfolio plus regulatory qualifications raise customer switching costs"
+ ],
+ "moat_against": [
+  "Low measured returns through the cycle: ROE 1.7% (2023), 3.0% (2024), -5.6% (2025); no computable ROIC series (operating income untagged)",
+  "Continuing-basis gross margin only 32.8% / 33.0% / 34.5% (2023-25) \u2014 pricing power is real but bounded",
+  "PFAS legacy liabilities \u2014 NJ settlement share ~$177M present value over 25 years, NC settlement cost-sharing, and open matters: a multi-decade cash drag",
+  "Cyclical end markets in Diversified Industrials: construction, automotive, printing & packaging",
+  "Portfolio still shrinking: Aramids (Kevlar/Nomex) sold April 2026 after the Qnity spin \u2014 smaller, less diversified base"
+ ]
+}

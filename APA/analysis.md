@@ -67,3 +67,135 @@ Growth recalibration (written reason, mandatory sanity check): the engine's blen
 - **Final tier: C** (weighted IRR 10.82% on the TTM base; method range C→D, bear case D — size any position to the bear end)
 - Confidence: **Low** (WIDE_SCENARIO_SPREAD 5.43x, TIER_BAND spanning D–C, commodity-price-dependent base, two judgment overrides — one filing, one estimate — in the build)
 - One-liner: Commodity E&P, moat 3/10 — no pricing power and cycle-set returns; on the TTM base ($4.75/share) the weighted IRR is 10.8% with IV@15% $32.80 vs the $49.18 price, so it does not clear the 15% hurdle (clears only below ~$32.80), and the method range runs down to Tier D on the median base — size to the bear end.
+
+## Engine 5.5 re-score (2026-10-19)
+Engine 5.5.0 run, 2026-10-19, under Andrew's ruling 4 (additive E&P capex). The single-value `capex_override` was deleted from judgment.json before the run, and APA is re-scored with no capex override. `sbc_override` is kept because it feeds ttm.py's SBC legs (see Overrides now). The 2026-10-16 text above is the dated record of the 5.4 score and is left as written. Where it disagrees with this section, this section is current. Figures below come from the final run's key_numbers.md, ttm.json and dcf_numbers.json. Old figures are the pre-5.5 score's. Figures from the FY2025 10-K and Q2 2026 10-Q statements are marked as filing text with their accession numbers. Research figures are marked as search results.
+
+| | Pre-5.5 (2026-10-16, engine 5.4.0) | Engine 5.5.0 (2026-10-19) |
+|---|---|---|
+| Base OE/share | $4.7486 (TTM pin; capex legs filled by the single-value override) | $5.67 (source: ttm_json; filed capex legs) |
+| Weighted IRR | 10.82% | 12.45% |
+| Tier (numbers / final) | C / C | C / C |
+
+Price $49.14 (nasdaq_quote_api). Market cap (est) $17.643B (basis: diluted_latest; price × shares). Scope: in scope (market cap under $40B). Net debt (latest) $3.977B.
+
+### What engine 5.5 changed for this filer
+- **Capex tags (ruling 4, additive components).** APA files no PP&E roll-up (`PaymentsToAcquirePropertyPlantAndEquipment`). It tags its capital spending as the E&P component `PaymentsToExploreAndDevelopOilAndGasProperties`, which 5.4 did not read. That is why the 5.4 run gapped and needed the override. When no roll-up is filed, 5.5 sums the filed components. key_numbers.md prints this capex basis:
+  - FY2023: $2.313B
+  - FY2024: $2.851B
+  - FY2025: $2.740B
+
+  Each year comes from PaymentsToExploreAndDevelopOilAndGasProperties alone (the PP&E leg, intangibles $0.00, `capex_source` `components`). These are the same three per-year figures the deleted override's source quoted from the FY2025 10-K MD&A. So the override would fill nothing, and `overrides_applied` is now empty. `used_tags.capex_components` also names `PaymentsToAcquireOilAndGasProperty` (leasehold acquisitions). In `capex_provenance` that tag is filed only for the FY2019–FY2021 history rows, not for FY2023–25.
+- **What the change fixes.** The 5.4 run put one value into every year, so the OE history before 2023 was a fill artefact. The 2026-10-16 text says so. Every CSV year now carries its own filed capex. The 3-year median now sits on the FY2023 filed row (normalized OE/share $2.37) instead of the FY2024 fill year. The latest FY OE/share is unchanged at $4.73, because FY2025 was the override's exact year.
+- **TTM legs.** ttm.py reads the same component in the 10-Qs (ttm.json):
+  - OCF: FY $4,545,000,000 − prior YTD $2,277,000,000 + current YTD $2,260,000,000 = **TTM $4,528,000,000**. Unchanged.
+  - Capex: FY $2,740,000,000 − prior YTD $1,437,000,000 + current YTD $1,111,000,000 = **TTM $2,414,000,000**. Every leg is tagged PaymentsToExploreAndDevelopOilAndGasProperties. No leg is an override, and `capex_override_superseded_legs` is empty. The two YTD legs are the H1 2025 and H1 2026 additions that the 2026-10-16 section quoted from the Q2 2026 10-Q cash-flow statement, as its caveat that the override-filled TTM capex was conservative. The filed series now carries them.
+  - SBC: FY $107,000,000 (`AllocatedShareBasedCompensationExpense`). Both YTD legs are filled by the sbc_override, prorated by days, and they cancel: **TTM $107,000,000**.
+  - Shares: 354,000,000, the current-YTD weighted diluted count.
+  - Result: **TTM OE total $2,007,000,000 → base OE/share $5.67.**
+- **SBC tag.** No SBC value moved. `sbc_provenance` finds both SBC tags only in FY2019–FY2022. In those years `ShareBasedCompensation` ≥ Allocated (note `share_ge_allocated`), so nothing was reconciled. FY2023–25 file only `AllocatedShareBasedCompensationExpense`, which the CSV already used. `used_tags.sbc` now names that tag, the one the latest year used, where the 5.4 record named `ShareBasedCompensation`.
+- **Share basis.** No change. The `share_scale` tests (a) and (b) are both false: the latest diluted count is 359,000,000 against a cover-page count of 350,351,510 (2026-07-31). No split fact is filed (`share_basis` is empty).
+- **Market cap.** $17.643B on `diluted_latest`, price × shares. APA is not an ADS filer, so ruling 1 changes nothing here.
+- **USD-override branch.** Not engaged. APA reports in USD (`fx_conversion` null), the sbc_override's `currency_basis` is `no_fx`, and no override carries `currency`.
+
+### Flags: every new 5.5 flag, by name
+None of the 5.5 flags fired on the final run. Each one was checked:
+- **SHARE_SCALE_SUSPECT / DATA_GAP:shares — SHARE_SCALE.** Not raised. The $5.67 base is far below 20× the $49.14 price, and the cover-page count agrees with the diluted count (above).
+- **SHARE_BASIS_ADJUSTED / SHARE_BASIS_DIVERGENCE.** Not raised. No split ratio is filed, and the cover-page count is within 25% of the latest diluted count. APA bought back shares in Q3 2026 (search result: APA's Q3 2026 supplemental 8-K, sec.gov accession 0001841666-26-000058). A falling count makes the diluted-count cap conservative, not optimistic.
+- **CAPEX_COVERAGE_LOW.** Not raised: capex is above D&A in each of FY2023–25 (financials_history.csv `da` column).
+  - Investing-section check: 5.5 reads the "Additions to oil and gas property" line in full.
+  - Not summed: the cash-flow statement's separate "Leasehold and property acquisitions" line. It is a ruling-4 component the engine missed, not spend outside capex. Ruling 4 sums oil-and-gas property acquisition (`PaymentsToAcquireOilAndGasProperty`), and `capex_provenance` sums that tag in the FY2019–21 rows ($40M / $4M / $9M). From FY2023 APA tags the line under its own extension concept, `apa:PaymentsToAcquireOilAndGasPropertiesUnprovedLeasehold`. EDGAR companyfacts carries only standard-taxonomy facts, so the engine cannot read it.
+  - Filed amounts (filing text): $26M FY2025, $60M FY2024 and $20M FY2023 (FY2025 10-K, accession 0001841666-26-000015, Statement of Consolidated Cash Flows); $20M H1 2025 and $6M H1 2026 (Q2 2026 10-Q, accession 0001841666-26-000053, same statement). FY2023 also prints a $24M "Acquisition of Delaware Basin properties" line on another extension concept.
+  - Effect: the TTM leg would be $26M − $20M + $6M = $12M, about $0.03 per share on 354,000,000 shares. FY2025 alone is about $0.07 per share on 359,000,000. Counting it would lower the base slightly and does not move the tier. A capex_override cannot add it, because the PP&E leg is filed for every year and an override never replaces a filed value. It is a method limit, not a worker error.
+  - statements.json carries no capex line for APA (see Data), so this cross-check rests on `capex_provenance` and the 10-K / 10-Q figures quoted above.
+- **SBC_TAG_RECONCILED.** Not raised (see SBC tag above).
+- **OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex.** Not raised. The `capex_override` was deleted before the run under ruling 4. The filed per-year values are the override's own source figures, so it would have filled nothing.
+- **DATA_GAP:capex and OVERRIDE_APPLIED:capex.** Both were on the 5.4 record and both are gone: `data_gap` and `overrides_applied` are empty. make_score therefore sees no applied override, and score.json no longer carries the "tier exists only because of a judgment override" exit-alert suppression (`exit_alert_eligible` is true). The TTM base still depends on the `sbc_override`, which make_score does not see (see Overrides now). That rule question is escalated to Andrew.
+
+### Flags carried from 5.4 (final run)
+- **STALE_FY** (9.6 months since FY end). Resolved by the TTM pin from ttm.py through Q2 2026 (legs above). Q3 2026 results are not yet filed; the call is scheduled for Nov 5 (search result: APA's Q3 2026 supplemental release).
+- **BASE_DIVERGENCE** (latest FY $4.73 vs 3-year median $2.37). Neither figure is a clean run-rate, and the TTM base used is lifted as well. The income-statement and cash-flow lines below are filing text from the FY2025 10-K (accession 0001841666-26-000015) and the Q2 2026 10-Q (accession 0001841666-26-000053). TTM figures use the ttm.py construction, FY2025 − H1 2025 + H1 2026.
+  - **The median (FY2023 row, $2.37).** It predates the all-stock Callon acquisition, which closed in 2024. FY2024 sits below it ($2.04 in financials_history.csv): it holds a partial Callon year and the highest capex of the three, $2.851B.
+  - **The latest FY ($4.73).** Two operating lines lift it against FY2023. The first is the net margin on purchased oil and gas (purchased oil and gas revenue less purchased oil and gas costs, Statement of Consolidated Operations): $1,691M − $1,070M = $621M in FY2025, against $894M − $742M = $152M in FY2023. The second is the Receivables line of the cash-flow statement: an $850M inflow in FY2025, against a $157M outflow in FY2023. A $365M accounts-payable outflow offsets part of the FY2025 inflow (statements.json `change_payables`; see NI_OCF_DIVERGENCE).
+  - **The TTM base ($5.67).** TTM OE is $2,007,000,000, against $1,698,000,000 for FY2025. The OCF leg is flat ($4,528,000,000 vs $4,545,000,000), so the capex leg ($2,414,000,000 vs $2,740,000,000) accounts for the difference.
+  - **Inside the flat OCF leg, the purchased-gas margin rose.** H1 2026: $721M − (−$47M) = $768M (the cost line reads as net proceeds of $47M). H1 2025: $1,057M − $778M = $279M. The TTM margin is therefore $621M − $279M + $768M = $1,110M, which is $489M above FY2025. The Receivables line adds $850M − $433M + (−$147M) = $270M to TTM OCF. The purchased-gas margin is an income-statement figure (accrual, pre-tax), so its effect on OCF is approximate; the Receivables line is a cash-flow figure.
+  - **The capex leg.** H1 2026 additions to upstream oil and gas property were $1,111M, against $1,437M in H1 2025. 2026 upstream capital is guided below FY2025 (2026-10-16 text, search result), so much of the decline is the guided program. The part that is Suriname Block 58 exploration timing is not quantified in the filings or in this run's outputs.
+  - **What it does to the tier.** Taking the $489M purchased-gas excess out of TTM OE leaves $2,007M − $489M = $1,518M, or $4.29 per share on 354,000,000 shares. That is below the FY2025 OE/share ($4.73) and below the pre-5.5 TTM base ($4.7486, scored 10.82%, Tier C). On this run's scenarios it sits at the C/D boundary. That IRR is not printed in this run's outputs, so it is escalated rather than quoted. The same window carries a further lift (the $270M Receivables inflow, and any Suriname timing in the capex leg) and a drag (H1 2026 Accounts payable −$123M and Accrued expenses −$50M). None of these is netted here.
+
+  Resolution: the TTM base is kept as the method's STALE_FY base, and the tier stays at the numbers tier, C. That C holds only while the H1 2026 purchased-gas margin counts in full as earnings: removing its $489M excess over FY2025 alone takes the base to the C/D boundary. This cannot be settled within a worker's bounded authority. A `base_override` may use only this run's printed figures, and these normalizations need filing figures; a tier_override is outside this pass's authority. The choice between C and a final tier of D is therefore escalated to Andrew. Until he rules, any position is sized to the bear end (D, 8.57%), and the median stays as the method-range floor.
+- **NI_OCF_DIVERGENCE** (2024, 2025). The inputs are unchanged: 5.5 moved only the capex columns of financials_history.csv. The 2026-10-16 resolution holds for FY2024 but is incomplete for FY2025. Working-capital lines below are from statements.json (`change_receivables`, `change_payables`, tagged IncreaseDecreaseInAccountsReceivable and IncreaseDecreaseInAccountsPayable).
+  - **FY2024.** The gap is the depletion load of an E&P: net income $804M against OCF $3,620M, with D&A of $2,266M (financials_history.csv). On top of that come the $796M of 2024 North Sea impairments (filing text, quoted in the 2026-10-16 section). The working-capital lines are small: a $104M receivables outflow and an $81M accounts-payable inflow. FY2024 OCF carries no working-capital one-off.
+  - **FY2025.** Depletion is still most of the gap: net income $1,434M against OCF $4,545M, with D&A of $2,304M (financials_history.csv). It is not the only cause. `change_receivables` reads −$850,000,000 for FY2025, an $850M receivables release, which is a cash inflow inside OCF. A $365M accounts-payable outflow offsets part of it, so the two lines net to a $485M working-capital inflow. That inflow lifts FY2025 OCF, and with it the latest FY OE ($1.698B, $4.73/share).
+  - The 2026-10-16 sentence that the OCF-based OE "is not contaminated" is therefore true of depletion and the impairments, but not of FY2025's working capital. The $4.73 latest FY figure is not a clean run-rate. See BASE_DIVERGENCE above, which carries the receivables line into the base and tier discussion. The same line adds $270M to the TTM window.
+- **OE_VOLATILE.** Still real. The flag reads the last five fiscal years, FY2021–25. Their OE/share in financials_history.csv (`oe_per_share`, on filed capex) is $5.90 / $8.48 / $2.37 / $2.04 / $4.73. The FY2022 peak of $8.48 is more than four times the FY2024 trough of $2.04. It also sits above the $4.73 latest FY, so the latest year is not the top of the range. The FY2019–20 rows, outside the window, are lower still ($0.25 / $0.18). Bear-weighted probabilities and widened bear multipliers are kept.
+- **WIDE_SCENARIO_SPREAD** (5.43x). Real: this is a commodity derivative. Confidence stays low.
+- **TIER_BAND** (bear 8.57%, tier D → bull 17.14%, tier B). The band now reaches B, but only in the bull case. The weighted IRR is C, and any position is sized to the bear end, which is D.
+- **HIGH_NET_DEBT.** It fired on the preliminary run (engine defaults, median base) and not on the final run. On the TTM base, net debt / normalized OE is 1.95x, with net debt of $3.977B. Management targets lower net debt and repaid near-term bonds in H1 2026 (search result: Q2 2026 release).
+
+### DCF: final run (judgment inputs unchanged from 2026-10-16)
+Final command: `--moat 3 --probs 0.15,0.3,0.3,0.15,0.1 --offsets -0.5,-0.42,-0.35,-0.29,-0.23 --mults 0.5,0.75,1.0,1.1,1.25 --ttm`.
+
+Why the growth inputs are kept:
+- The growth blend is 41.27% → g_base 35.00%. It is still a single OE/share CAGR 2y (41.27%), because no revenue component exists: revenue is filed only under an extension concept.
+- It is now computed on filed capex instead of the fill. It still measures a commodity-driven recovery from the FY2023 row, not volume growth. U.S. oil guidance is 123,000 bbl/d on unchanged $1.3B U.S. capital (search result: Q2 2026 release).
+- The same offsets therefore give the same starts: −10.0% (the engine's super-bear floor) / −7.0% / 0.0% / +6.0% / +12.0%. Every start sits far below the blend, for the reason written in the 2026-10-16 recalibration.
+- The bear multipliers stay widened at 0.5 / 0.75. The filed history still shows trough OE as a small fraction of the latest year.
+
+Moat 3/10 · CAP 5.9 yrs · terminal growth 2.50%.
+
+| Scenario | Prob | Growth start | OE mult | IV@15 | IV@12 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 15% | -10.0% | 0.5 | $14.84 | $19.08 | 5.98% |
+| Bear | 30% | -7.0% | 0.75 | $24.84 | $32.13 | 8.57% |
+| Base | 30% | 0.0% | 1.0 | $42.58 | $55.78 | 13.30% |
+| Bull | 15% | 6.0% | 1.1 | $57.75 | $76.42 | 17.14% |
+| Super bull | 10% | 12.0% | 1.25 | $80.51 | $107.50 | 22.36% |
+
+- **Probability-weighted:** IV@15% $39.16 (−20.3% vs price), IV@12% $51.45 (+4.7%), IV@10% $65.09. Weighted IRR 12.45%, base-case IRR 13.30%. Scenario range 5.98% – 22.36%.
+- **Hurdle-clearing prices (weighted path):** 15% at $39.16 · 20% at $28.04 · 25% at $21.86.
+- **Diagnostics:** OE yield 11.54% · TV share @15% 17.7% · scenario spread 5.43x · net debt / normalized OE 1.95x · OE-positive years (last 5) 5/5.
+
+### Overrides now
+- **`capex_override`: deleted** (ruling 4). APA has no capex override and no capex entry in `_system/overrides_registry.json`: make_score replaced APA's entries wholesale, and none remain.
+- **`sbc_override` {value 107000000, kind "estimate"}: kept. Rule question escalated to Andrew.**
+  - The engine applies nothing from it. `override_checks.sbc` records a last filed value of $107,000,000 USD, not out of band (1.0× its named anchor), with `currency_basis` `no_fx`. SBC is filed for every annual period, so the engine fills nothing with it. `overrides_applied` is empty, and make_score writes no registry entry, because it records only overrides the engine applies.
+  - It still carries the tier. APA's 10-Q cash-flow statements present no SBC line, so without it ttm.py exits ("sbc: no post-FY YTD fact") and no TTM base exists. It fills ttm.py's two YTD SBC legs ($53,060,273.97 each, prorated by days; ttm.json `overrides_used`). The two legs cancel, so TTM SBC equals the filed $107,000,000. The $5.67 base, and with it the Tier C, exists only because of this override. Without a TTM base the score falls back to the 3-year median, $2.37 under 5.5. This run's outputs do not price that median. The 2026-10-16 record priced its own $2.35 median at 6.61% (Tier D), with the same moat, probabilities, offsets and multipliers.
+  - AGENTS.md requires `overrides_applied` to list the same keys as judgment.json, and every override to appear in the registry with its measured impact. Neither holds here. The README's Engine 5.5 entry says make_score does not refuse this override, but AGENTS.md has no exemption for an override that fills only ttm.py legs. Andrew must rule between a registry event for such overrides (a make_score change) and an exemption written into AGENTS.md and the specs.
+  - Correction to the dated record: the 2026-10-16 text says both overrides were in the registry, but origin/main's registry held only the capex entry for APA.
+  - Risk: APA's Q3 2026 supplemental reports a stock-based compensation charge in Q3 G&A that is large against the FY2025 annual figure, mostly share-price mark-to-market (search result). If that pace held across the TTM window, the TTM SBC leg at the FY2025 rate would understate SBC, and the base would be high by the excess spread over 354,000,000 shares. This is not computed here. It is one more reason to size to the bear end.
+
+### Minority interest (method limit)
+Consolidated OCF includes the Egypt noncontrolling interest's share; APA's adjusted production excludes Egypt noncontrolling-interest and tax barrels (2026-10-16 text). The engine cannot split owner's earnings between APA's shareholders and the noncontrolling partner. The base is therefore consolidated and overstates what APA's holders own by that share. The run's outputs do not split it. The filing gives its size: net income attributable to noncontrolling interest was $258M of $1,692M consolidated net income in FY2025, about 15%, and distributions to the noncontrolling interest were $430M (FY2025 10-K, Statements of Consolidated Operations and Cash Flows). That share of net income is a proxy, not an OE split. It is a method limit, not a worker error.
+
+### Why the tier is C
+- The weighted IRR of 12.45% sits in the 10–15% band. Tier by numbers C = final tier C, with no tier override.
+- The move from 10.82% comes from the filed capex legs. The TTM capex leg is now $2,414,000,000 of tagged additions instead of a fill at the $2.740B FY2025 rate, which lifts the base from $4.7486 to $5.67 per share.
+- The price of $49.14 is above the 15% hurdle price of $39.16, so APA does not clear the hurdle. It clears 15% only below $39.16.
+- The band runs from bear D (8.57%) to bull B (17.14%), and the position is sized to D.
+- The method-range floor (the same scenarios on the $2.37 normalized median) was not re-run under 5.5, so this run's outputs do not price it. That base is under half the $5.67 TTM pin. The 2026-10-16 record priced its $2.35 median at 6.61% (Tier D) on the same moat, probabilities, offsets and multipliers.
+- Confidence is **low**, for these reasons:
+  - WIDE_SCENARIO_SPREAD 5.43x.
+  - A TIER_BAND from D to B.
+  - A commodity-price base.
+  - A TTM base lifted by a purchased-gas margin $489M above FY2025's. Removing that excess alone takes the base to the C/D boundary (see BASE_DIVERGENCE; escalated).
+  - SBC YTD legs filled by an estimate.
+- APA is not Tier S/A, so no entry alert applies. The score is now on engine 5.5.0 output.
+
+### Data and enrichment (2026-10-19)
+All six enrichment scripts ran without failure, in order: fundamentals.py, prices.py, segments.py, statements.py, profile.py, reprice.py.
+- fundamentals.json was rewritten: its price-dependent block is now priced. Its buyback yield reads 0.00%, marked `bound` "exact" with the basis "never filed in any period — zero by the filer's own statements", and its `warnings` list is empty. That zero is a reader gap, not a filed zero:
+  - The filer prints "Treasury stock activity, net" of $280M in FY2025 and $100M in H1 2026 (cash-flow statements, FY2025 10-K and Q2 2026 10-Q), tagged under an APA extension concept.
+  - The us-gaap `TreasuryStockValueAcquiredCostMethod` is filed at $283M for FY2025 (EDGAR companyfacts). fundamentals.py reads only `PaymentsForRepurchaseOfCommonStock`.
+  - The page's buyback and shareholder yields are therefore understated. This is a display gap, not a valuation input. The fundamentals.py fix is a code follow-up outside this folder.
+- statements.json, segments.json and profile.json were unchanged in content (stable writes). street.json and live.json were refreshed; reprice found no split since scoring.
+- Neither fundamentals.json nor statements.json carries a capex line for APA, because their capex readers do not use the 5.5 E&P component tags. The page's FCF and OE fields from those files are therefore blank for APA. This affects display only: the valuation's capex is the engine's (`capex_provenance`, key_numbers.md capex basis).
+- Research used:
+  - APA's Q3 2026 supplemental information, 8-K filed 2026-10-07: https://www.sec.gov/Archives/edgar/data/0001841666/000184166626000058/a3q26supplementalguide-ear.htm
+  - APA's Q2 2026 results release: https://investor.apacorp.com/news-releases/news-release-details/apa-corporation-announces-second-quarter-2026-financial-and
+  - Coverage of the Q3 call date: https://finviz.com/news/400071/apa-corporation-provides-third-quarter-2026-supplemental-information-and-schedules-results-conference-call-for-nov-5-at-10-am-central-time
+
+### Final verdict (supersedes the 2026-10-16 verdict above)
+- **Final tier: C.** Weighted IRR 12.45% on the TTM base of $5.67/share, with no capex override ("override-free" in the one-liner below means that; the SBC YTD legs still use the estimate override). The band runs from bear D (8.57%) to bull B (17.14%); size any position to the bear end.
+- The C rests on the TTM base. Removing its $489M purchased-gas margin excess over FY2025 alone takes the base to the C/D boundary, so the call between C and D is with Andrew (see BASE_DIVERGENCE).
+- Confidence: **Low.**
+- One-liner (judgment.json, verbatim): Commodity E&P, moat 3/10 — no pricing power and cycle-set returns; on the override-free TTM base ($5.67/share, filed E&P capex now read by engine 5.5) the weighted IRR is 12.45% with IV@15% $39.16 vs the $49.14 price, so it does not clear the 15% hurdle (clears only below ~$39.16); band D (8.57%) to B (17.14%) — size to the bear end.

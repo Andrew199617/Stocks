@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $-1.76 · normalized (3-yr median) OE/share: $0.43
 - Latest FY OE total: $-345.5M
 - Shares diluted (latest): 1,963,076,776
-- Market cap (est): $11.209B · net debt (latest): $887.8M
+- Market cap (est): $11.209B (basis: diluted_latest) · net debt (latest): $887.8M
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 4/5
 
 ## Growth & moat
@@ -38,7 +39,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 0.76%
 - TV share @15%: 17.2%
 - Scenario spread (IV@15 super-bull / super-bear): 3.66x
-- Net debt / normalized OE: 1.04x
+- Net debt / normalized OE: 10.44x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 10 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed 1.04x — HIGH_NET_DEBT (> 3x) would fire on the ADS basis; the engine's flag list predates the fix)
 - Months since FY end: 9.6
 
 ## Fragility flags
@@ -64,5 +65,5 @@ Filing gaps found and covered by judgment overrides: sbc, shares
 - sbc reason: DATA_GAP:sbc — SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees have no facts in this filer's companyfacts for any year 2016-2025). Ternium has no equity-settled share-based payment expense to subtract: it files no IFRS 2 expense and its sole incentive program is cash-settled and already inside operating cash flow — subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as TS in this sweep).
 - shares reason: DATA_GAP:shares — DILUTED shares missing for fiscal years 2023, 2024, 2025 of the last 3; EDGAR carries only the non-diluted WeightedAverageShares count (1,963,076,776 in each year), which the engine records as a fallback and refuses to silently swap. The filer's own 20-F states diluted EPS equals basic EPS, so the diluted count is the same 1,963,076,776 the filer itself uses for both — the override is exact for all three gap years, not an approximation, because the count was unchanged in every year.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $0.43 (no override) → $0.43 (with override), +0.00% · weighted IRR 3.14% → 3.14% (+0.00pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $0.43 (no override) → $0.43 (with override), +0.00% · weighted IRR 3.14% → 3.14% (+0.00pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

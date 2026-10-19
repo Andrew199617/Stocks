@@ -1,0 +1,493 @@
+{
+ "ticker": "DD",
+ "cik": 1666700,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001666700-26-000013",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000013/dd-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001666700-26-000031",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000031/dd-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001666700-26-000053",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000053/dd-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dd:DiversifiedIndustrialsSegmentMember",
+     "label": "Diversified Industrials Segment",
+     "values": [
+      3695000000,
+      3743000000,
+      3616000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5587,
+      0.5571,
+      0.528
+     ],
+     "growth_yoy": [
+      null,
+      0.013,
+      -0.0339
+     ]
+    },
+    {
+     "member": "dd:HealthcareAndWaterTechnologiesSegmentMember",
+     "label": "Healthcare And Water Technologies Segment",
+     "values": [
+      2919000000,
+      2976000000,
+      3233000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4413,
+      0.4429,
+      0.472
+     ],
+     "growth_yoy": [
+      null,
+      0.0195,
+      0.0864
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6614000000,
+     6719000000,
+     6849000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dd:DiversifiedIndustrialsSegmentMember",
+     "label": "Diversified Industrials Segment",
+     "values": [
+      849000000,
+      932000000,
+      875000000,
+      963000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5267,
+      0.5329,
+      0.5205,
+      0.5294
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0306,
+      0.0333
+     ]
+    },
+    {
+     "member": "dd:HealthcareAndWaterTechnologiesSegmentMember",
+     "label": "Healthcare And Water Technologies Segment",
+     "values": [
+      763000000,
+      817000000,
+      806000000,
+      856000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4733,
+      0.4671,
+      0.4795,
+      0.4706
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0564,
+      0.0477
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1612000000,
+     1749000000,
+     1681000000,
+     1819000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2917000000,
+      3139000000,
+      3188000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.441,
+      0.4672,
+      0.4655
+     ],
+     "growth_yoy": [
+      null,
+      0.0761,
+      0.0156
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1383000000,
+      1379000000,
+      1468000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2091,
+      0.2052,
+      0.2143
+     ],
+     "growth_yoy": [
+      null,
+      -0.0029,
+      0.0645
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      851000000,
+      763000000,
+      708000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1287,
+      0.1136,
+      0.1034
+     ],
+     "growth_yoy": [
+      null,
+      -0.1034,
+      -0.0721
+     ]
+    },
+    {
+     "member": "srt:LatinAmericaMember",
+     "label": "Latin America",
+     "values": [
+      331000000,
+      322000000,
+      326000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.05,
+      0.0479,
+      0.0476
+     ],
+     "growth_yoy": [
+      null,
+      -0.0272,
+      0.0124
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      229000000,
+      232000000,
+      227000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0346,
+      0.0345,
+      0.0331
+     ],
+     "growth_yoy": [
+      null,
+      0.0131,
+      -0.0216
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6614000000,
+     6719000000,
+     6849000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      746000000,
+      820000000,
+      769000000,
+      809000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4628,
+      0.4688,
+      0.4575,
+      0.4447
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0308,
+      -0.0134
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      353000000,
+      373000000,
+      385000000,
+      404000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.219,
+      0.2133,
+      0.229,
+      0.2221
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0907,
+      0.0831
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      null,
+      184000000,
+      null,
+      198000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.1052,
+      null,
+      0.1089
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0761
+     ]
+    },
+    {
+     "member": "dd:LatinAmericanAndCanadaMember",
+     "label": "Latin American And Canada",
+     "values": [
+      137000000,
+      132000000,
+      128000000,
+      152000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.085,
+      0.0755,
+      0.0761,
+      0.0836
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0657,
+      0.1515
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1612000000,
+     1749000000,
+     1681000000,
+     1819000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Asia Pacific' (srt:AsiaPacificMember) dropped: it is the parent of CHINA in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 86.4% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Asia Pacific' (srt:AsiaPacificMember) dropped: it is the parent of CHINA in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 85.9% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

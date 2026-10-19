@@ -1,0 +1,252 @@
+{
+ "ticker": "VIV",
+ "cik": 1066119,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:31:52-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001066119.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1066119/000207097926000018/viv-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VIV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VIV/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TELEFONICA BRASIL S.A.",
+  "cik": 1066119,
+  "description": {
+   "text": "We are the leading mobile telecommunications company in Brazil (with a 38.1% market share as of December 31, 2025, based on accesses), with a particularly strong position in postpaid mobile services (40.3% market share as of December 31, 2025, based on accesses). As of December 31, 2025, we reached 18.5% of total market share in FTTH (fiber-to-the-home) accesses in Brazil. Our Vivo brand, under which we market our services, is among the most recognized brands in Brazil. The quality of our services and the strength of our brand recognition enable us to sustain this market leadership. We offer our clients a complete portfolio of products, including mobile and fixed-line voice, mobile data, fixed broadband, ultra-fast broadband, or UBB (based on our FTTH and FTTC infrastructure), Pay TV, information technology and digital services (such as entertainment, cloud, security and financial services). We also have one of the most extensive distribution networks in the sector, where our clients can obtain certain services, such as purchasing credit for prepaid phones. We seek to continue to increase our operating margins by focusing on developing and growing our product offerings so that they comprise an integrated portfolio that allows us to extend our customers' lifetime value.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0002070979-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000207097926000018/viv-20251231.htm"
+  },
+  "description_short": "Telefonica Brasil, known as Vivo, is the largest wireless carrier in Brazil with nearly 85 million customers, equal to about 33% market share. The firm is strongest in the postpaid business, where it has 50 million customers, about 37% share of this market. It is the incumbent fixed-line telephone operator in Sao Paulo state and, following the acquisition of GVT, the owner of an extensive fiber network across the country. The firm provides internet access to 6 million households on this network. Following its parent Telefonica's footsteps, Vivo is cross-selling fixed-line and wireless services as a converged offering. The firm also sells pay-tv services to its fixed-line customers.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Telecommunications",
+  "region": "South America",
+  "sic": "4813",
+  "sic_description": "Telephone Communications (No Radiotelephone)",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.telefonica.com.br",
+  "headquarters": "São Paulo, Brazil",
+  "address": {
+   "street": "Avenida Engenheiro Luis Carlos Berrini 1,376 32º floor",
+   "city": "São Paulo",
+   "state": null,
+   "zip": "04571-936",
+   "country": "Brazil",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-24"
+  },
+  "phone": "55 11 3430-3687",
+  "employees": {
+   "count": 35010,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 35,010 employees (34,986 employees as of December 31, 2024), distributed between full-time and part-time employees.",
+   "form": "20-F",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000207097926000018/viv-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-09-18",
+  "first_sec_filing_form": "20FR12B",
+  "former_names": [
+   "TELEFONICA BRASIL S.A.",
+   "TELESP HOLDING CO",
+   "TELESP PARTICIPACOES SA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001066119&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-14",
+   "period": "2026-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004932",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004932/viv20261014_6k2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-14",
+   "period": "2026-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004930",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004930/viv20261014_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-14",
+   "period": "2026-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004928",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004928/viv20261014_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004550",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004550/viv20260914_6k2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004548",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004548/viv20260914_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004546",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004546/viv20260914_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004412",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004412/vivitr2q26_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004268",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004268/viv20260814_6k2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004266",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004266/viv20260814_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004264/viv20260814_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004036/viv20260731_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426004034/viv20260731_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-27",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003924",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003924/viv20260727_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003922",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003922/vivpr2q26_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-27",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003921",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003921/viv20260727_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-16",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003796",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003796/viv20260716_6k2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-16",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003793",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003793/viv20260716_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-16",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003786",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003786/viv20260716_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003650",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003650/viv20260701_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003490",
+   "url": "https://www.sec.gov/Archives/edgar/data/1066119/000129281426003490/viv20260616_6k4.htm"
+  }
+ ],
+ "warnings": []
+}

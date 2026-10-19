@@ -2,7 +2,7 @@
  "ticker": "ATO",
  "cik": 731802,
  "entity": "ATMOS ENERGY CORP",
- "as_of": "2026-10-15",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1751,21 +1751,23 @@
     "complete": true
    }
   },
-  "price": 163.94,
-  "price_date": "2026-10-14",
-  "price_source": "prices.json stats.last",
+  "price": 167.32,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 167.32 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 168988553,
   "shares_as_of": "2026-07-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05)",
   "shares_basis": "instant",
   "shares_diluted": 169374000,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": 27703983378.82,
-  "market_cap_basis": "163.94 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
-  "dividend_yield": 0.023606197389288767,
+  "ads_ratio": null,
+  "market_cap": 28275164687.96,
+  "market_cap_basis": "167.32 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
+  "dividend_yield": 0.02312933301458284,
   "buyback_yield": null,
   "net_buyback_yield": null,
-  "shareholder_yield": -0.01586075164685273,
+  "shareholder_yield": -0.015540351571748965,
   "shareholder_yield_basis": "dividends_paid (4/4 quarters filed) + buybacks NOT INCLUDED (not filed for any of the four quarters) \u2212 share_issuance (4/4 quarters filed); sum of the four quarterly rows 2025-09-30..2026-06-30",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1782,7 +1784,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": "163.94 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
+    "denominator": "167.32 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "net_buyback_yield": {
@@ -1800,7 +1802,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": "163.94 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
+    "denominator": "167.32 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "shareholder_yield": {
@@ -1821,7 +1823,7 @@
     "bound": "lower",
     "complete": false,
     "numerator": -439406000.0,
-    "denominator": "163.94 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
+    "denominator": "167.32 \u00d7 168,988,553 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-05), as of 2026-07-31)",
     "note": "a lower bound \u2014 a positive leg is filed for only some quarters or not at all"
    },
    "dividend_yield": {
@@ -1829,15 +1831,15 @@
     "basis": "FY2025 DPS 3.48 + the quarters since (2025-12-31: 1, 2026-03-31: 1, 2026-06-30: 1) \u2212 the same quarters a year earlier (2024-12-31: 0.87, 2025-03-31: 0.87, 2025-06-30: 0.87) \u2014 mixed basis: the full-year total is a paid fact and the quarters are declared facts, so the year-over-year change in the declared quarterly rate is applied to the paid total (a payment declared in one quarter and paid in the next can shift by a quarter)",
     "bound": "exact",
     "complete": true,
-    "denominator": "price 163.94 (prices.json stats.last)"
+    "denominator": "price 167.32 (score.json price)"
    }
   },
   "yields_display": {
    "dividend_yield": {
-    "value": 0.023606197389288767,
+    "value": 0.02312933301458284,
     "bound": "exact",
     "prefix": "",
-    "label": "2.36%",
+    "label": "2.31%",
     "note": "FY2025 DPS 3.48 + the quarters since (2025-12-31: 1, 2026-03-31: 1, 2026-06-30: 1) \u2212 the same quarters a year earlier (2024-12-31: 0.87, 2025-03-31: 0.87, 2025-06-30: 0.87) \u2014 mixed basis: the full-year total is a paid fact and the quarters are declared facts, so the year-over-year change in the declared quarterly rate is applied to the paid total (a payment declared in one quarter and paid in the next can shift by a quarter)"
    },
    "buyback_yield": {
@@ -1855,10 +1857,10 @@
     "note": "buybacks: not filed for any of the four quarters; share_issuance: 4/4 quarters filed"
    },
    "shareholder_yield": {
-    "value": -0.01586075164685273,
+    "value": -0.015540351571748965,
     "bound": "lower",
     "prefix": "\u2265",
-    "label": "\u2265 -1.59%",
+    "label": "\u2265 -1.55%",
     "note": "buybacks: not filed for any of the four quarters \u2014 left out, so this yield is a lower bound"
    }
   },

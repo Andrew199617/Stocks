@@ -2,77 +2,76 @@
  "ticker": "APA",
  "name": "APA Corporation",
  "sector": "Energy / Oil & Gas Production (E&P)",
- "price": 49.18,
- "market_cap_b": 17.66,
+ "price": 49.1437,
+ "market_cap_b": 17.64,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
- "base_oe_per_share": 4.748587570621469,
+ "base_oe_per_share": 5.669491525423729,
  "base_year": "2025",
  "base_source": "ttm_json",
  "moat_score": 3,
  "moat_justification": "Commodity price-taker with no pricing power: the roic_proxy series in fundamentals.json swings from -40.3% (2019) and -47.2% (2020) to +70.4% (2022), +37.6% (2023), +16.6% (2024) and +18.6% (2025) \u2014 returns are set by oil and gas prices, not by a franchise. Gross margin is not filed under any engine-read tag (revenue itself is filed only under a filer extension concept), so no margin evidence offsets that. What APA does have is asset quality, not a moat: Permian drilling/completion efficiency gains (full-year U.S. oil guidance raised to 123,000 bbl/d on an unchanged $1.3B U.S. capital budget, four rigs doing the work once estimated to need eight), a revised Egypt gas pricing agreement covering nearly half its Egyptian gas, and the carried GranMorgu development in Suriname (TotalEnergies pays 87.5% of the first $10B of gross capex). Those support a 3, not the 7+ the rubric reserves for durable above-cost-of-capital returns through a cycle \u2014 APA's own history includes two deeply negative ROIC years in the last seven.",
  "cap_years": 5.9,
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
-  "BASE_DIVERGENCE: latest FY OE/share 4.73 vs 3-yr median 2.35 \u2014 one of them is distorted; find out which and why",
+  "BASE_DIVERGENCE: latest FY OE/share 4.73 vs 3-yr median 2.37 \u2014 one of them is distorted; find out which and why",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 5.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (14.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+  "TIER_BAND: bear-case tier D (8.6%) vs bull-case tier B (17.1%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.15,
-   "iv_at_15": 12.43,
-   "irr": 0.0539
+   "iv_at_15": 14.84,
+   "irr": 0.0598
   },
   "bear": {
    "prob": 0.3,
-   "iv_at_15": 20.81,
-   "irr": 0.0754
+   "iv_at_15": 24.84,
+   "irr": 0.0857
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 35.66,
-   "irr": 0.1152
+   "iv_at_15": 42.58,
+   "irr": 0.133
   },
   "bull": {
    "prob": 0.15,
-   "iv_at_15": 48.37,
-   "irr": 0.148
+   "iv_at_15": 57.75,
+   "irr": 0.1714
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 67.43,
-   "irr": 0.1932
+   "iv_at_15": 80.51,
+   "irr": 0.2236
   }
  },
- "iv_at_15": 32.8,
- "iv_at_12": 43.09,
- "implied_irr": 0.1082,
- "implied_irr_base_case": 0.1152,
- "upside_at_15_pct": -33.3,
+ "iv_at_15": 39.16,
+ "iv_at_12": 51.45,
+ "implied_irr": 0.1245,
+ "implied_irr_base_case": 0.133,
+ "upside_at_15_pct": -20.3,
  "tier_by_numbers": "C",
  "tier_final": "C",
  "confidence": "low",
- "one_liner": "Commodity E&P, moat 3/10 \u2014 no pricing power and cycle-set returns; on the TTM base ($4.75/share) the weighted IRR is 10.8% with IV@15% $32.80 vs the $49.18 price, so it does not clear the 15% hurdle (clears only below ~$32.80), and the method range runs down to Tier D on the median base \u2014 size to the bear end.",
- "analysis_date": "2026-10-16",
+ "one_liner": "Commodity E&P, moat 3/10 \u2014 no pricing power and cycle-set returns; on the override-free TTM base ($5.67/share, filed E&P capex now read by engine 5.5) the weighted IRR is 12.45% with IV@15% $39.16 vs the $49.14 price, so it does not clear the 15% hurdle (clears only below ~$39.16); band D (8.57%) to B (17.14%) \u2014 size to the bear end.",
+ "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
- "engine_release": "5.4.0",
- "irr_bear": 0.0754,
- "irr_bull": 0.148,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0857,
+ "irr_bull": 0.1714,
  "tier_bear": "D",
- "tier_bull": "C",
- "iv_at_20": 23.49,
- "iv_at_25": 18.31,
+ "tier_bull": "B",
+ "iv_at_20": 28.04,
+ "iv_at_25": 21.86,
  "f_subtype": null,
  "irr_at_floor": false,
  "net_debt_latest": 3977000000,
  "shares_diluted_latest": 359000000,
  "model_fit": "modeled",
  "alert_eligible": false,
- "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_eligible": true,
  "moat_for": [
   "Permian capital efficiency: U.S. oil guidance raised to 123,000 bbl/d at unchanged $1.3B U.S. capital; 4 rigs sustaining output once estimated to need 8",
   "GranMorgu (Suriname Block 58) carried economics: TotalEnergies funds 87.5% of the first $10B gross development capex; first oil targeted mid-2028",
@@ -85,23 +84,5 @@
   "Egypt concentration under production-sharing contracts: higher oil prices mechanically reduce APA's adjusted (entitlement) volumes; sovereign/arrears risk",
   "Share count rose with the all-stock Callon acquisition (diluted 309M in FY2023 to 359M in FY2025) \u2014 per-share compounding diluted by M&A",
   "Gas price weakness: Q2 2026 realized U.S. gas price collapsed year over year, offsetting oil strength"
- ],
- "overrides": [
-  {
-   "field": "capex",
-   "value": 2740000000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read"
-  }
- ],
- "override_impact": {
-  "base_used": "ttm",
-  "base_oe_without_override": 12.4887,
-  "base_oe_with_override": 4.7486,
-  "base_oe_impact_pct": -61.977,
-  "weighted_irr_without_override": 0.1755,
-  "weighted_irr_with_override": 0.1082,
-  "weighted_irr_impact_pp": -6.731,
-  "unblocks_tier": true
- }
+ ]
 }

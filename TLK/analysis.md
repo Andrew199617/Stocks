@@ -65,3 +65,128 @@ The engine's blended growth is −5.27% — its only live component is OE/share 
 - One-liner: Dominant Indonesian integrated carrier (Telkomsel mobile + IndiHome broadband), moat 6/10 on ~19–23% ROIC through the cycle — the weighted case clears 15% (weighted IRR 19.11%, weighted IV@15% $14.39 vs $11.03 ADS price, base OE $2.23 per ADS for a 20.24% OE yield), but the band spans bear Tier C to bull Tier A and sized to the bear end it clears 15% only at or below the bear IV@15% of $9.46; confidence low — FY2025 20-F is not yet in EDGAR companyfacts (base stops at FY2024), FY2023/FY2024 were restated, and SEC/DOJ investigations with an ICFR material weakness are open.
 
 **Completion note, 2026-10-19:** the block recorded above is resolved. The ADS market-cap fix shipped (Andrew's ruling, 2026-10-18; Stocks PR #5) — the engine now computes `market_cap_est = price × shares ÷ ads_ratio` = $10.93B for TLK, make_score accepts the in-scope judgment as written, and the score stands exactly as analyzed: **Tier B, weighted IRR 19.11%, IV@15% $14.39, moat 6, low confidence**. Enrichment and queue completion were finished in the same run.
+
+## Engine 5.5 re-score (2026-10-19)
+This is a dated addendum. The text above stays as written: the 2026-10-17 first pass, its 2026-10-19 corrections and the 2026-10-19 completion note. Where this section disagrees with that text, this section supersedes it.
+
+This was a make_score-only re-score under ruling 1 ("Re-run make_score (not the engine) ... so market_cap / in_scope_under_40b are corrected without changing tiers"). `dcf_engine.py` and `ttm.py` were not run. dcf_numbers.json and financials_history.csv are still the engine 5.4.0 output that main re-ran with Muse's ADS market-cap fix. On 2026-10-19, `make_score.py TLK` rebuilt score.json and key_numbers.md from that record, and then `prices.py TLK` and `reprice.py TLK` ran (both exited 0). Every new figure below is quoted from the final key_numbers.md. The old figures are from the key_numbers.md that make_score wrote before this run. Where a figure comes from somewhere else (financials_history.csv, statements.json, dcf_numbers.json, the filer's own 20-F XBRL facts, or the independent audit of this folder), the text names the source.
+
+**Read this first: the published figures rest on incomplete capex.** An independent audit of this folder against the review guide found two problems. First, the engine 5.4.0 capex leaves out a filed investing line, purchases of intangibles. Second, the earlier text's STALE_FY resolution does not hold. A make_score-only run cannot fix either one, so both are escalated to Andrew under "Open items" below. Until the engine re-runs, score.json publishes a base of $2.23 per ADS, a weighted IRR of 19.11%, IV@15 of $14.39 and hurdle prices of $10.51 (20%) and $8.32 (25%). None of these is a complete-capex figure.
+
+| | Before (engine 5.4.0 record, pre-5.5 make_score) | After (make_score 5.5 on the same record) |
+|---|---|---|
+| Base OE/share (3-yr median, per ADS) | $2.23 | $2.23 (unchanged) |
+| Latest FY OE total | $2.211B | $2.211B (unchanged) |
+| Weighted IRR / base-case IRR | 19.11% / 17.65% | 19.11% / 17.65% (unchanged) |
+| IV@15 (weighted) | $14.39 | $14.39 (unchanged) |
+| IRR band | bear 12.91% (tier C) → bull 23.27% (tier A) | bear 12.91% (tier C) → bull 23.27% (tier A) (unchanged) |
+| Tier by numbers / final | B / B | B / B (unchanged) |
+| Market cap (est) | $10.927B | $10.927B (basis: diluted_latest), unchanged |
+| Scope (under $40B) | in scope | in scope (unchanged) |
+| Net debt / normalized OE | 0.01x (as the engine printed it) | 0.53x on the ADS basis |
+| Alert gates | `alert_eligible` false, `exit_alert_eligible` false (the tier rests on an override) | both false; the exit reason now also names the engine release |
+
+**What make_score 5.5 changed for this filer: the basis of the net-debt ratio, and nothing else.**
+- **Market cap and scope: unchanged.** TLK is one of the eight records (PAC, EMBJ, FUTU, HTHT, LTM, TX, FMS, TLK) that `_system/README.md` (Engine 5.5 entry) lists as re-scored on main with Muse's cap fix, so its record is `engine_release` 5.4.0 with a corrected cap.
+  - Its `market_cap_est` already applies price × shares ÷ ads_ratio: the $11.03 ADS price, the 99,062,216,600 ordinary shares and 100 Series B shares per ADS print $10.927B. The pre-fix engine had printed $1,092.66B (`_system/README.md`, Engine 5.5 entry), which is the defect behind the block that the completion note above closes.
+  - make_score 5.5 recognises a cap that already divides and does not divide it twice. score.json's `market_cap_basis` reads `diluted_latest`, not `ads_corrected_by_make_score`.
+  - judgment.json's `in_scope_under_40b` (true) already agreed with the cap, so make_score did not rewrite judgment.json and recorded no `scope_correction` event. TLK's four registry entries (sbc, shares, manual_price, ads_ratio) are identical to main's. This run added none and rewrote none.
+  - The cap is far below the $40B line. reprice.py prices the live cap at each close with the same formula, and no plausible price move would cross the line.
+- **Net debt / normalized OE (ruling 1, "anything downstream").** Muse's fix divided the cap by the ratio but not the normalized-OE total behind this diagnostic. The engine still divided net debt by per-ADS OE × ORDINARY shares, which made the ratio 100× too small: it printed 0.01x.
+  - key_numbers.md now prints "0.53x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 100 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed 0.01x)". score.json records `net_debt_to_normalized_oe_ads_basis` 0.5341.
+  - This supersedes the owner's-earnings section's note that the printed diagnostic "is distorted by the ADS scaling and is not quoted". The corrected figure is 0.53x.
+
+**HIGH_NET_DEBT / BIG_NET_CASH on the ADS basis: neither would fire, so no flag changes.**
+- The engine fires HIGH_NET_DEBT above 3x and BIG_NET_CASH below −2x. 0.53x is inside both, and make_score's line names no crossing.
+- **What the balance sheet says.** Net debt (latest) of $1.181B is financials_history.csv's FY2024 row: debt_current 1,702,000,000 plus debt_lt 1,585,000,000, minus cash 2,106,000,000. That reproduces the engine's figure exactly.
+  - The engine reads three borrowing tags: `LongtermBorrowings` + `CurrentPortionOfLongtermBorrowings` + `ShorttermBorrowings` (dcf_numbers.json `net_debt_basis`).
+  - statements.json (IDR, as filed) carries exactly those three borrowing lines for FY2024: short-term debt Rp11,525B, current portion of long-term debt Rp15,866B and long-term debt Rp25,518B. No borrowing line is missing from the debt figure.
+  - Lease liabilities of $1,486M (dcf_numbers.json `lease_liabilities_latest`) sit outside net debt under the engine's definition. Counting them too would still leave leverage well under the 3x line.
+- 0.53x means net debt equals about half a year of normalized owner's earnings. That is light leverage for a carrier, as the 2026-10-17 text said. The balance sheet does not strain the dividend and does not drive the verdict, so the earlier conclusion stands.
+
+**Alert gates: both closed until an engine re-run, as expected.**
+- make_score 5.5 treats output from any other engine release as stale. score.json has `alert_eligible` false and `exit_alert_eligible` false. The exit reason is "engine output predates release 5.5.0 — re-run the engine before an exit alert; tier exists only because of a judgment override". At Tier B no entry alert would fire in any case.
+- **Override impact was carried over, not re-measured.** key_numbers.md marks the override impact (base OE/share $2.23 → $2.23, weighted IRR 19.11% → 19.11%) as "carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)". score.json's `override_impact` carries `impact_carried_from_prior_score` true and `counterfactual_engine_release` 5.4.0.
+- The three filing-sourced judgment inputs are unchanged: `sbc_override` $0, `shares_override` 99,062,216,600 and `ads_ratio` 100. "Unblocks tier: YES" still holds.
+
+**Flags: no new 5.5 flag on this record. Two earlier resolutions are corrected here.**
+- make_score does not recompute flags, so the flag list is the engine 5.4.0 list.
+  - The Flags section above resolves FX_CONVERTED, USD_TRANSLATIONS_USED, ADS_RATIO_APPLIED, SHARES_FALLBACK, OVERRIDE_APPLIED:sbc, OVERRIDE_APPLIED:shares and TIER_BAND by name, and those resolutions stand.
+  - Its resolutions of STALE_FY and NI_OCF_DIVERGENCE do not stand. Both are replaced below.
+- The only new figure is the ADS-basis ratio. It triggers neither HIGH_NET_DEBT nor BIG_NET_CASH (above).
+- **STALE_FY: escalated to Andrew, not resolved.** key_numbers.md reads 21.6 months since FY end. The earlier text calls the flag "real and unresolved by construction" and uses the median base under the IFRS rule (WORKER_SPEC step 4: ttm.py reads us-gaap only, so an IFRS filer gets no ttm.json). The review guide does not accept "no TTM available" at a 20-F filer as a resolution. Here the base years make it matter:
+  - The FY2025 Form 20-F exists. statements.json (as_of 2026-10-19) records `latest_filed` as a 20-F for period 2025-12-31, filed 2026-05-15. Its `covered_through` is 2024-12-31, and its warning says that 20-F "is not yet in EDGAR companyfacts".
+  - The FY2025 20-F restated two of the three base years, after the March 2026 non-reliance 6-K (first-pass text above). This run's FY2023 and FY2024 rows predate that restatement, because companyfacts carries nothing after the FY2024 20-F: statements.json dates FY2023 to the 20-F filed 2024-04-01 and FY2024 to the 20-F filed 2025-04-28. Whether the restatement changed OCF, PP&E capex or intangible purchases cannot be verified from the diff.
+  - The FY2025 highlights quoted in the owner's-earnings section show FY2025 weaker than every base year. The stale base is therefore more likely to overstate than to understate.
+  - A TTM or base pin taken from the FY2025 20-F or a 1H26 interim 6-K would use figures that are not in this run's outputs. The base_override rule does not allow that, and ruling 1 forbids judgment-input changes on this name. The flag is escalated as open item 2.
+- **NI_OCF_DIVERGENCE (2022): the earlier resolution is withdrawn and replaced.**
+  - **Why depreciation cannot be the answer.** The engine raises this flag only when the NI–OCF gap is above 40% of OCF *and* larger than the year's D&A (the `ni_ocf_gap_years` test in `dcf_engine.py`). The FY2022 row in financials_history.csv has net income (consolidated `ProfitLoss`) of 1,781,000,000, OCF of 4,713,000,000 and D&A of 2,153,385,000. The audit puts the part of the gap beyond D&A at $779M. FY2023 and FY2024 stay under their D&A and do not fire.
+  - **The one-off, from the filing.** The FY2022 Form 20-F (filed 2023-04-06, accession 0001558370-23-005567) tags a fair-value loss on financial assets at fair value through profit or loss (`GainsLossesOnFinancialAssetsAtFairValueThroughProfitOrLoss`) of −Rp6,438B for FY2022, or −$414M in the filer's own USD convenience translation. The same fact reads +Rp3,432B for FY2021, −Rp748B for FY2023 and +Rp188B for FY2024 in the later 20-Fs, so FY2022's loss is the outlier.
+  - The loss is a remeasurement recorded in profit. It lowers net income and leaves OCF untouched; any cash from buying or selling such assets sits in investing activities. It accounts for about half of the audit's $779M.
+  - The files in this PR cannot attribute the rest, because the direct-method cash-flow statement carries no NI-to-OCF reconciliation. Cannot verify from the diff; this is open item 3.
+  - **Why the base is still not distorted.** OE is OCF − capex − SBC, so a non-cash loss in profit never enters it. FY2022 delta_nwc is −123,000,000 in financials_history.csv, so working capital does not inflate FY2022 OCF materially. The median year is FY2024 (score.json `base_year` 2024), so FY2022 does not set the base.
+- Confidence stays **low**. TLK is not a sector misfit (`model_fit` modeled).
+- **Correction to the earlier text (confidence).** The Final verdict's confidence line says confidence is "partially offset by two OE definitions agreeing". That offset does not hold. The base is the conservative definition (latest FY OE total $2.211B). The two definitions do not agree, but the CSV's maintenance figure cannot say which one is higher.
+  - **The CSV's FY2024 maintenance figure is distorted.** financials_history.csv prints FY2024 oe_maintenance of 3,733,952,000. That figure subtracts a delta_nwc of −1,420,000,000, and the delta_nwc comes from a change in how the current debt is tagged, not from the business.
+    - The engine's working-capital measure takes current debt out of current liabilities only when the debt is filed under the combined current-borrowings tag.
+    - TLK filed that tag for FY2023 (`debt_tag` LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings). For FY2024 it filed current debt as two separate lines (`debt_tag` LongtermBorrowings+CurrentPortionOfLongtermBorrowings+ShorttermBorrowings).
+    - So FY2024's current borrowings (debt_current 1,702,000,000) stay inside current liabilities, and the year-on-year change in working capital shows a large fall that did not happen.
+  - Net debt reads both FY2024 lines correctly (balance-sheet bullet above). Only the working-capital diagnostic is affected, and the base is OCF − capex − SBC, so the base and the tier do not move. Any display of the CSV's FY2024 oe_maintenance repeats the distortion.
+  - An independent check of this folder rebuilt working capital with current debt treated the same way in both years. Rebuilt that way, the maintenance figure still differs from the conservative one, so the two definitions do not agree.
+  - This supersedes the owner's-earnings section's 2026-10-19 correction where it calls the maintenance figure "higher than the conservative $2,211M" and the conservative base "the lower of the two". The record shows neither.
+  - The only remaining offset is the overrides' zero measured impact. Confidence was low and stays low.
+- **Correction to the earlier text (opening line).** The opening line gives the price source as nasdaq_quote_api and quotes a MarketBeat market cap. The run's price is manual:
+  - key_numbers.md prints "Price: $11.03 (source: manual)".
+  - dcf_numbers.json `price_source` is manual, and the registry records a `manual_price` event dated 2026-10-19.
+  - The market cap is key_numbers.md's $10.927B. The MarketBeat figure is not a run figure.
+
+**Minority share of the base (the earlier text did not state it).** The base is consolidated OCF − capex divided by TLK's own shares, but Telkomsel is not wholly owned (profile.json: "65%-owned subsidiary").
+- The 20-Fs put profit attributable to non-controlling interests at Rp6,984B / Rp7,641B / Rp7,114B, against consolidated profit of Rp27,720B / Rp32,068B / Rp30,725B, for FY2022–FY2024 (`ProfitLossAttributableToNoncontrollingInterests` and `ProfitLoss`).
+- Profit to owners of the parent is Rp20,736B / Rp24,427B / Rp23,611B in statements.json, and statements.json shows minority interest of Rp20,258B on the FY2024 balance sheet.
+- Minority holders therefore get about a quarter of consolidated profit; the audit puts it at 25.2% / 23.8% / 23.1%. The per-ADS base overstates what belongs to TLK holders by roughly that share.
+- This is a method limit, not a correction to the score: the engine values consolidated OE for every filer. It is one more reason to size to the bear end.
+
+**Open items for Andrew. Each needs an engine re-run or a ruling, and none is applied.**
+1. **Capex leaves out the filed intangible-purchases line (the audit's P1).** In all three median years, financials_history.csv's `capex_tag` is the single IFRS PP&E line `PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities`. That is the single-tag 20-F case the review guide asks about.
+   - statements.json shows a second investing line beside it, "Purchases of intangibles / software" (`PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities`). The moat AGAINST pillar above already cites both lines for FY2024.
+   - Engine 5.5 adds that tag on top of the PP&E roll-up (rulings 4 and 5). The 5.4.0 record this score is built on does not.
+
+   | FY | PP&E capex (statements.json, IDR) | Intangibles (statements.json, IDR) | CSV capex (filer's USD) | Intangibles (filer's USD translation) | PP&E + intangibles (USD) |
+   |---|---|---|---|---|---|
+   | FY2022 | Rp35,010B | Rp3,259B | $2,249,000,000 | $209,000,000 | $2,458,000,000 |
+   | FY2023 | Rp33,603B | Rp2,817B | $2,182,000,000 | $183,000,000 | $2,365,000,000 |
+   | FY2024 | Rp26,005B | Rp3,658B | $1,616,000,000 | $227,000,000 | $1,843,000,000 |
+
+   - The USD intangible figures are the filer's own convenience translations, tagged in each year's 20-F (FY2022 filed 2023-04-06, FY2023 filed 2024-04-01, FY2024 filed 2025-04-28). The last column adds the two USD columns.
+   - **The audit's arithmetic on complete capex.** It takes financials_history.csv's OCF less the last column, with SBC at $0, divided by 99,062,216,600 shares × 100.
+     - OE comes to $2,255M / $1,569M / $1,984M, which is $2.2764 / $1.5839 / $2.0028 per ADS.
+     - The median is $2.003 against the published $2.2319, 10.3% lower. Net debt / normalized OE becomes 0.5953 instead of 0.5341.
+     - These are audit figures, not engine output, and they are not part of this score.
+   - The IRR, IV and tier on that base cannot be verified until `dcf_engine.py` re-runs. No replay figure is quoted here, because none is in a committed output.
+   - **Andrew must rule** on one of two paths:
+     - (a) a full engine 5.5 run for TLK in this release. Ruling 1 limits TLK to make_score, but the same ruling says "unblock TLK per its queue note".
+     - (b) holding TLK as `NEEDS_MAIN_AGENT: capex` until that run. That is WORKER_SPEC's block for an unread filed capex line; here the line is intangibles of Rp3,259B / Rp2,817B / Rp3,658B.
+   - Until then, the published base, IRR, IV@15 and hurdle prices rest on capex understated by the amounts above.
+2. **STALE_FY and the restated base years** (see Flags). **Andrew must rule** on one of three paths:
+   - (a) keep the FY2022–FY2024 median base at low confidence until companyfacts carries the FY2025 20-F;
+   - (b) authorize a filing-sourced TTM or base pin from the FY2025 20-F and a 1H26 interim 6-K, which is outside the worker's base_override authority today;
+   - (c) hold TLK unscored until the restated years are in companyfacts.
+
+   Whichever path is chosen, the worker on the next engine run should check the FY2025 20-F's cash-flow statement for whether the restatement changed FY2023/FY2024 OCF, PP&E capex or intangible purchases.
+3. **The rest of the FY2022 NI–OCF gap** (worker item, no ruling needed). The worker on the next engine run should attribute what the fair-value loss does not explain from the FY2022 20-F's notes; cannot verify from the diff. It does not move the base (see Flags).
+
+**Other engine 5.5 checks on this record (to confirm on the re-run).**
+- **CAPEX_COVERAGE_LOW would not fire.** Recorded PP&E capex alone is more than half of D&A in each median year; for FY2024, financials_history.csv has capex 1,616,000,000 against da 2,020,952,000. The flag is a coarse floor, so its silence does not show capex is complete (open item 1).
+- **The FY2024 maintenance-OE distortion would survive a re-run.** The 5.5 engine's working-capital line still takes out only the combined current-borrowings tag (`dcf_engine.py`, the `nwc` line in the history loop), so a re-run on the same filings would print the same kind of FY2024 delta_nwc. This is a diagnostic only and does not touch the base. Changing it is a code decision for Andrew, not a worker fix.
+- **SBC (ruling 6): no change.** TLK files neither `ShareBasedCompensation` nor `AllocatedShareBasedCompensationExpense` (dcf_numbers.json `used_tags.sbc` is null). The $0 `sbc_override` still fills all three years.
+- **Override currency (ruling 7): no restatement needed.**
+  - TLK's overrides carry no currency amount: SBC is $0, which is zero in any currency; the shares override is a share count; and `ads_ratio` is a ratio.
+  - make_score's refusal of a filing override used verbatim under `last_filed_unit_usd` cannot reach the sbc override, because dcf_numbers.json `override_checks.sbc.last_filed_unit` is null: no SBC value is filed in any unit.
+- **Share basis (ruling 2): no action expected.** Base OE/share of $2.23 against the $11.03 price is far inside the 20× guard, and the count has been flat at 99,062,216,600 since 2017. This 5.4.0 record carries no cover-page count (dcf_numbers.json `shares_outstanding_dei_latest` is null), so the dei comparison is first recorded on the re-run. At a 20-F filer a divergence is only recorded.
+- **STALE_FY will not clear on a re-run today.** statements.json (as_of 2026-10-19) still stops at FY2024, with the warning that the FY2025 20-F is not yet in companyfacts. An engine re-run now would keep the FY2022–FY2024 window and STALE_FY. It fixes capex, not staleness (open item 2).
+
+**Why the tier is B, and what it rests on.**
+- The weighted IRR of 19.11% sits in the 15–20% band. Tier by numbers equals the final tier, and no tier override is set.
+- make_score 5.5 changed only the basis of a diagnostic: it moved no input, no scenario and no band.
+- The band still spans bear tier C (12.91%) to bull tier A (23.27%). Sized to the bear end, the ADS clears 15% only at or below the bear IV@15% of $9.46, as the Final verdict says.
+- That B rests on the 5.4.0 capex, which leaves out the intangible line. On the audit's arithmetic the complete-capex base is $2.003 per ADS, 10.3% below the published one. Whether Tier B survives cannot be verified until the engine re-runs (open item 1). Until then, the bear-end sizing is the reading to act on, and about a quarter of the consolidated base belongs to Telkomsel's minority holders.

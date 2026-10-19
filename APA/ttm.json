@@ -27,25 +27,25 @@
    "ttm": 4528000000
   },
   "capex": {
-   "fy": 2740000000.0,
+   "fy": 2740000000,
    "fy_period": [
     "2025-01-01",
     "2025-12-31"
    ],
-   "fy_tag": "OVERRIDE",
-   "ytd_prior": 1358739726.0273972,
+   "fy_tag": "PaymentsToExploreAndDevelopOilAndGasProperties",
+   "ytd_prior": 1437000000,
    "ytd_prior_period": [
     "2025-01-01",
     "2025-06-30"
    ],
-   "ytd_prior_tag": "OVERRIDE",
-   "ytd_current": 1358739726.0273972,
+   "ytd_prior_tag": "PaymentsToExploreAndDevelopOilAndGasProperties",
+   "ytd_current": 1111000000,
    "ytd_current_period": [
     "2026-01-01",
     "2026-06-30"
    ],
-   "ytd_current_tag": "OVERRIDE",
-   "ttm": 2740000000.0
+   "ytd_current_tag": "PaymentsToExploreAndDevelopOilAndGasProperties",
+   "ttm": 2414000000
   },
   "sbc": {
    "fy": 107000000,
@@ -91,11 +91,11 @@
   }
  },
  "ttm_ocf": 4528000000,
- "ttm_capex": 2740000000.0,
+ "ttm_capex": 2414000000,
  "ttm_sbc": 107000000.0,
  "ttm_shares_diluted": 354000000,
- "ttm_oe_total": 1681000000.0,
- "ttm_oe_per_share": 4.748587570621469,
+ "ttm_oe_total": 2007000000.0,
+ "ttm_oe_per_share": 5.669491525423729,
  "warnings": [],
  "overrides_used": [
   {
@@ -123,41 +123,51 @@
      "prorated": true
     }
    }
-  },
-  {
-   "field": "capex",
-   "value": 2740000000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read",
-   "legs_filled": {
-    "fy": {
-     "period": [
-      "2025-01-01",
-      "2025-12-31"
-     ],
-     "amount": 2740000000.0,
-     "days": 365,
-     "prorated": true
-    },
-    "ytd_prior": {
-     "period": [
-      "2025-01-01",
-      "2025-06-30"
-     ],
-     "amount": 1358739726.0273972,
-     "days": 181,
-     "prorated": true
-    },
-    "ytd_current": {
-     "period": [
-      "2026-01-01",
-      "2026-06-30"
-     ],
-     "amount": 1358739726.0273972,
-     "days": 181,
-     "prorated": true
-    }
-   }
   }
- ]
+ ],
+ "capex_components": {
+  "fy": {
+   "ppe": 2740000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToExploreAndDevelopOilAndGasProperties"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToExploreAndDevelopOilAndGasProperties"
+  },
+  "ytd_prior": {
+   "ppe": 1437000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToExploreAndDevelopOilAndGasProperties"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToExploreAndDevelopOilAndGasProperties"
+  },
+  "ytd_current": {
+   "ppe": 1111000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToExploreAndDevelopOilAndGasProperties"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToExploreAndDevelopOilAndGasProperties"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
 }

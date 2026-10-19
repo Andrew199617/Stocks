@@ -2,7 +2,7 @@
  "ticker": "MAA",
  "cik": 912595,
  "entity": "MID-AMERICA APARTMENT COMMUNITIES, INC.",
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1731,22 +1731,23 @@
     "complete": true
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 115.39,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 115.39 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 116384802,
   "shares_as_of": "2026-04-27",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-04-30)",
   "shares_basis": "instant",
   "shares_diluted": 116740000,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
-  "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "ads_ratio": null,
+  "market_cap": 13429642302.78,
+  "market_cap_basis": "115.39 \u00d7 116,384,802 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-04-30), as of 2026-04-27)",
+  "dividend_yield": 0.05264754311465465,
+  "buyback_yield": 0.005419355062415489,
+  "net_buyback_yield": 0.0053110126384554104,
+  "shareholder_yield": 0.05823654736046859,
   "shareholder_yield_basis": "dividends_paid (4/4 quarters filed) + buybacks (1/4 quarters filed (2026-03-31) \u2014 a lower bound) \u2212 share_issuance (4/4 quarters filed); sum of the four quarterly rows 2025-06-30..2026-03-31",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1765,7 +1766,8 @@
     "bound": "lower",
     "complete": false,
     "numerator": 72780000.0,
-    "denominator": null
+    "denominator": "115.39 \u00d7 116,384,802 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-04-30), as of 2026-04-27)",
+    "note": "a lower bound \u2014 a positive leg is filed for only some quarters or not at all"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1784,7 +1786,8 @@
     "bound": "lower",
     "complete": false,
     "numerator": 71325000.0,
-    "denominator": null
+    "denominator": "115.39 \u00d7 116,384,802 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-04-30), as of 2026-04-27)",
+    "note": "a lower bound \u2014 a positive leg is filed for only some quarters or not at all"
    },
    "shareholder_yield": {
     "legs": {
@@ -1805,44 +1808,45 @@
     "bound": "lower",
     "complete": false,
     "numerator": 782096000.0,
-    "denominator": null
+    "denominator": "115.39 \u00d7 116,384,802 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-04-30), as of 2026-04-27)",
+    "note": "a lower bound \u2014 a positive leg is filed for only some quarters or not at all"
    },
    "dividend_yield": {
     "numerator": 6.075,
     "basis": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 no quarterly DPS fact since",
     "bound": "exact",
     "complete": true,
-    "denominator": null
+    "denominator": "price 115.39 (score.json price)"
    }
   },
   "yields_display": {
    "dividend_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.05264754311465465,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
-    "note": "dps_ttm: the latest four quarterly DPS facts are not consecutive quarters (1734 days between 2013-09-30 and 2018-06-30) \u2014 FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 no quarterly DPS fact since"
+    "label": "5.26%",
+    "note": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 no quarterly DPS fact since"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "buybacks: 1/4 quarters filed (2026-03-31) \u2014 a lower bound"
+    "value": 0.005419355062415489,
+    "bound": "lower",
+    "prefix": "\u2265",
+    "label": "\u2265 0.54%",
+    "note": "buybacks: 1/4 quarters filed (2026-03-31) \u2014 understated, so this yield is a lower bound"
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "buybacks: 1/4 quarters filed (2026-03-31) \u2014 a lower bound"
+    "value": 0.0053110126384554104,
+    "bound": "lower",
+    "prefix": "\u2265",
+    "label": "\u2265 0.53%",
+    "note": "buybacks: 1/4 quarters filed (2026-03-31) \u2014 understated, so this yield is a lower bound"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "buybacks: 1/4 quarters filed (2026-03-31) \u2014 a lower bound"
+    "value": 0.05823654736046859,
+    "bound": "lower",
+    "prefix": "\u2265",
+    "label": "\u2265 5.82%",
+    "note": "buybacks: 1/4 quarters filed (2026-03-31) \u2014 understated, so this yield is a lower bound"
    }
   },
   "history": [

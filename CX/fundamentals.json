@@ -2,7 +2,7 @@
  "ticker": "CX",
  "cik": 1076378,
  "entity": "CEMEX SAB DE CV",
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "MXN",
  "profile": {
@@ -1034,22 +1034,23 @@
     "complete": true
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 10.26,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 10.26 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 14507429244,
   "shares_as_of": "2025-12-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (20-F filed 2026-04-24)",
   "shares_basis": "instant",
   "shares_diluted": 44065652000,
   "shares_diluted_source": "latest annual weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
+  "ads_ratio": 30.0,
+  "market_cap": 4961540801.448,
+  "market_cap_basis": "10.26 \u00d7 14,507,429,244 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-04-24) \u00f7 ADS ratio 30.0, as of 2025-12-31)",
   "dividend_yield": null,
   "buyback_yield": null,
   "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "shareholder_yield": 0.018139526328944826,
   "shareholder_yield_basis": "dividends_paid (FY2024 annual fact) + buybacks NOT INCLUDED (not filed for FY2024) \u2212 share_issuance (never filed in any period \u2014 zero by the filer's own statements); FY2024 annual flows (period ended 2024-12-31) \u2014 no quarterly filings (20-F/40-F filer)",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1066,7 +1067,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "10.26 \u00d7 14,507,429,244 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-04-24) \u00f7 ADS ratio 30.0, as of 2025-12-31)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "net_buyback_yield": {
@@ -1084,7 +1085,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "10.26 \u00d7 14,507,429,244 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-04-24) \u00f7 ADS ratio 30.0, as of 2025-12-31)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "shareholder_yield": {
@@ -1106,14 +1107,15 @@
     "bound": "lower",
     "complete": false,
     "numerator": 90000000.0,
-    "denominator": null
+    "denominator": "10.26 \u00d7 14,507,429,244 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-04-24) \u00f7 ADS ratio 30.0, as of 2025-12-31)",
+    "note": "a lower bound \u2014 a positive leg is filed for only some quarters or not at all"
    },
    "dividend_yield": {
     "numerator": null,
     "basis": null,
     "bound": null,
     "complete": false,
-    "denominator": null
+    "denominator": "price 10.26 (score.json price); DPS \u00d7 ADS ratio 30.0 (per-ADS basis)"
    }
   },
   "yields_display": {
@@ -1139,11 +1141,11 @@
     "note": "buybacks: not filed for FY2024; share_issuance: never filed in any period \u2014 zero by the filer's own statements"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "buybacks: not filed for FY2024"
+    "value": 0.018139526328944826,
+    "bound": "lower",
+    "prefix": "\u2265",
+    "label": "\u2265 1.81%",
+    "note": "buybacks: not filed for FY2024 \u2014 left out, so this yield is a lower bound"
    }
   },
   "history": [],

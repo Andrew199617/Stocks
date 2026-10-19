@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $5.94 · normalized (3-yr median) OE/share: $4.08
 - Latest FY OE total: $300.3M
 - Shares diluted (latest): 505,277,464
-- Market cap (est): $10.303B · net debt (latest): $222.7M
+- Market cap (est): $10.303B (basis: diluted_latest) · net debt (latest): $222.7M
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 4/5
 
 ## Growth & moat
@@ -38,7 +39,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 2.00%
 - TV share @15%: 20.6%
 - Scenario spread (IV@15 super-bull / super-bear): 5.18x
-- Net debt / normalized OE: 0.11x
+- Net debt / normalized OE: 1.08x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 10 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed 0.11x)
 - Months since FY end: 21.6
 
 ## Fragility flags
@@ -67,5 +68,5 @@ Filing gaps found and covered by judgment overrides: sbc, capex, shares
 - sbc reason: DATA_GAP:sbc — SBC missing for fiscal years 2022, 2023, 2024 of the last 3 under every tag the engine reads. GAP has no equity-settled share-based payment expense to subtract: no equity compensation plans exist, employee cost is all cash compensation (already inside operating cash flow), and there is no IFRS 2 expense in the filing. The filing-sourced figure for equity SBC in the gap years is Ps.0 (same treatment as TS, SQM, KEP and LTM in this sweep).
 - shares reason: DATA_GAP:shares — DILUTED shares missing for fiscal years 2022, 2023, 2024 of the last 3; the only filed count is ifrs-full WeightedAverageShares, a basic tag, and companyfacts carries it scaled 1,000x (505,277,464,000) because the filing presents share counts alongside statements in thousands — the same share-basis defect family as NTNX/VIV/DD in this sweep. The filer's own EPS note states basic and diluted are the same (no potentially dilutive shares), so the basic count IS the diluted count. The engine applies this single FY2023-25 value to every missing period; for FY2022 it uses a 0.6% smaller denominator than the filer's own 508,371,309 (immaterial, disclosed), and it is exact for FY2023 and FY2024, two of the three base years.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $0.02 (no override) → $4.08 (with override), +25527.25% · weighted IRR 2.51% → 5.56% (+3.04pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $0.02 (no override) → $4.08 (with override), +25527.25% · weighted IRR 2.51% → 5.56% (+3.04pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

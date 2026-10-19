@@ -1,0 +1,627 @@
+{
+ "ticker": "ELS",
+ "cik": 895417,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-008722",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026008722/els-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-028003",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026028003/els-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050244",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026050244/els-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "els:PropertyOperationsSegmentMember",
+     "label": "Property Operations Segment",
+     "values": [
+      1361792000,
+      1422422000,
+      1456083000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9143,
+      0.932,
+      0.9508
+     ],
+     "growth_yoy": [
+      null,
+      0.0445,
+      0.0237
+     ]
+    },
+    {
+     "member": "els:HomeSalesAndRentalsMember",
+     "label": "Home Sales And Rentals",
+     "values": [
+      109891000,
+      86232000,
+      56955000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0738,
+      0.0565,
+      0.0372
+     ],
+     "growth_yoy": [
+      null,
+      -0.2153,
+      -0.3395
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1489423000,
+     1526166000,
+     1531382000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "els:PropertyOperationsSegmentMember",
+     "label": "Property Operations Segment",
+     "values": [
+      369086000,
+      358381000,
+      380946000,
+      376245000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9529,
+      0.951,
+      0.9581,
+      0.9458
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0321,
+      0.0498
+     ]
+    },
+    {
+     "member": "els:HomeSalesAndRentalsMember",
+     "label": "Home Sales And Rentals",
+     "values": [
+      13992000,
+      14199000,
+      12711000,
+      14181000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0361,
+      0.0377,
+      0.032,
+      0.0356
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0916,
+      -0.0013
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     387334000,
+     376866000,
+     397622000,
+     397815000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "els:PropertyOperationsSegmentMember",
+     "label": "Property Operations Segment",
+     "values": [
+      5342386000,
+      5402509000,
+      5466181000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9517,
+      0.9569,
+      0.9514
+     ],
+     "growth_yoy": [
+      null,
+      0.0113,
+      0.0118
+     ]
+    },
+    {
+     "member": "els:HomeSalesAndRentalsMember",
+     "label": "Home Sales And Rentals",
+     "values": [
+      271347000,
+      243143000,
+      279212000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0483,
+      0.0431,
+      0.0486
+     ],
+     "growth_yoy": [
+      null,
+      -0.1039,
+      0.1483
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5613733000,
+     5645652000,
+     5745393000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "els:PropertyOperationsSegmentMember",
+     "label": "Property Operations Segment",
+     "values": [
+      5398043000,
+      5465841000,
+      5458404000,
+      5493537000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9567,
+      0.9554,
+      0.9495,
+      0.9471
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0112,
+      0.0051
+     ]
+    },
+    {
+     "member": "els:HomeSalesAndRentalsMember",
+     "label": "Home Sales And Rentals",
+     "values": [
+      244321000,
+      255042000,
+      290264000,
+      307138000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0433,
+      0.0446,
+      0.0505,
+      0.0529
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.188,
+      0.2043
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5642364000,
+     5720883000,
+     5748668000,
+     5800675000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "els:HomeSalesBrokeredResalesAndAncillaryServicesMember",
+     "label": "Home Sales, Brokered Resales And Ancillary Services",
+     "values": [
+      145219000,
+      117732000,
+      86034000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6445,
+      0.5173,
+      0.4932
+     ],
+     "growth_yoy": [
+      null,
+      -0.1893,
+      -0.2692
+     ]
+    },
+    {
+     "member": "els:RightToUseAnnualPaymentMember",
+     "label": "Right-To-Use Annual Payment",
+     "values": [
+      65379000,
+      65883000,
+      69266000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2902,
+      0.2895,
+      0.397
+     ],
+     "growth_yoy": [
+      null,
+      0.0077,
+      0.0513
+     ]
+    },
+    {
+     "member": "els:RightToUseContractsCurrentMember",
+     "label": "Right-To-Use Contracts, Current",
+     "values": [
+      14719000,
+      16433000,
+      12412000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0653,
+      0.0722,
+      0.0711
+     ],
+     "growth_yoy": [
+      null,
+      0.1164,
+      -0.2447
+     ]
+    },
+    {
+     "member": "els:MembershipSubscriptionMember",
+     "label": "Membership Subscription",
+     "values": [
+      null,
+      27529000,
+      6743000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.121,
+      0.0387
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.7551
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     225317000,
+     227577000,
+     174455000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "els:HomeSalesBrokeredResalesAndAncillaryServicesMember",
+     "label": "Home Sales, Brokered Resales And Ancillary Services",
+     "values": [
+      20923000,
+      22798000,
+      19096000,
+      22805000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4843,
+      0.5324,
+      0.4601,
+      0.5097
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0873,
+      0.0003
+     ]
+    },
+    {
+     "member": "els:RightToUseAnnualPaymentMember",
+     "label": "Right-To-Use Annual Payment",
+     "values": [
+      16342000,
+      16902000,
+      18299000,
+      18819000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3783,
+      0.3947,
+      0.4409,
+      0.4206
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1198,
+      0.1134
+     ]
+    },
+    {
+     "member": "els:RightToUseContractsCurrentMember",
+     "label": "Right-To-Use Contracts, Current",
+     "values": [
+      3052000,
+      3120000,
+      3120000,
+      3120000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0706,
+      0.0729,
+      0.0752,
+      0.0697
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0223,
+      0.0
+     ]
+    },
+    {
+     "member": "els:MembershipSubscriptionMember",
+     "label": "Membership Subscription",
+     "values": [
+      2886000,
+      null,
+      985000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0668,
+      null,
+      0.0237,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.6587,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     43203000,
+     42820000,
+     41500000,
+     44744000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

@@ -1,0 +1,31 @@
+{
+ "name": "Antero Resources Corporation",
+ "sector": "Energy / Natural gas & NGL exploration and production (Appalachia)",
+ "moat_score": 3,
+ "moat_justification": "Weak moat 3/10: a scaled, low-cost Appalachian producer with deep core Marcellus inventory (deepened by the HG Energy acquisition) and firm transportation that earns a premium to NYMEX, but a pure price-taker on natural gas and NGLs. fundamentals.json's roic_proxy is 0.24% (FY2021), 26.2% (FY2022, the price spike), 3.87% (FY2023), 0.00% (FY2024) and 7.48% (FY2025) — returns are the commodity price, not a franchise, and only the 2022 spike cleared the cost of capital. fundamentals.json prints no gross-margin series (no cost-of-revenue tag); operating margin swung from 35.6% (FY2022) to 0.01% (FY2024) and 16.7% (FY2025). No written reason supports a higher score on that history. CAP = 5.9 years.",
+ "moat_for": [
+  "Deep core Marcellus inventory in the liquids-rich Appalachian window, deepened by the HG Energy acquisition (closed February 2026)",
+  "Firm transportation to Gulf Coast / LNG-corridor markets that earns a realized premium to NYMEX Henry Hub",
+  "One of the largest US NGL producers with export access, which diversifies revenue beyond dry gas",
+  "Long-term gathering, processing and water agreements with Antero Midstream, in which Antero holds an equity stake"
+ ],
+ "moat_against": [
+  "Price-taker on natural gas, NGLs and oil: earnings are set by Henry Hub and Mont Belvieu, not by Antero",
+  "roic_proxy 3.87% (FY2023), 0.00% (FY2024), 7.48% (FY2025) in fundamentals.json; only the 2022 price spike (26.2%) cleared the cost of capital",
+  "Large fixed firm-transport and gathering commitments keep the cost line rigid when prices fall",
+  "Recent growth is bought, not organic: the $2.8B HG acquisition and the July 2026 bolt-ons were debt-funded, and the plan is maintenance-level drilling",
+  "Appalachian takeaway constraints and basis risk; pipeline permitting is outside the company's control"
+ ],
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "one_liner": "Scaled Appalachian gas/NGL price-taker, moat 3/10 — on the TTM base it does not clear 15% (weighted IRR 12.59%, IV@15% $30.89 vs $38.71); the TTM capex misses an extension-tagged land line, so 12.59% is an upper bound — size to the bear end (10.05%); it clears 15% only below ~$30.89.",
+ "confidence": "low",
+ "tier_override": null,
+ "tier_override_reason": null,
+ "in_scope_under_40b": true
+}

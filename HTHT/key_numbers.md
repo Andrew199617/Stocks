@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $3.14 · normalized (3-yr median) OE/share: $2.82
 - Latest FY OE total: $1.020B
 - Shares diluted (latest): 3,247,494,097
-- Market cap (est): $15.101B · net debt (latest): $-654.7M
+- Market cap (est): $15.101B (basis: diluted_latest) · net debt (latest): $-654.7M
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 5/5
 
 ## Growth & moat
@@ -38,7 +39,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 6.05%
 - TV share @15%: 21.5%
 - Scenario spread (IV@15 super-bull / super-bear): 4.81x
-- Net debt / normalized OE: -0.07x
+- Net debt / normalized OE: -0.72x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 10 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed -0.07x)
 - Months since FY end: 9.6
 
 ## Fragility flags
@@ -60,5 +61,5 @@ Filing gaps found and covered by judgment overrides: capex
 | capex | $828.0M | filing | Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24), Consolidated Statements of Cash Flows, investing activities line 'Purchases of property and equipment': RMB828M for FY2025 (US$119M in the filing's own convenience-translation column), with RMB883M for FY2024 and RMB894M for FY2023 in the same statement | 2016-12-31, 2017-12-31, 2018-12-31, 2019-12-31, 2020-12-31, 2021-12-31, 2022-12-31, 2023-12-31, 2024-12-31, 2025-12-31 |
 - capex reason: DATA_GAP:capex — capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads (the 20-F cash-flow line 'Purchases of property and equipment' is not carried in EDGAR companyfacts under PaymentsToAcquirePropertyPlantAndEquipment or any candidate). The engine applies this single FY2025 filing value to every missing period; against the true per-year figures in the same statement it understates FY2023 capex by RMB66M (RMB894M filed) and FY2024 by RMB55M (RMB883M filed) — slightly aggressive in direction but immaterial (~0.8% of those years' operating cash flow of RMB7,674M / RMB7,518M), and FY2025 is exact. Declared in RMB (the reporting currency); the engine FX-converts at period-end ECB rates.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $3.16 (no override) → $2.82 (with override), -10.99% · weighted IRR 14.07% → 12.94% (-1.13pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $3.16 (no override) → $2.82 (with override), -10.99% · weighted IRR 14.07% → 12.94% (-1.13pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

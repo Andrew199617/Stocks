@@ -97,5 +97,59 @@
  "ttm_oe_total": 659000000,
  "ttm_oe_per_share": 4.803206997084548,
  "warnings": [],
- "overrides_used": []
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 333000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_prior": {
+   "ppe": 172000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_current": {
+   "ppe": 178000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": {
+  "event_date": "2026-06-30",
+  "ratio_filed": 0.333,
+  "ratio_used": 0.3333333333333333,
+  "dei_count": 135042975,
+  "dei_date": "2026-07-31",
+  "fy_diluted": 419200000,
+  "ytd_current_before": 137200000,
+  "applied": false
+ },
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
 }

@@ -3,20 +3,25 @@
  "name": "ATMOS ENERGY CORP",
  "cik": 731802,
  "engine_version": 5,
- "as_of": "2026-10-14",
- "price": 163.94,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 167.32,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 160573000,
- "market_cap_est": 26324337620.0,
- "net_debt_latest": null,
+ "shares_outstanding_dei_latest": 168988553,
+ "shares_outstanding_dei_asof": "2026-07-31",
+ "market_cap_est": 26867074360.0,
+ "net_debt_latest": 8716257000,
+ "net_debt_basis": "LongTermDebtAndCapitalLeaseObligations+LongTermDebtAndCapitalLeaseObligationsCurrent",
+ "lease_liabilities_latest": 307559000,
  "latest_period_end": "2025-09-30",
  "rev_cagr_5y": 0.10762235453436886,
  "rev_cagr_3y": 0.03826136385197465,
  "oe_positive_years_of_last_5": "1/5",
- "base_oe_total_latest_fy": -1524674000,
- "base_oe_per_share": -7.952569661876253,
- "base_oe_latest_per_share": -9.495207787112404,
- "base_oe_normalized_per_share": -7.952569661876253,
+ "base_oe_total_latest_fy": -1545143000,
+ "base_oe_per_share": -8.048799339735108,
+ "base_oe_latest_per_share": -9.622682518231583,
+ "base_oe_normalized_per_share": -8.048799339735108,
  "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": 0.10762235453436886,
@@ -24,9 +29,16 @@
   "rev_yoy_latest": 0.12906215255161424,
   "oe_ps_cagr_2y": null
  },
- "g_blend": 0.10762235453436886,
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.057622354534368855,
+  "rev_cagr_3y": -0.011738636148025353,
+  "rev_yoy_latest": 0.07906215255161424,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.057622354534368855,
  "share_cagr": 0.05153926590062552,
  "share_count_adj": -0.05,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
  "used_tags": {
   "revenue": "Revenues",
   "net_income": "NetIncomeLoss",
@@ -34,25 +46,341 @@
   "ocf": "NetCashProvidedByUsedInOperatingActivities",
   "capex": "PaymentsToAcquireProductiveAssets",
   "da": "DepreciationDepletionAndAmortization",
-  "sbc": "ShareBasedCompensation",
+  "sbc": "AllocatedShareBasedCompensationExpense",
   "tax": "IncomeTaxExpenseBenefit",
   "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
   "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
   "assets_current": "AssetsCurrent",
   "liab_current": "LiabilitiesCurrent",
-  "debt_current": "LongTermDebtCurrent",
+  "debt_current": null,
+  "debt_cur_ltd": "LongTermDebtAndCapitalLeaseObligationsCurrent",
+  "debt_cur_st": "ShortTermBorrowings",
   "debt_lt": "LongTermDebtNoncurrent",
+  "debt_total": "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
+  "lease_liab_current": "OperatingLeaseLiabilityCurrent",
+  "lease_liab_lt": "OperatingLeaseLiabilityNoncurrent",
+  "assets": "Assets",
+  "liabilities": null,
   "ppe_net": "PropertyPlantAndEquipmentNet",
   "equity": "StockholdersEquity",
-  "shares_out_inst": "CommonStockSharesOutstanding"
+  "shares_out_inst": "CommonStockSharesOutstanding",
+  "capex_components": "PaymentsToAcquireProductiveAssets"
  },
  "filer_annual_form": "10-K",
  "ads_ratio": null,
+ "fx_conversion": null,
+ "payable_base": null,
  "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 160573000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": null,
+  "formula": "price \u00d7 shares"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": 168988553,
+  "dei_date": "2026-07-31",
+  "dei_ratio": 0.9502004552935607,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1086950000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2018-11-13"
+   }
+  },
+  "2017-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1137089000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2019-11-12"
+   }
+  },
+  "2018-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1467591000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2020-11-13"
+   }
+  },
+  "2019-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1693477000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2021-11-12"
+   }
+  },
+  "2020-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1935676000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2022-11-14"
+   }
+  },
+  "2021-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1969540000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2023-11-14"
+   }
+  },
+  "2022-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 2444420000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2024-11-18"
+   }
+  },
+  "2023-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 2805973000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2025-11-14"
+   }
+  },
+  "2024-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 2937124000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2025-11-14"
+   }
+  },
+  "2025-09-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 3561399000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2025-11-14"
+   }
+  }
+ },
+ "sbc_provenance": {
+  "2016-09-30": {
+   "share": [
+    14760000,
+    "USD"
+   ],
+   "allocated": [
+    24600000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 24,600,000 > share 14,760,000 USD, +66.7%"
+  },
+  "2017-09-30": {
+   "share": [
+    14064000,
+    "USD"
+   ],
+   "allocated": [
+    23100000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 23,100,000 > share 14,064,000 USD, +64.2%"
+  },
+  "2018-09-30": {
+   "share": [
+    12863000,
+    "USD"
+   ],
+   "allocated": [
+    23900000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 23,900,000 > share 12,863,000 USD, +85.8%"
+  },
+  "2019-09-30": {
+   "share": [
+    11121000,
+    "USD"
+   ],
+   "allocated": [
+    23900000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 23,900,000 > share 11,121,000 USD, +114.9%"
+  },
+  "2020-09-30": {
+   "share": [
+    9583000,
+    "USD"
+   ],
+   "allocated": [
+    21100000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 21,100,000 > share 9,583,000 USD, +120.2%"
+  },
+  "2021-09-30": {
+   "share": [
+    11255000,
+    "USD"
+   ],
+   "allocated": [
+    24100000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 24,100,000 > share 11,255,000 USD, +114.1%"
+  },
+  "2022-09-30": {
+   "share": [
+    10743000,
+    "USD"
+   ],
+   "allocated": [
+    22200000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 22,200,000 > share 10,743,000 USD, +106.6%"
+  },
+  "2023-09-30": {
+   "share": [
+    10178000,
+    "USD"
+   ],
+   "allocated": [
+    23700000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 23,700,000 > share 10,178,000 USD, +132.9%"
+  },
+  "2024-09-30": {
+   "share": [
+    10709000,
+    "USD"
+   ],
+   "allocated": [
+    25400000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 25,400,000 > share 10,709,000 USD, +137.2%"
+  },
+  "2025-09-30": {
+   "share": [
+    12731000,
+    "USD"
+   ],
+   "allocated": [
+    33200000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 33,200,000 > share 12,731,000 USD, +160.8%"
+  }
+ },
  "tier_by_numbers": "F",
+ "f_subtype": "no_cash_generation",
+ "f_subtype_basis": "sum of the last 3 fiscal years (the median window)",
  "implied_irr_weighted": null,
  "implied_irr_base": null,
  "moat_score": 6.0,
+ "cap_years": 9.8,
+ "g_terminal": 0.025,
  "inputs": {
   "moat": 6.0,
   "probs": [
@@ -84,11 +412,12 @@
  "data_gap_uncovered": [],
  "overrides_applied": [],
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "DILUTION: share count growing 5.2%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2016 (14,760,000 vs 24,600,000, +66.7%), FY2017 (14,064,000 vs 23,100,000, +64.2%), FY2018 (12,863,000 vs 23,900,000, +85.8%), FY2019 (11,121,000 vs 23,900,000, +114.9%), FY2020 (9,583,000 vs 21,100,000, +120.2%), FY2021 (11,255,000 vs 24,100,000, +114.1%), FY2022 (10,743,000 vs 22,200,000, +106.6%), FY2023 (10,178,000 vs 23,700,000, +132.9%), FY2024 (10,709,000 vs 25,400,000, +137.2%), FY2025 (12,731,000 vs 33,200,000, +160.8%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
   "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low"
  ],
- "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass.",
- "content_hash": "7dbc0eecc607ea99f34e7227addc1186a395477dbf6a8e9bcdff7a69263b1ae4"
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
+ "content_hash": "f4523b7750401a7c9fc00e250860c9346dc7c1f1f90ad2ef1f6983d1e0d2a698"
 }

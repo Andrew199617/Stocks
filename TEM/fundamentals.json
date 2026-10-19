@@ -2,7 +2,7 @@
  "ticker": "TEM",
  "cik": 1717115,
  "entity": "Tempus AI, Inc.",
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1075,22 +1075,23 @@
     "complete": false
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 65.65,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 65.65 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 182397,
   "shares_as_of": "2026-06-30",
   "shares_source": "quarter ended 2026-06-30 weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts (a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API)",
   "shares_basis": "weighted_average_diluted_fallback",
   "shares_diluted": 182397,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
+  "ads_ratio": null,
+  "market_cap": 11974363.05,
+  "market_cap_basis": "65.65 \u00d7 182,397 shares (quarter ended 2026-06-30 weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts (a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API), as of 2026-06-30)",
   "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "buyback_yield": 0.0,
+  "net_buyback_yield": 0.0,
+  "shareholder_yield": 0.0,
   "shareholder_yield_basis": "dividends_paid (2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 a lower bound) + buybacks (never filed in any period \u2014 zero by the filer's own statements) \u2212 share_issuance (2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 a lower bound); sum of the four quarterly rows 2025-09-30..2026-06-30",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1107,7 +1108,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 0.0,
-    "denominator": null
+    "denominator": "65.65 \u00d7 182,397 shares (quarter ended 2026-06-30 weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts (a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API), as of 2026-06-30)"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1127,7 +1128,8 @@
     "bound": "upper",
     "complete": false,
     "numerator": 0.0,
-    "denominator": null
+    "denominator": "65.65 \u00d7 182,397 shares (quarter ended 2026-06-30 weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts (a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API), as of 2026-06-30)",
+    "note": "an upper bound \u2014 the issuance leg is filed for only some quarters or not at all"
    },
    "shareholder_yield": {
     "legs": {
@@ -1150,14 +1152,15 @@
     "bound": "indeterminate",
     "complete": false,
     "numerator": 0.0,
-    "denominator": null
+    "denominator": "65.65 \u00d7 182,397 shares (quarter ended 2026-06-30 weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts (a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API), as of 2026-06-30)",
+    "note": "neither bound \u2014 a positive leg and the issuance leg are both incomplete"
    },
    "dividend_yield": {
     "numerator": null,
     "basis": null,
     "bound": null,
     "complete": false,
-    "denominator": null
+    "denominator": "price 65.65 (score.json price)"
    }
   },
   "yields_display": {
@@ -1169,25 +1172,25 @@
     "note": "no dividends-per-share facts filed (CommonStockDividendsPerShareDeclared / CashPaid or IFRS equivalents) although cash dividends paid are filed (5.6M for the period ended 2024-12-31) \u2014 per-share rate not tagged; dps_ttm, dividend_yield and frequency null"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.0,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "0.00%",
     "note": null
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "share_issuance: 2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 a lower bound"
+    "value": 0.0,
+    "bound": "upper",
+    "prefix": "\u2264",
+    "label": "\u2264 0.00%",
+    "note": "share_issuance: 2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 the deduction is understated, so this yield is an upper bound"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "dividends_paid: 2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 a lower bound; share_issuance: 2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 a lower bound"
+    "value": 0.0,
+    "bound": "indeterminate",
+    "prefix": "\u2248",
+    "label": "\u2248 0.00% (incomplete)",
+    "note": "dividends_paid: 2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 understated, so this yield is a lower bound; share_issuance: 2/4 quarters filed (2025-09-30, 2025-12-31) \u2014 the deduction is understated, so this yield is an upper bound"
    }
   },
   "history": [],
