@@ -1,0 +1,294 @@
+{
+ "ticker": "FNF",
+ "cik": 1331875,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T09:52:15-04:00",
+ "newest_filing_date": "2026-09-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001331875.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000026/fnf-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FNF/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FNF/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Fidelity National Financial, Inc.",
+  "cik": 1331875,
+  "description": {
+   "text": "The following describes the business of Fidelity National Financial, Inc. and its subsidiaries. Except where otherwise noted, all references to \"we,\" \"us,\" \"our\", the \"Company\" or \"FNF\" are to Fidelity National Financial, Inc. and its subsidiaries, taken together. We are a leading provider of (i) title insurance, escrow and other title-related services, including trust activities, trustee sales guarantees, recordings and reconveyances and home warranty and (ii) transaction services to the real estate and mortgage industries. FNF is one of the nation’s largest title insurance companies operating through its title insurance underwriters - Fidelity National Title Insurance Company (\"FNTIC\"), Chicago Title Insurance Company (\"Chicago Title\"), Commonwealth Land Title Insurance Company (\"Commonwealth Land Title\"), Alamo Title Insurance (\"Alamo Title\") and National Title Insurance of New York Inc. (\"National Title of New York\") - which collectively issue more title insurance policies than any other title company in the United States. Through our subsidiary ServiceLink Holdings, LLC (\"ServiceLink\"), we provide mortgage transaction services including title-related services and facilitation of production and management of mortgage loans. We are also a leading provider of insurance solutions serving retail annuity and life customers and institutional clients through our majority-owned subsidiary, F&G Annuities & Life, Inc. (\"F&G\").",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001331875-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000026/fnf-20251231.htm"
+  },
+  "description_short": "Fidelity National Financial, Inc. (NYSE: FNF) is a leading provider of title insurance and transaction services to the real estate and mortgage industries, and a leading provider of insurance solutions serving retail annuity and life customers and institutional clients through its majority owned subsidiary F&G Annuities & Life, Inc. (NYSE: FG). FNF is the nation's largest title insurance company through its title insurance underwriters - Fidelity National Title, Chicago Title, Commonwealth Land Title, Alamo Title and National Title of New York - that collectively issue more title insurance policies than any other title company in the United States.",
+  "industry": "Specialty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6361",
+  "sic_description": "Title Insurance",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.fnf.com",
+  "headquarters": "Jacksonville, Florida",
+  "address": {
+   "street": "601 Riverside Avenue",
+   "city": "Jacksonville",
+   "state": "Florida",
+   "zip": "32204",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "904-854-8100",
+  "employees": {
+   "count": 24535,
+   "as_of": "2025-12-26",
+   "evidence": "As of December 26, 2025, we employed 24,535 full-time equivalent employees, including 22,790 in our Title segment, 1,171 in our F&G segment, and 574 in our Corporate and other segment.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000026/fnf-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-07-06",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Fidelity National Title Group, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001331875&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-15",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001331875-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000087/fnf-20260915.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001331875-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000073/fnf-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001331875-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000068/fnf-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-10",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001331875-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000052/fnf-20260610.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-08",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001331875-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000046/fnf-20260508.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001331875-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000042/fnf-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001331875-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000036/fnf-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-29",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-051485",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000110465926051485/tm261429d4_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001331875-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000026/fnf-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001331875-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000021/fnf-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001331875-25-000169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000169/fnf-20251218.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001331875-25-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000111/fnf-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001331875-25-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000105/fnf-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001331875-25-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000101/fnf-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001331875-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000055/fnf-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001331875-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000051/fnf-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-11",
+   "items": [
+    "3.03",
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001331875-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000046/fnf-20250611.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-04",
+   "period": "2025-06-04",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001331875-25-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000039/fnf-20250604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001331875-25-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000033/fnf-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001331875-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187525000024/fnf-20250507.htm"
+  }
+ ],
+ "warnings": []
+}

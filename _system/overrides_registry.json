@@ -2744,6 +2744,31 @@
    "ratio": 1.0,
    "source": "Dr. Reddy's Form 20-F for the fiscal year ended March 31, 2024: 'One ADS represents one equity share of Rs.5 par value per share'; the 5-for-1 share sub-division effective 28 Oct 2024 left the ratio unchanged \u2014 the company's FY2026 interim/annual share-capital disclosure states each ADS continues to represent one underlying equity share and the number of ADSs increased proportionately (FY2026 Form 20-F, period ended 2026-03-31, filed 2026-05-29). Depositary listing (Deutsche Bank ADR universe) confirms Ratio (ORD:DR) 1:1.",
    "reason": "20-F filer: EDGAR share counts are ordinary equity shares and the Nasdaq/NYSE price is per ADS; with a 1:1 ratio per-ADS figures equal per-ordinary-share figures, so no scaling applies \u2014 the ratio is declared to clear the ADS_RATIO_MISSING gate on the filer's own statement."
+  },
+  {
+   "ticker": "FNF",
+   "field": "capex",
+   "value": 147000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Cash Flows (pp. 107-108), investing activities line 'Additions to property and equipment and capitalized software': $(147) million for FY2025, with $(146) million for FY2024 and $(132) million for FY2023 in the same statement (all in $ millions); the statement reconciles exactly with this line (FY2025 operating $5,828M + investing -$8,934M + financing $2,263M = the reported net change in cash of -$843M; FY2024 and FY2023 reconcile the same way)",
+   "reason": "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads (statements.json warning: no capital-expenditure figure filed for 45 periods with operating cash flow, 2015-06-30..2026-06-30), because FNF prints its capex only as the combined line 'Additions to property and equipment and capitalized software' in the 10-K cash-flow statement. The engine applies this single FY2025 filing value to every missing period; it overstates FY2024 capex by $1M (true $146M) and FY2023 by $15M (true $132M) \u2014 neither moves the verdict, the scored base is the NI-based base_override (net income already carries depreciation and amortization), and capex at ~$140M/yr is ~2.5% of the rejected OCF base either way.",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": 19.6007,
+   "base_oe_with_override": 2.2132,
+   "base_oe_impact_pct": -88.708,
+   "weighted_irr_without_override": 0.587,
+   "weighted_irr_with_override": 0.0973,
+   "weighted_irr_impact_pp": -48.974,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "FNF",
+   "event": "base_override",
+   "date": "2026-10-19",
+   "value": 2.213235294117647,
+   "source": "Median of the last 3 fiscal years' net income per diluted share, built exclusively from this run's financials_history.csv (engine-filed figures): FY2023 net income $517,000,000 / 271,000,000 diluted shares = $1.9077; FY2024 $1,270,000,000 / 273,000,000 = $4.6520; FY2025 $602,000,000 / 272,000,000 = $2.2132; median of the three = $2.2132 (the FY2025 value; it is also the filed FY2025 diluted EPS attributable to common shareholders)",
+   "reason": "SECTOR_MODEL_MISMATCH (title insurer consolidating annuity/life insurer F&G): the engine's OCF-based conservative OE is rejected as the base \u2014 for an insurer consolidating F&G, operating cash flow is policyholder plumbing, not distributable earnings: annuity deposits and the build in future policy benefits run through OCF while the corresponding investment deployment sits in investing (purchases of investment securities $23,198M in FY2025). FY2025 OCF was $5,828,000,000 against net income of $602,000,000, and NI_OCF_DIVERGENCE fires for 2023, 2024 and 2025; the engine's normalized OCF base is $23.6827/share \u2014 a 59.5% OE yield at $39.80 for a company whose filed diluted EPS was $2.21 in FY2025. Capitalizing that base prints a fake Tier S. For an insurer, net income is the honest owner's-earnings proxy (the ALLY/FUTU/LPLA/WSE/ARCC sector precedent in this sweep): SBC is already expensed inside it, title claim provisions and F&G benefit/reserve charges are already charged inside it, and the median-of-3-FY normalization mirrors the engine's own base method applied to that definition. The median is conservative for this name: FY2025 net income carries an abnormal tax load (income tax $753,000,000 on pre-tax $1,397,000,000, a 54% rate, including the F&G-distribution deferred-tax adjustment in Corporate & Other, which lost $458M attributable in FY2025), and GAAP NI is below adjusted net earnings in every recent year (H1 2026 adjusted EPS $2.31 vs GAAP $1.98). Declared under bounded authority (c): every input is a figure printed by this run's engine output (financials_history.csv)."
   }
  ]
 }
