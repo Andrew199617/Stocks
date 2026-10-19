@@ -1,0 +1,101 @@
+{
+ "ticker": "TXRH",
+ "cik": 1289460,
+ "entity": "Texas Roadhouse,\u00a0Inc.",
+ "fy_end": "2025-12-30",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 730067000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 365980000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-01"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 439227000,
+   "ytd_current_period": [
+    "2025-12-31",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 803314000
+  },
+  "capex": {
+   "fy": 387996000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 169912000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-01"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 178845000,
+   "ytd_current_period": [
+    "2025-12-31",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 396929000
+  },
+  "sbc": {
+   "fy": 47765000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-30"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 23249000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-01"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 26902000,
+   "ytd_current_period": [
+    "2025-12-31",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 51418000
+  },
+  "shares_diluted": {
+   "fy": 66511000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 66656000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-07-01"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 66019000,
+   "ytd_current_period": [
+    "2025-12-31",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 803314000,
+ "ttm_capex": 396929000,
+ "ttm_sbc": 51418000,
+ "ttm_shares_diluted": 66019000,
+ "ttm_oe_total": 354967000,
+ "ttm_oe_per_share": 5.37674002938548,
+ "warnings": [],
+ "overrides_used": []
+}

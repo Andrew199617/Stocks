@@ -1,0 +1,85 @@
+{
+ "ticker": "TXRH",
+ "name": "Texas Roadhouse, Inc.",
+ "sector": "Restaurants / Casual dining",
+ "price": 168.4,
+ "market_cap_b": 11.2,
+ "engine_version": 5,
+ "base_oe_per_share": 5.37674002938548,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Best-in-class casual-dining execution with ROIC proxy sustained at 29.9-39.3% in 2021-2025 and average unit volumes at a $9.6M annualised pace in Q2 2026, driven by everyday-value positioning, the managing-partner operating model and disciplined site selection; capped at 6 because there are no switching costs or network effects, pricing power is deliberately limited by the value proposition, and beef is roughly half of food costs with no hedge against the cattle cycle.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 32.72,
+   "irr": 0.0492
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 46.92,
+   "irr": 0.0613
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 65.1,
+   "irr": 0.0769
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 85.48,
+   "irr": 0.0934
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 121.07,
+   "irr": 0.1196
+  }
+ },
+ "iv_at_15": 68.01,
+ "iv_at_12": 92.27,
+ "implied_irr": 0.0796,
+ "implied_irr_base_case": 0.0769,
+ "upside_at_15_pct": -59.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality casual-dining compounder, moat 6/10 with ~30%+ ROIC, but at $168.40 it does not clear 15% \u2014 weighted IRR 8.0%, weighted IV@15% $68.01; it would clear 15% only below about $68.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0613,
+ "irr_bull": 0.0934,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 46.53,
+ "iv_at_25": 34.95,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 66511000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "ROIC proxy 29.9-39.3% every year 2021-2025 (fundamentals.json) \u2014 returns well above cost of capital through a cycle",
+  "Traffic-led comps: +6.2% in Q2 2026 on +3.0% traffic and +3.2% check, while many casual-dining peers rely on price alone",
+  "Everyday-value brand and experience moat: record average weekly sales over $175,000 in Q2 2026, AUV at a $9.6M annualised pace",
+  "Managing-partner / operator model and disciplined development: ~35 company openings planned for 2026 with a core-brand pipeline through 2028",
+  "Debt-free funded balance sheet (no debt outstanding at FY2025 year-end; only operating leases) funds growth, dividends and buybacks internally"
+ ],
+ "moat_against": [
+  "No switching costs, network effects or proprietary product \u2014 a steak dinner is replicable and diners can defect on one bad visit or a rival promotion",
+  "Beef concentration: roughly half of food costs; 7.0% commodity inflation in Q2 2026 compressed restaurant margin to 16.4% from 17.1%",
+  "Deliberately limited pricing power \u2014 the value proposition caps menu hikes (about 1.9% at the start of Q2 2026, ~1% planned for Q4) below cost inflation by design",
+  "Wage inflation 3.9% in Q2 2026 and a labour-intensive model; productivity technology only partly offsets it",
+  "Single dominant concept and US casual-dining cyclicality; capacity waits at peak hours cap same-store throughput"
+ ]
+}
