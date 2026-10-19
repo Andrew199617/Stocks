@@ -1,0 +1,106 @@
+{
+ "ticker": "EWBC",
+ "name": "East West Bancorp, Inc.",
+ "sector": "Finance / Regional bank (US-Asia cross-border)",
+ "price": 126.475,
+ "market_cap_b": 17.6,
+ "engine_version": 5,
+ "base_oe_per_share": 9.661893419402123,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "A dominant, decades-deep position in US-Asia cross-border banking with elite through-cycle returns (ROE 10.8%-18.8% FY2016-2025, ~15-17% in recent years, ROTCE 17% in Q2 2026), capped at 6 by CRE concentration and a single-niche franchise directly exposed to US-China friction.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Last engine-filed capex FY2021 $6,017,000 (10-K, PaymentsToAcquirePropertyPlantAndEquipment); filed range FY2016-2021 $2.66M-$13.79M per financials_history.csv); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BIG_NET_CASH: net cash is 3.1x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict",
+  "TIER_BAND: bear-case tier D (9.0%) vs bull-case tier C (14.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 42.59,
+   "irr": 0.0635
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 66.73,
+   "irr": 0.0903
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 96.84,
+   "irr": 0.122
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 121.72,
+   "irr": 0.1457
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 158.0,
+   "irr": 0.1772
+  }
+ },
+ "iv_at_15": 96.22,
+ "iv_at_12": 128.52,
+ "implied_irr": 0.1215,
+ "implied_irr_base_case": 0.122,
+ "upside_at_15_pct": -23.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Elite-quality regional bank, moat 6/10 - ~15% ROE through a decade and a real cross-border niche, but at $126.47 it doesn't clear the 15% hurdle on normalized earnings (weighted IRR 12.1%, IV@15% $96.22; clears 15% only at ~$96).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0903,
+ "irr_bull": 0.1457,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 67.33,
+ "iv_at_25": 51.51,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -4152494000,
+ "shares_diluted_latest": 139130000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Leading US bank for US-Asia cross-border business - relationships and trade-finance know-how rivals don't replicate",
+  "Low-cost relationship deposit franchise (noninterest-bearing deposits +19% YoY Q2 2026; deposits a record $70.1B)",
+  "Elite efficiency (36.7%) and NIM (3.43%) for a regional",
+  "Fortress capital: CET1 15.4%, tangible common equity 10.4%",
+  "Disciplined credit through cycles (Q2 2026 net charge-offs 19bp, NPAs 29bp)"
+ ],
+ "moat_against": [
+  "CRE concentration in the loan book",
+  "Niche concentration: one cross-border corridor, exposed to US-China tension and Chinese capital controls",
+  "Deposit competition raising funding costs",
+  "Rate-sensitive NII; regional-bank funding moat thinner than a money-center's",
+  "Long-tenured CEO Dominic Ng is a succession question"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 14000000.0,
+   "kind": "estimate",
+   "source": "Last engine-filed capex FY2021 $6,017,000 (10-K, PaymentsToAcquirePropertyPlantAndEquipment); filed range FY2016-2021 $2.66M-$13.79M per financials_history.csv"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 9.761,
+  "base_oe_with_override": 9.6619,
+  "base_oe_impact_pct": -1.015,
+  "weighted_irr_without_override": 0.1224,
+  "weighted_irr_with_override": 0.1215,
+  "weighted_irr_impact_pp": -0.094,
+  "unblocks_tier": true
+ }
+}

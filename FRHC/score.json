@@ -1,0 +1,90 @@
+{
+ "ticker": "FRHC",
+ "name": "Freedom Holding Corp.",
+ "sector": "Finance / Brokerage, banking & insurance (Kazakhstan)",
+ "price": 181.57,
+ "market_cap_b": 11.1,
+ "engine_version": 5,
+ "base_oe_per_share": 2.5087236673636744,
+ "base_year": "2026",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 4,
+ "moat_justification": "Kazakhstan's #3 financial group and a real digital ecosystem (SuperApp bundling brokerage, banking, insurance, payments and lifestyle; 858,000 brokerage accounts; Freedom Life #3-tier insurance shares) \u2014 but it trails Kaspi.kz and Halyk Bank in its home market, digital brokerage/banking switching costs are low, it competes for deposits on price, and returns have not proven the franchise: ROE fell to 6.2% in FY2025 and 10.3% in FY2026 (fundamentals.json) from 26.4-32.6% in FY2023-24, i.e. at or below the cost of equity in the two most recent years, with net income swinging $76M-$379M across the last three fiscal years. Regulatory dependence is a structural erosion force: a Kazakhstan insurance-law change cut net insurance revenue 29% in FY2026, and the group carries an SEC Wells Notice (March 2026), the 2023 Hindenburg allegations overhang, and founder (Timur Turlov) concentration.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2017 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "LOW_OE_YIELD: base OE yield 1.4% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 14.01,
+   "irr": 0.0344
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 21.99,
+   "irr": 0.0408
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 32.99,
+   "irr": 0.05
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 48.62,
+   "irr": 0.0628
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 73.45,
+   "irr": 0.082
+  }
+ },
+ "iv_at_15": 34.56,
+ "iv_at_12": 46.84,
+ "implied_irr": 0.0516,
+ "implied_irr_base_case": 0.05,
+ "upside_at_15_pct": -81.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Kazakhstan's #3 financial ecosystem (brokerage/banking/insurance SuperApp), moat 4/10 \u2014 GAAP-profitable every year since FY2018, but at $181.57 the base OE yield is 1.4% on the NI-based base of $2.51/share: weighted IRR 5.2%, IV@15% $34.56, even the super-bull case only 8.2%; clears the 15% hurdle only at ~$35.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0408,
+ "irr_bull": 0.0628,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 23.65,
+ "iv_at_25": 17.74,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 61117931,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Integrated SuperApp ecosystem bundling brokerage, banking, insurance, payments and lifestyle \u2014 ~2.6M monthly active users in March 2026 (S&P), cross-sell across 8.7M ecosystem customers at Q1 FY2027",
+  "Leading Kazakhstan brokerage: ~858,000 customer accounts at FY2026 (+26% YoY), >56% funded",
+  "Real insurance niches per National Bank of Kazakhstan data in the FY2026 10-K reporting: Freedom Life ~19.3% of pension annuity premiums, Freedom Insurance ~14.53% of car-owner liability premiums",
+  "Top-3 Kazakhstan financial group by market capitalization, behind only Kaspi.kz and Halyk Bank; S&P upgraded core subsidiaries to BB- with positive outlook in 2026",
+  "Loyalty program converts cashback into fractional FRHC shares \u2014 customers are literally invested in the platform"
+ ],
+ "moat_against": [
+  "Only #3 in its home market: Kaspi.kz and Halyk Bank run larger ecosystems with bigger MAU and lending volumes; Freedom is the challenger, not the incumbent standard",
+  "Returns do not prove a moat: ROE 6.2% (FY2025) and 10.3% (FY2026) per fundamentals.json \u2014 at/below cost of equity \u2014 after 26.4%/32.6% in FY2023/24; net income ranged $76M-$379M over FY2024-26",
+  "Regulatory hostage in its core market: Kazakhstan legislation change cut net insurance revenue 29% in FY2026; banking/brokerage/insurance are all licensed, policy-sensitive businesses",
+  "Governance/regulatory overhang: SEC Wells Notice to the company and CEO (March 2026), 2023 Hindenburg allegations (sanctions evasion, related-party FST Belize), CFO resignation June 2026, Russian prosecutor lawsuit filed October 2026",
+  "Low switching costs and price competition: digital brokerage and deposits are rate-shopped (Freedom Bank's top tenge deposit pays 19.5% AER); founder control by Timur Turlov concentrates key-man and related-party risk"
+ ]
+}

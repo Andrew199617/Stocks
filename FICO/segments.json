@@ -1,0 +1,846 @@
+{
+ "ticker": "FICO",
+ "cik": 814547,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000814547-25-000030",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000030/fico-20250930_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000814547-26-000021",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000021/fico-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000814547-26-000030",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000030/fico-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fico:ScoresMember",
+     "label": "Scores",
+     "values": [
+      773828000,
+      919650000,
+      1168575000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5113,
+      0.5355,
+      0.587
+     ],
+     "growth_yoy": [
+      null,
+      0.1884,
+      0.2707
+     ]
+    },
+    {
+     "member": "fico:SoftwareMember",
+     "label": "Software",
+     "values": [
+      739729000,
+      797876000,
+      822294000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4887,
+      0.4645,
+      0.413
+     ],
+     "growth_yoy": [
+      null,
+      0.0786,
+      0.0306
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1513557000,
+     1717526000,
+     1990869000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fico:ScoresMember",
+     "label": "Scores",
+     "values": [
+      297039000,
+      324309000,
+      311552000,
+      474973000,
+      458897000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5956,
+      0.6046,
+      0.6041,
+      0.6867,
+      0.6807
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.599,
+      0.415
+     ]
+    },
+    {
+     "member": "fico:SoftwareMember",
+     "label": "Software",
+     "values": [
+      201696000,
+      212106000,
+      204199000,
+      216704000,
+      215291000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4044,
+      0.3954,
+      0.3959,
+      0.3133,
+      0.3193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0744,
+      0.015
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     498735000,
+     536415000,
+     515751000,
+     691677000,
+     674188000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fico:ScoresMember",
+     "label": "Scores",
+     "values": [
+      681071000,
+      813354000,
+      1026243000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0595,
+      1.1087,
+      1.1096
+     ],
+     "growth_yoy": [
+      null,
+      0.1942,
+      0.2617
+     ]
+    },
+    {
+     "member": "fico:SoftwareMember",
+     "label": "Software",
+     "values": [
+      241191000,
+      257529000,
+      247694000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3752,
+      0.351,
+      0.2678
+     ],
+     "growth_yoy": [
+      null,
+      0.0677,
+      -0.0382
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     642830000,
+     733629000,
+     924850000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fico:ScoresMember",
+     "label": "Scores",
+     "values": [
+      264970000,
+      284711000,
+      272791000,
+      432476000,
+      416886000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0787,
+      1.0845,
+      1.1503,
+      1.0746,
+      1.1496
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.6322,
+      0.4642
+     ]
+    },
+    {
+     "member": "fico:SoftwareMember",
+     "label": "Software",
+     "values": [
+      63324000,
+      67942000,
+      55686000,
+      62594000,
+      55040000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2578,
+      0.2588,
+      0.2348,
+      0.1555,
+      0.1518
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0115,
+      -0.1899
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     245648000,
+     262518000,
+     237156000,
+     402465000,
+     362628000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fico:ScoresProductsMember",
+     "label": "Scores Products",
+     "values": [
+      773828000,
+      919650000,
+      1168575000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5113,
+      0.5355,
+      0.587
+     ],
+     "growth_yoy": [
+      null,
+      0.1884,
+      0.2707
+     ]
+    },
+    {
+     "member": "fico:OnPremisesAndSaaSSoftwareMember",
+     "label": "On-premises and SaaS software",
+     "values": [
+      640182000,
+      711340000,
+      740145000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.423,
+      0.4142,
+      0.3718
+     ],
+     "growth_yoy": [
+      null,
+      0.1112,
+      0.0405
+     ]
+    },
+    {
+     "member": "us-gaap:TechnologyServiceMember",
+     "label": "Technology Service",
+     "values": [
+      99547000,
+      86536000,
+      82149000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0658,
+      0.0504,
+      0.0413
+     ],
+     "growth_yoy": [
+      null,
+      -0.1307,
+      -0.0507
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1513557000,
+     1717526000,
+     1990869000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fico:ScoresProductsMember",
+     "label": "Scores Products",
+     "values": [
+      297039000,
+      324309000,
+      311552000,
+      474973000,
+      458897000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5956,
+      0.6046,
+      0.6041,
+      0.6867,
+      0.6807
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.599,
+      0.415
+     ]
+    },
+    {
+     "member": "fico:OnPremisesAndSaaSSoftwareMember",
+     "label": "On-premises and SaaS software",
+     "values": [
+      183826000,
+      187915000,
+      182393000,
+      199231000,
+      196969000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3686,
+      0.3503,
+      0.3536,
+      0.288,
+      0.2922
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0838,
+      0.0482
+     ]
+    },
+    {
+     "member": "us-gaap:TechnologyServiceMember",
+     "label": "Technology Service",
+     "values": [
+      17870000,
+      24191000,
+      21806000,
+      17473000,
+      18322000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0358,
+      0.0451,
+      0.0423,
+      0.0253,
+      0.0272
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0222,
+      -0.2426
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     498735000,
+     536415000,
+     515751000,
+     691677000,
+     674188000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-30",
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      1286950000,
+      1449888000,
+      1732385000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8503,
+      0.8442,
+      0.8702
+     ],
+     "growth_yoy": [
+      null,
+      0.1266,
+      0.1948
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      141364000,
+      169526000,
+      159803000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0934,
+      0.0987,
+      0.0803
+     ],
+     "growth_yoy": [
+      null,
+      0.1992,
+      -0.0574
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      85243000,
+      98112000,
+      98681000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0563,
+      0.0571,
+      0.0496
+     ],
+     "growth_yoy": [
+      null,
+      0.151,
+      0.0058
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1513557000,
+     1717526000,
+     1990869000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      429002000,
+      470157000,
+      453351000,
+      622086000,
+      611934000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8602,
+      0.8765,
+      0.879,
+      0.8994,
+      0.9077
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.4501,
+      0.3016
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      43400000,
+      41397000,
+      38647000,
+      47389000,
+      41423000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.087,
+      0.0772,
+      0.0749,
+      0.0685,
+      0.0614
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0919,
+      0.0006
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      26333000,
+      24861000,
+      23753000,
+      22202000,
+      20831000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0528,
+      0.0463,
+      0.0461,
+      0.0321,
+      0.0309
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.1569,
+      -0.1621
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     498735000,
+     536415000,
+     515751000,
+     691677000,
+     674188000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 137.7% of the consolidated total for 2025-09-30 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 130.1% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, EMEA, Asia Pacific)"
+ ],
+ "complete": true
+}

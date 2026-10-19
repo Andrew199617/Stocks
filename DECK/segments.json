@@ -1,0 +1,464 @@
+{
+ "ticker": "DECK",
+ "cik": 910521,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0000910521-26-000005",
+   "filed": "2026-02-03",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/910521/000091052126000005/deck-20251231_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-037664",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000910521-26-000022",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/910521/000091052126000022/deck-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "deck:UGGBrandSegmentMember",
+     "label": "UGG Brand Segment",
+     "values": [
+      2239132000,
+      2531351000,
+      2738758000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5222,
+      0.5077,
+      0.5005
+     ],
+     "growth_yoy": [
+      null,
+      0.1305,
+      0.0819
+     ]
+    },
+    {
+     "member": "deck:HokaBrandSegmentMember",
+     "label": "Hoka Brand Segment",
+     "values": [
+      1806740000,
+      2233090000,
+      2587330000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4214,
+      0.4479,
+      0.4728
+     ],
+     "growth_yoy": [
+      null,
+      0.236,
+      0.1586
+     ]
+    },
+    {
+     "member": "deck:OtherBrandsSegmentMember",
+     "label": "Other Brands Segment",
+     "values": [
+      241891000,
+      221171000,
+      146208000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0564,
+      0.0444,
+      0.0267
+     ],
+     "growth_yoy": [
+      null,
+      -0.0857,
+      -0.3389
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4287763000,
+     4985612000,
+     5472296000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "deck:HokaBrandSegmentMember",
+     "label": "Hoka Brand Segment",
+     "values": [
+      530908000,
+      586108000,
+      653119000,
+      628882000,
+      671243000,
+      703538000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.2906,
+      0.5736,
+      0.6771,
+      0.3213,
+      0.5997,
+      0.6901
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1845,
+      0.1453,
+      0.0772
+     ]
+    },
+    {
+     "member": "deck:UGGBrandSegmentMember",
+     "label": "UGG Brand Segment",
+     "values": [
+      1244189000,
+      374346000,
+      265092000,
+      1305475000,
+      408604000,
+      278049000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.6809,
+      0.3664,
+      0.2748,
+      0.6669,
+      0.365,
+      0.2727
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0493,
+      0.0915,
+      0.0489
+     ]
+    },
+    {
+     "member": "deck:OtherBrandsSegmentMember",
+     "label": "Other Brands Segment",
+     "values": [
+      52068000,
+      61326000,
+      46327000,
+      23192000,
+      39522000,
+      37944000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0285,
+      0.06,
+      0.048,
+      0.0118,
+      0.0353,
+      0.0372
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.5546,
+      -0.3555,
+      -0.181
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1827165000,
+     1021780000,
+     964538000,
+     1957549000,
+     1119369000,
+     1019531000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2863674000,
+      3186709000,
+      3191518000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6679,
+      0.6392,
+      0.5832
+     ],
+     "growth_yoy": [
+      null,
+      0.1128,
+      0.0015
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1424089000,
+      1798903000,
+      2280778000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3321,
+      0.3608,
+      0.4168
+     ],
+     "growth_yoy": [
+      null,
+      0.2632,
+      0.2679
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4287763000,
+     4985612000,
+     5472296000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1169291000,
+      647652000,
+      501258000,
+      1200889000,
+      649841000,
+      517428000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.6399,
+      0.6338,
+      0.5197,
+      0.6135,
+      0.5805,
+      0.5075
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.027,
+      0.0034,
+      0.0323
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      657874000,
+      374128000,
+      463280000,
+      756660000,
+      469528000,
+      502103000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3601,
+      0.3662,
+      0.4803,
+      0.3865,
+      0.4195,
+      0.4925
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1502,
+      0.255,
+      0.0838
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1827165000,
+     1021780000,
+     964538000,
+     1957549000,
+     1119369000,
+     1019531000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

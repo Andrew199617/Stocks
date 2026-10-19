@@ -1,0 +1,87 @@
+{
+ "ticker": "DOC",
+ "name": "Healthpeak Properties, Inc.",
+ "sector": "Real Estate \u2014 Healthcare REIT (outpatient medical, lab / life science, senior housing)",
+ "price": 18.98,
+ "market_cap_b": 13.21,
+ "engine_version": 5,
+ "base_oe_per_share": 0.4705345642700075,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-moderate REIT moat: scarce on-/near-campus outpatient medical locations, long health-system relationships and post-merger scale are real but replicable with capital, and there is no pricing power beyond contractual rent escalators. The measured record argues against a higher score: the roic_proxy series in fundamentals.json is null for every year (the filer tags no operating-income line the proxy needs), gross margin ran 58.1\u201360.2% in FY2021\u201324 with no expansion, OE/share fell from $1.57 in FY2016 to $0.49 in FY2025, Q2 2026 FFO as Adjusted was flat year over year at $0.46, and lab occupancy is only 78.5% with same-store lab NOI down 3.2% \u2014 a franchise earning well below a wide-moat standard through the cycle.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 8.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 28.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.14,
+   "irr": 0.038
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 3.01,
+   "irr": 0.0441
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 3.75,
+   "irr": 0.0496
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 4.63,
+   "irr": 0.0561
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 6.13,
+   "irr": 0.067
+  }
+ },
+ "iv_at_15": 3.66,
+ "iv_at_12": 4.81,
+ "implied_irr": 0.049,
+ "implied_irr_base_case": 0.0496,
+ "upside_at_15_pct": -80.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified healthcare REIT, moat 4/10 \u2014 does not clear 15% on any basis: Tier D, weighted IRR 4.90%, weighted IV@15% $3.66 vs $18.98 on the engine OE base (which charges all development capex), and even on the REIT-native AFFO basis (~$1.69/sh in FY2025 per external reporting, a ~6.4% dividend yield plus ~0\u20132% per-share growth) the expected return is high-single-digit; it would clear 15% only at the engine hurdle price of $3.66, which the sector model misfit makes a model artifact rather than a real entry point \u2014 confidence low.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0441,
+ "irr_bull": 0.0561,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 2.62,
+ "iv_at_25": 2.04,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 9380437000,
+ "shares_diluted_latest": 696044000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Scarce healthcare locations: outpatient medical buildings on/near hospital campuses and lab clusters in core life-science markets are supply-constrained and slow to replicate",
+  "Health-system relationships and scale: the March 2024 Physicians Realty Trust merger made it one of the largest outpatient medical landlords; Q2 2026 executed 1.6M sq ft of new/renewal leases with outpatient occupancy 90.7%",
+  "Long leases with contractual escalators and diversified rent roll across outpatient medical, lab and senior housing (Janus Living revenue +45% YoY in Q2 2026)",
+  "Investment-grade balance sheet (BBB+/Baa1 per Q2 2026 reporting) with net debt / adjusted EBITDAre 4.7x at Q2 2026 and demonstrated capital-recycling access ($1.025B Brookfield outpatient JV recap)"
+ ],
+ "moat_against": [
+  "No structural pricing power: rent is set by local market supply/demand at renewal; tenants can relocate and competing landlords/developers can add supply with commodity capital",
+  "Lab / life-science oversupply: lab occupancy 78.5% and same-store lab NOI -3.2% YoY in Q2 2026; recovery depends on biotech funding, not on Healthpeak",
+  "Weak through-cycle per-share record: OE/share $1.57 (FY2016) to $0.49 (FY2025), FFO as Adjusted flat YoY in Q2 2026, dividend cut in FY2021 (fundamentals.json last_cut_fy 2021; DPS TTM $1.22 vs $2.10 in FY2016)",
+  "Leverage and rate exposure: net debt $9.38B is 28.6x normalized OE on the engine basis; REIT cash flows are hostage to cap rates and refinancing costs"
+ ]
+}

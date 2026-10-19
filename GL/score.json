@@ -1,0 +1,88 @@
+{
+ "ticker": "GL",
+ "name": "Globe Life Inc.",
+ "sector": "Finance / Life & Supplemental Health Insurance",
+ "price": 168.77,
+ "market_cap_b": 13.93,
+ "engine_version": 5,
+ "base_oe_per_share": 14.80468418969947,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow insurer moat: a scaled exclusive-agent distribution machine (American Income Life, Liberty National, Family Heritage) aimed at an underserved middle-income niche, with a recurring renewal-premium base and through-cycle ROE of 19.4% (FY2025), 20.2% (FY2024) and 21.6% (FY2023) per fundamentals.json \u2014 well above the cost of capital through a cycle \u2014 against commodity life/supplemental-health products with no structural pricing power (rate increases need regulatory approval), a recruiting-dependent agent model under regulatory and short-seller attack (2024 Fuzzy Panda report, disclosed DOJ probe into AIL sales practices), AI-search disruption of the direct-to-consumer lead channel, and earnings hostage to mortality/morbidity, rates and reserve assumption updates. The roic_proxy series in fundamentals.json (15.8% FY2022, 15.8% FY2023; FY2020\u201321 distorted by AOCI equity swings) and gross margins of 19.0\u201323.8% across FY2020\u201323 support the same moderate reading; FY2024\u201325 gross margin is not in the computed outputs.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 5.9%/yr \u2014 already credited via the growth adjustment",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (11.2%) vs bull-case tier B (18.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 72.99,
+   "irr": 0.0769
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 117.3,
+   "irr": 0.1124
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 160.29,
+   "irr": 0.1441
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 216.44,
+   "irr": 0.1811
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 326.5,
+   "irr": 0.2419
+  }
+ },
+ "iv_at_15": 171.47,
+ "iv_at_12": 230.78,
+ "implied_irr": 0.1518,
+ "implied_irr_base_case": 0.1441,
+ "upside_at_15_pct": 1.6,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Steady niche life/supplemental-health insurer with exclusive-agent distribution, moat 5/10 \u2014 B by numbers on a TTM base (15.2% weighted, IV@15% $171 vs $169) but that B is within noise of the hurdle, the bear case is C, and the OCF base carries the insurer float/reserve component, so softened to C at low confidence; it clears 15% at ~$171 on engine numbers and with a margin of safety only near the bear IV of ~$117.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1124,
+ "irr_bull": 0.1811,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 118.63,
+ "iv_at_25": 89.88,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2480745000,
+ "shares_diluted_latest": 82524992,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact (Andrew's standing rule, 2026-10-15; same treatment as PFG/HIG/ACGL/WRB/AIZ): the OCF-based OE base capitalizes float/reserve growth in the annual history (FY2023 OCF $1,482,425,000 vs net income $970,755,000; FY2024 $1,402,440,000 vs $1,070,762,000; FY2025 $1,396,391,000 vs $1,161,238,000), and the B is marginal \u2014 weighted IRR 15.18% is 0.18pp over the hurdle, the preliminary median-base run printed Tier C at 14.98%, and the bear case is Tier C (11.24%) with TIER_BAND directing sizing to the bear end. Softened one notch to C, confidence low. Noted honestly: the TTM base used ($14.80/share) sits below TTM net income per share and below management's raised 2026 operating-EPS guidance ($15.55\u2013$15.95), so the softening rests on the sector fit, the annual-history float component and the marginality of the B, not on the TTM base exceeding net income.",
+ "moat_for": [
+  "Exclusive distribution scale \u2014 American Income, Liberty National and Family Heritage agents sell only Globe Life products into an underserved middle-income niche",
+  "Recurring renewal-premium base \u2014 in-force policies persist; revenue CAGR 4.8% over 5 years on filed history with disciplined underwriting",
+  "Through-cycle profitability \u2014 OE positive 5 of last 5 FY; ROE 19.4\u201321.6% across FY2023\u201325 (fundamentals.json)",
+  "Capital return engine \u2014 DPS TTM $1.20, 16 consecutive growth years, no cut since 2009; buybacks TTM $881,315,000; diluted shares shrinking 5.9%/yr"
+ ],
+ "moat_against": [
+  "Commodity products, no structural pricing power \u2014 life/supplemental health is price-competed and rate increases need regulatory approval",
+  "Agent-model conduct and regulatory overhang \u2014 2024 Fuzzy Panda allegations of fraud/kickbacks at American Income Life and a disclosed DOJ probe into AIL sales practices",
+  "Distribution disruption \u2014 AI-driven search eroding DTC paid-search leads (management, Q2 2026); American Income agent counts fell year over year in Q2 2026",
+  "Hostage to mortality/morbidity assumptions, rates and reserve updates; insurance capital rules cap growth and capital return"
+ ]
+}

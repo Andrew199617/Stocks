@@ -1,0 +1,85 @@
+{
+ "ticker": "FIS",
+ "name": "Fidelity National Information Services, Inc.",
+ "sector": "Financial technology / banking and issuer processing",
+ "price": 35.935,
+ "market_cap_b": 18.87,
+ "engine_version": 5,
+ "base_oe_per_share": 5.098646034816247,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Real switching costs in mission-critical core banking and issuer processing (multi-year contracts, now the largest global issuer processor after the Jan 2026 Issuer Solutions deal, 40B+ transactions/yr), but a decade of ROIC proxy at 0.5-6.4% (fundamentals.json: 1.25% in 2021, 1.98% in 2022, 2.93% in 2023, 4.71% in 2024, 5.11% in 2025) \u2014 below the cost of capital through the cycle \u2014 proves the franchise has not converted that stickiness into excess returns; gross margin only 33.2% (2016) to 36.9% (2025). Moderate/narrow moat, not wide.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.6%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 4.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (14.6%) vs bull-case tier A (22.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 24.46,
+   "irr": 0.108
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 34.71,
+   "irr": 0.1456
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 45.55,
+   "irr": 0.1826
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 57.92,
+   "irr": 0.221
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 74.47,
+   "irr": 0.2679
+  }
+ },
+ "iv_at_15": 46.72,
+ "iv_at_12": 61.95,
+ "implied_irr": 0.1862,
+ "implied_irr_base_case": 0.1826,
+ "upside_at_15_pct": 30.0,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "low",
+ "one_liner": "Sticky but low-return processor, moat 5/10 \u2014 clears 15% on the TTM base (18.6% weighted, IV $46.72 vs $35.94) but the band runs C to A, leverage stepped up again for Issuer Solutions, and 2026 pro forma guidance was already cut; size it like the bear end (C, 14.6%), not the weighted B.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1456,
+ "irr_bull": 0.221,
+ "tier_bear": "C",
+ "tier_bull": "A",
+ "iv_at_20": 33.01,
+ "iv_at_25": 25.45,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 12483000000,
+ "shares_diluted_latest": 525000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Mission-critical core banking and issuer processing with high switching costs and multi-year recurring contracts",
+  "Scale after Issuer Solutions (TSYS) acquisition: world's largest issuer processor, 40B+ transactions/yr, clients in 75+ countries",
+  "Recurring-revenue base: pro forma recurring revenue growth 4.8% in Q1 2026, gross margin improved 33.2% (2016) to 36.9% (2025)",
+  "Integrated banking + issuing stack for large and super-regional banks that smaller rivals cannot match"
+ ],
+ "moat_against": [
+  "ROIC proxy below cost of capital for a decade (0.5-6.4%, 5.11% in 2025) \u2014 pricing power has not produced excess returns",
+  "Fiserv and Jack Henry competition; Jack Henry holds community-bank niche with ~98% retention FIS has not penetrated",
+  "Bank consolidation shrinks the client base; cloud-native cores are lowering switching barriers",
+  "Serial large M&A (Worldpay bought 2019, largely written down and exited 2024-26) destroyed capital and left high leverage"
+ ]
+}

@@ -1,0 +1,251 @@
+{
+ "ticker": "FMS",
+ "cik": 1333141,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T09:57:18-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001333141.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926019005/fms-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FMS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FMS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Fresenius Medical Care AG",
+  "cik": 1333141,
+  "description": {
+   "text": "Fresenius Medical Care is the world’s leading provider of products and services for individuals with kidney diseases based on publicly reported revenue. As a vertically integrated medical technology (MedTech) and healthcare service company, Fresenius Medical Care combines medical device engineering and manufacturing expertise with comprehensive patient care. The incidence of kidney disease is increasing worldwide. A significant rise in the drivers of kidney disease, such as obesity, diabetes, and hypertension, has elevated it to a global public health epidemic. According to estimates, the number of people requiring dialysis globally is increasing at a rate of 4% to 5% each year and is expected to reach around 7 M people by 2035. Our care models, technologies, and partnerships position us to meet the growing demand for life-sustaining services and products that are vital to millions of people living with kidney disease worldwide. Kidney patients require therapy, pharmaceuticals, medical technologies, and products that meet their individual needs and preferences, regardless of where they receive treatment, whether in one of our treatment centers, a hospital setting, at home, or when traveling.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-019005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926019005/fms-20251231x20f.htm"
+  },
+  "description_short": "Fresenius Medical Care is the world's leading provider of products and services for individuals with renal diseases of which around 4.5 million patients worldwide regularly undergo dialysis treatment. Through its network of 3,513 dialysis clinics, Fresenius Medical Care provides dialysis treatments for approx. 290,000 patients around the globe. Fresenius Medical Care is also the leading provider of dialysis products such as dialysis machines or dialyzers. Fresenius Medical Care is listed on the Frankfurt Stock Exchange (FME) and on the New York Stock Exchange (FMS).",
+  "industry": "Misc Health and Biotechnology Services",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "8090",
+  "sic_description": "Services-Misc Health & Allied Services, NEC",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.freseniusmedicalcare.com",
+  "headquarters": "Bad Homburg, Germany",
+  "address": {
+   "street": "Else-Kröner-Strasse 1",
+   "city": "Bad Homburg",
+   "state": null,
+   "zip": "61352",
+   "country": "Germany",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-24"
+  },
+  "phone": "011-49-6172-6090",
+  "employees": {
+   "count": 109698,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we had 109,698 employees (total headcount) as compared to 111,513 at December 31, 2024 and 119,845 at December 31, 2023.",
+   "form": "20-F",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926019005/fms-20251231x20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-12-20",
+  "first_sec_filing_form": "F-6EF",
+  "former_names": [
+   "Fresenius Medical Care AG & Co. KGaA"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001333141&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-114302",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926114302/tm2627207d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-110608",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926110608/tm2626162d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-102053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926102053/tm2624187d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-090080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926090080/fms-20260630x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-089727",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926089727/tm2622055d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-089726",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926089726/tm2620437d2_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-089725",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926089725/tm2622055d2_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-087725",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926087725/tm2621486d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-067280",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926067280/tm2615883d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-066087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926066087/tm2615614d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-055376",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926055376/fms-20260331x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-055140",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926055140/tm2613503d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-042776",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926042776/tm2611689d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-019074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926019074/tm261139d6_6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001104659-26-019005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926019005/fms-20251231x20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-018761",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926018761/tm261139d5_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-002607",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926002607/tm262757d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-119900",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465925119900/tm2533187d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-113099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465925113099/tm2531468d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-105822",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465925105822/fms-20250930x6k.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,31 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Measured ROIC only 7–10% through the cycle; operating margin compressed 23.1% → 18.0%",
+  "VOIE antitrust suit survived dismissal; tri-merge elimination would cut bureau-pull volumes",
+  "FICO direct licensing and FHFA VantageScore opening re-route score economics",
+  "Mortgage and hiring cyclicality — OE/share fell to $0.57 in 2022",
+  "Payroll-data challengers (Argyle et al.) attacking Work Number exclusivity"
+ ],
+ "moat_for": [
+  "One of only three national credit bureaus — data files no entrant can replicate",
+  "The Work Number payroll database embedded in mortgage, auto and government verification workflows",
+  "Segment pricing power: FY2025 adj. EBITDA margins 51.5% Workforce Solutions, 35.2% USIS",
+  "Switching costs — lender models and employer HR/payroll processes built around its data"
+ ],
+ "moat_justification": "Regulated bureau triopoly plus The Work Number's dominant payroll-verification database (antitrust plaintiffs allege >40% exclusive control of VOIE payroll data) and 51.5% Workforce Solutions EBITDA margins show real pricing power; capped at 7 because measured ROIC ran only 7.15–10.37% over 2021–25 (goodwill-heavy denominator and trough-depressed numerator — see analysis.md) and operating margin compressed from 23.1% to 18.0%.",
+ "moat_score": 7,
+ "name": "Equifax Inc",
+ "one_liner": "Real moat (7/10) but cyclical and levered — on TTM OE of $8.45/share it does not clear 15% at $160.85 (weighted IRR 9.94%, IV@15 $91.61); it clears 15% only at or below $91.61.",
+ "probs_used": [
+  0.1,
+  0.3,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Financials — consumer credit reporting & verification data (SIC 7320)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

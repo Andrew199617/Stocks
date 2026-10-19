@@ -1,0 +1,298 @@
+{
+ "ticker": "GPC",
+ "cik": 40987,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T11:23:49-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000040987.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000003/gpc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GPC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GPC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GENUINE PARTS CO",
+  "cik": 40987,
+  "description": {
+   "text": "Incorporated in the State of Georgia in 1928, Genuine Parts Company is a leading global service provider of automotive and industrial replacement parts and value-added solutions. We serve our customers from more than 10,800 locations, primarily in North America, Europe, and Australasia (primarily Australia and New Zealand). We offer outstanding service, an industry-leading assortment of replacement parts, extensive supply chain and distribution capabilities, and enhanced technology solutions. As used in this report, \"we,\" \"us,\" \"our,\" \"GPC,\" and the “company” refers to GPC and its subsidiaries, except as otherwise indicated by the context; and the terms “automotive parts” and “industrial parts” refer to replacement parts in each respective category.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0000040987-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000003/gpc-20251231.htm"
+  },
+  "description_short": "Established in 1928, Genuine Parts Company is a leading global service provider of automotive and industrial replacement parts and value-added solutions. Our Automotive Parts Group operates across North America, Europe and Australasia, while our Industrial Parts Group serves customers across North America and Australasia. We keep the world moving with a vast network of over 10,800 locations spanning 17 countries supported by more than 65,000 teammates.",
+  "industry": "Automotive Aftermarket",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5013",
+  "sic_description": "Wholesale-Motor Vehicle Supplies & New Parts",
+  "state_of_incorporation": "GA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.genpt.com",
+  "headquarters": "Atlanta, GA",
+  "address": {
+   "street": "2999 WILDWOOD PARKWAY",
+   "city": "Atlanta",
+   "state": "GA",
+   "zip": "30339",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "6789345000",
+  "employees": {
+   "count": 65000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed more than 65,000 people worldwide and operated within 17 countries.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000003/gpc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-04",
+  "first_sec_filing_form": "PRE 14A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000040987&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-04",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-385959",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000119312526385959/d136093d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000040987-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000035/gpc-20260811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-21",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000040987-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000033/gpc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000040987-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000031/gpc-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-27",
+   "items": [
+    "1.01",
+    "2.03",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Shareholder vote; Other events",
+   "accession": "0000040987-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000021/gpc-20260427.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-21",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000040987-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000017/gpc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000040987-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000015/gpc-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-18",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-116742",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000119312526116742/d67777d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-02-27",
+   "period": "2026-04-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000040987-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000011/gpc-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000040987-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098726000003/gpc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-053013",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000119312526053013/d44894d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-15",
+   "period": "2026-01-15",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-013595",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000119312526013595/d67506d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000040987-25-000199",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098725000199/gpc-20251117.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-21",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000040987-25-000196",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098725000196/gpc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000040987-25-000194",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098725000194/gpc-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-04",
+   "items": [
+    "1.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change; Reg FD",
+   "accession": "0001193125-25-195442",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000119312525195442/d28129d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000040987-25-000149",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098725000149/gpc-20250812.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-22",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000040987-25-000144",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098725000144/gpc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000040987-25-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000004098725000141/gpc-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-09",
+   "period": "2025-06-09",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-25-137871",
+   "url": "https://www.sec.gov/Archives/edgar/data/40987/000119312525137871/d919447d8k.htm"
+  }
+ ],
+ "warnings": []
+}

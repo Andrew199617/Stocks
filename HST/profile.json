@@ -1,0 +1,292 @@
+{
+ "ticker": "HST",
+ "cik": 1070750,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T21:53:50-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001070750.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000054/hst-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HST/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HST/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HOST HOTELS & RESORTS, INC.",
+  "cik": 1070750,
+  "description": {
+   "text": "We are the largest publicly traded lodging REIT, with a geographically diverse portfolio of luxury and upper-upscale hotels. As of February 20, 2026, our consolidated lodging portfolio consists of 76 primarily luxury and upper-upscale hotels containing approximately 41,700 rooms, with substantially all located in the United States (five of the hotels are located outside of the U.S. in Brazil and Canada). In addition, we own non-controlling interests in seven domestic joint ventures that focus on the lodging industry, see \" - Other Real Estate Interests\" for a further description. Host Inc. was incorporated as a Maryland corporation in 1998 and operates as a self-managed and self-administered REIT. Host Inc. owns hotels and conducts operations through Host L.P., of which Host Inc. is the sole general partner and of which it holds approximately 99% of the partnership interests (“OP units”) as of December 31, 2025. The remaining partnership interests are owned by various unaffiliated limited partners. Host Inc. has the exclusive and complete responsibility for Host L.P.’s day-to-day management and control.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001070750-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000054/hst-20251231.htm"
+  },
+  "description_short": "Host Hotels & Resorts, Inc. is an S&P 500 company and is the largest lodging real estate investment trust and one of the largest owners of luxury and upper-upscale hotels. The Company currently owns 70 properties in the United States and five properties internationally totaling approximately 41,300 rooms. The Company also holds non-controlling interests in seven domestic joint ventures.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.hosthotels.com",
+  "headquarters": "Bethesda",
+  "address": {
+   "street": "4747 Bethesda Ave Suite 1300",
+   "city": "Bethesda",
+   "state": null,
+   "zip": null,
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "240-744-1000",
+  "employees": {
+   "count": 162,
+   "as_of": "2026-02-20",
+   "evidence": "As of February 20, 2026, we had 162 employees, all of whom work in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000054/hst-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-11-18",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "HOST MARRIOTT CORP/",
+   "HMC MERGER CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001070750&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001070750-26-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000126/hst-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001070750-26-000122",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000122/hst-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-27",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001070750-26-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000109/hst-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001070750-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000086/hst-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001070750-26-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000080/hst-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001070750-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000077/hst-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001070750-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000062/hst-20260407.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001070750-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000054/hst-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001070750-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000038/hst-20260218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-26",
+   "period": "2025-11-26",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-25-054144",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000162828025054144/hst-20251126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-12",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001628280-25-052023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000162828025052023/hst-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001070750-25-000168",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000168/hst-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001070750-25-000164",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000164/hst-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001070750-25-000139",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000139/hst-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001070750-25-000136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000136/hst-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-20",
+   "period": "2025-05-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-25-026857",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000162828025026857/hst-20250520.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-16",
+   "period": "2025-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001070750-25-000116",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000116/hst-20250514.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-06",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001628280-25-023791",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000162828025023791/hst-20250506.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001070750-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000097/hst-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001070750-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075025000094/hst-20250430.htm"
+  }
+ ],
+ "warnings": []
+}

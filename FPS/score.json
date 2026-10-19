@@ -1,0 +1,78 @@
+{
+ "ticker": "FPS",
+ "name": "Forgent Power Solutions, Inc.",
+ "sector": "Energy / Industrial Machinery & Components (electrical distribution equipment)",
+ "price": 31.68,
+ "market_cap_b": 9.65,
+ "engine_version": 5,
+ "base_oe_per_share": -0.09474432144509828,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Narrow-moderate: real lead-time/customization edge in a capacity-short market, evidenced by share gains and a 3.3x book-to-bill, but no pricing power yet (gross margin fell as volume doubled), ROIC is one boom year at 14.5% with no through-cycle record, and the edge is replicable capacity and engineering labor against giants with far deeper benches.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "THIN_HISTORY: only 2 fiscal years of data",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Forgent Power Solutions FY2026 10-K (filed 2026-09-15, period ended 2026-06-30), MD&A non-GAAP reconciliation 'Adjusted Diluted EPS': adjusted diluted weighted average shares outstanding 304,699 (in thousands) = diluted weighted average shares 243,802 + assumed exchange of Class B common stock 60,897 + dilutive effect of RSUs 270 (all in thousands)); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "AI data-center power-equipment roll-up growing 89% with a $3.0B backlog, moat 5/10 - but conservative owner's earnings are negative in both filed years (FY2026 OCF $109.1M vs capex $115.9M + SBC $10.0M, plus a $137.2M working-capital build), so Tier F at $31.68: it clears no hurdle until free cash flow turns positive.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": "no_cash_generation",
+ "irr_at_floor": false,
+ "net_debt_latest": 484698000,
+ "shares_diluted_latest": 304699000.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Engineered-to-order customization with among the shortest lead times in the industry - the scarce input in a capacity-constrained electrical-equipment market",
+  "Single-source Powertrain Solutions bundles (transformer through PDU) cut customer integration risk; Powertrain revenue +259% in FY2026 to 25% of sales",
+  "UL-certified product breadth across the full electrical chain from four combined specialists (MGM transformers, PwrQ, States, VanTran)",
+  "Backlog $3.0B at Jun 30, 2026 (256% YoY, Q4 book-to-bill 3.3x) - multi-quarter revenue visibility competitors must displace order by order"
+ ],
+ "moat_against": [
+  "Far larger, deeply embedded competitors: Eaton, Schneider Electric, Vertiv, ABB, Siemens, Hitachi Energy",
+  "Gross margin compressed 36.9% to 35.0% while revenue grew 89% - no demonstrated pricing power",
+  "ROIC history is one boom year (roic_proxy 14.5% FY2026, FY2025 not computable) - unproven through a cycle",
+  "Demand is a single cyclical driver: AI data-center capex; backlog is cancellable purchase-order based work",
+  "Sponsor roll-up assembled 2023-24 (MGM, PwrQ, States, VanTran) - integration and culture unproven at 2x scale",
+  "Neos sponsor overhang: $1.5B+ of secondary sales since the Feb 2026 IPO and 44.5M exchangeable Class B shares remain"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 304699000.0,
+   "kind": "filing",
+   "source": "Forgent Power Solutions FY2026 10-K (filed 2026-09-15, period ended 2026-06-30), MD&A non-GAAP reconciliation 'Adjusted Diluted EPS': adjusted diluted weighted average shares outstanding 304,699 (in thousands) = diluted weighted average shares 243,802 + assumed exchange of Class B common stock 60,897 + dilutive effect of RSUs 270 (all in thousands)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": null,
+  "base_oe_with_override": -0.0947,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

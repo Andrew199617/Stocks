@@ -1,0 +1,246 @@
+{
+ "ticker": "GRAB",
+ "cik": 1855612,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T19:08:09-04:00",
+ "newest_filing_date": "2026-09-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001855612.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000020/ck0001855612-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GRAB/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GRAB/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Grab Holdings Ltd",
+  "cik": 1855612,
+  "description": {
+   "text": "Our mission is to drive Southeast Asia forward by creating economic empowerment for everyone. Our mission is supported by our core principles, which we refer to as the “4Hs,” Heart, Hunger, Honor, and Humility. These principles are set out in The Grab Way, which is a living document that guides our decision making and serves as a reminder of what is important and right as we work to serve Southeast Asia.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "accession": "0001855612-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000020/ck0001855612-20251231.htm"
+  },
+  "description_short": "Grab is a leading superapp in Southeast Asia, operating across the deliveries, mobility and digital financial services sectors. Serving over 800 cities in eight Southeast Asian countries - Cambodia, Indonesia, Malaysia, Myanmar, the Philippines, Singapore, Thailand and Vietnam - Grab enables millions of people everyday to order food or groceries, send packages, hail a ride or taxi, pay for online purchases or access services such as lending and insurance, all through a single app. We operate supermarkets in Malaysia under Jaya Grocer and Everrise, which enables us to bring the convenience of on-demand grocery delivery to more consumers in the country. As part of our financial services offerings, we also provide digital banking services through GXS Bank in Singapore and GXBank in Malaysia. Grab was founded in 2012 with the mission to drive Southeast Asia forward by creating economic empowerment for everyone.",
+  "industry": "Business Services",
+  "sector": "Consumer Discretionary",
+  "region": "Asia",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "U0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.grab.com",
+  "headquarters": "Singapore",
+  "address": {
+   "street": "3 Media Close, #01-03/06",
+   "city": "Singapore",
+   "state": null,
+   "zip": "138498",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-06"
+  },
+  "phone": "855-739-7864",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-12-01",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "J1 Holdings Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001855612&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000138/a6-kforfx3sxatometransacti.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000135/a6-kxsharerepurchaseannoun.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000133/a6-kxatometransactionannou.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000131/ck0001855612-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000125",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000125/a6-kforfx3sxearningsreleas.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000123",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000123/a6-kxearningsrelease2026q2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000115/a6-kforfx3sxdararesignation.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000114/a6-kxboardupdate.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000097/a6-kxgrabcompletionofstash.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000086/a6-kforfx3sxsuperbankconso.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000085/a6-kxsuperbankconsolidatio.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000078/a6-kforfx3sxearningsreleas.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000077/a6-kxearningsrelease3.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000061/a6-kforfx3sxasrandcfpannou.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000060/a6-kxasrandcfpannouncement.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000057/a6-kxegmresults.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-23",
+   "period": "2026-03-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000054/a6-kforfx3sxgarnettransact.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-23",
+   "period": "2026-03-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000051/a6-kxgarnetannouncement.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001855612-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000020/ck0001855612-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001855612-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000016/a6-kxegmandboardchanges.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-06"
+ ]
+}

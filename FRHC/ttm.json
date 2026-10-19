@@ -1,0 +1,101 @@
+{
+ "ticker": "FRHC",
+ "cik": 924805,
+ "entity": "FREEDOM HOLDING CORP.",
+ "fy_end": "2026-03-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 185221000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 480831000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -341624000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": -637234000
+  },
+  "capex": {
+   "fy": 198766000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 26356000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 79140000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 251550000
+  },
+  "sbc": {
+   "fy": 68047000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 23054000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 23235000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 68228000
+  },
+  "shares_diluted": {
+   "fy": 61117931,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 61057627,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 61269787,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": -637234000,
+ "ttm_capex": 251550000,
+ "ttm_sbc": 68228000,
+ "ttm_shares_diluted": 61269787,
+ "ttm_oe_total": -957012000,
+ "ttm_oe_per_share": -15.619639741851886,
+ "warnings": [],
+ "overrides_used": []
+}

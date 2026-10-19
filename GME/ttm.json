@@ -1,0 +1,101 @@
+{
+ "ticker": "GME",
+ "cik": 1326380,
+ "entity": "GameStop Corp.",
+ "fy_end": "2026-01-31",
+ "ytd_end": "2026-08-01",
+ "inputs": {
+  "ocf": {
+   "fy": 614800000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 309900000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 399800000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 704700000
+  },
+  "capex": {
+   "fy": 17500000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 7000000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 6200000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 16700000
+  },
+  "sbc": {
+   "fy": 26700000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 11800000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 15800000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 30700000
+  },
+  "shares_diluted": {
+   "fy": 549100000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 506200000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 592500000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 704700000,
+ "ttm_capex": 16700000,
+ "ttm_sbc": 30700000,
+ "ttm_shares_diluted": 592500000,
+ "ttm_oe_total": 657300000,
+ "ttm_oe_per_share": 1.109367088607595,
+ "warnings": [],
+ "overrides_used": []
+}

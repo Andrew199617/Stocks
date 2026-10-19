@@ -1,0 +1,754 @@
+{
+ "ticker": "GWRE",
+ "cik": 1528396,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001528396-26-000014",
+   "filed": "2026-03-06",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000014/gwre-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001528396-26-000027",
+   "filed": "2026-06-05",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000027/gwre-20260430_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001528396-26-000046",
+   "filed": "2026-09-11",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000046/gwre-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-07-31",
+    "2025-07-31",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gwre:SubscriptionMember",
+     "label": "Subscription",
+     "values": [
+      477461000,
+      667436000,
+      915792000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.487,
+      0.5551,
+      0.6207
+     ],
+     "growth_yoy": [
+      null,
+      0.3979,
+      0.3721
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      181234000,
+      219228000,
+      269900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1848,
+      0.1823,
+      0.1829
+     ],
+     "growth_yoy": [
+      null,
+      0.2096,
+      0.2311
+     ]
+    },
+    {
+     "member": "gwre:SupportMember",
+     "label": "Support",
+     "values": [
+      71626000,
+      63860000,
+      55093000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0731,
+      0.0531,
+      0.0373
+     ],
+     "growth_yoy": [
+      null,
+      -0.1084,
+      -0.1373
+     ]
+    },
+    {
+     "member": "gwre:PerpetualLicenseMember",
+     "label": "Perpetual License",
+     "values": [
+      1300000,
+      100000,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0013,
+      0.0001,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -0.9231,
+      -1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     980497000,
+     1202459000,
+     1475363000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-01-31",
+    "2025-04-30",
+    "2025-07-31",
+    "2026-01-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gwre:SubscriptionMember",
+     "label": "Subscription",
+     "values": [
+      161659000,
+      166464000,
+      186455000,
+      222724000,
+      232129000,
+      253480000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.5584,
+      0.5672,
+      0.5229,
+      0.6202,
+      0.6231,
+      0.6166
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3777,
+      0.3945,
+      0.3595
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      47948000,
+      54452000,
+      61039000,
+      62358000,
+      71807000,
+      67266000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1656,
+      0.1855,
+      0.1712,
+      0.1737,
+      0.1927,
+      0.1636
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3005,
+      0.3187,
+      0.102
+     ]
+    },
+    {
+     "member": "gwre:SupportMember",
+     "label": "Support",
+     "values": [
+      16179000,
+      15359000,
+      15438000,
+      14485000,
+      12609000,
+      13255000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0559,
+      0.0523,
+      0.0433,
+      0.0403,
+      0.0338,
+      0.0322
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.1047,
+      -0.179,
+      -0.1414
+     ]
+    },
+    {
+     "member": "gwre:TermLicenseMember",
+     "label": "Term License",
+     "values": [
+      63694000,
+      null,
+      null,
+      59528000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.22,
+      null,
+      null,
+      0.1658,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0654,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "gwre:LicensePerpetualLicenseMember",
+     "label": "License, Perpetual License",
+     "values": [
+      null,
+      100000,
+      null,
+      null,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0003,
+      null,
+      null,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     289480000,
+     293508000,
+     356570000,
+     359095000,
+     372541000,
+     411087000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-07-31",
+    "2025-07-31",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      632568000,
+      770859000,
+      937854000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6452,
+      0.6411,
+      0.6357
+     ],
+     "growth_yoy": [
+      null,
+      0.2186,
+      0.2166
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      154434000,
+      183584000,
+      226885000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1575,
+      0.1527,
+      0.1538
+     ],
+     "growth_yoy": [
+      null,
+      0.1888,
+      0.2359
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      105761000,
+      141381000,
+      175040000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1079,
+      0.1176,
+      0.1186
+     ],
+     "growth_yoy": [
+      null,
+      0.3368,
+      0.2381
+     ]
+    },
+    {
+     "member": "gwre:APACMember",
+     "label": "APAC",
+     "values": [
+      76241000,
+      94975000,
+      114710000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0778,
+      0.079,
+      0.0778
+     ],
+     "growth_yoy": [
+      null,
+      0.2457,
+      0.2078
+     ]
+    },
+    {
+     "member": "gwre:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      11493000,
+      11660000,
+      20874000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0117,
+      0.0097,
+      0.0141
+     ],
+     "growth_yoy": [
+      null,
+      0.0145,
+      0.7902
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     980497000,
+     1202459000,
+     1475363000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-01-31",
+    "2025-04-30",
+    "2025-07-31",
+    "2026-01-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      185162000,
+      191687000,
+      230764000,
+      227199000,
+      242279000,
+      254370000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.6396,
+      0.6531,
+      0.6472,
+      0.6327,
+      0.6503,
+      0.6188
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.227,
+      0.2639,
+      0.1023
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      45296000,
+      42353000,
+      60739000,
+      59070000,
+      52790000,
+      68409000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1565,
+      0.1443,
+      0.1703,
+      0.1645,
+      0.1417,
+      0.1664
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3041,
+      0.2464,
+      0.1263
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      34572000,
+      31234000,
+      38774000,
+      44053000,
+      40193000,
+      47632000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.1194,
+      0.1064,
+      0.1087,
+      0.1227,
+      0.1079,
+      0.1159
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2742,
+      0.2868,
+      0.2285
+     ]
+    },
+    {
+     "member": "gwre:APACMember",
+     "label": "APAC",
+     "values": [
+      22450000,
+      25383000,
+      21815000,
+      23965000,
+      32464000,
+      33560000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0776,
+      0.0865,
+      0.0612,
+      0.0667,
+      0.0871,
+      0.0816
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0675,
+      0.279,
+      0.5384
+     ]
+    },
+    {
+     "member": "gwre:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      2000000,
+      2851000,
+      4478000,
+      4810000,
+      4815000,
+      7116000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.0069,
+      0.0097,
+      0.0126,
+      0.0134,
+      0.0129,
+      0.0173
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      1.405,
+      0.6889,
+      0.5891
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     289480000,
+     293508000,
+     356570000,
+     359095000,
+     372541000,
+     411087000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (gwre:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (gwre:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (gwre:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment' (gwre:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/quarterly: row 'Reportable Segment' (gwre:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Subscription And Support' (gwre:SubscriptionAndSupportMember) dropped: it is the parent of Subscription, Support in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'License' (us-gaap:LicenseMember) dropped: it is the parent of Perpetual License in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: rows sum to 84.1% of the consolidated total for 2026-07-31 (ties_to_total: false)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Subscription And Support' (gwre:SubscriptionAndSupportMember) dropped: it is the parent of Subscription, Support in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'License' (us-gaap:LicenseMember) dropped: it is the parent of License, Perpetual License, Term License in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 81.2% of the consolidated total for 2026-07-31 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Americas' (srt:AmericasMember) dropped: it is the parent of CANADA, Other Americas, UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Americas' (srt:AmericasMember) dropped: it is the parent of CANADA, Other Americas, UNITED STATES in the filing's definition linkbase"
+ ],
+ "complete": true
+}

@@ -1,0 +1,293 @@
+{
+ "ticker": "GEN",
+ "cik": 849399,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T10:25:10-04:00",
+ "newest_filing_date": "2026-10-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000849399.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/gen-20260403.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GEN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GEN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Gen Digital Inc.",
+  "cik": 849399,
+  "description": {
+   "text": "Mission: We create innovative and easy-to-use technology solutions that help people grow, manage and secure their digital and financial lives. Protecting people is what inspires us, and our people are at the core of what we do. We seek to attract talent that embraces the following values: •Customer Driven. Community Minded. We are customer obsessed and drive positive impact. •Think Big. Be Bold. We embrace change and innovate fearlessly. •Be Scrappy. Make it Happen. Big or small, we get things done irrespective of title or role. •Play to Win. Together. We win for our customers, with passion and integrity.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-21",
+   "period": "2026-04-03",
+   "accession": "0000849399-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/gen-20260403.htm"
+  },
+  "description_short": "Gen (NASDAQ: GEN) is a global company dedicated to powering Digital Freedom through its trusted consumer brands including Norton, Avast, LifeLock, MoneyLion and more. The Gen family of consumer brands is rooted in providing financial empowerment and cyber safety for the first digital generations. Today, Gen empowers people to live their digital lives safely, privately and confidently for generations to come. Gen brings award-winning products and services in cybersecurity, online privacy, identity protection and financial wellness to millions of people in more than 150 countries.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0328",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.gendigital.com",
+  "headquarters": "Tempe, Arizona",
+  "address": {
+   "street": "60 E. Rio Salado Parkway Suite 1000",
+   "city": "Tempe",
+   "state": "Arizona",
+   "zip": "85281",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-21"
+  },
+  "phone": "650-527-2900",
+  "employees": {
+   "count": 3900,
+   "as_of": "2026-04-03",
+   "evidence": "•General Employee Demographics: As of April 3, 2026, we employed approximately 3,900 team members across more than 20 countries.",
+   "form": "10-K",
+   "filed": "2026-05-21",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/gen-20260403.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-01-30",
+  "first_sec_filing_form": "S-3/A",
+  "former_names": [
+   "NortonLifeLock Inc.",
+   "SYMANTEC CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000849399&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-09",
+   "period": "2026-10-06",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000849399-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000079/gen-20261006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000849399-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000071/gen-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-09",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000849399-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000053/gen-20260909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-07-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000849399-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000031/gen-20260703.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000849399-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000028/gen-20260806.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-28",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-029830",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000114036126029830/ny20070898x1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-21",
+   "period": "2026-04-03",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000849399-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/gen-20260403.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000849399-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000014/nlok-20260507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-27",
+   "period": "2026-03-27",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000849399-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000011/gen-20260327.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-06",
+   "period": "2026-01-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000849399-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000004/gen-20260102.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000849399-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939926000002/gen-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000849399-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000094/gen-20251103.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-10-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000849399-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000092/gen-20251003.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000849399-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000087/gen-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-12",
+   "period": "2025-09-09",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000849399-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000082/gen-20250909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-13",
+   "period": "2025-07-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000849399-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000059/gen-20250704.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000849399-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000057/gen-20250807.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-07-28",
+   "period": "2025-09-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-027427",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000114036125027427/ny20046335x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-17",
+   "items": [
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD; Other events",
+   "accession": "0000849399-25-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000054/gen-20250717.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-16",
+   "period": "2025-05-15",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000849399-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/849399/000084939925000035/gen-20250515.htm"
+  }
+ ],
+ "warnings": []
+}

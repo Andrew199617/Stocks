@@ -1,0 +1,312 @@
+{
+ "ticker": "GIB",
+ "cik": 1061574,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001193125-25-322911",
+   "filed": "2025-12-17",
+   "period": "2025-09-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1061574/000119312525322911/d88305d40f_htm.xml"
+  }
+ ],
+ "currency": "CAD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gib:WesternAndSouthernEuropeSegmentMember",
+     "label": "Western And Southern Europe, Segment",
+     "values": [
+      2600198000,
+      2679167000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1772,
+      0.1684
+     ],
+     "growth_yoy": [
+      null,
+      0.0304
+     ]
+    },
+    {
+     "member": "gib:USCommercialAndStateGovernmentSegmentMember",
+     "label": "U.S. Commercial And State Government, Segment",
+     "values": [
+      2327309000,
+      2522956000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1586,
+      0.1586
+     ],
+     "growth_yoy": [
+      null,
+      0.0841
+     ]
+    },
+    {
+     "member": "gib:USFederalSegmentMember",
+     "label": "U.S. Federal, Segment",
+     "values": [
+      2001391000,
+      2247943000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1364,
+      0.1413
+     ],
+     "growth_yoy": [
+      null,
+      0.1232
+     ]
+    },
+    {
+     "member": "gib:CanadaSegmentMember",
+     "label": "Canada, Segment",
+     "values": [
+      2034995000,
+      2090682000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1387,
+      0.1314
+     ],
+     "growth_yoy": [
+      null,
+      0.0274
+     ]
+    },
+    {
+     "member": "gib:UnitedKingdomAndAustraliaSegmentMember",
+     "label": "United Kingdom And Australia, Segment",
+     "values": [
+      1584833000,
+      2020016000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.108,
+      0.1269
+     ],
+     "growth_yoy": [
+      null,
+      0.2746
+     ]
+    },
+    {
+     "member": "gib:ScandinaviaNorthwestAndCentralEastEuropeSegmentMember",
+     "label": "Scandinavia, Northwest and Central- East Europe, Segment",
+     "values": [
+      1593434000,
+      1688887000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1086,
+      0.1061
+     ],
+     "growth_yoy": [
+      null,
+      0.0599
+     ]
+    },
+    {
+     "member": "gib:AsiaPacificSegmentMember",
+     "label": "Asia Pacific, Segment",
+     "values": [
+      956145000,
+      1014441000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0651,
+      0.0638
+     ],
+     "growth_yoy": [
+      null,
+      0.061
+     ]
+    },
+    {
+     "member": "gib:FinlandPolandAndBalticsSegmentMember",
+     "label": "Finland, Poland And Baltics, Segment",
+     "values": [
+      859263000,
+      903701000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0585,
+      0.0568
+     ],
+     "growth_yoy": [
+      null,
+      0.0517
+     ]
+    },
+    {
+     "member": "gib:GermanySegmentMember",
+     "label": "Germany, Segment",
+     "values": [
+      894565000,
+      901609000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.061,
+      0.0567
+     ],
+     "growth_yoy": [
+      null,
+      0.0079
+     ]
+    },
+    {
+     "member": "srt:GeographyEliminationsMember",
+     "label": "Geography Eliminations",
+     "values": [
+      -175981000,
+      -156729000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.012,
+      -0.0098
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14676152000,
+     15912673000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-30",
+    "2025-09-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gib:ManagedITAndBusinessProcessServicesMember",
+     "label": "Managed IT And Business Process Services",
+     "values": [
+      8041857000,
+      8820863000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.548,
+      0.5543
+     ],
+     "growth_yoy": [
+      null,
+      0.0969
+     ]
+    },
+    {
+     "member": "gib:BusinessAndStrategicITConsultingAndSystemsIntegrationServicesMember",
+     "label": "Business And Strategic IT Consulting And Systems Integration Services",
+     "values": [
+      6634295000,
+      7091810000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.452,
+      0.4457
+     ],
+     "growth_yoy": [
+      null,
+      0.069
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14676152000,
+     15912673000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

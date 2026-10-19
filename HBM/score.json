@@ -1,0 +1,85 @@
+{
+ "ticker": "HBM",
+ "name": "Hudbay Minerals Inc.",
+ "sector": "Materials / Copper and gold mining",
+ "price": 23.62,
+ "market_cap_b": 9.37,
+ "engine_version": 5,
+ "base_oe_per_share": 0.6058791307795571,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Copper/gold miner and pure commodity price taker: no pricing power, no switching costs, reserves deplete and must be replaced with heavy capex. Only moat-like traits are cost-curve position (gold by-product credits drove Q2 2026 consolidated cash cost to -$0.40/lb Cu), long-life diversified mines in Canada, Peru and the US, and a staged growth pipeline. Measured returns confirm the weak moat: roic_proxy was 0.6% in FY2021, 6.2% in FY2022, 7.2% in FY2023 and 9.8% in FY2024 \u2014 below the cost of capital through most of the cycle \u2014 reaching 15.4% only in FY2025 at strong metal prices, and gross margin swung from 8.7% (FY2021) to 33.6% (FY2025) with metal prices, not with any pricing power (fundamentals.json).",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 14.8%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, accession via EDGAR filing 000106299326001648, fundamentals.json latest_filings), cover page: securities registered pursuant to Section 12(b) are 'Common Shares, no par value', trading symbol HBM, The New York Stock Exchange; the cover reports 395,521,903 common shares outstanding as at December 31, 2025, matching the engine's DEI count of 395,521,903) so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.86,
+   "irr": 0.0393
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 4.41,
+   "irr": 0.0483
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.83,
+   "irr": 0.0566
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 7.59,
+   "irr": 0.067
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 10.88,
+   "irr": 0.0858
+  }
+ },
+ "iv_at_15": 5.66,
+ "iv_at_12": 7.51,
+ "implied_irr": 0.0559,
+ "implied_irr_base_case": 0.0566,
+ "upside_at_15_pct": -76.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Copper price-taker with a low-cost by-product-credit position, moat 3/10 \u2014 Tier D: weighted IRR 5.59% and weighted IV@15% $5.66 vs the $23.62 price on the normalized $0.6059/share base, with every scenario including super bull (8.58%) in Tier D; it clears 15% only at or below $5.66, and the filed base does not yet reflect the ~12% share issuance for Arizona Sonoran in June 2026.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0483,
+ "irr_bull": 0.067,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 4.0,
+ "iv_at_25": 3.08,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 439700000,
+ "shares_diluted_latest": 396648796,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Low cost-curve position: gold by-product credits drove Q2 2026 consolidated cash cost to -$0.40/lb Cu and sustaining cash cost to $1.39/lb (company Q2 2026 release, cited search result)",
+  "Long-life diversified operating base: Constancia (Peru), Snow Lake/Manitoba and Copper Mountain (BC), with reserve lives extended into the 2040s in the company's three-year outlook (cited search result)",
+  "Staged copper growth pipeline in tier-1 jurisdictions: Copper World, Cactus (Arizona Sonoran, closed June 2026) and Mason, targeting ~24% higher consolidated copper production by 2027-28 (company guidance, cited search results)"
+ ],
+ "moat_against": [
+  "Pure commodity price taker \u2014 copper and gold prices are set by the market; no pricing power or switching costs",
+  "Reserves deplete: production must be replaced via heavy sustaining/growth capex, permitting and M&A (FY2025 capex $466,700,000 vs OCF $707,300,000)",
+  "Returns below the cost of capital through most of the cycle: roic_proxy 0.6%-9.8% in FY2021-24, only 15.4% in FY2025 at strong prices (fundamentals.json)",
+  "Jurisdiction and execution risk: Peru operations, permitting timelines, and large pre-production projects (Copper World FID expected later in 2026, first production targeted H2 2029, cited search result)",
+  "Serial share issuance for M&A: diluted count 261,462,323 in FY2021 to 396,648,796 in FY2025, plus the all-share Arizona Sonoran deal closed June 24, 2026 (financials_history.csv; cited search results)"
+ ]
+}

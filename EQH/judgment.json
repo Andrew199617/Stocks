@@ -1,0 +1,38 @@
+{
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed capex value for EQH in any period under any tag it reads, so there is no filed tag value to band against and any value is flagged out-of-band. The value is not an estimate \u2014 it is the FY2025 figure printed in the FY2025 10-K Consolidated Statements of Cash Flows for the line that is this insurer's capex, corroborated by the same statement's FY2024/FY2023 figures ($153M / $117M).",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024 and 2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads, because Equitable reports its capex only as the investing line 'Investment in capitalized software, leasehold improvements and EDP equipment' in its cash-flow statement. The engine applies this single FY2025 filing value to every missing period; for FY2023 it understates true capex by $83M (true $117M) and for FY2024 by $119M (true $153M) \u2014 neither changes the median base, which is the FY2025 OE/share figure, and capex at this level is immaterial next to the insurer's policyholder cash flows either way.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Investment in capitalized software, leasehold improvements and EDP equipment': $(34) million for FY2025, with $(153) million for FY2024 and $(117) million for FY2023 in the same statement (all in $ millions)",
+  "value": 34000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No structural pricing power \u2014 retirement, annuity and asset-management products are price- and fee-competed; AB fees face passive compression",
+  "GAAP results hostage to market-risk-benefit and hedge revaluations \u2014 FY2025 net loss and Q2 2026 net loss despite positive operating earnings",
+  "AOCI-swollen balance sheet \u2014 GAAP book value per share was negative at Q2 2026 including AOCI; equity in the filed history fell to -$74M at FY2025",
+  "Pending all-stock Corebridge merger (close expected end-2026) \u2014 standalone per-share value will be exchanged at 1.55516 new-parent shares, so the DCF is a pre-merger hypothetical",
+  "Variable-annuity guarantee and longevity/mortality risk are set by experience, not by the franchise"
+ ],
+ "moat_for": [
+  "Integrated retirement value chain \u2014 product manufacturer (Equitable), 68%-owned AllianceBernstein asset manager and Equitable Advisors distribution in one group; $1.1T AUM/A at FY2025, $1.2T at Q2 2026",
+  "Leading registered index-linked / variable annuity franchise with long-duration in-force books that switch slowly",
+  "Scale and advisor distribution that are hard to replicate quickly in U.S. retirement",
+  "Persistent capital return \u2014 diluted shares shrinking 7.8%/yr on buybacks; Q2 2026 returned $449M to shareholders"
+ ],
+ "moat_justification": "Moderate/narrow finance moat 5/10: an integrated retirement manufacturer + 68%-owned AB asset manager + advisor distribution platform at $1.1-1.2T AUM/A with a leading RILA/variable-annuity franchise and long-duration in-force books \u2014 against commodity, fee-competed products with no structural pricing power, GAAP earnings and book value hostage to market-risk-benefit/hedge and AOCI marks (fundamentals.json carries no roic_proxy or gross-margin series for this insurer presentation, and filed ROE is meaningless on AOCI-distorted equity \u2014 FY2025 equity was -$74M and Q2 2026 book value per share including AOCI was -$6.79, vs $16.89 ex-AOCI and $30.92 ex-AOCI with AB at market), plus a pending Corebridge merger that will exchange the standalone shares. No evidence supports 7+: returns are earned in a risk business whose bad years are set by markets and biometric experience, not by the franchise.",
+ "moat_score": 5,
+ "name": "Equitable Holdings, Inc.",
+ "one_liner": "Integrated retirement/AB/wealth insurer, moat 5/10 \u2014 on the sweep's OCF-based owner's earnings it does not clear 15% (Tier D, weighted IRR 5.44%, IV@15% $12.24 vs $53.21; clears 15% only at ~$12 on this definition), at low confidence: filed OCF is a poor lens for this insurer (non-GAAP operating earnings run far above filed OCF) and the pending Corebridge merger will exchange the standalone shares, so D is a model-misfit verdict, not a clean earnings-power read.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Finance / Retirement, Asset Management & Wealth (Insurance)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

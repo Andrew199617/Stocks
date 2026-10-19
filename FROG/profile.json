@@ -1,0 +1,280 @@
+{
+ "ticker": "FROG",
+ "cik": 1800667,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T00:11:54-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001800667.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526051382/frog-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FROG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FROG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "JFrog Ltd",
+  "cik": 1800667,
+  "description": {
+   "text": "JFrog’s goal is to provide a system of record for the software supply chain in the Artificial Intelligence (“AI”) era. As a foundational platform that provides governance, security and trust to enterprise software organizations, JFrog’s unified platform (“JFrog Platform”) allows companies to successfully unify development speed, volume, security, governance and delivery of software applications across hybrid teams of developers, security professionals, Artificial Intelligence/Machine Learning (“AI/ML”) engineers and AI agents. We envision a world where innovative, secure, compliant and trusted software is consumed, built and continuously delivered from any user to any destination; a reality we refer to as “Liquid Software.” The complimentary practices of DevOps, DevSecOps, DevGovOps, MLOps and AI development are converging within organizations, exposing new challenges in process, security, governance and compliance for software delivery. This unification continues to re-shape the composition of development teams, increase software volume, and expand enterprise digital footprints. As a pioneer in DevOps, DevSecOps, and DevGovOps, JFrog recognizes the unique potential of technology shifts and how they are best adopted within an organization. A rapidly evolving marketplace demands a new generation of tooling that encompasses the complete software supply chain; a platform that serves many functions in an organization affected by rapid technology adoption.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-051382",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526051382/frog-20251231.htm"
+  },
+  "description_short": "JFrog Ltd. (Nasdaq: FROG), the creators of the unified DevOps, DevSecOps, DevGovOps and MLOps platform, is on a mission to create a world of software delivered without friction from development to production. Driven by a 'Liquid Software' vision, the JFrog Platform is a software supply chain system of record that is designed to power organizations as they build, manage, and distribute secure software with speed and scale. Holistic security features help identify, protect, and remediate against threats and vulnerabilities. The universal, hybrid, multi-cloud JFrog Platform is available as both SaaS services across major cloud service providers and self-hosted. Millions of users and approximately 6,600 organizations worldwide, including a majority of the Fortune 100, depend on JFrog solutions to securely embrace digital transformation in the AI era.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "L3",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.jfrog.com",
+  "headquarters": "Sunnyvale, California",
+  "address": {
+   "street": "270 E. Caribbean Drive",
+   "city": "Sunnyvale",
+   "state": "California",
+   "zip": "94089",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "(408) 329-1540",
+  "employees": {
+   "count": 1800,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had a total of approximately 1,800 employees globally, including approximately 950 employees located in Israel and approximately 400 employees in the United States.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526051382/frog-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-08-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "JFrog Ltd"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001800667&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-340294",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526340294/frog-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-337998",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526337998/frog-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-236917",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526236917/frog-20260520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-214647",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526214647/frog-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-211940",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526211940/frog-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-07",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-145562",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526145562/frog-20260407.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-073842",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526073842/frog-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-051382",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526051382/frog-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-048726",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312526048726/frog-20260212.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-272362",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312525272362/frog-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-269563",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312525269563/frog-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-25",
+   "period": "2025-09-19",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-217487",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000119312525217487/frog-20250919.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-105867",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025105867/frog-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-105041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025105041/frog-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000950170-25-076333",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025076333/frog-20250520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-068025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025068025/frog-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-066960",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025066960/frog-20250508.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-07",
+   "period": "2025-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000950170-25-051585",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025051585/frog-20250407.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-26",
+   "period": "2025-03-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950170-25-045221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025045221/frog-20250320.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-14",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000950170-25-021340",
+   "url": "https://www.sec.gov/Archives/edgar/data/1800667/000095017025021340/frog-20241231.htm"
+  }
+ ],
+ "warnings": []
+}

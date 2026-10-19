@@ -1,0 +1,88 @@
+{
+ "ticker": "GIB",
+ "name": "CGI Inc.",
+ "sector": "Technology / IT services & consulting (Canada)",
+ "price": 75.573,
+ "market_cap_b": 17.51,
+ "engine_version": 5,
+ "base_oe_per_share": 5.93409291288451,
+ "base_year": "2024",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat in IT services: backlog at 1.9x revenue, >100% book-to-bill, long-term managed-services contracts and government incumbency give contracted visibility and some switching friction, and company-reported ROIC has stayed above the cost of capital (16.0% FY2023/FY2024) \u2014 but it is falling (13.6% FY2025), the model is labor-based and won by competitive bidding against Accenture-scale rivals, and AI automation threatens headcount-based services economics. fundamentals.json carries no roic_proxy or gross-margin series for this IFRS filer (operating income is untagged in companyfacts), so the moat evidence uses CGI's own reported ROIC and adjusted EBIT margin (16.4% FY2025) instead. A 5 gives CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 25 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.9%/yr \u2014 already credited via the growth adjustment",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (CGI Inc. Form 40-F for the fiscal year ended September 30, 2025 (filed 2025-12-17), cover page: 'Securities registered or to be registered pursuant to Section 12(b) of the Act: Class A subordinate voting shares \u2014 GIB \u2014 New York Stock Exchange'; outstanding at period end 195,939,991 Class A subordinate voting shares and 24,122,758 Class B shares (multiple voting)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "TIER_BAND: bear-case tier D (9.5%) vs bull-case tier B (15.0%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 26.55,
+   "irr": 0.0659
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 42.7,
+   "irr": 0.0954
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 56.03,
+   "irr": 0.1186
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 75.75,
+   "irr": 0.1503
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 101.38,
+   "irr": 0.1872
+  }
+ },
+ "iv_at_15": 59.21,
+ "iv_at_12": 78.97,
+ "implied_irr": 0.1241,
+ "implied_irr_base_case": 0.1186,
+ "upside_at_15_pct": -21.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Durable IT-services compounder, moat 5/10 \u2014 does not clear 15% at $75.57 on the normalized median base of $5.93/share: weighted IRR 12.4%, weighted IV@15% $59.21; clears 15% only below ~$59.21, and the base is stale (engine history ends FY2024; FY2025 is filed but not yet in EDGAR companyfacts), so size it like the bear end of its C.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0954,
+ "irr_bull": 0.1503,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 41.51,
+ "iv_at_25": 31.79,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 907904273.9200001,
+ "shares_diluted_latest": 231672861,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Backlog of CAD 31.79B at Q3 FY2026, 1.9x annual revenue, with trailing book-to-bill of 108.1% \u2014 multi-year contracted visibility",
+  "Long-term managed-services and outsourcing contracts plus a local relationship model create real, if rebid-limited, switching friction",
+  "Scale: 94,000 consultants, one of the largest independent IT and business consulting firms, with deep government-sector incumbency",
+  "Durable profitability through the cycle: adjusted EBIT margin held at 16.2-16.5% across FY2023-FY2025 and OE was positive 5 of the last 5 engine-history years",
+  "Company-reported ROIC stayed above the cost of capital through the cycle (16.0% FY2023/FY2024, 13.6% FY2025)"
+ ],
+ "moat_against": [
+  "Labor-based services model: contracts are won through competitive bidding, with price pressure and rebid risk at every renewal",
+  "No proprietary product or platform lock-in; rivals include Accenture and larger global integrators plus lower-cost offshore providers",
+  "AI automation is a structural threat to headcount-based IT services economics \u2014 CGI's own MD&A flags failure to adapt offerings to AI as a risk to revenue and cash flow",
+  "Company-reported ROIC is falling: 16.0% in FY2023 and FY2024 to 13.6% in FY2025",
+  "Growth is low-single-digit in constant currency (Q3 FY2026 revenue +1.3% cc) and client IT budgets are cyclical",
+  "Serial-acquisition model carries recurring restructuring/integration charges (FY2025 adjustments of CAD 213.2M net of tax)"
+ ]
+}

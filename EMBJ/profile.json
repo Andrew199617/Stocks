@@ -1,0 +1,247 @@
+{
+ "ticker": "EMBJ",
+ "cik": 1355444,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T21:00:00-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001355444.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1355444/000162828026021824/erj-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EMBJ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EMBJ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EMBRAER S.A.",
+  "cik": 1355444,
+  "description": {
+   "text": "We are the leading manufacturer of jets with up to 150 seats in the world, based on the number of aircraft delivered over the last decade, holding a 30% market share in terms of accumulated deliveries since 2004, according to a Cirium Fleet Analyzer data report dated December 31, 2025. As a result, we have a franchise footprint represented by our global customer base. Our focus is to achieve customer satisfaction with a range of products and services addressing the commercial airline, executive jets and defense and security markets. We have developed a customer-centric technology-driven portfolio of commercial aviation products and services that allows us to build long-term relationships with our clients in the commercial aviation, executive jets and defense and security markets. We grew from a government-controlled company that developed and produced products for the Brazilian Armed Forces to a publicly held company that produces aircraft for and provides related services to commercial and executive aviation, as well as for defense and security purposes. Providing high quality customer support is a key element of our customer focus and is critical to our ability to maintain customers with whom we have a long-term relationship. One of our main market opportunities lies in direct product replacement, particularly in regions where our products are well perceived, such as North America and Europe.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-30",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-021824",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000162828026021824/erj-20251231.htm"
+  },
+  "description_short": "Embraer is a global aerospace company headquartered in Brazil. It manufactures aircraft for Commercial and Executive aviation, Defense & Security, and Agricultural customers. The company also provides after-sales services & support through a worldwide network of wholly owned entities and authorized agents. Since it was founded in 1969, Embraer has delivered more than 9,000 aircraft. On average, about every 10 seconds, an aircraft manufactured by Embraer takes off somewhere worldwide, transporting over 150 million passengers a year. Embraer is the leading manufacturer of commercial jets with up to 150 seats and is the leading exporter of high-value-added goods in Brazil. The company maintains industrial units, offices, service and parts distribution centers across the Americas, Africa, Asia, and Europe.",
+  "industry": "Aerospace",
+  "sector": "Industrials",
+  "region": "South America",
+  "sic": "3721",
+  "sic_description": "Aircraft",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": null,
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://ri.embraer.com.br",
+  "headquarters": "Pinheiros, São Paulo, SP, Brazil",
+  "address": {
+   "street": "Avenida Dra. Ruth Cardoso 8,501, 30th floor (part)",
+   "city": "Pinheiros, São Paulo, SP",
+   "state": null,
+   "zip": "05425-070",
+   "country": "Brazil",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-30"
+  },
+  "phone": "551239274404",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2006-03-09",
+  "first_sec_filing_form": "F-4",
+  "former_names": [
+   "Embraer - Empresa Brasileira de Aeronautica S.A.",
+   "EMPRESA BRASILEIRA DE AERONAUTICA S.A.",
+   "Rio Han Holding"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001355444&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-02",
+   "period": "2026-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004832",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004832/embj20261002_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004774",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004774/embj20260930_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004766",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004766/embj20260930_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004474",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004474/embj20260903_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-20",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004306",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004306/embj20260820_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-14",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004242",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004242/embj20260813_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004152",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004152/embj20260809_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004151",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004151/embjpr2q26_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-10",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004148",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004148/embj20260809_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-004043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426004043/embj20260804_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-24",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003910",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003910/embjpr2q26_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-21",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003832",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003832/embj20260721_6k1.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-21",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003830",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003830/embj20260721_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-21",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003829",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003829/embj20260721_6k2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-02",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003656",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003656/embj20260702_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003542",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003542/embj20260618_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003328",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003328/embj20260604_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-003147",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426003147/embj20260521_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-002893",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426002893/embjpr1q26_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001292814-26-002891",
+   "url": "https://www.sec.gov/Archives/edgar/data/1355444/000129281426002891/embj20260507_6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-30"
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "ticker": "EHC",
+ "name": "Encompass Health Corporation",
+ "sector": "Healthcare / Inpatient rehabilitation hospitals",
+ "price": 127.87,
+ "market_cap_b": 13.07,
+ "engine_version": 5,
+ "base_oe_per_share": 3.543369890329013,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Genuine scale, CON and referral-network advantages in a supply-constrained niche, but CMS sets the price, labor is ~52% of revenue, and measured ROIC has historically sat around the cost of capital \u2014 scale converts into volume, not wide-moat economics.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 6.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 19.82,
+   "irr": 0.0439
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 29.29,
+   "irr": 0.0544
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 38.4,
+   "irr": 0.0647
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 49.78,
+   "irr": 0.0773
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 66.56,
+   "irr": 0.0947
+  }
+ },
+ "iv_at_15": 38.9,
+ "iv_at_12": 52.19,
+ "implied_irr": 0.0655,
+ "implied_irr_base_case": 0.0647,
+ "upside_at_15_pct": -69.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Durable IRF leader, moat 5/10 \u2014 good business, impossible price: weighted IRR 6.5% and IV@15% $38.90 vs $127.87; it only clears the 15% hurdle below ~$39.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0544,
+ "irr_bull": 0.0773,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 27.03,
+ "iv_at_25": 20.56,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2418600000,
+ "shares_diluted_latest": 102200000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest US IRF operator (~22% of Medicare IRF discharges, 173 hospitals) \u2014 scale in recruiting, purchasing, protocols, payor contracting",
+  "Certificate-of-need regimes cap competing supply; national IRF bed supply flat for a decade vs aging Medicare population",
+  "66 joint ventures with acute-care systems hard-wire the referral pipeline",
+  "Clinical outcomes above industry averages (Q2 2026 discharge-to-community 84.7%) reinforce referral preference"
+ ],
+ "moat_against": [
+  "No real pricing power \u2014 CMS sets Medicare rates by annual rule (~+2.3% est. FY2027); managed care follows",
+  "ROIC proxy only 8.7\u201311.3% across 2016\u20132022 \u2014 around the cost of capital; capital-intensive model",
+  "Labor ~52% of revenue with guided wage inflation 3.5\u20134% for 2026, at or above the pricing update",
+  "Payer concentration and denial risk: Medicare RCD reviews, MA utilization management, TEAM episodic model",
+  "Growth consumes the cash \u2014 TTM capex $799.1M against TTM OCF $1,212.5M"
+ ]
+}

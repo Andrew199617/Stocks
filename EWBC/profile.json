@@ -1,0 +1,289 @@
+{
+ "ticker": "EWBC",
+ "cik": 1069157,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T14:45:46-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001069157.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000009/ewbc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EWBC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EWBC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EAST WEST BANCORP INC",
+  "cik": 1069157,
+  "description": {
+   "text": "East West is a bank holding company incorporated in Delaware on August 26, 1998, and is registered under the Bank Holding Company Act of 1956, as amended (“BHC Act”). The Company commenced business on December 30, 1998 when, pursuant to a reorganization, it acquired all of the voting stock of East West Bank (“East West Bank” or the “Bank”), which became its principal asset. East West’s principal business is to serve as a holding company for the Bank and other banking or banking-related subsidiaries that East West may establish or acquire. As of December 31, 2025, the Company had $80.4 billion in total assets, $56.1 billion in total net loans, $67.1 billion in total deposits, and $8.9 billion in total stockholders’ equity. The Company operates in over 110 locations in the U.S. and Asia. In the U.S., the Bank’s corporate headquarters and main administrative offices are located in California. Its 96 U.S. branches are located in California, Texas, New York, Washington, Georgia, Massachusetts and Nevada. In Asia, the Bank has branches in China and Hong Kong, and representative offices in China and Singapore. East West Bank has a commercial banking license in China through its subsidiary, East West Bank (China) Limited (“EWCN”), which makes it unique among U.S.-based regional banks. This license allows the Bank to have branches, make loans and accept deposits in China.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001069157-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000009/ewbc-20251231.htm"
+  },
+  "description_short": "East West provides financial services that help customers reach further and connect to new opportunities. East West Bancorp, Inc. is a public company (Nasdaq:'EWBC') with total assets of $84.8 billion as of June 30, 2026. The Company's wholly-owned subsidiary, East West Bank, is the largest independent bank headquartered in Southern California, and operates over 110 locations in the United States and Asia. The Bank's markets in the United States include California, Georgia, Illinois, Massachusetts, Nevada, New York, Texas, and Washington. For more information on East West, visit www.eastwestbank.com.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6022",
+  "sic_description": "State Commercial Banks",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.eastwestbank.com",
+  "headquarters": "Pasadena, California",
+  "address": {
+   "street": "135 North Los Robles Ave. 7th Floor",
+   "city": "Pasadena",
+   "state": "California",
+   "zip": "91101",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "6267686000",
+  "employees": {
+   "count": 3350,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 3,350 full-time equivalent employees.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000009/ewbc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-10-02",
+  "first_sec_filing_form": "8-A12G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001069157&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069157-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000044/ewbc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001069157-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000041/ewbc-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-18",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001069157-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000022/ewbc-20260518.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069157-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000020/ewbc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-21",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001069157-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000016/ewbc-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-18",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0002077096-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000207709626000050/ea0285126-def14a_eastwest.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001069157-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000009/ewbc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001069157-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915726000005/ewbc-20260122.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-02",
+   "period": "2025-12-01",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001069157-25-000121",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000121/ewbc-20251201.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069157-25-000119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000119/ewbc-20250930.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-10-22",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Amendment: Results of operations; Reg FD",
+   "accession": "0001069157-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000115/ewbc-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001069157-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000112/ewbc-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001069157-25-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000106/ewbc-20250905.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069157-25-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000096/ewbc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-22",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001069157-25-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000090/ewbc-20250722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-09",
+   "period": "2025-06-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001069157-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000083/ewbc-20250609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-21",
+   "period": "2025-05-20",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001069157-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000062/ewbc-20250520.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001069157-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000106915725000052/ewbc-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-22",
+   "period": "2025-04-22",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-25-018848",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000162828025018848/ewbc-20250422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-10",
+   "period": "2025-05-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001174947-25-000556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1069157/000117494725000556/ea0237505-def14a_eastwest.htm"
+  }
+ ],
+ "warnings": []
+}

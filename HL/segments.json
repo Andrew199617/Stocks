@@ -1,0 +1,306 @@
+{
+ "ticker": "HL",
+ "cik": 719413,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-055059",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/719413/000119312526055059/hl-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-206810",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/719413/000119312526206810/hl-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-333090",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/719413/000119312526333090/hl-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "hl:CasaBerardiMember",
+     "label": "Casa Berardi",
+     "values": [
+      683035000,
+      687080000,
+      776947000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2268,
+      0.2305,
+      0.2182
+     ],
+     "growth_yoy": [
+      null,
+      0.0059,
+      0.1308
+     ]
+    },
+    {
+     "member": "hl:LuckyFridayMember",
+     "label": "Lucky Friday",
+     "values": [
+      578110000,
+      587945000,
+      688997000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.192,
+      0.1972,
+      0.1935
+     ],
+     "growth_yoy": [
+      null,
+      0.017,
+      0.1719
+     ]
+    },
+    {
+     "member": "hl:GreensCreekMember",
+     "label": "Greens Creek",
+     "values": [
+      569369000,
+      564334000,
+      640011000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1891,
+      0.1893,
+      0.1797
+     ],
+     "growth_yoy": [
+      null,
+      -0.0088,
+      0.1341
+     ]
+    },
+    {
+     "member": "hl:KenoHillMember",
+     "label": "Keno Hill",
+     "values": [
+      362986000,
+      413982000,
+      505205000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1205,
+      0.1389,
+      0.1419
+     ],
+     "growth_yoy": [
+      null,
+      0.1405,
+      0.2204
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      817604000,
+      727719000,
+      974703000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2715,
+      0.2441,
+      0.2737
+     ],
+     "growth_yoy": [
+      null,
+      -0.1099,
+      0.3394
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3011104000,
+     2981060000,
+     3560645000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hl:LuckyFridayMember",
+     "label": "Lucky Friday",
+     "values": [
+      688997000,
+      681365000,
+      664035000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1935,
+      0.2018,
+      0.2085
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hl:GreensCreekMember",
+     "label": "Greens Creek",
+     "values": [
+      640011000,
+      707216000,
+      660706000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1797,
+      0.2095,
+      0.2074
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hl:KenoHillMember",
+     "label": "Keno Hill",
+     "values": [
+      505205000,
+      492688000,
+      496117000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1419,
+      0.1459,
+      0.1558
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      974703000,
+      1495024000,
+      1364419000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2737,
+      0.4428,
+      0.4284
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3560645000,
+     3376293000,
+     3185277000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

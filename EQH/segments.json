@@ -1,0 +1,263 @@
+{
+ "ticker": "EQH",
+ "cik": 1333986,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001333986-26-000012",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000012/eqh-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001333986-26-000025",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000025/eqh-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001333986-26-000040",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000040/eqh-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "eqh:RetirementMember",
+     "label": "Retirement",
+     "values": [
+      173796000000,
+      196794000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5877,
+      0.6189
+     ],
+     "growth_yoy": [
+      null,
+      0.1323
+     ]
+    },
+    {
+     "member": "eqh:AssetManagementMember",
+     "label": "Asset Management",
+     "values": [
+      10137000000,
+      10386000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0343,
+      0.0327
+     ],
+     "growth_yoy": [
+      null,
+      0.0246
+     ]
+    },
+    {
+     "member": "eqh:WealthManagementMember",
+     "label": "Wealth Management",
+     "values": [
+      168000000,
+      183000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0006,
+      0.0006
+     ],
+     "growth_yoy": [
+      null,
+      0.0893
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      111626000000,
+      110627000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3775,
+      0.3479
+     ],
+     "growth_yoy": [
+      null,
+      -0.0089
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     295727000000,
+     317990000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "eqh:RetirementMember",
+     "label": "Retirement",
+     "values": [
+      196794000000,
+      192388000000,
+      209695000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6189,
+      0.6198,
+      0.6266
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqh:AssetManagementMember",
+     "label": "Asset Management",
+     "values": [
+      10386000000,
+      10322000000,
+      10343000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0327,
+      0.0333,
+      0.0309
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqh:WealthManagementMember",
+     "label": "Wealth Management",
+     "values": [
+      183000000,
+      250000000,
+      273000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0006,
+      0.0008,
+      0.0008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      110627000000,
+      107422000000,
+      114346000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3479,
+      0.3461,
+      0.3417
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     317990000000,
+     310382000000,
+     334657000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

@@ -1,0 +1,125 @@
+{
+ "ticker": "FN",
+ "cik": 1408710,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001408710-26-000008",
+   "filed": "2026-02-03",
+   "period": "2025-12-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000008/fn-20251226_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001408710-26-000016",
+   "filed": "2026-05-05",
+   "period": "2026-03-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000016/fn-20260327_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001408710-26-000028",
+   "filed": "2026-08-18",
+   "period": "2026-06-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-27",
+    "2025-03-28",
+    "2025-12-26",
+    "2026-03-27"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fn:OpticalCommunicationsMember",
+     "label": "Optical Communications",
+     "values": [
+      647150000,
+      657231000,
+      832590000,
+      888704000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7763,
+      0.7539,
+      0.7349,
+      0.7319
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2865,
+      0.3522
+     ]
+    },
+    {
+     "member": "fn:NonOpticalCommunicationsMember",
+     "label": "Non-Optical Communications",
+     "values": [
+      186458000,
+      214568000,
+      300298000,
+      325589000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2237,
+      0.2461,
+      0.2651,
+      0.2681
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6105,
+      0.5174
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     833608000,
+     871799000,
+     1132888000,
+     1214293000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable Segment' (fn:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (fn:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (fn:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

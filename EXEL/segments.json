@@ -1,0 +1,529 @@
+{
+ "ticker": "EXEL",
+ "cik": 939767,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000939767-26-000021",
+   "filed": "2026-02-10",
+   "period": "2026-01-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/939767/000093976726000021/exel-20260102_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000939767-26-000059",
+   "filed": "2026-05-05",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/939767/000093976726000059/exel-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000939767-26-000098",
+   "filed": "2026-08-05",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/939767/000093976726000098/exel-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-29",
+    "2025-01-03",
+    "2026-01-02"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "exel:ProductGrossMember",
+     "label": "Product, Gross",
+     "values": [
+      2272533000,
+      2518246000,
+      3011807000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2417,
+      1.1612,
+      1.2981
+     ],
+     "growth_yoy": [
+      null,
+      0.1081,
+      0.196
+     ]
+    },
+    {
+     "member": "us-gaap:LicenseMember",
+     "label": "License",
+     "values": [
+      178635000,
+      349244000,
+      214375000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0976,
+      0.161,
+      0.0924
+     ],
+     "growth_yoy": [
+      null,
+      0.9551,
+      -0.3862
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      22694000,
+      10062000,
+      -17053000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0124,
+      0.0046,
+      -0.0074
+     ],
+     "growth_yoy": [
+      null,
+      -0.5566,
+      -2.6948
+     ]
+    },
+    {
+     "member": "exel:ProductSalesDiscountsAndAllowancesMember",
+     "label": "Product, Sales Discounts And Allowances",
+     "values": [
+      -643654000,
+      -708851000,
+      -889003000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3517,
+      -0.3269,
+      -0.3832
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1830208000,
+     2168701000,
+     2320126000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "exel:ProductGrossMember",
+     "label": "Product, Gross",
+     "values": [
+      721711000,
+      745280000,
+      795354000,
+      812782000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2993,
+      1.3115,
+      1.3021,
+      1.2928
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.102,
+      0.0906
+     ]
+    },
+    {
+     "member": "us-gaap:LicenseMember",
+     "label": "License",
+     "values": [
+      42480000,
+      49301000,
+      56948000,
+      59810000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0765,
+      0.0868,
+      0.0932,
+      0.0951
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3406,
+      0.2132
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      -316000,
+      -1054000,
+      -1113000,
+      -4145000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0006,
+      -0.0019,
+      -0.0018,
+      -0.0066
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "exel:ProductSalesDiscountsAndAllowancesMember",
+     "label": "Product, Sales Discounts And Allowances",
+     "values": [
+      -208428000,
+      -225266000,
+      -240377000,
+      -239757000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3752,
+      -0.3964,
+      -0.3935,
+      -0.3814
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     555447000,
+     568261000,
+     610812000,
+     628690000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-29",
+    "2025-01-03",
+    "2026-01-02"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1645749000,
+      1822992000,
+      2140371000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8992,
+      0.8406,
+      0.9225
+     ],
+     "growth_yoy": [
+      null,
+      0.1077,
+      0.1741
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      144969000,
+      318633000,
+      154165000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0792,
+      0.1469,
+      0.0664
+     ],
+     "growth_yoy": [
+      null,
+      1.1979,
+      -0.5162
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      39490000,
+      27076000,
+      25590000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0216,
+      0.0125,
+      0.011
+     ],
+     "growth_yoy": [
+      null,
+      -0.3144,
+      -0.0549
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1830208000,
+     2168701000,
+     2320126000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-04",
+    "2025-07-04",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      517184000,
+      524768000,
+      558546000,
+      578361000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9311,
+      0.9235,
+      0.9144,
+      0.9199
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.08,
+      0.1021
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      32706000,
+      37033000,
+      39568000,
+      46007000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0589,
+      0.0652,
+      0.0648,
+      0.0732
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2098,
+      0.2423
+     ]
+    },
+    {
+     "member": "country:JP",
+     "label": "JAPAN",
+     "values": [
+      5557000,
+      6460000,
+      12698000,
+      4322000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.01,
+      0.0114,
+      0.0208,
+      0.0069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.285,
+      -0.331
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     555447000,
+     568261000,
+     610812000,
+     628690000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (exel:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (exel:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (exel:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (exel:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Product' (us-gaap:ProductMember) dropped: it is the parent of Cabometyx, Cometriq in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Collaboration' (exel:CollaborationMember) dropped: its values equal the sum of License, Service",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Cabometyx' (exel:CabometyxMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Gross, Product, Sales Discounts And Allowances, License, Service)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Cometriq' (exel:CometriqMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Gross, Product, Sales Discounts And Allowances, License, Service)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product' (us-gaap:ProductMember) dropped: it is the parent of Cabometyx, Cometriq in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Collaboration' (exel:CollaborationMember) dropped: its values equal the sum of License, Service",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Cabometyx' (exel:CabometyxMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Gross, Product, Sales Discounts And Allowances, License, Service)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Cometriq' (exel:CometriqMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Product, Gross, Product, Sales Discounts And Allowances, License, Service)"
+ ],
+ "complete": true
+}

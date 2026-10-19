@@ -1,0 +1,236 @@
+{
+ "ticker": "HBM",
+ "cik": 1322422,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T11:27:04-04:00",
+ "newest_filing_date": "2026-09-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001322422.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001648/form40f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HBM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HBM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Hudbay Minerals Inc.",
+  "cik": 1322422,
+  "description": null,
+  "description_short": "Hudbay (TSX, NYSE: HBM) is a copper-focused critical minerals mining company with three long-life operations and a world-class pipeline of copper growth projects in tier-one mining jurisdictions of Canada, Peru and the United States. Hudbay's operating portfolio includes the Constancia mine in Cusco (Peru), the Snow Lake operations in Manitoba (Canada) and the Copper Mountain mine in British Columbia (Canada). Copper is the primary metal produced by the Company, which is complemented by meaningful gold production and by-product zinc, silver and molybdenum. Hudbay's growth pipeline includes the Copper World project in Arizona (United States), the Cactus project in Arizona (United States), the Mason project in Nevada (United States), the Llaguen project in La Libertad (Peru) and several expansion and exploration opportunities near its existing operations.",
+  "industry": "Metal Mining",
+  "sector": "Basic Materials",
+  "region": "North America",
+  "sic": "1000",
+  "sic_description": "Metal Mining",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.hudbayminerals.com",
+  "headquarters": "Toronto, Ontario",
+  "address": {
+   "street": "25 York Street Suite 800",
+   "city": "Toronto",
+   "state": "Ontario",
+   "zip": "M5J 2V5",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2026-03-27"
+  },
+  "phone": "416-362-8181",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-04-20",
+  "first_sec_filing_form": "F-X",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001322422&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-005080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326005080/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-003944",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326003944/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-003907",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326003907/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-003425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326003425/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-003325",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326003325/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-002918",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326002918/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-002809",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326002809/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-002266",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326002266/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-14",
+   "period": "2026-05-19",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-001973",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001973/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-27",
+   "period": "2026-01-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-001650",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001650/form6k.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2026-03-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001062993-26-001648",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001648/form40f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-001351",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001351/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-001310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001310/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-001224",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001224/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-001113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001113/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-16",
+   "period": "2026-01-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-000314",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326000314/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-16",
+   "period": "2025-12-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-25-017353",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299325017353/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-13",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-25-016717",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299325016717/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-07",
+   "period": "2025-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-25-015964",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299325015964/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-07",
+   "period": "2025-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-25-015949",
+   "url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299325015949/form6k.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2026-03-27)",
+  "employees: no headcount sentence found in the 40-F filed 2026-03-27"
+ ]
+}

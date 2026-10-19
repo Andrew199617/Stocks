@@ -1,0 +1,370 @@
+{
+ "ticker": "EHC",
+ "cik": 785161,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000785161-26-000081",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000081/ehc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000785161-26-000130",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000130/ehc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000785161-26-000186",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/785161/000078516126000186/ehc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ehc:InpatientMember",
+     "label": "Inpatient",
+     "values": [
+      4693800000,
+      5230500000,
+      5756300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9776,
+      0.9734,
+      0.9699
+     ],
+     "growth_yoy": [
+      null,
+      0.1143,
+      0.1005
+     ]
+    },
+    {
+     "member": "ehc:OtherMember",
+     "label": "Other",
+     "values": [
+      107400000,
+      142700000,
+      178900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0224,
+      0.0266,
+      0.0301
+     ],
+     "growth_yoy": [
+      null,
+      0.3287,
+      0.2537
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4801200000,
+     5373200000,
+     5935200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ehc:MedicareMember",
+     "label": "Medicare",
+     "values": [
+      975500000,
+      939700000,
+      1038500000,
+      1047600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6703,
+      0.6446,
+      0.6545,
+      0.6558
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0646,
+      0.1148
+     ]
+    },
+    {
+     "member": "ehc:MedicareAdvantageMember",
+     "label": "Medicare Advantage",
+     "values": [
+      239600000,
+      246000000,
+      257600000,
+      259400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1646,
+      0.1688,
+      0.1624,
+      0.1624
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0751,
+      0.0545
+     ]
+    },
+    {
+     "member": "ehc:ManagedCareMember",
+     "label": "Managed Care",
+     "values": [
+      145700000,
+      163000000,
+      167700000,
+      171300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1001,
+      0.1118,
+      0.1057,
+      0.1072
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.151,
+      0.0509
+     ]
+    },
+    {
+     "member": "ehc:MedicaidMember",
+     "label": "Medicaid",
+     "values": [
+      42000000,
+      45200000,
+      46100000,
+      49600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0289,
+      0.031,
+      0.0291,
+      0.0311
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0976,
+      0.0973
+     ]
+    },
+    {
+     "member": "ehc:OtherIncomeSourceMember",
+     "label": "Other Income Source",
+     "values": [
+      35200000,
+      41300000,
+      50800000,
+      43800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0242,
+      0.0283,
+      0.032,
+      0.0274
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4432,
+      0.0605
+     ]
+    },
+    {
+     "member": "ehc:OtherThirdpartyPayorsMember",
+     "label": "Other Third-party Payors",
+     "values": [
+      8300000,
+      10400000,
+      10700000,
+      11900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0057,
+      0.0071,
+      0.0067,
+      0.0074
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2892,
+      0.1442
+     ]
+    },
+    {
+     "member": "ehc:WorkersCompensationMember",
+     "label": "Workers' Compensation",
+     "values": [
+      6000000,
+      7500000,
+      8100000,
+      7100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0041,
+      0.0051,
+      0.0051,
+      0.0044
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.35,
+      -0.0533
+     ]
+    },
+    {
+     "member": "ehc:PatientsMember",
+     "label": "Patients",
+     "values": [
+      3100000,
+      4600000,
+      7100000,
+      6700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0021,
+      0.0032,
+      0.0045,
+      0.0042
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.2903,
+      0.4565
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1455400000,
+     1457700000,
+     1586600000,
+     1597400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Inpatient Rehabilitation' (ehc:InpatientRehabilitationMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Inpatient Rehabilitation' (ehc:InpatientRehabilitationMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Inpatient' (ehc:InpatientMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Medicare, Medicare Advantage, Managed Care, Medicaid, Other Third-party Payors, Workers' Compensation, Patients, Other Income Source)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Other' (ehc:OtherMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

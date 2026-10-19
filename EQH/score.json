@@ -1,0 +1,108 @@
+{
+ "ticker": "EQH",
+ "name": "Equitable Holdings, Inc.",
+ "sector": "Finance / Retirement, Asset Management & Wealth (Insurance)",
+ "price": 53.21,
+ "market_cap_b": 15.86,
+ "engine_version": 5,
+ "base_oe_per_share": 1.4022140221402215,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow finance moat 5/10: an integrated retirement manufacturer + 68%-owned AB asset manager + advisor distribution platform at $1.1-1.2T AUM/A with a leading RILA/variable-annuity franchise and long-duration in-force books \u2014 against commodity, fee-competed products with no structural pricing power, GAAP earnings and book value hostage to market-risk-benefit/hedge and AOCI marks (fundamentals.json carries no roic_proxy or gross-margin series for this insurer presentation, and filed ROE is meaningless on AOCI-distorted equity \u2014 FY2025 equity was -$74M and Q2 2026 book value per share including AOCI was -$6.79, vs $16.89 ex-AOCI and $30.92 ex-AOCI with AB at market), plus a pending Corebridge merger that will exchange the standalone shares. No evidence supports 7+: returns are earned in a risk business whose bad years are set by markets and biometric experience, not by the franchise.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 7.8%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Investment in capitalized software, leasehold improvements and EDP equipment': $(34) million for FY2025, with $(153) million for FY2024 and $(117) million for FY2023 in the same statement (all in $ millions)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 20.6x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 5.18,
+   "irr": 0.0351
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 8.34,
+   "irr": 0.0434
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 11.43,
+   "irr": 0.0518
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 15.47,
+   "irr": 0.0629
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 23.43,
+   "irr": 0.084
+  }
+ },
+ "iv_at_15": 12.24,
+ "iv_at_12": 16.2,
+ "implied_irr": 0.0544,
+ "implied_irr_base_case": 0.0518,
+ "upside_at_15_pct": -77.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Integrated retirement/AB/wealth insurer, moat 5/10 \u2014 on the sweep's OCF-based owner's earnings it does not clear 15% (Tier D, weighted IRR 5.44%, IV@15% $12.24 vs $53.21; clears 15% only at ~$12 on this definition), at low confidence: filed OCF is a poor lens for this insurer (non-GAAP operating earnings run far above filed OCF) and the pending Corebridge merger will exchange the standalone shares, so D is a model-misfit verdict, not a clean earnings-power read.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0434,
+ "irr_bull": 0.0629,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 8.68,
+ "iv_at_25": 6.71,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -8602000000,
+ "shares_diluted_latest": 298100000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Integrated retirement value chain \u2014 product manufacturer (Equitable), 68%-owned AllianceBernstein asset manager and Equitable Advisors distribution in one group; $1.1T AUM/A at FY2025, $1.2T at Q2 2026",
+  "Leading registered index-linked / variable annuity franchise with long-duration in-force books that switch slowly",
+  "Scale and advisor distribution that are hard to replicate quickly in U.S. retirement",
+  "Persistent capital return \u2014 diluted shares shrinking 7.8%/yr on buybacks; Q2 2026 returned $449M to shareholders"
+ ],
+ "moat_against": [
+  "No structural pricing power \u2014 retirement, annuity and asset-management products are price- and fee-competed; AB fees face passive compression",
+  "GAAP results hostage to market-risk-benefit and hedge revaluations \u2014 FY2025 net loss and Q2 2026 net loss despite positive operating earnings",
+  "AOCI-swollen balance sheet \u2014 GAAP book value per share was negative at Q2 2026 including AOCI; equity in the filed history fell to -$74M at FY2025",
+  "Pending all-stock Corebridge merger (close expected end-2026) \u2014 standalone per-share value will be exchanged at 1.55516 new-parent shares, so the DCF is a pre-merger hypothetical",
+  "Variable-annuity guarantee and longevity/mortality risk are set by experience, not by the franchise"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 34000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Investment in capitalized software, leasehold improvements and EDP equipment': $(34) million for FY2025, with $(153) million for FY2024 and $(117) million for FY2023 in the same statement (all in $ millions)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 1.5163,
+  "base_oe_with_override": 1.4022,
+  "base_oe_impact_pct": -7.522,
+  "weighted_irr_without_override": 0.0568,
+  "weighted_irr_with_override": 0.0544,
+  "weighted_irr_impact_pp": -0.237,
+  "unblocks_tier": true
+ }
+}

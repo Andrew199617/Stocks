@@ -1,0 +1,344 @@
+{
+ "ticker": "GRAB",
+ "cik": 1855612,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001855612-26-000020",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000020/ck0001855612-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ck0001855612:DeliveriesMember",
+     "label": "Deliveries",
+     "values": [
+      1310000000,
+      1493000000,
+      1800000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5553,
+      0.5338,
+      0.5341
+     ],
+     "growth_yoy": [
+      null,
+      0.1397,
+      0.2056
+     ]
+    },
+    {
+     "member": "ck0001855612:MobilityMember",
+     "label": "Mobility",
+     "values": [
+      871000000,
+      1047000000,
+      1219000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3692,
+      0.3743,
+      0.3617
+     ],
+     "growth_yoy": [
+      null,
+      0.2021,
+      0.1643
+     ]
+    },
+    {
+     "member": "ck0001855612:FinancialServicesMember",
+     "label": "Financial Services",
+     "values": [
+      177000000,
+      253000000,
+      347000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.075,
+      0.0905,
+      0.103
+     ],
+     "growth_yoy": [
+      null,
+      0.4294,
+      0.3715
+     ]
+    },
+    {
+     "member": "ck0001855612:OtherRevenueStreamsMember",
+     "label": "Other Revenue Streams",
+     "values": [
+      1000000,
+      4000000,
+      4000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0004,
+      0.0014,
+      0.0012
+     ],
+     "growth_yoy": [
+      null,
+      3.0,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2359000000,
+     2797000000,
+     3370000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:MY",
+     "label": "MALAYSIA",
+     "values": [
+      673000000,
+      816000000,
+      1039000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2853,
+      0.2917,
+      0.3083
+     ],
+     "growth_yoy": [
+      null,
+      0.2125,
+      0.2733
+     ]
+    },
+    {
+     "member": "country:SG",
+     "label": "SINGAPORE",
+     "values": [
+      480000000,
+      578000000,
+      727000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2035,
+      0.2066,
+      0.2157
+     ],
+     "growth_yoy": [
+      null,
+      0.2042,
+      0.2578
+     ]
+    },
+    {
+     "member": "country:ID",
+     "label": "INDONESIA",
+     "values": [
+      605000000,
+      643000000,
+      715000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2565,
+      0.2299,
+      0.2122
+     ],
+     "growth_yoy": [
+      null,
+      0.0628,
+      0.112
+     ]
+    },
+    {
+     "member": "country:PH",
+     "label": "PHILIPPINES",
+     "values": [
+      200000000,
+      265000000,
+      316000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0848,
+      0.0947,
+      0.0938
+     ],
+     "growth_yoy": [
+      null,
+      0.325,
+      0.1925
+     ]
+    },
+    {
+     "member": "country:TH",
+     "label": "THAILAND",
+     "values": [
+      205000000,
+      252000000,
+      288000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0869,
+      0.0901,
+      0.0855
+     ],
+     "growth_yoy": [
+      null,
+      0.2293,
+      0.1429
+     ]
+    },
+    {
+     "member": "country:VN",
+     "label": "VIET NAM",
+     "values": [
+      185000000,
+      228000000,
+      255000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0784,
+      0.0815,
+      0.0757
+     ],
+     "growth_yoy": [
+      null,
+      0.2324,
+      0.1184
+     ]
+    },
+    {
+     "member": "ck0001855612:RestOfSoutheastAsiaMember",
+     "label": "Rest of Southeast Asia",
+     "values": [
+      11000000,
+      15000000,
+      30000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0047,
+      0.0054,
+      0.0089
+     ],
+     "growth_yoy": [
+      null,
+      0.3636,
+      1.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2359000000,
+     2797000000,
+     3370000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/ProfitLoss/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

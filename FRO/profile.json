@@ -1,0 +1,253 @@
+{
+ "ticker": "FRO",
+ "cik": 913290,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T02:26:25-04:00",
+ "newest_filing_date": "2026-09-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000913290.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/913290/000162828026021774/fro-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FRO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FRO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Frontline plc",
+  "cik": 913290,
+  "description": {
+   "text": "As of December 31, 2025, the Company’s fleet consisted of 80 vessels owned by the Company (41 VLCCs, 21 Suezmax tankers, 18 LR2/Aframax tankers), with an aggregate capacity of approximately 17.6 million DWT. Our vessels operate worldwide and therefore management does not evaluate performance by geographical region as this information is not meaningful. We own various vessel owning and operating subsidiaries. Our operations take place substantially outside of the United States. Our subsidiaries, therefore, own and operate vessels that may be affected by changes in foreign governments and other economic and political conditions. We are engaged in transporting crude oil and its related refined petroleum products and our vessels operate in the spot and time charter markets. Our VLCCs are specifically designed for the transportation of crude oil and, due to their size, are primarily used to transport crude oil from the Middle East Gulf to the Far East, Northern Europe, the Caribbean and the Louisiana Offshore Oil Port. Our Suezmax tankers are similarly designed for worldwide trading, but the trade for these vessels is mainly in the Atlantic Basin, Middle East and Southeast Asia. Our LR2/ Aframax tankers are designed to be flexible, able to transport primarily refined products, but also fuel and crude oil from smaller ports limited by draft restrictions.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-27",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-021774",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000162828026021774/fro-20251231.htm"
+  },
+  "description_short": "Frontline Ltd is a shipping company engaged in the seaborne transportation of crude oil and oil products. Group operates through the tankers segment. The tankers segment includes crude oil tankers and product tankers. Its geographical area of operation includes Arabian Gulf, West African, the North Sea, and the Caribbean. Frontline earns revenue through voyage charters, time charters, and a finance lease. It is also involved in the charter, purchase, and sale of vessels.",
+  "industry": "Marine Transportation",
+  "sector": "Consumer Discretionary",
+  "region": "Caribbean",
+  "sic": "4412",
+  "sic_description": "Deep Sea Foreign Transportation of  Freight",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.frontlineplc.cy",
+  "headquarters": "Limassol, Cyprus",
+  "address": {
+   "street": "8, John Kennedy Street Iris House Off. 740B",
+   "city": "Limassol",
+   "state": null,
+   "zip": "3106",
+   "country": "Cyprus",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-27"
+  },
+  "phone": "35725-588767",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a single function's or location's headcount, not the company total",
+   "evidence": "As of December 31, 2025, we employed 85 people in our offices in Cyprus, the United Kingdom, Singapore, Norway and China.",
+   "form": "20-F",
+   "filed": "2026-03-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000162828026021774/fro-20251231.htm"
+  },
+  "first_sec_filing": "1995-01-31",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "FRONTLINE LTD /",
+   "LONDON & OVERSEAS FREIGHTERS LTD"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000913290&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-062234",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000162828026062234/fro-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-26-005942",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957426005942/p15060813_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-26",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-26-003700",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957426003700/p12167097_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-26-001955",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957426001955/d12130957_6-k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001628280-26-021774",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000162828026021774/fro-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-03",
+   "period": "2026-02-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-26-001455",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957426001455/d12110970_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-26-001430",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957426001430/d12109952_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-09",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-26-000206",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957426000206/d12076689_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-007519",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425007519/s12345678_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-21",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-007144",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425007144/d12045067_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-18",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-005741",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425005741/d11825956_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-17",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000913290-25-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091329025000017/fro-20250630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-29",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-005407",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425005407/d11974450_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-05-23",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-003385",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425003385/d11810056_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-04-09",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-002341",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425002341/d11777391_6-k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2025-04-07",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0000913290-25-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091329025000003/fro-20241231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-03-03",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-25-001757",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957425001757/s11619606_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2024-12-16",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-24-007137",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957424007137/d11548980_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2024-11-27",
+   "period": "2024-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000919574-24-006927",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091957424006927/d11538403_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2024-09-27",
+   "period": "2024-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0000913290-24-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/913290/000091329024000004/fro-20240630.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a single function's or location's headcount, not the company total in the 20-F filed 2026-03-27: \"As of December 31, 2025, we employed 85 people in our offices in Cyprus, the United Kingdom, Singapore, Norway and China.\""
+ ]
+}

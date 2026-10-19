@@ -1,0 +1,952 @@
+{
+ "ticker": "FRHC",
+ "cik": 924805,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0000924805-26-000006",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000006/frhc-20251231_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0000924805-26-000012",
+   "filed": "2026-06-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000012/frhc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000924805-26-000047",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/924805/000092480526000047/frhc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "frhc:BrokerageSegmentMember",
+     "label": "Brokerage Segment",
+     "values": [
+      621954000,
+      717349000,
+      831508000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3776,
+      0.3579,
+      0.3795
+     ],
+     "growth_yoy": [
+      null,
+      0.1534,
+      0.1591
+     ]
+    },
+    {
+     "member": "frhc:BankingSegmentMember",
+     "label": "Banking Segment",
+     "values": [
+      615870000,
+      506148000,
+      689202000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3739,
+      0.2525,
+      0.3145
+     ],
+     "growth_yoy": [
+      null,
+      -0.1782,
+      0.3617
+     ]
+    },
+    {
+     "member": "frhc:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      325505000,
+      636654000,
+      497784000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1976,
+      0.3177,
+      0.2272
+     ],
+     "growth_yoy": [
+      null,
+      0.9559,
+      -0.2181
+     ]
+    },
+    {
+     "member": "frhc:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      83927000,
+      144004000,
+      172797000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0509,
+      0.0719,
+      0.0789
+     ],
+     "growth_yoy": [
+      null,
+      0.7158,
+      0.1999
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1647256000,
+     2004155000,
+     2191291000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "frhc:BrokerageSegmentMember",
+     "label": "Brokerage Segment",
+     "values": [
+      213331000,
+      154305000,
+      176260000,
+      209603000,
+      210761000,
+      282557000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.321,
+      0.517,
+      0.3364,
+      0.3334,
+      0.4189,
+      0.3857
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0175,
+      0.3659,
+      0.6031
+     ]
+    },
+    {
+     "member": "frhc:BankingSegmentMember",
+     "label": "Banking Segment",
+     "values": [
+      206370000,
+      7067000,
+      146242000,
+      235538000,
+      201700000,
+      225226000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3105,
+      0.0237,
+      0.2791,
+      0.3747,
+      0.4009,
+      0.3075
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1413,
+      27.5411,
+      0.5401
+     ]
+    },
+    {
+     "member": "frhc:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      197831000,
+      113385000,
+      164577000,
+      129874000,
+      43002000,
+      150857000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.2977,
+      0.3799,
+      0.3141,
+      0.2066,
+      0.0855,
+      0.2059
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.3435,
+      -0.6207,
+      -0.0834
+     ]
+    },
+    {
+     "member": "frhc:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      47046000,
+      23682000,
+      36902000,
+      53606000,
+      47677000,
+      73887000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0708,
+      0.0794,
+      0.0704,
+      0.0853,
+      0.0948,
+      0.1009
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1394,
+      1.0132,
+      1.0022
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     664578000,
+     298439000,
+     523981000,
+     628621000,
+     503140000,
+     732527000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "FY2026 end"
+   ],
+   "rows": [
+    {
+     "member": "frhc:BrokerageSegmentMember",
+     "label": "Brokerage Segment",
+     "values": [
+      4344555000,
+      6136241000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4382,
+      0.4664
+     ],
+     "growth_yoy": [
+      null,
+      0.4124
+     ]
+    },
+    {
+     "member": "frhc:BankingSegmentMember",
+     "label": "Banking Segment",
+     "values": [
+      4441315000,
+      5359812000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4479,
+      0.4074
+     ],
+     "growth_yoy": [
+      null,
+      0.2068
+     ]
+    },
+    {
+     "member": "frhc:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      713452000,
+      892186000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.072,
+      0.0678
+     ],
+     "growth_yoy": [
+      null,
+      0.2505
+     ]
+    },
+    {
+     "member": "frhc:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      415795000,
+      767000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0419,
+      0.0583
+     ],
+     "growth_yoy": [
+      null,
+      0.8447
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9915117000,
+     13155239000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q3 FY2026",
+    "FY2026 end",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "frhc:BankingSegmentMember",
+     "label": "Banking Segment",
+     "values": [
+      4441315000,
+      5027954000,
+      5359812000,
+      6026079000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4479,
+      0.4062,
+      0.4074,
+      0.429
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2068,
+      null
+     ]
+    },
+    {
+     "member": "frhc:BrokerageSegmentMember",
+     "label": "Brokerage Segment",
+     "values": [
+      4344555000,
+      5882884000,
+      6136241000,
+      5690092000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4382,
+      0.4753,
+      0.4664,
+      0.4051
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4124,
+      null
+     ]
+    },
+    {
+     "member": "frhc:InsuranceSegmentMember",
+     "label": "Insurance Segment",
+     "values": [
+      713452000,
+      818204000,
+      892186000,
+      1049192000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.072,
+      0.0661,
+      0.0678,
+      0.0747
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2505,
+      null
+     ]
+    },
+    {
+     "member": "frhc:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      415795000,
+      647768000,
+      767000000,
+      1281521000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0419,
+      0.0523,
+      0.0583,
+      0.0912
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.8447,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9915117000,
+     12376810000,
+     13155239000,
+     14046883000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:KZ",
+     "label": "KAZAKHSTAN",
+     "values": [
+      1471247000,
+      1703719000,
+      1838524000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8932,
+      0.8501,
+      0.839
+     ],
+     "growth_yoy": [
+      null,
+      0.158,
+      0.0791
+     ]
+    },
+    {
+     "member": "country:AM",
+     "label": "ARMENIA",
+     "values": [
+      43132000,
+      181698000,
+      181726000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0262,
+      0.0907,
+      0.0829
+     ],
+     "growth_yoy": [
+      null,
+      3.2126,
+      0.0002
+     ]
+    },
+    {
+     "member": "country:CY",
+     "label": "CYPRUS",
+     "values": [
+      118332000,
+      69490000,
+      154160000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0718,
+      0.0347,
+      0.0704
+     ],
+     "growth_yoy": [
+      null,
+      -0.4128,
+      1.2184
+     ]
+    },
+    {
+     "member": "frhc:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      1703000,
+      5297000,
+      13953000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.001,
+      0.0026,
+      0.0064
+     ],
+     "growth_yoy": [
+      null,
+      2.1104,
+      1.6341
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      12842000,
+      43951000,
+      2928000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0078,
+      0.0219,
+      0.0013
+     ],
+     "growth_yoy": [
+      null,
+      2.4224,
+      -0.9334
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1647256000,
+     2004155000,
+     2191291000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "country:KZ",
+     "label": "KAZAKHSTAN",
+     "values": [
+      558871000,
+      228454000,
+      452124000,
+      534677000,
+      415498000,
+      612151000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.8409,
+      0.7655,
+      0.8629,
+      0.8506,
+      0.8258,
+      0.8357
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0433,
+      0.8187,
+      0.3539
+     ]
+    },
+    {
+     "member": "country:AM",
+     "label": "ARMENIA",
+     "values": [
+      61150000,
+      59379000,
+      43661000,
+      45930000,
+      36231000,
+      65162000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.092,
+      0.199,
+      0.0833,
+      0.0731,
+      0.072,
+      0.089
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.2489,
+      -0.3898,
+      0.4925
+     ]
+    },
+    {
+     "member": "country:CY",
+     "label": "CYPRUS",
+     "values": [
+      22131000,
+      14702000,
+      20456000,
+      40796000,
+      57765000,
+      47896000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0333,
+      0.0493,
+      0.039,
+      0.0649,
+      0.1148,
+      0.0654
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.8434,
+      2.9291,
+      1.3414
+     ]
+    },
+    {
+     "member": "frhc:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      2173000,
+      1368000,
+      1959000,
+      3988000,
+      3894000,
+      4980000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0033,
+      0.0046,
+      0.0037,
+      0.0063,
+      0.0077,
+      0.0068
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.8353,
+      1.8465,
+      1.5421
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      20253000,
+      -5464000,
+      5781000,
+      3230000,
+      -10248000,
+      2338000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0305,
+      -0.0183,
+      0.011,
+      0.0051,
+      -0.0204,
+      0.0032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.8405,
+      null,
+      -0.5956
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     664578000,
+     298439000,
+     523981000,
+     628621000,
+     503140000,
+     732527000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

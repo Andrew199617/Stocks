@@ -1,0 +1,926 @@
+{
+ "ticker": "FMS",
+ "cik": 1333141,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-019005",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1333141/000110465926019005/fms-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "EUR",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fms:CareDeliverySegmentMember",
+     "label": "Care Delivery",
+     "values": [
+      14300841000,
+      13522664000,
+      13238321000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7351,
+      0.6994,
+      0.6745
+     ],
+     "growth_yoy": [
+      null,
+      -0.0544,
+      -0.021
+     ]
+    },
+    {
+     "member": "fms:CareEnablementSegmentMember",
+     "label": "Care Enablement",
+     "values": [
+      3875660000,
+      4060789000,
+      4141908000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1992,
+      0.21,
+      0.211
+     ],
+     "growth_yoy": [
+      null,
+      0.0478,
+      0.02
+     ]
+    },
+    {
+     "member": "fms:ValueBasedCareSegmentMember",
+     "label": "Value-Based Care Segment",
+     "values": [
+      1277116000,
+      1752456000,
+      2247373000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0656,
+      0.0906,
+      0.1145
+     ],
+     "growth_yoy": [
+      null,
+      0.3722,
+      0.2824
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19453617000,
+     19335909000,
+     19627602000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fms:CareDeliverySegmentMember",
+     "label": "Care Delivery",
+     "values": [
+      14300841000,
+      13522664000,
+      13238321000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7881,
+      0.7658,
+      0.7598
+     ],
+     "growth_yoy": [
+      null,
+      -0.0544,
+      -0.021
+     ]
+    },
+    {
+     "member": "fms:CareEnablementSegmentMember",
+     "label": "Care Enablement",
+     "values": [
+      3795101000,
+      3996462000,
+      4054006000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2091,
+      0.2263,
+      0.2327
+     ],
+     "growth_yoy": [
+      null,
+      0.0531,
+      0.0144
+     ]
+    },
+    {
+     "member": "fms:ValueBasedCareSegmentMember",
+     "label": "Value-Based Care Segment",
+     "values": [
+      49976000,
+      138432000,
+      130663000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0028,
+      0.0078,
+      0.0075
+     ],
+     "growth_yoy": [
+      null,
+      1.77,
+      -0.0561
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     18145918000,
+     17657558000,
+     17422990000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fms:CareDeliverySegmentMember",
+     "label": "Care Delivery",
+     "values": [
+      1611544000,
+      1217971000,
+      1614099000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1768,
+      0.8747,
+      0.8835
+     ],
+     "growth_yoy": [
+      null,
+      -0.2442,
+      0.3252
+     ]
+    },
+    {
+     "member": "fms:CareEnablementSegmentMember",
+     "label": "Care Enablement",
+     "values": [
+      -66521000,
+      267098000,
+      325893000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0486,
+      0.1918,
+      0.1784
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2201
+     ]
+    },
+    {
+     "member": "fms:ValueBasedCareSegmentMember",
+     "label": "Value-Based Care Segment",
+     "values": [
+      -95732000,
+      -28152000,
+      1225000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0699,
+      -0.0202,
+      0.0007
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Inter-segment",
+     "values": [
+      -12705000,
+      -16571000,
+      4924000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0093,
+      -0.0119,
+      0.0027
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "fms:CorporateSegmentMember",
+     "label": "Corporate",
+     "values": [
+      -67148000,
+      -47951000,
+      -119105000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.049,
+      -0.0344,
+      -0.0652
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1369438000,
+     1392395000,
+     1827036000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "fms:CareDeliverySegmentMember",
+     "label": "Care Delivery",
+     "values": [
+      41058324000,
+      42719297000,
+      39239152000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2101,
+      1.2727,
+      1.2657
+     ],
+     "growth_yoy": [
+      null,
+      0.0405,
+      -0.0815
+     ]
+    },
+    {
+     "member": "fms:CareEnablementSegmentMember",
+     "label": "Care Enablement",
+     "values": [
+      13392422000,
+      14685989000,
+      13555088000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3947,
+      0.4375,
+      0.4372
+     ],
+     "growth_yoy": [
+      null,
+      0.0966,
+      -0.077
+     ]
+    },
+    {
+     "member": "fms:ValueBasedCareSegmentMember",
+     "label": "Value-Based Care Segment",
+     "values": [
+      655345000,
+      679712000,
+      640213000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0193,
+      0.0202,
+      0.0207
+     ],
+     "growth_yoy": [
+      null,
+      0.0372,
+      -0.0581
+     ]
+    },
+    {
+     "member": "fms:CorporateSegmentMember",
+     "label": "Corporate",
+     "values": [
+      9959710000,
+      10812572000,
+      10997952000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2935,
+      0.3221,
+      0.3547
+     ],
+     "growth_yoy": [
+      null,
+      0.0856,
+      0.0171
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Inter-segment",
+     "values": [
+      -31135993000,
+      -35330991000,
+      -33430072000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.9177,
+      -1.0526,
+      -1.0783
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     33929808000,
+     33566579000,
+     31002333000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fms:CareDeliverySegmentMember",
+     "label": "Care Delivery",
+     "values": [
+      1120107000,
+      1040805000,
+      976400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6945,
+      0.6778,
+      0.6672
+     ],
+     "growth_yoy": [
+      null,
+      -0.0708,
+      -0.0619
+     ]
+    },
+    {
+     "member": "fms:CareEnablementSegmentMember",
+     "label": "Care Enablement",
+     "values": [
+      457497000,
+      462507000,
+      457103000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2837,
+      0.3012,
+      0.3124
+     ],
+     "growth_yoy": [
+      null,
+      0.011,
+      -0.0117
+     ]
+    },
+    {
+     "member": "fms:ValueBasedCareSegmentMember",
+     "label": "Value-Based Care Segment",
+     "values": [
+      5518000,
+      4375000,
+      4939000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0034,
+      0.0028,
+      0.0034
+     ],
+     "growth_yoy": [
+      null,
+      -0.2071,
+      0.1289
+     ]
+    },
+    {
+     "member": "fms:CorporateSegmentMember",
+     "label": "Corporate",
+     "values": [
+      70694000,
+      71922000,
+      66962000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0438,
+      0.0468,
+      0.0458
+     ],
+     "growth_yoy": [
+      null,
+      0.0174,
+      -0.069
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Inter-segment",
+     "values": [
+      -41079000,
+      -44073000,
+      -41991000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0255,
+      -0.0287,
+      -0.0287
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1612737000,
+     1535536000,
+     1463413000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fms:HealthCareServicesMember",
+     "label": "Health Care Services",
+     "values": [
+      14166796000,
+      13471363000,
+      13097267000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7282,
+      0.6967,
+      0.6673
+     ],
+     "growth_yoy": [
+      null,
+      -0.0491,
+      -0.0278
+     ]
+    },
+    {
+     "member": "fms:HealthCareProductsMember",
+     "label": "Health Care Products",
+     "values": [
+      4059681000,
+      4250522000,
+      4413625000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2087,
+      0.2198,
+      0.2249
+     ],
+     "growth_yoy": [
+      null,
+      0.047,
+      0.0384
+     ]
+    },
+    {
+     "member": "ifrs-full:InsuranceContractsIssuedMember",
+     "label": "Insurance contracts issued",
+     "values": [
+      1227140000,
+      1614024000,
+      2116710000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0631,
+      0.0835,
+      0.1078
+     ],
+     "growth_yoy": [
+      null,
+      0.3153,
+      0.3114
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19453617000,
+     19335909000,
+     19627602000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fms:HealthCareServicesMember",
+     "label": "Health Care Services",
+     "values": [
+      14166796000,
+      13471363000,
+      13097267000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7807,
+      0.7629,
+      0.7517
+     ],
+     "growth_yoy": [
+      null,
+      -0.0491,
+      -0.0278
+     ]
+    },
+    {
+     "member": "fms:HealthCareProductsMember",
+     "label": "Health Care Products",
+     "values": [
+      3979122000,
+      4186195000,
+      4325723000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2193,
+      0.2371,
+      0.2483
+     ],
+     "growth_yoy": [
+      null,
+      0.052,
+      0.0333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     18145918000,
+     17657558000,
+     17422990000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "United States",
+     "values": [
+      13506250000,
+      13667244000,
+      14180803000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6943,
+      0.7068,
+      0.7225
+     ],
+     "growth_yoy": [
+      null,
+      0.0119,
+      0.0376
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "Germany",
+     "values": [
+      484238000,
+      478962000,
+      494574000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0249,
+      0.0248,
+      0.0252
+     ],
+     "growth_yoy": [
+      null,
+      -0.0109,
+      0.0326
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     19453617000,
+     19335909000,
+     19627602000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Total Segment' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Revenues/annual: reconciling row 'Inter-segment' (ifrs-full:EliminationOfIntersegmentAmountsMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Segment' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: row 'Total Segment' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Assets/annual: row 'Total Segment' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Total Segment' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/Revenues/annual: row 'Foreign countries' (ifrs-full:ForeignCountriesMember) dropped: it is the parent of United States in the filing's definition linkbase",
+  "geography/Revenues/annual: rows sum to 74.8% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

@@ -1,0 +1,88 @@
+{
+ "ticker": "HUBS",
+ "name": "HubSpot, Inc.",
+ "sector": "Technology / CRM software",
+ "price": 230.94,
+ "market_cap_b": 12.28,
+ "engine_version": 5,
+ "base_oe_per_share": 5.484136219067566,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Unified multi-hub CRM platform with real workflow switching costs and a free-tier funnel, but GAAP ROIC was negative to ~0% across 2021-2025 (SBC consumes the 83-85% gross margin), NRR is only 102%, and Salesforce/Microsoft/low-cost rivals plus AI-agent pressure on per-seat pricing cap the moat at moderate.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 3.37 vs 3-yr median 1.08 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 39.66,
+   "irr": 0.0474
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 63.48,
+   "irr": 0.0626
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 86.43,
+   "irr": 0.0768
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 116.21,
+   "irr": 0.0941
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 174.16,
+   "irr": 0.1243
+  }
+ },
+ "iv_at_15": 85.77,
+ "iv_at_12": 117.52,
+ "implied_irr": 0.0767,
+ "implied_irr_base_case": 0.0768,
+ "upside_at_15_pct": -62.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality CRM platform, moat 5/10 \u2014 even on TTM OE of $5.48/share the weighted IRR is only 7.7% at $230.94 (IV@15% $85.77); clears 15% only below ~$86, dragged by ~$515M TTM SBC and decelerating growth.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0626,
+ "irr_bull": 0.0941,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 57.8,
+ "iv_at_25": 42.82,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 53194000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Unified multi-hub platform \u2014 embedded workflows and customer data make ripping it out painful",
+  "Free-CRM funnel converting a 306k+ customer base, with upmarket and multi-hub expansion",
+  "Large app/integration ecosystem and ease-of-use advantage vs Salesforce in the mid-market",
+  "High, stable gross margin (83-85% over the last five fiscal years)"
+ ],
+ "moat_against": [
+  "GAAP ROIC proxy negative to ~0% through 2021-2025 \u2014 no proven returns above cost of capital",
+  "Net revenue retention only 102% (Q2 2026) \u2014 weak expansion pricing power",
+  "Salesforce, Microsoft Dynamics and low-cost rivals (Zoho, Pipedrive) contest every segment; SMB switching costs are modest",
+  "Per-seat pricing threatened by AI agents \u2014 HubSpot itself moved Customer Agent to $0.50-per-resolution outcome pricing",
+  "SBC of $514,712,000 TTM (~17% of revenue) is a persistent real cost keeping GAAP returns near zero"
+ ]
+}

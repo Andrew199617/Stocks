@@ -1,0 +1,85 @@
+{
+ "ticker": "FTV",
+ "name": "Fortive Corporation",
+ "sector": "Industrials / Industrial technology & healthcare solutions",
+ "price": 57.4,
+ "market_cap_b": 19.21,
+ "engine_version": 5,
+ "base_oe_per_share": 2.7205882352941178,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Leading niche brands (Fluke, ASP, Provation) with installed-base consumables, service and workflow-software switching costs and ~50% recurring revenue, but ROIC proxy printed only 4.48-6.98% in FY21-FY25 (below cost of capital, goodwill-heavy) and organic growth is low-single-digit \u2014 a 7+ moat is not supported on this record.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.5%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 3.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 12.75,
+   "irr": 0.0508
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 18.09,
+   "irr": 0.0635
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 23.74,
+   "irr": 0.0773
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 29.58,
+   "irr": 0.091
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 38.04,
+   "irr": 0.11
+  }
+ },
+ "iv_at_15": 24.12,
+ "iv_at_12": 31.91,
+ "implied_irr": 0.0783,
+ "implied_irr_base_case": 0.0773,
+ "upside_at_15_pct": -58.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality niche industrial-tech compounder, moat 5/10 \u2014 does not clear 15% at $57.40 (7.8% weighted IRR, IV@15% $24.12); it clears 15% only below ~$24.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0635,
+ "irr_bull": 0.091,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 17.09,
+ "iv_at_25": 13.21,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2830500000,
+ "shares_diluted_latest": 334600000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Fluke's dominant position in electrical test/calibration with installed-base service and consumables pull-through",
+  "ASP sterilization and Provation/Censis workflow software embedded in hospital processes \u2014 switching costs and regulatory lock-in",
+  "~50% recurring revenue from software, services and consumables",
+  "Gross margin 63.50% in FY2025 (64.18% FY24) \u2014 pricing power in the continuing portfolio",
+  "Fortive Business System operating discipline"
+ ],
+ "moat_against": [
+  "ROIC proxy only 5.82% / 6.98% / 4.48% / 5.22% / 6.86% in FY21-FY25 \u2014 below cost of capital, weighed down by acquisition goodwill",
+  "Continuing revenue grew only +1.9% in FY2025; FY2026 core guidance ~4%",
+  "Cyclical hardware/instrument demand exposed to tariffs, healthcare policy and government spending",
+  "Gross-margin pressure from product mix and tariffs flagged through 2026"
+ ]
+}

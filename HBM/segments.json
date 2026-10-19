@@ -1,0 +1,357 @@
+{
+ "ticker": "HBM",
+ "cik": 1322422,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001062993-26-001648",
+   "filed": "2026-03-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1322422/000106299326001648/form40f_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:PE",
+     "label": "PERU",
+     "values": [
+      1049700000,
+      1161200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5193,
+      0.5252
+     ],
+     "growth_yoy": [
+      null,
+      0.1062
+     ]
+    },
+    {
+     "member": "hbm:ManitobaMember",
+     "label": "Manitoba",
+     "values": [
+      697400000,
+      748700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.345,
+      0.3386
+     ],
+     "growth_yoy": [
+      null,
+      0.0736
+     ]
+    },
+    {
+     "member": "hbm:BritishColumbiaSegmentMember",
+     "label": "British Columbia Segment",
+     "values": [
+      274100000,
+      301100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1356,
+      0.1362
+     ],
+     "growth_yoy": [
+      null,
+      0.0985
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2021200000,
+     2211000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hbm:ManitobaMember",
+     "label": "Manitoba",
+     "values": [
+      241900000,
+      367300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6043,
+      0.4008
+     ],
+     "growth_yoy": [
+      null,
+      0.5184
+     ]
+    },
+    {
+     "member": "country:PE",
+     "label": "PERU",
+     "values": [
+      229800000,
+      322900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5741,
+      0.3523
+     ],
+     "growth_yoy": [
+      null,
+      0.4051
+     ]
+    },
+    {
+     "member": "hbm:ArizonaMember",
+     "label": "Arizona",
+     "values": [
+      -8300000,
+      321400000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0207,
+      0.3507
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hbm:BritishColumbiaSegmentMember",
+     "label": "British Columbia Segment",
+     "values": [
+      -3900000,
+      -4800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0097,
+      -0.0052
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "hbm:CorporateAndOtherActivitiesMember",
+     "label": "Corporate and other activities",
+     "values": [
+      -59200000,
+      -90300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1479,
+      -0.0985
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     400300000,
+     916500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "country:PE",
+     "label": "PERU",
+     "values": [
+      2410000000,
+      2492000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4392,
+      0.4004
+     ],
+     "growth_yoy": [
+      null,
+      0.034
+     ]
+    },
+    {
+     "member": "hbm:BritishColumbiaSegmentMember",
+     "label": "British Columbia Segment",
+     "values": [
+      1076000000,
+      1320200000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1961,
+      0.2121
+     ],
+     "growth_yoy": [
+      null,
+      0.227
+     ]
+    },
+    {
+     "member": "hbm:ArizonaMember",
+     "label": "Arizona",
+     "values": [
+      757300000,
+      1147500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.138,
+      0.1844
+     ],
+     "growth_yoy": [
+      null,
+      0.5153
+     ]
+    },
+    {
+     "member": "hbm:ManitobaMember",
+     "label": "Manitoba",
+     "values": [
+      547400000,
+      471500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0998,
+      0.0758
+     ],
+     "growth_yoy": [
+      null,
+      -0.1387
+     ]
+    },
+    {
+     "member": "hbm:CorporateAndOtherActivitiesMember",
+     "label": "Corporate and other activities",
+     "values": [
+      696900000,
+      792100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.127,
+      0.1273
+     ],
+     "growth_yoy": [
+      null,
+      0.1366
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5487600000,
+     6223300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

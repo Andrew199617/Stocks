@@ -1,0 +1,236 @@
+{
+ "ticker": "EQX",
+ "cik": 1756607,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T15:42:29-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001756607.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1756607/000162828026022120/eqx-20251231_d2.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EQX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EQX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Equinox Gold Corp.",
+  "cik": 1756607,
+  "description": null,
+  "description_short": "Equinox Gold (TSX: EQX, NYSE-A: EQX) is a Canadian mining company positioned as the new North American senior gold producer with a strong foundation of high-quality, long-life gold operations in Canada and across the Americas, and a pipeline of development and expansion projects. Guided by a seasoned leadership team with broad expertise, the Company is focused on disciplined execution, operational excellence and long-term value creation. Equinox Gold offers investors exposure to a diversified portfolio of gold operations, and clear path to growth.",
+  "industry": "Precious Metals",
+  "sector": "Basic Materials",
+  "region": "North America",
+  "sic": "1040",
+  "sic_description": "Gold and Silver Ores",
+  "state_of_incorporation": "A1",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "<br>Emerging growth company",
+  "exchange": "AMEX",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.equinoxgold.com",
+  "headquarters": "Vancouver, BC",
+  "address": {
+   "street": "700 West Pender St. Suite 1501",
+   "city": "Vancouver",
+   "state": "BC",
+   "zip": "V6C 1G8",
+   "country": "Canada",
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2026-03-31"
+  },
+  "phone": "6045580560",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2019-09-10",
+  "first_sec_filing_form": "40FR12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001756607&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006596",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326006596/f6k_101326.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006284",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326006284/f6k_092926.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006132",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326006132/f6k_092126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005594",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326005594/f6k_081726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005267",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326005267/f6k_080526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005261",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326005261/f6k_080526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001756607-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000175660726000004/form6-k2026q2.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-333258",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000119312526333258/d117362d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326005110/f6k_073126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001062993-26-003782",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000106299326003782/form6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004830",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004830/f6k_072226.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004564",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004564/f6k_071026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-09",
+   "period": "2026-07-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004544",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004544/f6k_070926.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004512",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004512/f6k_070726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004310/f6k_062526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-279923",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000119312526279923/d136990d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004268",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004268/f6k_062326.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004220",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326004220/f6k_062226.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003593",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326003593/f6k_052126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003583",
+   "url": "https://www.sec.gov/Archives/edgar/data/1756607/000117184326003583/f6k_052026.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2026-03-31)",
+  "employees: no headcount sentence found in the 40-F filed 2026-03-31"
+ ]
+}

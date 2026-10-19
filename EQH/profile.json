@@ -1,0 +1,294 @@
+{
+ "ticker": "EQH",
+ "cik": 1333986,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T05:41:21-04:00",
+ "newest_filing_date": "2026-09-25",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001333986.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000012/eqh-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EQH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EQH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Equitable Holdings, Inc.",
+  "cik": 1333986,
+  "description": null,
+  "description_short": "Equitable Holdings, Inc. (NYSE: EQH) is a leading financial services holding company comprised of complementary and well-established businesses, Equitable, AllianceBernstein and Equitable Advisors. Equitable Holdings has $1.2 trillion in assets under management and administration (as of 6/30/2026) and more than 5 million client relationships globally. Founded in 1859, Equitable provides retirement and protection strategies to individuals, families and small businesses. AllianceBernstein is a global investment management firm that offers diversified investment services to institutional investors, individuals and private wealth clients. Equitable Advisors, LLC (Equitable Financial Advisors in MI and TN) has approximately 4,600 duly registered and licensed financial professionals that provide financial planning, wealth management, retirement planning, protection and risk management services to clients across the country.",
+  "industry": "Specialty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6411",
+  "sic_description": "Insurance Agents, Brokers & Service",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.equitable.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "1345 Avenue of the Americas",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10105",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "(212) 554-1234",
+  "employees": {
+   "count": 8000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 8,000 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000012/eqh-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-11-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "AXA Equitable Holdings, Inc.",
+   "AXA AMERICA HOLDINGS, INC."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001333986&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-23",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001333986-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000048/axaeq-20260923.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-08-10",
+   "period": "2026-09-23",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-341149",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000119312526341149/d58865ddef14a.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001333986-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000040/eqh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001333986-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000035/axaeq-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0000950142-26-002207",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000095014226002207/eh260814788_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950142-26-002185",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000095014226002185/eh260813538_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950142-26-002136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000095014226002136/eh260809034_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001333986-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000025/eqh-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001333986-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000020/axaeq-20260504.htm"
+  },
+  {
+   "form": "10-K/A",
+   "filed": "2026-04-21",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Annual report",
+   "accession": "0001333986-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000017/eqh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-16",
+   "period": "2026-04-15",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000950142-26-001142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000095014226001142/eh260766806_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-08",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950142-26-001087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000095014226001087/eh260762961_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-26",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0000950142-26-000871",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000095014226000871/eh260756088_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001333986-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000012/eqh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001333986-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398626000004/axaeq-20260204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001333986-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398625000068/eqh-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001333986-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398625000064/axaeq-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001333986-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398625000059/axaeq-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-199248",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000119312525199248/d89677d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-21",
+   "items": [
+    "1.01",
+    "1.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement",
+   "accession": "0001333986-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1333986/000133398625000052/axaeq-20250821.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 10-K Item 1 Business section found outside the table of contents (10-K filed 2026-02-25)"
+ ]
+}

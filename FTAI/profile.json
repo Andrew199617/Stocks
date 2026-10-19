@@ -1,0 +1,286 @@
+{
+ "ticker": "FTAI",
+ "cik": 1590364,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T11:53:45-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001590364.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026012940/ftai-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FTAI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FTAI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FTAI Aviation Ltd.",
+  "cik": 1590364,
+  "description": {
+   "text": "FTAI Aviation Ltd. (Nasdaq: FTAI) is a Cayman Islands exempted company. Except as otherwise specified, “we”, “us”, “our”, “FTAI”, “FTAI Aviation” or “the Company” refer to us and our consolidated subsidiaries. We are a leading independent engine maintenance platform focused on the CFM56-5B, CFM56-7B and V2500 aircraft engines which power the 737NG and A320ceo aircraft. We repair and rebuild engines in our maintenance facilities and with our joint venture partners, and sell or lease the engines to airlines and asset owners around the world. Our primary business model is to sell or lease engines via exchange through our proprietary Maintenance, Repair and Exchange (“MRE”) model which is reported under our Aerospace Products segment. We also own and manage a portfolio of on- and off-lease aircraft and engines through our Aviation Leasing segment. While historically these investment activities have been primarily held on balance sheet, at the end of 2024, we launched our Strategic Capital Initiative, which consists of an asset management business that manages third-party capital to invest in on-lease aircraft and engines. We expect our primary investment activities to be through our Strategic Capital Initiative going forward. As of December 31, 2025, we had total consolidated assets of $4.4 billion and total equity of $334.2 million.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-012940",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026012940/ftai-20251231.htm"
+  },
+  "description_short": "FTAI combines advanced turbine technology and asset ownership to power the world's most essential markets.",
+  "industry": "Misc Corporate Leasing Services",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "7350",
+  "sic_description": "Services-Miscellaneous Equipment Rental & Leasing",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.ftaiaviation.com",
+  "headquarters": "New York, NY",
+  "address": {
+   "street": "405 West 13th Street, 3rd Floor",
+   "city": "New York",
+   "state": "NY",
+   "zip": "10014",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "(332) 239-7600",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-01-03",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Fortress Transportation & Infrastructure Investors LLC",
+   "Fortress Transportation & Infrastructure Investors Ltd."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001590364&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051412",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026051412/ftai-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-050622",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026050622/ftai-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001140361-26-023226",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036126023226/ef20075112_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-029335",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026029335/ftai-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001140361-26-017931",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036126017931/ef20071938_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-028390",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026028390/ftai-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-15",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-014789",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036126014789/ny20066354x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-26-008165",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036126008165/ef20067294_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-012940",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026012940/ftai-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-011685",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000162828026011685/ftai-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-004913",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036126004913/ef20065529_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-002691",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036126002691/ef20064098_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001590364-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000159036425000041/ftai-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-27",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001590364-25-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000159036425000038/ftai-20251027.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-01",
+   "items": [
+    "2.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition",
+   "accession": "0001140361-25-034082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036125034082/ef20055138_8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-08-25",
+   "period": "2025-05-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Amendment: Shareholder vote",
+   "accession": "0001140361-25-032511",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036125032511/ef20054233_8ka.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001590364-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000159036425000023/ftai-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001140361-25-027877",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036125027877/ef20052914_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-24",
+   "period": "2025-06-17",
+   "items": [
+    "4.01",
+    "9.01"
+   ],
+   "description": "Auditor change",
+   "accession": "0001140361-25-023499",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036125023499/ef20050905_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-30",
+   "period": "2025-05-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001140361-25-020864",
+   "url": "https://www.sec.gov/Archives/edgar/data/1590364/000114036125020864/ef20049973_8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-27"
+ ]
+}

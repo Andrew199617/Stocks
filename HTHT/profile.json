@@ -1,0 +1,252 @@
+{
+ "ticker": "HTHT",
+ "cik": 1483994,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T13:15:22-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001483994.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926048058/htht-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HTHT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HTHT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "H World Group Ltd",
+  "cik": 1483994,
+  "description": {
+   "text": "We launched our budget hotel product, HanTing Hi Inn, which was subsequently rebranded as Hi Inn. Our ADSs were listed on the NASDAQ Global Selected Market. We launched the first JI Hotel in Shanghai. We acquired a 51% equity interest in Starway HK, a midscale hotel chain, and expanded our offering to four hotel brands. We changed our Chinese trade name from “HanTing Hotel Group” to “HuaZhu Hotel Group”.",
+   "source": "20-F Item 4 Information on the Company",
+   "form": "20-F",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-048058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926048058/htht-20251231x20f.htm"
+  },
+  "description_short": "Originated in China, H World is a key player in the global hotel industry. As of June 30, 2026, H World operated 13,539 hotels with 1,335,445 rooms in operation in 21 countries. H World's brands include HanTing Hotel, JI Hotel, Orange Hotel, Crystal Orange Hotel, IntercityHotel, Grand JI Hotel, Hi Inn, Ni Hao Hotel, Elan Hotel, Zleep Hotels, Starway Hotel, CitiGO, Manxin Hotel, Madison Hotel, MAXX Hotel, Blossom House, Joya Hotel, Steigenberger Hotels & Resorts, Jaz in the City, Steigenberger Icons and Song Hotels. In addition, H World also has the rights as master franchisee for Mercure, Ibis and Ibis Styles, and co-development rights for Grand Mercure and Novotel, in the pan-China region. H World's business includes L&O and M&F models. Under the L&O model, H World directly operates hotels typically located on leased or owned properties.",
+  "industry": "Hotels/Resorts",
+  "sector": "Consumer Discretionary",
+  "region": "Asia",
+  "sic": "7011",
+  "sic_description": "Hotels & Motels",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "OTC"
+  ],
+  "website": "https://www.hworld.com",
+  "headquarters": "Shanghai, China",
+  "address": {
+   "street": "No. 1299 Fenghua Road",
+   "city": "Shanghai",
+   "state": null,
+   "zip": "201803",
+   "country": "China",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-24"
+  },
+  "phone": "86 21 6195-2011",
+  "employees": {
+   "count": 26458,
+   "as_of": "2025-12-31",
+   "evidence": "We had 26,985, 28,502 and 26,458 employees as of December 31, 2023, 2024 and 2025, respectively.",
+   "form": "20-F",
+   "filed": "2026-04-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926048058/htht-20251231x20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2010-03-05",
+  "first_sec_filing_form": "F-1",
+  "former_names": [
+   "Huazhu Group Ltd",
+   "China Lodging Group, Ltd"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001483994&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-109789",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926109789/htht-20260923x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-108062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926108062/tm2625542d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-106470",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926106470/tm2625166d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-105180",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926105180/tm2624812d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-097496",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926097496/tm2623383d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-090682",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926090682/tm2622285d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-087286",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926087286/tm2621472d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-077948",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926077948/tm2619067d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-061705",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926061705/tm2614763d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-058221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926058221/tm2614060d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-055199",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926055199/tm2613583d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-054434",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926054434/tm2613467d1_6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001104659-26-048058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926048058/htht-20251231x20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-029875",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926029875/tm269239d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-024372",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465926024372/tm268215d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-112913",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465925112913/tm2531465d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-106629",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465925106629/tm2530321d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-12",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001410578-25-002265",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000141057825002265/htht-20250912x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-088455",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465925088455/tm2525643d1_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-20",
+   "period": "2025-08-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-25-080513",
+   "url": "https://www.sec.gov/Archives/edgar/data/1483994/000110465925080513/tm2523965d1_6k.htm"
+  }
+ ],
+ "warnings": []
+}

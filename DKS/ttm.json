@@ -1,0 +1,101 @@
+{
+ "ticker": "DKS",
+ "cik": 1089063,
+ "entity": "DICK'S Sporting Goods, Inc.",
+ "fy_end": "2026-01-31",
+ "ytd_end": "2026-08-01",
+ "inputs": {
+  "ocf": {
+   "fy": 1537343000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 735641000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 792274000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1593976000
+  },
+  "capex": {
+   "fy": 1137176000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 526076000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 743470000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 1354570000
+  },
+  "sbc": {
+   "fy": 123667000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 37948000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 53851000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 139570000
+  },
+  "shares_diluted": {
+   "fy": 85144000,
+   "fy_period": [
+    "2025-02-02",
+    "2026-01-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 81259000,
+   "ytd_prior_period": [
+    "2025-02-02",
+    "2025-08-02"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 90269000,
+   "ytd_current_period": [
+    "2026-02-01",
+    "2026-08-01"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1593976000,
+ "ttm_capex": 1354570000,
+ "ttm_sbc": 139570000,
+ "ttm_shares_diluted": 90269000,
+ "ttm_oe_total": 99836000,
+ "ttm_oe_per_share": 1.1059832279076982,
+ "warnings": [],
+ "overrides_used": []
+}

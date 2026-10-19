@@ -1,0 +1,544 @@
+{
+ "ticker": "EMA",
+ "cik": 1127248,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001193125-26-062876",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1127248/000119312526062876/d845370d40f_htm.xml"
+  }
+ ],
+ "currency": "CAD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ema:FloridaElectricUtilityMember",
+     "label": "Florida Electric Utility",
+     "values": [
+      3451000000,
+      4336000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4793,
+      0.4941
+     ],
+     "growth_yoy": [
+      null,
+      0.2564
+     ]
+    },
+    {
+     "member": "ema:CanadianElectricUtilitiesMember",
+     "label": "Canadian Electric Utilities",
+     "values": [
+      1855000000,
+      1944000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2576,
+      0.2215
+     ],
+     "growth_yoy": [
+      null,
+      0.048
+     ]
+    },
+    {
+     "member": "ema:GasUtilitiesAndInfrastructureMember",
+     "label": "Gas Utilities and Infrastructure",
+     "values": [
+      1595000000,
+      1737000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2215,
+      0.1979
+     ],
+     "growth_yoy": [
+      null,
+      0.089
+     ]
+    },
+    {
+     "member": "ema:OtherElectricUtilitiesMember",
+     "label": "Other Electric Utilities",
+     "values": [
+      566000000,
+      577000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0786,
+      0.0657
+     ],
+     "growth_yoy": [
+      null,
+      0.0194
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate and Other",
+     "values": [
+      -267000000,
+      182000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0371,
+      0.0207
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7200000000,
+     8776000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ema:FloridaElectricUtilityMember",
+     "label": "Florida Electric Utility",
+     "values": [
+      3460000000,
+      4346000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4806,
+      0.4952
+     ],
+     "growth_yoy": [
+      null,
+      0.2561
+     ]
+    },
+    {
+     "member": "ema:CanadianElectricUtilitiesMember",
+     "label": "Canadian Electric Utilities",
+     "values": [
+      1855000000,
+      1944000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2576,
+      0.2215
+     ],
+     "growth_yoy": [
+      null,
+      0.048
+     ]
+    },
+    {
+     "member": "ema:GasUtilitiesAndInfrastructureMember",
+     "label": "Gas Utilities and Infrastructure",
+     "values": [
+      1609000000,
+      1756000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2235,
+      0.2001
+     ],
+     "growth_yoy": [
+      null,
+      0.0914
+     ]
+    },
+    {
+     "member": "ema:OtherElectricUtilitiesMember",
+     "label": "Other Electric Utilities",
+     "values": [
+      566000000,
+      577000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0786,
+      0.0657
+     ],
+     "growth_yoy": [
+      null,
+      0.0194
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate and Other",
+     "values": [
+      -248000000,
+      206000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0344,
+      0.0235
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -42000000,
+      -53000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0058,
+      -0.006
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7200000000,
+     8776000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ema:FloridaElectricUtilityMember",
+     "label": "Florida Electric Utility",
+     "values": [
+      24375000000,
+      24636000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5675,
+      0.5497
+     ],
+     "growth_yoy": [
+      null,
+      0.0107
+     ]
+    },
+    {
+     "member": "ema:CanadianElectricUtilitiesMember",
+     "label": "Canadian Electric Utilities",
+     "values": [
+      7609000000,
+      8546000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1772,
+      0.1907
+     ],
+     "growth_yoy": [
+      null,
+      0.1231
+     ]
+    },
+    {
+     "member": "ema:GasUtilitiesAndInfrastructureMember",
+     "label": "Gas Utilities and Infrastructure",
+     "values": [
+      8439000000,
+      8476000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1965,
+      0.1891
+     ],
+     "growth_yoy": [
+      null,
+      0.0044
+     ]
+    },
+    {
+     "member": "ema:OtherElectricUtilitiesMember",
+     "label": "Other Electric Utilities",
+     "values": [
+      1444000000,
+      1439000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0336,
+      0.0321
+     ],
+     "growth_yoy": [
+      null,
+      -0.0035
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate and Other",
+     "values": [
+      1810000000,
+      2469000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0421,
+      0.0551
+     ],
+     "growth_yoy": [
+      null,
+      0.3641
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -726000000,
+      -749000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0169,
+      -0.0167
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     42951000000,
+     44817000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4712000000,
+      6185000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6544,
+      0.7048
+     ],
+     "growth_yoy": [
+      null,
+      0.3126
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CA",
+     "values": [
+      1922000000,
+      2014000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2669,
+      0.2295
+     ],
+     "growth_yoy": [
+      null,
+      0.0479
+     ]
+    },
+    {
+     "member": "country:BB",
+     "label": "BARBADOS",
+     "values": [
+      427000000,
+      415000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0593,
+      0.0473
+     ],
+     "growth_yoy": [
+      null,
+      -0.0281
+     ]
+    },
+    {
+     "member": "country:BS",
+     "label": "BAHAMAS",
+     "values": [
+      139000000,
+      162000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0193,
+      0.0185
+     ],
+     "growth_yoy": [
+      null,
+      0.1655
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7200000000,
+     8776000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: same numbers as 'Consolidation, Eliminations' (srt:ConsolidationEliminationsMember)",
+  "business_segments/Revenues/annual: reconciling row 'Consolidation, Eliminations' (srt:ConsolidationEliminationsMember) dropped: the other rows already tie to the consolidated total without it",
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

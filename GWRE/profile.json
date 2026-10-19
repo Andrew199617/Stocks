@@ -1,0 +1,283 @@
+{
+ "ticker": "GWRE",
+ "cik": 1528396,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T12:41:33-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001528396.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000046/gwre-20260731.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GWRE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GWRE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Guidewire Software, Inc.",
+  "cik": 1528396,
+  "description": {
+   "text": "Guidewire is the platform that property and casualty (“P&C”) insurers rely on to engage with customers, innovate, and operate more efficiently. Founded in 2001, we serve insurers of all sizes, ranging from global carriers to regional and local providers, helping them navigate a rapidly changing insurance market. Our foundational core products, InsuranceSuite and InsuranceNow, are delivered as a cloud-based subscription service leveraging our proprietary cloud platform which we refer to as Guidewire Cloud Platform (“GWCP”). These products serve as transactional systems of record, fully supporting insurance operations, including product definition, pricing and rating, underwriting, policy administration, billing, and claims management. Our platform combines core systems of record with digital, analytics, and predictive and generative artificial intelligence (“AI”) capabilities. To support our core systems, we provide digital engagement offerings that enable seamless sales and pricing and rating solutions that enable sophisticated pricing models and streamlined rate logic deployment. Our platform provides enhanced claims experiences for policyholders, agents, vendors, and field personnel, and analytics products that allow insurers to manage and use data more effectively, gain business insights, improve operational efficiency, and underwrite emerging risks. To support insurers worldwide, we localize our products to address diverse regulatory, language, and currency requirements.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-09-11",
+   "period": "2026-07-31",
+   "accession": "0001528396-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000046/gwre-20260731.htm"
+  },
+  "description_short": "Guidewire is the platform P&C insurers trust to engage, innovate, and grow efficiently. More than 570 insurers in 44 countries, from new ventures to the largest and most complex in the world, rely on Guidewire products. With core systems leveraging data and analytics, digital, and artificial intelligence, Guidewire defines cloud platform excellence for P&C insurers. We are proud of our unparalleled implementation record, with 1,700+ successful projects supported by the industry's largest R&D team and consulting partner ecosystem. Our marketplace represents the largest partner community in P&C, where customers can access hundreds of applications to accelerate integration, localization, and innovation.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0731",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.guidewire.com",
+  "headquarters": "San Mateo, California",
+  "address": {
+   "street": "970 Park Pl Suite 200",
+   "city": "San Mateo",
+   "state": "California",
+   "zip": "94403",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-09-11"
+  },
+  "phone": "650-357-9100",
+  "employees": {
+   "count": 4174,
+   "as_of": "2026-07-31",
+   "evidence": "As of July 31, 2026, we had 4,174 employees, including 2,082 in global product development and operations (comprised of research and development, cloud operations, and technical support), 1,015 in professional services, 553 in sales and marketing, and 524 in general and administrative roles.",
+   "form": "10-K",
+   "filed": "2026-09-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000046/gwre-20260731.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2011-09-02",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Guidewire Software, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001528396&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-04",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001528396-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000057/gwre-20260904.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-09-11",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001528396-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000046/gwre-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-01",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001528396-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000039/gwre-20260901.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-17",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001528396-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000032/gwre-20260717.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-05",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001528396-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000027/gwre-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001528396-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000026/gwre-20260604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-03-06",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001528396-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000014/gwre-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001528396-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000013/gwre-20260305.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001528396-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839626000007/gwre-20260108.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-18",
+   "period": "2025-12-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001528396-25-000248",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000248/gwre-20251215.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-04",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001528396-25-000244",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000244/gwre-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-03",
+   "period": "2025-12-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001528396-25-000242",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000242/gwre-20251203.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-30",
+   "period": "2025-12-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001528396-25-000233",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000233/gdwre-20251030.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-09-11",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001528396-25-000221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000221/gwre-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001528396-25-000213",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000213/gwre-20250904.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001528396-25-000188",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000188/gwre-20250724.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-06-04",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001528396-25-000137",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000137/gwre-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-06-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001528396-25-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000131/gwre-20250603.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-03-07",
+   "period": "2025-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001528396-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000061/gwre-20250131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-06",
+   "period": "2025-03-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001528396-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1528396/000152839625000059/gwre-20250306.htm"
+  }
+ ],
+ "warnings": []
+}

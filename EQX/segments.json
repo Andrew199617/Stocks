@@ -1,0 +1,624 @@
+{
+ "ticker": "EQX",
+ "cik": 1756607,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001628280-26-022120",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1756607/000162828026022120/eqx-20251231_d2_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eqx:MetalMember",
+     "label": "Metal",
+     "values": [
+      881492000,
+      1683291000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9657,
+      0.9263
+     ],
+     "growth_yoy": [
+      null,
+      0.9096
+     ]
+    },
+    {
+     "member": "eqx:GreenstoneGoldMinesLPMember",
+     "label": "Greenstone Gold Mines LP",
+     "values": [
+      278369000,
+      777594000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3049,
+      0.4279
+     ],
+     "growth_yoy": [
+      null,
+      1.7934
+     ]
+    },
+    {
+     "member": "country:NI",
+     "label": "NI",
+     "values": [
+      null,
+      491593000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.2705
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:MesquiteMember",
+     "label": "Mesquite",
+     "values": [
+      173223000,
+      286894000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1898,
+      0.1579
+     ],
+     "growth_yoy": [
+      null,
+      0.6562
+     ]
+    },
+    {
+     "member": "eqx:LosFilosMember",
+     "label": "Los Filos",
+     "values": [
+      412244000,
+      109448000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4516,
+      0.0602
+     ],
+     "growth_yoy": [
+      null,
+      -0.7345
+     ]
+    },
+    {
+     "member": "eqx:ValentineMember",
+     "label": "Valentine",
+     "values": [
+      null,
+      80530000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0443
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:PanMember",
+     "label": "Pan",
+     "values": [
+      null,
+      41501000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0228
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:CastleMountainMember",
+     "label": "Castle Mountain",
+     "values": [
+      49004000,
+      29635000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0537,
+      0.0163
+     ],
+     "growth_yoy": [
+      null,
+      -0.3953
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     912840000,
+     1817195000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eqx:GreenstoneGoldMinesLPMember",
+     "label": "Greenstone Gold Mines LP",
+     "values": [
+      142078000,
+      297144000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9365,
+      0.6873
+     ],
+     "growth_yoy": [
+      null,
+      1.0914
+     ]
+    },
+    {
+     "member": "country:NI",
+     "label": "NI",
+     "values": [
+      null,
+      188678000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.4364
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:MesquiteMember",
+     "label": "Mesquite",
+     "values": [
+      40617000,
+      119325000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2677,
+      0.276
+     ],
+     "growth_yoy": [
+      null,
+      1.9378
+     ]
+    },
+    {
+     "member": "eqx:CastleMountainMember",
+     "label": "Castle Mountain",
+     "values": [
+      -7692000,
+      17557000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0507,
+      0.0406
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:ValentineMember",
+     "label": "Valentine",
+     "values": [
+      null,
+      15293000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0354
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:PanMember",
+     "label": "Pan",
+     "values": [
+      null,
+      14247000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.033
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:LosFilosMember",
+     "label": "Los Filos",
+     "values": [
+      29505000,
+      -114006000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1945,
+      -0.2637
+     ],
+     "growth_yoy": [
+      null,
+      -4.864
+     ]
+    },
+    {
+     "member": "eqx:Corporate1Member",
+     "label": "Corporate1",
+     "values": [
+      -52804000,
+      -105899000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3481,
+      -0.2449
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     151704000,
+     432339000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eqx:GreenstoneGoldMinesLPMember",
+     "label": "Greenstone Gold Mines LP",
+     "values": [
+      19309000,
+      171975000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1759,
+      0.5063
+     ],
+     "growth_yoy": [
+      null,
+      7.9065
+     ]
+    },
+    {
+     "member": "country:NI",
+     "label": "NI",
+     "values": [
+      null,
+      93100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.2741
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:MesquiteMember",
+     "label": "Mesquite",
+     "values": [
+      28943000,
+      49045000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2636,
+      0.1444
+     ],
+     "growth_yoy": [
+      null,
+      0.6945
+     ]
+    },
+    {
+     "member": "eqx:LosFilosMember",
+     "label": "Los Filos",
+     "values": [
+      55373000,
+      12937000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5043,
+      0.0381
+     ],
+     "growth_yoy": [
+      null,
+      -0.7664
+     ]
+    },
+    {
+     "member": "eqx:ValentineMember",
+     "label": "Valentine",
+     "values": [
+      null,
+      7368000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0217
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:PanMember",
+     "label": "Pan",
+     "values": [
+      null,
+      6738000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0198
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "eqx:CastleMountainMember",
+     "label": "Castle Mountain",
+     "values": [
+      6171000,
+      -1469000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0562,
+      -0.0043
+     ],
+     "growth_yoy": [
+      null,
+      -1.238
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     109796000,
+     339694000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "eqx:Gold1Member",
+     "label": "Gold1",
+     "values": [
+      911209000,
+      1807543000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9982,
+      0.9947
+     ],
+     "growth_yoy": [
+      null,
+      0.9837
+     ]
+    },
+    {
+     "member": "eqx:SilverMember",
+     "label": "Silver",
+     "values": [
+      1631000,
+      9652000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0018,
+      0.0053
+     ],
+     "growth_yoy": [
+      null,
+      4.9178
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     912840000,
+     1817195000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "40-F 0001628280-26-022120: label linkbase unreadable (HTTP Error 503: Service Unavailable)",
+  "business_segments/Revenues/annual: rows sum to 192.6% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": false
+}

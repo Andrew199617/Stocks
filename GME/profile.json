@@ -1,0 +1,302 @@
+{
+ "ticker": "GME",
+ "cik": 1326380,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T15:10:27-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001326380.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000013/gme-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GME/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GME/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GameStop Corp.",
+  "cik": 1326380,
+  "description": {
+   "text": "GameStop Corp. (“GameStop,” “we,” “us,” “our,” or the “Company”) offers games, collectibles, and entertainment products through its stores and ecommerce platforms. As we navigate the evolving commercial landscape, our business model is expanding beyond traditional retail to include value creation through disciplined capital allocation. We view our significant cash and other sources of liquidity as a strategic asset to be deployed into acquisitions and control transactions that offer long-term value. Our fiscal year is composed of the 52 or 53 weeks ending on the Saturday closest to the last day of January. Fiscal year 2025 consisted of the 52 weeks ended on January 31, 2026 (\"fiscal 2025\"). Fiscal year 2024 consisted of the 52 weeks ended on February 1, 2025 (\"fiscal 2024\") and fiscal year 2023 consisted of the 53 weeks ended on February 3, 2024 (\"fiscal 2023\").",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-24",
+   "period": "2026-01-31",
+   "accession": "0001326380-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000013/gme-20260131.htm"
+  },
+  "description_short": "GameStop is a retailer of video games, trading cards, and collectibles.",
+  "industry": "Electronics Distribution",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5734",
+  "sic_description": "Retail-Computer & Computer Software Stores",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0130",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.gamestop.com",
+  "headquarters": "Grapevine, Texas",
+  "address": {
+   "street": "625 Westport Parkway",
+   "city": "Grapevine",
+   "state": "Texas",
+   "zip": "76051",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-24"
+  },
+  "phone": "817-424-2000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2005-10-03",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "GSC Holdings Corp."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001326380&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-09-09",
+   "period": "2026-08-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001326380-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000055/gme-20260801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001326380-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000050/gme-20260908.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [
+    "1.01",
+    "2.02",
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Unregistered sale of equity; Reg FD",
+   "accession": "0001326380-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000046/gme-20260831.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-02",
+   "items": [
+    "1.01",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Other events",
+   "accession": "0001326380-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000042/gme-20260802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-07",
+   "items": [
+    "5.03",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote; Reg FD",
+   "accession": "0001326380-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000038/gme-20260707.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001326380-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000035/form8-kxguidance.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-23",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001326380-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000029/gme-20260623.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-11",
+   "period": "2026-05-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001326380-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000025/gme-20260502.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-06-02",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001326380-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000020/gme-20260602.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-22",
+   "period": "2026-07-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-235130",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000119312526235130/d937376ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-03",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-26-202468",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000119312526202468/d138475d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-24",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001326380-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000013/gme-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-24",
+   "period": "2026-03-24",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001326380-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000012/gme-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001326380-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000007/gme-20260108.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-07",
+   "period": "2026-01-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001326380-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000004/gme-20260106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-09",
+   "period": "2025-11-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001326380-25-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638025000098/gme-20251101.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-09",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001326380-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638025000097/gme-20251209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-07",
+   "period": "2025-10-07",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001326380-25-000091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638025000091/gme-20251007.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-09-09",
+   "period": "2025-08-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001326380-25-000075",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638025000075/gme-20250802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-09",
+   "items": [
+    "2.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD; Other events",
+   "accession": "0001326380-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638025000073/gme-20250909.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-03-24"
+ ]
+}

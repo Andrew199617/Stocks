@@ -1,0 +1,1367 @@
+{
+ "ticker": "HAS",
+ "cik": 46080,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000046080-26-000011",
+   "filed": "2026-02-25",
+   "period": "2025-12-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000046080-26-000026",
+   "filed": "2026-05-13",
+   "period": "2026-03-29",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000026/has-20260329_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000046080-26-000050",
+   "filed": "2026-07-30",
+   "period": "2026-06-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000050/has-20260628_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      3171100000,
+      2786100000,
+      2650400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5553,
+      0.5871,
+      0.4939
+     ],
+     "growth_yoy": [
+      null,
+      -0.1214,
+      -0.0487
+     ]
+    },
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      1641200000,
+      1666000000,
+      2405700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2874,
+      0.351,
+      0.4483
+     ],
+     "growth_yoy": [
+      null,
+      0.0151,
+      0.444
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      711100000,
+      132600000,
+      125400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1245,
+      0.0279,
+      0.0234
+     ],
+     "growth_yoy": [
+      null,
+      -0.8135,
+      -0.0543
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      187200000,
+      161200000,
+      184400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0328,
+      0.034,
+      0.0344
+     ],
+     "growth_yoy": [
+      null,
+      -0.1389,
+      0.1439
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5710600000,
+     4745900000,
+     5365900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      505800000,
+      571200000,
+      652900000,
+      745000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5027,
+      0.5037,
+      0.5866,
+      0.5773
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2908,
+      0.3043
+     ]
+    },
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      433400000,
+      493400000,
+      434900000,
+      525900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4308,
+      0.4351,
+      0.3907,
+      0.4075
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0035,
+      0.0659
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      38000000,
+      28100000,
+      33700000,
+      22600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0378,
+      0.0248,
+      0.0303,
+      0.0175
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1132,
+      -0.1957
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      28900000,
+      41200000,
+      -8400000,
+      -3000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0287,
+      0.0363,
+      -0.0075,
+      -0.0023
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -1.2907,
+      -1.0728
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1006100000,
+     1133900000,
+     1113100000,
+     1290500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      2886400000,
+      2543900000,
+      2437600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5769,
+      0.6151,
+      0.5185
+     ],
+     "growth_yoy": [
+      null,
+      -0.1187,
+      -0.0418
+     ]
+    },
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      1457600000,
+      1511300000,
+      2186900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2913,
+      0.3654,
+      0.4652
+     ],
+     "growth_yoy": [
+      null,
+      0.0368,
+      0.447
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      659300000,
+      80300000,
+      76800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1318,
+      0.0194,
+      0.0163
+     ],
+     "growth_yoy": [
+      null,
+      -0.8782,
+      -0.0436
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5003300000,
+     4135500000,
+     4701300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      462100000,
+      522400000,
+      582000000,
+      663800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5209,
+      0.5326,
+      0.5819,
+      0.5825
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2595,
+      0.2707
+     ]
+    },
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      398300000,
+      442400000,
+      397900000,
+      463000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.449,
+      0.4511,
+      0.3978,
+      0.4063
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.001,
+      0.0466
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      26700000,
+      16000000,
+      20300000,
+      12800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0301,
+      0.0163,
+      0.0203,
+      0.0112
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2397,
+      -0.2
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     887100000,
+     980800000,
+     1000200000,
+     1139600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      525700000,
+      632000000,
+      1006800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3416,
+      0.9159,
+      90.7027
+     ],
+     "growth_yoy": [
+      null,
+      0.2022,
+      0.593
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      -1911500000,
+      -1600000,
+      400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2422,
+      -0.0023,
+      0.036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      -64700000,
+      115300000,
+      -942600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.042,
+      0.1671,
+      -84.9189
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -9.1752
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -88300000,
+      -55700000,
+      -53500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0574,
+      -0.0807,
+      -4.8198
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -1538800000,
+     690000000,
+     11100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      230000000,
+      241900000,
+      297700000,
+      270000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3474,
+      -0.3031,
+      1.1014,
+      1.0693
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2943,
+      0.1162
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      -11200000,
+      6100000,
+      17300000,
+      5600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0656,
+      -0.0076,
+      0.064,
+      0.0222
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.082
+     ]
+    },
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      -43900000,
+      -1029500000,
+      -47500000,
+      -14500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2572,
+      1.2898,
+      -0.1757,
+      -0.0574
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -4200000,
+      -16700000,
+      2800000,
+      -8600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0246,
+      0.0209,
+      0.0104,
+      -0.0341
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     170700000,
+     -798200000,
+     270300000,
+     252500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      130000000,
+      105100000,
+      92700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.617,
+      0.6448,
+      0.6841
+     ],
+     "growth_yoy": [
+      null,
+      -0.1915,
+      -0.118
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      28500000,
+      16700000,
+      19800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1353,
+      0.1025,
+      0.1461
+     ],
+     "growth_yoy": [
+      null,
+      -0.414,
+      0.1856
+     ]
+    },
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      27800000,
+      17600000,
+      17600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1319,
+      0.108,
+      0.1299
+     ],
+     "growth_yoy": [
+      null,
+      -0.3669,
+      0.0
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      24400000,
+      23600000,
+      5400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1158,
+      0.1448,
+      0.0399
+     ],
+     "growth_yoy": [
+      null,
+      -0.0328,
+      -0.7712
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     210700000,
+     163000000,
+     135500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "has:ConsumerProductsSegmentMember",
+     "label": "Consumer Products Segment",
+     "values": [
+      18200000,
+      24800000,
+      15700000,
+      21000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5322,
+      0.7774,
+      0.6062,
+      0.6562
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1374,
+      -0.1532
+     ]
+    },
+    {
+     "member": "has:EntertainmentSegmentMember",
+     "label": "Entertainment Segment",
+     "values": [
+      5100000,
+      5200000,
+      4500000,
+      4400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1491,
+      0.163,
+      0.1737,
+      0.1375
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1176,
+      -0.1538
+     ]
+    },
+    {
+     "member": "has:WizardsOfTheCoastAndDigitalGamingSegmentMember",
+     "label": "Wizards Of The Coast And Digital Gaming Segment",
+     "values": [
+      4600000,
+      4300000,
+      4400000,
+      3900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1345,
+      0.1348,
+      0.1699,
+      0.1219
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0435,
+      -0.093
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      6300000,
+      -2400000,
+      1300000,
+      2700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1842,
+      -0.0752,
+      0.0502,
+      0.0844
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.7937,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     34200000,
+     31900000,
+     25900000,
+     32000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "has:GrowBrandsMember",
+     "label": "Grow Brands",
+     "values": [
+      2857500000,
+      2797100000,
+      3479100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5711,
+      0.6764,
+      0.74
+     ],
+     "growth_yoy": [
+      null,
+      -0.0211,
+      0.2438
+     ]
+    },
+    {
+     "member": "has:OptimizeBrandsMember",
+     "label": "Optimize Brands",
+     "values": [
+      840600000,
+      731500000,
+      698200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.168,
+      0.1769,
+      0.1485
+     ],
+     "growth_yoy": [
+      null,
+      -0.1298,
+      -0.0455
+     ]
+    },
+    {
+     "member": "has:ReinventBrandsMember",
+     "label": "Reinvent Brands",
+     "values": [
+      768000000,
+      606900000,
+      524000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1535,
+      0.1468,
+      0.1115
+     ],
+     "growth_yoy": [
+      null,
+      -0.2098,
+      -0.1366
+     ]
+    },
+    {
+     "member": "has:NonHasbroBrandedFilmTVMember",
+     "label": "Non-Hasbro Branded Film & TV",
+     "values": [
+      537200000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1074,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -1.0,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5003300000,
+     4135500000,
+     4701300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-03-29",
+    "2026-06-28"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "has:GrowBrandsMember",
+     "label": "Grow Brands",
+     "values": [
+      660800000,
+      740600000,
+      787500000,
+      904900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7449,
+      0.7551,
+      0.7873,
+      0.7941
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1917,
+      0.2218
+     ]
+    },
+    {
+     "member": "has:OptimizeBrandsMember",
+     "label": "Optimize Brands",
+     "values": [
+      130700000,
+      159900000,
+      126900000,
+      151700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1473,
+      0.163,
+      0.1269,
+      0.1331
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0291,
+      -0.0513
+     ]
+    },
+    {
+     "member": "has:ReinventBrandsMember",
+     "label": "Reinvent Brands",
+     "values": [
+      95600000,
+      80300000,
+      85800000,
+      83000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1078,
+      0.0819,
+      0.0858,
+      0.0728
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1025,
+      0.0336
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     887100000,
+     980800000,
+     1000200000,
+     1139600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-29",
+    "2025-12-28"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3010100000,
+      2599800000,
+      2806100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6016,
+      0.6287,
+      0.5969
+     ],
+     "growth_yoy": [
+      null,
+      -0.1363,
+      0.0794
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1993200000,
+      1535700000,
+      1895200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3984,
+      0.3713,
+      0.4031
+     ],
+     "growth_yoy": [
+      null,
+      -0.2295,
+      0.2341
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5003300000,
+     4135500000,
+     4701300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

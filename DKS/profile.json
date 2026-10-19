@@ -1,0 +1,292 @@
+{
+ "ticker": "DKS",
+ "cik": 1089063,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T05:24:31-04:00",
+ "newest_filing_date": "2026-09-25",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001089063.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DKS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DKS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DICK'S SPORTING GOODS, INC.",
+  "cik": 1089063,
+  "description": {
+   "text": "DICK’S Sporting Goods, Inc. (together with its subsidiaries, referred to as “the Company”, “we”, “us” and “our” unless specified otherwise) is a leading global sports retailer offering an extensive assortment of authentic, high-quality sports equipment, apparel, footwear and accessories. Our banners include DICK’S Sporting Goods, Golf Galaxy, Public Lands and Going Going Gone! stores in addition to the experiential retail concepts DICK’S House of Sport and Golf Galaxy Performance Center which are all located across the United States. Additionally, as owner and operator of Foot Locker, which includes Foot Locker, Kids Foot Locker, Champs Sports, WSS and atmos banners, we serve the global sneaker community across North America, Europe, Asia and Australia, plus a licensed store presence in Europe, the Middle East and Asia. We also own and operate GameChanger, a youth sports mobile platform for live streaming, scheduling, communications and scorekeeping. We were founded in 1948 in New York under the name Dick’s Clothing and Sporting Goods, Inc. when Richard “Dick” Stack, the father of Edward W. Stack, our Executive Chairman, opened his original bait and tackle store in Binghamton, New York. Edward W. Stack joined his father's business full-time in 1977 and in 1984 became President and Chief Executive Officer of the then two-store chain.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-27",
+   "period": "2026-01-31",
+   "accession": "0001089063-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm"
+  },
+  "description_short": "DICK'S Sporting Goods creates confidence and excitement by inspiring, supporting and personally equipping all athletes to achieve their dreams. Founded in 1948 and headquartered in Pittsburgh, DICK'S is a leading omni-channel retailer and an iconic brand in sport and culture. Its banners include DICK'S Sporting Goods, Golf Galaxy, Public Lands and Going Going Gone! in addition to the experiential retail concepts DICK'S House of Sport and Golf Galaxy Performance Center. As owner and operator of the Foot Locker Business, including Foot Locker, Kids Foot Locker, Champs Sports, WSS and atmos, DICK'S serves the global sneaker community across North America, Europe, Asia and Australia, plus a licensed store presence in Europe, the Middle East and Asia. DICK'S also owns and operates GameChanger, a youth sports mobile platform for live streaming, scheduling, communications and scorekeeping.",
+  "industry": "Other Specialty Stores",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5940",
+  "sic_description": "Retail-Miscellaneous Shopping Goods Stores",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0130",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.dicks.com",
+  "headquarters": "Coraopolis, PA",
+  "address": {
+   "street": "345 Court Street",
+   "city": "Coraopolis",
+   "state": "PA",
+   "zip": "15108",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-27"
+  },
+  "phone": "7242733400",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-07-17",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "DICKS SPORTING GOODS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001089063&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-22",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001140361-26-037715",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036126037715/ef20082695_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-26-037192",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036126037192/ef20082169_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-09-03",
+   "period": "2026-08-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001089063-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000036/dks-20260801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-24",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001089063-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000033/dks-20260824.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-10",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001089063-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000031/dks-20260610.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-04",
+   "period": "2026-05-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001089063-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000027/dks-20260502.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-26",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001089063-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000021/dks-20260526.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-05-01",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001089063-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000015/dks-20260501.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-27",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001089063-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-11",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001089063-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000005/dks-20260311.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-05",
+   "period": "2025-11-01",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001089063-25-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906325000114/dks-20251101.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-24",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001089063-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906325000112/dks-20251124.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-09-18",
+   "period": "2025-09-08",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001140361-25-035403",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036125035403/ef20055481_8ka.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-11",
+   "period": "2025-09-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001140361-25-034706",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036125034706/ef20055448_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [
+    "2.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Reg FD",
+   "accession": "0001140361-25-034244",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036125034244/ef20055283_form8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-034216",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036125034216/ef20055171_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-02",
+   "period": "2025-09-02",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-033555",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036125033555/ef20054999_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-08-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001089063-25-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906325000107/dks-20250802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-28",
+   "period": "2025-08-27",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001089063-25-000105",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906325000105/dks-20250827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-26",
+   "period": "2025-08-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001140361-25-032612",
+   "url": "https://www.sec.gov/Archives/edgar/data/1089063/000114036125032612/ef20054488_8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-03-27"
+ ]
+}

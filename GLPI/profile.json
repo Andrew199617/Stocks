@@ -1,0 +1,294 @@
+{
+ "ticker": "GLPI",
+ "cik": 1575965,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T17:27:51-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001575965.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000032/glpi-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GLPI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GLPI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Gaming & Leisure Properties, Inc.",
+  "cik": 1575965,
+  "description": {
+   "text": "GLPI is a self-administered and self-managed Pennsylvania REIT. GLPI was incorporated on February 13, 2013, as a wholly-owned subsidiary of PENN Entertainment, Inc., formerly known as Penn National Gaming, Inc. (NASDAQ: PENN) (\"PENN\"). On November 1, 2013, PENN contributed to the Company, through a series of internal corporate restructurings, substantially all of the assets and liabilities associated with PENN's real property interests and real estate development business, as well as the assets and liabilities of Hollywood Casino Baton Rouge and Hollywood Casino Perryville (which are referred to as the \"TRS Properties\") and then spun-off GLPI to holders of PENN's common and preferred stock in a tax-free distribution (the \"Spin-Off\"). Since 2021, the Company has been structured as an umbrella partnership REIT under which substantially all of its business is conducted through GLP Capital, L.P. (\"GLP Capital\"), the day-to-day management of which is exclusively controlled by GLPI. GLPI has no material assets other than its investment in GLP Capital. GLPI issues equity from time to time and is obligated to contribute the net proceeds from those offerings to GLP Capital.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001575965-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000032/glpi-20251231.htm"
+  },
+  "description_short": "GLPI is engaged in the business of acquiring, financing, and owning real estate property to be leased to gaming operators in triple-net lease arrangements, pursuant to which the tenant is responsible for all facility maintenance, insurance required in connection with the leased properties and the business conducted on the leased properties, taxes levied on or with respect to the leased properties and all utilities and other services necessary or appropriate for the leased properties and the business conducted on the leased properties.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "1207",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.glpropinc.com",
+  "headquarters": "Wyomissing, PA",
+  "address": {
+   "street": "845 Berkshire Blvd., Suite 200",
+   "city": "Wyomissing",
+   "state": "PA",
+   "zip": "19610",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "610-401-2900",
+  "employees": {
+   "count": 20,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 20 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000032/glpi-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2013-05-15",
+  "first_sec_filing_form": "S-11",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001575965&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001575965-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000062/glpi-20260731.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001575965-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000060/glpi-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-04",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001575965-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000054/glpi-20260604.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-177324",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000119312526177324/d61837ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001575965-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000050/glpi-20260423.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001575965-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000048/glpi-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-10",
+   "period": "2026-03-04",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-26-100314",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000119312526100314/d112005d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-04",
+   "items": [
+    "2.03",
+    "9.01"
+   ],
+   "description": "Debt obligation",
+   "accession": "0001193125-26-094178",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000119312526094178/d102901d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-02-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-085750",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000119312526085750/d26385d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001575965-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000035/glpi-20260220.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001575965-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596526000032/glpi-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-08",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001575965-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000052/glpi-20251208.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001575965-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000049/glpi-20251031.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001575965-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000045/glpi-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "2.03",
+    "9.01"
+   ],
+   "description": "Debt obligation",
+   "accession": "0001193125-25-189701",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000119312525189701/d79316d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-182766",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000119312525182766/d936523d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-25",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001575965-25-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000033/glpi-20250724.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001575965-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000031/glpi-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-18",
+   "period": "2025-07-18",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001575965-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000028/glpi-20250718.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-16",
+   "period": "2025-06-12",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001575965-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1575965/000157596525000025/glpi-20250612.htm"
+  }
+ ],
+ "warnings": []
+}

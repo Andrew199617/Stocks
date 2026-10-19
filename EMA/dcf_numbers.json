@@ -1,0 +1,228 @@
+{
+ "ticker": "EMA",
+ "name": "EMERA INCORPORATED",
+ "cik": 1127248,
+ "engine_version": 5,
+ "engine_release": "5.4.0",
+ "as_of": "2026-10-17",
+ "price": 47.72,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 299700000,
+ "shares_outstanding_dei_latest": 122950000,
+ "shares_outstanding_dei_asof": "2012-01-27",
+ "market_cap_est": 14301684000.0,
+ "net_debt_latest": 15674255960.0,
+ "net_debt_basis": "LongTermDebtNoncurrent+LongTermDebtAndCapitalLeaseObligationsCurrent+ShortTermBorrowings",
+ "lease_liabilities_latest": 39439440.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.08202394581657657,
+ "rev_cagr_3y": 0.045731168313509096,
+ "oe_positive_years_of_last_5": "0/5",
+ "base_oe_total_latest_fy": -1328524840.0,
+ "base_oe_per_share": -2.163710007304602,
+ "base_oe_latest_per_share": -4.432848982315649,
+ "base_oe_normalized_per_share": -2.163710007304602,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.08202394581657657,
+  "rev_cagr_3y": 0.045731168313509096,
+  "rev_yoy_latest": 0.28088471948445193,
+  "oe_ps_cagr_2y": null
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.04134001063218351,
+  "rev_cagr_3y": 0.0050472331291160355,
+  "rev_yoy_latest": 0.24020078430005887,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.04134001063218351,
+ "share_cagr": 0.04068393518439306,
+ "share_count_adj": -0.04068393518439306,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "da": "DepreciationDepletionAndAmortization",
+  "sbc": null,
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_cur_ltd": "LongTermDebtAndCapitalLeaseObligationsCurrent",
+  "debt_cur_st": "ShortTermBorrowings",
+  "debt_lt": "LongTermDebtNoncurrent",
+  "debt_total": "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
+  "lease_liab_current": "OperatingLeaseLiabilityCurrent",
+  "lease_liab_lt": "OperatingLeaseLiabilityNoncurrent",
+  "assets": "Assets",
+  "liabilities": null,
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": "CommonStockSharesOutstanding"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Emera Inc. Form 40-F / FY2025 reporting: the Corporation's common shares are listed directly on the TSX and NYSE under the symbol EMA (every earnings release header reads TSX/NYSE: EMA); there is no depositary or ADS program \u2014 the NYSE line is the same common shares. The FY2025 statements' EPS note (Note 13) denominator \u2014 weighted average diluted shares 299.7M \u2014 matches the engine's shares_diluted_latest exactly, confirming filed per-share figures and the NYSE price are on the same share basis.",
+  "reason": "Direct-listed ordinary (common) shares on both exchanges, so per-share figures from the filings and the NYSE price are on the same share basis: ratio 1.0."
+ },
+ "fx_conversion": {
+  "from_currency": "CAD",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "tax",
+   "cash",
+   "restricted_cash",
+   "assets_current",
+   "liab_current",
+   "debt_cur_ltd",
+   "debt_cur_st",
+   "debt_lt",
+   "debt_total",
+   "lease_liab_current",
+   "lease_liab_lt",
+   "assets",
+   "ppe_net",
+   "equity"
+  ],
+  "rates": {
+   "2009-12-31": 0.95227,
+   "2010-12-31": 1.003,
+   "2011-12-31": 0.97911,
+   "2014-12-31": 0.86333,
+   "2015-12-31": 0.72023,
+   "2016-12-13": 0.76216,
+   "2016-12-31": 0.74295,
+   "2017-12-31": 0.79746,
+   "2018-12-31": 0.73374,
+   "2019-12-31": 0.76956,
+   "2020-12-31": 0.78494,
+   "2021-12-31": 0.78691,
+   "2022-12-31": 0.73864,
+   "2023-12-31": 0.75468,
+   "2024-12-31": 0.69501,
+   "2025-12-31": 0.73036
+  },
+  "rates_by_currency": {
+   "CAD": {
+    "2009-12-31": 0.95227,
+    "2010-12-31": 1.003,
+    "2011-12-31": 0.97911,
+    "2014-12-31": 0.86333,
+    "2015-12-31": 0.72023,
+    "2016-12-13": 0.76216,
+    "2016-12-31": 0.74295,
+    "2017-12-31": 0.79746,
+    "2018-12-31": 0.73374,
+    "2019-12-31": 0.76956,
+    "2020-12-31": 0.78494,
+    "2021-12-31": 0.78691,
+    "2022-12-31": 0.73864,
+    "2023-12-31": 0.75468,
+    "2024-12-31": 0.69501,
+    "2025-12-31": 0.73036
+   }
+  },
+  "overrides_converted": [
+   "sbc"
+  ]
+ },
+ "override_checks": {
+  "sbc": {
+   "value": 89000000.0,
+   "last_filed_value": null,
+   "last_filed_unit": null,
+   "out_of_band": true,
+   "ack_reason_present": true
+  }
+ },
+ "tier_by_numbers": "F",
+ "f_subtype": "no_cash_generation",
+ "f_subtype_basis": "sum of the last 3 fiscal years (the median window)",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   1.0
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "sbc"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 89000000.0,
+   "kind": "filing",
+   "source": "Emera Inc. FY2025 consolidated financial statements (filed as Exhibit 99.3 to the Form 40-F for the year ended Dec 31, 2025, filed 2026-02-23, accession 0001193125-26-062876), Note 32 Stock-Based Compensation: compensation cost recognized FY2025 \u2014 ECSPP C$3M + stock options C$3M + employee/director DSUs C$29M + PSU plan C$31M + RSU plan C$23M = C$89M (CAD, as filed; the engine FX-converts at period-end rates).",
+   "reason": "EDGAR companyfacts carries no SBC expense figure for Emera under any candidate tag the engine reads (ShareBasedCompensation, AllocatedShareBasedCompensationExpense, ifrs AdjustmentsForSharebasedPayments) for FY2023-2025 \u2014 sbc_tag is blank for every year 2016-2025 \u2014 so the v5 data gate gaps SBC. Emera discloses the expense only by plan in Note 32 of its financial statements. A single override value fills every untagged year, so the latest filed year (FY2025, C$89M) is used for all years: it overstates FY2024 (disclosed total C$52M = ECSPP C$4M + options C$2M + DSU C$13M + PSU C$18M + RSU C$15M), i.e. it errs in the conservative direction (more SBC = lower owner's earnings), and the amount is immaterial against the deeply negative OE base either way.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": true,
+   "last_filed_value": null
+  }
+ ],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 4.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Emera Inc. Form 40-F / FY2025 reporting: the Corporation's common shares are listed directly on the TSX and NYSE under the symbol EMA (every earnings release header reads TSX/NYSE: EMA); there is no depositary or ADS program \u2014 the NYSE line is the same common shares. The FY2025 statements' EPS note (Note 13) denominator \u2014 weighted average diluted shares 299.7M \u2014 matches the engine's shares_diluted_latest exactly, confirming filed per-share figures and the NYSE price are on the same share basis.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Emera Inc. FY2025 consolidated financial statements (filed as Exhibit 99.3 to the Form 40-F for the year ended Dec 31, 2025, filed 2026-02-23, accession 0001193125-26-062876), Note 32 Stock-Based Compensation: compensation cost recognized FY2025 \u2014 ECSPP C$3M + stock options C$3M + employee/director DSUs C$29M + PSU plan C$31M + RSU plan C$23M = C$89M (CAD, as filed; the engine FX-converts at period-end rates).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
+ "override_impact": {
+  "base_oe_per_share_zero_fill": -1.9183976625273922,
+  "base_oe_per_share_final": -2.163710007304602,
+  "weighted_irr_zero_fill": null,
+  "weighted_irr_final": null,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
+ },
+ "content_hash": "0922852df078d9cbcb932d0314707e5452fa84482496add84ebb44bccdc9b30d"
+}

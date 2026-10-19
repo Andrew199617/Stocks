@@ -1,0 +1,109 @@
+{
+ "ticker": "EMBJ",
+ "name": "EMBRAER S.A.",
+ "sector": "Industrials / Aerospace & Defense",
+ "price": 72.34,
+ "market_cap_b": 52.98,
+ "engine_version": 5,
+ "base_oe_per_share": 3.6230344986798753,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Narrow-to-moderate aerospace niche moat: Embraer is the only in-production scope-compliant 76-seat regional jet maker (E175) and holds strong executive-jet (Phenom/Praetor) and growing C-390 defense franchises with a record $34.5B backlog and a large installed base feeding Services & Support, but gross margin has stayed thin at 17.3-18.0% in FY2023-2025 (15.7-20.1% over FY2021-2025, fundamentals.json) and returns have not stayed above the cost of capital through a cycle \u2014 roic_proxy was negative in 2017, 2019, 2020 and 2022, near zero in 2018, and only strong in FY2023-2025 (17.6% / 23.9% / 25.8%). Scale disadvantage versus Airbus/Boeing, A220 overlap at the top of the E2 range, and the US scope clause blocking the E175-E2 cap the score at 5. CAP 8.5y.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x4.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025, Description of Securities exhibit: American Depositary Shares, each representing four common shares, traded on the New York Stock Exchange under the symbol EMBJ) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-30), Notes to the Consolidated Financial Statements, capital reserves table (Note 27.5): Sharebased remuneration US$5.4 million in FY2025, US$4.5 million in FY2024 and US$4.5 million in FY2023); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (10.2%) vs bull-case tier B (15.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 26.48,
+   "irr": 0.0722
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 42.37,
+   "irr": 0.1017
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 57.68,
+   "irr": 0.1275
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 77.55,
+   "irr": 0.1575
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 116.19,
+   "irr": 0.2066
+  }
+ },
+ "iv_at_15": 56.46,
+ "iv_at_12": 77.36,
+ "implied_irr": 0.1258,
+ "implied_irr_base_case": 0.1275,
+ "upside_at_15_pct": -21.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Diversified aerospace niche leader, moat 5/10 \u2014 does not clear 15% at $72.34: weighted IRR 12.58%, weighted IV@15% $56.46 on a $3.62/ADS normalized OE base; it clears the 15% hurdle only below about $56.46.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": false,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1017,
+ "irr_bull": 0.1575,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 38.06,
+ "iv_at_25": 28.2,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 732412025,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Only in-production scope-compliant 76-seat regional jet (E175) \u2014 dominant in US regional fleets with no direct in-production rival in that class",
+  "Diversified portfolio across Commercial, Executive, Defense & Security and Services & Support smoothing any single cycle; firm backlog a record $34.5B in Q2 2026 (+16% YoY)",
+  "Executive Aviation franchise (Phenom 300 family, Praetor) with Q2 2026 revenue +32% YoY and adj. EBIT margin 23.4%",
+  "Installed base of 9,000+ aircraft feeding recurring Services & Support revenue (Q2 2026 +24% YoY, adj. EBIT margin 18.7%)",
+  "C-390 Millennium defense momentum (Defense backlog +42% YoY to $6.1B in Q2 2026) and NATO/export adoption"
+ ],
+ "moat_against": [
+  "Thin, cyclical economics: gross margin only 17.5% in FY2025 and 17.3-18.0% over FY2023-2025; roic_proxy negative or near-zero in 2017-2022 before recovering in 2023-2025 \u2014 no through-cycle pricing power proven",
+  "Scale disadvantage versus Airbus and Boeing in procurement, financing, support network and program risk-bearing",
+  "Airbus A220 (ex-Bombardier) overlaps the E195-E2 at the top of the regional range with Airbus distribution behind it",
+  "US scope clauses (76 seats / 86,000 lb MTOW) block the more efficient E175-E2 from the largest regional market; development paused toward 2027-2029",
+  "Customer and program concentration, supply-chain / GTF engine exposure, Brazilian political/FX overhang and Eve eVTOL cash burn"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 5400000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-30), Notes to the Consolidated Financial Statements, capital reserves table (Note 27.5): Sharebased remuneration US$5.4 million in FY2025, US$4.5 million in FY2024 and US$4.5 million in FY2023"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 3.6524,
+  "base_oe_with_override": 3.623,
+  "base_oe_impact_pct": -0.805,
+  "weighted_irr_without_override": 0.1265,
+  "weighted_irr_with_override": 0.1258,
+  "weighted_irr_impact_pp": -0.072,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,226 @@
+{
+ "ticker": "HMY",
+ "cik": 1023514,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001628280-25-047726",
+   "filed": "2025-10-31",
+   "period": "2025-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1023514/000162828025047726/hmy-20250630_htm.xml"
+  }
+ ],
+ "currency": "ZAR",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-06-30",
+    "2024-06-30",
+    "2025-06-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hmy:GoldMember",
+     "label": "Gold",
+     "values": [
+      47366000000,
+      59212000000,
+      75240000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9643,
+      0.9501,
+      0.9596
+     ],
+     "growth_yoy": [
+      null,
+      0.2501,
+      0.2707
+     ]
+    },
+    {
+     "member": "hmy:SilverMember",
+     "label": "Silver",
+     "values": [
+      1021000000,
+      1667000000,
+      1810000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0208,
+      0.0267,
+      0.0231
+     ],
+     "growth_yoy": [
+      null,
+      0.6327,
+      0.0858
+     ]
+    },
+    {
+     "member": "hmy:UraniumMember",
+     "label": "Uranium",
+     "values": [
+      304000000,
+      866000000,
+      822000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0062,
+      0.0139,
+      0.0105
+     ],
+     "growth_yoy": [
+      null,
+      1.8487,
+      -0.0508
+     ]
+    },
+    {
+     "member": "hmy:TollTreatmentsMember",
+     "label": "toll treatments",
+     "values": [
+      430000000,
+      576000000,
+      532000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0088,
+      0.0092,
+      0.0068
+     ],
+     "growth_yoy": [
+      null,
+      0.3395,
+      -0.0764
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     49121000000,
+     62321000000,
+     78404000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-06-30",
+    "2024-06-30",
+    "2025-06-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ifrs-full:CountryOfDomicileMember",
+     "label": "Country of domicile",
+     "values": [
+      43080000000,
+      52089000000,
+      62809000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8743,
+      0.8486,
+      0.85
+     ],
+     "growth_yoy": [
+      null,
+      0.2091,
+      0.2058
+     ]
+    },
+    {
+     "member": "ifrs-full:ForeignCountriesMember",
+     "label": "Foreign countries",
+     "values": [
+      4440000000,
+      6181000000,
+      7923000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0901,
+      0.1007,
+      0.1072
+     ],
+     "growth_yoy": [
+      null,
+      0.3921,
+      0.2818
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     49275000000,
+     61379000000,
+     73896000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Total operations' (hmy:TotalOperationsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: row 'Unallocated amounts' (ifrs-full:UnallocatedAmountsMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'commodities' (hmy:CommoditiesMember) dropped: its values equal the sum of Gold, Silver, Uranium",
+  "geography/Revenues/annual: rows sum to 95.7% of the consolidated total for 2025-06-30 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

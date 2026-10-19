@@ -1,0 +1,295 @@
+{
+ "ticker": "HALO",
+ "cik": 1159036,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T01:39:53-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001159036.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000024/halo-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HALO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HALO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HALOZYME THERAPEUTICS, INC.",
+  "cik": 1159036,
+  "description": {
+   "text": "Halozyme Therapeutics, Inc. is a biopharmaceutical company advancing disruptive solutions to improve patient experiences and outcomes for emerging and established therapies. As the innovators of ENHANZE® drug delivery technology (“ENHANZE”) with our proprietary enzyme, rHuPH20, our commercially validated solution is used to facilitate the subcutaneous (“SC”) delivery of injected drugs and fluids, with the goal of improving the patient experience with rapid SC delivery and reduced treatment burden. We license our technology to biopharmaceutical companies to collaboratively develop products that combine ENHANZE with our partners’ proprietary compounds. We are also developing partner products with Hypercon™ drug delivery technology (“Hypercon technology”) and developing the Surf Bio drug delivery technology to expand the breadth of our drug delivery technology portfolio. Hypercon technology is an innovative microparticle technology that has been demonstrated in non-clinical testing to enable hyperconcentration of drugs and biologics and reduce the injection volume for the same dosage, potentially expanding opportunities for at-home and health care provider administration. The Surf Bio hyperconcentration technology is being developed to create high antibody and biologic concentrations of up to 500 mg/mL, for delivery in a single auto-injector shot for at-home or in a health care provider’s office use.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001159036-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000024/halo-20251231.htm"
+  },
+  "description_short": "Halozyme is a biopharmaceutical company advancing disruptive solutions to improve patient experiences and outcomes for emerging and established therapies. As the innovators of ENHANZE drug delivery technology with the proprietary enzyme rHuPH20, Halozyme's commercially-validated solution facilitates the subcutaneous delivery of injected drugs and fluids, reducing treatment burden and improving convenience. ENHANZE has touched more than one million patient lives through ten commercialized products across over 100 global markets and is licensed to leading pharmaceutical and biotechnology companies including Roche, Takeda, Pfizer, Janssen, AbbVie, Eli Lilly, Bristol-Myers Squibb, argenx, ViiV Healthcare, Chugai Pharmaceutical, Acumen Pharmaceuticals, Merus N.V., GSK, and Incyte. Halozyme expanded its drug delivery technology portfolio to develop partner products using Hypercon and Surf Bio's hyperconcentration technology, recently renamed as Aerocon.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.halozyme.com",
+  "headquarters": "San Diego, California",
+  "address": {
+   "street": "12390 El Camino Real",
+   "city": "San Diego",
+   "state": "California",
+   "zip": "92130",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "(858) 794-8889",
+  "employees": {
+   "count": 423,
+   "as_of": "2026-02-10",
+   "evidence": "As of February 10, 2026, we had 423 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000024/halo-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2002-02-07",
+  "first_sec_filing_form": "8-A12G",
+  "former_names": [
+   "HALOZYME THERAPEUTICS INC",
+   "GLOBAL YACHT SERVICES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001159036&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-26-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000128/halo-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity",
+   "accession": "0001193125-26-398015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000119312526398015/d148460d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001159036-26-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000126/halo-20260917.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001159036-26-000121",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000121/halo-20260916.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-26-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000106/halo-20260814.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001159036-26-000104",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000104/halo-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001159036-26-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000103/halo-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-06-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000088/halo-20260630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-11",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001159036-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000068/halo-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001159036-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000067/halo-20260511.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-05",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001159036-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000057/halo-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000053/halo-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-22",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001159036-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000051/halo-20260422.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001159036-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000041/halo-20260323.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000035/halo-20260312.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001159036-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000024/halo-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001159036-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000023/halo-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001159036-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000011/halo-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000070/halo-20251204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001159036-25-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000068/halo-20251204.htm"
+  }
+ ],
+ "warnings": []
+}

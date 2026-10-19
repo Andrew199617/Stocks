@@ -1,0 +1,35 @@
+{
+ "ticker": "GL",
+ "cik": 320335,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000320335-26-000090",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000090/gl-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000320335-26-000169",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000169/gl-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000320335-26-000216",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000216/gl-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}

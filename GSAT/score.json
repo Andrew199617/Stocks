@@ -1,0 +1,83 @@
+{
+ "ticker": "GSAT",
+ "name": "GLOBALSTAR, INC.",
+ "sector": "Telecommunications / Satellite communications",
+ "price": 82.38,
+ "market_cap_b": 10.44,
+ "engine_version": 5,
+ "base_oe_per_share": 2.370004051574156,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Licensed MSS/Band n53 spectrum and an operating LEO constellation are scarce assets, but Globalstar has never converted them into returns on capital: ROIC proxy was -0.02% (FY2023), -0.16% (FY2024) and +1.50% (FY2025) in fundamentals.json, operating income was ~zero in FY2023-24 and $7.4M on $273.0M revenue in FY2025, and a single anchor customer (Apple, ~63-64% of revenue, 85% of network capacity) sets the economics, funds the capex and holds a 20% SPE stake. That is an asset moat, not a pricing-power moat.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 3.95 vs 3-yr median 2.37 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 10.69,
+   "irr": 0.0409
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 16.84,
+   "irr": 0.0506
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 22.75,
+   "irr": 0.0604
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 27.72,
+   "irr": 0.0686
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 36.52,
+   "irr": 0.0829
+  }
+ },
+ "iv_at_15": 21.29,
+ "iv_at_12": 28.23,
+ "implied_irr": 0.0582,
+ "implied_irr_base_case": 0.0604,
+ "upside_at_15_pct": -74.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Spectrum-asset satellite operator, moat 3/10 \u2014 reported owner's earnings are Apple prepayment cash, not recurring profit (ROIC ~0%, net losses persist); does not clear 15% (weighted IRR 5.8%, IV@15% $21.29 vs $82.38 price; clears 15% only below ~$21) and the price is really merger-arb on Amazon's $90/share deal.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0506,
+ "irr_bull": 0.0686,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 15.04,
+ "iv_at_25": 11.59,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 36317000,
+ "shares_diluted_latest": 126757000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Licensed L-band MSS spectrum plus Band n53 terrestrial rights \u2014 scarce, regulator-granted, hard to replicate",
+  "Operating LEO constellation plus global ground-station network already in service for Apple Emergency SOS / messaging",
+  "Long-dated wholesale capacity contract with Apple (85% of network capacity allocated) and record Commercial IoT activations (+20% TTM gross activations in Q2 2026)"
+ ],
+ "moat_against": [
+  "Single-customer concentration: Apple ~63-64% of revenue; the anchor funds the build, takes 20% of the SPE and dictates terms \u2014 no demonstrated pricing power",
+  "ROIC proxy ~0% through the cycle (FY2023 -0.02%, FY2024 -0.16%, FY2025 +1.50%, fundamentals.json) and persistent net losses (FY2025 -$8.7M, TTM to Q2 2026 -$54.5M)",
+  "Direct-to-cell competition from Starlink, AST SpaceMobile and Iridium with far deeper capital",
+  "Standalone future is ending: Amazon acquisition agreed April 2026 caps the equity at the $90/share deal consideration if it closes in 2027"
+ ]
+}

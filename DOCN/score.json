@@ -1,0 +1,88 @@
+{
+ "ticker": "DOCN",
+ "name": "DigitalOcean Holdings, Inc.",
+ "sector": "Technology / Cloud infrastructure (IaaS)",
+ "price": 97.5,
+ "market_cap_b": 10.27,
+ "engine_version": 5,
+ "base_oe_per_share": 0.8375256932978401,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Developer brand, simplicity and predictable pricing win SMB/digital-native workloads from hyperscalers, and the managed platform layer is getting stickier (85% of AI-customer ARR from inference + core cloud, not bare metal) \u2014 but compute is commodity with low switching costs, AWS/Azure/GCP outscale it, gross margin is compressing on GPU mix (about 61% in Q1 2025 to 55.0% in Q2 2026), and ROIC (roic_proxy in fundamentals.json) only reached 12.2% in FY2025 after -14.3% / -2.7% / -1.5% / 1.0% in 2020-23 and 9.2% in 2024 \u2014 no through-cycle proof of returns above the cost of capital, so no score above the moderate band.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.95 vs 3-yr median 0.28 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.9% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 7.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 11.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 7.06,
+   "irr": 0.0349
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 12.74,
+   "irr": 0.0444
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 19.46,
+   "irr": 0.0555
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 31.57,
+   "irr": 0.0743
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 52.28,
+   "irr": 0.1022
+  }
+ },
+ "iv_at_15": 22.85,
+ "iv_at_12": 32.12,
+ "implied_irr": 0.0613,
+ "implied_irr_base_case": 0.0555,
+ "upside_at_15_pct": -76.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real AI-inference growth story with a narrow moat 5/10 \u2014 but at $97.50 the price pays for more than the super-bull case: weighted IRR 6.1%, weighted IV@15% $22.85, and it clears a 15% hurdle only below ~$22.85.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0444,
+ "irr_bull": 0.0743,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 14.81,
+ "iv_at_25": 10.6,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1041287000,
+ "shares_diluted_latest": 105343000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Developer brand, simplicity and predictable pricing vs hyperscaler complexity and egress fees",
+  "Managed platform layer (Kubernetes, databases, inference engine) \u2014 85% of AI-customer ARR from inference + core cloud rather than bare metal",
+  "Large-cohort growth and stickiness: $1M+ customer ARR +214% YoY in Q2 2026, record $93M incremental ARR in the quarter",
+  "Self-serve acquisition economics \u2014 CAC payback 9.3 months reported in Q1 2026 coverage"
+ ],
+ "moat_against": [
+  "Hyperscalers (AWS, Azure, GCP) outscale on price, custom silicon and bundled credits; niche rivals Vultr and Akamai/Linode sell the same commodity compute",
+  "Low switching costs on core droplets/compute; SMB and developer customers are price-sensitive",
+  "ROIC history weak: roic_proxy 12.2% in FY2025 is the first double-digit print, after 1.0% in 2023 and negative prints in 2020-22",
+  "Gross margin compressing as GPU/AI mix rises: 61.4% in Q1 2025 to 55.0% in Q2 2026 (fundamentals.json quarterly)",
+  "No proprietary silicon, network scale or owned consumer distribution"
+ ]
+}

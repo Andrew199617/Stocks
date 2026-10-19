@@ -1,0 +1,37 @@
+{
+ "ticker": "FLUT",
+ "cik": 1635327,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001635327-26-000005",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1635327/000163532726000005/flut-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001635327-26-000045",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1635327/000163532726000045/flut-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001635327-26-000056",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1635327/000163532726000056/flut-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment' (us-gaap:MaterialReconcilingItemsMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}

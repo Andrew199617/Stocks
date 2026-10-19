@@ -1,0 +1,297 @@
+{
+ "ticker": "FICO",
+ "cik": 814547,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T06:23:35-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000814547.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000030/fico-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FICO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FICO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FAIR ISAAC CORP",
+  "cik": 814547,
+  "description": {
+   "text": "We were founded in 1956 on the premise that data, used intelligently, can improve business decisions. Today, FICO’s software and the widely used FICO® Score operationalize analytics, enabling thousands of businesses in more than 80 countries to uncover new opportunities, make timely decisions that matter, and execute them at scale. Most leading banks and credit card issuers rely on our solutions, as do insurers, retailers, telecommunications providers, automotive lenders, consumer reporting agencies, public agencies, and organizations in other industries. We also serve consumers through online services that enable people to access and understand their FICO Scores — the standard measure of consumer credit risk in the United States (“U.S.”) — empowering them to increase financial literacy and manage their financial health. More information about us can be found on our website, www.fico.com. We make our Annual Reports on Forms 10-K, Quarterly Reports on Forms 10-Q, and Current Reports on Forms 8-K, as well as amendments to those reports, available free of charge through our website as soon as reasonably practicable after we electronically file them with the U.S. Securities and Exchange Commission (“SEC”). References to our website address in this report do not constitute an incorporation by reference. Information on our website is not part of this report.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "accession": "0000814547-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000030/fico-20250930.htm"
+  },
+  "description_short": "FICO (NYSE: FICO) powers decisions that help people and businesses around the world prosper. Founded in 1956, the company is a pioneer in the use of predictive analytics and data science to improve operational decisions. FICO holds more than 200 US and foreign patents on technologies that increase profitability, customer satisfaction and growth for businesses in financial services, insurance, telecommunications, health care, retail and many other industries. Using FICO solutions, businesses in more than 80 countries do everything from protecting 4 billion payment cards from fraud, to improving financial inclusion, to increasing supply chain resiliency. The FICO Score, used by 90% of top US lenders, is the standard measure of consumer credit risk in the US and has been made available in over 40 other countries, improving risk management, credit access and transparency.",
+  "industry": "Business Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.fico.com",
+  "headquarters": "Bozeman, Montana",
+  "address": {
+   "street": "5 West Mendenhall, Suite 105",
+   "city": "Bozeman",
+   "state": "Montana",
+   "zip": "59715",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-07"
+  },
+  "phone": "(406) 982-7276",
+  "employees": {
+   "count": 3811,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we employed 3,811 persons across 28 countries.",
+   "form": "10-K",
+   "filed": "2025-11-07",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000030/fico-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-05-11",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "FAIR ISAAC & COMPANY INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000814547&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-01",
+   "items": [
+    "2.05"
+   ],
+   "description": "Exit costs",
+   "accession": "0001193125-26-415732",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526415732/d127042d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000814547-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000030/fico-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000814547-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000031/fico-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-05",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-260817",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526260817/d140061d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000814547-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000021/fico-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000814547-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000020/fico-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-117936",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526117936/d56220d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-102450",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526102450/d92566d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-11",
+   "period": "2026-03-11",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-101201",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526101201/d838805d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-04",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001193125-26-093964",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526093964/d106510d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-28",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000814547-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000011/fico-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000814547-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454726000010/fico-20260128.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-27",
+   "period": "2026-03-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-024403",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312526024403/d27709ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000814547-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000030/fico-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000814547-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000026/fico-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-28",
+   "period": "2025-08-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-191274",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312525191274/d24994d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000814547-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000024/fico-20250730.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000814547-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000081454725000022/fico-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-13",
+   "period": "2025-05-08",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-118857",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312525118857/d14876d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-08",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001193125-25-115570",
+   "url": "https://www.sec.gov/Archives/edgar/data/814547/000119312525115570/d925424d8k.htm"
+  }
+ ],
+ "warnings": []
+}

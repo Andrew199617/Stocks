@@ -1,0 +1,86 @@
+{
+ "ticker": "GEN",
+ "name": "Gen Digital Inc.",
+ "sector": "Consumer cybersecurity & fintech (Technology)",
+ "price": 24.16,
+ "market_cap_b": 14.96,
+ "engine_version": 5,
+ "base_oe_per_share": 2.1940298507462686,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Norton, Avast and LifeLock give Gen the leading consumer cyber-safety subscription franchise \u2014 brand trust, OEM/partner distribution and high retention in a category where the product is bought on fear of loss \u2014 but the core antivirus product commoditizes against free platform offerings (Microsoft Defender, Apple/Google built-ins), switching costs are low, and MoneyLion's marketplace is a competitive lead-gen business with no real moat. Returns evidence caps the score: post-Avast roic_proxy ran 8.5% (FY23), 8.9% (FY24), 10.6% (FY25), 13.1% (FY26) \u2014 improving but only around the cost of capital on the acquisition-swollen capital base, versus 33-47% in FY21-22 pre-Avast. Gross margin is high but eroding with mix: 85.4% (FY22) to 78.5% (FY26), TTM 78.0%, as lower-margin MoneyLion revenue scales. A 5 = narrow moat, CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 5.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (12.3%) vs bull-case tier A (20.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 12.16,
+   "irr": 0.0869
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 18.73,
+   "irr": 0.1227
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 26.65,
+   "irr": 0.1617
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 35.94,
+   "irr": 0.2016
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 54.11,
+   "irr": 0.2661
+  }
+ },
+ "iv_at_15": 25.88,
+ "iv_at_12": 34.93,
+ "implied_irr": 0.158,
+ "implied_irr_base_case": 0.1617,
+ "upside_at_15_pct": 7.1,
+ "tier_by_numbers": "B",
+ "tier_final": "B",
+ "confidence": "medium",
+ "one_liner": "Durable consumer cyber-safety subscription franchise plus fast-growing MoneyLion, but a narrow 5/10 moat and net debt at 5.7x normalized OE; weighted IRR 15.8% only just clears the 15% hurdle at $24.16 (weighted IV@15% $25.88) with the price still carrying a GoDaddy-deal discount \u2014 size to the bear end (12.3%); it clears 15% with real margin only below ~$20.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1227,
+ "irr_bull": 0.2016,
+ "tier_bear": "C",
+ "tier_bull": "A",
+ "iv_at_20": 17.82,
+ "iv_at_25": 13.46,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 7794000000,
+ "shares_diluted_latest": 619000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Category-leading consumer brands (Norton, Avast, LifeLock) in subscription cyber safety with high retention",
+  "Distribution scale: OEM, ISP and retail partner channels plus ~110M connected financial accounts via MoneyLion",
+  "Recurring subscription revenue with 50%+ non-GAAP operating margins in Cyber Safety (61% segment margin Q1 FY27)",
+  "Cross-sell platform: 35% of paid customers now use financial-wellness tools, deepening engagement"
+ ],
+ "moat_against": [
+  "Free platform competition: Microsoft Defender and Apple/Google built-in security commoditize core antivirus",
+  "Low switching costs and a mature, slow-growing consumer AV category",
+  "ROIC only ~9-13% post-Avast \u2014 the rollup capital base has not yet earned a wide-moat return",
+  "Gross margin drifting down (85.4% FY22 to 78.5% FY26) as no-moat MoneyLion marketplace mix grows",
+  "Growth-by-acquisition model: Avast, MoneyLion, and a reported GoDaddy approach \u2014 moat is bought, not organic"
+ ]
+}

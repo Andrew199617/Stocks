@@ -1,0 +1,55 @@
+# FN — Fabrinet
+Pass-1 run, 2026-10-16 (engine 5.4.0). All figures below are copied from key_numbers.md, dcf_numbers.json, ttm/fundamentals outputs, or financials_history.csv — none are recomputed.
+
+## What it is
+Precision optical, electro-mechanical and electronic contract manufacturer (Thailand-based, fiscal year ends in June): it builds optical transceivers, modules and sub-systems, DCI and HPC hardware for OEMs and hyperscalers. FY2026 revenue $4,641,097,000, +35.7% — mix per the 10-K: data center 47.9%, communications infrastructure 33.3%, automotive/industrial/other 18.8%. The AI buildout is the story: Q4 FY2026 revenue $1.316B (+45% YoY), data center $669M (+68%, 51% of the quarter), DCI exiting at an annualized run rate above $1B; management guided Q1 FY2027 revenue to $1.375–1.425B (+43% YoY at the midpoint) and is adding capacity (Building 10 in Chonburi, a new Navanakorn site). Price $372.48, market cap $13.503B — in scope under $40B.
+
+## Owner's earnings
+**FY2026 (10-K via EDGAR, financials_history.csv):** operating cash flow $256,725,000; capex $252,503,000; SBC $34,630,000 (always a real cost, ~13% of OCF — modest for this sweep).
+- **Conservative owner's earnings FY2026: −$30,408,000 = −$0.84/share.** Capex roughly doubled from FY2025's $121,078,000 as PP&E net rose from $380,640,000 to $615,067,000 (filing balance sheet) — the conservative definition charges the whole capacity build-out against one year.
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC): **$375,226,000** for FY2026 — the earnings-power view is far above the conservative print, which is exactly the BASE_DIVERGENCE tension below.
+- OE/share history (conservative, per share): FY2022 $0.18, FY2023 $3.36, FY2024 $9.22, FY2025 $4.81, FY2026 −$0.84 — positive 4 of the last 5 years, and wildly WC/capex-timed in every one of them.
+- **Base used = the engine's normalized base, 3-yr median OE/share $4.81** (base_source: median_of_last_3_fy_oe_per_share). Neither endpoint is usable: FY2024's $9.22 rode an OCF spike to $413,146,000 on working-capital timing, and FY2026's −$0.84 charges a multi-year capacity build to a single year. The median is the least-distorted filing-derived base available; no override was declared — the distortion is timing, not missing data, and the tier conclusion does not depend on it (see method range).
+- Balance sheet (10-K, June 26, 2026): cash and equivalents $346,711,000 plus short-term investments $528,344,000 = $875.1M of cash + short-term investments, and **no outstanding debt**. This is a net-cash balance sheet; the engine's blank net-debt field means "no debt tags because there is no debt," not hidden leverage.
+
+## Moat: 5/10 — moderate/narrow
+Justification: ROIC proxy (fundamentals.json, after-tax operating income over equity + debt − cash) has held 14–20% every year for a decade — FY2021–26: 17.5% / 18.3% / 19.2% / 19.8% / 18.1% / 18.7% — through the telecom downturn and COVID. That is real evidence of a process franchise. But gross margin has been pinned at ~11–13% for ten years (12.0% in FY2026, 12.1% TTM) — returns come from asset turns and a customer-funded working-capital model, not pricing power.
+- FOR: precision optical process know-how plus OEM qualification/switching costs — programs take years to qualify and are risky to move; ROIC 14–20% for a decade, above the cost of capital through a cycle; Thailand scale/cost structure (Chonburi + Navanakorn) smaller rivals cannot match on complex optical builds; deepening embed — four customers each >10% of FY2026 revenue (Cisco 20%, NVIDIA 16%, Nokia 11%, Amazon 11% per management's Q4 disclosure) and a DCI run rate above $1B.
+- AGAINST: no pricing power — gross margin ~12% and flat for a decade, the giant customers keep the economics; concentration — the top 4 are 57.4% of FY2026 revenue, and losing or insourcing one program is a material hole; single-geography manufacturing (Thailand, plus Fuzhou) — tariff, FX and tax exposure, with a $57.4M Thailand Pillar Two top-up tax provision hitting FY2026; co-packaged-optics / direct-drive architectures could bypass pluggable transceiver packaging; contract manufacturing is ultimately replicable by scaled rivals if a customer funds the switch.
+- A 5 gives CAP = 8.5 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 8.5 years, 15-year projection.
+
+## DCF — final run (2026-10-16)
+Growth blend 21.24% (rev CAGR 5y 19.81%, 3y 20.69%, latest rev YoY 35.73%; share count CAGR −0.55% credited +0.55pp). Default offsets kept (−12/−5/0/+5/+12pp); probabilities bear-widened to 15/30/30/20/5 per the OE_VOLATILE flag; OE multipliers standard 0.75/0.90/1.00/1.10/1.25.
+**Growth-start sanity check (written reason):** every start below is OE/share growth, not revenue growth, and sits deliberately below the revenue prints (FY2026 +35.7%, Q4 +45%, Q1 FY2027 guided +43% YoY). FY2026 capex of $252,503,000 and the inventory build (below) show cash OE/share lagging revenue hard while Building 10 / Navanakorn are built out; a start at the revenue print would assume the capex supercycle is already over. The super-bull start (33.2%) is set at roughly the FY2026 revenue growth rate — no clean OE/share print in the filed history supports a higher sustained start off this base, because the OE series itself is the distorted one (FY2024 +174% per-share was working-capital timing, not run-rate).
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 15% | 9.2% | 0.75 | AI capex cycle turns; new capacity strands, WC unwinds through earnings | $39.07 | 3.92% |
+| Bear | 30% | 16.2% | 0.90 | Growth halves, capex stays high a year too long, a top-4 program slips | $62.44 | 4.89% |
+| Base | 30% | 21.2% | 1.00 | Blend growth; capex normalizes gradually over the CAP | $84.89 | 5.81% |
+| Bull | 20% | 26.2% | 1.10 | DCI/hyperscaler programs ramp on schedule; capacity fills | $113.98 | 6.97% |
+| Super bull | 5% | 33.2% | 1.25 | Multi-year AI supercycle, capacity fully absorbed at rising OE conversion | $170.44 | 9.05% |
+
+- **Probability-weighted: IV@15% $81.38 (−78.2% vs price), IV@12% $111.96, weighted IRR 5.69%, base-case IRR 5.81%**
+- **Tier by numbers: D** — and the band is D at both ends (bear 4.89%, bull 6.97%; full scenario range 3.92–9.05%). Hurdle-clearing prices on the weighted path: 15% at $81.38, 20% at $54.50, 25% at $40.16.
+- Diagnostics (key_numbers.md): OE yield 1.29%, terminal value 22.3% of IV@15%, scenario spread 4.36x, 3.7 months since FY end.
+
+## Flags — every fragility flag resolved
+- **OE_VOLATILE** (OE/share spans >3x over 5 years): real and structural here — the series ($0.18 → $3.36 → $9.22 → $4.81 → −$0.84) is driven by capex cycles and working-capital timing, not demand collapse. Handled with the normalized median base and bear-widened probabilities (15/30 on super bear + bear).
+- **NI_OCF_DIVERGENCE** (2026): net income $473,027,000 vs OCF $256,725,000. Found: (1) a working-capital build to support +35.7% growth — inventories $581,015,000 → $1,021,235,000 (+76%) and receivables $758,894,000 → $1,017,933,000 on the filing balance sheet (ΔNWC $97,801,000 in the history file is only part of it, the rest sits in payables timing); (2) NI contains a ~$56.7M non-cash gain from remeasuring the Raytek investment (disclosed on the Q4 call) that produced no cash; partly offset by (3) a $57.4M non-cash Thailand Pillar Two top-up tax provision expensed in NI with no cash paid in FY2026. The OCF-based conservative OE used throughout is not flattered by any of these.
+- **DEBT_TAGS_BLANK**: resolved from the filing — the 10-K states cash, equivalents and short-term investments of $875.1M at June 26, 2026 and **no outstanding debt**. Net debt is blank because there is no debt to tag; balance sheet is net cash (see Owner's earnings).
+- **SECTOR_MODEL_MISMATCH** ("Utilities"): a screener mislabel — Fabrinet is a technology contract manufacturer, and the OE/capex DCF fits it the ordinary cyclical-manufacturer way (arguably it fits *too* well: it charges growth capex in full). Confidence is graded low regardless, on the WIDE_SCENARIO_SPREAD and OE_VOLATILE flags; score.json still records model_fit "misfit" from the screener label, which is a data error, not an analytical one.
+- **BASE_DIVERGENCE** (latest FY −$0.84 vs 3-yr median $4.81): both are distorted, in opposite directions — FY2026 by the capex/WC supercycle year, the FY2024 leg of the median window by an OCF timing spike. The median is used as the least-distorted base; the maintenance-definition FY2026 OE total of $375,226,000 is reported alongside so the range is visible.
+- **LOW_OE_YIELD** (1.29%): accurate — at $372.48 the valuation rests almost entirely on future growth, which is precisely why every scenario lands in D. Not a flag to explain away; it is the verdict.
+- **WIDE_SCENARIO_SPREAD** (4.36x): real — outcomes range from a stranded-capacity bear to a multi-year supercycle. Confidence capped at low; verdict sized to the conservative end.
+
+## My thoughts / overlay
+- The honest headline is that this is a **price verdict, not a business verdict**. The business just printed +35.7% revenue, +45% in Q4, ~19% ROIC, a net-cash balance sheet and a +43% guided quarter. The stock at $372.48 is 4.6x the weighted IV@15% — even the 5%-weight super bull ($170.44) sits 54% below the price, and the super bull assumes 33.2% OE/share growth fading over 8.5 years.
+- Method range: the one defensible input that moves the answer materially is the base definition. On maintenance economics (FY2026 OE total $375,226,000 vs the conservative −$30,408,000) a base would be far higher and IV with it — but no computed output in this run supports a maintenance-based per-share base, and even granting the bull case in full does not reach the price. The D is robust across methods; only its depth changes.
+- What would change the answer: capex intensity falling back toward FY2025 levels while revenue holds (OE/share would inflect hard off a depressed base — the FY2024 print shows how fast the conservative series can swing), or the price doing the work. Watch: quarterly capex vs the Building 10 schedule, inventory conversion, the Thailand top-up tax turning into cash tax, and any top-4 customer insourcing/CPO signal.
+- Data notes: fundamentals.py ran clean except TTM dividends/share-issuance warnings (Fabrinet pays no dividend and the quarterly issuance tags are incomplete — neither affects the score). All other enrichment (prices, segments, statements, profile, reprice) run at the end of this pass per the spec order.
+
+## Final verdict
+- **Final tier: D** (weighted IRR 5.69%; band D→D)
+- Confidence: **Low** (wide scenario spread, volatile OE series, screener sector mislabel — but the tier itself is robust: no scenario reaches even 10%)
+- One-liner: High-quality optical manufacturer (moat 5/10, ROIC ~19%) in an AI-datacenter supercycle, but at $372.48 the price capitalizes years of flawless growth: weighted IRR 5.7%, IV@15% $81 — it clears 15% only below ~$81; Tier D is a price verdict, not a business verdict.

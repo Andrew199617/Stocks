@@ -1,0 +1,839 @@
+{
+ "ticker": "GME",
+ "cik": 1326380,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001326380-26-000013",
+   "filed": "2026-03-24",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000013/gme-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001326380-26-000025",
+   "filed": "2026-06-11",
+   "period": "2026-05-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000025/gme-20260502_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001326380-26-000055",
+   "filed": "2026-09-09",
+   "period": "2026-08-01",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1326380/000132638026000055/gme-20260801_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gme:UnitedStatesSegmentMember",
+     "label": "United States Segment",
+     "values": [
+      3429400000,
+      2575700000,
+      2667600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6504,
+      0.6737,
+      0.7349
+     ],
+     "growth_yoy": [
+      null,
+      -0.2489,
+      0.0357
+     ]
+    },
+    {
+     "member": "gme:AustraliaSegmentMember",
+     "label": "Australia Segment",
+     "values": [
+      522500000,
+      404900000,
+      494700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0991,
+      0.1059,
+      0.1363
+     ],
+     "growth_yoy": [
+      null,
+      -0.2251,
+      0.2218
+     ]
+    },
+    {
+     "member": "gme:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      1028400000,
+      638100000,
+      429400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.195,
+      0.1669,
+      0.1183
+     ],
+     "growth_yoy": [
+      null,
+      -0.3795,
+      -0.3271
+     ]
+    },
+    {
+     "member": "gme:CanadaSegmentMember",
+     "label": "Canada Segment",
+     "values": [
+      292500000,
+      204300000,
+      38200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0555,
+      0.0534,
+      0.0105
+     ],
+     "growth_yoy": [
+      null,
+      -0.3015,
+      -0.813
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5272800000,
+     3823000000,
+     3629900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gme:UnitedStatesSegmentMember",
+     "label": "United States Segment",
+     "values": [
+      537500000,
+      724600000,
+      651100000,
+      608200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7339,
+      0.7453,
+      0.7795,
+      0.7697
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2113,
+      -0.1606
+     ]
+    },
+    {
+     "member": "gme:AustraliaSegmentMember",
+     "label": "Australia Segment",
+     "values": [
+      81900000,
+      140900000,
+      99600000,
+      120900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1118,
+      0.1449,
+      0.1192,
+      0.153
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2161,
+      -0.1419
+     ]
+    },
+    {
+     "member": "gme:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      74800000,
+      106700000,
+      84600000,
+      61100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1021,
+      0.1098,
+      0.1013,
+      0.0773
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.131,
+      -0.4274
+     ]
+    },
+    {
+     "member": "gme:CanadaSegmentMember",
+     "label": "Canada Segment",
+     "values": [
+      38200000,
+      null,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0522,
+      null,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     732400000,
+     972200000,
+     835300000,
+     790200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gme:UnitedStatesSegmentMember",
+     "label": "United States Segment",
+     "values": [
+      -2300000,
+      33900000,
+      283200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0667,
+      -1.2939,
+      1.2202
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      7.354
+     ]
+    },
+    {
+     "member": "gme:AustraliaSegmentMember",
+     "label": "Australia Segment",
+     "values": [
+      -3500000,
+      -11900000,
+      4600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1014,
+      0.4542,
+      0.0198
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "gme:CanadaSegmentMember",
+     "label": "Canada Segment",
+     "values": [
+      -8400000,
+      -10000000,
+      -22200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2435,
+      0.3817,
+      -0.0956
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "gme:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      -20300000,
+      -38200000,
+      -33500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5884,
+      1.458,
+      -0.1443
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -34500000,
+     -26200000,
+     232100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gme:UnitedStatesSegmentMember",
+     "label": "United States Segment",
+     "values": [
+      33600000,
+      63700000,
+      144600000,
+      153200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -3.1111,
+      0.9593,
+      1.0091,
+      0.9563
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.3036,
+      1.405
+     ]
+    },
+    {
+     "member": "gme:AustraliaSegmentMember",
+     "label": "Australia Segment",
+     "values": [
+      -5400000,
+      6000000,
+      0,
+      8100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5,
+      0.0904,
+      0.0,
+      0.0506
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.35
+     ]
+    },
+    {
+     "member": "gme:EuropeSegmentMember",
+     "label": "Europe Segment",
+     "values": [
+      -16800000,
+      -3300000,
+      -1300000,
+      -1100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.5556,
+      -0.0497,
+      -0.0091,
+      -0.0069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "gme:CanadaSegmentMember",
+     "label": "Canada Segment",
+     "values": [
+      -22200000,
+      null,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      2.0556,
+      null,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     -10800000,
+     66400000,
+     143300000,
+     160200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gme:VideogamehardwareaccessoriesMember",
+     "label": "Video game hardware & accessories",
+     "values": [
+      2996800000,
+      2099700000,
+      1840400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5684,
+      0.5492,
+      0.507
+     ],
+     "growth_yoy": [
+      null,
+      -0.2994,
+      -0.1235
+     ]
+    },
+    {
+     "member": "gme:CollectiblesMember",
+     "label": "Collectibles",
+     "values": [
+      754000000,
+      717900000,
+      1060200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.143,
+      0.1878,
+      0.2921
+     ],
+     "growth_yoy": [
+      null,
+      -0.0479,
+      0.4768
+     ]
+    },
+    {
+     "member": "gme:SoftwareMember",
+     "label": "Software",
+     "values": [
+      1522000000,
+      1005400000,
+      729300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2887,
+      0.263,
+      0.2009
+     ],
+     "growth_yoy": [
+      null,
+      -0.3394,
+      -0.2746
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5272800000,
+     3823000000,
+     3629900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gme:CollectiblesMember",
+     "label": "Collectibles",
+     "values": [
+      211500000,
+      227600000,
+      348900000,
+      356300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2888,
+      0.2341,
+      0.4177,
+      0.4509
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6496,
+      0.5655
+     ]
+    },
+    {
+     "member": "gme:VideoGamesMember",
+     "label": "Video Games",
+     "values": [
+      null,
+      494600000,
+      null,
+      263200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.5087,
+      null,
+      0.3331
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.4679
+     ]
+    },
+    {
+     "member": "gme:PreOwnedAndRefurbishedMember",
+     "label": "Pre--Owned and Refurbished",
+     "values": [
+      null,
+      250000000,
+      null,
+      170700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.2571,
+      null,
+      0.216
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.3172
+     ]
+    },
+    {
+     "member": "gme:SoftwareMember",
+     "label": "Software",
+     "values": [
+      175600000,
+      null,
+      152700000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2398,
+      null,
+      0.1828,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1304,
+      null
+     ]
+    },
+    {
+     "member": "gme:HardwareAndAccessoriesMember",
+     "label": "Hardware And Accessories",
+     "values": [
+      345300000,
+      null,
+      333700000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4715,
+      null,
+      0.3995,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0336,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     732400000,
+     972200000,
+     835300000,
+     790200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

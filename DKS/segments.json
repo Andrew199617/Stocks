@@ -1,0 +1,666 @@
+{
+ "ticker": "DKS",
+ "cik": 1089063,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001089063-26-000007",
+   "filed": "2026-03-27",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001089063-26-000027",
+   "filed": "2026-06-04",
+   "period": "2026-05-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000027/dks-20260502_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001089063-26-000036",
+   "filed": "2026-09-03",
+   "period": "2026-08-01",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1089063/000108906326000036/dks-20260801_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dks:DICKSSegmentMember",
+     "label": "DICK'S Segment",
+     "values": [
+      12984399000,
+      13442849000,
+      14108943000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0,
+      0.8196
+     ],
+     "growth_yoy": [
+      null,
+      0.0353,
+      0.0496
+     ]
+    },
+    {
+     "member": "dks:FootLockerSegmentMember",
+     "label": "Foot Locker Segment",
+     "values": [
+      0,
+      0,
+      3106200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.1804
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12984400000,
+     13442800000,
+     17215100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dks:DICKSSegmentMember",
+     "label": "DICK'S Segment",
+     "values": [
+      3174677000,
+      3646616000,
+      3377440000,
+      3849887000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0,
+      0.654,
+      0.6891
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0639,
+      0.0557
+     ]
+    },
+    {
+     "member": "dks:FootLockerSegmentMember",
+     "label": "Foot Locker Segment",
+     "values": [
+      0,
+      0,
+      1787064000,
+      1736928000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.346,
+      0.3109
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3174700000,
+     3646600000,
+     5164500000,
+     5586800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dks:DICKSSegmentMember",
+     "label": "DICK'S Segment",
+     "values": [
+      97860000,
+      105662000,
+      110245000,
+      118036000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0,
+      0.7168,
+      0.7398
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1266,
+      0.1171
+     ]
+    },
+    {
+     "member": "dks:FootLockerSegmentMember",
+     "label": "Foot Locker Segment",
+     "values": [
+      0,
+      0,
+      40960000,
+      41289000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.2663,
+      0.2588
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "dks:CorporateAndOtherSegmentMember",
+     "label": "Corporate and Other Segment",
+     "values": [
+      0,
+      0,
+      2605000,
+      216000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0169,
+      0.0014
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     97860000,
+     105662000,
+     153810000,
+     159541000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-02-03",
+    "2025-02-01",
+    "2026-01-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dks:FootwearMember",
+     "label": "Footwear",
+     "values": [
+      3388700000,
+      3829000000,
+      6888000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.261,
+      0.2848,
+      0.4001
+     ],
+     "growth_yoy": [
+      null,
+      0.1299,
+      0.7989
+     ]
+    },
+    {
+     "member": "dks:HardlinesMember",
+     "label": "Hardlines",
+     "values": [
+      4915500000,
+      4899300000,
+      5048300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3786,
+      0.3645,
+      0.2932
+     ],
+     "growth_yoy": [
+      null,
+      -0.0033,
+      0.0304
+     ]
+    },
+    {
+     "member": "dks:ApparelMember",
+     "label": "Apparel",
+     "values": [
+      4329800000,
+      4425400000,
+      4895400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3335,
+      0.3292,
+      0.2844
+     ],
+     "growth_yoy": [
+      null,
+      0.0221,
+      0.1062
+     ]
+    },
+    {
+     "member": "dks:OtherNonMerchandiseCategoryMember",
+     "label": "Other Non Merchandise Category",
+     "values": [
+      350400000,
+      289100000,
+      383400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.027,
+      0.0215,
+      0.0223
+     ],
+     "growth_yoy": [
+      null,
+      -0.1749,
+      0.3262
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12984400000,
+     13442800000,
+     17215100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dks:FootwearMember",
+     "label": "Footwear",
+     "values": [
+      998300000,
+      1087700000,
+      2605100000,
+      2616100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3145,
+      0.2983,
+      0.5044,
+      0.4683
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.6095,
+      1.4052
+     ]
+    },
+    {
+     "member": "dks:HardlinesMember",
+     "label": "Hardlines",
+     "values": [
+      1192900000,
+      1471500000,
+      1326600000,
+      1552300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3758,
+      0.4035,
+      0.2569,
+      0.2779
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1121,
+      0.0549
+     ]
+    },
+    {
+     "member": "dks:ApparelMember",
+     "label": "Apparel",
+     "values": [
+      884700000,
+      1008500000,
+      1109500000,
+      1299400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2787,
+      0.2766,
+      0.2148,
+      0.2326
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2541,
+      0.2884
+     ]
+    },
+    {
+     "member": "dks:OtherNonMerchandiseCategoryMember",
+     "label": "Other Non Merchandise Category",
+     "values": [
+      98800000,
+      78900000,
+      123300000,
+      119000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0311,
+      0.0216,
+      0.0239,
+      0.0213
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.248,
+      0.5082
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3174700000,
+     3646600000,
+     5164500000,
+     5586800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-03",
+    "2025-08-02",
+    "2026-05-02",
+    "2026-08-01"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      3174700000,
+      3646600000,
+      4630300000,
+      5006300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0,
+      0.8966,
+      0.8961
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4585,
+      0.3729
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      0,
+      0,
+      534200000,
+      580500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.1034,
+      0.1039
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3174700000,
+     3646600000,
+     5164500000,
+     5586800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

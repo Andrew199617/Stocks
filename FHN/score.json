@@ -1,0 +1,91 @@
+{
+ "ticker": "FHN",
+ "name": "First Horizon Corporation",
+ "sector": "Finance / Regional banks",
+ "price": 22.88,
+ "market_cap_b": 11.69,
+ "engine_version": 5,
+ "base_oe_per_share": 1.990342082286783,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Established Southeast deposit and relationship franchise with ROTCE of 15.0-15.3% in 2025 through Q2 2026, but banking is a commodity product set: no network effects, low switching costs, a mediocre ~59-60% efficiency ratio, and through-cycle returns well below the current run-rate. roic_proxy is null for FHN in fundamentals.json (banks do not file the operating-income tag), so the return evidence is ROTCE, which does not support a 7+ moat.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.3%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 1.04 vs 3-yr median 2.14 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier C (10.4%) vs bull-case tier B (15.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 10.29,
+   "irr": 0.0798
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 14.41,
+   "irr": 0.1036
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 18.67,
+   "irr": 0.1276
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 23.45,
+   "irr": 0.1529
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 30.38,
+   "irr": 0.1872
+  }
+ },
+ "iv_at_15": 18.02,
+ "iv_at_12": 23.9,
+ "implied_irr": 0.1241,
+ "implied_irr_base_case": 0.1276,
+ "upside_at_15_pct": -21.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Adequate regional bank, moat 4/10 \u2014 does not clear 15% at $22.88 (weighted IRR 12.4%, IV@15% $18.02); it clears 15% only at or below $18.02, and the bank model fit is poor so size any interest to the bear case.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1036,
+ "irr_bull": 0.1529,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 12.74,
+ "iv_at_25": 9.82,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1659000000,
+ "shares_diluted_latest": 511107000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Southeast/Mid-Atlantic deposit franchise and long client relationships (roots to 1864)",
+  "Diversified fee businesses: FHN Financial fixed income, wealth/trust, mortgage warehouse lending",
+  "ROTCE 15.0-15.3% in 2025 through Q2 2026 with disciplined deposit-cost management",
+  "CET1 10.5% and consistent buybacks (share count -3.34%/yr) support per-share compounding"
+ ],
+ "moat_against": [
+  "Commodity lending and deposit products; priced against money-center and larger regional competitors",
+  "No network effects and low switching costs",
+  "Efficiency ratio 59.88% in Q2 2026 and worsening YoY \u2014 no cost advantage",
+  "Cyclical credit: charge-offs and provisions can erase a year of earnings power",
+  "Five-year EPS growth ~2%/yr; revenue growth lagged peers"
+ ]
+}

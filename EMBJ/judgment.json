@@ -1,0 +1,43 @@
+{
+ "ads_ratio": {
+  "ratio": 4.0,
+  "reason": "DATA_GAP:ads_ratio \u2014 EDGAR per-share figures are per ordinary (common) share while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x4 ordinary shares per ADS to be comparable to the ADS price. This also corrects the engine's preliminary market-cap estimate, which multiplied the ordinary share count by the ADS price.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, Description of Securities exhibit: American Depositary Shares, each representing four common shares, traded on the New York Stock Exchange under the symbol EMBJ"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": false,
+ "moat_against": [
+  "Thin, cyclical economics: gross margin only 17.5% in FY2025 and 17.3-18.0% over FY2023-2025; roic_proxy negative or near-zero in 2017-2022 before recovering in 2023-2025 \u2014 no through-cycle pricing power proven",
+  "Scale disadvantage versus Airbus and Boeing in procurement, financing, support network and program risk-bearing",
+  "Airbus A220 (ex-Bombardier) overlaps the E195-E2 at the top of the regional range with Airbus distribution behind it",
+  "US scope clauses (76 seats / 86,000 lb MTOW) block the more efficient E175-E2 from the largest regional market; development paused toward 2027-2029",
+  "Customer and program concentration, supply-chain / GTF engine exposure, Brazilian political/FX overhang and Eve eVTOL cash burn"
+ ],
+ "moat_for": [
+  "Only in-production scope-compliant 76-seat regional jet (E175) \u2014 dominant in US regional fleets with no direct in-production rival in that class",
+  "Diversified portfolio across Commercial, Executive, Defense & Security and Services & Support smoothing any single cycle; firm backlog a record $34.5B in Q2 2026 (+16% YoY)",
+  "Executive Aviation franchise (Phenom 300 family, Praetor) with Q2 2026 revenue +32% YoY and adj. EBIT margin 23.4%",
+  "Installed base of 9,000+ aircraft feeding recurring Services & Support revenue (Q2 2026 +24% YoY, adj. EBIT margin 18.7%)",
+  "C-390 Millennium defense momentum (Defense backlog +42% YoY to $6.1B in Q2 2026) and NATO/export adoption"
+ ],
+ "moat_justification": "Narrow-to-moderate aerospace niche moat: Embraer is the only in-production scope-compliant 76-seat regional jet maker (E175) and holds strong executive-jet (Phenom/Praetor) and growing C-390 defense franchises with a record $34.5B backlog and a large installed base feeding Services & Support, but gross margin has stayed thin at 17.3-18.0% in FY2023-2025 (15.7-20.1% over FY2021-2025, fundamentals.json) and returns have not stayed above the cost of capital through a cycle \u2014 roic_proxy was negative in 2017, 2019, 2020 and 2022, near zero in 2018, and only strong in FY2023-2025 (17.6% / 23.9% / 25.8%). Scale disadvantage versus Airbus/Boeing, A220 overlap at the top of the E2 range, and the US scope clause blocking the E175-E2 cap the score at 5. CAP 8.5y.",
+ "moat_score": 5,
+ "name": "EMBRAER S.A.",
+ "one_liner": "Diversified aerospace niche leader, moat 5/10 \u2014 does not clear 15% at $72.34: weighted IRR 12.58%, weighted IV@15% $56.46 on a $3.62/ADS normalized OE base; it clears the 15% hurdle only below about $56.46.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.17,
+  0.08
+ ],
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under the engine's AdjustmentsForSharebasedPayments tag (last filed FY2022: $2.9 million). The filer's own FY2025 sharebased remuneration figure fills the gap; the engine applies this single value to every missing period, so FY2023/FY2024 are charged $5.4M instead of their filed $4.5M \u2014 slightly conservative and immaterial ($5.4M is under 1% of FY2025 operating cash flow of $870M and under 0.8% of the $682.8M owner's-earnings total). Value is 1.86x the last filed value, inside the 0.1x-10x band.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-30), Notes to the Consolidated Financial Statements, capital reserves table (Note 27.5): Sharebased remuneration US$5.4 million in FY2025, US$4.5 million in FY2024 and US$4.5 million in FY2023",
+  "value": 5400000
+ },
+ "sector": "Industrials / Aerospace & Defense",
+ "tier_override": null,
+ "tier_override_reason": null
+}

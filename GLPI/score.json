@@ -1,0 +1,89 @@
+{
+ "ticker": "GLPI",
+ "name": "Gaming and Leisure Properties, Inc.",
+ "sector": "Real Estate / Gaming triple-net REIT",
+ "price": 39.28,
+ "market_cap_b": 11.0,
+ "engine_version": 5,
+ "base_oe_per_share": 3.6886310294149904,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Long-term triple-net master leases (15-30yr terms, escalators, cross-collateralization, rent coverage >1.8x on most leases, no rent defaults since the 2013 spin-off) and scarce licensed gaming supply give contractual, durable rent \u2014 but ROIC proxy has run only ~8.7-10.5% over 2020-2025 (~10.3% in FY2025), there is no pricing power beyond contractual escalators, PENN (34 of 71 properties) and levered Bally's (16 of 71) concentrate tenant credit, and growth is bought with dilutive equity and ~5% debt.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "HIGH_NET_DEBT: net debt is 6.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.2%) vs bull-case tier B (15.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 16.56,
+   "irr": 0.0745
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 24.5,
+   "irr": 0.102
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.63,
+   "irr": 0.1259
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 40.06,
+   "irr": 0.1524
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 53.68,
+   "irr": 0.1915
+  }
+ },
+ "iv_at_15": 32.65,
+ "iv_at_12": 43.2,
+ "implied_irr": 0.1293,
+ "implied_irr_base_case": 0.1259,
+ "upside_at_15_pct": -16.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Durable triple-net gaming landlord, moat 5/10 \u2014 contractual rent and no defaults since 2013, but at $39.28 it does not clear 15% (weighted IRR 12.9%, IV@15% $32.65); it clears 15% only at ~$32.65, and the OE/capex model fits REITs poorly (sector misfit, confidence low).",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.102,
+ "irr_bull": 0.1524,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 23.14,
+ "iv_at_25": 17.88,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 6979417000,
+ "shares_diluted_latest": 280043000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Triple-net master leases: 15-30yr terms, annual escalators, cross-collateralization and corporate guarantees; tenants pay taxes, insurance and maintenance",
+  "No rent defaults since inception (2013 spin-off); most leases carry rent coverage above 1.8x",
+  "Scarce, license-limited gaming real estate in 21 states \u2014 tenants cannot readily relocate a casino",
+  "ROIC proxy stable at ~9-10.5% through the 2020 COVID year and the rate shock (10.3% FY2025)"
+ ],
+ "moat_against": [
+  "Tenant concentration: PENN operates 34 of 71 properties and levered Bally's 16 of 71 \u2014 tenant credit is the moat's weak leg",
+  "No pricing power beyond contractual escalators; rent growth is capped by lease terms",
+  "Single-sector portfolio (gaming only) exposed to regional-casino consumer and regulatory risk",
+  "Growth requires external capital: share count +3.3%/yr and net debt 6.8x normalized OE at ~5% average cost",
+  "ROIC proxy only ~10% \u2014 a modest spread over the cost of capital for a levered REIT"
+ ]
+}
