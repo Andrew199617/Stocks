@@ -1575,6 +1575,55 @@ def test_ttm_json_override_check_covers_engine_applied_fields_and_malformed_legs
         run.close()
 
 
+def test_ttm_leg_override_at_an_fx_filer_must_declare_usd():
+    """[Codex review 2, PR #31] Defence in depth for a stale ttm.json: an override that fills TTM legs at a filer the
+    engine converted from another currency (fx_conversion recorded) refuses unless judgment.json declares currency
+    "USD" on it; declared (kind filing) it scores."""
+    n, j, ttm = _ttm_leg_record()
+    n["fx_conversion"] = {"from_currency": "CNY", "to_currency": "USD", "rates": {}, "rates_by_currency": {}}
+    run = _ttm_leg_run(n, j, ttm)
+    try:
+        run.run()
+        run.refused('does not declare currency "USD"')
+    finally:
+        run.close()
+    n, j, ttm = _ttm_leg_record()
+    n["fx_conversion"] = {"from_currency": "CNY", "to_currency": "USD", "rates": {}, "rates_by_currency": {}}
+    j["sbc_override"] = dict(j["sbc_override"], kind="filing", currency="USD")
+    ttm["overrides_used"][0]["kind"] = "filing"
+    n["override_checks"]["sbc"]["currency_basis"] = "declared_usd"
+    run = _ttm_leg_run(n, j, ttm)
+    try:
+        run.run()
+        assert run.rc == 0, run.err
+        assert run.score()["overrides"][0]["scope"] == "ttm_legs"
+    finally:
+        run.close()
+
+
+def test_ttm_leg_fx_guard_covers_applied_fields_and_normalizes_the_currency():
+    """[PR #31 verifier] The TTM-leg currency guard also covers an override the annual engine applied (a stale
+    ttm.json can carry a converted override's raw value in its USD legs), and a declaration written "usd" passes like
+    "USD" (make_score's validator, the engine and ttm.py all normalize it)."""
+    n, j, ttm = _ttm_leg_record()
+    n["fx_conversion"] = {"from_currency": "CNY", "to_currency": "USD", "rates": {}, "rates_by_currency": {}}
+    src = "Form 20-F FY2025 cash-flow statement"
+    n["overrides_applied"] = [{"field": "capex", "value": 828e6, "kind": "filing", "source": src, "periods_filled": ["2025-12-31"]}]
+    n["data_gap"], n["data_gap_uncovered"] = ["capex"], []
+    j["capex_override"] = {"value": 828e6, "kind": "filing", "source": src, "reason": "RMB capex line"}
+    j["sbc_override"] = dict(j["sbc_override"], kind="filing", currency="usd")
+    ttm["overrides_used"][0]["kind"] = "filing"
+    ttm["overrides_used"] = ttm["overrides_used"] + [{"field": "capex", "value": 828e6, "kind": "filing", "source": src,
+        "legs_filled": {"ytd_current": {"period": ["2026-01-01", "2026-06-30"], "amount": 410e6}}}]
+    n["override_checks"]["sbc"]["currency_basis"] = "declared_usd"
+    run = _ttm_leg_run(n, j, ttm)
+    try:
+        run.run()
+        run.refused('capex_override in its USD legs', 'does not declare currency "USD"')
+    finally:
+        run.close()
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

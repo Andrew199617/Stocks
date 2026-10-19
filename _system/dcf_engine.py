@@ -361,7 +361,7 @@ v5.5 (2026-10-19, Andrew's rulings on the seven 5.5 spec drafts — engine_relea
         is invented) — a listed follow-up. VIV keeps its diagnostics (endpoint
         break). Put to Andrew beside E3 / R2-E3.
 """
-import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics
+import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
 from itertools import combinations
 from zoneinfo import ZoneInfo
@@ -925,7 +925,8 @@ PIN_LABELS = {"ttm_json": "the --ttm pin (ttm.json ttm_oe_per_share)", "base_oe_
               "judgment_base_override": "the --base-judgment pin (payable-earnings base)"}
 
 
-def share_scale_check(oe_ps_norm, price, shares_latest, dei_count, pin=None, pin_source=None):
+def share_scale_check(oe_ps_norm, price, shares_latest, dei_count, pin=None, pin_source=None, universe_cap=None,
+                      ads_ratio=None):
     """{'defect': bool, 'tests': {'a': bool, 'b': bool}, 'reasons': [str], 'dei_ratio': shares_latest/dei or None,
         'pin_over_price': bool}
     (a) price and oe_ps_norm not None and abs(oe_ps_norm) > 20 × price        (VIV 168×, TEM 61×)
@@ -934,8 +935,13 @@ def share_scale_check(oe_ps_norm, price, shares_latest, dei_count, pin=None, pin
     `pin_source` 'ttm_json' / 'base_oe_ps_arg' / 'judgment_base_override'), price known and abs(pin) > 20 × price ->
     pin_over_price, a defect whatever the native median says (ruling 2: "base OE/share > 20x price"; a TTM leg filed in
     thousands made ttm.py's pin 73x the price on clean FY counts). No pin -> pin_over_price False, and the result is
-    the 5.5 one."""
-    tests, reasons = {"a": False, "b": False}, []
+    the 5.5 one.
+    [ADDITION — Codex, PR #31] test "cap", the low side: price × shares_latest ÷ ads_ratio against universe.csv's market cap
+    (`universe_cap`, the screener's traded cap — an independent count), outside 1/100-100x -> defect. A count filed
+    1,000x too large makes the base tiny and the cap 1,000x the traded one; a bare "base below 0.1% of the price" test
+    cannot tell that from genuinely near-zero owner's earnings (FROG, PEG, TSEM, TTWO all sit below it on sane counts
+    and caps). No universe cap, no price or no count -> the cap test is not evaluated (False)."""
+    tests, reasons = {"a": False, "b": False, "cap": False}, []
     dei_ratio = (shares_latest / dei_count) if (dei_count and shares_latest) else None
     if price and oe_ps_norm is not None and abs(oe_ps_norm) > SHARE_SCALE_PRICE_MULT * price:
         tests["a"] = True
@@ -945,12 +951,20 @@ def share_scale_check(oe_ps_norm, price, shares_latest, dei_count, pin=None, pin
         tests["b"] = True
         reasons.append(f"latest diluted count {shares_latest:,.0f} is {dei_ratio:.6g}x the cover-page count "
                        f"{dei_count:,.0f} (outside 1/100-100x)")
+    cap_ratio = None
+    if universe_cap and price and shares_latest:
+        cap_ratio = (price * shares_latest / (ads_ratio or 1.0)) / universe_cap
+        if not (SHARE_SCALE_DEI_BAND[0] <= cap_ratio <= SHARE_SCALE_DEI_BAND[1]):
+            tests["cap"] = True
+            reasons.append(f"price {price:,.2f} x the latest diluted count {shares_latest:,.0f}"
+                           + (f" / ADS ratio {ads_ratio:g}" if ads_ratio and ads_ratio != 1 else "")
+                           + f" is {cap_ratio:.6g}x universe.csv's market cap {universe_cap:,.0f} (outside 1/100-100x)")
     pin_over = bool(price and pin is not None and abs(pin) > SHARE_SCALE_PRICE_MULT * price)
     if pin_over:
         reasons.append(f"{PIN_LABELS.get(pin_source, 'the pinned base')} {pin:,.2f} is {abs(pin) / price:,.0f}x the price "
                        f"{price:,.2f} (limit {SHARE_SCALE_PRICE_MULT}x) — the base actually used")
-    return {"defect": tests["a"] or tests["b"] or pin_over, "tests": tests, "reasons": reasons, "dei_ratio": dei_ratio,
-            "pin_over_price": pin_over}
+    return {"defect": tests["a"] or tests["b"] or tests["cap"] or pin_over, "tests": tests, "reasons": reasons,
+            "dei_ratio": dei_ratio, "pin_over_price": pin_over, "cap_ratio": cap_ratio}
 
 
 def pin_power_of_ten(native_base, pinned_base):
@@ -2014,22 +2028,34 @@ def main():
                        "rates": rates_by_ccy.get(primary, {}),
                        "rates_by_currency": rates_by_ccy}
     # v5.5: the intangible capex leg converts at its OWN unit's period-end rate
-    # (JD: PP&E as a USD translation, intangibles in CNY), using only rates the
-    # pass above already holds — it never enters the conversion-eligibility
-    # decision. A non-USD leg with no rate for its date is dropped for that
-    # period (capex_provenance records intangibles_dropped: no_rate).
-    intang_dropped = {}
+    # (JD: PP&E as a USD translation, intangibles in CNY) — it never enters the
+    # conversion-eligibility decision. [Codex, PR #31] The pass above requests
+    # rates only for the monetary_keys series, so a leg whose currency/date it
+    # never asked for (JD FY2023; or a USD filer whose only CNY facts are the
+    # intangible purchases) fetches its own rate here instead of being dropped;
+    # capex_provenance records it as intangibles_fx {currency, rate}. The rate
+    # is recorded on the leg only: it never enters fx_conversion's tables, so
+    # no FX record is created for such a filer and no override conversion
+    # depends on an intangible fact. Only a leg with no rate at all from the
+    # source is dropped (capex_provenance intangibles_dropped: no_rate).
+    intang_dropped, intang_fx = {}, {}
     for p, u in list(series_units["capex_intang"].items()):
         if u == "USD":
             continue
         r = (rates_by_ccy.get(u) or {}).get(p) if fx_info else None
+        if r is None:
+            r = fx_rate(u, p)
+            if r is not None:
+                # recorded on the leg only — never added to rates_by_ccy (fx_info's table, which _override_usd reads),
+                # so an override's fill never depends on an intangible fact (PR #31 verifier)
+                intang_fx[p] = {"currency": u, "rate": r}
         if r is None:
             intang_dropped[p] = "no_rate"
             del series["capex_intang"][p]
         else:
             series["capex_intang"][p] = series["capex_intang"][p] * r
             fx_converted_periods.add(("capex_intang", p))
-            if "capex_intang" not in fx_info["converted_fields"]:
+            if fx_info and "capex_intang" not in fx_info["converted_fields"]:
                 fx_info["converted_fields"].append("capex_intang")   # the record names every converted series
     # Did the engine rely on the issuer's own USD convenience translations?
     # (A core tag whose filed units include both USD and a foreign currency,
@@ -2143,7 +2169,7 @@ def main():
                 # [READING] an override is the filer's TOTAL capex line (FMS:
                 # 'PP&E and capitalized development costs') — intangibles are
                 # not stacked on it; the OVERRIDE_APPLIED flag says so.
-                intang_not_added[p] = asm["intangibles"]
+                intang_not_added[p] = (asm["intangibles"], asm.get("intangibles_unit"))
             elif capex_assumed_zero:
                 # [ADDITION — verifier round 1, ruling E7] no PP&E leg (an
                 # assumed-zero row): the intangible leg is NOT added — capex
@@ -2315,6 +2341,8 @@ def main():
                 rec["intangibles_filed"] = _leg_detail(p, 2, asm["intangible_tags"])
             if p in intang_dropped:
                 rec["intangibles_dropped"] = intang_dropped[p]
+            if p in intang_fx:   # [Codex, PR #31] a rate the FX pass had not requested
+                rec["intangibles_fx"] = intang_fx[p]
         capex_provenance[p] = rec
     _filed_capex = [h for h in hist if h["capex_tag"] and h["capex_tag"] != "OVERRIDE"]
     used["capex"] = (hist[-1]["capex_tag"] if hist[-1]["capex_tag"] and hist[-1]["capex_tag"] != "OVERRIDE"
@@ -2518,7 +2546,7 @@ def main():
     ads_r = ads_ratio["ratio"] if ads_ratio else None
     shares_for_cap = shares
     shares_source = "diluted_latest_split_adjusted" if (split_adjusted and latest.get("period_end") in split_adjusted) else "diluted_latest"
-    share_scale = {"defect": False, "tests": {"a": False, "b": False}, "reasons": [], "dei_count": dei_count,
+    share_scale = {"defect": False, "tests": {"a": False, "b": False, "cap": False}, "reasons": [], "dei_count": dei_count,
                    "dei_date": dei_date, "dei_ratio": None, "scale_factor": None, "factor_basis": None,
                    "rescued_by_pin": False, "skipped": "currency_gap" if currency_gap else None,
                    # [ADDITION — verifier round 1, rulings E1-E3] see share_scale_pin_rescue /
@@ -2531,10 +2559,20 @@ def main():
                    # [ADDITION — verifier round 3, R3-CAP] a power-of-ten pin ratio the window test withheld
                    "pin_factor_withheld": None}
     if not currency_gap:
+        # [ADDITION — Codex, PR #31] the cap test reads universe.csv's traded cap; skipped at a 20-F / 40-F filer with
+        # no applied ads_ratio (per-ordinary counts against a per-ADS price: make_score's DATA_GAP:ads_ratio is the
+        # real cause there, BCH / BSAC).
+        try:
+            _ucap = float((uni.get(ticker) or {}).get("market_cap") or 0) or None
+        except (TypeError, ValueError):
+            _ucap = None
+        if annual_form in ("20-F", "40-F") and not ads_r:
+            _ucap = None
         _chk = share_scale_check(oe_ps_norm, price, shares, dei_count,
-                                 pin=base_override if pin_source else None, pin_source=pin_source)
+                                 pin=base_override if pin_source else None, pin_source=pin_source,
+                                 universe_cap=_ucap, ads_ratio=ads_r)
         share_scale.update(defect=_chk["defect"], tests=_chk["tests"], reasons=_chk["reasons"], dei_ratio=_chk["dei_ratio"],
-                           pin_over_price=_chk["pin_over_price"])
+                           pin_over_price=_chk["pin_over_price"], cap_ratio=_chk["cap_ratio"])
         if _chk["defect"]:
             # [ADDITION — ruling E1] only a --base-oe-ps pin that judgment.json declares as a (non-payable)
             # base_override, and that is not itself mis-scaled, carries a share-scale defect.
@@ -2558,6 +2596,18 @@ def main():
                     "factor": _pin_pow, "window": [{"period": p, "count": c} for p, c in _win],
                     "breaks": [{"from_period": a, "from_count": b, "to_period": c, "to_count": d}
                                for a, b, c, d in _end_breaks]}
+            # [ADDITION — PR #31 verifier, cap test] universe.csv's traded cap vets the factor: a dei / pin factor that
+            # would move price x count x factor / ads_ratio outside 1/100-100x of it is rejected (the cover page can be
+            # the mis-scaled input), and with no factor a cap ratio within 25% of a power of ten supplies one ('universe'
+            # basis: every count AND the cover page filed in thousands, which tests (a) / (b) cannot see).
+            _cr = _chk.get("cap_ratio")
+            if _factor and _cr is not None and not (SHARE_SCALE_DEI_BAND[0] <= _cr * _factor <= SHARE_SCALE_DEI_BAND[1]):
+                share_scale["factor_rejected"] = {"factor": _factor, "basis": _basis, "cap_ratio_after": _cr * _factor}
+                _factor, _basis = None, None
+            if not _factor and _cr and _chk["tests"]["cap"]:
+                _k = round(-math.log10(_cr))
+                if _k != 0 and abs(_k) <= 9 and abs(_cr * 10 ** _k - 1) <= 0.25:
+                    _factor, _basis = 10 ** _k, "universe"
             share_scale.update(scale_factor=_factor, factor_basis=_basis)
             if _factor and shares:
                 shares_for_cap, shares_source = shares * _factor, "diluted_latest_scale_corrected"
@@ -2575,7 +2625,7 @@ def main():
             # year) keeps the diagnostics.
             share_scale["leverage_unverifiable"] = bool(
                 _rescue and not _factor
-                and (_chk["dei_ratio"] is None or _chk["tests"]["b"]
+                and (_chk["dei_ratio"] is None or _chk["tests"]["b"] or _chk["tests"]["cap"]
                      or (_chk["tests"]["a"] and bool(_win) and not _end_breaks)))
             # [ADDITION — ruling E2] a scale break inside the growth window (two adjacent counts among the last 4
             # more than 100x apart) makes the share-count CAGR an artefact of the units: it leaves the growth blend
@@ -2748,9 +2798,12 @@ def main():
     uncovered = [f for f in gap_fields if f not in covered]
     for f in covered:
         _ov_note = ""
-        _ina = {p: v for p, v in intang_not_added.items() if v}   # [ADDITION — ruling E6] a $0 leg is never listed
+        _ina = {p: v for p, v in intang_not_added.items() if v and v[0]}   # [ADDITION — ruling E6] a $0 leg is never listed
         if f == "capex" and _ina:
-            _ov_note = (" — intangible purchases filed for " + ", ".join(f"FY{p[:4]} ({v:,.0f})" for p, v in sorted(_ina.items()))
+            # [PR #31 verifier] the amount is the filed one, in its own unit (CNY beside a USD override)
+            _ov_note = (" — intangible purchases filed for "
+                        + ", ".join(f"FY{p[:4]} ({v[0]:,.0f}{' ' + v[1] if v[1] and v[1] != 'USD' else ''})"
+                                    for p, v in sorted(_ina.items()))
                         + " were not added on top of the override; if the override excludes them, revise it to the total")
         flags_pre.append(f"OVERRIDE_APPLIED:{f} — filing gap in the last 3 FY filled by a judgment override "
                          f"({overrides[f]['kind']}: {overrides[f]['source']}); an override never replaces a filed "

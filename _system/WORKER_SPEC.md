@@ -97,8 +97,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
    **Engine 5.5 flags (2026-10-19)** — each names its figures; quote them from
    dcf_numbers.json / key_numbers.md. `SHARE_SCALE_SUSPECT`: the filed diluted counts look
-   mis-scaled (base OE/share above 20× the price, or the latest diluted count outside
-   1/100–100× the cover-page dei count — thousands filed as units: NTNX, TEM, VIV) but a
+   mis-scaled (base OE/share above 20× the price, the latest diluted count outside
+   1/100–100× the cover-page dei count — thousands filed as units: NTNX, TEM, VIV — or price ×
+   that count outside 1/100–100× of universe.csv's market cap in either direction) but a
    declared pin carries the base. Only one pin qualifies: a `--base-oe-ps <x>` value that
    judgment.json declares as a `base_override` with no `basis` whose `value` equals `x`
    within 0.1%, and that is itself within 20× the price. Name the defect and show the pin's
@@ -295,6 +296,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    "filing") and the 0.1×–10× band admits a CNY figure at ≈ 7.2×: at such a filer use the
    filing's own US-dollar figure as a kind "filing" override with `currency: "USD"`, or block
    `NEEDS_MAIN_AGENT: <field>`.
+   ttm.py reads US-dollar facts only and holds no FX rates: at a filer whose core facts are also
+   filed in another currency it refuses (exit 3) a capex / SBC override without `currency: "USD"`
+   wherever the override would fill a TTM leg, and make_score refuses a TTM-leg override at an
+   FX-converted filer without the declaration. Declare the filing's US-dollar figure (kind
+   "filing", `currency: "USD"`) or leave the TTM unbuilt and use the median base.
    A `shares_override` at a filer the engine split-adjusts (`SHARE_BASIS_ADJUSTED`) must be
    on the post-split basis: the engine multiplies filed counts only, never an override, and
    confirms the split against the latest filed count, so a latest-year override on the

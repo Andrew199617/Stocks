@@ -481,7 +481,7 @@ def test_share_scale_check_is_quiet_on_clean_names():
     """Decision 2 §1: no false positives — STLA's legitimate maximum (|-3.34| vs $4.37 = 0.76x price,
     dei 2,897,483,196 vs 2,886,684,000), CCJ, FOX once its placeholder dei is dropped. Only the latest
     count is an input: v1's history-jump test (c) is gone (EMBJ/WRB/QXO/FRHC were 4/4 false positives),
-    so 'tests' carries exactly (a) and (b)."""
+    so 'tests' carries exactly (a), (b) and — since the Codex review of PR #31 — the universe-cap test 'cap', all false."""
     S = E.share_scale_check
     for args in ((-3.341019618122064, 4.37, 2886684000, 2897483196),
                  (1.095035000734019, 81.4, 435580000, 435457978),
@@ -490,7 +490,7 @@ def test_share_scale_check_is_quiet_on_clean_names():
         r = S(*args)
         assert r["defect"] is False and not r["tests"]["a"] and not r["tests"]["b"], (args, r)
         assert not r["reasons"], r
-        assert set(r["tests"]) == {"a", "b"}, r["tests"]
+        assert set(r["tests"]) == {"a", "b", "cap"} and not r["tests"]["cap"], r["tests"]
 
 
 def test_share_scale_check_boundaries_and_missing_inputs():
@@ -2032,7 +2032,12 @@ def test_e1_tem_undeclared_ttm_value_pin_does_not_rescue_e2e():
     ss = n["share_scale"]
     assert ss["defect"] is True and ss["rescued_by_pin"] is False, ss
     assert ss["pin_rejected"][0] == "judgment.json declares no base_override" and "x the price" in ss["pin_rejected"][1], ss
-    assert ss["scale_factor"] is None and ss["factor_basis"] is None, ss                  # a rejected pin sets no factor
+    # a rejected pin sets no factor; since the PR #31 cap test, TEM's real universe.csv cap supplies one ('universe')
+    assert ss["factor_basis"] == "universe" and ss["scale_factor"] == 1000, ss
+    fx = H.load_fixture("TEM")
+    fx["universe_row"] = dict(fx.get("universe_row") or {"ticker": "TEM"}, market_cap="")
+    ss0 = run("TEM", TEM_ARGS + ["--base-oe-ps", repr(TEM_TTM_MISSCALED)], judgment={}, fixture=fx)["numbers"]["share_scale"]
+    assert ss0["scale_factor"] is None and ss0["factor_basis"] is None, ss0          # no universe cap: no factor at all
     fl = flags(n, SCALE_GAP)
     assert len(fl) == 1 and "does not carry it" in fl[0], fl
     assert not flags(n, "SHARE_SCALE_SUSPECT")
@@ -2601,7 +2606,7 @@ def test_r2_pin_share_scale_check_tests_the_pin_unit():
     defect (pin_over_price) whatever the native median says; exactly 20x passes; no pin is the 5.5 result."""
     S = E.share_scale_check
     r = S(1.95, 30.0, 100e6, 100e6, pin=TTM_PIN_MISSCALED, pin_source="ttm_json")   # round 1: TypeError
-    assert r["defect"] is True and r["pin_over_price"] is True and r["tests"] == {"a": False, "b": False}, r
+    assert r["defect"] is True and r["pin_over_price"] is True and r["tests"] == {"a": False, "b": False, "cap": False}, r
     assert len(r["reasons"]) == 1 and "the --ttm pin" in r["reasons"][0] and "73x the price" in r["reasons"][0], r
     assert S(1.95, 30.0, 100e6, 100e6, pin=600.0, pin_source="base_oe_ps_arg")["defect"] is False       # exactly 20x
     assert S(1.95, 30.0, 100e6, 100e6, pin=-600.01, pin_source="base_oe_ps_arg")["pin_over_price"] is True  # |pin|
@@ -2849,7 +2854,16 @@ def test_r4_e3_tem_with_its_ttm_derived_pin_is_unverifiable_e2e():
     leverage diagnostics are unverifiable and the flag says so (E3). Guard test: the cap residual is a README
     follow-up."""
     pin = TEM_TTM_MISSCALED / 1000
+    # [PR #31 cap test] with TEM's real universe.csv cap the cap ratio (0.00088x) supplies the x1,000 factor
+    # ('universe' basis): the cap is corrected and the leverage diagnostics are computed on the corrected count
     n = run("TEM", TEM_ARGS + ["--base-oe-ps", repr(pin)], judgment={"base_override": _bo(pin, kind="estimate")})["numbers"]
+    ss = n["share_scale"]
+    assert ss["rescued_by_pin"] and ss["scale_factor"] == 1000 and ss["factor_basis"] == "universe", ss
+    assert ss["leverage_unverifiable"] is False and n["market_cap_basis"]["shares_used"] == 174264000, (ss, n["market_cap_basis"])
+    # the R4-E3 path itself: no universe cap, so no factor anywhere
+    fx = H.load_fixture("TEM")
+    fx["universe_row"] = dict(fx.get("universe_row") or {"ticker": "TEM"}, market_cap="")
+    n = run("TEM", TEM_ARGS + ["--base-oe-ps", repr(pin)], judgment={"base_override": _bo(pin, kind="estimate")}, fixture=fx)["numbers"]
     ss = n["share_scale"]
     assert ss["rescued_by_pin"] and ss["scale_factor"] is None and ss["leverage_unverifiable"] is True, ss
     assert n["market_cap_basis"]["shares_source"] == "diluted_latest" and n["market_cap_basis"]["shares_used"] == 174264, n["market_cap_basis"]
@@ -3232,6 +3246,124 @@ def test_harness_never_replaces_the_shared_engine_module():
     assert MS.market_cap_estimate is sys.modules["dcf_engine"].market_cap_est
     priv = H._engine()
     assert priv is not sys.modules["dcf_engine"] and priv.__name__ != "dcf_engine", priv.__name__
+
+
+def test_intangible_leg_in_a_currency_the_fx_pass_never_requested_is_converted_not_dropped():
+    """[Codex review 2, PR #31] A USD filer whose only non-USD facts are its intangible purchases (CNY): the FX pass
+    requests rates only for its monetary series, so before the fix the CNY intangible legs were dropped (capex =
+    PP&E only, understated). Each leg now fetches its own period-end rate: capex = PP&E + CNY x rate, recorded as
+    capex_provenance intangibles_fx {currency, rate}; no FX record is created for the filer (fx_conversion stays
+    empty, so its overrides are never converted). A leg the rate source cannot price is still dropped (no_rate)."""
+    facts = _syn_facts()
+    for y, v in ((2023, 700e6), (2024, 800e6), (2025, 900e6)):
+        _syn_put(facts, INTANG, "CNY", _ctx(f"{y}-01-01", f"{y}-12-31", v, filed=f"{y + 1}-02-20"))
+    fx = _syn_fixture(facts)
+    fx["fx_rates"] = {"CNY": {"2023-12-31": 0.14, "2024-12-31": 0.137}}   # no rate for FY2025
+    out = run("SYN", args_for(5), judgment={}, fixture=fx)
+    assert out["exit"] == 0, out["stdout"][-1500:]
+    n, rows = out["numbers"], out["rows"]
+    r24 = row(rows, "2024-12-31")
+    assert close(f(r24["capex_intangibles"]), 800e6 * 0.137) and close(f(r24["capex"]), 50e6 + 800e6 * 0.137), (r24["capex"], r24["capex_intangibles"])
+    assert n["capex_provenance"]["2024-12-31"].get("intangibles_fx") == {"currency": "CNY", "rate": 0.137}, n["capex_provenance"]["2024-12-31"]
+    r25 = row(rows, "2025-12-31")
+    assert f(r25["capex"]) == 50e6 and n["capex_provenance"]["2025-12-31"].get("intangibles_dropped") == "no_rate", n["capex_provenance"]["2025-12-31"]
+    assert not n.get("fx_conversion"), n.get("fx_conversion")
+
+
+def test_share_scale_cap_test_catches_a_count_filed_too_large():
+    """[Codex review 2, PR #31] The low side of the share-scale guard: a count filed 1,000x too large leaves the base
+    tiny (test (a) cannot see it) and, with no cover page, test (b) has nothing to compare. The cap test compares price
+    x the latest count / ads_ratio with universe.csv's traded market cap (outside 1/100-100x -> defect). A bare
+    "base below 0.1% of the price" bound is not used: FROG, PEG, TSEM and TTWO sit below it on sane counts and caps."""
+    S = E.share_scale_check
+    r = S(0.01, 20.0, 1e12, None, universe_cap=20e9)
+    assert r["defect"] is True and r["tests"]["cap"] is True and "universe.csv's market cap" in r["reasons"][0], r
+    for args, kw in (((0.07186, 84.31, 116200900, None), {"universe_cap": 9796897879.0}),     # FROG: near-zero OE, sane cap
+                     ((-0.03393, 70.47, 501000000, None), {"universe_cap": 35305470000.0}),   # PEG
+                     ((1.0, 10.0, 2e9, None), {"universe_cap": 10e9, "ads_ratio": 2.0}),      # an ADS filer on its ratio
+                     ((0.01, 20.0, 1e12, None), {})):                                          # no reference: not evaluated
+        r = S(*args, **kw)
+        assert r["defect"] is False and r["tests"]["cap"] is False, (args, kw, r)
+    facts = _syn_facts(shares={y: 100e9 for y in SYN_YEARS}, dei=None)
+    fx = _syn_fixture(facts)
+    fx["universe_row"]["market_cap"] = "3000000000"            # price 30 x 100,000,000 shares
+    out = run("SYN", args_for(5), judgment={}, fixture=fx)
+    assert out["exit"] == 4, out["stdout"][-1500:]
+    assert "SHARE_SCALE" in out["stdout"] and "universe.csv's market cap" in out["stdout"], out["stdout"][-1500:]
+    fx = _syn_fixture(_syn_facts(dei=None))
+    fx["universe_row"]["market_cap"] = "3000000000"
+    assert run("SYN", args_for(5), judgment={}, fixture=fx)["exit"] == 0
+
+
+def test_ttm_refuses_an_undeclared_override_at_a_foreign_currency_filer():
+    """[Codex review 2, PR #31] ttm.py's legs are USD only and it holds no FX rates. At a filer whose core facts are
+    also filed in another currency (USD translations beside CNY, the JD / HTHT shape) an SBC override without
+    currency "USD" would have filled the YTD legs with a local-currency amount read as dollars: ttm.py now refuses
+    (exit 3). Declared USD it fills the legs; at a USD reporter no declaration is needed."""
+    def fixture(foreign):
+        fx = _ttm_fixture(PRIMARY, 52e6, 25e6, 27e6)
+        us = fx["facts"]["facts"]["us-gaap"]
+        us[SBC_SHARE]["units"]["USD"] = [e for e in us[SBC_SHARE]["units"]["USD"] if e["form"] == "10-K"]
+        if foreign:
+            ocf = us["NetCashProvidedByUsedInOperatingActivities"]["units"]
+            ocf["CNY"] = [dict(e, val=e["val"] * 7.2) for e in ocf["USD"]]
+        return fx
+    t = run_ttm("SYNT", judgment={"sbc_override": _o(40e6)}, fixture=fixture(True))
+    assert t["exit"] == 3 and 'not declared currency "USD"' in t["stderr"] and "CNY" in t["stderr"], (t["exit"], t["stderr"][-500:])
+    t = run_ttm("SYNT", judgment={"sbc_override": _o(40e6, currency="USD")}, fixture=fixture(True))
+    assert t["exit"] == 0, t["stderr"][-500:]
+    assert [u["field"] for u in t["ttm"]["overrides_used"]] == ["sbc"], t["ttm"]["overrides_used"]
+    t = run_ttm("SYNT", judgment={"sbc_override": _o(40e6)}, fixture=fixture(False))
+    assert t["exit"] == 0 and [u["field"] for u in t["ttm"]["overrides_used"]] == ["sbc"], t["stderr"][-500:]
+
+
+def test_cap_test_vets_a_dei_factor_and_feeds_the_leverage_gate():
+    """[PR #31 verifier] universe.csv's traded cap vets the scale factor: a cover page filed in thousands while the
+    diluted counts are right makes test (b) fire, but its x0.001 factor would put the cap 1,000x below the traded one,
+    so it is rejected (share_scale.factor_rejected) and the cap stays on the filed count. With no universe cap the
+    5.5 behaviour (the dei factor applied) is unchanged."""
+    facts = _syn_facts(dei=(100e3, "2026-01-31", "2026-02-20"))       # cover page in thousands, counts 100,000,000
+    fx = _syn_fixture(facts)
+    fx["universe_row"]["market_cap"] = "3000000000"                    # price 30 x 100,000,000
+    n = run("SYN", args_for(5), judgment={}, fixture=fx)["numbers"]
+    ss = n["share_scale"]
+    assert ss["tests"]["b"] is True and ss["tests"]["cap"] is False, ss
+    assert ss["scale_factor"] is None and ss.get("factor_rejected", {}).get("factor") == 0.001, ss
+    fx = _syn_fixture(_syn_facts(dei=(100e3, "2026-01-31", "2026-02-20")))
+    ss = run("SYN", args_for(5), judgment={}, fixture=fx)["numbers"]["share_scale"]
+    assert ss["scale_factor"] == 0.001 and ss["factor_basis"] == "dei" and "factor_rejected" not in ss, ss
+
+
+def test_override_note_prints_the_intangible_amount_in_its_own_unit():
+    """[PR #31 verifier] The OVERRIDE_APPLIED:capex note lists intangible purchases not stacked on the override in the
+    unit they were filed in (900,000,000 CNY beside a USD override), not as a bare number a reader would add to dollars."""
+    facts = _syn_facts(capex={2025: None})
+    _syn_put(facts, INTANG, "CNY", _ctx("2025-01-01", "2025-12-31", 900e6, filed="2026-02-20"))
+    fx = _syn_fixture(facts)
+    fx["fx_rates"] = {"CNY": {"2025-12-31": 0.139}}
+    n = run("SYN", args_for(5), judgment={"capex_override": _o(60e6)}, fixture=fx)["numbers"]
+    note = flags(n, "OVERRIDE_APPLIED:capex")
+    assert len(note) == 1 and "FY2025 (900,000,000 CNY)" in note[0], note
+
+
+def test_ttm_currency_rule_refuses_only_a_fill_and_warns_on_non_usd_intangibles():
+    """[PR #31 verifier] ttm.py refuses an undeclared override at a foreign-currency filer only when it would fill a
+    leg: with every SBC leg filed it fills nothing and the TTM builds (overrides_used []). An intangible leg filed only
+    in another currency is not read (USD only) — a warning and capex_components[leg].intangibles_not_added
+    'non_usd_unit' say so instead of a silent drop."""
+    fx = _ttm_fixture(PRIMARY, 52e6, 25e6, 27e6)
+    us = fx["facts"]["facts"]["us-gaap"]
+    ocf = us["NetCashProvidedByUsedInOperatingActivities"]["units"]
+    ocf["CNY"] = [dict(e, val=e["val"] * 7.2) for e in ocf["USD"]]
+    t = run_ttm("SYNT", judgment={"sbc_override": _o(40e6)}, fixture=fx)
+    assert t["exit"] == 0 and t["ttm"]["overrides_used"] == [], (t["exit"], t["stderr"][-400:])
+    fx = _ttm_fixture(PRIMARY, 52e6, 25e6, 27e6)
+    fx["facts"]["facts"]["us-gaap"].setdefault(INTANG, {"units": {}})["units"]["CNY"] = [
+        _ctx("2025-01-01", "2025-12-31", 70e6, filed="2026-02-20")]
+    t = run_ttm("SYNT", judgment={}, fixture=fx)
+    assert t["exit"] == 0, t["stderr"][-400:]
+    assert t["ttm"]["capex_components"]["fy"].get("intangibles_not_added") == "non_usd_unit", t["ttm"]["capex_components"]["fy"]
+    assert any("filed only in CNY" in w for w in t["ttm"]["warnings"]), t["ttm"]["warnings"]
 
 
 if __name__ == "__main__":

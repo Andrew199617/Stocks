@@ -119,13 +119,18 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    of it, is the same defect. This class produced fake Tier S results
    (NTNX, VIV); it is always P1. Since engine 5.5 the engine runs the
    check itself and records it in `share_scale` (base OE/share above 20×
-   the price, or the latest diluted count outside 1/100–100× the latest
-   cover-page dei count): it raises `DATA_GAP:shares — SHARE_SCALE` and
+   the price, the latest diluted count outside 1/100–100× the latest
+   cover-page dei count, or — test `cap`, two-sided — price × that
+   count ÷ ads_ratio outside 1/100–100× of universe.csv's market cap,
+   skipped at a 20-F / 40-F filer with no applied ads_ratio): it raises
+   `DATA_GAP:shares — SHARE_SCALE` and
    emits no tier unless a qualifying pin carries the base — a
    `--base-oe-ps` value that judgment.json declares as a `base_override`
    with no `basis`, equal within 0.1%, and itself within 20× the price.
    Then it scores, flags `SHARE_SCALE_SUSPECT` and rescales the market cap
-   by `share_scale.scale_factor`. A `SHARE_SCALE_SUSPECT` score whose
+   by `share_scale.scale_factor` (basis `dei`, `pin` or `universe`; a
+   factor that would put the cap outside 1/100–100× of universe.csv's cap
+   is rejected, `share_scale.factor_rejected`). A `SHARE_SCALE_SUSPECT` score whose
    judgment.json `base_override` does not match `inputs.base_oe_ps_arg`
    that way is P1 (the engine gaps that run); a pin the engine rejected is
    named in `share_scale.pin_rejected`. A pin-rescued tier exists only

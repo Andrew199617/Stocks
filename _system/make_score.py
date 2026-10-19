@@ -997,6 +997,17 @@ def ttm_leg_overrides(folder, n, j_over, applied):
             for v in legs.values())
         if not ok:
             fail(f"ttm.json overrides_used.{f}.legs_filled is malformed ({str(legs)[:80]}) — rerun ttm.py")
+        # [v5.5 — Codex review 2, PR #31] ttm.py's legs are USD only: at a filer the engine converted from another
+        # currency (or that files USD translations), a capex / SBC override that fills TTM legs must declare
+        # currency "USD" — applied fields included (a stale ttm.json can carry a converted override's raw value).
+        fx_filer = bool(n.get("fx_conversion")) or any(str(fl).startswith(("FX_CONVERTED", "USD_TRANSLATIONS_USED"))
+                                                       for fl in n.get("fragility_flags") or [])
+        filled_any = any(isinstance(v, dict) and v.get("amount") for v in legs.values())
+        if (f in ("capex", "sbc") and fx_filer and filled_any
+                and str(o.get("currency") or "").strip().upper() != "USD"):
+            fail(f"ttm.json used a {f}_override in its USD legs at a filer reporting in another currency, and "
+                 f"judgment.json does not declare currency \"USD\" on it — ttm.py cannot convert an override; declare "
+                 "the filing's US-dollar figure with currency \"USD\" (kind filing) and rerun ttm.py, or drop the TTM pin")
         if f in applied:
             continue
         out[f] = {"field": f, "value": o["value"], "kind": o["kind"], "source": o["source"], "reason": o["reason"],

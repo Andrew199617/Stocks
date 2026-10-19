@@ -407,6 +407,44 @@ def share_scale_warnings(facts, shares):
     return out
 
 
+CORE_FX_TAGS = (("us-gaap", "NetCashProvidedByUsedInOperatingActivities"), ("us-gaap", "Revenues"),
+                ("us-gaap", "NetIncomeLoss"), ("ifrs-full", "CashFlowsFromUsedInOperatingActivities"),
+                ("ifrs-full", "Revenue"), ("ifrs-full", "ProfitLoss"))
+
+
+def foreign_reporting_currencies(facts):
+    """[v5.5 — Codex, PR #31] Non-USD units on the filer's core facts (OCF / revenue / net income, us-gaap or IFRS)
+    ending within three years of its latest core fact: a filer that reports (or once reported) in a foreign currency
+    and files USD translations alongside (JD, HTHT). Empty for a USD reporter."""
+    entries = []
+    for tax, tag in CORE_FX_TAGS:
+        for u, arr in (((facts.get("facts", {}).get(tax) or {}).get(tag) or {}).get("units") or {}).items():
+            for e in arr:
+                if e.get("end"):
+                    entries.append((e["end"], u))
+    if not entries:
+        return set()
+    latest = max(end for end, _ in entries)
+    cutoff = f"{int(latest[:4]) - 3}{latest[4:]}"
+    return {u for end, u in entries if end >= cutoff and u not in ("USD", "USD/shares", "shares", "pure")}
+
+
+def nonusd_intangible_periods(facts):
+    """[PR #31 verifier] {(start, end): {units}} for intangible-purchase facts (the shared us-gaap list) filed in a
+    unit other than USD, by exact period — the legs ttm.py's USD-only reading cannot include."""
+    out = {}
+    for t in _engine.CAPEX_INTANGIBLE_TAGS:
+        if not isinstance(t, str):
+            continue
+        for u, arr in ((facts.get("facts", {}).get("us-gaap", {}).get(t) or {}).get("units") or {}).items():
+            if u == "USD":
+                continue
+            for e in arr:
+                if e.get("form", "") in FORMS and e.get("start") and e.get("end"):
+                    out.setdefault((e["start"], e["end"]), set()).add(u)
+    return out
+
+
 def load_overrides(ticker):
     """Structured judgment overrides from {ticker}/judgment.json — same
     validation as dcf_engine.py: a malformed override is ignored here and
@@ -500,6 +538,21 @@ def main():
     problems, warnings = [], []
     overrides = load_overrides(ticker)
     overrides_used = []
+    # [v5.5 — Codex, PR #31] ttm.py's legs are USD only and it holds no FX rates: a capex / SBC override is used
+    # verbatim only when it declares currency "USD" or the filer has no non-USD core facts. At a filer reporting in
+    # another currency (USD translations alongside, JD / HTHT) an undeclared override would put local-currency
+    # amounts into USD legs, so it is refused and the TTM is not built (exit 3).
+    # [PR #31 verifier] refused only where it would FILL a leg (assemble below): with every leg filed the override
+    # fills nothing and the TTM builds as before.
+    _foreign = foreign_reporting_currencies(facts)
+    ccy_refused = {}
+    for _field in ("capex", "sbc"):
+        _o = overrides.get(_field)
+        if _o and _o.get("currency") != "USD" and _foreign:
+            ccy_refused[_field] = (f"{_field}: the {_field}_override is not declared currency \"USD\" at a filer whose "
+                                   f"core facts are filed in {', '.join(sorted(_foreign))} — ttm.py's legs are USD only "
+                                   "and it cannot convert the override to fill a missing leg; declare the filing's "
+                                   "US-dollar figure with currency \"USD\", or leave the TTM unbuilt")
     ocf = extract_ttm(merged_facts(facts, OCF_TAGS, "USD"), "ocf", problems)
     anchor = None
     if ocf:
@@ -528,6 +581,10 @@ def main():
                     per = k
             if hit:
                 legs[leg] = (per, hit[0], hit[1])
+            elif field in ccy_refused:
+                if ccy_refused[field] not in problems:
+                    problems.append(ccy_refused[field])
+                legs[leg] = (per, 0.0, "REFUSED")
             else:
                 d = days(per[0], per[1])
                 amt = ov["value"] * d / 365.0
@@ -591,6 +648,17 @@ def main():
         capex = extract_ttm(capex_series, "capex", problems)
     if capex and capex.get("fy_period"):
         capex_components = add_intangibles(capex, capex_results, warnings)   # v5.5: + intangible purchases
+        # [PR #31 verifier] ttm.py reads USD facts only: an intangible leg filed only in another currency is not in
+        # this TTM (the annual engine converts and adds it) — say so instead of dropping it silently
+        _nonusd = nonusd_intangible_periods(facts)
+        for _leg in ("fy", "ytd_prior", "ytd_current"):
+            _per = tuple(capex.get(f"{_leg}_period") or ())
+            _comp = (capex_components or {}).get(_leg)
+            if _per in _nonusd and isinstance(_comp, dict) and not _comp.get("intangibles"):
+                _comp["intangibles_not_added"] = _comp.get("intangibles_not_added") or "non_usd_unit"
+                warnings.append(f"capex {_leg}: intangible purchases for {_per[0]}..{_per[1]} are filed only in "
+                                f"{', '.join(sorted(_nonusd[_per]))}; ttm.py reads USD facts only, so they are not in this "
+                                "leg (the annual engine converts and adds them) and TTM OE is overstated by that amount")
 
     if problems:
         print(f"ttm.py: cannot compute TTM for {ticker} (CIK {cik}): " + "; ".join(problems), file=sys.stderr)
