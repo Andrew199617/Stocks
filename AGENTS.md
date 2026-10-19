@@ -242,9 +242,12 @@ misfit`. For them:
   figures. Check: the five figures match between `judgment.json`,
   `payable_base` and `key_numbers.md`; average ÷ shares × ads_ratio equals
   `base_oe_per_share` to the cent (P1 otherwise); `shares` equals the
-  CSV's latest diluted count (P1); the filing cited for each figure is a
-  release or 10-K for that fiscal year ("cannot verify from the diff" if
-  the PR does not show it). A `payable_base` block together with a
+  CSV's latest diluted count exactly (P1); `payable_base.sic` is 6331 or
+  6351 (the engine refuses others, so a scored folder outside that is P1);
+  the registry `base_override` event carries the native → pinned impact
+  (base, IRR, tiers both ways; absent is P2); the filing cited for each
+  figure is a release or 10-K for that fiscal year ("cannot verify from
+  the diff" if the PR does not show it). A `payable_base` block together with a
   `tier_override` below the numbers tier is double-counting (P2;
   make_score refuses it). A P&C name scored on the OCF base with only the
   notch is P2 — ask for the payable-earnings base. Life insurers, banks and
