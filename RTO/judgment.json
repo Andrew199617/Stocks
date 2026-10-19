@@ -1,0 +1,36 @@
+{
+ "ads_ratio": {
+  "ratio": 5.0,
+  "reason": "EDGAR share counts and per-share figures are per ordinary share while the Nasdaq/NYSE price ($21.20) is per ADS; per-share OE must be scaled x5 to be comparable to the ADS price, and the market cap is price x ordinary shares / 5",
+  "source": "Rentokil Initial plc Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), American Depositary Shares section: 'Each Rentokil Initial ADS will represent five Rentokil Initial ordinary shares' under the Amended and Restated Deposit Agreement dated 26 November 2018; the same 1:5 ADS-to-share ratio is stated in the Terminix combination announcement (128.66 million ADSs = 643.29 million shares)"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "ROIC proxy collapsed post-Terminix (21.0% FY2020 to 5.0% FY2025) and is still falling \u2014 scale bought, returns not yet earned",
+  "Rollins out-executes in North America (~22.4% margins vs Rentokil ~15.5% group adjusted); local/regional rivals and PE-backed consolidators are taking share",
+  "Low switching costs in residential pest control; technician labour churn is structural",
+  "Terminix integration ran years late and the North America >20% margin target for 2027 was withdrawn \u2014 execution credibility is impaired",
+  "Leverage from the deal: net debt $3,575m at H1 2026 (2.4x EBITDA), only just back inside the 2.0-2.5x target range"
+ ],
+ "moat_for": [
+  "Global #1 pest-control scale: route density and national-account coverage in 80+ countries",
+  "Recurring contracted service revenue (route-based, repeat-visit model) with pricing power through the cycle",
+  "Rentokil + Terminix brand pair in North America, the world's largest pest-control market",
+  "H1 2026 proof the franchise still grows: organic revenue +3.6%, adjusted operating profit +6.6%, FCF conversion 96%"
+ ],
+ "moat_justification": "Global #1 in pest control with route density, recurring contracted revenue and the Rentokil/Terminix brands, but the moat is narrow in practice: fundamentals.json roic_proxy fell from 21.0% (FY2020) and 12.2% (FY2021) to 3.2% in the Terminix deal year and has kept falling since (6.5% / 5.5% / 5.0% FY2023-25) \u2014 the acquired scale has not yet earned its cost of capital, Rollins runs ~22.4% North America margins against Rentokil's ~15.5% group adjusted margin, residential switching costs are low and local competitors keep taking share. Gross margin is not presented in the IFRS filings (fundamentals.json gross_margin is null for every year), so the ROIC series is the margin evidence.",
+ "moat_score": 5,
+ "name": "Rentokil Initial plc",
+ "one_liner": "Quality route-based franchise with a narrow moat (5/10) whose returns were diluted by the Terminix deal \u2014 per-ADS weighted IRR 9.1% (bear 7.6% / bull 10.5%) and IV@15% $11.11 vs the $21.20 ADS price, so it clears 15% only below ~$11.11.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Industrials / Pest control & hygiene services",
+ "tier_override": null,
+ "tier_override_reason": null
+}

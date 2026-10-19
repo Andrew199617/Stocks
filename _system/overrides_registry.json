@@ -2908,6 +2908,14 @@
    "ratio": 1.0,
    "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.",
    "reason": "ADS_RATIO_MISSING \u2014 20-F filer: EDGAR per-share figures are per ordinary share and the Nasdaq price is per ADS; with 1 ordinary share per ADS (ratio 1) the per-share figures are already comparable to the ADS price and the market cap is price x shares with no scaling."
+  },
+  {
+   "ticker": "RTO",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 5.0,
+   "source": "Rentokil Initial plc Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-25), American Depositary Shares section: 'Each Rentokil Initial ADS will represent five Rentokil Initial ordinary shares' under the Amended and Restated Deposit Agreement dated 26 November 2018; the same 1:5 ADS-to-share ratio is stated in the Terminix combination announcement (128.66 million ADSs = 643.29 million shares)",
+   "reason": "EDGAR share counts and per-share figures are per ordinary share while the Nasdaq/NYSE price ($21.20) is per ADS; per-share OE must be scaled x5 to be comparable to the ADS price, and the market cap is price x ordinary shares / 5"
   }
  ]
 }
