@@ -9,7 +9,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Note: No positive NORMALIZED (3-yr median) conservative owner's earnings — OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).
 
 ## Base owner's earnings
-- Base OE/share: $-2.34 (source: median_of_last_3_fy_oe_per_share)
+- Base OE/share: $-2.59 (source: ttm_json)
 - Latest FY OE/share: $-2.34 · normalized (3-yr median) OE/share: $-2.34
 - Latest FY OE total: $-140.1M
 - Shares diluted (latest): 59,808,000

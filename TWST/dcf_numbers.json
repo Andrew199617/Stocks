@@ -19,10 +19,10 @@
  "rev_cagr_3y": 0.227518349890228,
  "oe_positive_years_of_last_5": "0/5",
  "base_oe_total_latest_fy": -140091000,
- "base_oe_per_share": -2.3423455056179776,
+ "base_oe_per_share": -2.585474516411237,
  "base_oe_latest_per_share": -2.3423455056179776,
  "base_oe_normalized_per_share": -2.3423455056179776,
- "base_source": "median_of_last_3_fy_oe_per_share",
+ "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.33119492893655456,
   "rev_cagr_3y": 0.227518349890228,
@@ -72,7 +72,7 @@
  "override_checks": {},
  "tier_by_numbers": "F",
  "f_subtype": "no_cash_generation",
- "f_subtype_basis": "sum of the last 3 fiscal years (the median window)",
+ "f_subtype_basis": "ttm.json legs (TTM pin)",
  "implied_irr_weighted": null,
  "implied_irr_base": null,
  "moat_score": 5.0,
@@ -81,7 +81,11 @@
  "inputs": {
   "moat": 5.0,
   "probs": [
-   1.0
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
   ],
   "offsets": [
    -0.12,
@@ -98,8 +102,8 @@
    1.25
   ],
   "g_terminal": 0.025,
-  "base_oe_ps_arg": null,
-  "base_pin_source": null
+  "base_oe_ps_arg": -2.585474516411237,
+  "base_pin_source": "ttm_json"
  },
  "data_gap": [],
  "data_gap_uncovered": [],
@@ -112,5 +116,5 @@
   "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md"
  ],
  "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
- "content_hash": "c53e1d7066b053c24a71ba947e44a9a055da1f9cb02396cd820424e8ee7de387"
+ "content_hash": "78a05786df0cffaa403268be399af075933b57b502645030e1391eaee3d93824"
 }
