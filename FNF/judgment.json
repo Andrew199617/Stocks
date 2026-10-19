@@ -1,0 +1,45 @@
+{
+ "base_override": {
+  "kind": "filing",
+  "reason": "SECTOR_MODEL_MISMATCH (title insurer consolidating annuity/life insurer F&G): the engine's OCF-based conservative OE is rejected as the base \u2014 for an insurer consolidating F&G, operating cash flow is policyholder plumbing, not distributable earnings: annuity deposits and the build in future policy benefits run through OCF while the corresponding investment deployment sits in investing (purchases of investment securities $23,198M in FY2025). FY2025 OCF was $5,828,000,000 against net income of $602,000,000, and NI_OCF_DIVERGENCE fires for 2023, 2024 and 2025; the engine's normalized OCF base is $23.6827/share \u2014 a 59.5% OE yield at $39.80 for a company whose filed diluted EPS was $2.21 in FY2025. Capitalizing that base prints a fake Tier S. For an insurer, net income is the honest owner's-earnings proxy (the ALLY/FUTU/LPLA/WSE/ARCC sector precedent in this sweep): SBC is already expensed inside it, title claim provisions and F&G benefit/reserve charges are already charged inside it, and the median-of-3-FY normalization mirrors the engine's own base method applied to that definition. The median is conservative for this name: FY2025 net income carries an abnormal tax load (income tax $753,000,000 on pre-tax $1,397,000,000, a 54% rate, including the F&G-distribution deferred-tax adjustment in Corporate & Other, which lost $458M attributable in FY2025), and GAAP NI is below adjusted net earnings in every recent year (H1 2026 adjusted EPS $2.31 vs GAAP $1.98). Declared under bounded authority (c): every input is a figure printed by this run's engine output (financials_history.csv).",
+  "source": "Median of the last 3 fiscal years' net income per diluted share, built exclusively from this run's financials_history.csv (engine-filed figures): FY2023 net income $517,000,000 / 271,000,000 diluted shares = $1.9077; FY2024 $1,270,000,000 / 273,000,000 = $4.6520; FY2025 $602,000,000 / 272,000,000 = $2.2132; median of the three = $2.2132 (the FY2025 value; it is also the filed FY2025 diluted EPS attributable to common shareholders)",
+  "value": 2.213235294117647
+ },
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed capex value for FNF in any of the last 3 fiscal years under any tag it reads (the last tagged PaymentsToAcquirePropertyPlantAndEquipment fact ttm.py can find is FY2014), so any value flags out-of-band against a null/stale anchor. The value is not an estimate \u2014 it is the FY2025 figure printed in the FY2025 10-K Consolidated Statements of Cash Flows for the line that is this filer's capex, corroborated by the same statement's FY2024/FY2023 figures ($146M / $132M).",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for fiscal year(s) 2023, 2024, 2025 of the last 3 in EDGAR companyfacts under every candidate tag the engine reads (statements.json warning: no capital-expenditure figure filed for 45 periods with operating cash flow, 2015-06-30..2026-06-30), because FNF prints its capex only as the combined line 'Additions to property and equipment and capitalized software' in the 10-K cash-flow statement. The engine applies this single FY2025 filing value to every missing period; it overstates FY2024 capex by $1M (true $146M) and FY2023 by $15M (true $132M) \u2014 neither moves the verdict, the scored base is the NI-based base_override (net income already carries depreciation and amortization), and capex at ~$140M/yr is ~2.5% of the rejected OCF base either way.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26), Consolidated Statements of Cash Flows (pp. 107-108), investing activities line 'Additions to property and equipment and capitalized software': $(147) million for FY2025, with $(146) million for FY2024 and $(132) million for FY2023 in the same statement (all in $ millions); the statement reconciles exactly with this line (FY2025 operating $5,828M + investing -$8,934M + financing $2,263M = the reported net change in cash of -$843M; FY2024 and FY2023 reconcile the same way)",
+  "value": 147000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity, rate-regulated product \u2014 title premiums are filed/regulated and re-shopped deal by deal; no structural pricing power, agent commissions were $2,518M in FY2025 against $5,824M of direct+agency premiums",
+  "Housing/mortgage hostage: title volumes track purchase/refinance transactions, which remain at historically low levels; a prolonged housing freeze compresses the core engine",
+  "F&G earnings are mark- and assumption-driven: GAAP net earnings swung $2,797M (FY2021) to $517M (FY2023) to $1,270M (FY2024) to $602M (FY2025) on recognized gains/losses, market-risk-benefit and reserve changes; credit impairments in the $73B investment portfolio are the tail",
+  "Returns do not prove a wide moat: GAAP ROE 7.5% / 16.4% / 8.1% in FY2023/24/25 (fundamentals.json), no roic_proxy filed for an insurer presentation",
+  "Corporate drag and complexity: Corporate & Other lost $458M attributable in FY2025 including the F&G distribution deferred-tax adjustment ($471M); the Dec 31, 2025 ~12% F&G share distribution cut FNF's stake and its share of F&G earnings"
+ ],
+ "moat_for": [
+  "Largest U.S. title insurer \u2014 scale in direct and agency distribution, title plants/data and claims infrastructure rivals cannot replicate cheaply",
+  "Industry-leading adjusted pre-tax title margin: 15.9% for FY2025 and 17.8% in Q2 2026 (15.7% H1 2026), with commercial direct revenue +24% YoY in H1 2026",
+  "F&G second engine: AUM before flow reinsurance $73.1B at FY2025 (+12% YoY) and $74.7B at Q2 2026; F&G contributed 30% of FY2025 adjusted net earnings, diversifying away from housing volumes",
+  "Capital return at scale: ~$800M returned in FY2025 ($546M dividends + $251M buybacks); DPS $2.02 in FY2025, 4 consecutive growth years, no cut since 2011 (fundamentals.json)",
+  "Technology/operating leverage in title: inHere platform engaging ~80% of residential sale transactions (Q2 2026 call), disciplined expense management through a weak housing cycle"
+ ],
+ "moat_justification": "Moderate/narrow: the largest U.S. title insurer with scale, agency/direct distribution, title-plant data and industry-leading adjusted pre-tax title margins (15.9% FY2025, 17.8% in Q2 2026), plus F&G (AUM before flow reinsurance $73.1B at FY2025, $74.7B at Q2 2026) diversifying earnings away from housing \u2014 against a commodity, rate-filed product with no structural pricing power, earnings hostage to housing/mortgage volumes and F&G market/credit marks, and a return record that does not support a wide moat: fundamentals.json carries no roic_proxy or gross margin for an insurer presentation (both null), and GAAP ROE was 7.5% in FY2023, 16.4% in FY2024 and 8.1% in FY2025 (21.2% in FY2022, 29.7% in FY2021 in the title boom) \u2014 volatile and mostly below a wide-moat level through the recent cycle. A 5 gives CAP = 8.5 years.",
+ "moat_score": 5,
+ "name": "Fidelity National Financial, Inc.",
+ "one_liner": "Largest U.S. title insurer plus F&G annuities, moat 5/10 \u2014 on the only honest base for an insurer (median GAAP net income $2.21/sh, not the $23.14/sh OCF artifact) the weighted IRR is 9.73% (IV@15% $22.26 vs $39.62), so it clears 15% only below ~$22; the GAAP base carries a $471M one-off deferred-tax charge \u2014 on the company\u2019s $4.97 FY2025 adjusted EPS the same scenarios print Tier B (18.04%), so the method range is D to B; insurer-model mismatch, confidence low.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Finance / Title insurance & annuities (F&G)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

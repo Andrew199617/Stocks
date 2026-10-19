@@ -1,0 +1,516 @@
+{
+ "ticker": "FNF",
+ "cik": 1331875,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001331875-26-000026",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000026/fnf-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001331875-26-000042",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000042/fnf-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001331875-26-000073",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1331875/000133187526000073/fnf-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "fnf:TitleSegmentMember",
+     "label": "Title Segment",
+     "values": [
+      7038000000,
+      7702000000,
+      8490000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5989,
+      0.563,
+      0.5877
+     ],
+     "growth_yoy": [
+      null,
+      0.0943,
+      0.1023
+     ]
+    },
+    {
+     "member": "fnf:FGSegmentMember",
+     "label": "F&G Segment",
+     "values": [
+      4500000000,
+      5744000000,
+      5731000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3829,
+      0.4199,
+      0.3967
+     ],
+     "growth_yoy": [
+      null,
+      0.2764,
+      -0.0023
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      279000000,
+      343000000,
+      341000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0237,
+      0.0251,
+      0.0236
+     ],
+     "growth_yoy": [
+      null,
+      0.2294,
+      -0.0058
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -65000000,
+      -108000000,
+      -117000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0055,
+      -0.0079,
+      -0.0081
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11752000000,
+     13681000000,
+     14445000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fnf:TitleSegmentMember",
+     "label": "Title Segment",
+     "values": [
+      1774000000,
+      2213000000,
+      2004000000,
+      2528000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6501,
+      0.6088,
+      0.6212,
+      0.624
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1297,
+      0.1423
+     ]
+    },
+    {
+     "member": "fnf:FGSegmentMember",
+     "label": "F&G Segment",
+     "values": [
+      908000000,
+      1364000000,
+      1187000000,
+      1421000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3327,
+      0.3752,
+      0.3679,
+      0.3508
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3073,
+      0.0418
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      75000000,
+      86000000,
+      63000000,
+      130000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0275,
+      0.0237,
+      0.0195,
+      0.0321
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.16,
+      0.5116
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -28000000,
+      -28000000,
+      -28000000,
+      -28000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0103,
+      -0.0077,
+      -0.0087,
+      -0.0069
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2729000000,
+     3635000000,
+     3226000000,
+     4051000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "fnf:FGSegmentMember",
+     "label": "F&G Segment",
+     "values": [
+      70186000000,
+      84938000000,
+      98432000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8706,
+      0.8916,
+      0.9029
+     ],
+     "growth_yoy": [
+      null,
+      0.2102,
+      0.1589
+     ]
+    },
+    {
+     "member": "fnf:TitleSegmentMember",
+     "label": "Title Segment",
+     "values": [
+      7949000000,
+      7627000000,
+      8093000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0986,
+      0.0801,
+      0.0742
+     ],
+     "growth_yoy": [
+      null,
+      -0.0405,
+      0.0611
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      2479000000,
+      2698000000,
+      2489000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0308,
+      0.0283,
+      0.0228
+     ],
+     "growth_yoy": [
+      null,
+      0.0883,
+      -0.0775
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     80614000000,
+     95263000000,
+     109014000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "fnf:FGSegmentMember",
+     "label": "F&G Segment",
+     "values": [
+      88013000000,
+      91819000000,
+      101035000000,
+      103594000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8962,
+      0.8973,
+      0.9062,
+      0.9045
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.148,
+      0.1282
+     ]
+    },
+    {
+     "member": "fnf:TitleSegmentMember",
+     "label": "Title Segment",
+     "values": [
+      7723000000,
+      8022000000,
+      8139000000,
+      8522000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0786,
+      0.0784,
+      0.073,
+      0.0744
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0539,
+      0.0623
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      2473000000,
+      2490000000,
+      2325000000,
+      2412000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0252,
+      0.0243,
+      0.0209,
+      0.0211
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0598,
+      -0.0313
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     98209000000,
+     102331000000,
+     111499000000,
+     114528000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}
