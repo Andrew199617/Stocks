@@ -81,7 +81,7 @@ def test_exit_reasons():
     assert R("B", "B", None, "low", "misfit", True, True)[0] == []
 
 
-def _folder(base, tier_by_numbers="B", confidence="medium", override=None, one_liner="test", extra_n=None):
+def _folder(base, tier_by_numbers="B", confidence="medium", override=None, one_liner="test", extra_n=None, extra_j=None):
     t = "TST"
     os.makedirs(os.path.join(base, t), exist_ok=True)
     os.makedirs(os.path.join(base, "_system"), exist_ok=True)
@@ -101,6 +101,7 @@ def _folder(base, tier_by_numbers="B", confidence="medium", override=None, one_l
          "probs_used": PROBS, "one_liner": one_liner, "confidence": confidence,
          "tier_override": override, "tier_override_reason": "test reason" if override else None,
          "in_scope_under_40b": True}
+    j.update(extra_j or {})
     for name, obj in (("dcf_numbers.json", n), ("judgment.json", j)):
         with open(os.path.join(base, t, name), "w", encoding="utf-8") as f:
             json.dump(obj, f, indent=1, ensure_ascii=False)  # raw UTF-8, like the real judgment files
@@ -148,6 +149,46 @@ def test_make_score_end_to_end():
     s = _score(tier_by_numbers="A", confidence="low")
     assert s["alert_eligible"] is True and "alert_suppressed_reason" not in s, s  # S/A alerts fire regardless of confidence
     assert "exit_alert_suppressed_reason" not in s
+
+
+def _score_attempt(**kw):
+    """make_score.py's (exit code, stderr) on a synthetic folder — for the
+    refusal cases _score_files (which asserts success) cannot express."""
+    base = tempfile.mkdtemp(prefix="alert_gates_")
+    try:
+        t = _folder(base, **kw)
+        env = dict(os.environ, STOCKS_BASE=base, PYTHONIOENCODING="utf-8",
+                   MAKE_SCORE_REGISTRY=os.path.join(base, "_system", "overrides_registry.json"))
+        env.pop("PYTHONUTF8", None)
+        r = subprocess.run([sys.executable, MAKE_SCORE, t], capture_output=True, text=True,
+                           encoding="utf-8", env=env, timeout=120)
+        return r.returncode, r.stderr
+    finally:
+        shutil.rmtree(base, ignore_errors=True)
+
+
+def test_never_filed_capex_estimate_needs_ack_reason():
+    """The depreciation-anchor path (Andrew 2026-10-18, WORKER_SPEC step 8):
+    capex never filed, so the engine's override check is out-of-band with
+    last_filed_value null (ALLY's shape). A depreciation-anchored estimate
+    passes that gate only with an ack_reason in judgment.json: without one
+    make_score refuses there; with one the refusal moves past the gate (the
+    synthetic run then stops at the next gate, as any fixture without a
+    measured replay does)."""
+    applied = [{"field": "capex", "value": 243000000.0, "kind": "estimate"}]
+    override = {"value": 243000000.0, "kind": "estimate",
+                "source": "FY2025 10-K property and equipment depreciation $243M",
+                "reason": "no capex ever filed; estimate anchored on filed depreciation"}
+    checks = {"capex": {"value": 243000000.0, "last_filed_value": None,
+                        "out_of_band": True, "ack_reason_present": False}}
+    code, err = _score_attempt(extra_n={"override_checks": checks, "overrides_applied": applied},
+                               extra_j={"capex_override": override})
+    assert code != 0 and "OUT OF BAND" in err and "no filed value at all" in err and "ack_reason" in err, err
+    acked = dict(override, ack_reason="Out of band by construction: no capex was ever filed; anchored on filed depreciation.")
+    checks = {"capex": dict(checks["capex"], ack_reason_present=True)}
+    code, err = _score_attempt(extra_n={"override_checks": checks, "overrides_applied": applied},
+                               extra_j={"capex_override": acked})
+    assert "OUT OF BAND" not in err, err
 
 
 def test_make_score_utf8_under_the_locale_encoding():
