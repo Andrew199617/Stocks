@@ -1,0 +1,529 @@
+{
+ "ticker": "ESTC",
+ "cik": 1707753,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001707753-26-000006",
+   "filed": "2026-02-27",
+   "period": "2026-01-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000006/estc-20260131_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001707753-26-000018",
+   "filed": "2026-06-08",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000018/estc-20260430_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001707753-26-000054",
+   "filed": "2026-08-28",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000054/estc-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-04-30",
+    "2025-04-30",
+    "2026-04-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "estc:SelfManagedSubscriptionMember",
+     "label": "Self Managed Subscription",
+     "values": [
+      629086000,
+      696901000,
+      797184000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4964,
+      0.4698,
+      0.4583
+     ],
+     "growth_yoy": [
+      null,
+      0.1078,
+      0.1439
+     ]
+    },
+    {
+     "member": "estc:SaaSSelfManagedAnnualMember",
+     "label": "Saa S Self Managed - Annual",
+     "values": [
+      364062000,
+      502320000,
+      640937000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2873,
+      0.3387,
+      0.3685
+     ],
+     "growth_yoy": [
+      null,
+      0.3798,
+      0.276
+     ]
+    },
+    {
+     "member": "estc:SaaSSelfManagedMonthlyMember",
+     "label": "Saa S Self Managed - Monthly",
+     "values": [
+      183458000,
+      185299000,
+      196334000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1448,
+      0.1249,
+      0.1129
+     ],
+     "growth_yoy": [
+      null,
+      0.01,
+      0.0596
+     ]
+    },
+    {
+     "member": "estc:ProfessionalServicesMember",
+     "label": "Professional Services",
+     "values": [
+      90715000,
+      98776000,
+      104876000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0716,
+      0.0666,
+      0.0603
+     ],
+     "growth_yoy": [
+      null,
+      0.0889,
+      0.0618
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1267321000,
+     1483296000,
+     1739331000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-01-31",
+    "2025-04-30",
+    "2025-07-31",
+    "2026-01-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "estc:SelfManagedSubscriptionMember",
+     "label": "Self Managed Subscription",
+     "values": [
+      178202000,
+      180234000,
+      192809000,
+      207242000,
+      205085000,
+      213530000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.4664,
+      0.464,
+      0.4643,
+      0.4607,
+      0.4551,
+      0.4466
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.163,
+      0.1379,
+      0.1075
+     ]
+    },
+    {
+     "member": "estc:SaaSSelfManagedAnnualMember",
+     "label": "Saa S Self Managed - Annual",
+     "values": [
+      132908000,
+      134979000,
+      145912000,
+      168561000,
+      169596000,
+      185003000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.3479,
+      0.3475,
+      0.3514,
+      0.3747,
+      0.3763,
+      0.3869
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2683,
+      0.2565,
+      0.2679
+     ]
+    },
+    {
+     "member": "estc:SaaSSelfManagedMonthlyMember",
+     "label": "Saa S Self Managed - Monthly",
+     "values": [
+      47088000,
+      46528000,
+      49862000,
+      49924000,
+      47765000,
+      50202000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.1232,
+      0.1198,
+      0.1201,
+      0.111,
+      0.106,
+      0.105
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0602,
+      0.0266,
+      0.0068
+     ]
+    },
+    {
+     "member": "estc:ProfessionalServicesMember",
+     "label": "Professional Services",
+     "values": [
+      23885000,
+      26691000,
+      26705000,
+      24154000,
+      28235000,
+      29378000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0625,
+      0.0687,
+      0.0643,
+      0.0537,
+      0.0626,
+      0.0614
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0113,
+      0.0578,
+      0.1001
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     382083000,
+     388432000,
+     415288000,
+     449881000,
+     450681000,
+     478113000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-04-30",
+    "2025-04-30",
+    "2026-04-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      730488000,
+      836226000,
+      947307000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5764,
+      0.5638,
+      0.5446
+     ],
+     "growth_yoy": [
+      null,
+      0.1447,
+      0.1328
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      536833000,
+      647070000,
+      792024000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4236,
+      0.4362,
+      0.4554
+     ],
+     "growth_yoy": [
+      null,
+      0.2053,
+      0.224
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1267321000,
+     1483296000,
+     1739331000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-01-31",
+    "2025-04-30",
+    "2025-07-31",
+    "2026-01-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      213370000,
+      217953000,
+      230263000,
+      239756000,
+      243680000,
+      258977000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.5584,
+      0.5611,
+      0.5545,
+      0.5329,
+      0.5407,
+      0.5417
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1237,
+      0.118,
+      0.1247
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      168713000,
+      170479000,
+      185025000,
+      210125000,
+      207001000,
+      219136000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.4416,
+      0.4389,
+      0.4455,
+      0.4671,
+      0.4593,
+      0.4583
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.2455,
+      0.2142,
+      0.1844
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     382083000,
+     388432000,
+     415288000,
+     449881000,
+     450681000,
+     478113000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Subscription' (estc:SubscriptionMember) dropped: it is the parent of Saa S Self Managed, Saa S Self Managed - Annual, Saa S Self Managed - Monthly, Self Managed Subscription in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Saa S Self Managed' (estc:SaaSSelfManagedMember) dropped: it is the parent of Saa S Self Managed - Annual, Saa S Self Managed - Monthly in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Subscription' (estc:SubscriptionMember) dropped: it is the parent of Saa S Self Managed, Saa S Self Managed - Annual, Saa S Self Managed - Monthly, Self Managed Subscription in the filing's definition linkbase",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Saa S Self Managed' (estc:SaaSSelfManagedMember) dropped: it is the parent of Saa S Self Managed - Annual, Saa S Self Managed - Monthly in the filing's definition linkbase"
+ ],
+ "complete": true
+}
